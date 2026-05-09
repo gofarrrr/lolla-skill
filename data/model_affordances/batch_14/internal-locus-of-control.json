@@ -136,6 +136,94 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "felt-control-as-causality",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns that the felt sense of a conscious self in control can be an illusion or post-hoc explanation. Do not promote internal locus when it merely narrates control without causal evidence.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Internal_Locus_Of_Control_rag.md",
+          "source_quote": "overwhelming illusion",
+          "section_hint": "Weaknesses and Anti-Patterns (Situations Where Misapplication is Dangerous)",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Internal_Locus_Of_Control_rag.md",
+          "source_quote": "retrospectively creates a narrative of control and causality",
+          "section_hint": "Conflicting Relationships (Antagonists)",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "deliberate-then-act-as-internal-locus-split",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source supports deliberate-then-act, but as a separate runtime transaction it is already better owned by self-control's immediate pause card and critical-thinking's claim/evidence/action-threshold checks. Internal LOC should own agency-to-lever mapping unless the treatment truly differs.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Internal_Locus_Of_Control_rag.md",
+          "source_quote": "separating that deliberation from the action itself",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Internal_Locus_Of_Control_rag.md",
+          "source_quote": "Write out the plan, let it sit, and return to it later",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "five-step-process-as-internal-locus-split",
+      "status": "duplicate_of_existing_field",
+      "reason": "The five-step process expresses ownership and iteration, but the full transaction belongs to goal-setting, root-cause, iteration, debugging, or systems-design owner records. Internal LOC should not absorb generic continuous-improvement sequencing.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Internal_Locus_Of_Control_rag.md",
+          "source_quote": "The 5-Step Process (for Continuous Improvement)",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Internal_Locus_Of_Control_rag.md",
+          "source_quote": "steps must be done one at a time and in order to avoid blurring boundaries",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "attempted_field": "self-script-inner-dialogue-as-internal-locus-split",
+      "status": "source_too_thin",
+      "reason": "The source mentions self-scripting as a personal-development example, but it does not support a full Internal LOC affordance with separate activation, evidence, treatment, and misuse behavior. Route inner-dialogue or habit support to self-control, habit-formation, or emotional-intelligence owner records.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Internal_Locus_Of_Control_rag.md",
+          "source_quote": "self-script",
+          "section_hint": "Concrete Examples in Business and Strategy",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Internal_Locus_Of_Control_rag.md",
+          "source_quote": "take control of one's inner dialogue",
+          "section_hint": "Concrete Examples in Business and Strategy",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -148,7 +236,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 14 source reading found strong reviewed depth for agency as controllable-lever ownership with constraint boundaries.",
+    "normalization_note": "Batch 14 source reading found strong reviewed depth for agency as controllable-lever ownership with constraint boundaries. PR98 adds no-promote rails for felt-control causality, deliberate-then-act split duplication, five-step process owner routing, and thin self-script expansion.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
     ],

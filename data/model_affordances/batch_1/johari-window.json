@@ -240,6 +240,72 @@
           "confidence": "medium"
         }
       ]
+    },
+    {
+      "attempted_field": "generic-socially-acceptable-feedback-as-blind-spot-reduction",
+      "status": "not_supported_by_source",
+      "reason": "The source says generic or socially acceptable feedback can create an illusion of knowing. Johari should not be promoted unless feedback is specific enough to reduce the real blind spot.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Johari_Window_rag.md",
+          "source_quote": "generic or \"socially acceptable\" feedback",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Johari_Window_rag.md",
+          "source_quote": "illusion of knowing",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "curated-disclosure-as-openness",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that disclosure becomes performance when it is curated or socially safe instead of reducing the real hidden area. Do not promote openness that does not change cooperation or blind-spot awareness.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Johari_Window_rag.md",
+          "source_quote": "Danger When Disclosure Becomes Performance",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Johari_Window_rag.md",
+          "source_quote": "curated, socially safe observations",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "feedback-filtered-to-protect-self-image",
+      "status": "not_supported_by_source",
+      "reason": "The source identifies confirmation-protective feedback filtering and blind-spot intolerance as failure modes. Do not promote Johari if the receiver is only accepting feedback that preserves self-image.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Johari_Window_rag.md",
+          "source_quote": "feedback intake is filtered to protect existing self-image",
+          "section_hint": "Structured Tension Curation (2026-02-27)",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Johari_Window_rag.md",
+          "source_quote": "Blind Spot Intolerance",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -259,7 +325,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "This record intentionally favors one source-backed affordance over broad coverage. The source is operational enough on specific feedback plus disclosure, but thin for independent relation-composition or standalone diagnosis records.",
+    "normalization_note": "This record intentionally favors one source-backed affordance over broad coverage. The source is operational enough on specific feedback plus disclosure, but thin for independent relation-composition or standalone diagnosis records. PR98 keeps generic feedback, curated disclosure, and self-image-protective filtering as first-class absence rails rather than positive splits.",
     "dropped_material": [
       "The four-pane structure and general model history are not extracted as affordances because they do not by themselves specify evidence, treatment, or misuse behavior.",
       "Generic communication, leadership, emotional-intelligence, and openness claims were dropped unless the source tied them to blind-spot reduction, specific feedback, disclosure, or calibration."

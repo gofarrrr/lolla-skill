@@ -121,6 +121,79 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "authentic-conviction-as-evidence",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that authenticity can conflict with authority bias and confirmation bias. Genuine conviction, personal candor, or perceived sincerity cannot substitute for evidence.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Authenticity_rag.md",
+          "source_quote": "personal conviction is mistaken for evidential weight because the speaker is perceived as genuine",
+          "section_hint": "Structured Tension Curation (2026-04-03)",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Authenticity_rag.md",
+          "source_quote": "commitment to one's authentic position becomes selective attention to supporting evidence",
+          "section_hint": "Structured Tension Curation (2026-04-03)",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "emotional-overdrive-as-authentic-candor",
+      "status": "not_supported_by_source",
+      "reason": "The source treats strong emotion as a risk that must be named and disciplined, not as proof that authenticity should be promoted.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Authenticity_rag.md",
+          "source_quote": "strong emotions... driving your thinking process",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Authenticity_rag.md",
+          "source_quote": "Draft a Plan Out Loud",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "transparency-without-correction-or-accountability",
+      "status": "not_supported_by_source",
+      "reason": "The source supports transparency only when it removes impression management and grounds candor in evidence, preparation, and accountability. Disclosure without correction or accountability should not be promoted as Authenticity.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Authenticity_rag.md",
+          "source_quote": "radical truth and radical transparency",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Authenticity_rag.md",
+          "source_quote": "Managing Impressions",
+          "section_hint": "Common Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Authenticity_rag.md",
+          "source_quote": "avoid evidence, preparation, or accountability for consequences",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -133,7 +206,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 7 source reading found strong reviewed depth for Authenticity. Extracted one congruence/candor/substance check and rejected style-without-substance plus my-truth avoidance.",
+    "normalization_note": "Batch 7 source reading found strong reviewed depth for Authenticity. Extracted one congruence/candor/substance check and rejected style-without-substance plus my-truth avoidance. PR98 adds no-promote rails for authentic conviction as evidence, emotion overdrive, and transparency without correction or accountability.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, or user-facing change is implied."
     ],
