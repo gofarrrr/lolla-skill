@@ -16,7 +16,7 @@
         ],
         "do_not_use_when": [
           "Automation replaces judgment because the environment has changed enough that automatic behavior is now solving yesterday's problem.",
-          "Strategy remains inert because it exists in a pristine document but does not drive action.",
+          "The task is a one-off decision or novel diagnosis rather than a repeatable behavior loop.",
           "Habit framing turns execution into moral virtue rather than environment, cue, response, and reward design."
         ],
         "case_evidence_needed": [
@@ -79,7 +79,7 @@
       ],
       "confidence": "high",
       "review_notes": {
-        "normalization_note": "Batch 8 outcome: strong_affordance_record. The source supports one automatic action design check grounded in cue/craving/response/reward, friction, reliability, and context-change safeguards.",
+        "normalization_note": "Batch 8 outcome: strong_affordance_record. The source supports one automatic action design check grounded in cue/craving/response/reward, friction, reliability, and context-change safeguards. PR97 clarifies that inert strategy is a reason to design repeated behavior, not a broad do-not-use boundary.",
         "dropped_material": [
           "Did not extract AI persona consistency, professional first impressions, or strategic goal hierarchy as separate affordances.",
           "Kept System 1/System 2 and scaffolding material as support for behavior-loop design."
@@ -121,6 +121,72 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "cue-craving-diagnosis-as-standalone-card",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source's cue, craving, response, and reward sequence is the evidence structure inside the existing automatic-action design card. Do not promote cue diagnosis as a separate affordance unless it changes the downstream behavior beyond habit-loop design.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Habit_Formation_rag.md",
+          "source_quote": "Cue, Craving, Response, and Reward",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Habit_Formation_rag.md",
+          "source_quote": "Identify the Cue",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "ai-persona-consistency-as-habit-affordance",
+      "status": "source_too_thin",
+      "reason": "The source uses AI persona consistency as an example, but it does not support a Habit Formation runtime affordance for persona design. Route grounded persona or workflow simulation to mental-simulation or user-experience-research owner records.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Habit_Formation_rag.md",
+          "source_quote": "AI Digital Twin Behavior",
+          "section_hint": "Concrete Examples in Business and Strategy",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Habit_Formation_rag.md",
+          "source_quote": "**consistent** \"psychological fingerprint\"",
+          "section_hint": "Concrete Examples in Business and Strategy",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "attempted_field": "professional-consistency-as-habit-split",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source's professionalism and trust examples illustrate consistency, but they do not add a distinct habit-formation transaction beyond repeatable behavior design. Route trust, signaling, or commitment pressure to their owner records when those are the actual receiver action.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Habit_Formation_rag.md",
+          "source_quote": "unwavering professionalism",
+          "section_hint": "Concrete Examples in Business and Strategy",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Habit_Formation_rag.md",
+          "source_quote": "lasting impression",
+          "section_hint": "Concrete Examples in Business and Strategy",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -133,7 +199,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 8 source reading found strong reviewed depth for Habit Formation. Extracted one automatic action design check and rejected automaticity-as-permanent-good plus strategy-document-as-execution overclaims.",
+    "normalization_note": "Batch 8 source reading found strong reviewed depth for Habit Formation. Extracted one automatic action design check and rejected automaticity-as-permanent-good plus strategy-document-as-execution overclaims. PR97 clarifies the inert-strategy boundary and adds rails for cue/craving split bloat, AI persona consistency, and professionalism examples.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, or user-facing change is implied."
     ],

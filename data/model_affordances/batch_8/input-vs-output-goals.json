@@ -128,6 +128,35 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "accurate-output-without-actionable-input",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that accurate outputs can still be useless when they do not translate into actionable inputs. Do not promote an output statement unless the controllable behavior or input path is clear.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Input_Vs_Output_Goals_rag.md",
+          "source_quote": "highly accurate technical inputs that yield a useless or unactionable output",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Input_Vs_Output_Goals_rag.md",
+          "source_quote": "does not help a flight attendant decide whether to serve chicken salad",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Input_Vs_Output_Goals_rag.md",
+          "source_quote": "How does this analysis (input) advance our thinking and solve the core problem (output)?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -140,7 +169,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 8 source reading found strong reviewed depth for Input Vs Output Goals. Extracted one controllable input/output alignment affordance and rejected activity-count and ends/means-collapse misuse.",
+    "normalization_note": "Batch 8 source reading found strong reviewed depth for Input Vs Output Goals. Extracted one controllable input/output alignment affordance and rejected activity-count and ends/means-collapse misuse. PR97 adds a rail against accurate output statements that do not identify actionable inputs.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, or user-facing change is implied."
     ],

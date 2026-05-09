@@ -22,8 +22,7 @@
         "case_evidence_needed": [
           "The known intended behavior and the actual repeated failure point.",
           "The trigger, stressor, temptation, or distraction pattern.",
-          "The environment, habit loop, prompt, rest, or incentive condition that can be changed.",
-          "The minimum viable standard for action after deliberation."
+          "The environment, habit loop, prompt, rest, or incentive condition that can be changed."
         ]
       },
       "treatment_requirements": [
@@ -52,7 +51,7 @@
       "misuse_guards": [
         "Do not treat self-control failure as moral failure.",
         "Do not ignore ego depletion, rest, sleep, or environmental triggers.",
-        "Do not prescribe more deliberation when a good-enough action threshold is needed."
+        "Do not use self-control framing when the gap is missing knowledge, resources, incentives, or strategy."
       ],
       "source_evidence": [
         {
@@ -79,13 +78,118 @@
       ],
       "confidence": "high",
       "review_notes": {
-        "normalization_note": "Batch 14 outcome: strong_affordance_record. The source supports self-control as condition design for known follow-through gaps.",
+        "normalization_note": "Batch 14 outcome: strong_affordance_record. The source supports self-control as condition design for known follow-through gaps. PR97 splits immediate pause-and-deliberate impulse control into a separate transaction card.",
         "dropped_material": [
           "Did not extract moralized willpower advice.",
-          "Did not treat self-control as a universal replacement for incentive or knowledge design."
+          "Did not treat self-control as a universal replacement for incentive or knowledge design.",
+          "Moved immediate pause-before-action material into its own affordance because it has different activation, evidence, treatment, and receiver action from repeated follow-through system design."
         ],
         "open_questions": [
           "Later packet review should test overlap with habit-formation and execution/follow-through cards."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "self-control.deliberate-pause-before-impulse-action",
+      "status": "supported",
+      "name": "Deliberate pause before impulse action",
+      "mechanism": "When stress, hostility, urgency, or hot cognition is pushing immediate action, require the answer to insert a brief deliberate pause, name what is happening, decide whether more time is needed, and expose any skipped steps if action must still be rushed.",
+      "activation_shape": {
+        "use_when": [
+          "A person or team is about to react under stress, hostility, temptation, urgency, or emotional certainty.",
+          "The failure mode is impulsive action before deliberation rather than repeated follow-through over days or weeks.",
+          "A small pause, clarifying question, or good-enough action threshold would preserve effectiveness without creating analysis paralysis."
+        ],
+        "do_not_use_when": [
+          "The problem is a recurring execution gap that needs environment, habit, rest, prompt, or incentive design.",
+          "The answer would turn every decision into slow deliberation even when action criteria are already sufficient.",
+          "There is no visible rush, emotional trigger, temptation, or skipped-step risk."
+        ],
+        "case_evidence_needed": [
+          "The immediate trigger, pressure, or emotional state pushing action.",
+          "The decision or action about to be taken.",
+          "The clarifying question, pause, or extra-time request that can interrupt automatic reaction.",
+          "The minimum viable standard for action after deliberation.",
+          "Any steps skipped if action must still be rushed, plus how quality will be monitored afterward."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "pause-name-pressure-then-act-or-delay",
+          "description": "Require the answer to separate deliberation from action by naming the immediate pressure, asking whether more time is needed, and defining the good-enough threshold or skipped-step disclosure before acting.",
+          "evidence_required": [
+            "The immediate emotional, urgent, hostile, or tempting trigger.",
+            "The action being considered.",
+            "The pause question or extra-time request.",
+            "The threshold for acting now versus delaying.",
+            "The skipped steps and monitoring plan if speed is unavoidable."
+          ],
+          "good_output_shape": [
+            "Names the trigger and automatic reaction.",
+            "Adds a concrete pause question such as what is happening or whether more time is needed.",
+            "Sets a good-enough action threshold rather than demanding perfect analysis.",
+            "Explains why any rushed action is being rushed and what checks were skipped."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is happening right now that is pushing immediate action?",
+        "Do we need more time, or is there a good-enough threshold for acting now?",
+        "If we rush, which deliberation steps are we skipping and how will we monitor the decision afterward?"
+      ],
+      "misuse_guards": [
+        "Do not prescribe more deliberation when the action threshold is already sufficient.",
+        "Do not confuse a one-time impulse pause with a habit or environment redesign.",
+        "Do not use urgency to hide skipped reasoning steps when the skipped steps should be made explicit.",
+        "Do not let self-control become endless what-if analysis that stymies important action."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Self_Control_rag.md",
+          "source_quote": "separating deliberation from taking action",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Self_Control_rag.md",
+          "source_quote": "“What’s happening?”",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Self_Control_rag.md",
+          "source_quote": "“Do I need more time?”",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Self_Control_rag.md",
+          "source_quote": "If you have to rush, explain *why* you are rushing and what steps were skipped to maintain transparency.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Self_Control_rag.md",
+          "source_quote": "stop engaging in endless \"what-ifs\" and **act before events unfold and act on you**",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR97 accepted split: immediate pause-before-action differs from follow-through system design because it activates at a hot reaction or rushed decision point, requires skipped-step and action-threshold evidence, and can either delay, act, or disclose skipped reasoning.",
+        "dropped_material": [
+          "Did not turn every important decision into slow deliberation.",
+          "Did not duplicate prioritization, habit formation, or emotional-intelligence owner records."
+        ],
+        "open_questions": [
+          "Packet review should test whether this split prevents rushed advice without turning ordinary action into analysis paralysis."
         ],
         "review_status": "draft"
       }
@@ -121,6 +225,94 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "self-control-as-infinite-resource",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly says self-control is limited and requires rest, sleep, nutrition, and recovery. Do not promote more self-monitoring or restraint when depletion is the actual blocker.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Self_Control_rag.md",
+          "source_quote": "Self-control is not an infinite resource.",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Self_Control_rag.md",
+          "source_quote": "Prioritize adequate sleep, rest, and nutrition to ward off mental depletion.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "eisenhower-matrix-as-self-control-split",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source presents urgent-versus-important focus as a self-control tool, but the runtime transaction is priority sequencing under limited attention. Route standalone urgent/important triage to prioritization rather than expanding Self Control.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Self_Control_rag.md",
+          "source_quote": "The Eisenhower Matrix (Addressing 'Important' vs. 'Urgent')",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Self_Control_rag.md",
+          "source_quote": "focus on what truly matters, even if the deadline is not immediate",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "ai-tendency-encoding-as-self-control-affordance",
+      "status": "source_too_thin",
+      "reason": "The source mentions AI persona tendency encoding as an example, but it does not support a runtime self-control affordance for agent-persona design. Route validated persona or simulation work to mental-simulation or user-experience-research owner records.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Self_Control_rag.md",
+          "source_quote": "Behavioral Tendencies in AI Modeling",
+          "section_hint": "Concrete Examples in Business and Strategy",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Self_Control_rag.md",
+          "source_quote": "self-control tendencies (e.g., being risk-averse or risk-seeking, or having a frugal tendency) must be explicitly **documented and encoded**",
+          "section_hint": "Concrete Examples in Business and Strategy",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "attempted_field": "self-control-as-more-deliberation",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that exhaustive deliberation can become decision paralysis. Do not promote self-control when the real need is a sufficient action threshold rather than more reflection.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Self_Control_rag.md",
+          "source_quote": "Decision Paralysis/Perfectionism",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Self_Control_rag.md",
+          "source_quote": "The goal of thinking is not to analyze everything for perfection",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -133,7 +325,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 14 source reading found strong reviewed depth for self-control as follow-through system design.",
+    "normalization_note": "Batch 14 source reading found strong reviewed depth for self-control as follow-through system design. PR97 splits immediate pause-before-action and adds owner-routing rails for urgent/important triage, AI tendency encoding, and over-deliberation.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
     ],
