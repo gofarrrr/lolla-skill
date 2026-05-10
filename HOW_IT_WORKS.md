@@ -69,7 +69,7 @@ Academic validation: USTC's MeMo paper (Feb 2024) proved Munger's latticework co
 
 **Pre-computed embeddings:** 2,496 knowledge chunks embedded with OpenAI text-embedding-3-large (3072d). Enables semantic matching — the query is expanded into domain-vocabulary variants via gpt-4o-mini (vocabulary-seeded with all 222 model names), each variant is embedded, and results are fused via Reciprocal Rank Fusion (RRF) to find the most relevant corrective knowledge. This bridges the vocabulary gap between user language ("sign the deal") and curated domain language ("escalation of commitment"). Requires `OPENAI_API_KEY`. Without it, deterministic routing still works.
 
-**V60 affordance substrate:** `data/compiled/model_affordances/affordances_v60.json` is the current reviewed transaction layer over the canonical articles. It carries 222 model records, 306 source-backed affordances, and 697 absence records. The affordances say what a model can legitimately do in a reasoning transaction: activation shape, evidence needed, treatment requirements, diagnostic questions, misuse guards, confidence, and source evidence. The absence records are equally important: they say what the source did *not* support, where a tempting interpretation should be blocked, and where the model belongs to a different owner record. Runtime never discovers this by globbing for "latest"; V60 must be passed by explicit path, and can be disabled per run with `LOLLA_V60_ENRICHMENT=off` or `--v60-enrichment off`.
+**V60 affordance substrate:** `data/compiled/model_affordances/affordances_v60.json` is the current reviewed transaction layer over the canonical articles. It carries 222 model records, 306 source-backed affordances, and 697 absence records. The affordances say what a model can legitimately do in a reasoning transaction: activation shape, evidence needed, treatment requirements, diagnostic questions, misuse guards, confidence, and source evidence. The absence records are equally important: they say what the source did *not* support, where a tempting interpretation should be blocked, and where the model belongs to a different owner record. Runtime never discovers this by globbing for "latest"; V60 is loaded from an explicit configured path, and can be disabled per run with `LOLLA_V60_ENRICHMENT=off` or `--v60-enrichment off`.
 
 ### The Source Corpus
 
@@ -141,6 +141,7 @@ The system has been tested and calibrated across hundreds of evaluation runs aga
 - **Process quality** — Is the machine working correctly? Detection rates, routing coverage, boundary health, cache efficiency, timing — across all four lanes. If a code change degrades tendency detection or companion verification, the metrics show it.
 - **Novelty and specificity** — Is the system saying something the vanilla answer didn't already contain? A delta card that restates what the LLM already said adds no value. Measurement tracks whether findings surface genuinely new structural pressure — challenges, tensions, and failure modes absent from the original reasoning.
 - **Downstream influence** — When the structural pressure is fed back to an LLM, does it structurally change the answer? Not "does the LLM agree with the challenge" — sycophancy makes that meaningless. Does it engage with the challenge, add conditions it previously omitted, name failure modes it previously glossed over?
+- **Reasoning-transport usefulness** — For V60, did the private source-backed chunks create an omitted option, evidence gate, diagnostic question, useful guardrail, or grounded rejection/defer decision? A run can be successful even when a selected chunk is not public: the ledger should show serious consideration, and the final answer should avoid forced model theater.
 
 These measurements follow a core constraint: **evals measure the process, not declare truth.** The system cannot know whether its challenge was "right" — that depends on a future that hasn't happened yet. What it can know is whether the challenge was specific, traceable, novel, and structurally grounded. A more knowledgeable decision process is the goal, not a more correct prediction.
 
@@ -148,7 +149,7 @@ These measurements follow a core constraint: **evals measure the process, not de
 
 ## Architecture
 
-### Current State (2026-04-30)
+### Current State (2026-05-11)
 
 The pipeline runtime is fully conversation-native. `SystemBPipeline.run()` accepts `ConversationContext` and nothing else — passing anything else raises `TypeError`. The legacy `CritiqueRequest(query, vanilla_answer)` runtime contract and lane shims have been removed from the engine. The extraction/CLI artifact layer still preserves compatibility fields for older captured runs, but normal file-based runs now derive post-processing text (`case_focus`, `audit_target_assistant_text`) from `ConversationContext` first. Every lane reads from a typed, provenance-bearing `ConversationIR` projected through the IR packet layer.
 
@@ -162,10 +163,13 @@ The substrate, top to bottom:
 | Specialists (supported, not default-wired) | `extract_stance_events`, `extract_live_constraints`, `extract_dropped_threads` | `stance_extraction.py`, `live_constraints_extraction.py`, `dropped_threads_extraction.py` | LLM-backed substring-validated upgrades to specific IR objects. Available as injectable dependencies; not invoked by the default pipeline. Used today by tests, eval harnesses, and ad-hoc callers; will graduate to default wiring once promotion criteria documented in the *Evolution* section are met per field. |
 | Packet | `Lane4Packet` | `engine/system_b/packet_builders/lane4.py` | Minimum projection of the IR each lane reads |
 | Lanes | Companion / Frame Pressure / Structural Coverage / Pass1+Pass2 | `companion_routing.py`, `frame_pressure.py`, `structural_coverage.py`, `pass1_runner.py` + `pass2_runner.py` | Each lane consumes the packet and produces a card |
+| Private enrichment | `v60_enrichment` + `v60_consideration_ledger` | `v60_enrichment.py`, `run_pipeline.py`, `finalize_v60_telemetry.py` | Post-lane source-backed affordance/absence chunks selected from explicit `affordances_v60.json`; Claude/Codex privately considers every selected chunk and the deterministic layer validates the ledger |
 | Audit | `AuditTrace`, `build_pipeline_audit_trace` | `audit_assembly.py` | Aggregates per-call telemetry, lane outputs, warnings |
 | Telemetry | `BoundaryCallTrace`, `BoundaryCallMetadata` | `boundary_tracing.py`, `boundary_provider.py` | Per-call model + token counts (prompt/completion/total/cached/reasoning) |
 
 The IR's three provenance tiers — `span` (exact substring in one turn), `turn_ref` (paraphrase, source turn known), `derivation` (multi-turn synthesis with refs) — make the difference between substring-validated content and honest paraphrase visible to every consumer downstream. No paraphrase ever masquerades as a quote.
+
+The live skill now has a second transport layer after the four lanes: V60 private enrichment. It does not decide the answer and it does not render a public card. It selects a compact slate of source-backed opportunities for the skill runner to consider: what a model can legitimately do, what evidence is needed before using it, what misuse to avoid, and which tempting interpretations the source explicitly does not support. The user sees the improved reasoning; the Observatory and archive retain the machinery.
 
 ### Evolution: How It Used to Work, How It Works Now, and Why
 
@@ -209,9 +213,11 @@ Each phase had a four-step discipline: an annotation gate (humans reviewed candi
 | **Phase 6** — `CritiqueRequest` runtime shim removed | -2179 net lines across 26 files. `CritiqueRequest`, `_context_to_critique`, every legacy lane entry point (`run_fingerprint_call`, `run_verification_call`, `run_frame_extraction`, `run_structural_coverage`, `format_pass2_prompt`, `format_pass1_cluster_prompts`), every legacy helper, the `--legacy-contract` CLI flag, the shim-equivalence test suite (927 lines), and `scripts/phase1_equivalence_check.py` all deleted. `SystemBPipeline.run()` now requires `ConversationContext`; raises `TypeError` on anything else. | Until Phase 6, the conversation-first migration had a parallel-paths shape: new code beside old code, dispatch checking which to run. That's transitional architecture, not target architecture. Deleting the legacy lane path is what makes the new runtime contract real. Artifact compatibility fields may still exist outside the engine; they are not lane inputs. |
 | **Post-Phase-7 audit cleanup (PR #36 + follow-up, 2026-04-25/26)** | Six findings plus compatibility-boundary cleanup: (1) `audit_summary.boundary_summary` aggregate (call_count + token totals + cache hit rate + reasoning-leak flag) replaces having to walk individual boundary calls for cost review; (2) silent `synthesized_position or ""` fallbacks replaced with explicit empty + warning when extraction is degenerate; (3) `vanilla_answer` parameter renamed to `assistant_text` in helpers that receive joined assistant turns; (4) top-level `query` / `vanilla_answer` keys in `result.json` replaced with an `extraction` block carrying the full serialized `ConversationContext` (turns + extraction summaries) — Observatory + render_memo derive displayed case focus / assistant audit target from joined turns and use `decision_situation` for case naming; (5) ~20 orphan `*_from_context` lane functions deleted (~1100 lines net); (6) Pass 1 prompt: added a "hedging is not absence" rule symmetric to the existing "don't score on confidence alone" rule + SKILL.md `CompanionCheatSheet` schema correctly documents `presence_mode` instead of stale `status` (which had caused inline debug prints to render `[None]` because Claude was reading a non-existent field); (7) `scripts/run_pipeline.py` stopped requiring legacy `query` / `vanilla_answer` fields for normal file-based runs, derives `case_focus` and `audit_target_assistant_text` from `ConversationContext`, and treats `audit_seed` / `critique_request` only as compatibility fallback. | Post-Phase-7 cleanup of leftovers from the migration. Found a silent drift bug: `prompt_versioning.py` was hashing a legacy `PASS_2_DEEP_CHECK_SYSTEM` constant the runtime no longer used — version stamps no longer reflected reality. Fixed. The later compatibility-boundary cleanup keeps old artifacts runnable without letting old names define the live contract. |
 | **Lane 1 conversation-scope expansion (PR #37, 2026-04-25)** | Pass 1 + Pass 2 system prompts in `engine/system_b/prompts.py` and `engine/system_b/deep_checks.py`: SOURCE is now the actual conversation transaction (both speakers), CONTEXT is extraction summaries only (paraphrased layer). Added `MISSED CHALLENGE` as a fourth tendency shape; broadened `UNCRITICAL ACCEPTANCE` from "recycles vivid material" to "inherits user-introduced framing — vivid OR structural — without testing it." Materiality bar preserved. | Pre-PR-#37, Lane 1 audited the assistant in isolation. Whistleblower (0 findings, P2c baseline 1) and oncologist (0 findings, P2c baseline 2) were silent because the bias lived at the user/assistant junction — the user introduced a tendency-shaped frame and the assistant absorbed it silently. Lane 1 had no shape for "the assistant carries the tendency by silent inheritance." Validation across the 10-case corpus + Marcus: whistleblower 0 → 2, real_estate 0 → 1 (bonus correct detection), Marcus 3 → 4, others stable; net findings basically flat against P2c baseline; one Phase 2c detection (parenting_teen authority-misinfluence on RAINN references) corrected as an over-fire on legitimate evidence-application. The discipline that emerged: never tune a prompt to "recover" a single case without re-reading the conversation first — Phase 2c got parenting_teen wrong reliably, and reliability isn't accuracy. |
-| **Chat delivery + memo decision-note hardening (PR #72/#73, 2026-04-30)** | Reworked the skill surface from a card summary into a progressive four-beat chat flow: readback + audit promise, short run receipt, strongest counterargument, updated position, pressure check, then functional receipt. Added `references/chat-output-format.md`, `references/memo-output-format.md`, and voice examples as the product-output contracts. Step 8c now writes `memo_*` decision-note fields before `scripts/render_memo.py` renders the standalone memo. `archive_run.py` archives `memo_note.json` as an 8th core artifact. Capture health now treats transcripts ending on a user turn as `capture_critical`, and `run_health` surfaces partial Bullshit Index evaluator loss via `bullshit_index_partial` + `bullshit_index_evaluation_failures`. | The engine could already produce useful cards, but the user-facing surface was too system-centric: labels, counts, card names, and early Observatory links leaked machinery. The current contract separates surfaces: chat gives the live reconsideration, the memo gives a portable decision note, Observatory gives the full instrument panel, and `run_health` tells the truth when any layer is partial. |
+| **Chat delivery, memo hardening, and output hygiene (PR #72/#73 + May 2026 follow-up)** | Reworked the skill surface from a card summary into a progressive chat flow: readback + audit promise, strongest counterargument, updated position, pressure check, then functional receipt. Step 8c writes `memo_*` decision-note fields before `scripts/render_memo.py` renders the standalone memo. New-run memos are product-clean by default: decision note plus capped unanswered questions; the full deterministic audit appendix is opt-in via `--include-audit-appendix`. Public prose now follows an accounting invariant rather than a naming invariant: every anchor and private enrichment chunk must be considered, but model names, V60, affordance, chunk, packet, ledger, lane, card, and internal IDs stay out of chat/memo unless a familiar model name is the clearest human handle. | The engine could already produce useful cards, but the user-facing surface was too system-centric: labels, counts, card names, and early Observatory links leaked machinery. The current contract separates surfaces: chat gives the live reconsideration, the memo gives a portable decision note, Observatory gives the full instrument panel, and `run_health` tells the truth when any layer is partial. |
+| **V60 transaction enrichment + telemetry (May 2026)** | `run_pipeline.py` attaches `v60_enrichment` after the four lanes by default, using the explicit `data/compiled/model_affordances/affordances_v60.json` artifact and no "latest" glob. The enrichment reads model IDs already surfaced by lanes, merges provenance, optionally adds low-trust model recall through the existing embedding retriever, and selects up to 8 private cards. Each card carries one compact affordance chunk and one compact absence chunk when available. Step 6b writes `v60_consideration_ledger`; `finalize_v60_telemetry.py` validates it and updates `run_health` with disposition counts, used chunks, presented-but-not-used chunks, and missing/invalid ledger issues. | This is the transaction layer the handover asked for: freedom of conclusion, not freedom from consideration. The deterministic system selects and preserves custody; Claude/Codex decides whether the chunk is useful, rejected, deferred, or only a private guardrail. The value is reasoning transport, not public taxonomy display. |
+| **Quote-wrapper extraction validation (2026-05-11)** | `scripts/run_extract.py` now validates `reasoning_passages` through shared `find_substring_tolerant(...)`. The validator still rejects paraphrase, punctuation drift, whitespace drift, and word substitutions, but accepts narrow quote-safe fallbacks: casefold match and a symmetric quote wrapper around the entire passage. Verified passages are replaced with the transcript's original span. | The May 10 live run degraded because the extractor wrapped exact transcript spans in quotation marks. That was not a real quote-fabrication failure. The fix keeps the strict provenance contract while removing a spurious degradation class. |
 
-#### Today: ConversationContext → ConversationIR → Lane Packets
+#### Today: ConversationContext → ConversationIR → Lane Packets → Private Enrichment
 
 The data flow from input to lane consumption now looks like:
 
@@ -227,6 +233,10 @@ ConversationIR (substring-validated where specialists ran)
 Lane4Packet (minimum slice the lanes need + provenance_kind metadata)
         ↓
 Lane 1 / Lane 2 / Lane 3 / Lane 4 → Cards → AuditTrace
+        ↓
+V60 private enrichment (explicit affordances_v60.json + optional embedding recall)
+        ↓
+result.json + Step 6 private consideration ledger
 ```
 
 Every step preserves more structure than the one before. Nothing collapses to flat strings.
@@ -237,6 +247,7 @@ Every step preserves more structure than the one before. Nothing collapses to fl
 - **`ConversationIR`** exists because lanes need typed, provenance-bearing objects (not paraphrased strings) to produce findings that can be audited back to source text without re-parsing.
 - **Specialists** (Phase 3b / 5 / 5.5) exist because the monolith extraction prompt could not produce substring-grounded fields no matter how hard it was tuned — the architectural answer was a separate substring-validated specialist per field, gated by annotation evidence and measured against gold.
 - **Packet builders** (Phase 4) exist because lanes shouldn't depend on the IR's internal shape evolving — they consume a contract (`Lane4Packet`) that names exactly the slice they need, with `provenance_kind` metadata that lets future lane prompts mark "this is span-validated" vs "this is paraphrase".
+- **V60 private enrichment** exists because the old packet shape flattened model-level wisdom. The live layer now keeps per-affordance and per-absence identity through selection, then asks the skill runner to account for each selected chunk privately before writing the answer.
 - **Module split** (Phase 7) exists because navigability matters when `pipeline.py` is the orchestration entry point and reviewers need to understand it quickly.
 - **Phase 6's removal** exists because keeping legacy alongside new is technical debt with a half-life — every refactor pays the cost of dispatching between paths.
 
@@ -244,11 +255,11 @@ Every step preserves more structure than the one before. Nothing collapses to fl
 
 **Claude is a conductor, not a player — for the audit.** It captures the conversation, calls scripts, and presents results. It performs zero reasoning judgment inside extraction, triage, routing, fingerprinting, deep checks, or card generation. Every semantic decision in the audit pipeline goes through OpenRouter where prompts are calibrated and measurable.
 
-**Claude does author the post-audit product layer.** After the pipeline returns the four cards, Claude writes the user-facing reconsideration (Step 6), compares it against isolated pressure-check outputs (Step 8), and writes the memo decision-note fields (Step 8c). These are not new detections. They are the presentation and reconsideration layer built from persisted audit artifacts. The revised answer is persisted as a first-class run artifact with provenance (`revised_answer_source: "claude_step6"`), and the memo fields are persisted before rendering.
+**Claude does author the post-audit product layer.** After the pipeline returns the four cards plus private V60 enrichment, Claude writes the user-facing reconsideration (Step 6), accounts for every selected private chunk in a ledger (Step 6b), compares its position against isolated pressure-check outputs (Step 8), and writes the memo decision-note fields (Step 8c). These are not new detections. They are the presentation, consideration, and reconsideration layer built from persisted audit artifacts. The revised answer is persisted as a first-class run artifact with provenance (`revised_answer_source: "claude_step6"`), the private ledger is validated into `run_health`, and the memo fields are persisted before rendering.
 
 This is a deliberate trust-boundary split:
 - **Audit (detection + routing + card assembly)** — OpenRouter via calibrated prompts. Claude produced the original reasoning; asking the same LLM to find its own flaws invites sycophantic self-defense. A different model audits.
-- **Reconsideration + memo (Steps 6/8/8c)** — Claude. It has the full conversation context, the user's nuances, and the back-and-forth. The audit cards are structural pressure, not commands. Claude absorbs that pressure, pressure-checks the revised position, and writes the portable decision note. The detector still stays outside the model that produced the original advice.
+- **Private consideration + reconsideration + memo (Steps 6/6b/8/8c)** — Claude. It has the full conversation context, the user's nuances, and the back-and-forth. The audit cards and V60 chunks are structural pressure, not commands. Claude absorbs, rejects, defers, or keeps that pressure private, then writes the portable decision note. The detector still stays outside the model that produced the original advice.
 
 Why the audit stays external:
 
@@ -260,8 +271,8 @@ Why the audit stays external:
 
 The skill is calibrated against Claude Opus 4.7 as the orchestrator. Cross-model validation on 2026-04-22 produced three tiers:
 
-- **Opus 4.7** — recommended. Full doctrine compliance: anchor naming, machinery-leak avoidance, and full artifact cycle execution.
-- **Sonnet 4.6** — acceptable. Completes the full pipeline cycle including sub-agent spawning and artifact persistence. Modest phrasing regressions: anchor-naming rate ~66% (vs 100% on Opus); occasional machinery-term leaks in the revised answer (e.g., "sub-agents", "the audit changes"). Fit for regular use; expect marginally noisier output.
+- **Opus 4.7** — recommended. Full doctrine compliance: private anchor/V60 accounting, machinery-leak avoidance, and full artifact cycle execution.
+- **Sonnet 4.6** — acceptable. Completes the full pipeline cycle including sub-agent spawning, V60 ledger persistence, telemetry finalization, memo rendering, and archive. Modest phrasing regressions remain possible, so the output-hygiene contract keeps public mental-model naming optional and pushes exact substrate details into Observatory/audit. Fit for regular use; expect marginally noisier prose than Opus.
 - **Haiku 4.5** — below the floor. Observed to skip Steps 6b / 7 / 8b / 8c — no `revised_answer` persistence, no Step 7 sub-agents, no `gap_check` persistence, no final memo render — while generating plausible-looking output (including a fake Pressure Check) for the steps that didn't run.
 
 The preamble asks the orchestrator to self-identify and refuse if it is Haiku. There is no machine-enforced floor — `$CLAUDE_MODEL` is not exposed by Claude Code — so the check relies on self-identification. Users on Sonnet or below should treat the `run_health` envelope surfaced in chat and the Observatory's completeness signals as the primary integrity check.
@@ -300,8 +311,12 @@ This is how we bring out-of-distribution knowledge into the reasoning process wi
 | Gap dimension → model routing | **Deterministic** | Compiled KG lookup with anti-echo from Lanes 1-3 |
 | Gap question generation | **Probabilistic** (LLM) | "What discovery questions would help the decision-maker fill this gap?" — only fires when gaps exist |
 | StructuralCoverageCard assembly | **Deterministic** | Dimension + route + question packaging |
+| V60 candidate extraction from lane outputs | **Deterministic** | Reads model IDs already surfaced by lanes, preserves lane/provenance reasons, dedupes by model ID |
+| V60 embedding recall | **Probabilistic but additive** (cosine + query expansion) | Optional low-trust candidate source for affordance/absence opportunities; can add candidates but cannot remove lane-selected candidates |
+| V60 affordance/absence packaging | **Deterministic** | Explicit `affordances_v60.json` lookup, caps, status/confidence/absence warnings, selected/skipped/not-presented telemetry |
+| Step 6 V60 consideration | **Probabilistic with deterministic validation** | Claude/Codex decides use/reject/defer/private guardrail; ledger validation verifies every selected chunk was accounted for exactly once |
 
-The curated substrate provides knowledge the LLM doesn't have: specific failure modes for Circle of Competence, the exact tension between Margin of Safety and Calculated Risk Taking, premortem questions that surface hidden assumptions. The deterministic middle ensures this knowledge reaches the output faithfully — not paraphrased, not selectively summarized, not lost in the telephone game of LLM-to-LLM handoff.
+The curated substrate provides knowledge the LLM doesn't have: specific failure modes for Circle of Competence, the exact tension between Margin of Safety and Calculated Risk Taking, premortem questions that surface hidden assumptions, and V60 source-backed rules for when a mental-model affordance is legitimate or blocked. The deterministic middle ensures this knowledge reaches the skill runner faithfully. The user-facing answer may translate the mechanism into ordinary language; the exact substrate trace remains inspectable in Observatory and archived artifacts.
 
 ### Swiss Cheese Redundancy
 
@@ -358,6 +373,8 @@ Canonical markdown articles (222 files) — semantic root, always wins
     ↓
 Curated Wave JSON (activation, intervention, relation) — reviewed per-model
     ↓
+V60 affordance/absence records — source-backed transaction constraints
+    ↓
 Compiled graph artifacts (knowledge_graph.json, relationship_graph.json)
     ↓
 Pre-computed embeddings (embeddings.db) — lowest-trust retrieval layer
@@ -365,7 +382,7 @@ Pre-computed embeddings (embeddings.db) — lowest-trust retrieval layer
 Runtime LLM judgment — suggests, does not decide routing
 ```
 
-Embeddings suggest candidates. LLMs detect patterns. But every embedding hit still goes through LLM deep-check (tendency lane) or LLM verification (companion lane) before it affects output. And every LLM detection gets routed through deterministic graph traversal to curated knowledge. The curated material — not the LLM's opinion — is what the user sees.
+Embeddings suggest candidates. LLMs detect patterns. But every embedding hit still goes through LLM deep-check (tendency lane), LLM verification (companion lane), or private Step 6 consideration (V60 enrichment) before it affects the run. Every LLM detection gets routed through deterministic graph traversal or explicit V60 artifact lookup. The curated material governs the pressure; the user-facing answer shows the resulting reasoning improvement, while Observatory shows the exact substrate details.
 
 ### Observability as a First-Class Artifact
 
@@ -380,17 +397,18 @@ The `run_health` envelope decomposes run quality into named signals the chat flo
 - `overall`: `healthy` / `degraded` / `critical`.
 - `capture`, `substrate`, `embeddings`, `fingerprint`: per-subsystem status.
 - `findings_produced`: whether Lane 1 produced any findings.
-- `issues[]`: specific codes — `substrate_empty`, `embeddings_off`, `no_fingerprint`, `pipeline_warnings`, `capture_degraded`, `capture_critical`, `quote_fabrication`, `capture_truncated`, `lane3_all_dropped`, `bullshit_index_partial`.
+- `issues[]`: specific codes — `substrate_empty`, `embeddings_off`, `no_fingerprint`, `pipeline_warnings`, `capture_degraded`, `capture_critical`, `quote_fabrication`, `capture_truncated`, `lane3_all_dropped`, `bullshit_index_partial`, `v60_enrichment_failed`, `v60_consideration_ledger_missing`, `v60_consideration_ledger_invalid`.
 - `warnings[]`: verbose text (pipeline warnings + capture warnings).
 - `capture_manifest`: declared vs actual turn counts, char length, and truncation fields when applicable.
 - Counts: `quote_fabrication_count`, `quote_retry_attempted`, `capture_truncated`, `omitted_turns`, `lane3_frame_drops_count`, `lane3_frame_kept_count`, `bullshit_index_evaluation_failures`.
 - `activation_tiebreaker`: `on` / `off` (the per-route tiebreaker kill-switch).
+- V60 transport: `v60_enrichment`, `v60_selected_chunk_count`, `v60_consideration_ledger`, `v60_consideration_transaction_count`, `v60_consideration_disposition_counts`, `v60_used_chunk_count`, `v60_presented_but_not_used_chunk_count`, `v60_unaccounted_chunk_count`.
 
 The chat flow maps material issues to user-visible one-liners only when they affect trust in the run; the full envelope is available in the result JSON, Observatory, and `scripts/inspect_run.py`.
 
 A companion diagnostic tool — `scripts/stability_check.py` — computes per-stage Jaccard / text-similarity across N runs. Three modes:
 
-- **Mode A (aggregate)** — reads existing `result.json` files and computes pairwise Jaccard for Pass 1 tendencies, Lane 2 anchor model_ids, Lane 3 reframing grounding models, Lane 4 gap dimension_ids; plus Step 6 anchor-naming rate and per-run token costs.
+- **Mode A (aggregate)** — reads existing `result.json` files and computes pairwise Jaccard for Pass 1 tendencies, Lane 2 anchor model_ids, Lane 3 reframing grounding models, Lane 4 gap dimension_ids; plus Step 6 public-naming / output-hygiene rates and per-run token costs.
 - **Mode B (pipeline-variance)** — reruns the pipeline N times from a fixed extraction so only pipeline sampling contributes to variance. Isolates Pass 1/Lane 2/Lane 3/Lane 4 intrinsic noise.
 - **Mode C (extraction-drift)** — re-runs `run_extract.py` N times on the same conversation; measures per-field drift (similarity on free-text fields, Jaccard on list fields, fabricated-count per run).
 
@@ -491,7 +509,7 @@ Before sending the conversation to OpenRouter, the extraction script validates c
 
 - `capture_manifest` — actual vs. declared turn counts (user, assistant) and character length. When the 80K-char cap or the "first 3 + last 15 turns on >100-turn conversations" rule fires, `capture_manifest.truncation_applied: true` is set and additional fields (`truncation_reason`, `original_char_length`, `truncated_char_length`, `total_turns`, `kept_turns`, `omitted_turns`) are populated so downstream layers and the chat flow know the audit ran on dropped context.
 - `capture_health` — graded `good` / `degraded` / `critical` / `unknown` (no parseable header). **`capture_health: "critical"` short-circuits the run**: the extractor returns `status: "capture_critical"` with a structured `decline_reason` and the full `capture_manifest` *before* initializing the OpenRouter client, so broken captures cost nothing. A critically degraded capture (>50% assistant turns missing, zero assistant responses, or a captured transcript ending on a user turn without the assistant's final response) would produce a ghost audit on partial data; the gate prevents that silent failure from entering the pipeline.
-- `_quote_validation` — after extraction, each `reasoning_passages` entry is checked as a literal substring of the transcript. **If any fail, extraction retries once** with a correction prompt that lists the failed passages as examples of what NOT to do and demands character-for-character verbatim copies. If the retry produces fewer fabrications, its payload is adopted wholesale. Any fabrications that still remain after the retry are dropped from the final `reasoning_passages` list (the field contract is "literal substrings only"), a `capture_warning` is emitted, and `run_pipeline.py` surfaces `quote_fabrication` in `run_health`. `_quote_validation` also records `retry_attempted` and `retry_succeeded` for provenance.
+- `_quote_validation` — after extraction, each `reasoning_passages` entry is checked against the transcript with `find_substring_tolerant(...)`. The matcher tries exact substring first, then case-insensitive match, then a narrow quote-safe fallback that removes a symmetric wrapper quote around the whole passage (`"..."`, `'...'`, smart quotes, guillemets). It still rejects paraphrase, punctuation drift, whitespace drift, and word substitutions. **If any fail, extraction retries once** with a correction prompt that lists the failed passages as examples of what NOT to do and demands character-for-character verbatim copies. If the retry produces fewer fabrications, its payload is adopted wholesale. Any fabrications that still remain after the retry are dropped from the final `reasoning_passages` list (the field contract is "literal transcript spans only"), a `capture_warning` is emitted, and `run_pipeline.py` surfaces `quote_fabrication` in `run_health`. `_quote_validation` also records `retry_attempted` and `retry_succeeded` for provenance.
 
 These diagnostics surface in every output path — `ok`, `error`, `not_strategic`, and `capture_critical`.
 
@@ -549,6 +567,12 @@ Immediately before launching the command, Claude sends one functional receipt, n
             │              │              │              │
             ▼              ▼              ▼              ▼
        DeltaCard    CheatSheet    FrameCard    CoverageCard
+            └──────────────┬──────────────┬──────────────┘
+                           ▼
+              V60 private enrichment
+       explicit source-backed affordance/absence chunks
+                           ▼
+                    result.json
 ```
 
 #### Conversation-first contract
@@ -674,9 +698,9 @@ The design philosophy: Lane 4 is **informative only**. It doesn't influence Lane
 
 **Total OpenRouter calls:** Typically 18-25 (1 extraction + 6 Pass 1 cluster triage calls + N deep checks + 1 fingerprint + 1 verify + 1 frame extract + 1 reframe + 1 question classification + 1 dimension detection + 0-1 gap questions, plus an extraction retry if quote fabrication is detected). All use the calibrated boundary client with `temperature=0.2` and `response_format=json_object`. The revision step is skipped in the skill flow — Claude produces the updated position itself in Step 6, using the full conversation context and the four cards.
 
-**V60 private enrichment (post-lane, no extra chat call):** After the four lanes serialize their cards, `run_pipeline.py` attaches a private `v60_enrichment` block to `result.json` by default. This is not a fifth lane and it is not public card output. It reads the model IDs already surfaced by the lanes, merges their provenance, optionally adds low-trust model recall from the existing embedding retriever, and then enriches the selected model IDs from the explicit V60 artifact. Each selected card carries at most one compact affordance chunk and one compact absence chunk, plus source file, confidence/status, why it was pulled, embedding trace, and `do_not_overclaim` warnings. The deterministic layer does *selection and custody*; Claude/Codex does *consideration* in Step 6.
+**V60 private enrichment (post-lane, no extra chat call):** After the four lanes serialize their cards, `run_pipeline.py` attaches a private `v60_enrichment` block to `result.json` by default (`--v60-enrichment auto`, disabled by `LOLLA_V60_ENRICHMENT=off` or `--v60-enrichment off`). This is not a fifth lane and it is not public card output. It reads the model IDs already surfaced by the lanes, merges their provenance, optionally adds low-trust model recall from the existing embedding retriever, and then enriches the selected model IDs from the explicit V60 artifact (`--v60-affordances-path`, defaulting to `data/compiled/model_affordances/affordances_v60.json`; no "latest" selection). The default cap is 8 private cards. Each selected card carries at most one compact affordance chunk and one compact absence chunk, plus source file, confidence/status, why it was pulled, embedding trace, and `do_not_overclaim` warnings. The deterministic layer does *selection and custody*; Claude/Codex does *consideration* in Step 6.
 
-The V60 block also records what did not enter the hot context: skipped candidates, missing V60 records, duplicates, packet-cap exclusions, and `not_presented_model_ids`. This is the difference between "we showed the model some extra stuff" and "we can audit which opportunities were selected, suppressed, or left outside the budget."
+The V60 block also records what did not enter the hot context: skipped candidates, missing V60 records, duplicates, packet-cap exclusions, and `not_presented_model_ids`. This is the difference between "we showed the model some extra stuff" and "we can audit which opportunities were selected, suppressed, or left outside the budget." At this point the ledger is only expected, not yet written; validation happens after Claude/Codex has actually used, rejected, or deferred the chunks in Step 6.
 
 **Pipeline diagnostics (`run_health`):** The pipeline output includes a decomposed health status that rolls up capture diagnostics from extraction and pipeline state into one truthful object:
 
@@ -686,13 +710,15 @@ The V60 block also records what did not enter the hot context: skipped candidate
 - `embeddings` — `active` or `off`
 - `fingerprint` — `ok` if companion verified at least one model, `empty` otherwise
 - `findings_produced` — whether Lane 1 produced any findings
-- `issues` — array naming what's wrong: `substrate_empty`, `embeddings_off`, `no_fingerprint`, `pipeline_warnings`, `capture_degraded`, `capture_critical`, `quote_fabrication`, `capture_truncated`, `lane3_all_dropped`, `bullshit_index_partial`
+- `issues` — array naming what's wrong: `substrate_empty`, `embeddings_off`, `no_fingerprint`, `pipeline_warnings`, `capture_degraded`, `capture_critical`, `quote_fabrication`, `capture_truncated`, `lane3_all_dropped`, `bullshit_index_partial`, `stakeholder_check_failed`, `v60_enrichment_failed`, `v60_consideration_ledger_missing`, `v60_consideration_ledger_invalid`
 - `warnings` — merged pipeline warnings + capture warnings
 - `capture_manifest` (optional) — actual vs. declared turn counts and character length from the conversation capture
 - `bullshit_index_evaluation_failures` — passage-level delivery-audit calls that failed while the remaining passages still produced a partial profile
 - `activation_tiebreaker` — `"on"` or `"off"` (reflects the `LOLLA_ACTIVATION_TIEBREAKER` kill switch; default on)
 - `v60_enrichment` — `active`, `disabled`, or `skipped_error`
 - `v60_selected_chunk_count` — number of private V60 chunks presented to Step 6
+- `v60_consideration_ledger` — `valid`, `missing`, `invalid`, or `not_required` after Step 6b/Step 9 finalization
+- `v60_consideration_disposition_counts`, `v60_used_chunk_count`, `v60_presented_but_not_used_chunk_count`, `v60_unaccounted_chunk_count` — process telemetry for comparing what was offered, what was picked up, and what was left unused
 
 `overall` is `critical` if capture is critical (>50% assistant turns missing, zero assistant responses, or the transcript ends on a user turn), `degraded` if any issues exist, `healthy` only when all components are clean. These diagnostics make it possible to distinguish a clean "no findings" result from a broken run that produced no findings because the substrate didn't load or the conversation was badly captured.
 
@@ -702,7 +728,7 @@ The V60 block also records what did not enter the hot context: skipped candidate
 
 Claude reads the pipeline output JSON and renders one focused counterargument lead in chat. This is not the full audit report and not a card dump. The detailed card rendering stays in the Observatory; Step 4 exists to put the strongest pressure on the table before Claude revises its answer.
 
-**Product vs. process separation:** The chat output uses human language exclusively. Card names (`DeltaCard`, `CompanionCheatSheet`), lane numbers, pipeline stages, severity labels, JSON field names, and internal section names never appear. Product words such as "audit", "pressure check", "updated position", "memo", and "Observatory" are allowed when they name a surface the user can actually see.
+**Product vs. process separation:** The chat output uses human language exclusively. Card names (`DeltaCard`, `CompanionCheatSheet`), lane numbers, pipeline stages, severity labels, JSON field names, V60/affordance/chunk/packet/ledger language, and internal section names never appear. Product words such as "audit", "pressure check", "updated position", "memo", and "Observatory" are allowed when they name a surface the user can actually see.
 
 **Counterargument lead structure:**
 
@@ -732,7 +758,7 @@ After the counterargument lead, Claude reconsiders its earlier advice. The struc
 
 **Anchors are evidence-bearing hypotheses, not canonical diagnoses.** Lane 2 surfaces curated mental models that may explain the assistant's reasoning structure, but per-candidate verifier judgment is probabilistic — multi-run stability investigations (research/lane2-architecture-research-frozen-2026-04-26 + research/stability-runs/lane2-pathD-proxy-validation-2026-04-26) confirmed there is no single deterministic substrate fact that predicts cross-run anchor stability above usable thresholds. The product contract therefore treats each anchor as an evidence-bearing hypothesis Step 6 should weigh, not as a canonical fact Step 6 must repeat.
 
-An **anchor-naming invariant** constrains the reconsideration: every anchor in `companion_cheat_sheet.anchors[]` is routed through §1 (its pressure was already priced into the original advice), §2 (considered and set aside with a specific reason), or §3 (drove a change). No anchor is silently skipped. When Claude names an anchor, it uses the `display_name` verbatim — specificity is the point. This rule extends Lane 2's curated substrate from "enrichment the reviser may use" to "enrichment the reviser must account for," closing the anchor-dropout regression observed in earlier runs.
+An **anchor-accounting invariant** constrains the reconsideration: every anchor in `companion_cheat_sheet.anchors[]` is routed privately through §1 (its pressure was already priced into the original advice), §2 (considered and set aside with a specific reason), or §3 (drove a change). No anchor is silently skipped. Public naming is no longer the proof of consideration. Claude may name a familiar model when the name genuinely helps the user, but the normal product move is to surface the mechanism, threshold, omitted option, evidence gate, or risk treatment in ordinary language. Exact anchor names remain inspectable in Observatory/audit.
 
 The invariant is now paired with a **three-treatment vocabulary** (`SKILL.md` Step 6 *Anchor treatment*) that decouples "addressed" from "presented as canonical":
 - **Primary pressure** for anchors with direct, specific evidence on a load-bearing reasoning move (stronger framing inside §1 or §3).
@@ -791,7 +817,7 @@ Two artifacts are persisted into `result.json`: a human-readable summary string 
 
 ### Step 8c: Prepare and Render Memo
 
-Claude writes a small decision-note layer into `result.json`, then `scripts/render_memo.py` renders the standalone markdown memo. The memo is the portable decision artifact: what changed in the advice first, audit trace second.
+Claude writes a small decision-note layer into `result.json`, then `scripts/render_memo.py` renders the standalone markdown memo. The memo is the portable decision artifact: what changed in the advice first; the detailed audit trace stays in Observatory unless an operator explicitly asks for a markdown appendix.
 
 New persisted fields:
 
@@ -803,11 +829,12 @@ New persisted fields:
 - `memo_pressure_check`
 - `memo_note_written_at`
 
-The Python renderer remains deterministic and does not call an LLM. For new runs, it renders:
+The Python renderer remains deterministic and does not call an LLM. For new runs, it renders a product-clean memo by default:
 
 1. **Decision note** — substantive title, orientation note, what changed, what still holds, what was taken back or set aside, and any material pressure-check divergence.
-2. **Questions still unanswered** — the first three unique structural gap questions as user-answerable bullets; any remaining questions are preserved in the appendix.
-3. **Appendix: Audit trace** — deterministic challenge points, model connections, alternative frames, and delivery profile.
+2. **Questions still unanswered** — the first three unique structural gap questions as user-answerable bullets; any remaining questions are preserved in a small additional-questions appendix.
+
+The full deterministic audit appendix — challenge points, model connections, alternative frames, and delivery profile — is no longer included by default because it leaks machinery into the portable product artifact. Operators can explicitly render it with `scripts/render_memo.py --include-audit-appendix`; Observatory remains the normal full-trace surface.
 
 Before persisting the memo fields, Claude checks for hidden sequencing contradictions, removes or labels unverified numbers, preserves any materially different pressure-check path, and keeps the unanswered-questions section priority-shaped. The renderer can fall back to sections in `revised_answer` when individual memo fields are missing, but a complete Step 8c writes all fields explicitly.
 
@@ -837,6 +864,7 @@ Zero dependencies (stdlib Python server + pre-built Svelte frontend). The backen
 **Trust / health context:**
 - Run health — overall, capture, substrate, embeddings, fingerprint status
 - Pipeline inspector — tendency funnel (25 → triggered → detected → routed → DeltaCard)
+- V60 private enrichment — candidate pool, selected cards/chunks, skipped/not-presented candidates, embedding recall, ledger validation, and chunk dispositions
 - Delivery audit — bullshit detection with clear/unclear passage counts
 - Knowledge graph — model detail views, tendency catalog browsing
 
@@ -854,6 +882,7 @@ Zero dependencies (stdlib Python server + pre-built Svelte frontend). The backen
 - `/audit/anti-echo` — Excluded models with lane-of-origin attribution, computed at render time by intersecting against each upstream lane's surfaced models
 - `/audit/routing` — Per-tendency primary, antidotes, activation-tiebreaker traces (fired or aborted with human-readable clause)
 - `/audit/expansions` — Companion expansions grouped by source anchor: relation type, activation condition, why relevant
+- `/audit/v60` — V60 private enrichment: selected source-backed affordance/absence chunks, skipped candidates, not-presented model IDs, embedding recall, and Step-6 consideration-ledger uptake
 - `/usage` — per-run cost & call breakdown (existing, with cross-link to `/audit` added)
 
 Every audit panel is server-rendered HTML and works whether or not `observatory/build/` (the Svelte SPA bundle) exists — design intent is skill portability: anyone downloading the skill can use the panels without a Node toolchain.
@@ -890,7 +919,7 @@ This structured approach gives the judge a cleaner signal about what counts as e
 
 - **Specificity over generality** — "Consider the risks" is not a finding. "The reasoning closes on a recommendation without naming what evidence would reverse it — Inconsistency-Avoidance operating on this passage" is a finding. Specificity means naming the reasoning pattern and where it appears, not domain facts.
 - **Reversal triggers must be observable** — "If things go wrong" is not a trigger. "If Q2 pipeline coverage drops below 3x while integration is consuming >20% of engineering hours" is a trigger.
-- **Curated knowledge IS the audit product** — Claude presents curated material from the pipeline output as-is when describing detections, anchors, reframings, and gaps. It does not invent new audit findings or challenge statements. Claude's later revised position and memo are reasoning products built under that pressure, not new detector outputs.
+- **Curated knowledge is the substrate; useful reasoning is the product** — Claude does not invent new detector findings, challenge statements, or V60 affordances. It must account for the curated material, but public chat and memo prose should show the decision-relevant mechanism in natural language. Exact model names, chunk IDs, affordance text, absence records, and ledger decisions belong in Observatory/audit unless they genuinely help the user understand the answer.
 - **Intellectual honesty** — Flag genuine uncertainty. If a detection is borderline, say so. Better to surface 3 strong findings than 8 padded ones.
 - **False confidence is worse than honest uncertainty** — The whole system exists to fight borrowed certainty. It must not create more of it.
 - **The process is part of the product** — Every finding is traceable: which tendency was detected, why, which models competed, which won. The system is a reasoning observability layer, not a magic answer box.
@@ -912,7 +941,8 @@ Lolla succeeds when it makes better reconsideration possible, not when it dictat
 - **Pass 2 is single-shot.** No iterative refinement. If the deep check misses a sub-pattern, it stays missed.
 - **Routing is lookup-only.** 1-hop graph expansion with optional embedding reranking, no multi-hop reasoning or dynamic traversal.
 - **Embedding threshold is fixed.** 0.30 for tendency signal, not tuned per tendency.
-- **Companion verification is strict.** Quote verification first tries literal substring match, then falls back to fuzzy matching (80% token overlap) before rejecting as `fabricated_quote`. This catches paraphrased evidence that preserves semantic content. Genuinely fabricated quotes are still dropped.
+- **Quote validation has intentionally narrow tolerance.** Extraction-level `reasoning_passages` accept exact transcript spans, case drift, or a symmetric wrapper quote around the whole span; paraphrase is still rejected and dropped. Lane 2 verification has a separate quote-repair path for accepted anchors, but repairs are tracked as `quote_repairs` so evidence cleanup is visible rather than silent.
+- **V60 selection is an opportunity layer, not a truth oracle.** It can surface source-backed affordances and absence blockers that the lanes did not fully express, especially through embedding recall, but Claude/Codex can still reject or defer them. Usefulness is measured through the ledger and final-answer delta, not by forcing every selected chunk into public prose.
 - **No feedback loop.** Pipeline output doesn't feed back into itself. No learning from past runs — improvements come from reviewed curation at the correct layer.
 
 ---
@@ -933,6 +963,7 @@ The skill carries its own copy of the compiled knowledge substrate:
 | `data/curated/compiled_chunks.json` | 199K | Pre-compiled knowledge chunks for bundle selection |
 | `data/curated/structural_signal_lexicon.json` | 18K | Signal lexicon for trusted bundle selection |
 | `data/curated/reasoning_signals.json` | 174K | Companion lane recall fallback signals |
+| `data/compiled/model_affordances/affordances_v60.json` | 5.8M | Current explicit V60 artifact: 222 records, 306 source-backed affordances, 697 absence records; used only for private enrichment unless disabled |
 
 The `data/curated/` files are critical for `is_trusted_surface: true` findings. The bundle selector requires all three files (`subpattern_catalog.json`, `compiled_chunks.json`, `structural_signal_lexicon.json`) — if any is missing, it returns `None` and all findings fall to the generic LLM path (`is_trusted_surface: false`).
 
@@ -948,6 +979,7 @@ When running inside the repo, the pipeline uses the repo's `build/` directly. Wh
 | `OPENAI_API_KEY` | No | Enables embedding swiss cheese (tendency signal, companion recall, chunk reranking). System works without it via deterministic routing only. |
 | `LOLLA_OPENROUTER_MODEL` | No | Override model (default: `x-ai/grok-4.1-fast`) |
 | `LOLLA_LLM_TIMEOUT` | No | Timeout per boundary call in seconds (default: 45, max: 120) |
+| `LOLLA_V60_ENRICHMENT` | No | Set to `off` or `0` to disable private V60 enrichment for a run; default is on/auto when `affordances_v60.json` exists |
 | `LOLLA_REPO_ROOT` | No | Override engine location (not needed for standard installs) |
 
 ---
@@ -962,6 +994,8 @@ When running inside the repo, the pipeline uses the repo's `build/` directly. Wh
 | Pipeline finds zero tendencies | Valid outcome. "No structural pressures detected." |
 | OpenRouter times out | Boundary client returns empty payload + a degraded `BoundaryCallMetadata` (status `timeout` / `http_error_*` / `url_error` / `response_json_error`). No internal retry loop. The pipeline degrades — affected lanes return empty/partial results, the run continues, and the failure is visible in `audit_summary.boundary_calls[]`. The only application-level retry is extraction's single quote-fabrication retry (see *Capture validation* in Step 2). |
 | `OPENAI_API_KEY` not set | Embeddings disabled. Pipeline runs purely on LLM triage + deterministic routing. Works fine, just without the swiss cheese redundancy layer. |
+| V60 artifact missing or disabled | The four lanes still run. `v60_enrichment` becomes `disabled` or `skipped_error`; if enabled but unavailable, `run_health.issues[]` includes `v60_enrichment_failed`. |
+| V60 active but ledger missing | `finalize_v60_telemetry.py` marks `run_health.v60_consideration_ledger: missing`, adds `v60_consideration_ledger_missing`, and records every selected chunk as unaccounted. The run archives, but it is visibly incomplete. |
 | Multiple strategic threads in one conversation | Extraction captures the most developed/recent thread. |
 
 ---
@@ -979,6 +1013,8 @@ A typical run makes 18-25 OpenRouter calls against `x-ai/grok-4.1-fast`:
 Total: roughly 60-110K tokens per run. At Grok 4.1 Fast pricing, approximately $0.04-0.10 per audit. Embeddings (if enabled) add one gpt-4o-mini expansion call (~$0.001) plus a batch embedding call for the original query + 2 domain variants (~$0.0002). The revision step is available for headless/eval runs but skipped in the skill flow — Claude produces the updated position directly.
 
 The Bullshit Index runs one OpenRouter call per passage of the audited answer (typically 30-60 calls in parallel). On a long answer this can dominate the OpenRouter call count. It runs in `_run_bullshit_index` after the lanes complete and is recorded under `stage="bullshit_index"` in the per-run telemetry.
+
+V60 private enrichment adds no extra OpenRouter chat call. It does deterministic artifact lookup plus optional reuse of the embedding retriever when embeddings are enabled; that can add the same small OpenAI query-expansion/embedding cost profile described above. The dominant V60 cost is context and orchestration attention in Step 6, which is why the default cap is 8 private cards and the ledger records presented-but-not-used chunks.
 
 The Step-7 pressure-check sub-agents fire from inside the SKILL via Claude Code's Agent tool, *not* through the OpenRouter boundary client. They run on whatever Claude model the orchestrator inherits (typically Opus). On most runs this is the dominant cost line. Their `total_tokens` (no prompt/completion split available) is recorded into the same `usage_summary` block by Step 8b.
 
