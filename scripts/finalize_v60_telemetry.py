@@ -47,6 +47,7 @@ def main() -> int:
     parser.add_argument("--run-id", default=None, help="Run ID used for /tmp/lolla_{RUN_ID}_*.json")
     parser.add_argument("--result", default=None, help="Explicit result JSON path")
     parser.add_argument("--ledger", default=None, help="Explicit V60 ledger JSON path")
+    parser.add_argument("--quiet", action="store_true", help="Suppress success output for user-facing skill runs")
     args = parser.parse_args()
 
     result_path = _infer_result_path(args.run_id, args.result)
@@ -65,10 +66,11 @@ def main() -> int:
 
     health = finalized.get("run_health") or {}
     status = health.get("v60_consideration_ledger", "unknown")
-    if ledger_path:
-        print(f"V60 consideration telemetry finalized: {status} ({ledger_path})")
-    else:
-        print(f"V60 consideration telemetry finalized: {status}")
+    if not args.quiet:
+        if ledger_path:
+            print(f"V60 consideration telemetry finalized: {status} ({ledger_path})")
+        else:
+            print(f"V60 consideration telemetry finalized: {status}")
     return 0
 
 

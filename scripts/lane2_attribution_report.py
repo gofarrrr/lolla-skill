@@ -43,8 +43,11 @@ from pathlib import Path
 
 
 def _archive_consumption_baseline(archive_root: Path) -> dict[str, dict]:
-    """Walk archived full skill runs and compute per-case Step 6 anchor-naming
-    rate. Returns {case_id: {named, total, rate, n_runs}}.
+    """Walk archived full skill runs and compute public anchor-name visibility.
+
+    Returns {case_id: {named, total, rate, n_runs}}. This is a drift
+    diagnostic only; the current product contract is private anchor accounting,
+    not maximizing public model-name mentions.
 
     Methodology mirrors the archive sanity check recorded in the design
     memo: case-insensitive `display_name` substring match in the persisted

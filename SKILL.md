@@ -31,8 +31,8 @@ The system audits conversations for structural reasoning weaknesses using four i
 
 Calibrated on Claude Opus 4.7. Cross-model validation (2026-04-22) yielded three tiers:
 
-- **Opus 4.7** — recommended. Full doctrine compliance (anchor naming, machinery-leak avoidance, full pipeline cycle executed).
-- **Sonnet 4.6** — acceptable. Completes the full pipeline cycle with sub-agents and artifact persistence; modest phrasing regressions (anchor-naming rate ~66% vs 100% on Opus; occasional machinery-term leaks like "sub-agents" or "the audit changes").
+- **Opus 4.7** — recommended. Full doctrine compliance (anchor accounting, machinery-leak avoidance, full pipeline cycle executed).
+- **Sonnet 4.6** — acceptable. Completes the full pipeline cycle with sub-agents and artifact persistence; modest phrasing regressions (public anchor naming may be over-explicit; occasional machinery-term leaks like "sub-agents" or "the audit changes").
 - **Haiku 4.5** — below floor. Skips Steps 6b / 7 / 8b / 8c (no revised_answer persistence, no pressure-check sub-agents, no gap_check persistence, no final memo render) while generating plausible-looking output for the steps that didn't run. Do not use.
 
 The skill cannot detect the orchestrator model mechanically (`$CLAUDE_MODEL` is not exposed). Self-identify before Step 1:
@@ -251,7 +251,7 @@ Do **not** link to Observatory; the server is not running until Step 9. Do not i
 
 - `references/presentation-voice.md` — voice guidance: Munger-inspired directness, concrete antidotes, earn the right to challenge, what good prose sounds like.
 - `references/anti-bullshit-doctrine.md` — anti-bullshit thinking framework: five rules for honest strategic speech, RLHF patterns to avoid (paltering +57.8pp, empty rhetoric +20.9pp), the negation test.
-- `references/anchor-treatment.md` — how to handle `companion_cheat_sheet.anchors[]`: the naming invariant, three rhetorical modes (primary pressure / secondary lens / set aside), the "one primary anchor per move" rule, what good vs. bad anchor integration looks like.
+- `references/anchor-treatment.md` — how to handle `companion_cheat_sheet.anchors[]`: the accounting invariant, three rhetorical modes (primary pressure / secondary lens / set aside), the "one primary anchor per move" rule, what good vs. bad anchor integration looks like.
 - `references/private-enrichment-treatment.md` — how to privately handle lane pressure and V60 chunks: freedom of conclusion, not freedom from consideration; strongest plausible application; rejection/deferral standards; public/private split.
 
 After the counterargument lead (Step 4), **reconsider your earlier advice and render the updated position directly.** This is the most important step — the updated position IS the product. The audit's findings are structural pressure from a curated knowledge substrate; your job is to absorb that pressure and produce a revised position that is better than what you said before.
@@ -268,7 +268,7 @@ The audit findings are **hints, not commands — but not disposable hints.** The
 
 - **Cherry-pick what genuinely matters.** Not every finding deserves equal weight. A tendency detection with high severity and a specific passage is stronger signal than a marginal detection. Read the evidence — does it ring true for THIS conversation, or is it a pattern match that doesn't quite fit? Trust your judgment.
 - **Treat DeltaCard findings as challenge pressure, not corrections.** The audit says "this passage shows signs of doubt-avoidance" — it doesn't say your conclusion is wrong. Maybe you were right to be decisive. But if the finding names a specific missing check or reversal trigger, consider whether it belongs.
-- **Treat CompanionCheatSheet as enrichment — and apply `anchor-treatment.md`.** Each anchor has a `display_name`. Anchors are evidence-bearing hypotheses, not canonical diagnoses; surface them with strength proportional to their evidence. The naming invariant requires every anchor to land in §1, §2, or §3 below — none silently skipped. Use `display_name` verbatim.
+- **Treat CompanionCheatSheet as enrichment — and apply `anchor-treatment.md`.** Each anchor has a `display_name`. Anchors are evidence-bearing hypotheses, not canonical diagnoses; consider every anchor, disposition it privately, and surface only the decision-relevant mechanism. Public model names are optional, not proof of consideration.
 - **Treat FramePressureCard as an invitation to widen the frame.** If the audit found an embedded assumption in the question, you don't have to abandon your answer — but you might want to acknowledge what changes if that assumption is relaxed.
 - **Treat StructuralCoverageCard as territory you cannot address alone.** When structural coverage identifies gaps, acknowledge them as dimensions you cannot address without user input. Do NOT attempt to answer gap questions yourself. Gap questions are an invitation for the user to deepen the conversation — they ask for situation knowledge only the decision-maker has.
 
@@ -283,7 +283,7 @@ Use the V60 block like a silver platter:
 - Do not force a chunk into §3 just because it was selected.
 - Do not reject with "not relevant" or "already covered" alone. Name the failed condition, duplicate coverage, missing evidence, or risk if forced.
 - Use `not_considered` only for malformed, inaccessible, or technically unusable chunks. A chunk that you read and found unhelpful is `rejected`, not `not_considered`.
-- Do not mention `V60`, `affordance`, `chunk`, `packet`, `ledger`, internal IDs, or "mental model" in user-facing prose unless the model name is already naturally needed under `anchor-treatment.md`.
+- Do not mention `V60`, `affordance`, `chunk`, `packet`, `ledger`, internal IDs, or "mental model" in user-facing prose. Model names may appear only when the name genuinely clarifies the mechanism for the user; otherwise translate the mechanism into ordinary language.
 - Preserve judgment: rejecting a V60 chunk with a real reason is successful use of the system.
 
 Keep a private note while writing Step 6: which V60 chunk IDs changed the answer, which were rejected, which were deferred for missing evidence, and which were presented but not useful. Step 6b persists this as `v60_consideration_ledger`; do not render that ledger in chat.
@@ -296,7 +296,7 @@ Keep a private note while writing Step 6: which V60 chunk IDs changed the answer
    **§2 anti-overcorrection rule:** §2 should include at least one **audit-raised pressure you considered and did not adopt** when such a pressure exists in the audit output. Without it, Beat 3 reads as "the audit was right about everything" — pure absorption, no judgment. Self-corrections of your own reasoning ("I had soft mechanism here, recommendation is the same") are valid §2 content but do not substitute for an audit-grounded rejection when one is available.
 
    **Constraint:** do NOT manufacture a rejection for symmetry. If the audit produces no credible pressure to reject (empty `delta_card`, weak anchors that don't bear on a load-bearing reasoning move, no frame elements that would have changed the recommendation), say less in §2 rather than performing judgment. Fake resistance is a worse failure mode than a thin §2.
-3. **What actually shifted.** Name what changed in your position and why. Keep the user-facing language practical: name the decision pressure, evidence gate, omitted option, or risk treatment. Use model display names only when `anchor-treatment.md` requires them or when the name naturally helps the user. Do not turn §3 into a list of internal model labels.
+3. **What actually shifted.** Name what changed in your position and why. Keep the user-facing language practical: name the decision pressure, evidence gate, omitted option, or risk treatment. Use a model name only when it naturally helps the user understand the mechanism. Do not turn §3 into a list of internal model labels.
 
 **§3 cap: 3–4 distinct shifts. Hard cap.** Total Beat 3 length 550–800 words; hard cap 900.
 
@@ -306,7 +306,7 @@ Keep a private note while writing Step 6: which V60 chunk IDs changed the answer
 
 When the audit returns 5+ candidate shifts, your job is selection — fold related material into existing shifts (e.g., absorb a kill-criterion observation into the structural-protection rewrite rather than naming it as a separate shift) or send it to §2 if it's a precondition / set-aside. See `plans/voice-examples-2026-04-30.md` § Beat 3 for §3 excerpts demonstrating selection on Marcus (4 shifts from 7 candidates), Mother (3 shifts), and Short fixture (2 shifts on thin material). § Bad — cap evasion shows the failure mode this rule defeats.
 
-`anchor-treatment.md` governs HOW each anchor lands inside §1 / §2 / §3 (rhetorical strength matched to evidence) and what's forbidden (probability percentages, silent omission, "the answer is using X" framing on weak anchors, hedging-as-style). Under the §3 cap, weak anchors go to §2 with a one-line set-aside reason — not promoted into §3 to satisfy the naming invariant. Read it before writing.
+`anchor-treatment.md` governs HOW each anchor is accounted for and, when useful, lands inside §1 / §2 / §3 (rhetorical strength matched to evidence) and what's forbidden (probability percentages, silent non-consideration, "the answer is using X" framing on weak anchors, hedging-as-style). Under the §3 cap, weak anchors are privately dispositioned or briefly set aside in §2 when the rejected argument helps the user — not promoted into §3 to prove coverage. Read it before writing.
 
 ### Step 6b: Persist Revised Answer
 
@@ -362,7 +362,7 @@ cat > /tmp/lolla_${LOLLA_RUN_ID}_v60_ledger.json << 'LOLLA_V60_LEDGER_EOF'
 }
 LOLLA_V60_LEDGER_EOF
 
-python3 $SKILL_DIR/scripts/finalize_v60_telemetry.py --run-id "${LOLLA_RUN_ID}"
+python3 $SKILL_DIR/scripts/finalize_v60_telemetry.py --run-id "${LOLLA_RUN_ID}" --quiet
 ```
 
 The allowed `disposition` values are `used`, `rejected`, `deferred`, and `not_considered`. The allowed `route` values are `updated_position`, `pressure_check`, `private_guardrail`, `evidence_gate`, `diagnostic_question`, `set_aside`, `already_covered`, `irrelevant`, `missing_evidence`, and `duplicate`.
@@ -402,10 +402,10 @@ Spawn up to 4 sub-agents via the Agent tool, one per non-empty lane. Each sub-ag
 
    | Lane | Internal name | Agent description (user-facing) |
    |------|---------------|----------------------------------|
-   | Lane 1 | DeltaCard | `Pressure check — structural challenge` |
-   | Lane 2 | CompanionCheatSheet | `Pressure check — model tension` |
-   | Lane 3 | FramePressureCard | `Pressure check — frame` |
-   | Lane 4 | StructuralCoverageCard | `Pressure check — missing dimensions` |
+   | Lane 1 | DeltaCard | `Fresh read - structural challenge` |
+   | Lane 2 | CompanionCheatSheet | `Fresh read - reasoning tension` |
+   | Lane 3 | FramePressureCard | `Fresh read - frame` |
+   | Lane 4 | StructuralCoverageCard | `Fresh read - missing dimensions` |
 
    Do NOT use `Lane 1`, `Lane 2`, `DeltaCard`, `CompanionCheatSheet`, `FramePressureCard`, `StructuralCoverageCard`, or `sub-agent` in the Agent description. The tool-use UI is part of the felt product surface; scaffolding leaks there break the experience the same way they do in chat prose.
 5. The sub-agent prompt must be fully self-contained — no file reads, no bash calls, no tool access.
@@ -569,7 +569,7 @@ us = d.get('usage_summary') or {}
 merge_subagent_calls(us, subs)
 d['usage_summary'] = us
 pathlib.Path(result_path).write_text(json.dumps(d, indent=2, ensure_ascii=False))
-print(f'Sub-agent usage merged: ${us[\"vendors\"][\"anthropic_subagents\"][\"calls\"]} calls, total run cost \\\${us[\"estimated_total_cost_usd\"]:.4f}')
+print(f'Usage summary updated: {us[\"vendors\"][\"anthropic_subagents\"][\"calls\"]} auxiliary calls, total run cost \\\${us[\"estimated_total_cost_usd\"]:.4f}')
 "
 ```
 
@@ -607,7 +607,9 @@ Decision-note quality checks before persisting:
 - **Pressure check must preserve competing paths.** Scan every Step 8 divergence. If a reviewer surfaced a materially different decision path, instrument, channel, fallback, or commitment shape, include it or explicitly explain why it is set aside. Do not surface only implementation caveats while suppressing a genuine alternative.
 - **Keep "Questions still unanswered" priority-shaped.** Python renders the first three structural gap questions in the decision note and preserves the rest in the appendix. Do not answer or invent questions inside memo fields.
 
-Do not add a recommendation, risk, or claim that is not present in Step 6, Step 8, or the audit cards. Do not mention internal machinery (`Beat`, `Step`, `Lane`, `sub-agent`, card names, JSON fields, pipeline). Do not write sales language (`compelling`, `unlock`, `deep dive`, `transform`, `powerful`, etc.).
+Do not add a recommendation, risk, or claim that is not present in Step 6, Step 8, or the audit cards. Do not mention internal machinery (`Beat`, `Step`, `Lane`, `sub-agent`, card names, JSON fields, pipeline), and do not attribute memo pressure-check material to hidden review sources (`isolated review`, `independent review`, `reviewers`, `agents`, `alignment`). Do not write sales language (`compelling`, `unlock`, `deep dive`, `transform`, `powerful`, etc.).
+
+Do not mention V60, affordances, chunks, ledgers, internal IDs, or the private enrichment substrate in memo fields. Keep model names out of the memo decision-note layer unless a familiar model name is the clearest human-language handle for the mechanism. The exact model/chunk details belong in Observatory and archived audit artifacts.
 
 Persist the memo fields:
 
@@ -651,7 +653,7 @@ Then render the memo:
 python3 $SKILL_DIR/scripts/render_memo.py --result /tmp/lolla_${LOLLA_RUN_ID}_result.json --output /tmp/lolla_${LOLLA_RUN_ID}_memo.md
 ```
 
-This produces a persistent markdown artifact the user can reference or share without the Observatory. In new runs, the memo opens with the decision-note layer and then renders a deterministic audit appendix. Older result JSONs without memo fields still render in the legacy format.
+This produces a persistent markdown artifact the user can reference or share without the Observatory. In new runs, the default memo is product-clean: decision-note layer plus capped unanswered questions, with the full audit trace kept in Observatory. If an operator explicitly needs a markdown audit appendix, run `render_memo.py` again with `--include-audit-appendix`. Older result JSONs without memo fields still render in the legacy format.
 
 ### Step 9: Open Observatory
 
@@ -660,7 +662,7 @@ After the full cycle is complete (cards, updated position, pressure check, and m
 **Always launch after Step 8c completes.** Do not wait for the user to ask:
 
 ```bash
-python3 $SKILL_DIR/scripts/finalize_v60_telemetry.py --run-id "${LOLLA_RUN_ID}"
+python3 $SKILL_DIR/scripts/finalize_v60_telemetry.py --run-id "${LOLLA_RUN_ID}" --quiet
 python3 $SKILL_DIR/observatory/serve_result.py --result /tmp/lolla_${LOLLA_RUN_ID}_result.json
 ```
 
@@ -731,7 +733,7 @@ Do NOT read these proactively. Load only when a specific situation calls for it:
 | `references/chat-output-format.md` | **Read at the start of Step 4** — render specification: run-health surface, BLUF, finding blocks, anchors line, alternative-question line, structural-gaps line, delivery-check line, run-cost line, closing line, "what NOT to put in chat" |
 | `references/presentation-voice.md` | **Read at the start of Step 6** — how to voice your updated position: Munger-inspired directness, concrete antidotes, earn the right to challenge |
 | `references/anti-bullshit-doctrine.md` | **Read at the start of Step 6** — anti-bullshit thinking framework: five rules for honest strategic speech, RLHF patterns to avoid, negation test as mental model. Also cross-check before Step 8. |
-| `references/anchor-treatment.md` | **Read at the start of Step 6** — how to handle `companion_cheat_sheet.anchors[]`: naming invariant, three rhetorical modes (primary pressure / secondary lens / set aside), one-primary-per-move rule, what good vs. bad anchor integration looks like |
+| `references/anchor-treatment.md` | **Read at the start of Step 6** — how to handle `companion_cheat_sheet.anchors[]`: accounting invariant, three rhetorical modes (primary pressure / secondary lens / set aside), one-primary-per-move rule, what good vs. bad anchor integration looks like |
 | `references/private-enrichment-treatment.md` | **Read at the start of Step 6** — consideration standard for lane pressure and V60 chunks: strongest plausible application, rejection/deferral standard, public/private split |
 | `references/sub-agent-prompts.md` | **Read at Step 7** — shared preamble + four lane-specific suffixes for pressure-check sub-agents |
 | `references/memo-output-format.md` | **Read at Step 8c** — decision-note memo contract: title, orientation note, compressed sections, pressure-check inclusion, banned memo language |

@@ -219,7 +219,7 @@ def _gap_dimension_set(d: dict) -> set[str]:
 
 
 def _step6_anchor_mentions(d: dict) -> dict:
-    """Step 6 anchor-naming rate — relies on revised_answer being persisted."""
+    """Step 6 public anchor-name visibility; diagnostic, not a success target."""
     revised = d.get("revised_answer", "") or ""
     names = _anchor_display_names(d)
     if not revised:
@@ -598,8 +598,9 @@ def render_markdown(stability: dict, prompt_cfg: dict, case_id: str,
                 f"{sum(v for k, v in dist.items() if k not in ('keyword', 'embedding', 'both'))} |"
             )
         out.append("")
-    # Step 6 table
-    out.append("## Step 6 anchor naming (per-run)")
+    # Step 6 public model-name visibility table. This is retained as a drift
+    # diagnostic, not as a target to maximize.
+    out.append("## Step 6 public anchor-name visibility (per-run)")
     out.append("")
     out.append("| Run | Named | Total | Rate |")
     out.append("|---|---|---|---|")
@@ -1258,7 +1259,7 @@ def main() -> int:
     tt = sum(s["total"] for s in step6 if s["present"])
     pc = sum(1 for s in step6 if s["present"])
     if tt:
-        print(f"  Step 6 anchor naming: {tn}/{tt} = {100*tn//tt}% "
+        print(f"  Step 6 public anchor-name visibility: {tn}/{tt} = {100*tn//tt}% "
               f"({pc}/{len(step6)} runs had revised_answer)")
     return 0
 

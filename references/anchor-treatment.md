@@ -4,19 +4,28 @@
 
 The doctrine for how to handle `companion_cheat_sheet.anchors[]` inside your Step 6 updated position. SKILL.md tells you to load this file at the start of Step 6, alongside `presentation-voice.md` and `anti-bullshit-doctrine.md`.
 
-This file decouples the **anchor-naming invariant** (every anchor must be addressed) from the **anchor-treatment rhetoric** (how forcefully to assert each anchor based on its evidence). Apply both as you write §1 / §2 / §3.
+This file decouples the **anchor-accounting invariant** (every anchor must be considered and dispositioned) from the **anchor-treatment rhetoric** (how forcefully to use each anchor based on its evidence). Apply both as you write §1 / §2 / §3.
 
 ## Anchors are evidence-bearing hypotheses, not canonical diagnoses
 
-Each anchor in `companion_cheat_sheet.anchors[]` has a `display_name`. These are curated mental models the pipeline detected in your reasoning. **Anchors are evidence-bearing hypotheses about your reasoning's structure, not canonical diagnoses** — surface them with strength proportional to their evidence (see *Anchor treatment* below). Weave them into your updated position by name: *"Your attachment to the company you built is a textbook endowment effect"* lands with specificity that *"you might be overly attached"* does not. Failure modes warn where the approaches you're already using could break. Premortem questions surface what the models you're relying on would ask. Antagonists highlight productive tensions. Use the material to strengthen, not to second-guess. If an anchor doesn't fit this decision, set it aside in §2 with a specific reason — don't silently skip it.
+Each anchor in `companion_cheat_sheet.anchors[]` has a `display_name`. These are curated mental-model hypotheses the pipeline detected in your reasoning. **Anchors are evidence-bearing hypotheses about your reasoning's structure, not canonical diagnoses**. Use them with strength proportional to their evidence (see *Anchor treatment* below), but do not treat public naming as the proof that you considered them.
+
+The user's product surface is the improved reasoning, not a list of model labels. A name can still help when it is a familiar term that compresses the mechanism cleanly, such as opportunity cost, sunk cost, endowment effect, or margin of safety. But obscure labels, internal taxonomy names, and model-name parades belong in Observatory/audit, not in the main revised answer. Failure modes warn where the approaches you're already using could break. Premortem questions surface what the models you're relying on would ask. Antagonists highlight productive tensions. Use the material to strengthen, not to second-guess. If an anchor doesn't fit this decision, set it aside in your private accounting with a specific reason and, only when useful, mention the rejected argument in §2.
 
 ---
 
-## Anchor-naming invariant
+## Anchor-accounting invariant
 
-Every anchor in `companion_cheat_sheet.anchors[]` ends up in §1 (its pressure was already priced into your original advice and still holds), §2 (you considered it and set it aside for a specific reason), or §3 (it drove a change in your position). **No anchor is silently skipped.**
+Every anchor in `companion_cheat_sheet.anchors[]` must receive a private disposition before you write the final Step 6 answer:
 
-When you name an anchor, use the `display_name` **verbatim** — the exact string as it appears in `companion_cheat_sheet.anchors[]`, including capitalization, spacing, and punctuation. Do not lowercase it, hyphenate it, pluralize it, abbreviate it, or paraphrase it into prose. Use *Endowment Effect*, not "the endowment effect"; *Principal Agent Problem*, not "the principal-agent problem." The exact curated term is part of the product.
+- `priced_in`: its pressure was already handled by the original advice and still holds.
+- `drives_shift`: it changes the advice, threshold, sequence, evidence gate, question, or risk treatment.
+- `set_aside`: you considered it and rejected it for a specific reason.
+- `private_guardrail`: it prevents overclaim or keeps a boundary in mind without needing visible prose.
+
+**No anchor is silently skipped.** Silent omission violates the accounting invariant. Public omission is allowed when the anchor is weak, duplicative, private-only, or would make the answer read like taxonomy instead of judgment.
+
+When you name an anchor publicly, prefer natural language over exact taxonomy. Use the exact `display_name` only when the exact name genuinely helps the user understand the mechanism and does not sound like an internal catalog entry. The exact curated terms remain inspectable in Observatory/audit.
 
 ## §3 cap and operational shift definition
 
@@ -26,7 +35,7 @@ When you name an anchor, use the `display_name` **verbatim** — the exact strin
 
 **Tail-addition rule.** *"One more thing,"* *"two smaller adjustments,"* *"related notes,"* *"minor caveats,"* *"final caveat"* count against the §3 cap if they change advice. If they do not change advice, they belong in §1 (with survival framing) or §2 (with set-aside framing) — not in a §3 tail-section. The cap is enforced on shifts as defined above; it cannot be evaded by re-labeling shifts as adjustments.
 
-**Interaction with the anchor-naming invariant.** Under the §3 cap, weak anchors (set-aside category, see *Three rhetorical modes* below) are acknowledged briefly in §2 with a one-line reason rather than promoted into §3 to satisfy the naming invariant. The invariant is satisfied by §1, §2, or §3 mention; making weak anchors load-bearing in §3 to fill quota is the failure mode.
+**Interaction with the anchor-accounting invariant.** Under the §3 cap, weak anchors (set-aside category, see *Three rhetorical modes* below) are privately dispositioned and mentioned in §2 only if the rejected argument itself is useful to the user. Do not promote a weak anchor into §3 to prove coverage. Making weak anchors load-bearing in §3 to fill quota is the failure mode.
 
 When the audit returns 5+ candidate shifts, your job is **selection** — fold related material into existing shifts (e.g., absorb a kill-criterion observation into the structural-protection rewrite rather than naming it as a separate shift) or send it to §2 if it's a precondition / set-aside. See `plans/voice-examples-2026-04-30.md` § Beat 3 for §3 excerpts demonstrating selection on Marcus (4 shifts from 7 candidates), Mother (3 shifts), and Short fixture (2 shifts on thin material). § Bad — cap evasion shows the failure mode this rule defeats.
 
@@ -89,7 +98,7 @@ Integrate them into your existing §1 / §2 / §3 reasoning at the point where e
 ## Forbidden
 
 - **Probability percentages or "high/moderate/low confidence" claims about anchors.** We do not have multi-run sampling at the latency we operate at; do not invent confidence numbers.
-- **Hiding an anchor entirely.** Silent omission violates the anchor-naming invariant. Even a "set aside with a reason" mention satisfies the invariant; nothing else does.
+- **Skipping an anchor entirely.** Silent non-consideration violates the anchor-accounting invariant. Public omission is fine when the anchor was privately dispositioned and did not earn visible prose.
 - **"The answer is using X" framing on weak anchors.** That's overclaim. Use *"appears to lean on"*, *"a possible lens"*, or set-aside framing.
 - **Collapsing into hedging.** The point of evidence-proportional language is more honest reading, not less commitment. Where evidence supports a primary read, commit to it.
 
@@ -100,7 +109,7 @@ Integrate them into your existing §1 / §2 / §3 reasoning at the point where e
 Your updated position should sound like you thought more deeply about the problem — not like you got scolded and are now hedging everything. Good updates:
 
 - Add a specific condition you missed: *"One thing I should flag — if the integration timeline slips past Q3, the cost assumptions change significantly."*
-- Name a mental model that sharpens what's going on: *"Your attachment to the company you built is endowment effect — the emotional weight of something you made does not update the exit math. The number you'd pay to buy this back from a stranger is almost certainly lower than the number you'd accept to sell it."*
+- Use a model name only when it sharpens what's going on: *"This is a sunk-cost problem only if the existing product's future value is worse than the alternative, not merely because the founder is tired of it."* If the name does not add compression or clarity, describe the mechanism instead.
 - Surface a tension you glossed over: *"I framed this as straightforward, but there's a real tension between speed-to-market and the compliance review timeline — which is exactly where margin of safety applies."*
 - Acknowledge uncertainty you closed too early: *"I was more definitive than warranted about the vendor's ability to scale. That depends on assumptions we haven't verified."*
 
@@ -108,7 +117,7 @@ Your updated position should sound like you thought more deeply about the proble
 
 - Generic hedging: *"Of course, there are risks to consider..."*
 - Wholesale reversal: completely rewriting your position because the audit said so.
-- Mentioning the audit machinery: *"The pipeline found that..."* / *"The delta card suggests..."* / *"The companion cheat sheet includes..."* / *"The sub-agent's reading..."* / *"Nothing in the audit changes..."* / *"Isolated review argues..."* — the mechanism is for you, not the user. But the **mental models themselves** (endowment effect, inversion, opportunity cost, margin of safety) are reasoning tools — name them freely. The rule is: no pipeline terms in the user-facing output; model names are fine and encouraged. When setting aside a concern that Step 7's pressure-check surfaces, attribute the *argument* (*"the case for heavily caveating the equity direction"*), not its source (*"the sub-agent's suggestion"*).
+- Mentioning the audit machinery: *"The pipeline found that..."* / *"The delta card suggests..."* / *"The companion cheat sheet includes..."* / *"The sub-agent's reading..."* / *"Nothing in the audit changes..."* / *"Isolated review argues..."* / *"independent review found..."* — the mechanism is for you, not the user. Mental models are reasoning tools, not badges to display. Name one only when the name gives the user a cleaner handle on the mechanism; otherwise write the mechanism in ordinary language. When setting aside a concern that Step 7's pressure-check surfaces, attribute the *argument* (*"the case for heavily caveating the equity direction"*), not its source (*"the sub-agent's suggestion"*).
 - Treating every finding as significant: performing reconsideration instead of actually reconsidering.
 
 ---

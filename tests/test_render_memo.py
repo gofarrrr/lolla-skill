@@ -151,7 +151,10 @@ NEW_MEMO_RESULT = {
 
 
 def _decision_note_layer(output: str) -> str:
-    return output.split("## Appendix: Audit trace", 1)[0]
+    for heading in ("## Appendix: Audit trace", "## Appendix: Additional unresolved questions"):
+        if heading in output:
+            return output.split(heading, 1)[0]
+    return output
 
 
 def test_memo_starts_with_heading_and_contains_query():
@@ -220,7 +223,7 @@ def test_delivery_check_absent_when_zero():
             "passages": [],
         },
     }
-    output = render_memo(result)
+    output = render_memo(result, include_audit_appendix=True)
     assert "## Delivery Check" not in output
 
 
@@ -299,13 +302,24 @@ def test_new_memo_shape_starts_with_substantive_title():
     assert "You were not deciding whether Marcus mattered" in output
 
 
-def test_new_memo_shape_puts_changed_advice_before_appendix():
-    """Decision-note layer appears before the deterministic audit trace."""
+def test_new_memo_shape_is_product_clean_by_default():
+    """Decision-note memos omit the deterministic audit trace by default."""
     output = render_memo(NEW_MEMO_RESULT)
     assert "## What changed in the advice" in output
+    assert "## Appendix: Audit trace" not in output
+    assert "### Challenge points" not in output
+    assert "### Model connections" not in output
+    assert "Inversion" not in output
+    assert "Second-Order Thinking" not in output
+
+
+def test_new_memo_can_include_audit_trace_when_requested():
+    """Operators can still render the full deterministic audit trace explicitly."""
+    output = render_memo(NEW_MEMO_RESULT, include_audit_appendix=True)
     assert "## Appendix: Audit trace" in output
     assert output.index("## What changed in the advice") < output.index("## Appendix: Audit trace")
     assert "### Challenge points" in output
+    assert "### Model connections" in output
     assert output.index("### Challenge points") > output.index("## Appendix: Audit trace")
 
 
@@ -330,17 +344,16 @@ def test_new_memo_questions_are_capped_in_decision_note_with_remainder_in_append
     }
 
     output = render_memo(result)
-    decision_questions = output.split("## Appendix: Audit trace", 1)[0].split(
+    decision_questions = output.split("## Appendix: Additional unresolved questions", 1)[0].split(
         "## Questions still unanswered", 1
     )[1]
-    appendix = output.split("## Appendix: Audit trace", 1)[1]
+    appendix = output.split("## Appendix: Additional unresolved questions", 1)[1]
 
     assert "Question one?" in decision_questions
     assert "Question two?" in decision_questions
     assert "Question three?" in decision_questions
     assert "Question four?" not in decision_questions
     assert "2 more unresolved question(s)" in decision_questions
-    assert "### Additional unresolved questions" in appendix
     assert "Question four?" in appendix
     assert "Question five?" in appendix
 
@@ -348,7 +361,7 @@ def test_new_memo_questions_are_capped_in_decision_note_with_remainder_in_append
 def test_new_memo_omits_empty_pressure_check_section():
     """No empty pressure-check heading when no memo divergence survives."""
     result = {**NEW_MEMO_RESULT, "memo_pressure_check": ""}
-    output = render_memo(result)
+    output = render_memo(result, include_audit_appendix=True)
     assert "## One more pressure check" not in output
 
 
@@ -366,9 +379,34 @@ def test_new_memo_decision_note_layer_has_no_machinery_terms():
         "FramePressureCard",
         "StructuralCoverageCard",
         "pipeline",
+        "independent review",
+        "isolated review",
+        "reviewers",
+        "V60",
+        "affordance",
+        "chunk",
+        "packet",
+        "ledger",
     ]
     for term in banned:
         assert term not in layer
+
+
+def test_new_memo_strips_operator_attribution_line_from_pressure_check():
+    """Memo pressure checks should present the argument, not the hidden source."""
+    result = {
+        **NEW_MEMO_RESULT,
+        "memo_pressure_check": (
+            "Two additional angles survived independent review.\n\n"
+            "First: the pass bar should scale with reversibility."
+        ),
+    }
+
+    output = render_memo(result)
+
+    assert "independent review" not in output
+    assert "Two additional angles survived" not in output
+    assert "First: the pass bar should scale with reversibility" in output
 
 
 def test_new_memo_appendix_cleans_machine_shaped_challenge_wrappers():
@@ -392,7 +430,7 @@ def test_new_memo_appendix_cleans_machine_shaped_challenge_wrappers():
         },
     }
 
-    output = render_memo(result)
+    output = render_memo(result, include_audit_appendix=True)
 
     assert "Social-Proof: challenge" not in output
     assert "used visible consensus as evidence" in output

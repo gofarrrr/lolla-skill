@@ -33,13 +33,13 @@ Do not send *"still working"*, *"thinking carefully"*, or *"I'll be back shortly
 
 ### No machinery leak
 
-Banned in user-facing chat: card names (*DeltaCard*, *CompanionCheatSheet*, *FramePressureCard*, *StructuralCoverageCard*), lane numbers (*Lane 1*, *Lane 2*, etc.), JSON field names, *sub-agents*, *the audit said*, *the pipeline*, *isolated review*, routing language, prompt/process talk. The user receives findings and counterarguments in human language; the mechanism is for the orchestrator, not the reader. See § Cross-cutting rules below for the grep checks.
+Banned in user-facing chat: card names (*DeltaCard*, *CompanionCheatSheet*, *FramePressureCard*, *StructuralCoverageCard*), lane numbers (*Lane 1*, *Lane 2*, etc.), JSON field names, *sub-agents*, *the audit said*, *the pipeline*, *isolated review*, *independent review*, *the reviewers*, routing language, prompt/process talk. The user receives findings and counterarguments in human language; the mechanism is for the orchestrator, not the reader. See § Cross-cutting rules below for the grep checks.
 
 ### No internal scaffolding leak (load-bearing rule)
 
 Internal section names are **instruction architecture for the orchestrator** and **must not appear in rendered chat output**. The orchestrator's job is to render the beat content directly — not to introduce it by name.
 
-**Banned in rendered chat output (word-boundary grep):** `Beat 1`, `Beat 2`, `Beat 3`, `Beat 4`, `Step 1` through `Step 10`, `Step 2.5`, `Step 6b`, `Step 6c`, `Step 8b`, `Lane 1`, `Lane 2`, `Lane 3`, `Lane 4`, `sub-agent`, `sub-agents`, `pressure-check sub-agents`, `lanes 2, 3, 4`, `pipeline`, `audit card`, `the cards`, `isolated review`. Plus card-name CamelCase: `DeltaCard`, `CompanionCheatSheet`, `FramePressureCard`, `StructuralCoverageCard`.
+**Banned in rendered chat output (word-boundary grep):** `Beat 1`, `Beat 2`, `Beat 3`, `Beat 4`, `Step 1` through `Step 10`, `Step 2.5`, `Step 6b`, `Step 6c`, `Step 8b`, `Lane 1`, `Lane 2`, `Lane 3`, `Lane 4`, `sub-agent`, `sub-agents`, `pressure-check sub-agents`, `lanes 2, 3, 4`, `pipeline`, `audit card`, `the cards`, `isolated review`, `independent review`, `reviewer`, `reviewers`. Plus card-name CamelCase: `DeltaCard`, `CompanionCheatSheet`, `FramePressureCard`, `StructuralCoverageCard`.
 
 **This grep applies to rendered chat output only, not to documentation or internal instruction files.** The reference docs (this file, `SKILL.md`, `voice-examples-2026-04-30.md`) use these names internally because they are instruction architecture. The user-facing transcript must not.
 
@@ -195,7 +195,7 @@ After Step 6 reconsideration is written, present the orchestrator's revised posi
 
 - **§1 What survived** — 1–2 paragraphs, names what holds.
 - **§2 What I'd take back or set aside** — 1–2 paragraphs, names what to set aside with reason.
-- **§3 What actually shifted** — **capped at 3–4 distinct shifts**. Each ~3–4 sentences. Anchors woven in by name where they ground the shift.
+- **§3 What actually shifted** — **capped at 3–4 distinct shifts**. Each ~3–4 sentences. Anchors are privately accounted for and translated into the decision-relevant mechanism; name a model only when the name genuinely helps the user understand the point.
 - Optional: one closing line landing the road choice or actionable summary.
 
 ### §2 anti-overcorrection rule
@@ -210,9 +210,9 @@ A **shift** is a change to the substantive advice the user would experience as d
 
 **Tail-addition rule:** *"one more thing,"* *"two smaller adjustments,"* *"related notes,"* *"minor caveats"*, *"final caveat"* count against the §3 cap if they change advice. If they do not change advice, they belong in §1 (with survival framing) or §2 (with set-aside framing) — not in a §3 tail-section. The cap is enforced on shifts as defined above; it cannot be evaded by re-labeling shifts as adjustments.
 
-### Anchor-naming invariant
+### Anchor-accounting invariant
 
-Every anchor in `companion_cheat_sheet.anchors[]` must land in §1, §2, or §3 — verbatim by `display_name`. Under the §3 cap, weak anchors (set-aside category) are acknowledged briefly in §2 with a one-line reason rather than promoted into §3 to satisfy the invariant. Making weak anchors load-bearing in §3 to fill quota is the failure mode. See `references/anchor-treatment.md` for the three rhetorical modes (primary pressure / secondary lens / set aside).
+Every anchor in `companion_cheat_sheet.anchors[]` must be considered and privately dispositioned before Beat 3 is written. The public answer does not need to name every anchor. It should show the improved reasoning: the decision pressure, omitted option, evidence gate, threshold, or risk treatment that changed. Under the §3 cap, weak anchors are privately set aside or mentioned only when the rejected argument is useful to the user. Making weak anchors load-bearing in §3 to prove coverage is the failure mode. See `references/anchor-treatment.md` for the three rhetorical modes (primary pressure / secondary lens / set aside).
 
 ### Examples (§3-only excerpts)
 
@@ -242,7 +242,7 @@ If the draft pressure check contains *"mostly aligned"*, *"all incorporated abov
 ### What does NOT go in
 
 - "Mostly aligned" closure or any variant.
-- *"Sub-agents"*, *"lanes"*, *"isolated review"*, *"the pipeline flagged"* — attribute the *argument*, not its source. Step 7 runs behind the scenes; the user never hears about it.
+- *"Sub-agents"*, *"lanes"*, *"isolated review"*, *"independent review"*, *"the reviewers"*, *"the pipeline flagged"* — attribute the *argument*, not its source. Step 7 runs behind the scenes; the user never hears about it.
 - Narrative summary close (*"Audited your equity decision for Marcus. Found 3 patterns…"*) — the functional close above replaces it.
 - **Pre-pressure-check internal narration.** Do not summarize which internal reviewers, lanes, or sources aligned before the Pressure Check. Do not write *"Reading them honestly: the Lane 2 concerns... Lane 3's two concerns... Lane 4's three gaps..."*, *"All three sub-agents are in"*, *"Two of three pressure-check responses are in"*, *"All four pressure checks are in"*, *"Generating the memo now"*, or any variant. **Start the user-facing output at the counter-frame opening sentence.** Everything before that is operator narration and must be silent in the rendered transcript.
 
@@ -270,12 +270,12 @@ Before delivering any beat, mentally grep the rendered chat for these patterns. 
 - `\bStep\s*[0-9]+(\.5|b|c)?\b` — `Step 1` through `Step 10`, including `Step 2.5`, `Step 6b`, `Step 6c`, `Step 8b`
 - `\bLane\s*[0-9]\b` — `Lane 1` through `Lane 4`
 - `\bsub-agent(s)?\b` — both singular and plural
-- `\bpipeline\b`, `\baudit card\b`, `\bisolated review\b`
+- `\bpipeline\b`, `\baudit card\b`, `\bisolated review\b`, `\bindependent review\b`, `\breviewers?\b`
 - Card CamelCase: `\bDeltaCard\b`, `\bCompanionCheatSheet\b`, `\bFramePressureCard\b`, `\bStructuralCoverageCard\b`
 
 **Other machinery vocabulary:**
 - *"the pipeline"*, *"the audit said"* (vs. *"the audit"* in §2 set-aside framing, which is borderline-acceptable when explaining a dismissal — context-dependent)
-- *"the verifier"*, *"the boundary call"*, *"prompt versions"*
+- *"the verifier"*, *"the boundary call"*, *"prompt versions"*, *"the reviewers"*
 - JSON field names (*"specific_passage"*, *"display_name"*, *"frame_pattern"*, etc.)
 
 **Operator-narration patterns (also banned):**
@@ -299,6 +299,6 @@ These phrases never appear in chat:
 - Empathy theater: *"I hear you"*, *"I understand this is"*, *"that feeling is valid"*, *"I want to honor"*
 - Status theater: *"still working"*, *"thinking carefully"*, *"I'll be back shortly"* (without substantive context)
 
-### Anchor-naming invariant cross-reference
+### Anchor-accounting invariant cross-reference
 
-Every anchor in `companion_cheat_sheet.anchors[]` must appear verbatim in Beat 3 (§1, §2, or §3). The full doctrine and three-treatment vocabulary lives in `references/anchor-treatment.md` and applies inside Beat 3, not in Beat 1 / Beat 2 / Beat 4 (anchors do not appear as a list in those beats).
+Every anchor in `companion_cheat_sheet.anchors[]` must be privately accounted for before Beat 3 is rendered. The full doctrine and three-treatment vocabulary lives in `references/anchor-treatment.md` and applies inside Beat 3, not in Beat 1 / Beat 2 / Beat 4. Model names should not appear as a list in any chat beat; use a public model name only when it is the clearest human-language handle for the mechanism.

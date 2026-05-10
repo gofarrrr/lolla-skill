@@ -4,15 +4,15 @@
 
 This is the contract for the Claude-written decision-note layer that appears at the top of the standalone Lolla memo.
 
-The Python renderer stays deterministic. Claude writes a small set of memo fields after the pressure check is persisted; `scripts/render_memo.py` then renders those fields before the deterministic audit appendix.
+The Python renderer stays deterministic. Claude writes a small set of memo fields after the pressure check is persisted; `scripts/render_memo.py` then renders those fields into a product-clean decision note by default. The full deterministic audit appendix can still be rendered explicitly with `--include-audit-appendix`, but it is not the default user-facing memo.
 
 The memo's job is not to replay the run. It is a portable decision note:
 
 - first screen: what changed in the advice and why it matters
 - middle: what still holds, what was taken back or set aside, and any final pressure-check divergence
-- end: deterministic audit trace for evidence and inspection
+- end: the highest-priority unanswered questions, with any overflow preserved in a small question appendix
 
-The Observatory remains the instrument panel. Chat remains the live product surface. The memo is the artifact someone can reopen later and understand in under a minute.
+The Observatory remains the instrument panel and audit trace. Chat remains the live product surface. The memo is the artifact someone can reopen later and understand in under a minute.
 
 ## Core Rule
 
@@ -134,7 +134,7 @@ Rules:
 
 - Include only if a material divergence exists.
 - Do not group by lane.
-- Do not mention sub-agents or isolated review.
+- Do not mention sub-agents, isolated review, independent review, or reviewer/source alignment.
 - Scan all pressure-check divergences before writing. A materially different decision path, fallback, channel, commitment shape, or instrument is not optional just because another concern is easier to summarize. Include it or explicitly set it aside.
 - If no divergence survives, leave `memo_pressure_check` empty.
 - Optional stakeholder-assumption material is currently Observatory-only validation data. Do not include `stakeholder_assumption_check.chat_actors` or `critical_actors` in the memo, even when `surface` is true. Memo surfacing remains disabled until production evidence shows the checker adds non-duplicative value beyond the existing Pressure Check.
@@ -152,7 +152,8 @@ Rules for Claude:
 Renderer behavior:
 
 - The decision-note layer shows only the first three unique structural gap questions.
-- Any remaining questions are preserved under `Appendix: Audit trace` so the memo stays scannable instead of becoming a backlog dump.
+- Any remaining questions are preserved under `Appendix: Additional unresolved questions` so the memo stays scannable instead of becoming a backlog dump.
+- The full audit trace is Observatory-first. It appears in a markdown memo only when `scripts/render_memo.py --include-audit-appendix` is used.
 
 ## Banned Language
 
@@ -162,6 +163,8 @@ Never use these in the memo decision-note layer:
 - Report throat-clearing: `This memo presents`, `This report summarizes`, `The following sections`.
 - Sales or AI register: `compelling`, `powerful`, `unlock`, `deep dive`, `transform`, `valuable insights`, `complex and nuanced`, `it is important to consider`.
 - Verdict overreach: `therefore you should`, unless the same advice already exists in Step 6 or Step 8 and is phrased as advice, not command.
+- Private enrichment vocabulary: `V60`, `affordance`, `chunk`, `packet`, `ledger`, internal IDs, `selected_cards`, `selected_chunk_ids`.
+- Model-name parade: do not list mental-model labels in the memo decision-note layer. Use a familiar model name only when it is the clearest human-language handle for the mechanism; otherwise translate the mechanism into ordinary language.
 
 Allowed product language, used sparingly:
 
@@ -200,11 +203,6 @@ Allowed product language, used sparingly:
 ## Questions still unanswered
 
 - [Gap question]
-
-## Appendix: Audit trace
-
-### Challenge points
-...
 ```
 
 ## Bad Shape

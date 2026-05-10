@@ -36,12 +36,19 @@ def _truncate_to_sentences(text: str, max_sentences: int = 2, max_chars: int = 1
 
 _SEVERITY_ORDER = {"high": 0, "medium": 1, "low": 2}
 _DECISION_NOTE_QUESTION_LIMIT = 3
+_OPERATOR_ATTRIBUTION_LINE_RE = re.compile(
+    r"(?im)^\s*"
+    r"(?:one|two|three|four|several)\s+"
+    r"(?:additional\s+)?(?:angles?|points?|concerns?)\s+"
+    r"(?:survived|came\s+from|were\s+raised\s+by|were\s+surfaced\s+by)\s+"
+    r"(?:an?\s+)?(?:independent|isolated)\s+review\.?\s*$"
+)
 
 
-def render_memo(result: dict) -> str:
+def render_memo(result: dict, *, include_audit_appendix: bool = False) -> str:
     """Render a pipeline result dict into a standalone markdown memo."""
     if _has_decision_note(result):
-        return _render_decision_note_memo(result)
+        return _render_decision_note_memo(result, include_audit_appendix=include_audit_appendix)
     return _render_legacy_memo(result)
 
 
@@ -106,13 +113,13 @@ def _has_decision_note(result: dict) -> bool:
     )
 
 
-def _render_decision_note_memo(result: dict) -> str:
-    """Render the upgraded memo: decision note first, audit trace second."""
+def _render_decision_note_memo(result: dict, *, include_audit_appendix: bool) -> str:
+    """Render the upgraded memo as a product-clean decision note by default."""
     sections: list[str] = [_memo_heading(result)]
 
     orientation = _first_text(result, ["memo_orientation_note", "memo_orientation_narrative"])
     if orientation:
-        sections.append(orientation)
+        sections.append(_strip_operator_attribution_lines(orientation))
 
     _append_markdown_section(
         sections,
@@ -147,7 +154,10 @@ def _render_decision_note_memo(result: dict) -> str:
         _append_markdown_section(sections, "One more pressure check", pressure)
 
     _render_unanswered_questions(result, sections)
-    _render_audit_appendix(result, sections)
+    if include_audit_appendix:
+        _render_audit_appendix(result, sections)
+    else:
+        _render_additional_questions_appendix(result, sections)
 
     return "\n\n".join(sections) + "\n"
 
@@ -179,9 +189,18 @@ def _memo_field_or_revised_section(result: dict, field: str, headings: list[str]
 
 
 def _append_markdown_section(sections: list[str], heading: str, body: str) -> None:
-    body = _strip_duplicate_leading_heading(_clean_text(body), heading)
+    body = _strip_duplicate_leading_heading(_strip_operator_attribution_lines(_clean_text(body)), heading)
     if body:
         sections.append(f"## {heading}\n\n{body}")
+
+
+def _strip_operator_attribution_lines(text: str) -> str:
+    """Remove pure source-attribution lines from user-facing memo fields."""
+    if not text:
+        return ""
+    cleaned = _OPERATOR_ATTRIBUTION_LINE_RE.sub("", text)
+    cleaned = re.sub(r"\n{3,}", "\n\n", cleaned)
+    return cleaned.strip()
 
 
 def _strip_duplicate_leading_heading(text: str, heading: str) -> str:
@@ -233,6 +252,14 @@ def _render_audit_appendix(result: dict, sections: list[str]) -> None:
     _render_delivery_profile_appendix(result, appendix_sections)
     if appendix_sections:
         sections.append("## Appendix: Audit trace\n\n" + "\n\n".join(appendix_sections))
+
+
+def _render_additional_questions_appendix(result: dict, sections: list[str]) -> None:
+    questions = _collect_unanswered_questions(result)
+    remaining = questions[_DECISION_NOTE_QUESTION_LIMIT:]
+    if remaining:
+        lines = [f"- {q}" for q in remaining]
+        sections.append("## Appendix: Additional unresolved questions\n\n" + "\n".join(lines))
 
 
 def _render_findings_appendix(result: dict, sections: list[str]) -> None:
@@ -563,12 +590,17 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Render Lolla memo from result JSON")
     parser.add_argument("--result", required=True, help="Path to result JSON file")
     parser.add_argument("--output", default=None, help="Output file (default: stdout)")
+    parser.add_argument(
+        "--include-audit-appendix",
+        action="store_true",
+        help="Include the full deterministic audit appendix with model names and challenge trace",
+    )
     args = parser.parse_args()
 
     with open(args.result) as f:
         result = json.load(f)
 
-    memo = render_memo(result)
+    memo = render_memo(result, include_audit_appendix=args.include_audit_appendix)
 
     if args.output:
         Path(args.output).write_text(memo, encoding="utf-8")
