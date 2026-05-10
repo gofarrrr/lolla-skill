@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from collections import Counter
 from dataclasses import dataclass
+import datetime as _dt
 from hashlib import sha256
 import json
 import logging
@@ -21,7 +22,24 @@ DEFAULT_LANE_SLOTS = 4
 DEFAULT_EMBEDDING_AFFORDANCE_SLOTS = 2
 DEFAULT_EMBEDDING_ABSENCE_SLOTS = 1
 DEFAULT_HYBRID_SLOTS = 1
+DEFAULT_FRAME_OPPORTUNITY_SLOTS = 2
 DEFAULT_SNIPPET_CAP = 2
+MISSING_LEDGER_ISSUE = "v60_consideration_ledger_missing"
+INVALID_LEDGER_ISSUE = "v60_consideration_ledger_invalid"
+
+FRAME_OPPORTUNITY_MODEL_PRIORITY = {
+    # High-leverage frame expanders/failure probes should survive the packet
+    # cap when Lane 3 has already found a brittle frame.
+    "optionality": 0,
+    "premortem": 1,
+    "inversion": 2,
+    "problem-framing-and-reframing": 3,
+    "reframing-perspective": 4,
+    "decision-trees": 5,
+    "decomposition": 6,
+    "multi-criteria-decision-analysis": 7,
+    "lateral-thinking": 8,
+}
 
 DISPOSITIONS = frozenset({"used", "rejected", "deferred", "not_considered"})
 ROUTES = frozenset(
@@ -65,6 +83,7 @@ def build_v60_enrichment(
     embedding_affordance_slots: int = DEFAULT_EMBEDDING_AFFORDANCE_SLOTS,
     embedding_absence_slots: int = DEFAULT_EMBEDDING_ABSENCE_SLOTS,
     hybrid_slots: int = DEFAULT_HYBRID_SLOTS,
+    frame_opportunity_slots: int = DEFAULT_FRAME_OPPORTUNITY_SLOTS,
     snippet_cap: int = DEFAULT_SNIPPET_CAP,
 ) -> dict[str, Any]:
     """Build the private v60 enrichment block attached to result.json.
@@ -162,6 +181,20 @@ def build_v60_enrichment(
 
     embedding_by_model = {_text(row.get("model_id")): row for row in embedding_rows}
     before = len(selected_specs)
+    for candidate in _frame_opportunity_rank(merged_candidates, hybrid_rank):
+        if len(selected_specs) >= before + frame_opportunity_slots:
+            break
+        add_model(
+            candidate.model_id,
+            source="frame_opportunity_reserved",
+            reason=(
+                "Reserve Lane 3 frame-pressure opportunity before packet cap. "
+                + (candidate.reason or "Lane 3 found a brittle frame.")
+            ),
+            retrieval=embedding_by_model.get(candidate.model_id, {}),
+        )
+
+    before = len(selected_specs)
     for row in embedding_rows:
         if len(selected_specs) >= before + embedding_affordance_slots:
             break
@@ -199,6 +232,8 @@ def build_v60_enrichment(
         )
 
     for candidate in merged_candidates:
+        if candidate.model_id in seen:
+            continue
         if len(selected_specs) >= max_cards:
             skipped.append(
                 {
@@ -218,10 +253,13 @@ def build_v60_enrichment(
 
     if enable_embeddings:
         for row in embedding_rows:
+            model_id = _text(row.get("model_id"))
+            if model_id in seen:
+                continue
             if len(selected_specs) >= max_cards:
                 skipped.append(
                     {
-                        "model_id": _text(row.get("model_id")),
+                        "model_id": model_id,
                         "source": "embedding_fill",
                         "reason": "not_presented_packet_cap",
                         "stage": "fill",
@@ -230,7 +268,7 @@ def build_v60_enrichment(
                 )
                 continue
             add_model(
-                _text(row.get("model_id")),
+                model_id,
                 source="embedding_fill",
                 reason="Fill remaining capacity from embedding rank.",
                 retrieval=row,
@@ -303,6 +341,7 @@ def build_v60_enrichment(
             "embedding_affordance_slots": embedding_affordance_slots,
             "embedding_absence_slots": embedding_absence_slots,
             "hybrid_slots": hybrid_slots,
+            "frame_opportunity_slots": frame_opportunity_slots,
             "snippet_cap": snippet_cap,
             "affordance_selection": "record_order_first",
             "absence_selection": "record_order_first",
@@ -544,12 +583,15 @@ def validate_v60_consideration_ledger(
         errors.append("transactions must be a list")
 
     seen: list[str] = []
+    unknown: list[str] = []
     for index, transaction in enumerate(transactions):
         prefix = f"transactions[{index}]"
         chunk_id = _text(transaction.get("chunk_id"))
         seen.append(chunk_id)
         if chunk_id not in selected_chunks:
             errors.append(f"{prefix}.chunk_id is unknown")
+            if chunk_id:
+                unknown.append(chunk_id)
         if _text(transaction.get("disposition")) not in DISPOSITIONS:
             errors.append(f"{prefix}.disposition is invalid")
         if _text(transaction.get("route")) not in ROUTES:
@@ -575,6 +617,9 @@ def validate_v60_consideration_ledger(
         "transaction_count": len(transactions),
         "selected_chunk_count": len(selected_chunks),
         "disposition_counts": dict(sorted((key, value) for key, value in disposition_counts.items() if key)),
+        "missing_selected_chunk_ids": missing,
+        "duplicate_chunk_ids": duplicate,
+        "unknown_chunk_ids": sorted(set(unknown)),
         "used_chunk_ids": [
             _text(item.get("chunk_id"))
             for item in transactions
@@ -587,6 +632,87 @@ def validate_v60_consideration_ledger(
         ],
         **({"errors": errors} if errors else {}),
     }
+
+
+def finalize_v60_consideration(
+    result_payload: Mapping[str, Any],
+    *,
+    ledger: Mapping[str, Any] | None = None,
+    now: _dt.datetime | None = None,
+) -> dict[str, Any]:
+    """Attach V60 ledger validation, including the missing-ledger case.
+
+    The skill orchestrator is probabilistic. If it skips the manual ledger
+    step, the deterministic layer still has to make that absence visible before
+    Observatory/archive treat the run as complete.
+    """
+
+    result = dict(result_payload)
+    enrichment = _mapping(result.get("v60_enrichment"))
+    run_health = dict(_mapping(result.get("run_health")))
+    issues = list(_strings(run_health.get("issues")))
+    warnings = list(_strings(run_health.get("warnings")))
+
+    if enrichment.get("status") != "active":
+        run_health["v60_consideration_ledger"] = "not_required"
+        result["run_health"] = run_health
+        return result
+
+    if ledger is None and isinstance(result.get("v60_consideration_ledger"), Mapping):
+        ledger = _mapping(result.get("v60_consideration_ledger"))
+
+    selected_chunks = _strings(_mapping(enrichment.get("telemetry")).get("selected_chunk_ids"))
+
+    if ledger is None:
+        validation = {
+            "status": "missing",
+            "transaction_count": 0,
+            "selected_chunk_count": len(selected_chunks),
+            "disposition_counts": {},
+            "missing_selected_chunk_ids": selected_chunks,
+            "duplicate_chunk_ids": [],
+            "unknown_chunk_ids": [],
+            "used_chunk_ids": [],
+            "presented_but_not_used_chunk_ids": [],
+            "unaccounted_selected_chunk_ids": selected_chunks,
+            "errors": ["v60_enrichment is active but no consideration ledger was written"],
+        }
+        result["v60_consideration_validation"] = validation
+        _add_once(issues, MISSING_LEDGER_ISSUE)
+        _add_once(warnings, "V60 enrichment was active, but no private consideration ledger was written.")
+        run_health["v60_consideration_ledger"] = "missing"
+        run_health["v60_consideration_transaction_count"] = 0
+        run_health["v60_consideration_disposition_counts"] = {}
+        run_health["v60_used_chunk_count"] = 0
+        run_health["v60_presented_but_not_used_chunk_count"] = 0
+        run_health["v60_unaccounted_chunk_count"] = len(selected_chunks)
+    else:
+        validation = validate_v60_consideration_ledger(ledger, enrichment=enrichment)
+        result["v60_consideration_ledger"] = dict(ledger)
+        result["v60_consideration_validation"] = validation
+        timestamp = now or _dt.datetime.now(_dt.timezone.utc)
+        result["v60_consideration_written_at"] = timestamp.strftime("%Y-%m-%dT%H:%M:%SZ")
+        run_health["v60_consideration_ledger"] = validation.get("status", "unknown")
+        run_health["v60_consideration_transaction_count"] = validation.get("transaction_count", 0)
+        run_health["v60_consideration_disposition_counts"] = validation.get("disposition_counts", {})
+        run_health["v60_used_chunk_count"] = len(validation.get("used_chunk_ids") or [])
+        run_health["v60_presented_but_not_used_chunk_count"] = len(
+            validation.get("presented_but_not_used_chunk_ids") or []
+        )
+        run_health["v60_unaccounted_chunk_count"] = len(
+            validation.get("missing_selected_chunk_ids") or []
+        )
+        if validation.get("status") != "valid":
+            _add_once(issues, INVALID_LEDGER_ISSUE)
+
+    if run_health.get("v60_consideration_ledger") in {"missing", "invalid"}:
+        if run_health.get("overall") in {"", "healthy", None}:
+            run_health["overall"] = "degraded"
+
+    run_health["issues"] = issues
+    run_health["warnings"] = warnings
+    result["run_health"] = run_health
+    return result
 
 
 def _embedding_model_hits(
@@ -812,6 +938,41 @@ def _candidate_payload(candidate: V60Candidate) -> dict[str, Any]:
     }
 
 
+def _frame_opportunity_rank(
+    candidates: Sequence[V60Candidate],
+    hybrid_rank: Sequence[str],
+) -> list[V60Candidate]:
+    hybrid_index = {model_id: index for index, model_id in enumerate(dict.fromkeys(hybrid_rank))}
+    frame_candidates = [
+        candidate
+        for candidate in candidates
+        if "lane3_frame_route_candidate" in candidate.source
+        or "lane3_reframing_grounding" in candidate.source
+    ]
+
+    def sort_key(candidate: V60Candidate) -> tuple[int, int, int, str]:
+        priority = FRAME_OPPORTUNITY_MODEL_PRIORITY.get(candidate.model_id, 100)
+        # Reframing-grounding models are already the lane's direct public
+        # explanation. Route candidates get the same reserve only when they are
+        # high-priority frame expanders or strongly matched by the hybrid rank.
+        source_bias = 0 if "lane3_reframing_grounding" in candidate.source else 1
+        return (
+            priority,
+            hybrid_index.get(candidate.model_id, 10**6),
+            source_bias,
+            candidate.model_id,
+        )
+
+    ranked: list[V60Candidate] = []
+    seen: set[str] = set()
+    for candidate in sorted(frame_candidates, key=sort_key):
+        if candidate.model_id in seen:
+            continue
+        seen.add(candidate.model_id)
+        ranked.append(candidate)
+    return ranked
+
+
 def _hybrid_rrf_rank(lane_rank: Sequence[str], embedding_rank: Sequence[str], *, k: int = 60) -> list[str]:
     scores: dict[str, float] = {}
     lane_index = {model_id: index for index, model_id in enumerate(dict.fromkeys(lane_rank))}
@@ -873,6 +1034,11 @@ def _text(value: Any) -> str:
 
 def _slug(value: Any) -> str:
     return _text(value).lower().replace("_", "-")
+
+
+def _add_once(items: list[str], value: str) -> None:
+    if value and value not in items:
+        items.append(value)
 
 
 def _compact(value: str, *, max_chars: int) -> str:

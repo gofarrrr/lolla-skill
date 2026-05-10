@@ -39,6 +39,7 @@ import sys
 from pathlib import Path
 
 DEFAULT_ARCHIVE_ROOT = Path.home() / ".local" / "share" / "lolla" / "runs"
+REPO_ROOT = Path(__file__).resolve().parents[1]
 
 # Files to archive, in order. Missing files are skipped.
 CORE_FILES = (
@@ -273,6 +274,8 @@ def archive_run(
     run_dir = case_dir / run_id
     run_dir.mkdir(exist_ok=True)
 
+    _finalize_v60_telemetry_before_archive(tmp_dir=tmp_dir, run_id=run_id)
+
     copied: list[str] = []
     missing: list[str] = []
     for fname in CORE_FILES:
@@ -295,6 +298,24 @@ def archive_run(
         "files_missing": missing,
         "run_count": manifest["run_count"],
     }
+
+
+def _finalize_v60_telemetry_before_archive(*, tmp_dir: Path, run_id: str) -> None:
+    """Update result.json with V60 ledger status before copying artifacts."""
+    result_path = tmp_dir / f"lolla_{run_id}_result.json"
+    if not result_path.exists():
+        return
+    if str(REPO_ROOT) not in sys.path:
+        sys.path.insert(0, str(REPO_ROOT))
+    from engine.system_b.v60_enrichment import finalize_v60_consideration
+
+    ledger_path = tmp_dir / f"lolla_{run_id}_v60_ledger.json"
+    result = json.loads(result_path.read_text(encoding="utf-8"))
+    ledger = None
+    if ledger_path.exists():
+        ledger = json.loads(ledger_path.read_text(encoding="utf-8"))
+    finalized = finalize_v60_consideration(result, ledger=ledger)
+    result_path.write_text(json.dumps(finalized, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
 # ---------------------------------------------------------------------------

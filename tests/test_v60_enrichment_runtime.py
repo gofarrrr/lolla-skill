@@ -12,6 +12,7 @@ from engine.system_b.v60_enrichment import (
     LEDGER_SCHEMA_VERSION,
     build_v60_enrichment,
     extract_v60_candidates,
+    finalize_v60_consideration,
     validate_v60_consideration_ledger,
 )
 
@@ -81,6 +82,22 @@ def _artifact() -> dict:
                 "diagnostic_questions": ["What would make this fail?"],
                 "misuse_guards": [],
                 "source_evidence": [{"source_file": "Premortem.md", "source_quote": "Imagine the plan failed."}],
+            },
+            {
+                "model_id": "optionality",
+                "affordance_id": "optionality.expand-before-evaluating",
+                "status": "supported",
+                "confidence": "high",
+                "mechanism": "Expand the option set before evaluating a binary decision.",
+                "activation_shape": {
+                    "use_when": ["The case is framed as a binary choice."],
+                    "case_evidence_needed": ["The excluded third path."],
+                    "do_not_use_when": ["The option set is already exhaustive."],
+                },
+                "treatment_requirements": [],
+                "diagnostic_questions": ["What option is missing from the binary?"],
+                "misuse_guards": [],
+                "source_evidence": [{"source_file": "Optionality.md", "source_quote": "Expand before evaluating."}],
             },
         ],
         "absence_records": [
@@ -153,6 +170,30 @@ def _artifact() -> dict:
                         "diagnostic_questions": ["What would make this fail?"],
                         "misuse_guards": [],
                         "source_evidence": [{"source_file": "Premortem.md", "source_quote": "Imagine the plan failed."}],
+                    }
+                ],
+                "absence_records": [],
+            },
+            {
+                "model_id": "optionality",
+                "source_file": "Optionality.md",
+                "status": "supported",
+                "affordances": [
+                    {
+                        "model_id": "optionality",
+                        "affordance_id": "optionality.expand-before-evaluating",
+                        "status": "supported",
+                        "confidence": "high",
+                        "mechanism": "Expand the option set before evaluating a binary decision.",
+                        "activation_shape": {
+                            "use_when": ["The case is framed as a binary choice."],
+                            "case_evidence_needed": ["The excluded third path."],
+                            "do_not_use_when": ["The option set is already exhaustive."],
+                        },
+                        "treatment_requirements": [],
+                        "diagnostic_questions": ["What option is missing from the binary?"],
+                        "misuse_guards": [],
+                        "source_evidence": [{"source_file": "Optionality.md", "source_quote": "Expand before evaluating."}],
                     }
                 ],
                 "absence_records": [],
@@ -258,6 +299,42 @@ def test_missing_v60_records_do_not_consume_hot_context_slots(tmp_path: Path) ->
     } >= {("not-in-v60", "missing_v60_record", "selection")}
 
 
+def test_v60_selection_reserves_frame_opportunity_before_packet_cap(tmp_path: Path) -> None:
+    artifact_path = tmp_path / "affordances_v60.json"
+    _write_json(artifact_path, _artifact())
+
+    enrichment = build_v60_enrichment(
+        root=tmp_path,
+        result_payload={
+            "delta_card": {"selected_model_ids": ["opportunity-cost"]},
+            "frame_pressure_card": {
+                "routes": [
+                    {
+                        "frame_pattern": "binary_collapse",
+                        "candidate_model_ids": ["premortem", "optionality"],
+                    }
+                ]
+            },
+        },
+        conversation_context=_context(),
+        affordances_path=artifact_path,
+        enable_embeddings=False,
+        max_cards=2,
+        lane_slots=1,
+        frame_opportunity_slots=1,
+        embedding_affordance_slots=0,
+        embedding_absence_slots=0,
+        hybrid_slots=0,
+    )
+
+    assert enrichment["telemetry"]["selected_model_ids"] == [
+        "opportunity-cost",
+        "optionality",
+    ]
+    assert enrichment["selected_cards"][1]["selection_source"] == "frame_opportunity_reserved"
+    assert "aff::optionality.expand-before-evaluating" in enrichment["telemetry"]["selected_chunk_ids"]
+
+
 def test_v60_consideration_ledger_validation_accounts_for_unused_chunks(tmp_path: Path) -> None:
     artifact_path = tmp_path / "affordances_v60.json"
     _write_json(artifact_path, _artifact())
@@ -337,3 +414,82 @@ def test_v60_ledger_validation_rejects_cheap_non_used_transactions(tmp_path: Pat
     assert validation["status"] == "invalid"
     assert any("strongest_plausible_application" in err for err in validation["errors"])
     assert any("risk_if_forced" in err for err in validation["errors"])
+
+
+def test_finalize_v60_consideration_marks_missing_ledger_degraded(tmp_path: Path) -> None:
+    artifact_path = tmp_path / "affordances_v60.json"
+    _write_json(artifact_path, _artifact())
+    enrichment = build_v60_enrichment(
+        root=tmp_path,
+        result_payload={"delta_card": {"selected_model_ids": ["opportunity-cost"]}},
+        conversation_context=_context(),
+        affordances_path=artifact_path,
+        enable_embeddings=False,
+    )
+
+    result = finalize_v60_consideration(
+        {
+            "run_health": {"overall": "healthy", "issues": []},
+            "v60_enrichment": enrichment,
+        }
+    )
+
+    assert result["run_health"]["overall"] == "degraded"
+    assert result["run_health"]["v60_consideration_ledger"] == "missing"
+    assert result["run_health"]["v60_unaccounted_chunk_count"] == 2
+    assert "v60_consideration_ledger_missing" in result["run_health"]["issues"]
+    assert result["v60_consideration_validation"]["status"] == "missing"
+
+
+def test_finalize_v60_consideration_merges_valid_ledger_counts(tmp_path: Path) -> None:
+    artifact_path = tmp_path / "affordances_v60.json"
+    _write_json(artifact_path, _artifact())
+    enrichment = build_v60_enrichment(
+        root=tmp_path,
+        result_payload={"delta_card": {"selected_model_ids": ["opportunity-cost"]}},
+        conversation_context=_context(),
+        affordances_path=artifact_path,
+        enable_embeddings=False,
+    )
+    chunk_ids = enrichment["telemetry"]["selected_chunk_ids"]
+    ledger = {
+        "schema_version": LEDGER_SCHEMA_VERSION,
+        "transactions": [
+            {
+                "chunk_id": chunk_ids[0],
+                "card_id": "v60-card-001-opportunity-cost",
+                "model_id": "opportunity-cost",
+                "disposition": "used",
+                "route": "updated_position",
+                "strongest_plausible_application": "Use it to name the displaced alternative.",
+                "risk_if_forced": "",
+                "why": "It changed the threshold.",
+                "visible_effect": "Named the displaced alternative.",
+            },
+            {
+                "chunk_id": chunk_ids[1],
+                "card_id": "v60-card-001-opportunity-cost",
+                "model_id": "opportunity-cost",
+                "disposition": "rejected",
+                "route": "irrelevant",
+                "strongest_plausible_application": "Block generic pro/con usage.",
+                "risk_if_forced": "Would claim the answer used generic pro/con reasoning.",
+                "why": "That was not present.",
+                "visible_effect": "",
+            },
+        ],
+    }
+
+    result = finalize_v60_consideration(
+        {
+            "run_health": {"overall": "healthy", "issues": []},
+            "v60_enrichment": enrichment,
+        },
+        ledger=ledger,
+    )
+
+    assert result["run_health"]["overall"] == "healthy"
+    assert result["run_health"]["v60_consideration_ledger"] == "valid"
+    assert result["run_health"]["v60_used_chunk_count"] == 1
+    assert result["run_health"]["v60_presented_but_not_used_chunk_count"] == 1
+    assert result["run_health"]["v60_unaccounted_chunk_count"] == 0

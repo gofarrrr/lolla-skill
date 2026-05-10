@@ -296,7 +296,7 @@ Keep a private note while writing Step 6: which V60 chunk IDs changed the answer
    **§2 anti-overcorrection rule:** §2 should include at least one **audit-raised pressure you considered and did not adopt** when such a pressure exists in the audit output. Without it, Beat 3 reads as "the audit was right about everything" — pure absorption, no judgment. Self-corrections of your own reasoning ("I had soft mechanism here, recommendation is the same") are valid §2 content but do not substitute for an audit-grounded rejection when one is available.
 
    **Constraint:** do NOT manufacture a rejection for symmetry. If the audit produces no credible pressure to reject (empty `delta_card`, weak anchors that don't bear on a load-bearing reasoning move, no frame elements that would have changed the recommendation), say less in §2 rather than performing judgment. Fake resistance is a worse failure mode than a thin §2.
-3. **What actually shifted.** Name what changed in your position and why. Name the mental models that drove the shift. Be specific.
+3. **What actually shifted.** Name what changed in your position and why. Keep the user-facing language practical: name the decision pressure, evidence gate, omitted option, or risk treatment. Use model display names only when `anchor-treatment.md` requires them or when the name naturally helps the user. Do not turn §3 into a list of internal model labels.
 
 **§3 cap: 3–4 distinct shifts. Hard cap.** Total Beat 3 length 550–800 words; hard cap 900.
 
@@ -362,48 +362,7 @@ cat > /tmp/lolla_${LOLLA_RUN_ID}_v60_ledger.json << 'LOLLA_V60_LEDGER_EOF'
 }
 LOLLA_V60_LEDGER_EOF
 
-python3 -c "
-import json, datetime, pathlib, sys
-run_id = '${LOLLA_RUN_ID}'
-result_path = pathlib.Path(f'/tmp/lolla_{run_id}_result.json')
-ledger_path = pathlib.Path(f'/tmp/lolla_{run_id}_v60_ledger.json')
-d = json.loads(result_path.read_text())
-enrichment = d.get('v60_enrichment') or {}
-if enrichment.get('status') == 'active':
-    if not ledger_path.exists():
-        raise SystemExit('v60_enrichment is active but v60 ledger was not written')
-    sys.path.insert(0, '${SKILL_DIR}/engine')
-    from system_b.v60_enrichment import validate_v60_consideration_ledger
-    ledger = json.loads(ledger_path.read_text())
-    validation = validate_v60_consideration_ledger(ledger, enrichment=enrichment)
-    d['v60_consideration_ledger'] = ledger
-    d['v60_consideration_validation'] = validation
-    d['v60_consideration_written_at'] = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
-    run_health = dict(d.get('run_health') or {})
-    issues = list(run_health.get('issues') or [])
-    run_health['v60_consideration_ledger'] = validation.get('status', 'unknown')
-    run_health['v60_consideration_transaction_count'] = validation.get('transaction_count', 0)
-    run_health['v60_consideration_disposition_counts'] = validation.get('disposition_counts', {})
-    run_health['v60_used_chunk_count'] = len(validation.get('used_chunk_ids') or [])
-    run_health['v60_presented_but_not_used_chunk_count'] = len(
-        validation.get('presented_but_not_used_chunk_ids') or []
-    )
-    if validation.get('status') != 'valid':
-        if 'v60_consideration_ledger_invalid' not in issues:
-            issues.append('v60_consideration_ledger_invalid')
-        if run_health.get('overall') == 'healthy':
-            run_health['overall'] = 'degraded'
-    run_health['issues'] = issues
-    d['run_health'] = run_health
-    result_path.write_text(json.dumps(d, indent=2, ensure_ascii=False))
-    print(f'V60 consideration ledger persisted to {result_path}: {validation[\"status\"]}')
-else:
-    run_health = dict(d.get('run_health') or {})
-    run_health['v60_consideration_ledger'] = 'not_required'
-    d['run_health'] = run_health
-    result_path.write_text(json.dumps(d, indent=2, ensure_ascii=False))
-    print('V60 enrichment inactive; no ledger required')
-"
+python3 $SKILL_DIR/scripts/finalize_v60_telemetry.py --run-id "${LOLLA_RUN_ID}"
 ```
 
 The allowed `disposition` values are `used`, `rejected`, `deferred`, and `not_considered`. The allowed `route` values are `updated_position`, `pressure_check`, `private_guardrail`, `evidence_gate`, `diagnostic_question`, `set_aside`, `already_covered`, `irrelevant`, `missing_evidence`, and `duplicate`.
@@ -701,6 +660,7 @@ After the full cycle is complete (cards, updated position, pressure check, and m
 **Always launch after Step 8c completes.** Do not wait for the user to ask:
 
 ```bash
+python3 $SKILL_DIR/scripts/finalize_v60_telemetry.py --run-id "${LOLLA_RUN_ID}"
 python3 $SKILL_DIR/observatory/serve_result.py --result /tmp/lolla_${LOLLA_RUN_ID}_result.json
 ```
 
@@ -718,6 +678,7 @@ python3 $SKILL_DIR/scripts/archive_run.py --run-id "${LOLLA_RUN_ID}"
 
 The archive script:
 
+- Finalizes V60 consideration telemetry before copying artifacts. If V60 was active and the private ledger is missing, the run is marked degraded with `v60_consideration_ledger_missing` instead of looking complete.
 - Reads the 9 core artifacts from `/tmp/lolla_${LOLLA_RUN_ID}_*` (`conversation.txt`, `extraction.json`, `result.json`, `revised.txt`, `memo.md`, `memo_note.json`, `gapcheck.txt`, `gapcheck_lanes.json`, `v60_ledger.json`). Missing artifacts (e.g., if Step 6b, V60 ledger persistence, or Step 8c did not run on a weaker orchestrator) are skipped gracefully.
 - Computes a case fingerprint from `extraction.decision_situation` (first 120 chars, normalized).
 - Finds-or-creates a case folder. Matching uses **exact fingerprint first, then token-set Jaccard ≥ 0.80** against stored fingerprints — so small extractor paraphrase drift across runs of the same conversation does not split into multiple case folders. Matching is done against the manifest inside each case folder, not against folder names, so user renames of case folders do not break future matching.
