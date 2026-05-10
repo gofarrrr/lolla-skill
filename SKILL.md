@@ -379,9 +379,29 @@ if enrichment.get('status') == 'active':
     d['v60_consideration_ledger'] = ledger
     d['v60_consideration_validation'] = validation
     d['v60_consideration_written_at'] = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
+    run_health = dict(d.get('run_health') or {})
+    issues = list(run_health.get('issues') or [])
+    run_health['v60_consideration_ledger'] = validation.get('status', 'unknown')
+    run_health['v60_consideration_transaction_count'] = validation.get('transaction_count', 0)
+    run_health['v60_consideration_disposition_counts'] = validation.get('disposition_counts', {})
+    run_health['v60_used_chunk_count'] = len(validation.get('used_chunk_ids') or [])
+    run_health['v60_presented_but_not_used_chunk_count'] = len(
+        validation.get('presented_but_not_used_chunk_ids') or []
+    )
+    if validation.get('status') != 'valid':
+        if 'v60_consideration_ledger_invalid' not in issues:
+            issues.append('v60_consideration_ledger_invalid')
+        if run_health.get('overall') == 'healthy':
+            run_health['overall'] = 'degraded'
+    run_health['issues'] = issues
+    d['run_health'] = run_health
     result_path.write_text(json.dumps(d, indent=2, ensure_ascii=False))
     print(f'V60 consideration ledger persisted to {result_path}: {validation[\"status\"]}')
 else:
+    run_health = dict(d.get('run_health') or {})
+    run_health['v60_consideration_ledger'] = 'not_required'
+    d['run_health'] = run_health
+    result_path.write_text(json.dumps(d, indent=2, ensure_ascii=False))
     print('V60 enrichment inactive; no ledger required')
 "
 ```

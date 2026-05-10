@@ -153,8 +153,11 @@ V60 adds a second, non-cost telemetry stream inside the same `result.json`:
 | `v60_enrichment` | `scripts/run_pipeline.py` | Which lane/embedding candidates were considered, which V60 cards/chunks were selected, which candidates were skipped, which model IDs were left outside the hot context, and whether the explicit `affordances_v60.json` artifact loaded cleanly |
 | `v60_consideration_ledger` | `SKILL.md` Step 6b | For every selected V60 chunk: did Claude/Codex use it, reject it, defer it, or not consider it; through what route; and what visible effect, if any, it had |
 | `v60_consideration_validation` | `engine/system_b/v60_enrichment.py` | Whether the ledger accounts for every selected chunk exactly once, plus used vs. presented-but-not-used chunk IDs |
+| `run_health.v60_*` | `scripts/run_pipeline.py` + `SKILL.md` Step 6b | Runtime status/counts before Step 6, then ledger status, transaction count, disposition counts, used chunk count, and presented-but-not-used count after Step 6b |
 
 The operational kill switch is `LOLLA_V60_ENRICHMENT=off` or `--v60-enrichment off`. Disabled runs still write a small `v60_enrichment.status = "disabled"` block so the absence is intentional and observable.
+
+The `/audit/v60` Observatory panel is the process-comparison surface: it renders the candidate pool, lane source counts, embedding hits, selected cards/chunks, skipped or not-presented candidates, and the Step-6 consideration ledger. Use it to compare how the system reasoned, not only whether the final answer changed.
 
 ## Pricing
 

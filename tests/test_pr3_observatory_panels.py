@@ -584,6 +584,130 @@ def test_case_api_includes_stakeholder_assumption_check():
     assert response["stakeholder_assumption_check"]["status"] == "completed"
 
 
+def test_v60_panel_renders_process_telemetry(monkeypatch):
+    r = _fixture_result()
+    r["v60_enrichment"] = {
+        "status": "active",
+        "artifact": {
+            "artifact_id": "model_affordances_v60",
+            "status": "draft_review_only",
+            "model_record_count": 222,
+            "affordance_count": 306,
+            "absence_record_count": 697,
+            "sha256": "abc123def4567890",
+        },
+        "candidate_pool": {
+            "lane_candidate_count": 2,
+            "raw_lane_signal_count": 3,
+            "embedding_mode": "on",
+            "lane_source_counts": {"lane1_selected": 1, "lane2_companion_anchor": 1},
+            "lane_candidates": [
+                {
+                    "model_id": "opportunity-cost",
+                    "source": "lane1_selected",
+                    "lane_order": 1,
+                    "reason": "The choice displaces alternatives.",
+                    "evidence": "accept the offer",
+                }
+            ],
+            "embedding_model_hits": [
+                {
+                    "rank": 1,
+                    "model_id": "optionality",
+                    "score": 0.91,
+                    "signal_type": "select_when",
+                }
+            ],
+        },
+        "selected_cards": [
+            {
+                "model_id": "opportunity-cost",
+                "selection_source": "lane_preserved",
+                "selection_reason": "Preserve high-provenance lane candidate.",
+                "record_status": "supported",
+                "source_file": "Opportunity_Cost.md",
+                "selected_affordance_cards": [
+                    {
+                        "chunk_id": "aff::opportunity-cost.displaced-alternative-commitment-gate",
+                        "confidence": "high",
+                        "activation_shape": {
+                            "use_when": ["A choice commits scarce resources."]
+                        },
+                    }
+                ],
+                "selected_absence_records": [
+                    {
+                        "chunk_id": "abs::opportunity-cost::generic-pro-con-list",
+                        "status": "not_supported_by_source",
+                        "reason": "Do not promote generic pro/con lists.",
+                    }
+                ],
+            }
+        ],
+        "telemetry": {
+            "selected_chunk_count": 2,
+            "selection_source_counts": {"lane_preserved": 1},
+            "skipped_candidate_count": 1,
+            "skipped_candidates": [
+                {
+                    "model_id": "premortem",
+                    "source": "embedding_fill",
+                    "reason": "not_presented_packet_cap",
+                    "stage": "fill",
+                }
+            ],
+            "not_presented_model_ids": ["premortem"],
+        },
+    }
+    r["v60_consideration_ledger"] = {
+        "transactions": [
+            {
+                "chunk_id": "aff::opportunity-cost.displaced-alternative-commitment-gate",
+                "model_id": "opportunity-cost",
+                "disposition": "used",
+                "route": "updated_position",
+                "strongest_plausible_application": "Name the displaced alternative.",
+                "risk_if_forced": "",
+                "why": "It changed the trade-off threshold.",
+                "visible_effect": "Named the displaced alternative.",
+            },
+            {
+                "chunk_id": "abs::opportunity-cost::generic-pro-con-list",
+                "model_id": "opportunity-cost",
+                "disposition": "rejected",
+                "route": "irrelevant",
+                "strongest_plausible_application": "Block generic pro/con framing.",
+                "risk_if_forced": "Would add ceremony.",
+                "why": "The answer did not rely on a generic pro/con list.",
+                "visible_effect": "",
+            },
+        ]
+    }
+    r["v60_consideration_validation"] = {
+        "status": "valid",
+        "transaction_count": 2,
+        "selected_chunk_count": 2,
+        "disposition_counts": {"used": 1, "rejected": 1},
+        "used_chunk_ids": ["aff::opportunity-cost.displaced-alternative-commitment-gate"],
+        "presented_but_not_used_chunk_ids": [
+            "abs::opportunity-cost::generic-pro-con-list"
+        ],
+    }
+    monkeypatch.setattr(serve_result, "_RESULT", r)
+
+    html = serve_result._render_v60_html()
+
+    assert "Selection source counts" in html
+    assert "Lane source counts" in html
+    assert "Lane Candidates" in html
+    assert "Embedding Hits" in html
+    assert "opportunity-cost.displaced-alternative-commitment-gate" in html
+    assert "not_presented_packet_cap" in html
+    assert "Disposition counts" in html
+    assert "Name the displaced alternative." in html
+    assert "Would add ceremony." in html
+
+
 def test_audit_index_handles_no_audit_summary(monkeypatch):
     monkeypatch.setattr(serve_result, "_RESULT", _minimal_result())
     html = serve_result._render_audit_index_html()

@@ -2086,20 +2086,63 @@ def _render_v60_html() -> str:
     selected_cards = enrichment.get("selected_cards") or []
     skipped = telemetry.get("skipped_candidates") or []
     transactions = ledger.get("transactions") or []
+    lane_candidates = candidate_pool.get("lane_candidates") or []
+    embedding_hits = candidate_pool.get("embedding_model_hits") or []
+    selection_source_counts = telemetry.get("selection_source_counts") or {}
+    lane_source_counts = candidate_pool.get("lane_source_counts") or {}
+    disposition_counts = validation.get("disposition_counts") or {}
+    validation_errors = validation.get("errors") or []
 
     card_rows = []
     for card in selected_cards:
         chunks = []
         for chunk in card.get("selected_affordance_cards") or []:
-            chunks.append(f"<span class='tag ok'>{_esc(chunk.get('chunk_id', ''))}</span>")
+            details = " | ".join(
+                part
+                for part in [
+                    _esc(chunk.get("chunk_id", "")),
+                    _esc(chunk.get("confidence", "")),
+                    _esc("; ".join((chunk.get("activation_shape") or {}).get("use_when") or [])),
+                ]
+                if part
+            )
+            chunks.append(f"<span class='tag ok'>{details}</span>")
         for chunk in card.get("selected_absence_records") or []:
-            chunks.append(f"<span class='tag warn'>{_esc(chunk.get('chunk_id', ''))}</span>")
+            details = " | ".join(
+                part
+                for part in [
+                    _esc(chunk.get("chunk_id", "")),
+                    _esc(chunk.get("status", "")),
+                    _esc(chunk.get("reason", "")),
+                ]
+                if part
+            )
+            chunks.append(f"<span class='tag warn'>{details}</span>")
         card_rows.append(
             f"<tr><td>{_esc(card.get('model_id', ''))}</td>"
             f"<td>{_esc(card.get('selection_source', ''))}</td>"
             f"<td>{_esc(card.get('selection_reason', ''))}</td>"
+            f"<td>{_esc(card.get('record_status', ''))}</td>"
+            f"<td>{_esc(card.get('source_file', ''))}</td>"
             f"<td><div class='tagrow'>{''.join(chunks)}</div></td></tr>"
         )
+
+    lane_candidate_rows = [
+        f"<tr><td>{_esc(item.get('model_id', ''))}</td>"
+        f"<td>{_esc(item.get('source', ''))}</td>"
+        f"<td>{_esc(item.get('lane_order', ''))}</td>"
+        f"<td>{_esc(item.get('reason', ''))}</td>"
+        f"<td>{_esc(item.get('evidence', ''))}</td></tr>"
+        for item in lane_candidates
+    ]
+
+    embedding_rows = [
+        f"<tr><td>{_esc(item.get('rank', ''))}</td>"
+        f"<td>{_esc(item.get('model_id', ''))}</td>"
+        f"<td>{_esc(item.get('score', ''))}</td>"
+        f"<td>{_esc(item.get('signal_type', ''))}</td></tr>"
+        for item in embedding_hits
+    ]
 
     skipped_rows = [
         f"<tr><td>{_esc(item.get('model_id', ''))}</td>"
@@ -2114,6 +2157,8 @@ def _render_v60_html() -> str:
         f"<td>{_esc(item.get('model_id', ''))}</td>"
         f"<td>{_esc(item.get('disposition', ''))}</td>"
         f"<td>{_esc(item.get('route', ''))}</td>"
+        f"<td>{_esc(item.get('strongest_plausible_application', ''))}</td>"
+        f"<td>{_esc(item.get('risk_if_forced', ''))}</td>"
         f"<td>{_esc(item.get('why', ''))}</td>"
         f"<td>{_esc(item.get('visible_effect', ''))}</td></tr>"
         for item in transactions
@@ -2155,11 +2200,25 @@ def _render_v60_html() -> str:
   <span class="tag">raw lane signals: <strong>{_fmt_int(candidate_pool.get('raw_lane_signal_count', 0))}</strong></span>
   <span class="tag">embedding mode: <strong>{_esc(candidate_pool.get('embedding_mode', ''))}</strong></span>
 </div>
+<p class="hint">Selection source counts: {_esc(json.dumps(selection_source_counts, sort_keys=True))}</p>
+<p class="hint">Lane source counts: {_esc(json.dumps(lane_source_counts, sort_keys=True))}</p>
+
+<h3>Lane Candidates</h3>
+<table>
+<tr><th>Model</th><th>Source</th><th>Lane</th><th>Reason</th><th>Evidence</th></tr>
+{"".join(lane_candidate_rows) if lane_candidate_rows else "<tr><td colspan='5' class='empty'>No lane candidates recorded.</td></tr>"}
+</table>
+
+<h3>Embedding Hits</h3>
+<table>
+<tr><th>Rank</th><th>Model</th><th>Score</th><th>Signal</th></tr>
+{"".join(embedding_rows) if embedding_rows else "<tr><td colspan='4' class='empty'>No embedding recall hits recorded.</td></tr>"}
+</table>
 
 <h2>Selected Cards</h2>
 <table>
-<tr><th>Model</th><th>Source</th><th>Reason</th><th>Presented chunks</th></tr>
-{"".join(card_rows) if card_rows else "<tr><td colspan='4' class='empty'>No V60 cards selected.</td></tr>"}
+<tr><th>Model</th><th>Source</th><th>Reason</th><th>Status</th><th>Source file</th><th>Presented chunks</th></tr>
+{"".join(card_rows) if card_rows else "<tr><td colspan='6' class='empty'>No V60 cards selected.</td></tr>"}
 </table>
 
 <h2>Skipped / Not Presented</h2>
@@ -2172,9 +2231,11 @@ def _render_v60_html() -> str:
 
 <h2>Consideration Ledger</h2>
 <p class="hint">Written by the skill after Step 6. It answers what was used, rejected, deferred, or presented but not used.</p>
+<p class="hint">Disposition counts: {_esc(json.dumps(disposition_counts, sort_keys=True))}</p>
+{"<p class='warn'>Validation errors: " + _esc('; '.join(validation_errors)) + "</p>" if validation_errors else ""}
 <table>
-<tr><th>Chunk</th><th>Model</th><th>Disposition</th><th>Route</th><th>Why</th><th>Visible effect</th></tr>
-{"".join(tx_rows) if tx_rows else "<tr><td colspan='6' class='empty'>No V60 consideration ledger written yet.</td></tr>"}
+<tr><th>Chunk</th><th>Model</th><th>Disposition</th><th>Route</th><th>Strongest plausible application</th><th>Risk if forced</th><th>Why</th><th>Visible effect</th></tr>
+{"".join(tx_rows) if tx_rows else "<tr><td colspan='8' class='empty'>No V60 consideration ledger written yet.</td></tr>"}
 </table>
 """
     return _render_scaffold(title="Lolla — V60", body=body, current_path="/audit/v60")

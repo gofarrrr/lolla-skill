@@ -755,6 +755,8 @@ The Step 6 reconsideration text is written into the result JSON via a small inli
 
 When V60 is active, Step 6b also writes a private `v60_consideration_ledger` into `result.json` and `/tmp/lolla_<run_id>_v60_ledger.json`. The ledger has one transaction for every presented V60 chunk and is validated by `validate_v60_consideration_ledger(...)`. This is operator telemetry only: it tells us which selected chunks were used, rejected, deferred, or presented but not used, while leaving the public answer free to be natural.
 
+Step 6b also rolls the ledger status back into `run_health` with the transaction count, disposition counts, used chunk count, and presented-but-not-used count. That makes process comparison cheap: an operator can compare two runs by candidate pool, selected chunks, skipped/not-presented candidates, ledger uptake, and final-answer delta instead of reading only the final prose.
+
 ### Memo timing: deferred until Step 8c
 
 The final memo is **not** rendered immediately after Step 6b. Step 8 often catches the final useful correction, so the memo waits until the pressure check has been persisted. This prevents the portable artifact from missing the last decision-relevant change.
