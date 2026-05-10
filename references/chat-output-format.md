@@ -7,7 +7,7 @@ The render specification for chat output across the four beats of a `/lolla` run
 - **After Step 2 extract** — for Beat 1 (situation echo + audit promise).
 - **At Step 4 onward** — for Beat 2 (counterargument lead), Beat 3 (updated position), Beat 4 (pressure check).
 
-Load alongside `references/output-field-guide.md` (field definitions) and, at Step 6, `references/anchor-treatment.md` (anchor handling) and `references/presentation-voice.md` + `references/anti-bullshit-doctrine.md` (voice and content discipline).
+Load alongside `references/output-field-guide.md` (field definitions) and, at Step 6, `references/anchor-treatment.md` (anchor handling), `references/private-enrichment-treatment.md` (lane/V60 consideration standard), and `references/presentation-voice.md` + `references/anti-bullshit-doctrine.md` (voice and content discipline).
 
 The authoritative pattern body for this file is `plans/voice-examples-2026-04-30.md`. This file states the rules; the examples doc shows what good and bad output looks like across three test cases (Marcus, Mother, Short fixture). When in doubt, read the examples — they teach the voice better than any rule statement.
 

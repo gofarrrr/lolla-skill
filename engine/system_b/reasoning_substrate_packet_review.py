@@ -8,6 +8,7 @@ COMPARISON_TITLE = "Reasoning Substrate Packet Comparison"
 EXPECTED_STATUS = "draft_review_only"
 EXPECTED_RUNTIME_POLICY = "runtime_dormant"
 MAX_CARD_DETAIL_ITEMS = 1
+MAX_AFFORDANCE_CARD_ITEMS = 2
 MAX_REASON_ITEMS = 1
 MAX_SUPPRESSED_ITEMS = 8
 
@@ -211,6 +212,13 @@ def _graph_only_lines(card: Mapping[str, Any]) -> list[str]:
 
 
 def _reviewed_signal_lines(card: Mapping[str, Any]) -> list[str]:
+    grouped_lines = _grouped_affordance_signal_lines(card)
+    if grouped_lines:
+        absence = _first_absence(card.get("absence_records"))
+        if absence:
+            grouped_lines.append(f"  - absence_record: {absence}")
+        return grouped_lines
+
     reviewed = _mapping(card.get("reviewed_affordance_fields"))
     lines: list[str] = []
     for field in (
@@ -231,6 +239,42 @@ def _reviewed_signal_lines(card: Mapping[str, Any]) -> list[str]:
     if absence:
         lines.append(f"  - absence_record: {absence}")
     return lines or ["  - No compact reviewed fields available."]
+
+
+def _grouped_affordance_signal_lines(card: Mapping[str, Any]) -> list[str]:
+    affordance_cards = [
+        _mapping(item)
+        for item in _list(card.get("reviewed_affordance_cards"))[:MAX_AFFORDANCE_CARD_ITEMS]
+    ]
+    if not affordance_cards:
+        return []
+
+    lines = ["  - reviewed_affordance_cards:"]
+    for affordance in affordance_cards:
+        affordance_id = _text(affordance.get("affordance_id"))
+        status = _text(affordance.get("status"))
+        confidence = _text(affordance.get("confidence"))
+        lines.append(f"    - `{affordance_id}` ({status}; {confidence})")
+
+        activation = _mapping(affordance.get("activation_shape"))
+        for field in ("use_when", "case_evidence_needed", "do_not_use_when"):
+            item = _first_reviewed_item(activation.get(field))
+            if item:
+                lines.append(f"      - {field}: {item}")
+
+        treatment = _first_treatment(affordance.get("treatment_requirements"))
+        if treatment:
+            lines.append(f"      - treatment_requirements: {treatment}")
+
+        misuse_guard = _first_reviewed_item(affordance.get("misuse_guards"))
+        if misuse_guard:
+            lines.append(f"      - misuse_guards: {misuse_guard}")
+
+        source = _first_reviewed_item(affordance.get("source_evidence"))
+        if source:
+            lines.append(f"      - source_evidence: {source}")
+
+    return lines
 
 
 def _first_graph_item(value: Any) -> str:

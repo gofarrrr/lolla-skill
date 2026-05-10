@@ -221,6 +221,19 @@ def _env_flag_enabled(name: str) -> bool:
     return raw in {"1", "true", "yes", "on"}
 
 
+def _env_flag_disabled(name: str) -> bool:
+    raw = os.environ.get(name, "").strip().lower()
+    return raw in {"0", "false", "no", "off"}
+
+
+def _v60_mode_enabled(mode: str) -> bool:
+    if mode == "on":
+        return True
+    if mode == "off":
+        return False
+    return not _env_flag_disabled("LOLLA_V60_ENRICHMENT")
+
+
 # ---------------------------------------------------------------------------
 # Data root resolution
 # ---------------------------------------------------------------------------
@@ -528,6 +541,27 @@ def main() -> int:
             "rationale (see research/lane2-attribution-design-2026-04-26.md)."
         ),
     )
+    parser.add_argument(
+        "--v60-enrichment",
+        choices=("auto", "on", "off"),
+        default="auto",
+        help=(
+            "Private V60 enrichment attached to result.json for the skill "
+            "orchestrator. Default auto is ON unless LOLLA_V60_ENRICHMENT=off."
+        ),
+    )
+    parser.add_argument(
+        "--v60-affordances-path",
+        type=Path,
+        default=SKILL_ROOT / "data" / "compiled" / "model_affordances" / "affordances_v60.json",
+        help="Explicit V60 affordance artifact path. No latest-artifact selection.",
+    )
+    parser.add_argument(
+        "--v60-max-cards",
+        type=int,
+        default=8,
+        help="Maximum private V60 cards to attach to result.json.",
+    )
     args = parser.parse_args()
 
     contract_error = _contract_error(args)
@@ -746,6 +780,41 @@ def main() -> int:
     serialized["revised_answer"] = revised_answer
     serialized["bullshit_profile"] = bullshit_profile_payload
 
+    # Private V60 enrichment — product-runtime transport layer.
+    #
+    # This does not decide final wording and it is not a user-facing card
+    # product. It attaches a compact, source-backed "silver platter" to
+    # result.json so the skill-using LLM can consider, reject, defer, or keep
+    # chunks private while writing Step 6. The SKILL persists the downstream
+    # consideration ledger after the model has actually used or rejected it.
+    from system_b.v60_enrichment import (
+        build_v60_enrichment,
+        disabled_v60_enrichment,
+        error_v60_enrichment,
+    )
+
+    v60_enabled = _v60_mode_enabled(args.v60_enrichment)
+    if not v60_enabled:
+        serialized["v60_enrichment"] = disabled_v60_enrichment(
+            "disabled_by_cli_or_LOLLA_V60_ENRICHMENT"
+        )
+    else:
+        try:
+            serialized["v60_enrichment"] = build_v60_enrichment(
+                root=SKILL_ROOT,
+                result_payload=serialized,
+                conversation_context=pipeline_input,
+                affordances_path=Path(args.v60_affordances_path),
+                embedding_retriever=pipeline._embedding_retriever if enable_embeddings else None,
+                embedding_api_key=os.environ.get("OPENAI_API_KEY", ""),
+                enable_embeddings=enable_embeddings,
+                max_cards=max(0, int(args.v60_max_cards)),
+            )
+        except Exception as exc:
+            serialized["v60_enrichment"] = error_v60_enrichment(
+                f"{type(exc).__name__}: {exc}"
+            )
+
     stakeholder_check_call_log: list = []
     stakeholder_check_payload = None
     if _env_flag_enabled("LOLLA_STAKEHOLDER_CHECK"):
@@ -872,6 +941,10 @@ def main() -> int:
         and stakeholder_check_payload.get("triggered")
     ):
         _health_issues.append("stakeholder_check_failed")
+    _v60 = serialized.get("v60_enrichment") or {}
+    _v60_status = str(_v60.get("status") or "")
+    if v60_enabled and _v60_status != "active":
+        _health_issues.append("v60_enrichment_failed")
 
     # Overall health: critical if capture is critical, degraded if any issues
     if "capture_critical" in _health_issues:
@@ -898,6 +971,10 @@ def main() -> int:
         "issues": _health_issues,
         "warnings": _warnings + _capture_warnings,
         "activation_tiebreaker": "on" if activation_tiebreaker_enabled else "off",
+        "v60_enrichment": _v60_status or "unknown",
+        "v60_selected_chunk_count": int(
+            ((_v60.get("telemetry") or {}).get("selected_chunk_count", 0) or 0)
+        ),
     }
     if stakeholder_check_payload:
         serialized["run_health"]["stakeholder_assumption_check"] = stakeholder_check_payload.get("status")

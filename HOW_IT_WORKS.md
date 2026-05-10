@@ -69,6 +69,8 @@ Academic validation: USTC's MeMo paper (Feb 2024) proved Munger's latticework co
 
 **Pre-computed embeddings:** 2,496 knowledge chunks embedded with OpenAI text-embedding-3-large (3072d). Enables semantic matching — the query is expanded into domain-vocabulary variants via gpt-4o-mini (vocabulary-seeded with all 222 model names), each variant is embedded, and results are fused via Reciprocal Rank Fusion (RRF) to find the most relevant corrective knowledge. This bridges the vocabulary gap between user language ("sign the deal") and curated domain language ("escalation of commitment"). Requires `OPENAI_API_KEY`. Without it, deterministic routing still works.
 
+**V60 affordance substrate:** `data/compiled/model_affordances/affordances_v60.json` is the current reviewed transaction layer over the canonical articles. It carries 222 model records, 306 source-backed affordances, and 697 absence records. The affordances say what a model can legitimately do in a reasoning transaction: activation shape, evidence needed, treatment requirements, diagnostic questions, misuse guards, confidence, and source evidence. The absence records are equally important: they say what the source did *not* support, where a tempting interpretation should be blocked, and where the model belongs to a different owner record. Runtime never discovers this by globbing for "latest"; V60 must be passed by explicit path, and can be disabled per run with `LOLLA_V60_ENRICHMENT=off` or `--v60-enrichment off`.
+
 ### The Source Corpus
 
 The 222 canonical articles were not LLM-generated. They were extracted from a corpus of ~200 books spanning cognitive science, decision theory, behavioral economics, systems thinking, strategy, evolutionary psychology, legal reasoning, and creativity.
@@ -672,6 +674,10 @@ The design philosophy: Lane 4 is **informative only**. It doesn't influence Lane
 
 **Total OpenRouter calls:** Typically 18-25 (1 extraction + 6 Pass 1 cluster triage calls + N deep checks + 1 fingerprint + 1 verify + 1 frame extract + 1 reframe + 1 question classification + 1 dimension detection + 0-1 gap questions, plus an extraction retry if quote fabrication is detected). All use the calibrated boundary client with `temperature=0.2` and `response_format=json_object`. The revision step is skipped in the skill flow — Claude produces the updated position itself in Step 6, using the full conversation context and the four cards.
 
+**V60 private enrichment (post-lane, no extra chat call):** After the four lanes serialize their cards, `run_pipeline.py` attaches a private `v60_enrichment` block to `result.json` by default. This is not a fifth lane and it is not public card output. It reads the model IDs already surfaced by the lanes, merges their provenance, optionally adds low-trust model recall from the existing embedding retriever, and then enriches the selected model IDs from the explicit V60 artifact. Each selected card carries at most one compact affordance chunk and one compact absence chunk, plus source file, confidence/status, why it was pulled, embedding trace, and `do_not_overclaim` warnings. The deterministic layer does *selection and custody*; Claude/Codex does *consideration* in Step 6.
+
+The V60 block also records what did not enter the hot context: skipped candidates, missing V60 records, duplicates, packet-cap exclusions, and `not_presented_model_ids`. This is the difference between "we showed the model some extra stuff" and "we can audit which opportunities were selected, suppressed, or left outside the budget."
+
 **Pipeline diagnostics (`run_health`):** The pipeline output includes a decomposed health status that rolls up capture diagnostics from extraction and pipeline state into one truthful object:
 
 - `overall` — `healthy`, `degraded`, or `critical`
@@ -685,6 +691,8 @@ The design philosophy: Lane 4 is **informative only**. It doesn't influence Lane
 - `capture_manifest` (optional) — actual vs. declared turn counts and character length from the conversation capture
 - `bullshit_index_evaluation_failures` — passage-level delivery-audit calls that failed while the remaining passages still produced a partial profile
 - `activation_tiebreaker` — `"on"` or `"off"` (reflects the `LOLLA_ACTIVATION_TIEBREAKER` kill switch; default on)
+- `v60_enrichment` — `active`, `disabled`, or `skipped_error`
+- `v60_selected_chunk_count` — number of private V60 chunks presented to Step 6
 
 `overall` is `critical` if capture is critical (>50% assistant turns missing, zero assistant responses, or the transcript ends on a user turn), `degraded` if any issues exist, `healthy` only when all components are clean. These diagnostics make it possible to distinguish a clean "no findings" result from a broken run that produced no findings because the substrate didn't load or the conversation was badly captured.
 
@@ -735,6 +743,8 @@ A structural rule pairs with the vocabulary: **one primary-pressure anchor per r
 
 Claude integrates anchors into the "What survived" / "What I'd take back or set aside" / "What actually shifted" reasoning where each one earns its mention — never as a mechanical anchor-by-anchor parade — with rhetorical strength matching the evidence the anchor carries. Some will connect sharply, some won't, and both outcomes are honest. The updated position IS the product.
 
+**V60 is private consideration material, not public content.** If `v60_enrichment.status == "active"`, Claude/Codex reads every selected affordance and absence chunk before writing the updated position. For each chunk it decides one of four dispositions: `used`, `rejected`, `deferred`, or `not_considered`. A useful chunk may visibly change the answer, become a diagnostic question, create an evidence gate, stay private as a guardrail, or help reject an overfit lens. Absence chunks are blockers and overclaim rails; they must not be converted into positive claims. The user should see the improved reasoning, not internal labels like V60, affordance, chunk, packet, or ledger.
+
 The "What actually shifted" section is capped at 3-4 substantive shifts. A shift means a different action, threshold, sequence, condition, risk treatment, or decision question. Tail additions that merely add one more caveat are not allowed to bypass the cap; they must be folded into an existing shift or dropped.
 
 **Timing detail:** Before writing Step 6, Claude *also* fires off Step 7's pressure-check sub-agents in the background (parallel Agent calls per non-empty lane). They run while Step 6 / 6b are written, so their outputs are ready by Step 8.
@@ -742,6 +752,8 @@ The "What actually shifted" section is capped at 3-4 substantive shifts. A shift
 ### Step 6b: Persist Revised Answer
 
 The Step 6 reconsideration text is written into the result JSON via a small inline Python merge that sets `revised_answer`, `revised_answer_source: "claude_step6"`, `revised_answer_present: true`, and `revised_answer_written_at`. Without this step the Observatory would render an incomplete run (four cards but no revised answer). The persisted revised answer is the first-class artifact downstream tooling reads.
+
+When V60 is active, Step 6b also writes a private `v60_consideration_ledger` into `result.json` and `/tmp/lolla_<run_id>_v60_ledger.json`. The ledger has one transaction for every presented V60 chunk and is validated by `validate_v60_consideration_ledger(...)`. This is operator telemetry only: it tells us which selected chunks were used, rejected, deferred, or presented but not used, while leaving the public answer free to be natural.
 
 ### Memo timing: deferred until Step 8c
 
@@ -846,7 +858,7 @@ Every audit panel is server-rendered HTML and works whether or not `observatory/
 
 ### Step 10: Archive Run
 
-After launching the Observatory, the skill archives the run's core artifacts into a persistent case folder under `~/.local/share/lolla/runs/` (or `$LOLLA_ARCHIVE_DIR`) so the run survives `/tmp` cleanup and stays accessible for later review, memo re-rendering, or `scripts/stability_check.py` analysis. `scripts/archive_run.py` copies 8 files (`conversation.txt`, `extraction.json`, `result.json`, `revised.txt`, `memo.md`, `memo_note.json`, `gapcheck.txt`, `gapcheck_lanes.json`) into `{archive_root}/{case_id}/{run_id}/`. Missing artifacts (e.g. on a weaker orchestrator that skipped Step 6b/8b/8c) are skipped gracefully. `/tmp` originals are not touched.
+After launching the Observatory, the skill archives the run's core artifacts into a persistent case folder under `~/.local/share/lolla/runs/` (or `$LOLLA_ARCHIVE_DIR`) so the run survives `/tmp` cleanup and stays accessible for later review, memo re-rendering, or `scripts/stability_check.py` analysis. `scripts/archive_run.py` copies 9 files (`conversation.txt`, `extraction.json`, `result.json`, `revised.txt`, `memo.md`, `memo_note.json`, `gapcheck.txt`, `gapcheck_lanes.json`, `v60_ledger.json`) into `{archive_root}/{case_id}/{run_id}/`. Missing artifacts (e.g. on a weaker orchestrator that skipped Step 6b/8b/8c or V60 ledger persistence) are skipped gracefully. `/tmp` originals are not touched.
 
 The "which case is this?" question is solved without asking the user: the archive computes a **case fingerprint** from `extraction.decision_situation` (first 120 chars, normalized — lowercased, punctuation stripped, whitespace collapsed) and matches it against fingerprints stored in `{case_folder}/.case-manifest.json`:
 

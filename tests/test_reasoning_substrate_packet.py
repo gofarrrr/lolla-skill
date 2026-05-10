@@ -70,6 +70,17 @@ def test_reviewed_candidate_gets_compact_snippets_and_source_references() -> Non
     assert reviewed["source_evidence"][0]["source_file"] == "Opportunity_Cost_rag.md"  # type: ignore[index]
     assert card["runtime_graph_fields"]["select_when"]  # type: ignore[index]
 
+    grouped = card["reviewed_affordance_cards"]  # type: ignore[index]
+    assert grouped[0]["affordance_id"] == "opportunity-cost.displaced-alternative-commitment-gate"
+    assert grouped[0]["activation_shape"]["case_evidence_needed"]  # type: ignore[index]
+    assert grouped[0]["treatment_requirements"][0]["affordance_id"] == (  # type: ignore[index]
+        "opportunity-cost.displaced-alternative-commitment-gate"
+    )
+    assert grouped[0]["source_evidence"][0]["affordance_id"] == (  # type: ignore[index]
+        "opportunity-cost.displaced-alternative-commitment-gate"
+    )
+    assert grouped[0]["source_evidence"][0]["source_custody"] == "reviewed_manifest"  # type: ignore[index]
+
 
 def test_graph_only_candidate_remains_eligible_with_graph_only_label() -> None:
     packet = _build_packet(
@@ -94,6 +105,7 @@ def test_graph_only_candidate_remains_eligible_with_graph_only_label() -> None:
     assert card["coverage_status"] == "graph_only_runtime_card"
     assert card["runtime_graph_fields"]["reasoning_types"] == ["causal", "deductive"]  # type: ignore[index]
     assert card["reviewed_affordance_fields"] == {}
+    assert card["reviewed_affordance_cards"] == []
     assert "No reviewed affordance record" in card["do_not_overclaim"][0]  # type: ignore[index]
 
 
@@ -168,6 +180,7 @@ def test_missing_reviewed_record_status_is_counted_in_coverage_summary() -> None
 
     card = packet["candidate_cards"][0]
     assert card["coverage_status"] == "missing_reviewed_record"  # type: ignore[index]
+    assert card["reviewed_affordance_cards"] == []  # type: ignore[index]
     assert packet["coverage_summary"]["missing_reviewed_record_count"] == 1  # type: ignore[index]
     assert packet["coverage_summary"]["missing_reviewed_model_ids"] == [  # type: ignore[index]
         "empty-reviewed-record"

@@ -101,6 +101,7 @@ _AUDIT_NAV = (
     ("/audit/treatment-audit", "Treatment Audit"),
     ("/audit/expansions", "Expansions"),
     ("/audit/stakeholders", "Stakeholders"),
+    ("/audit/v60", "V60"),
     ("/usage", "Usage"),
 )
 
@@ -718,6 +719,9 @@ def _build_case_response() -> dict:
         "has_gap_check": r.get("has_gap_check", False),
         "stakeholder_assumption_check": r.get("stakeholder_assumption_check"),
         "bullshit_profile": r.get("bullshit_profile"),
+        "v60_enrichment": r.get("v60_enrichment"),
+        "v60_consideration_ledger": r.get("v60_consideration_ledger"),
+        "v60_consideration_validation": r.get("v60_consideration_validation"),
     }
 
     # Run health — surfaces capture, substrate, embeddings, fingerprint status
@@ -2058,6 +2062,124 @@ def _render_audit_run_vitals() -> str:
     return f'<div class="vitals">{chip_html}</div>'
 
 
+def _render_v60_html() -> str:
+    _reload_result_if_changed()
+    header = _render_run_header()
+    enrichment = _RESULT.get("v60_enrichment") or {}
+    ledger = _RESULT.get("v60_consideration_ledger") or {}
+    validation = _RESULT.get("v60_consideration_validation") or {}
+
+    if not enrichment:
+        body = (
+            "<h1>V60 private enrichment</h1>"
+            f"{header}"
+            + _empty_inline(
+                "This run has no <code>v60_enrichment</code> block. Re-run the "
+                "pipeline with V60 enabled to populate selected/skipped chunk telemetry."
+            )
+        )
+        return _render_scaffold(title="Lolla — V60", body=body, current_path="/audit/v60")
+
+    telemetry = enrichment.get("telemetry") or {}
+    artifact = enrichment.get("artifact") or {}
+    candidate_pool = enrichment.get("candidate_pool") or {}
+    selected_cards = enrichment.get("selected_cards") or []
+    skipped = telemetry.get("skipped_candidates") or []
+    transactions = ledger.get("transactions") or []
+
+    card_rows = []
+    for card in selected_cards:
+        chunks = []
+        for chunk in card.get("selected_affordance_cards") or []:
+            chunks.append(f"<span class='tag ok'>{_esc(chunk.get('chunk_id', ''))}</span>")
+        for chunk in card.get("selected_absence_records") or []:
+            chunks.append(f"<span class='tag warn'>{_esc(chunk.get('chunk_id', ''))}</span>")
+        card_rows.append(
+            f"<tr><td>{_esc(card.get('model_id', ''))}</td>"
+            f"<td>{_esc(card.get('selection_source', ''))}</td>"
+            f"<td>{_esc(card.get('selection_reason', ''))}</td>"
+            f"<td><div class='tagrow'>{''.join(chunks)}</div></td></tr>"
+        )
+
+    skipped_rows = [
+        f"<tr><td>{_esc(item.get('model_id', ''))}</td>"
+        f"<td>{_esc(item.get('source', ''))}</td>"
+        f"<td>{_esc(item.get('reason', ''))}</td>"
+        f"<td>{_esc(item.get('stage', ''))}</td></tr>"
+        for item in skipped
+    ]
+
+    tx_rows = [
+        f"<tr><td>{_esc(item.get('chunk_id', ''))}</td>"
+        f"<td>{_esc(item.get('model_id', ''))}</td>"
+        f"<td>{_esc(item.get('disposition', ''))}</td>"
+        f"<td>{_esc(item.get('route', ''))}</td>"
+        f"<td>{_esc(item.get('why', ''))}</td>"
+        f"<td>{_esc(item.get('visible_effect', ''))}</td></tr>"
+        for item in transactions
+    ]
+
+    selected_count = int(telemetry.get("selected_chunk_count", 0) or 0)
+    skipped_count = int(telemetry.get("skipped_candidate_count", 0) or 0)
+    not_presented = telemetry.get("not_presented_model_ids") or []
+    v60_status = enrichment.get("status", "unknown")
+    validation_status = validation.get("status", "not_written" if not ledger else "unknown")
+
+    body = f"""
+<h1>V60 private enrichment</h1>
+{header}
+<p class="lede">Post-lane source-backed consideration material. This is private input for the skill-writing model, not a user-facing card product.</p>
+
+<div class="vitals">
+  <span class="tag">status: <strong>{_esc(v60_status)}</strong></span>
+  <span class="tag">selected chunks: <strong>{selected_count}</strong></span>
+  <span class="tag">skipped candidates: <strong>{skipped_count}</strong></span>
+  <span class="tag">ledger: <strong>{_esc(validation_status)}</strong></span>
+</div>
+
+<h2>Artifact</h2>
+<table>
+<tr><th>Artifact</th><th>Status</th><th>Records</th><th>Affordances</th><th>Absences</th><th>SHA-256</th></tr>
+<tr><td>{_esc(artifact.get('artifact_id', ''))}</td>
+<td>{_esc(artifact.get('status', ''))}</td>
+<td class="num">{_fmt_int(artifact.get('model_record_count', 0))}</td>
+<td class="num">{_fmt_int(artifact.get('affordance_count', 0))}</td>
+<td class="num">{_fmt_int(artifact.get('absence_record_count', 0))}</td>
+<td><code>{_esc(str(artifact.get('sha256', ''))[:16])}</code></td></tr>
+</table>
+
+<h2>Candidate Pool</h2>
+<p class="hint">Lane candidates are high-provenance. Embedding hits are low-trust recall. Hybrid rank is RRF over both.</p>
+<div class="vitals">
+  <span class="tag">lane candidates: <strong>{_fmt_int(candidate_pool.get('lane_candidate_count', 0))}</strong></span>
+  <span class="tag">raw lane signals: <strong>{_fmt_int(candidate_pool.get('raw_lane_signal_count', 0))}</strong></span>
+  <span class="tag">embedding mode: <strong>{_esc(candidate_pool.get('embedding_mode', ''))}</strong></span>
+</div>
+
+<h2>Selected Cards</h2>
+<table>
+<tr><th>Model</th><th>Source</th><th>Reason</th><th>Presented chunks</th></tr>
+{"".join(card_rows) if card_rows else "<tr><td colspan='4' class='empty'>No V60 cards selected.</td></tr>"}
+</table>
+
+<h2>Skipped / Not Presented</h2>
+<p class="hint">This is the audit trail for material outside the hot context: duplicates, cap pressure, missing records, and candidates left out.</p>
+<p>Not-presented model IDs: {_esc(', '.join(not_presented) if not_presented else 'none')}</p>
+<table>
+<tr><th>Model</th><th>Source</th><th>Reason</th><th>Stage</th></tr>
+{"".join(skipped_rows) if skipped_rows else "<tr><td colspan='4' class='empty'>No skipped candidates recorded.</td></tr>"}
+</table>
+
+<h2>Consideration Ledger</h2>
+<p class="hint">Written by the skill after Step 6. It answers what was used, rejected, deferred, or presented but not used.</p>
+<table>
+<tr><th>Chunk</th><th>Model</th><th>Disposition</th><th>Route</th><th>Why</th><th>Visible effect</th></tr>
+{"".join(tx_rows) if tx_rows else "<tr><td colspan='6' class='empty'>No V60 consideration ledger written yet.</td></tr>"}
+</table>
+"""
+    return _render_scaffold(title="Lolla — V60", body=body, current_path="/audit/v60")
+
+
 def _render_audit_index_html() -> str:
     _reload_result_if_changed()
     audit_present = bool(_audit_summary())
@@ -2078,6 +2200,8 @@ def _render_audit_index_html() -> str:
          "Relation-graph traversal per Lane 2 anchor — allies, antagonists, and tensions, with activation conditions and why-relevant rationale."),
         ("/audit/stakeholders", "Stakeholder assumption check",
          "When enabled: actor dependencies, grounding tiers, known/unknown splits, and any plan-changing correction."),
+        ("/audit/v60", "V60 private enrichment",
+         "Post-lane source-backed affordance and absence chunks: selected, skipped, not presented, and consideration-ledger uptake."),
     ]
     cards = []
     for href, title, desc in items:
@@ -2167,6 +2291,7 @@ class ResultHandler(SimpleHTTPRequestHandler):
             "/audit/treatment-audit": _render_treatment_audit_index_html,
             "/audit/expansions": _render_expansions_html,
             "/audit/stakeholders": _render_stakeholder_html,
+            "/audit/v60": _render_v60_html,
         }
         if path in _audit_routes:
             self._html_response(_audit_routes[path]())

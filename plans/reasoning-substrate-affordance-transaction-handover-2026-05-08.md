@@ -4,7 +4,75 @@
 > Audience: future decoder / implementation session with no prior chat context
 > Status: planning handover only; do not implement without explicit approval
 > Current repo: `/Users/marcin/Desktop/Apps/lolla-skill`
-> Current substrate assumption: latest compiled affordance artifact, currently `data/compiled/model_affordances/affordances_v18.json`
+> Historical substrate assumption, stale as of 2026-05-09: latest compiled affordance artifact, then `data/compiled/model_affordances/affordances_v18.json`
+
+## 2026-05-09 Rebase Note
+
+This handover is historically valuable but stale as an implementation starting
+point. It was written in a v18 world. Main now has v60:
+
+- `data/compiled/model_affordances/affordances_v60.json`
+- artifact: `model_affordances_v60`
+- status: `draft_review_only`
+- model records: 222
+- affordances: 306
+- absence records: 697
+- schema validation failures: 0
+- source quote rejections: 0
+
+Do not implement from this file alone. Use it as source context, then continue
+from:
+
+- `plans/reasoning-substrate-v60-local-transaction-lab-handover-2026-05-09.md`
+- `plans/v60-transaction-packet-local-replay-plan-2026-05-09.md`
+- `research/v60-transaction-replay-preflight-report-2026-05-09.md`
+- `research/v60-transaction-c43-consideration-router-readout-2026-05-10.md`
+
+The most important changes in the 2026-05-09 rebase are:
+
+- no "latest artifact" selection;
+- pass `data/compiled/model_affordances/affordances_v60.json` explicitly;
+- treat canonical Markdown as the semantic authority;
+- make absence records first-class blockers and overclaim rails;
+- test local replay before any runtime adapter;
+- measure reasoning delta, edge discovery, and overclaim reduction, not card
+  usage;
+- preserve `used`, `rejected`, and `deferred` as the only dispositions, with
+  merge represented as metadata.
+
+## 2026-05-10 Product Correction
+
+The next-stage wording should not imply that v60 is a user-facing card product.
+v60 is internal consideration material for the skill-using LLM. The
+deterministic layer narrows the field to source-backed material worth serious
+consideration; Claude Code / Codex interprets that material inside the actual
+conversation.
+
+Therefore C4.3 measures "useful to consider," not only "visible public answer
+delta." A card can be useful because it is used, rejected, deferred, kept
+private as a guardrail, or helps the LLM avoid forcing a tempting but
+unsupported model.
+
+## 2026-05-10 Runtime Integration Note
+
+After explicit product approval, the first runtime attachment moved from
+dormant-only to private skill enrichment:
+
+- `scripts/run_pipeline.py` attaches `v60_enrichment` to `result.json` by
+  default;
+- the source is explicit:
+  `data/compiled/model_affordances/affordances_v60.json`;
+- it is not a fifth lane and not public card output;
+- it can be disabled with `LOLLA_V60_ENRICHMENT=off` or
+  `--v60-enrichment off`;
+- `SKILL.md` Step 6 treats selected V60 chunks as private consideration
+  material;
+- `SKILL.md` Step 6b persists `v60_consideration_ledger`;
+- Observatory exposes the operator surface at `/audit/v60`.
+
+The historical dormant packet plan below remains useful for grouped-card and
+ledger doctrine, but its "do not touch runtime" posture is superseded by this
+explicit integration slice.
 
 ## Purpose
 
@@ -37,8 +105,8 @@ Read these files before implementation:
   - Current split: LLMs detect patterns, embeddings suggest candidates,
     deterministic graph code routes and packages curated material.
 - `engine/system_b/pipeline.py`
-  - Current runtime orchestrator. Do not modify live runtime path in the first
-    implementation slice.
+  - Current runtime orchestrator. The first V60 product attachment intentionally
+    avoids this file and attaches post-lane in `scripts/run_pipeline.py`.
 - `engine/system_b/ir_constructor.py`
   - Current deterministic conversation IR constructor.
 - `engine/system_b/reasoning_substrate_packet.py`
@@ -64,9 +132,9 @@ Read these files before implementation:
   - Current full-corpus coverage report. PR54 completes reviewed
     source-backed coverage for all 222 runtime shelves, but still does not
     runtime-promote affordances.
-- `data/compiled/model_affordances/affordances_v18.json`
-  - Current compiled reviewed affordance artifact: 222 records, 258
-    affordances, 429 absence records, `draft_review_only`.
+- `data/compiled/model_affordances/affordances_v60.json`
+  - Current compiled reviewed affordance artifact: 222 records, 306
+    affordances, 697 absence records, `draft_review_only`.
 
 ## Non-Goals
 
@@ -120,8 +188,9 @@ decorative mental-model usage.
 - **Packet placement**: after existing lane outputs, next to route-trace or
   review-only serialization. Not a fifth lane.
 - **Initial status**: `draft_review_only` and `runtime_dormant`.
-- **Affordance source**: latest compiled artifact under
-  `data/compiled/model_affordances/affordances_v*.json`.
+- **Affordance source**: explicit
+  `data/compiled/model_affordances/affordances_v60.json`. No latest-glob
+  selection.
 - **Source custody**: exact source quotes remain validated by the existing
   affordance compiler and schema tests.
 - **Card count**: keep the normal target near 5-12 candidate model cards.

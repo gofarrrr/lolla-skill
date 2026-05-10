@@ -71,6 +71,44 @@ def test_review_render_makes_v5_packet_inspectable_without_product_copy() -> Non
     assert all(fragment.lower() not in lower_markdown for fragment in forbidden_fragments)
 
 
+def test_review_render_prefers_grouped_affordance_cards_when_present() -> None:
+    packet = _load(PR29_FIXTURE)
+    card = packet["candidate_cards"][0]  # type: ignore[index]
+    card["reviewed_affordance_cards"] = [  # type: ignore[index]
+        {
+            "affordance_id": "chain-of-verification.independent-check",
+            "status": "supported",
+            "confidence": "high",
+            "activation_shape": {
+                "use_when": ["The answer depends on a claim that can be checked."],
+                "case_evidence_needed": ["A concrete claim, number, or source dependency."],
+                "do_not_use_when": ["There is no factual dependency to inspect."],
+            },
+            "treatment_requirements": [
+                {
+                    "requirement_id": "check-before-conclude",
+                    "description": "Verify the load-bearing claim before finalizing.",
+                }
+            ],
+            "misuse_guards": ["Do not turn verification into generic caveating."],
+            "source_evidence": [
+                {
+                    "affordance_id": "chain-of-verification.independent-check",
+                    "source_quote": "Check the dependent claim before relying on it.",
+                }
+            ],
+        }
+    ]
+
+    markdown = render_reasoning_substrate_packet_review_markdown(packet)
+
+    assert "reviewed_affordance_cards" in markdown
+    assert "`chain-of-verification.independent-check` (supported; high)" in markdown
+    assert "case_evidence_needed: A concrete claim, number, or source dependency." in markdown
+    assert "treatment_requirements: check-before-conclude: Verify the load-bearing claim before finalizing." in markdown
+    assert "source_evidence: chain-of-verification.independent-check" in markdown
+
+
 def test_review_render_keeps_graph_only_cards_honest() -> None:
     markdown = render_reasoning_substrate_packet_review_markdown(_load(PR27_FIXTURE))
 

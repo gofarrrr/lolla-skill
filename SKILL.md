@@ -106,6 +106,16 @@ echo "RUN_ID: $LOLLA_RUN_ID"
 # Report config
 echo "MODEL: ${LOLLA_OPENROUTER_MODEL:-x-ai/grok-4.1-fast}"
 [ -n "$OPENAI_API_KEY" ] && echo "EMBEDDINGS: enabled" || echo "EMBEDDINGS: disabled"
+
+# V60 private enrichment is ON by default. Disable with:
+#   export LOLLA_V60_ENRICHMENT=off
+if [ "${LOLLA_V60_ENRICHMENT:-on}" = "off" ] || [ "${LOLLA_V60_ENRICHMENT:-on}" = "0" ]; then
+  echo "V60: disabled"
+elif [ -n "$SKILL_DIR" ] && [ -f "$SKILL_DIR/data/compiled/model_affordances/affordances_v60.json" ]; then
+  echo "V60: enabled"
+else
+  echo "V60: missing artifact"
+fi
 ```
 
 If any line says `FATAL`, stop and tell the user what's missing. Do not proceed.
@@ -213,6 +223,8 @@ python3 $SKILL_DIR/scripts/run_pipeline.py --extraction-file /tmp/lolla_${LOLLA_
 
 This runs the full Lolla pipeline — all four lanes — via OpenRouter. With both `--extraction-file` and `--conversation-file`, the pipeline uses the production `ConversationContext` runtime by default: raw turns, extraction fields, and capture metadata are passed together so all four lanes audit the conversation directly. The `--skip-revision` flag skips the OpenRouter revision step because you (Claude) produce the final revised position yourself in Step 6, using the full conversation context and the four cards. The result is written directly to `/tmp/lolla_${LOLLA_RUN_ID}_result.json`.
 
+By default this also attaches a private `v60_enrichment` block to `result.json`. That block is not user-facing and is not a fifth lane. It is source-backed consideration material selected after the lanes, with telemetry for selected chunks, skipped candidates, not-presented candidates, and embedding mode. To disable it for a run, set `LOLLA_V60_ENRICHMENT=off` before Step 3 or pass `--v60-enrichment off`.
+
 **If the output `status` is `error`:** Present the error to the user. Common causes: API timeout (try again), missing API key, data file issues.
 
 ### Step 4: Counterargument Lead (Beat 2 — internal name)
@@ -240,6 +252,7 @@ Do **not** link to Observatory; the server is not running until Step 9. Do not i
 - `references/presentation-voice.md` — voice guidance: Munger-inspired directness, concrete antidotes, earn the right to challenge, what good prose sounds like.
 - `references/anti-bullshit-doctrine.md` — anti-bullshit thinking framework: five rules for honest strategic speech, RLHF patterns to avoid (paltering +57.8pp, empty rhetoric +20.9pp), the negation test.
 - `references/anchor-treatment.md` — how to handle `companion_cheat_sheet.anchors[]`: the naming invariant, three rhetorical modes (primary pressure / secondary lens / set aside), the "one primary anchor per move" rule, what good vs. bad anchor integration looks like.
+- `references/private-enrichment-treatment.md` — how to privately handle lane pressure and V60 chunks: freedom of conclusion, not freedom from consideration; strongest plausible application; rejection/deferral standards; public/private split.
 
 After the counterargument lead (Step 4), **reconsider your earlier advice and render the updated position directly.** This is the most important step — the updated position IS the product. The audit's findings are structural pressure from a curated knowledge substrate; your job is to absorb that pressure and produce a revised position that is better than what you said before.
 
@@ -247,7 +260,9 @@ After the counterargument lead (Step 4), **reconsider your earlier advice and re
 
 **Timing note:** Before you begin writing your reconsideration, launch the pressure-check sub-agents from Step 7 below. They run in the background while you write. By the time you finish Step 6 and Step 6b, the sub-agent results will be ready for Step 8. Do this silently; do not narrate the launch, waiting, partial completion, or completion to the user.
 
-The audit findings are **hints, not commands.** They come from a curated knowledge substrate that sees patterns you might miss — but you are still the primary reasoning engine in this conversation. You have the full context, the user's nuances, the back-and-forth. The audit has structural pattern detection. Use both.
+The audit findings are **hints, not commands — but not disposable hints.** They come from a curated knowledge substrate that sees patterns you might miss. You are still the primary reasoning engine in this conversation: you have the full context, the user's nuances, and the back-and-forth. The audit has structural pattern detection. Use both.
+
+**Consideration contract.** The system has already paid to select this material from structured lanes, graph relationships, source-backed affordances, absence records, and embeddings where available. You may use, reject, defer, or keep material private as a guardrail, but you must give it a serious hearing first. Before setting aside any lane pressure or V60 chunk, privately form the strongest plausible application, name the condition that would have to hold, and decide what would go wrong if it were forced. Cheap dismissal is a failure mode; grounded rejection is successful use of the system.
 
 **How to use the audit material:**
 
@@ -256,6 +271,22 @@ The audit findings are **hints, not commands.** They come from a curated knowled
 - **Treat CompanionCheatSheet as enrichment — and apply `anchor-treatment.md`.** Each anchor has a `display_name`. Anchors are evidence-bearing hypotheses, not canonical diagnoses; surface them with strength proportional to their evidence. The naming invariant requires every anchor to land in §1, §2, or §3 below — none silently skipped. Use `display_name` verbatim.
 - **Treat FramePressureCard as an invitation to widen the frame.** If the audit found an embedded assumption in the question, you don't have to abandon your answer — but you might want to acknowledge what changes if that assumption is relaxed.
 - **Treat StructuralCoverageCard as territory you cannot address alone.** When structural coverage identifies gaps, acknowledge them as dimensions you cannot address without user input. Do NOT attempt to answer gap questions yourself. Gap questions are an invitation for the user to deepen the conversation — they ask for situation knowledge only the decision-maker has.
+
+**V60 private enrichment.** If `/tmp/lolla_${LOLLA_RUN_ID}_result.json` contains `v60_enrichment.status == "active"`, read it before writing the updated position. This is the source-backed affordance / absence layer selected after the four lanes. It is private consideration material, not user-facing content and not a command to name mental models.
+
+Use the V60 block like a silver platter:
+
+- Read every `selected_cards[*].selected_affordance_cards[*]` and `selected_absence_records[*]` chunk.
+- For each chunk, first form its strongest plausible application to this conversation, then decide whether it is `used`, `rejected`, `deferred`, or `not_considered`.
+- A useful chunk may change visible advice, create an evidence gate, become a diagnostic question, stay private as a guardrail, or simply help you reject an overfit model.
+- Absence chunks are blockers and overclaim rails. Do not turn them into positive claims.
+- Do not force a chunk into §3 just because it was selected.
+- Do not reject with "not relevant" or "already covered" alone. Name the failed condition, duplicate coverage, missing evidence, or risk if forced.
+- Use `not_considered` only for malformed, inaccessible, or technically unusable chunks. A chunk that you read and found unhelpful is `rejected`, not `not_considered`.
+- Do not mention `V60`, `affordance`, `chunk`, `packet`, `ledger`, internal IDs, or "mental model" in user-facing prose unless the model name is already naturally needed under `anchor-treatment.md`.
+- Preserve judgment: rejecting a V60 chunk with a real reason is successful use of the system.
+
+Keep a private note while writing Step 6: which V60 chunk IDs changed the answer, which were rejected, which were deferred for missing evidence, and which were presented but not useful. Step 6b persists this as `v60_consideration_ledger`; do not render that ledger in chat.
 
 **Structure your updated position in this order:**
 
@@ -302,6 +333,62 @@ pathlib.Path(result_path).write_text(json.dumps(d, indent=2, ensure_ascii=False)
 print(f'Revised answer persisted to {result_path}')
 "
 ```
+
+**If `v60_enrichment.status == "active"`, persist the private V60 consideration ledger immediately after the revised answer.** This ledger is operator telemetry only. It accounts for what was picked up, what was skipped by your judgment, what was deferred, and what was presented but not used. Do not mention it in chat.
+
+Build exactly one transaction for every chunk ID in `v60_enrichment.telemetry.selected_chunk_ids`:
+
+```bash
+cat > /tmp/lolla_${LOLLA_RUN_ID}_v60_ledger.json << 'LOLLA_V60_LEDGER_EOF'
+{
+  "schema_version": "v60_skill_consideration_ledger.v1",
+  "status": "completed",
+  "transactions": [
+    {
+      "chunk_id": "aff::example.model-affordance-id",
+      "card_id": "parent card id from v60_enrichment.selected_cards",
+      "model_id": "parent model id",
+      "disposition": "used",
+      "route": "updated_position",
+      "strongest_plausible_application": "Best honest way this chunk could apply to the case.",
+      "risk_if_forced": "What would go wrong if this chunk were forced despite weak fit, or empty if used cleanly.",
+      "why": "Short private rationale for how this affected reasoning.",
+      "visible_effect": "Short public-facing effect, or empty if private-only."
+    }
+  ],
+  "notes": [
+    "Private telemetry only. Not rendered in chat."
+  ]
+}
+LOLLA_V60_LEDGER_EOF
+
+python3 -c "
+import json, datetime, pathlib, sys
+run_id = '${LOLLA_RUN_ID}'
+result_path = pathlib.Path(f'/tmp/lolla_{run_id}_result.json')
+ledger_path = pathlib.Path(f'/tmp/lolla_{run_id}_v60_ledger.json')
+d = json.loads(result_path.read_text())
+enrichment = d.get('v60_enrichment') or {}
+if enrichment.get('status') == 'active':
+    if not ledger_path.exists():
+        raise SystemExit('v60_enrichment is active but v60 ledger was not written')
+    sys.path.insert(0, '${SKILL_DIR}/engine')
+    from system_b.v60_enrichment import validate_v60_consideration_ledger
+    ledger = json.loads(ledger_path.read_text())
+    validation = validate_v60_consideration_ledger(ledger, enrichment=enrichment)
+    d['v60_consideration_ledger'] = ledger
+    d['v60_consideration_validation'] = validation
+    d['v60_consideration_written_at'] = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
+    result_path.write_text(json.dumps(d, indent=2, ensure_ascii=False))
+    print(f'V60 consideration ledger persisted to {result_path}: {validation[\"status\"]}')
+else:
+    print('V60 enrichment inactive; no ledger required')
+"
+```
+
+The allowed `disposition` values are `used`, `rejected`, `deferred`, and `not_considered`. The allowed `route` values are `updated_position`, `pressure_check`, `private_guardrail`, `evidence_gate`, `diagnostic_question`, `set_aside`, `already_covered`, `irrelevant`, `missing_evidence`, and `duplicate`.
+
+For every transaction, fill `strongest_plausible_application`. For `rejected`, `deferred`, and `not_considered` transactions, fill `risk_if_forced` with the concrete overclaim, duplicate, missing-evidence, or distraction risk. Empty `risk_if_forced` is acceptable only when the chunk was actually used cleanly.
 
 **This step is not optional.** Without it, the Observatory shows an incomplete run — four cards with no revised answer.
 
@@ -611,7 +698,7 @@ python3 $SKILL_DIR/scripts/archive_run.py --run-id "${LOLLA_RUN_ID}"
 
 The archive script:
 
-- Reads the 8 core artifacts from `/tmp/lolla_${LOLLA_RUN_ID}_*` (`conversation.txt`, `extraction.json`, `result.json`, `revised.txt`, `memo.md`, `memo_note.json`, `gapcheck.txt`, `gapcheck_lanes.json`). Missing artifacts (e.g., if Step 6b or Step 8c did not run on a weaker orchestrator) are skipped gracefully.
+- Reads the 9 core artifacts from `/tmp/lolla_${LOLLA_RUN_ID}_*` (`conversation.txt`, `extraction.json`, `result.json`, `revised.txt`, `memo.md`, `memo_note.json`, `gapcheck.txt`, `gapcheck_lanes.json`, `v60_ledger.json`). Missing artifacts (e.g., if Step 6b, V60 ledger persistence, or Step 8c did not run on a weaker orchestrator) are skipped gracefully.
 - Computes a case fingerprint from `extraction.decision_situation` (first 120 chars, normalized).
 - Finds-or-creates a case folder. Matching uses **exact fingerprint first, then token-set Jaccard ≥ 0.80** against stored fingerprints — so small extractor paraphrase drift across runs of the same conversation does not split into multiple case folders. Matching is done against the manifest inside each case folder, not against folder names, so user renames of case folders do not break future matching.
 - Auto-names new cases with a slug derived from the first 3-4 significant words of `decision_situation` (e.g., `grant-equity-partnership-status`). Users can rename via `mv` — matching will still find the folder via manifest.
@@ -664,6 +751,7 @@ Do NOT read these proactively. Load only when a specific situation calls for it:
 | `references/presentation-voice.md` | **Read at the start of Step 6** — how to voice your updated position: Munger-inspired directness, concrete antidotes, earn the right to challenge |
 | `references/anti-bullshit-doctrine.md` | **Read at the start of Step 6** — anti-bullshit thinking framework: five rules for honest strategic speech, RLHF patterns to avoid, negation test as mental model. Also cross-check before Step 8. |
 | `references/anchor-treatment.md` | **Read at the start of Step 6** — how to handle `companion_cheat_sheet.anchors[]`: naming invariant, three rhetorical modes (primary pressure / secondary lens / set aside), one-primary-per-move rule, what good vs. bad anchor integration looks like |
+| `references/private-enrichment-treatment.md` | **Read at the start of Step 6** — consideration standard for lane pressure and V60 chunks: strongest plausible application, rejection/deferral standard, public/private split |
 | `references/sub-agent-prompts.md` | **Read at Step 7** — shared preamble + four lane-specific suffixes for pressure-check sub-agents |
 | `references/memo-output-format.md` | **Read at Step 8c** — decision-note memo contract: title, orientation note, compressed sections, pressure-check inclusion, banned memo language |
 | `references/tendency-catalog.md` | When presenting DeltaCard findings — to verify tendency names and corrective model bindings match the canonical catalog |

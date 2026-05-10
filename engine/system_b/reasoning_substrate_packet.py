@@ -241,6 +241,7 @@ def _candidate_card(
         ),
         "runtime_graph_fields": graph_fields,
         "reviewed_affordance_fields": {},
+        "reviewed_affordance_cards": [],
         "absence_records": [],
         "do_not_overclaim": [],
         "llm_instruction": (
@@ -263,6 +264,11 @@ def _candidate_card(
     card["absence_records"] = _absence_records(reviewed_record, snippet_cap=snippet_cap)
     if coverage_status in {"reviewed_affordance_available", "conflicting_or_weak_support"}:
         card["reviewed_affordance_fields"] = _reviewed_affordance_fields(
+            reviewed_record,
+            has_source_custody=has_source_custody,
+            snippet_cap=snippet_cap,
+        )
+        card["reviewed_affordance_cards"] = _reviewed_affordance_cards(
             reviewed_record,
             has_source_custody=has_source_custody,
             snippet_cap=snippet_cap,
@@ -346,6 +352,100 @@ def _reviewed_affordance_fields(
         "source_evidence": source_evidence,
         "confidence": _aggregate_confidence(affordances),
     }
+
+
+def _reviewed_affordance_cards(
+    record: Mapping[str, Any],
+    *,
+    has_source_custody: bool,
+    snippet_cap: int,
+) -> list[dict[str, Any]]:
+    cards: list[dict[str, Any]] = []
+    for affordance in [_mapping(item) for item in _list(record.get("affordances"))[:snippet_cap]]:
+        affordance_id = str(affordance.get("affordance_id", "")).strip()
+        if not affordance_id:
+            continue
+        activation_shape = _mapping(affordance.get("activation_shape"))
+        cards.append(
+            {
+                "affordance_id": affordance_id,
+                "status": str(affordance.get("status", "")),
+                "confidence": str(affordance.get("confidence", "")),
+                "mechanism": str(affordance.get("mechanism", "")),
+                "activation_shape": {
+                    "use_when": _dedupe_strings(_list(activation_shape.get("use_when")))[
+                        :snippet_cap
+                    ],
+                    "do_not_use_when": _dedupe_strings(
+                        _list(activation_shape.get("do_not_use_when"))
+                    )[:snippet_cap],
+                    "case_evidence_needed": _dedupe_strings(
+                        _list(activation_shape.get("case_evidence_needed"))
+                    )[:snippet_cap],
+                },
+                "treatment_requirements": _grouped_treatment_requirements(
+                    affordance,
+                    affordance_id=affordance_id,
+                    snippet_cap=snippet_cap,
+                ),
+                "diagnostic_questions": _dedupe_strings(
+                    _list(affordance.get("diagnostic_questions"))
+                )[:snippet_cap],
+                "misuse_guards": _dedupe_strings(_list(affordance.get("misuse_guards")))[
+                    :snippet_cap
+                ],
+                "source_evidence": _grouped_source_evidence(
+                    affordance,
+                    affordance_id=affordance_id,
+                    has_source_custody=has_source_custody,
+                    snippet_cap=snippet_cap,
+                ),
+            }
+        )
+    return cards
+
+
+def _grouped_treatment_requirements(
+    affordance: Mapping[str, Any],
+    *,
+    affordance_id: str,
+    snippet_cap: int,
+) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for requirement in _list(affordance.get("treatment_requirements"))[:snippet_cap]:
+        item = _mapping(requirement)
+        rows.append(
+            {
+                "affordance_id": affordance_id,
+                "requirement_id": str(item.get("requirement_id", "")),
+                "description": str(item.get("description", "")),
+                "evidence_required": _dedupe_strings(_list(item.get("evidence_required")))[
+                    :snippet_cap
+                ],
+                "good_output_shape": _dedupe_strings(_list(item.get("good_output_shape")))[
+                    :snippet_cap
+                ],
+            }
+        )
+    return rows
+
+
+def _grouped_source_evidence(
+    affordance: Mapping[str, Any],
+    *,
+    affordance_id: str,
+    has_source_custody: bool,
+    snippet_cap: int,
+) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for evidence in _list(affordance.get("source_evidence"))[:snippet_cap]:
+        evidence_payload = dict(_mapping(evidence))
+        evidence_payload["affordance_id"] = affordance_id
+        evidence_payload["source_custody"] = (
+            "reviewed_manifest" if has_source_custody else "missing"
+        )
+        rows.append(evidence_payload)
+    return rows
 
 
 def _activation_items(

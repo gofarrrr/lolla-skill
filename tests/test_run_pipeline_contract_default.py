@@ -290,6 +290,38 @@ def test_stakeholder_check_disabled_by_default(
     assert "stakeholder_assumption_check" not in payload
 
 
+def test_v60_enrichment_can_be_disabled_by_cli(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    extraction_path, conversation_path = _write_extraction_and_conversation(tmp_path)
+    output_path = tmp_path / "result.json"
+    _install_live_pipeline_fakes(monkeypatch, tmp_path)
+
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "run_pipeline.py",
+            "--extraction-file",
+            str(extraction_path),
+            "--conversation-file",
+            str(conversation_path),
+            "--output-file",
+            str(output_path),
+            "--skip-revision",
+            "--v60-enrichment",
+            "off",
+        ],
+    )
+
+    assert run_pipeline.main() == 0
+    payload = json.loads(output_path.read_text(encoding="utf-8"))
+    assert payload["v60_enrichment"]["status"] == "disabled"
+    assert payload["run_health"]["v60_enrichment"] == "disabled"
+    assert "v60_enrichment_failed" not in payload["run_health"]["issues"]
+
+
 def test_stakeholder_check_flag_persists_payload_and_usage(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,

@@ -1,0 +1,683 @@
+{
+  "cases": [
+    {
+      "case_id": "multi_offer",
+      "conversation_path": "research/test-cases/case_multi_offer_conversation.txt",
+      "extraction_path": "research/test-cases/phase2c-lane1-equivalence-2026-04-24/_scratch/multi_offer_extraction.json",
+      "include_reason": "Career offer choice with negotiation, family constraints, equity/EV ambiguity, and short deadline. Useful for testing whether v60 adds BATNA/optionality/trade-off discipline without model theater.",
+      "nominations": [
+        {
+          "lane_order": 0,
+          "model_id": "batna",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "power-dynamics",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "sunk-cost-fallacy",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "status-quo-bias",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "opportunity-cost",
+          "pulled_by": [
+            "embedding_affordance_recall"
+          ],
+          "reason": "Embedding top8 affordance recall added as low-trust novelty candidate."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "calculated-risk-taking",
+          "pulled_by": [
+            "embedding_affordance_recall"
+          ],
+          "reason": "Embedding top8 affordance recall added as low-trust novelty candidate."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "risk-assessment",
+          "pulled_by": [
+            "embedding_absence_recall"
+          ],
+          "reason": "Absence-only embedding recall added as blocker/guardrail candidate."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "optionality",
+          "pulled_by": [
+            "embedding_lane_rrf_hybrid"
+          ],
+          "reason": "Hybrid RRF candidate added to test lane-plus-embedding agreement."
+        }
+      ],
+      "result_path": "research/test-cases/phase2c-lane1-equivalence-2026-04-24/_scratch/multi_offer_new_run2.json",
+      "risk_notes": [
+        "Synthetic corpus case; do not treat as product-readiness evidence.",
+        "Can overfit toward business/career advice if the prompt rewards familiar consulting structure.",
+        "Embedding-balanced test manifest; explicit nominations are lab-only and must not be treated as live lane output.",
+        "Embedding recall is low-trust and additive; semantic use/reject/defer still belongs to the decoder/reviewer."
+      ],
+      "tags": [
+        "negotiation-or-power",
+        "decision-under-uncertainty",
+        "professional-stakes"
+      ]
+    },
+    {
+      "case_id": "whistleblower",
+      "conversation_path": "research/test-cases/case_whistleblower_conversation.txt",
+      "extraction_path": "research/test-cases/phase2c-lane1-equivalence-2026-04-24/_scratch/whistleblower_extraction.json",
+      "include_reason": "Legal/ethical high-stakes reporting case with power asymmetry, retaliation risk, evidence threshold, and sequencing pressure.",
+      "nominations": [
+        {
+          "lane_order": 0,
+          "model_id": "systems-thinking",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "information-asymmetry",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "game-theory-payoffs",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "power-dynamics",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "principal-agent-problem",
+          "pulled_by": [
+            "embedding_affordance_recall"
+          ],
+          "reason": "Embedding top8 affordance recall added as low-trust novelty candidate."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "critical-thinking",
+          "pulled_by": [
+            "embedding_affordance_recall"
+          ],
+          "reason": "Embedding top8 affordance recall added as low-trust novelty candidate."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "incentives",
+          "pulled_by": [
+            "embedding_absence_recall"
+          ],
+          "reason": "Absence-only embedding recall added as blocker/guardrail candidate."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "moral-hazard",
+          "pulled_by": [
+            "embedding_lane_rrf_hybrid"
+          ],
+          "reason": "Hybrid RRF candidate added to test lane-plus-embedding agreement."
+        }
+      ],
+      "result_path": "research/test-cases/phase2c-lane1-equivalence-2026-04-24/_scratch/whistleblower_new_run0.json",
+      "risk_notes": [
+        "High-stakes case; output must not become legal advice or invent protected facts.",
+        "Good v60 behavior may defer several cards because key evidence is missing.",
+        "Embedding-balanced test manifest; explicit nominations are lab-only and must not be treated as live lane output.",
+        "Embedding recall is low-trust and additive; semantic use/reject/defer still belongs to the decoder/reviewer."
+      ],
+      "tags": [
+        "legal-ethical-risk",
+        "power-asymmetry",
+        "evidence-threshold"
+      ]
+    },
+    {
+      "case_id": "startup_pivot",
+      "conversation_path": "research/test-cases/case_startup_pivot_conversation.txt",
+      "extraction_path": "research/test-cases/phase2c-lane1-equivalence-2026-04-24/_scratch/startup_pivot_extraction.json",
+      "include_reason": "Short strategic pivot case with known extraction fabrication pressure. Useful for testing whether absence and evidence requirements reduce thin-signal overconfidence.",
+      "nominations": [
+        {
+          "lane_order": 0,
+          "model_id": "base-rates",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "statistics-concepts",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "scientific-method-evidence-testing",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "boundaries",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "optionality",
+          "pulled_by": [
+            "embedding_affordance_recall"
+          ],
+          "reason": "Embedding top8 affordance recall added as low-trust novelty candidate."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "premortem",
+          "pulled_by": [
+            "embedding_affordance_recall"
+          ],
+          "reason": "Embedding top8 affordance recall added as low-trust novelty candidate."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "lean-startup-methodology",
+          "pulled_by": [
+            "embedding_absence_recall"
+          ],
+          "reason": "Absence-only embedding recall added as blocker/guardrail candidate."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "decision-trees",
+          "pulled_by": [
+            "embedding_lane_rrf_hybrid"
+          ],
+          "reason": "Hybrid RRF candidate added to test lane-plus-embedding agreement."
+        }
+      ],
+      "result_path": "research/test-cases/phase2c-lane1-equivalence-2026-04-24/_scratch/startup_pivot_new_run0.json",
+      "risk_notes": [
+        "Known prior fabrication pattern; must distinguish source-thinness from system failure.",
+        "Do not reward confident pivot advice unless case evidence supports it.",
+        "Embedding-balanced test manifest; explicit nominations are lab-only and must not be treated as live lane output.",
+        "Embedding recall is low-trust and additive; semantic use/reject/defer still belongs to the decoder/reviewer."
+      ],
+      "tags": [
+        "framing-problem",
+        "weak-evidence",
+        "execution-threshold"
+      ]
+    },
+    {
+      "case_id": "real_estate",
+      "conversation_path": "research/test-cases/case_real_estate_conversation.txt",
+      "extraction_path": "research/test-cases/phase2c-lane1-equivalence-2026-04-24/_scratch/real_estate_extraction.json",
+      "include_reason": "Sparse personal/financial decision under time pressure. Useful for absence-first behavior and weak/medium support warnings.",
+      "nominations": [
+        {
+          "lane_order": 0,
+          "model_id": "price-discrimination",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "margin-of-safety",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "nash-equilibrium",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "premortem",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "first-principles-thinking",
+          "pulled_by": [
+            "embedding_affordance_recall"
+          ],
+          "reason": "Embedding top8 affordance recall added as low-trust novelty candidate."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "sunk-cost-fallacy",
+          "pulled_by": [
+            "embedding_affordance_recall"
+          ],
+          "reason": "Embedding top8 affordance recall added as low-trust novelty candidate."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "opportunity-cost",
+          "pulled_by": [
+            "embedding_absence_recall"
+          ],
+          "reason": "Absence-only embedding recall added as blocker/guardrail candidate."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "optionality",
+          "pulled_by": [
+            "embedding_lane_rrf_hybrid"
+          ],
+          "reason": "Hybrid RRF candidate added to test lane-plus-embedding agreement."
+        }
+      ],
+      "result_path": "research/test-cases/phase2c-lane1-equivalence-2026-04-24/_scratch/real_estate_new_run0.json",
+      "risk_notes": [
+        "Sparse facts can make generic financial advice look better than it is.",
+        "A good C-arm may ask narrower questions rather than change the recommendation.",
+        "Embedding-balanced test manifest; explicit nominations are lab-only and must not be treated as live lane output.",
+        "Embedding recall is low-trust and additive; semantic use/reject/defer still belongs to the decoder/reviewer."
+      ],
+      "tags": [
+        "personal-financial",
+        "sparse-context",
+        "absence-heavy"
+      ]
+    },
+    {
+      "case_id": "friendship_money",
+      "conversation_path": "research/test-cases/case_friendship_money_conversation.txt",
+      "extraction_path": "research/test-cases/phase2c-lane1-equivalence-2026-04-24/_scratch/friendship_money_extraction.json",
+      "include_reason": "Personal/interpersonal money dilemma that originally sat near the old strategic-gate boundary. Useful for checking that v60 does not overfit to business-shaped decisions.",
+      "nominations": [
+        {
+          "lane_order": 0,
+          "model_id": "power-dynamics",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "opportunity-cost",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "boundaries",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "optionality",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "trade-offs",
+          "pulled_by": [
+            "embedding_affordance_recall"
+          ],
+          "reason": "Embedding top8 affordance recall added as low-trust novelty candidate."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "reciprocity-principle",
+          "pulled_by": [
+            "embedding_affordance_recall"
+          ],
+          "reason": "Embedding top8 affordance recall added as low-trust novelty candidate."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "prospect-theory",
+          "pulled_by": [
+            "embedding_absence_recall"
+          ],
+          "reason": "Absence-only embedding recall added as blocker/guardrail candidate."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "empathy",
+          "pulled_by": [
+            "embedding_lane_rrf_hybrid"
+          ],
+          "reason": "Hybrid RRF candidate added to test lane-plus-embedding agreement."
+        }
+      ],
+      "result_path": "research/test-cases/phase2c-lane1-equivalence-2026-04-24/_scratch/friendship_money_new_run0.json",
+      "risk_notes": [
+        "Personal stakes can be distorted by corporate negotiation frames.",
+        "Good output may preserve relationship nuance rather than optimize only for leverage.",
+        "Embedding-balanced test manifest; explicit nominations are lab-only and must not be treated as live lane output.",
+        "Embedding recall is low-trust and additive; semantic use/reject/defer still belongs to the decoder/reviewer."
+      ],
+      "tags": [
+        "personal-stakes",
+        "relationship",
+        "strategic-gate-edge"
+      ]
+    },
+    {
+      "case_id": "messy_three_problems",
+      "conversation_path": "research/test-cases/case_messy_three_problems_conversation.txt",
+      "extraction_path": "research/test-cases/phase2c-lane1-equivalence-2026-04-24/_scratch/messy_three_problems_extraction.json",
+      "include_reason": "Messy multi-thread conversation with known live-constraint instability. Useful for testing whether grouped cards separate decisions or amplify confusion.",
+      "nominations": [
+        {
+          "lane_order": 0,
+          "model_id": "delays",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "checklists",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "self-control",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "sunk-cost-fallacy",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "step-back",
+          "pulled_by": [
+            "embedding_affordance_recall"
+          ],
+          "reason": "Embedding top8 affordance recall added as low-trust novelty candidate."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "opportunity-cost",
+          "pulled_by": [
+            "embedding_affordance_recall"
+          ],
+          "reason": "Embedding top8 affordance recall added as low-trust novelty candidate."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "decision-trees",
+          "pulled_by": [
+            "embedding_absence_recall"
+          ],
+          "reason": "Absence-only embedding recall added as blocker/guardrail candidate."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "optionality",
+          "pulled_by": [
+            "embedding_lane_rrf_hybrid"
+          ],
+          "reason": "Hybrid RRF candidate added to test lane-plus-embedding agreement."
+        }
+      ],
+      "result_path": "research/test-cases/phase2c-lane1-equivalence-2026-04-24/_scratch/messy_three_problems_new_run0.json",
+      "risk_notes": [
+        "Topic jumping can make any packet look comprehensive while being incoherent.",
+        "Good output should separate decisions before applying pressure.",
+        "Embedding-balanced test manifest; explicit nominations are lab-only and must not be treated as live lane output.",
+        "Embedding recall is low-trust and additive; semantic use/reject/defer still belongs to the decoder/reviewer."
+      ],
+      "tags": [
+        "messy-context",
+        "multi-thread",
+        "stability-probe"
+      ]
+    },
+    {
+      "case_id": "user_has_plan",
+      "conversation_path": "research/test-cases/case_user_has_plan_conversation.txt",
+      "extraction_path": "research/test-cases/phase2c-lane1-equivalence-2026-04-24/_scratch/user_has_plan_extraction.json",
+      "include_reason": "Narrow case where the user already has a plan. Useful as a control for whether v60 adds real pressure or merely lengthens crisp advice.",
+      "nominations": [
+        {
+          "lane_order": 0,
+          "model_id": "optimism-bias-and-planning-fallacy",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "optionality",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "feedback-loops",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "base-rates",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "opportunity-cost",
+          "pulled_by": [
+            "embedding_affordance_recall"
+          ],
+          "reason": "Embedding top8 affordance recall added as low-trust novelty candidate."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "optimization-theory",
+          "pulled_by": [
+            "embedding_affordance_recall"
+          ],
+          "reason": "Embedding top8 affordance recall added as low-trust novelty candidate."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "comparative-advantage",
+          "pulled_by": [
+            "embedding_absence_recall"
+          ],
+          "reason": "Absence-only embedding recall added as blocker/guardrail candidate."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "prioritization",
+          "pulled_by": [
+            "embedding_lane_rrf_hybrid"
+          ],
+          "reason": "Hybrid RRF candidate added to test lane-plus-embedding agreement."
+        }
+      ],
+      "result_path": "research/test-cases/phase2c-lane1-equivalence-2026-04-24/_scratch/user_has_plan_new_run0.json",
+      "risk_notes": [
+        "Do not reward extra complexity if the baseline answer is already adequate.",
+        "Zero visible card use may be a correct outcome.",
+        "Embedding-balanced test manifest; explicit nominations are lab-only and must not be treated as live lane output.",
+        "Embedding recall is low-trust and additive; semantic use/reject/defer still belongs to the decoder/reviewer."
+      ],
+      "tags": [
+        "narrow-control",
+        "confirmation-seeking",
+        "execution-follow-through"
+      ]
+    },
+    {
+      "case_id": "phd_research",
+      "conversation_path": "research/test-cases/case_phd_research_conversation.txt",
+      "extraction_path": "research/test-cases/phase2c-lane1-equivalence-2026-04-24/_scratch/phd_research_extraction.json",
+      "include_reason": "Long professional uncertainty case with evolving context and dense constraints. Useful for cap pressure, broad/meta-card burden, and stability across a longer transcript.",
+      "nominations": [
+        {
+          "lane_order": 0,
+          "model_id": "step-back",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "falsifiability",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "metacognitive-questioning",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "first-principles-thinking",
+          "pulled_by": [
+            "embedding_balanced_lane_preserve"
+          ],
+          "reason": "Preserve high-provenance lane-selected card in balanced embedding test."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "optionality",
+          "pulled_by": [
+            "embedding_affordance_recall"
+          ],
+          "reason": "Embedding top8 affordance recall added as low-trust novelty candidate."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "divergent-vs-convergent-thinking",
+          "pulled_by": [
+            "embedding_affordance_recall"
+          ],
+          "reason": "Embedding top8 affordance recall added as low-trust novelty candidate."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "iteration",
+          "pulled_by": [
+            "embedding_absence_recall"
+          ],
+          "reason": "Absence-only embedding recall added as blocker/guardrail candidate."
+        },
+        {
+          "lane_order": 0,
+          "model_id": "survivorship-bias",
+          "pulled_by": [
+            "embedding_lane_rrf_hybrid"
+          ],
+          "reason": "Hybrid RRF candidate added to test lane-plus-embedding agreement."
+        }
+      ],
+      "result_path": "research/test-cases/phase2c-lane1-equivalence-2026-04-24/_scratch/phd_research_new_run0.json",
+      "risk_notes": [
+        "Longer transcript can make broad cards tempting.",
+        "Good output should prioritize decision structure rather than dump all plausible lenses.",
+        "Embedding-balanced test manifest; explicit nominations are lab-only and must not be treated as live lane output.",
+        "Embedding recall is low-trust and additive; semantic use/reject/defer still belongs to the decoder/reviewer."
+      ],
+      "tags": [
+        "long-context",
+        "professional-stakes",
+        "broad-card-pressure"
+      ]
+    }
+  ],
+  "lab_version": "v60_transaction_replay_lab.v1",
+  "manifest_source": {
+    "base_manifest": "research/v60-transaction-replay-case-manifest-2026-05-09.json",
+    "embedding_summary": "data/evaluations/v60_transaction_embedding_lab/2026-05-10-v60-embedding-pickup-absence-view/summary.json",
+    "policy": "first 4 lane-selected + 2 embedding-novel affordance models + 1 absence-only novel model + 1 hybrid/RRF novel model; fill from embedding/absence/hybrid/lane if duplicate pressure leaves fewer than 8."
+  },
+  "manifest_variant": "v60_embedding_balanced_4_2_1_1"
+}

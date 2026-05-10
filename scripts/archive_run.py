@@ -19,9 +19,9 @@ Case matching (the "which case is this?" problem):
 
 Archive root: $LOLLA_ARCHIVE_DIR or ~/.local/share/lolla/runs/
 
-Files archived (8 core):
+Files archived (9 core):
   conversation.txt, extraction.json, result.json, revised.txt, memo.md,
-  memo_note.json, gapcheck.txt, gapcheck_lanes.json. Missing files are skipped gracefully
+  memo_note.json, gapcheck.txt, gapcheck_lanes.json, v60_ledger.json. Missing files are skipped gracefully
   (e.g., if Step 6b was not executed by a weaker orchestrator).
 
 Orchestrator scratch files (preamble.json, lane*.json) are NOT archived
@@ -50,6 +50,7 @@ CORE_FILES = (
     "memo_note.json",
     "gapcheck.txt",
     "gapcheck_lanes.json",
+    "v60_ledger.json",
 )
 
 # Stopwords dropped when generating an auto-slug from decision_situation.

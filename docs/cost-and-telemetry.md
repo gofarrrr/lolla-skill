@@ -39,6 +39,7 @@ The `/usage` page surfaces the following blocks (server-side rendered, no SPA re
 - **OpenAI — by model** — embedding model vs. expansion model split.
 - **Anthropic Step-7 sub-agents — by lane** — which Step-7 lane (1 = Delta, 2 = Companion, 3 = Frame, 4 = Coverage) was spawned, its model, status, total tokens, duration, and estimated cost. Lanes that were `skipped_empty` or `skipped_error` do not appear because they were never spawned (per the SKILL Step 8b filter — see `merge_subagent_calls` and the input-record validation).
 - **Prompt versions** — 12-char hash of the system prompt used at each pipeline stage. Useful for reproducibility ("which prompt revision produced this finding?") and for diffing two runs of the same case.
+- **V60 private enrichment** — selected chunks, skipped candidates, not-presented model IDs, embedding mode, and Step-6 consideration-ledger uptake live under `/audit/v60`. This is reasoning-transport telemetry, not a separate vendor-cost block.
 
 ## What gets measured
 
@@ -82,6 +83,8 @@ Three call types:
 | `chat` | `gpt-4o-mini` | Query expansion (2 alternative phrasings per query) |
 
 Total OpenAI cost per run is typically well under $0.01.
+
+V60 enrichment can reuse the same `embedding_retriever.rank_models_expanded(...)` path for low-trust model recall when embeddings are enabled. Those OpenAI calls are captured by the same `capture_usage()` scope and therefore appear in `usage_summary.vendors.openai_embeddings`; V60 itself does not introduce a new vendor or manual cost hook.
 
 ### Anthropic (Step 7 sub-agents)
 
@@ -142,6 +145,16 @@ Five input streams → one canonical `usage_summary` block. Per-run isolation is
 2. The embedding `capture_usage()` context manager uses `ContextVar`, not module globals.
 3. The extraction sidecar path is namespaced by `$LOLLA_RUN_ID`.
 4. Sub-agent records are passed in by the SKILL after Step 7, not pulled from any shared state.
+
+V60 adds a second, non-cost telemetry stream inside the same `result.json`:
+
+| Block | Written by | What it answers |
+|---|---|---|
+| `v60_enrichment` | `scripts/run_pipeline.py` | Which lane/embedding candidates were considered, which V60 cards/chunks were selected, which candidates were skipped, which model IDs were left outside the hot context, and whether the explicit `affordances_v60.json` artifact loaded cleanly |
+| `v60_consideration_ledger` | `SKILL.md` Step 6b | For every selected V60 chunk: did Claude/Codex use it, reject it, defer it, or not consider it; through what route; and what visible effect, if any, it had |
+| `v60_consideration_validation` | `engine/system_b/v60_enrichment.py` | Whether the ledger accounts for every selected chunk exactly once, plus used vs. presented-but-not-used chunk IDs |
+
+The operational kill switch is `LOLLA_V60_ENRICHMENT=off` or `--v60-enrichment off`. Disabled runs still write a small `v60_enrichment.status = "disabled"` block so the absence is intentional and observable.
 
 ## Pricing
 
@@ -219,4 +232,6 @@ The CI script at `scripts/inspect_run.py` (or the planned `scripts/audit_telemet
 - Aggregator: `engine/system_b/usage_summary.py`
 - Pricing table: `engine/system_b/pricing.py`
 - Observatory route: `observatory/serve_result.py` (`/usage` and `/api/case/<id>/usage`)
+- V60 enrichment and ledger validation: `engine/system_b/v60_enrichment.py`
+- V60 Observatory route: `observatory/serve_result.py` (`/audit/v60`)
 - SKILL chat surface: `SKILL.md` Step 4 (cost line) and Step 8b (sub-agent merge)
