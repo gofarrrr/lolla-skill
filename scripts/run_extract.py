@@ -105,6 +105,36 @@ from system_b.text_matching import find_substring_tolerant  # noqa: E402
 
 
 # ---------------------------------------------------------------------------
+# Quote validation
+# ---------------------------------------------------------------------------
+
+def _validate_reasoning_passages(
+    payload: dict,
+    conversation_text: str,
+) -> tuple[list[str], list[str]]:
+    """Split extracted reasoning passages into literal transcript spans and failures.
+
+    Verified passages are returned with the transcript's original casing and
+    punctuation. The shared matcher permits only narrow quote-safe tolerances
+    such as case drift or a symmetric wrapper quote around the whole passage;
+    paraphrases remain failures.
+    """
+    items = payload.get("reasoning_passages", []) or []
+    verified: list[str] = []
+    fabricated: list[str] = []
+    for passage in items:
+        if not passage:
+            fabricated.append(passage)
+            continue
+        matched = find_substring_tolerant(passage, conversation_text)
+        if matched is None:
+            fabricated.append(passage)
+        else:
+            verified.append(matched)
+    return verified, fabricated
+
+
+# ---------------------------------------------------------------------------
 # .env loader (same pattern as scripts/run_live_pipeline.py)
 # ---------------------------------------------------------------------------
 
@@ -663,26 +693,8 @@ def main() -> int:
     # adopt it. Any remaining fabricated passages are dropped from the payload
     # and a capture_warning is emitted so run_pipeline.py can surface
     # `quote_fabrication` via run_health.
-    def _validate_passages(pload: dict) -> tuple[list[str], list[str]]:
-        items = pload.get("reasoning_passages", []) or []
-        ver: list[str] = []
-        fab: list[str] = []
-        for p in items:
-            if not p:
-                fab.append(p)
-                continue
-            matched = find_substring_tolerant(p, conversation_text)
-            if matched is None:
-                fab.append(p)
-            else:
-                # Use transcript's original casing so downstream consumers
-                # (Observatory, memo rendering) show the actual user/assistant
-                # words rather than the LLM's case-folded reconstruction.
-                ver.append(matched)
-        return ver, fab
-
     initial_passage_count = len(payload.get("reasoning_passages", []) or [])
-    verified, fabricated = _validate_passages(payload)
+    verified, fabricated = _validate_reasoning_passages(payload, conversation_text)
     retry_attempted = False
     retry_succeeded = False
 
@@ -707,7 +719,7 @@ def main() -> int:
                 and retry_payload.get("is_strategic", True)
                 and retry_payload.get("decision_situation")
                 and retry_payload.get("synthesized_position")):
-            rv, rf = _validate_passages(retry_payload)
+            rv, rf = _validate_reasoning_passages(retry_payload, conversation_text)
             if len(rf) < len(fabricated):
                 # Retry improved — adopt its payload wholesale.
                 payload = retry_payload

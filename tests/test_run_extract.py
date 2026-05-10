@@ -14,6 +14,7 @@ from run_extract import (  # noqa: E402
     _apply_canonical_key_validation,
     _build_audit_seed,
     _map_to_critique_request,
+    _validate_reasoning_passages,
     _validate_conversation_capture,
     _validate_canonical_key,
 )
@@ -209,3 +210,21 @@ Only if the role survives a downside test.
     assert result["capture_health"] == "good"
     assert result["capture_manifest"]["last_turn_role"] == "ASSISTANT"
     assert result["capture_warnings"] == []
+
+
+def test_reasoning_passage_validation_accepts_quote_wrapped_literal_span():
+    transcript = (
+        "[Turn 1] ASSISTANT:\n"
+        "Conversational signal is real but not decision-grade.\n"
+    )
+    payload = {
+        "reasoning_passages": [
+            '"Conversational signal is real but not decision-grade."',
+            '"this will impact the team"',
+        ],
+    }
+
+    verified, fabricated = _validate_reasoning_passages(payload, transcript)
+
+    assert verified == ["Conversational signal is real but not decision-grade."]
+    assert fabricated == ['"this will impact the team"']

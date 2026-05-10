@@ -47,6 +47,31 @@ def test_case_insensitive_mixed_case():
     assert result == "openai GPT-4"
 
 
+def test_symmetric_quote_wrapper_returns_literal_transcript_span():
+    """LLM often wraps a copied passage in quotes that are not in the transcript."""
+    result = find_substring_tolerant(
+        '"Conversational signal is real but not decision-grade."',
+        "OK — that changes the weight. Conversational signal is real but not decision-grade.",
+    )
+    assert result == "Conversational signal is real but not decision-grade."
+
+
+def test_smart_quote_wrapper_returns_literal_transcript_span():
+    result = find_substring_tolerant(
+        "“She doesn't get a say in the decision — you're the operator”",
+        "She doesn't get a say in the decision — you're the operator, not the former co-founder.",
+    )
+    assert result == "She doesn't get a say in the decision — you're the operator"
+
+
+def test_quote_wrapper_fallback_still_rejects_paraphrase():
+    result = find_substring_tolerant(
+        '"this will impact the team"',
+        "this would impact the team",
+    )
+    assert result is None
+
+
 def test_whistleblower_regression_case():
     """The exact failure that motivated this helper.
 
