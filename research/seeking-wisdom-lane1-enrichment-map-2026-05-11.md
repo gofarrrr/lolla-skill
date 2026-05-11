@@ -446,6 +446,89 @@ make Lane 1 fire. The current system can already carry many Bevelin-style
 checks through public product text and V60 private enrichment while Lane 1
 correctly stays quiet.
 
+That single case is not enough evidence. A full archive replay is needed before
+using this audit to promote substrate or prompt changes.
+
+Full replay command:
+
+```bash
+python3 scripts/run_bevelin_lane1_audit.py \
+  --archive-root /Users/marcin/.local/share/lolla/runs \
+  --format json \
+  --output /tmp/bevelin_lane1_all_runs.json
+```
+
+Full replay result across 25 archived runs:
+
+- Total probe-run evaluations: 225.
+- `publicly_treated`: 130.
+- `privately_considered`: 15.
+- `lane1_pressure_only`: 17.
+- `candidate_only`: 44.
+- `missing`: 19.
+- Silent-Lane-1 runs: 9.
+- Runs with Lane 1 findings: 16.
+- Silent-Lane-1 probe slots supported by public/private/other-lane pressure:
+  52.
+
+Probe-level distribution:
+
+| Probe | Public | Private | Lane 1 only | Candidate only | Missing |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Representative evidence | 19 | 0 | 0 | 5 | 1 |
+| Actor incentives | 19 | 2 | 0 | 2 | 2 |
+| Downside/reversibility | 24 | 0 | 0 | 0 | 1 |
+| Absolute yardstick | 13 | 1 | 0 | 8 | 3 |
+| Alternatives/opportunity cost | 21 | 0 | 0 | 4 | 0 |
+| Disconfirmation | 2 | 4 | 7 | 8 | 4 |
+| State of mind | 15 | 1 | 1 | 7 | 1 |
+| Role reversal/system fairness | 8 | 3 | 4 | 5 | 5 |
+| Postmortem learning | 9 | 4 | 5 | 5 | 2 |
+
+Interpretation after this replay:
+
+- Useful to some degree: the audit is useful as an observability triage layer.
+  It identifies where Bevelin-style checks are already public, where they stay
+  private, and where Lane 1 or candidates raise a probe that product output did
+  not clearly convert.
+- Not yet useful as an autonomous promotion signal: the audit is deterministic
+  and lexical. It can say "this probe appears absent or private," but a human or
+  stricter judge still has to decide whether that absence is materially bad in
+  the case.
+- Strongly redundant area: downside/reversibility is already almost saturated
+  in archived outputs. Bevelin probably does not add much there unless the
+  question is precision/quality, not presence.
+- Strongest enrichment candidates: disconfirmation, role reversal/system
+  fairness, and postmortem learning. They show repeated `lane1_pressure_only`,
+  `candidate_only`, and `missing` statuses.
+- Silent Lane 1 is not automatically a failure. Across 9 silent-Lane-1 runs,
+  the audit found 52 public/private/other-lane-supported probe slots. That
+  supports the control-case hypothesis: other lanes can carry Bevelin pressure
+  while Lane 1 correctly stays quiet.
+
+Limits of this replay:
+
+- `publicly_treated` means the deterministic audit found material probe terms
+  in public surfaces. It does not prove the treatment was high quality.
+- `privately_considered` means V60 selected a related model or ledger text. It
+  does not prove the user benefited.
+- `candidate_only` and `missing` are triage flags, not verdicts.
+- Older archived runs were produced by older system versions and often lack V60
+  ledger data, so cross-run comparisons are not perfectly controlled.
+- The replay has no human labels yet. It cannot measure false positives,
+  false negatives, or action-delta improvement by itself.
+
+The next test should therefore be a small human-review set, not prompt changes:
+
+1. Sample high-signal non-public rows, especially disconfirmation,
+   role-reversal/system fairness, and postmortem learning.
+2. Review whether each missing/private/candidate probe would have changed the
+   recommendation in a useful way.
+3. Promote only repeated, reviewer-agreed cases into source-backed V60 records,
+   subpattern source refs, or very small Lane 1 materiality wording.
+4. Treat downside/reversibility as low priority unless review shows the issue
+   is not presence but shallow treatment quality.
+
 ## Risks
 
 - Generic checklist overfire: every answer can be accused of omitting some
