@@ -186,3 +186,12 @@ Update the file after completing each sub-task, not just after completing an ent
   - [x] 8.9 RED/GREEN: Filter noisy V60 local-relevance explanation terms such as `after`, `all`, `before`, `being`, and `should`.
   - [x] 8.10 RED/GREEN: Guard against reintroducing the old instruction to launch pressure-check agents before the V60 ledger gate.
   - [x] 8.11 Run the focused post-flight regression tests.
+
+- [x] 9.0 Live transcript hygiene gate
+  - [x] 9.1 RED: Add live-output finalization tests for clean, unsafe, missing, required-missing, and stale-issue rerun behavior.
+  - [x] 9.2 GREEN: Reuse `engine/system_b/output_hygiene.py` for `live_narration` scanning and write `run_health.live_output_*`.
+  - [x] 9.3 RED/GREEN: Add archive tests proving live transcripts are scanned when present and missing transcripts remain backward-compatible by default.
+  - [x] 9.4 GREEN: Add `scripts/finalize_live_output_hygiene.py --require-live-output-clean --trusted-transcript` as an explicit proof gate for complete captured live transcripts.
+  - [x] 9.5 GREEN: Archive `live_transcript.txt` when present and defensively record `live_output_health` as `unsafe`, `missing`, or `not_checked` for manual no-leak artifacts; reserve `clean` for trusted complete captures.
+  - [x] 9.6 RED/GREEN: Prevent false confidence from manual transcript omissions by treating manual no-leak live transcripts as `not_checked` and rejecting `not_checked` live output in archived-run comparison trust eligibility.
+  - [x] 9.6 Update SKILL/chat/docs contracts so the runner maintains `/tmp/lolla_${LOLLA_RUN_ID}_live_transcript.txt` and runs the live-output gate before archive.

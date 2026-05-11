@@ -145,6 +145,9 @@ def _comparison_eligibility(left: ArchivedRun, right: ArchivedRun) -> dict[str, 
         product = _text(health.get("product_output_health"))
         if product == "unsafe":
             reasons.append(f"{side}: product_output_health=unsafe")
+        live_output = _text(health.get("live_output_health"))
+        if live_output in {"unsafe", "not_checked"}:
+            reasons.append(f"{side}: live_output_health={live_output}")
         ledger = _text(health.get("v60_consideration_ledger"))
         if ledger in UNTRUSTED_LEDGER_STATUSES:
             reasons.append(f"{side}: v60_consideration_ledger={ledger}")
@@ -178,6 +181,8 @@ def _health_summary(result: Mapping[str, Any]) -> dict[str, Any]:
         "issue_details": _list(health.get("issue_details")),
         "product_output_health": health.get("product_output_health"),
         "product_output_leak_count": health.get("product_output_leak_count"),
+        "live_output_health": health.get("live_output_health"),
+        "live_output_leak_count": health.get("live_output_leak_count"),
         "quote_fabrication_count": health.get("quote_fabrication_count"),
         "v60_consideration_ledger": health.get("v60_consideration_ledger"),
     }

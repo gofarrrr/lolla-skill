@@ -19,10 +19,10 @@ Case matching (the "which case is this?" problem):
 
 Archive root: $LOLLA_ARCHIVE_DIR or ~/.local/share/lolla/runs/
 
-Files archived (10 core):
+Files archived (11 core):
   conversation.txt, extraction.json, result.json, revised.txt, memo.md,
   memo_note.json, gapcheck.txt, gapcheck_lanes.json, v60_ledger_skeleton.json,
-  v60_ledger.json. Missing files are skipped gracefully
+  v60_ledger.json, live_transcript.txt. Missing files are skipped gracefully
   (e.g., if Step 6b was not executed by a weaker orchestrator).
 
 Orchestrator scratch files (preamble.json, lane*.json) are NOT archived
@@ -32,6 +32,7 @@ from __future__ import annotations
 
 import argparse
 import datetime as _dt
+import hashlib
 import json
 import os
 import re
@@ -54,6 +55,7 @@ CORE_FILES = (
     "gapcheck_lanes.json",
     "v60_ledger_skeleton.json",
     "v60_ledger.json",
+    "live_transcript.txt",
 )
 
 # Stopwords dropped when generating an auto-slug from decision_situation.
@@ -278,6 +280,7 @@ def archive_run(
 
     _finalize_v60_telemetry_before_archive(tmp_dir=tmp_dir, run_id=run_id)
     _finalize_product_output_hygiene_before_archive(tmp_dir=tmp_dir, run_id=run_id)
+    _finalize_live_output_hygiene_before_archive(tmp_dir=tmp_dir, run_id=run_id)
 
     copied: list[str] = []
     missing: list[str] = []
@@ -358,6 +361,42 @@ def _finalize_product_output_hygiene_before_archive(*, tmp_dir: Path, run_id: st
 
     finalized = finalize_product_output_hygiene(result, surfaces)
     result_path.write_text(json.dumps(finalized, indent=2, ensure_ascii=False), encoding="utf-8")
+
+
+def _finalize_live_output_hygiene_before_archive(*, tmp_dir: Path, run_id: str) -> None:
+    """Update result.json with live transcript leak status before copying artifacts."""
+    result_path = tmp_dir / f"lolla_{run_id}_result.json"
+    if not result_path.exists():
+        return
+    if str(REPO_ROOT) not in sys.path:
+        sys.path.insert(0, str(REPO_ROOT))
+    from engine.system_b.output_hygiene import finalize_live_output_hygiene
+
+    result = json.loads(result_path.read_text(encoding="utf-8"))
+    transcript_path = tmp_dir / f"lolla_{run_id}_live_transcript.txt"
+    transcript = None
+    if transcript_path.exists():
+        transcript = transcript_path.read_text(encoding="utf-8")
+    trusted_capture = _has_matching_trusted_live_transcript(result, transcript)
+    finalized = finalize_live_output_hygiene(
+        result,
+        transcript,
+        trusted_capture=trusted_capture,
+    )
+    result_path.write_text(json.dumps(finalized, indent=2, ensure_ascii=False), encoding="utf-8")
+
+
+def _has_matching_trusted_live_transcript(result: dict[str, object], transcript: str | None) -> bool:
+    if transcript is None:
+        return False
+    live_hygiene = result.get("live_output_hygiene")
+    if not isinstance(live_hygiene, dict):
+        return False
+    if live_hygiene.get("trusted_capture") is not True:
+        return False
+    expected = str(live_hygiene.get("transcript_sha256") or "")
+    actual = hashlib.sha256(transcript.encode("utf-8")).hexdigest()
+    return bool(expected) and expected == actual
 
 
 # ---------------------------------------------------------------------------
