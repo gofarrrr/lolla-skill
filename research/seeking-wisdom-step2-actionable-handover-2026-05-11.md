@@ -41,6 +41,78 @@ The live system already has the right places for this knowledge.
 This means the safest first implementation path is source packet -> V60
 candidate artifact -> replay -> only then subpattern or prompt changes.
 
+## Quality-First Call Discipline
+
+The goal is not to minimize call count at the expense of judgment quality. The
+goal is to keep each cognitive task small enough that we can see what happened.
+
+Do not improve Bevelin uptake by stuffing more obligations into an already
+heavy call. A prompt that asks one model to detect a tendency, select source
+material, judge usefulness, rewrite the answer, hide private machinery, and
+produce a valid ledger is too loaded. Past V60 replay already showed this
+failure shape: useful private reasoning can coexist with invalid ledgers,
+leaky public fields, or generic composition when one call carries too many
+jobs.
+
+Use this rule:
+
+> If the new work is cognitively meaningful, isolate it into the smallest
+> possible call or replay surface that can answer that one question well.
+
+Good uses of additional calls:
+
+- a narrow private-trace call that only judges whether selected Bevelin/V60
+  chunks are useful, rejected, deferred, or private guardrails;
+- a small system-bound composer call that only asks whether a private trace can
+  become a clean product delta;
+- an isolated Lane 1 probe that only asks whether one subpattern route is
+  materially present in a tiny case;
+- parallel pressure checks when each call receives one bounded artifact and can
+  disagree without sharing context.
+
+Bad uses of additional complexity:
+
+- bulk-inserting Bevelin checklist language into every Step 6 update;
+- adding a new layer that must always run even when the substrate has not
+  selected relevant material;
+- asking one model to both reason with private source material and perfectly
+  sanitize all public output;
+- testing usefulness through broad cases where we cannot tell which candidate
+  unit caused the change.
+
+The deterministic middle should still own merging, custody, caps, and
+validation. The LLM call should own one high-quality judgment at a time.
+
+## Small-Case Discipline
+
+The first useful tests should be small, almost surgical. We are not trying to
+prove that Bevelin is broadly good. We are trying to answer one local question
+at a time:
+
+- Does the candidate unit enter the packet?
+- Does the model understand the strongest plausible application?
+- Does it reject the chunk for a real reason?
+- Does it create one concrete product operator?
+- Does that operator improve the answer without leaking machinery?
+
+Prefer tiny ASCII/plain-text cases and narrow archived cases before full
+end-to-end runs. A case should be small enough that a reviewer can point to the
+exact reasoning pressure under test. For example:
+
+- **absolute yardstick**: one short decision where the answer accepts a worse
+  term because it is "better than the scary alternative";
+- **role reversal**: one short fairness/conflict case where the answer appeals
+  to what the other side should do instead of designing an enforceable rule;
+- **postmortem trace**: one recurring-decision case where the answer recommends
+  action but does not preserve what will be learned later;
+- **disconfirmation control**: one commitment case where the answer needs a
+  named observation that would reverse the recommendation.
+
+Only after these tiny probes behave well should the 8-case replay manifest or
+live repeated skill runs decide promotion. This keeps the story inspectable:
+first prove the unit can do one thing well, then test whether it survives the
+larger system.
+
 ## What To Inject
 
 The Bevelin material that looks most useful is not "more biases." Lolla already
