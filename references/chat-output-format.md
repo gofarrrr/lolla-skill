@@ -31,6 +31,13 @@ Do not write *"I understand this is complex"*, *"I can tell this is weighing on 
 
 Do not send *"still working"*, *"thinking carefully"*, or *"I'll be back shortly"* with no substance. A status receipt should say what phase just completed, what is happening next, and what the user will get from it.
 
+The live Claude Code transcript is also product surface. Even if a line is not
+archived into `revised.txt` or the memo, the user still experiences it as part
+of the run. Reduced narration is the default after the audit starts: no agent
+launch updates, no waiting updates, no ledger/debug narration, no internal
+transition labels. If there is no user-facing content or real blocker, stay
+silent.
+
 ### No machinery leak
 
 Banned in user-facing chat: card names (*DeltaCard*, *CompanionCheatSheet*, *FramePressureCard*, *StructuralCoverageCard*), lane numbers (*Lane 1*, *Lane 2*, etc.), JSON field names, *sub-agents*, *the audit said*, *the pipeline*, *isolated review*, *independent review*, *the reviewers*, routing language, prompt/process talk. The user receives findings and counterarguments in human language; the mechanism is for the orchestrator, not the reader. See § Cross-cutting rules below for the grep checks.
@@ -39,13 +46,13 @@ Banned in user-facing chat: card names (*DeltaCard*, *CompanionCheatSheet*, *Fra
 
 Internal section names are **instruction architecture for the orchestrator** and **must not appear in rendered chat output**. The orchestrator's job is to render the beat content directly — not to introduce it by name.
 
-**Banned in rendered chat output (word-boundary grep):** `Beat 1`, `Beat 2`, `Beat 3`, `Beat 4`, `Step 1` through `Step 10`, `Step 2.5`, `Step 6b`, `Step 6c`, `Step 8b`, `Lane 1`, `Lane 2`, `Lane 3`, `Lane 4`, `sub-agent`, `sub-agents`, `pressure-check sub-agents`, `lanes 2, 3, 4`, `pipeline`, `audit card`, `the cards`, `isolated review`, `independent review`, `reviewer`, `reviewers`. Plus card-name CamelCase: `DeltaCard`, `CompanionCheatSheet`, `FramePressureCard`, `StructuralCoverageCard`.
+**Banned in rendered chat output (word-boundary grep):** `Beat 1`, `Beat 2`, `Beat 3`, `Beat 4`, `Step 1` through `Step 10`, `Step 2.5`, `Step 6b`, `Step 6c`, `Step 8b`, `Lane 1`, `Lane 2`, `Lane 3`, `Lane 4`, `sub-agent`, `sub-agents`, `pressure-check sub-agents`, `pressure-check agents`, `lanes 2, 3, 4`, `pipeline`, `audit card`, `the cards`, `isolated review`, `independent review`, `reviewer`, `reviewers`. Plus card-name CamelCase: `DeltaCard`, `CompanionCheatSheet`, `FramePressureCard`, `StructuralCoverageCard`.
 
 **This grep applies to rendered chat output only, not to documentation or internal instruction files.** The reference docs (this file, `SKILL.md`, `voice-examples-2026-04-30.md`) use these names internally because they are instruction architecture. The user-facing transcript must not.
 
 **Allowed product language:** *audit*, *pressure check*, *reconsideration*, *updated position*, *memo*, *Observatory*, *full breakdown*. These are product surfaces the user can see and interact with; they are not internal pipeline machinery.
 
-**Failure pattern to avoid (also banned):** **operator narration of internal transitions.** *"Now writing Beat 3"*, *"Now launching pressure-check sub-agents in parallel"*, *"Now Beat 2 — the strongest counterargument"*, *"lanes 2, 3, 4 — lane 1 skipped, no findings"*, *"Reading them honestly: the Lane 2 concerns…"* — these are the orchestrator narrating its own internal structure to the user. Render the content directly. Section breaks are felt through paragraph spacing and the small number of allowed product headings (`## Updated position`, `### Pressure Check`); they are not announced in prose.
+**Failure pattern to avoid (also banned):** **operator narration of internal transitions.** *"Now writing Beat 3"*, *"Now launching pressure-check sub-agents in parallel"*, *"launching pressure-check agents"*, *"debugging the V60 ledger"*, *"Now Beat 2 — the strongest counterargument"*, *"lanes 2, 3, 4 — lane 1 skipped, no findings"*, *"Reading them honestly: the Lane 2 concerns…"* — these are the orchestrator narrating its own internal structure to the user. Render the content directly. Section breaks are felt through paragraph spacing and the small number of allowed product headings (`## Updated position`, `### Pressure Check`); they are not announced in prose.
 
 See `voice-examples-2026-04-30.md` § Bad — visible internal labels for the failure pattern this rule defeats.
 
@@ -159,7 +166,7 @@ After Step 3 pipeline returns, present the strongest counterargument as a story 
 
 ### What goes in
 
-1. **Run-health line, conditional.** Only when `run_health.overall ≠ healthy` AND a material issue is present (`capture_degraded`, `capture_critical`, `substrate_empty`, `no_fingerprint`, `quote_fabrication`, `capture_truncated`, `lane3_all_dropped`, `bullshit_index_partial`). Silent on healthy runs.
+1. **Run-health line, conditional.** Only when `run_health.overall ≠ healthy` AND a material issue is present (`capture_degraded`, `capture_critical`, `substrate_empty`, `no_fingerprint`, `quote_fabrication`, `capture_truncated`, `lane3_all_dropped`, `bullshit_index_partial`, `v60_consideration_ledger_missing`, `v60_consideration_ledger_invalid`, `product_output_leak`). Silent on healthy runs and on optional-off retrieval states such as embeddings disabled by mode.
 2. **One exact quote** anchored to a specific turn, format *"In Turn N, you wrote: '...'"* or *"In Turn N, I closed with: '...'"*. Drop turn numbers when the quote spans turns or is paraphrased. Use turn numbers as **light source attribution only — never as heading style** (no *"Finding 1 — Turn 4 Evidence Quote"*). The user can inspect referenced turns via the captured transcript at `/tmp/lolla_${LOLLA_RUN_ID}_conversation.txt` and the Observatory's conversation view (both use `[Turn N]` markers); memo navigation is not part of this contract.
 3. **One paragraph (3–5 sentences) making the case against that move.** Specific. Names the structural error in plain language. Avoids machinery vocabulary (no *"deprival-superreaction"*, *"loss aversion pattern"*, etc. — those models go in Beat 3 §3 where they earn context). **Scope general claims to this person / this conversation, not to a class of people.** *"He may be minimizing because he hasn't been shown what specifically makes this different from ordinary teenage drama"* is acceptable; *"People who minimize age-gap online contact rarely do so because they've reviewed the grooming literature"* is not. Where a general claim carries the case-against, it must be scoped. Where a general claim is observational backdrop for a situation-specific argument, it can stay. Lolla audits unverified-claim patterns in others' reasoning; its own output should pass its own audit.
 4. **One alternative-question or alternative-instrument** the audit pushed onto the table. Verbatim from `frame_pressure_card.reframings[0].reframed_question` if it serves; otherwise a sharp paraphrase of the strongest cross-lane alternative. **Fallback rule:** when no single user passage anchors the critique, lead with paraphrased user-position framing (*"The answer treated X as settled before testing Y"*). Exact quote preferred; paraphrase acceptable when the verbatim would be awkward or misleading.
@@ -233,7 +240,7 @@ After Step 8 sub-agent comparison, surface what the independent pressure-check c
 1. **Counter-frame opening sentence.** Use one of: *"One more angle worth surfacing"*, *"A fresh read pushed on something I underweighted"*, *"Two things the position above softened or skipped"*. **Never** *"mostly aligned"*, *"all incorporated above"*, or *"the rest is in the position above."* See § Watch for Question-3 suppression below.
 2. **1–4 divergences**, each one sentence + 2–3 sentences of substance. Each divergence should name a concrete alternative mechanism (alternative reporting channel, contractual instrument, stakeholder forum, tripwire pattern, legal-instrumental framing) — not a vague "consider also" gesture.
 3. **Closing before Step 9:** *"Audit complete. I'm opening the full breakdown now."*
-4. **Final functional receipt after Step 9/10:** *"Observatory is live at [link]. Memo at [path]. Total run cost: $X.XX. Archived to [path]."* This appears only after the Observatory server is actually launched. **Use the actual Observatory URL.** If the server fell back to a non-default port (e.g., 8081 because 8080 was held), report `http://localhost:8081` directly — do NOT explain the fallback in the receipt. If `run_health.overall` is `degraded`, add one plain warning sentence before the receipt naming the issue in user language. The receipt stays artifact-focused; explanations of port fallback or other operational detail leak machinery.
+4. **Final functional receipt after Step 9/10:** *"Observatory is live at [link]. Memo at [path]. Total run cost: $X.XX. Archived to [path]."* This appears only after the Observatory server is actually launched. **Use the actual Observatory URL.** If the server fell back to a non-default port (e.g., 8081 because 8080 was held), report `http://localhost:8081` directly — do NOT explain the fallback in the receipt. If `run_health.overall` is `partial`, `degraded`, or `critical`, add one plain warning sentence before the receipt naming the material issue in user language. The receipt stays artifact-focused; explanations of port fallback or other operational detail leak machinery.
 
 ### Watch for Question-3 suppression
 

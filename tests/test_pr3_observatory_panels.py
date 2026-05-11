@@ -562,6 +562,47 @@ def test_audit_index_links_to_all_panels():
         assert href in html, f"index missing link to {href}"
 
 
+def test_audit_index_renders_structured_run_health_issue_details(monkeypatch):
+    r = _fixture_result()
+    r["run_health"] = {
+        "overall": "healthy",
+        "issues": ["embeddings_off"],
+        "issue_details": [
+            {
+                "code": "embeddings_off",
+                "severity": "optional_off",
+                "axis": "retrieval",
+                "trust_impact": "Embedding recall was unavailable by mode; deterministic paths still ran.",
+                "mode": "auto",
+            }
+        ],
+    }
+    monkeypatch.setattr(serve_result, "_RESULT", r)
+
+    html = serve_result._render_audit_index_html()
+
+    assert "Run Health" in html
+    assert "embeddings_off" in html
+    assert "optional_off" in html
+    assert "retrieval" in html
+    assert "Embedding recall was unavailable by mode" in html
+
+
+def test_audit_index_renders_product_output_health(monkeypatch):
+    r = _fixture_result()
+    r["run_health"] = {
+        "overall": "healthy",
+        "product_output_health": "clean",
+        "product_output_leak_count": 0,
+    }
+    monkeypatch.setattr(serve_result, "_RESULT", r)
+
+    html = serve_result._render_audit_index_html()
+
+    assert "product output" in html
+    assert "clean" in html
+
+
 def test_stakeholder_panel_renders_assumptions_and_plan_change():
     html = serve_result._render_stakeholder_html()
     assert "Stakeholder Assumption Check" in html
@@ -633,6 +674,11 @@ def test_v60_panel_renders_process_telemetry(monkeypatch):
                         "activation_shape": {
                             "use_when": ["A choice commits scarce resources."]
                         },
+                        "selection_method": "local_relevance",
+                        "selection_effect_type": "missing_option",
+                        "selection_score": 5,
+                        "selection_reason": "Selected affordance by local relevance on terms: alternative, displaced.",
+                        "sibling_alternatives_considered": 1,
                     }
                 ],
                 "selected_absence_records": [
@@ -640,6 +686,11 @@ def test_v60_panel_renders_process_telemetry(monkeypatch):
                         "chunk_id": "abs::opportunity-cost::generic-pro-con-list",
                         "status": "not_supported_by_source",
                         "reason": "Do not promote generic pro/con lists.",
+                        "selection_method": "record_order_first",
+                        "selection_effect_type": "overclaim_blocker",
+                        "selection_score": 0,
+                        "selection_reason": "No local lexical match; selected first absence record as explicit fallback.",
+                        "sibling_alternatives_considered": 0,
                     }
                 ],
             }
@@ -647,6 +698,15 @@ def test_v60_panel_renders_process_telemetry(monkeypatch):
         "telemetry": {
             "selected_chunk_count": 2,
             "selection_source_counts": {"lane_preserved": 1},
+            "selected_chunk_selection_methods": {
+                "local_relevance": 1,
+                "record_order_first": 1,
+            },
+            "selected_chunk_effect_types": {
+                "missing_option": 1,
+                "overclaim_blocker": 1,
+            },
+            "selected_chunk_record_order_fallback_count": 1,
             "skipped_candidate_count": 1,
             "skipped_candidates": [
                 {
@@ -701,6 +761,14 @@ def test_v60_panel_renders_process_telemetry(monkeypatch):
     assert "Lane source counts" in html
     assert "Lane Candidates" in html
     assert "Embedding Hits" in html
+    assert "retrieval/rank signal" in html
+    assert "Chunk selection methods" in html
+    assert "Selected effect types" in html
+    assert "missing_option" in html
+    assert "overclaim_blocker" in html
+    assert "local_relevance" in html
+    assert "record_order_first" in html
+    assert "Selected affordance by local relevance" in html
     assert "opportunity-cost.displaced-alternative-commitment-gate" in html
     assert "not_presented_packet_cap" in html
     assert "Disposition counts" in html

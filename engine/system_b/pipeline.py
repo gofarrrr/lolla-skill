@@ -43,7 +43,7 @@ from .frame_pressure import (
 )
 from .structural_coverage import (
     StructuralCoverageCard,
-    run_structural_coverage_from_ir,
+    run_structural_coverage_with_traces_from_ir,
 )
 from .ir import ConversationIR
 from .companion_routing import (
@@ -835,19 +835,14 @@ class SystemBPipeline:
         # Anti-echo: exclude models from all other lanes
         anti_echo = lane1_model_ids | lane2_model_ids | lane3_model_ids
 
-        card = run_structural_coverage_from_ir(
+        result = run_structural_coverage_with_traces_from_ir(
             boundary=self._boundary,
             ir=conversation_ir,
             structural_coverage_routing=routing,
             anti_echo_model_ids=anti_echo,
         )
-        if card is not None:
-            boundary_calls.append(
-                _capture_boundary_call(self._boundary, stage="structural_coverage_classification")
-            )
-            boundary_calls.append(
-                _capture_boundary_call(self._boundary, stage="structural_coverage_detection")
-            )
+        boundary_calls.extend(result.boundary_calls)
+        card = result.card
         return card
 
     def _record_telemetry(

@@ -21,6 +21,7 @@ from unittest.mock import MagicMock
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from engine.system_b.boundary_provider import BoundaryCallMetadata
 from engine.system_b.conversation_context import (
     ConversationContext,
     ExtractionPayload,
@@ -40,6 +41,7 @@ from engine.system_b.structural_coverage import (
     run_dimension_detection_from_packet,
     run_question_classification_from_packet,
     run_structural_coverage_from_ir,
+    run_structural_coverage_with_traces_from_ir,
 )
 
 
@@ -74,6 +76,26 @@ def _boundary_returning(payload: dict) -> MagicMock:
     boundary = MagicMock()
     boundary.run_json = MagicMock(return_value=payload)
     return boundary
+
+
+class _MetadataBoundary:
+    def __init__(self, payloads: list[dict]) -> None:
+        self._payloads = iter(payloads)
+        self.call_count = 0
+        self.last_call_metadata = BoundaryCallMetadata()
+
+    def run_json(self, system_prompt: str, user_prompt: str) -> dict:  # noqa: ARG002
+        self.call_count += 1
+        self.last_call_metadata = BoundaryCallMetadata(
+            provider_name="test-provider",
+            model="test-model",
+            status="ok",
+            raw_message_content=f"payload-{self.call_count}",
+            prompt_tokens=self.call_count,
+            completion_tokens=self.call_count * 10,
+            total_tokens=self.call_count * 11,
+        )
+        return next(self._payloads)
 
 
 def _minimal_routing() -> dict:
@@ -308,6 +330,42 @@ def test_run_structural_coverage_from_ir_orchestrates_three_calls() -> None:
     assert boundary.run_json.call_count == 3
 
 
+def test_run_structural_coverage_with_traces_records_three_distinct_call_stages() -> None:
+    """Trace-returning orchestrator captures each Lane 4 call immediately."""
+    ctx = _ctx(((1, "user", "should I?"), (1, "assistant", "maybe.")))
+    ir = construct_conversation_ir(ctx)
+    boundary = _MetadataBoundary([
+        {"question_type": "decision-evaluation"},
+        {"dimensions": [
+            {
+                "dimension_id": "resource_allocation",
+                "dimension_name": "Resource Allocation",
+                "covered": False,
+                "coverage_evidence": "not addressed",
+                "materiality_note": "material",
+            },
+        ]},
+        {"gap_questions": {"resource_allocation": ["What would you give up?"]}},
+    ])
+
+    result = run_structural_coverage_with_traces_from_ir(
+        boundary, ir, _minimal_routing(), anti_echo_model_ids=set(),
+    )
+
+    assert result.card is not None
+    assert [trace.stage for trace in result.boundary_calls] == [
+        "structural_coverage_classification",
+        "structural_coverage_detection",
+        "structural_coverage_gap_questions",
+    ]
+    assert [trace.raw_message_content for trace in result.boundary_calls] == [
+        "payload-1",
+        "payload-2",
+        "payload-3",
+    ]
+    assert [trace.total_tokens for trace in result.boundary_calls] == [11, 22, 33]
+
+
 def test_run_structural_coverage_from_ir_skips_gap_gen_when_no_gaps() -> None:
     """When no dimensions are uncovered, gap question generation is skipped."""
     ctx = _ctx(((1, "user", "q"), (1, "assistant", "a")))
@@ -326,6 +384,31 @@ def test_run_structural_coverage_from_ir_skips_gap_gen_when_no_gaps() -> None:
     assert card.gap_questions == ()
     # Only 2 boundary calls (no gap gen)
     assert boundary.run_json.call_count == 2
+
+
+def test_run_structural_coverage_with_traces_records_two_distinct_call_stages_without_gaps() -> None:
+    """When there are no gap routes, no gap-question trace should be fabricated."""
+    ctx = _ctx(((1, "user", "q"), (1, "assistant", "a")))
+    ir = construct_conversation_ir(ctx)
+    boundary = _MetadataBoundary([
+        {"question_type": "decision-evaluation"},
+        {"dimensions": []},
+    ])
+
+    result = run_structural_coverage_with_traces_from_ir(
+        boundary, ir, _minimal_routing(), anti_echo_model_ids=set(),
+    )
+
+    assert result.card is not None
+    assert result.card.gap_questions == ()
+    assert [trace.stage for trace in result.boundary_calls] == [
+        "structural_coverage_classification",
+        "structural_coverage_detection",
+    ]
+    assert [trace.raw_message_content for trace in result.boundary_calls] == [
+        "payload-1",
+        "payload-2",
+    ]
 
 
 def test_run_structural_coverage_from_ir_returns_none_on_classification_failure() -> None:

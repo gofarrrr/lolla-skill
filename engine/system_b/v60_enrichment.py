@@ -6,6 +6,7 @@ import datetime as _dt
 from hashlib import sha256
 import json
 import logging
+import re
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
@@ -26,6 +27,13 @@ DEFAULT_FRAME_OPPORTUNITY_SLOTS = 2
 DEFAULT_SNIPPET_CAP = 2
 MISSING_LEDGER_ISSUE = "v60_consideration_ledger_missing"
 INVALID_LEDGER_ISSUE = "v60_consideration_ledger_invalid"
+HEALTH_SEVERITY_RANK = {
+    "info": 0,
+    "optional_off": 0,
+    "partial": 1,
+    "degraded": 2,
+    "critical": 3,
+}
 
 FRAME_OPPORTUNITY_MODEL_PRIORITY = {
     # High-leverage frame expanders/failure probes should survive the packet
@@ -56,6 +64,25 @@ ROUTES = frozenset(
         "duplicate",
     }
 )
+ROUTES_BY_DISPOSITION = {
+    "used": frozenset(
+        {
+            "updated_position",
+            "pressure_check",
+            "private_guardrail",
+            "evidence_gate",
+            "diagnostic_question",
+        }
+    ),
+    "rejected": frozenset(
+        {"set_aside", "already_covered", "irrelevant", "missing_evidence", "duplicate"}
+    ),
+    "deferred": frozenset(
+        {"set_aside", "missing_evidence", "evidence_gate", "diagnostic_question"}
+    ),
+    "not_considered": frozenset({"already_covered", "duplicate", "irrelevant"}),
+}
+_V60_LEDGER_HEALTH_ISSUES = frozenset({MISSING_LEDGER_ISSUE, INVALID_LEDGER_ISSUE})
 
 
 @dataclass(frozen=True)
@@ -122,6 +149,7 @@ def build_v60_enrichment(
     )
     embedding_rank = [_text(row.get("model_id")) for row in embedding_rows]
     hybrid_rank = _hybrid_rrf_rank(lane_rank, embedding_rank)
+    selection_context_text = _build_query_text(conversation_context, result_payload)
 
     selected_specs: list[tuple[str, str, str, Mapping[str, Any]]] = []
     skipped: list[dict[str, Any]] = []
@@ -297,6 +325,7 @@ def build_v60_enrichment(
             retrieval=retrieval,
             card_index=len(cards),
             snippet_cap=snippet_cap,
+            selection_context_text=selection_context_text,
         )
         if not card["selected_affordance_cards"] and not card["selected_absence_records"]:
             skipped.append(
@@ -322,7 +351,7 @@ def build_v60_enrichment(
         }
     )
 
-    return {
+    enrichment = {
         "schema_version": SCHEMA_VERSION,
         "status": "active",
         "runtime_policy": RUNTIME_POLICY,
@@ -343,8 +372,8 @@ def build_v60_enrichment(
             "hybrid_slots": hybrid_slots,
             "frame_opportunity_slots": frame_opportunity_slots,
             "snippet_cap": snippet_cap,
-            "affordance_selection": "record_order_first",
-            "absence_selection": "record_order_first",
+            "affordance_selection": "local_relevance_with_record_order_fallback",
+            "absence_selection": "local_relevance_with_record_order_fallback",
         },
         "candidate_pool": {
             "lane_candidate_count": len(merged_candidates),
@@ -368,6 +397,9 @@ def build_v60_enrichment(
             "not_presented_model_ids": not_presented_models,
             "not_presented_candidate_count": len(not_presented_models),
             "consideration_ledger_expected": True,
+            "selected_chunk_selection_methods": _selected_chunk_selection_methods(cards),
+            "selected_chunk_effect_types": _selected_chunk_effect_types(cards),
+            "selected_chunk_record_order_fallback_count": _selected_chunk_record_order_fallback_count(cards),
         },
         "llm_instruction": (
             "Private only. Consider each selected chunk seriously, but do not "
@@ -392,6 +424,8 @@ def build_v60_enrichment(
             ],
         },
     }
+    enrichment["consideration_ledger_skeleton"] = build_v60_consideration_ledger_skeleton(enrichment)
+    return enrichment
 
 
 def disabled_v60_enrichment(reason: str) -> dict[str, Any]:
@@ -569,6 +603,68 @@ def merge_candidates(candidates: Sequence[V60Candidate]) -> list[V60Candidate]:
     return rows
 
 
+def build_v60_consideration_ledger_skeleton(enrichment: Mapping[str, Any]) -> dict[str, Any]:
+    """Build the deterministic transaction shell the skill runner must fill."""
+    transactions: list[dict[str, Any]] = []
+    for card in (_mapping(item) for item in _list(enrichment.get("selected_cards"))):
+        card_id = _text(card.get("card_id"))
+        model_id = _text(card.get("model_id"))
+        source_file = _text(card.get("source_file"))
+        base = {
+            "card_id": card_id,
+            "model_id": model_id,
+            "selection_source": _text(card.get("selection_source")),
+            "selection_reason": _text(card.get("selection_reason")),
+            "source_file": source_file,
+            "disposition": "",
+            "route": "",
+            "strongest_plausible_application": "",
+            "why": "",
+            "visible_effect": "",
+            "private_guardrail": "",
+            "risk_if_forced": "",
+        }
+        for affordance in (_mapping(item) for item in _list(card.get("selected_affordance_cards"))):
+            transactions.append(
+                {
+                    **base,
+                    "chunk_id": _text(affordance.get("chunk_id")),
+                    "chunk_kind": "affordance",
+                    "affordance_id": _text(affordance.get("affordance_id")),
+                    "chunk_status": _text(affordance.get("status")),
+                    "chunk_source_file": _chunk_source_file(affordance) or source_file,
+                }
+            )
+        for absence in (_mapping(item) for item in _list(card.get("selected_absence_records"))):
+            transactions.append(
+                {
+                    **base,
+                    "chunk_id": _text(absence.get("chunk_id")),
+                    "chunk_kind": "absence",
+                    "attempted_field": _text(absence.get("attempted_field")),
+                    "chunk_status": _text(absence.get("status")),
+                    "chunk_source_file": _chunk_source_file(absence) or source_file,
+                    "blocked_or_guarded_claim": "",
+                    "uncertainty_boundary": "",
+                }
+            )
+    return {
+        "schema_version": LEDGER_SCHEMA_VERSION,
+        "transactions": [item for item in transactions if _text(item.get("chunk_id"))],
+    }
+
+
+def _ledger_skeleton_index(enrichment: Mapping[str, Any]) -> dict[str, Mapping[str, Any]]:
+    skeleton = _mapping(enrichment.get("consideration_ledger_skeleton"))
+    if not _list(skeleton.get("transactions")):
+        skeleton = build_v60_consideration_ledger_skeleton(enrichment)
+    return {
+        _text(row.get("chunk_id")): row
+        for row in (_mapping(item) for item in _list(skeleton.get("transactions")))
+        if _text(row.get("chunk_id"))
+    }
+
+
 def validate_v60_consideration_ledger(
     ledger: Mapping[str, Any],
     *,
@@ -577,7 +673,13 @@ def validate_v60_consideration_ledger(
     errors: list[str] = []
     if _text(ledger.get("schema_version")) != LEDGER_SCHEMA_VERSION:
         errors.append("schema_version is invalid")
-    selected_chunks = set(_strings(_mapping(enrichment.get("telemetry")).get("selected_chunk_ids")))
+    explicit_skeleton = bool(
+        _list(_mapping(enrichment.get("consideration_ledger_skeleton")).get("transactions"))
+    )
+    skeleton_by_chunk = _ledger_skeleton_index(enrichment)
+    selected_chunks = set(skeleton_by_chunk) or set(
+        _strings(_mapping(enrichment.get("telemetry")).get("selected_chunk_ids"))
+    )
     transactions = [_mapping(item) for item in _list(ledger.get("transactions"))]
     if not isinstance(ledger.get("transactions"), list):
         errors.append("transactions must be a list")
@@ -592,13 +694,44 @@ def validate_v60_consideration_ledger(
             errors.append(f"{prefix}.chunk_id is unknown")
             if chunk_id:
                 unknown.append(chunk_id)
-        if _text(transaction.get("disposition")) not in DISPOSITIONS:
+        skeleton_row = skeleton_by_chunk.get(chunk_id)
+        if skeleton_row:
+            for field in ("card_id", "model_id", "chunk_kind"):
+                expected = _text(skeleton_row.get(field))
+                observed = _text(transaction.get(field))
+                if not observed and explicit_skeleton:
+                    errors.append(f"{prefix}.{field} is required by ledger skeleton")
+                elif observed and observed != expected:
+                    errors.append(f"{prefix}.{field} does not match selected chunk")
+
+        disposition = _text(transaction.get("disposition"))
+        route = _text(transaction.get("route"))
+        if disposition not in DISPOSITIONS:
             errors.append(f"{prefix}.disposition is invalid")
-        if _text(transaction.get("route")) not in ROUTES:
+        if route not in ROUTES:
             errors.append(f"{prefix}.route is invalid")
+        if (
+            disposition in ROUTES_BY_DISPOSITION
+            and route in ROUTES
+            and route not in ROUTES_BY_DISPOSITION[disposition]
+        ):
+            errors.append(f"{prefix}.route is incompatible with disposition")
         if not _text(transaction.get("strongest_plausible_application")):
             errors.append(f"{prefix}.strongest_plausible_application is required")
-        if _text(transaction.get("disposition")) in {"rejected", "deferred", "not_considered"}:
+        if disposition == "used":
+            if not (
+                _text(transaction.get("visible_effect"))
+                or _text(transaction.get("private_guardrail"))
+            ):
+                errors.append(f"{prefix}.visible_effect or private_guardrail is required for used chunks")
+            if _text(transaction.get("chunk_kind")) == "absence" and not (
+                _text(transaction.get("blocked_or_guarded_claim"))
+                or _text(transaction.get("uncertainty_boundary"))
+            ):
+                errors.append(
+                    f"{prefix}.blocked_or_guarded_claim or uncertainty_boundary is required for used absence chunks"
+                )
+        if disposition in {"rejected", "deferred", "not_considered"}:
             if not _text(transaction.get("risk_if_forced")):
                 errors.append(f"{prefix}.risk_if_forced is required for non-used chunks")
         if not _text(transaction.get("why")):
@@ -634,6 +767,66 @@ def validate_v60_consideration_ledger(
     }
 
 
+def _run_health_issue_details(run_health: Mapping[str, Any]) -> list[dict[str, Any]]:
+    return [
+        dict(item)
+        for item in _list(run_health.get("issue_details"))
+        if isinstance(item, Mapping)
+    ]
+
+
+def _add_run_health_issue_detail(
+    issue_details: list[dict[str, Any]],
+    *,
+    code: str,
+    trust_impact: str,
+    **metadata: Any,
+) -> None:
+    if any(_text(detail.get("code")) == code for detail in issue_details):
+        return
+    detail: dict[str, Any] = {
+        "code": code,
+        "severity": "degraded",
+        "axis": "v60",
+        "trust_impact": trust_impact,
+    }
+    for key, value in metadata.items():
+        if value is not None:
+            detail[key] = value
+    issue_details.append(detail)
+
+
+def _remove_run_health_issue_details(
+    issue_details: list[dict[str, Any]],
+    codes: set[str] | frozenset[str],
+) -> list[dict[str, Any]]:
+    return [
+        detail
+        for detail in issue_details
+        if _text(detail.get("code")) not in codes
+    ]
+
+
+def _overall_from_issue_details(issue_details: list[dict[str, Any]]) -> str:
+    highest = 0
+    overall = "healthy"
+    for detail in issue_details:
+        severity = _text(detail.get("severity"))
+        rank = HEALTH_SEVERITY_RANK.get(severity, HEALTH_SEVERITY_RANK["degraded"])
+        if rank > highest:
+            highest = rank
+            overall = severity
+    return "healthy" if highest == 0 else overall
+
+
+def _raise_run_health_at_least(run_health: dict[str, Any], severity: str) -> None:
+    current = _text(run_health.get("overall")) or "healthy"
+    current_rank = HEALTH_SEVERITY_RANK.get(current, 0)
+    target_rank = HEALTH_SEVERITY_RANK.get(severity, HEALTH_SEVERITY_RANK["degraded"])
+    if current_rank < target_rank:
+        run_health["overall"] = severity
+
+
 def finalize_v60_consideration(
     result_payload: Mapping[str, Any],
     *,
@@ -652,9 +845,18 @@ def finalize_v60_consideration(
     run_health = dict(_mapping(result.get("run_health")))
     issues = list(_strings(run_health.get("issues")))
     warnings = list(_strings(run_health.get("warnings")))
+    issue_details = _run_health_issue_details(run_health)
+    issues = [issue for issue in issues if issue not in _V60_LEDGER_HEALTH_ISSUES]
+    issue_details = _remove_run_health_issue_details(issue_details, _V60_LEDGER_HEALTH_ISSUES)
+    warnings = [
+        warning
+        for warning in warnings
+        if "no private consideration ledger was written" not in warning
+    ]
 
     if enrichment.get("status") != "active":
         run_health["v60_consideration_ledger"] = "not_required"
+        run_health["issue_details"] = issue_details
         result["run_health"] = run_health
         return result
 
@@ -679,6 +881,16 @@ def finalize_v60_consideration(
         }
         result["v60_consideration_validation"] = validation
         _add_once(issues, MISSING_LEDGER_ISSUE)
+        _add_run_health_issue_detail(
+            issue_details,
+            code=MISSING_LEDGER_ISSUE,
+            trust_impact=(
+                "V60 enrichment was active, but the runner did not write the private "
+                "consideration ledger, so selected chunks are unaccounted."
+            ),
+            selected_chunk_count=len(selected_chunks),
+            unaccounted_chunk_count=len(selected_chunks),
+        )
         _add_once(warnings, "V60 enrichment was active, but no private consideration ledger was written.")
         run_health["v60_consideration_ledger"] = "missing"
         run_health["v60_consideration_transaction_count"] = 0
@@ -704,12 +916,27 @@ def finalize_v60_consideration(
         )
         if validation.get("status") != "valid":
             _add_once(issues, INVALID_LEDGER_ISSUE)
+            _add_run_health_issue_detail(
+                issue_details,
+                code=INVALID_LEDGER_ISSUE,
+                trust_impact=(
+                    "V60 consideration ledger was present but failed deterministic "
+                    "validation, so the accountability trace is incomplete."
+                ),
+                validation_error_count=len(validation.get("errors") or []),
+                selected_chunk_count=len(selected_chunks),
+            )
 
     if run_health.get("v60_consideration_ledger") in {"missing", "invalid"}:
-        if run_health.get("overall") in {"", "healthy", None}:
-            run_health["overall"] = "degraded"
+        _raise_run_health_at_least(run_health, "degraded")
+    elif "issue_details" in run_health or issue_details:
+        if issue_details:
+            run_health["overall"] = _overall_from_issue_details(issue_details)
+        elif not issues:
+            run_health["overall"] = "healthy"
 
     run_health["issues"] = issues
+    run_health["issue_details"] = issue_details
     run_health["warnings"] = warnings
     result["run_health"] = run_health
     return result
@@ -801,9 +1028,28 @@ def _build_card(
     retrieval: Mapping[str, Any],
     card_index: int,
     snippet_cap: int,
+    selection_context_text: str,
 ) -> dict[str, Any]:
-    affordances = [_mapping(item) for item in _list(record.get("affordances"))[:1]]
-    absences = [_mapping(item) for item in _list(record.get("absence_records"))[:1]]
+    affordances = [_mapping(item) for item in _list(record.get("affordances"))]
+    absences = [_mapping(item) for item in _list(record.get("absence_records"))]
+    local_context = "\n\n".join(
+        part
+        for part in [
+            selection_context_text,
+            selection_reason,
+            _text(lane_candidate.reason) if lane_candidate else "",
+            _text(lane_candidate.evidence) if lane_candidate else "",
+        ]
+        if part
+    )
+    selected_affordance, affordance_selection = _select_affordance(
+        affordances,
+        context_text=local_context,
+    )
+    selected_absence, absence_selection = _select_absence(
+        absences,
+        context_text=local_context,
+    )
     return {
         "card_id": f"v60-card-{card_index + 1:03d}-{model_id}",
         "model_id": model_id,
@@ -827,13 +1073,26 @@ def _build_card(
         "record_status": _text(record.get("status")),
         "source_file": _text(record.get("source_file")),
         "selected_affordance_cards": [
-            _compact_affordance(affordance, snippet_cap=snippet_cap)
-            for affordance in affordances
+            _compact_affordance(
+                selected_affordance,
+                snippet_cap=snippet_cap,
+                selection=affordance_selection,
+            )
+            for selected_affordance in ([selected_affordance] if selected_affordance else [])
         ],
         "selected_absence_records": [
-            _compact_absence(absence, parent_model_id=model_id, snippet_cap=snippet_cap)
-            for absence in absences
+            _compact_absence(
+                selected_absence,
+                parent_model_id=model_id,
+                snippet_cap=snippet_cap,
+                selection=absence_selection,
+            )
+            for selected_absence in ([selected_absence] if selected_absence else [])
         ],
+        "chunk_selection_trace": {
+            "affordance": affordance_selection,
+            "absence": absence_selection,
+        },
         "do_not_overclaim": _do_not_overclaim(record),
         "llm_instruction": (
             "Consider, reject, defer, or keep private. Do not force use. "
@@ -842,10 +1101,263 @@ def _build_card(
     }
 
 
-def _compact_affordance(affordance: Mapping[str, Any], *, snippet_cap: int) -> dict[str, Any]:
+_SELECTION_STOPWORDS = frozenset(
+    {
+        "a",
+        "an",
+        "after",
+        "all",
+        "also",
+        "and",
+        "are",
+        "as",
+        "at",
+        "be",
+        "because",
+        "been",
+        "before",
+        "being",
+        "but",
+        "by",
+        "can",
+        "cannot",
+        "could",
+        "did",
+        "does",
+        "done",
+        "for",
+        "from",
+        "has",
+        "have",
+        "how",
+        "if",
+        "in",
+        "into",
+        "is",
+        "it",
+        "its",
+        "more",
+        "most",
+        "not",
+        "now",
+        "of",
+        "only",
+        "on",
+        "or",
+        "our",
+        "out",
+        "over",
+        "own",
+        "per",
+        "should",
+        "that",
+        "the",
+        "their",
+        "them",
+        "then",
+        "there",
+        "these",
+        "they",
+        "this",
+        "those",
+        "through",
+        "to",
+        "under",
+        "was",
+        "were",
+        "what",
+        "when",
+        "where",
+        "which",
+        "while",
+        "who",
+        "why",
+        "will",
+        "with",
+        "without",
+        "would",
+        "you",
+        "your",
+        "answer",
+        "case",
+        "decision",
+        "question",
+        "reasoning",
+        "source",
+        "supports",
+        "supported",
+        "use",
+        "using",
+    }
+)
+
+
+def _select_affordance(
+    affordances: Sequence[Mapping[str, Any]],
+    *,
+    context_text: str,
+) -> tuple[Mapping[str, Any] | None, dict[str, Any]]:
+    return _select_relevant_chunk(
+        affordances,
+        context_text=context_text,
+        text_builder=_affordance_positive_text,
+        negative_text_builder=_affordance_negative_text,
+        kind="affordance",
+    )
+
+
+def _select_absence(
+    absences: Sequence[Mapping[str, Any]],
+    *,
+    context_text: str,
+) -> tuple[Mapping[str, Any] | None, dict[str, Any]]:
+    return _select_relevant_chunk(
+        absences,
+        context_text=context_text,
+        text_builder=_absence_text,
+        negative_text_builder=lambda _item: "",
+        kind="absence",
+    )
+
+
+def _select_relevant_chunk(
+    chunks: Sequence[Mapping[str, Any]],
+    *,
+    context_text: str,
+    text_builder,
+    negative_text_builder,
+    kind: str,
+) -> tuple[Mapping[str, Any] | None, dict[str, Any]]:
+    if not chunks:
+        return None, {}
+
+    context_tokens = _selection_tokens(context_text)
+    scored: list[tuple[int, int, list[str], Mapping[str, Any]]] = []
+    for index, chunk in enumerate(chunks):
+        candidate_tokens = _selection_tokens(text_builder(chunk))
+        negative_tokens = _selection_tokens(negative_text_builder(chunk))
+        positive_overlap = sorted(context_tokens & candidate_tokens)
+        negative_overlap = sorted(context_tokens & negative_tokens)
+        score = len(positive_overlap) - len(negative_overlap)
+        scored.append((score, -index, positive_overlap[:8], chunk))
+
+    best_score, negative_index, overlap, best_chunk = max(scored, key=lambda row: (row[0], row[1]))
+    index = abs(negative_index)
+    method = "local_relevance" if best_score > 0 else "record_order_first"
+    if method == "local_relevance":
+        reason = (
+            f"Selected {kind} by local relevance"
+            + (f" on terms: {', '.join(overlap)}." if overlap else ".")
+        )
+    else:
+        best_chunk = chunks[0]
+        index = 0
+        best_score = 0
+        reason = f"No local lexical match; selected first {kind} record as explicit fallback."
+
+    return best_chunk, {
+        "selection_method": method,
+        "selection_score": best_score,
+        "selection_reason": reason,
+        "selection_effect_type": _infer_selection_effect_type(kind, text_builder(best_chunk)),
+        "sibling_alternatives_considered": max(0, len(chunks) - 1),
+        "selected_record_index": index,
+    }
+
+
+def _affordance_positive_text(affordance: Mapping[str, Any]) -> str:
+    activation = _mapping(affordance.get("activation_shape"))
+    requirements = [
+        " ".join(
+            [
+                _text(item.get("requirement_id")),
+                _text(item.get("description")),
+                " ".join(_strings(item.get("evidence_required"))),
+                " ".join(_strings(item.get("good_output_shape"))),
+            ]
+        )
+        for item in (_mapping(row) for row in _list(affordance.get("treatment_requirements")))
+    ]
+    evidence = [
+        " ".join([_text(item.get("source_file")), _text(item.get("source_quote"))])
+        for item in (_mapping(row) for row in _list(affordance.get("source_evidence")))
+    ]
+    return " ".join(
+        [
+            _text(affordance.get("affordance_id")),
+            _text(affordance.get("mechanism")),
+            " ".join(_strings(activation.get("use_when"))),
+            " ".join(_strings(activation.get("case_evidence_needed"))),
+            " ".join(requirements),
+            " ".join(_strings(affordance.get("diagnostic_questions"))),
+            " ".join(_strings(affordance.get("misuse_guards"))),
+            " ".join(evidence),
+        ]
+    )
+
+
+def _affordance_negative_text(affordance: Mapping[str, Any]) -> str:
+    activation = _mapping(affordance.get("activation_shape"))
+    return " ".join(_strings(activation.get("do_not_use_when")))
+
+
+def _absence_text(absence: Mapping[str, Any]) -> str:
+    evidence = [
+        " ".join([_text(item.get("source_file")), _text(item.get("source_quote"))])
+        for item in (_mapping(row) for row in _list(absence.get("source_evidence")))
+    ]
+    return " ".join(
+        [
+            _text(absence.get("attempted_field")),
+            _text(absence.get("status")),
+            _text(absence.get("runtime_policy")),
+            _text(absence.get("reason")),
+            " ".join(evidence),
+        ]
+    )
+
+
+def _selection_tokens(text: str) -> set[str]:
+    tokens = set()
+    for raw in re.findall(r"[A-Za-z][A-Za-z0-9_-]{2,}", text.lower()):
+        for part in re.split(r"[-_]", raw):
+            token = part.strip()
+            if len(token) < 3 or token in _SELECTION_STOPWORDS:
+                continue
+            if token.endswith("s") and len(token) > 4:
+                token = token[:-1]
+            tokens.add(token)
+    return tokens
+
+
+def _infer_selection_effect_type(kind: str, text: str) -> str:
+    text_l = text.lower()
+    if kind == "absence":
+        if any(term in text_l for term in ("not supported", "unsupported", "without evidence", "overclaim", "do_not_promote")):
+            return "overclaim_blocker"
+        return "private_guardrail"
+    if any(term in text_l for term in ("option", "alternative", "choice set", "expand")):
+        return "missing_option"
+    if any(term in text_l for term in ("evidence", "support", "verify", "falsif")):
+        return "evidence_gate"
+    if any(term in text_l for term in ("assumption", "hidden")):
+        return "hidden_assumption"
+    if any(term in text_l for term in ("uncertain", "unknown", "boundary")):
+        return "uncertainty_boundary"
+    if any(term in text_l for term in ("failure", "test", "diagnostic", "question")):
+        return "executable_test"
+    return "private_guardrail"
+
+
+def _compact_affordance(
+    affordance: Mapping[str, Any],
+    *,
+    snippet_cap: int,
+    selection: Mapping[str, Any] | None = None,
+) -> dict[str, Any]:
     affordance_id = _text(affordance.get("affordance_id"))
     activation = _mapping(affordance.get("activation_shape"))
-    return {
+    payload = {
         "chunk_id": f"aff::{affordance_id}",
         "chunk_kind": "affordance",
         "affordance_id": affordance_id,
@@ -876,6 +1388,8 @@ def _compact_affordance(affordance: Mapping[str, Any], *, snippet_cap: int) -> d
             for item in (_mapping(row) for row in _list(affordance.get("source_evidence"))[:snippet_cap])
         ],
     }
+    payload.update(_chunk_selection_payload(selection))
+    return payload
 
 
 def _compact_absence(
@@ -883,10 +1397,11 @@ def _compact_absence(
     *,
     parent_model_id: str,
     snippet_cap: int,
+    selection: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     model_id = _text(absence.get("model_id")) or _text(parent_model_id)
     attempted_field = _text(absence.get("attempted_field"))
-    return {
+    payload = {
         "chunk_id": f"abs::{model_id}::{attempted_field}",
         "chunk_kind": "absence",
         "attempted_field": attempted_field,
@@ -900,6 +1415,24 @@ def _compact_absence(
             }
             for item in (_mapping(row) for row in _list(absence.get("source_evidence"))[:snippet_cap])
         ],
+    }
+    payload.update(_chunk_selection_payload(selection))
+    payload["absence_blocker_reason"] = _text((selection or {}).get("selection_reason"))
+    return payload
+
+
+def _chunk_selection_payload(selection: Mapping[str, Any] | None) -> dict[str, Any]:
+    selection = _mapping(selection)
+    if not selection:
+        return {}
+    return {
+        "selection_method": _text(selection.get("selection_method")),
+        "selection_score": int(selection.get("selection_score") or 0),
+        "selection_reason": _text(selection.get("selection_reason")),
+        "selection_effect_type": _text(selection.get("selection_effect_type")),
+        "sibling_alternatives_considered": int(
+            selection.get("sibling_alternatives_considered") or 0
+        ),
     }
 
 
@@ -925,6 +1458,46 @@ def _selected_chunk_ids(cards: Sequence[Mapping[str, Any]]) -> list[str]:
             if _text(absence.get("chunk_id")):
                 ids.append(_text(absence.get("chunk_id")))
     return ids
+
+
+def _selected_chunk_selection_methods(cards: Sequence[Mapping[str, Any]]) -> dict[str, int]:
+    counts: Counter[str] = Counter()
+    for chunk in _selected_chunks(cards):
+        method = _text(chunk.get("selection_method")) or "unknown"
+        counts[method] += 1
+    return dict(sorted(counts.items()))
+
+
+def _selected_chunk_effect_types(cards: Sequence[Mapping[str, Any]]) -> dict[str, int]:
+    counts: Counter[str] = Counter()
+    for chunk in _selected_chunks(cards):
+        effect_type = _text(chunk.get("selection_effect_type")) or "unknown"
+        counts[effect_type] += 1
+    return dict(sorted(counts.items()))
+
+
+def _selected_chunk_record_order_fallback_count(cards: Sequence[Mapping[str, Any]]) -> int:
+    return sum(
+        1
+        for chunk in _selected_chunks(cards)
+        if _text(chunk.get("selection_method")) == "record_order_first"
+    )
+
+
+def _selected_chunks(cards: Sequence[Mapping[str, Any]]) -> list[Mapping[str, Any]]:
+    chunks: list[Mapping[str, Any]] = []
+    for card in cards:
+        chunks.extend(_mapping(item) for item in _list(card.get("selected_affordance_cards")))
+        chunks.extend(_mapping(item) for item in _list(card.get("selected_absence_records")))
+    return chunks
+
+
+def _chunk_source_file(chunk: Mapping[str, Any]) -> str:
+    for evidence in (_mapping(item) for item in _list(chunk.get("source_evidence"))):
+        source_file = _text(evidence.get("source_file"))
+        if source_file:
+            return source_file
+    return ""
 
 
 def _candidate_payload(candidate: V60Candidate) -> dict[str, Any]:

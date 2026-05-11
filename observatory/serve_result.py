@@ -2058,8 +2058,76 @@ def _render_audit_run_vitals() -> str:
         f"<strong>{anti_echo_count}</strong> anti-echo exclusions",
         f"<strong>{expansions_count}</strong> expansions",
     ]
+    run_health = _RESULT.get("run_health") or {}
+    product_output_health = run_health.get("product_output_health")
+    if product_output_health:
+        leak_count = run_health.get("product_output_leak_count", 0)
+        chips.append(
+            f"product output: <strong>{_esc(product_output_health)}</strong>"
+            f" ({_fmt_int(leak_count)} leaks)"
+        )
     chip_html = "".join(f'<span class="tag">{c}</span>' for c in chips)
     return f'<div class="vitals">{chip_html}</div>'
+
+
+def _render_run_health_details() -> str:
+    """Operator-readable health issue table for the audit index."""
+    run_health = _RESULT.get("run_health") or {}
+    issue_details = [
+        item
+        for item in (run_health.get("issue_details") or [])
+        if isinstance(item, dict)
+    ]
+    legacy_issues = [
+        str(item)
+        for item in (run_health.get("issues") or [])
+        if str(item or "").strip()
+    ]
+
+    if not issue_details and not legacy_issues:
+        return ""
+
+    if issue_details:
+        rows = []
+        for detail in issue_details:
+            code = detail.get("code", "")
+            severity = detail.get("severity", "")
+            axis = detail.get("axis", "")
+            trust_impact = detail.get("trust_impact", "")
+            metadata = {
+                k: v
+                for k, v in detail.items()
+                if k not in {"code", "severity", "axis", "trust_impact"}
+            }
+            rows.append(
+                "<tr>"
+                f"<td><code>{_esc(code)}</code></td>"
+                f"<td>{_esc(severity)}</td>"
+                f"<td>{_esc(axis)}</td>"
+                f"<td>{_esc(trust_impact)}</td>"
+                f"<td><code>{_esc(json.dumps(metadata, sort_keys=True))}</code></td>"
+                "</tr>"
+            )
+        body = "".join(rows)
+    else:
+        body = "".join(
+            "<tr>"
+            f"<td><code>{_esc(code)}</code></td>"
+            "<td>legacy</td><td>unknown</td>"
+            "<td>Older artifact has only raw issue codes.</td><td><code>{}</code></td>"
+            "</tr>"
+            for code in legacy_issues
+        )
+
+    overall = _esc(run_health.get("overall", "unknown"))
+    return f"""
+<h2>Run Health</h2>
+<p class="hint">Overall: <code>{overall}</code>. Severity says how much this affects trust in the run; axis says which part of the process needs inspection.</p>
+<table>
+<tr><th>Issue</th><th>Severity</th><th>Axis</th><th>Trust impact</th><th>Metadata</th></tr>
+{body}
+</table>
+"""
 
 
 def _render_v60_html() -> str:
@@ -2089,6 +2157,9 @@ def _render_v60_html() -> str:
     lane_candidates = candidate_pool.get("lane_candidates") or []
     embedding_hits = candidate_pool.get("embedding_model_hits") or []
     selection_source_counts = telemetry.get("selection_source_counts") or {}
+    chunk_selection_methods = telemetry.get("selected_chunk_selection_methods") or {}
+    chunk_effect_types = telemetry.get("selected_chunk_effect_types") or {}
+    chunk_fallback_count = telemetry.get("selected_chunk_record_order_fallback_count", 0)
     lane_source_counts = candidate_pool.get("lane_source_counts") or {}
     disposition_counts = validation.get("disposition_counts") or {}
     validation_errors = validation.get("errors") or []
@@ -2102,6 +2173,10 @@ def _render_v60_html() -> str:
                 for part in [
                     _esc(chunk.get("chunk_id", "")),
                     _esc(chunk.get("confidence", "")),
+                    _esc(chunk.get("selection_method", "")),
+                    _esc(chunk.get("selection_effect_type", "")),
+                    _esc(f"score={chunk.get('selection_score', '')}" if chunk.get("selection_method") else ""),
+                    _esc(chunk.get("selection_reason", "")),
                     _esc("; ".join((chunk.get("activation_shape") or {}).get("use_when") or [])),
                 ]
                 if part
@@ -2113,6 +2188,10 @@ def _render_v60_html() -> str:
                 for part in [
                     _esc(chunk.get("chunk_id", "")),
                     _esc(chunk.get("status", "")),
+                    _esc(chunk.get("selection_method", "")),
+                    _esc(chunk.get("selection_effect_type", "")),
+                    _esc(f"score={chunk.get('selection_score', '')}" if chunk.get("selection_method") else ""),
+                    _esc(chunk.get("selection_reason", "")),
                     _esc(chunk.get("reason", "")),
                 ]
                 if part
@@ -2201,6 +2280,8 @@ def _render_v60_html() -> str:
   <span class="tag">embedding mode: <strong>{_esc(candidate_pool.get('embedding_mode', ''))}</strong></span>
 </div>
 <p class="hint">Selection source counts: {_esc(json.dumps(selection_source_counts, sort_keys=True))}</p>
+<p class="hint">Chunk selection methods: {_esc(json.dumps(chunk_selection_methods, sort_keys=True))}; record-order fallbacks: {_fmt_int(chunk_fallback_count)}</p>
+<p class="hint">Selected effect types: {_esc(json.dumps(chunk_effect_types, sort_keys=True))}</p>
 <p class="hint">Lane source counts: {_esc(json.dumps(lane_source_counts, sort_keys=True))}</p>
 
 <h3>Lane Candidates</h3>
@@ -2210,8 +2291,9 @@ def _render_v60_html() -> str:
 </table>
 
 <h3>Embedding Hits</h3>
+<p class="hint">Embedding score is a retrieval/rank signal for recall, not semantic confidence or proof of usefulness.</p>
 <table>
-<tr><th>Rank</th><th>Model</th><th>Score</th><th>Signal</th></tr>
+<tr><th>Rank</th><th>Model</th><th>Retrieval/rank signal</th><th>Signal</th></tr>
 {"".join(embedding_rows) if embedding_rows else "<tr><td colspan='4' class='empty'>No embedding recall hits recorded.</td></tr>"}
 </table>
 
@@ -2272,6 +2354,7 @@ def _render_audit_index_html() -> str:
         )
     header = _render_run_header()
     vitals = _render_audit_run_vitals() if audit_present else ""
+    health_details = _render_run_health_details()
 
     if not audit_present:
         notice = (
@@ -2286,6 +2369,7 @@ def _render_audit_index_html() -> str:
 {header}
 <p class="lede">A separate lens on the same case. Each panel below shows what the system observed, considered, and surfaced — the reasoning trace behind the answer at <a href="/">/</a>.</p>
 {vitals}
+{health_details}
 {notice}
 <ul style="list-style:none;padding:0;">
 {"".join(f'<div style="margin-bottom:1.5rem">{c}</div>' for c in cards)}

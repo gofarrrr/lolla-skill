@@ -21,6 +21,7 @@ from dataclasses import dataclass
 from typing import Protocol
 
 from .boundary_validation import coerce_str
+from .boundary_tracing import BoundaryCallTrace, _capture_boundary_call
 from .ir import ConversationIR
 from .packet_builders.lane4 import Lane4Packet, build_lane4_packet
 
@@ -142,6 +143,14 @@ class StructuralCoverageCard:
             gap_questions=gap_questions,
             anti_echo_model_ids=tuple(data.get("anti_echo_model_ids", [])),
         )
+
+
+@dataclass(frozen=True)
+class StructuralCoverageRun:
+    """Structural coverage result plus immediate per-call telemetry traces."""
+
+    card: StructuralCoverageCard | None
+    boundary_calls: tuple[BoundaryCallTrace, ...] = ()
 
 
 # ---------------------------------------------------------------------------
@@ -790,21 +799,54 @@ def run_structural_coverage_from_ir(
     classification, detection, and gap question generation. Deterministic
     routing + assembly are input-shape agnostic.
     """
+    return run_structural_coverage_with_traces_from_ir(
+        boundary,
+        ir,
+        structural_coverage_routing,
+        anti_echo_model_ids,
+    ).card
+
+
+def run_structural_coverage_with_traces_from_ir(
+    boundary: _BoundaryClient,
+    ir: ConversationIR,
+    structural_coverage_routing: dict,
+    anti_echo_model_ids: set[str],
+) -> StructuralCoverageRun:
+    """IR-driven Lane 4 orchestrator with immediate boundary trace capture.
+
+    ``run_structural_coverage_from_ir`` remains as the card-only compatibility
+    wrapper. Pipeline runtime should use this function so each hidden Lane 4
+    LLM call is recorded before a later call overwrites ``last_call_metadata``.
+    """
     packet = build_lane4_packet(ir)
+    boundary_calls: list[BoundaryCallTrace] = []
 
     try:
         question_type = run_question_classification_from_packet(boundary, packet)
+        boundary_calls.append(
+            _capture_boundary_call(
+                boundary,
+                stage="structural_coverage_classification",
+            )
+        )
     except Exception:
         _LOGGER.exception("Question classification (from_ir) failed")
-        return None
+        return StructuralCoverageRun(card=None, boundary_calls=tuple(boundary_calls))
 
     try:
         dimensions = run_dimension_detection_from_packet(
             boundary, packet, question_type, structural_coverage_routing,
         )
+        boundary_calls.append(
+            _capture_boundary_call(
+                boundary,
+                stage="structural_coverage_detection",
+            )
+        )
     except Exception:
         _LOGGER.exception("Dimension detection (from_ir) failed")
-        return None
+        return StructuralCoverageRun(card=None, boundary_calls=tuple(boundary_calls))
 
     gap_routes = route_gap_dimensions(
         dimensions, structural_coverage_routing, anti_echo_model_ids,
@@ -815,9 +857,19 @@ def run_structural_coverage_from_ir(
         gap_questions = generate_gap_questions_from_packet(
             boundary, packet, question_type, gap_routes, structural_coverage_routing,
         )
+        if gap_routes:
+            boundary_calls.append(
+                _capture_boundary_call(
+                    boundary,
+                    stage="structural_coverage_gap_questions",
+                )
+            )
     except Exception:
         _LOGGER.exception("Gap question generation (from_ir) failed")
 
-    return assemble_structural_coverage_card(
-        question_type, dimensions, gap_routes, anti_echo_model_ids, gap_questions,
+    return StructuralCoverageRun(
+        card=assemble_structural_coverage_card(
+            question_type, dimensions, gap_routes, anti_echo_model_ids, gap_questions,
+        ),
+        boundary_calls=tuple(boundary_calls),
     )

@@ -72,16 +72,31 @@ def _write_extraction_and_conversation(
     return extraction_path, conversation_path
 
 
-def _install_live_pipeline_fakes(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> list[object]:
+def _install_live_pipeline_fakes(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+    *,
+    bundle_chunks: tuple[object, ...] | None = None,
+    companion_fingerprints: tuple[object, ...] = (),
+    audit_warnings: tuple[str, ...] = (),
+    embedding_retriever: object | None = None,
+) -> list[object]:
     import system_b.boundary_provider as boundary_provider
     import system_b.bullshit_index as bullshit_index
     import system_b.pipeline as pipeline_mod
 
     captured_inputs: list[object] = []
 
+    class _FakeSubstrate:
+        def all_chunks(self) -> tuple[object, ...]:
+            return bundle_chunks or ()
+
+    class _FakeBundleSelector:
+        _substrate = _FakeSubstrate()
+
     class _FakePipeline:
-        _embedding_retriever = None
-        _bundle_selector = None
+        _embedding_retriever = embedding_retriever
+        _bundle_selector = _FakeBundleSelector() if bundle_chunks is not None else None
 
         def run(self, pipeline_input: object) -> object:
             captured_inputs.append(pipeline_input)
@@ -89,8 +104,8 @@ def _install_live_pipeline_fakes(monkeypatch: pytest.MonkeyPatch, tmp_path: Path
                 delta_card=SimpleNamespace(findings=[]),
                 frame_pressure_card=None,
                 audit=SimpleNamespace(
-                    warnings=[],
-                    companion_fingerprint_validated=[],
+                    warnings=list(audit_warnings),
+                    companion_fingerprint_validated=list(companion_fingerprints),
                 ),
                 prompt_versions={},
             )
@@ -112,6 +127,21 @@ def _install_live_pipeline_fakes(monkeypatch: pytest.MonkeyPatch, tmp_path: Path
         lambda text, client, *, context_summary: _FakeBullshitProfile(),
     )
     return captured_inputs
+
+
+def _install_clean_health_pipeline_fakes(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+    *,
+    embedding_retriever: object | None = None,
+) -> list[object]:
+    return _install_live_pipeline_fakes(
+        monkeypatch,
+        tmp_path,
+        bundle_chunks=(object(),),
+        companion_fingerprints=(object(),),
+        embedding_retriever=embedding_retriever,
+    )
 
 
 def test_file_inputs_with_conversation_use_conversation_context_by_default(
@@ -430,6 +460,94 @@ def test_triggered_stakeholder_check_failure_degrades_run_health(
     assert payload["stakeholder_assumption_check"]["status"] == "skipped_error"
     assert "stakeholder_check_failed" in payload["run_health"]["issues"]
     assert payload["run_health"]["overall"] == "degraded"
+
+
+def test_optional_embeddings_off_is_visible_without_degrading_run_health(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    extraction_path, conversation_path = _write_extraction_and_conversation(tmp_path)
+    output_path = tmp_path / "result.json"
+    _install_clean_health_pipeline_fakes(monkeypatch, tmp_path)
+
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "run_pipeline.py",
+            "--env-file",
+            str(tmp_path / "no-env"),
+            "--extraction-file",
+            str(extraction_path),
+            "--conversation-file",
+            str(conversation_path),
+            "--output-file",
+            str(output_path),
+            "--skip-revision",
+            "--v60-enrichment",
+            "off",
+        ],
+    )
+
+    assert run_pipeline.main() == 0
+    payload = json.loads(output_path.read_text(encoding="utf-8"))
+
+    assert payload["run_health"]["overall"] == "healthy"
+    assert "embeddings_off" in payload["run_health"]["issues"]
+    assert {
+        "code": "embeddings_off",
+        "severity": "optional_off",
+        "axis": "retrieval",
+    } in [
+        {
+            "code": detail["code"],
+            "severity": detail["severity"],
+            "axis": detail["axis"],
+        }
+        for detail in payload["run_health"]["issue_details"]
+    ]
+
+
+def test_capture_critical_remains_critical_with_health_issue_details(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    extraction_path, conversation_path = _write_extraction_and_conversation(tmp_path)
+    payload = json.loads(extraction_path.read_text(encoding="utf-8"))
+    payload["capture_health"] = "critical"
+    extraction_path.write_text(json.dumps(payload), encoding="utf-8")
+    output_path = tmp_path / "result.json"
+    _install_clean_health_pipeline_fakes(monkeypatch, tmp_path)
+
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "run_pipeline.py",
+            "--extraction-file",
+            str(extraction_path),
+            "--conversation-file",
+            str(conversation_path),
+            "--output-file",
+            str(output_path),
+            "--skip-revision",
+            "--v60-enrichment",
+            "off",
+        ],
+    )
+
+    assert run_pipeline.main() == 0
+    result = json.loads(output_path.read_text(encoding="utf-8"))
+
+    assert result["run_health"]["overall"] == "critical"
+    capture_detail = next(
+        detail
+        for detail in result["run_health"]["issue_details"]
+        if detail["code"] == "capture_critical"
+    )
+    assert capture_detail["severity"] == "critical"
+    assert capture_detail["axis"] == "capture"
 
 
 def test_extraction_file_without_conversation_file_requires_conversation_file(

@@ -126,6 +126,25 @@ If any line says `FATAL`, stop and tell the user what's missing. Do not proceed.
 
 Ten steps. You are a conductor for the audit pipeline (Steps 1-4), then the primary reasoning voice for reconsideration (Steps 6-6b), followed by an independent pressure check from isolated sub-agents (Steps 7-8b), then the memo decision-note layer (Step 8c), and finally the Observatory and archive (Steps 9-10). Step 5 is a placeholder — Observatory is deferred to Step 9 so all artifacts are complete.
 
+### Live Product Surface Rule
+
+Treat every visible Claude Code narration line during a `/lolla` run as product
+surface, even if it is not archived. The persisted hygiene gate protects
+`revised.txt`, memo artifacts, and result health; it does not protect the live
+terminal transcript. Therefore the live run must use reduced narration:
+
+- Do not announce internal beat names, step names, lane names, agent launches,
+  waiting states, ledger repair/debugging, telemetry finalization, or archive
+  internals.
+- Do not write phrases such as *"Beat 2"*, *"launching pressure-check agents"*,
+  *"sub-agents are in"*, *"debugging the V60 ledger"*, or *"the pipeline
+  flagged"* in any user-visible narration.
+- If progress must be visible, state only the user-facing work product:
+  *"I have the counterargument; I’m folding it into the revised answer now."*
+  If the next action is internal, stay silent unless there is a real blocker.
+- Before sending a visible progress line, mentally apply the product-output
+  hygiene rule: if the line would fail as `live_narration`, do not send it.
+
 ### Step 1: Capture Conversation
 
 Extract the full conversation from your context into a temp file. Include only user messages and your (assistant) prose responses. Skip tool call inputs, tool results, system messages, and file contents.
@@ -258,7 +277,12 @@ After the counterargument lead (Step 4), **reconsider your earlier advice and re
 
 **Render the content directly. Do NOT introduce it with "Beat 3," "Step 6," "Now writing the updated position," or any internal section label.** The user-facing transcript opens at the `## Updated position` heading and the `### What survived` / `### What I'd take back or set aside` / `### What actually shifted` subheadings — those ARE the section labels the user sees. No additional preamble.
 
-**Timing note:** Before you begin writing your reconsideration, launch the pressure-check sub-agents from Step 7 below. They run in the background while you write. By the time you finish Step 6 and Step 6b, the sub-agent results will be ready for Step 8. Do this silently; do not narrate the launch, waiting, partial completion, or completion to the user.
+**Timing note:** Do not launch the pressure-check sub-agents before Step 6b
+finalization. First write Step 6, fill the deterministic V60 ledger skeleton,
+and run `finalize_v60_telemetry.py --require-valid`. Launch Step 7 only after
+the ledger is `valid` or `not_required`. This gives up some background
+parallelism, but it prevents an invalid private-consideration trace from
+continuing into pressure checks, memo rendering, Observatory, or archive.
 
 The audit findings are **hints, not commands — but not disposable hints.** They come from a curated knowledge substrate that sees patterns you might miss. You are still the primary reasoning engine in this conversation: you have the full context, the user's nuances, and the back-and-forth. The audit has structural pattern detection. Use both.
 
@@ -336,7 +360,9 @@ print(f'Revised answer persisted to {result_path}')
 
 **If `v60_enrichment.status == "active"`, persist the private V60 consideration ledger immediately after the revised answer.** This ledger is operator telemetry only. It accounts for what was picked up, what was skipped by your judgment, what was deferred, and what was presented but not used. Do not mention it in chat.
 
-Build exactly one transaction for every chunk ID in `v60_enrichment.telemetry.selected_chunk_ids`:
+Start from the deterministic ledger skeleton, not from memory. Prefer `/tmp/lolla_${LOLLA_RUN_ID}_v60_ledger_skeleton.json`; if the sidecar is missing, read `v60_enrichment.consideration_ledger_skeleton` inside `/tmp/lolla_${LOLLA_RUN_ID}_result.json`. The skeleton contains exactly one transaction shell for every selected chunk. Do not change `chunk_id`, `card_id`, `model_id`, or `chunk_kind`; fill the empty decision fields.
+
+Write exactly one completed transaction for every skeleton transaction:
 
 ```bash
 cat > /tmp/lolla_${LOLLA_RUN_ID}_v60_ledger.json << 'LOLLA_V60_LEDGER_EOF'
@@ -348,12 +374,14 @@ cat > /tmp/lolla_${LOLLA_RUN_ID}_v60_ledger.json << 'LOLLA_V60_LEDGER_EOF'
       "chunk_id": "aff::example.model-affordance-id",
       "card_id": "parent card id from v60_enrichment.selected_cards",
       "model_id": "parent model id",
+      "chunk_kind": "affordance",
       "disposition": "used",
       "route": "updated_position",
       "strongest_plausible_application": "Best honest way this chunk could apply to the case.",
       "risk_if_forced": "What would go wrong if this chunk were forced despite weak fit, or empty if used cleanly.",
       "why": "Short private rationale for how this affected reasoning.",
-      "visible_effect": "Short public-facing effect, or empty if private-only."
+      "visible_effect": "Short public-facing effect, or empty if private-only.",
+      "private_guardrail": "Short private guardrail if used privately, otherwise empty."
     }
   ],
   "notes": [
@@ -362,12 +390,26 @@ cat > /tmp/lolla_${LOLLA_RUN_ID}_v60_ledger.json << 'LOLLA_V60_LEDGER_EOF'
 }
 LOLLA_V60_LEDGER_EOF
 
-python3 $SKILL_DIR/scripts/finalize_v60_telemetry.py --run-id "${LOLLA_RUN_ID}" --quiet
+python3 $SKILL_DIR/scripts/finalize_v60_telemetry.py --run-id "${LOLLA_RUN_ID}" --quiet --require-valid
 ```
 
 The allowed `disposition` values are `used`, `rejected`, `deferred`, and `not_considered`. The allowed `route` values are `updated_position`, `pressure_check`, `private_guardrail`, `evidence_gate`, `diagnostic_question`, `set_aside`, `already_covered`, `irrelevant`, `missing_evidence`, and `duplicate`.
 
-For every transaction, fill `strongest_plausible_application`. For `rejected`, `deferred`, and `not_considered` transactions, fill `risk_if_forced` with the concrete overclaim, duplicate, missing-evidence, or distraction risk. Empty `risk_if_forced` is acceptable only when the chunk was actually used cleanly.
+If the finalization command exits non-zero, stop before pressure checks, memo rendering, Observatory, or archive. Read the validation errors, repair `/tmp/lolla_${LOLLA_RUN_ID}_v60_ledger.json` against the skeleton, rerun the same finalization command, and continue only after `v60_consideration_ledger` is `valid` (or `not_required` when V60 is inactive).
+
+Route compatibility:
+
+- `used`: `updated_position`, `pressure_check`, `private_guardrail`, `evidence_gate`, `diagnostic_question`
+- `rejected`: `set_aside`, `already_covered`, `irrelevant`, `missing_evidence`, `duplicate`
+- `deferred`: `set_aside`, `missing_evidence`, `evidence_gate`, `diagnostic_question`
+- `not_considered`: `already_covered`, `duplicate`, `irrelevant`
+
+For every transaction, fill `strongest_plausible_application`. For `used` transactions, fill either `visible_effect` or `private_guardrail`; a chunk can be used privately without changing public prose, but the guardrail must be named. For `rejected`, `deferred`, and `not_considered` transactions, fill `risk_if_forced` with the concrete overclaim, duplicate, missing-evidence, or distraction risk. Empty `risk_if_forced` is acceptable only when the chunk was actually used cleanly.
+
+For `chunk_kind == "absence"` and `disposition == "used"`, also fill at least one of:
+
+- `blocked_or_guarded_claim` — the overclaim or tempting unsupported move the absence blocked
+- `uncertainty_boundary` — the confidence/evidence boundary the absence preserved
 
 **This step is not optional.** Without it, the Observatory shows an incomplete run — four cards with no revised answer.
 
@@ -379,7 +421,9 @@ Memo generation is not user-facing until the final functional receipt. Do not wr
 
 ### Step 7: Pressure-Check Sub-Agents
 
-**Launch these BEFORE writing Step 6** — they run in the background while you write your reconsideration. By the time you finish Step 6 and Step 6b, results are ready.
+**Launch these only AFTER Step 6b finalization succeeds.** The V60 ledger gate
+comes first. If `finalize_v60_telemetry.py --require-valid` failed, repair the
+ledger and rerun finalization before starting any pressure-check agent.
 
 **Read `references/sub-agent-prompts.md`** for the full templates: shared preamble (with `{DECISION_SITUATION}`, `{LIVE_CONSTRAINTS}`, `{SYNTHESIZED_POSITION}`, `{REASONING_PASSAGES}`, `{ORIGINAL_FRAMING}`, `{DROPPED_THREADS}` placeholders) plus four lane-specific suffixes.
 
@@ -662,7 +706,7 @@ After the full cycle is complete (cards, updated position, pressure check, and m
 **Always launch after Step 8c completes.** Do not wait for the user to ask:
 
 ```bash
-python3 $SKILL_DIR/scripts/finalize_v60_telemetry.py --run-id "${LOLLA_RUN_ID}" --quiet
+python3 $SKILL_DIR/scripts/finalize_v60_telemetry.py --run-id "${LOLLA_RUN_ID}" --quiet --require-valid || exit $?
 python3 $SKILL_DIR/observatory/serve_result.py --result /tmp/lolla_${LOLLA_RUN_ID}_result.json
 ```
 
@@ -681,7 +725,8 @@ python3 $SKILL_DIR/scripts/archive_run.py --run-id "${LOLLA_RUN_ID}"
 The archive script:
 
 - Finalizes V60 consideration telemetry before copying artifacts. If V60 was active and the private ledger is missing, the run is marked degraded with `v60_consideration_ledger_missing` instead of looking complete.
-- Reads the 9 core artifacts from `/tmp/lolla_${LOLLA_RUN_ID}_*` (`conversation.txt`, `extraction.json`, `result.json`, `revised.txt`, `memo.md`, `memo_note.json`, `gapcheck.txt`, `gapcheck_lanes.json`, `v60_ledger.json`). Missing artifacts (e.g., if Step 6b, V60 ledger persistence, or Step 8c did not run on a weaker orchestrator) are skipped gracefully.
+- Runs the product-output hygiene scanner before copying artifacts. If revised text, memo markdown, or memo-note fields leak internal terms such as V60, affordance, chunk, ledger, lane, pipeline, or independent review, `run_health.product_output_health` becomes `unsafe` and the run is degraded with `product_output_leak`.
+- Reads the 10 core artifacts from `/tmp/lolla_${LOLLA_RUN_ID}_*` (`conversation.txt`, `extraction.json`, `result.json`, `revised.txt`, `memo.md`, `memo_note.json`, `gapcheck.txt`, `gapcheck_lanes.json`, `v60_ledger_skeleton.json`, `v60_ledger.json`). Missing artifacts (e.g., if Step 6b, V60 ledger persistence, or Step 8c did not run on a weaker orchestrator) are skipped gracefully.
 - Computes a case fingerprint from `extraction.decision_situation` (first 120 chars, normalized).
 - Finds-or-creates a case folder. Matching uses **exact fingerprint first, then token-set Jaccard ≥ 0.80** against stored fingerprints — so small extractor paraphrase drift across runs of the same conversation does not split into multiple case folders. Matching is done against the manifest inside each case folder, not against folder names, so user renames of case folders do not break future matching.
 - Auto-names new cases with a slug derived from the first 3-4 significant words of `decision_situation` (e.g., `grant-equity-partnership-status`). Users can rename via `mv` — matching will still find the folder via manifest.
@@ -703,7 +748,7 @@ After the full cycle (Beat 1 → Step 3 receipt → Beat 2 → Beat 3 → Beat 4
 
 > *Observatory is live at http://localhost:8080. Memo at /tmp/lolla_${LOLLA_RUN_ID}_memo.md. Total run cost: $X.XX. Archived to ~/.local/share/lolla/runs/{case_id}/${LOLLA_RUN_ID}/.*
 
-**If the run completed but `run_health.overall` is `degraded`:**
+**If the run completed but `run_health.overall` is `partial`, `degraded`, or `critical`:**
 
 Keep the functional receipt, but add one plain warning sentence before it. Name the issue in user language, not status codes. Example:
 

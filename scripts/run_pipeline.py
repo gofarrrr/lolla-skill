@@ -234,6 +234,111 @@ def _v60_mode_enabled(mode: str) -> bool:
     return not _env_flag_disabled("LOLLA_V60_ENRICHMENT")
 
 
+_HEALTH_SEVERITY_RANK = {
+    "info": 0,
+    "optional_off": 0,
+    "partial": 1,
+    "degraded": 2,
+    "critical": 3,
+}
+
+_HEALTH_ISSUE_DEFAULTS = {
+    "substrate_empty": {
+        "severity": "degraded",
+        "axis": "substrate",
+        "trust_impact": "Compiled substrate was empty, so deterministic model routing had no substrate to consult.",
+    },
+    "embeddings_off": {
+        "severity": "optional_off",
+        "axis": "retrieval",
+        "trust_impact": "Embedding recall was unavailable by mode; deterministic and lexical paths still ran.",
+    },
+    "no_fingerprint": {
+        "severity": "degraded",
+        "axis": "companion",
+        "trust_impact": "Companion routing produced no validated fingerprint, reducing confidence in model custody.",
+    },
+    "pipeline_warnings": {
+        "severity": "partial",
+        "axis": "pipeline",
+        "trust_impact": "Pipeline warnings were emitted; inspect warnings before comparing this run.",
+    },
+    "capture_critical": {
+        "severity": "critical",
+        "axis": "capture",
+        "trust_impact": "Conversation capture was critically incomplete or malformed.",
+    },
+    "capture_degraded": {
+        "severity": "degraded",
+        "axis": "capture",
+        "trust_impact": "Conversation capture had quality problems that may affect reasoning coverage.",
+    },
+    "quote_fabrication": {
+        "severity": "degraded",
+        "axis": "extraction",
+        "trust_impact": "Extraction retained fabricated quotes after validation/retry.",
+    },
+    "capture_truncated": {
+        "severity": "degraded",
+        "axis": "capture",
+        "trust_impact": "Conversation was truncated before audit, so omitted turns may contain missing context.",
+    },
+    "lane3_all_dropped": {
+        "severity": "partial",
+        "axis": "lane3",
+        "trust_impact": "Frame pressure detected candidates but all failed validation, so Lane 3 contributed no reframings.",
+    },
+    "bullshit_index_partial": {
+        "severity": "partial",
+        "axis": "postprocessing",
+        "trust_impact": "Some Bullshit Index passage evaluations failed, leaving a partial profile.",
+    },
+    "stakeholder_check_failed": {
+        "severity": "degraded",
+        "axis": "stakeholder_check",
+        "trust_impact": "A triggered stakeholder assumption check failed instead of producing a usable result.",
+    },
+    "v60_enrichment_failed": {
+        "severity": "degraded",
+        "axis": "v60",
+        "trust_impact": "V60 private enrichment was enabled but did not produce an active enrichment payload.",
+    },
+}
+
+
+def _health_issue_detail(
+    code: str,
+    *,
+    severity: str | None = None,
+    axis: str | None = None,
+    trust_impact: str | None = None,
+    **metadata: object,
+) -> dict[str, object]:
+    defaults = _HEALTH_ISSUE_DEFAULTS.get(code, {})
+    detail: dict[str, object] = {
+        "code": code,
+        "severity": severity or str(defaults.get("severity") or "degraded"),
+        "axis": axis or str(defaults.get("axis") or "pipeline"),
+        "trust_impact": trust_impact or str(defaults.get("trust_impact") or "Inspect this run before comparison."),
+    }
+    for key, value in metadata.items():
+        if value is not None:
+            detail[key] = value
+    return detail
+
+
+def _overall_health_from_issue_details(issue_details: list[dict[str, object]]) -> str:
+    highest = 0
+    overall = "healthy"
+    for detail in issue_details:
+        severity = str(detail.get("severity") or "")
+        rank = _HEALTH_SEVERITY_RANK.get(severity, _HEALTH_SEVERITY_RANK["degraded"])
+        if rank > highest:
+            highest = rank
+            overall = severity
+    return "healthy" if highest == 0 else overall
+
+
 # ---------------------------------------------------------------------------
 # Data root resolution
 # ---------------------------------------------------------------------------
@@ -855,7 +960,7 @@ def main() -> int:
     #   3. revision_call_log            — Revision (labeled "revision")
     #   4. extraction sidecar           — Extraction (labeled "extraction" / "extraction_retry")
     # Plus embedding_usage_records and (later) Step-7 subagent records.
-    from system_b.usage_summary import build_usage_summary, load_extraction_sidecar
+    from system_b.usage_summary import build_usage_summary, is_valid_run_id, load_extraction_sidecar
 
     def _derive_run_id_from_path(raw_path: str | None) -> str:
         """Pull <run_id> out of a path like ``lolla_<run_id>_*.{json,txt}``."""
@@ -877,6 +982,22 @@ def main() -> int:
         or _derive_run_id_from_path(args.output_file)
         or _derive_run_id_from_path(args.extraction_file)
     )
+
+    _v60_skeleton = (
+        (serialized.get("v60_enrichment") or {}).get("consideration_ledger_skeleton")
+        if isinstance(serialized.get("v60_enrichment"), dict)
+        else None
+    )
+    if _run_id and is_valid_run_id(_run_id) and isinstance(_v60_skeleton, dict):
+        try:
+            Path(f"/tmp/lolla_{_run_id}_v60_ledger_skeleton.json").write_text(
+                json.dumps(_v60_skeleton, indent=2, ensure_ascii=False),
+                encoding="utf-8",
+            )
+        except OSError as exc:
+            _warnings_for_skeleton = serialized.setdefault("warnings", [])
+            if isinstance(_warnings_for_skeleton, list):
+                _warnings_for_skeleton.append(f"V60 ledger skeleton sidecar write failed: {exc}")
 
     serialized["usage_summary"] = build_usage_summary(
         run_id=_run_id,
@@ -904,55 +1025,76 @@ def main() -> int:
     # Partial drops are tolerated (some elements kept).
     _lane3_all_dropped = _lane3_drops_count > 0 and _lane3_kept_count == 0
 
-    _health_issues = []
+    _health_issue_details: list[dict[str, object]] = []
     if not _substrate_ok:
-        _health_issues.append("substrate_empty")
+        _health_issue_details.append(_health_issue_detail("substrate_empty"))
     if not _embedding_active:
-        _health_issues.append("embeddings_off")
+        _health_issue_details.append(
+            _health_issue_detail(
+                "embeddings_off",
+                severity="degraded" if config.enable_embeddings else "optional_off",
+                trust_impact=(
+                    "Embedding mode expected an active retriever, but none was available."
+                    if config.enable_embeddings
+                    else None
+                ),
+                mode=args.embeddings,
+                enabled_by_config=config.enable_embeddings,
+                openai_key_present=has_key,
+            )
+        )
     if not _fingerprint_ok and config.enable_companion:
-        _health_issues.append("no_fingerprint")
+        _health_issue_details.append(_health_issue_detail("no_fingerprint"))
     if _warnings:
-        _health_issues.append("pipeline_warnings")
+        _health_issue_details.append(_health_issue_detail("pipeline_warnings"))
     if _capture_health == "critical":
-        _health_issues.append("capture_critical")
+        _health_issue_details.append(_health_issue_detail("capture_critical"))
     elif _capture_health == "degraded":
-        _health_issues.append("capture_degraded")
+        _health_issue_details.append(_health_issue_detail("capture_degraded"))
     if _quote_fabricated_count > 0:
         # Fabricated passages survived the extraction retry (if any was attempted).
         # Surface so Step 4 chat can warn the user about partial extraction quality.
-        _health_issues.append("quote_fabrication")
+        _health_issue_details.append(
+            _health_issue_detail("quote_fabrication", fabricated_count=_quote_fabricated_count)
+        )
     if _truncation_applied:
         # Conversation was truncated to fit the 80K char cap. Middle turns
         # dropped; audit ran on first-N + last-N slices.
-        _health_issues.append("capture_truncated")
+        _health_issue_details.append(
+            _health_issue_detail("capture_truncated", omitted_turns=_omitted_turns)
+        )
     if _lane3_all_dropped:
         # Every frame element failed validation — Lane 3 produced no reframings
         # despite the extractor attempting. Different from "no frame elements
         # detected" (which is a legitimate zero); this is "all detected but all
         # dropped by the evidence_quote/pattern validator."
-        _health_issues.append("lane3_all_dropped")
+        _health_issue_details.append(
+            _health_issue_detail("lane3_all_dropped", dropped_count=_lane3_drops_count)
+        )
     if _bi_evaluation_failures:
         # Passage-level BI calls can fail and still produce a profile for the
         # remaining passages. Surface partial evaluator loss in run health.
-        _health_issues.append("bullshit_index_partial")
+        _health_issue_details.append(
+            _health_issue_detail(
+                "bullshit_index_partial",
+                evaluation_failures=_bi_evaluation_failures,
+            )
+        )
     if (
         stakeholder_check_payload
         and stakeholder_check_payload.get("status") == "skipped_error"
         and stakeholder_check_payload.get("triggered")
     ):
-        _health_issues.append("stakeholder_check_failed")
+        _health_issue_details.append(_health_issue_detail("stakeholder_check_failed"))
     _v60 = serialized.get("v60_enrichment") or {}
     _v60_status = str(_v60.get("status") or "")
     if v60_enabled and _v60_status != "active":
-        _health_issues.append("v60_enrichment_failed")
+        _health_issue_details.append(
+            _health_issue_detail("v60_enrichment_failed", v60_status=_v60_status or "unknown")
+        )
 
-    # Overall health: critical if capture is critical, degraded if any issues
-    if "capture_critical" in _health_issues:
-        _overall = "critical"
-    elif _health_issues:
-        _overall = "degraded"
-    else:
-        _overall = "healthy"
+    _health_issues = [str(detail["code"]) for detail in _health_issue_details]
+    _overall = _overall_health_from_issue_details(_health_issue_details)
 
     serialized["run_health"] = {
         "overall": _overall,
@@ -969,6 +1111,7 @@ def main() -> int:
         "lane3_frame_kept_count": _lane3_kept_count,
         "bullshit_index_evaluation_failures": _bi_evaluation_failures,
         "issues": _health_issues,
+        "issue_details": _health_issue_details,
         "warnings": _warnings + _capture_warnings,
         "activation_tiebreaker": "on" if activation_tiebreaker_enabled else "off",
         "v60_enrichment": _v60_status or "unknown",

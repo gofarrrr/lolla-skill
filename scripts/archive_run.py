@@ -19,9 +19,10 @@ Case matching (the "which case is this?" problem):
 
 Archive root: $LOLLA_ARCHIVE_DIR or ~/.local/share/lolla/runs/
 
-Files archived (9 core):
+Files archived (10 core):
   conversation.txt, extraction.json, result.json, revised.txt, memo.md,
-  memo_note.json, gapcheck.txt, gapcheck_lanes.json, v60_ledger.json. Missing files are skipped gracefully
+  memo_note.json, gapcheck.txt, gapcheck_lanes.json, v60_ledger_skeleton.json,
+  v60_ledger.json. Missing files are skipped gracefully
   (e.g., if Step 6b was not executed by a weaker orchestrator).
 
 Orchestrator scratch files (preamble.json, lane*.json) are NOT archived
@@ -51,6 +52,7 @@ CORE_FILES = (
     "memo_note.json",
     "gapcheck.txt",
     "gapcheck_lanes.json",
+    "v60_ledger_skeleton.json",
     "v60_ledger.json",
 )
 
@@ -275,6 +277,7 @@ def archive_run(
     run_dir.mkdir(exist_ok=True)
 
     _finalize_v60_telemetry_before_archive(tmp_dir=tmp_dir, run_id=run_id)
+    _finalize_product_output_hygiene_before_archive(tmp_dir=tmp_dir, run_id=run_id)
 
     copied: list[str] = []
     missing: list[str] = []
@@ -315,6 +318,45 @@ def _finalize_v60_telemetry_before_archive(*, tmp_dir: Path, run_id: str) -> Non
     if ledger_path.exists():
         ledger = json.loads(ledger_path.read_text(encoding="utf-8"))
     finalized = finalize_v60_consideration(result, ledger=ledger)
+    result_path.write_text(json.dumps(finalized, indent=2, ensure_ascii=False), encoding="utf-8")
+
+
+def _finalize_product_output_hygiene_before_archive(*, tmp_dir: Path, run_id: str) -> None:
+    """Update result.json with product-output leak status before copying artifacts."""
+    result_path = tmp_dir / f"lolla_{run_id}_result.json"
+    if not result_path.exists():
+        return
+    if str(REPO_ROOT) not in sys.path:
+        sys.path.insert(0, str(REPO_ROOT))
+    from engine.system_b.output_hygiene import finalize_product_output_hygiene
+
+    result = json.loads(result_path.read_text(encoding="utf-8"))
+    surfaces: dict[str, object] = {}
+
+    revised_path = tmp_dir / f"lolla_{run_id}_revised.txt"
+    if revised_path.exists():
+        surfaces["revised_txt"] = revised_path.read_text(encoding="utf-8")
+    elif result.get("revised_answer"):
+        surfaces["revised_answer"] = result.get("revised_answer")
+
+    memo_path = tmp_dir / f"lolla_{run_id}_memo.md"
+    if memo_path.exists():
+        surfaces["memo_markdown"] = memo_path.read_text(encoding="utf-8")
+
+    memo_note_path = tmp_dir / f"lolla_{run_id}_memo_note.json"
+    if memo_note_path.exists():
+        try:
+            memo_note = json.loads(memo_note_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            memo_note = {}
+        if isinstance(memo_note, dict):
+            surfaces["memo_note"] = "\n".join(
+                str(value)
+                for key, value in sorted(memo_note.items())
+                if key.startswith("memo_") and isinstance(value, str)
+            )
+
+    finalized = finalize_product_output_hygiene(result, surfaces)
     result_path.write_text(json.dumps(finalized, indent=2, ensure_ascii=False), encoding="utf-8")
 
 

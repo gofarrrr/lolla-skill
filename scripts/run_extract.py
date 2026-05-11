@@ -400,9 +400,13 @@ def _validate_conversation_capture(conversation_text: str) -> dict:
         manifest["declared_turns"] = None
         manifest["declared_user"] = None
         manifest["declared_assistant"] = None
+        warnings.append(
+            "Capture warning: missing or unparseable CONVERSATION header — "
+            "declared turn counts could not be checked"
+        )
         return {
             "capture_manifest": manifest,
-            "capture_health": "unknown",
+            "capture_health": "critical" if last_turn_role == "USER" else "unknown",
             "capture_warnings": warnings,
         }
 
@@ -554,6 +558,22 @@ def _map_to_critique_request(
     return {"query": query, "vanilla_answer": vanilla_answer}
 
 
+def _emit_result(
+    payload: dict,
+    *,
+    output_file: str | None = None,
+    capture_result: dict | None = None,
+) -> None:
+    """Emit extraction CLI JSON consistently across success and edge paths."""
+    result = dict(payload)
+    if capture_result:
+        result.update(capture_result)
+    output_text = json.dumps(result, indent=2, ensure_ascii=False)
+    if output_file:
+        Path(output_file).write_text(output_text, encoding="utf-8")
+    print(output_text)
+
+
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
@@ -592,12 +612,18 @@ def main() -> int:
     # Read conversation
     conv_path = Path(args.conversation_file)
     if not conv_path.exists():
-        print(json.dumps({"status": "error", "error": f"File not found: {conv_path}"}))
+        _emit_result(
+            {"status": "error", "error": f"File not found: {conv_path}"},
+            output_file=args.output_file,
+        )
         return 1
 
     conversation_text = conv_path.read_text(encoding="utf-8")
     if not conversation_text.strip():
-        print(json.dumps({"status": "error", "error": "Empty conversation file"}))
+        _emit_result(
+            {"status": "error", "error": "Empty conversation file"},
+            output_file=args.output_file,
+        )
         return 1
 
     # Validate capture integrity on raw text (before truncation, before API call)
@@ -613,25 +639,22 @@ def main() -> int:
     # and ask the user to recapture than to ship a silent lie. We check BEFORE
     # initializing the OpenRouter client so broken captures don't cost money.
     if capture_health == "critical":
-        decline = {
-            "status": "capture_critical",
-            "decline_reason": (
-                "Conversation capture is critically degraded — more than half "
-                "of the assistant turns declared in the transcript header are "
-                "missing from the body, or the transcript has no assistant "
-                "responses at all, or the capture ends on a user turn without "
-                "the assistant's final response. An audit on this capture would "
-                "be unreliable. Re-capture the conversation and retry. See "
-                "capture_manifest below for the exact mismatch."
-            ),
-        }
-        decline.update(capture_result)
-        output_text = json.dumps(decline, indent=2, ensure_ascii=False)
-        if args.output_file:
-            Path(args.output_file).write_text(output_text, encoding="utf-8")
-            print(f"Capture critical — extraction declined. Diagnostic written to {args.output_file}")
-        else:
-            print(output_text)
+        _emit_result(
+            {
+                "status": "capture_critical",
+                "decline_reason": (
+                    "Conversation capture is critically degraded — more than half "
+                    "of the assistant turns declared in the transcript header are "
+                    "missing from the body, or the transcript has no assistant "
+                    "responses at all, or the capture ends on a user turn without "
+                    "the assistant's final response. An audit on this capture would "
+                    "be unreliable. Re-capture the conversation and retry. See "
+                    "capture_manifest below for the exact mismatch."
+                ),
+            },
+            output_file=args.output_file,
+            capture_result=capture_result,
+        )
         return 0
 
     # Truncate if needed. If truncation fires, merge diagnostic info into
@@ -651,9 +674,11 @@ def main() -> int:
     try:
         client = load_boundary_client_from_env("openrouter")
     except Exception as exc:
-        err = {"status": "error", "error": f"Failed to initialize OpenRouter client: {exc}"}
-        err.update(capture_result)
-        print(json.dumps(err))
+        _emit_result(
+            {"status": "error", "error": f"Failed to initialize OpenRouter client: {exc}"},
+            output_file=args.output_file,
+            capture_result=capture_result,
+        )
         return 1
 
     user_prompt = EXTRACTION_USER_PROMPT.format(conversation_text=conversation_text)
@@ -663,28 +688,38 @@ def main() -> int:
             EXTRACTION_SYSTEM_PROMPT, user_prompt, stage="extraction"
         )
     except Exception as exc:
-        err = {"status": "error", "error": f"OpenRouter call failed: {exc}"}
-        err.update(capture_result)
-        print(json.dumps(err))
+        _emit_result(
+            {"status": "error", "error": f"OpenRouter call failed: {exc}"},
+            output_file=args.output_file,
+            capture_result=capture_result,
+        )
         return 1
 
     # Check if strategic
     if not payload.get("is_strategic", True):
-        print(json.dumps({
-            "status": "not_strategic",
-            "decline_reason": payload.get("decline_reason", "Not a strategic conversation"),
-        }))
+        _emit_result(
+            {
+                "status": "not_strategic",
+                "decline_reason": payload.get("decline_reason", "Not a strategic conversation"),
+            },
+            output_file=args.output_file,
+            capture_result=capture_result,
+        )
         return 0
 
     # Validate required fields
     required = ["decision_situation", "synthesized_position"]
     missing = [f for f in required if not payload.get(f)]
     if missing:
-        print(json.dumps({
-            "status": "error",
-            "error": f"Extraction missing required fields: {missing}",
-            "raw_extraction": payload,
-        }))
+        _emit_result(
+            {
+                "status": "error",
+                "error": f"Extraction missing required fields: {missing}",
+                "raw_extraction": payload,
+            },
+            output_file=args.output_file,
+            capture_result=capture_result,
+        )
         return 1
 
     # Validate reasoning passages are literal substrings of the transcript.

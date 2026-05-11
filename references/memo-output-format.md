@@ -166,6 +166,8 @@ Never use these in the memo decision-note layer:
 - Private enrichment vocabulary: `V60`, `affordance`, `chunk`, `packet`, `ledger`, internal IDs, `selected_cards`, `selected_chunk_ids`.
 - Model-name parade: do not list mental-model labels in the memo decision-note layer. Use a familiar model name only when it is the clearest human-language handle for the mechanism; otherwise translate the mechanism into ordinary language.
 
+Archive finalization runs the same product-surface principle as a deterministic hygiene gate. The memo markdown and memo-note fields are scanned for internal machinery terms; leaks are recorded under `product_output_hygiene` and degrade `run_health.product_output_health` to `unsafe`. Operator appendices and Observatory may contain machinery, but the default memo decision-note layer should not.
+
 Allowed product language, used sparingly:
 
 - `audit`

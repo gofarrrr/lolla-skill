@@ -5,11 +5,15 @@ TDD scaffolding for PR #1 of the extraction contract roadmap.
 """
 from __future__ import annotations
 
+import json
 import sys
 from pathlib import Path
 
+import pytest
+
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
+import run_extract  # noqa: E402
 from run_extract import (  # noqa: E402
     _apply_canonical_key_validation,
     _build_audit_seed,
@@ -18,6 +22,27 @@ from run_extract import (  # noqa: E402
     _validate_conversation_capture,
     _validate_canonical_key,
 )
+
+
+def _write_conversation(path: Path) -> None:
+    path.write_text(
+        "CONVERSATION: 2 turns, 1 user messages, 1 assistant responses\n"
+        "[Turn 1] USER:\n"
+        "Should I accept this offer?\n\n"
+        "[Turn 1] ASSISTANT:\n"
+        "Accept only if the downside is bounded.\n",
+        encoding="utf-8",
+    )
+
+
+class _FakeClient:
+    call_log = []
+
+    def __init__(self, payload: dict) -> None:
+        self.payload = payload
+
+    def run_json(self, *args, **kwargs) -> dict:  # noqa: ANN002, ANN003, ARG002
+        return self.payload
 
 
 def test_valid_four_token_slug():
@@ -212,6 +237,40 @@ Only if the role survives a downside test.
     assert result["capture_warnings"] == []
 
 
+def test_capture_validation_no_header_final_user_turn_is_critical():
+    transcript = """[Turn 1] USER:
+Should I take the job?
+
+[Turn 1] ASSISTANT:
+Only if the role survives a downside test.
+
+[Turn 2] USER:
+What downside test?
+"""
+
+    result = _validate_conversation_capture(transcript)
+
+    assert result["capture_health"] == "critical"
+    assert result["capture_manifest"]["last_turn_role"] == "USER"
+    assert any("CONVERSATION" in warning for warning in result["capture_warnings"])
+    assert any("ends on a user turn" in warning for warning in result["capture_warnings"])
+
+
+def test_capture_validation_no_header_complete_assistant_turn_is_warning_bearing():
+    transcript = """[Turn 1] USER:
+Should I take the job?
+
+[Turn 1] ASSISTANT:
+Only if the role survives a downside test.
+"""
+
+    result = _validate_conversation_capture(transcript)
+
+    assert result["capture_health"] == "unknown"
+    assert result["capture_manifest"]["last_turn_role"] == "ASSISTANT"
+    assert any("CONVERSATION" in warning for warning in result["capture_warnings"])
+
+
 def test_reasoning_passage_validation_accepts_quote_wrapped_literal_span():
     transcript = (
         "[Turn 1] ASSISTANT:\n"
@@ -228,3 +287,79 @@ def test_reasoning_passage_validation_accepts_quote_wrapped_literal_span():
 
     assert verified == ["Conversational signal is real but not decision-grade."]
     assert fabricated == ['"this will impact the team"']
+
+
+def test_not_strategic_path_writes_output_file_with_capture_diagnostics(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+):
+    conversation_path = tmp_path / "conversation.txt"
+    output_path = tmp_path / "extraction.json"
+    _write_conversation(conversation_path)
+    monkeypatch.setattr(
+        run_extract,
+        "load_boundary_client_from_env",
+        lambda provider: _FakeClient({  # noqa: ARG005
+            "is_strategic": False,
+            "decline_reason": "Not a decision conversation.",
+        }),
+    )
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "run_extract.py",
+            "--conversation-file",
+            str(conversation_path),
+            "--output-file",
+            str(output_path),
+        ],
+    )
+
+    assert run_extract.main() == 0
+    assert output_path.exists()
+    payload = json.loads(output_path.read_text(encoding="utf-8"))
+    assert payload["status"] == "not_strategic"
+    assert payload["capture_health"] == "good"
+    assert "capture_manifest" in payload
+    assert "capture_warnings" in payload
+    assert capsys.readouterr().out
+
+
+def test_missing_required_fields_path_writes_output_file_with_capture_diagnostics(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    conversation_path = tmp_path / "conversation.txt"
+    output_path = tmp_path / "extraction.json"
+    _write_conversation(conversation_path)
+    monkeypatch.setattr(
+        run_extract,
+        "load_boundary_client_from_env",
+        lambda provider: _FakeClient({  # noqa: ARG005
+            "is_strategic": True,
+            "decision_situation": "",
+            "synthesized_position": "",
+        }),
+    )
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "run_extract.py",
+            "--conversation-file",
+            str(conversation_path),
+            "--output-file",
+            str(output_path),
+        ],
+    )
+
+    assert run_extract.main() == 1
+    assert output_path.exists()
+    payload = json.loads(output_path.read_text(encoding="utf-8"))
+    assert payload["status"] == "error"
+    assert "Extraction missing required fields" in payload["error"]
+    assert payload["capture_health"] == "good"
+    assert "capture_manifest" in payload
+    assert "capture_warnings" in payload

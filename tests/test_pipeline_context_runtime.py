@@ -27,11 +27,13 @@ from engine.system_b.frame_pressure import (
 )
 from engine.system_b.ir_constructor import construct_conversation_ir
 from engine.system_b.pipeline import (
+    BoundaryCallTrace,
     CompanionRunResult,
     PipelineConfig,
     SystemBPipeline,
     _run_pass1_clusters_parallel,
 )
+from engine.system_b.structural_coverage import StructuralCoverageRun
 
 
 def _ctx(
@@ -244,10 +246,11 @@ def test_run_frame_pressure_uses_packet_extraction_and_context_reframing() -> No
     assert reframing_calls == [context]
 
 
-def test_run_lane4_structural_coverage_uses_ir_path() -> None:
+def test_run_lane4_structural_coverage_uses_trace_returning_ir_path() -> None:
     context = _ctx()
     conversation_ir = construct_conversation_ir(context)
     captured_irs: list[object] = []
+    boundary_calls: list[BoundaryCallTrace] = []
 
     pipeline = SystemBPipeline.__new__(SystemBPipeline)
     pipeline._config = PipelineConfig(enable_structural_coverage=True)
@@ -256,18 +259,22 @@ def test_run_lane4_structural_coverage_uses_ir_path() -> None:
 
     def _capture_ir(*, boundary, ir, structural_coverage_routing, anti_echo_model_ids):  # noqa: ARG001
         captured_irs.append(ir)
-        return None
+        return StructuralCoverageRun(
+            card=None,
+            boundary_calls=(BoundaryCallTrace(stage="structural_coverage_classification"),),
+        )
 
     with patch(
-        "engine.system_b.pipeline.run_structural_coverage_from_ir",
+        "engine.system_b.pipeline.run_structural_coverage_with_traces_from_ir",
         side_effect=_capture_ir,
     ):
         pipeline._run_lane4_structural_coverage(
             conversation_ir=conversation_ir,
-            boundary_calls=[],
+            boundary_calls=boundary_calls,
             lane1_model_ids=set(),
             lane2_model_ids=set(),
             lane3_model_ids=set(),
         )
 
     assert captured_irs == [conversation_ir]
+    assert [trace.stage for trace in boundary_calls] == ["structural_coverage_classification"]

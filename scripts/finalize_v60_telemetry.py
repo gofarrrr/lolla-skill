@@ -48,6 +48,11 @@ def main() -> int:
     parser.add_argument("--result", default=None, help="Explicit result JSON path")
     parser.add_argument("--ledger", default=None, help="Explicit V60 ledger JSON path")
     parser.add_argument("--quiet", action="store_true", help="Suppress success output for user-facing skill runs")
+    parser.add_argument(
+        "--require-valid",
+        action="store_true",
+        help="Return non-zero unless the V60 ledger is valid or not required.",
+    )
     args = parser.parse_args()
 
     result_path = _infer_result_path(args.run_id, args.result)
@@ -71,6 +76,16 @@ def main() -> int:
             print(f"V60 consideration telemetry finalized: {status} ({ledger_path})")
         else:
             print(f"V60 consideration telemetry finalized: {status}")
+    if args.require_valid and status not in {"valid", "not_required"}:
+        validation = finalized.get("v60_consideration_validation") or {}
+        errors = validation.get("errors") or []
+        print(
+            f"V60 consideration ledger is {status}; repair it before continuing.",
+            file=sys.stderr,
+        )
+        for error in errors:
+            print(f"- {error}", file=sys.stderr)
+        return 2
     return 0
 
 
