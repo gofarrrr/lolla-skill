@@ -1,0 +1,247 @@
+{
+  "model_id": "baseline-establishment",
+  "source_file": "Baseline_Establishment_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "baseline-establishment.starting-condition-comparison-gate",
+      "status": "supported",
+      "name": "Starting condition comparison gate",
+      "mechanism": "When a recommendation claims improvement, change, or execution readiness, require the answer to name the shared starting condition, success criteria, and comparison facts before treating later movement as meaningful.",
+      "activation_shape": {
+        "use_when": [
+          "A team lacks a shared starting picture of the problem, the success criteria, or the facts that later comparisons should be judged against.",
+          "Diagnosis, measurement, and ownership depend on agreeing what normal, broken, or improved actually mean.",
+          "Later intervention quality will be judged by change from an explicit starting condition rather than by impressionistic anecdotes."
+        ],
+        "do_not_use_when": [
+          "The initial baseline has fossilized into doctrine and the team keeps optimizing around an outdated starting frame after the environment has shifted.",
+          "The chosen baseline metric is convenient to measure but weakly tied to the real causal drivers of success or failure.",
+          "The proposed baseline defines a symptom rather than the root condition that future action should change."
+        ],
+        "case_evidence_needed": [
+          "The current starting condition.",
+          "The desired outcome and success criteria.",
+          "The facts, metrics, or observations that define normal, broken, or improved.",
+          "The context shift that would require revisiting the baseline."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "define-baseline-before-improvement-claim",
+          "description": "Require the answer to define what starting condition and comparison standard must exist before claims of improvement, diagnosis, or execution progress can be trusted.",
+          "evidence_required": [
+            "The claimed improvement or decision target.",
+            "The starting facts or current operating condition.",
+            "The comparison metric or qualitative marker.",
+            "The causal reason that marker reflects the real problem."
+          ],
+          "good_output_shape": [
+            "States the starting condition plainly.",
+            "Defines what normal, broken, and improved mean.",
+            "Separates convenient measurement from causal relevance.",
+            "Names when the baseline should be revisited."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is the shared starting condition before this advice is judged?",
+        "What does normal, broken, or improved mean in this case?",
+        "Is the chosen baseline causally tied to success, or just easy to measure?"
+      ],
+      "misuse_guards": [
+        "Do not let an obsolete baseline become doctrine after context shifts.",
+        "Do not use a convenient metric as the baseline if it does not track the real driver.",
+        "Do not define the baseline around a symptom and then optimize the wrong condition."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Baseline_Establishment_rag.md",
+          "source_quote": "a team lacks a shared starting picture of the problem, the success criteria, or the facts that later comparisons should be judged against",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Baseline_Establishment_rag.md",
+          "source_quote": "what \"normal,\" \"broken,\" or \"improved\" actually mean",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Baseline_Establishment_rag.md",
+          "source_quote": "change from an explicit starting condition rather than by impressionistic anecdotes",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 8 outcome: strong_affordance_record. The source supports one operational baseline gate for starting facts, success criteria, comparison meaning, and measurement discipline.",
+        "dropped_material": [
+          "Did not extract AI persona consistency, TOSCA/design brief, or commander's intent as separate affordances.",
+          "Kept goal/process separation as context for baseline discipline."
+        ],
+        "open_questions": [
+          "PR40 should test whether this card prevents packet recommendations from claiming improvement without a starting condition."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "baseline-establishment.absolute-yardstick-before-contrast",
+      "status": "supported",
+      "name": "Absolute yardstick before contrast",
+      "mechanism": "When an answer accepts an option because it looks better than an adjacent alternative, require an independent yardstick, measurement signal, or go/no-go standard before treating the contrast as decision evidence.",
+      "activation_shape": {
+        "use_when": [
+          "A recommendation is justified because it is better than a nearby option, scary alternative, prior offer, peer comparison, or current anchor.",
+          "The answer has not named the independent standard that would still govern if the comparison frame disappeared.",
+          "The decision needs an absolute threshold, measurement signal, or baseline condition before a relative improvement should change action."
+        ],
+        "do_not_use_when": [
+          "The case already states a decision standard, threshold, and measurement signal that are independent of the comparison frame.",
+          "The right move is broad multi-criteria trade-off analysis rather than a missing absolute yardstick.",
+          "The comparison is only illustrative and does not carry the recommendation."
+        ],
+        "case_evidence_needed": [
+          "The contrast frame, anchor, alternative, or scary comparator making the option look acceptable.",
+          "The user's goal or success criterion.",
+          "The independent yardstick, threshold, or measurement signal that should govern the decision.",
+          "The action that changes if the option fails the yardstick even though it wins the comparison."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "state-independent-yardstick",
+          "description": "Require the answer to name the yardstick, threshold, or measurement signal that governs the choice before endorsing an option because it looks better than a comparator.",
+          "evidence_required": [
+            "The comparator or anchor driving the contrast.",
+            "The decision goal or success criterion.",
+            "The independent yardstick or threshold.",
+            "The consequence if the option beats the comparator but fails the yardstick."
+          ],
+          "good_output_shape": [
+            "Names the comparison frame explicitly.",
+            "States the independent yardstick in plain language.",
+            "Separates better-than-this from good-enough-for-the-goal.",
+            "Gives a go/no-go or revise condition tied to the yardstick."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What yardstick would still govern if the comparison option disappeared?",
+        "Is this option good enough for the goal, or only better than the nearby alternative?",
+        "What measurement signal or threshold would make the contrast irrelevant?"
+      ],
+      "misuse_guards": [
+        "Do not turn every ordinary option comparison into a demand for new metrics.",
+        "Do not accept a vague standard such as fair, reasonable, or better without a threshold the user can apply.",
+        "Do not let the yardstick become false precision when a qualitative boundary is the honest standard."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Seeking_Wisdom_Bevelin_rag.md",
+          "source_quote": "What yardstick(s) do I use? What is the yardstick by which the decision is made?",
+          "section_hint": "Absolute Yardstick",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Seeking_Wisdom_Bevelin_rag.md",
+          "source_quote": "How can I easily measure to what degree my goal are being achieved? What indicators can I track?",
+          "section_hint": "Absolute Yardstick",
+          "extraction_type": "explicit",
+          "confidence": "medium"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Bevelin candidate overlay outcome: adds a contrast-misreaction treatment to the existing baseline-establishment owner without changing the default V60 artifact. The distinct receiver action is an independent yardstick after removing the adjacent comparison frame.",
+        "dropped_material": [
+          "Did not duplicate broad quantification, multi-criteria comparison, or statistical-discipline records.",
+          "Did not add a Lane 1 subpattern in this slice; this is tested first as private V60 substrate."
+        ],
+        "open_questions": [
+          "Replay should test whether this enters cases where contrast drives acceptance, and whether it changes product action rather than adding metric theater."
+        ],
+        "review_status": "needs_review"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "obsolete-baseline-as-doctrine",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that baselines become dangerous when they fossilize into doctrine after the environment has shifted.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Baseline_Establishment_rag.md",
+          "source_quote": "the initial baseline fossilizes into doctrine and the team keeps optimizing around an outdated starting frame after the environment has shifted",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "convenient-metric-as-baseline",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects a baseline metric that is convenient to measure but weakly tied to the real causal drivers of success or failure.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Baseline_Establishment_rag.md",
+          "source_quote": "the chosen baseline metric is convenient to measure but weakly tied to the real causal drivers of success or failure",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "goal-baseline-with-solution-imported",
+      "status": "not_supported_by_source",
+      "reason": "The source says goal setting must be separated from solution, diagnosis, and implementation thinking; it does not support a baseline that imports the execution plan into the desired outcome.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Baseline_Establishment_rag.md",
+          "source_quote": "Goal setting must be done without thinking about solutions",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Baseline_Establishment_rag.md",
+          "source_quote": "Am I defining the desired outcome, or am I already thinking about the execution steps required to achieve it?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Baseline_Establishment_rag.md",
+      "source_quote": "clarity of the starting condition and intentional focus on the desired goal",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 8 source reading found strong reviewed depth for Baseline Establishment. Extracted one starting-condition comparison gate and rejected stale-baseline and convenient-metric overclaims. PR60 adds a guard against importing solutions or execution steps into the goal baseline.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later execution-packet review should check whether this card helps separate baseline facts from success theater."
+    ],
+    "review_status": "draft"
+  }
+}
