@@ -300,6 +300,70 @@ def test_compiler_can_compile_pilot_batch1_batch2_batch3a_records_to_v4(
     assert "Batch 3a: targeted coverage patch." in result.quality_report
 
 
+def test_compiler_can_overlay_review_records_without_duplicate_failure(
+    tmp_path: Path,
+) -> None:
+    record_dir, pilot_manifest_path, source_dir, source_manifest_path = _copy_compiler_inputs(
+        tmp_path
+    )
+    overlay_dir = tmp_path / "overlay"
+    overlay_dir.mkdir()
+    shutil.copy2(record_dir / "theory-of-constraints.json", overlay_dir)
+
+    result = compile_model_affordances(
+        root=REPO_ROOT,
+        record_dirs=(record_dir,),
+        overlay_record_dirs=(overlay_dir,),
+        pilot_manifest_path=pilot_manifest_path,
+        source_dir=source_dir,
+        source_manifest_path=source_manifest_path,
+        output_dir=tmp_path / "compiled",
+        compiled_filename="affordances_v60.json",
+        quality_report_filename="quality_report_v60.md",
+        artifact_id="model_affordances_v60",
+        report_title="Model Affordance Quality Report v60",
+    )
+
+    metadata = result.compiled["compile_metadata"]
+    assert metadata["contributing_record_count"] == len(PILOT_MODEL_IDS)
+    assert metadata["record_paths"]["theory-of-constraints"] == str(
+        overlay_dir / "theory-of-constraints.json"
+    )
+
+
+def test_compiler_rejects_overlay_records_that_do_not_replace_base_record(
+    tmp_path: Path,
+) -> None:
+    record_dir, pilot_manifest_path, source_dir, source_manifest_path = _copy_compiler_inputs(
+        tmp_path
+    )
+    overlay_dir = tmp_path / "overlay"
+    overlay_dir.mkdir()
+    overlay_record_path = overlay_dir / "new-model.json"
+    overlay_record = json.loads(
+        (record_dir / "theory-of-constraints.json").read_text(encoding="utf-8")
+    )
+    overlay_record["model_id"] = "new-bevelin-layer"
+    overlay_record_path.write_text(
+        json.dumps(overlay_record, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+    with pytest.raises(
+        ModelAffordanceCompilationError,
+        match="overlay model_id does not replace a base record: new-bevelin-layer",
+    ):
+        compile_model_affordances(
+            root=REPO_ROOT,
+            record_dirs=(record_dir,),
+            overlay_record_dirs=(overlay_dir,),
+            pilot_manifest_path=pilot_manifest_path,
+            source_dir=source_dir,
+            source_manifest_path=source_manifest_path,
+            output_dir=tmp_path / "compiled",
+        )
+
+
 def test_quality_report_avoids_scorecard_language(tmp_path: Path) -> None:
     result = compile_model_affordances(
         root=REPO_ROOT,

@@ -90,6 +90,7 @@ def compile_model_affordances(
     root: Path = REPO_ROOT,
     record_dir: Path = DEFAULT_RECORD_DIR,
     record_dirs: Iterable[Path] | None = None,
+    overlay_record_dirs: Iterable[Path] | None = None,
     pilot_manifest_path: Path = DEFAULT_PILOT_MANIFEST_PATH,
     source_dir: Path = DEFAULT_SOURCE_DIR,
     source_manifest_path: Path = DEFAULT_SOURCE_MANIFEST_PATH,
@@ -107,6 +108,11 @@ def compile_model_affordances(
     resolved_record_dirs = (
         [_resolve(root, path) for path in record_dirs]
         if record_dirs is not None
+        else None
+    )
+    resolved_overlay_record_dirs = (
+        [_resolve(root, path) for path in overlay_record_dirs]
+        if overlay_record_dirs is not None
         else None
     )
     pilot_manifest_path = _resolve(root, pilot_manifest_path)
@@ -136,6 +142,12 @@ def compile_model_affordances(
         )
     else:
         records, record_paths = _load_records_from_dirs(record_dirs=resolved_record_dirs)
+    if resolved_overlay_record_dirs is not None:
+        records, record_paths = _apply_overlay_records(
+            records=records,
+            record_paths=record_paths,
+            overlay_record_dirs=resolved_overlay_record_dirs,
+        )
     validation_summary = _validate_records(
         records=records,
         record_paths=record_paths,
@@ -366,11 +378,18 @@ def _build_compiled_artifact(
             absence_records.append(item)
 
     record_model_ids = {str(record["model_id"]) for record in records}
+    cited_source_files = {
+        str(source_file)
+        for record in records
+        for evidence in _iter_all_evidence(record)
+        if (source_file := evidence.get("source_file"))
+    }
     source_files = sorted(
         [
             copy.deepcopy(_dict(item))
             for item in _list(source_manifest["files"])
             if str(_dict(item)["model_id"]) in record_model_ids
+            or str(_dict(item).get("filename")) in cited_source_files
         ],
         key=lambda item: str(_dict(item)["model_id"]),
     )
@@ -677,6 +696,42 @@ def _load_records_from_dirs(
     return records, record_paths
 
 
+def _apply_overlay_records(
+    *,
+    records: list[dict[str, object]],
+    record_paths: dict[str, Path],
+    overlay_record_dirs: list[Path],
+) -> tuple[list[dict[str, object]], dict[str, Path]]:
+    records_by_model = {str(record["model_id"]): record for record in records}
+    seen_overlay_model_ids = set()
+    seen_overlay_paths = set()
+    for overlay_dir in overlay_record_dirs:
+        if not overlay_dir.exists():
+            raise ModelAffordanceCompilationError(
+                f"{overlay_dir}: missing overlay_record_dir"
+            )
+        for path in sorted(overlay_dir.glob("*.json")):
+            if path in seen_overlay_paths:
+                raise ModelAffordanceCompilationError(
+                    f"duplicate overlay record path: {path}"
+                )
+            seen_overlay_paths.add(path)
+            record = _load_object(path)
+            model_id = str(record["model_id"])
+            if model_id in seen_overlay_model_ids:
+                raise ModelAffordanceCompilationError(
+                    f"duplicate model_id across overlay record dirs: {model_id}"
+                )
+            if model_id not in records_by_model:
+                raise ModelAffordanceCompilationError(
+                    f"overlay model_id does not replace a base record: {model_id}"
+                )
+            seen_overlay_model_ids.add(model_id)
+            records_by_model[model_id] = record
+            record_paths[model_id] = path
+    return [records_by_model[str(record["model_id"])] for record in records], record_paths
+
+
 def _iter_all_evidence(record: dict[str, object]) -> Iterable[dict[str, object]]:
     for evidence in _list(record.get("source_evidence", [])):
         yield _dict(evidence)
@@ -763,6 +818,16 @@ def main(argv: list[str] | None = None) -> int:
             "When omitted, the pilot manifest controls the v1 pilot compile."
         ),
     )
+    parser.add_argument(
+        "--overlay-record-dir",
+        type=Path,
+        action="append",
+        default=None,
+        help=(
+            "Review-only record directory whose records replace matching model_ids "
+            "from --record-dir inputs without modifying the base record files."
+        ),
+    )
     parser.add_argument("--pilot-manifest", type=Path, default=DEFAULT_PILOT_MANIFEST_PATH)
     parser.add_argument("--source-dir", type=Path, default=DEFAULT_SOURCE_DIR)
     parser.add_argument("--source-manifest", type=Path, default=DEFAULT_SOURCE_MANIFEST_PATH)
@@ -787,6 +852,7 @@ def main(argv: list[str] | None = None) -> int:
         result = compile_model_affordances(
             root=args.root,
             record_dirs=args.record_dir,
+            overlay_record_dirs=args.overlay_record_dir,
             pilot_manifest_path=args.pilot_manifest,
             source_dir=args.source_dir,
             source_manifest_path=args.source_manifest,
