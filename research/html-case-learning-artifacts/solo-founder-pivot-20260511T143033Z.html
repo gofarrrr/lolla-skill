@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The pivot validation tests demand but leaves execution feasibility and option shape open</title>
+  <style>
+:root {
+  color-scheme: light;
+  --ink: #1d2528;
+  --muted: #667175;
+  --line: #d8e1e4;
+  --soft: #f6f8f8;
+  --paper: #ffffff;
+  --accent: #0f766e;
+  --accent-soft: #dff4ef;
+  --warn: #a04d12;
+  --warn-soft: #fff1df;
+  --blue: #315b7d;
+  --blue-soft: #e7f0f7;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: #eef3f2;
+  line-height: 1.5;
+}
+.hero, main {
+  width: min(1120px, calc(100vw - 32px));
+  margin: 0 auto;
+}
+.hero {
+  padding: 48px 0 28px;
+}
+.eyebrow, .section-kicker {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  font-weight: 700;
+}
+h1 {
+  margin: 10px 0 18px;
+  max-width: 900px;
+  font-size: 42px;
+  line-height: 1.06;
+  letter-spacing: 0;
+}
+h2 {
+  margin: 0;
+  font-size: 26px;
+  line-height: 1.15;
+}
+h3 {
+  margin: 0 0 8px;
+  font-size: 17px;
+  line-height: 1.25;
+}
+p { margin: 0 0 12px; }
+.trust-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 22px;
+}
+.pill {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: var(--paper);
+  color: var(--muted);
+  font-size: 13px;
+}
+.pill span {
+  color: var(--ink);
+  font-weight: 700;
+}
+.pill.ok {
+  background: var(--accent-soft);
+  border-color: #a6d9d0;
+}
+.pill.warn {
+  background: var(--warn-soft);
+  border-color: #f0c999;
+  color: var(--warn);
+}
+.orientation {
+  max-width: 860px;
+  font-size: 18px;
+  color: #334044;
+}
+.section {
+  position: relative;
+  margin: 18px 0;
+  padding: 28px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+  align-items: end;
+  margin: 6px 0 22px;
+}
+.section-head p {
+  max-width: 520px;
+  color: var(--muted);
+  margin: 0;
+}
+.shift-grid, .model-grid, .question-grid, .frame-grid, .trace-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.shift-card, .model-card, .question-card, .frame-card, .chain-node {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px;
+  background: var(--soft);
+}
+.shift-card {
+  background: linear-gradient(180deg, #ffffff 0%, #f4faf8 100%);
+}
+.card-index, .chain-label, .question-dimension, .small-meta span, .fact-row span {
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.card-body {
+  color: #3b474b;
+}
+.card-body ul {
+  padding-left: 18px;
+  margin: 8px 0 0;
+}
+.chain {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.chain-node {
+  min-height: 150px;
+  background: var(--blue-soft);
+  border-color: #c4d8e8;
+}
+.chain-node p {
+  margin-top: 12px;
+}
+.model-card {
+  background: #fffefa;
+}
+.model-name {
+  font-size: 19px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+.model-core {
+  color: #334044;
+  font-weight: 600;
+}
+.fact-row {
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+  margin-top: 10px;
+}
+.fact-row p {
+  margin: 4px 0 0;
+  color: #3f4b4f;
+}
+.question-card {
+  background: #fbfcfd;
+}
+.question-card p {
+  font-size: 16px;
+}
+.frame-card {
+  background: #f9fbff;
+}
+.small-meta {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.trace {
+  background: #192225;
+  color: #e6eeee;
+  border-color: #192225;
+}
+.trace summary {
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 18px;
+}
+.trace h3 {
+  color: #ffffff;
+}
+.trace-grid {
+  margin-top: 20px;
+}
+dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 6px 12px;
+  margin: 0;
+}
+dt {
+  color: #9eb4bb;
+}
+dd {
+  margin: 0;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+th, td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+}
+.empty, .muted {
+  color: var(--muted);
+  background: var(--soft);
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  padding: 18px;
+}
+.trace .muted {
+  color: #b8c9ce;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+code {
+  background: rgba(15, 118, 110, 0.12);
+  padding: 1px 4px;
+  border-radius: 4px;
+}
+@media (max-width: 780px) {
+  .hero, main {
+    width: min(100vw - 20px, 1120px);
+  }
+  .hero {
+    padding-top: 28px;
+  }
+  h1 {
+    font-size: 31px;
+  }
+  .section {
+    padding: 18px;
+  }
+  .section-head {
+    display: block;
+  }
+  .section-head p {
+    margin-top: 8px;
+  }
+  .shift-grid, .model-grid, .question-grid, .frame-grid, .trace-grid, .chain {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="eyebrow">Lolla case learning artifact</div>
+  <h1>The pivot validation tests demand but leaves execution feasibility and option shape open</h1>
+  <div class="trust-strip"><span class="pill warn"><span>Run</span>degraded</span><span class="pill ok"><span>Capture</span>good</span><span class="pill ok"><span>Substrate</span>ok</span><span class="pill ok"><span>Product</span>clean</span></div>
+  <div class="orientation"><p>You asked whether to pivot or push. The original advice said: run a pre-buy test, define the pass bar in advance, handle the employee and co-founder questions, don&#x27;t kill the current product — transition it. That framing was sound in its sequencing.</p><p>What the audit sharpened: the pre-buy test as designed validates willingness-to-pay in three people. It doesn&#x27;t check whether 14 months of runway is actually enough to build the new product and close the first customers — that estimate never entered the action list. It also doesn&#x27;t clarify what the three customers are signaling they&#x27;d pay for: a standalone pivot, or the workflow capability added to what they already have. That distinction determines whether the hybrid path is already what your own test is validating, without you knowing it.</p><p>On the customer side, the timing advice was partially wrong. Announcing the transition early helps avoid surprises, but without a pre-committed date when the old product stops, the transition has no mechanism to close — which is the exact outcome the advice warned against. Two instruments are needed: announcement timing (covered) and a hard sunset commitment (not covered).</p><p>The revised direction adds four items to the action list and corrects the sequencing on one. The most load-bearing additions are the build timeline estimate and the pre-buy test clarifying question. Everything else stays.</p></div>
+</header>
+
+<main>
+  <section class="section" id="changed">
+    <div class="section-kicker">01</div>
+    <div class="section-head">
+      <h2>What Changed</h2>
+      <p>The artifact opens where the memo opens: the useful output is the shift in the advice.</p>
+    </div>
+    <div class="shift-grid">
+<article class="shift-card">
+  <div class="card-index">01</div>
+  <h3>Add build timeline estimate to the 14-day window.</h3>
+  <div class="card-body"><p>Before the pivot decision, the engineer needs to scope the build: time to a minimum viable version and time to first paid customer. If build plus sales cycle exceeds runway, the pivot requires outside capital first — and the decision is already made.</p></div>
+</article>
+
+<article class="shift-card">
+  <div class="card-index">02</div>
+  <h3>Correct customer communication sequencing.</h3>
+  <div class="card-body"><p>Announce the transition when the new product is 60-70% complete, not at pivot decision time. Separately, commit now to a hard date when the old product goes maintenance-only or dark — without that date, the transition has no structural endpoint.</p></div>
+</article>
+
+<article class="shift-card">
+  <div class="card-index">03</div>
+  <h3>Broaden the validation to three tracks.</h3>
+  <div class="card-body"><p>The pre-buy test checks three warm relationships. Add: (a) a one-question pulse to the other 19 current customers; (b) 10-15 conversations with dental practices you have not spoken to; (c) one question inside the pre-buy test itself asking whether they would pay for a standalone product or the capability on their current product.</p></div>
+</article>
+
+<article class="shift-card">
+  <div class="card-index">04</div>
+  <h3>Check the shareholder agreement before the co-founder conversation.</h3>
+  <div class="card-body"><p>Her 15% equity may come with consent rights over strategic decisions. Informing her is necessary; it may not be sufficient. A legal check before the call.</p></div>
+</article>
+</div>
+  </section>
+
+  <section class="section learning" id="lesson">
+    <div class="section-kicker">02</div>
+    <div class="section-head">
+      <h2>What This Case Teaches</h2>
+      <p>A compact chain from observed reasoning pattern to reusable question.</p>
+    </div>
+    <div class="chain">
+<div class="chain-node">
+  <div class="chain-label">Observed pattern</div>
+  <p>The answer guards against post-hoc rationalization by requiring pre-specification of directional success thresholds rather than pretending for exact certainty after the fact.</p>
+</div>
+
+<div class="chain-node">
+  <div class="chain-label">Reasoning pressure</div>
+  <p>False Precision Avoidance: A decision needs directional clarity, bounded ranges, or operating thresholds more than an illusion of exact certainty.</p>
+</div>
+
+<div class="chain-node">
+  <div class="chain-label">Reusable check</div>
+  <p>If this was cut, would anything be lost?</p>
+</div>
+</div>
+  </section>
+
+  <section class="section" id="models">
+    <div class="section-kicker">03</div>
+    <div class="section-head">
+      <h2>Mental Models Worth Learning</h2>
+      <p>Only the clearest lenses are shown. Each card explains why the model mattered here and how to reuse it.</p>
+    </div>
+    <div class="model-grid">
+<article class="model-card">
+  <div class="model-name">False Precision Avoidance</div>
+  <p class="model-core">A decision needs directional clarity, bounded ranges, or operating thresholds more than an illusion of exact certainty.</p>
+  <div class="fact-row"><span>Why it activated here</span><p>The answer guards against post-hoc rationalization by requiring pre-specification of directional success thresholds rather than pretending for exact certainty after the fact.</p></div>
+  <div class="fact-row"><span>What it changed</span><p>Add build timeline estimate to the 14-day window.</p></div>
+  <div class="fact-row"><span>Reusable question</span><p>If this was cut, would anything be lost?</p></div>
+  <div class="fact-row"><span>Guardrail</span><p>Simplification can fail by collapsing into vague slogans that no longer guide prediction, action, or alignment.</p></div>
+</article>
+
+<article class="model-card">
+  <div class="model-name">Emotional Intelligence</div>
+  <p class="model-core">Use empathy maps to surface pains, gains, and hidden motivations before acting.</p>
+  <div class="fact-row"><span>Why it activated here</span><p>The answer recognizes that perceived fairness and trust will determine how the layoff decision lands, prioritizing advance honesty to manage morale and relationship impact.</p></div>
+  <div class="fact-row"><span>What it changed</span><p>Correct customer communication sequencing.</p></div>
+  <div class="fact-row"><span>Reusable question</span><p>Are we packaging this message for analytical review only, or for the emotional response that drives action?</p></div>
+  <div class="fact-row"><span>Guardrail</span><p>Emotional intelligence can be misread as niceness, leaving hard but necessary truth unsaid.</p></div>
+</article>
+</div>
+  </section>
+
+  <section class="section" id="questions">
+    <div class="section-kicker">04</div>
+    <div class="section-head">
+      <h2>Questions Still Open</h2>
+      <p>These are user-answerable checks, not AI-filled blanks.</p>
+    </div>
+    <div class="question-grid">
+<article class="question-card">
+  <div class="question-dimension">Commitment &amp; Reversibility</div>
+  <p>What other pivots or fallback plans have you considered if the workflow tool doesn&#x27;t gain traction after launch?</p>
+</article>
+
+<article class="question-card">
+  <div class="question-dimension">Commitment &amp; Reversibility</div>
+  <p>If the pre-buy test fails, what parts of the current dental SaaS product could you quickly revive or enhance to regain momentum with your 22 customers?</p>
+</article>
+
+<article class="question-card">
+  <div class="question-dimension">Commitment &amp; Reversibility</div>
+  <p>How much time or resources would it take to reverse the pivot and return to supporting the current product if the new workflow tool underperforms?</p>
+</article>
+
+<article class="question-card">
+  <div class="question-dimension">Resource Allocation</div>
+  <p>With 14 months runway and $4K MRR, what other uses for your engineer&#x27;s time during the next 90 days could accelerate growth in the current product?</p>
+</article>
+
+<article class="question-card">
+  <div class="question-dimension">Resource Allocation</div>
+  <p>Beyond the engineer and CS role, what freelance or part-time resources have you considered tapping for building the workflow tool while minimizing burn?</p>
+</article>
+
+<article class="question-card">
+  <div class="question-dimension">Resource Allocation</div>
+  <p>If you don&#x27;t pivot, how would you reallocate your own time or the team&#x27;s focus to address the flat growth in the dental SaaS product?</p>
+</article>
+</div>
+  </section>
+
+
+<section class="section" id="reframes">
+  <div class="section-kicker">05</div>
+  <div class="section-head">
+    <h2>Alternative Frames</h2>
+    <p>HTML earns its keep when suppressed options can sit beside the revised advice instead of being buried below it.</p>
+  </div>
+  <div class="frame-grid">
+<article class="frame-card">
+  <h3>What if we incrementally add the new workflow tool as a feature to the current product instead of a full pivot?</h3>
+  <p>Explores hybrid options that test the signal without abandoning existing customers and MRR, preserving 22 customers&#x27; value</p>
+  <div class="small-meta"><span>Grounding lens</span>decision-trees</div>
+</article>
+
+<article class="frame-card">
+  <h3>Could we reassign the CS employee to sales or market research during the pivot build phase to keep both team members?</h3>
+  <p>Reveals ways to retain employee expertise by adapting roles, reducing pivot costs and maintaining team capacity with 14 months runway</p>
+  <div class="small-meta"><span>Grounding lens</span>systems-thinking</div>
+</article>
+</div>
+</section>
+
+
+<section class="section trace" id="trace">
+  <details>
+    <summary>Technical trace</summary>
+    <div class="trace-grid">
+      <div>
+        <h3>Run health</h3>
+        <dl><dt>overall</dt><dd>degraded</dd><dt>issues</dt><dd>live_output_leak</dd><dt>quote fabrication</dt><dd>0</dd><dt>capture truncated</dt><dd>False</dd><dt>product output</dt><dd>clean</dd></dl>
+      </div>
+      <div>
+        <h3>Private enrichment</h3>
+        <dl><dt>status</dt><dd>active</dd><dt>selected chunks</dt><dd>16</dd><dt>ledger</dt><dd>valid</dd><dt>dispositions</dt><dd>not_considered: 1, rejected: 4, used: 11</dd></dl>
+      </div>
+      <div>
+        <h3>Cost</h3>
+        <dl><dt>estimated total</dt><dd>$0.1737</dd></dl>
+      </div>
+    </div>
+    <h3>Pressure-check summary</h3><table><thead><tr><th>Source</th><th>Status</th><th>Divergences</th></tr></thead><tbody><tr><td>DeltaCard</td><td>skipped_empty</td><td>0</td></tr><tr><td>CompanionCheatSheet</td><td>completed</td><td>2</td></tr><tr><td>FramePressureCard</td><td>completed</td><td>2</td></tr><tr><td>StructuralCoverageCard</td><td>completed</td><td>2</td></tr></tbody></table>
+  </details>
+</section>
+
+</main>
+
+<script type="application/json" id="lolla-artifact-data">{"artifact": "lolla_case_learning_html", "title": "The pivot validation tests demand but leaves execution feasibility and option shape open", "run_health": "degraded", "shifts": [{"title": "Add build timeline estimate to the 14-day window.", "body": "Before the pivot decision, the engineer needs to scope the build: time to a minimum viable version and time to first paid customer. If build plus sales cycle exceeds runway, the pivot requires outside capital first — and the decision is already made."}, {"title": "Correct customer communication sequencing.", "body": "Announce the transition when the new product is 60-70% complete, not at pivot decision time. Separately, commit now to a hard date when the old product goes maintenance-only or dark — without that date, the transition has no structural endpoint."}, {"title": "Broaden the validation to three tracks.", "body": "The pre-buy test checks three warm relationships. Add: (a) a one-question pulse to the other 19 current customers; (b) 10-15 conversations with dental practices you have not spoken to; (c) one question inside the pre-buy test itself asking whether they would pay for a standalone product or the capability on their current product."}, {"title": "Check the shareholder agreement before the co-founder conversation.", "body": "Her 15% equity may come with consent rights over strategic decisions. Informing her is necessary; it may not be sufficient. A legal check before the call."}], "models": [{"name": "False Precision Avoidance", "core": "A decision needs directional clarity, bounded ranges, or operating thresholds more than an illusion of exact certainty.", "why": "The answer guards against post-hoc rationalization by requiring pre-specification of directional success thresholds rather than pretending for exact certainty after the fact.", "changed": "Add build timeline estimate to the 14-day window.", "question": "If this was cut, would anything be lost?", "guardrail": "Simplification can fail by collapsing into vague slogans that no longer guide prediction, action, or alignment."}, {"name": "Emotional Intelligence", "core": "Use empathy maps to surface pains, gains, and hidden motivations before acting.", "why": "The answer recognizes that perceived fairness and trust will determine how the layoff decision lands, prioritizing advance honesty to manage morale and relationship impact.", "changed": "Correct customer communication sequencing.", "question": "Are we packaging this message for analytical review only, or for the emotional response that drives action?", "guardrail": "Emotional intelligence can be misread as niceness, leaving hard but necessary truth unsaid."}], "questions": [{"dimension": "Commitment \u0026 Reversibility", "question": "What other pivots or fallback plans have you considered if the workflow tool doesn't gain traction after launch?"}, {"dimension": "Commitment \u0026 Reversibility", "question": "If the pre-buy test fails, what parts of the current dental SaaS product could you quickly revive or enhance to regain momentum with your 22 customers?"}, {"dimension": "Commitment \u0026 Reversibility", "question": "How much time or resources would it take to reverse the pivot and return to supporting the current product if the new workflow tool underperforms?"}, {"dimension": "Resource Allocation", "question": "With 14 months runway and $4K MRR, what other uses for your engineer's time during the next 90 days could accelerate growth in the current product?"}, {"dimension": "Resource Allocation", "question": "Beyond the engineer and CS role, what freelance or part-time resources have you considered tapping for building the workflow tool while minimizing burn?"}, {"dimension": "Resource Allocation", "question": "If you don't pivot, how would you reallocate your own time or the team's focus to address the flat growth in the dental SaaS product?"}]}</script>
+</body>
+</html>
