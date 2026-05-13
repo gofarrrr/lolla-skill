@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The dissertation choice rests on a fallback and a sponsor whose viability was assumed, not tested</title>
+  <style>
+:root {
+  color-scheme: light;
+  --ink: #1d2528;
+  --muted: #667175;
+  --line: #d8e1e4;
+  --soft: #f6f8f8;
+  --paper: #ffffff;
+  --accent: #0f766e;
+  --accent-soft: #dff4ef;
+  --warn: #a04d12;
+  --warn-soft: #fff1df;
+  --blue: #315b7d;
+  --blue-soft: #e7f0f7;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: #eef3f2;
+  line-height: 1.5;
+}
+.hero, main {
+  width: min(1120px, calc(100vw - 32px));
+  margin: 0 auto;
+}
+.hero {
+  padding: 48px 0 28px;
+}
+.eyebrow, .section-kicker {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  font-weight: 700;
+}
+h1 {
+  margin: 10px 0 18px;
+  max-width: 900px;
+  font-size: 42px;
+  line-height: 1.06;
+  letter-spacing: 0;
+}
+h2 {
+  margin: 0;
+  font-size: 26px;
+  line-height: 1.15;
+}
+h3 {
+  margin: 0 0 8px;
+  font-size: 17px;
+  line-height: 1.25;
+}
+p { margin: 0 0 12px; }
+.trust-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 22px;
+}
+.pill {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: var(--paper);
+  color: var(--muted);
+  font-size: 13px;
+}
+.pill span {
+  color: var(--ink);
+  font-weight: 700;
+}
+.pill.ok {
+  background: var(--accent-soft);
+  border-color: #a6d9d0;
+}
+.pill.warn {
+  background: var(--warn-soft);
+  border-color: #f0c999;
+  color: var(--warn);
+}
+.orientation {
+  max-width: 860px;
+  font-size: 18px;
+  color: #334044;
+}
+.section {
+  position: relative;
+  margin: 18px 0;
+  padding: 28px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+  align-items: end;
+  margin: 6px 0 22px;
+}
+.section-head p {
+  max-width: 520px;
+  color: var(--muted);
+  margin: 0;
+}
+.shift-grid, .model-grid, .question-grid, .frame-grid, .trace-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.shift-card, .model-card, .question-card, .frame-card, .chain-node {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px;
+  background: var(--soft);
+}
+.shift-card {
+  background: linear-gradient(180deg, #ffffff 0%, #f4faf8 100%);
+}
+.card-index, .chain-label, .question-dimension, .small-meta span, .fact-row span {
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.card-body {
+  color: #3b474b;
+}
+.card-body ul {
+  padding-left: 18px;
+  margin: 8px 0 0;
+}
+.chain {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.chain-node {
+  min-height: 150px;
+  background: var(--blue-soft);
+  border-color: #c4d8e8;
+}
+.chain-node p {
+  margin-top: 12px;
+}
+.model-card {
+  background: #fffefa;
+}
+.model-name {
+  font-size: 19px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+.model-core {
+  color: #334044;
+  font-weight: 600;
+}
+.fact-row {
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+  margin-top: 10px;
+}
+.fact-row p {
+  margin: 4px 0 0;
+  color: #3f4b4f;
+}
+.question-card {
+  background: #fbfcfd;
+}
+.question-card p {
+  font-size: 16px;
+}
+.frame-card {
+  background: #f9fbff;
+}
+.small-meta {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.trace {
+  background: #192225;
+  color: #e6eeee;
+  border-color: #192225;
+}
+.trace summary {
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 18px;
+}
+.trace h3 {
+  color: #ffffff;
+}
+.trace-grid {
+  margin-top: 20px;
+}
+dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 6px 12px;
+  margin: 0;
+}
+dt {
+  color: #9eb4bb;
+}
+dd {
+  margin: 0;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+th, td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+}
+.empty, .muted {
+  color: var(--muted);
+  background: var(--soft);
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  padding: 18px;
+}
+.trace .muted {
+  color: #b8c9ce;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+code {
+  background: rgba(15, 118, 110, 0.12);
+  padding: 1px 4px;
+  border-radius: 4px;
+}
+@media (max-width: 780px) {
+  .hero, main {
+    width: min(100vw - 20px, 1120px);
+  }
+  .hero {
+    padding-top: 28px;
+  }
+  h1 {
+    font-size: 31px;
+  }
+  .section {
+    padding: 18px;
+  }
+  .section-head {
+    display: block;
+  }
+  .section-head p {
+    margin-top: 8px;
+  }
+  .shift-grid, .model-grid, .question-grid, .frame-grid, .trace-grid, .chain {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="eyebrow">Lolla case learning artifact</div>
+  <h1>The dissertation choice rests on a fallback and a sponsor whose viability was assumed, not tested</h1>
+  <div class="trust-strip"><span class="pill warn"><span>Run</span>degraded</span><span class="pill warn"><span>Capture</span>degraded</span><span class="pill ok"><span>Substrate</span>ok</span><span class="pill "><span>Product</span>unknown</span></div>
+  <div class="orientation"><p>You are choosing a dissertation direction in a 3-month window with a 67-year-old advisor who plans to retire in 2-3 years. The original answer recommended option 3 — apply your lab&#x27;s tumor-evolution methods to single-cell trajectory data via a Dr. Silva collaboration — over continuing the lab&#x27;s bread-and-butter (option 1) or pivoting cold into single-cell (option 2). The sequencing was advisor first, Silva second, committee by semester end, with an 18-month go/no-go checkpoint as a pre-commitment device.</p><p>Two structural pressures sharpened the advice. The first: I priced three options because you brought three, never testing whether tumor-evo methods could extend more cheaply to a non-single-cell modality your lab already supports — spatial transcriptomics, drug-resistance dynamics, immune-escape evolution. The literature search this weekend should widen scope before it narrows, and should answer evidence questions about job-postings and crowdedness rather than inheriting the &#x27;hot field&#x27; consensus. The second: the 18-month checkpoint as written is a time-based gate, not an evidence-based one, and pivot-target viability was not tested at the moment a trigger fires.</p><p>The revised direction is not a reversal. Option 3 still has the better career story than option 1, and the political sequencing still holds. What changed is what you do *before* the advisor conversation, what gates fire *during* the next 18 months, and what you have to know about your retiring advisor&#x27;s incentives before walking in.</p></div>
+</header>
+
+<main>
+  <section class="section" id="changed">
+    <div class="section-kicker">01</div>
+    <div class="section-head">
+      <h2>What Changed</h2>
+      <p>The artifact opens where the memo opens: the useful output is the shift in the advice.</p>
+    </div>
+    <div class="shift-grid">
+<article class="shift-card">
+  <div class="card-index">01</div>
+  <h3>Test the option space and the consensus before committing</h3>
+  <div class="card-body"><p>Widen the literature search from &#x27;evolutionary methods on single-cell trajectories&#x27; to &#x27;what novel data type could tumor-evo methods most productively extend to, given lab infrastructure.&#x27; Spatial transcriptomics, drug-resistance dynamics, and immune-escape evolution are option-4 candidates with the same career argument and no external-lab dependency. Within that scope, answer two evidence questions instead of inheriting consensus: which biotechs and faculty positions actually advertise for evolutionary modeling on which data types, and whether the single-cell + evolutionary niche is already paper-#5 territory rather than paper-#1.</p></div>
+</article>
+
+<article class="shift-card">
+  <div class="card-index">02</div>
+  <h3>Probe Silva before the advisor conversation</h3>
+  <div class="card-body"><p>Dr. Silva is the binding constraint for option 3. Send her a low-cost informal probe — not a specific proposal, just a short note asking whether her lab is in principle open to methods collaborations and what their data-sharing posture looks like — before you walk into the advisor conversation. Probing is different from pitching. Discovering Silva is unavailable *after* you have committed to a direction premised on her cooperation is the failure to avoid.</p></div>
+</article>
+
+<article class="shift-card">
+  <div class="card-index">03</div>
+  <h3>Replace the single 18-month checkpoint with evidence-specific reversal triggers</h3>
+  <div class="card-body"><p>Name four triggers tied to evidence rather than elapsed time:</p><ul><li>*Week 2:* if the literature search reveals a crowded niche, the &#x27;smart hybrid&#x27; framing collapses — pivot.</li><li>*Week 4:* if Silva offers only informal data access without co-advising or committee membership, the collaboration is too thin — pivot.</li><li>*Month 6:* first analysis on real single-cell data should be running. If not, the infrastructure gap is real, and you still have runway to react.</li><li>*Month 18:* one publishable result on the pipeline, as before.</li></ul><p>Each fires on evidence, not just elapsed time. That is what the owners-and-mitigations rule actually demands.</p></div>
+</article>
+</div>
+  </section>
+
+  <section class="section learning" id="lesson">
+    <div class="section-kicker">02</div>
+    <div class="section-head">
+      <h2>What This Case Teaches</h2>
+      <p>A compact chain from observed reasoning pattern to reusable question.</p>
+    </div>
+    <div class="chain">
+<div class="chain-node">
+  <div class="chain-label">Observed pattern</div>
+  <p>Social-Proof: challenge &#x27;USER [Turn 5]: &#x27;The postdoc-to-broaden thing is actually common in my department, though. Most people do that.&#x27; ASSISTANT [Turn 5]: &#x27;True. And it&#x27;s a reasonable path. But &quot;it&#x27;s common in my department&quot; is also a status-quo signal — if...</p>
+</div>
+
+<div class="chain-node">
+  <div class="chain-label">Reasoning pressure</div>
+  <p>Optionality: Uncertainty is high, early commitment is expensive, and cheap experiments can buy learning before an irreversible call.</p>
+</div>
+
+<div class="chain-node">
+  <div class="chain-label">Reusable check</div>
+  <p>Have we generated enough options before narrowing the choice set?</p>
+</div>
+</div>
+  </section>
+
+  <section class="section" id="models">
+    <div class="section-kicker">03</div>
+    <div class="section-head">
+      <h2>Mental Models Worth Learning</h2>
+      <p>Only the clearest lenses are shown. Each card explains why the model mattered here and how to reuse it.</p>
+    </div>
+    <div class="model-grid">
+<article class="model-card">
+  <div class="model-name">Optionality</div>
+  <p class="model-core">Uncertainty is high, early commitment is expensive, and cheap experiments can buy learning before an irreversible call.</p>
+  <div class="fact-row"><span>Why it activated here</span><p>The answer evaluates option 3 for preserving optionality under partial success by enabling multiple career paths and outputs, favoring it over narrower alternatives.</p></div>
+  <div class="fact-row"><span>What it changed</span><p>Test the option space and the consensus before committing</p></div>
+  <div class="fact-row"><span>Reusable question</span><p>Have we generated enough options before narrowing the choice set?</p></div>
+  <div class="fact-row"><span>Guardrail</span><p>Analysis paralysis can keep the team waiting for perfect information instead of learning through reversible movement.</p></div>
+</article>
+
+<article class="model-card">
+  <div class="model-name">Premortem</div>
+  <p class="model-core">Assume the project failed and work backward from that future state to surface the weak links that could have caused it.</p>
+  <div class="fact-row"><span>Why it activated here</span><p>The answer imagines a failure scenario pre-commitment where the novel combination fails to produce results, surfacing risks and pivot needs to inform the decision.</p></div>
+  <div class="fact-row"><span>What it changed</span><p>Probe Silva before the advisor conversation</p></div>
+  <div class="fact-row"><span>Reusable question</span><p>What would have to be true for Premortem to change the decision, not just decorate the explanation?</p></div>
+  <div class="fact-row"><span>Guardrail</span><p>A premortem becomes superficial when it produces an obvious worry list without owners, mitigations, or decision changes.</p></div>
+</article>
+
+<article class="model-card">
+  <div class="model-name">Base Rates</div>
+  <p class="model-core">The answer counters optimistic inside-view assumptions about novelty success with an outside-view base rate estimate for PhD novel projects.</p>
+  <div class="fact-row"><span>Why it activated here</span><p>The answer counters optimistic inside-view assumptions about novelty success with an outside-view base rate estimate for PhD novel projects.</p></div>
+  <div class="fact-row"><span>What it changed</span><p>Replace the single 18-month checkpoint with evidence-specific reversal triggers</p></div>
+  <div class="fact-row"><span>Reusable question</span><p>What is the average success/failure rate for projects or situations like this, regardless of our unique details?</p></div>
+  <div class="fact-row"><span>Guardrail</span><p>Inside-view overconfidence can overwhelm the outside view and distort the prior.</p></div>
+</article>
+
+<article class="model-card">
+  <div class="model-name">Problem Framing And Reframing</div>
+  <p class="model-core">Test several cuts through the problem before committing to the current unit of analysis or point of view.</p>
+  <div class="fact-row"><span>Why it activated here</span><p>The answer reframes option 3 from a vague &#x27;weird combination&#x27; to a specific, conservative methodological application on novel data, materially updating the risk assessment and recommendation.</p></div>
+  <div class="fact-row"><span>What it changed</span><p>Test the option space and the consensus before committing Widen the literature search from &#x27;evolutionary methods on single-cell trajectories&#x27; to &#x27;what novel...</p></div>
+  <div class="fact-row"><span>Reusable question</span><p>What is the single core question we are trying to answer?</p></div>
+  <div class="fact-row"><span>Guardrail</span><p>A flawed problem definition can drive elegant work toward irrelevant or costly solutions.</p></div>
+</article>
+</div>
+  </section>
+
+  <section class="section" id="questions">
+    <div class="section-kicker">04</div>
+    <div class="section-head">
+      <h2>Questions Still Open</h2>
+      <p>These are user-answerable checks, not AI-filled blanks.</p>
+    </div>
+    <div class="question-grid">
+<article class="question-card">
+  <div class="question-dimension">Competitive Dynamics</div>
+  <p>Who else at your institution or in the field might be applying tumor evolution methods to single-cell trajectories right now, and how far along are they?</p>
+</article>
+
+<article class="question-card">
+  <div class="question-dimension">Competitive Dynamics</div>
+  <p>If Dr. Silva&#x27;s lab or the other single-cell lab starts pursuing a similar evolutionary analysis angle independently, what would that mean for your project&#x27;s novelty?</p>
+</article>
+
+<article class="question-card">
+  <div class="question-dimension">Incentive Alignment</div>
+  <p>What does Dr. Silva personally gain or risk in terms of her own career timeline if she commits time and data to your option 3 collaboration?</p>
+</article>
+
+<article class="question-card">
+  <div class="question-dimension">Incentive Alignment</div>
+  <p>How might your advisor&#x27;s incentives change as his retirement approaches, especially if option 3 requires him to advocate politically for collaborations or funding shifts?</p>
+</article>
+
+<article class="question-card">
+  <div class="question-dimension">Information Quality</div>
+  <p>What specific details from your literature search this weekend would convince you that option 3&#x27;s angle on single-cell trajectories is still open versus already claimed by others?</p>
+</article>
+
+<article class="question-card">
+  <div class="question-dimension">Information Quality</div>
+  <p>How reliable is Dr. Silva&#x27;s postdoc perspective on her lab&#x27;s data quality and availability compared to what her PI might actually commit to?</p>
+</article>
+</div>
+  </section>
+
+
+<section class="section" id="reframes">
+  <div class="section-kicker">05</div>
+  <div class="section-head">
+    <h2>Alternative Frames</h2>
+    <p>HTML earns its keep when suppressed options can sit beside the revised advice instead of being buried below it.</p>
+  </div>
+  <div class="frame-grid">
+<article class="frame-card">
+  <h3>What other dissertation directions beyond the three options on the table could leverage my computational biology skills and the lab&#x27;s tumor modeling expertise?</h3>
+  <p>Explores additional viable paths like hybrid approaches or adjacent fields, breaking the Einstellung effect of fixating on the given three.</p>
+  <div class="small-meta"><span>Grounding lens</span>einstellung-effect</div>
+</article>
+
+<article class="frame-card">
+  <h3>How might I prototype elements of all three dissertation options within the next 3 months to inform a more flexible initial choice?</h3>
+  <p>Reveals opportunities for low-commitment experimentation and iteration post-deadline, reducing lock-in from a single rushed pick.</p>
+  <div class="small-meta"><span>Grounding lens</span>optionality</div>
+</article>
+</div>
+</section>
+
+
+<section class="section trace" id="trace">
+  <details>
+    <summary>Technical trace</summary>
+    <div class="trace-grid">
+      <div>
+        <h3>Run health</h3>
+        <dl><dt>overall</dt><dd>degraded</dd><dt>issues</dt><dd>capture_degraded</dd><dt>quote fabrication</dt><dd>0</dd><dt>capture truncated</dt><dd>False</dd></dl>
+      </div>
+      <div>
+        <h3>Private enrichment</h3>
+        <p class="muted">No data.</p>
+      </div>
+      <div>
+        <h3>Cost</h3>
+        <dl><dt>estimated total</dt><dd>$1.2528</dd></dl>
+      </div>
+    </div>
+    <h3>Pressure-check summary</h3><table><thead><tr><th>Source</th><th>Status</th><th>Divergences</th></tr></thead><tbody><tr><td>DeltaCard</td><td>completed</td><td>1</td></tr><tr><td>CompanionCheatSheet</td><td>completed</td><td>2</td></tr><tr><td>FramePressureCard</td><td>completed</td><td>1</td></tr><tr><td>StructuralCoverageCard</td><td>completed</td><td>3</td></tr></tbody></table>
+  </details>
+</section>
+
+</main>
+
+<script type="application/json" id="lolla-artifact-data">{"artifact": "lolla_case_learning_html", "title": "The dissertation choice rests on a fallback and a sponsor whose viability was assumed, not tested", "run_health": "degraded", "shifts": [{"title": "Test the option space and the consensus before committing", "body": "Widen the literature search from 'evolutionary methods on single-cell trajectories' to 'what novel data type could tumor-evo methods most productively extend to, given lab infrastructure.' Spatial transcriptomics, drug-resistance dynamics, and immune-escape evolution are option-4 candidates with the same career argument and no external-lab dependency. Within that scope, answer two evidence questions instead of inheriting consensus: which biotechs and faculty positions actually advertise for evolutionary modeling on which data types, and whether the single-cell + evolutionary niche is already paper-#5 territory rather than paper-#1."}, {"title": "Probe Silva before the advisor conversation", "body": "Dr. Silva is the binding constraint for option 3. Send her a low-cost informal probe — not a specific proposal, just a short note asking whether her lab is in principle open to methods collaborations and what their data-sharing posture looks like — before you walk into the advisor conversation. Probing is different from pitching. Discovering Silva is unavailable *after* you have committed to a direction premised on her cooperation is the failure to avoid."}, {"title": "Replace the single 18-month checkpoint with evidence-specific reversal triggers", "body": "Name four triggers tied to evidence rather than elapsed time:\n\n- *Week 2:* if the literature search reveals a crowded niche, the 'smart hybrid' framing collapses — pivot.\n- *Week 4:* if Silva offers only informal data access without co-advising or committee membership, the collaboration is too thin — pivot.\n- *Month 6:* first analysis on real single-cell data should be running. If not, the infrastructure gap is real, and you still have runway to react.\n- *Month 18:* one publishable result on the pipeline, as before.\n\nEach fires on evidence, not just elapsed time. That is what the owners-and-mitigations rule actually demands."}], "models": [{"name": "Optionality", "core": "Uncertainty is high, early commitment is expensive, and cheap experiments can buy learning before an irreversible call.", "why": "The answer evaluates option 3 for preserving optionality under partial success by enabling multiple career paths and outputs, favoring it over narrower alternatives.", "changed": "Test the option space and the consensus before committing", "question": "Have we generated enough options before narrowing the choice set?", "guardrail": "Analysis paralysis can keep the team waiting for perfect information instead of learning through reversible movement."}, {"name": "Premortem", "core": "Assume the project failed and work backward from that future state to surface the weak links that could have caused it.", "why": "The answer imagines a failure scenario pre-commitment where the novel combination fails to produce results, surfacing risks and pivot needs to inform the decision.", "changed": "Probe Silva before the advisor conversation", "question": "What would have to be true for Premortem to change the decision, not just decorate the explanation?", "guardrail": "A premortem becomes superficial when it produces an obvious worry list without owners, mitigations, or decision changes."}, {"name": "Base Rates", "core": "The answer counters optimistic inside-view assumptions about novelty success with an outside-view base rate estimate for PhD novel projects.", "why": "The answer counters optimistic inside-view assumptions about novelty success with an outside-view base rate estimate for PhD novel projects.", "changed": "Replace the single 18-month checkpoint with evidence-specific reversal triggers", "question": "What is the average success/failure rate for projects or situations like this, regardless of our unique details?", "guardrail": "Inside-view overconfidence can overwhelm the outside view and distort the prior."}, {"name": "Problem Framing And Reframing", "core": "Test several cuts through the problem before committing to the current unit of analysis or point of view.", "why": "The answer reframes option 3 from a vague 'weird combination' to a specific, conservative methodological application on novel data, materially updating the risk assessment and recommendation.", "changed": "Test the option space and the consensus before committing Widen the literature search from 'evolutionary methods on single-cell trajectories' to 'what novel...", "question": "What is the single core question we are trying to answer?", "guardrail": "A flawed problem definition can drive elegant work toward irrelevant or costly solutions."}], "questions": [{"dimension": "Competitive Dynamics", "question": "Who else at your institution or in the field might be applying tumor evolution methods to single-cell trajectories right now, and how far along are they?"}, {"dimension": "Competitive Dynamics", "question": "If Dr. Silva's lab or the other single-cell lab starts pursuing a similar evolutionary analysis angle independently, what would that mean for your project's novelty?"}, {"dimension": "Incentive Alignment", "question": "What does Dr. Silva personally gain or risk in terms of her own career timeline if she commits time and data to your option 3 collaboration?"}, {"dimension": "Incentive Alignment", "question": "How might your advisor's incentives change as his retirement approaches, especially if option 3 requires him to advocate politically for collaborations or funding shifts?"}, {"dimension": "Information Quality", "question": "What specific details from your literature search this weekend would convince you that option 3's angle on single-cell trajectories is still open versus already claimed by others?"}, {"dimension": "Information Quality", "question": "How reliable is Dr. Silva's postdoc perspective on her lab's data quality and availability compared to what her PI might actually commit to?"}]}</script>
+</body>
+</html>

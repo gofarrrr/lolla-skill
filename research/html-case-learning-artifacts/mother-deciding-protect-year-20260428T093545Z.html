@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mother deciding how to protect 14-year-old daughter from 19-year-old online groomer while rebuilding trust...</title>
+  <style>
+:root {
+  color-scheme: light;
+  --ink: #1d2528;
+  --muted: #667175;
+  --line: #d8e1e4;
+  --soft: #f6f8f8;
+  --paper: #ffffff;
+  --accent: #0f766e;
+  --accent-soft: #dff4ef;
+  --warn: #a04d12;
+  --warn-soft: #fff1df;
+  --blue: #315b7d;
+  --blue-soft: #e7f0f7;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: #eef3f2;
+  line-height: 1.5;
+}
+.hero, main {
+  width: min(1120px, calc(100vw - 32px));
+  margin: 0 auto;
+}
+.hero {
+  padding: 48px 0 28px;
+}
+.eyebrow, .section-kicker {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  font-weight: 700;
+}
+h1 {
+  margin: 10px 0 18px;
+  max-width: 900px;
+  font-size: 42px;
+  line-height: 1.06;
+  letter-spacing: 0;
+}
+h2 {
+  margin: 0;
+  font-size: 26px;
+  line-height: 1.15;
+}
+h3 {
+  margin: 0 0 8px;
+  font-size: 17px;
+  line-height: 1.25;
+}
+p { margin: 0 0 12px; }
+.trust-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 22px;
+}
+.pill {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: var(--paper);
+  color: var(--muted);
+  font-size: 13px;
+}
+.pill span {
+  color: var(--ink);
+  font-weight: 700;
+}
+.pill.ok {
+  background: var(--accent-soft);
+  border-color: #a6d9d0;
+}
+.pill.warn {
+  background: var(--warn-soft);
+  border-color: #f0c999;
+  color: var(--warn);
+}
+.orientation {
+  max-width: 860px;
+  font-size: 18px;
+  color: #334044;
+}
+.section {
+  position: relative;
+  margin: 18px 0;
+  padding: 28px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+  align-items: end;
+  margin: 6px 0 22px;
+}
+.section-head p {
+  max-width: 520px;
+  color: var(--muted);
+  margin: 0;
+}
+.shift-grid, .model-grid, .question-grid, .frame-grid, .trace-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.shift-card, .model-card, .question-card, .frame-card, .chain-node {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px;
+  background: var(--soft);
+}
+.shift-card {
+  background: linear-gradient(180deg, #ffffff 0%, #f4faf8 100%);
+}
+.card-index, .chain-label, .question-dimension, .small-meta span, .fact-row span {
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.card-body {
+  color: #3b474b;
+}
+.card-body ul {
+  padding-left: 18px;
+  margin: 8px 0 0;
+}
+.chain {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.chain-node {
+  min-height: 150px;
+  background: var(--blue-soft);
+  border-color: #c4d8e8;
+}
+.chain-node p {
+  margin-top: 12px;
+}
+.model-card {
+  background: #fffefa;
+}
+.model-name {
+  font-size: 19px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+.model-core {
+  color: #334044;
+  font-weight: 600;
+}
+.fact-row {
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+  margin-top: 10px;
+}
+.fact-row p {
+  margin: 4px 0 0;
+  color: #3f4b4f;
+}
+.question-card {
+  background: #fbfcfd;
+}
+.question-card p {
+  font-size: 16px;
+}
+.frame-card {
+  background: #f9fbff;
+}
+.small-meta {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.trace {
+  background: #192225;
+  color: #e6eeee;
+  border-color: #192225;
+}
+.trace summary {
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 18px;
+}
+.trace h3 {
+  color: #ffffff;
+}
+.trace-grid {
+  margin-top: 20px;
+}
+dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 6px 12px;
+  margin: 0;
+}
+dt {
+  color: #9eb4bb;
+}
+dd {
+  margin: 0;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+th, td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+}
+.empty, .muted {
+  color: var(--muted);
+  background: var(--soft);
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  padding: 18px;
+}
+.trace .muted {
+  color: #b8c9ce;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+code {
+  background: rgba(15, 118, 110, 0.12);
+  padding: 1px 4px;
+  border-radius: 4px;
+}
+@media (max-width: 780px) {
+  .hero, main {
+    width: min(100vw - 20px, 1120px);
+  }
+  .hero {
+    padding-top: 28px;
+  }
+  h1 {
+    font-size: 31px;
+  }
+  .section {
+    padding: 18px;
+  }
+  .section-head {
+    display: block;
+  }
+  .section-head p {
+    margin-top: 8px;
+  }
+  .shift-grid, .model-grid, .question-grid, .frame-grid, .trace-grid, .chain {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="eyebrow">Lolla case learning artifact</div>
+  <h1>Mother deciding how to protect 14-year-old daughter from 19-year-old online groomer while rebuilding trust...</h1>
+  <div class="trust-strip"><span class="pill warn"><span>Run</span>degraded</span><span class="pill ok"><span>Capture</span>good</span><span class="pill ok"><span>Substrate</span>ok</span><span class="pill "><span>Product</span>unknown</span></div>
+  <div class="orientation"><p>This artifact turns the audit into a compact learning surface. The case was: Mother deciding how to protect 14-year-old daughter from 19-year-old online groomer while rebuilding trust amid divorce and surveillance history.</p></div>
+</header>
+
+<main>
+  <section class="section" id="changed">
+    <div class="section-kicker">01</div>
+    <div class="section-head">
+      <h2>What Changed</h2>
+      <p>The artifact opens where the memo opens: the useful output is the shift in the advice.</p>
+    </div>
+    <div class="shift-grid">
+<article class="shift-card">
+  <div class="card-index">01</div>
+  <h3>Updated position</h3>
+  <div class="card-body"><p>Updated Position Stepping back from the whole conversation — here&#x27;s what I&#x27;d say again, what I considered and held, and where my advice was actually under-thought. What survived The core sequence holds. Re-open communication before pushing on the guy, low-stakes texts as the bridge, RAINN-first not police-first, factual-only loop-in to your ex, no contact with Mia&#x27;s mom yet, surveillance disclosed later as a separate conversation, therapist with specialist credentials, phone out of her room as a standing practice...</p></div>
+</article>
+</div>
+  </section>
+
+  <section class="section learning" id="lesson">
+    <div class="section-kicker">02</div>
+    <div class="section-head">
+      <h2>What This Case Teaches</h2>
+      <p>A compact chain from observed reasoning pattern to reusable question.</p>
+    </div>
+    <div class="chain">
+<div class="chain-node">
+  <div class="chain-label">Observed pattern</div>
+  <p>The answer weighs the opportunity cost of pursuing the threat (19-year-old) now versus prioritizing relationship repair, noting that actions on the threat won&#x27;t succeed without first restoring communication.</p>
+</div>
+
+<div class="chain-node">
+  <div class="chain-label">Reasoning pressure</div>
+  <p>Opportunity Cost: Force every recommendation to answer compared to what before calling it attractive.</p>
+</div>
+
+<div class="chain-node">
+  <div class="chain-label">Reusable check</div>
+  <p>Before approval: name the single most valuable thing this decision makes impossible or significantly harder for the next 12 months.</p>
+</div>
+</div>
+  </section>
+
+  <section class="section" id="models">
+    <div class="section-kicker">03</div>
+    <div class="section-head">
+      <h2>Mental Models Worth Learning</h2>
+      <p>Only the clearest lenses are shown. Each card explains why the model mattered here and how to reuse it.</p>
+    </div>
+    <div class="model-grid">
+<article class="model-card">
+  <div class="model-name">Opportunity Cost</div>
+  <p class="model-core">Force every recommendation to answer compared to what before calling it attractive.</p>
+  <div class="fact-row"><span>Why it activated here</span><p>The answer weighs the opportunity cost of pursuing the threat (19-year-old) now versus prioritizing relationship repair, noting that actions on the threat won&#x27;t succeed without first restoring communication.</p></div>
+  <div class="fact-row"><span>What it changed</span><p>It helped separate the decision-relevant mechanism from background explanation.</p></div>
+  <div class="fact-row"><span>Reusable question</span><p>Before approval: name the single most valuable thing this decision makes impossible or significantly harder for the next 12 months.</p></div>
+  <div class="fact-row"><span>Guardrail</span><p>A request can look cheap in isolation while still stealing the same launch window, engineering time, or management attention from the highest-value move.</p></div>
+</article>
+
+<article class="model-card">
+  <div class="model-name">Liking Principle</div>
+  <p class="model-core">Trust, receptivity, or willingness to engage is the bottleneck and the audience first needs to feel understood rather than merely informed.</p>
+  <div class="fact-row"><span>Why it activated here</span><p>The answer prioritizes rebuilding the daughter&#x27;s liking and trust through face-saving relationship repair as the precondition for her receptivity to future guidance on the threat.</p></div>
+  <div class="fact-row"><span>What it changed</span><p>It helped separate the decision-relevant mechanism from background explanation.</p></div>
+  <div class="fact-row"><span>Reusable question</span><p>Does the emotional connection we have established distract from a critical flaw in the facts?</p></div>
+  <div class="fact-row"><span>Guardrail</span><p>Charm can become a substitute for technical rigor when relationship energy is used to cover weak substance.</p></div>
+</article>
+
+<article class="model-card">
+  <div class="model-name">Second Order Thinking</div>
+  <p class="model-core">Map the dependency chain before commitment instead of approving the plan from the immediate gain alone.</p>
+  <div class="fact-row"><span>Why it activated here</span><p>The answer explicitly considers the first-order effect of blocking (removing the guy) and the second-order consequence (driving communication underground and losing visibility), using this chain to recommend against immediate blocking.</p></div>
+  <div class="fact-row"><span>What it changed</span><p>It helped separate the decision-relevant mechanism from background explanation.</p></div>
+  <div class="fact-row"><span>Reusable question</span><p>How does what you&#x27;re doing solve the problem?</p></div>
+  <div class="fact-row"><span>Guardrail</span><p>A visible first-order win can hide a second-order loss caused by overloaded dependencies, delayed reactions, or metric protection.</p></div>
+</article>
+
+<article class="model-card">
+  <div class="model-name">Representativeness Heuristic</div>
+  <p class="model-core">The answer identifies the specific language patterns as representative of the grooming category, using surface similarity to a known prototype to validate the concern over the ex&#x27;s minimization rather than relying on base rates or frequencies.</p>
+  <div class="fact-row"><span>Why it activated here</span><p>The answer identifies the specific language patterns as representative of the grooming category, using surface similarity to a known prototype to validate the concern over the ex&#x27;s minimization rather than relying on base rates or frequencies.</p></div>
+  <div class="fact-row"><span>What it changed</span><p>It helped separate the decision-relevant mechanism from background explanation.</p></div>
+  <div class="fact-row"><span>Reusable question</span><p>If this representative-looking pattern fails, what ignored denominator or low-probability scenario would explain the miss?</p></div>
+  <div class="fact-row"><span>Guardrail</span><p>A vivid pattern match can crowd out base-rate and frequency discipline, making the case feel more diagnostic than it is.</p></div>
+</article>
+</div>
+  </section>
+
+  <section class="section" id="questions">
+    <div class="section-kicker">04</div>
+    <div class="section-head">
+      <h2>Questions Still Open</h2>
+      <p>These are user-answerable checks, not AI-filled blanks.</p>
+    </div>
+    <div class="question-grid">
+<article class="question-card">
+  <div class="question-dimension">Risk Response</div>
+  <p>What risks of pushing too hard on rebuilding trust right now worry you the most, given how she&#x27;s responded so far?</p>
+</article>
+
+<article class="question-card">
+  <div class="question-dimension">Risk Response</div>
+  <p>If you took a more aggressive approach like reporting the 19-year-old immediately despite RAINN&#x27;s warnings, what downsides do you see for your daughter and your co-parenting with her dad?</p>
+</article>
+
+<article class="question-card">
+  <div class="question-dimension">Risk Response</div>
+  <p>Under what family circumstances would you feel the need to shift from this careful plan to a more urgent response?</p>
+</article>
+
+<article class="question-card">
+  <div class="question-dimension">Incentive Alignment</div>
+  <p>What does your ex stand to gain or lose if he keeps minimizing the grooming situation during his custody time?</p>
+</article>
+
+<article class="question-card">
+  <div class="question-dimension">Incentive Alignment</div>
+  <p>How might changing the way you share custody decisions with your ex affect whether he supports protecting her from the 19-year-old?</p>
+</article>
+
+<article class="question-card">
+  <div class="question-dimension">Incentive Alignment</div>
+  <p>What incentives could you create for your daughter to open up about online contacts without feeling like she&#x27;s betraying the guy?</p>
+</article>
+</div>
+  </section>
+
+
+
+<section class="section trace" id="trace">
+  <details>
+    <summary>Technical trace</summary>
+    <div class="trace-grid">
+      <div>
+        <h3>Run health</h3>
+        <dl><dt>overall</dt><dd>degraded</dd><dt>issues</dt><dd>lane3_all_dropped</dd><dt>quote fabrication</dt><dd>0</dd><dt>capture truncated</dt><dd>False</dd></dl>
+      </div>
+      <div>
+        <h3>Private enrichment</h3>
+        <p class="muted">No data.</p>
+      </div>
+      <div>
+        <h3>Cost</h3>
+        <dl><dt>estimated total</dt><dd>$0.6358</dd></dl>
+      </div>
+    </div>
+    <h3>Pressure-check summary</h3><table><thead><tr><th>Source</th><th>Status</th><th>Divergences</th></tr></thead><tbody><tr><td>DeltaCard</td><td>skipped_empty</td><td>0</td></tr><tr><td>CompanionCheatSheet</td><td>completed</td><td>2</td></tr><tr><td>FramePressureCard</td><td>skipped_empty</td><td>0</td></tr><tr><td>StructuralCoverageCard</td><td>completed</td><td>3</td></tr></tbody></table>
+  </details>
+</section>
+
+</main>
+
+<script type="application/json" id="lolla-artifact-data">{"artifact": "lolla_case_learning_html", "title": "Mother deciding how to protect 14-year-old daughter from 19-year-old online groomer while rebuilding trust...", "run_health": "degraded", "shifts": [{"title": "Updated position", "body": "Updated Position Stepping back from the whole conversation — here's what I'd say again, what I considered and held, and where my advice was actually under-thought. What survived The core sequence holds. Re-open communication before pushing on the guy, low-stakes texts as the bridge, RAINN-first not police-first, factual-only loop-in to your ex, no contact with Mia's mom yet, surveillance disclosed later as a separate conversation, therapist with specialist credentials, phone out of her room as a standing practice..."}], "models": [{"name": "Opportunity Cost", "core": "Force every recommendation to answer compared to what before calling it attractive.", "why": "The answer weighs the opportunity cost of pursuing the threat (19-year-old) now versus prioritizing relationship repair, noting that actions on the threat won't succeed without first restoring communication.", "changed": "It helped separate the decision-relevant mechanism from background explanation.", "question": "Before approval: name the single most valuable thing this decision makes impossible or significantly harder for the next 12 months.", "guardrail": "A request can look cheap in isolation while still stealing the same launch window, engineering time, or management attention from the highest-value move."}, {"name": "Liking Principle", "core": "Trust, receptivity, or willingness to engage is the bottleneck and the audience first needs to feel understood rather than merely informed.", "why": "The answer prioritizes rebuilding the daughter's liking and trust through face-saving relationship repair as the precondition for her receptivity to future guidance on the threat.", "changed": "It helped separate the decision-relevant mechanism from background explanation.", "question": "Does the emotional connection we have established distract from a critical flaw in the facts?", "guardrail": "Charm can become a substitute for technical rigor when relationship energy is used to cover weak substance."}, {"name": "Second Order Thinking", "core": "Map the dependency chain before commitment instead of approving the plan from the immediate gain alone.", "why": "The answer explicitly considers the first-order effect of blocking (removing the guy) and the second-order consequence (driving communication underground and losing visibility), using this chain to recommend against immediate blocking.", "changed": "It helped separate the decision-relevant mechanism from background explanation.", "question": "How does what you're doing solve the problem?", "guardrail": "A visible first-order win can hide a second-order loss caused by overloaded dependencies, delayed reactions, or metric protection."}, {"name": "Representativeness Heuristic", "core": "The answer identifies the specific language patterns as representative of the grooming category, using surface similarity to a known prototype to validate the concern over the ex's minimization rather than relying on base rates or frequencies.", "why": "The answer identifies the specific language patterns as representative of the grooming category, using surface similarity to a known prototype to validate the concern over the ex's minimization rather than relying on base rates or frequencies.", "changed": "It helped separate the decision-relevant mechanism from background explanation.", "question": "If this representative-looking pattern fails, what ignored denominator or low-probability scenario would explain the miss?", "guardrail": "A vivid pattern match can crowd out base-rate and frequency discipline, making the case feel more diagnostic than it is."}], "questions": [{"dimension": "Risk Response", "question": "What risks of pushing too hard on rebuilding trust right now worry you the most, given how she's responded so far?"}, {"dimension": "Risk Response", "question": "If you took a more aggressive approach like reporting the 19-year-old immediately despite RAINN's warnings, what downsides do you see for your daughter and your co-parenting with her dad?"}, {"dimension": "Risk Response", "question": "Under what family circumstances would you feel the need to shift from this careful plan to a more urgent response?"}, {"dimension": "Incentive Alignment", "question": "What does your ex stand to gain or lose if he keeps minimizing the grooming situation during his custody time?"}, {"dimension": "Incentive Alignment", "question": "How might changing the way you share custody decisions with your ex affect whether he supports protecting her from the 19-year-old?"}, {"dimension": "Incentive Alignment", "question": "What incentives could you create for your daughter to open up about online contacts without feeling like she's betraying the guy?"}]}</script>
+</body>
+</html>
