@@ -34,6 +34,7 @@ research/pre-step6-raw-vs-control-rubric-comparison-readout-2026-05-16.md
 research/pre-step6-native-subagent-producer-test-readout-2026-05-16.md
 research/pre-step6-native-subagent-admission-gate-readout-2026-05-16.md
 research/pre-step6-workpack-validation-harness-readout-2026-05-16.md
+research/pre-step6-rendered-workpack-subagent-replay-readout-2026-05-16.md
 ```
 
 The system goal is not more artifacts. The goal is a final answer that is
@@ -61,6 +62,11 @@ research-only validator/renderer in `scripts/research/pre_step6_workpacks.py`,
 four admission fixtures, three admitted workpack fixtures, and pytest coverage.
 The mother no-worker sentinel has no workpack fixture and tests reject declined
 admissions as workpack references.
+
+2026-05-16 rendered-workpack replay update: rendered prompts reproduced the
+targeted content lift in all three admitted cases and skipped the mother
+sentinel, but only one of three worker outputs returned strict JSON. Tighten
+worker-output serialization before any automation or runtime path.
 
 ## 2026-05-16 Critic Pass
 

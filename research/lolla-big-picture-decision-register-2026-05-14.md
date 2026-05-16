@@ -398,6 +398,18 @@ pytest covers admission pattern, caps, prompt order, declined-reference rejectio
 no runtime promotion
 ```
 
+Rendered-workpack replay follow-up:
+
+```text
+rendered prompts reproduced targeted content lift in PhD, founder, consultant
+mother no-worker sentinel stayed skipped
+founder returned strict JSON
+PhD and consultant returned human-readable field lists
+content contract promising, serialization contract too loose
+next slice must require exact reasoning_artifact.v1 JSON and validate outputs
+no runtime promotion
+```
+
 ## Target Architecture If Research Eventually Wins
 
 The likely long-term target is not a Bevelin lane, not a giant prompt, and not

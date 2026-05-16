@@ -224,6 +224,14 @@ compare against the previous manual producer artifacts
 confirm mother still has no producer prompt
 ```
 
+2026-05-16 follow-up: rendered-prompt replay passed content recovery in the
+three admitted cases and kept the mother sentinel skipped, but exposed
+serialization drift. See:
+
+```text
+research/pre-step6-rendered-workpack-subagent-replay-readout-2026-05-16.md
+```
+
 Pass condition:
 
 ```text
