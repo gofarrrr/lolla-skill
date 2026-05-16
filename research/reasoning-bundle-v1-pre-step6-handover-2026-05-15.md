@@ -9,11 +9,20 @@ Current system-plan source of truth:
 
 ```text
 research/pre-step6-cognitive-worker-system-plan-2026-05-16.md
+research/pre-step6-comparison-subagent-readout-2026-05-16.md
+research/pre-step6-handoff-best-practices-as-of-2026-05-16.md
 ```
 
 This document remains the v1 bundle handover. The 2026-05-16 plan adds the
 planned worker input concept, admission gate, and shared-brief requirements that
 should precede bundle construction.
+
+2026-05-16 corrective note: the bundle is now an optional research challenger,
+not the default next build. A less-author-biased subagent comparison found raw
+`reasoning_artifact.v1` specimens tied the indexed bundle in all three fixtures,
+so raw artifacts won under the simpler-path rule. Future bundle work must prove
+final-answer lift over careful raw artifact consumption, not just better private
+auditability.
 
 ## Why This Exists
 

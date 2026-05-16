@@ -13,6 +13,8 @@ Parent:
 Related:
 
 - `research/pre-step6-cognitive-worker-system-plan-2026-05-16.md`
+- `research/pre-step6-comparison-subagent-readout-2026-05-16.md`
+- `research/pre-step6-handoff-best-practices-as-of-2026-05-16.md`
 - `research/meta-reasoning-corpus-question-bank-2026-05-15.md`
 - `research/post-lane-inquiry-card-vision-2026-05-15.md`
 - `research/provider-use-operating-structure-2026-05-15.md`
@@ -167,7 +169,11 @@ This is still the production-safe architecture because:
   synthesis;
 - product docs describe stable behavior, not experimental behavior.
 
-## 2026-05-16 Decision: Pre-Step-6 Cognitive Worker Plan
+## 2026-05-16 Original Decision: Pre-Step-6 Cognitive Worker Plan
+
+Status: revised later the same day by the corrective handoff-practices decision
+below. Keep this section as the receipt for the original docs-only plan, not as
+the current build instruction.
 
 Decision:
 
@@ -185,7 +191,7 @@ Receipt:
 research/pre-step6-cognitive-worker-system-plan-2026-05-16.md
 ```
 
-What is locked:
+What was locked for the original docs-only plan:
 
 - live lanes and V60 stay unchanged;
 - `SKILL.md` remains the live execution source of truth;
@@ -223,7 +229,7 @@ Why this decision exists:
 - product promotion before that evidence would confuse research motion with
   system improvement.
 
-Follow-up decision:
+Original follow-up decision:
 
 ```text
 research/pre-step6-next-slice-decision-note-2026-05-16.md
@@ -233,6 +239,55 @@ Before building workers, test whether `reasoning_bundle.v1` improves
 Step-6-style consumption over raw compact artifacts. This isolates handoff value
 from producer quality. If the bundle ties raw artifacts, raw artifacts win and
 the worker/bundle machinery stays unpromoted.
+
+The corrective decision below records the first result of that follow-up: raw
+artifacts tied the indexed bundle, so raw artifacts won under the simpler-path
+rule.
+
+## 2026-05-16 Corrective Decision: Handoff Best Practices
+
+Decision:
+
+```text
+no true handoff
+Step 6 remains manager/final reasoner
+bounded worker-as-tool calls only after admission
+raw reasoning_artifact.v1 consumption first
+reasoning_bundle.v1 optional until it beats raw artifacts
+no product promotion
+no product docs change
+```
+
+Receipts:
+
+```text
+research/pre-step6-comparison-subagent-readout-2026-05-16.md
+research/pre-step6-handoff-best-practices-as-of-2026-05-16.md
+research/pre-step6-comparison-aggregate-readout-2026-05-16.md
+research/pre-step6-next-slice-decision-note-2026-05-16.md
+```
+
+Why this correction exists:
+
+- the manual comparison said the indexed bundle won all three fixtures;
+- a less-author-biased subagent comparison found raw artifacts tied the indexed
+  bundle in all three fixtures;
+- under the standing rule, ties go to the simpler path, so raw artifacts won
+  all three;
+- source-backed handoff research points toward manager/worker or worker-as-tool
+  patterns for Lolla, not true user-facing handoff;
+- current handoff best practice requires strong single-agent/raw-artifact
+  baselines, small explicit payloads, separated state and visible context,
+  provenance, validation, and boundary observability.
+
+What changed:
+
+- `reasoning_bundle.v1` is no longer the default next build;
+- subagents remain a research option, but only as bounded worker calls;
+- raw `reasoning_artifact.v1` discipline becomes the immediate baseline to
+  harvest and test;
+- any future bundle work must prove final-answer lift over careful raw artifact
+  use, not merely better private auditability.
 
 ## Target Architecture If Research Eventually Wins
 

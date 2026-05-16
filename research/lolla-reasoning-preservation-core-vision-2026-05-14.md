@@ -28,6 +28,8 @@ Current decision register:
 
 - `research/lolla-big-picture-decision-register-2026-05-14.md`
 - `research/pre-step6-cognitive-worker-system-plan-2026-05-16.md`
+- `research/pre-step6-comparison-subagent-readout-2026-05-16.md`
+- `research/pre-step6-handoff-best-practices-as-of-2026-05-16.md`
 - `research/meta-reasoning-corpus-question-bank-2026-05-15.md`
 - `research/post-lane-inquiry-card-vision-2026-05-15.md`
 - `research/provider-use-operating-structure-2026-05-15.md`
@@ -123,8 +125,9 @@ Current priority correction:
 
 > The question corpus should wait. The immediate architecture problem is how to
 > give Claude Code, or any future orchestrator, only relevant cognitive pressure.
-> That means revisiting subagents as pre-synthesis cognitive workers, not mainly
-> as after-the-fact pressure checks.
+> The latest evidence says to test raw `reasoning_artifact.v1` consumption
+> discipline before building bundle or worker machinery. Subagents remain a
+> bounded worker-as-tool research option, not a true handoff or runtime default.
 
 Latest live replay correction:
 

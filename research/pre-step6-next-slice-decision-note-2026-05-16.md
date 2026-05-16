@@ -24,26 +24,33 @@ Readout template and first preflight:
 research/pre-step6-comparison-readout-template-2026-05-16.md
 research/pre-step6-comparison-manual-preflight-readout-2026-05-16.md
 research/pre-step6-comparison-aggregate-readout-2026-05-16.md
+research/pre-step6-comparison-subagent-readout-2026-05-16.md
+research/pre-step6-handoff-best-practices-as-of-2026-05-16.md
 ```
 
 ## Decision
 
 Do not start by implementing workers.
 
-Start with a comparison-first research slice that asks whether an indexed
-`reasoning_bundle.v1` actually improves Step 6-style consumption over raw
-compact artifacts.
+2026-05-16 update: do not start by implementing the bundle either.
 
-The next slice is:
+The less-author-biased subagent comparison found that raw
+`reasoning_artifact.v1` specimens tied the indexed bundle on all three fixtures.
+Because ties go to the simpler path, raw artifacts won all three. A same-day
+handoff best-practices scan also points away from true handoffs and toward
+bounded worker-as-tool calls under Step 6 ownership.
+
+The prior comparison-first slice asked whether an indexed
+`reasoning_bundle.v1` improves Step-6-style consumption over raw compact
+artifacts. It produced a useful correction: manual scoring favored the bundle,
+but the less-author-biased subagent pass found ties.
+
+Therefore the next slice should be smaller:
 
 ```text
-archived or curated case
-  -> manually assembled raw reasoning_artifact.v1 specimens
-  -> manually assembled reasoning_bundle.v1 index
-  -> Step-6-style comparison:
-       current control
-       raw artifacts
-       indexed bundle
+raw reasoning_artifact.v1 consumption discipline
+  -> Step-6-style comparison against current control
+  -> optional indexed bundle challenger only if the raw path leaves clutter
   -> short readout with win/tie/loss and kill decision
 ```
 
@@ -59,27 +66,30 @@ nothing for the final answer.
 The first question is therefore:
 
 ```text
-Does a bundle index help the final reasoner use, demote, preserve, or reject
-pressure better than raw compact artifacts?
+Can a disciplined raw reasoning_artifact.v1 handoff preserve the useful pressure
+without adding bundle machinery?
 ```
 
-If the answer is no, then building a `reasoning_workpack.v1` builder, subagent
-prompt builders, and worker-output converters would only make the system larger.
+If the answer is yes, then building a `reasoning_workpack.v1` builder,
+`reasoning_bundle.v1` renderer, subagent prompt builders, and worker-output
+converters would only make the system larger unless a later bundle challenger
+beats the raw path.
 
 ## What This Slice Tests
 
-Test the handoff value, not producer quality.
+Test the raw handoff value, not producer quality.
 
 In this slice, hand-authored `reasoning_artifact.v1` specimens are acceptable
-because the point is to isolate whether Step 6 benefits from the bundle shape.
+because the point is to isolate whether Step 6 benefits from the artifact shape.
 They are not evidence that subagents can reliably produce those artifacts.
 
 Questions:
 
-- Does the indexed bundle reduce duplicate pressure amplification?
-- Does it preserve real conflict better than raw artifacts?
+- Does raw artifact discipline reduce duplicate pressure amplification enough?
+- Does it preserve real conflict without an index?
 - Does it help Step 6 honor hard boundaries and relaxation conditions?
-- Does it make quiet/discard artifacts easier to ignore without losing receipts?
+- Does it make quiet/discard artifacts easy enough to ignore without losing
+  receipts?
 - Does it make the final answer clearer, shorter, or better grounded?
 - Does it avoid machinery leakage in public prose?
 
@@ -89,8 +99,8 @@ Every case must compare against:
 
 ```text
 current control
-raw artifacts without bundle index
-indexed reasoning_bundle.v1
+raw artifacts without bundle index, using explicit consumption discipline
+optional indexed reasoning_bundle.v1 challenger
 ```
 
 The indexed bundle only wins if it improves final-answer quality, not merely the
@@ -141,7 +151,7 @@ live_constraints
 current_control_context
 2-5 reasoning_artifact.v1 specimens
 optional source excerpts, max 4
-one reasoning_bundle.v1 index
+optional reasoning_bundle.v1 index
 ```
 
 The fixture should not include:
@@ -187,7 +197,7 @@ The indexed bundle does not win on secondary criteria alone.
 
 ## Win Standard
 
-Proceed to implementation only if:
+Proceed to bundle or worker implementation only if:
 
 - the indexed bundle beats raw artifacts in at least two high-clutter cases;
 - it does not lose any hard-boundary or overclaim case;
@@ -197,6 +207,10 @@ Proceed to implementation only if:
 
 If the indexed bundle mostly ties raw artifacts, implement raw-artifact
 rendering discipline first or stop.
+
+The first subagent comparison produced exactly that mostly-tie outcome. Treat
+that as a pause signal for bundle work, not as a reason to make the bundle more
+elaborate.
 
 ## Kill Conditions
 
@@ -218,7 +232,9 @@ runtime complexity.
 Do not build yet:
 
 - subagent worker prompt builders;
+- `reasoning_bundle.v1` runtime machinery;
 - live worker orchestration;
+- true agent handoffs;
 - `/lolla` integration;
 - product doc updates;
 - automatic worker admission;
@@ -228,17 +244,26 @@ Do not build yet:
 
 ## If The Slice Wins
 
-Only after a comparison win, build the smallest implementation slice:
+If the raw-artifact discipline slice wins, the smallest implementation slice is:
+
+```text
+raw reasoning_artifact.v1 render/consumption contract
+source and boundary validation
+local comparison runner
+```
+
+Only if a future indexed-bundle challenger beats careful raw artifacts should
+bundle work return to the implementation queue:
 
 ```text
 reasoning_artifact.v1 fixture schema
 reasoning_bundle.v1 fixture schema
 bundle renderer for Step-6-style consumer
-local comparison runner
 ```
 
-Then, and only then, consider `reasoning_workpack.v1` builder validation and the
-two worker prompt builders from the core plan:
+Only after the bundle renderer proves useful should `reasoning_workpack.v1`
+builder validation and the two worker prompt builders from the core plan return
+to scope:
 
 ```text
 boundary/evidence-gate worker

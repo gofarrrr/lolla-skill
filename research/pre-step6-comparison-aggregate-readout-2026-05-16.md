@@ -2,7 +2,7 @@
 
 Date: 2026-05-16
 
-Status: manual research aggregate. This does not change runtime behavior,
+Status: research aggregate. This does not change runtime behavior,
 `SKILL.md`, `HOW_IT_WORKS.md`, default `/lolla`, product docs, Lane 1, V60, the
 canonical knowledge base, or public output.
 
@@ -12,17 +12,23 @@ Readouts:
 research/pre-step6-comparison-readouts/third-year-phd-student-answer-variant-readout-2026-05-16.md
 research/pre-step6-comparison-readouts/founder-grant-marcus-equity-answer-variant-readout-2026-05-16.md
 research/pre-step6-comparison-readouts/mid-level-consultant-report-2-answer-variant-readout-2026-05-16.md
+research/pre-step6-comparison-subagent-readout-2026-05-16.md
+research/pre-step6-handoff-best-practices-as-of-2026-05-16.md
 ```
 
 ## Verdict
 
 ```text
 manual comparison: bundle wins all three fixtures
+subagent comparison: raw artifacts win all three by tie/simpler-path rule
 promotion decision: no promotion
-next decision: run a less-author-biased answer-variant comparison
+next decision: prefer raw-artifact consumption discipline before bundle machinery
 ```
 
-This is a promising manual signal, not a promotion-grade result.
+This aggregate now contains both the promising manual signal and the corrective
+subagent signal. The subagent result is more decision-relevant because it tested
+the standing kill condition: if raw artifacts tie the indexed bundle, raw
+artifacts win.
 
 The bundle appeared useful in three different ways:
 
@@ -40,19 +46,52 @@ The bundle appeared useful in three different ways:
 | Founder grant Marcus equity | Duplicate demotion | C wins | `duplicate_or_lower_priority`, `quiet_or_discard_candidates`, `final_reasoner_instruction` |
 | Mid-level consultant report | Hard-boundary preservation | C wins | `hard_boundaries`, `conflicts_or_tensions`, `quiet_or_discard_candidates`, `final_reasoner_instruction` |
 
+## Subagent Corrective Pass
+
+The less-author-biased subagent comparison contradicted the manual result.
+
+Setup:
+
+```text
+three subagents
+one fixture each
+fork_context=false
+manual C-wins verdict hidden
+ties recorded as wins for the simpler path
+```
+
+Result:
+
+| Case | Subagent Result | Decision |
+| --- | --- | --- |
+| Third-year PhD student | Raw artifacts tie indexed bundle | prefer raw artifacts |
+| Founder grant Marcus equity | Raw artifacts tie indexed bundle | prefer raw artifacts |
+| Mid-level consultant report | Raw artifacts tie indexed bundle | prefer raw artifacts |
+
+Aggregate subagent decision:
+
+```text
+indexed bundle improved private auditability: yes
+indexed bundle materially improved final answer over careful raw artifacts: no
+raw artifacts win under tie rule: yes
+```
+
+Therefore this comparison does not authorize bundle implementation.
+
 ## Contradicting Evidence First
 
 The result is suspiciously clean.
 
 Reasons not to over-trust it:
 
-- the same author created fixtures, answer variants, and scores;
+- the same author created fixtures, answer variants, and manual scores;
 - Arm C was written with knowledge of the bundle's intended benefit;
 - Arm B can be made worse by over-including raw artifacts;
 - a strong final reasoner may naturally demote raw artifacts without needing a
   bundle index;
 - the comparison uses compact answer cores, not full Step-6-style responses;
-- there is no independent judge or blind scoring yet.
+- the less-author-biased subagent pass found raw artifacts tied the bundle in
+  all three cases.
 
 Therefore this aggregate does not authorize:
 
@@ -76,6 +115,19 @@ demote, preserve, or discard.
 That is a handoff-shape hypothesis. It is not producer-quality evidence and not
 runtime evidence.
 
+## What The Subagent Result Supports
+
+The subagent result supports this narrower and less exciting claim:
+
+```text
+When raw reasoning_artifact.v1 specimens already carry source grounding,
+hard boundaries, relaxation conditions, discard conditions, and risk fields,
+a careful final reasoner can often use them directly without a bundle index.
+```
+
+That is useful. It means the immediate candidate improvement is probably raw
+artifact discipline, not bundle machinery.
+
 ## Strongest Alternative Explanation
 
 Raw artifacts may be enough.
@@ -91,23 +143,24 @@ In all three cases, the raw artifacts already carried the important fields:
 A careful final reasoner might reach the same answer from raw artifacts alone.
 If that holds in a less-author-biased run, the bundle should not be promoted.
 
+The less-author-biased subagent run did hold that way on the first three
+fixtures.
+
 ## Next Evidence Tier
 
-Run the same three fixtures through a less-author-biased comparison.
-
-Minimum next method:
+Do not run toward implementation. First test the simpler path:
 
 ```text
-1. Freeze the fixtures.
-2. Generate Arm A / B / C answer variants in separate contexts or separate passes.
-3. Hide the expected verdict from the variant writer.
-4. Score with the readout template.
-5. Record ties as wins for the simpler path.
+1. Define the minimal raw reasoning_artifact.v1 consumption discipline.
+2. Compare it against current control on the same fixtures.
+3. Keep indexed bundle as an optional challenger, not default architecture.
+4. Record ties as wins for raw artifacts.
 ```
 
 Allowed:
 
-- manual blind-ish pass in a fresh context;
+- source-backed handoff/context research;
+- raw-artifact discipline readout;
 - separate subagent or external model only as a research evaluator;
 - strict source/overclaim audit after variants are written.
 
@@ -122,14 +175,16 @@ Still not allowed:
 ## Decision
 
 ```text
-run_less_author_biased_answer_variant_comparison
+prefer_raw_artifact_consumption_discipline_first
 ```
 
 Do not build worker machinery yet.
+Do not build bundle runtime machinery yet.
 
 ## Promotion Bar After This Aggregate
 
-The next comparison must preserve the same win standard from the decision note:
+Any future bundle comparison must preserve the same win standard from the
+decision note:
 
 - indexed bundle beats raw artifacts in at least two high-clutter cases;
 - indexed bundle does not lose the hard-boundary case;

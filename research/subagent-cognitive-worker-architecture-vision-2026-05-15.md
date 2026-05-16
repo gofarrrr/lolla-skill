@@ -9,6 +9,8 @@ knowledge base.
 Latest local contract slice:
 
 - `research/pre-step6-cognitive-worker-system-plan-2026-05-16.md`
+- `research/pre-step6-comparison-subagent-readout-2026-05-16.md`
+- `research/pre-step6-handoff-best-practices-as-of-2026-05-16.md`
 - `research/provider-use-operating-structure-2026-05-15.md`
 - `research/lane1-reasoning-bridge-subagent-slice-readout-2026-05-15.md`
 - `research/subagent-cognitive-worker-contract-slice-2026-05-15.md`
@@ -19,16 +21,24 @@ Latest local contract slice:
 
 ```text
 research/pre-step6-cognitive-worker-system-plan-2026-05-16.md
+research/pre-step6-comparison-subagent-readout-2026-05-16.md
+research/pre-step6-handoff-best-practices-as-of-2026-05-16.md
 ```
 
 is now the central system-plan handover. The older `CognitiveWorkpack`,
 `CognitiveWorkerPacket`, and `cognition_dossier` names below are historical
-research scaffolding. They preserve lessons from the first local slice, but the
-favored handoff family is now:
+research scaffolding. They preserve lessons from the first local slice.
+
+The candidate family remains:
 
 ```text
 reasoning_workpack.v1 -> reasoning_artifact.v1 -> reasoning_bundle.v1
 ```
+
+But the 2026-05-16 corrective pass demotes `reasoning_bundle.v1` from default
+next build to optional challenger. Raw `reasoning_artifact.v1` consumption
+discipline is now the baseline to beat, and any subagent should be treated as a
+bounded worker-as-tool call, not a true handoff.
 
 ## Purpose
 
@@ -43,9 +53,10 @@ How do we provide Claude Code, or any future orchestrator, only the relevant
 information it needs to reason well?
 ```
 
-The likely answer is not to keep subagents mainly as an after-check. The likely
-future direction is to use subagents as narrow cognitive workers before final
-synthesis.
+The likely answer is not to keep subagents mainly as an after-check. The current
+corrected direction is to first test raw artifact consumption discipline, then
+use subagents only as narrow cognitive workers when the admission gate proves
+Step 6 needs a bounded extra call before final synthesis.
 
 They should do thinking on separate parts of the system output, then provide
 compact, source-bound, relevance-filtered pressure to the reasoner.

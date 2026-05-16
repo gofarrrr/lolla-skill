@@ -8,16 +8,23 @@ canonical knowledge base, or public output.
 
 This is now the central handover for the pre-Step-6 cognitive-worker direction.
 Older `CognitiveWorkpack`, `CognitiveWorkerPacket`, and `cognition_dossier`
-documents remain useful research scaffolding, but the favored handoff family is:
+documents remain useful research scaffolding. The candidate handoff family is:
 
 ```text
 reasoning_workpack.v1 -> reasoning_artifact.v1 -> reasoning_bundle.v1
 ```
 
+2026-05-16 update: after a less-author-biased subagent comparison and a
+source-backed handoff-practices scan, `reasoning_bundle.v1` is no longer treated
+as the default next build. Raw `reasoning_artifact.v1` consumption discipline is
+the baseline to beat, and true agent handoff is out of scope for this path.
+
 Next-slice decision note:
 
 ```text
 research/pre-step6-next-slice-decision-note-2026-05-16.md
+research/pre-step6-comparison-subagent-readout-2026-05-16.md
+research/pre-step6-handoff-best-practices-as-of-2026-05-16.md
 ```
 
 The system goal is not more artifacts. The goal is a final answer that is
@@ -42,6 +49,36 @@ Therefore the burden of proof is on the worker/bundle path. Future slices must
 name the strong control they are trying to beat, the expected marginal gain, and
 the kill condition that would stop the line of work. "More fresh-context
 cognition" is not enough.
+
+## 2026-05-16 Handoff-Practices Update
+
+Verdict: keep the research path, but revise its default shape.
+
+Current handoff and context-engineering practice points away from true handoff
+for this use case:
+
+- true handoff is for conversational takeover or staged flows where a specialist
+  owns the next user-facing state;
+- Lolla needs Step 6 to stay the manager and final reasoner;
+- subagents, if used, should behave like bounded worker/tool calls that return
+  compact artifacts;
+- deterministic code should own admission, caps, validation, provenance, and
+  tracing;
+- raw artifacts are the first baseline because they already carry the fields
+  the bundle was trying to index;
+- `reasoning_bundle.v1` should be optional until it beats careful raw artifact
+  use in final public answers, not just in private auditability.
+
+Updated local position:
+
+```text
+no true handoff
+Step 6 as manager/final reasoner
+bounded workers only after admission
+reasoning_artifact.v1 first
+reasoning_bundle.v1 optional challenger
+ties go to the simpler path
+```
 
 ## Product Boundary
 
@@ -121,7 +158,7 @@ Fixing product docs belongs to a later promotion or product-doc cleanup step.
 
 ## Target Architecture
 
-The research target is:
+The original research target was:
 
 ```text
 conversation
@@ -147,6 +184,21 @@ forcing before it writes?
 ```
 
 Workers provide pressure, not truth. Step 6 remains the final cognition point.
+
+After the handoff-practices update, the safer near-term research target is:
+
+```text
+conversation
+  -> existing lanes and V60 stay unchanged
+  -> deterministic relevance planner selects a tiny raw-artifact slice
+  -> Step 6 consumes compact reasoning_artifact.v1 pressure directly
+  -> optional bounded worker-as-tool call only when admission gate passes
+  -> optional reasoning_bundle.v1 only when raw artifacts create real clutter
+  -> Step 6 arbitrates and writes the answer
+```
+
+The bundle is not dead, but it is demoted from default next build to optional
+challenger.
 
 ## Why This Is Not A New Lane
 
@@ -207,7 +259,7 @@ and when forcing it would mislead Step 6
 
 ## Provider Roles
 
-Default worker producer: subagents.
+Default worker producer in the original plan: subagents.
 
 Reason:
 
@@ -219,9 +271,15 @@ Reason:
 - the user is already working inside a high-context orchestrator/subscription
   environment.
 
-This is a research default for judgment-heavy worker production, not a product
+2026-05-16 update: treat subagents as bounded worker-as-tool calls, not as true
+handoffs and not as default runtime machinery.
+
+This is a research option for judgment-heavy worker production, not a product
 default. If strict prompt-only controls, raw artifacts, or narrow OpenRouter
-checks tie or beat subagent workers, prefer the simpler path.
+checks tie or beat subagent workers, prefer the simpler path. The first
+less-author-biased subagent comparison found raw artifacts tied the indexed
+bundle in all three fixtures, so raw artifacts currently hold the
+burden-of-proof position.
 
 OpenRouter remains secondary. Use it for:
 
