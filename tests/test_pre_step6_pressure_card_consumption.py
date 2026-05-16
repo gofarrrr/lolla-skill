@@ -11,7 +11,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts" / "resear
 
 from pre_step6_pressure_card_consumption import (  # noqa: E402
     PressureCardConsumptionValidationError,
+    score_hybrid_vs_raw_comparison,
     score_pressure_vs_raw_comparison,
+    validate_hybrid_answer_core_payload,
+    validate_hybrid_vs_raw_comparison_payload,
     validate_pressure_answer_core_payload,
     validate_pressure_vs_raw_comparison_payload,
 )
@@ -20,6 +23,8 @@ from pre_step6_pressure_card_consumption import (  # noqa: E402
 REPO_ROOT = Path(__file__).resolve().parents[1]
 ANSWER_CORE_DIR = REPO_ROOT / "research" / "pre-step6-pressure-card-answer-cores"
 COMPARISON_DIR = REPO_ROOT / "research" / "pre-step6-pressure-vs-raw-comparisons"
+HYBRID_ANSWER_CORE_DIR = REPO_ROOT / "research" / "pre-step6-hybrid-answer-cores"
+HYBRID_COMPARISON_DIR = REPO_ROOT / "research" / "pre-step6-hybrid-vs-raw-comparisons"
 
 
 def _answer_core_paths() -> list[Path]:
@@ -28,6 +33,14 @@ def _answer_core_paths() -> list[Path]:
 
 def _comparison_paths() -> list[Path]:
     return sorted(COMPARISON_DIR.glob("*.pressure-vs-raw-comparison.v1.json"))
+
+
+def _hybrid_answer_core_paths() -> list[Path]:
+    return sorted(HYBRID_ANSWER_CORE_DIR.glob("*.hybrid-answer-core.v1.json"))
+
+
+def _hybrid_comparison_paths() -> list[Path]:
+    return sorted(HYBRID_COMPARISON_DIR.glob("*.hybrid-vs-raw-comparison.v1.json"))
 
 
 def _load(path: Path) -> dict[str, object]:
@@ -70,6 +83,37 @@ def test_all_pressure_vs_raw_comparisons_validate() -> None:
         )
         score = score_pressure_vs_raw_comparison(payload)
         assert score["aggregate_decision"] == expected_decisions[payload["case_id"]]
+
+
+def test_all_hybrid_answer_cores_validate() -> None:
+    paths = _hybrid_answer_core_paths()
+
+    assert [path.name for path in paths] == [
+        "mid-level-consultant-report-2.native.hybrid-answer-core.v1.json",
+        "third-year-phd-student.native.hybrid-answer-core.v1.json",
+    ]
+
+    for path in paths:
+        validate_hybrid_answer_core_payload(_load(path), path=path)
+
+
+def test_all_hybrid_vs_raw_comparisons_validate() -> None:
+    paths = _hybrid_comparison_paths()
+
+    assert [path.name for path in paths] == [
+        "mid-level-consultant-report-2.hybrid-vs-raw-comparison.v1.json",
+        "third-year-phd-student.hybrid-vs-raw-comparison.v1.json",
+    ]
+
+    for path in paths:
+        payload = _load(path)
+        validate_hybrid_vs_raw_comparison_payload(
+            payload,
+            path=path,
+            repo_root=REPO_ROOT,
+        )
+        score = score_hybrid_vs_raw_comparison(payload)
+        assert score["aggregate_decision"] == "hybrid_wins"
 
 
 def test_pressure_answer_core_rejects_missing_inclusion() -> None:
@@ -122,3 +166,30 @@ def test_pressure_vs_raw_comparison_rejects_unknown_winner() -> None:
         match="unknown winner",
     ):
         validate_pressure_vs_raw_comparison_payload(payload, repo_root=REPO_ROOT)
+
+
+def test_hybrid_answer_core_requires_pressure_card_usage() -> None:
+    path = HYBRID_ANSWER_CORE_DIR / "third-year-phd-student.native.hybrid-answer-core.v1.json"
+    payload = _load(path)
+    payload["used_pressure_card"] = False
+
+    with pytest.raises(
+        PressureCardConsumptionValidationError,
+        match="used_pressure_card",
+    ):
+        validate_hybrid_answer_core_payload(payload)
+
+
+def test_hybrid_vs_raw_comparison_rejects_inconsistent_aggregate() -> None:
+    path = (
+        HYBRID_COMPARISON_DIR
+        / "mid-level-consultant-report-2.hybrid-vs-raw-comparison.v1.json"
+    )
+    payload = _load(path)
+    payload["aggregate_decision"] = "tie_stop"
+
+    with pytest.raises(
+        PressureCardConsumptionValidationError,
+        match="aggregate_decision",
+    ):
+        validate_hybrid_vs_raw_comparison_payload(payload, repo_root=REPO_ROOT)

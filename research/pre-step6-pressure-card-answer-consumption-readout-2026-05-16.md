@@ -161,3 +161,23 @@ hybrid card-first answer core
 
 Promotion stays blocked until hybrid beats raw-only in final-answer quality or
 proves the same quality with meaningfully lower Step-6 attention load.
+
+2026-05-16 follow-up: the hybrid contested-case comparison now exists in:
+
+```text
+research/pre-step6-hybrid-card-first-raw-available-readout-2026-05-16.md
+```
+
+It tested the two cases where pressure-only was tied or worse:
+
+```text
+PhD: hybrid_wins against raw after restoring base-rate humility
+consultant: hybrid_wins against raw after restoring counsel-incentive and Wednesday-protocol nuance
+```
+
+So the current favored research target is:
+
+```text
+pressure card first
+selective raw inspection only when the card is contested, lossy, or high-stakes
+```

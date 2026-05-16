@@ -25,6 +25,7 @@ Related:
 - `research/pre-step6-pressure-card-phd-test-readout-2026-05-16.md`
 - `research/pre-step6-pressure-card-three-case-replay-readout-2026-05-16.md`
 - `research/pre-step6-pressure-card-answer-consumption-readout-2026-05-16.md`
+- `research/pre-step6-hybrid-card-first-raw-available-readout-2026-05-16.md`
 - `research/meta-reasoning-corpus-question-bank-2026-05-15.md`
 - `research/post-lane-inquiry-card-vision-2026-05-15.md`
 - `research/provider-use-operating-structure-2026-05-15.md`
@@ -497,6 +498,19 @@ best current research shape is card-first with raw available for contested/lossy
 no runtime promotion
 ```
 
+Hybrid card-first / raw-available follow-up:
+
+```text
+tested only the two contested pressure-only cases
+PhD hybrid restored base-rate humility while keeping pressure-card fallback/data gates
+consultant hybrid restored counsel-incentive and Wednesday protocol while keeping pressure-card legal/channel boundaries
+both hybrid comparisons beat raw under hybrid_tie_with_raw_stops
+current favored research surface is card-first with selective raw inspection
+reasoning bundle remains unearned
+subagent runtime remains unearned
+no runtime promotion
+```
+
 ## Target Architecture If Research Eventually Wins
 
 The likely long-term target is not a Bevelin lane, not a giant prompt, and not
@@ -545,7 +559,7 @@ is now raw-first but still research-only:
 ```text
 raw reasoning_artifact.v1
   -> optional compact pre_step6_pressure_card.v1 rendering
-  -> card-first / raw-available Step 6 final arbitration
+  -> card-first / selective-raw-inspection Step 6 final arbitration
   -> optional reasoning_workpack.v1 / reasoning_bundle.v1 only if earned
 ```
 

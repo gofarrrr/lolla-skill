@@ -31,10 +31,18 @@ PRESSURE_ANSWER_CORE_SCHEMA_VERSION = "pre_step6_pressure_answer_core.v1"
 PRESSURE_VS_RAW_COMPARISON_SCHEMA_VERSION = (
     "pre_step6_pressure_vs_raw_comparison.v1"
 )
+HYBRID_ANSWER_CORE_SCHEMA_VERSION = "pre_step6_hybrid_answer_core.v1"
+HYBRID_VS_RAW_COMPARISON_SCHEMA_VERSION = "pre_step6_hybrid_vs_raw_comparison.v1"
 ALLOWED_STATUS = frozenset({"research_only"})
 ALLOWED_RUNTIME_POLICY = frozenset({"runtime_dormant"})
-ALLOWED_CRITERION_WINNERS = frozenset({"raw", "pressure", "tie"})
-ALLOWED_AGGREGATE_DECISIONS = frozenset({"raw_wins", "pressure_wins", "tie_stop"})
+ALLOWED_PRESSURE_CRITERION_WINNERS = frozenset({"raw", "pressure", "tie"})
+ALLOWED_PRESSURE_AGGREGATE_DECISIONS = frozenset(
+    {"raw_wins", "pressure_wins", "tie_stop"}
+)
+ALLOWED_HYBRID_CRITERION_WINNERS = frozenset({"raw", "hybrid", "tie"})
+ALLOWED_HYBRID_AGGREGATE_DECISIONS = frozenset(
+    {"raw_wins", "hybrid_wins", "tie_stop"}
+)
 PRESSURE_ANSWER_CORE_FIELDS = frozenset(
     {
         "schema_version",
@@ -67,13 +75,54 @@ PRESSURE_VS_RAW_COMPARISON_FIELDS = frozenset(
         "notes",
     }
 )
-CRITERION_FIELDS = frozenset(
+PRESSURE_CRITERION_FIELDS = frozenset(
     {
         "criterion_id",
         "question",
         "winner",
         "raw_evidence",
         "pressure_evidence",
+        "rationale",
+    }
+)
+HYBRID_ANSWER_CORE_FIELDS = frozenset(
+    {
+        "schema_version",
+        "status",
+        "runtime_policy",
+        "case_id",
+        "answer_core",
+        "used_pressure_card",
+        "inspected_raw_for",
+        "recovered_from_raw",
+        "expected_inclusions",
+        "expected_exclusions",
+        "notes",
+    }
+)
+HYBRID_VS_RAW_COMPARISON_FIELDS = frozenset(
+    {
+        "schema_version",
+        "status",
+        "runtime_policy",
+        "case_id",
+        "raw_answer_core_ref",
+        "pressure_answer_core_ref",
+        "hybrid_answer_core_ref",
+        "criteria",
+        "tie_break_rule",
+        "aggregate_decision",
+        "notes",
+    }
+)
+HYBRID_CRITERION_FIELDS = frozenset(
+    {
+        "criterion_id",
+        "question",
+        "winner",
+        "raw_evidence",
+        "pressure_evidence",
+        "hybrid_evidence",
         "rationale",
     }
 )
@@ -138,6 +187,52 @@ def validate_pressure_vs_raw_comparison_file(
     repo_root: Path | None = None,
 ) -> None:
     validate_pressure_vs_raw_comparison_payload(
+        load_pressure_consumption_payload(path),
+        path=Path(path),
+        repo_root=repo_root,
+    )
+
+
+def validate_hybrid_answer_core_payload(
+    payload: dict[str, object],
+    *,
+    path: Path = Path("<payload>"),
+) -> None:
+    errors = list(iter_hybrid_answer_core_errors(payload, path=Path(path)))
+    if errors:
+        raise PressureCardConsumptionValidationError("; ".join(errors))
+
+
+def validate_hybrid_answer_core_file(path: Path) -> None:
+    validate_hybrid_answer_core_payload(
+        load_pressure_consumption_payload(path),
+        path=Path(path),
+    )
+
+
+def validate_hybrid_vs_raw_comparison_payload(
+    payload: dict[str, object],
+    *,
+    path: Path = Path("<payload>"),
+    repo_root: Path | None = None,
+) -> None:
+    errors = list(
+        iter_hybrid_vs_raw_comparison_errors(
+            payload,
+            path=Path(path),
+            repo_root=repo_root,
+        )
+    )
+    if errors:
+        raise PressureCardConsumptionValidationError("; ".join(errors))
+
+
+def validate_hybrid_vs_raw_comparison_file(
+    path: Path,
+    *,
+    repo_root: Path | None = None,
+) -> None:
+    validate_hybrid_vs_raw_comparison_payload(
         load_pressure_consumption_payload(path),
         path=Path(path),
         repo_root=repo_root,
@@ -325,7 +420,7 @@ def iter_pressure_vs_raw_comparison_errors(
         yield from _validate_criterion(criterion, path=item_path)
 
     decision = _string(payload.get("aggregate_decision"))
-    if decision not in ALLOWED_AGGREGATE_DECISIONS:
+    if decision not in ALLOWED_PRESSURE_AGGREGATE_DECISIONS:
         yield f"{path / 'aggregate_decision'}: unknown aggregate_decision '{decision}'"
     else:
         expected = score_pressure_vs_raw_comparison(payload)["aggregate_decision"]
@@ -359,6 +454,211 @@ def score_pressure_vs_raw_comparison(payload: dict[str, object]) -> dict[str, ob
     return {
         "raw": raw,
         "pressure": pressure,
+        "tie": tie,
+        "aggregate_decision": aggregate,
+    }
+
+
+def iter_hybrid_answer_core_errors(
+    payload: dict[str, object],
+    *,
+    path: Path = Path("<payload>"),
+) -> Iterable[str]:
+    required = (
+        "schema_version",
+        "status",
+        "runtime_policy",
+        "case_id",
+        "answer_core",
+        "used_pressure_card",
+        "inspected_raw_for",
+        "recovered_from_raw",
+        "expected_inclusions",
+        "expected_exclusions",
+    )
+    yield from _unknown_fields(payload, HYBRID_ANSWER_CORE_FIELDS, path)
+    yield from _missing_fields(payload, required, path)
+    if any(field not in payload for field in required):
+        return
+
+    if _string(payload.get("schema_version")) != HYBRID_ANSWER_CORE_SCHEMA_VERSION:
+        yield f"{path}: schema_version must be {HYBRID_ANSWER_CORE_SCHEMA_VERSION}"
+    yield from _validate_common_policy(payload, path=path)
+    if payload.get("used_pressure_card") is not True:
+        yield f"{path / 'used_pressure_card'}: must be true"
+
+    answer_core = _string(payload.get("answer_core"))
+    if not answer_core.strip():
+        yield f"{path / 'answer_core'}: answer_core must be non-empty"
+    elif len(answer_core) > MAX_ANSWER_CORE_CHARS:
+        yield (
+            f"{path / 'answer_core'}: "
+            f"answer_core must not exceed {MAX_ANSWER_CORE_CHARS} chars"
+        )
+    try:
+        validate_public_answer_hygiene(answer_core)
+    except RawArtifactValidationError as exc:
+        yield f"{path / 'answer_core'}: {exc}"
+
+    for field in ("inspected_raw_for", "recovered_from_raw"):
+        yield from _validate_string_or_string_list(
+            payload.get(field),
+            path=path / field,
+        )
+
+    yield from _validate_string_list(
+        payload.get("expected_inclusions"),
+        path=path / "expected_inclusions",
+        required_non_empty=True,
+    )
+    if isinstance(payload.get("expected_inclusions"), list):
+        lower_answer = answer_core.lower()
+        for index, expected in enumerate(payload["expected_inclusions"]):
+            if isinstance(expected, str) and expected.lower() not in lower_answer:
+                yield (
+                    f"{path / 'expected_inclusions' / str(index)}: "
+                    "expected inclusion missing from answer_core"
+                )
+
+    yield from _validate_string_list(
+        payload.get("expected_exclusions"),
+        path=path / "expected_exclusions",
+        required_non_empty=False,
+    )
+    if isinstance(payload.get("expected_exclusions"), list):
+        lower_answer = answer_core.lower()
+        for index, forbidden in enumerate(payload["expected_exclusions"]):
+            if isinstance(forbidden, str) and forbidden.lower() in lower_answer:
+                yield (
+                    f"{path / 'expected_exclusions' / str(index)}: "
+                    "expected exclusion appears in answer_core"
+                )
+
+
+def iter_hybrid_vs_raw_comparison_errors(
+    payload: dict[str, object],
+    *,
+    path: Path = Path("<payload>"),
+    repo_root: Path | None = None,
+) -> Iterable[str]:
+    required = (
+        "schema_version",
+        "status",
+        "runtime_policy",
+        "case_id",
+        "raw_answer_core_ref",
+        "pressure_answer_core_ref",
+        "hybrid_answer_core_ref",
+        "criteria",
+        "tie_break_rule",
+        "aggregate_decision",
+    )
+    yield from _unknown_fields(payload, HYBRID_VS_RAW_COMPARISON_FIELDS, path)
+    yield from _missing_fields(payload, required, path)
+    if any(field not in payload for field in required):
+        return
+
+    if _string(payload.get("schema_version")) != HYBRID_VS_RAW_COMPARISON_SCHEMA_VERSION:
+        yield f"{path}: schema_version must be {HYBRID_VS_RAW_COMPARISON_SCHEMA_VERSION}"
+    yield from _validate_common_policy(payload, path=path)
+    case_id = _string(payload.get("case_id"))
+
+    raw_ref = _string(payload.get("raw_answer_core_ref"))
+    if not raw_ref:
+        yield f"{path / 'raw_answer_core_ref'}: must be non-empty"
+    elif repo_root is not None:
+        raw_path = repo_root / raw_ref
+        if not raw_path.exists():
+            yield f"{path / 'raw_answer_core_ref'}: raw answer core does not exist"
+        else:
+            raw_payload = load_answer_core_payload(raw_path)
+            validate_answer_core_payload(raw_payload, path=raw_path, repo_root=repo_root)
+            if _string(raw_payload.get("case_id")) != case_id:
+                yield f"{path / 'raw_answer_core_ref'}: case_id mismatch"
+
+    pressure_ref = _string(payload.get("pressure_answer_core_ref"))
+    if not pressure_ref:
+        yield f"{path / 'pressure_answer_core_ref'}: must be non-empty"
+    elif repo_root is not None:
+        pressure_path = repo_root / pressure_ref
+        if not pressure_path.exists():
+            yield f"{path / 'pressure_answer_core_ref'}: pressure answer core does not exist"
+        else:
+            pressure_payload = load_pressure_consumption_payload(pressure_path)
+            validate_pressure_answer_core_payload(
+                pressure_payload,
+                path=pressure_path,
+                repo_root=repo_root,
+            )
+            if _string(pressure_payload.get("case_id")) != case_id:
+                yield f"{path / 'pressure_answer_core_ref'}: case_id mismatch"
+
+    hybrid_ref = _string(payload.get("hybrid_answer_core_ref"))
+    if not hybrid_ref:
+        yield f"{path / 'hybrid_answer_core_ref'}: must be non-empty"
+    elif repo_root is not None:
+        hybrid_path = repo_root / hybrid_ref
+        if not hybrid_path.exists():
+            yield f"{path / 'hybrid_answer_core_ref'}: hybrid answer core does not exist"
+        else:
+            hybrid_payload = load_pressure_consumption_payload(hybrid_path)
+            validate_hybrid_answer_core_payload(hybrid_payload, path=hybrid_path)
+            if _string(hybrid_payload.get("case_id")) != case_id:
+                yield f"{path / 'hybrid_answer_core_ref'}: case_id mismatch"
+
+    if _string(payload.get("tie_break_rule")) != "hybrid_tie_with_raw_stops":
+        yield f"{path / 'tie_break_rule'}: must be hybrid_tie_with_raw_stops"
+
+    criteria = payload.get("criteria")
+    if not isinstance(criteria, list):
+        yield f"{path / 'criteria'}: criteria must be a list"
+        criteria = []
+    elif not criteria:
+        yield f"{path / 'criteria'}: criteria must not be empty"
+    elif len(criteria) > 8:
+        yield f"{path / 'criteria'}: criteria must not exceed 8"
+    for index, criterion in enumerate(criteria):
+        item_path = path / f"criteria[{index}]"
+        if not isinstance(criterion, dict):
+            yield f"{item_path}: criterion must be an object"
+            continue
+        yield from _validate_hybrid_criterion(criterion, path=item_path)
+
+    decision = _string(payload.get("aggregate_decision"))
+    if decision not in ALLOWED_HYBRID_AGGREGATE_DECISIONS:
+        yield f"{path / 'aggregate_decision'}: unknown aggregate_decision '{decision}'"
+    else:
+        expected = score_hybrid_vs_raw_comparison(payload)["aggregate_decision"]
+        if decision != expected:
+            yield (
+                f"{path / 'aggregate_decision'}: aggregate_decision must be "
+                f"{expected} from criterion winners"
+            )
+
+
+def score_hybrid_vs_raw_comparison(payload: dict[str, object]) -> dict[str, object]:
+    criteria = payload.get("criteria")
+    raw = hybrid = tie = 0
+    if isinstance(criteria, list):
+        for criterion in criteria:
+            if not isinstance(criterion, dict):
+                continue
+            winner = _string(criterion.get("winner"))
+            if winner == "raw":
+                raw += 1
+            elif winner == "hybrid":
+                hybrid += 1
+            elif winner == "tie":
+                tie += 1
+    if hybrid > raw:
+        aggregate = "hybrid_wins"
+    elif raw > hybrid:
+        aggregate = "raw_wins"
+    else:
+        aggregate = "tie_stop"
+    return {
+        "raw": raw,
+        "hybrid": hybrid,
         "tie": tie,
         "aggregate_decision": aggregate,
     }
@@ -417,16 +717,50 @@ def _validate_criterion(
         "pressure_evidence",
         "rationale",
     )
-    yield from _unknown_fields(criterion, CRITERION_FIELDS, path)
+    yield from _unknown_fields(criterion, PRESSURE_CRITERION_FIELDS, path)
     yield from _missing_fields(criterion, required, path)
     if any(field not in criterion for field in required):
         return
     if not _string(criterion.get("criterion_id")).strip():
         yield f"{path / 'criterion_id'}: criterion_id must be non-empty"
     winner = _string(criterion.get("winner"))
-    if winner not in ALLOWED_CRITERION_WINNERS:
+    if winner not in ALLOWED_PRESSURE_CRITERION_WINNERS:
         yield f"{path / 'winner'}: unknown winner '{winner}'"
     for field in ("question", "raw_evidence", "pressure_evidence", "rationale"):
+        if not _string(criterion.get(field)).strip():
+            yield f"{path / field}: {field} must be non-empty"
+
+
+def _validate_hybrid_criterion(
+    criterion: dict[str, object],
+    *,
+    path: Path,
+) -> Iterable[str]:
+    required = (
+        "criterion_id",
+        "question",
+        "winner",
+        "raw_evidence",
+        "pressure_evidence",
+        "hybrid_evidence",
+        "rationale",
+    )
+    yield from _unknown_fields(criterion, HYBRID_CRITERION_FIELDS, path)
+    yield from _missing_fields(criterion, required, path)
+    if any(field not in criterion for field in required):
+        return
+    if not _string(criterion.get("criterion_id")).strip():
+        yield f"{path / 'criterion_id'}: criterion_id must be non-empty"
+    winner = _string(criterion.get("winner"))
+    if winner not in ALLOWED_HYBRID_CRITERION_WINNERS:
+        yield f"{path / 'winner'}: unknown winner '{winner}'"
+    for field in (
+        "question",
+        "raw_evidence",
+        "pressure_evidence",
+        "hybrid_evidence",
+        "rationale",
+    ):
         if not _string(criterion.get(field)).strip():
             yield f"{path / field}: {field} must be non-empty"
 
@@ -466,6 +800,14 @@ def _validate_string_list(
             yield f"{path / str(index)}: item must be a non-empty string"
 
 
+def _validate_string_or_string_list(value: object, *, path: Path) -> Iterable[str]:
+    if isinstance(value, str):
+        if not value.strip():
+            yield f"{path}: must be non-empty"
+        return
+    yield from _validate_string_list(value, path=path, required_non_empty=True)
+
+
 def _string(value: object) -> str:
     return value if isinstance(value, str) else ""
 
@@ -477,6 +819,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("path", type=Path)
     parser.add_argument("--answer-core", action="store_true")
     parser.add_argument("--comparison", action="store_true")
+    parser.add_argument("--hybrid-answer-core", action="store_true")
+    parser.add_argument("--hybrid-comparison", action="store_true")
     parser.add_argument("--repo-root", type=Path)
     args = parser.parse_args(argv)
 
@@ -497,7 +841,27 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         return 0
 
-    parser.error("choose --answer-core or --comparison")
+    if args.hybrid_answer_core:
+        validate_hybrid_answer_core_file(args.path)
+        print(f"valid hybrid answer core: {args.path}")
+        return 0
+
+    if args.hybrid_comparison:
+        validate_hybrid_vs_raw_comparison_file(args.path, repo_root=args.repo_root)
+        score = score_hybrid_vs_raw_comparison(
+            load_pressure_consumption_payload(args.path)
+        )
+        print(
+            f"valid hybrid-vs-raw comparison: {args.path} "
+            f"hybrid={score['hybrid']} raw={score['raw']} tie={score['tie']} "
+            f"decision={score['aggregate_decision']}"
+        )
+        return 0
+
+    parser.error(
+        "choose --answer-core, --comparison, --hybrid-answer-core, "
+        "or --hybrid-comparison"
+    )
     return 2
 
 

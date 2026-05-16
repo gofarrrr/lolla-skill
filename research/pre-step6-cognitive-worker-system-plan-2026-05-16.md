@@ -42,6 +42,7 @@ research/pre-step6-phd-producer-compressor-test-readout-2026-05-16.md
 research/pre-step6-pressure-card-phd-test-readout-2026-05-16.md
 research/pre-step6-pressure-card-three-case-replay-readout-2026-05-16.md
 research/pre-step6-pressure-card-answer-consumption-readout-2026-05-16.md
+research/pre-step6-hybrid-card-first-raw-available-readout-2026-05-16.md
 ```
 
 The system goal is not more artifacts. The goal is a final answer that is
@@ -111,6 +112,13 @@ consumers produced valid public answer cores from current-control answers plus
 pressure cards. The comparison against raw answer cores was mixed: founder
 pressure won, consultant raw won, and PhD tie-stopped. Treat pressure cards as a
 useful first-pass consumption surface, not a replacement for raw artifacts.
+
+2026-05-16 hybrid update: card-first with selective raw inspection beat raw on
+the two contested cases from the pressure-only comparison. PhD recovered
+base-rate humility while preserving card-level fallback/data gates; consultant
+recovered counsel-incentive and Wednesday-protocol nuance while preserving
+card-level legal/channel boundaries. Treat this as the current favored research
+handoff surface.
 
 ## 2026-05-16 Critic Pass
 
@@ -279,8 +287,8 @@ After the handoff-practices update, the safer near-term research target is:
 conversation
   -> existing lanes and V60 stay unchanged
   -> deterministic relevance planner selects a tiny raw-artifact slice
-  -> optional pressure-card rendering for first-pass Step 6 consumption
-  -> raw artifacts remain available when card pressure is contested or lossy
+  -> pressure-card rendering for first-pass Step 6 consumption
+  -> selective raw inspection when card pressure is contested, lossy, or high-stakes
   -> optional bounded worker-as-tool call only when admission gate passes
   -> optional reasoning_bundle.v1 only when raw artifacts create real clutter
   -> Step 6 arbitrates and writes the answer
@@ -672,6 +680,21 @@ This supports a hybrid research shape:
 ```text
 card-first for Step 6 attention
 raw artifact available for audit, nuance, and contested pressure
+```
+
+Hybrid contested-case result:
+
+```text
+PhD: hybrid_wins against raw after restoring base-rate humility
+consultant: hybrid_wins against raw after restoring counsel-incentive and Wednesday protocol
+```
+
+This is now the favored research handoff target:
+
+```text
+reasoning_artifact.v1 retained for custody/audit
+pre_step6_pressure_card.v1 rendered for first-pass Step 6 attention
+small raw inspect-more excerpt only when the card is contested, lossy, or high-stakes
 ```
 
 ## reasoning_bundle.v1
