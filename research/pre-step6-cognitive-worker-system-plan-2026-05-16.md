@@ -40,6 +40,7 @@ research/pre-step6-strict-json-subagent-replay-readout-2026-05-16.md
 research/pre-step6-compact-json-replay-readout-2026-05-16.md
 research/pre-step6-phd-producer-compressor-test-readout-2026-05-16.md
 research/pre-step6-pressure-card-phd-test-readout-2026-05-16.md
+research/pre-step6-pressure-card-three-case-replay-readout-2026-05-16.md
 ```
 
 The system goal is not more artifacts. The goal is a final answer that is
@@ -97,6 +98,12 @@ second native attempt with per-field budgets (689 chars), while preserving
 fallback executability and Silva/data access. Treat this as a promising
 consumption-surface result, not product promotion and not evidence to build a
 bundle.
+
+2026-05-16 three-case pressure-card update: with the same field budgets,
+native pressure cards passed for PhD, founder, and consultant at 679-689 chars
+while preserving their case-specific gates. Treat pressure cards as the next
+challenger to careful raw-artifact consumption; final-answer lift is still
+unproven.
 
 ## 2026-05-16 Critic Pass
 
@@ -632,9 +639,18 @@ no field budgets: 1,070 chars, gates preserved, cap failed
 with field budgets: 689 chars, gates preserved, cap passed
 ```
 
+Three-case replay result:
+
+```text
+PhD: 689 chars, fallback and Silva/data gates preserved
+founder: 682 chars, dependency/equity-title-board gates preserved
+consultant: 679 chars, counsel/channel/Wednesday/no-investigation gates preserved
+```
+
 This means the card shape is promising, but native producers need explicit
 field budgets. Do not infer from one passing PhD retry that worker orchestration
-or a reasoning bundle is ready.
+or a reasoning bundle is ready. The next proof point is Step-6-style answer
+consumption against careful raw artifacts, not more private compactness.
 
 ## reasoning_bundle.v1
 

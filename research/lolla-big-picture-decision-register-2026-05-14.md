@@ -23,6 +23,7 @@ Related:
 - `research/pre-step6-raw-vs-control-rubric-comparison-readout-2026-05-16.md`
 - `research/pre-step6-native-subagent-producer-test-readout-2026-05-16.md`
 - `research/pre-step6-pressure-card-phd-test-readout-2026-05-16.md`
+- `research/pre-step6-pressure-card-three-case-replay-readout-2026-05-16.md`
 - `research/meta-reasoning-corpus-question-bank-2026-05-15.md`
 - `research/post-lane-inquiry-card-vision-2026-05-15.md`
 - `research/provider-use-operating-structure-2026-05-15.md`
@@ -469,6 +470,17 @@ native PhD retry with field budgets passed: 689 chars
 fallback executability and Silva/data access survived
 full reasoning_artifact.v1 remains audit/provenance, not default consumption
 next useful check is founder and consultant pressure-card replay
+no runtime promotion
+```
+
+Three-case pressure-card follow-up:
+
+```text
+same field-budgeted pressure-card prompt passed PhD, founder, consultant
+validator sizes: 689, 682, 679 chars
+case-specific gate survival passed in tests
+pressure cards are now the next challenger to careful raw artifact consumption
+final-answer lift remains unproven
 no runtime promotion
 ```
 

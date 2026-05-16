@@ -133,6 +133,8 @@ def test_all_pressure_card_fixtures_validate() -> None:
     paths = _pressure_card_paths()
 
     assert [path.name for path in paths] == [
+        "founder-grant-marcus-equity.native.pressure-card.v1.json",
+        "mid-level-consultant-report-2.native.pressure-card.v1.json",
         "third-year-phd-student.native.pressure-card.v1.json",
         "third-year-phd-student.pressure-card.v1.json",
     ]
@@ -163,6 +165,54 @@ def test_native_phd_pressure_card_hits_replay_target() -> None:
     assert "fallback" in text
     assert "silva" in text
     assert "data" in text
+
+
+def test_native_founder_pressure_card_preserves_control_gates() -> None:
+    path = (
+        PRESSURE_CARD_DIR
+        / "founder-grant-marcus-equity.native.pressure-card.v1.json"
+    )
+    payload = _load(path)
+    validate_pressure_card_payload(payload, path=path)
+
+    serialized = json.dumps(payload, ensure_ascii=False)
+    assert len(serialized) <= 760
+    text = serialized.lower()
+    for term in (
+        "marcus",
+        "dependency",
+        "platform",
+        "team",
+        "knowledge",
+        "client",
+        "governance",
+        "exit",
+    ):
+        assert term in text
+
+
+def test_native_consultant_pressure_card_preserves_control_gates() -> None:
+    path = (
+        PRESSURE_CARD_DIR
+        / "mid-level-consultant-report-2.native.pressure-card.v1.json"
+    )
+    payload = _load(path)
+    validate_pressure_card_payload(payload, path=path)
+
+    serialized = json.dumps(payload, ensure_ascii=False)
+    assert len(serialized) <= 760
+    text = serialized.lower()
+    for term in (
+        "counsel",
+        "gc",
+        "audit committee",
+        "external",
+        "wednesday",
+        "evidence",
+        "confrontation",
+        "legal conclusion",
+    ):
+        assert term in text
 
 
 def test_admission_rejects_decline_with_expected_contribution() -> None:
