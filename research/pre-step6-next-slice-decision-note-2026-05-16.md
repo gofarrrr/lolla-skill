@@ -18,6 +18,13 @@ Candidate case inventory:
 research/pre-step6-comparison-case-inventory-2026-05-16.md
 ```
 
+Readout template and first preflight:
+
+```text
+research/pre-step6-comparison-readout-template-2026-05-16.md
+research/pre-step6-comparison-manual-preflight-readout-2026-05-16.md
+```
+
 ## Decision
 
 Do not start by implementing workers.
@@ -147,6 +154,12 @@ public machinery prose
 ```
 
 ## Evaluation Rubric
+
+Use the comparison readout template:
+
+```text
+research/pre-step6-comparison-readout-template-2026-05-16.md
+```
 
 Score each arm as win, tie, or loss against the others.
 
