@@ -416,8 +416,22 @@ Strict-output-contract follow-up:
 workpack renderer now requires exactly one JSON object
 worker-output validator added
 three normalized rendered-replay worker-output fixtures added
-tests reject missing fields, non-string source_grounding, unknown fields
+tests reject missing fields, oversized payloads, invalid arrays, unknown fields
 next slice must rerun native subagents against strict JSON prompt
+no runtime promotion
+```
+
+Strict-JSON replay follow-up:
+
+```text
+strict JSON syntax passed 3/3
+exact key set passed 3/3
+content lift passed 3/3
+mother sentinel stayed skipped
+outputs were 2,810-3,134 serialized chars
+1,500-char cap passed 0/3
+schema now allows short arrays for source_grounding and contribution
+compression is next blocker
 no runtime promotion
 ```
 

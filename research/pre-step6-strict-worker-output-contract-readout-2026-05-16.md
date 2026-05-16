@@ -82,14 +82,18 @@ The worker-output validator enforces:
 exact top-level keys only
 schema_version == reasoning_artifact.v1
 all required fields present
-all required fields are non-empty strings
+all required fields are non-empty strings, except source_grounding and contribution
+source_grounding and contribution may be short string arrays
 serialized JSON length <= 1,500 chars
-non-string source_grounding rejected
+arrays capped at 4 items
+array items capped at 180 chars
 unknown fields rejected
 ```
 
-This explicitly rejects the founder replay's useful-but-wrong
-`source_grounding` list shape if it appears again.
+The first strict replay showed that `source_grounding` and sometimes
+`contribution` naturally become multi-part values. The contract now permits
+short arrays for those fields while keeping boundary, relaxation, discard, and
+risk fields as single strings.
 
 ## Test Results
 
@@ -106,8 +110,8 @@ python3 scripts/research/pre_step6_workpacks.py research/pre-step6-workpack-fixt
 Results:
 
 ```text
-tests/test_pre_step6_workpacks.py: 14 passed
-raw artifact + workpack suites: 28 passed
+tests/test_pre_step6_workpacks.py: 17 passed
+raw artifact + workpack suites: 31 passed
 py_compile passed
 worker-output CLI validation passed
 strict JSON prompt rendered successfully
@@ -128,12 +132,19 @@ which malformed shapes are rejected
 It does not yet prove native subagents will obey the stricter prompt. That must
 be replayed.
 
+2026-05-16 follow-up: strict replay produced valid JSON and exact keys in all
+three admitted cases, but all three exceeded the 1,500-character cap. See:
+
+```text
+research/pre-step6-strict-json-subagent-replay-readout-2026-05-16.md
+```
+
 ## Decision
 
 ```text
 strict_worker_output_contract_exists
 human-readable_field_list_outputs_are_not_acceptable_for_automation
-source_grounding_must_be_a_string_for_v1
+source_grounding_and_contribution_may_be_short_arrays
 unknown_worker_output_fields_rejected
 no_runtime_promotion
 ```

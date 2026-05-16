@@ -86,6 +86,7 @@ def test_all_workpacks_validate_render_under_cap_and_skip_mother() -> None:
         assert "Do not use Markdown fences or prose outside the JSON object." in rendered
         assert "schema_version must be: reasoning_artifact.v1" in rendered
         assert "JSON keys must be exactly:" in rendered
+        assert "arrays must have at most 4 items" in rendered
         assert "risk_if_ignored" in rendered
 
 
@@ -211,12 +212,44 @@ def test_worker_output_rejects_missing_required_field() -> None:
         validate_worker_output_payload(payload)
 
 
-def test_worker_output_rejects_non_string_grounding() -> None:
+def test_worker_output_allows_grounding_list() -> None:
     path = WORKER_OUTPUT_DIR / "founder-grant-marcus-equity.rendered-replay.worker-output.v1.json"
     payload = _load(path)
     payload["source_grounding"] = ["Marcus drives about 40% of technical capability."]
 
+    validate_worker_output_payload(payload)
+
+
+def test_worker_output_rejects_list_for_boundary() -> None:
+    path = WORKER_OUTPUT_DIR / "founder-grant-marcus-equity.rendered-replay.worker-output.v1.json"
+    payload = _load(path)
+    payload["hard_boundary"] = ["Do not grant permanent concessions yet."]
+
+    with pytest.raises(WorkpackValidationError, match="hard_boundary"):
+        validate_worker_output_payload(payload)
+
+
+def test_worker_output_rejects_too_many_grounding_items() -> None:
+    path = WORKER_OUTPUT_DIR / "founder-grant-marcus-equity.rendered-replay.worker-output.v1.json"
+    payload = _load(path)
+    payload["source_grounding"] = [
+        "one",
+        "two",
+        "three",
+        "four",
+        "five",
+    ]
+
     with pytest.raises(WorkpackValidationError, match="source_grounding"):
+        validate_worker_output_payload(payload)
+
+
+def test_worker_output_rejects_over_cap_payload() -> None:
+    path = WORKER_OUTPUT_DIR / "third-year-phd-student.rendered-replay.worker-output.v1.json"
+    payload = _load(path)
+    payload["hard_boundary"] = "x" * 2000
+
+    with pytest.raises(WorkpackValidationError, match="max is 1500"):
         validate_worker_output_payload(payload)
 
 

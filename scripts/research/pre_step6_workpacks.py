@@ -22,6 +22,8 @@ MAX_LOCAL_ARTIFACTS = 5
 MAX_SOURCE_EXCERPTS = 4
 MAX_PROMPT_CHARS = 7000
 MAX_WORKER_OUTPUT_CHARS = 1500
+MAX_WORKER_OUTPUT_LIST_ITEMS = 4
+MAX_WORKER_OUTPUT_LIST_ITEM_CHARS = 180
 ALLOWED_STATUS = frozenset({"research_only"})
 ALLOWED_RUNTIME_POLICY = frozenset({"runtime_dormant"})
 ALLOWED_WORKER_TYPES = frozenset({"boundary/evidence-gate"})
@@ -114,6 +116,7 @@ REQUIRED_REASONING_ARTIFACT_FIELDS = (
     "risk_if_forced",
     "risk_if_ignored",
 )
+LIST_OK_WORKER_OUTPUT_FIELDS = frozenset({"source_grounding", "contribution"})
 ID_RE = re.compile(r"^[a-z0-9][a-z0-9_-]*$")
 
 
@@ -327,6 +330,11 @@ def iter_worker_output_errors(
         )
     for field in REQUIRED_REASONING_ARTIFACT_FIELDS:
         value = payload.get(field)
+        if field in LIST_OK_WORKER_OUTPUT_FIELDS:
+            if _non_empty_string_or_string_list(value):
+                continue
+            yield f"{path / field}: must be a non-empty string or non-empty string list"
+            continue
         if not isinstance(value, str) or not value.strip():
             yield f"{path / field}: must be a non-empty string"
 
@@ -390,17 +398,27 @@ def render_worker_prompt(
     lines.extend(
         [
             "",
-            "OUTPUT CONTRACT",
-            f"schema_version must be: {_string(output_contract.get('schema_version'))}",
-            f"max serialized JSON chars: {output_contract.get('max_chars')}",
-            "JSON keys must be exactly:",
-            "- schema_version",
+        "OUTPUT CONTRACT",
+        f"schema_version must be: {_string(output_contract.get('schema_version'))}",
+        f"max serialized JSON chars: {output_contract.get('max_chars')}",
+        "JSON keys must be exactly:",
+        "- schema_version",
         ]
     )
     required_fields = output_contract.get("required_fields")
     assert isinstance(required_fields, list)
     for field in required_fields:
         lines.append(f"- {_string(field)}")
+    lines.extend(
+        [
+            "Value rules:",
+            "- use compact strings for most fields",
+            "- source_grounding and contribution may be short string arrays",
+            f"- arrays must have at most {MAX_WORKER_OUTPUT_LIST_ITEMS} items",
+            f"- array items must be at most {MAX_WORKER_OUTPUT_LIST_ITEM_CHARS} chars",
+            "- no nested objects",
+        ]
+    )
 
     rendered = "\n".join(lines)
     if len(rendered) > max_chars:
@@ -585,6 +603,21 @@ def _validate_string_list(
 
 def _string(value: object) -> str:
     return value if isinstance(value, str) else ""
+
+
+def _non_empty_string_or_string_list(value: object) -> bool:
+    if isinstance(value, str):
+        return bool(value.strip())
+    if isinstance(value, list) and value:
+        if len(value) > MAX_WORKER_OUTPUT_LIST_ITEMS:
+            return False
+        return all(
+            isinstance(item, str)
+            and item.strip()
+            and len(item) <= MAX_WORKER_OUTPUT_LIST_ITEM_CHARS
+            for item in value
+        )
+    return False
 
 
 def main(argv: Sequence[str] | None = None) -> int:
