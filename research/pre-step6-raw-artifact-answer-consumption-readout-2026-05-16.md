@@ -12,6 +12,7 @@ Related:
 research/pre-step6-raw-artifact-four-fixture-render-readout-2026-05-16.md
 research/pre-step6-raw-artifact-render-validation-slice-2026-05-16.md
 research/pre-step6-raw-artifact-consumption-readout-2026-05-16.md
+research/pre-step6-raw-vs-control-rubric-comparison-readout-2026-05-16.md
 ```
 
 ## Question
@@ -116,14 +117,20 @@ do_not_build_workers
 
 ## Next Question
 
-The next useful check is a less-author-biased comparison:
+2026-05-16 follow-up: the strict local rubric comparison now exists in:
 
 ```text
-current-control answer core
-raw-handoff answer core
-optional bundle challenger only if the raw core visibly loses
+research/pre-step6-raw-vs-control-rubric-comparison-readout-2026-05-16.md
 ```
 
-Use either a blinded subagent evaluator or a strict local rubric. If raw answer
-cores tie current control, stop. If raw answer cores beat control but tie a
-bundle challenger, raw still wins by simpler-path rule.
+It found raw-handoff answer cores beat current-control answer cores in all four
+strict local comparisons. No control criterion won, and the optional indexed
+bundle challenger was not triggered.
+
+The next useful options are now narrower:
+
+```text
+stop research here and keep the clean decision record
+or run a genuinely blind evaluator only if more evidence is needed
+or build a minimal research-only raw-render interface if implementation resumes
+```

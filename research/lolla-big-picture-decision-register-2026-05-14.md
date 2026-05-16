@@ -20,6 +20,7 @@ Related:
 - `research/pre-step6-raw-artifact-render-validation-slice-2026-05-16.md`
 - `research/pre-step6-raw-artifact-four-fixture-render-readout-2026-05-16.md`
 - `research/pre-step6-raw-artifact-answer-consumption-readout-2026-05-16.md`
+- `research/pre-step6-raw-vs-control-rubric-comparison-readout-2026-05-16.md`
 - `research/meta-reasoning-corpus-question-bank-2026-05-15.md`
 - `research/post-lane-inquiry-card-vision-2026-05-15.md`
 - `research/provider-use-operating-structure-2026-05-15.md`
@@ -318,6 +319,7 @@ research/pre-step6-raw-artifact-consumption-readout-2026-05-16.md
 research/pre-step6-raw-artifact-render-validation-slice-2026-05-16.md
 research/pre-step6-raw-artifact-four-fixture-render-readout-2026-05-16.md
 research/pre-step6-raw-artifact-answer-consumption-readout-2026-05-16.md
+research/pre-step6-raw-vs-control-rubric-comparison-readout-2026-05-16.md
 research/pre-step6-comparison-fixtures/mother-deciding-address-year-20260430T113301Z.md
 ```
 
@@ -353,6 +355,15 @@ Answer-consumption follow-up:
 authored Step-6-style answer cores validate for all four raw handoffs
 public machinery hygiene passes
 next check is less-author-biased comparison against current-control answer cores
+```
+
+Strict-rubric follow-up:
+
+```text
+raw answer cores beat current-control answer cores in all four comparisons
+control wins zero criteria
+no bundle challenger triggered
+no worker orchestration authorized
 ```
 
 ## Target Architecture If Research Eventually Wins

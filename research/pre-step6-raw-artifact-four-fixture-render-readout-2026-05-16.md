@@ -13,6 +13,7 @@ research/pre-step6-raw-artifact-render-validation-slice-2026-05-16.md
 research/pre-step6-raw-artifact-consumption-discipline-2026-05-16.md
 research/pre-step6-raw-artifact-consumption-readout-2026-05-16.md
 research/pre-step6-raw-artifact-answer-consumption-readout-2026-05-16.md
+research/pre-step6-raw-vs-control-rubric-comparison-readout-2026-05-16.md
 ```
 
 ## Question
@@ -111,13 +112,12 @@ research/pre-step6-raw-artifact-answer-consumption-readout-2026-05-16.md
 
 All four authored answer cores validate and pass public machinery hygiene.
 
-Do not add a bundle yet. The next useful check is less-author-biased comparison:
+2026-05-16 follow-up: the strict local rubric comparison now exists in:
 
 ```text
-current-control answer core
-raw-handoff answer core
-optional bundle challenger only if raw visibly loses
+research/pre-step6-raw-vs-control-rubric-comparison-readout-2026-05-16.md
 ```
 
-Only if raw loses because the rendered pressure is too cluttered should an
-indexed bundle challenger return.
+Raw-handoff answer cores beat current-control answer cores in all four
+comparisons. No control criterion won, so the optional indexed bundle challenger
+was not triggered.

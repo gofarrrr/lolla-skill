@@ -18,6 +18,7 @@ from typing import Iterable, Sequence
 
 RAW_HANDOFF_SCHEMA_VERSION = "pre_step6_raw_artifact_handoff.v1"
 ANSWER_CORE_SCHEMA_VERSION = "pre_step6_raw_answer_core.v1"
+ANSWER_COMPARISON_SCHEMA_VERSION = "pre_step6_answer_comparison.v1"
 ARTIFACT_SCHEMA_VERSION = "reasoning_artifact.v1"
 MAX_ARTIFACTS = 5
 MAX_SOURCE_EXCERPTS = 4
@@ -30,6 +31,8 @@ ALLOWED_PRIORITY_HINTS = frozenset({"high", "medium", "low", "quiet", "discard"}
 ALLOWED_WORKER_ADMISSION_DECISIONS = frozenset(
     {"decline_worker", "no_worker_needed", "not_evaluated", "admit_worker"}
 )
+ALLOWED_CRITERION_WINNERS = frozenset({"control", "raw", "tie"})
+ALLOWED_AGGREGATE_DECISIONS = frozenset({"control_wins", "raw_wins", "tie_stop"})
 TOP_LEVEL_FIELDS = frozenset(
     {
         "schema_version",
@@ -99,6 +102,30 @@ ANSWER_CORE_FIELDS = frozenset(
 COMPARISON_FIELDS = frozenset(
     {"preserved_from_control", "changed_from_raw_handoff", "kept_private_or_discarded"}
 )
+ANSWER_COMPARISON_FIELDS = frozenset(
+    {
+        "schema_version",
+        "status",
+        "runtime_policy",
+        "case_id",
+        "control_answer_core",
+        "raw_answer_core_ref",
+        "criteria",
+        "tie_break_rule",
+        "aggregate_decision",
+        "notes",
+    }
+)
+CRITERION_FIELDS = frozenset(
+    {
+        "criterion_id",
+        "question",
+        "winner",
+        "control_evidence",
+        "raw_evidence",
+        "rationale",
+    }
+)
 FORBIDDEN_PUBLIC_TERMS = (
     "artifact",
     "bundle",
@@ -164,6 +191,38 @@ def validate_answer_core_payload(
 def validate_answer_core_file(path: Path, *, repo_root: Path | None = None) -> None:
     validate_answer_core_payload(
         load_answer_core_payload(path),
+        path=Path(path),
+        repo_root=repo_root,
+    )
+
+
+def load_answer_comparison_payload(path: Path) -> dict[str, object]:
+    payload = json.loads(Path(path).read_text(encoding="utf-8"))
+    if not isinstance(payload, dict):
+        raise RawArtifactValidationError(f"{path}: payload must be an object")
+    return payload
+
+
+def validate_answer_comparison_payload(
+    payload: dict[str, object],
+    *,
+    path: Path = Path("<payload>"),
+    repo_root: Path | None = None,
+) -> None:
+    errors = list(
+        iter_answer_comparison_errors(payload, path=Path(path), repo_root=repo_root)
+    )
+    if errors:
+        raise RawArtifactValidationError("; ".join(errors))
+
+
+def validate_answer_comparison_file(
+    path: Path,
+    *,
+    repo_root: Path | None = None,
+) -> None:
+    validate_answer_comparison_payload(
+        load_answer_comparison_payload(path),
         path=Path(path),
         repo_root=repo_root,
     )
@@ -362,6 +421,125 @@ def iter_answer_core_errors(
     )
 
 
+def iter_answer_comparison_errors(
+    payload: dict[str, object],
+    *,
+    path: Path = Path("<payload>"),
+    repo_root: Path | None = None,
+) -> Iterable[str]:
+    if not isinstance(payload, dict):
+        yield f"{path}: payload must be an object"
+        return
+
+    required = (
+        "schema_version",
+        "status",
+        "runtime_policy",
+        "case_id",
+        "control_answer_core",
+        "raw_answer_core_ref",
+        "criteria",
+        "tie_break_rule",
+        "aggregate_decision",
+    )
+    yield from _unknown_fields(payload, ANSWER_COMPARISON_FIELDS, path)
+    yield from _missing_fields(payload, required, path)
+    if any(field not in payload for field in required):
+        return
+
+    if _string(payload.get("schema_version")) != ANSWER_COMPARISON_SCHEMA_VERSION:
+        yield f"{path}: schema_version must be {ANSWER_COMPARISON_SCHEMA_VERSION}"
+    if _string(payload.get("status")) not in ALLOWED_STATUS:
+        yield f"{path}: status must be research_only"
+    if _string(payload.get("runtime_policy")) not in ALLOWED_RUNTIME_POLICY:
+        yield f"{path}: runtime_policy must be runtime_dormant"
+    if not _string(payload.get("case_id")).strip():
+        yield f"{path / 'case_id'}: case_id must be a non-empty string"
+
+    control_answer = _string(payload.get("control_answer_core"))
+    if not control_answer.strip():
+        yield f"{path / 'control_answer_core'}: control_answer_core must be non-empty"
+    elif len(control_answer) > MAX_ANSWER_CORE_CHARS:
+        yield (
+            f"{path / 'control_answer_core'}: "
+            f"control_answer_core must not exceed {MAX_ANSWER_CORE_CHARS} chars"
+        )
+    try:
+        validate_public_answer_hygiene(control_answer)
+    except RawArtifactValidationError as exc:
+        yield f"{path / 'control_answer_core'}: {exc}"
+
+    raw_answer_core_ref = _string(payload.get("raw_answer_core_ref"))
+    if not raw_answer_core_ref:
+        yield f"{path / 'raw_answer_core_ref'}: raw_answer_core_ref must be non-empty"
+    elif repo_root is not None:
+        raw_path = repo_root / raw_answer_core_ref
+        if not raw_path.exists():
+            yield f"{path / 'raw_answer_core_ref'}: raw_answer_core_ref does not exist"
+        else:
+            raw_payload = load_answer_core_payload(raw_path)
+            validate_answer_core_payload(raw_payload, path=raw_path, repo_root=repo_root)
+            if _string(raw_payload.get("case_id")) != _string(payload.get("case_id")):
+                yield f"{path / 'raw_answer_core_ref'}: raw answer case_id mismatch"
+
+    if _string(payload.get("tie_break_rule")) != "raw_tie_with_control_stops":
+        yield f"{path / 'tie_break_rule'}: tie_break_rule must be raw_tie_with_control_stops"
+
+    criteria = payload.get("criteria")
+    if not isinstance(criteria, list):
+        yield f"{path / 'criteria'}: criteria must be a list"
+        criteria = []
+    elif not criteria:
+        yield f"{path / 'criteria'}: criteria must not be empty"
+    elif len(criteria) > 8:
+        yield f"{path / 'criteria'}: criteria must not exceed 8"
+    for index, criterion in enumerate(criteria):
+        item_path = path / f"criteria[{index}]"
+        if not isinstance(criterion, dict):
+            yield f"{item_path}: criterion must be an object"
+            continue
+        yield from _validate_criterion(criterion, path=item_path)
+
+    decision = _string(payload.get("aggregate_decision"))
+    if decision not in ALLOWED_AGGREGATE_DECISIONS:
+        yield f"{path / 'aggregate_decision'}: unknown aggregate_decision '{decision}'"
+    else:
+        expected = score_answer_comparison(payload)["aggregate_decision"]
+        if decision != expected:
+            yield (
+                f"{path / 'aggregate_decision'}: aggregate_decision must be "
+                f"{expected} from criterion winners"
+            )
+
+
+def score_answer_comparison(payload: dict[str, object]) -> dict[str, object]:
+    criteria = payload.get("criteria")
+    raw = control = tie = 0
+    if isinstance(criteria, list):
+        for criterion in criteria:
+            if not isinstance(criterion, dict):
+                continue
+            winner = _string(criterion.get("winner"))
+            if winner == "raw":
+                raw += 1
+            elif winner == "control":
+                control += 1
+            elif winner == "tie":
+                tie += 1
+    if raw > control:
+        aggregate = "raw_wins"
+    elif control > raw:
+        aggregate = "control_wins"
+    else:
+        aggregate = "tie_stop"
+    return {
+        "raw": raw,
+        "control": control,
+        "tie": tie,
+        "aggregate_decision": aggregate,
+    }
+
+
 def render_raw_artifact_handoff(
     payload: dict[str, object],
     *,
@@ -531,6 +709,34 @@ def _validate_comparison_to_control(
             )
 
 
+def _validate_criterion(
+    criterion: dict[str, object],
+    *,
+    path: Path,
+) -> Iterable[str]:
+    required = (
+        "criterion_id",
+        "question",
+        "winner",
+        "control_evidence",
+        "raw_evidence",
+        "rationale",
+    )
+    yield from _unknown_fields(criterion, CRITERION_FIELDS, path)
+    yield from _missing_fields(criterion, required, path)
+    if any(field not in criterion for field in required):
+        return
+    criterion_id = _string(criterion.get("criterion_id"))
+    if not ARTIFACT_ID_RE.match(criterion_id):
+        yield f"{path / 'criterion_id'}: criterion_id must be a lowercase id"
+    winner = _string(criterion.get("winner"))
+    if winner not in ALLOWED_CRITERION_WINNERS:
+        yield f"{path / 'winner'}: unknown winner '{winner}'"
+    for field in ("question", "control_evidence", "raw_evidence", "rationale"):
+        if not _string(criterion.get(field)).strip():
+            yield f"{path / field}: {field} must be a non-empty string"
+
+
 def _missing_fields(
     payload: dict[str, object],
     required: Sequence[str],
@@ -577,8 +783,20 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("path", type=Path)
     parser.add_argument("--render", action="store_true")
     parser.add_argument("--answer-core", action="store_true")
+    parser.add_argument("--comparison", action="store_true")
     parser.add_argument("--repo-root", type=Path)
     args = parser.parse_args(argv)
+
+    if args.comparison:
+        payload = load_answer_comparison_payload(args.path)
+        validate_answer_comparison_payload(payload, path=args.path, repo_root=args.repo_root)
+        score = score_answer_comparison(payload)
+        print(
+            f"valid comparison: {args.path} "
+            f"raw={score['raw']} control={score['control']} tie={score['tie']} "
+            f"decision={score['aggregate_decision']}"
+        )
+        return 0
 
     if args.answer_core:
         validate_answer_core_file(args.path, repo_root=args.repo_root)

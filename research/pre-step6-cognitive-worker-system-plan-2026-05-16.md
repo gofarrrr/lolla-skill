@@ -30,11 +30,17 @@ research/pre-step6-raw-artifact-consumption-readout-2026-05-16.md
 research/pre-step6-raw-artifact-render-validation-slice-2026-05-16.md
 research/pre-step6-raw-artifact-four-fixture-render-readout-2026-05-16.md
 research/pre-step6-raw-artifact-answer-consumption-readout-2026-05-16.md
+research/pre-step6-raw-vs-control-rubric-comparison-readout-2026-05-16.md
 ```
 
 The system goal is not more artifacts. The goal is a final answer that is
 sharper, better grounded, more honest about uncertainty, and better at using or
 rejecting selected pressure.
+
+2026-05-16 strict-rubric update: raw-handoff answer cores beat
+current-control answer cores in all four local comparisons, with zero control
+criterion wins. The indexed bundle challenger was not triggered, and worker
+orchestration remains unearned.
 
 ## 2026-05-16 Critic Pass
 

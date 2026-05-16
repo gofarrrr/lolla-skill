@@ -31,6 +31,7 @@ research/pre-step6-raw-artifact-consumption-readout-2026-05-16.md
 research/pre-step6-raw-artifact-render-validation-slice-2026-05-16.md
 research/pre-step6-raw-artifact-four-fixture-render-readout-2026-05-16.md
 research/pre-step6-raw-artifact-answer-consumption-readout-2026-05-16.md
+research/pre-step6-raw-vs-control-rubric-comparison-readout-2026-05-16.md
 ```
 
 ## Decision
@@ -81,6 +82,10 @@ bundle or worker implementation.
 2026-05-16 answer-consumption follow-up: authored Step-6-style answer cores now
 consume all four raw handoffs and pass public machinery hygiene. The next
 question is less-author-biased comparison against current-control answer cores.
+
+2026-05-16 strict-rubric follow-up: raw answer cores beat control in all four
+comparisons, no control criterion wins, and no indexed bundle challenger is
+triggered. That keeps worker orchestration and bundle implementation paused.
 
 ## Why This Comes Before Implementation
 

@@ -14,6 +14,8 @@ from pre_step6_raw_artifacts import (  # noqa: E402
     MAX_RENDER_CHARS,
     RawArtifactValidationError,
     render_raw_artifact_handoff,
+    score_answer_comparison,
+    validate_answer_comparison_payload,
     validate_answer_core_payload,
     validate_public_answer_hygiene,
     validate_raw_artifact_payload,
@@ -23,6 +25,7 @@ from pre_step6_raw_artifacts import (  # noqa: E402
 REPO_ROOT = Path(__file__).resolve().parents[1]
 FIXTURE_DIR = REPO_ROOT / "research" / "pre-step6-raw-artifact-fixtures"
 ANSWER_CORE_DIR = REPO_ROOT / "research" / "pre-step6-raw-artifact-answer-cores"
+COMPARISON_DIR = REPO_ROOT / "research" / "pre-step6-raw-artifact-comparisons"
 FIXTURE_PATH = FIXTURE_DIR / "mother-address-year.raw-artifact-handoff.v1.json"
 
 
@@ -39,6 +42,14 @@ def _answer_core_paths() -> list[Path]:
 
 
 def _load_answer_core(path: Path) -> dict[str, object]:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _comparison_paths() -> list[Path]:
+    return sorted(COMPARISON_DIR.glob("*.raw-vs-control-comparison.v1.json"))
+
+
+def _load_comparison(path: Path) -> dict[str, object]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
@@ -73,6 +84,24 @@ def test_all_answer_core_fixtures_validate_and_stay_public() -> None:
     for path in paths:
         payload = _load_answer_core(path)
         validate_answer_core_payload(payload, path=path, repo_root=REPO_ROOT)
+
+
+def test_all_answer_comparisons_validate_and_score_raw_wins() -> None:
+    paths = _comparison_paths()
+
+    assert [path.name for path in paths] == [
+        "founder-grant-marcus-equity.raw-vs-control-comparison.v1.json",
+        "mid-level-consultant-report-2.raw-vs-control-comparison.v1.json",
+        "mother-address-year.raw-vs-control-comparison.v1.json",
+        "third-year-phd-student.raw-vs-control-comparison.v1.json",
+    ]
+
+    for path in paths:
+        payload = _load_comparison(path)
+        validate_answer_comparison_payload(payload, path=path, repo_root=REPO_ROOT)
+        score = score_answer_comparison(payload)
+        assert score["aggregate_decision"] == "raw_wins"
+        assert score["raw"] > score["control"]
 
 
 def test_mother_no_worker_fixture_validates_and_declines_worker() -> None:
@@ -178,3 +207,25 @@ def test_answer_core_validation_rejects_forbidden_public_term() -> None:
 
     with pytest.raises(RawArtifactValidationError, match="private machinery"):
         validate_answer_core_payload(payload, repo_root=REPO_ROOT)
+
+
+def test_answer_comparison_rejects_inconsistent_aggregate_decision() -> None:
+    path = COMPARISON_DIR / "mother-address-year.raw-vs-control-comparison.v1.json"
+    payload = _load_comparison(path)
+    payload["aggregate_decision"] = "tie_stop"
+
+    with pytest.raises(RawArtifactValidationError, match="aggregate_decision"):
+        validate_answer_comparison_payload(payload, repo_root=REPO_ROOT)
+
+
+def test_answer_comparison_rejects_unknown_winner() -> None:
+    path = COMPARISON_DIR / "founder-grant-marcus-equity.raw-vs-control-comparison.v1.json"
+    payload = _load_comparison(path)
+    criteria = payload["criteria"]
+    assert isinstance(criteria, list)
+    first = criteria[0]
+    assert isinstance(first, dict)
+    first["winner"] = "bundle"
+
+    with pytest.raises(RawArtifactValidationError, match="unknown winner"):
+        validate_answer_comparison_payload(payload, repo_root=REPO_ROOT)

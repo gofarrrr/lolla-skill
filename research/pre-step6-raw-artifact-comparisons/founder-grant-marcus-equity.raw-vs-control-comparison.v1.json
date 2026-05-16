@@ -1,0 +1,53 @@
+{
+  "schema_version": "pre_step6_answer_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "founder-grant-marcus-equity",
+  "control_answer_core": "I would not grant Marcus 15% equity plus a board seat now. The answer is a staged conversation, not a yes or no to his opening demand.\n\nFirst, remove the false precision: the exit math is unaudited, the catastrophic-departure scenario is not known, and legal clauses will not remove his practical leverage if he owns the code relationship and can pull Jake or Lina.\n\nFriday should keep intermediate instruments alive: smaller equity without a board seat, milestone grants, phantom equity, platform revenue share, or a platform-specific upside path. The 90-day sprint is useful if it validates whether the prototype can become revenue, but do not invent a budget or pretend contract language solves the relationship problem.\n\nMake the conversation about the company you want to run and what partnership would require from both sides.",
+  "raw_answer_core_ref": "research/pre-step6-raw-artifact-answer-cores/founder-grant-marcus-equity.raw-answer-core.v1.json",
+  "criteria": [
+    {
+      "criterion_id": "false_precision",
+      "question": "Does the answer avoid fabricated math and overconfidence?",
+      "winner": "tie",
+      "control_evidence": "Control explicitly removes false precision and unaudited exit math.",
+      "raw_evidence": "Raw keeps the valuation caveat active and says the exit math should not carry the decision.",
+      "rationale": "Both prevent numeric overclaim."
+    },
+    {
+      "criterion_id": "middle_instruments",
+      "question": "Does the answer keep intermediate instruments alive?",
+      "winner": "tie",
+      "control_evidence": "Control lists smaller equity, milestone grants, phantom equity, and platform upside.",
+      "raw_evidence": "Raw says the real choice is not bonus versus 15% and names staged alternatives.",
+      "rationale": "Both preserve the non-binary choice."
+    },
+    {
+      "criterion_id": "dependency_system",
+      "question": "Does the answer map the dependency system behind Marcus's demand?",
+      "winner": "raw",
+      "control_evidence": "Control notices practical leverage but keeps the frame mostly at terms and conversation.",
+      "raw_evidence": "Raw asks what keeps Marcus, Jake, and Lina committed and how governance affects platform and agency value.",
+      "rationale": "Raw converts leverage into a system to manage."
+    },
+    {
+      "criterion_id": "measurement_chain",
+      "question": "Does the answer define what the 90-day sprint should measure before equity is sized?",
+      "winner": "raw",
+      "control_evidence": "Control says the sprint validates whether the prototype can become revenue.",
+      "raw_evidence": "Raw requires learning goals, retention measures, knowledge-transfer measures, and unlock conditions.",
+      "rationale": "Raw makes the staged path more testable."
+    },
+    {
+      "criterion_id": "architecture_discard",
+      "question": "Does the answer avoid unsupported technical diagnosis?",
+      "winner": "tie",
+      "control_evidence": "Control does not diagnose technical architecture.",
+      "raw_evidence": "Raw explicitly says the issue is business dependency and commitment design.",
+      "rationale": "Both avoid the unsupported technical turn."
+    }
+  ],
+  "tie_break_rule": "raw_tie_with_control_stops",
+  "aggregate_decision": "raw_wins",
+  "notes": "Strict local rubric comparison; not a blind model judgment."
+}
