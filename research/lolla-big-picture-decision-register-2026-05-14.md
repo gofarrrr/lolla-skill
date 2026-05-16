@@ -204,6 +204,15 @@ What is locked:
 - OpenRouter remains secondary for strict JSON audits, cheap ablations, narrow
   repeatable checks, and optional source/overclaim review.
 
+Critic-pass constraint:
+
+- this is a research default, not a product default;
+- "more fresh-context cognition" is not a sufficient rationale;
+- every future worker slice must name the control it must beat and the kill
+  condition that would stop that worker type;
+- if raw artifacts or strict prompt-only controls tie the worker/bundle path,
+  the simpler path wins.
+
 Why this decision exists:
 
 - previous worker/dossier and bridge slices proved useful contracts but not

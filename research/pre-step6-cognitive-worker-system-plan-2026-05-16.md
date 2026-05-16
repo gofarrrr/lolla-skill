@@ -18,6 +18,25 @@ The system goal is not more artifacts. The goal is a final answer that is
 sharper, better grounded, more honest about uncertainty, and better at using or
 rejecting selected pressure.
 
+## 2026-05-16 Critic Pass
+
+Verdict: revise before implementation, pass only as docs-only research.
+
+Contradicting evidence first:
+
+- prior strict-control ablations did not prove that pre-Step-6 subagents create
+  durable answer-quality lift;
+- raw artifacts can already perform well when they carry source grounding,
+  humility, discard, and risk-if-forced fields;
+- a bundle can make private notes prettier without improving the final answer;
+- extra cognition can worsen Step 6 by increasing attention load, duplicate
+  pressure, and false confidence.
+
+Therefore the burden of proof is on the worker/bundle path. Future slices must
+name the strong control they are trying to beat, the expected marginal gain, and
+the kill condition that would stop the line of work. "More fresh-context
+cognition" is not enough.
+
 ## Product Boundary
 
 No product promotion is authorized by this document.
@@ -194,6 +213,10 @@ Reason:
 - the user is already working inside a high-context orchestrator/subscription
   environment.
 
+This is a research default for judgment-heavy worker production, not a product
+default. If strict prompt-only controls, raw artifacts, or narrow OpenRouter
+checks tie or beat subagent workers, prefer the simpler path.
+
 OpenRouter remains secondary. Use it for:
 
 - strict JSON audits;
@@ -245,6 +268,15 @@ Which artifacts are excluded?
 What would make this worker unnecessary?
 ```
 
+The admission record must also state:
+
+```text
+value hypothesis
+control this worker must beat
+why a no-worker Step 6 would likely miss this pressure
+kill condition for this worker type
+```
+
 Admission should fail when:
 
 - the worker question is broad or generic;
@@ -255,6 +287,8 @@ Admission should fail when:
 - the answer would be obvious deterministic dedupe/capping;
 - the likely output is a generic caution with no boundary, relaxation, or discard
   condition.
+- the reason for the worker is only "fresh context," "more attention," or
+  agreement from another model.
 
 In v1, default worker count is 0-2. A run with no admitted workers is a healthy
 outcome when Step 6 already has enough clear material.
@@ -287,6 +321,10 @@ all prior session context
 all V60 chunks
 unbounded source material
 ```
+
+The brief is an orientation header, not a backdoor to the whole run. "Which
+artifacts exist" means small inventory and relevance metadata, not pasted lane
+cards or V60 chunks.
 
 Purpose:
 
@@ -340,6 +378,9 @@ needs more, the planner should either split the task, narrow the question, or
 decline the worker.
 
 The workpack must not select truth. It packages a bounded reasoning task.
+
+If a worker needs a broad local slice to be useful, the correct answer is usually
+to skip the worker and let Step 6 handle the case directly.
 
 ## Worker Prompt Principles
 
@@ -439,6 +480,10 @@ rendering_limits
 
 The bundle index is a map, not a truth selector.
 
+Each index entry should preserve artifact IDs and compact grounding. The bundle
+may organize pressure, but it must not rewrite artifact claims into a new,
+unsupported synthesis before Step 6 sees them.
+
 It should help Step 6 see:
 
 - what is likely primary;
@@ -522,6 +567,9 @@ improvement.
 Promotion requires evidence that the research path beats or ties strong
 controls across reasoning shapes, not just topical domains.
 
+Default decision: no promotion. A research slice must earn promotion against a
+strong no-worker/control baseline; otherwise the simpler system wins.
+
 Required reasoning-shape coverage:
 
 - new evidence relaxes an old rule;
@@ -562,6 +610,10 @@ Promotion remains blocked if:
 - OpenRouter or subagents reintroduce unsupported claims;
 - cost/latency grows without clear answer-quality gain.
 
+Treat a blocked result as a stop signal, not as a prompt to add more workers.
+The next move after a failed comparison is usually compression, stricter source
+custody, or killing the worker type.
+
 ## Known Failure Modes
 
 1. Worker bloat.
@@ -597,6 +649,10 @@ Promotion remains blocked if:
     Research docs describe future behavior so vividly that future agents mistake
     it for live `/lolla` behavior.
 
+11. Research momentum bias.
+    Because subagents are interesting and locally available, future work treats
+    them as the answer before they beat simpler controls.
+
 ## Docs-Only Verification Checklist
 
 For this planning slice:
@@ -604,6 +660,8 @@ For this planning slice:
 - product docs and runtime are not changed;
 - this core doc states the `SKILL.md` / `HOW_IT_WORKS.md` timing contradiction;
 - linked research docs point here as the current source of truth;
+- linked research docs do not describe absent WIP scripts as promoted
+  implementation;
 - terminology distinguishes deterministic custody, subagent cognition, Step 6
   final arbitration, and OpenRouter narrow audit/ablation;
 - old `CognitiveWorkpack` / `cognition_dossier` language is marked historical

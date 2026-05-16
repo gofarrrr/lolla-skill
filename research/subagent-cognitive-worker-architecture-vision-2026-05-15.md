@@ -155,7 +155,18 @@ Candidate worker jobs:
 These workers can be tested one at a time. The first slice should not build all
 four.
 
-Latest concrete worker slice:
+The 2026-05-16 core plan narrows the first future implementation to two worker
+types only:
+
+```text
+boundary/evidence-gate worker
+duplicate/priority worker
+```
+
+That narrowing is deliberate. The earlier Lane 1 bridge worker remains evidence
+from a local slice, not the default shape to promote.
+
+Historical concrete worker slice:
 
 ```text
 Lane1ReasoningBridgeWorker

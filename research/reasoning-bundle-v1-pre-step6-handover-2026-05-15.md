@@ -100,7 +100,7 @@ user question
 decision situation
 live constraints
 what the conversation is trying to resolve
-which lane artifacts exist
+which lane / V60 / worker artifact types exist
 why this worker was launched
 what would count as useful output
 what would count as noise
@@ -138,10 +138,14 @@ Which artifacts are excluded?
 What would make this worker unnecessary?
 ```
 
+The planner must also state the value hypothesis, the control this worker must
+beat, why a no-worker Step 6 would likely miss the pressure, and what result
+would kill this worker type.
+
 Admission should fail when the worker would merely summarize a lane, restate
 pressure already compactly available to Step 6, require all lanes or the full
-transcript, or produce generic caution without a boundary, relaxation condition,
-or discard condition.
+transcript, use "fresh context" as its only rationale, or produce generic
+caution without a boundary, relaxation condition, or discard condition.
 
 The healthiest default remains 0-2 workers. No worker is better than a worker
 whose purpose is only "more cognition."
@@ -181,23 +185,19 @@ the task, or decline the worker.
 
 ## Reasoning Bundle v1
 
-Implemented research module:
+Prior WIP/spike artifact names, not promoted implementation in this docs-only
+checkpoint:
 
 ```text
 scripts/research/reasoning_bundle.py
-```
-
-Focused tests:
-
-```text
 tests/test_reasoning_bundle.py
-```
-
-Runner:
-
-```text
 scripts/research/run_reasoning_bundle_prompt_replay.py
 ```
+
+Those paths are useful breadcrumbs if reviewing the local experimentation pile,
+but this document should not be read as saying those files are shipped,
+promoted, or present on a clean docs-only branch. Future implementation should
+restart from the 2026-05-16 core plan and cherry-pick only what survives review.
 
 Schema versions:
 
@@ -241,6 +241,10 @@ final_reasoner_instruction
 The bundle index is a map, not a truth selector. It may say an artifact is
 primary, duplicate, quiet, conflicting, or boundary-bearing, but Step 6 still
 decides what to use, reject, defer, or keep private.
+
+The index must preserve artifact IDs and compact grounding. It should organize
+pressure, not create a new ungrounded synthesis before the final reasoner sees
+the artifacts.
 
 The arbitration index names:
 
