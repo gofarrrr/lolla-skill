@@ -1,0 +1,78 @@
+{
+  "schema_version": "reasoning_workpack.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "workpack_id": "third_year_phd_fallback_silva_boundary",
+  "case_id": "third-year-phd-student",
+  "worker_type": "boundary/evidence-gate",
+  "admission_ref": "research/pre-step6-workpack-fixtures/third-year-phd-student.admission.v1.json",
+  "admission_gate": {
+    "decision": "admit_worker",
+    "reason": "Fallback viability and Silva/data access are binding-constraint questions that a compact boundary worker can make harder for Step 6 to blur.",
+    "expected_artifact_contribution": "A dated fallback-executability gate plus a separate Silva/data retest with concrete evidence needed to relax the boundary.",
+    "unnecessary_if": "Step 6 already states fallback executability and Silva/data retesting as hard constraints rather than soft cautions.",
+    "kill_condition": "Stop the worker if it summarizes dissertation options or advises the student instead of producing a boundary/evidence gate."
+  },
+  "shared_situation_brief": {
+    "user_question": "Third-year PhD student choosing among dissertation paths under a 3-month decision deadline.",
+    "decision_situation": "Advisor retires in 2-3 years; lab has no single-cell experience or collaborators; options are continue tumor modeling, shift to single-cell/foundation models, or pursue the advisor's novel combination.",
+    "live_constraints": "Preserve advisor-first sequencing, data/Silva access as binding constraint, low-cost probing, and evidence-specific triggers.",
+    "resolution_target": "Help Step 6 avoid recommending a trigger plan that preserves only fictional fallback optionality.",
+    "available_artifacts": "Current control strengths, pressure-check note, and compact source excerpts only.",
+    "why_launched": "Admission found marginal value in compressing fallback viability and Silva/data access into hard boundaries.",
+    "useful_output": "One compact boundary/evidence gate Step 6 can use or ignore.",
+    "noise": "Dissertation option summaries, advice to the student, broad base-rate caution, or requests for all lanes."
+  },
+  "worker_question": "What hard boundary should Step 6 preserve around fallback executability and Silva/data constraint retesting before recommending any trigger-based dissertation plan?",
+  "local_artifacts": [
+    {
+      "artifact_id": "fallback_viability_pressure",
+      "text": "Option 1 remains attractive only if still executable after exploratory option-3 work consumes time, advisor attention, project identity, or technical setup."
+    },
+    {
+      "artifact_id": "silva_data_constraint",
+      "text": "Silva/data access is unproven and should be treated as false until concrete access path, permission status, date, and minimum usable data are named."
+    },
+    {
+      "artifact_id": "advisor_timing_constraint",
+      "text": "Advisor retires in 2-3 years, so advisor support and finishability inside that horizon are hard constraints."
+    }
+  ],
+  "source_excerpts": [
+    {
+      "excerpt_id": "case-context",
+      "text": "Third-year PhD student has a 3-month direction deadline, advisor retires in 2-3 years, and the lab lacks single-cell experience or collaborators."
+    },
+    {
+      "excerpt_id": "pressure-check",
+      "text": "Pressure check says the retiring advisor is not neutral and option 1 may stop being a real fallback after enough option-3 work."
+    },
+    {
+      "excerpt_id": "silva-gap",
+      "text": "Silva/data access is unproven and controls whether the single-cell/foundation-model route is executable."
+    }
+  ],
+  "forbidden_moves": [
+    "Do not advise which dissertation option to choose.",
+    "Do not turn missing Silva/data evidence into positive feasibility.",
+    "Do not treat fallback as preserved merely because it exists on paper.",
+    "Do not ask for the full transcript."
+  ],
+  "output_contract": {
+    "schema_version": "reasoning_artifact.v1",
+    "max_chars": 1500,
+    "required_fields": [
+      "why_provided",
+      "source_grounding",
+      "contribution",
+      "hard_boundary",
+      "relaxation_condition",
+      "discard_condition",
+      "relation_to_bundle",
+      "priority_hint",
+      "risk_if_forced",
+      "risk_if_ignored"
+    ]
+  },
+  "notes": "Static workpack fixture for research-only renderer/validator testing."
+}

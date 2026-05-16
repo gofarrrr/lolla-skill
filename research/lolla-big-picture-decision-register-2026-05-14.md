@@ -387,6 +387,17 @@ research-only pass for two-stage shape
 no runtime promotion
 ```
 
+Workpack-harness follow-up:
+
+```text
+research-only pre_step6_workpacks.py validator/renderer added
+four admission fixtures added
+three admitted boundary/evidence-gate workpack fixtures added
+mother no-worker sentinel has no workpack
+pytest covers admission pattern, caps, prompt order, declined-reference rejection
+no runtime promotion
+```
+
 ## Target Architecture If Research Eventually Wins
 
 The likely long-term target is not a Bevelin lane, not a giant prompt, and not

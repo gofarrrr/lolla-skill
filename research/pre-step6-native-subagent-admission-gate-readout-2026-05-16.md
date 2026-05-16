@@ -321,16 +321,21 @@ do_not_use_openrouter_as_broad_worker_producer
 
 ## Next Slice
 
-The next slice should codify this manually successful shape as research-only
-machinery, still outside live `/lolla`:
+2026-05-16 follow-up: the next slice was codified as research-only machinery in:
 
 ```text
-reasoning_workpack.v1 builder / validator
-admission record schema
-producer prompt renderer for boundary/evidence-gate worker only
-static validation for caps, forbidden moves, required fields, and source grounding
-local replay fixture that includes the mother no-worker sentinel
+scripts/research/pre_step6_workpacks.py
+tests/test_pre_step6_workpacks.py
+research/pre-step6-workpack-validation-harness-readout-2026-05-16.md
 ```
+
+It added the admission record schema, `reasoning_workpack.v1` fixture
+validation, a boundary/evidence-gate prompt renderer, static caps, and a
+structural no-workpack guard for the mother sentinel.
+
+The next live research slice should run native subagents from those rendered
+workpack prompts and compare the returned artifacts against the prior manual
+producer artifacts.
 
 Promotion remains blocked until a harness can show durable improvement over:
 

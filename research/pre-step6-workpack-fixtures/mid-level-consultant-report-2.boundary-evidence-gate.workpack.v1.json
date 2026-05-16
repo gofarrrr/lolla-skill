@@ -1,0 +1,78 @@
+{
+  "schema_version": "reasoning_workpack.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "workpack_id": "consultant_channel_conduct_boundary",
+  "case_id": "mid-level-consultant-report-2",
+  "worker_type": "boundary/evidence-gate",
+  "admission_ref": "research/pre-step6-workpack-fixtures/mid-level-consultant-report-2.admission.v1.json",
+  "admission_gate": {
+    "decision": "admit_worker",
+    "reason": "The weak spots are boundary/evidence gates where Step 6 may flatten counsel choice, internal-channel choice, and Wednesday conduct into generic caution.",
+    "expected_artifact_contribution": "A short gate list distinguishing reversible counsel consultation from irreversible reporting, pricing attorney-incentive risk, separating internal recipients, and specifying ordinary conduct.",
+    "unnecessary_if": "Step 6 already separates GC, audit committee, and external paths, tests counsel incentives, and defines normal Wednesday behavior without confrontation, unusual access, or evidence gathering.",
+    "kill_condition": "Stop the worker if it summarizes the scenario, offers legal conclusions, recommends investigation, or asks for the full transcript."
+  },
+  "shared_situation_brief": {
+    "user_question": "Mid-level consultant deciding what to do after seeing a senior partner apparently shredding boxes tied to an active regulatory-audit client.",
+    "decision_situation": "The user is sole witness, has family financial risk, and has 60-65% gut confidence internal GC would handle it properly.",
+    "live_constraints": "Document personal recollection, contact 2-3 whistleblower attorneys, tell spouse broadly, attend Wednesday normally, do not confront, investigate, or access systems unusually.",
+    "resolution_target": "Help Step 6 preserve channel distinctions and ordinary-conduct limits without legal conclusions.",
+    "available_artifacts": "Current control strengths, known channel/conduct gaps, and compact source excerpts only.",
+    "why_launched": "Admission found marginal value in compressing counsel/channel/Wednesday conduct into boundaries.",
+    "useful_output": "One compact gate list that preserves ambiguity and operational guardrails.",
+    "noise": "Legal certainty, investigation advice, generic caution, or full scenario summary."
+  },
+  "worker_question": "What specific boundaries should the final advice preserve around counsel incentives, GC versus audit-committee versus external reporting channels, and ordinary Wednesday conduct, without deciding the law or encouraging the consultant to investigate?",
+  "local_artifacts": [
+    {
+      "artifact_id": "counsel_first_boundary",
+      "text": "Current answer separates reversible counsel engagement from irreversible reporting."
+    },
+    {
+      "artifact_id": "internal_channel_distinction",
+      "text": "Known weakness: internal reporting is too monolithic; GC, audit committee, and external routes have different alert-risk and independence profiles."
+    },
+    {
+      "artifact_id": "wednesday_protocol",
+      "text": "Known weakness: Wednesday behavior needs ordinary-conduct boundaries beyond generic caution."
+    }
+  ],
+  "source_excerpts": [
+    {
+      "excerpt_id": "current-answer",
+      "text": "Current answer separates reversible counsel engagement from irreversible reporting and says no confrontation, no investigation, and no unusual system access."
+    },
+    {
+      "excerpt_id": "channel-gap",
+      "text": "Known weakness: internal reporting is treated too monolithically and GC versus audit committee distinction is not concrete enough."
+    },
+    {
+      "excerpt_id": "wednesday-gap",
+      "text": "Known weakness: counsel incentive and Wednesday behavior are under-specified."
+    }
+  ],
+  "forbidden_moves": [
+    "Do not offer legal conclusions.",
+    "Do not recommend gathering more evidence beyond personal recollection or preservation already in hand.",
+    "Do not advise confrontation or unusual access.",
+    "Do not ask for the full transcript."
+  ],
+  "output_contract": {
+    "schema_version": "reasoning_artifact.v1",
+    "max_chars": 1500,
+    "required_fields": [
+      "why_provided",
+      "source_grounding",
+      "contribution",
+      "hard_boundary",
+      "relaxation_condition",
+      "discard_condition",
+      "relation_to_bundle",
+      "priority_hint",
+      "risk_if_forced",
+      "risk_if_ignored"
+    ]
+  },
+  "notes": "Static workpack fixture for research-only renderer/validator testing."
+}

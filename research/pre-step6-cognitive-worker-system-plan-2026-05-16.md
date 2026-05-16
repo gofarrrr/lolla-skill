@@ -33,6 +33,7 @@ research/pre-step6-raw-artifact-answer-consumption-readout-2026-05-16.md
 research/pre-step6-raw-vs-control-rubric-comparison-readout-2026-05-16.md
 research/pre-step6-native-subagent-producer-test-readout-2026-05-16.md
 research/pre-step6-native-subagent-admission-gate-readout-2026-05-16.md
+research/pre-step6-workpack-validation-harness-readout-2026-05-16.md
 ```
 
 The system goal is not more artifacts. The goal is a final answer that is
@@ -54,6 +55,12 @@ three expected boundary/evidence-gate cases and declined the mother no-worker
 sentinel. Production then ran only for the three admitted cases and produced
 bounded artifacts. Treat this as a research-only pass for the two-stage shape,
 not runtime promotion and not evidence that bundle machinery is needed.
+
+2026-05-16 workpack-harness update: the two-stage shape now has a
+research-only validator/renderer in `scripts/research/pre_step6_workpacks.py`,
+four admission fixtures, three admitted workpack fixtures, and pytest coverage.
+The mother no-worker sentinel has no workpack fixture and tests reject declined
+admissions as workpack references.
 
 ## 2026-05-16 Critic Pass
 
@@ -651,12 +658,15 @@ prefer the simpler path and do not build worker machinery.
 
 When implementation starts later, do it in this order:
 
-1. Add research-only `reasoning_workpack.v1` builder/validator.
+1. Add research-only `reasoning_workpack.v1` builder/validator. First fixture
+   validator/renderer slice completed in
+   `scripts/research/pre_step6_workpacks.py`.
 2. Inputs: shared brief, worker question, local artifact slice, source excerpts,
    forbidden moves.
 3. The builder must not select truth; it only packages a worker task.
 4. Add subagent worker prompt builders for two worker types only:
    `boundary/evidence-gate worker` and `duplicate/priority worker`.
+   The current renderer allows only `boundary/evidence-gate`.
 5. Convert worker outputs into existing `reasoning_artifact.v1`.
 6. Build `reasoning_bundle.v1` from worker/lane artifacts.
 7. Render the bundle for a Step-6-style consumer.
