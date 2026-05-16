@@ -223,6 +223,17 @@ Why this decision exists:
 - product promotion before that evidence would confuse research motion with
   system improvement.
 
+Follow-up decision:
+
+```text
+research/pre-step6-next-slice-decision-note-2026-05-16.md
+```
+
+Before building workers, test whether `reasoning_bundle.v1` improves
+Step-6-style consumption over raw compact artifacts. This isolates handoff value
+from producer quality. If the bundle ties raw artifacts, raw artifacts win and
+the worker/bundle machinery stays unpromoted.
+
 ## Target Architecture If Research Eventually Wins
 
 The likely target is not a Bevelin lane, not a giant prompt, and not a

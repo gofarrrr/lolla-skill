@@ -14,6 +14,12 @@ documents remain useful research scaffolding, but the favored handoff family is:
 reasoning_workpack.v1 -> reasoning_artifact.v1 -> reasoning_bundle.v1
 ```
 
+Next-slice decision note:
+
+```text
+research/pre-step6-next-slice-decision-note-2026-05-16.md
+```
+
 The system goal is not more artifacts. The goal is a final answer that is
 sharper, better grounded, more honest about uncertainty, and better at using or
 rejecting selected pressure.
@@ -543,6 +549,16 @@ max rendered bundle: about 5,000-7,000 characters
 Exceptional research-only runs must explain why each extra worker is necessary.
 
 ## Future Implementation Slice
+
+Before implementation starts, run the comparison-first slice described in:
+
+```text
+research/pre-step6-next-slice-decision-note-2026-05-16.md
+```
+
+That slice tests whether an indexed `reasoning_bundle.v1` improves Step-6-style
+consumption over raw compact artifacts. If raw artifacts tie the indexed bundle,
+prefer the simpler path and do not build worker machinery.
 
 When implementation starts later, do it in this order:
 
