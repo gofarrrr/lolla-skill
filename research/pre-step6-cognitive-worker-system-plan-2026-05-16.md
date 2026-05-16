@@ -35,6 +35,7 @@ research/pre-step6-native-subagent-producer-test-readout-2026-05-16.md
 research/pre-step6-native-subagent-admission-gate-readout-2026-05-16.md
 research/pre-step6-workpack-validation-harness-readout-2026-05-16.md
 research/pre-step6-rendered-workpack-subagent-replay-readout-2026-05-16.md
+research/pre-step6-strict-worker-output-contract-readout-2026-05-16.md
 ```
 
 The system goal is not more artifacts. The goal is a final answer that is
@@ -67,6 +68,11 @@ admissions as workpack references.
 targeted content lift in all three admitted cases and skipped the mother
 sentinel, but only one of three worker outputs returned strict JSON. Tighten
 worker-output serialization before any automation or runtime path.
+
+2026-05-16 strict-output update: the workpack renderer now requires exactly one
+JSON object, the contract lists exact `reasoning_artifact.v1` keys, and
+`scripts/research/pre_step6_workpacks.py` validates worker-output fixtures.
+Replay strict prompts before building any parser or broader harness.
 
 ## 2026-05-16 Critic Pass
 

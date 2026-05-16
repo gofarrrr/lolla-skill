@@ -88,6 +88,20 @@ SOURCE_EXCERPT_FIELDS = frozenset({"excerpt_id", "text"})
 OUTPUT_CONTRACT_FIELDS = frozenset(
     {"schema_version", "max_chars", "required_fields"}
 )
+WORKER_OUTPUT_FIELDS = frozenset(
+    {"schema_version", *(
+        "why_provided",
+        "source_grounding",
+        "contribution",
+        "hard_boundary",
+        "relaxation_condition",
+        "discard_condition",
+        "relation_to_bundle",
+        "priority_hint",
+        "risk_if_forced",
+        "risk_if_ignored",
+    )}
+)
 REQUIRED_REASONING_ARTIFACT_FIELDS = (
     "why_provided",
     "source_grounding",
@@ -137,6 +151,16 @@ def validate_workpack_payload(
         raise WorkpackValidationError("; ".join(errors))
 
 
+def validate_worker_output_payload(
+    payload: dict[str, object],
+    *,
+    path: Path = Path("<payload>"),
+) -> None:
+    errors = list(iter_worker_output_errors(payload, path=Path(path)))
+    if errors:
+        raise WorkpackValidationError("; ".join(errors))
+
+
 def validate_admission_file(path: Path) -> None:
     validate_admission_payload(load_json_payload(path), path=Path(path))
 
@@ -147,6 +171,10 @@ def validate_workpack_file(path: Path, *, repo_root: Path | None = None) -> None
         path=Path(path),
         repo_root=repo_root,
     )
+
+
+def validate_worker_output_file(path: Path) -> None:
+    validate_worker_output_payload(load_json_payload(path), path=Path(path))
 
 
 def iter_admission_errors(
@@ -278,6 +306,31 @@ def iter_workpack_errors(
     )
 
 
+def iter_worker_output_errors(
+    payload: dict[str, object],
+    *,
+    path: Path = Path("<payload>"),
+) -> Iterable[str]:
+    required = ("schema_version", *REQUIRED_REASONING_ARTIFACT_FIELDS)
+    yield from _unknown_fields(payload, WORKER_OUTPUT_FIELDS, path)
+    yield from _missing_fields(payload, required, path)
+    if any(field not in payload for field in required):
+        return
+
+    if _string(payload.get("schema_version")) != ARTIFACT_SCHEMA_VERSION:
+        yield f"{path}: schema_version must be {ARTIFACT_SCHEMA_VERSION}"
+    serialized_len = len(json.dumps(payload, ensure_ascii=False))
+    if serialized_len > MAX_WORKER_OUTPUT_CHARS:
+        yield (
+            f"{path}: worker output is {serialized_len} chars; "
+            f"max is {MAX_WORKER_OUTPUT_CHARS}"
+        )
+    for field in REQUIRED_REASONING_ARTIFACT_FIELDS:
+        value = payload.get(field)
+        if not isinstance(value, str) or not value.strip():
+            yield f"{path / field}: must be a non-empty string"
+
+
 def render_worker_prompt(
     payload: dict[str, object],
     *,
@@ -301,7 +354,8 @@ def render_worker_prompt(
         "You are a research-only bounded pre-Step-6 worker.",
         "Do not edit files.",
         "Do not write final answer prose. Step 6 is the final reasoner.",
-        "Return one compact reasoning_artifact.v1 only.",
+        "Return exactly one JSON object and nothing else.",
+        "Do not use Markdown fences or prose outside the JSON object.",
         "",
         "SHARED SITUATION BRIEF",
         f"User question: {_string(brief.get('user_question'))}",
@@ -337,9 +391,10 @@ def render_worker_prompt(
         [
             "",
             "OUTPUT CONTRACT",
-            f"schema_version: {_string(output_contract.get('schema_version'))}",
-            f"max_chars: {output_contract.get('max_chars')}",
-            "required_fields:",
+            f"schema_version must be: {_string(output_contract.get('schema_version'))}",
+            f"max serialized JSON chars: {output_contract.get('max_chars')}",
+            "JSON keys must be exactly:",
+            "- schema_version",
         ]
     )
     required_fields = output_contract.get("required_fields")
@@ -538,6 +593,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     )
     parser.add_argument("path", type=Path)
     parser.add_argument("--admission", action="store_true")
+    parser.add_argument("--worker-output", action="store_true")
     parser.add_argument("--render", action="store_true")
     parser.add_argument("--repo-root", type=Path)
     args = parser.parse_args(argv)
@@ -546,6 +602,10 @@ def main(argv: Sequence[str] | None = None) -> int:
     if args.admission:
         validate_admission_payload(payload, path=args.path)
         print(f"valid admission: {args.path}")
+        return 0
+    if args.worker_output:
+        validate_worker_output_payload(payload, path=args.path)
+        print(f"valid worker output: {args.path}")
         return 0
 
     validate_workpack_payload(payload, path=args.path, repo_root=args.repo_root)

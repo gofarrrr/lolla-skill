@@ -206,6 +206,14 @@ add fixture tests for valid worker artifacts and malformed outputs
 rerun rendered-prompt subagents after the stricter contract
 ```
 
+2026-05-16 follow-up: the strict output contract now exists in
+`scripts/research/pre_step6_workpacks.py`, with normalized worker-output
+fixtures and validator tests. See:
+
+```text
+research/pre-step6-strict-worker-output-contract-readout-2026-05-16.md
+```
+
 Pass condition:
 
 ```text

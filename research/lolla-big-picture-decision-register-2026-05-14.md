@@ -410,6 +410,17 @@ next slice must require exact reasoning_artifact.v1 JSON and validate outputs
 no runtime promotion
 ```
 
+Strict-output-contract follow-up:
+
+```text
+workpack renderer now requires exactly one JSON object
+worker-output validator added
+three normalized rendered-replay worker-output fixtures added
+tests reject missing fields, non-string source_grounding, unknown fields
+next slice must rerun native subagents against strict JSON prompt
+no runtime promotion
+```
+
 ## Target Architecture If Research Eventually Wins
 
 The likely long-term target is not a Bevelin lane, not a giant prompt, and not

@@ -15,12 +15,14 @@ from pre_step6_workpacks import (  # noqa: E402
     WorkpackValidationError,
     render_worker_prompt,
     validate_admission_payload,
+    validate_worker_output_payload,
     validate_workpack_payload,
 )
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 FIXTURE_DIR = REPO_ROOT / "research" / "pre-step6-workpack-fixtures"
+WORKER_OUTPUT_DIR = REPO_ROOT / "research" / "pre-step6-worker-output-fixtures"
 
 
 def _admission_paths() -> list[Path]:
@@ -29,6 +31,10 @@ def _admission_paths() -> list[Path]:
 
 def _workpack_paths() -> list[Path]:
     return sorted(FIXTURE_DIR.glob("*.workpack.v1.json"))
+
+
+def _worker_output_paths() -> list[Path]:
+    return sorted(WORKER_OUTPUT_DIR.glob("*.worker-output.v1.json"))
 
 
 def _load(path: Path) -> dict[str, object]:
@@ -76,7 +82,10 @@ def test_all_workpacks_validate_render_under_cap_and_skip_mother() -> None:
         assert "Do not edit files." in rendered
         assert "Step 6 is the final reasoner" in rendered
         assert "Do not write final answer prose" in rendered
-        assert "reasoning_artifact.v1" in rendered
+        assert "Return exactly one JSON object and nothing else." in rendered
+        assert "Do not use Markdown fences or prose outside the JSON object." in rendered
+        assert "schema_version must be: reasoning_artifact.v1" in rendered
+        assert "JSON keys must be exactly:" in rendered
         assert "risk_if_ignored" in rendered
 
 
@@ -96,6 +105,19 @@ def test_mother_decline_has_no_workpack_fixture() -> None:
     assert not (
         FIXTURE_DIR / "mother-address-year.boundary-evidence-gate.workpack.v1.json"
     ).exists()
+
+
+def test_all_worker_output_fixtures_validate() -> None:
+    paths = _worker_output_paths()
+
+    assert [path.name for path in paths] == [
+        "founder-grant-marcus-equity.rendered-replay.worker-output.v1.json",
+        "mid-level-consultant-report-2.rendered-replay.worker-output.v1.json",
+        "third-year-phd-student.rendered-replay.worker-output.v1.json",
+    ]
+
+    for path in paths:
+        validate_worker_output_payload(_load(path), path=path)
 
 
 def test_admission_rejects_decline_with_expected_contribution() -> None:
@@ -178,3 +200,30 @@ def test_workpack_rejects_incomplete_output_contract() -> None:
 
     with pytest.raises(WorkpackValidationError, match="relaxation_condition"):
         validate_workpack_payload(payload)
+
+
+def test_worker_output_rejects_missing_required_field() -> None:
+    path = WORKER_OUTPUT_DIR / "third-year-phd-student.rendered-replay.worker-output.v1.json"
+    payload = _load(path)
+    del payload["relation_to_bundle"]
+
+    with pytest.raises(WorkpackValidationError, match="relation_to_bundle"):
+        validate_worker_output_payload(payload)
+
+
+def test_worker_output_rejects_non_string_grounding() -> None:
+    path = WORKER_OUTPUT_DIR / "founder-grant-marcus-equity.rendered-replay.worker-output.v1.json"
+    payload = _load(path)
+    payload["source_grounding"] = ["Marcus drives about 40% of technical capability."]
+
+    with pytest.raises(WorkpackValidationError, match="source_grounding"):
+        validate_worker_output_payload(payload)
+
+
+def test_worker_output_rejects_unknown_fields() -> None:
+    path = WORKER_OUTPUT_DIR / "mid-level-consultant-report-2.rendered-replay.worker-output.v1.json"
+    payload = _load(path)
+    payload["final_answer"] = "This should not be in a worker artifact."
+
+    with pytest.raises(WorkpackValidationError, match="unknown field 'final_answer'"):
+        validate_worker_output_payload(payload)
