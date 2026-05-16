@@ -32,6 +32,7 @@ research/pre-step6-raw-artifact-four-fixture-render-readout-2026-05-16.md
 research/pre-step6-raw-artifact-answer-consumption-readout-2026-05-16.md
 research/pre-step6-raw-vs-control-rubric-comparison-readout-2026-05-16.md
 research/pre-step6-native-subagent-producer-test-readout-2026-05-16.md
+research/pre-step6-native-subagent-admission-gate-readout-2026-05-16.md
 ```
 
 The system goal is not more artifacts. The goal is a final answer that is
@@ -47,6 +48,12 @@ orchestration remains unearned.
 boundary/evidence-gate producer created useful artifacts in all four fixtures,
 but admitted the mother no-worker sentinel. Treat this as promising producer
 evidence and failed admission evidence, not runtime promotion.
+
+2026-05-16 admission-gate update: a separate admission-only stage admitted the
+three expected boundary/evidence-gate cases and declined the mother no-worker
+sentinel. Production then ran only for the three admitted cases and produced
+bounded artifacts. Treat this as a research-only pass for the two-stage shape,
+not runtime promotion and not evidence that bundle machinery is needed.
 
 ## 2026-05-16 Critic Pass
 

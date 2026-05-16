@@ -376,6 +376,17 @@ next slice must test admission before worker production
 no runtime promotion
 ```
 
+Admission-gate follow-up:
+
+```text
+separate admission-only stage admitted PhD, founder, consultant
+mother no-worker sentinel declined
+production ran only for admitted cases
+produced artifacts recovered targeted boundary/evidence gates
+research-only pass for two-stage shape
+no runtime promotion
+```
+
 ## Target Architecture If Research Eventually Wins
 
 The likely long-term target is not a Bevelin lane, not a giant prompt, and not
