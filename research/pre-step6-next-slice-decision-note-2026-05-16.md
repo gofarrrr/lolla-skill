@@ -12,6 +12,12 @@ Central system-plan handover:
 research/pre-step6-cognitive-worker-system-plan-2026-05-16.md
 ```
 
+Candidate case inventory:
+
+```text
+research/pre-step6-comparison-case-inventory-2026-05-16.md
+```
+
 ## Decision
 
 Do not start by implementing workers.
@@ -91,6 +97,12 @@ If the current control ties both, no new handoff wins.
 Minimum useful set: 3 cases.
 
 Better set: 5 cases.
+
+Use the case inventory before creating fixtures:
+
+```text
+research/pre-step6-comparison-case-inventory-2026-05-16.md
+```
 
 The cases should be selected by reasoning shape, not topic:
 
