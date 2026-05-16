@@ -205,6 +205,12 @@ First fixture:
 research/pre-step6-comparison-fixtures/third-year-phd-student-20260430T140800Z.md
 ```
 
+Second fixture:
+
+```text
+research/pre-step6-comparison-fixtures/founder-grant-marcus-equity-20260428T064421Z.md
+```
+
 Reason:
 
 - the PhD case stresses conflict and fallback viability;
