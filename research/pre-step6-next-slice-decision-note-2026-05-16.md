@@ -23,6 +23,7 @@ Readout template and first preflight:
 ```text
 research/pre-step6-comparison-readout-template-2026-05-16.md
 research/pre-step6-comparison-manual-preflight-readout-2026-05-16.md
+research/pre-step6-comparison-aggregate-readout-2026-05-16.md
 ```
 
 ## Decision
