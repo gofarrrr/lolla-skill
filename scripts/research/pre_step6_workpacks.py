@@ -22,7 +22,7 @@ MAX_LOCAL_ARTIFACTS = 5
 MAX_SOURCE_EXCERPTS = 4
 MAX_PROMPT_CHARS = 7000
 MAX_WORKER_OUTPUT_CHARS = 1500
-MAX_WORKER_OUTPUT_LIST_ITEMS = 4
+MAX_WORKER_OUTPUT_LIST_ITEMS = 3
 MAX_WORKER_OUTPUT_LIST_ITEM_CHARS = 180
 ALLOWED_STATUS = frozenset({"research_only"})
 ALLOWED_RUNTIME_POLICY = frozenset({"runtime_dormant"})
@@ -411,6 +411,20 @@ def render_worker_prompt(
         lines.append(f"- {_string(field)}")
     lines.extend(
         [
+            "Compact JSON skeleton:",
+            "{",
+            '  "schema_version": "reasoning_artifact.v1",',
+            '  "why_provided": "<=120 chars",',
+            '  "source_grounding": ["<=180 chars each, max 3"],',
+            '  "contribution": ["<=180 chars each, max 3"],',
+            '  "hard_boundary": "<=240 chars",',
+            '  "relaxation_condition": "<=160 chars",',
+            '  "discard_condition": "<=160 chars",',
+            '  "relation_to_bundle": "<=140 chars",',
+            '  "priority_hint": "high|medium|low|quiet|discard",',
+            '  "risk_if_forced": "<=140 chars",',
+            '  "risk_if_ignored": "<=140 chars"',
+            "}",
             "Value rules:",
             "- use compact strings for most fields",
             "- source_grounding and contribution may be short string arrays",

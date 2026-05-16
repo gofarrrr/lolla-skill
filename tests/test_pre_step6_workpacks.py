@@ -86,7 +86,9 @@ def test_all_workpacks_validate_render_under_cap_and_skip_mother() -> None:
         assert "Do not use Markdown fences or prose outside the JSON object." in rendered
         assert "schema_version must be: reasoning_artifact.v1" in rendered
         assert "JSON keys must be exactly:" in rendered
-        assert "arrays must have at most 4 items" in rendered
+        assert "Compact JSON skeleton:" in rendered
+        assert '"why_provided": "<=120 chars"' in rendered
+        assert "arrays must have at most 3 items" in rendered
         assert "risk_if_ignored" in rendered
 
 
