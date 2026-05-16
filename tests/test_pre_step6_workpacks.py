@@ -15,6 +15,7 @@ from pre_step6_workpacks import (  # noqa: E402
     WorkpackValidationError,
     render_worker_prompt,
     validate_admission_payload,
+    validate_pressure_card_payload,
     validate_worker_output_payload,
     validate_workpack_payload,
 )
@@ -23,6 +24,7 @@ from pre_step6_workpacks import (  # noqa: E402
 REPO_ROOT = Path(__file__).resolve().parents[1]
 FIXTURE_DIR = REPO_ROOT / "research" / "pre-step6-workpack-fixtures"
 WORKER_OUTPUT_DIR = REPO_ROOT / "research" / "pre-step6-worker-output-fixtures"
+PRESSURE_CARD_DIR = REPO_ROOT / "research" / "pre-step6-pressure-card-fixtures"
 
 
 def _admission_paths() -> list[Path]:
@@ -35,6 +37,10 @@ def _workpack_paths() -> list[Path]:
 
 def _worker_output_paths() -> list[Path]:
     return sorted(WORKER_OUTPUT_DIR.glob("*.worker-output.v1.json"))
+
+
+def _pressure_card_paths() -> list[Path]:
+    return sorted(PRESSURE_CARD_DIR.glob("*.pressure-card.v1.json"))
 
 
 def _load(path: Path) -> dict[str, object]:
@@ -121,6 +127,28 @@ def test_all_worker_output_fixtures_validate() -> None:
 
     for path in paths:
         validate_worker_output_payload(_load(path), path=path)
+
+
+def test_all_pressure_card_fixtures_validate() -> None:
+    paths = _pressure_card_paths()
+
+    assert [path.name for path in paths] == [
+        "third-year-phd-student.pressure-card.v1.json",
+    ]
+
+    for path in paths:
+        validate_pressure_card_payload(_load(path), path=path)
+
+
+def test_phd_pressure_card_preserves_two_gates() -> None:
+    path = PRESSURE_CARD_DIR / "third-year-phd-student.pressure-card.v1.json"
+    payload = _load(path)
+    validate_pressure_card_payload(payload, path=path)
+
+    text = " ".join(str(payload[field]).lower() for field in payload)
+    assert "fallback" in text
+    assert "silva" in text
+    assert "data" in text
 
 
 def test_admission_rejects_decline_with_expected_contribution() -> None:
@@ -262,3 +290,30 @@ def test_worker_output_rejects_unknown_fields() -> None:
 
     with pytest.raises(WorkpackValidationError, match="unknown field 'final_answer'"):
         validate_worker_output_payload(payload)
+
+
+def test_pressure_card_rejects_missing_boundary() -> None:
+    path = PRESSURE_CARD_DIR / "third-year-phd-student.pressure-card.v1.json"
+    payload = _load(path)
+    del payload["boundary"]
+
+    with pytest.raises(WorkpackValidationError, match="boundary"):
+        validate_pressure_card_payload(payload)
+
+
+def test_pressure_card_rejects_unknown_field() -> None:
+    path = PRESSURE_CARD_DIR / "third-year-phd-student.pressure-card.v1.json"
+    payload = _load(path)
+    payload["source_grounding"] = "Too much machinery for the Step 6 pressure card."
+
+    with pytest.raises(WorkpackValidationError, match="unknown field 'source_grounding'"):
+        validate_pressure_card_payload(payload)
+
+
+def test_pressure_card_rejects_over_cap() -> None:
+    path = PRESSURE_CARD_DIR / "third-year-phd-student.pressure-card.v1.json"
+    payload = _load(path)
+    payload["pressure"] = "x" * 1000
+
+    with pytest.raises(WorkpackValidationError, match="max is 900"):
+        validate_pressure_card_payload(payload)

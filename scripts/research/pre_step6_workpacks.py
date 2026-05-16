@@ -18,12 +18,14 @@ from typing import Iterable, Sequence
 ADMISSION_SCHEMA_VERSION = "pre_step6_worker_admission.v1"
 WORKPACK_SCHEMA_VERSION = "reasoning_workpack.v1"
 ARTIFACT_SCHEMA_VERSION = "reasoning_artifact.v1"
+PRESSURE_CARD_SCHEMA_VERSION = "pre_step6_pressure_card.v1"
 MAX_LOCAL_ARTIFACTS = 5
 MAX_SOURCE_EXCERPTS = 4
 MAX_PROMPT_CHARS = 7000
 MAX_WORKER_OUTPUT_CHARS = 1500
 MAX_WORKER_OUTPUT_LIST_ITEMS = 3
 MAX_WORKER_OUTPUT_LIST_ITEM_CHARS = 180
+MAX_PRESSURE_CARD_CHARS = 900
 ALLOWED_STATUS = frozenset({"research_only"})
 ALLOWED_RUNTIME_POLICY = frozenset({"runtime_dormant"})
 ALLOWED_WORKER_TYPES = frozenset({"boundary/evidence-gate"})
@@ -104,6 +106,16 @@ WORKER_OUTPUT_FIELDS = frozenset(
         "risk_if_ignored",
     )}
 )
+PRESSURE_CARD_FIELDS = frozenset(
+    {
+        "schema_version",
+        "pressure",
+        "boundary",
+        "relax_if",
+        "discard_if",
+        "risk_if_ignored",
+    }
+)
 REQUIRED_REASONING_ARTIFACT_FIELDS = (
     "why_provided",
     "source_grounding",
@@ -164,6 +176,16 @@ def validate_worker_output_payload(
         raise WorkpackValidationError("; ".join(errors))
 
 
+def validate_pressure_card_payload(
+    payload: dict[str, object],
+    *,
+    path: Path = Path("<payload>"),
+) -> None:
+    errors = list(iter_pressure_card_errors(payload, path=Path(path)))
+    if errors:
+        raise WorkpackValidationError("; ".join(errors))
+
+
 def validate_admission_file(path: Path) -> None:
     validate_admission_payload(load_json_payload(path), path=Path(path))
 
@@ -178,6 +200,10 @@ def validate_workpack_file(path: Path, *, repo_root: Path | None = None) -> None
 
 def validate_worker_output_file(path: Path) -> None:
     validate_worker_output_payload(load_json_payload(path), path=Path(path))
+
+
+def validate_pressure_card_file(path: Path) -> None:
+    validate_pressure_card_payload(load_json_payload(path), path=Path(path))
 
 
 def iter_admission_errors(
@@ -336,6 +362,39 @@ def iter_worker_output_errors(
             yield f"{path / field}: must be a non-empty string or non-empty string list"
             continue
         if not isinstance(value, str) or not value.strip():
+            yield f"{path / field}: must be a non-empty string"
+
+
+def iter_pressure_card_errors(
+    payload: dict[str, object],
+    *,
+    path: Path = Path("<payload>"),
+) -> Iterable[str]:
+    required = (
+        "schema_version",
+        "pressure",
+        "boundary",
+        "relax_if",
+        "discard_if",
+        "risk_if_ignored",
+    )
+    yield from _unknown_fields(payload, PRESSURE_CARD_FIELDS, path)
+    yield from _missing_fields(payload, required, path)
+    if any(field not in payload for field in required):
+        return
+
+    if _string(payload.get("schema_version")) != PRESSURE_CARD_SCHEMA_VERSION:
+        yield f"{path}: schema_version must be {PRESSURE_CARD_SCHEMA_VERSION}"
+    serialized_len = len(json.dumps(payload, ensure_ascii=False))
+    if serialized_len > MAX_PRESSURE_CARD_CHARS:
+        yield (
+            f"{path}: pressure card is {serialized_len} chars; "
+            f"max is {MAX_PRESSURE_CARD_CHARS}"
+        )
+    for field in required:
+        if field == "schema_version":
+            continue
+        if not _string(payload.get(field)).strip():
             yield f"{path / field}: must be a non-empty string"
 
 
@@ -641,6 +700,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("path", type=Path)
     parser.add_argument("--admission", action="store_true")
     parser.add_argument("--worker-output", action="store_true")
+    parser.add_argument("--pressure-card", action="store_true")
     parser.add_argument("--render", action="store_true")
     parser.add_argument("--repo-root", type=Path)
     args = parser.parse_args(argv)
@@ -653,6 +713,10 @@ def main(argv: Sequence[str] | None = None) -> int:
     if args.worker_output:
         validate_worker_output_payload(payload, path=args.path)
         print(f"valid worker output: {args.path}")
+        return 0
+    if args.pressure_card:
+        validate_pressure_card_payload(payload, path=args.path)
+        print(f"valid pressure card: {args.path}")
         return 0
 
     validate_workpack_payload(payload, path=args.path, repo_root=args.repo_root)
