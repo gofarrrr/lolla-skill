@@ -15,6 +15,7 @@ research/pre-step6-comparison-fixtures/mother-deciding-address-year-20260430T113
 research/pre-step6-comparison-aggregate-readout-2026-05-16.md
 research/pre-step6-raw-artifact-render-validation-slice-2026-05-16.md
 research/pre-step6-raw-artifact-four-fixture-render-readout-2026-05-16.md
+research/pre-step6-raw-artifact-answer-consumption-readout-2026-05-16.md
 ```
 
 ## Question
@@ -241,6 +242,11 @@ It does not authorize bundle runtime or worker orchestration.
 Four-fixture follow-up: PhD, founder, consultant, and mother JSON handoffs now
 all validate and render under cap. Founder and consultant needed compression,
 which reinforces the cap rather than weakening it.
+
+Answer-consumption follow-up: authored Step-6-style answer cores now validate
+for all four raw handoffs. They pass public machinery hygiene and preserve the
+expected pressure/inclusion checks. This still does not authorize bundle runtime
+or worker orchestration.
 
 Do not build `reasoning_workpack.v1`, worker prompts, or
 `reasoning_bundle.v1` until raw artifact discipline fails a high-clutter case in

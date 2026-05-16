@@ -30,6 +30,7 @@ research/pre-step6-raw-artifact-consumption-discipline-2026-05-16.md
 research/pre-step6-raw-artifact-consumption-readout-2026-05-16.md
 research/pre-step6-raw-artifact-render-validation-slice-2026-05-16.md
 research/pre-step6-raw-artifact-four-fixture-render-readout-2026-05-16.md
+research/pre-step6-raw-artifact-answer-consumption-readout-2026-05-16.md
 ```
 
 ## Decision
@@ -76,6 +77,10 @@ not connect to live `/lolla`.
 the PhD, founder, consultant, and mother fixtures. All four validate and render
 under the private cap. The next question is Step-6-style answer consumption, not
 bundle or worker implementation.
+
+2026-05-16 answer-consumption follow-up: authored Step-6-style answer cores now
+consume all four raw handoffs and pass public machinery hygiene. The next
+question is less-author-biased comparison against current-control answer cores.
 
 ## Why This Comes Before Implementation
 

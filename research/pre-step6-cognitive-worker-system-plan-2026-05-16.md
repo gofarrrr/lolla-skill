@@ -29,6 +29,7 @@ research/pre-step6-raw-artifact-consumption-discipline-2026-05-16.md
 research/pre-step6-raw-artifact-consumption-readout-2026-05-16.md
 research/pre-step6-raw-artifact-render-validation-slice-2026-05-16.md
 research/pre-step6-raw-artifact-four-fixture-render-readout-2026-05-16.md
+research/pre-step6-raw-artifact-answer-consumption-readout-2026-05-16.md
 ```
 
 The system goal is not more artifacts. The goal is a final answer that is

@@ -14,6 +14,7 @@ from pre_step6_raw_artifacts import (  # noqa: E402
     MAX_RENDER_CHARS,
     RawArtifactValidationError,
     render_raw_artifact_handoff,
+    validate_answer_core_payload,
     validate_public_answer_hygiene,
     validate_raw_artifact_payload,
 )
@@ -21,6 +22,7 @@ from pre_step6_raw_artifacts import (  # noqa: E402
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 FIXTURE_DIR = REPO_ROOT / "research" / "pre-step6-raw-artifact-fixtures"
+ANSWER_CORE_DIR = REPO_ROOT / "research" / "pre-step6-raw-artifact-answer-cores"
 FIXTURE_PATH = FIXTURE_DIR / "mother-address-year.raw-artifact-handoff.v1.json"
 
 
@@ -29,6 +31,14 @@ def _fixture_paths() -> list[Path]:
 
 
 def _load_fixture(path: Path = FIXTURE_PATH) -> dict[str, object]:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _answer_core_paths() -> list[Path]:
+    return sorted(ANSWER_CORE_DIR.glob("*.raw-answer-core.v1.json"))
+
+
+def _load_answer_core(path: Path) -> dict[str, object]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
@@ -48,6 +58,21 @@ def test_all_raw_artifact_fixtures_validate_and_render_under_cap() -> None:
         rendered = render_raw_artifact_handoff(payload)
         assert len(rendered) <= MAX_RENDER_CHARS
         assert "why_provided" not in rendered
+
+
+def test_all_answer_core_fixtures_validate_and_stay_public() -> None:
+    paths = _answer_core_paths()
+
+    assert [path.name for path in paths] == [
+        "founder-grant-marcus-equity.raw-answer-core.v1.json",
+        "mid-level-consultant-report-2.raw-answer-core.v1.json",
+        "mother-address-year.raw-answer-core.v1.json",
+        "third-year-phd-student.raw-answer-core.v1.json",
+    ]
+
+    for path in paths:
+        payload = _load_answer_core(path)
+        validate_answer_core_payload(payload, path=path, repo_root=REPO_ROOT)
 
 
 def test_mother_no_worker_fixture_validates_and_declines_worker() -> None:
@@ -133,3 +158,23 @@ def test_public_answer_hygiene_allows_normal_prose() -> None:
         "Treat silence in the monitored channel as weak evidence, and keep the "
         "slow plan tied to concrete safety triggers."
     )
+
+
+def test_answer_core_validation_rejects_missing_expected_pressure() -> None:
+    path = ANSWER_CORE_DIR / "third-year-phd-student.raw-answer-core.v1.json"
+    payload = _load_answer_core(path)
+    payload["expected_inclusions"] = ["a phrase that is not in the answer"]
+
+    with pytest.raises(RawArtifactValidationError, match="expected inclusion"):
+        validate_answer_core_payload(payload, repo_root=REPO_ROOT)
+
+
+def test_answer_core_validation_rejects_forbidden_public_term() -> None:
+    path = ANSWER_CORE_DIR / "mother-address-year.raw-answer-core.v1.json"
+    payload = _load_answer_core(path)
+    payload["answer_core"] = (
+        "This answer would leak an artifact into public prose."
+    )
+
+    with pytest.raises(RawArtifactValidationError, match="private machinery"):
+        validate_answer_core_payload(payload, repo_root=REPO_ROOT)

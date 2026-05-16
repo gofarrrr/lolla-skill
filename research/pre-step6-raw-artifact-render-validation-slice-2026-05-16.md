@@ -12,6 +12,7 @@ Related:
 research/pre-step6-raw-artifact-consumption-discipline-2026-05-16.md
 research/pre-step6-raw-artifact-consumption-readout-2026-05-16.md
 research/pre-step6-raw-artifact-four-fixture-render-readout-2026-05-16.md
+research/pre-step6-raw-artifact-answer-consumption-readout-2026-05-16.md
 research/pre-step6-comparison-fixtures/mother-deciding-address-year-20260430T113301Z.md
 ```
 
@@ -131,8 +132,9 @@ default /lolla behavior
 
 ## Next Question
 
-The next useful research check is whether Step 6 can consume the rendered raw
-handoffs into answer cores without machinery leakage or answer bloat. If answer
-cores stay sharp, raw artifacts remain the preferred path. If a case loses
-because the raw render is too cluttered, an indexed bundle challenger gets a
-narrow reason to re-enter the queue.
+2026-05-16 follow-up: authored answer cores now consume all four raw renders
+without machinery leakage. The next useful research check is less-author-biased
+comparison against current-control answer cores. If raw cores stay sharp, raw
+artifacts remain the preferred path. If a case loses because the raw render is
+too cluttered, an indexed bundle challenger gets a narrow reason to re-enter
+the queue.

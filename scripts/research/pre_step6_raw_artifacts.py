@@ -9,6 +9,7 @@ change /lolla runtime behavior.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 from pathlib import Path
@@ -16,10 +17,12 @@ from typing import Iterable, Sequence
 
 
 RAW_HANDOFF_SCHEMA_VERSION = "pre_step6_raw_artifact_handoff.v1"
+ANSWER_CORE_SCHEMA_VERSION = "pre_step6_raw_answer_core.v1"
 ARTIFACT_SCHEMA_VERSION = "reasoning_artifact.v1"
 MAX_ARTIFACTS = 5
 MAX_SOURCE_EXCERPTS = 4
 MAX_RENDER_CHARS = 4000
+MAX_ANSWER_CORE_CHARS = 2500
 
 ALLOWED_STATUS = frozenset({"research_only"})
 ALLOWED_RUNTIME_POLICY = frozenset({"runtime_dormant"})
@@ -78,6 +81,24 @@ REQUIRED_ARTIFACT_FIELDS = (
 WORKER_ADMISSION_FIELDS = frozenset(
     {"decision", "reason", "unnecessary_if", "admit_only_if"}
 )
+ANSWER_CORE_FIELDS = frozenset(
+    {
+        "schema_version",
+        "status",
+        "runtime_policy",
+        "case_id",
+        "source_handoff",
+        "source_handoff_render_sha256",
+        "answer_core",
+        "expected_inclusions",
+        "expected_exclusions",
+        "comparison_to_control",
+        "notes",
+    }
+)
+COMPARISON_FIELDS = frozenset(
+    {"preserved_from_control", "changed_from_raw_handoff", "kept_private_or_discarded"}
+)
 FORBIDDEN_PUBLIC_TERMS = (
     "artifact",
     "bundle",
@@ -118,6 +139,34 @@ def validate_raw_artifact_payload(
 
 def validate_raw_artifact_file(path: Path) -> None:
     validate_raw_artifact_payload(load_raw_artifact_payload(path), path=Path(path))
+
+
+def load_answer_core_payload(path: Path) -> dict[str, object]:
+    payload = json.loads(Path(path).read_text(encoding="utf-8"))
+    if not isinstance(payload, dict):
+        raise RawArtifactValidationError(f"{path}: payload must be an object")
+    return payload
+
+
+def validate_answer_core_payload(
+    payload: dict[str, object],
+    *,
+    path: Path = Path("<payload>"),
+    repo_root: Path | None = None,
+) -> None:
+    errors = list(
+        iter_answer_core_errors(payload, path=Path(path), repo_root=repo_root)
+    )
+    if errors:
+        raise RawArtifactValidationError("; ".join(errors))
+
+
+def validate_answer_core_file(path: Path, *, repo_root: Path | None = None) -> None:
+    validate_answer_core_payload(
+        load_answer_core_payload(path),
+        path=Path(path),
+        repo_root=repo_root,
+    )
 
 
 def iter_raw_artifact_errors(
@@ -210,6 +259,106 @@ def iter_raw_artifact_errors(
     yield from _validate_worker_admission(
         payload.get("worker_admission"),
         path=path / "worker_admission",
+    )
+
+
+def iter_answer_core_errors(
+    payload: dict[str, object],
+    *,
+    path: Path = Path("<payload>"),
+    repo_root: Path | None = None,
+) -> Iterable[str]:
+    if not isinstance(payload, dict):
+        yield f"{path}: payload must be an object"
+        return
+
+    required = (
+        "schema_version",
+        "status",
+        "runtime_policy",
+        "case_id",
+        "source_handoff",
+        "answer_core",
+        "expected_inclusions",
+        "expected_exclusions",
+        "comparison_to_control",
+    )
+    yield from _unknown_fields(payload, ANSWER_CORE_FIELDS, path)
+    yield from _missing_fields(payload, required, path)
+    if any(field not in payload for field in required):
+        return
+
+    if _string(payload.get("schema_version")) != ANSWER_CORE_SCHEMA_VERSION:
+        yield f"{path}: schema_version must be {ANSWER_CORE_SCHEMA_VERSION}"
+    if _string(payload.get("status")) not in ALLOWED_STATUS:
+        yield f"{path}: status must be research_only"
+    if _string(payload.get("runtime_policy")) not in ALLOWED_RUNTIME_POLICY:
+        yield f"{path}: runtime_policy must be runtime_dormant"
+    if not _string(payload.get("case_id")).strip():
+        yield f"{path / 'case_id'}: case_id must be a non-empty string"
+
+    source_handoff = _string(payload.get("source_handoff"))
+    if not source_handoff:
+        yield f"{path / 'source_handoff'}: source_handoff must be a non-empty string"
+    elif repo_root is not None:
+        handoff_path = repo_root / source_handoff
+        if not handoff_path.exists():
+            yield f"{path / 'source_handoff'}: source_handoff does not exist"
+        else:
+            handoff_payload = load_raw_artifact_payload(handoff_path)
+            validate_raw_artifact_payload(handoff_payload, path=handoff_path)
+            if _string(handoff_payload.get("case_id")) != _string(payload.get("case_id")):
+                yield f"{path / 'source_handoff'}: source handoff case_id mismatch"
+            rendered = render_raw_artifact_handoff(handoff_payload)
+            expected_sha = _string(payload.get("source_handoff_render_sha256"))
+            actual_sha = hashlib.sha256(rendered.encode("utf-8")).hexdigest()
+            if expected_sha and expected_sha != actual_sha:
+                yield f"{path / 'source_handoff_render_sha256'}: sha256 mismatch"
+
+    answer_core = _string(payload.get("answer_core"))
+    if not answer_core.strip():
+        yield f"{path / 'answer_core'}: answer_core must be a non-empty string"
+    elif len(answer_core) > MAX_ANSWER_CORE_CHARS:
+        yield (
+            f"{path / 'answer_core'}: "
+            f"answer_core must not exceed {MAX_ANSWER_CORE_CHARS} chars"
+        )
+    try:
+        validate_public_answer_hygiene(answer_core)
+    except RawArtifactValidationError as exc:
+        yield f"{path / 'answer_core'}: {exc}"
+
+    yield from _validate_string_list(
+        payload.get("expected_inclusions"),
+        path=path / "expected_inclusions",
+        required_non_empty=True,
+    )
+    if isinstance(payload.get("expected_inclusions"), list):
+        lower_answer = answer_core.lower()
+        for index, expected in enumerate(payload["expected_inclusions"]):
+            if isinstance(expected, str) and expected.lower() not in lower_answer:
+                yield (
+                    f"{path / 'expected_inclusions' / str(index)}: "
+                    "expected inclusion missing from answer_core"
+                )
+
+    yield from _validate_string_list(
+        payload.get("expected_exclusions"),
+        path=path / "expected_exclusions",
+        required_non_empty=False,
+    )
+    if isinstance(payload.get("expected_exclusions"), list):
+        lower_answer = answer_core.lower()
+        for index, forbidden in enumerate(payload["expected_exclusions"]):
+            if isinstance(forbidden, str) and forbidden.lower() in lower_answer:
+                yield (
+                    f"{path / 'expected_exclusions' / str(index)}: "
+                    "expected exclusion appears in answer_core"
+                )
+
+    yield from _validate_comparison_to_control(
+        payload.get("comparison_to_control"),
+        path=path / "comparison_to_control",
     )
 
 
@@ -359,6 +508,29 @@ def _validate_worker_admission(
             )
 
 
+def _validate_comparison_to_control(
+    comparison: object,
+    *,
+    path: Path,
+) -> Iterable[str]:
+    if not isinstance(comparison, dict):
+        yield f"{path}: comparison_to_control must be an object"
+        return
+    yield from _unknown_fields(comparison, COMPARISON_FIELDS, path)
+    yield from _missing_fields(
+        comparison,
+        ("preserved_from_control", "changed_from_raw_handoff", "kept_private_or_discarded"),
+        path,
+    )
+    for field in COMPARISON_FIELDS:
+        if field in comparison:
+            yield from _validate_string_list(
+                comparison.get(field),
+                path=path / field,
+                required_non_empty=True,
+            )
+
+
 def _missing_fields(
     payload: dict[str, object],
     required: Sequence[str],
@@ -400,11 +572,18 @@ def _string(value: object) -> str:
 
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
-        description="Validate or render a research-only raw artifact handoff."
+        description="Validate or render research-only raw artifact fixtures."
     )
     parser.add_argument("path", type=Path)
     parser.add_argument("--render", action="store_true")
+    parser.add_argument("--answer-core", action="store_true")
+    parser.add_argument("--repo-root", type=Path)
     args = parser.parse_args(argv)
+
+    if args.answer_core:
+        validate_answer_core_file(args.path, repo_root=args.repo_root)
+        print(f"valid answer core: {args.path}")
+        return 0
 
     payload = load_raw_artifact_payload(args.path)
     validate_raw_artifact_payload(payload, path=args.path)

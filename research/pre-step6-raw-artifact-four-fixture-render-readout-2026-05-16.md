@@ -12,6 +12,7 @@ Related:
 research/pre-step6-raw-artifact-render-validation-slice-2026-05-16.md
 research/pre-step6-raw-artifact-consumption-discipline-2026-05-16.md
 research/pre-step6-raw-artifact-consumption-readout-2026-05-16.md
+research/pre-step6-raw-artifact-answer-consumption-readout-2026-05-16.md
 ```
 
 ## Question
@@ -102,16 +103,21 @@ Observed result:
 
 ## Next Question
 
-Do not add a bundle yet.
-
-The next useful check is answer consumption, not more schema:
+2026-05-16 follow-up: this answer-consumption check now exists in:
 
 ```text
-render each raw JSON handoff
-write or generate a Step-6-style answer core from the render
-run public machinery hygiene
-compare against current-control answer cores
+research/pre-step6-raw-artifact-answer-consumption-readout-2026-05-16.md
 ```
 
-Only if a case loses because the raw render is too cluttered should an indexed
-bundle challenger return.
+All four authored answer cores validate and pass public machinery hygiene.
+
+Do not add a bundle yet. The next useful check is less-author-biased comparison:
+
+```text
+current-control answer core
+raw-handoff answer core
+optional bundle challenger only if raw visibly loses
+```
+
+Only if raw loses because the rendered pressure is too cluttered should an
+indexed bundle challenger return.
