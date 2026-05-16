@@ -13,6 +13,7 @@ research/pre-step6-raw-artifact-consumption-discipline-2026-05-16.md
 research/pre-step6-comparison-subagent-readout-2026-05-16.md
 research/pre-step6-comparison-fixtures/mother-deciding-address-year-20260430T113301Z.md
 research/pre-step6-comparison-aggregate-readout-2026-05-16.md
+research/pre-step6-raw-artifact-render-validation-slice-2026-05-16.md
 ```
 
 ## Question
@@ -223,6 +224,18 @@ source_grounding / hard_boundary / discard_condition validation
 public machinery leak check
 local comparison runner
 ```
+
+2026-05-16 follow-up: the first dormant render/validation fixture now exists at:
+
+```text
+scripts/research/pre_step6_raw_artifacts.py
+tests/test_pre_step6_raw_artifacts.py
+research/pre-step6-raw-artifact-fixtures/mother-address-year.raw-artifact-handoff.v1.json
+```
+
+It validates required fields, caps artifacts/source excerpts, renders the
+private handoff under the raw cap, and checks public prose for machinery terms.
+It does not authorize bundle runtime or worker orchestration.
 
 Do not build `reasoning_workpack.v1`, worker prompts, or
 `reasoning_bundle.v1` until raw artifact discipline fails a high-clutter case in

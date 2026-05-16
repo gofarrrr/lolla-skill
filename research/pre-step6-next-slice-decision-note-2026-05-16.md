@@ -28,6 +28,7 @@ research/pre-step6-comparison-subagent-readout-2026-05-16.md
 research/pre-step6-handoff-best-practices-as-of-2026-05-16.md
 research/pre-step6-raw-artifact-consumption-discipline-2026-05-16.md
 research/pre-step6-raw-artifact-consumption-readout-2026-05-16.md
+research/pre-step6-raw-artifact-render-validation-slice-2026-05-16.md
 ```
 
 ## Decision
@@ -65,6 +66,10 @@ the no-worker sentinel: it adds instrument-trust and commitment-sizing pressure,
 but explicitly declines the tempting power-dynamics worker/lens. The next
 implementation candidate, if any, is raw artifact render/validation fixture
 work, not bundle runtime or worker orchestration.
+
+2026-05-16 implementation follow-up: the first dormant render/validation
+fixture exists for the mother no-worker sentinel. It is research-only and does
+not connect to live `/lolla`.
 
 ## Why This Comes Before Implementation
 

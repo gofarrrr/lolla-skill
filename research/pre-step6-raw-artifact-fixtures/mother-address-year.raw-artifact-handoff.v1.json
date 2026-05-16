@@ -1,0 +1,118 @@
+{
+  "schema_version": "pre_step6_raw_artifact_handoff.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mother-deciding-address-year",
+  "source_artifacts": [
+    "research/pre-step6-comparison-fixtures/mother-deciding-address-year-20260430T113301Z.md",
+    "data/treatment_audits/mother-deciding-address-year__20260430T113301Z.v1.json",
+    "data/treatment_audits/calibration_report_pr6.md"
+  ],
+  "source_excerpts": [
+    {
+      "excerpt_id": "case-context",
+      "text": "Daughter is 14; online contact is with a 19-year-old; RAINN says a police report is possible but complex."
+    },
+    {
+      "excerpt_id": "current-answer",
+      "text": "Current answer splits police, phone/blocking, trust repair, co-parent communication, therapy, and tripwires."
+    },
+    {
+      "excerpt_id": "audit-gaps",
+      "text": "Audit flags commitment sizing and instrument trust as live gaps, while base-rate pressure is duplicate."
+    },
+    {
+      "excerpt_id": "worker-decline",
+      "text": "Calibration excludes the power-dynamics commitment-gradient lens as not activated in this family context."
+    }
+  ],
+  "artifacts": [
+    {
+      "schema_version": "reasoning_artifact.v1",
+      "artifact_id": "mother_surveillance_instrument_trust_gate",
+      "worker_type": "boundary/evidence-gate",
+      "why_provided": "The answer uses surveillance and behavior triggers, but the audit flags incomplete trust-in-the-instrument analysis.",
+      "source_grounding": "The mother has secretly monitored phone activity; blocking may drive contact underground; the audit flags instrument trust as partially treated.",
+      "contribution": "Treat nothing visible in phone surveillance as weak evidence, not reassurance.",
+      "hard_boundary": "Do not treat absence of visible phone evidence as proof that contact stopped or risk fell.",
+      "relaxation_condition": "A therapist, RAINN, counsel, or a jointly agreed safety plan creates a better signal than secret monitoring alone.",
+      "discard_condition": "Discard only if the answer does not rely on surveillance, visible contact, or behavior triggers as safety signals.",
+      "relation_to_answer": "visible safety signal guard",
+      "source_excerpt_ids": [
+        "current-answer",
+        "audit-gaps"
+      ],
+      "priority_hint": "high",
+      "risk_if_forced": "The answer may become too suspicious and undermine trust repair.",
+      "risk_if_ignored": "The mother may wait because the monitored channel is quiet while contact moved elsewhere."
+    },
+    {
+      "schema_version": "reasoning_artifact.v1",
+      "artifact_id": "mother_commitment_sizing_tripwires",
+      "worker_type": "boundary/evidence-gate",
+      "why_provided": "The treatment audit says commitments are not sized to earned confidence ranges.",
+      "source_grounding": "The current answer separates slow repair from emergency override and names tripwires for escalation, requests to meet, images, threats, or other minors.",
+      "contribution": "Keep actions reversible while uncertainty is high, and make override triggers explicit.",
+      "hard_boundary": "Do not recommend irreversible escalation or continued delay without facts that change the plan.",
+      "relaxation_condition": "New evidence satisfies a tripwire, or professional/legal guidance requires a specific action.",
+      "discard_condition": "Discard if the answer already ties every major commitment to concrete safety triggers and professional guidance.",
+      "relation_to_answer": "commitment sizing guard",
+      "source_excerpt_ids": [
+        "current-answer",
+        "audit-gaps"
+      ],
+      "priority_hint": "high",
+      "risk_if_forced": "The answer may over-proceduralize a parenting crisis and sound cold.",
+      "risk_if_ignored": "The slow-repair strategy may become avoidance without a floor."
+    },
+    {
+      "schema_version": "reasoning_artifact.v1",
+      "artifact_id": "mother_duplicate_base_rate_caution",
+      "worker_type": "duplicate/priority",
+      "why_provided": "The audit marks base-rate material as duplicate existing pressure, not a new finding.",
+      "source_grounding": "Pressure check already uses general grooming-pattern language to persuade the ex while withholding screenshots and verbatim messages.",
+      "contribution": "Keep general risk facts as persuasion context, not calibrated claims.",
+      "hard_boundary": "Do not invent or imply a quantitative grooming probability from this fixture.",
+      "relaxation_condition": "A cited source such as RAINN provides specific language appropriate for the parent to share.",
+      "discard_condition": "Discard if the answer says to use RAINN/professional language without numeric claims.",
+      "relation_to_answer": "quiet overclaim guard",
+      "source_excerpt_ids": [
+        "case-context",
+        "audit-gaps"
+      ],
+      "priority_hint": "quiet",
+      "risk_if_forced": "The answer may overclaim or distract from the safety and trust sequence.",
+      "risk_if_ignored": "The ex conversation may lack enough outside grounding to counter minimization."
+    },
+    {
+      "schema_version": "reasoning_artifact.v1",
+      "artifact_id": "mother_power_dynamics_worker_decline",
+      "worker_type": "worker-admission/decline",
+      "why_provided": "This is the worker-should-not-run sentinel; calibration excludes commitment-gradient inversion as not activated.",
+      "source_grounding": "The active risk is daughter safety, shame, instrument reliability, and ex information weaponization; power-dynamics commitment-gradient pressure is not activated.",
+      "contribution": "Decline a power-dynamics worker or leverage framing unless new facts create a real negotiation or lock-in problem.",
+      "hard_boundary": "Do not turn the advice into a leverage map or bargaining strategy with the ex or daughter.",
+      "relaxation_condition": "New facts show a concrete custody/legal negotiation where enforcement costs or lock-in milestones determine the safe action.",
+      "discard_condition": "Discard now; the useful ex-risk is already covered by the information-weaponization guard.",
+      "relation_to_answer": "worker decline",
+      "source_excerpt_ids": [
+        "worker-decline"
+      ],
+      "priority_hint": "discard",
+      "risk_if_forced": "The answer may become strategic in a way that undermines safety, trust repair, and professional guidance.",
+      "risk_if_ignored": "Low; the useful part is already covered by the ex information-weaponization guard."
+    }
+  ],
+  "worker_admission": {
+    "decision": "decline_worker",
+    "reason": "The remaining pressure is source discipline and commitment sizing; Step 6 can consume it directly.",
+    "unnecessary_if": [
+      "The raw artifacts already name source grounding, boundaries, relaxation conditions, and discard conditions.",
+      "The tempting power-dynamics lens is structurally misfit or duplicate of existing ex-risk pressure."
+    ],
+    "admit_only_if": [
+      "New facts create a concrete custody/legal negotiation where enforcement costs or lock-in milestones control the decision."
+    ]
+  },
+  "notes": "Research-only compact fixture for validating raw artifact consumption before any bundle or worker implementation."
+}

@@ -17,6 +17,7 @@ Related:
 - `research/pre-step6-handoff-best-practices-as-of-2026-05-16.md`
 - `research/pre-step6-raw-artifact-consumption-discipline-2026-05-16.md`
 - `research/pre-step6-raw-artifact-consumption-readout-2026-05-16.md`
+- `research/pre-step6-raw-artifact-render-validation-slice-2026-05-16.md`
 - `research/meta-reasoning-corpus-question-bank-2026-05-15.md`
 - `research/post-lane-inquiry-card-vision-2026-05-15.md`
 - `research/provider-use-operating-structure-2026-05-15.md`
@@ -312,6 +313,7 @@ Receipts:
 ```text
 research/pre-step6-raw-artifact-consumption-discipline-2026-05-16.md
 research/pre-step6-raw-artifact-consumption-readout-2026-05-16.md
+research/pre-step6-raw-artifact-render-validation-slice-2026-05-16.md
 research/pre-step6-comparison-fixtures/mother-deciding-address-year-20260430T113301Z.md
 ```
 
@@ -322,6 +324,17 @@ Why this follow-up exists:
 - it adds a negative case where the correct decision is to decline extra
   cognition rather than force a worker lens;
 - it keeps the burden of proof on bundle and worker machinery.
+
+Implementation follow-up:
+
+```text
+scripts/research/pre_step6_raw_artifacts.py
+tests/test_pre_step6_raw_artifacts.py
+research/pre-step6-raw-artifact-fixtures/mother-address-year.raw-artifact-handoff.v1.json
+```
+
+This follow-up is a dormant research harness only. It validates and renders the
+mother no-worker raw handoff; it does not change product behavior.
 
 ## Target Architecture If Research Eventually Wins
 
