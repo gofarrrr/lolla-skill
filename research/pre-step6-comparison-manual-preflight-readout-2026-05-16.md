@@ -186,6 +186,12 @@ run_answer_variants
 The next readout must include actual final-answer variants or equivalent
 Step-6-style outputs for all three arms.
 
+First answer-variant readout:
+
+```text
+research/pre-step6-comparison-readouts/founder-grant-marcus-equity-answer-variant-readout-2026-05-16.md
+```
+
 Minimum next outputs:
 
 ```text
