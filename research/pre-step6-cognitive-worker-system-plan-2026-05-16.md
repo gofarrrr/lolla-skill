@@ -39,6 +39,7 @@ research/pre-step6-strict-worker-output-contract-readout-2026-05-16.md
 research/pre-step6-strict-json-subagent-replay-readout-2026-05-16.md
 research/pre-step6-compact-json-replay-readout-2026-05-16.md
 research/pre-step6-phd-producer-compressor-test-readout-2026-05-16.md
+research/pre-step6-pressure-card-phd-test-readout-2026-05-16.md
 ```
 
 The system goal is not more artifacts. The goal is a final answer that is
@@ -89,6 +90,13 @@ cases. Do not rerun more workers until the compression strategy changes.
 the PhD fallback and Silva/data gates across four retries but still failed the
 1,500-character validator cap. Treat cap-obedient compression, not cognition,
 as the active blocker.
+
+2026-05-16 pressure-card update: a smaller Step-6 consumption card failed on
+the first native attempt without field budgets (1,070 chars) but passed on the
+second native attempt with per-field budgets (689 chars), while preserving
+fallback executability and Silva/data access. Treat this as a promising
+consumption-surface result, not product promotion and not evidence to build a
+bundle.
 
 ## 2026-05-16 Critic Pass
 
@@ -258,6 +266,7 @@ conversation
   -> existing lanes and V60 stay unchanged
   -> deterministic relevance planner selects a tiny raw-artifact slice
   -> Step 6 consumes compact reasoning_artifact.v1 pressure directly
+  -> optional pressure-card rendering when full artifacts are too bulky
   -> optional bounded worker-as-tool call only when admission gate passes
   -> optional reasoning_bundle.v1 only when raw artifacts create real clutter
   -> Step 6 arbitrates and writes the answer
@@ -585,6 +594,47 @@ Field intent:
 
 The artifact should be able to demote itself. A correct artifact can still be
 low marginal value when another artifact carries the same pressure better.
+
+## pre_step6_pressure_card.v1
+
+`pre_step6_pressure_card.v1` is the current research-only candidate for the
+Step-6 consumption surface when full worker artifacts are too bulky.
+
+It is not a replacement for the full audit artifact. The intended split is:
+
+```text
+reasoning_artifact.v1 = richer worker/audit object
+pre_step6_pressure_card.v1 = compact Step-6 pressure card
+```
+
+Required fields:
+
+```text
+schema_version
+pressure
+boundary
+relax_if
+discard_if
+risk_if_ignored
+```
+
+Current cap:
+
+```text
+900 serialized JSON chars
+target around 700-760 chars for native replay
+```
+
+The first PhD replay result:
+
+```text
+no field budgets: 1,070 chars, gates preserved, cap failed
+with field budgets: 689 chars, gates preserved, cap passed
+```
+
+This means the card shape is promising, but native producers need explicit
+field budgets. Do not infer from one passing PhD retry that worker orchestration
+or a reasoning bundle is ready.
 
 ## reasoning_bundle.v1
 

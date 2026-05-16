@@ -22,6 +22,7 @@ Related:
 - `research/pre-step6-raw-artifact-answer-consumption-readout-2026-05-16.md`
 - `research/pre-step6-raw-vs-control-rubric-comparison-readout-2026-05-16.md`
 - `research/pre-step6-native-subagent-producer-test-readout-2026-05-16.md`
+- `research/pre-step6-pressure-card-phd-test-readout-2026-05-16.md`
 - `research/meta-reasoning-corpus-question-bank-2026-05-15.md`
 - `research/post-lane-inquiry-card-vision-2026-05-15.md`
 - `research/provider-use-operating-structure-2026-05-15.md`
@@ -459,6 +460,18 @@ next useful test is smaller Step-6 card schema, not another full artifact retry
 no runtime promotion
 ```
 
+Pressure-card follow-up:
+
+```text
+smaller pre_step6_pressure_card.v1 contract added for Step-6 consumption
+native PhD attempt without field budgets preserved gates but failed: 1,070 chars
+native PhD retry with field budgets passed: 689 chars
+fallback executability and Silva/data access survived
+full reasoning_artifact.v1 remains audit/provenance, not default consumption
+next useful check is founder and consultant pressure-card replay
+no runtime promotion
+```
+
 ## Target Architecture If Research Eventually Wins
 
 The likely long-term target is not a Bevelin lane, not a giant prompt, and not
@@ -506,6 +519,7 @@ is now raw-first but still research-only:
 
 ```text
 raw reasoning_artifact.v1
+  -> optional compact pre_step6_pressure_card.v1 rendering
   -> Step 6 final arbitration
   -> optional reasoning_workpack.v1 / reasoning_bundle.v1 only if earned
 ```

@@ -133,6 +133,7 @@ def test_all_pressure_card_fixtures_validate() -> None:
     paths = _pressure_card_paths()
 
     assert [path.name for path in paths] == [
+        "third-year-phd-student.native.pressure-card.v1.json",
         "third-year-phd-student.pressure-card.v1.json",
     ]
 
@@ -146,6 +147,19 @@ def test_phd_pressure_card_preserves_two_gates() -> None:
     validate_pressure_card_payload(payload, path=path)
 
     text = " ".join(str(payload[field]).lower() for field in payload)
+    assert "fallback" in text
+    assert "silva" in text
+    assert "data" in text
+
+
+def test_native_phd_pressure_card_hits_replay_target() -> None:
+    path = PRESSURE_CARD_DIR / "third-year-phd-student.native.pressure-card.v1.json"
+    payload = _load(path)
+    validate_pressure_card_payload(payload, path=path)
+
+    serialized = json.dumps(payload, ensure_ascii=False)
+    assert len(serialized) <= 760
+    text = serialized.lower()
     assert "fallback" in text
     assert "silva" in text
     assert "data" in text
