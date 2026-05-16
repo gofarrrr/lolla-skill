@@ -13,6 +13,8 @@ research/pre-step6-cognitive-worker-system-plan-2026-05-16.md
 research/pre-step6-comparison-subagent-readout-2026-05-16.md
 research/pre-step6-comparison-aggregate-readout-2026-05-16.md
 research/pre-step6-next-slice-decision-note-2026-05-16.md
+research/pre-step6-raw-artifact-consumption-discipline-2026-05-16.md
+research/pre-step6-raw-artifact-consumption-readout-2026-05-16.md
 ```
 
 ## Verdict
@@ -452,6 +454,13 @@ Option A first
 Reason: the subagent comparison suggests the raw artifact contract may contain
 most of the value without the bundle index. We should harvest that before
 building more machinery.
+
+2026-05-16 follow-up: Option A now exists as a research contract and four-case
+readout. It keeps raw `reasoning_artifact.v1` consumption as the current path
+and adds a mother address no-worker sentinel where the right outcome is to
+decline a tempting worker/lens. The next implementation candidate, if any, is
+raw artifact render/validation fixture work, not true handoff, bundle runtime,
+or worker orchestration.
 
 ## Current Decision
 

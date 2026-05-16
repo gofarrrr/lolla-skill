@@ -14,6 +14,8 @@ research/pre-step6-comparison-readouts/founder-grant-marcus-equity-answer-varian
 research/pre-step6-comparison-readouts/mid-level-consultant-report-2-answer-variant-readout-2026-05-16.md
 research/pre-step6-comparison-subagent-readout-2026-05-16.md
 research/pre-step6-handoff-best-practices-as-of-2026-05-16.md
+research/pre-step6-raw-artifact-consumption-discipline-2026-05-16.md
+research/pre-step6-raw-artifact-consumption-readout-2026-05-16.md
 ```
 
 ## Verdict
@@ -21,8 +23,9 @@ research/pre-step6-handoff-best-practices-as-of-2026-05-16.md
 ```text
 manual comparison: bundle wins all three fixtures
 subagent comparison: raw artifacts win all three by tie/simpler-path rule
+raw artifact discipline slice: raw artifacts remain preferred after four-case readout
 promotion decision: no promotion
-next decision: prefer raw-artifact consumption discipline before bundle machinery
+next decision: raw artifact render/validation fixture before any implementation
 ```
 
 This aggregate now contains both the promising manual signal and the corrective
@@ -77,6 +80,35 @@ raw artifacts win under tie rule: yes
 ```
 
 Therefore this comparison does not authorize bundle implementation.
+
+## Raw Artifact Discipline Follow-Up
+
+The follow-up slice tested the simpler path explicitly:
+
+```text
+current control
+raw artifacts with explicit consumption discipline
+optional indexed bundle challenger
+```
+
+Result:
+
+| Case | Raw Discipline Result | Bundle/Worker Decision |
+| --- | --- | --- |
+| Third-year PhD student | Preserves fallback executability and Silva/data gates | Bundle not needed |
+| Founder grant Marcus equity | Uses systems pressure while demoting valuation/instrument duplicates | Bundle not needed |
+| Mid-level consultant report | Preserves counsel-first boundary and compact tripwires | Bundle not needed |
+| Mother deciding address year | Adds instrument-trust and tripwire sizing while declining power-dynamics lens | Worker should not run |
+
+Aggregate:
+
+```text
+raw discipline beats current control in narrow missing-boundary spots: yes
+raw discipline beats indexed bundle: no
+raw discipline ties indexed bundle while simpler: yes
+raw discipline declines one worker/lens: yes
+bundle/worker implementation authorized: no
+```
 
 ## Contradicting Evidence First
 

@@ -11,6 +11,8 @@ Related docs:
 ```text
 research/pre-step6-cognitive-worker-system-plan-2026-05-16.md
 research/pre-step6-next-slice-decision-note-2026-05-16.md
+research/pre-step6-raw-artifact-consumption-discipline-2026-05-16.md
+research/pre-step6-raw-artifact-consumption-readout-2026-05-16.md
 ```
 
 ## Purpose
@@ -215,6 +217,12 @@ Third fixture:
 
 ```text
 research/pre-step6-comparison-fixtures/mid-level-consultant-report-2-20260429T144611Z.md
+```
+
+No-worker sentinel fixture:
+
+```text
+research/pre-step6-comparison-fixtures/mother-deciding-address-year-20260430T113301Z.md
 ```
 
 Reason:

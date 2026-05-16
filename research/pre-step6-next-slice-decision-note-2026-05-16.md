@@ -26,6 +26,8 @@ research/pre-step6-comparison-manual-preflight-readout-2026-05-16.md
 research/pre-step6-comparison-aggregate-readout-2026-05-16.md
 research/pre-step6-comparison-subagent-readout-2026-05-16.md
 research/pre-step6-handoff-best-practices-as-of-2026-05-16.md
+research/pre-step6-raw-artifact-consumption-discipline-2026-05-16.md
+research/pre-step6-raw-artifact-consumption-readout-2026-05-16.md
 ```
 
 ## Decision
@@ -56,6 +58,13 @@ raw reasoning_artifact.v1 consumption discipline
 
 No subagent calls are required for this slice. No OpenRouter calls are required
 unless a later audit needs a strict JSON/source-overclaim check.
+
+2026-05-16 completion note: this raw-artifact discipline slice now exists as a
+research contract and compact four-case readout. The mother address fixture is
+the no-worker sentinel: it adds instrument-trust and commitment-sizing pressure,
+but explicitly declines the tempting power-dynamics worker/lens. The next
+implementation candidate, if any, is raw artifact render/validation fixture
+work, not bundle runtime or worker orchestration.
 
 ## Why This Comes Before Implementation
 

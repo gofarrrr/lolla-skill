@@ -25,6 +25,8 @@ Next-slice decision note:
 research/pre-step6-next-slice-decision-note-2026-05-16.md
 research/pre-step6-comparison-subagent-readout-2026-05-16.md
 research/pre-step6-handoff-best-practices-as-of-2026-05-16.md
+research/pre-step6-raw-artifact-consumption-discipline-2026-05-16.md
+research/pre-step6-raw-artifact-consumption-readout-2026-05-16.md
 ```
 
 The system goal is not more artifacts. The goal is a final answer that is
@@ -66,6 +68,13 @@ for this use case:
   tracing;
 - raw artifacts are the first baseline because they already carry the fields
   the bundle was trying to index;
+- the raw-artifact discipline slice now exists as the current small contract:
+  source grounding first, boundaries before upside, relaxation only from facts,
+  duplicates demoted, quiet artifacts kept quiet, and public machinery terms
+  excluded;
+- the mother address no-worker sentinel confirms that an attractive
+  power-dynamics worker/lens can be explicitly declined when calibration,
+  instrument trust, and reversible tripwires are enough;
 - `reasoning_bundle.v1` should be optional until it beats careful raw artifact
   use in final public answers, not just in private auditability.
 

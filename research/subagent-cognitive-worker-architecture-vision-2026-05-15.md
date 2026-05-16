@@ -11,6 +11,8 @@ Latest local contract slice:
 - `research/pre-step6-cognitive-worker-system-plan-2026-05-16.md`
 - `research/pre-step6-comparison-subagent-readout-2026-05-16.md`
 - `research/pre-step6-handoff-best-practices-as-of-2026-05-16.md`
+- `research/pre-step6-raw-artifact-consumption-discipline-2026-05-16.md`
+- `research/pre-step6-raw-artifact-consumption-readout-2026-05-16.md`
 - `research/provider-use-operating-structure-2026-05-15.md`
 - `research/lane1-reasoning-bridge-subagent-slice-readout-2026-05-15.md`
 - `research/subagent-cognitive-worker-contract-slice-2026-05-15.md`
@@ -23,6 +25,8 @@ Latest local contract slice:
 research/pre-step6-cognitive-worker-system-plan-2026-05-16.md
 research/pre-step6-comparison-subagent-readout-2026-05-16.md
 research/pre-step6-handoff-best-practices-as-of-2026-05-16.md
+research/pre-step6-raw-artifact-consumption-discipline-2026-05-16.md
+research/pre-step6-raw-artifact-consumption-readout-2026-05-16.md
 ```
 
 is now the central system-plan handover. The older `CognitiveWorkpack`,
@@ -90,7 +94,7 @@ is relevant while also writing the answer.
 
 ## Target Direction
 
-The target research architecture is:
+The original target research architecture was:
 
 ```text
 conversation
@@ -112,6 +116,20 @@ writes.
 
 The final reasoner still owns synthesis, voice, tradeoffs, and the final public
 answer. Subagents do not write the answer and do not decide truth.
+
+The 2026-05-16 corrected target starts smaller:
+
+```text
+conversation
+  -> lane cognition, embeddings, selected chunks, source evidence
+  -> deterministic custody / caps / validation
+  -> tiny raw reasoning_artifact.v1 render
+  -> Step 6 final reasoner
+  -> optional bounded worker or bundle challenger only if raw artifacts lose
+```
+
+That preserves the lesson from the older architecture work without assuming the
+whole worker/bundle stack has earned implementation.
 
 ## Why This Is Different From Moving Step 7 Earlier
 

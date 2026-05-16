@@ -30,6 +30,8 @@ Current decision register:
 - `research/pre-step6-cognitive-worker-system-plan-2026-05-16.md`
 - `research/pre-step6-comparison-subagent-readout-2026-05-16.md`
 - `research/pre-step6-handoff-best-practices-as-of-2026-05-16.md`
+- `research/pre-step6-raw-artifact-consumption-discipline-2026-05-16.md`
+- `research/pre-step6-raw-artifact-consumption-readout-2026-05-16.md`
 - `research/meta-reasoning-corpus-question-bank-2026-05-15.md`
 - `research/post-lane-inquiry-card-vision-2026-05-15.md`
 - `research/provider-use-operating-structure-2026-05-15.md`
@@ -169,12 +171,12 @@ Latest Lane 1 bridge correction:
 
 2026-05-16 current preferred research path:
 
-> Build the pre-Step-6 cognitive-worker system as research docs and local
-> harnesses first. Keep live lanes and V60 unchanged. Use deterministic planning
-> to assemble small `reasoning_workpack.v1` tasks, default to subagents for
-> judgment-heavy worker production, require compact `reasoning_artifact.v1`
-> outputs, index them into `reasoning_bundle.v1`, and let Step 6 remain the
-> final arbiter. OpenRouter remains secondary for strict JSON audits, cheap
+> Test raw `reasoning_artifact.v1` consumption discipline first. Keep live lanes
+> and V60 unchanged. Let deterministic code prepare source-grounded, capped
+> private artifacts; let Step 6 arbitrate, reject, relax, or use them. Subagents
+> remain bounded worker-as-tool candidates only after admission, and
+> `reasoning_bundle.v1` is an optional challenger only if raw artifacts create
+> real clutter. OpenRouter remains secondary for strict JSON audits, cheap
 > ablations, and narrow repeatable checks. No product docs or runtime behavior
 > change until promotion evidence exists.
 

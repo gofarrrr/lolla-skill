@@ -11,6 +11,8 @@ Current system-plan source of truth:
 research/pre-step6-cognitive-worker-system-plan-2026-05-16.md
 research/pre-step6-comparison-subagent-readout-2026-05-16.md
 research/pre-step6-handoff-best-practices-as-of-2026-05-16.md
+research/pre-step6-raw-artifact-consumption-discipline-2026-05-16.md
+research/pre-step6-raw-artifact-consumption-readout-2026-05-16.md
 ```
 
 This document remains the v1 bundle handover. The 2026-05-16 plan adds the
@@ -23,6 +25,12 @@ not the default next build. A less-author-biased subagent comparison found raw
 so raw artifacts won under the simpler-path rule. Future bundle work must prove
 final-answer lift over careful raw artifact consumption, not just better private
 auditability.
+
+2026-05-16 follow-up note: the raw artifact consumption discipline now has its
+own contract and four-case readout, including a no-worker sentinel. The current
+implementation candidate, if any, is a raw artifact render/validation fixture.
+Bundle work should return only after a future challenger beats careful raw
+artifacts in final prose.
 
 ## Why This Exists
 

@@ -15,6 +15,8 @@ Related:
 - `research/pre-step6-cognitive-worker-system-plan-2026-05-16.md`
 - `research/pre-step6-comparison-subagent-readout-2026-05-16.md`
 - `research/pre-step6-handoff-best-practices-as-of-2026-05-16.md`
+- `research/pre-step6-raw-artifact-consumption-discipline-2026-05-16.md`
+- `research/pre-step6-raw-artifact-consumption-readout-2026-05-16.md`
 - `research/meta-reasoning-corpus-question-bank-2026-05-15.md`
 - `research/post-lane-inquiry-card-vision-2026-05-15.md`
 - `research/provider-use-operating-structure-2026-05-15.md`
@@ -265,6 +267,8 @@ research/pre-step6-comparison-subagent-readout-2026-05-16.md
 research/pre-step6-handoff-best-practices-as-of-2026-05-16.md
 research/pre-step6-comparison-aggregate-readout-2026-05-16.md
 research/pre-step6-next-slice-decision-note-2026-05-16.md
+research/pre-step6-raw-artifact-consumption-discipline-2026-05-16.md
+research/pre-step6-raw-artifact-consumption-readout-2026-05-16.md
 ```
 
 Why this correction exists:
@@ -289,12 +293,57 @@ What changed:
 - any future bundle work must prove final-answer lift over careful raw artifact
   use, not merely better private auditability.
 
+## 2026-05-16 Follow-Up Decision: Raw Artifact Discipline First
+
+Decision:
+
+```text
+raw artifact consumption discipline is the current next path
+mother address no-worker sentinel added
+bundle runtime remains paused
+worker orchestration remains paused
+implementation-if-any starts with raw artifact render/validation fixture
+no product promotion
+no product docs change
+```
+
+Receipts:
+
+```text
+research/pre-step6-raw-artifact-consumption-discipline-2026-05-16.md
+research/pre-step6-raw-artifact-consumption-readout-2026-05-16.md
+research/pre-step6-comparison-fixtures/mother-deciding-address-year-20260430T113301Z.md
+```
+
+Why this follow-up exists:
+
+- it harvests the simpler-path lesson from the subagent comparison;
+- it makes Step 6 consumption rules explicit before any renderer exists;
+- it adds a negative case where the correct decision is to decline extra
+  cognition rather than force a worker lens;
+- it keeps the burden of proof on bundle and worker machinery.
+
 ## Target Architecture If Research Eventually Wins
 
-The likely target is not a Bevelin lane, not a giant prompt, and not a
-deterministic selector pretending to reason.
+The likely long-term target is not a Bevelin lane, not a giant prompt, and not
+a deterministic selector pretending to reason.
 
-The likely target is:
+The current near-term target is smaller:
+
+```text
+conversation
+  -> existing lane cognition stays stable
+  -> selected pressures and V60 material preserve source custody
+  -> deterministic render/validation produces small reasoning_artifact.v1 inputs
+  -> Step 6 consumes raw artifacts under explicit discipline
+  -> optional bounded worker or bundle challenger only if raw artifacts lose
+```
+
+The larger worker/bundle target below is conditional. It should return only if
+the raw artifact path fails or a future high-clutter challenger proves visible
+final-answer lift.
+
+The larger conditional target is:
 
 ```text
 conversation
@@ -317,13 +366,12 @@ current Step6 path
 ```
 
 That bridge work remains part of the evidence trail. The current favored target
-is now broader but still research-only:
+is now raw-first but still research-only:
 
 ```text
-reasoning_workpack.v1
-  -> reasoning_artifact.v1
-  -> reasoning_bundle.v1
+raw reasoning_artifact.v1
   -> Step 6 final arbitration
+  -> optional reasoning_workpack.v1 / reasoning_bundle.v1 only if earned
 ```
 
 The key phrase is:
