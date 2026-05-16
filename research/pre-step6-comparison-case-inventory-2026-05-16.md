@@ -199,6 +199,12 @@ Build in this order:
 2. `founder-grant-marcus-equity__20260428T064421Z`
 3. `mid-level-consultant-report-2__20260429T144611Z`
 
+First fixture:
+
+```text
+research/pre-step6-comparison-fixtures/third-year-phd-student-20260430T140800Z.md
+```
+
 Reason:
 
 - the PhD case stresses conflict and fallback viability;
