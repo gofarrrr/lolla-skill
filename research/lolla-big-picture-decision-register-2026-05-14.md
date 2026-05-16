@@ -435,6 +435,18 @@ compression is next blocker
 no runtime promotion
 ```
 
+Compact-JSON replay follow-up:
+
+```text
+compact skeleton prompt reduced PhD from 3,091 to 1,769 chars
+compact skeleton prompt reduced consultant from 3,134 to 2,068 chars
+content stayed useful
+1,500-char cap still passed 0/2
+do not rerun more workers until compression strategy changes
+recommended next slice: one-case rich-worker plus compact-card compressor test
+no runtime promotion
+```
+
 ## Target Architecture If Research Eventually Wins
 
 The likely long-term target is not a Bevelin lane, not a giant prompt, and not
