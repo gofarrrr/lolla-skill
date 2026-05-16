@@ -14,6 +14,7 @@ research/pre-step6-comparison-subagent-readout-2026-05-16.md
 research/pre-step6-comparison-fixtures/mother-deciding-address-year-20260430T113301Z.md
 research/pre-step6-comparison-aggregate-readout-2026-05-16.md
 research/pre-step6-raw-artifact-render-validation-slice-2026-05-16.md
+research/pre-step6-raw-artifact-four-fixture-render-readout-2026-05-16.md
 ```
 
 ## Question
@@ -236,6 +237,10 @@ research/pre-step6-raw-artifact-fixtures/mother-address-year.raw-artifact-handof
 It validates required fields, caps artifacts/source excerpts, renders the
 private handoff under the raw cap, and checks public prose for machinery terms.
 It does not authorize bundle runtime or worker orchestration.
+
+Four-fixture follow-up: PhD, founder, consultant, and mother JSON handoffs now
+all validate and render under cap. Founder and consultant needed compression,
+which reinforces the cap rather than weakening it.
 
 Do not build `reasoning_workpack.v1`, worker prompts, or
 `reasoning_bundle.v1` until raw artifact discipline fails a high-clutter case in

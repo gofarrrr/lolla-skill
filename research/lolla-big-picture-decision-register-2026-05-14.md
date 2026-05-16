@@ -18,6 +18,7 @@ Related:
 - `research/pre-step6-raw-artifact-consumption-discipline-2026-05-16.md`
 - `research/pre-step6-raw-artifact-consumption-readout-2026-05-16.md`
 - `research/pre-step6-raw-artifact-render-validation-slice-2026-05-16.md`
+- `research/pre-step6-raw-artifact-four-fixture-render-readout-2026-05-16.md`
 - `research/meta-reasoning-corpus-question-bank-2026-05-15.md`
 - `research/post-lane-inquiry-card-vision-2026-05-15.md`
 - `research/provider-use-operating-structure-2026-05-15.md`
@@ -314,6 +315,7 @@ Receipts:
 research/pre-step6-raw-artifact-consumption-discipline-2026-05-16.md
 research/pre-step6-raw-artifact-consumption-readout-2026-05-16.md
 research/pre-step6-raw-artifact-render-validation-slice-2026-05-16.md
+research/pre-step6-raw-artifact-four-fixture-render-readout-2026-05-16.md
 research/pre-step6-comparison-fixtures/mother-deciding-address-year-20260430T113301Z.md
 ```
 
@@ -335,6 +337,13 @@ research/pre-step6-raw-artifact-fixtures/mother-address-year.raw-artifact-handof
 
 This follow-up is a dormant research harness only. It validates and renders the
 mother no-worker raw handoff; it does not change product behavior.
+
+Four-fixture follow-up:
+
+```text
+PhD, founder, consultant, and mother raw handoffs validate and render under cap
+next check is Step-6-style answer consumption, not more schema
+```
 
 ## Target Architecture If Research Eventually Wins
 

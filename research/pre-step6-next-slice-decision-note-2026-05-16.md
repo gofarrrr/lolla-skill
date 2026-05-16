@@ -29,6 +29,7 @@ research/pre-step6-handoff-best-practices-as-of-2026-05-16.md
 research/pre-step6-raw-artifact-consumption-discipline-2026-05-16.md
 research/pre-step6-raw-artifact-consumption-readout-2026-05-16.md
 research/pre-step6-raw-artifact-render-validation-slice-2026-05-16.md
+research/pre-step6-raw-artifact-four-fixture-render-readout-2026-05-16.md
 ```
 
 ## Decision
@@ -70,6 +71,11 @@ work, not bundle runtime or worker orchestration.
 2026-05-16 implementation follow-up: the first dormant render/validation
 fixture exists for the mother no-worker sentinel. It is research-only and does
 not connect to live `/lolla`.
+
+2026-05-16 four-fixture follow-up: the same JSON handoff shape now exists for
+the PhD, founder, consultant, and mother fixtures. All four validate and render
+under the private cap. The next question is Step-6-style answer consumption, not
+bundle or worker implementation.
 
 ## Why This Comes Before Implementation
 

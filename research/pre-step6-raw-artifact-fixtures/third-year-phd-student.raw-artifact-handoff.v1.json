@@ -1,0 +1,117 @@
+{
+  "schema_version": "pre_step6_raw_artifact_handoff.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "third-year-phd-student",
+  "source_artifacts": [
+    "research/pre-step6-comparison-fixtures/third-year-phd-student-20260430T140800Z.md",
+    "data/treatment_audits/third-year-phd-student__20260430T140800Z.v1.json",
+    "data/treatment_audits/calibration_report_pr6.md"
+  ],
+  "source_excerpts": [
+    {
+      "excerpt_id": "case-context",
+      "text": "Third-year PhD student has a 3-month direction deadline; advisor retires in 2-3 years; lab lacks single-cell experience or collaborators."
+    },
+    {
+      "excerpt_id": "control-answer",
+      "text": "Current answer sequences advisor first, Silva second, committee third, and treats data access as the binding constraint."
+    },
+    {
+      "excerpt_id": "pressure-check",
+      "text": "Pressure check says the retiring advisor is not neutral and option 1 may stop being a real fallback after enough option-3 work."
+    },
+    {
+      "excerpt_id": "audit-gaps",
+      "text": "Audit flags undefined base-rate reference class, incomplete option expansion, and under-specified constraint retesting."
+    }
+  ],
+  "artifacts": [
+    {
+      "schema_version": "reasoning_artifact.v1",
+      "artifact_id": "phd_fallback_viability_boundary",
+      "worker_type": "boundary/evidence-gate",
+      "why_provided": "The pressure check says the 18-month pivot may be fake if option 1 is no longer executable by then.",
+      "source_grounding": "Advisor retires in 2-3 years; option 1 depends on advisor support and lab continuity; pressure check says option 1 may close after option-3 work.",
+      "contribution": "Treat fallback viability as a hard boundary on any reversal-trigger plan.",
+      "hard_boundary": "Do not recommend an 18-month pivot unless the fallback target is still executable when the trigger fires.",
+      "relaxation_condition": "Advisor explicitly preserves an option-1 or modified-option-1 path, funding, and supervision through the trigger date.",
+      "discard_condition": "Discard only if the answer no longer uses option 1 as a fallback or reversal target.",
+      "relation_to_answer": "primary fallback boundary",
+      "source_excerpt_ids": [
+        "case-context",
+        "pressure-check"
+      ],
+      "priority_hint": "high",
+      "risk_if_forced": "The answer may become too conservative and kill option 3 prematurely.",
+      "risk_if_ignored": "The user may rely on a fallback that quietly disappeared."
+    },
+    {
+      "schema_version": "reasoning_artifact.v1",
+      "artifact_id": "phd_silva_constraint_retest",
+      "worker_type": "boundary/evidence-gate",
+      "why_provided": "The answer names Dr. Silva/data access as bottleneck but needs a constraint-shift cadence after probes.",
+      "source_grounding": "Lab has no single-cell experience or collaborators; option 3 needs external data or collaboration; audit flags missing constraint retesting.",
+      "contribution": "Make the Silva probe a measured constraint test, not a one-off availability question.",
+      "hard_boundary": "Do not treat option 3 as viable until data access, sharing terms, and collaborator role can carry a dissertation.",
+      "relaxation_condition": "Silva or another collaborator offers usable data, clear sharing terms, and a role strong enough to reduce dissertation risk.",
+      "discard_condition": "Discard if the recommended option does not depend on external single-cell data access.",
+      "relation_to_answer": "primary constraint boundary",
+      "source_excerpt_ids": [
+        "control-answer",
+        "audit-gaps"
+      ],
+      "priority_hint": "high",
+      "risk_if_forced": "The answer may over-process collaboration before advisor permission.",
+      "risk_if_ignored": "The user may commit politically before the binding constraint is tractable."
+    },
+    {
+      "schema_version": "reasoning_artifact.v1",
+      "artifact_id": "phd_base_rate_fit_gate",
+      "worker_type": "boundary/evidence-gate",
+      "why_provided": "The current answer names a broad success rate without defining or testing the reference class.",
+      "source_grounding": "Audit flags base-rates as partially treated: the prior is named but not tied to aggregate data, fit criteria, or case-specific updating.",
+      "contribution": "Keep base rates as a humility check, not a calibrated probability claim.",
+      "hard_boundary": "Do not let a broad success-rate number size commitment unless the reference class matches this dissertation situation.",
+      "relaxation_condition": "Relevant cohort evidence appears for similar dissertations under comparable advisor, lab, and collaboration constraints.",
+      "discard_condition": "Discard if the answer avoids numeric success priors and uses only qualitative uncertainty.",
+      "relation_to_answer": "qualitative outside-view guard",
+      "source_excerpt_ids": [
+        "audit-gaps"
+      ],
+      "priority_hint": "medium",
+      "risk_if_forced": "The answer may become pseudo-quantitative and distract from next actions.",
+      "risk_if_ignored": "The answer may overstate confidence without an outside-view check."
+    },
+    {
+      "schema_version": "reasoning_artifact.v1",
+      "artifact_id": "phd_quiet_option_expansion_caution",
+      "worker_type": "duplicate/priority",
+      "why_provided": "The audit flags incomplete option expansion, but the current answer already warns against parallel prototyping.",
+      "source_grounding": "Audit says option expansion is incomplete; current answer says prototyping all options is the failure-mode version of optionality.",
+      "contribution": "Use option expansion to widen evidence search, not to add new active dissertation tracks.",
+      "hard_boundary": "Do not turn option expansion into try-everything drift or a new delay tactic.",
+      "relaxation_condition": "A fourth option appears that uses lab infrastructure and reduces external dependency without losing career upside.",
+      "discard_condition": "Discard if the answer widens the evidence search without adding a new commitment path.",
+      "relation_to_answer": "quiet option-frame guard",
+      "source_excerpt_ids": [
+        "audit-gaps"
+      ],
+      "priority_hint": "quiet",
+      "risk_if_forced": "The answer may become sprawling and weaken commitment cadence.",
+      "risk_if_ignored": "The answer may inherit the user's three-option frame too passively."
+    }
+  ],
+  "worker_admission": {
+    "decision": "no_worker_needed",
+    "reason": "The raw artifacts expose the two controlling gates and two quiet checks without requiring fresh worker cognition.",
+    "unnecessary_if": [
+      "Step 6 can directly read fallback viability and Silva/data access as boundaries.",
+      "The base-rate and option-expansion artifacts are quiet checks rather than new cognition needs."
+    ],
+    "admit_only_if": [
+      "A future fixture shows unresolved conflict that Step 6 cannot preserve from raw artifacts alone."
+    ]
+  },
+  "notes": "Research-only compact fixture for testing raw artifact consumption before any bundle or worker implementation."
+}

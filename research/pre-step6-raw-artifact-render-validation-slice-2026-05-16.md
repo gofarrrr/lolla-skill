@@ -11,6 +11,7 @@ Related:
 ```text
 research/pre-step6-raw-artifact-consumption-discipline-2026-05-16.md
 research/pre-step6-raw-artifact-consumption-readout-2026-05-16.md
+research/pre-step6-raw-artifact-four-fixture-render-readout-2026-05-16.md
 research/pre-step6-comparison-fixtures/mother-deciding-address-year-20260430T113301Z.md
 ```
 
@@ -27,6 +28,18 @@ research/pre-step6-raw-artifact-fixtures/mother-address-year.raw-artifact-handof
 It validates and renders a small private raw `reasoning_artifact.v1` handoff.
 It does not launch workers, build a bundle, decide truth, or connect to live
 `/lolla`.
+
+2026-05-16 continuation: the same JSON handoff shape now exists for all four
+comparison fixtures:
+
+```text
+research/pre-step6-raw-artifact-fixtures/third-year-phd-student.raw-artifact-handoff.v1.json
+research/pre-step6-raw-artifact-fixtures/founder-grant-marcus-equity.raw-artifact-handoff.v1.json
+research/pre-step6-raw-artifact-fixtures/mid-level-consultant-report-2.raw-artifact-handoff.v1.json
+research/pre-step6-raw-artifact-fixtures/mother-address-year.raw-artifact-handoff.v1.json
+```
+
+All four validate and render under the 4,000-character private cap.
 
 ## Contract
 
@@ -83,9 +96,9 @@ Priority hint
 It intentionally omits `why_provided` from the rendered block unless a later
 consumer proves admission context is needed.
 
-## Mother Fixture Result
+## Fixture Result
 
-The first JSON fixture is the mother address no-worker sentinel.
+The first JSON fixture was the mother address no-worker sentinel.
 
 Expected outcome:
 
@@ -99,7 +112,8 @@ keep base-rate pressure quiet
 discard power-dynamics lens
 ```
 
-This is a harness result, not final-answer evidence.
+The four-fixture continuation adds PhD, founder, and consultant raw handoffs.
+This is still a harness result, not final-answer evidence.
 
 ## Still Not Authorized
 
@@ -117,8 +131,8 @@ default /lolla behavior
 
 ## Next Question
 
-The next useful research check is whether the same JSON handoff shape can be
-authored for the PhD, founder, and consultant fixtures without bloating the
-render. If those fixtures stay small and legible, raw artifacts remain the
-preferred path. If they become cluttered, an indexed bundle challenger gets a
+The next useful research check is whether Step 6 can consume the rendered raw
+handoffs into answer cores without machinery leakage or answer bloat. If answer
+cores stay sharp, raw artifacts remain the preferred path. If a case loses
+because the raw render is too cluttered, an indexed bundle challenger gets a
 narrow reason to re-enter the queue.

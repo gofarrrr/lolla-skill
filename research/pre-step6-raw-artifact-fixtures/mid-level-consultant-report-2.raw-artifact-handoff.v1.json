@@ -1,0 +1,135 @@
+{
+  "schema_version": "pre_step6_raw_artifact_handoff.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mid-level-consultant-report-2",
+  "source_artifacts": [
+    "research/pre-step6-comparison-fixtures/mid-level-consultant-report-2-20260429T144611Z.md",
+    "data/treatment_audits/mid-level-consultant-report-2__20260429T144611Z.v1.json",
+    "data/treatment_audits/calibration_report_pr6.md"
+  ],
+  "source_excerpts": [
+    {
+      "excerpt_id": "case-context",
+      "text": "Mid-level consultant is sole witness to a senior partner apparently shredding boxes tied to an active regulatory-audit client."
+    },
+    {
+      "excerpt_id": "control-answer",
+      "text": "Current answer says document personally, contact whistleblower attorneys, tell spouse broadly, attend Wednesday normally, do not confront, investigate, or access systems unusually."
+    },
+    {
+      "excerpt_id": "pressure-check",
+      "text": "Pressure check says counsel has incentives, Wednesday needs a protocol, internal channels differ, and career-risk preparation needs tripwires."
+    },
+    {
+      "excerpt_id": "misfit",
+      "text": "Power-dynamics leverage language is set aside as a poor fit for a non-negotiated evidence/reporting decision."
+    }
+  ],
+  "artifacts": [
+    {
+      "schema_version": "reasoning_artifact.v1",
+      "artifact_id": "consultant_counsel_incentive_gate",
+      "worker_type": "boundary/evidence-gate",
+      "why_provided": "The pressure check says counsel is necessary but not incentive-free.",
+      "source_grounding": "Whistleblower attorneys may work on contingency, creating a structural pull toward filing.",
+      "contribution": "Keep counsel-first sequencing, but add an intake question that tests counsel's channel bias.",
+      "hard_boundary": "Do not replace counsel with self-directed reporting; use this gate inside counsel selection.",
+      "relaxation_condition": "Counsel can explain when they advised internal-first or audit-committee-first and why.",
+      "discard_condition": "Discard if the answer does not tell the user to let counsel decide the reporting channel.",
+      "relation_to_answer": "primary counsel boundary",
+      "source_excerpt_ids": [
+        "pressure-check"
+      ],
+      "priority_hint": "high",
+      "risk_if_forced": "The answer may make the user distrust counsel and act alone.",
+      "risk_if_ignored": "The user may outsource judgment to an advisor whose incentives are unexamined."
+    },
+    {
+      "schema_version": "reasoning_artifact.v1",
+      "artifact_id": "consultant_wednesday_protocol_boundary",
+      "worker_type": "boundary/evidence-gate",
+      "why_provided": "The pressure check says attend normally is not actionable enough if the partner raises the encounter.",
+      "source_grounding": "The user has a Wednesday meeting after the shredding; pressure check calls for a pre-decided response.",
+      "contribution": "Turn act normal into a behavioral protocol that preserves safety and evidence integrity.",
+      "hard_boundary": "Do not deny, elaborate, confront, investigate, or be alone with the partner if avoidable.",
+      "relaxation_condition": "Counsel gives a different script before the meeting.",
+      "discard_condition": "Discard if the answer is not addressing the immediate Wednesday interaction.",
+      "relation_to_answer": "primary Wednesday protocol",
+      "source_excerpt_ids": [
+        "control-answer",
+        "pressure-check"
+      ],
+      "priority_hint": "high",
+      "risk_if_forced": "The answer may over-script and make the user behave unnaturally.",
+      "risk_if_ignored": "The user may improvise under pressure and create avoidable risk."
+    },
+    {
+      "schema_version": "reasoning_artifact.v1",
+      "artifact_id": "consultant_internal_channel_distinction",
+      "worker_type": "boundary/evidence-gate",
+      "why_provided": "The pressure check says internal was treated as monolithic even though GC and audit committee differ.",
+      "source_grounding": "General counsel and audit committee have different incentives and oversight duties.",
+      "contribution": "Expand the option set without weakening counsel-first sequencing.",
+      "hard_boundary": "Do not advise internal reporting directly; ask counsel to evaluate GC, audit committee, and regulator as distinct channels.",
+      "relaxation_condition": "Counsel says audit committee access is unavailable, unsafe, or legally inappropriate.",
+      "discard_condition": "Discard if no internal channel is considered after counsel review.",
+      "relation_to_answer": "supporting channel nuance",
+      "source_excerpt_ids": [
+        "pressure-check"
+      ],
+      "priority_hint": "medium",
+      "risk_if_forced": "The answer may imply the user should bypass counsel and pick a channel alone.",
+      "risk_if_ignored": "The answer may overstate the external-vs-internal binary."
+    },
+    {
+      "schema_version": "reasoning_artifact.v1",
+      "artifact_id": "consultant_reversibility_tripwire_plan",
+      "worker_type": "boundary/evidence-gate",
+      "why_provided": "Optionality is partially treated, but commitment boundaries and career tripwires need specificity.",
+      "source_grounding": "Current answer separates counsel from filing; pressure check asks for retaliation tripwires and runway.",
+      "contribution": "Convert vague fear into timing, retaliation signals, and financial runway thresholds.",
+      "hard_boundary": "Do not let tripwires delay counsel engagement or evidence preservation.",
+      "relaxation_condition": "Counsel gives a filing timeline and employer-response risk model that supersedes provisional tripwires.",
+      "discard_condition": "Discard if the answer is only about tonight's documentation and attorney calls.",
+      "relation_to_answer": "supporting tripwire guard",
+      "source_excerpt_ids": [
+        "control-answer",
+        "pressure-check"
+      ],
+      "priority_hint": "medium",
+      "risk_if_forced": "The answer may create a planning burden before counsel.",
+      "risk_if_ignored": "The user may scan every work interaction for danger instead of watching concrete signals."
+    },
+    {
+      "schema_version": "reasoning_artifact.v1",
+      "artifact_id": "consultant_power_dynamics_misfit_discard",
+      "worker_type": "duplicate/priority",
+      "why_provided": "The treatment audit and current answer set aside power-dynamics leverage language as mismatched to the case.",
+      "source_grounding": "The user is choosing whether and how to report with counsel, not negotiating with the partner.",
+      "contribution": "Keep leverage and walk-away framing out of the final answer.",
+      "hard_boundary": "Do not turn this into a negotiation or bargaining-power problem.",
+      "relaxation_condition": "New facts make the task an actual negotiation over employment terms rather than evidence/reporting sequence.",
+      "discard_condition": "Discard after confirming the answer does not use leverage framing.",
+      "relation_to_answer": "discard leverage lens",
+      "source_excerpt_ids": [
+        "misfit"
+      ],
+      "priority_hint": "quiet",
+      "risk_if_forced": "The answer may normalize bargaining instead of preserving evidence and legal safety.",
+      "risk_if_ignored": "A worker may reintroduce attractive but structurally wrong leverage advice."
+    }
+  ],
+  "worker_admission": {
+    "decision": "no_worker_needed",
+    "reason": "The raw artifacts preserve counsel-first, Wednesday protocol, channel distinction, tripwires, and leverage discard without needing a worker.",
+    "unnecessary_if": [
+      "The final reasoner can read the hard boundaries directly.",
+      "The live issue is sequencing and discard discipline, not additional cognition."
+    ],
+    "admit_only_if": [
+      "A future answer variant cannot keep channel expansion from weakening the counsel-first and no-investigation boundaries."
+    ]
+  },
+  "notes": "Research-only compact fixture for testing raw artifact consumption before any bundle or worker implementation."
+}

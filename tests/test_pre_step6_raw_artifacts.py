@@ -20,16 +20,34 @@ from pre_step6_raw_artifacts import (  # noqa: E402
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-FIXTURE_PATH = (
-    REPO_ROOT
-    / "research"
-    / "pre-step6-raw-artifact-fixtures"
-    / "mother-address-year.raw-artifact-handoff.v1.json"
-)
+FIXTURE_DIR = REPO_ROOT / "research" / "pre-step6-raw-artifact-fixtures"
+FIXTURE_PATH = FIXTURE_DIR / "mother-address-year.raw-artifact-handoff.v1.json"
 
 
-def _load_fixture() -> dict[str, object]:
-    return json.loads(FIXTURE_PATH.read_text(encoding="utf-8"))
+def _fixture_paths() -> list[Path]:
+    return sorted(FIXTURE_DIR.glob("*.raw-artifact-handoff.v1.json"))
+
+
+def _load_fixture(path: Path = FIXTURE_PATH) -> dict[str, object]:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def test_all_raw_artifact_fixtures_validate_and_render_under_cap() -> None:
+    paths = _fixture_paths()
+
+    assert [path.name for path in paths] == [
+        "founder-grant-marcus-equity.raw-artifact-handoff.v1.json",
+        "mid-level-consultant-report-2.raw-artifact-handoff.v1.json",
+        "mother-address-year.raw-artifact-handoff.v1.json",
+        "third-year-phd-student.raw-artifact-handoff.v1.json",
+    ]
+
+    for path in paths:
+        payload = _load_fixture(path)
+        validate_raw_artifact_payload(payload, path=path)
+        rendered = render_raw_artifact_handoff(payload)
+        assert len(rendered) <= MAX_RENDER_CHARS
+        assert "why_provided" not in rendered
 
 
 def test_mother_no_worker_fixture_validates_and_declines_worker() -> None:
