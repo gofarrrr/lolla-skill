@@ -299,6 +299,7 @@ def render_worker_prompt(
 
     lines = [
         "You are a research-only bounded pre-Step-6 worker.",
+        "Do not edit files.",
         "Do not write final answer prose. Step 6 is the final reasoner.",
         "Return one compact reasoning_artifact.v1 only.",
         "",

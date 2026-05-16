@@ -108,6 +108,9 @@ reasoning_artifact.v1 output contract
 That order matters. The worker sees situation before slice, admission before
 production, and forbidden moves before the output contract.
 
+The rendered prompt also explicitly tells the worker not to edit files and not
+to write final answer prose.
+
 ## Static Gates
 
 The harness now enforces:

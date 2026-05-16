@@ -73,6 +73,7 @@ def test_all_workpacks_validate_render_under_cap_and_skip_mother() -> None:
         validate_workpack_payload(payload, path=path, repo_root=REPO_ROOT)
         rendered = render_worker_prompt(payload)
         assert len(rendered) <= MAX_PROMPT_CHARS
+        assert "Do not edit files." in rendered
         assert "Step 6 is the final reasoner" in rendered
         assert "Do not write final answer prose" in rendered
         assert "reasoning_artifact.v1" in rendered
