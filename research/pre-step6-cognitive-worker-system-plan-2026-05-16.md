@@ -41,6 +41,7 @@ research/pre-step6-compact-json-replay-readout-2026-05-16.md
 research/pre-step6-phd-producer-compressor-test-readout-2026-05-16.md
 research/pre-step6-pressure-card-phd-test-readout-2026-05-16.md
 research/pre-step6-pressure-card-three-case-replay-readout-2026-05-16.md
+research/pre-step6-pressure-card-answer-consumption-readout-2026-05-16.md
 ```
 
 The system goal is not more artifacts. The goal is a final answer that is
@@ -104,6 +105,12 @@ native pressure cards passed for PhD, founder, and consultant at 679-689 chars
 while preserving their case-specific gates. Treat pressure cards as the next
 challenger to careful raw-artifact consumption; final-answer lift is still
 unproven.
+
+2026-05-16 pressure-card answer-consumption update: native Step-6-style
+consumers produced valid public answer cores from current-control answers plus
+pressure cards. The comparison against raw answer cores was mixed: founder
+pressure won, consultant raw won, and PhD tie-stopped. Treat pressure cards as a
+useful first-pass consumption surface, not a replacement for raw artifacts.
 
 ## 2026-05-16 Critic Pass
 
@@ -272,8 +279,8 @@ After the handoff-practices update, the safer near-term research target is:
 conversation
   -> existing lanes and V60 stay unchanged
   -> deterministic relevance planner selects a tiny raw-artifact slice
-  -> Step 6 consumes compact reasoning_artifact.v1 pressure directly
-  -> optional pressure-card rendering when full artifacts are too bulky
+  -> optional pressure-card rendering for first-pass Step 6 consumption
+  -> raw artifacts remain available when card pressure is contested or lossy
   -> optional bounded worker-as-tool call only when admission gate passes
   -> optional reasoning_bundle.v1 only when raw artifacts create real clutter
   -> Step 6 arbitrates and writes the answer
@@ -651,6 +658,21 @@ This means the card shape is promising, but native producers need explicit
 field budgets. Do not infer from one passing PhD retry that worker orchestration
 or a reasoning bundle is ready. The next proof point is Step-6-style answer
 consumption against careful raw artifacts, not more private compactness.
+
+Answer-consumption result:
+
+```text
+PhD: tie_stop against raw
+founder: pressure_wins against raw
+consultant: raw_wins against pressure
+```
+
+This supports a hybrid research shape:
+
+```text
+card-first for Step 6 attention
+raw artifact available for audit, nuance, and contested pressure
+```
 
 ## reasoning_bundle.v1
 

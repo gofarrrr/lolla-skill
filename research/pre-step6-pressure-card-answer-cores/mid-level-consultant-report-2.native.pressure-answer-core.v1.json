@@ -1,0 +1,46 @@
+{
+  "schema_version": "pre_step6_pressure_answer_core.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mid-level-consultant-report-2",
+  "source_pressure_card": "research/pre-step6-pressure-card-fixtures/mid-level-consultant-report-2.native.pressure-card.v1.json",
+  "source_control_comparison": "research/pre-step6-raw-artifact-comparisons/mid-level-consultant-report-2.raw-vs-control-comparison.v1.json",
+  "answer_core": "Do not confront the partner, investigate on your own, access systems unusually, or decide the reporting path yourself. Tonight, write down exactly what you saw, preserve your own notes, tell your spouse only in broad strokes if needed, and contact two or three independent whistleblower attorneys.\n\nBefore counsel, your role is preservation, not investigation or legal judgment. Do not draw a final conclusion about wrongdoing, do not collect extra proof, and do not treat the company's GC as automatically aligned with you. Independent counsel should assess the facts and help choose among the GC, the audit committee, regulators, or another external path.\n\nAttend Wednesday normally unless independent counsel gives different instructions. Avoid sudden changes in behavior, unusual document access, private questioning, or anything that could look like self-directed evidence gathering. The right first move is counsel-led review with reversible conduct: move quickly, but do not file or accuse before counsel has assessed the evidence and reporting options.",
+  "expected_inclusions": [
+    "Do not confront the partner",
+    "contact two or three independent whistleblower attorneys",
+    "your role is preservation, not investigation or legal judgment",
+    "do not treat the company's GC as automatically aligned with you",
+    "choose among the GC, the audit committee, regulators, or another external path",
+    "Attend Wednesday normally unless independent counsel gives different instructions",
+    "move quickly, but do not file or accuse before counsel has assessed the evidence and reporting options"
+  ],
+  "expected_exclusions": [
+    "confront the partner directly",
+    "skip Wednesday without counsel instructions",
+    "file immediately before counsel review",
+    "artifact",
+    "bundle",
+    "worker",
+    "V60"
+  ],
+  "comparison_to_control": {
+    "preserved_from_control": [
+      "Keeps the counsel-first posture and the warning against confrontation, private investigation, unusual access, and choosing a reporting path alone.",
+      "Retains the practical first-night steps: write down what was seen, preserve personal notes, limit spouse disclosure, and contact multiple whistleblower attorneys.",
+      "Preserves normal Wednesday attendance and the emphasis on reversible first moves before any filing or accusation."
+    ],
+    "changed_from_pressure_card": [
+      "Makes the GC, audit committee, regulators, and external paths explicit so the answer does not imply the GC is the only destination.",
+      "Adds a clear warning that the GC may not be aligned with the consultant personally.",
+      "Separates no-investigation conduct from no-legal-judgment conduct, including not collecting extra proof and not reaching a final conclusion alone.",
+      "Clarifies that Wednesday conduct changes only if independent counsel gives specific instructions."
+    ],
+    "kept_private_or_discarded": [
+      "Internal labels and evaluation wording are not surfaced in the public answer.",
+      "The conditional discard language is not included because the public answer only needs the resulting advice.",
+      "Risk analysis is converted into concrete user-facing cautions about GC alignment, reporting path choice, and ordinary Wednesday behavior."
+    ]
+  },
+  "notes": "Native Step-6-style consumer output from current-control answer plus pressure card."
+}

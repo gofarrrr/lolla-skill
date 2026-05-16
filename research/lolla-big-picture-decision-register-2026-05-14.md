@@ -24,6 +24,7 @@ Related:
 - `research/pre-step6-native-subagent-producer-test-readout-2026-05-16.md`
 - `research/pre-step6-pressure-card-phd-test-readout-2026-05-16.md`
 - `research/pre-step6-pressure-card-three-case-replay-readout-2026-05-16.md`
+- `research/pre-step6-pressure-card-answer-consumption-readout-2026-05-16.md`
 - `research/meta-reasoning-corpus-question-bank-2026-05-15.md`
 - `research/post-lane-inquiry-card-vision-2026-05-15.md`
 - `research/provider-use-operating-structure-2026-05-15.md`
@@ -484,6 +485,18 @@ final-answer lift remains unproven
 no runtime promotion
 ```
 
+Pressure-card answer-consumption follow-up:
+
+```text
+native Step-6-style consumers wrote answer cores from control + pressure card
+all pressure answer cores validated and passed public machinery hygiene
+pressure-vs-raw comparison was mixed: PhD tie_stop, founder pressure_wins, consultant raw_wins
+pressure cards are useful first-pass consumption surfaces
+pressure cards do not replace raw artifacts
+best current research shape is card-first with raw available for contested/lossy pressure
+no runtime promotion
+```
+
 ## Target Architecture If Research Eventually Wins
 
 The likely long-term target is not a Bevelin lane, not a giant prompt, and not
@@ -532,7 +545,7 @@ is now raw-first but still research-only:
 ```text
 raw reasoning_artifact.v1
   -> optional compact pre_step6_pressure_card.v1 rendering
-  -> Step 6 final arbitration
+  -> card-first / raw-available Step 6 final arbitration
   -> optional reasoning_workpack.v1 / reasoning_bundle.v1 only if earned
 ```
 

@@ -138,3 +138,20 @@ readability and actionability
 
 Promotion remains blocked unless pressure-card consumption beats careful raw
 artifact consumption in final-answer quality, not only private compactness.
+
+2026-05-16 follow-up: the answer-consumption comparison now exists in:
+
+```text
+research/pre-step6-pressure-card-answer-consumption-readout-2026-05-16.md
+```
+
+It found a mixed result:
+
+```text
+PhD: tie_stop against raw
+founder: pressure_wins against raw
+consultant: raw_wins against pressure
+```
+
+So pressure cards are useful, but not a replacement for raw artifacts. The next
+research target is card-first with raw available for contested or lossy pressure.
