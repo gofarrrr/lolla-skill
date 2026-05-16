@@ -31,6 +31,7 @@ research/pre-step6-raw-artifact-render-validation-slice-2026-05-16.md
 research/pre-step6-raw-artifact-four-fixture-render-readout-2026-05-16.md
 research/pre-step6-raw-artifact-answer-consumption-readout-2026-05-16.md
 research/pre-step6-raw-vs-control-rubric-comparison-readout-2026-05-16.md
+research/pre-step6-native-subagent-producer-test-readout-2026-05-16.md
 ```
 
 The system goal is not more artifacts. The goal is a final answer that is
@@ -41,6 +42,11 @@ rejecting selected pressure.
 current-control answer cores in all four local comparisons, with zero control
 criterion wins. The indexed bundle challenger was not triggered, and worker
 orchestration remains unearned.
+
+2026-05-16 native-producer update: a research-only native subagent
+boundary/evidence-gate producer created useful artifacts in all four fixtures,
+but admitted the mother no-worker sentinel. Treat this as promising producer
+evidence and failed admission evidence, not runtime promotion.
 
 ## 2026-05-16 Critic Pass
 

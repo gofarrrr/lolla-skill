@@ -21,6 +21,7 @@ Related:
 - `research/pre-step6-raw-artifact-four-fixture-render-readout-2026-05-16.md`
 - `research/pre-step6-raw-artifact-answer-consumption-readout-2026-05-16.md`
 - `research/pre-step6-raw-vs-control-rubric-comparison-readout-2026-05-16.md`
+- `research/pre-step6-native-subagent-producer-test-readout-2026-05-16.md`
 - `research/meta-reasoning-corpus-question-bank-2026-05-15.md`
 - `research/post-lane-inquiry-card-vision-2026-05-15.md`
 - `research/provider-use-operating-structure-2026-05-15.md`
@@ -364,6 +365,15 @@ raw answer cores beat current-control answer cores in all four comparisons
 control wins zero criteria
 no bundle challenger triggered
 no worker orchestration authorized
+```
+
+Native-producer follow-up:
+
+```text
+native subagent boundary/evidence-gate workers produced useful artifacts
+admission gate failed the mother no-worker sentinel
+next slice must test admission before worker production
+no runtime promotion
 ```
 
 ## Target Architecture If Research Eventually Wins
