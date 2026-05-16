@@ -38,6 +38,7 @@ research/pre-step6-rendered-workpack-subagent-replay-readout-2026-05-16.md
 research/pre-step6-strict-worker-output-contract-readout-2026-05-16.md
 research/pre-step6-strict-json-subagent-replay-readout-2026-05-16.md
 research/pre-step6-compact-json-replay-readout-2026-05-16.md
+research/pre-step6-phd-producer-compressor-test-readout-2026-05-16.md
 ```
 
 The system goal is not more artifacts. The goal is a final answer that is
@@ -83,6 +84,11 @@ but all exceeded the 1,500-character cap. Treat compression as the next blocker.
 2026-05-16 compact-JSON replay update: compact skeleton prompts reduced output
 size materially but still failed the 1,500-character cap in PhD and consultant
 cases. Do not rerun more workers until the compression strategy changes.
+
+2026-05-16 producer/compressor update: a separate native compressor preserved
+the PhD fallback and Silva/data gates across four retries but still failed the
+1,500-character validator cap. Treat cap-obedient compression, not cognition,
+as the active blocker.
 
 ## 2026-05-16 Critic Pass
 

@@ -447,6 +447,18 @@ recommended next slice: one-case rich-worker plus compact-card compressor test
 no runtime promotion
 ```
 
+PhD producer/compressor follow-up:
+
+```text
+separate native compressor preserved fallback executability and Silva/data gates
+compression attempts: 1,677 -> 1,617 -> 1,569 -> 1,540 validator chars
+1,500-char cap passed 0/4
+meaning preservation passed
+cap-obedient compression failed
+next useful test is smaller Step-6 card schema, not another full artifact retry
+no runtime promotion
+```
+
 ## Target Architecture If Research Eventually Wins
 
 The likely long-term target is not a Bevelin lane, not a giant prompt, and not
