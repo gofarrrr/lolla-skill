@@ -13,10 +13,12 @@ research/pre-step6-hybrid-handoff-renderer-readout-2026-05-18.md
 research/pre-step6-rendered-hybrid-answer-cores/founder-grant-marcus-equity.native.rendered-hybrid-answer-core.v1.json
 research/pre-step6-rendered-hybrid-answer-cores/founder-grant-marcus-equity.high-clutter.native.rendered-hybrid-answer-core.v1.json
 research/pre-step6-rendered-hybrid-answer-cores/third-year-phd-student.native.rendered-hybrid-answer-core.v1.json
+research/pre-step6-rendered-hybrid-answer-cores/third-year-phd-student.conflict.native.rendered-hybrid-answer-core.v1.json
 research/pre-step6-rendered-hybrid-answer-cores/mid-level-consultant-report-2.native.rendered-hybrid-answer-core.v1.json
 research/pre-step6-rendered-hybrid-answer-cores/mother-address-year.native.rendered-hybrid-answer-core.v1.json
 research/pre-step6-mother-quiet-sentinel-readout-2026-05-18.md
 research/pre-step6-high-clutter-duplicate-conflict-readout-2026-05-18.md
+research/pre-step6-phd-conflict-preservation-readout-2026-05-18.md
 scripts/research/pre_step6_pressure_card_consumption.py
 tests/test_pre_step6_pressure_card_consumption.py
 ```
@@ -110,6 +112,7 @@ After that change, the founder retest preserved the missing risk.
 | Founder | Card only | Pass after renderer risk-rule fix | Dependency framing, measurement gates, vague-delay/disengagement risk |
 | Founder high-clutter | Card + 1 inspect-more + 2 quiet receipts | Pass | Dependency-system tension plus false-precision caution, without instrument catalog or architecture diagnosis |
 | PhD | Card + 1 inspect-more | Pass | Fallback/data gates plus base-rate humility |
+| PhD conflict | Existing PhD card + 1 inspect-more | Pass | Unresolved Silva-vs-fallback tension preserved without choosing both or defaulting to fallback |
 | Consultant | Card + 2 inspect-more | Pass | Counsel-first channel distinction plus counsel-incentive and Wednesday protocol |
 | Mother | No extra pressure | Pass after preserve-guidance tightening | Monitored-channel caution, reversible tripwires, humane trust repair without worker/lens/raw expansion |
 
@@ -130,6 +133,7 @@ Focused tests now assert the case-specific lift:
 founder: vague delay or flat refusal + Jake/Lina/platform/client continuity risk
 founder high-clutter: unproven dependency system + false-precision caution + no catalog/architecture drift
 PhD: broad PhD success-rate claims + humility checks + fallback gate
+PhD conflict: not choose Silva yet + not default to fallback + both executability gates need evidence
 consultant: reflexive channel preference + audit-committee-first + Wednesday response
 ```
 
@@ -194,6 +198,12 @@ slice should be high-clutter duplicate/conflict.
 dependency-system conflict and exit-math caution while demoting duplicate
 instrument pressure and architecture misfit pressure. A new `clutter_reduction`
 mode is not earned yet.
+
+2026-05-18 PhD conflict update: the existing PhD `card_first` fixture now passes
+a true two-sided conflict check. Native consumption preserved the unresolved
+Silva-vs-fallback tension without choosing Silva, defaulting to fallback,
+adding a new conflict mode, or adding quiet receipts. The next gate should be
+semi-blind comparison, not more schema.
 
 Do not wire this into live `/lolla` before clutter/conflict and blind or
 semi-blind comparisons show durable lift or equal quality with lower attention

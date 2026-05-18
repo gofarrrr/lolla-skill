@@ -134,6 +134,7 @@ def test_all_rendered_hybrid_answer_cores_validate() -> None:
         "founder-grant-marcus-equity.native.rendered-hybrid-answer-core.v1.json",
         "mid-level-consultant-report-2.native.rendered-hybrid-answer-core.v1.json",
         "mother-address-year.native.rendered-hybrid-answer-core.v1.json",
+        "third-year-phd-student.conflict.native.rendered-hybrid-answer-core.v1.json",
         "third-year-phd-student.native.rendered-hybrid-answer-core.v1.json",
     ]
 
@@ -158,6 +159,10 @@ def test_rendered_hybrid_answer_cores_preserve_case_specific_lift() -> None:
         RENDERED_ANSWER_CORE_DIR
         / "third-year-phd-student.native.rendered-hybrid-answer-core.v1.json"
     )["answer_core"].lower()
+    phd_conflict = _load(
+        RENDERED_ANSWER_CORE_DIR
+        / "third-year-phd-student.conflict.native.rendered-hybrid-answer-core.v1.json"
+    )["answer_core"].lower()
     consultant = _load(
         RENDERED_ANSWER_CORE_DIR
         / "mid-level-consultant-report-2.native.rendered-hybrid-answer-core.v1.json"
@@ -175,6 +180,9 @@ def test_rendered_hybrid_answer_cores_preserve_case_specific_lift() -> None:
     assert "broad phd success-rate claims" in phd
     assert "humility checks" in phd
     assert "fallback gate" in phd
+    assert "not choose the silva direction yet" in phd_conflict
+    assert "would not default to the safer lab path" in phd_conflict
+    assert "choose only after both executability gates have evidence" in phd_conflict
     assert "reflexive channel preference" in consultant
     assert "audit-committee-first" in consultant
     assert "if the partner raises the encounter" in consultant
@@ -250,6 +258,40 @@ def test_rendered_high_clutter_answer_core_demotes_duplicates() -> None:
     assert "revenue share" not in lower_answer
     assert "technical architecture" not in lower_answer
     assert "software architecture" not in lower_answer
+    assert "artifact" not in lower_answer
+    assert "bundle" not in lower_answer
+    assert "worker" not in lower_answer
+
+
+def test_rendered_phd_conflict_answer_core_preserves_unresolved_tension() -> None:
+    path = (
+        RENDERED_ANSWER_CORE_DIR
+        / "third-year-phd-student.conflict.native.rendered-hybrid-answer-core.v1.json"
+    )
+    payload = _load(path)
+    validate_rendered_hybrid_answer_core_payload(
+        payload,
+        path=path,
+        repo_root=REPO_ROOT,
+    )
+
+    assert payload["handoff_mode"] == "card_first"
+    assert payload["source_hybrid_handoff"].endswith(
+        "third-year-phd-student.hybrid-handoff.v1.json"
+    )
+    answer = payload["answer_core"]
+    assert isinstance(answer, str)
+    assert len(answer) <= 1193
+    lower_answer = answer.lower()
+    assert "not choose the silva direction yet" in lower_answer
+    assert "would not default to the safer lab path" in lower_answer
+    assert "two gates" in lower_answer
+    assert "usable data you can access soon" in lower_answer
+    assert "protect the fallback" in lower_answer
+    assert "choose only after both executability gates have evidence" in lower_answer
+    assert "numeric success priors" not in lower_answer
+    assert "new dissertation options" not in lower_answer
+    assert "run all three options in parallel" not in lower_answer
     assert "artifact" not in lower_answer
     assert "bundle" not in lower_answer
     assert "worker" not in lower_answer

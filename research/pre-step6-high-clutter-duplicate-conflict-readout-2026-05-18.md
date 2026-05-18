@@ -182,5 +182,14 @@ semi-blind comparison: current control vs raw-only vs rendered hybrid
 source/overclaim audit on any rendered-hybrid winner
 ```
 
+2026-05-18 follow-up: the non-founder conflict check now exists in:
+
+```text
+research/pre-step6-phd-conflict-preservation-readout-2026-05-18.md
+```
+
+It passed with the existing PhD `card_first` handoff. The next gate is
+semi-blind comparison.
+
 Promotion remains blocked until clutter/conflict and blind or semi-blind
 comparisons show durable lift or equal quality with lower attention load.

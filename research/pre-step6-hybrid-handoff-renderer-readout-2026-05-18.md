@@ -222,7 +222,7 @@ PYTHONPATH=. pytest tests/test_pre_step6_raw_artifacts.py tests/test_pre_step6_w
 Observed full result:
 
 ```text
-72 passed
+73 passed
 ```
 
 2026-05-18 renderer-rule update: after the rendered-consumption replay exposed

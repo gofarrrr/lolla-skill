@@ -568,6 +568,20 @@ next check should be a non-founder conflict case and semi-blind comparison
 no runtime promotion
 ```
 
+PhD true-conflict follow-up:
+
+```text
+tested non-founder conflict with existing card_first PhD handoff
+no new conflict mode and no quiet_receipts were needed
+live tension: high-upside Silva/data path vs finishable advisor-backed fallback
+native answer did not choose Silva yet and did not default to safer fallback
+answer required evidence for both executability gates
+answer preserved advisor-first sequence, base-rate humility, and no all-options-in-parallel drift
+conflict answer core was 1,141 chars versus 1,193 chars raw-only
+decision: true conflict passed for PhD, but promotion still requires semi-blind comparison
+no runtime promotion
+```
+
 ## Target Architecture If Research Eventually Wins
 
 The likely long-term target is not a Bevelin lane, not a giant prompt, and not
