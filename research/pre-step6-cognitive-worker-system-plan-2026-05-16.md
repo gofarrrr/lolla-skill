@@ -43,6 +43,7 @@ research/pre-step6-pressure-card-phd-test-readout-2026-05-16.md
 research/pre-step6-pressure-card-three-case-replay-readout-2026-05-16.md
 research/pre-step6-pressure-card-answer-consumption-readout-2026-05-16.md
 research/pre-step6-hybrid-card-first-raw-available-readout-2026-05-16.md
+research/pre-step6-hybrid-handoff-renderer-readout-2026-05-18.md
 ```
 
 The system goal is not more artifacts. The goal is a final answer that is
@@ -119,6 +120,12 @@ base-rate humility while preserving card-level fallback/data gates; consultant
 recovered counsel-incentive and Wednesday-protocol nuance while preserving
 card-level legal/channel boundaries. Treat this as the current favored research
 handoff surface.
+
+2026-05-18 hybrid-renderer update: the favored surface now has a research-only
+`pre_step6_hybrid_handoff.v1` validator/renderer, with card-only founder,
+card-plus-one-raw PhD, and card-plus-two-raw consultant fixtures. Rendered
+handoffs are 1,068-1,836 chars and tests enforce card-first ordering, raw
+inspect-more caps, source refs, and the no-product-promotion boundary.
 
 ## 2026-05-16 Critic Pass
 

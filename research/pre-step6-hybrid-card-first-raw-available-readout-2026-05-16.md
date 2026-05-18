@@ -152,3 +152,22 @@ comparison: raw-only vs pressure-only vs hybrid
 
 Do not wire this into live `/lolla`. The next proof should be an offline replay
 surface, not runtime behavior.
+
+2026-05-18 follow-up: the offline renderer now exists in:
+
+```text
+research/pre-step6-hybrid-handoff-renderer-readout-2026-05-18.md
+```
+
+It added:
+
+```text
+pre_step6_hybrid_handoff.v1
+card-first rendering
+optional inspect-more raw excerpts
+source validation
+caps
+three fixtures: founder, PhD, consultant
+```
+
+The next check is rendered-handoff consumption replay, not runtime wiring.

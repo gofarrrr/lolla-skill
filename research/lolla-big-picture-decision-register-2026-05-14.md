@@ -26,6 +26,7 @@ Related:
 - `research/pre-step6-pressure-card-three-case-replay-readout-2026-05-16.md`
 - `research/pre-step6-pressure-card-answer-consumption-readout-2026-05-16.md`
 - `research/pre-step6-hybrid-card-first-raw-available-readout-2026-05-16.md`
+- `research/pre-step6-hybrid-handoff-renderer-readout-2026-05-18.md`
 - `research/meta-reasoning-corpus-question-bank-2026-05-15.md`
 - `research/post-lane-inquiry-card-vision-2026-05-15.md`
 - `research/provider-use-operating-structure-2026-05-15.md`
@@ -508,6 +509,17 @@ both hybrid comparisons beat raw under hybrid_tie_with_raw_stops
 current favored research surface is card-first with selective raw inspection
 reasoning bundle remains unearned
 subagent runtime remains unearned
+no runtime promotion
+```
+
+Hybrid renderer follow-up:
+
+```text
+research-only pre_step6_hybrid_handoff.v1 renderer added
+fixtures: founder card-only, PhD card + one raw inspect-more, consultant card + two raw inspect-more
+rendered sizes: 1,068, 1,460, 1,836 chars
+tests enforce card-first order, raw caps, valid source refs, and inspect-more limits
+next check is rendered-handoff consumption replay
 no runtime promotion
 ```
 
