@@ -11,10 +11,12 @@ Related:
 ```text
 research/pre-step6-hybrid-handoff-renderer-readout-2026-05-18.md
 research/pre-step6-rendered-hybrid-answer-cores/founder-grant-marcus-equity.native.rendered-hybrid-answer-core.v1.json
+research/pre-step6-rendered-hybrid-answer-cores/founder-grant-marcus-equity.high-clutter.native.rendered-hybrid-answer-core.v1.json
 research/pre-step6-rendered-hybrid-answer-cores/third-year-phd-student.native.rendered-hybrid-answer-core.v1.json
 research/pre-step6-rendered-hybrid-answer-cores/mid-level-consultant-report-2.native.rendered-hybrid-answer-core.v1.json
 research/pre-step6-rendered-hybrid-answer-cores/mother-address-year.native.rendered-hybrid-answer-core.v1.json
 research/pre-step6-mother-quiet-sentinel-readout-2026-05-18.md
+research/pre-step6-high-clutter-duplicate-conflict-readout-2026-05-18.md
 scripts/research/pre_step6_pressure_card_consumption.py
 tests/test_pre_step6_pressure_card_consumption.py
 ```
@@ -106,6 +108,7 @@ After that change, the founder retest preserved the missing risk.
 | Case | Rendered Handoff Shape | Result | Lift Preserved |
 | --- | --- | --- | --- |
 | Founder | Card only | Pass after renderer risk-rule fix | Dependency framing, measurement gates, vague-delay/disengagement risk |
+| Founder high-clutter | Card + 1 inspect-more + 2 quiet receipts | Pass | Dependency-system tension plus false-precision caution, without instrument catalog or architecture diagnosis |
 | PhD | Card + 1 inspect-more | Pass | Fallback/data gates plus base-rate humility |
 | Consultant | Card + 2 inspect-more | Pass | Counsel-first channel distinction plus counsel-incentive and Wednesday protocol |
 | Mother | No extra pressure | Pass after preserve-guidance tightening | Monitored-channel caution, reversible tripwires, humane trust repair without worker/lens/raw expansion |
@@ -125,6 +128,7 @@ Focused tests now assert the case-specific lift:
 
 ```text
 founder: vague delay or flat refusal + Jake/Lina/platform/client continuity risk
+founder high-clutter: unproven dependency system + false-precision caution + no catalog/architecture drift
 PhD: broad PhD success-rate claims + humility checks + fallback gate
 consultant: reflexive channel preference + audit-committee-first + Wednesday response
 ```
@@ -184,6 +188,12 @@ they do not prove it can handle duplicate/conflict clutter better than raw-only
 2026-05-18 update: the mother quiet sentinel now passes after tightening the
 preserve instruction for monitored-channel caution. The next negative/control
 slice should be high-clutter duplicate/conflict.
+
+2026-05-18 high-clutter update: founder high-clutter now passes with existing
+`card_first` plus optional quiet receipts. The fixture preserved the
+dependency-system conflict and exit-math caution while demoting duplicate
+instrument pressure and architecture misfit pressure. A new `clutter_reduction`
+mode is not earned yet.
 
 Do not wire this into live `/lolla` before clutter/conflict and blind or
 semi-blind comparisons show durable lift or equal quality with lower attention

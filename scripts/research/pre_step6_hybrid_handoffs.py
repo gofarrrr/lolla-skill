@@ -28,6 +28,7 @@ MAX_INSPECT_MORE_ITEMS = 2
 MAX_RAW_EXCERPT_CHARS = 700
 MAX_RENDER_CHARS = 3200
 MAX_QUIET_GUIDANCE_ITEMS = 8
+MAX_QUIET_RECEIPTS = 3
 ALLOWED_STATUS = frozenset({"research_only"})
 ALLOWED_RUNTIME_POLICY = frozenset({"runtime_dormant"})
 ALLOWED_HANDOFF_MODES = frozenset({"card_first", "no_extra_pressure"})
@@ -43,6 +44,7 @@ HANDOFF_FIELDS = frozenset(
         "handoff_mode",
         "source_pressure_card",
         "inspect_more",
+        "quiet_receipts",
         "decline_reason",
         "quiet_guidance",
         "notes",
@@ -56,6 +58,15 @@ INSPECT_MORE_FIELDS = frozenset(
         "raw_excerpt",
         "use_only_to_recover",
         "do_not_expand_into",
+    }
+)
+QUIET_RECEIPT_FIELDS = frozenset(
+    {
+        "source_raw_handoff",
+        "artifact_id",
+        "why_quiet",
+        "reactivate_if",
+        "do_not_elevate_into",
     }
 )
 QUIET_GUIDANCE_FIELDS = frozenset(
@@ -200,6 +211,27 @@ def _validate_card_first_handoff(
             case_id=case_id,
         )
 
+    quiet_receipts = payload.get("quiet_receipts", [])
+    if not isinstance(quiet_receipts, list):
+        yield f"{path / 'quiet_receipts'}: quiet_receipts must be a list"
+        return
+    if len(quiet_receipts) > MAX_QUIET_RECEIPTS:
+        yield (
+            f"{path / 'quiet_receipts'}: "
+            f"quiet_receipts must not exceed {MAX_QUIET_RECEIPTS}"
+        )
+    for index, item in enumerate(quiet_receipts):
+        item_path = path / f"quiet_receipts[{index}]"
+        if not isinstance(item, dict):
+            yield f"{item_path}: quiet_receipt item must be an object"
+            continue
+        yield from _validate_quiet_receipt_item(
+            item,
+            path=item_path,
+            repo_root=repo_root,
+            case_id=case_id,
+        )
+
 
 def _validate_no_extra_pressure_handoff(
     payload: dict[str, object],
@@ -212,6 +244,8 @@ def _validate_no_extra_pressure_handoff(
             f"{path / 'source_pressure_card'}: "
             "no_extra_pressure handoff must not set source_pressure_card"
         )
+    if "quiet_receipts" in payload:
+        yield f"{path / 'quiet_receipts'}: no_extra_pressure handoff must not set quiet_receipts"
     if inspect_more:
         yield f"{path / 'inspect_more'}: must be empty for no_extra_pressure"
 
@@ -305,6 +339,52 @@ def _validate_inspect_more_item(
         )
 
 
+def _validate_quiet_receipt_item(
+    item: dict[str, object],
+    *,
+    path: Path,
+    repo_root: Path | None,
+    case_id: str,
+) -> Iterable[str]:
+    required = (
+        "source_raw_handoff",
+        "artifact_id",
+        "why_quiet",
+        "reactivate_if",
+        "do_not_elevate_into",
+    )
+    yield from _unknown_fields(item, QUIET_RECEIPT_FIELDS, path)
+    yield from _missing_fields(item, required, path)
+    if any(field not in item for field in required):
+        return
+
+    source_raw = _string(item.get("source_raw_handoff"))
+    if not source_raw:
+        yield f"{path / 'source_raw_handoff'}: must be non-empty"
+    elif repo_root is not None:
+        raw_path = repo_root / source_raw
+        if not raw_path.exists():
+            yield f"{path / 'source_raw_handoff'}: source raw handoff does not exist"
+        else:
+            raw_payload = load_raw_artifact_payload(raw_path)
+            validate_raw_artifact_payload(raw_payload, path=raw_path)
+            if _string(raw_payload.get("case_id")) != case_id:
+                yield f"{path / 'source_raw_handoff'}: source raw handoff case_id mismatch"
+            artifact_ids = {
+                _string(artifact.get("artifact_id"))
+                for artifact in raw_payload.get("artifacts", [])
+                if isinstance(artifact, dict)
+            }
+            artifact_id = _string(item.get("artifact_id"))
+            if artifact_id not in artifact_ids:
+                yield f"{path / 'artifact_id'}: unknown artifact_id '{artifact_id}'"
+
+    for field in ("artifact_id", "why_quiet", "reactivate_if", "do_not_elevate_into"):
+        value = _string(item.get(field))
+        if not value.strip():
+            yield f"{path / field}: must be non-empty"
+
+
 def render_hybrid_handoff(
     payload: dict[str, object],
     *,
@@ -328,7 +408,9 @@ def _render_card_first_handoff(
     card_path = repo_root / _string(payload.get("source_pressure_card"))
     card = load_json_payload(card_path)
     inspect_more = payload["inspect_more"]
+    quiet_receipts = payload.get("quiet_receipts", [])
     assert isinstance(inspect_more, list)
+    assert isinstance(quiet_receipts, list)
 
     lines = [
         "STEP 6 PRIVATE PRESSURE",
@@ -361,6 +443,20 @@ def _render_card_first_handoff(
             ]
         )
 
+    if quiet_receipts:
+        lines.extend(["QUIET RECEIPTS"])
+        for item in quiet_receipts:
+            assert isinstance(item, dict)
+            lines.extend(
+                [
+                    f"Quiet artifact: {_string(item.get('artifact_id'))}",
+                    f"Why quiet: {_string(item.get('why_quiet'))}",
+                    f"Reactivate only if: {_string(item.get('reactivate_if'))}",
+                    f"Do not elevate into: {_string(item.get('do_not_elevate_into'))}",
+                    "",
+                ]
+            )
+
     lines.extend(
         [
             "STEP 6 RULE",
@@ -372,6 +468,8 @@ def _render_card_first_handoff(
             "Do not turn inspect-more material into extra sections.",
         ]
     )
+    if quiet_receipts:
+        lines.append("Treat quiet receipts as demotion receipts, not answer obligations.")
 
     rendered = "\n".join(lines)
     if len(rendered) > max_chars:

@@ -34,6 +34,7 @@ def test_all_hybrid_handoff_fixtures_validate_and_render_under_cap() -> None:
     paths = _fixture_paths()
 
     assert [path.name for path in paths] == [
+        "founder-grant-marcus-equity.high-clutter.hybrid-handoff.v1.json",
         "founder-grant-marcus-equity.hybrid-handoff.v1.json",
         "mid-level-consultant-report-2.hybrid-handoff.v1.json",
         "mother-address-year.hybrid-handoff.v1.json",
@@ -74,6 +75,27 @@ def test_founder_fixture_authorizes_no_raw_inspection() -> None:
 
     assert payload["inspect_more"] == []
     assert "Raw inspection is not authorized for this fixture." in rendered
+
+
+def test_founder_high_clutter_fixture_demotes_duplicates_without_new_mode() -> None:
+    path = FIXTURE_DIR / "founder-grant-marcus-equity.high-clutter.hybrid-handoff.v1.json"
+    payload = _load(path)
+    validate_hybrid_handoff_payload(payload, path=path, repo_root=REPO_ROOT)
+    rendered = render_hybrid_handoff(payload, repo_root=REPO_ROOT)
+
+    assert payload["handoff_mode"] == "card_first"
+    assert len(payload["inspect_more"]) == 1
+    assert len(payload["quiet_receipts"]) == 2
+    assert "clutter_reduction" not in rendered
+    assert "QUIET RECEIPTS" in rendered
+    assert "Treat quiet receipts as demotion receipts, not answer obligations." in rendered
+    assert "Keep valuation uncertainty as support, not a second primary pressure" in rendered
+    assert "Recover false-precision caution without making valuation a second primary pressure" in rendered
+    assert "Do not repeat exit math, invent buyer multiples, or add a valuation section." in rendered
+    assert "founder_duplicate_middle_instruments" in rendered
+    assert "Do not add a long instrument catalog or make instruments the main advice." in rendered
+    assert "founder_misfit_architecture_note" in rendered
+    assert "Do not diagnose code architecture or platform design." in rendered
 
 
 def test_mother_quiet_fixture_authorizes_no_card_or_raw_inspection() -> None:
@@ -171,6 +193,30 @@ def test_hybrid_handoff_rejects_overlong_raw_excerpt() -> None:
         validate_hybrid_handoff_payload(payload, repo_root=REPO_ROOT)
 
 
+def test_hybrid_handoff_rejects_too_many_quiet_receipts() -> None:
+    path = FIXTURE_DIR / "founder-grant-marcus-equity.high-clutter.hybrid-handoff.v1.json"
+    payload = _load(path)
+    quiet_receipts = payload["quiet_receipts"]
+    assert isinstance(quiet_receipts, list)
+    quiet_receipts.extend(copy.deepcopy(quiet_receipts))
+
+    with pytest.raises(HybridHandoffValidationError, match="quiet_receipts"):
+        validate_hybrid_handoff_payload(payload, repo_root=REPO_ROOT)
+
+
+def test_hybrid_handoff_rejects_unknown_quiet_receipt_artifact_id() -> None:
+    path = FIXTURE_DIR / "founder-grant-marcus-equity.high-clutter.hybrid-handoff.v1.json"
+    payload = _load(path)
+    quiet_receipts = payload["quiet_receipts"]
+    assert isinstance(quiet_receipts, list)
+    first = quiet_receipts[0]
+    assert isinstance(first, dict)
+    first["artifact_id"] = "missing_artifact"
+
+    with pytest.raises(HybridHandoffValidationError, match="unknown artifact_id"):
+        validate_hybrid_handoff_payload(payload, repo_root=REPO_ROOT)
+
+
 def test_card_first_handoff_requires_source_pressure_card() -> None:
     path = FIXTURE_DIR / "founder-grant-marcus-equity.hybrid-handoff.v1.json"
     payload = _load(path)
@@ -207,4 +253,21 @@ def test_quiet_handoff_rejects_pressure_card_or_raw_inspection() -> None:
     ]
 
     with pytest.raises(HybridHandoffValidationError, match="must be empty"):
+        validate_hybrid_handoff_payload(payload, repo_root=REPO_ROOT)
+
+    payload = _load(path)
+    payload["quiet_receipts"] = [
+        {
+            "source_raw_handoff": (
+                "research/pre-step6-raw-artifact-fixtures/"
+                "mother-address-year.raw-artifact-handoff.v1.json"
+            ),
+            "artifact_id": "mother_duplicate_base_rate_caution",
+            "why_quiet": "Duplicate.",
+            "reactivate_if": "New facts.",
+            "do_not_elevate_into": "A new section.",
+        }
+    ]
+
+    with pytest.raises(HybridHandoffValidationError, match="must not set quiet_receipts"):
         validate_hybrid_handoff_payload(payload, repo_root=REPO_ROOT)

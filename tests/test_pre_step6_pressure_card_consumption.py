@@ -130,6 +130,7 @@ def test_all_rendered_hybrid_answer_cores_validate() -> None:
     paths = _rendered_answer_core_paths()
 
     assert [path.name for path in paths] == [
+        "founder-grant-marcus-equity.high-clutter.native.rendered-hybrid-answer-core.v1.json",
         "founder-grant-marcus-equity.native.rendered-hybrid-answer-core.v1.json",
         "mid-level-consultant-report-2.native.rendered-hybrid-answer-core.v1.json",
         "mother-address-year.native.rendered-hybrid-answer-core.v1.json",
@@ -149,6 +150,10 @@ def test_rendered_hybrid_answer_cores_preserve_case_specific_lift() -> None:
         RENDERED_ANSWER_CORE_DIR
         / "founder-grant-marcus-equity.native.rendered-hybrid-answer-core.v1.json"
     )["answer_core"].lower()
+    founder_high_clutter = _load(
+        RENDERED_ANSWER_CORE_DIR
+        / "founder-grant-marcus-equity.high-clutter.native.rendered-hybrid-answer-core.v1.json"
+    )["answer_core"].lower()
     phd = _load(
         RENDERED_ANSWER_CORE_DIR
         / "third-year-phd-student.native.rendered-hybrid-answer-core.v1.json"
@@ -164,6 +169,9 @@ def test_rendered_hybrid_answer_cores_preserve_case_specific_lift() -> None:
 
     assert "vague delay or flat refusal" in founder
     assert "jake/lina/platform/client continuity risk" in founder
+    assert "unproven dependency system" in founder_high_clutter
+    assert "not vague delay or flat rejection" in founder_high_clutter
+    assert "exit math only as false-precision caution" in founder_high_clutter
     assert "broad phd success-rate claims" in phd
     assert "humility checks" in phd
     assert "fallback gate" in phd
@@ -210,6 +218,41 @@ def test_rendered_quiet_answer_core_respects_no_extra_pressure_mode() -> None:
     assert "artifact" not in lower_answer
     assert "bundle" not in lower_answer
     assert "pressure card" not in lower_answer
+
+
+def test_rendered_high_clutter_answer_core_demotes_duplicates() -> None:
+    path = (
+        RENDERED_ANSWER_CORE_DIR
+        / "founder-grant-marcus-equity.high-clutter.native.rendered-hybrid-answer-core.v1.json"
+    )
+    payload = _load(path)
+    validate_rendered_hybrid_answer_core_payload(
+        payload,
+        path=path,
+        repo_root=REPO_ROOT,
+    )
+
+    assert payload["handoff_mode"] == "card_first"
+    assert payload["source_hybrid_handoff"].endswith(
+        "founder-grant-marcus-equity.high-clutter.hybrid-handoff.v1.json"
+    )
+    answer = payload["answer_core"]
+    assert isinstance(answer, str)
+    assert len(answer) <= 1500
+    lower_answer = answer.lower()
+    assert "unproven dependency system" in lower_answer
+    assert "not vague delay or flat rejection" in lower_answer
+    assert "marcus disengaging" in lower_answer
+    assert "exit math only as false-precision caution" in lower_answer
+    assert "the numbers should not carry the decision" in lower_answer
+    assert "catalog of instruments" in lower_answer
+    assert "phantom equity" not in lower_answer
+    assert "revenue share" not in lower_answer
+    assert "technical architecture" not in lower_answer
+    assert "software architecture" not in lower_answer
+    assert "artifact" not in lower_answer
+    assert "bundle" not in lower_answer
+    assert "worker" not in lower_answer
 
 
 def test_pressure_answer_core_rejects_missing_inclusion() -> None:

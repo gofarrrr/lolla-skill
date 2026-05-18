@@ -11,6 +11,7 @@ Related:
 ```text
 research/pre-step6-hybrid-card-first-raw-available-readout-2026-05-16.md
 research/pre-step6-hybrid-handoff-fixtures/founder-grant-marcus-equity.hybrid-handoff.v1.json
+research/pre-step6-hybrid-handoff-fixtures/founder-grant-marcus-equity.high-clutter.hybrid-handoff.v1.json
 research/pre-step6-hybrid-handoff-fixtures/third-year-phd-student.hybrid-handoff.v1.json
 research/pre-step6-hybrid-handoff-fixtures/mid-level-consultant-report-2.hybrid-handoff.v1.json
 research/pre-step6-hybrid-handoff-fixtures/mother-address-year.hybrid-handoff.v1.json
@@ -66,6 +67,7 @@ notes
 ```text
 source_pressure_card
 inspect_more
+quiet_receipts
 ```
 
 `no_extra_pressure` fields:
@@ -91,6 +93,16 @@ use_only_to_recover
 do_not_expand_into
 ```
 
+Quiet receipt fields:
+
+```text
+source_raw_handoff
+artifact_id
+why_quiet
+reactivate_if
+do_not_elevate_into
+```
+
 Allowed inspect reasons:
 
 ```text
@@ -104,6 +116,7 @@ Caps:
 
 ```text
 max inspect_more items: 2
+max quiet_receipts: 3
 max raw excerpt: 700 chars
 max rendered handoff: 3,200 chars
 ```
@@ -113,6 +126,7 @@ max rendered handoff: 3,200 chars
 | Case | Handoff Shape | Reason |
 | --- | --- | --- |
 | Founder | Card only | Pressure-only already beat raw |
+| Founder high-clutter | Card + 1 inspect-more + 2 quiet receipts | Recover false-precision caution while demoting duplicate/misfit artifacts |
 | PhD | Card + 1 inspect-more | Restore base-rate humility |
 | Consultant | Card + 2 inspect-more | Restore counsel-incentive and Wednesday-protocol nuance |
 | Mother | No extra pressure | Sentinel for declining a worker/lens/raw expansion |
@@ -120,6 +134,7 @@ max rendered handoff: 3,200 chars
 Rendered sizes:
 
 ```text
+founder high-clutter: 2,364 chars
 founder: 1,211 chars
 PhD: 1,603 chars
 consultant: 1,979 chars
@@ -134,7 +149,15 @@ The renderer preserves this order:
 STEP 6 PRIVATE PRESSURE
 CARD
 INSPECT MORE
+QUIET RECEIPTS
 STEP 6 RULE
+```
+
+`QUIET RECEIPTS` appears only when demoted artifacts need a private receipt.
+They are rendered as non-obligations:
+
+```text
+Treat quiet receipts as demotion receipts, not answer obligations.
 ```
 
 For `no_extra_pressure`, the renderer omits `CARD` and `INSPECT MORE`:
@@ -164,6 +187,7 @@ all fixtures validate
 all fixtures render under cap
 card block appears before inspect-more
 founder has no raw inspection
+founder high-clutter demotes duplicate/misfit artifacts with quiet receipts
 mother has no pressure card and no raw inspection
 PhD restores base-rate humility
 consultant restores counsel and Wednesday nuance
@@ -171,6 +195,8 @@ unknown inspect reasons are rejected
 too many inspect-more items are rejected
 unknown raw artifact ids are rejected
 overlong raw excerpts are rejected
+too many quiet receipts are rejected
+unknown quiet-receipt artifact ids are rejected
 quiet mode rejects source_pressure_card
 quiet mode rejects non-empty inspect_more
 ```
@@ -184,7 +210,7 @@ PYTHONPATH=. pytest tests/test_pre_step6_hybrid_handoffs.py
 Observed focused result:
 
 ```text
-12 passed
+15 passed
 ```
 
 Observed full research command:
@@ -196,7 +222,7 @@ PYTHONPATH=. pytest tests/test_pre_step6_raw_artifacts.py tests/test_pre_step6_w
 Observed full result:
 
 ```text
-68 passed
+72 passed
 ```
 
 2026-05-18 renderer-rule update: after the rendered-consumption replay exposed
@@ -231,6 +257,7 @@ or equal quality with lower Step-6 attention load across offline replays.
 ```text
 research/pre-step6-rendered-hybrid-consumption-readout-2026-05-18.md
 research/pre-step6-mother-quiet-sentinel-readout-2026-05-18.md
+research/pre-step6-high-clutter-duplicate-conflict-readout-2026-05-18.md
 ```
 
 The first founder replay exposed a missing renderer instruction: the consumer
@@ -244,3 +271,9 @@ inspect-more block. Native consumption initially softened the monitored-channel
 caution, so the preserve instruction was made explicit. The compact retest
 produced a valid 964-character answer core that preserved the caution and
 tripwires without adding worker/lens/leverage pressure.
+
+2026-05-18 high-clutter follow-up: the first clutter fixture uses the existing
+`card_first` mode plus optional `quiet_receipts`, not a new clutter mode. It
+renders one contested inspect-more item and two quiet receipts. Native
+consumption preserved dependency-system tension and false-precision caution
+without repeating the instrument catalog or diagnosing software architecture.

@@ -1,0 +1,35 @@
+{
+  "schema_version": "pre_step6_hybrid_handoff.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "founder-grant-marcus-equity",
+  "handoff_mode": "card_first",
+  "source_pressure_card": "research/pre-step6-pressure-card-fixtures/founder-grant-marcus-equity.native.pressure-card.v1.json",
+  "inspect_more": [
+    {
+      "reason": "contested",
+      "source_raw_handoff": "research/pre-step6-raw-artifact-fixtures/founder-grant-marcus-equity.raw-artifact-handoff.v1.json",
+      "artifact_id": "founder_duplicate_valuation_base_rate_gate",
+      "raw_excerpt": "Keep valuation uncertainty as support, not a second primary pressure; do not let $9-13M exit math carry the equity recommendation until buyer assumptions are tested.",
+      "use_only_to_recover": "Recover false-precision caution without making valuation a second primary pressure.",
+      "do_not_expand_into": "Do not repeat exit math, invent buyer multiples, or add a valuation section."
+    }
+  ],
+  "quiet_receipts": [
+    {
+      "source_raw_handoff": "research/pre-step6-raw-artifact-fixtures/founder-grant-marcus-equity.raw-artifact-handoff.v1.json",
+      "artifact_id": "founder_duplicate_middle_instruments",
+      "why_quiet": "The primary card already keeps staged evidence and intermediate instruments alive; repeating the catalog would overweight options.",
+      "reactivate_if": "The answer collapses Friday to bonus versus 15% equity plus board seat.",
+      "do_not_elevate_into": "Do not add a long instrument catalog or make instruments the main advice."
+    },
+    {
+      "source_raw_handoff": "research/pre-step6-raw-artifact-fixtures/founder-grant-marcus-equity.raw-artifact-handoff.v1.json",
+      "artifact_id": "founder_misfit_architecture_note",
+      "why_quiet": "The systems pressure is business-dependency pressure, not a software architecture diagnosis.",
+      "reactivate_if": "New facts make technical architecture failures the reason platform or delivery risk is changing.",
+      "do_not_elevate_into": "Do not diagnose code architecture or platform design."
+    }
+  ],
+  "notes": "High-clutter duplicate/conflict fixture: use the existing card-first surface, one contested inspect-more item for false-precision caution, and quiet receipts for duplicate/misfit artifacts. This deliberately avoids adding clutter_reduction mode."
+}

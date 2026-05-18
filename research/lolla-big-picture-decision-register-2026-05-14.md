@@ -552,6 +552,22 @@ next check should be high-clutter duplicate/conflict
 no runtime promotion
 ```
 
+High-clutter founder follow-up:
+
+```text
+tested founder high-clutter without adding clutter_reduction mode
+card_first gained optional quiet_receipts capped at 3
+quiet_receipts are demotion receipts, not answer obligations
+fixture used one contested inspect-more item for false-precision caution
+fixture used two quiet receipts for duplicate middle instruments and architecture misfit
+rendered handoff was 2,364 chars; native answer core was 1,499 chars
+answer preserved dependency-system tension, staged evidence, vague-delay risk, and exit-math caution
+answer did not repeat a long instrument catalog or diagnose software architecture
+decision: card_first plus quiet_receipts is enough for first clutter slice
+next check should be a non-founder conflict case and semi-blind comparison
+no runtime promotion
+```
+
 ## Target Architecture If Research Eventually Wins
 
 The likely long-term target is not a Bevelin lane, not a giant prompt, and not
