@@ -229,3 +229,12 @@ naturalness debt does not rise
 Only after multiple replay records pass source/overclaim audit should we discuss
 whether a real replay generator is worth building. Live `/lolla` remains out of
 scope.
+
+2026-05-18 follow-up: the ledger now has a second replay record:
+
+```text
+research/pre-step6-mother-quiet-replay-readout-2026-05-18.md
+```
+
+Mother quiet passed as a restraint replay with low naturalness debt. It does not
+change the product boundary or authorize runtime work.

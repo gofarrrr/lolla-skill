@@ -38,35 +38,59 @@ def test_all_source_overclaim_audits_validate() -> None:
     paths = _audit_paths()
 
     assert [path.name for path in paths] == [
+        "mother-address-year.quiet.rendered-hybrid.source-overclaim-audit.v1.json",
         "third-year-phd-student.conflict.rendered-hybrid.source-overclaim-audit.v1.json",
     ]
 
-    payload = _load(paths[0])
-    validate_source_overclaim_audit_payload(payload, path=paths[0], repo_root=REPO_ROOT)
+    expected_debt = {
+        "mother-deciding-address-year": "low",
+        "third-year-phd-student": "medium",
+    }
 
-    assert payload["audit_result"] == "pass"
-    assert payload["decision"] == "counts_as_replay_win"
-    assert payload["naturalness_debt_level"] == "medium"
+    for path in paths:
+        payload = _load(path)
+        validate_source_overclaim_audit_payload(
+            payload,
+            path=path,
+            repo_root=REPO_ROOT,
+        )
+
+        assert payload["audit_result"] == "pass"
+        assert payload["decision"] == "counts_as_replay_win"
+        assert payload["naturalness_debt_level"] == expected_debt[payload["case_id"]]
 
 
 def test_all_replay_records_validate() -> None:
     paths = _replay_paths()
 
     assert [path.name for path in paths] == [
+        "mother-address-year.quiet.off-default-replay.v1.json",
         "third-year-phd-student.conflict.off-default-replay.v1.json",
     ]
 
-    payload = _load(paths[0])
-    validate_replay_record_payload(payload, path=paths[0], repo_root=REPO_ROOT)
-
-    summary = summarize_replay_record(payload)
-    assert summary == {
-        "comparison_decision": "rendered_hybrid_wins",
-        "replay_decision": "pass_to_next_replay",
-        "product_promotion": "blocked",
-        "naturalness_debt_level": "medium",
-        "present_or_watch_failure_modes": 1,
+    expected_summaries = {
+        "mother-deciding-address-year": {
+            "comparison_decision": "rendered_hybrid_wins",
+            "replay_decision": "pass_to_next_replay",
+            "product_promotion": "blocked",
+            "naturalness_debt_level": "low",
+            "present_or_watch_failure_modes": 0,
+        },
+        "third-year-phd-student": {
+            "comparison_decision": "rendered_hybrid_wins",
+            "replay_decision": "pass_to_next_replay",
+            "product_promotion": "blocked",
+            "naturalness_debt_level": "medium",
+            "present_or_watch_failure_modes": 1,
+        },
     }
+
+    for path in paths:
+        payload = _load(path)
+        validate_replay_record_payload(payload, path=path, repo_root=REPO_ROOT)
+
+        summary = summarize_replay_record(payload)
+        assert summary == expected_summaries[payload["case_id"]]
 
 
 def test_source_overclaim_audit_rejects_pass_with_failed_check() -> None:

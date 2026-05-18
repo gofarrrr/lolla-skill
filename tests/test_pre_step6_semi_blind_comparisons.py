@@ -32,21 +32,41 @@ def test_all_semi_blind_comparisons_validate() -> None:
     paths = _comparison_paths()
 
     assert [path.name for path in paths] == [
+        "mother-address-year.quiet.semi-blind-comparison.v1.json",
         "third-year-phd-student.conflict.semi-blind-comparison.v1.json",
     ]
 
-    payload = _load(paths[0])
-    validate_semi_blind_comparison_payload(payload, path=paths[0], repo_root=REPO_ROOT)
+    expected_scores = {
+        "mother-deciding-address-year": {
+            "control": 2,
+            "raw": 0,
+            "rendered_hybrid": 4,
+            "tie": 2,
+            "label_counts": {"A": 2, "B": 4, "C": 0, "tie": 2},
+            "criterion_count_decision": "rendered_hybrid_wins",
+            "aggregate_decision": "rendered_hybrid_wins",
+        },
+        "third-year-phd-student": {
+            "control": 1,
+            "raw": 3,
+            "rendered_hybrid": 3,
+            "tie": 1,
+            "label_counts": {"A": 3, "B": 3, "C": 1, "tie": 1},
+            "criterion_count_decision": "tie_stop",
+            "aggregate_decision": "rendered_hybrid_wins",
+        },
+    }
 
-    score = score_semi_blind_comparison(payload)
-    assert score["control"] == 1
-    assert score["raw"] == 3
-    assert score["rendered_hybrid"] == 3
-    assert score["tie"] == 1
-    assert score["label_counts"] == {"A": 3, "B": 3, "C": 1, "tie": 1}
-    assert score["criterion_count_decision"] == "tie_stop"
-    assert score["aggregate_decision"] == "rendered_hybrid_wins"
-    assert payload["promotion_read"] == "pass_to_replay"
+    for path in paths:
+        payload = _load(path)
+        validate_semi_blind_comparison_payload(
+            payload,
+            path=path,
+            repo_root=REPO_ROOT,
+        )
+        score = score_semi_blind_comparison(payload)
+        assert score == expected_scores[payload["case_id"]]
+        assert payload["promotion_read"] == "pass_to_replay"
 
 
 def test_semi_blind_comparison_rejects_duplicate_blind_map_arm() -> None:
