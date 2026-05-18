@@ -25,6 +25,10 @@ from pre_step6_workpacks import (
     load_json_payload,
     validate_pressure_card_payload,
 )
+from pre_step6_hybrid_handoffs import (
+    load_handoff_payload,
+    validate_hybrid_handoff_payload,
+)
 
 
 PRESSURE_ANSWER_CORE_SCHEMA_VERSION = "pre_step6_pressure_answer_core.v1"
@@ -33,6 +37,9 @@ PRESSURE_VS_RAW_COMPARISON_SCHEMA_VERSION = (
 )
 HYBRID_ANSWER_CORE_SCHEMA_VERSION = "pre_step6_hybrid_answer_core.v1"
 HYBRID_VS_RAW_COMPARISON_SCHEMA_VERSION = "pre_step6_hybrid_vs_raw_comparison.v1"
+RENDERED_HYBRID_ANSWER_CORE_SCHEMA_VERSION = (
+    "pre_step6_rendered_hybrid_answer_core.v1"
+)
 ALLOWED_STATUS = frozenset({"research_only"})
 ALLOWED_RUNTIME_POLICY = frozenset({"runtime_dormant"})
 ALLOWED_PRESSURE_CRITERION_WINNERS = frozenset({"raw", "pressure", "tie"})
@@ -124,6 +131,27 @@ HYBRID_CRITERION_FIELDS = frozenset(
         "pressure_evidence",
         "hybrid_evidence",
         "rationale",
+    }
+)
+RENDERED_HYBRID_ANSWER_CORE_FIELDS = frozenset(
+    {
+        "schema_version",
+        "status",
+        "runtime_policy",
+        "case_id",
+        "source_hybrid_handoff",
+        "answer_core",
+        "expected_inclusions",
+        "expected_exclusions",
+        "renderer_followed",
+        "notes",
+    }
+)
+RENDERER_FOLLOWED_FIELDS = frozenset(
+    {
+        "card_used_first",
+        "inspected_raw_only_for_named_nuance",
+        "no_extra_sections_from_inspect_more",
     }
 )
 
@@ -233,6 +261,35 @@ def validate_hybrid_vs_raw_comparison_file(
     repo_root: Path | None = None,
 ) -> None:
     validate_hybrid_vs_raw_comparison_payload(
+        load_pressure_consumption_payload(path),
+        path=Path(path),
+        repo_root=repo_root,
+    )
+
+
+def validate_rendered_hybrid_answer_core_payload(
+    payload: dict[str, object],
+    *,
+    path: Path = Path("<payload>"),
+    repo_root: Path | None = None,
+) -> None:
+    errors = list(
+        iter_rendered_hybrid_answer_core_errors(
+            payload,
+            path=Path(path),
+            repo_root=repo_root,
+        )
+    )
+    if errors:
+        raise PressureCardConsumptionValidationError("; ".join(errors))
+
+
+def validate_rendered_hybrid_answer_core_file(
+    path: Path,
+    *,
+    repo_root: Path | None = None,
+) -> None:
+    validate_rendered_hybrid_answer_core_payload(
         load_pressure_consumption_payload(path),
         path=Path(path),
         repo_root=repo_root,
@@ -664,6 +721,97 @@ def score_hybrid_vs_raw_comparison(payload: dict[str, object]) -> dict[str, obje
     }
 
 
+def iter_rendered_hybrid_answer_core_errors(
+    payload: dict[str, object],
+    *,
+    path: Path = Path("<payload>"),
+    repo_root: Path | None = None,
+) -> Iterable[str]:
+    required = (
+        "schema_version",
+        "status",
+        "runtime_policy",
+        "case_id",
+        "source_hybrid_handoff",
+        "answer_core",
+        "expected_inclusions",
+        "expected_exclusions",
+        "renderer_followed",
+    )
+    yield from _unknown_fields(payload, RENDERED_HYBRID_ANSWER_CORE_FIELDS, path)
+    yield from _missing_fields(payload, required, path)
+    if any(field not in payload for field in required):
+        return
+
+    if _string(payload.get("schema_version")) != RENDERED_HYBRID_ANSWER_CORE_SCHEMA_VERSION:
+        yield f"{path}: schema_version must be {RENDERED_HYBRID_ANSWER_CORE_SCHEMA_VERSION}"
+    yield from _validate_common_policy(payload, path=path)
+    case_id = _string(payload.get("case_id"))
+
+    source_handoff = _string(payload.get("source_hybrid_handoff"))
+    if not source_handoff:
+        yield f"{path / 'source_hybrid_handoff'}: must be non-empty"
+    elif repo_root is not None:
+        handoff_path = repo_root / source_handoff
+        if not handoff_path.exists():
+            yield f"{path / 'source_hybrid_handoff'}: source handoff does not exist"
+        else:
+            handoff_payload = load_handoff_payload(handoff_path)
+            validate_hybrid_handoff_payload(
+                handoff_payload,
+                path=handoff_path,
+                repo_root=repo_root,
+            )
+            if _string(handoff_payload.get("case_id")) != case_id:
+                yield f"{path / 'source_hybrid_handoff'}: case_id mismatch"
+
+    answer_core = _string(payload.get("answer_core"))
+    if not answer_core.strip():
+        yield f"{path / 'answer_core'}: answer_core must be non-empty"
+    elif len(answer_core) > MAX_ANSWER_CORE_CHARS:
+        yield (
+            f"{path / 'answer_core'}: "
+            f"answer_core must not exceed {MAX_ANSWER_CORE_CHARS} chars"
+        )
+    try:
+        validate_public_answer_hygiene(answer_core)
+    except RawArtifactValidationError as exc:
+        yield f"{path / 'answer_core'}: {exc}"
+
+    yield from _validate_string_list(
+        payload.get("expected_inclusions"),
+        path=path / "expected_inclusions",
+        required_non_empty=True,
+    )
+    if isinstance(payload.get("expected_inclusions"), list):
+        lower_answer = answer_core.lower()
+        for index, expected in enumerate(payload["expected_inclusions"]):
+            if isinstance(expected, str) and expected.lower() not in lower_answer:
+                yield (
+                    f"{path / 'expected_inclusions' / str(index)}: "
+                    "expected inclusion missing from answer_core"
+                )
+
+    yield from _validate_string_list(
+        payload.get("expected_exclusions"),
+        path=path / "expected_exclusions",
+        required_non_empty=False,
+    )
+    if isinstance(payload.get("expected_exclusions"), list):
+        lower_answer = answer_core.lower()
+        for index, forbidden in enumerate(payload["expected_exclusions"]):
+            if isinstance(forbidden, str) and forbidden.lower() in lower_answer:
+                yield (
+                    f"{path / 'expected_exclusions' / str(index)}: "
+                    "expected exclusion appears in answer_core"
+                )
+
+    yield from _validate_renderer_followed(
+        payload.get("renderer_followed"),
+        path=path / "renderer_followed",
+    )
+
+
 def _validate_common_policy(
     payload: dict[str, object],
     *,
@@ -765,6 +913,22 @@ def _validate_hybrid_criterion(
             yield f"{path / field}: {field} must be non-empty"
 
 
+def _validate_renderer_followed(value: object, *, path: Path) -> Iterable[str]:
+    if not isinstance(value, dict):
+        yield f"{path}: renderer_followed must be an object"
+        return
+    required = (
+        "card_used_first",
+        "inspected_raw_only_for_named_nuance",
+        "no_extra_sections_from_inspect_more",
+    )
+    yield from _unknown_fields(value, RENDERER_FOLLOWED_FIELDS, path)
+    yield from _missing_fields(value, required, path)
+    for field in required:
+        if value.get(field) is not True:
+            yield f"{path / field}: must be true"
+
+
 def _missing_fields(
     payload: dict[str, object],
     required: Sequence[str],
@@ -821,6 +985,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--comparison", action="store_true")
     parser.add_argument("--hybrid-answer-core", action="store_true")
     parser.add_argument("--hybrid-comparison", action="store_true")
+    parser.add_argument("--rendered-hybrid-answer-core", action="store_true")
     parser.add_argument("--repo-root", type=Path)
     args = parser.parse_args(argv)
 
@@ -858,9 +1023,14 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         return 0
 
+    if args.rendered_hybrid_answer_core:
+        validate_rendered_hybrid_answer_core_file(args.path, repo_root=args.repo_root)
+        print(f"valid rendered hybrid answer core: {args.path}")
+        return 0
+
     parser.error(
         "choose --answer-core, --comparison, --hybrid-answer-core, "
-        "or --hybrid-comparison"
+        "--hybrid-comparison, or --rendered-hybrid-answer-core"
     )
     return 2
 

@@ -27,6 +27,7 @@ Related:
 - `research/pre-step6-pressure-card-answer-consumption-readout-2026-05-16.md`
 - `research/pre-step6-hybrid-card-first-raw-available-readout-2026-05-16.md`
 - `research/pre-step6-hybrid-handoff-renderer-readout-2026-05-18.md`
+- `research/pre-step6-rendered-hybrid-consumption-readout-2026-05-18.md`
 - `research/meta-reasoning-corpus-question-bank-2026-05-15.md`
 - `research/post-lane-inquiry-card-vision-2026-05-15.md`
 - `research/provider-use-operating-structure-2026-05-15.md`
@@ -520,6 +521,19 @@ fixtures: founder card-only, PhD card + one raw inspect-more, consultant card + 
 rendered sizes: 1,068, 1,460, 1,836 chars
 tests enforce card-first order, raw caps, valid source refs, and inspect-more limits
 next check is rendered-handoff consumption replay
+no runtime promotion
+```
+
+Rendered hybrid consumption follow-up:
+
+```text
+native Step-6-style consumers produced valid answer cores from rendered handoffs
+first founder attempt dropped risk-if-ignored, exposing a renderer-rule gap
+renderer now says to preserve risk-if-ignored unless it clearly misfits
+after fix, founder preserved vague-delay/disengagement risk
+PhD preserved fallback/data gates plus base-rate humility
+consultant preserved counsel/channel boundaries plus counsel-incentive and Wednesday protocol
+next check should be mother no-worker sentinel or high-clutter duplicate/conflict case
 no runtime promotion
 ```
 

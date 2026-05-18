@@ -17,6 +17,7 @@ from pre_step6_pressure_card_consumption import (  # noqa: E402
     validate_hybrid_vs_raw_comparison_payload,
     validate_pressure_answer_core_payload,
     validate_pressure_vs_raw_comparison_payload,
+    validate_rendered_hybrid_answer_core_payload,
 )
 
 
@@ -25,6 +26,9 @@ ANSWER_CORE_DIR = REPO_ROOT / "research" / "pre-step6-pressure-card-answer-cores
 COMPARISON_DIR = REPO_ROOT / "research" / "pre-step6-pressure-vs-raw-comparisons"
 HYBRID_ANSWER_CORE_DIR = REPO_ROOT / "research" / "pre-step6-hybrid-answer-cores"
 HYBRID_COMPARISON_DIR = REPO_ROOT / "research" / "pre-step6-hybrid-vs-raw-comparisons"
+RENDERED_ANSWER_CORE_DIR = (
+    REPO_ROOT / "research" / "pre-step6-rendered-hybrid-answer-cores"
+)
 
 
 def _answer_core_paths() -> list[Path]:
@@ -41,6 +45,12 @@ def _hybrid_answer_core_paths() -> list[Path]:
 
 def _hybrid_comparison_paths() -> list[Path]:
     return sorted(HYBRID_COMPARISON_DIR.glob("*.hybrid-vs-raw-comparison.v1.json"))
+
+
+def _rendered_answer_core_paths() -> list[Path]:
+    return sorted(
+        RENDERED_ANSWER_CORE_DIR.glob("*.rendered-hybrid-answer-core.v1.json")
+    )
 
 
 def _load(path: Path) -> dict[str, object]:
@@ -114,6 +124,47 @@ def test_all_hybrid_vs_raw_comparisons_validate() -> None:
         )
         score = score_hybrid_vs_raw_comparison(payload)
         assert score["aggregate_decision"] == "hybrid_wins"
+
+
+def test_all_rendered_hybrid_answer_cores_validate() -> None:
+    paths = _rendered_answer_core_paths()
+
+    assert [path.name for path in paths] == [
+        "founder-grant-marcus-equity.native.rendered-hybrid-answer-core.v1.json",
+        "mid-level-consultant-report-2.native.rendered-hybrid-answer-core.v1.json",
+        "third-year-phd-student.native.rendered-hybrid-answer-core.v1.json",
+    ]
+
+    for path in paths:
+        validate_rendered_hybrid_answer_core_payload(
+            _load(path),
+            path=path,
+            repo_root=REPO_ROOT,
+        )
+
+
+def test_rendered_hybrid_answer_cores_preserve_case_specific_lift() -> None:
+    founder = _load(
+        RENDERED_ANSWER_CORE_DIR
+        / "founder-grant-marcus-equity.native.rendered-hybrid-answer-core.v1.json"
+    )["answer_core"].lower()
+    phd = _load(
+        RENDERED_ANSWER_CORE_DIR
+        / "third-year-phd-student.native.rendered-hybrid-answer-core.v1.json"
+    )["answer_core"].lower()
+    consultant = _load(
+        RENDERED_ANSWER_CORE_DIR
+        / "mid-level-consultant-report-2.native.rendered-hybrid-answer-core.v1.json"
+    )["answer_core"].lower()
+
+    assert "vague delay or flat refusal" in founder
+    assert "jake/lina/platform/client continuity risk" in founder
+    assert "broad phd success-rate claims" in phd
+    assert "humility checks" in phd
+    assert "fallback gate" in phd
+    assert "reflexive channel preference" in consultant
+    assert "audit-committee-first" in consultant
+    assert "if the partner raises the encounter" in consultant
 
 
 def test_pressure_answer_core_rejects_missing_inclusion() -> None:
@@ -193,3 +244,35 @@ def test_hybrid_vs_raw_comparison_rejects_inconsistent_aggregate() -> None:
         match="aggregate_decision",
     ):
         validate_hybrid_vs_raw_comparison_payload(payload, repo_root=REPO_ROOT)
+
+
+def test_rendered_hybrid_answer_core_rejects_false_renderer_flag() -> None:
+    path = (
+        RENDERED_ANSWER_CORE_DIR
+        / "third-year-phd-student.native.rendered-hybrid-answer-core.v1.json"
+    )
+    payload = _load(path)
+    renderer_followed = payload["renderer_followed"]
+    assert isinstance(renderer_followed, dict)
+    renderer_followed["card_used_first"] = False
+
+    with pytest.raises(
+        PressureCardConsumptionValidationError,
+        match="card_used_first",
+    ):
+        validate_rendered_hybrid_answer_core_payload(payload, repo_root=REPO_ROOT)
+
+
+def test_rendered_hybrid_answer_core_rejects_unknown_field() -> None:
+    path = (
+        RENDERED_ANSWER_CORE_DIR
+        / "founder-grant-marcus-equity.native.rendered-hybrid-answer-core.v1.json"
+    )
+    payload = _load(path)
+    payload["private_handoff_text"] = "Should not be embedded here."
+
+    with pytest.raises(
+        PressureCardConsumptionValidationError,
+        match="unknown field",
+    ):
+        validate_rendered_hybrid_answer_core_payload(payload, repo_root=REPO_ROOT)

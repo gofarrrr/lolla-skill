@@ -44,6 +44,7 @@ research/pre-step6-pressure-card-three-case-replay-readout-2026-05-16.md
 research/pre-step6-pressure-card-answer-consumption-readout-2026-05-16.md
 research/pre-step6-hybrid-card-first-raw-available-readout-2026-05-16.md
 research/pre-step6-hybrid-handoff-renderer-readout-2026-05-18.md
+research/pre-step6-rendered-hybrid-consumption-readout-2026-05-18.md
 ```
 
 The system goal is not more artifacts. The goal is a final answer that is
@@ -126,6 +127,13 @@ handoff surface.
 card-plus-one-raw PhD, and card-plus-two-raw consultant fixtures. Rendered
 handoffs are 1,068-1,836 chars and tests enforce card-first ordering, raw
 inspect-more caps, source refs, and the no-product-promotion boundary.
+
+2026-05-18 rendered-consumption update: native Step-6-style consumers used the
+rendered hybrid handoffs to produce valid public answer cores in founder, PhD,
+and consultant fixtures. The first founder attempt dropped risk-if-ignored, so
+the renderer now explicitly tells Step 6 to preserve risk-if-ignored unless it
+misfits. After that fix, rendered consumption preserved the target lift in all
+three fixtures.
 
 ## 2026-05-16 Critic Pass
 

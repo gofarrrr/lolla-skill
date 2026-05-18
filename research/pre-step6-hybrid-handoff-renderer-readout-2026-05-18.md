@@ -98,9 +98,9 @@ max rendered handoff: 3,200 chars
 Rendered sizes:
 
 ```text
-founder: 1,068 chars
-PhD: 1,460 chars
-consultant: 1,836 chars
+founder: 1,212 chars
+PhD: 1,604 chars
+consultant: 1,980 chars
 ```
 
 ## Rendered Shape
@@ -160,8 +160,12 @@ PYTHONPATH=. pytest tests/test_pre_step6_raw_artifacts.py tests/test_pre_step6_w
 Observed full result:
 
 ```text
-58 passed
+62 passed
 ```
+
+2026-05-18 renderer-rule update: after the rendered-consumption replay exposed
+a missing risk-if-ignored instruction, the renderer was tightened. The rendered
+sizes above reflect the tightened rule.
 
 ## Decision
 
@@ -185,3 +189,14 @@ verify the renderer, not just the hand-authored prompt, preserves the lift
 
 Promotion remains blocked until rendered hybrid handoffs show final-answer lift
 or equal quality with lower Step-6 attention load across offline replays.
+
+2026-05-18 follow-up: rendered-handoff consumption now exists in:
+
+```text
+research/pre-step6-rendered-hybrid-consumption-readout-2026-05-18.md
+```
+
+The first founder replay exposed a missing renderer instruction: the consumer
+softened risk-if-ignored. The renderer was tightened to preserve
+risk-if-ignored unless it clearly misfits. After that change, rendered
+consumption preserved target lift in founder, PhD, and consultant.

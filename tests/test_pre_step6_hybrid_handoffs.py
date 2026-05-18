@@ -46,6 +46,7 @@ def test_all_hybrid_handoff_fixtures_validate_and_render_under_cap() -> None:
         assert len(rendered) <= MAX_RENDER_CHARS
         assert "Use the card first." in rendered
         assert "Use the card as the default." in rendered
+        assert "Preserve the card's risk-if-ignored" in rendered
         assert "Inspect raw only for the named nuance." in rendered
 
 

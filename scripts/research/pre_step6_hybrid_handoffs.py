@@ -259,6 +259,8 @@ def render_hybrid_handoff(
             "STEP 6 RULE",
             "Write the public answer from the conversation plus this pressure.",
             "Use the card as the default.",
+            "Preserve the card's risk-if-ignored unless it clearly misfits.",
+            "Use relax/discard conditions to soften or skip pressure that is already handled.",
             "Inspect raw only for the named nuance.",
             "Do not turn inspect-more material into extra sections.",
         ]
