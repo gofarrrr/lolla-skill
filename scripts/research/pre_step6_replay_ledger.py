@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Research-only replay records for the pre-Step-6 pressure transport surface.
+"""Research-only replay ledger records for the pre-Step-6 pressure surface.
 
 This validates off-by-default replay evidence. It does not generate answers,
 route /lolla, launch workers, build bundles, update product docs, or promote
@@ -116,6 +116,7 @@ REPLAY_GATE_FIELDS = frozenset(
         "candidate_handoff_loaded",
         "step6_style_answer_core_loaded",
         "semi_blind_comparison_recorded",
+        "source_overclaim_audit_recorded",
         "source_overclaim_audit_passed",
         "runtime_wiring_allowed",
         "product_promotion_allowed",
@@ -128,14 +129,14 @@ FAILURE_MODE_FIELDS = frozenset({"failure_mode", "status", "evidence"})
 NATURALNESS_DEBT_FIELDS = frozenset({"level", "evidence", "mitigation"})
 
 
-class ReplayHarnessValidationError(ValueError):
+class ReplayLedgerValidationError(ValueError):
     pass
 
 
 def load_replay_payload(path: Path) -> dict[str, object]:
     payload = json.loads(Path(path).read_text(encoding="utf-8"))
     if not isinstance(payload, dict):
-        raise ReplayHarnessValidationError(f"{path}: payload must be an object")
+        raise ReplayLedgerValidationError(f"{path}: payload must be an object")
     return payload
 
 
@@ -153,7 +154,7 @@ def validate_source_overclaim_audit_payload(
         )
     )
     if errors:
-        raise ReplayHarnessValidationError("; ".join(errors))
+        raise ReplayLedgerValidationError("; ".join(errors))
 
 
 def validate_source_overclaim_audit_file(
@@ -178,7 +179,7 @@ def validate_replay_record_payload(
         iter_replay_record_errors(payload, path=Path(path), repo_root=repo_root)
     )
     if errors:
-        raise ReplayHarnessValidationError("; ".join(errors))
+        raise ReplayLedgerValidationError("; ".join(errors))
 
 
 def validate_replay_record_file(
@@ -360,7 +361,18 @@ def iter_replay_record_errors(
             if _string(audit_payload.get("case_id")) != case_id:
                 yield f"{path / 'source_overclaim_audit_ref'}: case_id mismatch"
 
-    yield from _validate_gates(payload.get("gates"), path=path / "gates")
+    yield from _validate_cross_ref_custody(
+        payload,
+        path=path,
+        comparison_payload=comparison_payload,
+        audit_payload=audit_payload,
+    )
+    yield from _validate_gates(
+        payload.get("gates"),
+        path=path / "gates",
+        outcome=payload.get("outcome"),
+        audit_payload=audit_payload,
+    )
     yield from _validate_outcome(
         payload.get("outcome"),
         path=path / "outcome",
@@ -590,13 +602,84 @@ def _validate_replay_artifact_refs(
                 yield f"{path / 'rendered_hybrid_answer_core'}: case_id mismatch"
 
 
-def _validate_gates(value: object, *, path: Path) -> Iterable[str]:
+def _validate_cross_ref_custody(
+    payload: dict[str, object],
+    *,
+    path: Path,
+    comparison_payload: dict[str, object] | None,
+    audit_payload: dict[str, object] | None,
+) -> Iterable[str]:
+    artifact_refs = payload.get("artifact_refs")
+    if not isinstance(artifact_refs, dict):
+        return
+
+    comparison_ref = _string(payload.get("comparison_ref"))
+    if comparison_payload is not None:
+        candidate_refs = comparison_payload.get("candidate_refs")
+        if isinstance(candidate_refs, dict):
+            expected_pairs = (
+                (
+                    "control_answer_comparison",
+                    "control_comparison",
+                    "comparison candidate control ref",
+                ),
+                (
+                    "raw_answer_core",
+                    "raw_answer_core",
+                    "comparison candidate raw ref",
+                ),
+                (
+                    "rendered_hybrid_answer_core",
+                    "rendered_hybrid_answer_core",
+                    "comparison candidate rendered ref",
+                ),
+            )
+            for comparison_field, replay_field, label in expected_pairs:
+                if _string(candidate_refs.get(comparison_field)) != _string(
+                    artifact_refs.get(replay_field)
+                ):
+                    yield (
+                        f"{path}: {label} must match "
+                        f"artifact_refs.{replay_field}"
+                    )
+
+    if audit_payload is None:
+        return
+    if _string(audit_payload.get("audited_answer_core_ref")) != _string(
+        artifact_refs.get("rendered_hybrid_answer_core")
+    ):
+        yield (
+            f"{path}: audit audited_answer_core_ref must match "
+            "artifact_refs.rendered_hybrid_answer_core"
+        )
+    source_refs = audit_payload.get("source_refs")
+    if not isinstance(source_refs, dict):
+        return
+    expected_pairs = (
+        ("source_hybrid_handoff", "hybrid_handoff", "audit source_hybrid_handoff"),
+        ("raw_artifact_handoff", "raw_artifact_handoff", "audit raw_artifact_handoff"),
+    )
+    for audit_field, replay_field, label in expected_pairs:
+        if _string(source_refs.get(audit_field)) != _string(artifact_refs.get(replay_field)):
+            yield f"{path}: {label} must match artifact_refs.{replay_field}"
+    if _string(source_refs.get("semi_blind_comparison")) != comparison_ref:
+        yield f"{path}: audit semi_blind_comparison must match comparison_ref"
+
+
+def _validate_gates(
+    value: object,
+    *,
+    path: Path,
+    outcome: object,
+    audit_payload: dict[str, object] | None,
+) -> Iterable[str]:
     if not isinstance(value, dict):
         yield f"{path}: gates must be an object"
         return
     yield from _unknown_fields(value, REPLAY_GATE_FIELDS, path)
     yield from _missing_fields(value, tuple(REPLAY_GATE_FIELDS), path)
     required_true = REPLAY_GATE_FIELDS - {
+        "source_overclaim_audit_passed",
         "runtime_wiring_allowed",
         "product_promotion_allowed",
     }
@@ -606,6 +689,25 @@ def _validate_gates(value: object, *, path: Path) -> Iterable[str]:
     for field in ("runtime_wiring_allowed", "product_promotion_allowed"):
         if value.get(field) is not False:
             yield f"{path / field}: must be false"
+    source_passed = value.get("source_overclaim_audit_passed")
+    if not isinstance(source_passed, bool):
+        yield f"{path / 'source_overclaim_audit_passed'}: must be boolean"
+    if audit_payload is not None and isinstance(source_passed, bool):
+        expected_passed = _string(audit_payload.get("audit_result")) == "pass"
+        if source_passed is not expected_passed:
+            yield (
+                f"{path / 'source_overclaim_audit_passed'}: must match "
+                "source audit result"
+            )
+    if (
+        isinstance(outcome, dict)
+        and _string(outcome.get("replay_decision")) == "pass_to_next_replay"
+        and source_passed is not True
+    ):
+        yield (
+            f"{path / 'source_overclaim_audit_passed'}: "
+            "pass_to_next_replay requires source audit pass"
+        )
 
 
 def _validate_outcome(
@@ -765,7 +867,7 @@ def _string(value: object) -> str:
 
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
-        description="Validate research-only pre-Step-6 replay records."
+        description="Validate research-only pre-Step-6 replay ledger records."
     )
     parser.add_argument("path", type=Path)
     parser.add_argument("--repo-root", type=Path)
@@ -782,7 +884,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         validate_replay_record_file(args.path, repo_root=args.repo_root)
         summary = summarize_replay_record(load_replay_payload(args.path))
         print(
-            f"valid replay record: {args.path} "
+            f"valid replay ledger record: {args.path} "
             f"comparison={summary['comparison_decision']} "
             f"replay={summary['replay_decision']} "
             f"naturalness_debt={summary['naturalness_debt_level']} "

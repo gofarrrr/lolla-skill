@@ -12,8 +12,8 @@ Related:
 research/pre-step6-replay-records/third-year-phd-student.conflict.off-default-replay.v1.json
 research/pre-step6-source-overclaim-audits/third-year-phd-student.conflict.rendered-hybrid.source-overclaim-audit.v1.json
 research/pre-step6-semi-blind-comparisons/third-year-phd-student.conflict.semi-blind-comparison.v1.json
-scripts/research/pre_step6_replay_harness.py
-tests/test_pre_step6_replay_harness.py
+scripts/research/pre_step6_replay_ledger.py
+tests/test_pre_step6_replay_ledger.py
 ```
 
 ## Question
@@ -79,11 +79,28 @@ The replay record checks:
 ```text
 archived refs exist and validate
 semi-blind comparison still resolves to rendered_hybrid_wins
-source/overclaim audit passes
+source/overclaim audit is recorded
+source/overclaim audit passes when the replay decision is pass_to_next_replay
 runtime wiring remains false
 product promotion remains false
 high naturalness debt blocks pass_to_next_replay
 ```
+
+2026-05-18 cleanup: this surface should be called a replay ledger, not a strong
+replay harness. It records and validates off-default replay evidence. It does
+not generate answer variants.
+
+The cleanup also makes failure evidence first-class:
+
+```text
+source_overclaim_audit_recorded: required true
+source_overclaim_audit_passed: conditional
+```
+
+`pass_to_next_replay` requires the audit pass. `retest` and `stop` can record a
+failed audit cleanly. The ledger also checks cross-ref custody between the
+replay record, source/overclaim audit, and semi-blind comparison so refs cannot
+quietly drift.
 
 ## Audit Result
 
