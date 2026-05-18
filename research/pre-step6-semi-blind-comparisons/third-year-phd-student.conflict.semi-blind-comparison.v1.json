@@ -1,0 +1,113 @@
+{
+  "schema_version": "pre_step6_semi_blind_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "third-year-phd-student",
+  "comparison_kind": "semi_blind_native_judge",
+  "blind_seed": 17,
+  "candidate_refs": {
+    "control_answer_comparison": "research/pre-step6-raw-artifact-comparisons/third-year-phd-student.raw-vs-control-comparison.v1.json",
+    "raw_answer_core": "research/pre-step6-raw-artifact-answer-cores/third-year-phd-student.raw-answer-core.v1.json",
+    "rendered_hybrid_answer_core": "research/pre-step6-rendered-hybrid-answer-cores/third-year-phd-student.conflict.native.rendered-hybrid-answer-core.v1.json"
+  },
+  "blind_map": {
+    "A": "raw",
+    "B": "rendered_hybrid",
+    "C": "control"
+  },
+  "criteria": [
+    {
+      "criterion_id": "decision_usefulness",
+      "question": "Which answer gives the most actionable decision structure without prematurely choosing a path?",
+      "winner_label": "B",
+      "evidence_by_label": {
+        "A": "Names a two-week constraint test and fallback reality, but the stop-loss mechanics are less explicit.",
+        "B": "Names two gates, a dated probe, evidence to continue or stop, and sequencing.",
+        "C": "Preserves the main sequence but gives a thinner procedure for deciding."
+      },
+      "rationale": "The blinded judge preferred B because it gives the clearest decision procedure while keeping the choice unresolved."
+    },
+    {
+      "criterion_id": "source_grounding",
+      "question": "Which answer stays best grounded in the given situation and avoids unsupported additions?",
+      "winner_label": "tie",
+      "evidence_by_label": {
+        "A": "Uses advisor permission, Silva reality check, fallback continuity, and qualitative base-rate caution.",
+        "B": "Uses advisor support, data access, collaborator depth, three-month timing, and advisor retirement pressure.",
+        "C": "Uses advisor-first sequence, Silva data/collaboration reality, and no parallel options."
+      },
+      "rationale": "The blinded judge did not see a material grounding gap among the three candidates."
+    },
+    {
+      "criterion_id": "overclaim_risk",
+      "question": "Which answer is least likely to overclaim probabilities, certainty, or strategic confidence?",
+      "winner_label": "A",
+      "evidence_by_label": {
+        "A": "Most explicitly keeps broad success-rate talk qualitative unless a real reference class exists.",
+        "B": "Also blocks broad PhD success-rate claims, but has a more categorical gate list.",
+        "C": "Avoids unsupported numbers but does not explicitly guard against broad success-rate use."
+      },
+      "rationale": "The blinded judge preferred A for the narrow overclaim-risk criterion."
+    },
+    {
+      "criterion_id": "answer_length_cognitive_load",
+      "question": "Which answer is easiest to process while preserving enough decision substance?",
+      "winner_label": "C",
+      "evidence_by_label": {
+        "A": "Moderately compact but conceptually denser than C.",
+        "B": "Most complete but has more moving parts.",
+        "C": "Shortest and easiest to process."
+      },
+      "rationale": "The blinded judge preferred C on pure lightness, even though C was less complete."
+    },
+    {
+      "criterion_id": "machinery_hygiene",
+      "question": "Which answer best avoids visible private machinery and system-shaped phrasing?",
+      "winner_label": "A",
+      "evidence_by_label": {
+        "A": "Uses natural language around constraint tests and fallback reality without visible private terms.",
+        "B": "Has no private terms, but its gate structure feels more visibly procedural.",
+        "C": "Has no private terms and is clean, but loses some needed structure."
+      },
+      "rationale": "The blinded judge treated this as both machinery leakage and procedural feel; all candidates pass literal public-hygiene checks."
+    },
+    {
+      "criterion_id": "conflict_preservation",
+      "question": "Which answer best preserves the unresolved Silva-vs-fallback tension?",
+      "winner_label": "B",
+      "evidence_by_label": {
+        "A": "Does not choose Silva yet and protects fallback, but leans more toward fallback reality as the controlling condition.",
+        "B": "Explicitly refuses both choosing Silva now and defaulting to the safer lab path.",
+        "C": "Does not choose the hybrid direction, but it is less explicit about not collapsing to fallback."
+      },
+      "rationale": "The blinded judge preferred B because it keeps both live pressures visible."
+    },
+    {
+      "criterion_id": "duplicate_demotion",
+      "question": "Which answer consolidates repeated concerns without over-weighting one theme?",
+      "winner_label": "B",
+      "evidence_by_label": {
+        "A": "Repeats fallback reality and constraint testing in multiple forms.",
+        "B": "Compresses overlapping concerns into two distinct gates.",
+        "C": "Short enough to avoid duplication, but less discriminating."
+      },
+      "rationale": "The blinded judge preferred B because it demotes repeated pressure into a compact two-gate structure."
+    },
+    {
+      "criterion_id": "unforcedness",
+      "question": "Which answer feels most naturally reasoned from the situation rather than shaped by a hidden checklist?",
+      "winner_label": "A",
+      "evidence_by_label": {
+        "A": "Feels most like situated judgment while retaining the main cautions.",
+        "B": "Strong but somewhat engineered.",
+        "C": "Natural but underdeveloped for the stakes."
+      },
+      "rationale": "The blinded judge preferred A on unforcedness, making this a close pass rather than a sweep."
+    }
+  ],
+  "tie_break_rule": "rendered_must_beat_or_simplify",
+  "aggregate_winner_label": "B",
+  "aggregate_decision": "rendered_hybrid_wins",
+  "promotion_read": "pass_to_replay",
+  "notes": "One native subagent judged the three candidates under blinded labels. Criterion-count is close because raw wins overclaim/machinery/unforcedness and control wins pure lightness; the aggregate preference for B rests on decision usefulness, conflict preservation, and duplicate demotion. This is a pass to off-by-default replay evidence, not product promotion."
+}
