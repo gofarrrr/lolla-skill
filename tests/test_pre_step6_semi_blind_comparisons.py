@@ -32,11 +32,21 @@ def test_all_semi_blind_comparisons_validate() -> None:
     paths = _comparison_paths()
 
     assert [path.name for path in paths] == [
+        "founder-grant-marcus-equity.high-clutter.semi-blind-comparison.v1.json",
         "mother-address-year.quiet.semi-blind-comparison.v1.json",
         "third-year-phd-student.conflict.semi-blind-comparison.v1.json",
     ]
 
     expected_scores = {
+        "founder-grant-marcus-equity": {
+            "control": 2,
+            "raw": 0,
+            "rendered_hybrid": 4,
+            "tie": 2,
+            "label_counts": {"A": 0, "B": 2, "C": 4, "tie": 2},
+            "criterion_count_decision": "rendered_hybrid_wins",
+            "aggregate_decision": "rendered_hybrid_wins",
+        },
         "mother-deciding-address-year": {
             "control": 2,
             "raw": 0,

@@ -38,11 +38,13 @@ def test_all_source_overclaim_audits_validate() -> None:
     paths = _audit_paths()
 
     assert [path.name for path in paths] == [
+        "founder-grant-marcus-equity.high-clutter.rendered-hybrid.source-overclaim-audit.v1.json",
         "mother-address-year.quiet.rendered-hybrid.source-overclaim-audit.v1.json",
         "third-year-phd-student.conflict.rendered-hybrid.source-overclaim-audit.v1.json",
     ]
 
     expected_debt = {
+        "founder-grant-marcus-equity": "medium",
         "mother-deciding-address-year": "low",
         "third-year-phd-student": "medium",
     }
@@ -64,11 +66,19 @@ def test_all_replay_records_validate() -> None:
     paths = _replay_paths()
 
     assert [path.name for path in paths] == [
+        "founder-grant-marcus-equity.high-clutter.off-default-replay.v1.json",
         "mother-address-year.quiet.off-default-replay.v1.json",
         "third-year-phd-student.conflict.off-default-replay.v1.json",
     ]
 
     expected_summaries = {
+        "founder-grant-marcus-equity": {
+            "comparison_decision": "rendered_hybrid_wins",
+            "replay_decision": "pass_to_next_replay",
+            "product_promotion": "blocked",
+            "naturalness_debt_level": "medium",
+            "present_or_watch_failure_modes": 2,
+        },
         "mother-deciding-address-year": {
             "comparison_decision": "rendered_hybrid_wins",
             "replay_decision": "pass_to_next_replay",

@@ -238,3 +238,13 @@ research/pre-step6-mother-quiet-replay-readout-2026-05-18.md
 
 Mother quiet passed as a restraint replay with low naturalness debt. It does not
 change the product boundary or authorize runtime work.
+
+2026-05-18 follow-up: the ledger now has a third replay record:
+
+```text
+research/pre-step6-founder-high-clutter-replay-readout-2026-05-18.md
+```
+
+Founder high-clutter passed with medium naturalness debt and bloat watch flags.
+It supports continuing static replay, not adding a replay generator or product
+wiring.
