@@ -248,3 +248,14 @@ research/pre-step6-founder-high-clutter-replay-readout-2026-05-18.md
 Founder high-clutter passed with medium naturalness debt and bloat watch flags.
 It supports continuing static replay, not adding a replay generator or product
 wiring.
+
+2026-05-18 aggregate follow-up:
+
+```text
+research/pre-step6-replay-ledger-aggregate-readout-2026-05-18.md
+```
+
+The aggregate keeps product promotion, runtime wiring, new modes, bundles,
+workers, and replay-generator work blocked. It recommends challenging the
+riskiest local-rubric pass with a native or less-author-biased founder
+high-clutter rejudge before any generator proposal.
