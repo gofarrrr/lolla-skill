@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Research-only validation/rendering for pre-Step-6 hybrid handoffs.
 
-This module validates the card-first/raw-available handoff surface. It is
-deliberately outside the live pipeline. It does not launch workers, select
-truth, change /lolla behavior, or promote product docs.
+This module validates the card-first/raw-available handoff surface and the
+quiet no-extra-pressure negative-control surface. It is deliberately outside
+the live pipeline. It does not launch workers, select truth, change /lolla
+behavior, or promote product docs.
 """
 from __future__ import annotations
 
@@ -26,8 +27,10 @@ HYBRID_HANDOFF_SCHEMA_VERSION = "pre_step6_hybrid_handoff.v1"
 MAX_INSPECT_MORE_ITEMS = 2
 MAX_RAW_EXCERPT_CHARS = 700
 MAX_RENDER_CHARS = 3200
+MAX_QUIET_GUIDANCE_ITEMS = 8
 ALLOWED_STATUS = frozenset({"research_only"})
 ALLOWED_RUNTIME_POLICY = frozenset({"runtime_dormant"})
+ALLOWED_HANDOFF_MODES = frozenset({"card_first", "no_extra_pressure"})
 ALLOWED_INSPECT_REASONS = frozenset(
     {"lossy", "contested", "high_stakes", "missing_nuance"}
 )
@@ -37,8 +40,11 @@ HANDOFF_FIELDS = frozenset(
         "status",
         "runtime_policy",
         "case_id",
+        "handoff_mode",
         "source_pressure_card",
         "inspect_more",
+        "decline_reason",
+        "quiet_guidance",
         "notes",
     }
 )
@@ -50,6 +56,13 @@ INSPECT_MORE_FIELDS = frozenset(
         "raw_excerpt",
         "use_only_to_recover",
         "do_not_expand_into",
+    }
+)
+QUIET_GUIDANCE_FIELDS = frozenset(
+    {
+        "use_current_answer",
+        "preserve",
+        "do_not_add",
     }
 )
 
@@ -101,7 +114,7 @@ def iter_hybrid_handoff_errors(
         "status",
         "runtime_policy",
         "case_id",
-        "source_pressure_card",
+        "handoff_mode",
         "inspect_more",
     )
     yield from _unknown_fields(payload, HANDOFF_FIELDS, path)
@@ -119,9 +132,47 @@ def iter_hybrid_handoff_errors(
     if not case_id.strip():
         yield f"{path / 'case_id'}: case_id must be non-empty"
 
+    mode = _string(payload.get("handoff_mode"))
+    if mode not in ALLOWED_HANDOFF_MODES:
+        yield f"{path / 'handoff_mode'}: unknown handoff_mode '{mode}'"
+        return
+
+    inspect_more = payload.get("inspect_more")
+    if not isinstance(inspect_more, list):
+        yield f"{path / 'inspect_more'}: inspect_more must be a list"
+        return
+    if mode == "card_first":
+        yield from _validate_card_first_handoff(
+            payload,
+            path=path,
+            repo_root=repo_root,
+            case_id=case_id,
+            inspect_more=inspect_more,
+        )
+    elif mode == "no_extra_pressure":
+        yield from _validate_no_extra_pressure_handoff(
+            payload,
+            path=path,
+            inspect_more=inspect_more,
+        )
+
+
+def _validate_card_first_handoff(
+    payload: dict[str, object],
+    *,
+    path: Path,
+    repo_root: Path | None,
+    case_id: str,
+    inspect_more: list[object],
+) -> Iterable[str]:
+    if "decline_reason" in payload:
+        yield f"{path / 'decline_reason'}: card_first handoff must not set decline_reason"
+    if "quiet_guidance" in payload:
+        yield f"{path / 'quiet_guidance'}: card_first handoff must not set quiet_guidance"
+
     source_card = _string(payload.get("source_pressure_card"))
     if not source_card:
-        yield f"{path / 'source_pressure_card'}: must be non-empty"
+        yield f"{path / 'source_pressure_card'}: must be non-empty for card_first"
     elif repo_root is not None:
         card_path = repo_root / source_card
         if not card_path.exists():
@@ -132,10 +183,6 @@ def iter_hybrid_handoff_errors(
             if not card_path.name.startswith(case_id):
                 yield f"{path / 'source_pressure_card'}: source pressure card case_id mismatch"
 
-    inspect_more = payload.get("inspect_more")
-    if not isinstance(inspect_more, list):
-        yield f"{path / 'inspect_more'}: inspect_more must be a list"
-        return
     if len(inspect_more) > MAX_INSPECT_MORE_ITEMS:
         yield (
             f"{path / 'inspect_more'}: "
@@ -152,6 +199,53 @@ def iter_hybrid_handoff_errors(
             repo_root=repo_root,
             case_id=case_id,
         )
+
+
+def _validate_no_extra_pressure_handoff(
+    payload: dict[str, object],
+    *,
+    path: Path,
+    inspect_more: list[object],
+) -> Iterable[str]:
+    if "source_pressure_card" in payload:
+        yield (
+            f"{path / 'source_pressure_card'}: "
+            "no_extra_pressure handoff must not set source_pressure_card"
+        )
+    if inspect_more:
+        yield f"{path / 'inspect_more'}: must be empty for no_extra_pressure"
+
+    decline_reason = _string(payload.get("decline_reason"))
+    if not decline_reason.strip():
+        yield f"{path / 'decline_reason'}: must be non-empty for no_extra_pressure"
+
+    quiet_guidance = payload.get("quiet_guidance")
+    if not isinstance(quiet_guidance, dict):
+        yield f"{path / 'quiet_guidance'}: must be an object for no_extra_pressure"
+        return
+    yield from _unknown_fields(quiet_guidance, QUIET_GUIDANCE_FIELDS, path / "quiet_guidance")
+    yield from _missing_fields(
+        quiet_guidance,
+        ("use_current_answer", "preserve", "do_not_add"),
+        path / "quiet_guidance",
+    )
+    if not _string(quiet_guidance.get("use_current_answer")).strip():
+        yield f"{path / 'quiet_guidance' / 'use_current_answer'}: must be non-empty"
+    for field in ("preserve", "do_not_add"):
+        value = quiet_guidance.get(field)
+        if not isinstance(value, list):
+            yield f"{path / 'quiet_guidance' / field}: must be a list"
+            continue
+        if not value:
+            yield f"{path / 'quiet_guidance' / field}: must not be empty"
+        if len(value) > MAX_QUIET_GUIDANCE_ITEMS:
+            yield (
+                f"{path / 'quiet_guidance' / field}: "
+                f"must not exceed {MAX_QUIET_GUIDANCE_ITEMS}"
+            )
+        for index, item in enumerate(value):
+            if not isinstance(item, str) or not item.strip():
+                yield f"{path / 'quiet_guidance' / field / str(index)}: item must be a non-empty string"
 
 
 def _validate_inspect_more_item(
@@ -218,6 +312,19 @@ def render_hybrid_handoff(
     max_chars: int = MAX_RENDER_CHARS,
 ) -> str:
     validate_hybrid_handoff_payload(payload, repo_root=repo_root)
+    mode = _string(payload.get("handoff_mode"))
+    if mode == "no_extra_pressure":
+        return _render_no_extra_pressure_handoff(payload, max_chars=max_chars)
+
+    return _render_card_first_handoff(payload, repo_root=repo_root, max_chars=max_chars)
+
+
+def _render_card_first_handoff(
+    payload: dict[str, object],
+    *,
+    repo_root: Path,
+    max_chars: int,
+) -> str:
     card_path = repo_root / _string(payload.get("source_pressure_card"))
     card = load_json_payload(card_path)
     inspect_more = payload["inspect_more"]
@@ -263,6 +370,53 @@ def render_hybrid_handoff(
             "Use relax/discard conditions to soften or skip pressure that is already handled.",
             "Inspect raw only for the named nuance.",
             "Do not turn inspect-more material into extra sections.",
+        ]
+    )
+
+    rendered = "\n".join(lines)
+    if len(rendered) > max_chars:
+        raise HybridHandoffValidationError(
+            f"rendered handoff is {len(rendered)} chars; max is {max_chars}"
+        )
+    return rendered
+
+
+def _render_no_extra_pressure_handoff(
+    payload: dict[str, object],
+    *,
+    max_chars: int,
+) -> str:
+    quiet_guidance = payload["quiet_guidance"]
+    assert isinstance(quiet_guidance, dict)
+    preserve = quiet_guidance["preserve"]
+    do_not_add = quiet_guidance["do_not_add"]
+    assert isinstance(preserve, list)
+    assert isinstance(do_not_add, list)
+
+    lines = [
+        "STEP 6 PRIVATE PRESSURE",
+        "",
+        "No extra pressure is authorized for this fixture.",
+        "Use the existing answer path unless the conversation itself requires change.",
+        "Do not add a worker, lens, or raw inspection because this handoff exists.",
+        "",
+        f"Case: {_string(payload.get('case_id'))}",
+        "",
+        "QUIET GUIDANCE",
+        f"Decline reason: {_string(payload.get('decline_reason'))}",
+        f"Use current answer: {_string(quiet_guidance.get('use_current_answer'))}",
+        "Preserve:",
+    ]
+    lines.extend(f"- {_string(item)}" for item in preserve)
+    lines.append("Do not add:")
+    lines.extend(f"- {_string(item)}" for item in do_not_add)
+    lines.extend(
+        [
+            "",
+            "STEP 6 RULE",
+            "Keep the answer humane and compact.",
+            "Do not add conceptual pressure just because the handoff exists.",
+            "Use no raw inspect-more material.",
         ]
     )
 

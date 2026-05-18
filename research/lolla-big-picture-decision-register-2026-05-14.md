@@ -537,6 +537,21 @@ next check should be mother no-worker sentinel or high-clutter duplicate/conflic
 no runtime promotion
 ```
 
+Mother quiet sentinel follow-up:
+
+```text
+pre_step6_hybrid_handoff.v1 now has handoff_mode: card_first | no_extra_pressure
+mother uses no_extra_pressure with no source_pressure_card and empty inspect_more
+first native quiet-consumption pass preserved tone/tripwires but softened monitored-channel caution
+quiet guidance was tightened to require: silence in the monitored channel is weak evidence, not reassurance
+compact retest produced a valid 964-character answer core
+answer preserved RAINN/therapist/counsel guidance, reversible tripwires, ex guard, and humane trust repair
+answer excluded power-dynamics lens, leverage framing, unsupported grooming probabilities, worker path, raw inspect-more, and private machinery
+lesson: quiet handoffs need explicit preserve obligations, not compressed labels
+next check should be high-clutter duplicate/conflict
+no runtime promotion
+```
+
 ## Target Architecture If Research Eventually Wins
 
 The likely long-term target is not a Bevelin lane, not a giant prompt, and not

@@ -13,6 +13,8 @@ research/pre-step6-hybrid-handoff-renderer-readout-2026-05-18.md
 research/pre-step6-rendered-hybrid-answer-cores/founder-grant-marcus-equity.native.rendered-hybrid-answer-core.v1.json
 research/pre-step6-rendered-hybrid-answer-cores/third-year-phd-student.native.rendered-hybrid-answer-core.v1.json
 research/pre-step6-rendered-hybrid-answer-cores/mid-level-consultant-report-2.native.rendered-hybrid-answer-core.v1.json
+research/pre-step6-rendered-hybrid-answer-cores/mother-address-year.native.rendered-hybrid-answer-core.v1.json
+research/pre-step6-mother-quiet-sentinel-readout-2026-05-18.md
 scripts/research/pre_step6_pressure_card_consumption.py
 tests/test_pre_step6_pressure_card_consumption.py
 ```
@@ -58,6 +60,17 @@ no_extra_sections_from_inspect_more
 
 All three must be `true`.
 
+2026-05-18 follow-up: rendered answer-core fixtures now also declare
+`handoff_mode`. `card_first` keeps the three flags above. `no_extra_pressure`
+uses quiet-mode flags:
+
+```text
+quiet_mode_respected
+no_card_pressure_added
+no_raw_inspection_used
+no_extra_sections_from_inspect_more
+```
+
 ## Important Failure And Fix
 
 The first founder rendered-consumption answer was valid but softened the card's
@@ -95,6 +108,7 @@ After that change, the founder retest preserved the missing risk.
 | Founder | Card only | Pass after renderer risk-rule fix | Dependency framing, measurement gates, vague-delay/disengagement risk |
 | PhD | Card + 1 inspect-more | Pass | Fallback/data gates plus base-rate humility |
 | Consultant | Card + 2 inspect-more | Pass | Counsel-first channel distinction plus counsel-incentive and Wednesday protocol |
+| Mother | No extra pressure | Pass after preserve-guidance tightening | Monitored-channel caution, reversible tripwires, humane trust repair without worker/lens/raw expansion |
 
 Validator result:
 
@@ -164,8 +178,13 @@ Why:
 
 ```text
 current fixtures show the renderer can preserve intended pressure
-they do not prove it can decline raw inspection when pressure is unnecessary
 they do not prove it can handle duplicate/conflict clutter better than raw-only
 ```
 
-Do not wire this into live `/lolla` before a negative/control slice passes.
+2026-05-18 update: the mother quiet sentinel now passes after tightening the
+preserve instruction for monitored-channel caution. The next negative/control
+slice should be high-clutter duplicate/conflict.
+
+Do not wire this into live `/lolla` before clutter/conflict and blind or
+semi-blind comparisons show durable lift or equal quality with lower attention
+load.

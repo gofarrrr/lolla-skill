@@ -50,6 +50,7 @@ ALLOWED_HYBRID_CRITERION_WINNERS = frozenset({"raw", "hybrid", "tie"})
 ALLOWED_HYBRID_AGGREGATE_DECISIONS = frozenset(
     {"raw_wins", "hybrid_wins", "tie_stop"}
 )
+ALLOWED_RENDERED_HANDOFF_MODES = frozenset({"card_first", "no_extra_pressure"})
 PRESSURE_ANSWER_CORE_FIELDS = frozenset(
     {
         "schema_version",
@@ -140,6 +141,7 @@ RENDERED_HYBRID_ANSWER_CORE_FIELDS = frozenset(
         "runtime_policy",
         "case_id",
         "source_hybrid_handoff",
+        "handoff_mode",
         "answer_core",
         "expected_inclusions",
         "expected_exclusions",
@@ -147,10 +149,18 @@ RENDERED_HYBRID_ANSWER_CORE_FIELDS = frozenset(
         "notes",
     }
 )
-RENDERER_FOLLOWED_FIELDS = frozenset(
+CARD_FIRST_RENDERER_FOLLOWED_FIELDS = frozenset(
     {
         "card_used_first",
         "inspected_raw_only_for_named_nuance",
+        "no_extra_sections_from_inspect_more",
+    }
+)
+QUIET_RENDERER_FOLLOWED_FIELDS = frozenset(
+    {
+        "quiet_mode_respected",
+        "no_card_pressure_added",
+        "no_raw_inspection_used",
         "no_extra_sections_from_inspect_more",
     }
 )
@@ -733,6 +743,7 @@ def iter_rendered_hybrid_answer_core_errors(
         "runtime_policy",
         "case_id",
         "source_hybrid_handoff",
+        "handoff_mode",
         "answer_core",
         "expected_inclusions",
         "expected_exclusions",
@@ -747,6 +758,9 @@ def iter_rendered_hybrid_answer_core_errors(
         yield f"{path}: schema_version must be {RENDERED_HYBRID_ANSWER_CORE_SCHEMA_VERSION}"
     yield from _validate_common_policy(payload, path=path)
     case_id = _string(payload.get("case_id"))
+    handoff_mode = _string(payload.get("handoff_mode"))
+    if handoff_mode not in ALLOWED_RENDERED_HANDOFF_MODES:
+        yield f"{path / 'handoff_mode'}: unknown handoff_mode '{handoff_mode}'"
 
     source_handoff = _string(payload.get("source_hybrid_handoff"))
     if not source_handoff:
@@ -764,6 +778,8 @@ def iter_rendered_hybrid_answer_core_errors(
             )
             if _string(handoff_payload.get("case_id")) != case_id:
                 yield f"{path / 'source_hybrid_handoff'}: case_id mismatch"
+            if _string(handoff_payload.get("handoff_mode")) != handoff_mode:
+                yield f"{path / 'handoff_mode'}: source handoff mode mismatch"
 
     answer_core = _string(payload.get("answer_core"))
     if not answer_core.strip():
@@ -809,6 +825,7 @@ def iter_rendered_hybrid_answer_core_errors(
     yield from _validate_renderer_followed(
         payload.get("renderer_followed"),
         path=path / "renderer_followed",
+        handoff_mode=handoff_mode,
     )
 
 
@@ -913,16 +930,33 @@ def _validate_hybrid_criterion(
             yield f"{path / field}: {field} must be non-empty"
 
 
-def _validate_renderer_followed(value: object, *, path: Path) -> Iterable[str]:
+def _validate_renderer_followed(
+    value: object,
+    *,
+    path: Path,
+    handoff_mode: str,
+) -> Iterable[str]:
     if not isinstance(value, dict):
         yield f"{path}: renderer_followed must be an object"
         return
-    required = (
-        "card_used_first",
-        "inspected_raw_only_for_named_nuance",
-        "no_extra_sections_from_inspect_more",
-    )
-    yield from _unknown_fields(value, RENDERER_FOLLOWED_FIELDS, path)
+    if handoff_mode == "card_first":
+        required = (
+            "card_used_first",
+            "inspected_raw_only_for_named_nuance",
+            "no_extra_sections_from_inspect_more",
+        )
+        allowed = CARD_FIRST_RENDERER_FOLLOWED_FIELDS
+    elif handoff_mode == "no_extra_pressure":
+        required = (
+            "quiet_mode_respected",
+            "no_card_pressure_added",
+            "no_raw_inspection_used",
+            "no_extra_sections_from_inspect_more",
+        )
+        allowed = QUIET_RENDERER_FOLLOWED_FIELDS
+    else:
+        return
+    yield from _unknown_fields(value, allowed, path)
     yield from _missing_fields(value, required, path)
     for field in required:
         if value.get(field) is not True:

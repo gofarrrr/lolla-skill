@@ -132,6 +132,7 @@ def test_all_rendered_hybrid_answer_cores_validate() -> None:
     assert [path.name for path in paths] == [
         "founder-grant-marcus-equity.native.rendered-hybrid-answer-core.v1.json",
         "mid-level-consultant-report-2.native.rendered-hybrid-answer-core.v1.json",
+        "mother-address-year.native.rendered-hybrid-answer-core.v1.json",
         "third-year-phd-student.native.rendered-hybrid-answer-core.v1.json",
     ]
 
@@ -156,6 +157,10 @@ def test_rendered_hybrid_answer_cores_preserve_case_specific_lift() -> None:
         RENDERED_ANSWER_CORE_DIR
         / "mid-level-consultant-report-2.native.rendered-hybrid-answer-core.v1.json"
     )["answer_core"].lower()
+    mother = _load(
+        RENDERED_ANSWER_CORE_DIR
+        / "mother-address-year.native.rendered-hybrid-answer-core.v1.json"
+    )["answer_core"].lower()
 
     assert "vague delay or flat refusal" in founder
     assert "jake/lina/platform/client continuity risk" in founder
@@ -165,6 +170,46 @@ def test_rendered_hybrid_answer_cores_preserve_case_specific_lift() -> None:
     assert "reflexive channel preference" in consultant
     assert "audit-committee-first" in consultant
     assert "if the partner raises the encounter" in consultant
+    assert "silence in the monitored channel is weak evidence, not reassurance" in mother
+    assert "concrete, reversible tripwires" in mother
+    assert "rainn, a therapist, or counsel" in mother
+    assert "safety plus a path back to honesty" in mother
+
+
+def test_rendered_quiet_answer_core_respects_no_extra_pressure_mode() -> None:
+    path = (
+        RENDERED_ANSWER_CORE_DIR
+        / "mother-address-year.native.rendered-hybrid-answer-core.v1.json"
+    )
+    payload = _load(path)
+    validate_rendered_hybrid_answer_core_payload(
+        payload,
+        path=path,
+        repo_root=REPO_ROOT,
+    )
+    renderer_followed = payload["renderer_followed"]
+    assert isinstance(renderer_followed, dict)
+
+    assert payload["handoff_mode"] == "no_extra_pressure"
+    assert renderer_followed == {
+        "quiet_mode_respected": True,
+        "no_card_pressure_added": True,
+        "no_raw_inspection_used": True,
+        "no_extra_sections_from_inspect_more": True,
+    }
+
+    answer = payload["answer_core"]
+    assert isinstance(answer, str)
+    assert len(answer) <= 975
+    lower_answer = answer.lower()
+    assert "power dynamics" not in lower_answer
+    assert "power-dynamics" not in lower_answer
+    assert "leverage" not in lower_answer
+    assert "grooming probability" not in lower_answer
+    assert "worker" not in lower_answer
+    assert "artifact" not in lower_answer
+    assert "bundle" not in lower_answer
+    assert "pressure card" not in lower_answer
 
 
 def test_pressure_answer_core_rejects_missing_inclusion() -> None:
@@ -259,6 +304,38 @@ def test_rendered_hybrid_answer_core_rejects_false_renderer_flag() -> None:
     with pytest.raises(
         PressureCardConsumptionValidationError,
         match="card_used_first",
+    ):
+        validate_rendered_hybrid_answer_core_payload(payload, repo_root=REPO_ROOT)
+
+
+def test_rendered_quiet_answer_core_rejects_false_renderer_flag() -> None:
+    path = (
+        RENDERED_ANSWER_CORE_DIR
+        / "mother-address-year.native.rendered-hybrid-answer-core.v1.json"
+    )
+    payload = _load(path)
+    renderer_followed = payload["renderer_followed"]
+    assert isinstance(renderer_followed, dict)
+    renderer_followed["quiet_mode_respected"] = False
+
+    with pytest.raises(
+        PressureCardConsumptionValidationError,
+        match="quiet_mode_respected",
+    ):
+        validate_rendered_hybrid_answer_core_payload(payload, repo_root=REPO_ROOT)
+
+
+def test_rendered_hybrid_answer_core_rejects_source_mode_mismatch() -> None:
+    path = (
+        RENDERED_ANSWER_CORE_DIR
+        / "mother-address-year.native.rendered-hybrid-answer-core.v1.json"
+    )
+    payload = _load(path)
+    payload["handoff_mode"] = "card_first"
+
+    with pytest.raises(
+        PressureCardConsumptionValidationError,
+        match="source handoff mode mismatch",
     ):
         validate_rendered_hybrid_answer_core_payload(payload, repo_root=REPO_ROOT)
 
