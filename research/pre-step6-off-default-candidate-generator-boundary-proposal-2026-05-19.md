@@ -16,6 +16,7 @@ research/pre-step6-autoresearch-operating-loop-2026-05-19.md
 research/pre-step6-no-rendered-handoff-v1-readout-2026-05-19.md
 research/pre-step6-generated-decline-evaluation-readout-2026-05-19.md
 research/pre-step6-generator-contract-readiness-decision-2026-05-19.md
+research/pre-step6-user-has-plan-static-decline-readout-2026-05-19.md
 research/pre-step6-off-default-replay-readout-2026-05-18.md
 research/pre-step6-mother-quiet-replay-readout-2026-05-18.md
 research/pre-step6-founder-high-clutter-replay-readout-2026-05-18.md
@@ -531,3 +532,14 @@ generator-contract work is not earned yet, because the healthy decline evidence
 still comes from a consultant safety/counsel archetype. The next evidence should
 be one more static decline/control replay in a non-safety / non-counsel case
 before any off-default admission-layer contract is specified.
+
+2026-05-19 user_has_plan static-decline follow-up:
+
+```text
+research/pre-step6-user-has-plan-static-decline-readout-2026-05-19.md
+```
+
+The requested non-safety / non-counsel static decline now exists. It produced a
+healthy no-rendered decline using `simpler_path_static_replay`, which strengthens
+the decline primitive without authorizing a generator, selector, workers,
+bundles, new modes, runtime wiring, or product promotion.

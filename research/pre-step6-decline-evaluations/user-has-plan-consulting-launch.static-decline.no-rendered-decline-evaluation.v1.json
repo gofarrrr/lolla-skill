@@ -1,0 +1,51 @@
+{
+  "schema_version": "pre_step6_decline_evaluation.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "user-has-plan-consulting-launch",
+  "evaluation_mode": "off_by_default_static_decline_replay",
+  "decline_candidate_ref": "research/pre-step6-no-rendered-handoffs/user-has-plan-consulting-launch.static-decline.no-rendered-handoff.v1.json",
+  "comparison_ref": "research/pre-step6-raw-artifact-comparisons/user-has-plan-consulting-launch.raw-vs-control-comparison.v1.json",
+  "gates": {
+    "decline_candidate_loaded": true,
+    "simpler_comparison_recorded": true,
+    "rendered_candidate_required": false,
+    "source_overclaim_audit_required": false,
+    "runtime_wiring_allowed": false,
+    "product_promotion_allowed": false,
+    "generator_implementation_allowed": false
+  },
+  "outcome": {
+    "comparison_decision": "raw_wins",
+    "decline_evaluation_decision": "healthy_decline",
+    "product_promotion": "blocked",
+    "generator_next_step": "blocked"
+  },
+  "naturalness_debt_avoided": {
+    "level": "medium",
+    "evidence": "The simple raw/control path carries the launch gates; a rendered surface would mostly repackage them and risk a more procedural answer."
+  },
+  "miss_checks": [
+    {
+      "check_id": "no_critical_pressure_lost",
+      "severity": "pass",
+      "evidence": "The raw-vs-control comparison preserves network-not-pipeline, spouse runway alignment, paid-demand probing, and the 4-week checkpoint."
+    },
+    {
+      "check_id": "control_sufficiency_survives",
+      "severity": "pass",
+      "evidence": "Control already carries the main launch-pressure checks; raw improves overclaim wording without requiring rendered."
+    },
+    {
+      "check_id": "receipt_stayed_small",
+      "severity": "pass",
+      "evidence": "The decline receipt stays to six short fields and does not outline a public answer."
+    },
+    {
+      "check_id": "reactivation_condition_clear",
+      "severity": "pass",
+      "evidence": "The receipt reactivates only if the simple path loses pipeline reality, spouse-specific runway alignment, or checkpoint discipline."
+    }
+  ],
+  "notes": "Second static decline evaluation and first non-safety, non-counsel case. It records healthy decline without a rendered candidate, generator, selector, worker, bundle, or new handoff mode."
+}

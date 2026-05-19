@@ -16,6 +16,7 @@ research/pre-step6-off-default-candidate-generator-boundary-proposal-2026-05-19.
 research/pre-step6-no-rendered-handoff-v1-readout-2026-05-19.md
 research/pre-step6-generated-decline-evaluation-readout-2026-05-19.md
 research/pre-step6-generator-contract-readiness-decision-2026-05-19.md
+research/pre-step6-user-has-plan-static-decline-readout-2026-05-19.md
 research/pre-step6-next-slice-decision-note-2026-05-16.md
 research/llm-decomposition-handover.md
 research/extraction-contract-roadmap.md
@@ -165,19 +166,21 @@ the ledger can record rendered stops without schema bending
 rendered can pass audit and still does_not_count
 no_rendered_handoff can validate as first-class research output
 a generated decline can be evaluated without requiring a rendered candidate
+no_rendered_handoff can stay healthy in one non-safety / non-counsel strategic case
 ```
 
 Current blocker:
 
 ```text
-we know decline can be represented and evaluated in the consultant case
-we do not yet know whether decline generalizes beyond a safety/counsel archetype
+we have two healthy decline evaluations, one safety/counsel and one strategic
+we do not yet know whether the next move should be a containment contract or a missed-decline/retest case
 ```
 
 The next missing evidence is therefore:
 
 ```text
-one more static decline/control replay in a non-safety / non-counsel case shape
+a PM decision on whether to write a docs-only admission-layer contract or add
+one adversarial static replay where decline misses or retests
 ```
 
 ## Loop Setup
@@ -448,8 +451,9 @@ Current next queue:
    Question: does no_rendered_handoff generalize beyond the consultant
    safety/counsel archetype?
 
-7. Only after 6, revisit whether an off-default admission-layer contract is
-   worth specifying.
+7. PM decision memo after the user_has_plan static decline.
+   Question: is a docs-only admission-layer contract now earned, or do we need
+   a missed-decline/retest case first?
 ```
 
 Still blocked:
@@ -501,8 +505,9 @@ next question
 The current next question is:
 
 ```text
-Can a no_rendered_handoff decline remain healthy in a non-safety /
-non-counsel case where rendered might add nuance but also naturalness debt?
+Is the evidence strong enough for a docs-only pressure-transport admission-layer
+contract, or should the next static replay try to produce a missed decline or
+retest before contract work?
 ```
 
 Do that next unless new evidence changes the blocker.

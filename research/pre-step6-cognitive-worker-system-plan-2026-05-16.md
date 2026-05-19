@@ -243,7 +243,7 @@ Important current invariants:
   V60 private material, user context, and the original conversation. It may use,
   reject, defer, or keep pressure private.
 - V60 is not a fifth lane. It is private source-backed affordance/absence
-  material selected after the lanes. The public answer should show better
+  material selected after the lanes. The public result needs to show better
   reasoning, not `V60`, chunk, ledger, affordance, or packet language.
 - Step 6b persists the revised answer and the private V60 consideration ledger.
   Finalization validates the ledger before pressure checks continue.

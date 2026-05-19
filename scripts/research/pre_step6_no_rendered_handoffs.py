@@ -37,6 +37,9 @@ NO_RENDERED_HANDOFF_SCHEMA_VERSION = "pre_step6_no_rendered_handoff.v1"
 ALLOWED_STATUS = frozenset({"research_only"})
 ALLOWED_RUNTIME_POLICY = frozenset({"runtime_dormant"})
 ALLOWED_OUTCOME_TYPES = frozenset({"no_rendered_handoff"})
+ALLOWED_EVIDENCE_BASES = frozenset(
+    {"rendered_stop_replay", "simpler_path_static_replay"}
+)
 ALLOWED_DECLINE_DECISIONS = frozenset(
     {"valid_research_decline", "retest_decline", "missed_decline"}
 )
@@ -75,6 +78,7 @@ TOP_LEVEL_FIELDS = frozenset(
         "runtime_policy",
         "case_id",
         "outcome_type",
+        "evidence_basis",
         "decline_decision",
         "source_refs",
         "decline_receipt",
@@ -195,6 +199,7 @@ def iter_no_rendered_handoff_errors(
         "runtime_policy",
         "case_id",
         "outcome_type",
+        "evidence_basis",
         "decline_decision",
         "source_refs",
         "decline_receipt",
@@ -217,6 +222,9 @@ def iter_no_rendered_handoff_errors(
         yield f"{path / 'case_id'}: case_id must be non-empty"
     if _string(payload.get("outcome_type")) not in ALLOWED_OUTCOME_TYPES:
         yield f"{path / 'outcome_type'}: outcome_type must be no_rendered_handoff"
+    evidence_basis = _string(payload.get("evidence_basis"))
+    if evidence_basis not in ALLOWED_EVIDENCE_BASES:
+        yield f"{path / 'evidence_basis'}: unknown evidence_basis"
 
     decline_decision = _string(payload.get("decline_decision"))
     if decline_decision not in ALLOWED_DECLINE_DECISIONS:
@@ -226,6 +234,7 @@ def iter_no_rendered_handoff_errors(
         payload.get("source_refs"),
         path=path / "source_refs",
         case_id=case_id,
+        evidence_basis=evidence_basis,
         repo_root=repo_root,
     )
     yield from source_summary.errors
@@ -269,6 +278,7 @@ def _validate_source_refs(
     *,
     path: Path,
     case_id: str,
+    evidence_basis: str,
     repo_root: Path | None,
 ) -> _SourceSummary:
     errors: list[str] = []
@@ -298,9 +308,13 @@ def _validate_source_refs(
         _string(value.get("semi_blind_comparison")).strip()
         or _string(value.get("replay_record")).strip()
     )
-    if not has_comparison_or_replay:
+    if evidence_basis == "rendered_stop_replay" and not has_comparison_or_replay:
         errors.append(
-            f"{path}: valid decline requires semi_blind_comparison or replay_record evidence"
+            f"{path}: rendered_stop_replay requires semi_blind_comparison or replay_record evidence"
+        )
+    if evidence_basis == "simpler_path_static_replay" and has_comparison_or_replay:
+        errors.append(
+            f"{path}: simpler_path_static_replay should not depend on rendered replay evidence"
         )
 
     if repo_root is None:

@@ -205,8 +205,8 @@ be gated on rolling output quality.
 Lolla implication:
 
 ```text
-The correct control is not "bundle vs no bundle."
-The correct control is "bundle vs strong Step 6 with disciplined raw artifacts
+The useful control is not "bundle vs no bundle."
+The useful control is "bundle vs strong Step 6 with disciplined raw artifacts
 under comparable context and compute."
 ```
 

@@ -33,18 +33,30 @@ def test_all_no_rendered_handoffs_validate() -> None:
 
     assert [path.name for path in paths] == [
         "mid-level-consultant-report-2.negative-control.native-rejudge.no-rendered-handoff.v1.json",
+        "user-has-plan-consulting-launch.static-decline.no-rendered-handoff.v1.json",
     ]
 
-    payload = _load(paths[0])
-    validate_no_rendered_handoff_payload(payload, path=paths[0], repo_root=REPO_ROOT)
-
-    assert summarize_no_rendered_handoff(payload) == {
-        "case_id": "mid-level-consultant-report-2",
-        "decline_decision": "valid_research_decline",
-        "naturalness_debt_risk": "medium",
-        "expected_result": "healthy_decline",
-        "simpler_arm_expected": "control_wins",
+    expected = {
+        "mid-level-consultant-report-2.negative-control.native-rejudge.no-rendered-handoff.v1.json": {
+            "case_id": "mid-level-consultant-report-2",
+            "decline_decision": "valid_research_decline",
+            "naturalness_debt_risk": "medium",
+            "expected_result": "healthy_decline",
+            "simpler_arm_expected": "control_wins",
+        },
+        "user-has-plan-consulting-launch.static-decline.no-rendered-handoff.v1.json": {
+            "case_id": "user-has-plan-consulting-launch",
+            "decline_decision": "valid_research_decline",
+            "naturalness_debt_risk": "medium",
+            "expected_result": "healthy_decline",
+            "simpler_arm_expected": "raw_wins",
+        },
     }
+
+    for path in paths:
+        payload = _load(path)
+        validate_no_rendered_handoff_payload(payload, path=path, repo_root=REPO_ROOT)
+        assert summarize_no_rendered_handoff(payload) == expected[path.name]
 
 
 def test_no_rendered_handoff_rejects_product_promotion() -> None:
@@ -99,7 +111,27 @@ def test_no_rendered_handoff_rejects_missing_decline_evidence() -> None:
 
     with pytest.raises(
         NoRenderedHandoffValidationError,
-        match="valid decline requires",
+        match="rendered_stop_replay requires",
+    ):
+        validate_no_rendered_handoff_payload(payload, repo_root=REPO_ROOT)
+
+
+def test_no_rendered_handoff_simpler_path_rejects_rendered_replay_evidence() -> None:
+    path = (
+        NO_RENDERED_DIR
+        / "user-has-plan-consulting-launch.static-decline.no-rendered-handoff.v1.json"
+    )
+    payload = _load(path)
+    source_refs = payload["source_refs"]
+    assert isinstance(source_refs, dict)
+    source_refs["semi_blind_comparison"] = (
+        "research/pre-step6-semi-blind-comparisons/"
+        "mid-level-consultant-report-2.negative-control.native-rejudge.semi-blind-comparison.v1.json"
+    )
+
+    with pytest.raises(
+        NoRenderedHandoffValidationError,
+        match="simpler_path_static_replay",
     ):
         validate_no_rendered_handoff_payload(payload, repo_root=REPO_ROOT)
 

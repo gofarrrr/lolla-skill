@@ -1,0 +1,134 @@
+{
+  "schema_version": "pre_step6_raw_artifact_handoff.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "user-has-plan-consulting-launch",
+  "source_artifacts": [
+    "research/test-cases/case_user_has_plan_conversation.txt",
+    "research/test-cases/phase2d-lane2-equivalence-2026-04-24/_scratch/user_has_plan_extraction.json",
+    "research/test-cases/phase2d-lane2-equivalence-2026-04-24/_scratch/user_has_plan_new_run2.json"
+  ],
+  "source_excerpts": [
+    {
+      "excerpt_id": "case-context",
+      "text": "Senior PM plans to leave a large tech job in 6 weeks for independent B2B fintech consulting with 8 months zero-revenue runway."
+    },
+    {
+      "excerpt_id": "pipeline-facts",
+      "text": "Pipeline is 4-5 informal network conversations with no signed LOIs or committed engagements."
+    },
+    {
+      "excerpt_id": "control-answer",
+      "text": "Existing answer asks for spouse runway alignment, a specific fractional ask, months 1-3 as business development, and a 4-week checkpoint."
+    },
+    {
+      "excerpt_id": "overclaim-watch",
+      "text": "Phase2d audit flags precise conversion rates, first-engagement timelines, and fractional-rate ranges as unverified or over-specific claims."
+    }
+  ],
+  "artifacts": [
+    {
+      "schema_version": "reasoning_artifact.v1",
+      "artifact_id": "user_plan_network_not_pipeline",
+      "worker_type": "boundary/evidence-gate",
+      "why_provided": "The case turns on whether friendly network interest is being mistaken for commercial intent.",
+      "source_grounding": "The user has 4-5 informal conversations but no signed LOIs or commitments.",
+      "contribution": "Keep the launch decision tied to concrete scope, timing, budget, and buyer-process signals.",
+      "hard_boundary": "Do not treat polite interest as pipeline evidence.",
+      "relaxation_condition": "Relax if at least one conversation becomes a dated paid start, LOI, or clearly budgeted scope.",
+      "discard_condition": "Discard if the answer already treats the network as unproven rather than as pipeline.",
+      "relation_to_answer": "primary launch evidence gate",
+      "source_excerpt_ids": [
+        "pipeline-facts"
+      ],
+      "priority_hint": "high",
+      "risk_if_forced": "The answer may over-interrogate obvious network uncertainty.",
+      "risk_if_ignored": "The user may resign on friendly interest that has not become buying intent."
+    },
+    {
+      "schema_version": "reasoning_artifact.v1",
+      "artifact_id": "user_plan_spouse_runway_alignment",
+      "worker_type": "boundary/evidence-gate",
+      "why_provided": "Spouse support is concept-level but not aligned to the runway math.",
+      "source_grounding": "The user says the spouse is on board with the independent plan but has not seen the runway specifics.",
+      "contribution": "Preserve the difference between emotional support and agreement on the burn-rate scenario.",
+      "hard_boundary": "Do not count spouse support as aligned until the specific no-revenue scenario has been discussed.",
+      "relaxation_condition": "Relax if spouse has reviewed burn, downside timing, and fallback choices.",
+      "discard_condition": "Discard if the answer already requires a concrete spouse runway conversation before launch.",
+      "relation_to_answer": "primary household alignment gate",
+      "source_excerpt_ids": [
+        "case-context",
+        "control-answer"
+      ],
+      "priority_hint": "high",
+      "risk_if_forced": "The answer may sound like relationship coaching instead of launch planning.",
+      "risk_if_ignored": "The launch may create financial pressure the household never explicitly accepted."
+    },
+    {
+      "schema_version": "reasoning_artifact.v1",
+      "artifact_id": "user_plan_fractional_bridge_probe",
+      "worker_type": "boundary/evidence-gate",
+      "why_provided": "A fractional bridge ask is useful as a market probe, but it should not become the whole launch strategy.",
+      "source_grounding": "The existing answer suggests a specific fractional arrangement to test whether network conversations can convert.",
+      "contribution": "Frame the fractional ask as a commercial-intent test and runway bridge, not as proof the business model is solved.",
+      "hard_boundary": "Do not let fractional work erase the need to test paid demand and capacity tradeoffs.",
+      "relaxation_condition": "Relax if the user gets a paid bridge that covers enough burn while preserving business-development time.",
+      "discard_condition": "Discard if the answer already treats fractional work as a probe rather than a conclusion.",
+      "relation_to_answer": "supporting commercial probe",
+      "source_excerpt_ids": [
+        "control-answer"
+      ],
+      "priority_hint": "medium",
+      "risk_if_forced": "The answer may over-design a fractional strategy when a simple ask is enough.",
+      "risk_if_ignored": "The user may delay or launch without testing whether the network has budgeted demand."
+    },
+    {
+      "schema_version": "reasoning_artifact.v1",
+      "artifact_id": "user_plan_four_week_checkpoint",
+      "worker_type": "boundary/evidence-gate",
+      "why_provided": "The answer needs a reversible checkpoint rather than a launch-or-delay identity decision.",
+      "source_grounding": "Existing answer says to do three things over 4 weeks and push back 2-3 months if commitments and spouse alignment do not materialize.",
+      "contribution": "Keep the decision tied to evidence at a 4-week review.",
+      "hard_boundary": "Do not make nervousness or clean calendar timing the decision signal.",
+      "relaxation_condition": "Relax if the user already has spouse alignment and a concrete paid start before the checkpoint.",
+      "discard_condition": "Discard if the answer already contains a clear 4-week evidence checkpoint.",
+      "relation_to_answer": "supporting reversibility guard",
+      "source_excerpt_ids": [
+        "control-answer"
+      ],
+      "priority_hint": "medium",
+      "risk_if_forced": "The answer may become a procedural checklist rather than a calm decision.",
+      "risk_if_ignored": "The user may keep the 6-week date because it feels tidy rather than because evidence improved."
+    },
+    {
+      "schema_version": "reasoning_artifact.v1",
+      "artifact_id": "user_plan_numeric_overclaim_softener",
+      "worker_type": "duplicate/priority",
+      "why_provided": "Phase2d audit says several numeric consulting claims are over-specific for the evidence available.",
+      "source_grounding": "The audit flags conversion rates, first-engagement timelines, and fractional-rate ranges as unverified claims.",
+      "contribution": "Keep pressure qualitative unless the answer has sourced or user-specific evidence for exact numbers.",
+      "hard_boundary": "Do not present consulting conversion or rate ranges as established facts in this fixture.",
+      "relaxation_condition": "Relax if the answer clearly labels numbers as illustrative examples, not evidence.",
+      "discard_condition": "Discard if the answer avoids precise market-rate or conversion claims.",
+      "relation_to_answer": "quiet source-grounding guard",
+      "source_excerpt_ids": [
+        "overclaim-watch"
+      ],
+      "priority_hint": "quiet",
+      "risk_if_forced": "The answer may become over-cautious and strip useful practical examples.",
+      "risk_if_ignored": "The answer may sound more empirical than its source support allows."
+    }
+  ],
+  "worker_admission": {
+    "decision": "no_worker_needed",
+    "reason": "The launch pressure is already compact: test network intent, align spouse runway, probe a fractional bridge, and review at 4 weeks.",
+    "unnecessary_if": [
+      "The final reasoner can preserve those checks without adding a new private surface.",
+      "The remaining risk is over-processing, not missing conflict or clutter."
+    ],
+    "admit_only_if": [
+      "A future answer drops pipeline reality, spouse-specific runway alignment, or the 4-week checkpoint."
+    ]
+  },
+  "notes": "Research-only fixture for a non-safety, non-counsel static decline/control replay. It tests whether no_rendered_handoff can stay healthy outside the consultant archetype."
+}

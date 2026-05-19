@@ -265,7 +265,7 @@ hard_boundary
 discard_condition
 ```
 
-The final answer should read like direct judgment, not like a system trace.
+The final answer needs to read like direct judgment, not like a system trace.
 
 ## Minimal Raw Handoff Render
 

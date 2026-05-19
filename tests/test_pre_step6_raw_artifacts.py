@@ -61,6 +61,7 @@ def test_all_raw_artifact_fixtures_validate_and_render_under_cap() -> None:
         "mid-level-consultant-report-2.raw-artifact-handoff.v1.json",
         "mother-address-year.raw-artifact-handoff.v1.json",
         "third-year-phd-student.raw-artifact-handoff.v1.json",
+        "user-has-plan-consulting-launch.raw-artifact-handoff.v1.json",
     ]
 
     for path in paths:
@@ -79,6 +80,7 @@ def test_all_answer_core_fixtures_validate_and_stay_public() -> None:
         "mid-level-consultant-report-2.raw-answer-core.v1.json",
         "mother-address-year.raw-answer-core.v1.json",
         "third-year-phd-student.raw-answer-core.v1.json",
+        "user-has-plan-consulting-launch.raw-answer-core.v1.json",
     ]
 
     for path in paths:
@@ -94,6 +96,7 @@ def test_all_answer_comparisons_validate_and_score_raw_wins() -> None:
         "mid-level-consultant-report-2.raw-vs-control-comparison.v1.json",
         "mother-address-year.raw-vs-control-comparison.v1.json",
         "third-year-phd-student.raw-vs-control-comparison.v1.json",
+        "user-has-plan-consulting-launch.raw-vs-control-comparison.v1.json",
     ]
 
     for path in paths:

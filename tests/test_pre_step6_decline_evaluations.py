@@ -33,18 +33,30 @@ def test_all_decline_evaluations_validate() -> None:
 
     assert [path.name for path in paths] == [
         "mid-level-consultant-report-2.negative-control.no-rendered-decline-evaluation.v1.json",
+        "user-has-plan-consulting-launch.static-decline.no-rendered-decline-evaluation.v1.json",
     ]
 
-    payload = _load(paths[0])
-    validate_decline_evaluation_payload(payload, path=paths[0], repo_root=REPO_ROOT)
-
-    assert summarize_decline_evaluation(payload) == {
-        "case_id": "mid-level-consultant-report-2",
-        "comparison_decision": "raw_wins",
-        "decline_evaluation_decision": "healthy_decline",
-        "generator_next_step": "blocked",
-        "naturalness_debt_avoided": "medium",
+    expected = {
+        "mid-level-consultant-report-2.negative-control.no-rendered-decline-evaluation.v1.json": {
+            "case_id": "mid-level-consultant-report-2",
+            "comparison_decision": "raw_wins",
+            "decline_evaluation_decision": "healthy_decline",
+            "generator_next_step": "blocked",
+            "naturalness_debt_avoided": "medium",
+        },
+        "user-has-plan-consulting-launch.static-decline.no-rendered-decline-evaluation.v1.json": {
+            "case_id": "user-has-plan-consulting-launch",
+            "comparison_decision": "raw_wins",
+            "decline_evaluation_decision": "healthy_decline",
+            "generator_next_step": "blocked",
+            "naturalness_debt_avoided": "medium",
+        },
     }
+
+    for path in paths:
+        payload = _load(path)
+        validate_decline_evaluation_payload(payload, path=path, repo_root=REPO_ROOT)
+        assert summarize_decline_evaluation(payload) == expected[path.name]
 
 
 def test_decline_evaluation_rejects_rendered_candidate_requirement() -> None:

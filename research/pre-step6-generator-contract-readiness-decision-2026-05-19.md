@@ -16,6 +16,7 @@ research/pre-step6-off-default-candidate-generator-boundary-proposal-2026-05-19.
 research/pre-step6-no-rendered-handoff-v1-readout-2026-05-19.md
 research/pre-step6-generated-decline-evaluation-readout-2026-05-19.md
 research/pre-step6-selector-boundary-decision-memo-2026-05-19.md
+research/pre-step6-user-has-plan-static-decline-readout-2026-05-19.md
 ```
 
 ## Question
@@ -261,3 +262,18 @@ research.
 The next evidence should slow the generator impulse, not feed it. One more
 static decline/control replay in a different case shape is the right brake
 before any generator-contract work.
+
+2026-05-19 follow-up:
+
+```text
+research/pre-step6-user-has-plan-static-decline-readout-2026-05-19.md
+```
+
+The requested non-safety / non-counsel static replay has now been recorded
+using the `user_has_plan` independent consulting launch case. It produced a
+healthy decline with `evidence_basis: simpler_path_static_replay`.
+
+That follow-up does not authorize implementation. It moves the next question to
+a PM decision: whether a docs-only pressure-transport admission-layer contract
+is now useful as containment, or whether the archive first needs an adversarial
+missed-decline or retest case.

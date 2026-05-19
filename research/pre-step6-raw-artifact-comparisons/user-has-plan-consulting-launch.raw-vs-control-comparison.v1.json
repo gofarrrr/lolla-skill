@@ -1,0 +1,61 @@
+{
+  "schema_version": "pre_step6_answer_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "user-has-plan-consulting-launch",
+  "control_answer_core": "Launching in 6 weeks is viable if you do three things in those 6 weeks: (1) have the full runway conversation with your spouse, (2) go back to your network with the specific fractional ask and see if 1-2 convert, (3) prepare for months 1-3 as business development, not delivery.\n\nIf after 4 weeks you have zero fractional commitments and your spouse is not aligned on the 5-months-of-revenue-pressure reality, push back by 2-3 months. That's not failure; that's responding to signal.\n\nThe foundation is alignment with your spouse on the actual financial plan and evidence that your network has at least some commercial intent, not just friendly interest. The launch plan around pricing, positioning, website, and legal structure comes after that foundation.",
+  "raw_answer_core_ref": "research/pre-step6-raw-artifact-answer-cores/user-has-plan-consulting-launch.raw-answer-core.v1.json",
+  "criteria": [
+    {
+      "criterion_id": "pipeline_reality",
+      "question": "Does the answer preserve the difference between friendly network interest and buying intent?",
+      "winner": "tie",
+      "control_evidence": "Control says the network needs commercial intent, not friendly interest.",
+      "raw_evidence": "Raw says friendly conversations are not pipeline until scope, timing, budget, and approval are in view.",
+      "rationale": "Both preserve the core network-not-pipeline pressure."
+    },
+    {
+      "criterion_id": "spouse_alignment",
+      "question": "Does the answer keep spouse alignment tied to the specific runway scenario?",
+      "winner": "tie",
+      "control_evidence": "Control asks for the full runway conversation and actual financial plan.",
+      "raw_evidence": "Raw asks for burn, zero-revenue runway, delayed first work, and accepted fallback choices.",
+      "rationale": "Raw is more explicit, but both carry the necessary household-alignment pressure."
+    },
+    {
+      "criterion_id": "commercial_probe",
+      "question": "Does the answer test paid demand without turning the launch into a full playbook?",
+      "winner": "raw",
+      "control_evidence": "Control uses a specific fractional ask and 1-2 conversion target.",
+      "raw_evidence": "Raw broadens the paid probe to fractional bridge, discovery sprint, or September start conversation while keeping it compact.",
+      "rationale": "Raw keeps the commercial-intent test but avoids making one fractional format too central."
+    },
+    {
+      "criterion_id": "overclaim_risk",
+      "question": "Does the answer avoid over-specific consulting timelines or conversion claims?",
+      "winner": "raw",
+      "control_evidence": "Control includes 1-2 conversions, months 1-3 as business development, and a 5-month pressure phrase.",
+      "raw_evidence": "Raw explicitly keeps reference-class claims qualitative unless sourced or user-specific.",
+      "rationale": "Raw better preserves the useful caution while lowering false precision."
+    },
+    {
+      "criterion_id": "answer_length_cognitive_load",
+      "question": "Does the answer stay light enough for a strategic checkpoint decision?",
+      "winner": "control",
+      "control_evidence": "Control is shorter and easier to scan.",
+      "raw_evidence": "Raw adds useful caveats around approval signals, qualitative reference classes, and paid probes.",
+      "rationale": "Control carries slightly less burden."
+    },
+    {
+      "criterion_id": "reactivation_clarity",
+      "question": "Does the answer make it clear what would change the launch decision?",
+      "winner": "raw",
+      "control_evidence": "Control uses zero fractional commitments and spouse misalignment as the pushback trigger.",
+      "raw_evidence": "Raw names concrete paid starts, LOIs, or budgeted scopes plus spouse alignment as the keep-launch-live condition.",
+      "rationale": "Raw makes the reactivation condition more inspectable without adding much process."
+    }
+  ],
+  "tie_break_rule": "raw_tie_with_control_stops",
+  "aggregate_decision": "raw_wins",
+  "notes": "Static local raw-vs-control comparison for a non-safety, non-counsel decline/control replay. This is not a rendered-hybrid comparison."
+}

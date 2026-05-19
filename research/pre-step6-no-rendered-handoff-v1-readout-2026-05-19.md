@@ -141,11 +141,22 @@ expected: healthy_decline
 naturalness_debt_risk: medium
 ```
 
+2026-05-19 update: the validator now records an explicit evidence basis:
+
+```text
+rendered_stop_replay
+simpler_path_static_replay
+```
+
+This is custody bookkeeping. It lets a no-rendered fixture distinguish a
+decline grounded in an existing rendered stop from a decline grounded in a
+static raw/control comparison where no rendered candidate was produced.
+
 Focused validator tests pass:
 
 ```text
 tests/test_pre_step6_no_rendered_handoffs.py
-6 passed
+7 passed
 ```
 
 The CLI validator passes:
@@ -228,3 +239,14 @@ new handoff modes
 bundle
 workers
 ```
+
+2026-05-19 follow-up: the first non-safety / non-counsel no-rendered fixture now
+exists:
+
+```text
+research/pre-step6-user-has-plan-static-decline-readout-2026-05-19.md
+```
+
+The `user_has_plan` consulting-launch case validates as
+`simpler_path_static_replay`. It records a healthy decline using raw/control
+evidence, without a rendered candidate or generator implementation.

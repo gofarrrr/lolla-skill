@@ -13,6 +13,7 @@ Related:
 research/pre-step6-autoresearch-operating-loop-2026-05-19.md
 research/pre-step6-no-rendered-handoff-v1-readout-2026-05-19.md
 research/pre-step6-generator-contract-readiness-decision-2026-05-19.md
+research/pre-step6-user-has-plan-static-decline-readout-2026-05-19.md
 research/pre-step6-no-rendered-handoffs/mid-level-consultant-report-2.negative-control.native-rejudge.no-rendered-handoff.v1.json
 research/pre-step6-decline-evaluations/mid-level-consultant-report-2.negative-control.no-rendered-decline-evaluation.v1.json
 scripts/research/pre_step6_decline_evaluations.py
@@ -239,3 +240,13 @@ research/pre-step6-generator-contract-readiness-decision-2026-05-19.md
 The decision memo records that generator-contract work is not earned yet. The
 next evidence should be one more static decline/control replay in a non-safety /
 non-counsel case before any off-default admission-layer contract is specified.
+
+2026-05-19 static-decline follow-up:
+
+```text
+research/pre-step6-user-has-plan-static-decline-readout-2026-05-19.md
+```
+
+The second decline evaluation now uses the `user_has_plan` consulting-launch
+case. It records `healthy_decline` with `raw_wins` and medium naturalness debt
+avoided, without requiring a rendered candidate.

@@ -23,6 +23,7 @@ research/pre-step6-autoresearch-operating-loop-2026-05-19.md
 research/pre-step6-no-rendered-handoff-v1-readout-2026-05-19.md
 research/pre-step6-generated-decline-evaluation-readout-2026-05-19.md
 research/pre-step6-generator-contract-readiness-decision-2026-05-19.md
+research/pre-step6-user-has-plan-static-decline-readout-2026-05-19.md
 scripts/research/pre_step6_replay_ledger.py
 tests/test_pre_step6_replay_ledger.py
 tests/test_pre_step6_semi_blind_comparisons.py
@@ -402,3 +403,15 @@ future object as a pressure-transport admission layer for off-default
 evaluation, not a generator of advice, and decides that one more static
 decline/control replay in a non-safety / non-counsel case should happen before
 any admission-layer contract is specified.
+
+2026-05-19 user_has_plan static-decline follow-up:
+
+```text
+research/pre-step6-user-has-plan-static-decline-readout-2026-05-19.md
+```
+
+The non-safety / non-counsel strategic replay has now been recorded. It is not a
+replay-ledger record and does not change the six-record rendered-hybrid replay
+aggregate. It adds a second no-rendered decline evaluation: `raw_wins`,
+`healthy_decline`, medium naturalness debt avoided, and generator implementation
+still blocked.

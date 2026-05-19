@@ -276,7 +276,7 @@ Especially do not convert this memo into:
 if X >= 3 then generate rendered
 ```
 
-That would be deterministic pseudo-cognition. The correct output here is a
+That would be deterministic pseudo-cognition. The in-bound output here is a
 research contract, not a classifier.
 
 ## Product Boundary
