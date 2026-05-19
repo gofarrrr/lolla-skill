@@ -279,3 +279,20 @@ That is exactly when research can start looking rigorous while quietly becoming
 a trophy shelf.
 
 The next move should challenge the least comfortable win, not build on it.
+
+2026-05-19 follow-up: the founder high-clutter native rejudge has been
+recorded:
+
+```text
+research/pre-step6-founder-high-clutter-native-rejudge-readout-2026-05-19.md
+```
+
+The rejudge kept rendered hybrid as aggregate winner, but made the evidence less
+comfortable: control tied rendered on simple criterion count, while rendered won
+only through aggregate weighting of decision usefulness, conflict preservation,
+machinery hygiene, and duplicate demotion. Naturalness debt remains medium,
+source grounding is now a watch, and answer bloat remains a watch.
+
+This confirms the aggregate's caution rather than relaxing it. The next slice
+should be a true negative/control replay where rendered hybrid can honestly tie
+or lose. Replay-generator work remains not earned.

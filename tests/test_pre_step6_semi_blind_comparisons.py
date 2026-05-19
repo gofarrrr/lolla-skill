@@ -32,13 +32,23 @@ def test_all_semi_blind_comparisons_validate() -> None:
     paths = _comparison_paths()
 
     assert [path.name for path in paths] == [
+        "founder-grant-marcus-equity.high-clutter.native-rejudge.semi-blind-comparison.v1.json",
         "founder-grant-marcus-equity.high-clutter.semi-blind-comparison.v1.json",
         "mother-address-year.quiet.semi-blind-comparison.v1.json",
         "third-year-phd-student.conflict.semi-blind-comparison.v1.json",
     ]
 
     expected_scores = {
-        "founder-grant-marcus-equity": {
+        "founder-grant-marcus-equity.high-clutter.native-rejudge.semi-blind-comparison.v1.json": {
+            "control": 4,
+            "raw": 0,
+            "rendered_hybrid": 4,
+            "tie": 0,
+            "label_counts": {"A": 4, "B": 4, "C": 0, "tie": 0},
+            "criterion_count_decision": "tie_stop",
+            "aggregate_decision": "rendered_hybrid_wins",
+        },
+        "founder-grant-marcus-equity.high-clutter.semi-blind-comparison.v1.json": {
             "control": 2,
             "raw": 0,
             "rendered_hybrid": 4,
@@ -47,7 +57,7 @@ def test_all_semi_blind_comparisons_validate() -> None:
             "criterion_count_decision": "rendered_hybrid_wins",
             "aggregate_decision": "rendered_hybrid_wins",
         },
-        "mother-deciding-address-year": {
+        "mother-address-year.quiet.semi-blind-comparison.v1.json": {
             "control": 2,
             "raw": 0,
             "rendered_hybrid": 4,
@@ -56,7 +66,7 @@ def test_all_semi_blind_comparisons_validate() -> None:
             "criterion_count_decision": "rendered_hybrid_wins",
             "aggregate_decision": "rendered_hybrid_wins",
         },
-        "third-year-phd-student": {
+        "third-year-phd-student.conflict.semi-blind-comparison.v1.json": {
             "control": 1,
             "raw": 3,
             "rendered_hybrid": 3,
@@ -75,7 +85,7 @@ def test_all_semi_blind_comparisons_validate() -> None:
             repo_root=REPO_ROOT,
         )
         score = score_semi_blind_comparison(payload)
-        assert score == expected_scores[payload["case_id"]]
+        assert score == expected_scores[path.name]
         assert payload["promotion_read"] == "pass_to_replay"
 
 

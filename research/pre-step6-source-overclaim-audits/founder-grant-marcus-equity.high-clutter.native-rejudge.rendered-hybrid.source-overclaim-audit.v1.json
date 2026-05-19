@@ -1,0 +1,45 @@
+{
+  "schema_version": "pre_step6_source_overclaim_audit.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "founder-grant-marcus-equity",
+  "audited_arm": "rendered_hybrid",
+  "audited_answer_core_ref": "research/pre-step6-rendered-hybrid-answer-cores/founder-grant-marcus-equity.high-clutter.native.rendered-hybrid-answer-core.v1.json",
+  "source_refs": {
+    "source_hybrid_handoff": "research/pre-step6-hybrid-handoff-fixtures/founder-grant-marcus-equity.high-clutter.hybrid-handoff.v1.json",
+    "raw_artifact_handoff": "research/pre-step6-raw-artifact-fixtures/founder-grant-marcus-equity.raw-artifact-handoff.v1.json",
+    "semi_blind_comparison": "research/pre-step6-semi-blind-comparisons/founder-grant-marcus-equity.high-clutter.native-rejudge.semi-blind-comparison.v1.json"
+  },
+  "checks": [
+    {
+      "check_id": "source_grounding",
+      "severity": "watch",
+      "rationale": "The native rejudge found the rendered answer grounded overall but slightly broader than the cleanest control arm. The dependency list remains tied to Marcus, Jake/Lina, platform delivery, client continuity, governance, and exit-story facts, so this is a watch rather than a fail."
+    },
+    {
+      "check_id": "probability_overclaim",
+      "severity": "pass",
+      "rationale": "The answer does not repeat $9-13M, 4-6x, buyer multiples, or numeric departure probabilities; it keeps exit math as false-precision caution only."
+    },
+    {
+      "check_id": "evidence_gate_integrity",
+      "severity": "pass",
+      "rationale": "The answer keeps irreversible equity, title, and board commitments behind evidence about platform delivery, revenue relevance, continuity, knowledge transfer, governance behavior, and company value beyond Marcus."
+    },
+    {
+      "check_id": "unsupported_option_expansion",
+      "severity": "pass",
+      "rationale": "The answer keeps intermediate structures alive without adding a phantom-equity or revenue-share catalog, and it avoids unsupported technical or software architecture diagnosis."
+    },
+    {
+      "check_id": "naturalness_debt",
+      "severity": "watch",
+      "rationale": "The native judge marked medium naturalness debt: the answer is strong but visibly optimized, and the dependency/evidence-gate list can feel like private-notebook texture."
+    }
+  ],
+  "audit_result": "pass",
+  "overclaim_findings": [],
+  "naturalness_debt_level": "medium",
+  "decision": "counts_as_replay_win",
+  "notes": "Rendered high-clutter survived native rejudge source/overclaim audit, but with source-grounding and naturalness watches. The aggregate win counts as replay evidence only because the audit did not find numeric overclaim, unsupported technical diagnosis, option-catalog reactivation, or high naturalness debt."
+}

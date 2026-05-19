@@ -38,15 +38,17 @@ def test_all_source_overclaim_audits_validate() -> None:
     paths = _audit_paths()
 
     assert [path.name for path in paths] == [
+        "founder-grant-marcus-equity.high-clutter.native-rejudge.rendered-hybrid.source-overclaim-audit.v1.json",
         "founder-grant-marcus-equity.high-clutter.rendered-hybrid.source-overclaim-audit.v1.json",
         "mother-address-year.quiet.rendered-hybrid.source-overclaim-audit.v1.json",
         "third-year-phd-student.conflict.rendered-hybrid.source-overclaim-audit.v1.json",
     ]
 
     expected_debt = {
-        "founder-grant-marcus-equity": "medium",
-        "mother-deciding-address-year": "low",
-        "third-year-phd-student": "medium",
+        "founder-grant-marcus-equity.high-clutter.native-rejudge.rendered-hybrid.source-overclaim-audit.v1.json": "medium",
+        "founder-grant-marcus-equity.high-clutter.rendered-hybrid.source-overclaim-audit.v1.json": "medium",
+        "mother-address-year.quiet.rendered-hybrid.source-overclaim-audit.v1.json": "low",
+        "third-year-phd-student.conflict.rendered-hybrid.source-overclaim-audit.v1.json": "medium",
     }
 
     for path in paths:
@@ -59,34 +61,42 @@ def test_all_source_overclaim_audits_validate() -> None:
 
         assert payload["audit_result"] == "pass"
         assert payload["decision"] == "counts_as_replay_win"
-        assert payload["naturalness_debt_level"] == expected_debt[payload["case_id"]]
+        assert payload["naturalness_debt_level"] == expected_debt[path.name]
 
 
 def test_all_replay_records_validate() -> None:
     paths = _replay_paths()
 
     assert [path.name for path in paths] == [
+        "founder-grant-marcus-equity.high-clutter.native-rejudge.off-default-replay.v1.json",
         "founder-grant-marcus-equity.high-clutter.off-default-replay.v1.json",
         "mother-address-year.quiet.off-default-replay.v1.json",
         "third-year-phd-student.conflict.off-default-replay.v1.json",
     ]
 
     expected_summaries = {
-        "founder-grant-marcus-equity": {
+        "founder-grant-marcus-equity.high-clutter.native-rejudge.off-default-replay.v1.json": {
+            "comparison_decision": "rendered_hybrid_wins",
+            "replay_decision": "pass_to_next_replay",
+            "product_promotion": "blocked",
+            "naturalness_debt_level": "medium",
+            "present_or_watch_failure_modes": 4,
+        },
+        "founder-grant-marcus-equity.high-clutter.off-default-replay.v1.json": {
             "comparison_decision": "rendered_hybrid_wins",
             "replay_decision": "pass_to_next_replay",
             "product_promotion": "blocked",
             "naturalness_debt_level": "medium",
             "present_or_watch_failure_modes": 2,
         },
-        "mother-deciding-address-year": {
+        "mother-address-year.quiet.off-default-replay.v1.json": {
             "comparison_decision": "rendered_hybrid_wins",
             "replay_decision": "pass_to_next_replay",
             "product_promotion": "blocked",
             "naturalness_debt_level": "low",
             "present_or_watch_failure_modes": 0,
         },
-        "third-year-phd-student": {
+        "third-year-phd-student.conflict.off-default-replay.v1.json": {
             "comparison_decision": "rendered_hybrid_wins",
             "replay_decision": "pass_to_next_replay",
             "product_promotion": "blocked",
@@ -100,7 +110,7 @@ def test_all_replay_records_validate() -> None:
         validate_replay_record_payload(payload, path=path, repo_root=REPO_ROOT)
 
         summary = summarize_replay_record(payload)
-        assert summary == expected_summaries[payload["case_id"]]
+        assert summary == expected_summaries[path.name]
 
 
 def test_source_overclaim_audit_rejects_pass_with_failed_check() -> None:
