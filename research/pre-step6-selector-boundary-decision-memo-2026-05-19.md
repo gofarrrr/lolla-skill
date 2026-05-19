@@ -12,6 +12,7 @@ Related:
 ```text
 research/pre-step6-replay-ledger-aggregate-readout-2026-05-18.md
 research/pre-step6-negative-control-replay-readout-2026-05-19.md
+research/pre-step6-negative-control-native-rejudge-readout-2026-05-19.md
 research/pre-step6-founder-high-clutter-native-rejudge-readout-2026-05-19.md
 research/pre-step6-mother-quiet-replay-readout-2026-05-18.md
 research/pre-step6-off-default-replay-readout-2026-05-18.md
@@ -22,8 +23,8 @@ research/pre-step6-off-default-replay-readout-2026-05-18.md
 What evidence would justify even specifying a tiny off-default rendered-handoff
 generator later?
 
-The answer is not "we have four wins." The first negative/control stop changed
-the problem:
+The answer is not "we have four wins and two stops, so build." The
+negative/control stops changed the problem:
 
 ```text
 rendered hybrid can be valid, grounded, and still not useful enough to count
@@ -43,14 +44,14 @@ plan.
 Current replay ledger state:
 
 ```text
-replay records: 5
+replay records: 6
 rendered_hybrid replay wins: 4
-control/raw/tie replay stops: 1
+control/raw/tie replay stops: 2
 source/overclaim audit failures: 0
 naturalness debt low: 1
-naturalness debt medium: 4
+naturalness debt medium: 5
 naturalness debt high: 0
-native/semi-blind judge records: 2
+native/semi-blind judge records: 3
 local-rubric records: 3
 runtime/product promotion records: 0
 ```
@@ -63,6 +64,7 @@ rendered can stay quiet when only one caution must survive
 quiet receipts can demote clutter without deleting custody
 the ledger can record a rendered loss without schema bending
 source/overclaim audit can pass while rendered still does_not_count
+the first rendered loss can survive native rejudge
 ```
 
 What this does not prove:
@@ -125,7 +127,7 @@ The repeated cost is not hallucination. The repeated cost is answer feel.
 Observed costs:
 
 ```text
-medium naturalness debt in four of five audited rendered answers
+medium naturalness debt in five of six audited rendered answers
 more visible structure than control/raw
 possible source-grounding stretch through extra advisory framing
 possible answer bloat in high-clutter cases
@@ -133,13 +135,14 @@ procedural texture in counsel-first or expert-first cases
 temptation to treat valid nuance as public instruction
 ```
 
-The consultant negative/control replay is the cleanest warning:
+The consultant negative/control replay and native rejudge are the cleanest
+warning:
 
 ```text
-rendered passed source/overclaim audit
-rendered preserved one useful tension
-control still won 7-1
-replay_decision was stop
+rendered passed source/overclaim audit twice
+rendered preserved useful decision nuance
+control still won both aggregate comparisons
+both replay decisions were stop
 ```
 
 That means the selector cannot ask only:
@@ -216,7 +219,7 @@ The selector boundary should preserve that outcome as a success, not a failure.
 
 A generator proposal is still not earned.
 
-Before even specifying a tiny off-default generator, we need at least one of:
+Before even specifying a tiny off-default generator, we needed at least one of:
 
 ```text
 a second negative/control replay, preferably native or less-author-biased
@@ -224,6 +227,10 @@ a native rejudge of the consultant negative/control stop
 a selector-boundary replay where the expected decision is "decline rendered"
 and the evidence record confirms that decline
 ```
+
+The native consultant rejudge now satisfies the second condition. It does not
+authorize implementation. It only makes a generator-proposal discussion less
+premature.
 
 We also need a clearer answer to:
 
@@ -237,7 +244,7 @@ Can it keep medium naturalness debt as a design constraint rather than a score?
 Current blocker:
 
 ```text
-we have evidence that decline is sometimes correct
+we have native-confirmed evidence that decline is sometimes correct
 we do not yet have evidence that a generator/selective process can find decline cases
 ```
 
@@ -306,39 +313,36 @@ valid pressure is still rejectable
 Next gate:
 
 ```text
-native_or_less_author_biased_negative_control_rejudge
+post_native_decline_generator_proposal_decision
 ```
 
 Purpose:
 
 ```text
-test whether the first rendered loss survives a judge that did not author the
-local negative-control rubric
+decide whether the evidence is sufficient to draft a tiny off-default generator
+proposal, or whether one more negative/control case is required first
 ```
 
-Why this before generator proposal:
+Why this is still not implementation:
 
 ```text
-the first rendered loss is local-rubric
 the archive still has four rendered wins
-four audited rendered answers have medium naturalness debt
-the selector boundary depends on trusting that control can really win
+five audited rendered answers have medium naturalness debt
+the selector must support declining generation as a normal outcome
+no evidence exists that a generator can find decline cases
 ```
 
-Pass outcomes:
+Acceptable next decisions:
 
 ```text
-control wins again:
-  strong evidence that decline must be first-class
+draft tiny proposal:
+  allowed only as docs-only, off-default, evaluation-only design
 
-raw wins:
-  also useful; simpler path still beats rendered
+run one more negative/control replay:
+  preferred if we want another non-consultant decline example
 
-tie:
-  serious brake; simpler tie counts against generator work
-
-rendered wins:
-  record honestly, but inspect whether the local negative-control rubric was too harsh
+stop generator path:
+  allowed if medium naturalness debt is treated as too persistent
 ```
 
 Regardless of outcome:
@@ -358,7 +362,8 @@ selector_boundary_identified
 generator_proposal_not_yet
 negative_control_decline_is_first_class
 medium_naturalness_debt_is_primary_constraint
-native_negative_control_rejudge_next
+native_negative_control_rejudge_satisfied
+generator_implementation_blocked
 product_promotion_blocked
 runtime_wiring_blocked
 no_new_mode
@@ -390,4 +395,6 @@ no rendered handoff here
 control is already enough
 ```
 
-Until that behavior is demonstrated in research, generator work remains blocked.
+That behavior is now demonstrated in research as a judgment outcome. It is not
+yet demonstrated as a generator/selective process. Generator implementation
+therefore remains blocked.

@@ -34,6 +34,7 @@ def test_all_semi_blind_comparisons_validate() -> None:
     assert [path.name for path in paths] == [
         "founder-grant-marcus-equity.high-clutter.native-rejudge.semi-blind-comparison.v1.json",
         "founder-grant-marcus-equity.high-clutter.semi-blind-comparison.v1.json",
+        "mid-level-consultant-report-2.negative-control.native-rejudge.semi-blind-comparison.v1.json",
         "mid-level-consultant-report-2.negative-control.semi-blind-comparison.v1.json",
         "mother-address-year.quiet.semi-blind-comparison.v1.json",
         "third-year-phd-student.conflict.semi-blind-comparison.v1.json",
@@ -57,6 +58,15 @@ def test_all_semi_blind_comparisons_validate() -> None:
             "label_counts": {"A": 0, "B": 2, "C": 4, "tie": 2},
             "criterion_count_decision": "rendered_hybrid_wins",
             "aggregate_decision": "rendered_hybrid_wins",
+        },
+        "mid-level-consultant-report-2.negative-control.native-rejudge.semi-blind-comparison.v1.json": {
+            "control": 6,
+            "raw": 0,
+            "rendered_hybrid": 1,
+            "tie": 1,
+            "label_counts": {"A": 0, "B": 6, "C": 1, "tie": 1},
+            "criterion_count_decision": "control_wins",
+            "aggregate_decision": "control_wins",
         },
         "mid-level-consultant-report-2.negative-control.semi-blind-comparison.v1.json": {
             "control": 7,
@@ -99,7 +109,10 @@ def test_all_semi_blind_comparisons_validate() -> None:
         expected_promotion_read = (
             "stop"
             if path.name
-            == "mid-level-consultant-report-2.negative-control.semi-blind-comparison.v1.json"
+            in {
+                "mid-level-consultant-report-2.negative-control.native-rejudge.semi-blind-comparison.v1.json",
+                "mid-level-consultant-report-2.negative-control.semi-blind-comparison.v1.json",
+            }
             else "pass_to_replay"
         )
         assert payload["promotion_read"] == expected_promotion_read

@@ -25,7 +25,7 @@ tests/test_pre_step6_semi_blind_comparisons.py
 
 ## Question
 
-After five static replay ledger records, including one rendered-hybrid loss,
+After six static replay ledger records, including two rendered-hybrid losses,
 what has actually been earned?
 
 This aggregate is intentionally hostile to hype. It asks whether the current
@@ -56,19 +56,20 @@ replay, but not ready for generator work or product integration
 | Founder high-clutter | `card_first`, one card, one `inspect_more`, two quiet receipts | local semi-blind rubric | rendered hybrid | pass, counts as replay win | medium | 2 | Preserved dependency pressure, false-precision caution, and quiet receipt demotion | Control won length and unforcedness; raw/control were less visibly structured | pass to replay only |
 | Founder high-clutter native rejudge | `card_first`, one card, one `inspect_more`, two quiet receipts | native semi-blind judge | rendered hybrid aggregate, control tie by count | pass, counts as replay win | medium | 4 | Preserved the high-clutter decision tension under a less-author-biased judge | Control won source grounding, overclaim risk, lightness, and unforcedness | pass to replay only, with stronger brake |
 | Consultant negative control | `card_first`, one card, two `inspect_more` items | local semi-blind rubric | control | pass, does not count | medium | 3 | Rendered preserved action/overreaction tension, but not enough to win | Control was shorter, safer, more grounded, and more natural | stop |
+| Consultant negative control native rejudge | `card_first`, one card, two `inspect_more` items | native semi-blind judge | control | pass, does not count | medium | 3 | Rendered won decision usefulness and tied conflict preservation | Control won source grounding, overclaim risk, lightness, machinery hygiene, duplicate demotion, and unforcedness | stop |
 
 Aggregate facts:
 
 ```text
-replay records: 5
+replay records: 6
 rendered_hybrid replay wins: 4
-control/raw/tie replay stops: 1
+control/raw/tie replay stops: 2
 source/overclaim audit failures: 0
 naturalness debt low: 1
-naturalness debt medium: 4
+naturalness debt medium: 5
 naturalness debt high: 0
-failed or losing replay records: 1
-native/semi-blind judge records: 2
+failed or losing replay records: 2
+native/semi-blind judge records: 3
 local-rubric records: 3
 runtime/product promotion records: 0
 ```
@@ -77,13 +78,13 @@ runtime/product promotion records: 0
 
 | Risk | Current Evidence | PM Read |
 | --- | --- | --- |
-| Naturalness debt recurrence | Four of five audited rendered answers carry medium naturalness debt. | This is now a pattern watch, not a decorative caveat. |
+| Naturalness debt recurrence | Five of six audited rendered answers carry medium naturalness debt. | This is now a primary design constraint, not a decorative caveat. |
 | Bloat recurrence | Founder high-clutter is 1,499 chars and has `answer_bloat: watch`. | High-clutter may become private notebook drift if unchecked. |
-| Local-rubric bias | Three of five records are local semi-blind rubric records, including the first negative/control stop. | Treat local records as evidence-shape signals, not broad preference proof. |
-| Pass-only archive bias | The ledger now has one rendered loss/control stop. | Trophy-shelf risk is reduced, not gone. One loss proves practice can record contrary evidence; it does not solve generator selection. |
-| Source/overclaim durability | All five audits pass; no high-debt or failed audit record exists. | Good so far, but the first rendered loser shows a pass can still `does_not_count`. |
+| Local-rubric bias | Three of six records are local semi-blind rubric records. | Treat local records as evidence-shape signals, not broad preference proof. |
+| Pass-only archive bias | The ledger now has two rendered loss/control stops, one local and one native. | Trophy-shelf risk is materially reduced; generator selection is still unsolved. |
+| Source/overclaim durability | All six audits pass; no high-debt or failed audit record exists. | Good so far, and both rendered losers show a pass can still `does_not_count`. |
 | Private machinery leakage | No current replay record reports leakage. | Keep watching, especially in high-clutter and quiet receipts cases. |
-| Runtime temptation | Every replay record explicitly blocks product promotion and runtime wiring. | The docs must keep saying no, because "four wins plus one healthy loss" is still easy to misuse. |
+| Runtime temptation | Every replay record explicitly blocks product promotion and runtime wiring. | The docs must keep saying no, because "four wins plus native-confirmed decline" is still easy to misuse. |
 
 ## What The Passes Mean
 
@@ -134,10 +135,10 @@ product docs should change
 The most important limitation is not schema coverage. It is evidence shape:
 
 ```text
-Four of five replay records are rendered wins.
-Three of five records are local-rubric records.
-Four of five audited rendered answers carry medium naturalness debt.
-One negative/control stop exists, but it is local-rubric.
+Four of six replay records are rendered wins.
+Three of six records are local-rubric records.
+Five of six audited rendered answers carry medium naturalness debt.
+Two negative/control stops exist, including one native rejudge.
 ```
 
 That combination argues for challenge, not promotion.
@@ -200,7 +201,7 @@ bundle: no
 workers: no
 replay_generator_proposal: not_yet
 more_static_replay: yes, but only if it tests selector failure
-native_or_less_author_biased_rejudge: useful for any future promotion claim
+native_or_less_author_biased_rejudge: satisfied for the consultant stop
 ```
 
 The May 19 founder native rejudge satisfied the first brake:
@@ -227,12 +228,12 @@ Generator work is still blocked because the live unsolved problem has changed:
 when should the system decline to generate/use a rendered handoff at all?
 ```
 
-The negative/control replay shows such a case exists. It does not yet design the
-selector or prove the selector can find it.
+The negative/control replay and native rejudge show such a case exists. They do
+not yet design the selector or prove the selector can find it.
 
 ## Next Slice
 
-Next recommended slice after the first rendered loss:
+Next recommended slice after the native-confirmed rendered loss:
 
 ```text
 post_negative_selector_boundary_decision
@@ -268,11 +269,11 @@ blocks without pretending to be the reasoner.
 The archive is no longer pass-only:
 
 ```text
-five records
+six records
 four rendered wins
-one control win / rendered stop
+two control wins / rendered stops
 zero failed audits
-four medium-debt rendered audits
+five medium-debt rendered audits
 ```
 
 That is healthier than the previous state, but it points to the next product
@@ -322,3 +323,15 @@ The selector-boundary memo keeps generator implementation blocked. It records
 that the core question has moved from "can rendered transport pressure?" to
 "can we know when not to transport it?" The recommended next gate is a native or
 less-author-biased rejudge of the consultant negative/control stop.
+
+2026-05-19 native negative-control follow-up:
+
+```text
+research/pre-step6-negative-control-native-rejudge-readout-2026-05-19.md
+```
+
+The consultant stop survived native rejudge. Control wins aggregate again;
+rendered wins decision usefulness and ties conflict preservation, but still
+`does_not_count` because control is shorter, lower burden, lower overclaim, and
+more natural. This makes decline behavior first-class, while keeping generator
+implementation and product/runtime promotion blocked.
