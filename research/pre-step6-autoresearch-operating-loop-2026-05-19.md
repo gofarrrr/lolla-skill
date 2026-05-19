@@ -18,6 +18,7 @@ research/pre-step6-generated-decline-evaluation-readout-2026-05-19.md
 research/pre-step6-generator-contract-readiness-decision-2026-05-19.md
 research/pre-step6-user-has-plan-static-decline-readout-2026-05-19.md
 research/pre-step6-phd-adversarial-missed-decline-readout-2026-05-19.md
+research/pre-step6-phd-judgment-led-handover-review-readout-2026-05-19.md
 research/pre-step6-next-slice-decision-note-2026-05-16.md
 research/llm-decomposition-handover.md
 research/extraction-contract-roadmap.md
@@ -169,20 +170,21 @@ no_rendered_handoff can validate as first-class research output
 a generated decline can be evaluated without requiring a rendered candidate
 no_rendered_handoff can stay healthy in one non-safety / non-counsel strategic case
 no_rendered_handoff can be marked missed against a known rendered-positive conflict replay
+manual subagent reviewers can judge loss, burden, and minimum useful handover
 ```
 
 Current blocker:
 
 ```text
-we have two healthy decline evaluations and one adversarial missed decline
-we do not yet know whether the next move should be a containment-only contract or a retest-decline calibration
+we have one judgment-led review on a rendered-positive PhD case
+we do not yet know whether the same reviewer protocol can decline handover on a known healthy-decline case
 ```
 
 The next missing evidence is therefore:
 
 ```text
-a PM decision on whether one marked cliff is enough for a docs-only
-admission-layer contract, or whether a retest_decline case is needed first
+a judgment-led review on a known decline case before any admission-layer
+contract is written
 ```
 
 ## Loop Setup
@@ -460,6 +462,10 @@ Current next queue:
 8. Adversarial PhD no-rendered missed-decline replay.
    Question: can the decline machinery record that withholding rendered would
    lose important pressure in a known rendered-positive conflict case?
+
+9. Judgment-led PhD handover review.
+   Question: can narrow LLM reviewers judge loss, burden, and minimum useful
+   handover without adding deterministic selector logic?
 ```
 
 Still blocked:
@@ -511,9 +517,8 @@ next question
 The current next question is:
 
 ```text
-Is one marked missed-decline cliff enough for a docs-only pressure-transport
-admission-layer contract, or should the next static replay produce a
-retest_decline before contract work?
+Can the same judgment-led reviewer protocol say no handover is needed on a
+known healthy-decline case, or does it over-produce prepared handover?
 ```
 
 Do that next unless new evidence changes the blocker.

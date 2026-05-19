@@ -543,3 +543,16 @@ The requested non-safety / non-counsel static decline now exists. It produced a
 healthy no-rendered decline using `simpler_path_static_replay`, which strengthens
 the decline primitive without authorizing a generator, selector, workers,
 bundles, new modes, runtime wiring, or product promotion.
+
+2026-05-19 judgment-led pivot follow-up:
+
+```text
+research/pre-step6-phd-judgment-led-handover-review-readout-2026-05-19.md
+```
+
+This proposal should now be treated as historical containment scaffolding, not
+the next implementation direction. The PhD judgment-led review suggests the
+future contract, if any, should be a reviewer protocol with deterministic
+receipts rather than a deterministic admission selector. Generator
+implementation remains blocked, and admission-contract work is paused until the
+same reviewer protocol is tested on a known healthy-decline case.

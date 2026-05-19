@@ -1,0 +1,78 @@
+{
+  "schema_version": "pre_step6_judgment_led_handover_review.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "third-year-phd-student",
+  "review_mode": "manual_subagent_judgment_review",
+  "purpose": "Test whether narrow LLM reviewers can judge handover need without adding deterministic selector logic.",
+  "source_refs": {
+    "raw_artifact_handoff": "research/pre-step6-raw-artifact-fixtures/third-year-phd-student.raw-artifact-handoff.v1.json",
+    "raw_answer_core": "research/pre-step6-raw-artifact-answer-cores/third-year-phd-student.raw-answer-core.v1.json",
+    "rendered_hybrid_answer_core": "research/pre-step6-rendered-hybrid-answer-cores/third-year-phd-student.conflict.native.rendered-hybrid-answer-core.v1.json",
+    "semi_blind_comparison": "research/pre-step6-semi-blind-comparisons/third-year-phd-student.conflict.semi-blind-comparison.v1.json",
+    "missed_decline_readout": "research/pre-step6-phd-adversarial-missed-decline-readout-2026-05-19.md"
+  },
+  "reviewers": [
+    {
+      "reviewer_id": "loss_reviewer",
+      "question": "What important pressure would be lost with simple material only?",
+      "judgment": "prepared_handover_needed",
+      "confidence": "high",
+      "findings": [
+        "Simple material may lose the double refusal: do not choose Silva now, but do not default to the safer lab path.",
+        "The coequal Silva/data and fallback-executability gates need to remain live together.",
+        "A short probe window and evidence-to-continue-or-stop decision procedure are likely to weaken without handover.",
+        "Repeated concerns are better compressed into two decision gates than overweighted as fallback anxiety."
+      ],
+      "caveat": "This is judgment evidence for this archived conflict case only, not a general rule."
+    },
+    {
+      "reviewer_id": "burden_reviewer",
+      "question": "What would prepared handover risk making worse?",
+      "judgment": "ambiguous",
+      "confidence": "medium",
+      "findings": [
+        "Naturalness debt is the main cost; rendered phrasing can feel like a decision apparatus.",
+        "Prepared handover risks making a human PhD dilemma feel checklist-shaped.",
+        "Source/overclaim risk is not material, but categorical gates can make uncertain constraints look cleaner than they are.",
+        "Raw is more natural and stronger on overclaim hygiene; control is lighter but thinner."
+      ],
+      "caveat": "The handover is not clearly too costly because source audit passed and rendered won conflict preservation."
+    },
+    {
+      "reviewer_id": "minimal_handover_reviewer",
+      "question": "What is the smallest useful handover, if any?",
+      "judgment": "one_compact_handover",
+      "confidence": "high",
+      "findings": [
+        "Use one compact handover focused on preserving unresolved Silva-vs-fallback conflict.",
+        "Include only the two controlling gates: Silva/data viability and fallback executability.",
+        "Keep broad success-rate claims qualitative unless a genuinely matching reference class exists."
+      ],
+      "exclude": [
+        "full raw artifact bundle",
+        "worker labels or artifact IDs",
+        "new dissertation options",
+        "numeric priors",
+        "runtime selector, generator, worker system, bundle, or new handoff mode"
+      ],
+      "caveat": "The handover should carry compact gates without making the final answer visibly procedural."
+    }
+  ],
+  "review_synthesis": {
+    "judgment": "judgment_led_review_supports_one_compact_handover",
+    "deterministic_replay_alignment": "aligns_with_missed_decline",
+    "naturalness_debt": "medium_watch",
+    "reason": "The reviewers agree that simple-only would likely lose conflict pressure, while the burden reviewer keeps the handover narrow because naturalness debt is real."
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "product_promotion_allowed": false,
+    "generator_implementation_allowed": false,
+    "deterministic_selector_allowed": false,
+    "new_handoff_mode_allowed": false,
+    "worker_system_allowed": false,
+    "bundle_allowed": false
+  },
+  "notes": "Research-only record of manual subagent reviewer judgment. The reviewers did not write final advice, build a selector, launch runtime workers, or promote product behavior."
+}

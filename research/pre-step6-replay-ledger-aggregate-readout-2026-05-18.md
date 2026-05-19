@@ -25,6 +25,7 @@ research/pre-step6-generated-decline-evaluation-readout-2026-05-19.md
 research/pre-step6-generator-contract-readiness-decision-2026-05-19.md
 research/pre-step6-user-has-plan-static-decline-readout-2026-05-19.md
 research/pre-step6-phd-adversarial-missed-decline-readout-2026-05-19.md
+research/pre-step6-phd-judgment-led-handover-review-readout-2026-05-19.md
 scripts/research/pre_step6_replay_ledger.py
 tests/test_pre_step6_replay_ledger.py
 tests/test_pre_step6_semi_blind_comparisons.py
@@ -433,3 +434,19 @@ This reduces a different bias risk: the decline path now has both healthy
 declines and an explicit missed decline. A future admission-layer contract, if
 written, must preserve both facts rather than becoming either rendered-biased
 or decline-biased.
+
+2026-05-19 judgment-led handover review follow-up:
+
+```text
+research/pre-step6-phd-judgment-led-handover-review-readout-2026-05-19.md
+```
+
+The PhD conflict case has now been reviewed by three narrow subagent reviewers:
+loss, burden, and minimal handover. Their combined read aligns with the missed
+decline result, but it also adds the caution the deterministic record cannot
+provide by itself: prepared handover is useful only if it stays compact and
+does not import engineered feel.
+
+This pauses deterministic admission-contract work. The next evidence should run
+the same judgment-led protocol on a known healthy-decline case to test whether
+LLM reviewers can also recommend no handover.

@@ -18,6 +18,7 @@ research/pre-step6-generated-decline-evaluation-readout-2026-05-19.md
 research/pre-step6-selector-boundary-decision-memo-2026-05-19.md
 research/pre-step6-user-has-plan-static-decline-readout-2026-05-19.md
 research/pre-step6-phd-adversarial-missed-decline-readout-2026-05-19.md
+research/pre-step6-phd-judgment-led-handover-review-readout-2026-05-19.md
 ```
 
 ## Question
@@ -303,3 +304,30 @@ would have to preserve both outcomes:
 withhold rendered when simpler paths carry the needed pressure
 do not withhold rendered when conflict pressure would be lost
 ```
+
+2026-05-19 judgment-led review follow-up:
+
+```text
+research/pre-step6-phd-judgment-led-handover-review-readout-2026-05-19.md
+```
+
+The PhD case was reviewed by three narrow LLM/subagent reviewers:
+
+```text
+loss reviewer
+burden reviewer
+minimal handover reviewer
+```
+
+Their combined read is not "build a deterministic admission contract." It is:
+
+```text
+prepared handover is useful in this case
+naturalness debt is real
+the minimum useful handover is one compact pressure surface
+```
+
+That changes the next gate. Before writing any admission-layer contract, run
+the same judgment-led review on a known healthy-decline case. If reviewers
+cannot recommend no handover where no handover already looks healthy, then the
+reviewer protocol is itself pressure-amplifying.
