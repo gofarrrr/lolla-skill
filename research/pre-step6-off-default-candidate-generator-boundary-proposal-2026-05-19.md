@@ -14,6 +14,7 @@ research/pre-step6-replay-ledger-aggregate-readout-2026-05-18.md
 research/pre-step6-selector-boundary-decision-memo-2026-05-19.md
 research/pre-step6-autoresearch-operating-loop-2026-05-19.md
 research/pre-step6-no-rendered-handoff-v1-readout-2026-05-19.md
+research/pre-step6-generated-decline-evaluation-readout-2026-05-19.md
 research/pre-step6-off-default-replay-readout-2026-05-18.md
 research/pre-step6-mother-quiet-replay-readout-2026-05-18.md
 research/pre-step6-founder-high-clutter-replay-readout-2026-05-18.md
@@ -506,3 +507,14 @@ fixture, and tests. It validates the consultant native negative-control stop as
 `no_rendered_handoff`, while rejecting product promotion, runtime wiring,
 generator implementation, missing decline evidence, case-ref drift, and obvious
 hidden answer-plan language. Generator implementation remains blocked.
+
+2026-05-19 generated-decline evaluation follow-up:
+
+```text
+research/pre-step6-generated-decline-evaluation-readout-2026-05-19.md
+```
+
+The no-rendered decline can now be evaluated as a healthy decline using simpler
+raw/control comparison evidence, without requiring a rendered candidate or a
+source/overclaim audit for the decline itself. This strengthens the decline
+path, but still does not authorize generator implementation.

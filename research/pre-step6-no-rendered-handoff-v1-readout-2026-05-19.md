@@ -13,6 +13,7 @@ Related:
 research/pre-step6-autoresearch-operating-loop-2026-05-19.md
 research/pre-step6-off-default-candidate-generator-boundary-proposal-2026-05-19.md
 research/pre-step6-no-rendered-handoffs/mid-level-consultant-report-2.negative-control.native-rejudge.no-rendered-handoff.v1.json
+research/pre-step6-generated-decline-evaluation-readout-2026-05-19.md
 scripts/research/pre_step6_no_rendered_handoffs.py
 tests/test_pre_step6_no_rendered_handoffs.py
 ```
@@ -198,20 +199,32 @@ first-class output
 
 ## Next Round
 
-The next earned slice is not generator implementation.
-
-Next question:
+2026-05-19 follow-up: the next earned slice now exists:
 
 ```text
-Can a no-rendered decline be evaluated in replay style as a healthy generated
-decline without requiring a rendered candidate?
+research/pre-step6-generated-decline-evaluation-readout-2026-05-19.md
 ```
 
-Likely next work:
+It records a replay-style healthy decline evaluation using the consultant
+no-rendered fixture and the simpler raw-vs-control comparison. It does not
+require a rendered candidate or source/overclaim audit for the decline itself.
+
+The next question is now a decision question, not implementation:
 
 ```text
-add a generated-decline evaluation record shape
-use the existing consultant no-rendered fixture as the first candidate
-validate that simpler-arm win/tie can count as healthy decline
-keep runtime/product/generator blocked
+Do we specify a tiny off-default candidate generator contract next, or do we run
+one more static decline/control replay before generator-spec work?
+```
+
+Do not implement a generator from this readout.
+
+Still blocked:
+
+```text
+generator implementation
+runtime wiring
+product promotion
+new handoff modes
+bundle
+workers
 ```
