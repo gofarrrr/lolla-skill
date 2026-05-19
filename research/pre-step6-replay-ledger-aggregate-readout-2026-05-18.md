@@ -311,3 +311,14 @@ This reduces trophy-shelf risk. It does not authorize generator work. The next
 question is now selector-boundary design: what evidence would let a future
 off-default generator decline rendered handoff generation when the control path
 is already enough?
+
+2026-05-19 selector-boundary follow-up:
+
+```text
+research/pre-step6-selector-boundary-decision-memo-2026-05-19.md
+```
+
+The selector-boundary memo keeps generator implementation blocked. It records
+that the core question has moved from "can rendered transport pressure?" to
+"can we know when not to transport it?" The recommended next gate is a native or
+less-author-biased rejudge of the consultant negative/control stop.
