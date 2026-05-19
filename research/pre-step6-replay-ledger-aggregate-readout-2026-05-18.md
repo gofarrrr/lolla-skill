@@ -18,6 +18,7 @@ research/pre-step6-source-overclaim-audits/founder-grant-marcus-equity.high-clut
 research/pre-step6-semi-blind-comparisons/third-year-phd-student.conflict.semi-blind-comparison.v1.json
 research/pre-step6-semi-blind-comparisons/mother-address-year.quiet.semi-blind-comparison.v1.json
 research/pre-step6-semi-blind-comparisons/founder-grant-marcus-equity.high-clutter.semi-blind-comparison.v1.json
+research/pre-step6-off-default-candidate-generator-boundary-proposal-2026-05-19.md
 scripts/research/pre_step6_replay_ledger.py
 tests/test_pre_step6_replay_ledger.py
 tests/test_pre_step6_semi_blind_comparisons.py
@@ -40,11 +41,12 @@ more static replay
 native or less-author-biased rejudging
 ```
 
-The answer is not "four wins plus one healthy loss means promote." The answer is:
+The answer is not "four wins plus two rendered stops means promote." The answer is:
 
 ```text
 the research surface is credible enough to challenge with less-author-biased
-replay, but not ready for generator work or product integration
+replay and now a docs-only generator-boundary proposal, but not ready for
+generator implementation or product integration
 ```
 
 ## Evidence Table
@@ -199,7 +201,8 @@ runtime_wiring: no
 new_handoff_modes: no
 bundle: no
 workers: no
-replay_generator_proposal: not_yet
+docs_only_generator_boundary_proposal: recorded
+generator_implementation: blocked
 more_static_replay: yes, but only if it tests selector failure
 native_or_less_author_biased_rejudge: satisfied for the consultant stop
 ```
@@ -216,34 +219,35 @@ The May 19 consultant negative/control replay satisfied the second brake:
 record at least one rendered-hybrid tie/loss/stop
 ```
 
-But this still does not authorize option C:
+The May 19 native consultant rejudge now authorizes one narrow follow-up:
 
 ```text
-C. Draft a small off-default replay-generator proposal.
+draft a docs-only off-default candidate-generator boundary proposal
 ```
 
-Generator work is still blocked because the live unsolved problem has changed:
+Generator implementation is still blocked because the live unsolved problem has
+changed:
 
 ```text
 when should the system decline to generate/use a rendered handoff at all?
 ```
 
 The negative/control replay and native rejudge show such a case exists. They do
-not yet design the selector or prove the selector can find it.
+not yet implement the selector or prove the selector can find it.
 
 ## Next Slice
 
 Next recommended slice after the native-confirmed rendered loss:
 
 ```text
-post_negative_selector_boundary_decision
+off_default_candidate_generator_boundary_proposal
 ```
 
 Purpose:
 
 ```text
-decide what evidence would justify a tiny off-default generator proposal without
-turning the generator into a deterministic reasoner
+record what a tiny off-default generator would be allowed to do, without
+turning that proposal into implementation or deterministic reasoning
 ```
 
 Pass criteria:
@@ -257,8 +261,8 @@ product promotion remains blocked
 runtime wiring remains false
 ```
 
-Do not use that slice to implement a generator. Its job is to decide whether
-generator design is even worth specifying.
+Do not use that slice to implement a generator. Its job is to specify the
+boundary for a possible future design, not to build it.
 
 ## PM Verdict
 
@@ -296,7 +300,7 @@ source grounding is now a watch, and answer bloat remains a watch.
 
 This confirms the aggregate's caution rather than relaxing it. The next slice
 should be a true negative/control replay where rendered hybrid can honestly tie
-or lose. Replay-generator work remains not earned.
+or lose. Replay-generator implementation remains not earned.
 
 2026-05-19 follow-up: the first negative/control replay has been recorded:
 
@@ -321,8 +325,8 @@ research/pre-step6-selector-boundary-decision-memo-2026-05-19.md
 
 The selector-boundary memo keeps generator implementation blocked. It records
 that the core question has moved from "can rendered transport pressure?" to
-"can we know when not to transport it?" The recommended next gate is a native or
-less-author-biased rejudge of the consultant negative/control stop.
+"can we know when not to transport it?" At that point, the next gate was a
+native or less-author-biased rejudge of the consultant negative/control stop.
 
 2026-05-19 native negative-control follow-up:
 
@@ -335,3 +339,16 @@ rendered wins decision usefulness and ties conflict preservation, but still
 `does_not_count` because control is shorter, lower burden, lower overclaim, and
 more natural. This makes decline behavior first-class, while keeping generator
 implementation and product/runtime promotion blocked.
+
+2026-05-19 off-default candidate-generator boundary follow-up:
+
+```text
+research/pre-step6-off-default-candidate-generator-boundary-proposal-2026-05-19.md
+```
+
+The proposal records the smallest allowed future shape for an off-default
+candidate generator, but only as a containment document. It keeps generator
+implementation, runtime wiring, product promotion, workers, bundles, new modes,
+`SKILL.md`, and `HOW_IT_WORKS.md` blocked. Its central addition is that
+`no_rendered_handoff` must be a first-class successful research output, with a
+decline receipt, before any implementation discussion can continue.

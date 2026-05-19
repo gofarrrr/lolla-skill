@@ -16,6 +16,7 @@ research/pre-step6-negative-control-native-rejudge-readout-2026-05-19.md
 research/pre-step6-founder-high-clutter-native-rejudge-readout-2026-05-19.md
 research/pre-step6-mother-quiet-replay-readout-2026-05-18.md
 research/pre-step6-off-default-replay-readout-2026-05-18.md
+research/pre-step6-off-default-candidate-generator-boundary-proposal-2026-05-19.md
 ```
 
 ## Question
@@ -215,11 +216,14 @@ rendered audit passed but does_not_count
 
 The selector boundary should preserve that outcome as a success, not a failure.
 
-## Missing Evidence Before Generator Proposal
+## Missing Evidence Before Implementation Discussion
 
-A generator proposal is still not earned.
+Generator implementation is still not earned. A docs-only generator boundary
+proposal is now allowed only as a containment artifact after the native
+consultant rejudge confirmed that rendered decline is sometimes correct.
 
-Before even specifying a tiny off-default generator, we needed at least one of:
+Before even specifying a tiny off-default generator boundary, we needed at
+least one of:
 
 ```text
 a second negative/control replay, preferably native or less-author-biased
@@ -229,8 +233,9 @@ and the evidence record confirms that decline
 ```
 
 The native consultant rejudge now satisfies the second condition. It does not
-authorize implementation. It only makes a generator-proposal discussion less
-premature.
+authorize implementation. It only authorizes a docs-only proposal that defines
+what a future generator must refuse to do before implementation can be
+discussed.
 
 We also need a clearer answer to:
 
@@ -308,9 +313,9 @@ the LLM performs judgment
 valid pressure is still rejectable
 ```
 
-## Recommended Next Gate
+## Satisfied Gate
 
-Next gate:
+Gate satisfied by the docs-only boundary proposal:
 
 ```text
 post_native_decline_generator_proposal_decision
@@ -320,7 +325,7 @@ Purpose:
 
 ```text
 decide whether the evidence is sufficient to draft a tiny off-default generator
-proposal, or whether one more negative/control case is required first
+boundary proposal, or whether one more negative/control case is required first
 ```
 
 Why this is still not implementation:
@@ -332,17 +337,11 @@ the selector must support declining generation as a normal outcome
 no evidence exists that a generator can find decline cases
 ```
 
-Acceptable next decisions:
+Chosen decision:
 
 ```text
 draft tiny proposal:
   allowed only as docs-only, off-default, evaluation-only design
-
-run one more negative/control replay:
-  preferred if we want another non-consultant decline example
-
-stop generator path:
-  allowed if medium naturalness debt is treated as too persistent
 ```
 
 Regardless of outcome:
@@ -359,7 +358,7 @@ Current decision:
 
 ```text
 selector_boundary_identified
-generator_proposal_not_yet
+docs_only_generator_boundary_proposal_recorded
 negative_control_decline_is_first_class
 medium_naturalness_debt_is_primary_constraint
 native_negative_control_rejudge_satisfied
@@ -370,6 +369,16 @@ no_new_mode
 no_bundle
 no_workers
 ```
+
+2026-05-19 follow-up: the docs-only boundary proposal is now recorded here:
+
+```text
+research/pre-step6-off-default-candidate-generator-boundary-proposal-2026-05-19.md
+```
+
+This changes only the documentation state. Generator implementation, runtime
+wiring, product promotion, new handoff modes, bundles, and workers remain
+blocked.
 
 ## PM Verdict
 
