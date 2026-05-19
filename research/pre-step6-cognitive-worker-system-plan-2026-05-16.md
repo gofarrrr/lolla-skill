@@ -555,8 +555,8 @@ decline the worker.
 
 The workpack must not select truth. It packages a bounded reasoning task.
 
-If a worker needs a broad local slice to be useful, the correct answer is usually
-to skip the worker and let Step 6 handle the case directly.
+If a worker needs a broad local slice to be useful, the admission decision should
+usually decline the worker and let Step 6 handle the case directly.
 
 ## Worker Prompt Principles
 

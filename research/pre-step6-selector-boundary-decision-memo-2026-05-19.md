@@ -195,7 +195,7 @@ Decline rendered when:
 
 ```text
 control is already short, grounded, and humane
-the correct move is counsel-first, therapist-first, expert-first, or safety-first restraint
+the needed pressure is already carried by counsel-first, therapist-first, expert-first, or safety-first restraint
 no strong missing pressure is observed
 raw/rendered mainly add protocol, channel, or process detail
 rendered loses or ties on source grounding, overclaim risk, lightness, and unforcedness

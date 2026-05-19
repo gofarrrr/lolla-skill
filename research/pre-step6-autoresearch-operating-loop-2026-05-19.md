@@ -15,6 +15,7 @@ research/pre-step6-selector-boundary-decision-memo-2026-05-19.md
 research/pre-step6-off-default-candidate-generator-boundary-proposal-2026-05-19.md
 research/pre-step6-no-rendered-handoff-v1-readout-2026-05-19.md
 research/pre-step6-generated-decline-evaluation-readout-2026-05-19.md
+research/pre-step6-generator-contract-readiness-decision-2026-05-19.md
 research/pre-step6-next-slice-decision-note-2026-05-16.md
 research/llm-decomposition-handover.md
 research/extraction-contract-roadmap.md
@@ -162,19 +163,21 @@ no_extra_pressure can decline extra cognition
 quiet_receipts can demote clutter without deleting custody
 the ledger can record rendered stops without schema bending
 rendered can pass audit and still does_not_count
+no_rendered_handoff can validate as first-class research output
+a generated decline can be evaluated without requiring a rendered candidate
 ```
 
 Current blocker:
 
 ```text
-we know decline is sometimes correct
-we do not yet know how to represent or evaluate generated decline cleanly
+we know decline can be represented and evaluated in the consultant case
+we do not yet know whether decline generalizes beyond a safety/counsel archetype
 ```
 
-The next missing primitive is therefore:
+The next missing evidence is therefore:
 
 ```text
-no_rendered_handoff as a first-class research output
+one more static decline/control replay in a non-safety / non-counsel case shape
 ```
 
 ## Loop Setup
@@ -437,8 +440,16 @@ Completed on 2026-05-19:
 Current next queue:
 
 ```text
-5. Only after 1-4, revisit whether an off-default candidate generator spec is
-   worth more than another static replay.
+5. Docs-only first-principles decision memo on generator-contract readiness.
+   Question: is generator-contract work earned yet, or should we run one more
+   static decline/control replay first?
+
+6. One more static decline/control replay in a different case shape.
+   Question: does no_rendered_handoff generalize beyond the consultant
+   safety/counsel archetype?
+
+7. Only after 6, revisit whether an off-default admission-layer contract is
+   worth specifying.
 ```
 
 Still blocked:
@@ -490,8 +501,8 @@ next question
 The current next question is:
 
 ```text
-Can no_rendered_handoff be represented as a first-class successful research
-output without becoming another private pressure surface?
+Can a no_rendered_handoff decline remain healthy in a non-safety /
+non-counsel case where rendered might add nuance but also naturalness debt?
 ```
 
 Do that next unless new evidence changes the blocker.

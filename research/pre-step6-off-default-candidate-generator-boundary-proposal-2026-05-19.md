@@ -15,6 +15,7 @@ research/pre-step6-selector-boundary-decision-memo-2026-05-19.md
 research/pre-step6-autoresearch-operating-loop-2026-05-19.md
 research/pre-step6-no-rendered-handoff-v1-readout-2026-05-19.md
 research/pre-step6-generated-decline-evaluation-readout-2026-05-19.md
+research/pre-step6-generator-contract-readiness-decision-2026-05-19.md
 research/pre-step6-off-default-replay-readout-2026-05-18.md
 research/pre-step6-mother-quiet-replay-readout-2026-05-18.md
 research/pre-step6-founder-high-clutter-replay-readout-2026-05-18.md
@@ -218,7 +219,7 @@ Decline rendered when:
 
 ```text
 control is already short, grounded, and humane
-the correct move is counsel-first, therapist-first, expert-first, or safety-first restraint
+the needed pressure is already carried by counsel-first, therapist-first, expert-first, or safety-first restraint
 no strong missing pressure is observed
 rendered would mainly add protocol, channel, or process detail
 rendered would increase procedural feel without clear decision lift
@@ -294,7 +295,7 @@ channel/protocol detail and medium naturalness debt without enough decision lift
 Bad decline receipt:
 
 ```text
-The correct answer is control because counsel-first beats decision usefulness.
+Choose control because counsel-first beats decision usefulness.
 ```
 
 The first keeps custody. The second starts judging the final answer.
@@ -518,3 +519,15 @@ The no-rendered decline can now be evaluated as a healthy decline using simpler
 raw/control comparison evidence, without requiring a rendered candidate or a
 source/overclaim audit for the decline itself. This strengthens the decline
 path, but still does not authorize generator implementation.
+
+2026-05-19 readiness-decision follow-up:
+
+```text
+research/pre-step6-generator-contract-readiness-decision-2026-05-19.md
+```
+
+The next decision memo slows this proposal down. It records that
+generator-contract work is not earned yet, because the healthy decline evidence
+still comes from a consultant safety/counsel archetype. The next evidence should
+be one more static decline/control replay in a non-safety / non-counsel case
+before any off-default admission-layer contract is specified.

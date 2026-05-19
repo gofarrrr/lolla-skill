@@ -12,6 +12,7 @@ Related:
 ```text
 research/pre-step6-autoresearch-operating-loop-2026-05-19.md
 research/pre-step6-no-rendered-handoff-v1-readout-2026-05-19.md
+research/pre-step6-generator-contract-readiness-decision-2026-05-19.md
 research/pre-step6-no-rendered-handoffs/mid-level-consultant-report-2.negative-control.native-rejudge.no-rendered-handoff.v1.json
 research/pre-step6-decline-evaluations/mid-level-consultant-report-2.negative-control.no-rendered-decline-evaluation.v1.json
 scripts/research/pre_step6_decline_evaluations.py
@@ -228,3 +229,13 @@ one more static decline/control replay before generator-spec work?
 
 Given the evidence, the safer next slice is a short decision memo, not generator
 implementation.
+
+2026-05-19 follow-up:
+
+```text
+research/pre-step6-generator-contract-readiness-decision-2026-05-19.md
+```
+
+The decision memo records that generator-contract work is not earned yet. The
+next evidence should be one more static decline/control replay in a non-safety /
+non-counsel case before any off-default admission-layer contract is specified.

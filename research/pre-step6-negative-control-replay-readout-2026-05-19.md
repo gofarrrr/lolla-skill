@@ -26,7 +26,7 @@ enough:
 
 ```text
 mid-level consultant sees a partner in a risky after-hours situation
-correct first move is counsel-first preservation
+counsel-first preservation already carries the needed first-step pressure
 main risk is over-processing or self-directed reporting
 control is already short, grounded, and humane
 ```
@@ -37,7 +37,7 @@ or lose if the process is honest.
 ## Why This Case
 
 The consultant case is high-stakes but not high-clutter in the founder sense.
-The correct answer is mostly:
+The sufficient pressure path is mostly:
 
 ```text
 do not confront

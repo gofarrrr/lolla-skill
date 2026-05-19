@@ -22,6 +22,7 @@ research/pre-step6-off-default-candidate-generator-boundary-proposal-2026-05-19.
 research/pre-step6-autoresearch-operating-loop-2026-05-19.md
 research/pre-step6-no-rendered-handoff-v1-readout-2026-05-19.md
 research/pre-step6-generated-decline-evaluation-readout-2026-05-19.md
+research/pre-step6-generator-contract-readiness-decision-2026-05-19.md
 scripts/research/pre_step6_replay_ledger.py
 tests/test_pre_step6_replay_ledger.py
 tests/test_pre_step6_semi_blind_comparisons.py
@@ -389,3 +390,15 @@ The consultant no-rendered fixture now has a replay-style healthy-decline
 evaluation. It uses the simpler raw-vs-control comparison, avoids requiring a
 rendered candidate, records medium naturalness debt avoided, and keeps generator
 implementation blocked.
+
+2026-05-19 generator-contract readiness follow-up:
+
+```text
+research/pre-step6-generator-contract-readiness-decision-2026-05-19.md
+```
+
+The readiness memo keeps generator-contract work blocked. It reframes the
+future object as a pressure-transport admission layer for off-default
+evaluation, not a generator of advice, and decides that one more static
+decline/control replay in a non-safety / non-counsel case should happen before
+any admission-layer contract is specified.
