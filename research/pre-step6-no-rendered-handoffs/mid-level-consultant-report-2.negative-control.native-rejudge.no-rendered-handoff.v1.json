@@ -1,0 +1,42 @@
+{
+  "schema_version": "pre_step6_no_rendered_handoff.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mid-level-consultant-report-2",
+  "outcome_type": "no_rendered_handoff",
+  "decline_decision": "valid_research_decline",
+  "source_refs": {
+    "raw_artifact_handoff": "research/pre-step6-raw-artifact-fixtures/mid-level-consultant-report-2.raw-artifact-handoff.v1.json",
+    "raw_answer_core": "research/pre-step6-raw-artifact-answer-cores/mid-level-consultant-report-2.raw-answer-core.v1.json",
+    "control_comparison": "research/pre-step6-raw-artifact-comparisons/mid-level-consultant-report-2.raw-vs-control-comparison.v1.json",
+    "semi_blind_comparison": "research/pre-step6-semi-blind-comparisons/mid-level-consultant-report-2.negative-control.native-rejudge.semi-blind-comparison.v1.json",
+    "replay_record": "research/pre-step6-replay-records/mid-level-consultant-report-2.negative-control.native-rejudge.off-default-replay.v1.json",
+    "source_overclaim_audit": "research/pre-step6-source-overclaim-audits/mid-level-consultant-report-2.negative-control.native-rejudge.rendered-hybrid.source-overclaim-audit.v1.json"
+  },
+  "decline_receipt": {
+    "decline_reason": "Control already gives the safe counsel-first first move.",
+    "control_sufficiency": "It preserves documentation, no confrontation, normal Wednesday behavior, and attorney-led channel choice.",
+    "missing_pressure_assessment": "No critical pressure appears lost by withholding rendered; the added nuance is mostly channel and protocol detail.",
+    "naturalness_debt_risk": "medium",
+    "expected_failure_if_forced": "Rendered would likely add procedural texture without enough decision lift.",
+    "reactivation_condition": "Reactivate only if the simpler path drops a live risk, counsel boundary, or immediate safety step."
+  },
+  "evaluation_expectations": {
+    "expected_result": "healthy_decline",
+    "simpler_arm_expected": "control_wins",
+    "miss_if": [
+      "The simpler path loses the no-confrontation or no-investigation boundary.",
+      "The simpler path fails to get counsel involved quickly.",
+      "The receipt starts outlining the public answer instead of explaining decline."
+    ]
+  },
+  "gates": {
+    "no_rendered_handoff_is_success": true,
+    "decline_receipt_is_not_answer_plan": true,
+    "no_pressure_surface_created": true,
+    "runtime_wiring_allowed": false,
+    "product_promotion_allowed": false,
+    "generator_implementation_allowed": false
+  },
+  "notes": "Manual first-class decline fixture grounded in the native negative-control stop. It records why no rendered surface should be produced for this case; it is not a generator output and does not change runtime."
+}

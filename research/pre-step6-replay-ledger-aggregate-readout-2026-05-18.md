@@ -20,6 +20,7 @@ research/pre-step6-semi-blind-comparisons/mother-address-year.quiet.semi-blind-c
 research/pre-step6-semi-blind-comparisons/founder-grant-marcus-equity.high-clutter.semi-blind-comparison.v1.json
 research/pre-step6-off-default-candidate-generator-boundary-proposal-2026-05-19.md
 research/pre-step6-autoresearch-operating-loop-2026-05-19.md
+research/pre-step6-no-rendered-handoff-v1-readout-2026-05-19.md
 scripts/research/pre_step6_replay_ledger.py
 tests/test_pre_step6_replay_ledger.py
 tests/test_pre_step6_semi_blind_comparisons.py
@@ -364,3 +365,15 @@ The loop adapts the repo's `autoresearch` inspiration to this branch: stable
 product substrate, small research-only experimental layer, predeclared gates,
 honest pass/tie/loss/stop records, local validation, clean commits, and continued
 iteration until a real blocker or product boundary appears.
+
+2026-05-19 no-rendered-handoff follow-up:
+
+```text
+research/pre-step6-no-rendered-handoff-v1-readout-2026-05-19.md
+```
+
+The first-class decline primitive now validates as a research artifact using the
+consultant native negative-control stop. This makes `no_rendered_handoff` a
+small, testable output rather than an implicit absence. It still does not
+authorize generator implementation, runtime wiring, product promotion, workers,
+bundles, or new modes.

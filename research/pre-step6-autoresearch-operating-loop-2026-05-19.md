@@ -13,6 +13,7 @@ Related:
 research/pre-step6-replay-ledger-aggregate-readout-2026-05-18.md
 research/pre-step6-selector-boundary-decision-memo-2026-05-19.md
 research/pre-step6-off-default-candidate-generator-boundary-proposal-2026-05-19.md
+research/pre-step6-no-rendered-handoff-v1-readout-2026-05-19.md
 research/pre-step6-next-slice-decision-note-2026-05-16.md
 research/llm-decomposition-handover.md
 research/extraction-contract-roadmap.md
@@ -377,7 +378,7 @@ tests are regression guards, not proof of better advice.
 For pre-Step-6 research slices, default to:
 
 ```text
-PYTHONPATH=. pytest tests/test_pre_step6_raw_artifacts.py tests/test_pre_step6_workpacks.py tests/test_pre_step6_pressure_card_consumption.py tests/test_pre_step6_hybrid_handoffs.py tests/test_pre_step6_semi_blind_comparisons.py tests/test_pre_step6_replay_ledger.py
+PYTHONPATH=. pytest tests/test_pre_step6_raw_artifacts.py tests/test_pre_step6_workpacks.py tests/test_pre_step6_pressure_card_consumption.py tests/test_pre_step6_hybrid_handoffs.py tests/test_pre_step6_semi_blind_comparisons.py tests/test_pre_step6_replay_ledger.py tests/test_pre_step6_no_rendered_handoffs.py
 git diff --check
 ```
 
@@ -387,6 +388,7 @@ When a specific validator exists, also run the relevant CLI command. Examples:
 python3 scripts/research/pre_step6_semi_blind_comparisons.py <comparison.json> --repo-root .
 python3 scripts/research/pre_step6_replay_ledger.py <audit.json> --repo-root . --source-overclaim-audit
 python3 scripts/research/pre_step6_replay_ledger.py <replay-record.json> --repo-root . --replay-record
+python3 scripts/research/pre_step6_no_rendered_handoffs.py <no-rendered-handoff.json> --repo-root .
 ```
 
 Docs-only rounds still run the focused suite unless there is a clear reason not
@@ -412,7 +414,9 @@ Do not mix unrelated research questions in one commit.
 
 ## Next Round Queue
 
-The next rounds should proceed in this order unless evidence changes the queue:
+The next rounds should proceed in this order unless evidence changes the queue.
+
+Completed on 2026-05-19:
 
 ```text
 1. Docs/test proposal for no_rendered_handoff.v1
@@ -423,7 +427,11 @@ The next rounds should proceed in this order unless evidence changes the queue:
 
 3. Minimal validator for no_rendered_handoff.v1
    Question: can decline validate as first-class output while keeping runtime blocked?
+```
 
+Current next queue:
+
+```text
 4. Replay-style generated-decline evaluation record
    Question: can a declined rendered handoff count as healthy evidence?
 

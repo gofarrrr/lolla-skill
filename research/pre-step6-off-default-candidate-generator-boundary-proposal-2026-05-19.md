@@ -13,6 +13,7 @@ Related:
 research/pre-step6-replay-ledger-aggregate-readout-2026-05-18.md
 research/pre-step6-selector-boundary-decision-memo-2026-05-19.md
 research/pre-step6-autoresearch-operating-loop-2026-05-19.md
+research/pre-step6-no-rendered-handoff-v1-readout-2026-05-19.md
 research/pre-step6-off-default-replay-readout-2026-05-18.md
 research/pre-step6-mother-quiet-replay-readout-2026-05-18.md
 research/pre-step6-founder-high-clutter-replay-readout-2026-05-18.md
@@ -493,3 +494,15 @@ research-only edits, local validation, honest pass/tie/loss/stop readout, clean
 commit, then the next question. The current next question is whether
 `no_rendered_handoff` can validate as first-class successful output without
 becoming another private pressure surface.
+
+2026-05-19 no-rendered-handoff follow-up:
+
+```text
+research/pre-step6-no-rendered-handoff-v1-readout-2026-05-19.md
+```
+
+The first-class decline primitive now exists as a research-only validator,
+fixture, and tests. It validates the consultant native negative-control stop as
+`no_rendered_handoff`, while rejecting product promotion, runtime wiring,
+generator implementation, missing decline evidence, case-ref drift, and obvious
+hidden answer-plan language. Generator implementation remains blocked.
