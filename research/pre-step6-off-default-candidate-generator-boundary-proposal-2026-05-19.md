@@ -12,6 +12,7 @@ Related:
 ```text
 research/pre-step6-replay-ledger-aggregate-readout-2026-05-18.md
 research/pre-step6-selector-boundary-decision-memo-2026-05-19.md
+research/pre-step6-autoresearch-operating-loop-2026-05-19.md
 research/pre-step6-off-default-replay-readout-2026-05-18.md
 research/pre-step6-mother-quiet-replay-readout-2026-05-18.md
 research/pre-step6-founder-high-clutter-replay-readout-2026-05-18.md
@@ -480,3 +481,15 @@ receipt helps evaluation without smuggling a hidden answer plan
 
 Product promotion remains blocked. Runtime wiring remains blocked. Rendered
 hybrid remains a research pressure-transport surface, not a default behavior.
+
+2026-05-19 process follow-up:
+
+```text
+research/pre-step6-autoresearch-operating-loop-2026-05-19.md
+```
+
+Future rounds should use that loop: one narrow question, predeclared gates,
+research-only edits, local validation, honest pass/tie/loss/stop readout, clean
+commit, then the next question. The current next question is whether
+`no_rendered_handoff` can validate as first-class successful output without
+becoming another private pressure surface.
