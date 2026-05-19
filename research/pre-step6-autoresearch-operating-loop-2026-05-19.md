@@ -17,6 +17,7 @@ research/pre-step6-no-rendered-handoff-v1-readout-2026-05-19.md
 research/pre-step6-generated-decline-evaluation-readout-2026-05-19.md
 research/pre-step6-generator-contract-readiness-decision-2026-05-19.md
 research/pre-step6-user-has-plan-static-decline-readout-2026-05-19.md
+research/pre-step6-phd-adversarial-missed-decline-readout-2026-05-19.md
 research/pre-step6-next-slice-decision-note-2026-05-16.md
 research/llm-decomposition-handover.md
 research/extraction-contract-roadmap.md
@@ -167,20 +168,21 @@ rendered can pass audit and still does_not_count
 no_rendered_handoff can validate as first-class research output
 a generated decline can be evaluated without requiring a rendered candidate
 no_rendered_handoff can stay healthy in one non-safety / non-counsel strategic case
+no_rendered_handoff can be marked missed against a known rendered-positive conflict replay
 ```
 
 Current blocker:
 
 ```text
-we have two healthy decline evaluations, one safety/counsel and one strategic
-we do not yet know whether the next move should be a containment contract or a missed-decline/retest case
+we have two healthy decline evaluations and one adversarial missed decline
+we do not yet know whether the next move should be a containment-only contract or a retest-decline calibration
 ```
 
 The next missing evidence is therefore:
 
 ```text
-a PM decision on whether to write a docs-only admission-layer contract or add
-one adversarial static replay where decline misses or retests
+a PM decision on whether one marked cliff is enough for a docs-only
+admission-layer contract, or whether a retest_decline case is needed first
 ```
 
 ## Loop Setup
@@ -454,6 +456,10 @@ Current next queue:
 7. PM decision memo after the user_has_plan static decline.
    Question: is a docs-only admission-layer contract now earned, or do we need
    a missed-decline/retest case first?
+
+8. Adversarial PhD no-rendered missed-decline replay.
+   Question: can the decline machinery record that withholding rendered would
+   lose important pressure in a known rendered-positive conflict case?
 ```
 
 Still blocked:
@@ -505,9 +511,9 @@ next question
 The current next question is:
 
 ```text
-Is the evidence strong enough for a docs-only pressure-transport admission-layer
-contract, or should the next static replay try to produce a missed decline or
-retest before contract work?
+Is one marked missed-decline cliff enough for a docs-only pressure-transport
+admission-layer contract, or should the next static replay produce a
+retest_decline before contract work?
 ```
 
 Do that next unless new evidence changes the blocker.

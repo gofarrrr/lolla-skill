@@ -14,6 +14,7 @@ research/pre-step6-autoresearch-operating-loop-2026-05-19.md
 research/pre-step6-no-rendered-handoff-v1-readout-2026-05-19.md
 research/pre-step6-generator-contract-readiness-decision-2026-05-19.md
 research/pre-step6-user-has-plan-static-decline-readout-2026-05-19.md
+research/pre-step6-phd-adversarial-missed-decline-readout-2026-05-19.md
 research/pre-step6-no-rendered-handoffs/mid-level-consultant-report-2.negative-control.native-rejudge.no-rendered-handoff.v1.json
 research/pre-step6-decline-evaluations/mid-level-consultant-report-2.negative-control.no-rendered-decline-evaluation.v1.json
 scripts/research/pre_step6_decline_evaluations.py
@@ -126,6 +127,10 @@ All pass for the consultant case.
 
 The validator rejects a healthy decline if any miss check fails.
 
+2026-05-19 adversarial update: the validator also rejects `missed_decline`
+unless at least one miss check fails, and rejects a decline evaluation whose
+decision disagrees with the no-rendered candidate's expected result.
+
 ## Validator Guards
 
 The validator rejects:
@@ -150,7 +155,7 @@ Focused tests:
 
 ```text
 PYTHONPATH=. pytest tests/test_pre_step6_decline_evaluations.py
-6 passed
+8 passed
 ```
 
 CLI:
@@ -250,3 +255,15 @@ research/pre-step6-user-has-plan-static-decline-readout-2026-05-19.md
 The second decline evaluation now uses the `user_has_plan` consulting-launch
 case. It records `healthy_decline` with `raw_wins` and medium naturalness debt
 avoided, without requiring a rendered candidate.
+
+2026-05-19 adversarial follow-up:
+
+```text
+research/pre-step6-phd-adversarial-missed-decline-readout-2026-05-19.md
+```
+
+The PhD conflict case now records `missed_decline`. The no-rendered candidate
+itself validates, but the evaluation says declining would lose critical
+Silva-vs-fallback pressure that the existing rendered replay had preserved.
+This proves the decline evaluation can record a bad decline, not only healthy
+ones.

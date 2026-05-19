@@ -13,7 +13,9 @@ Related:
 research/pre-step6-autoresearch-operating-loop-2026-05-19.md
 research/pre-step6-off-default-candidate-generator-boundary-proposal-2026-05-19.md
 research/pre-step6-no-rendered-handoffs/mid-level-consultant-report-2.negative-control.native-rejudge.no-rendered-handoff.v1.json
+research/pre-step6-no-rendered-handoffs/third-year-phd-student.conflict.adversarial.no-rendered-handoff.v1.json
 research/pre-step6-generated-decline-evaluation-readout-2026-05-19.md
+research/pre-step6-phd-adversarial-missed-decline-readout-2026-05-19.md
 scripts/research/pre_step6_no_rendered_handoffs.py
 tests/test_pre_step6_no_rendered_handoffs.py
 ```
@@ -145,6 +147,7 @@ naturalness_debt_risk: medium
 
 ```text
 rendered_stop_replay
+rendered_win_replay
 simpler_path_static_replay
 ```
 
@@ -152,11 +155,15 @@ This is custody bookkeeping. It lets a no-rendered fixture distinguish a
 decline grounded in an existing rendered stop from a decline grounded in a
 static raw/control comparison where no rendered candidate was produced.
 
+`rendered_win_replay` is narrower: it exists only so adversarial decline tests
+can record missed or retest declines against an existing rendered-positive
+replay. It cannot support `healthy_decline`.
+
 Focused validator tests pass:
 
 ```text
 tests/test_pre_step6_no_rendered_handoffs.py
-7 passed
+9 passed
 ```
 
 The CLI validator passes:
@@ -250,3 +257,14 @@ research/pre-step6-user-has-plan-static-decline-readout-2026-05-19.md
 The `user_has_plan` consulting-launch case validates as
 `simpler_path_static_replay`. It records a healthy decline using raw/control
 evidence, without a rendered candidate or generator implementation.
+
+2026-05-19 adversarial follow-up: the PhD conflict case now validates as
+`rendered_win_replay`:
+
+```text
+research/pre-step6-phd-adversarial-missed-decline-readout-2026-05-19.md
+```
+
+It records `missed_decline`, not a healthy decline, because the existing
+rendered replay had already won by preserving Silva-vs-fallback tension and
+evidence gates. This adds the marked cliff the decline primitive was missing.

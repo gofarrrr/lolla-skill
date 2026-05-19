@@ -24,6 +24,7 @@ research/pre-step6-no-rendered-handoff-v1-readout-2026-05-19.md
 research/pre-step6-generated-decline-evaluation-readout-2026-05-19.md
 research/pre-step6-generator-contract-readiness-decision-2026-05-19.md
 research/pre-step6-user-has-plan-static-decline-readout-2026-05-19.md
+research/pre-step6-phd-adversarial-missed-decline-readout-2026-05-19.md
 scripts/research/pre_step6_replay_ledger.py
 tests/test_pre_step6_replay_ledger.py
 tests/test_pre_step6_semi_blind_comparisons.py
@@ -415,3 +416,20 @@ replay-ledger record and does not change the six-record rendered-hybrid replay
 aggregate. It adds a second no-rendered decline evaluation: `raw_wins`,
 `healthy_decline`, medium naturalness debt avoided, and generator implementation
 still blocked.
+
+2026-05-19 adversarial missed-decline follow-up:
+
+```text
+research/pre-step6-phd-adversarial-missed-decline-readout-2026-05-19.md
+```
+
+The PhD conflict case has now been used as a known rendered-positive marked
+cliff. It is not a new replay-ledger record and does not change the six-record
+rendered-hybrid aggregate. It adds one adversarial no-rendered calibration:
+`rendered_win_replay`, `missed_decline`, `raw_wins` in the simpler comparison,
+and generator implementation still blocked.
+
+This reduces a different bias risk: the decline path now has both healthy
+declines and an explicit missed decline. A future admission-layer contract, if
+written, must preserve both facts rather than becoming either rendered-biased
+or decline-biased.

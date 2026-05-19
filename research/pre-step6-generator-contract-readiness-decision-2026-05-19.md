@@ -17,6 +17,7 @@ research/pre-step6-no-rendered-handoff-v1-readout-2026-05-19.md
 research/pre-step6-generated-decline-evaluation-readout-2026-05-19.md
 research/pre-step6-selector-boundary-decision-memo-2026-05-19.md
 research/pre-step6-user-has-plan-static-decline-readout-2026-05-19.md
+research/pre-step6-phd-adversarial-missed-decline-readout-2026-05-19.md
 ```
 
 ## Question
@@ -277,3 +278,28 @@ That follow-up does not authorize implementation. It moves the next question to
 a PM decision: whether a docs-only pressure-transport admission-layer contract
 is now useful as containment, or whether the archive first needs an adversarial
 missed-decline or retest case.
+
+2026-05-19 adversarial follow-up:
+
+```text
+research/pre-step6-phd-adversarial-missed-decline-readout-2026-05-19.md
+```
+
+The adversarial PhD decline calibration has now been recorded. It uses the
+known rendered-positive conflict replay as a marked-cliff case and records
+`missed_decline`, not healthy decline. This matters because the archive now has:
+
+```text
+healthy decline in a safety/counsel case
+healthy decline in a non-safety strategic case
+missed decline in a known rendered-positive conflict case
+```
+
+That still does not authorize generator implementation. It does make any future
+docs-only admission-layer contract less decline-biased, because the contract
+would have to preserve both outcomes:
+
+```text
+withhold rendered when simpler paths carry the needed pressure
+do not withhold rendered when conflict pressure would be lost
+```

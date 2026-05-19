@@ -33,6 +33,7 @@ def test_all_no_rendered_handoffs_validate() -> None:
 
     assert [path.name for path in paths] == [
         "mid-level-consultant-report-2.negative-control.native-rejudge.no-rendered-handoff.v1.json",
+        "third-year-phd-student.conflict.adversarial.no-rendered-handoff.v1.json",
         "user-has-plan-consulting-launch.static-decline.no-rendered-handoff.v1.json",
     ]
 
@@ -43,6 +44,13 @@ def test_all_no_rendered_handoffs_validate() -> None:
             "naturalness_debt_risk": "medium",
             "expected_result": "healthy_decline",
             "simpler_arm_expected": "control_wins",
+        },
+        "third-year-phd-student.conflict.adversarial.no-rendered-handoff.v1.json": {
+            "case_id": "third-year-phd-student",
+            "decline_decision": "missed_decline",
+            "naturalness_debt_risk": "medium",
+            "expected_result": "missed_decline",
+            "simpler_arm_expected": "raw_wins",
         },
         "user-has-plan-consulting-launch.static-decline.no-rendered-handoff.v1.json": {
             "case_id": "user-has-plan-consulting-launch",
@@ -132,6 +140,41 @@ def test_no_rendered_handoff_simpler_path_rejects_rendered_replay_evidence() -> 
     with pytest.raises(
         NoRenderedHandoffValidationError,
         match="simpler_path_static_replay",
+    ):
+        validate_no_rendered_handoff_payload(payload, repo_root=REPO_ROOT)
+
+
+def test_no_rendered_handoff_rendered_win_rejects_healthy_decline() -> None:
+    path = (
+        NO_RENDERED_DIR
+        / "third-year-phd-student.conflict.adversarial.no-rendered-handoff.v1.json"
+    )
+    payload = _load(path)
+    payload["decline_decision"] = "valid_research_decline"
+    expectations = payload["evaluation_expectations"]
+    assert isinstance(expectations, dict)
+    expectations["expected_result"] = "healthy_decline"
+
+    with pytest.raises(
+        NoRenderedHandoffValidationError,
+        match="rendered_win_replay",
+    ):
+        validate_no_rendered_handoff_payload(payload, repo_root=REPO_ROOT)
+
+
+def test_no_rendered_handoff_rendered_win_requires_replay_evidence() -> None:
+    path = (
+        NO_RENDERED_DIR
+        / "third-year-phd-student.conflict.adversarial.no-rendered-handoff.v1.json"
+    )
+    payload = _load(path)
+    source_refs = payload["source_refs"]
+    assert isinstance(source_refs, dict)
+    source_refs.pop("replay_record")
+
+    with pytest.raises(
+        NoRenderedHandoffValidationError,
+        match="rendered_win_replay requires",
     ):
         validate_no_rendered_handoff_payload(payload, repo_root=REPO_ROOT)
 

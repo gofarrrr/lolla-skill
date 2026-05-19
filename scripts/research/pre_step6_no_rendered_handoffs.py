@@ -38,7 +38,7 @@ ALLOWED_STATUS = frozenset({"research_only"})
 ALLOWED_RUNTIME_POLICY = frozenset({"runtime_dormant"})
 ALLOWED_OUTCOME_TYPES = frozenset({"no_rendered_handoff"})
 ALLOWED_EVIDENCE_BASES = frozenset(
-    {"rendered_stop_replay", "simpler_path_static_replay"}
+    {"rendered_stop_replay", "rendered_win_replay", "simpler_path_static_replay"}
 )
 ALLOWED_DECLINE_DECISIONS = frozenset(
     {"valid_research_decline", "retest_decline", "missed_decline"}
@@ -246,6 +246,7 @@ def iter_no_rendered_handoff_errors(
     yield from _validate_evaluation_expectations(
         payload.get("evaluation_expectations"),
         path=path / "evaluation_expectations",
+        evidence_basis=evidence_basis,
         decline_decision=decline_decision,
         comparison_decision=source_summary.comparison_decision,
         replay_decision=source_summary.replay_decision,
@@ -312,6 +313,15 @@ def _validate_source_refs(
         errors.append(
             f"{path}: rendered_stop_replay requires semi_blind_comparison or replay_record evidence"
         )
+    if evidence_basis == "rendered_win_replay":
+        has_comparison_and_replay = bool(
+            _string(value.get("semi_blind_comparison")).strip()
+            and _string(value.get("replay_record")).strip()
+        )
+        if not has_comparison_and_replay:
+            errors.append(
+                f"{path}: rendered_win_replay requires semi_blind_comparison and replay_record evidence"
+            )
     if evidence_basis == "simpler_path_static_replay" and has_comparison_or_replay:
         errors.append(
             f"{path}: simpler_path_static_replay should not depend on rendered replay evidence"
@@ -465,6 +475,7 @@ def _validate_evaluation_expectations(
     value: object,
     *,
     path: Path,
+    evidence_basis: str,
     decline_decision: str,
     comparison_decision: str,
     replay_decision: str,
@@ -516,6 +527,38 @@ def _validate_evaluation_expectations(
             yield (
                 f"{path / 'expected_result'}: valid decline expects "
                 "healthy_decline"
+            )
+
+    if evidence_basis == "rendered_win_replay":
+        if comparison_decision != "rendered_hybrid_wins":
+            yield (
+                f"{path / 'expected_result'}: rendered_win_replay requires "
+                "rendered_hybrid_wins evidence"
+            )
+        if replay_decision != "pass_to_next_replay":
+            yield (
+                f"{path / 'expected_result'}: rendered_win_replay requires "
+                "pass_to_next_replay evidence"
+            )
+        if decline_decision not in {"missed_decline", "retest_decline"}:
+            yield (
+                f"{path / 'expected_result'}: rendered_win_replay can only "
+                "support missed_decline or retest_decline"
+            )
+        if expected_result == "healthy_decline":
+            yield (
+                f"{path / 'expected_result'}: rendered_win_replay cannot "
+                "expect healthy_decline"
+            )
+        if expected_result not in {"missed_decline", "retest_decline"}:
+            yield (
+                f"{path / 'expected_result'}: rendered_win_replay expects "
+                "missed_decline or retest_decline"
+            )
+        if expected_result != decline_decision:
+            yield (
+                f"{path / 'expected_result'}: rendered_win_replay expected "
+                "result must match decline_decision"
             )
 
 

@@ -1,0 +1,43 @@
+{
+  "schema_version": "pre_step6_no_rendered_handoff.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "third-year-phd-student",
+  "outcome_type": "no_rendered_handoff",
+  "evidence_basis": "rendered_win_replay",
+  "decline_decision": "missed_decline",
+  "source_refs": {
+    "raw_artifact_handoff": "research/pre-step6-raw-artifact-fixtures/third-year-phd-student.raw-artifact-handoff.v1.json",
+    "raw_answer_core": "research/pre-step6-raw-artifact-answer-cores/third-year-phd-student.raw-answer-core.v1.json",
+    "control_comparison": "research/pre-step6-raw-artifact-comparisons/third-year-phd-student.raw-vs-control-comparison.v1.json",
+    "semi_blind_comparison": "research/pre-step6-semi-blind-comparisons/third-year-phd-student.conflict.semi-blind-comparison.v1.json",
+    "replay_record": "research/pre-step6-replay-records/third-year-phd-student.conflict.off-default-replay.v1.json",
+    "source_overclaim_audit": "research/pre-step6-source-overclaim-audits/third-year-phd-student.conflict.rendered-hybrid.source-overclaim-audit.v1.json"
+  },
+  "decline_receipt": {
+    "decline_reason": "The prior replay shows rendered carried unresolved Silva/fallback tension that simpler paths did not preserve as well.",
+    "control_sufficiency": "Raw and control preserve advisor sequence and useful gates, but not enough conflict transport for this replay.",
+    "missing_pressure_assessment": "Decline would likely lose the refusal to choose Silva now or collapse to fallback by default.",
+    "naturalness_debt_risk": "medium",
+    "expected_failure_if_forced": "Withholding rendered would under-use the evidence gates that made the rendered replay count.",
+    "reactivation_condition": "Decline only if a simple path preserves Silva/fallback tension, data gate, fallback gate, and no-parallel boundary."
+  },
+  "evaluation_expectations": {
+    "expected_result": "missed_decline",
+    "simpler_arm_expected": "raw_wins",
+    "miss_if": [
+      "The simple path loses unresolved Silva-vs-fallback tension.",
+      "The simple path drops data access, advisor support, or fallback executability gates.",
+      "The receipt treats medium naturalness debt as enough reason to ignore a rendered win."
+    ]
+  },
+  "gates": {
+    "no_rendered_handoff_is_success": true,
+    "decline_receipt_is_not_answer_plan": true,
+    "no_pressure_surface_created": true,
+    "runtime_wiring_allowed": false,
+    "product_promotion_allowed": false,
+    "generator_implementation_allowed": false
+  },
+  "notes": "Manual adversarial no-rendered fixture for a known rendered-positive conflict replay. It records a missed decline, not a generator output, selector rule, runtime change, or product promotion."
+}

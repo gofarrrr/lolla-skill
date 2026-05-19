@@ -33,6 +33,7 @@ def test_all_decline_evaluations_validate() -> None:
 
     assert [path.name for path in paths] == [
         "mid-level-consultant-report-2.negative-control.no-rendered-decline-evaluation.v1.json",
+        "third-year-phd-student.conflict.adversarial.no-rendered-decline-evaluation.v1.json",
         "user-has-plan-consulting-launch.static-decline.no-rendered-decline-evaluation.v1.json",
     ]
 
@@ -43,6 +44,13 @@ def test_all_decline_evaluations_validate() -> None:
             "decline_evaluation_decision": "healthy_decline",
             "generator_next_step": "blocked",
             "naturalness_debt_avoided": "medium",
+        },
+        "third-year-phd-student.conflict.adversarial.no-rendered-decline-evaluation.v1.json": {
+            "case_id": "third-year-phd-student",
+            "comparison_decision": "raw_wins",
+            "decline_evaluation_decision": "missed_decline",
+            "generator_next_step": "blocked",
+            "naturalness_debt_avoided": "none",
         },
         "user-has-plan-consulting-launch.static-decline.no-rendered-decline-evaluation.v1.json": {
             "case_id": "user-has-plan-consulting-launch",
@@ -127,5 +135,42 @@ def test_decline_evaluation_rejects_failed_miss_check_as_healthy() -> None:
     with pytest.raises(
         DeclineEvaluationValidationError,
         match="healthy decline is invalid",
+    ):
+        validate_decline_evaluation_payload(payload, repo_root=REPO_ROOT)
+
+
+def test_decline_evaluation_missed_decline_requires_failed_miss_check() -> None:
+    path = (
+        DECLINE_EVAL_DIR
+        / "third-year-phd-student.conflict.adversarial.no-rendered-decline-evaluation.v1.json"
+    )
+    payload = _load(path)
+    miss_checks = payload["miss_checks"]
+    assert isinstance(miss_checks, list)
+    for check in miss_checks:
+        assert isinstance(check, dict)
+        if check["severity"] == "fail":
+            check["severity"] = "watch"
+
+    with pytest.raises(
+        DeclineEvaluationValidationError,
+        match="missed decline requires",
+    ):
+        validate_decline_evaluation_payload(payload, repo_root=REPO_ROOT)
+
+
+def test_decline_evaluation_must_match_decline_candidate_expectation() -> None:
+    path = (
+        DECLINE_EVAL_DIR
+        / "third-year-phd-student.conflict.adversarial.no-rendered-decline-evaluation.v1.json"
+    )
+    payload = _load(path)
+    outcome = payload["outcome"]
+    assert isinstance(outcome, dict)
+    outcome["decline_evaluation_decision"] = "retest_decline"
+
+    with pytest.raises(
+        DeclineEvaluationValidationError,
+        match="must match decline candidate expected_result",
     ):
         validate_decline_evaluation_payload(payload, repo_root=REPO_ROOT)

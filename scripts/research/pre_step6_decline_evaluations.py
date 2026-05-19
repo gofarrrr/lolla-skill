@@ -172,6 +172,7 @@ def iter_decline_evaluation_errors(
 
     decline_payload: dict[str, object] | None = None
     comparison_payload: dict[str, object] | None = None
+    decline_expected_result = ""
     decline_ref = _string(payload.get("decline_candidate_ref"))
     comparison_ref = _string(payload.get("comparison_ref"))
 
@@ -190,6 +191,12 @@ def iter_decline_evaluation_errors(
             )
             if _string(decline_payload.get("case_id")) != case_id:
                 yield f"{path / 'decline_candidate_ref'}: case_id mismatch"
+            expectations = (
+                decline_payload.get("evaluation_expectations")
+                if isinstance(decline_payload.get("evaluation_expectations"), dict)
+                else {}
+            )
+            decline_expected_result = _string(expectations.get("expected_result"))
 
     if not comparison_ref.strip():
         yield f"{path / 'comparison_ref'}: must be non-empty"
@@ -226,6 +233,7 @@ def iter_decline_evaluation_errors(
         payload.get("outcome"),
         path=path / "outcome",
         comparison_decision=comparison_decision,
+        decline_expected_result=decline_expected_result,
     )
     yield from _validate_naturalness_debt_avoided(
         payload.get("naturalness_debt_avoided"),
@@ -272,6 +280,7 @@ def _validate_outcome(
     *,
     path: Path,
     comparison_decision: str,
+    decline_expected_result: str,
 ) -> Iterable[str]:
     if not isinstance(value, dict):
         yield f"{path}: outcome must be an object"
@@ -287,6 +296,11 @@ def _validate_outcome(
     decision = _string(value.get("decline_evaluation_decision"))
     if decision not in ALLOWED_DECLINE_EVALUATION_DECISIONS:
         yield f"{path / 'decline_evaluation_decision'}: unknown decision"
+    if decline_expected_result and decision != decline_expected_result:
+        yield (
+            f"{path / 'decline_evaluation_decision'}: must match decline "
+            "candidate expected_result"
+        )
     if _string(value.get("product_promotion")) not in ALLOWED_PRODUCT_PROMOTION:
         yield f"{path / 'product_promotion'}: product_promotion must be blocked"
     next_step = _string(value.get("generator_next_step"))
@@ -340,6 +354,7 @@ def _validate_miss_checks(
     if tuple(ids) != REQUIRED_MISS_CHECKS:
         yield f"{path}: miss_checks must match the required order"
     has_fail = False
+    has_watch_or_fail = False
     for index, item in enumerate(value):
         item_path = path / f"miss_checks[{index}]"
         if not isinstance(item, dict):
@@ -356,15 +371,20 @@ def _validate_miss_checks(
             yield f"{item_path / 'severity'}: unknown severity"
         if severity == "fail":
             has_fail = True
+        if severity in {"watch", "fail"}:
+            has_watch_or_fail = True
         if not _string(item.get("evidence")).strip():
             yield f"{item_path / 'evidence'}: evidence must be non-empty"
 
-    if (
-        has_fail
-        and isinstance(outcome, dict)
-        and _string(outcome.get("decline_evaluation_decision")) == "healthy_decline"
-    ):
+    if not isinstance(outcome, dict):
+        return
+    decision = _string(outcome.get("decline_evaluation_decision"))
+    if has_fail and decision == "healthy_decline":
         yield f"{path}: healthy decline is invalid when a miss check failed"
+    if decision == "missed_decline" and not has_fail:
+        yield f"{path}: missed decline requires a failed miss check"
+    if decision == "retest_decline" and not has_watch_or_fail:
+        yield f"{path}: retest decline requires a watch or failed miss check"
 
 
 def _missing_fields(
