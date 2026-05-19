@@ -26,6 +26,7 @@ research/pre-step6-generator-contract-readiness-decision-2026-05-19.md
 research/pre-step6-user-has-plan-static-decline-readout-2026-05-19.md
 research/pre-step6-phd-adversarial-missed-decline-readout-2026-05-19.md
 research/pre-step6-phd-judgment-led-handover-review-readout-2026-05-19.md
+research/pre-step6-user-has-plan-judgment-led-no-handover-review-readout-2026-05-19.md
 scripts/research/pre_step6_replay_ledger.py
 tests/test_pre_step6_replay_ledger.py
 tests/test_pre_step6_semi_blind_comparisons.py
@@ -450,3 +451,19 @@ does not import engineered feel.
 This pauses deterministic admission-contract work. The next evidence should run
 the same judgment-led protocol on a known healthy-decline case to test whether
 LLM reviewers can also recommend no handover.
+
+2026-05-19 judgment-led no-handover review follow-up:
+
+```text
+research/pre-step6-user-has-plan-judgment-led-no-handover-review-readout-2026-05-19.md
+```
+
+The same three-reviewer protocol was run on the known healthy-decline
+`user_has_plan` case. All three reviewers converged on restraint:
+`no_handover_needed`, `prepared_handover_too_costly`, and `no_handover`.
+
+This is the falsification result the reviewer protocol needed. It shows the
+protocol can say no rather than always producing a handover. The next docs-only
+step may now be a small reviewer-protocol contract, but implementation,
+runtime wiring, product promotion, workers, bundles, new modes, and
+deterministic selectors remain blocked.

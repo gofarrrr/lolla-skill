@@ -19,6 +19,7 @@ research/pre-step6-generator-contract-readiness-decision-2026-05-19.md
 research/pre-step6-user-has-plan-static-decline-readout-2026-05-19.md
 research/pre-step6-phd-adversarial-missed-decline-readout-2026-05-19.md
 research/pre-step6-phd-judgment-led-handover-review-readout-2026-05-19.md
+research/pre-step6-user-has-plan-judgment-led-no-handover-review-readout-2026-05-19.md
 research/pre-step6-next-slice-decision-note-2026-05-16.md
 research/llm-decomposition-handover.md
 research/extraction-contract-roadmap.md
@@ -171,20 +172,21 @@ a generated decline can be evaluated without requiring a rendered candidate
 no_rendered_handoff can stay healthy in one non-safety / non-counsel strategic case
 no_rendered_handoff can be marked missed against a known rendered-positive conflict replay
 manual subagent reviewers can judge loss, burden, and minimum useful handover
+the same reviewer protocol can say no handover in a known healthy-decline case
 ```
 
 Current blocker:
 
 ```text
-we have one judgment-led review on a rendered-positive PhD case
-we do not yet know whether the same reviewer protocol can decline handover on a known healthy-decline case
+we have one judgment-led yes-handover case and one judgment-led no-handover case
+we do not yet have a plain-language reviewer-protocol contract that preserves both outcomes
 ```
 
 The next missing evidence is therefore:
 
 ```text
-a judgment-led review on a known decline case before any admission-layer
-contract is written
+a docs-only reviewer-protocol contract, written as containment rather than
+implementation
 ```
 
 ## Loop Setup
@@ -466,6 +468,10 @@ Current next queue:
 9. Judgment-led PhD handover review.
    Question: can narrow LLM reviewers judge loss, burden, and minimum useful
    handover without adding deterministic selector logic?
+
+10. Judgment-led user_has_plan no-handover review.
+    Question: can the same reviewer protocol say no handover is needed in a
+    known healthy-decline case?
 ```
 
 Still blocked:
@@ -517,8 +523,9 @@ next question
 The current next question is:
 
 ```text
-Can the same judgment-led reviewer protocol say no handover is needed on a
-known healthy-decline case, or does it over-produce prepared handover?
+Can we write a small docs-only reviewer-protocol contract that preserves both
+yes-handover and no-handover outcomes without becoming a selector, generator,
+or runtime worker system?
 ```
 
 Do that next unless new evidence changes the blocker.

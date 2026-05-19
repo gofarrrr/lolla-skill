@@ -16,6 +16,7 @@ research/pre-step6-decline-evaluations/user-has-plan-consulting-launch.static-de
 research/pre-step6-raw-artifact-fixtures/user-has-plan-consulting-launch.raw-artifact-handoff.v1.json
 research/pre-step6-raw-artifact-answer-cores/user-has-plan-consulting-launch.raw-answer-core.v1.json
 research/pre-step6-raw-artifact-comparisons/user-has-plan-consulting-launch.raw-vs-control-comparison.v1.json
+research/pre-step6-user-has-plan-judgment-led-no-handover-review-readout-2026-05-19.md
 research/test-cases/case_user_has_plan_conversation.txt
 research/test-cases/phase2d-lane2-equivalence-2026-04-24/_scratch/user_has_plan_extraction.json
 ```
@@ -207,3 +208,21 @@ generator implementation remains blocked
 contract discussion may be considered only as docs-only containment
 one missed-decline or retest case would still improve the evidence archive
 ```
+
+2026-05-19 judgment-led follow-up:
+
+```text
+research/pre-step6-user-has-plan-judgment-led-no-handover-review-readout-2026-05-19.md
+```
+
+The same loss/burden/minimal reviewer protocol used on PhD was run here as a
+falsification test. All reviewers converged on restraint:
+
+```text
+loss reviewer: no_handover_needed
+burden reviewer: prepared_handover_too_costly
+minimal reviewer: no_handover
+```
+
+This strengthens the static decline result because the LLM reviewers did not
+over-produce a handover merely because they were asked to review one.

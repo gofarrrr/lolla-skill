@@ -19,6 +19,7 @@ research/pre-step6-selector-boundary-decision-memo-2026-05-19.md
 research/pre-step6-user-has-plan-static-decline-readout-2026-05-19.md
 research/pre-step6-phd-adversarial-missed-decline-readout-2026-05-19.md
 research/pre-step6-phd-judgment-led-handover-review-readout-2026-05-19.md
+research/pre-step6-user-has-plan-judgment-led-no-handover-review-readout-2026-05-19.md
 ```
 
 ## Question
@@ -331,3 +332,27 @@ That changes the next gate. Before writing any admission-layer contract, run
 the same judgment-led review on a known healthy-decline case. If reviewers
 cannot recommend no handover where no handover already looks healthy, then the
 reviewer protocol is itself pressure-amplifying.
+
+2026-05-19 no-handover review follow-up:
+
+```text
+research/pre-step6-user-has-plan-judgment-led-no-handover-review-readout-2026-05-19.md
+```
+
+The reviewer protocol passed that falsification test. In the known
+healthy-decline `user_has_plan` case, the loss reviewer said
+`no_handover_needed`, the burden reviewer said `prepared_handover_too_costly`,
+and the minimal reviewer said `no_handover`.
+
+This changes the contract question again. A deterministic admission-layer
+contract remains the wrong next object. The docs-only contract now earned is a
+reviewer-protocol contract with deterministic receipts:
+
+```text
+LLM reviewers judge loss, burden, and minimum handover
+deterministic code records source refs, reviewer outputs, and gates
+no handover is a valid positive output
+Step 6 remains free to ignore the review
+```
+
+No implementation is earned.

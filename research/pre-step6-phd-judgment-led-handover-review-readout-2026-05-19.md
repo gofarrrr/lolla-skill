@@ -18,6 +18,7 @@ research/pre-step6-raw-artifact-fixtures/third-year-phd-student.raw-artifact-han
 research/pre-step6-rendered-hybrid-answer-cores/third-year-phd-student.conflict.native.rendered-hybrid-answer-core.v1.json
 research/pre-step6-generator-contract-readiness-decision-2026-05-19.md
 research/pre-step6-autoresearch-operating-loop-2026-05-19.md
+research/pre-step6-user-has-plan-judgment-led-no-handover-review-readout-2026-05-19.md
 ```
 
 ## Question
@@ -291,3 +292,14 @@ reviewer protocol with deterministic receipts
 ```
 
 Still no implementation is earned.
+
+2026-05-19 follow-up:
+
+```text
+research/pre-step6-user-has-plan-judgment-led-no-handover-review-readout-2026-05-19.md
+```
+
+The same reviewer protocol was run on the known healthy-decline `user_has_plan`
+case. Reviewers converged on no handover. That means the protocol now has one
+yes-handover case and one no-handover case, reducing the risk that it is merely
+a more fluent production machine.
