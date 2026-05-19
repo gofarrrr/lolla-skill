@@ -19,6 +19,7 @@ research/pre-step6-rendered-hybrid-answer-cores/third-year-phd-student.conflict.
 research/pre-step6-generator-contract-readiness-decision-2026-05-19.md
 research/pre-step6-autoresearch-operating-loop-2026-05-19.md
 research/pre-step6-user-has-plan-judgment-led-no-handover-review-readout-2026-05-19.md
+research/pre-step6-judgment-led-reviewer-protocol-contract-2026-05-19.md
 ```
 
 ## Question
@@ -303,3 +304,13 @@ The same reviewer protocol was run on the known healthy-decline `user_has_plan`
 case. Reviewers converged on no handover. That means the protocol now has one
 yes-handover case and one no-handover case, reducing the risk that it is merely
 a more fluent production machine.
+
+2026-05-19 contract follow-up:
+
+```text
+research/pre-step6-judgment-led-reviewer-protocol-contract-2026-05-19.md
+```
+
+The docs-only reviewer-protocol contract is now recorded. It preserves the PhD
+lesson as one valid outcome only: one compact handover can help when simple
+material would likely lose a concrete live tension.

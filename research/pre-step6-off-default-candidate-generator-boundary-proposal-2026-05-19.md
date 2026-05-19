@@ -556,3 +556,14 @@ future contract, if any, should be a reviewer protocol with deterministic
 receipts rather than a deterministic admission selector. Generator
 implementation remains blocked, and admission-contract work is paused until the
 same reviewer protocol is tested on a known healthy-decline case.
+
+2026-05-19 reviewer-protocol contract follow-up:
+
+```text
+research/pre-step6-judgment-led-reviewer-protocol-contract-2026-05-19.md
+```
+
+The reviewer-protocol contract has now superseded this proposal as the current
+containment artifact. The direction is no longer a candidate generator boundary.
+It is a judgment-led reviewer protocol with deterministic receipts. This
+proposal remains historical research context only.

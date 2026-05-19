@@ -19,6 +19,7 @@ research/pre-step6-raw-artifact-answer-cores/user-has-plan-consulting-launch.raw
 research/pre-step6-raw-artifact-comparisons/user-has-plan-consulting-launch.raw-vs-control-comparison.v1.json
 research/pre-step6-phd-judgment-led-handover-review-readout-2026-05-19.md
 research/pre-step6-autoresearch-operating-loop-2026-05-19.md
+research/pre-step6-judgment-led-reviewer-protocol-contract-2026-05-19.md
 ```
 
 ## Question
@@ -272,3 +273,13 @@ reviewer protocol with deterministic receipts
 ```
 
 Still no implementation is earned.
+
+2026-05-19 follow-up:
+
+```text
+research/pre-step6-judgment-led-reviewer-protocol-contract-2026-05-19.md
+```
+
+The docs-only reviewer-protocol contract is now recorded. It preserves this
+slice's main result: no handover is a valid positive outcome, not a missing
+artifact.

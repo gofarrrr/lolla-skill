@@ -27,6 +27,7 @@ research/pre-step6-user-has-plan-static-decline-readout-2026-05-19.md
 research/pre-step6-phd-adversarial-missed-decline-readout-2026-05-19.md
 research/pre-step6-phd-judgment-led-handover-review-readout-2026-05-19.md
 research/pre-step6-user-has-plan-judgment-led-no-handover-review-readout-2026-05-19.md
+research/pre-step6-judgment-led-reviewer-protocol-contract-2026-05-19.md
 scripts/research/pre_step6_replay_ledger.py
 tests/test_pre_step6_replay_ledger.py
 tests/test_pre_step6_semi_blind_comparisons.py
@@ -467,3 +468,16 @@ protocol can say no rather than always producing a handover. The next docs-only
 step may now be a small reviewer-protocol contract, but implementation,
 runtime wiring, product promotion, workers, bundles, new modes, and
 deterministic selectors remain blocked.
+
+2026-05-19 reviewer-protocol contract follow-up:
+
+```text
+research/pre-step6-judgment-led-reviewer-protocol-contract-2026-05-19.md
+```
+
+The reviewer-protocol contract is now recorded as docs-only containment. It
+defines when reviewers are asked, the three reviewer questions, valid outcomes,
+overproduction failures, deterministic receipt boundaries, and Step 6 freedom.
+
+This closes the current auto-research loop. The aggregate decision remains:
+research evidence useful, product/runtime implementation blocked.

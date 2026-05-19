@@ -20,6 +20,7 @@ research/pre-step6-user-has-plan-static-decline-readout-2026-05-19.md
 research/pre-step6-phd-adversarial-missed-decline-readout-2026-05-19.md
 research/pre-step6-phd-judgment-led-handover-review-readout-2026-05-19.md
 research/pre-step6-user-has-plan-judgment-led-no-handover-review-readout-2026-05-19.md
+research/pre-step6-judgment-led-reviewer-protocol-contract-2026-05-19.md
 research/pre-step6-next-slice-decision-note-2026-05-16.md
 research/llm-decomposition-handover.md
 research/extraction-contract-roadmap.md
@@ -173,20 +174,21 @@ no_rendered_handoff can stay healthy in one non-safety / non-counsel strategic c
 no_rendered_handoff can be marked missed against a known rendered-positive conflict replay
 manual subagent reviewers can judge loss, burden, and minimum useful handover
 the same reviewer protocol can say no handover in a known healthy-decline case
+the reviewer protocol contract records this as docs-only containment
 ```
 
 Current blocker:
 
 ```text
-we have one judgment-led yes-handover case and one judgment-led no-handover case
-we do not yet have a plain-language reviewer-protocol contract that preserves both outcomes
+the reviewer-protocol contract is written
+implementation remains blocked until a separate PM decision
 ```
 
 The next missing evidence is therefore:
 
 ```text
-a docs-only reviewer-protocol contract, written as containment rather than
-implementation
+none for the current research loop; pause and review the contract before any
+new machinery is discussed
 ```
 
 ## Loop Setup
@@ -472,6 +474,10 @@ Current next queue:
 10. Judgment-led user_has_plan no-handover review.
     Question: can the same reviewer protocol say no handover is needed in a
     known healthy-decline case?
+
+11. Docs-only reviewer-protocol contract.
+    Question: can we preserve yes-handover and no-handover outcomes without
+    defining a selector, generator, runtime worker system, or new handoff mode?
 ```
 
 Still blocked:
@@ -523,9 +529,10 @@ next question
 The current next question is:
 
 ```text
-Can we write a small docs-only reviewer-protocol contract that preserves both
-yes-handover and no-handover outcomes without becoming a selector, generator,
-or runtime worker system?
+Pause. The current reviewer-protocol contract is ready for PM review, not
+implementation.
 ```
 
-Do that next unless new evidence changes the blocker.
+Do not continue into runtime, selectors, generators, workers, bundles, new
+handoff modes, `SKILL.md`, `HOW_IT_WORKS.md`, or product docs without an
+explicit new decision.

@@ -20,6 +20,7 @@ research/pre-step6-user-has-plan-static-decline-readout-2026-05-19.md
 research/pre-step6-phd-adversarial-missed-decline-readout-2026-05-19.md
 research/pre-step6-phd-judgment-led-handover-review-readout-2026-05-19.md
 research/pre-step6-user-has-plan-judgment-led-no-handover-review-readout-2026-05-19.md
+research/pre-step6-judgment-led-reviewer-protocol-contract-2026-05-19.md
 ```
 
 ## Question
@@ -356,3 +357,29 @@ Step 6 remains free to ignore the review
 ```
 
 No implementation is earned.
+
+2026-05-19 reviewer-protocol contract follow-up:
+
+```text
+research/pre-step6-judgment-led-reviewer-protocol-contract-2026-05-19.md
+```
+
+The docs-only contract is now written. It preserves three valid outcomes:
+
+```text
+no_handover
+one_compact_handover
+stop_insufficient_justification
+```
+
+It also records the boundary:
+
+```text
+LLM reviewers judge loss, burden, and minimum useful handover
+deterministic code records receipts
+Step 6 remains free to use, ignore, reinterpret, or reject the review
+```
+
+This closes the current contract-readiness loop. It does not authorize runtime,
+generator, selector, worker, bundle, handoff-mode, product-doc, `SKILL.md`, or
+`HOW_IT_WORKS.md` changes.
