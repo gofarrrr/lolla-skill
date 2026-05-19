@@ -1,0 +1,67 @@
+{
+  "schema_version": "pre_step6_replay_record.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mid-level-consultant-report-2",
+  "replay_mode": "off_by_default_static_replay",
+  "candidate_generation": "loaded_existing_rendered_handoff",
+  "answer_generation": "loaded_existing_step6_style_answer_core",
+  "artifact_refs": {
+    "comparison_fixture": "research/pre-step6-comparison-fixtures/mid-level-consultant-report-2-20260429T144611Z.md",
+    "raw_artifact_handoff": "research/pre-step6-raw-artifact-fixtures/mid-level-consultant-report-2.raw-artifact-handoff.v1.json",
+    "hybrid_handoff": "research/pre-step6-hybrid-handoff-fixtures/mid-level-consultant-report-2.hybrid-handoff.v1.json",
+    "control_comparison": "research/pre-step6-raw-artifact-comparisons/mid-level-consultant-report-2.raw-vs-control-comparison.v1.json",
+    "raw_answer_core": "research/pre-step6-raw-artifact-answer-cores/mid-level-consultant-report-2.raw-answer-core.v1.json",
+    "rendered_hybrid_answer_core": "research/pre-step6-rendered-hybrid-answer-cores/mid-level-consultant-report-2.native.rendered-hybrid-answer-core.v1.json"
+  },
+  "comparison_ref": "research/pre-step6-semi-blind-comparisons/mid-level-consultant-report-2.negative-control.semi-blind-comparison.v1.json",
+  "source_overclaim_audit_ref": "research/pre-step6-source-overclaim-audits/mid-level-consultant-report-2.negative-control.rendered-hybrid.source-overclaim-audit.v1.json",
+  "gates": {
+    "archived_artifacts_loaded": true,
+    "candidate_handoff_loaded": true,
+    "step6_style_answer_core_loaded": true,
+    "semi_blind_comparison_recorded": true,
+    "source_overclaim_audit_recorded": true,
+    "source_overclaim_audit_passed": true,
+    "runtime_wiring_allowed": false,
+    "product_promotion_allowed": false
+  },
+  "outcome": {
+    "comparison_decision": "control_wins",
+    "replay_decision": "stop",
+    "product_promotion": "blocked"
+  },
+  "failure_modes": [
+    {
+      "failure_mode": "rendered_overprocessing",
+      "status": "present",
+      "evidence": "The simpler control arm won aggregate because the case needed counsel-first restraint more than extra private pressure transport."
+    },
+    {
+      "failure_mode": "answer_bloat",
+      "status": "watch",
+      "evidence": "Rendered stayed compact, but added channel-bias and Wednesday-response detail that increased cognitive load relative to control."
+    },
+    {
+      "failure_mode": "source_overclaim",
+      "status": "absent",
+      "evidence": "Audit found no probability claim, no legal certainty claim, and no self-directed filing or channel recommendation."
+    },
+    {
+      "failure_mode": "over_shaped_naturalness_debt",
+      "status": "watch",
+      "evidence": "Naturalness debt is medium because the rendered answer feels more procedural than the calm control answer."
+    },
+    {
+      "failure_mode": "promotion_drift",
+      "status": "absent",
+      "evidence": "Record explicitly blocks runtime wiring and product promotion, and replay_decision is stop."
+    }
+  ],
+  "naturalness_debt": {
+    "level": "medium",
+    "evidence": "Rendered hybrid carried useful nuance, but control won source grounding, overclaim risk, length/cognitive load, machinery hygiene, duplicate demotion, unforcedness, and aggregate judgment.",
+    "mitigation": "Treat this as the first rendered-hybrid loss in the replay ledger. It blocks generator work from relying on a pass-only archive."
+  },
+  "notes": "Negative/control replay. The rendered answer passes source/overclaim custody checks, but the simpler control answer wins because extra private pressure transport is not needed for this high-stakes counsel-first case."
+}

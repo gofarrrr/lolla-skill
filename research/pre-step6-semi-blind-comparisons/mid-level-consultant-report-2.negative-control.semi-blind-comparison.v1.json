@@ -1,0 +1,113 @@
+{
+  "schema_version": "pre_step6_semi_blind_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mid-level-consultant-report-2",
+  "comparison_kind": "semi_blind_local_rubric",
+  "blind_seed": 47,
+  "candidate_refs": {
+    "control_answer_comparison": "research/pre-step6-raw-artifact-comparisons/mid-level-consultant-report-2.raw-vs-control-comparison.v1.json",
+    "raw_answer_core": "research/pre-step6-raw-artifact-answer-cores/mid-level-consultant-report-2.raw-answer-core.v1.json",
+    "rendered_hybrid_answer_core": "research/pre-step6-rendered-hybrid-answer-cores/mid-level-consultant-report-2.native.rendered-hybrid-answer-core.v1.json"
+  },
+  "blind_map": {
+    "A": "rendered_hybrid",
+    "B": "control",
+    "C": "raw"
+  },
+  "criteria": [
+    {
+      "criterion_id": "decision_usefulness",
+      "question": "Which answer gives the consultant the safest useful next action without over-processing the situation?",
+      "winner_label": "B",
+      "evidence_by_label": {
+        "A": "Adds useful counsel-intake and Wednesday-response detail, but makes the first move more cognitively busy.",
+        "B": "Gives the cleanest usable action: document, preserve notes, tell spouse broadly, contact attorneys, do not investigate or pick a channel alone.",
+        "C": "Useful, but adds more protocol and channel distinction than the first move requires."
+      },
+      "rationale": "B is safest and most usable because the right first action is simple counsel-first preservation, not extra private pressure transport."
+    },
+    {
+      "criterion_id": "source_grounding",
+      "question": "Which answer stays most tightly inside the observed-partner/counsel/reporting-channel facts without adding extra advisory structure?",
+      "winner_label": "B",
+      "evidence_by_label": {
+        "A": "Grounded, but expands into attorney channel-bias interviewing and a more specific partner-response script.",
+        "B": "Stays closest to the source facts and immediate safety sequence.",
+        "C": "Grounded, but adds general counsel, audit committee, regulator, tripwire, and response-protocol detail."
+      },
+      "rationale": "B is the least constructed and most tightly grounded arm."
+    },
+    {
+      "criterion_id": "overclaim_risk",
+      "question": "Which answer best avoids legal/process overclaim, invented channel confidence, or false certainty about the partner encounter?",
+      "winner_label": "B",
+      "evidence_by_label": {
+        "A": "Avoids filing before evidence review, but the attorney channel-preference interview could be read as more process design than the user should own.",
+        "B": "Keeps the user out of channel selection and process design before counsel.",
+        "C": "Says not to replace counsel, but offers more channel distinctions and protocol details."
+      },
+      "rationale": "B leaves the most judgment with counsel and carries the least process overclaim."
+    },
+    {
+      "criterion_id": "answer_length_cognitive_load",
+      "question": "Which answer stays shortest and calmest for a high-stakes legal-adjacent moment?",
+      "winner_label": "B",
+      "evidence_by_label": {
+        "A": "Still compact, but longer and more multi-part than needed.",
+        "B": "Shortest, clearest, and least likely to overload the user.",
+        "C": "Longest and most detailed, with several protocol/channel concepts."
+      },
+      "rationale": "B wins because this negative-control case rewards restraint."
+    },
+    {
+      "criterion_id": "machinery_hygiene",
+      "question": "Which answer avoids procedural feel, hidden-framework texture, and private machinery residue?",
+      "winner_label": "B",
+      "evidence_by_label": {
+        "A": "Has more procedural texture: GC-first, audit committee, external report, reflexive channel preference.",
+        "B": "Plain counsel-first advice with minimal scaffolding.",
+        "C": "Feels more procedural through Wednesday protocol, channel taxonomy, and tripwires."
+      },
+      "rationale": "B is the least machinery-shaped answer."
+    },
+    {
+      "criterion_id": "conflict_preservation",
+      "question": "Which answer best preserves the tension between acting quickly and not self-directing an investigation or filing?",
+      "winner_label": "A",
+      "evidence_by_label": {
+        "A": "Explicitly preserves the tension: do not file before evidence review, but do not let fear make you do nothing.",
+        "B": "Preserves the same tension more briefly.",
+        "C": "Preserves counsel-first sequencing but adds more operational detail."
+      },
+      "rationale": "A carries the action-versus-overreaction tension most explicitly."
+    },
+    {
+      "criterion_id": "duplicate_demotion",
+      "question": "Which answer best avoids resurfacing low-marginal protocol/channel detail as extra public instruction?",
+      "winner_label": "B",
+      "evidence_by_label": {
+        "A": "Recovers useful nuance but surfaces more channel/process detail.",
+        "B": "Keeps low-marginal distinctions quiet and relies on counsel to decide channels.",
+        "C": "Surfaces GC, audit committee, regulator, tripwires, and Wednesday response detail."
+      },
+      "rationale": "B best demonstrates that extra pressure can stay out when the simple control is enough."
+    },
+    {
+      "criterion_id": "unforcedness",
+      "question": "Which answer feels most naturally reasoned rather than optimized to carry private pressure?",
+      "winner_label": "B",
+      "evidence_by_label": {
+        "A": "Good advice, but visibly optimized to recover several nuanced constraints.",
+        "B": "Reads like a calm human safety answer.",
+        "C": "Useful but more like an expanded protocol."
+      },
+      "rationale": "B is the most unforced arm."
+    }
+  ],
+  "tie_break_rule": "rendered_must_beat_or_simplify",
+  "aggregate_winner_label": "B",
+  "aggregate_decision": "control_wins",
+  "promotion_read": "stop",
+  "notes": "Negative/control replay comparison. The rendered arm carries useful counsel-intake and Wednesday-response nuance, but the case does not need extra private pressure transport: the shorter control answer is safer, more grounded, more natural, and lower burden. This records a rendered-hybrid loss without schema bending."
+}
