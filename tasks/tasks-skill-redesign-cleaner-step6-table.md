@@ -11,6 +11,10 @@
 - `docs/how-it-works/live-flow.md` - Human-readable mirror of the current skill flow, including Step 7/8 purpose and memo dependency.
 - `research/pre-step6-cleaning-research-closeout-2026-05-22.md` - Closeout from the cleaning research chapter and source of the principles carried forward.
 - `research/pre-step6-cleaning-evidence-surface/cleaning-evidence-surface.md` - Existing human-readable evidence surface for pressure-atom recurrence.
+- `scripts/research/pre_step6_skill_shadow_comparison_contract.py` - Research-only contract builder/validator for the legacy-vs-cleaner-table comparison.
+- `tests/test_pre_step6_skill_shadow_comparison_contract.py` - Tests proving the comparison contract keeps Step 7 required, stays runtime-dormant, and does not authorize `SKILL.md` edits.
+- `research/pre-step6-skill-shadow-comparison-contract/skill-shadow-comparison-contract.v1.json` - Generated JSON contract for the skill shadow comparison.
+- `research/pre-step6-skill-shadow-comparison-contract/skill-shadow-comparison-contract.md` - Human-readable rendering of the skill shadow comparison contract.
 - `tests/test_skill_contract.py` - Existing skill contract tests that guard Step 6b/Step 7 ordering and live-output hygiene.
 - `docs/cost-and-telemetry.md` - Canonical cost/telemetry reference, including Step 7 sub-agent cost accounting.
 
@@ -43,12 +47,12 @@ after completing a whole parent task.
   - [x] 1.3 Read the cleaning research closeout and evidence surface.
   - [x] 1.4 Classify Step 7 by role: cognitive independence, correction, coverage insurance, memo dependency, and cost burden.
   - [x] 1.5 Write the Stage 1/2 redesign mapping in `plans/skill-redesign-cleaner-step6-table-2026-05-22.md`.
-- [ ] 2.0 Design the shadow-comparison contract
-  - [ ] 2.1 Define legacy-vs-cleaner-table comparison arms.
-  - [ ] 2.2 Choose a small case set that includes Consultant, PhD, Founder/V60, and at least one negative-control shape if fixtures support it.
-  - [ ] 2.3 Define metrics for Step 7 residual work, atom uptake, protected payload preservation, memo completeness, and cost.
-  - [ ] 2.4 Define pass, fail, and ambiguous outcomes before running any comparison.
-  - [ ] 2.5 Keep the comparison research-only and runtime-dormant.
+- [x] 2.0 Design the shadow-comparison contract
+  - [x] 2.1 Define legacy-vs-cleaner-table comparison arms.
+  - [x] 2.2 Choose a small case set that includes Consultant, PhD, Founder/V60, and at least one negative-control shape if fixtures support it.
+  - [x] 2.3 Define metrics for Step 7 residual work, atom uptake, protected payload preservation, memo completeness, and cost.
+  - [x] 2.4 Define pass, fail, and ambiguous outcomes before running any comparison.
+  - [x] 2.5 Keep the comparison research-only and runtime-dormant.
 - [ ] 3.0 Decide whether a `SKILL.md` behavior change is earned
   - [ ] 3.1 Review shadow-comparison results against the precommitted outcomes.
   - [ ] 3.2 Decide whether Step 7 correction work has shrunk enough to test optional pressure checks.
