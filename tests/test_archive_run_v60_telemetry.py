@@ -100,6 +100,28 @@ def test_archive_run_copies_pre_step6_shadow_portfolio_sidecar(tmp_path: Path) -
         ),
         encoding="utf-8",
     )
+    (tmp_dir / f"lolla_{run_id}_pre_step6_private_table.json").write_text(
+        json.dumps(
+            {
+                "schema_version": "pre_step6_private_table.v1",
+                "status": "ready",
+            }
+        ),
+        encoding="utf-8",
+    )
+    (tmp_dir / f"lolla_{run_id}_pre_step6_private_table.md").write_text(
+        "# Pre-Step-6 Private Thinking Table\n",
+        encoding="utf-8",
+    )
+    (tmp_dir / f"lolla_{run_id}_pre_step6_private_table_ledger.json").write_text(
+        json.dumps(
+            {
+                "schema_version": "pre_step6_private_table_ledger.v1",
+                "status": "completed",
+            }
+        ),
+        encoding="utf-8",
+    )
 
     archive_run = _load_archive_run_module()
     archived = archive_run.archive_run(
@@ -110,7 +132,13 @@ def test_archive_run_copies_pre_step6_shadow_portfolio_sidecar(tmp_path: Path) -
 
     run_dir = Path(archived["run_dir"])
     assert "pre_step6_shadow_portfolio.json" in archived["files_copied"]
+    assert "pre_step6_private_table.json" in archived["files_copied"]
+    assert "pre_step6_private_table.md" in archived["files_copied"]
+    assert "pre_step6_private_table_ledger.json" in archived["files_copied"]
     assert (run_dir / "pre_step6_shadow_portfolio.json").exists()
+    assert (run_dir / "pre_step6_private_table.json").exists()
+    assert (run_dir / "pre_step6_private_table.md").exists()
+    assert (run_dir / "pre_step6_private_table_ledger.json").exists()
 
 
 def test_archive_run_records_product_output_hygiene_before_copy(tmp_path: Path) -> None:

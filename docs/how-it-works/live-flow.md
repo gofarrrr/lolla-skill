@@ -126,7 +126,8 @@ python3 $SKILL_DIR/scripts/run_pipeline.py \
   --extraction-file /tmp/lolla_{run_id}_extraction.json \
   --conversation-file /tmp/lolla_{run_id}_conversation.txt \
   --output-file /tmp/lolla_{run_id}_result.json \
-  --skip-revision
+  --skip-revision \
+  --pre-step6-portfolio step6_private
 ```
 
 The `--skip-revision` flag skips the OpenRouter revision step because Claude produces the final revised position itself in Step 6. With both `--extraction-file` and `--conversation-file`, `run_pipeline.py` wraps the raw conversation, extraction JSON, and capture metadata as `ConversationContext` by default. This script initializes the full Lolla pipeline via OpenRouter and runs all four lanes:
@@ -157,6 +158,9 @@ Immediately before launching the command, Claude sends one functional receipt, n
               V60 private enrichment
        explicit source-backed affordance/absence chunks
                            ▼
+              pre-Step-6 private thinking table
+       compact current-run table + cached cards on hit
+                           ▼
                     result.json
 ```
 
@@ -172,7 +176,7 @@ High-level lane outputs:
 - Lane 2 produces model/lens anchors and curated chunks (`companion_cheat_sheet`).
 - Lane 3 produces frame assumptions and reframings (`frame_pressure_card`).
 - Lane 4 produces uncovered structural dimensions and user-answerable questions (`structural_coverage_card`).
-- Post-lane enrichment attaches private V60 source-backed opportunities and, only when explicitly enabled, shadow-only pre-Step-6 portfolio evidence.
+- Post-lane enrichment attaches private V60 source-backed opportunities and, in the live skill, a pre-Step-6 private thinking table. The table is context-only: no live card generation, no reviewer calls, and no code-selected visible answer.
 
 ### Step 4: Counterargument Lead
 
@@ -204,6 +208,8 @@ Step 5 in the SKILL flow is intentionally a no-op. The Observatory is *not* offe
 
 ### Step 6: Update Your Position (Claude reconsiders)
 
+Before writing, Claude reads `/tmp/lolla_<run_id>_pre_step6_private_table.md` when present. This table is a compact private view of the four lanes, V60, and any cached portfolio cards. It is a cleaner thinking surface, not a command or public artifact. Claude may use, reject, defer, combine, or keep table items private, then records a compact `pre_step6_private_table_ledger` in Step 6b.
+
 After the counterargument lead, Claude reconsiders its earlier advice. The structure is deliberate: first, what survived (what Claude would say again unchanged); then, what to take back or set aside (self-corrections and audit-raised pressures Claude considered but chose not to act on, with specific reasons); finally, what actually shifted. This three-part structure forces genuine reconsideration rather than performative hedging.
 
 **Anchors are evidence-bearing hypotheses, not canonical diagnoses.** Lane 2 surfaces curated mental models that may explain the assistant's reasoning structure, but per-candidate verifier judgment is probabilistic — multi-run stability investigations (research/lane2-architecture-research-frozen-2026-04-26 + research/stability-runs/lane2-pathD-proxy-validation-2026-04-26) confirmed there is no single deterministic substrate fact that predicts cross-run anchor stability above usable thresholds. The product contract therefore treats each anchor as an evidence-bearing hypothesis Step 6 should weigh, not as a canonical fact Step 6 must repeat.
@@ -229,7 +235,7 @@ The "What actually shifted" section is capped at 3-4 substantive shifts. A shift
 
 The Step 6 reconsideration text is written into the result JSON via a small inline Python merge that sets `revised_answer`, `revised_answer_source: "claude_step6"`, `revised_answer_present: true`, and `revised_answer_written_at`. Without this step the Observatory would render an incomplete run (four cards but no revised answer). The persisted revised answer is the first-class artifact downstream tooling reads.
 
-When V60 is active, Step 6b also writes a private `v60_consideration_ledger` into `result.json` and `/tmp/lolla_<run_id>_v60_ledger.json`. The ledger has one transaction for every presented V60 chunk and is validated by `validate_v60_consideration_ledger(...)`. This is operator telemetry only: it tells us which selected chunks were used, rejected, deferred, or presented but not used, while leaving the public answer free to be natural.
+When the pre-Step-6 private table is present, Step 6b writes `pre_step6_private_table_ledger` into `result.json` and `/tmp/lolla_<run_id>_pre_step6_private_table_ledger.json`. When V60 is active, Step 6b also writes a private `v60_consideration_ledger` into `result.json` and `/tmp/lolla_<run_id>_v60_ledger.json`. The V60 ledger has one transaction for every presented V60 chunk and is validated by `validate_v60_consideration_ledger(...)`. These ledgers are operator telemetry only: they tell us which selected material was used, rejected, deferred, private-only, or merely confirming, while leaving the public answer free to be natural.
 
 Step 6b also rolls the ledger status back into `run_health` with the transaction count, disposition counts, used chunk count, and presented-but-not-used count. That makes process comparison cheap: an operator can compare two runs by candidate pool, selected chunks, skipped/not-presented candidates, ledger uptake, and final-answer delta instead of reading only the final prose.
 
@@ -343,7 +349,7 @@ Every audit panel is server-rendered HTML and works whether or not `observatory/
 
 ### Step 10: Archive Run
 
-After launching the Observatory, the skill archives the run's core artifacts into a persistent case folder under `~/.local/share/lolla/runs/` (or `$LOLLA_ARCHIVE_DIR`) so the run survives `/tmp` cleanup and stays accessible for later review, memo re-rendering, `scripts/stability_check.py`, or `scripts/compare_archived_runs.py` analysis. Before copying, `scripts/archive_run.py` finalizes V60 ledger telemetry, product-output hygiene, and live-output hygiene. Archive-time live-output finalization treats `/tmp/lolla_<run_id>_live_transcript.txt` as a manual artifact: detected leaks are unsafe, but no-leak manual capture is `not_checked`, not proof of the full console surface. It copies 12 core files (`conversation.txt`, `extraction.json`, `result.json`, `revised.txt`, `memo.md`, `memo_note.json`, `gapcheck.txt`, `gapcheck_lanes.json`, `v60_ledger_skeleton.json`, `v60_ledger.json`, `pre_step6_shadow_portfolio.json`, `live_transcript.txt`) into `{archive_root}/{case_id}/{run_id}/`. Missing artifacts (e.g. on a weaker orchestrator that skipped Step 6b/8b/8c, V60 ledger persistence, live transcript capture, or pre-Step-6 shadow mode) are skipped gracefully. `/tmp` originals are not touched.
+After launching the Observatory, the skill archives the run's core artifacts into a persistent case folder under `~/.local/share/lolla/runs/` (or `$LOLLA_ARCHIVE_DIR`) so the run survives `/tmp` cleanup and stays accessible for later review, memo re-rendering, `scripts/stability_check.py`, or `scripts/compare_archived_runs.py` analysis. Before copying, `scripts/archive_run.py` finalizes V60 ledger telemetry, product-output hygiene, and live-output hygiene. Archive-time live-output finalization treats `/tmp/lolla_<run_id>_live_transcript.txt` as a manual artifact: detected leaks are unsafe, but no-leak manual capture is `not_checked`, not proof of the full console surface. It copies 15 core files (`conversation.txt`, `extraction.json`, `result.json`, `revised.txt`, `memo.md`, `memo_note.json`, `gapcheck.txt`, `gapcheck_lanes.json`, `v60_ledger_skeleton.json`, `v60_ledger.json`, `pre_step6_shadow_portfolio.json`, `pre_step6_private_table.json`, `pre_step6_private_table.md`, `pre_step6_private_table_ledger.json`, `live_transcript.txt`) into `{archive_root}/{case_id}/{run_id}/`. Missing artifacts (e.g. on a weaker orchestrator that skipped Step 6b/8b/8c, private-table ledger persistence, V60 ledger persistence, live transcript capture, or pre-Step-6 shadow mode) are skipped gracefully. `/tmp` originals are not touched.
 
 The "which case is this?" question is solved without asking the user: the archive computes a **case fingerprint** from `extraction.decision_situation` (first 120 chars, normalized — lowercased, punctuation stripped, whitespace collapsed) and matches it against fingerprints stored in `{case_folder}/.case-manifest.json`:
 

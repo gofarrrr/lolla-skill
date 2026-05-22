@@ -680,11 +680,12 @@ def main() -> int:
     )
     parser.add_argument(
         "--pre-step6-portfolio",
-        choices=("off", "shadow"),
+        choices=("off", "shadow", "step6_private"),
         default=None,
         help=(
-            "Dormant pre-Step-6 portfolio recorder. 'shadow' records cached-card "
-            "policy evidence only; it never changes the visible answer."
+            "Pre-Step-6 portfolio mode. 'shadow' records cached-card policy "
+            "evidence only; 'step6_private' writes a private thinking-table "
+            "sidecar for Step 6 without live deck generation or reviewer calls."
         ),
     )
     parser.add_argument(
@@ -717,7 +718,9 @@ def main() -> int:
 
     if args.pre_step6_portfolio is None:
         env_mode = os.environ.get("LOLLA_PRE_STEP6_PORTFOLIO", "off").strip().lower()
-        args.pre_step6_portfolio = env_mode if env_mode in {"off", "shadow"} else "off"
+        args.pre_step6_portfolio = (
+            env_mode if env_mode in {"off", "shadow", "step6_private"} else "off"
+        )
     if args.pre_step6_portfolio_cache_dir is None:
         env_cache_dir = os.environ.get("LOLLA_PRE_STEP6_PORTFOLIO_CACHE_DIR", "").strip()
         if env_cache_dir:
@@ -1010,7 +1013,44 @@ def main() -> int:
         or _derive_run_id_from_path(args.extraction_file)
     )
 
-    if args.pre_step6_portfolio == "shadow":
+    if args.pre_step6_portfolio == "step6_private":
+        try:
+            from system_b.pre_step6_private_table import (
+                build_pre_step6_private_table,
+                write_pre_step6_private_table_sidecars,
+            )
+
+            pre_step6_table, rendered_table = build_pre_step6_private_table(
+                result_payload=serialized,
+                cache_dir=args.pre_step6_portfolio_cache_dir,
+            )
+            if _run_id and is_valid_run_id(_run_id):
+                write_pre_step6_private_table_sidecars(
+                    pre_step6_table,
+                    rendered_table,
+                    run_id=_run_id,
+                )
+            serialized["pre_step6_private_table"] = pre_step6_table
+        except Exception as exc:
+            serialized["pre_step6_private_table"] = {
+                "schema_version": "pre_step6_private_table.v1",
+                "status": "error",
+                "runtime_policy": "step6_private_context",
+                "promotion_effect": "none_private_context_only",
+                "error": f"{type(exc).__name__}: {exc}",
+                "gates": {
+                    "step6_private_context_allowed": True,
+                    "live_card_generation_allowed": False,
+                    "normal_runtime_reviewer_calls": 0,
+                    "code_visible_answer_selection_allowed": False,
+                },
+                "cost_envelope": {
+                    "normal_runtime_reviewer_calls": 0,
+                    "live_card_generation_allowed": False,
+                    "net_new_llm_calls": 0,
+                },
+            }
+    elif args.pre_step6_portfolio == "shadow":
         try:
             from system_b.pre_step6_shadow_portfolio import (
                 build_pre_step6_shadow_portfolio,
@@ -1193,6 +1233,14 @@ def main() -> int:
     }
     if _pre_step6_shadow_status:
         serialized["run_health"]["pre_step6_shadow_portfolio"] = _pre_step6_shadow_status
+    _pre_step6_private = serialized.get("pre_step6_private_table") or {}
+    _pre_step6_private_status = (
+        str(_pre_step6_private.get("status") or "")
+        if isinstance(_pre_step6_private, dict)
+        else ""
+    )
+    if _pre_step6_private_status:
+        serialized["run_health"]["pre_step6_private_table"] = _pre_step6_private_status
     if stakeholder_check_payload:
         serialized["run_health"]["stakeholder_assumption_check"] = stakeholder_check_payload.get("status")
     if _capture_manifest:

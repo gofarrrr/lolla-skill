@@ -6,6 +6,10 @@ from pathlib import Path
 def test_skill_rests_post_step6_pressure_checks_by_default() -> None:
     skill = Path("SKILL.md").read_text(encoding="utf-8")
 
+    assert "--pre-step6-portfolio step6_private" in skill
+    assert "/tmp/lolla_${LOLLA_RUN_ID}_pre_step6_private_table.md" in skill
+    assert "pre_step6_private_table_ledger" in skill
+    assert '"schema_version": "pre_step6_private_table_ledger.v1"' in skill
     assert "--require-valid" in skill
     assert "Launch these BEFORE writing Step 6" not in skill
     assert "Before you begin writing your reconsideration, launch" not in skill

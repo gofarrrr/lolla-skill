@@ -828,6 +828,24 @@ def test_case_api_includes_pre_step6_shadow_portfolio(monkeypatch):
     assert response["pre_step6_shadow_portfolio"]["status"] == "shadow_cache_miss"
 
 
+def test_case_api_includes_pre_step6_private_table(monkeypatch):
+    r = _fixture_result()
+    r["pre_step6_private_table"] = {
+        "schema_version": "pre_step6_private_table.v1",
+        "status": "ready",
+    }
+    r["pre_step6_private_table_ledger"] = {
+        "schema_version": "pre_step6_private_table_ledger.v1",
+        "status": "completed",
+    }
+    monkeypatch.setattr(serve_result, "_RESULT", r)
+
+    response = serve_result._build_case_response()
+
+    assert response["pre_step6_private_table"]["status"] == "ready"
+    assert response["pre_step6_private_table_ledger"]["status"] == "completed"
+
+
 def test_audit_index_handles_no_audit_summary(monkeypatch):
     monkeypatch.setattr(serve_result, "_RESULT", _minimal_result())
     html = serve_result._render_audit_index_html()

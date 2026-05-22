@@ -723,6 +723,8 @@ def _build_case_response() -> dict:
         "v60_enrichment": r.get("v60_enrichment"),
         "v60_consideration_ledger": r.get("v60_consideration_ledger"),
         "v60_consideration_validation": r.get("v60_consideration_validation"),
+        "pre_step6_private_table": r.get("pre_step6_private_table"),
+        "pre_step6_private_table_ledger": r.get("pre_step6_private_table_ledger"),
         "pre_step6_shadow_portfolio": r.get("pre_step6_shadow_portfolio"),
     }
 

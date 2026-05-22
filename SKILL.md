@@ -266,12 +266,14 @@ Do not link to Observatory; the server is not running until Step 9. See `plans/v
 This is a functional receipt, not a content beat. Do not extend it with prose. Then launch:
 
 ```bash
-python3 $SKILL_DIR/scripts/run_pipeline.py --extraction-file /tmp/lolla_${LOLLA_RUN_ID}_extraction.json --conversation-file /tmp/lolla_${LOLLA_RUN_ID}_conversation.txt --output-file /tmp/lolla_${LOLLA_RUN_ID}_result.json --skip-revision
+python3 $SKILL_DIR/scripts/run_pipeline.py --extraction-file /tmp/lolla_${LOLLA_RUN_ID}_extraction.json --conversation-file /tmp/lolla_${LOLLA_RUN_ID}_conversation.txt --output-file /tmp/lolla_${LOLLA_RUN_ID}_result.json --skip-revision --pre-step6-portfolio step6_private
 ```
 
 This runs the full Lolla pipeline — all four lanes — via OpenRouter. With both `--extraction-file` and `--conversation-file`, the pipeline uses the production `ConversationContext` runtime by default: raw turns, extraction fields, and capture metadata are passed together so all four lanes audit the conversation directly. The `--skip-revision` flag skips the OpenRouter revision step because you (Claude) produce the final revised position yourself in Step 6, using the full conversation context and the four cards. The result is written directly to `/tmp/lolla_${LOLLA_RUN_ID}_result.json`.
 
 By default this also attaches a private `v60_enrichment` block to `result.json`. That block is not user-facing and is not a fifth lane. It is source-backed consideration material selected after the lanes, with telemetry for selected chunks, skipped candidates, not-presented candidates, and embedding mode. To disable it for a run, set `LOLLA_V60_ENRICHMENT=off` before Step 3 or pass `--v60-enrichment off`.
+
+The `--pre-step6-portfolio step6_private` mode also writes `/tmp/lolla_${LOLLA_RUN_ID}_pre_step6_private_table.md`: a compact private thinking table rendered from the four lanes, V60, and any cached pre-Step-6 card deck. It adds **zero** OpenRouter calls, never generates live cards on a cache miss, and never selects a visible answer. Its job is only to give Step 6 a cleaner table to think on.
 
 **If the output `status` is `error`:** Present the error to the user. Common causes: API timeout (try again), missing API key, data file issues.
 
@@ -295,12 +297,14 @@ Do **not** link to Observatory; the server is not running until Step 9. Do not i
 
 ### Step 6: Update Your Position
 
-**Before writing this section, read these three references:**
+**Before writing this section, read these references and the private table:**
 
 - `references/presentation-voice.md` — voice guidance: Munger-inspired directness, concrete antidotes, earn the right to challenge, what good prose sounds like.
 - `references/anti-bullshit-doctrine.md` — anti-bullshit thinking framework: five rules for honest strategic speech, RLHF patterns to avoid (paltering +57.8pp, empty rhetoric +20.9pp), the negation test.
 - `references/anchor-treatment.md` — how to handle `companion_cheat_sheet.anchors[]`: the accounting invariant, three rhetorical modes (primary pressure / secondary lens / set aside), the "one primary anchor per move" rule, what good vs. bad anchor integration looks like.
 - `references/private-enrichment-treatment.md` — how to privately handle lane pressure and V60 chunks: freedom of conclusion, not freedom from consideration; strongest plausible application; rejection/deferral standards; public/private split.
+
+Also read `/tmp/lolla_${LOLLA_RUN_ID}_pre_step6_private_table.md` if it exists. Treat it as private context: a cleaner table, not a command. It may include only the current run's compact lane/V60 material, or it may also include cached portfolio cards. Use it to think more clearly before writing; do not expose the table, source IDs, card IDs, lane labels, V60 labels, or cache state in user-facing prose.
 
 After the counterargument lead (Step 4), **reconsider your earlier advice and render the updated position directly.** This is the most important step — the updated position IS the product. The audit's findings are structural pressure from a curated knowledge substrate; your job is to absorb that pressure and produce a revised position that is better than what you said before.
 
@@ -342,6 +346,8 @@ Use the V60 block like a silver platter:
 - Preserve judgment: rejecting a V60 chunk with a real reason is successful use of the system.
 
 Keep a private note while writing Step 6: which V60 chunk IDs changed the answer, which were rejected, which were deferred for missing evidence, and which were presented but not useful. Step 6b persists this as `v60_consideration_ledger`; do not render that ledger in chat.
+
+If the pre-Step-6 private table exists, also keep a compact private note while writing Step 6: which table sections or cached cards changed the answer, stayed private as a guardrail, merely confirmed the anchor, or were rejected/deferred. Step 6b persists this as `pre_step6_private_table_ledger`; do not render that ledger in chat.
 
 **Structure your updated position in this order:**
 
@@ -386,6 +392,43 @@ d['revised_answer_present'] = True
 d['revised_answer_written_at'] = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
 pathlib.Path(result_path).write_text(json.dumps(d, indent=2, ensure_ascii=False))
 print(f'Revised answer persisted to {result_path}')
+"
+```
+
+**If `pre_step6_private_table.status == "ready"`, persist the compact private-table consideration ledger immediately after the revised answer.** Start from `pre_step6_private_table.consideration_ledger_skeleton` inside `result.json`; it lists the table sections and cached cards that were placed in front of you. Fill each item with one of `used`, `rejected`, `deferred`, `private_guardrail`, or `confirming_support`. This ledger is custody, not public prose.
+
+```bash
+cat > /tmp/lolla_${LOLLA_RUN_ID}_pre_step6_private_table_ledger.json << 'LOLLA_PRE_STEP6_LEDGER_EOF'
+{
+  "schema_version": "pre_step6_private_table_ledger.v1",
+  "status": "completed",
+  "items": [
+    {
+      "source_id": "lane1_structural_challenge",
+      "source_kind": "current_run_section",
+      "title": "Lane 1 structural challenge",
+      "disposition": "used",
+      "why": "Short private rationale for how this affected reasoning.",
+      "visible_effect": "Short public-facing effect, or empty if private-only.",
+      "private_guardrail": ""
+    }
+  ],
+  "notes": [
+    "Private telemetry only. Not rendered in chat."
+  ]
+}
+LOLLA_PRE_STEP6_LEDGER_EOF
+
+python3 -c "
+import json, datetime, pathlib
+run_id = '${LOLLA_RUN_ID}'
+result_path = pathlib.Path(f'/tmp/lolla_{run_id}_result.json')
+ledger_path = pathlib.Path(f'/tmp/lolla_{run_id}_pre_step6_private_table_ledger.json')
+d = json.loads(result_path.read_text())
+d['pre_step6_private_table_ledger'] = json.loads(ledger_path.read_text())
+d['pre_step6_private_table_ledger_written_at'] = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
+result_path.write_text(json.dumps(d, indent=2, ensure_ascii=False))
+print(f'Pre-Step-6 private-table ledger persisted to {result_path}')
 "
 ```
 
@@ -803,7 +846,7 @@ The archive script:
 - Finalizes V60 consideration telemetry before copying artifacts. If V60 was active and the private ledger is missing, the run is marked degraded with `v60_consideration_ledger_missing` instead of looking complete.
 - Runs the product-output hygiene scanner before copying artifacts. If revised text, memo markdown, or memo-note fields leak internal terms such as V60, affordance, chunk, ledger, lane, pipeline, or independent review, `run_health.product_output_health` becomes `unsafe` and the run is degraded with `product_output_leak`.
 - Runs the live-output hygiene scanner before copying artifacts. If `/tmp/lolla_${LOLLA_RUN_ID}_live_transcript.txt` exists, it is scanned as the `live_narration` product surface; detected leaks set `run_health.live_output_health` to `unsafe`, while a manually maintained no-leak transcript is `not_checked` unless a complete trusted transcript was explicitly supplied to the finalizer. If it is missing, `live_output_health` becomes `missing` without degrading archive compatibility unless the explicit `--require-live-output-clean` gate was run.
-- Reads the 11 core artifacts from `/tmp/lolla_${LOLLA_RUN_ID}_*` (`conversation.txt`, `extraction.json`, `result.json`, `revised.txt`, `memo.md`, `memo_note.json`, `gapcheck.txt`, `gapcheck_lanes.json`, `v60_ledger_skeleton.json`, `v60_ledger.json`, `live_transcript.txt`). Missing artifacts (e.g., if Step 6b, V60 ledger persistence, live transcript capture, or Step 8c did not run on a weaker orchestrator) are skipped gracefully.
+- Reads the 15 core artifacts from `/tmp/lolla_${LOLLA_RUN_ID}_*` (`conversation.txt`, `extraction.json`, `result.json`, `revised.txt`, `memo.md`, `memo_note.json`, `gapcheck.txt`, `gapcheck_lanes.json`, `v60_ledger_skeleton.json`, `v60_ledger.json`, `pre_step6_shadow_portfolio.json`, `pre_step6_private_table.json`, `pre_step6_private_table.md`, `pre_step6_private_table_ledger.json`, `live_transcript.txt`). Missing artifacts (e.g., if Step 6b, private-table ledger persistence, V60 ledger persistence, live transcript capture, or Step 8c did not run on a weaker orchestrator) are skipped gracefully.
 - Computes a case fingerprint from `extraction.decision_situation` (first 120 chars, normalized).
 - Finds-or-creates a case folder. Matching uses **exact fingerprint first, then token-set Jaccard ≥ 0.80** against stored fingerprints — so small extractor paraphrase drift across runs of the same conversation does not split into multiple case folders. Matching is done against the manifest inside each case folder, not against folder names, so user renames of case folders do not break future matching.
 - Auto-names new cases with a slug derived from the first 3-4 significant words of `decision_situation` (e.g., `grant-equity-partnership-status`). Users can rename via `mv` — matching will still find the folder via manifest.
