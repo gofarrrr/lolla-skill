@@ -1,0 +1,70 @@
+{
+  "schema_version": "step6_attention_map.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "founder-grant-marcus-equity.high-clutter",
+  "source_refs": [
+    "research/pre-step6-comparison-fixtures/founder-grant-marcus-equity-20260428T064421Z.md",
+    "research/pre-step6-raw-artifact-fixtures/founder-grant-marcus-equity.raw-artifact-handoff.v1.json:artifacts[0]",
+    "research/pre-step6-hybrid-handoff-fixtures/founder-grant-marcus-equity.high-clutter.hybrid-handoff.v1.json:quiet_receipts[0]",
+    "research/pre-step6-hybrid-handoff-fixtures/founder-grant-marcus-equity.high-clutter.hybrid-handoff.v1.json:quiet_receipts[1]"
+  ],
+  "problem_read": {
+    "user_goal": "Evaluate a founder equity and grant tradeoff without letting valuation math or instrument catalogs dominate the decision.",
+    "problem_type": "decision_evaluation",
+    "suggested_next_move": "answer_now"
+  },
+  "active_working_set": [
+    {
+      "artifact_id": "no_active_pressure",
+      "why_available": "No active affordance was provided; preserve a no-extra-pressure receipt.",
+      "step6_use": "Answer from the problem read and scan reserves before finalizing.",
+      "boundary": "Do not invent active pressure just because the map exists.",
+      "risk_if_ignored": "The answer may add unnecessary conceptual burden.",
+      "expansion_ref": "research/pre-step6-raw-artifact-fixtures/founder-grant-marcus-equity.raw-artifact-handoff.v1.json"
+    }
+  ],
+  "edge_latticework_reserve": [
+    {
+      "artifact_id": "founder_duplicate_valuation_base_rate_gate",
+      "protected_slot": "denominator",
+      "why_available": "Raw artifact preserved a valuation denominator caution.",
+      "cheap_test": "Check whether the answer leans on exit math.",
+      "risk_if_forced": "The answer may overfocus on valuation mechanics.",
+      "risk_if_ignored": "The answer may become falsely precise about equity value.",
+      "expansion_ref": "research/pre-step6-raw-artifact-fixtures/founder-grant-marcus-equity.raw-artifact-handoff.v1.json:artifacts[0]"
+    },
+    {
+      "artifact_id": "founder_duplicate_middle_instruments_hybrid_quiet",
+      "protected_slot": "opportunity_cost",
+      "why_available": "Hybrid handoff parked duplicate instrument pressure as a quiet receipt.",
+      "cheap_test": "Check whether the answer collapses the instrument space.",
+      "risk_if_forced": "The answer may become an instrument catalog.",
+      "risk_if_ignored": "The answer may flatten the negotiation space.",
+      "expansion_ref": "research/pre-step6-hybrid-handoff-fixtures/founder-grant-marcus-equity.high-clutter.hybrid-handoff.v1.json:quiet_receipts[0]"
+    }
+  ],
+  "weak_or_negative_space_receipts": [
+    {
+      "artifact_id": "no_weak_receipt",
+      "why_preserved": "No weak or negative-space receipt was provided.",
+      "reactivate_if": "New uncertainty appears during Step 6 drafting.",
+      "expansion_ref": "research/pre-step6-raw-artifact-fixtures/founder-grant-marcus-equity.raw-artifact-handoff.v1.json"
+    }
+  ],
+  "parked_but_preserved": [
+    {
+      "artifact_id": "founder_misfit_architecture_note_hybrid_quiet",
+      "park_reason": "Hybrid handoff parked a systems-pressure receipt that could be misread.",
+      "reactivate_if": "Relax only if new facts make technical architecture the live cause.",
+      "expansion_ref": "research/pre-step6-hybrid-handoff-fixtures/founder-grant-marcus-equity.high-clutter.hybrid-handoff.v1.json:quiet_receipts[1]"
+    }
+  ],
+  "ask_user_if_any": [],
+  "review_admission": "none",
+  "full_archive_refs": [
+    "research/pre-step6-raw-artifact-fixtures/founder-grant-marcus-equity.raw-artifact-handoff.v1.json",
+    "research/pre-step6-hybrid-handoff-fixtures/founder-grant-marcus-equity.high-clutter.hybrid-handoff.v1.json"
+  ],
+  "step6_instruction": "Use this as an attention map, not as a verdict. Consider active pressure, scan the edge reserve before finalizing, and reject any item that fails its boundary. Do not expose internal labels."
+}

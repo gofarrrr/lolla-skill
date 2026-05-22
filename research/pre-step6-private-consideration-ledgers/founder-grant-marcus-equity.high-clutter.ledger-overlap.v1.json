@@ -1,0 +1,78 @@
+{
+  "schema_version": "pre_step6_private_consideration_ledger_overlap.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "design_preamble_ledger_overlap_v0",
+  "case_id": "founder-grant-marcus-equity.high-clutter",
+  "source_refs": {
+    "private_reasoning_cards": "research/pre-step6-private-reasoning-cards/founder-grant-marcus-equity.high-clutter.private-reasoning-cards.v1.json",
+    "v60_fixture": "synthetic_v60_overlap_fixture:overcommitment_without_evidence"
+  },
+  "deterministic_limit": "Code groups overlap and preserves custody; Step 6 still decides usefulness.",
+  "overlap_groups": [
+    {
+      "overlap_group_id": "founder_overcommitment_without_evidence_001",
+      "primary_presented_item_id": "reasoning_card:bevelin_card",
+      "supporting_item_refs": [
+        "reasoning_card:bevelin_card",
+        "v60_chunk:overcommitment_without_evidence"
+      ],
+      "presentation_policy": "single_representative_with_supporting_refs",
+      "ledger_policy": "all_source_items_preserved"
+    }
+  ],
+  "hot_context_items": [
+    {
+      "item_schema_version": "private_consideration_item.v1",
+      "item_id": "reasoning_card:bevelin_card",
+      "item_type": "reasoning_card",
+      "source_ref": "research/pre-step6-lens-answer-cores/founder-grant-marcus-equity.high-clutter.bevelin-answer-core.v1.json",
+      "overlap_group_id": "founder_overcommitment_without_evidence_001",
+      "presentation_state": "primary_presented",
+      "disposition": "not_considered",
+      "composition_role": "combined",
+      "novelty_role": "additive_pressure",
+      "why": "Representative hot-context item for commitment-before-proof and overconfidence pressure.",
+      "visible_effect": "",
+      "private_effect": "",
+      "not_considered_reason": "Awaiting Step 6 consideration."
+    }
+  ],
+  "ledger_items": [
+    {
+      "item_schema_version": "private_consideration_item.v1",
+      "item_id": "reasoning_card:bevelin_card",
+      "item_type": "reasoning_card",
+      "source_ref": "research/pre-step6-lens-answer-cores/founder-grant-marcus-equity.high-clutter.bevelin-answer-core.v1.json",
+      "overlap_group_id": "founder_overcommitment_without_evidence_001",
+      "presentation_state": "primary_presented",
+      "disposition": "not_considered",
+      "composition_role": "combined",
+      "novelty_role": "additive_pressure",
+      "why": "Representative hot-context item for commitment-before-proof and overconfidence pressure.",
+      "visible_effect": "",
+      "private_effect": "",
+      "not_considered_reason": "Awaiting Step 6 consideration."
+    },
+    {
+      "item_schema_version": "private_consideration_item.v1",
+      "item_id": "v60_chunk:overcommitment_without_evidence",
+      "item_type": "v60_chunk",
+      "source_ref": "synthetic_v60_overlap_fixture:overcommitment_without_evidence",
+      "overlap_group_id": "founder_overcommitment_without_evidence_001",
+      "presentation_state": "supporting_ref_not_repeated",
+      "disposition": "not_considered",
+      "composition_role": "confirming",
+      "novelty_role": "confirming_support",
+      "why": "Preserved as custody support for the same overcommitment pressure without repeating it in hot context.",
+      "visible_effect": "",
+      "private_effect": "",
+      "not_considered_reason": "Awaiting Step 6 consideration."
+    }
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Research-only overlap fixture. The V60-style item is synthetic and exists to test ledger shape, not to claim a real V60 selection."
+}

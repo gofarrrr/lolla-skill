@@ -1,0 +1,56 @@
+{
+  "schema_version": "pre_step6_gpt_stability_correctness_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_gpt_stability_correctness_review_v0",
+  "review_case_id": "third-year-phd-student.v2.v60-off.sample-0.gpt-step6-visible",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"output_label\": \"better\",\n  \"winner_label\": \"B\",\n  \"visibility_judgment\": \"correct_visible\",\n  \"confidence\": \"high\",\n  \"rationale\": \"B preserves all actionable payload with less bloat and no loss of decision structure. A adds length without adding meaning.\",\n  \"answer_correctness_notes\": [\n    \"B keeps the two‑gate framing clean and concrete.\",\n    \"No invented certainty; avoids unnecessary political sequencing details that A drifts into.\",\n    \"Good alignment with the case brief’s need for grounded, action‑guiding checks.\"\n  ],\n  \"visibility_decision_notes\": [\n    \"Step 6 content is concise, payload‑preserving, and appropriate to reveal.\",\n    \"No signal that the anchor is safer or more correct than the Step 6 version.\"\n  ],\n  \"payload_loss_or_bloat\": [\n    \"A exhibits moderate bloat without additional actionable content.\",\n    \"B avoids bloat and does not lose core payload.\"\n  ],\n  \"structural_delta_read\": \"useful_structural_delta\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 1076,
+    "completion_tokens": 296,
+    "total_tokens": 1372,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 64,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter",
+    "model_family": "openai"
+  },
+  "blind_map": {
+    "A": "anchor_visible",
+    "B": "step6_visible"
+  },
+  "reviewer_output": {
+    "output_label": "better",
+    "winner_label": "B",
+    "visibility_judgment": "correct_visible",
+    "confidence": "high",
+    "rationale": "B preserves all actionable payload with less bloat and no loss of decision structure. A adds length without adding meaning.",
+    "answer_correctness_notes": [
+      "B keeps the two‑gate framing clean and concrete.",
+      "No invented certainty; avoids unnecessary political sequencing details that A drifts into.",
+      "Good alignment with the case brief’s need for grounded, action‑guiding checks."
+    ],
+    "visibility_decision_notes": [
+      "Step 6 content is concise, payload‑preserving, and appropriate to reveal.",
+      "No signal that the anchor is safer or more correct than the Step 6 version."
+    ],
+    "payload_loss_or_bloat": [
+      "A exhibits moderate bloat without additional actionable content.",
+      "B avoids bloat and does not lose core payload."
+    ],
+    "structural_delta_read": "useful_structural_delta"
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample GPT-stability correctness judgment."
+}

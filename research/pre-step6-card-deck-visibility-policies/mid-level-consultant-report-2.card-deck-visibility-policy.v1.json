@@ -1,0 +1,53 @@
+{
+  "schema_version": "pre_step6_card_deck_visibility_policy.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mid-level-consultant-report-2",
+  "policy_kind": "ledger_based_anchor_standdown",
+  "source_refs": {
+    "card_deck_replay": "research/pre-step6-card-deck-replays/mid-level-consultant-report-2.card-deck-replay.v1.json",
+    "cognitive_comparison": "research/pre-step6-card-deck-replay-comparisons/mid-level-consultant-report-2.card-deck-replay-comparison.v1.json"
+  },
+  "ledger_summary": [
+    {
+      "card_id": "clean_hybrid_card",
+      "disposition": "used",
+      "novelty_role": "visible_backbone",
+      "visible_effect": "The public answer follows its structure and core safeguards."
+    },
+    {
+      "card_id": "bevelin_card",
+      "disposition": "combined",
+      "novelty_role": "additive_pressure",
+      "visible_effect": "The answer includes a prompt to ask attorneys how they choose among channels."
+    },
+    {
+      "card_id": "polya_card",
+      "disposition": "private_guardrail",
+      "novelty_role": "private_guardrail",
+      "visible_effect": "none"
+    }
+  ],
+  "deterministic_read": {
+    "anchor_standdown_eligible": false,
+    "deterministic_quality_decision": false,
+    "non_anchor_additive_count": 1,
+    "non_anchor_private_or_confirming_count": 1,
+    "reason": "Step 6 marked at least one non-anchor card as additive pressure."
+  },
+  "cognitive_confirmation": {
+    "status": "deck_confirmed_by_reviewer",
+    "reviewer_winner": "card_deck_replay",
+    "reviewer_deck_effect": "improves",
+    "reviewer_confidence": "high"
+  },
+  "visible_policy": {
+    "result": "card_deck_visible_after_cognitive_confirmation",
+    "why_this_is_not_deterministic": "The deterministic read only records Step 6 ledger roles. The visible answer policy requires the cognitive comparison result before it can prefer anchor or card-deck replay."
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Research-only policy. Code records Step 6's own private ledger and the cognitive comparison result; it does not infer answer quality from counts."
+}

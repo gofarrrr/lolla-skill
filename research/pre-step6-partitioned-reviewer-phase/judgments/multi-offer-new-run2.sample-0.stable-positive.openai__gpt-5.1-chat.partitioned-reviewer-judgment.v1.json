@@ -1,0 +1,52 @@
+{
+  "schema_version": "pre_step6_partitioned_reviewer_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_partitioned_reviewer_phase_v0",
+  "partition_case_id": "multi-offer-new-run2.sample-0.stable-positive",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"review_label\": \"step6_better\",\n  \"winner_label\": \"B\",\n  \"confidence\": \"high\",\n  \"rationale\": \"B provides a sequenced, concrete, action-guiding plan directly aligned with the user’s constraints and the experiment’s delta. Although verbose, it delivers materially more useful decision gates than A, which is high-level and loses procedural guidance.\",\n  \"step6_value_if_any\": [\n    \"Explicit gating sequence: extensions → spouse alignment → negotiate B → diligence → fallback to A.\",\n    \"Concrete negotiation items: compensation ramp, remote boundaries, fully diluted equity check.\",\n    \"Back-channel CEO diligence and runway verification.\"\n  ],\n  \"anchor_strengths\": [\n    \"Concise summary of the strategic posture (B if spouse buy-in, else A, avoid C).\"\n  ],\n  \"payload_loss_or_bloat\": [\n    \"B is verbose, but the added length carries substantive procedural payload rather than filler.\"\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 1340,
+    "completion_tokens": 333,
+    "total_tokens": 1673,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 64,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter",
+    "model_family": "openai"
+  },
+  "blind_map": {
+    "A": "anchor_visible",
+    "B": "step6_visible"
+  },
+  "reviewer_output": {
+    "review_label": "step6_better",
+    "winner_label": "B",
+    "confidence": "high",
+    "rationale": "B provides a sequenced, concrete, action-guiding plan directly aligned with the user’s constraints and the experiment’s delta. Although verbose, it delivers materially more useful decision gates than A, which is high-level and loses procedural guidance.",
+    "step6_value_if_any": [
+      "Explicit gating sequence: extensions → spouse alignment → negotiate B → diligence → fallback to A.",
+      "Concrete negotiation items: compensation ramp, remote boundaries, fully diluted equity check.",
+      "Back-channel CEO diligence and runway verification."
+    ],
+    "anchor_strengths": [
+      "Concise summary of the strategic posture (B if spouse buy-in, else A, avoid C)."
+    ],
+    "payload_loss_or_bloat": [
+      "B is verbose, but the added length carries substantive procedural payload rather than filler."
+    ]
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample partitioned reviewer judgment."
+}

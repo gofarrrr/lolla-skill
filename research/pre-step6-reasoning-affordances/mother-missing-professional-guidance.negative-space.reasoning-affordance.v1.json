@@ -1,0 +1,23 @@
+{
+  "schema_version": "reasoning_affordance.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mother-address-year",
+  "artifact_id": "mother_missing_professional_guidance",
+  "source_refs": [
+    "research/pre-step6-problem-states/mother-address-year.problem-state.v1.json"
+  ],
+  "selection_basis": "Problem state marks professional guidance as unknown.",
+  "affordance_class": "negative_space",
+  "protected_slot": "negative_space",
+  "what_it_might_reveal": "The answer should avoid filling the professional-guidance gap with confidence.",
+  "source_grounding": "The problem state lists professional guidance as missing user-owned information.",
+  "cheap_test_for_step6": "Check whether the answer assumes guidance exists.",
+  "hard_boundary": "Do not invent professional advice.",
+  "relaxation_condition": "Relax if the user supplies current professional guidance.",
+  "discard_condition": "Discard only if the answer does not rely on professional guidance.",
+  "risk_if_forced": "The answer may become too cautious and vague.",
+  "risk_if_ignored": "The answer may overclaim beyond the known facts.",
+  "attention_weight": "brief",
+  "expansion_ref": "research/pre-step6-problem-states/mother-address-year.problem-state.v1.json"
+}

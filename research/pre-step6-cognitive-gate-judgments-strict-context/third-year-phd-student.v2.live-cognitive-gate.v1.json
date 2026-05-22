@@ -1,0 +1,73 @@
+{
+  "schema_version": "pre_step6_cognitive_gate_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "third-year-phd-student.v2",
+  "gate_kind": "live_small_cognitive_comparison",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"winner_label\": \"C\",\n  \"promotion_read\": \"expand_replay\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Candidate C provides the most actionable cognitive framework for Step 6. By explicitly mentioning the three-month deadline and the advisor's retirement timeline, it grounds the abstract 'gates' in the specific constraints of the case. It avoids the slightly repetitive phrasing of A and B while providing more concrete 'stop-loss' logic than D.\",\n  \"improvements\": [\n    \"Integrates the advisor's retirement timeline as a hard constraint for the decision.\",\n    \"Defines the 'stop-loss' mechanism more clearly by suggesting a dated window for the probe.\",\n    \"Maintains the necessary tension between the excitement of the new field and the reality of the current lab environment.\"\n  ],\n  \"regressions_or_watch_items\": [\n    \"Ensure Step 6 does not over-index on the 'three-month' deadline as a rigid cutoff rather than a pressure point.\",\n    \"Watch for potential over-reliance on the advisor's support as the primary gatekeeper.\"\n  ],\n  \"stand_down_reason\": \"Not a stand-down; the inclusion of specific case-relevant constraints (retirement, 3-month window) significantly improves the quality of the cognitive input for Step 6 compared to the more generic advice in the other candidates.\",\n  \"composition_note\": \"Candidate C should be used as the primary structural template for Step 6, potentially incorporating the 'inversion' logic from Candidate B to further stress-test the fallback path.\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 2121,
+    "completion_tokens": 348,
+    "total_tokens": 2469,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter"
+  },
+  "candidate_refs": {
+    "rendered_hybrid": "research/pre-step6-rendered-hybrid-answer-cores/third-year-phd-student.conflict.native.rendered-hybrid-answer-core.v1.json",
+    "portfolio_base": "research/pre-step6-portfolio-answer-cores/third-year-phd-student.v2.native.portfolio-answer-core.v1.json",
+    "bevelin_lens": "research/pre-step6-lens-answer-cores/third-year-phd-student.v2.bevelin-answer-core.v1.json",
+    "polya_lens": "research/pre-step6-lens-answer-cores/third-year-phd-student.v2.polya-answer-core.v1.json"
+  },
+  "blind_map": {
+    "A": "portfolio_base",
+    "B": "bevelin_lens",
+    "C": "rendered_hybrid",
+    "D": "polya_lens"
+  },
+  "reviewer_output": {
+    "winner_label": "C",
+    "promotion_read": "expand_replay",
+    "confidence": "high",
+    "rationale": "Candidate C provides the most actionable cognitive framework for Step 6. By explicitly mentioning the three-month deadline and the advisor's retirement timeline, it grounds the abstract 'gates' in the specific constraints of the case. It avoids the slightly repetitive phrasing of A and B while providing more concrete 'stop-loss' logic than D.",
+    "improvements": [
+      "Integrates the advisor's retirement timeline as a hard constraint for the decision.",
+      "Defines the 'stop-loss' mechanism more clearly by suggesting a dated window for the probe.",
+      "Maintains the necessary tension between the excitement of the new field and the reality of the current lab environment."
+    ],
+    "regressions_or_watch_items": [
+      "Ensure Step 6 does not over-index on the 'three-month' deadline as a rigid cutoff rather than a pressure point.",
+      "Watch for potential over-reliance on the advisor's support as the primary gatekeeper."
+    ],
+    "stand_down_reason": "Not a stand-down; the inclusion of specific case-relevant constraints (retirement, 3-month window) significantly improves the quality of the cognitive input for Step 6 compared to the more generic advice in the other candidates.",
+    "composition_note": "Candidate C should be used as the primary structural template for Step 6, potentially incorporating the 'inversion' logic from Candidate B to further stress-test the fallback path."
+  },
+  "static_expectation": {
+    "allowed_winner_arms": [
+      "bevelin_lens",
+      "polya_lens"
+    ],
+    "allowed_promotion_reads": [
+      "expand_replay"
+    ]
+  },
+  "agreement": {
+    "winner_matches_static": false,
+    "promotion_matches_static": true,
+    "overall_match": false
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live small cognitive comparison. Research-only artifact; it records reviewer agreement or disagreement with static expectations."
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": "pre_step6_card_deck_replay_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mother-address-year",
+  "comparison_kind": "clean_hybrid_vs_card_deck_replay",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"winner_label\": \"B\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Candidate B is more concise and direct. It removes unnecessary filler words found in A (e.g., 'I wouldn't make one sweeping decision right now' vs 'I would not make one giant decision tonight') while maintaining the same level of actionable advice. B's phrasing is slightly more professional and less conversational, which is appropriate for the sensitive nature of the topic.\",\n  \"visible_improvements\": [\n    \"Improved conciseness and clarity.\",\n    \"More professional tone.\"\n  ],\n  \"visible_regressions_or_bloat\": [\n    \"None.\"\n  ],\n  \"recommendation\": \"Adopt the style and brevity of Candidate B for future responses.\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 768,
+    "completion_tokens": 173,
+    "total_tokens": 941,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter"
+  },
+  "candidate_refs": {
+    "clean_hybrid": "research/pre-step6-rendered-hybrid-answer-cores/mother-address-year.native.rendered-hybrid-answer-core.v1.json",
+    "card_deck_replay": "research/pre-step6-card-deck-replays/mother-address-year.card-deck-replay.v1.json"
+  },
+  "blind_map": {
+    "A": "card_deck_replay",
+    "B": "clean_hybrid"
+  },
+  "reviewer_output": {
+    "winner_label": "B",
+    "deck_effect": "regresses",
+    "confidence": "high",
+    "rationale": "Candidate B is more concise and direct. It removes unnecessary filler words found in A (e.g., 'I wouldn't make one sweeping decision right now' vs 'I would not make one giant decision tonight') while maintaining the same level of actionable advice. B's phrasing is slightly more professional and less conversational, which is appropriate for the sensitive nature of the topic.",
+    "visible_improvements": [
+      "Improved conciseness and clarity.",
+      "More professional tone."
+    ],
+    "visible_regressions_or_bloat": [
+      "None."
+    ],
+    "recommendation": "Adopt the style and brevity of Candidate B for future responses."
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live research comparison of clean hybrid vs card-deck Step 6 replay."
+}

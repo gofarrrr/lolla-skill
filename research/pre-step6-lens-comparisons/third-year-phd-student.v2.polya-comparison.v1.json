@@ -1,0 +1,132 @@
+{
+  "schema_version": "pre_step6_lens_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "polya_v0_fixed_suite",
+  "case_id": "third-year-phd-student",
+  "comparison_kind": "polya_lens_local_rubric",
+  "lens_pack": "polya_problem_solving_v0",
+  "candidate_refs": {
+    "rendered_hybrid_answer_core": "research/pre-step6-rendered-hybrid-answer-cores/third-year-phd-student.conflict.native.rendered-hybrid-answer-core.v1.json",
+    "portfolio_base_answer_core": "research/pre-step6-portfolio-answer-cores/third-year-phd-student.v2.native.portfolio-answer-core.v1.json",
+    "lens_answer_core": "research/pre-step6-lens-answer-cores/third-year-phd-student.v2.polya-answer-core.v1.json",
+    "lens_probe": "research/pre-step6-lens-probes/third-year-phd-student.v2.polya-lens-probe.v1.json"
+  },
+  "criteria": [
+    {
+      "criterion_id": "decision_usefulness",
+      "question": "Which answer best guides the PhD choice?",
+      "winner_arm": "lens",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Strong two-gate framing.",
+        "portfolio_base": "Strong gate framing.",
+        "lens": "Best turns options into testable viability conditions."
+      },
+      "rationale": "Polya is strongest on this problem."
+    },
+    {
+      "criterion_id": "source_grounding",
+      "question": "Which answer stays grounded?",
+      "winner_arm": "tie",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Grounded.",
+        "portfolio_base": "Grounded.",
+        "lens": "Grounded."
+      },
+      "rationale": "All are grounded."
+    },
+    {
+      "criterion_id": "overclaim_risk",
+      "question": "Which answer avoids false precision?",
+      "winner_arm": "lens",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Good.",
+        "portfolio_base": "Good.",
+        "lens": "Uses rates only as humility checks and asks for tests."
+      },
+      "rationale": "The lens reduces abstract probability pressure."
+    },
+    {
+      "criterion_id": "answer_length_cognitive_load",
+      "question": "Which answer is easiest to execute?",
+      "winner_arm": "lens",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Good but explanatory.",
+        "portfolio_base": "Compact.",
+        "lens": "Most action-oriented: conditions, deadline, next move."
+      },
+      "rationale": "The lens is clear."
+    },
+    {
+      "criterion_id": "machinery_hygiene",
+      "question": "Which answer avoids private terms?",
+      "winner_arm": "tie",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Clean.",
+        "portfolio_base": "Clean.",
+        "lens": "Clean."
+      },
+      "rationale": "All are clean."
+    },
+    {
+      "criterion_id": "conflict_preservation",
+      "question": "Which answer preserves Silva versus fallback tension?",
+      "winner_arm": "lens",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Good.",
+        "portfolio_base": "Good.",
+        "lens": "Preserves both by making each path a condition set, not a preference."
+      },
+      "rationale": "The lens prevents flattening."
+    },
+    {
+      "criterion_id": "edge_pressure_preservation",
+      "question": "Which answer preserves useful edge pressure?",
+      "winner_arm": "lens",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Good.",
+        "portfolio_base": "Good.",
+        "lens": "Adds work-backward deadline pressure and next-informative-move pressure."
+      },
+      "rationale": "Strong edge preservation."
+    },
+    {
+      "criterion_id": "breadth_depth_preservation",
+      "question": "Which answer preserves breadth without bloat?",
+      "winner_arm": "lens",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Good.",
+        "portfolio_base": "Good.",
+        "lens": "Preserves advisor, Silva, fallback, deadline, and base-rate pressure compactly."
+      },
+      "rationale": "Best breadth-depth balance."
+    },
+    {
+      "criterion_id": "premature_pruning_risk",
+      "question": "Which answer least risks narrowing too early?",
+      "winner_arm": "lens",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Avoids choosing early.",
+        "portfolio_base": "Avoids choosing early.",
+        "lens": "Defines tests before choosing."
+      },
+      "rationale": "This is the right anti-pruning move."
+    },
+    {
+      "criterion_id": "negative_control_discipline",
+      "question": "Does the lens avoid doing Step 6's job?",
+      "winner_arm": "tie",
+      "evidence_by_arm": {
+        "rendered_hybrid": "No private terms.",
+        "portfolio_base": "No private terms.",
+        "lens": "Does not choose a path; it defines tests."
+      },
+      "rationale": "The lens stays non-finalizing."
+    }
+  ],
+  "tie_break_rule": "lens_must_add_edge_without_pruning",
+  "aggregate_winner_arm": "lens",
+  "aggregate_decision": "lens_improves",
+  "promotion_read": "expand_replay",
+  "notes": "Polya v0 improves PhD v2 because the bottleneck is problem shape and next-move sequencing."
+}

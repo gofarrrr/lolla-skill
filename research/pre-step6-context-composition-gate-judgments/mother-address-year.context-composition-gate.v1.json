@@ -1,0 +1,73 @@
+{
+  "schema_version": "pre_step6_context_composition_gate_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mother-address-year",
+  "gate_kind": "live_context_composition_comparison",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"winner_label\": \"C\",\n  \"research_action\": \"expand_replay\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Packet C provides the most robust cognitive scaffolding by explicitly framing the decision as one of safety under uncertainty and warning against the 'trial' mindset. This prevents the user from falling into a trap of seeking definitive proof before acting, which is a critical edge case in safety-sensitive scenarios.\",\n  \"protected_value\": [\n    \"Safety-first decision framing under uncertainty\",\n    \"Anti-trial bias warning\",\n    \"Reversibility of action as a core constraint\"\n  ],\n  \"bloat_or_pruning_risk\": [\n    \"Minimal risk of bloat; the additional receipts provide necessary nuance for high-stakes decision-making without dictating the outcome.\"\n  ],\n  \"composition_note\": \"Step 6 should treat the receipts as heuristic filters for the primary anchor, specifically using the 'trial' warning to temper the user's potential desire for absolute certainty.\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 1930,
+    "completion_tokens": 227,
+    "total_tokens": 2157,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter"
+  },
+  "candidate_refs": {
+    "rendered_hybrid": "research/pre-step6-rendered-hybrid-answer-cores/mother-address-year.native.rendered-hybrid-answer-core.v1.json",
+    "bevelin_lens": "research/pre-step6-lens-answer-cores/mother-address-year.bevelin-answer-core.v1.json",
+    "polya_lens": "research/pre-step6-lens-answer-cores/mother-address-year.polya-answer-core.v1.json"
+  },
+  "blind_map": {
+    "A": "rendered_only",
+    "B": "rendered_plus_bevelin_receipts",
+    "C": "rendered_plus_dual_receipts",
+    "D": "rendered_plus_polya_receipts"
+  },
+  "reviewer_output": {
+    "winner_label": "C",
+    "research_action": "expand_replay",
+    "confidence": "high",
+    "rationale": "Packet C provides the most robust cognitive scaffolding by explicitly framing the decision as one of safety under uncertainty and warning against the 'trial' mindset. This prevents the user from falling into a trap of seeking definitive proof before acting, which is a critical edge case in safety-sensitive scenarios.",
+    "protected_value": [
+      "Safety-first decision framing under uncertainty",
+      "Anti-trial bias warning",
+      "Reversibility of action as a core constraint"
+    ],
+    "bloat_or_pruning_risk": [
+      "Minimal risk of bloat; the additional receipts provide necessary nuance for high-stakes decision-making without dictating the outcome."
+    ],
+    "composition_note": "Step 6 should treat the receipts as heuristic filters for the primary anchor, specifically using the 'trial' warning to temper the user's potential desire for absolute certainty."
+  },
+  "static_expectation": {
+    "allowed_winner_arms": [
+      "rendered_only",
+      "rendered_plus_polya_receipts",
+      "rendered_plus_dual_receipts",
+      "tie"
+    ],
+    "allowed_research_actions": [
+      "retest",
+      "stop"
+    ]
+  },
+  "agreement": {
+    "winner_matches_static": true,
+    "action_matches_static": false,
+    "overall_match": false
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live context-composition comparison. Research-only artifact; it tests whether protected private receipts improve a rendered-hybrid anchor."
+}

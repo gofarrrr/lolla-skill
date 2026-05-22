@@ -1,0 +1,50 @@
+{
+  "schema_version": "pre_step6_partitioned_reviewer_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_partitioned_reviewer_phase_v0",
+  "partition_case_id": "founder-grant-marcus-equity.high-clutter.v60-off.sample-0.stable-positive",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\"review_label\":\"step6_better\",\"winner_label\":\"B\",\"confidence\":\"high\",\"rationale\":\"B adds a concrete, action‑guiding element by specifying that Marcus should be told what sprint success would unlock. This strengthens forward‑path clarity without adding bloat or losing payload.\",\"step6_value_if_any\":[\"Explicit unlock conditions tied to sprint success, increasing actionability.\"],\"anchor_strengths\":[\"Clear staging logic and risk framing.\"],\"payload_loss_or_bloat\":[\"No meaningful bloat; additions are concise and useful.\"]}",
+    "temperature": 0.2,
+    "prompt_tokens": 1226,
+    "completion_tokens": 184,
+    "total_tokens": 1410,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 64,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter",
+    "model_family": "openai"
+  },
+  "blind_map": {
+    "A": "anchor_visible",
+    "B": "step6_visible"
+  },
+  "reviewer_output": {
+    "review_label": "step6_better",
+    "winner_label": "B",
+    "confidence": "high",
+    "rationale": "B adds a concrete, action‑guiding element by specifying that Marcus should be told what sprint success would unlock. This strengthens forward‑path clarity without adding bloat or losing payload.",
+    "step6_value_if_any": [
+      "Explicit unlock conditions tied to sprint success, increasing actionability."
+    ],
+    "anchor_strengths": [
+      "Clear staging logic and risk framing."
+    ],
+    "payload_loss_or_bloat": [
+      "No meaningful bloat; additions are concise and useful."
+    ]
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample partitioned reviewer judgment."
+}

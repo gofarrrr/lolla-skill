@@ -1,0 +1,65 @@
+{
+  "schema_version": "pre_step6_portfolio_step6_replay.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "third-year-phd-student",
+  "replay_mode": "portfolio_attention_map_static_replay",
+  "source_attention_map": "research/pre-step6-attention-maps/third-year-phd-student.v2.step6-attention-map.v1.json",
+  "source_attention_map_render_sha256": "c6c6a2d32afa3312879a025d9d3c18c48261cb5ea29155d2ac9479e536825a3c",
+  "source_portfolio_answer_core": "research/pre-step6-portfolio-answer-cores/third-year-phd-student.v2.native.portfolio-answer-core.v1.json",
+  "prior_best_answer_core": "research/pre-step6-rendered-hybrid-answer-cores/third-year-phd-student.conflict.native.rendered-hybrid-answer-core.v1.json",
+  "portfolio_blind_comparison_ref": "research/pre-step6-portfolio-blind-comparisons/third-year-phd-student.v2.portfolio-blind-comparison.v1.json",
+  "replay_answer": "I would not choose the Silva direction yet, and I would not default to the safer lab path. Treat the decision as two gates that both have to stay real: Silva executability and fallback survivability.\n\nFor Silva, do not count the path as viable until data access, sharing terms, collaborator role, timeline, and advisor support are concrete enough to carry a dissertation. A hot field is not enough if the data path is still vague.\n\nFor the fallback, protect the reversal target before relying on it. It is only useful if it remains advisor-backed, funded, technically ready, identity-coherent, and still available when the stop date arrives. A delayed pivot is unsafe if the fallback quietly disappears.\n\nSequence the next moves tightly: advisor first, short Silva evidence probe second, committee only after the data path is real. Use broad success rates only as humility checks, not probabilities for this case. Do not build a finished proposal around Silva, do not run all options in parallel, and do not let fallback comfort hide the need to test Silva's binding constraints.",
+  "expected_inclusions": [
+    "would not choose the Silva direction yet",
+    "would not default to the safer lab path",
+    "Silva executability and fallback survivability",
+    "data access, sharing terms, collaborator role",
+    "advisor support",
+    "available when the stop date arrives",
+    "fallback quietly disappears",
+    "advisor first",
+    "short Silva evidence probe second",
+    "broad success rates only as humility checks",
+    "Silva's binding constraints"
+  ],
+  "expected_exclusions": [
+    "attention map",
+    "portfolio",
+    "artifact",
+    "bundle",
+    "worker",
+    "V60",
+    "numeric success priors",
+    "choose Silva now",
+    "default to the fallback",
+    "finished proposal to the committee first"
+  ],
+  "comparison_vs_prior_best": {
+    "winner": "portfolio_replay",
+    "rationale": "The replay preserves the prior rendered-hybrid tension while making Silva executability and fallback survivability the explicit decision gates.",
+    "improvements": [
+      "Names sharing terms and collaborator role as part of Silva executability.",
+      "Keeps fallback disappearance at the stop date explicit.",
+      "Uses base rates only as humility checks without numeric probability language."
+    ],
+    "regressions_or_watch_items": [
+      "The prior rendered-hybrid answer has a slightly more conversational rhythm.",
+      "This remains a static replay, not a live default-runtime result."
+    ]
+  },
+  "gates": {
+    "attention_map_loaded": true,
+    "portfolio_answer_core_validated": true,
+    "prior_best_loaded": true,
+    "blind_comparison_validated": true,
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "outcome": {
+    "replay_decision": "pass_to_next_portfolio_replay",
+    "product_promotion": "blocked",
+    "next_step": "Repeat with one more non-founder high-clutter case or run a manual live Step 6 replay before any skill or runtime integration."
+  },
+  "notes": "Research-only static replay from the PhD v2 attention map. It promotes the case to more replay testing, not runtime integration."
+}

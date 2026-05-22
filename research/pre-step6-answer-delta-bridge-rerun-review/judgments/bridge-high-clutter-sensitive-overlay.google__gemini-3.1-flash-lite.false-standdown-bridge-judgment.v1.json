@@ -1,0 +1,54 @@
+{
+  "schema_version": "pre_step6_false_standdown_bridge_judgment.v1",
+  "runtime_policy": "runtime_dormant",
+  "probe_id": "false_standdown_bridge_probe_v0",
+  "case_id": "bridge-high-clutter-sensitive-overlay",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"standdown_label\": \"false_standdown\",\n  \"winner_label\": \"B\",\n  \"confidence\": \"high\",\n  \"expected_failure_observed\": \"true\",\n  \"rationale\": \"Candidate B explicitly addresses the pre-registered missing pressure by separating the humane check-in from the equity commitment and defining an evidence-based threshold. Candidate A collapses these into a single conversation, risking an accidental commitment.\",\n  \"anchor_missing_payload\": [\n    \"Lack of clear separation between empathy and equity commitment\",\n    \"No defined evidence threshold for cap-table adjustments\",\n    \"Failure to insulate the financing deadline from the employee negotiation\"\n  ],\n  \"deck_added_payload\": [\n    \"Two-step conversation structure\",\n    \"Requirement for written evidence (emails, notes, terms)\",\n    \"Clear communication strategy for investors regarding the cap table\"\n  ],\n  \"regressions_or_bloat\": [\n    \"None\"\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 869,
+    "completion_tokens": 219,
+    "total_tokens": 1088,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter",
+    "model_family": "google"
+  },
+  "blind_map": {
+    "A": "anchor_visible",
+    "B": "deck_visible"
+  },
+  "reviewer_output": {
+    "standdown_label": "false_standdown",
+    "winner_label": "B",
+    "confidence": "high",
+    "expected_failure_observed": true,
+    "rationale": "Candidate B explicitly addresses the pre-registered missing pressure by separating the humane check-in from the equity commitment and defining an evidence-based threshold. Candidate A collapses these into a single conversation, risking an accidental commitment.",
+    "anchor_missing_payload": [
+      "Lack of clear separation between empathy and equity commitment",
+      "No defined evidence threshold for cap-table adjustments",
+      "Failure to insulate the financing deadline from the employee negotiation"
+    ],
+    "deck_added_payload": [
+      "Two-step conversation structure",
+      "Requirement for written evidence (emails, notes, terms)",
+      "Clear communication strategy for investors regarding the cap table"
+    ],
+    "regressions_or_bloat": [
+      "None"
+    ]
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live non-promotional false-standdown bridge-probe judgment."
+}

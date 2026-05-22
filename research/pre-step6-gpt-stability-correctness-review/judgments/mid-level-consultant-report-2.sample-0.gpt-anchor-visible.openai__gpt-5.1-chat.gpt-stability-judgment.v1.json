@@ -1,0 +1,53 @@
+{
+  "schema_version": "pre_step6_gpt_stability_correctness_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_gpt_stability_correctness_review_v0",
+  "review_case_id": "mid-level-consultant-report-2.sample-0.gpt-anchor-visible",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\"output_label\":\"non_inferior\",\"winner_label\":\"B\",\"visibility_judgment\":\"ambiguous\",\"confidence\":\"medium\",\"rationale\":\"Both answers preserve core safety steps and avoid premature action. B is slightly tighter with less bloat, giving it a small edge, but the difference is marginal.\",\"answer_correctness_notes\":[\"A and B both provide grounded, action‑guiding steps.\",\"B removes some extra framing and is more concise without losing payload.\"],\"visibility_decision_notes\":[\"Without the Step 6 text, assessing correctness of anchor_visible is uncertain; nothing in A or B clearly requires hiding or overriding the anchor.\"],\"payload_loss_or_bloat\":[\"A contains mild bloat; B has minimal bloat and no payload loss.\"],\"structural_delta_read\":\"not_applicable\"}",
+    "temperature": 0.2,
+    "prompt_tokens": 1022,
+    "completion_tokens": 297,
+    "total_tokens": 1319,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 128,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter",
+    "model_family": "openai"
+  },
+  "blind_map": {
+    "A": "anchor_visible",
+    "B": "step6_visible"
+  },
+  "reviewer_output": {
+    "output_label": "non_inferior",
+    "winner_label": "B",
+    "visibility_judgment": "ambiguous",
+    "confidence": "medium",
+    "rationale": "Both answers preserve core safety steps and avoid premature action. B is slightly tighter with less bloat, giving it a small edge, but the difference is marginal.",
+    "answer_correctness_notes": [
+      "A and B both provide grounded, action‑guiding steps.",
+      "B removes some extra framing and is more concise without losing payload."
+    ],
+    "visibility_decision_notes": [
+      "Without the Step 6 text, assessing correctness of anchor_visible is uncertain; nothing in A or B clearly requires hiding or overriding the anchor."
+    ],
+    "payload_loss_or_bloat": [
+      "A contains mild bloat; B has minimal bloat and no payload loss."
+    ],
+    "structural_delta_read": "not_applicable"
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample GPT-stability correctness judgment."
+}

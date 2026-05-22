@@ -1,0 +1,71 @@
+{
+  "schema_version": "pre_step6_portfolio_step6_replay.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "founder-grant-marcus-equity.high-clutter",
+  "replay_mode": "portfolio_attention_map_static_replay",
+  "source_attention_map": "research/pre-step6-attention-maps/founder-grant-marcus-equity.high-clutter.step6-attention-map.v1.json",
+  "source_attention_map_render_sha256": "a201226fb50033729f95b8f4bc6cddde2251d27664b18d5bb8239529f1bfed50",
+  "source_portfolio_answer_core": "research/pre-step6-portfolio-answer-cores/founder-grant-marcus-equity.high-clutter.native.portfolio-answer-core.v1.json",
+  "prior_best_answer_core": "research/pre-step6-rendered-hybrid-answer-cores/founder-grant-marcus-equity.high-clutter.native.rendered-hybrid-answer-core.v1.json",
+  "portfolio_blind_comparison_ref": "research/pre-step6-portfolio-blind-comparisons/founder-grant-marcus-equity.high-clutter.portfolio-blind-comparison.v1.json",
+  "replay_answer": "I would not grant Marcus 15% equity, CTO title, and governance rights on Friday. That package is too permanent before you know whether Marcus reduces dependency risk or becomes the dependency.\n\nBut Friday should not be a vague no or flat rejection. A vague later can trigger the disengagement risk you are trying to avoid. Make it a serious staged path: there may be a route to major upside and authority, but only after evidence.\n\nThe test is whether Marcus makes the company stronger beyond himself. Put a short evidence window around platform delivery, revenue relevance, client continuity, Jake and Lina/team dependence, knowledge transfer, and governance behavior.\n\nKeep middle structures alive, but do not turn the conversation into a catalog. The useful distinction is not bonus versus full equity. It is commitment after proof versus irreversible commitment before proof.\n\nUse exit math only as a warning about false precision. Until buyer assumptions, departure scenarios, and platform value are tested, the numbers should not carry the ownership decision.\n\nYour Friday message can be: I want to explore a serious path with you, but I cannot grant irreversible ownership and governance rights before we prove what this partnership does to the company.",
+  "expected_inclusions": [
+    "would not grant Marcus 15% equity",
+    "too permanent",
+    "vague no or flat rejection",
+    "disengagement risk",
+    "serious staged path",
+    "whether Marcus makes the company stronger beyond himself",
+    "platform delivery",
+    "client continuity",
+    "knowledge transfer",
+    "Keep middle structures alive",
+    "not bonus versus full equity",
+    "commitment after proof versus irreversible commitment before proof",
+    "Use exit math only as a warning about false precision",
+    "the numbers should not carry the ownership decision"
+  ],
+  "expected_exclusions": [
+    "attention map",
+    "portfolio",
+    "artifact",
+    "bundle",
+    "worker",
+    "V60",
+    "$9-13M",
+    "4-6x",
+    "buyer multiples",
+    "technical architecture",
+    "software architecture",
+    "phantom equity",
+    "revenue share"
+  ],
+  "comparison_vs_prior_best": {
+    "winner": "portfolio_replay",
+    "rationale": "The replay preserves the prior rendered-hybrid winner's Friday stance while making the denominator and middle-structure pressure more compact.",
+    "improvements": [
+      "Keeps false-precision caution without numeric reactivation.",
+      "Preserves middle structures without listing instruments.",
+      "Retains disengagement risk and staged partnership posture with less density than the prior best."
+    ],
+    "regressions_or_watch_items": [
+      "The prior rendered-hybrid answer more explicitly names Marcus pulling others with him.",
+      "This remains a static replay, not a live default-runtime result."
+    ]
+  },
+  "gates": {
+    "attention_map_loaded": true,
+    "portfolio_answer_core_validated": true,
+    "prior_best_loaded": true,
+    "blind_comparison_validated": true,
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "outcome": {
+    "replay_decision": "pass_to_next_portfolio_replay",
+    "product_promotion": "blocked",
+    "next_step": "Repeat true Step 6 replay on mother and PhD only after improving their attention maps or adding a second high-clutter case."
+  },
+  "notes": "Research-only static replay from the rendered portfolio attention map. This promotes the founder case to more replay testing, not to runtime integration."
+}

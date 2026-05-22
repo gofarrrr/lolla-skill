@@ -1,0 +1,50 @@
+{
+  "schema_version": "pre_step6_partitioned_reviewer_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_partitioned_reviewer_phase_v0",
+  "partition_case_id": "mother-address-year.sample-0.stable-standdown",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"review_label\": \"tie\",\n  \"winner_label\": \"tie\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Both candidates are identical in content, structure, and length. There is no difference between the two.\",\n  \"step6_value_if_any\": [\n    \"None\"\n  ],\n  \"anchor_strengths\": [\n    \"None\"\n  ],\n  \"payload_loss_or_bloat\": [\n    \"None\"\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 971,
+    "completion_tokens": 117,
+    "total_tokens": 1088,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter",
+    "model_family": "google"
+  },
+  "blind_map": {
+    "A": "anchor_visible",
+    "B": "step6_visible"
+  },
+  "reviewer_output": {
+    "review_label": "tie",
+    "winner_label": "tie",
+    "confidence": "high",
+    "rationale": "Both candidates are identical in content, structure, and length. There is no difference between the two.",
+    "step6_value_if_any": [
+      "None"
+    ],
+    "anchor_strengths": [
+      "None"
+    ],
+    "payload_loss_or_bloat": [
+      "None"
+    ]
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample partitioned reviewer judgment."
+}

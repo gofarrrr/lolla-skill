@@ -1,0 +1,54 @@
+{
+  "schema_version": "pre_step6_gpt_stability_correctness_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_gpt_stability_correctness_review_v0",
+  "review_case_id": "third-year-phd-student.v2.v60-off.sample-1.gpt-step6-visible",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"output_label\": \"better\",\n  \"winner_label\": \"A\",\n  \"visibility_judgment\": \"correct_visible\",\n  \"confidence\": \"high\",\n  \"rationale\": \"A is tighter, avoids extra discursions, and adds a clear stop condition without bloat. B contains mild drift and unnecessary framing.\",\n  \"answer_correctness_notes\": [\n    \"A maintains payload, improves decision sequencing, and stays concrete.\",\n    \"B introduces extra commentary on probabilities and identity that adds noise.\"\n  ],\n  \"visibility_decision_notes\": [\n    \"The added stop-date structure is a legitimate, non-bloated improvement, so showing the Step 6 output was reasonable.\"\n  ],\n  \"payload_loss_or_bloat\": [\n    \"A: no loss, minimal bloat.\",\n    \"B: small bloat from extra epistemic commentary.\"\n  ],\n  \"structural_delta_read\": \"useful_structural_delta\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 1176,
+    "completion_tokens": 290,
+    "total_tokens": 1466,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 64,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter",
+    "model_family": "openai"
+  },
+  "blind_map": {
+    "A": "step6_visible",
+    "B": "anchor_visible"
+  },
+  "reviewer_output": {
+    "output_label": "better",
+    "winner_label": "A",
+    "visibility_judgment": "correct_visible",
+    "confidence": "high",
+    "rationale": "A is tighter, avoids extra discursions, and adds a clear stop condition without bloat. B contains mild drift and unnecessary framing.",
+    "answer_correctness_notes": [
+      "A maintains payload, improves decision sequencing, and stays concrete.",
+      "B introduces extra commentary on probabilities and identity that adds noise."
+    ],
+    "visibility_decision_notes": [
+      "The added stop-date structure is a legitimate, non-bloated improvement, so showing the Step 6 output was reasonable."
+    ],
+    "payload_loss_or_bloat": [
+      "A: no loss, minimal bloat.",
+      "B: small bloat from extra epistemic commentary."
+    ],
+    "structural_delta_read": "useful_structural_delta"
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample GPT-stability correctness judgment."
+}

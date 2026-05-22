@@ -1,0 +1,132 @@
+{
+  "schema_version": "pre_step6_lens_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "bevelin_v0_fixed_suite",
+  "case_id": "founder-grant-marcus-equity.high-clutter",
+  "comparison_kind": "bevelin_lens_local_rubric",
+  "lens_pack": "bevelin_seeking_wisdom_v0",
+  "candidate_refs": {
+    "rendered_hybrid_answer_core": "research/pre-step6-rendered-hybrid-answer-cores/founder-grant-marcus-equity.high-clutter.native.rendered-hybrid-answer-core.v1.json",
+    "portfolio_base_answer_core": "research/pre-step6-portfolio-answer-cores/founder-grant-marcus-equity.high-clutter.native.portfolio-answer-core.v1.json",
+    "lens_answer_core": "research/pre-step6-lens-answer-cores/founder-grant-marcus-equity.high-clutter.bevelin-answer-core.v1.json",
+    "lens_probe": "research/pre-step6-lens-probes/founder-grant-marcus-equity.high-clutter.bevelin-lens-probe.v1.json"
+  },
+  "criteria": [
+    {
+      "criterion_id": "decision_usefulness",
+      "question": "Which answer best guides Friday without granting irreversible control too early?",
+      "winner_arm": "lens",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Strong staged-partnership answer with dependency pressure.",
+        "portfolio_base": "Strong and compact, but less explicit about incentives.",
+        "lens": "Keeps the staged path and adds the incentive and dependency-system test."
+      },
+      "rationale": "The lens answer sharpens what the Friday decision is protecting against."
+    },
+    {
+      "criterion_id": "source_grounding",
+      "question": "Which answer stays inside the captured Marcus facts and constraints?",
+      "winner_arm": "tie",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Grounded in dependency, platform, team, client, and exit pressures.",
+        "portfolio_base": "Grounded in the same pressures from the attention map.",
+        "lens": "Grounded in the same pressures and does not invent a new option."
+      },
+      "rationale": "All three candidates stay source-grounded."
+    },
+    {
+      "criterion_id": "overclaim_risk",
+      "question": "Which answer best avoids unsupported valuation or technical claims?",
+      "winner_arm": "lens",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Avoids numeric exit math and architecture claims.",
+        "portfolio_base": "Avoids numeric math and keeps architecture private.",
+        "lens": "Makes false precision and incentive dependency explicit without adding numbers."
+      },
+      "rationale": "The lens version gives Step 6 a clearer reason not to let numbers carry the decision."
+    },
+    {
+      "criterion_id": "answer_length_cognitive_load",
+      "question": "Which answer preserves depth without becoming a catalog?",
+      "winner_arm": "portfolio_base",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Useful but a little more explanatory.",
+        "portfolio_base": "Shortest clean answer with the main pressures intact.",
+        "lens": "Still compact, but adds one extra frame around incentives."
+      },
+      "rationale": "The base portfolio is slightly lighter."
+    },
+    {
+      "criterion_id": "machinery_hygiene",
+      "question": "Which answer avoids private system terms?",
+      "winner_arm": "tie",
+      "evidence_by_arm": {
+        "rendered_hybrid": "No private system terms.",
+        "portfolio_base": "No private system terms.",
+        "lens": "No private system terms."
+      },
+      "rationale": "All public answers are clean."
+    },
+    {
+      "criterion_id": "conflict_preservation",
+      "question": "Which answer best preserves yes-path versus no-now tension?",
+      "winner_arm": "lens",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Strongly preserves serious path without immediate grant.",
+        "portfolio_base": "Preserves staged path and irreversible proof boundary.",
+        "lens": "Adds the distinction between price and the incentive system being created."
+      },
+      "rationale": "The lens keeps the middle path alive while making the hidden conflict clearer."
+    },
+    {
+      "criterion_id": "edge_pressure_preservation",
+      "question": "Which answer best preserves the high-value edge material?",
+      "winner_arm": "lens",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Preserves false precision and dependency pressure.",
+        "portfolio_base": "Preserves denominator, opportunity-cost, and middle-path pressure.",
+        "lens": "Preserves those pressures and adds incentives, dependency feedback, and proof-before-commitment."
+      },
+      "rationale": "This is the strongest positive case for the lens."
+    },
+    {
+      "criterion_id": "breadth_depth_preservation",
+      "question": "Which answer preserves breadth without narrowing Step 6 too early?",
+      "winner_arm": "lens",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Broad enough, but the public answer mostly centers dependency.",
+        "portfolio_base": "Broad enough across evidence, math, and middle structures.",
+        "lens": "Keeps the same breadth while adding the company-stronger-beyond-him test."
+      },
+      "rationale": "The lens adds a useful out-of-narrative test without bloating."
+    },
+    {
+      "criterion_id": "premature_pruning_risk",
+      "question": "Which answer least risks deleting useful but non-obvious material?",
+      "winner_arm": "lens",
+      "evidence_by_arm": {
+        "rendered_hybrid": "May underplay incentives as a separate frame.",
+        "portfolio_base": "Keeps middle structures but less explicitly tests incentive effects.",
+        "lens": "Retains off-narrative incentive and false-precision material while keeping architecture private."
+      },
+      "rationale": "The lens is most aligned with the non-castrating goal."
+    },
+    {
+      "criterion_id": "negative_control_discipline",
+      "question": "Does the lens avoid forcing itself where the case does not need it?",
+      "winner_arm": "tie",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Not a negative-control case.",
+        "portfolio_base": "Not a negative-control case.",
+        "lens": "Adds only decision-relevant pressure and avoids labels."
+      },
+      "rationale": "No discipline failure appears in this positive case."
+    }
+  ],
+  "tie_break_rule": "lens_must_add_edge_without_pruning",
+  "aggregate_winner_arm": "lens",
+  "aggregate_decision": "lens_improves",
+  "promotion_read": "expand_replay",
+  "notes": "Founder high-clutter is a keep case for Bevelin v0: the lens improves incentive and denominator pressure without narrowing Step 6."
+}

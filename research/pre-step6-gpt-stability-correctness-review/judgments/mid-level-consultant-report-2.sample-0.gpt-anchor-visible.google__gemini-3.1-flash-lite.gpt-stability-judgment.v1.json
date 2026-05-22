@@ -1,0 +1,54 @@
+{
+  "schema_version": "pre_step6_gpt_stability_correctness_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_gpt_stability_correctness_review_v0",
+  "review_case_id": "mid-level-consultant-report-2.sample-0.gpt-anchor-visible",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"output_label\": \"non_inferior\",\n  \"winner_label\": \"B\",\n  \"visibility_judgment\": \"correct_anchor\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Candidate B provides the same actionable advice as A but with superior conciseness and a more professional tone. Candidate A includes unnecessary filler phrases like 'not GC-first by default', which adds complexity without adding practical value.\",\n  \"answer_correctness_notes\": [\n    \"Both answers correctly prioritize legal counsel over self-investigation.\",\n    \"Candidate B is more direct and avoids the slightly conversational, less formal tone of A.\"\n  ],\n  \"visibility_decision_notes\": [\n    \"The anchor visibility is correct as the advice is high-stakes and requires professional legal consultation; keeping the anchor visible ensures the user understands the gravity of the situation without over-relying on a single model output.\"\n  ],\n  \"payload_loss_or_bloat\": [\n    \"Candidate A exhibits minor bloat in the second paragraph regarding GC-first advice.\",\n    \"Candidate B is efficient and retains all critical safety and legal instructions.\"\n  ],\n  \"structural_delta_read\": \"useful_structural_delta\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 1126,
+    "completion_tokens": 271,
+    "total_tokens": 1397,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter",
+    "model_family": "google"
+  },
+  "blind_map": {
+    "A": "anchor_visible",
+    "B": "step6_visible"
+  },
+  "reviewer_output": {
+    "output_label": "non_inferior",
+    "winner_label": "B",
+    "visibility_judgment": "correct_anchor",
+    "confidence": "high",
+    "rationale": "Candidate B provides the same actionable advice as A but with superior conciseness and a more professional tone. Candidate A includes unnecessary filler phrases like 'not GC-first by default', which adds complexity without adding practical value.",
+    "answer_correctness_notes": [
+      "Both answers correctly prioritize legal counsel over self-investigation.",
+      "Candidate B is more direct and avoids the slightly conversational, less formal tone of A."
+    ],
+    "visibility_decision_notes": [
+      "The anchor visibility is correct as the advice is high-stakes and requires professional legal consultation; keeping the anchor visible ensures the user understands the gravity of the situation without over-relying on a single model output."
+    ],
+    "payload_loss_or_bloat": [
+      "Candidate A exhibits minor bloat in the second paragraph regarding GC-first advice.",
+      "Candidate B is efficient and retains all critical safety and legal instructions."
+    ],
+    "structural_delta_read": "useful_structural_delta"
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample GPT-stability correctness judgment."
+}

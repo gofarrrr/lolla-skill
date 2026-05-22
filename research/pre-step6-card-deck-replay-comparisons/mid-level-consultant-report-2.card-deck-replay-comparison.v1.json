@@ -1,0 +1,52 @@
+{
+  "schema_version": "pre_step6_card_deck_replay_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mid-level-consultant-report-2",
+  "comparison_kind": "clean_hybrid_vs_card_deck_replay",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"winner_label\": \"B\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Both answers convey the same guidance, but B is more concise, avoids repetition, and preserves all key nuances without extra narrative bulk.\",\n  \"visible_improvements\": [\n    \"More concise phrasing while retaining all decision‑relevant points.\",\n    \"Clearer flow without adding or implying new steps.\"\n  ],\n  \"visible_regressions_or_bloat\": [\n    \"None evident; A contains more filler and repetition.\"\n  ],\n  \"recommendation\": \"Prefer the more concise structure of B for further iteration.\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 699,
+    "completion_tokens": 148,
+    "total_tokens": 847,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter"
+  },
+  "candidate_refs": {
+    "clean_hybrid": "research/pre-step6-rendered-hybrid-answer-cores/mid-level-consultant-report-2.native.rendered-hybrid-answer-core.v1.json",
+    "card_deck_replay": "research/pre-step6-card-deck-replays/mid-level-consultant-report-2.card-deck-replay.v1.json"
+  },
+  "blind_map": {
+    "A": "clean_hybrid",
+    "B": "card_deck_replay"
+  },
+  "reviewer_output": {
+    "winner_label": "B",
+    "deck_effect": "improves",
+    "confidence": "high",
+    "rationale": "Both answers convey the same guidance, but B is more concise, avoids repetition, and preserves all key nuances without extra narrative bulk.",
+    "visible_improvements": [
+      "More concise phrasing while retaining all decision‑relevant points.",
+      "Clearer flow without adding or implying new steps."
+    ],
+    "visible_regressions_or_bloat": [
+      "None evident; A contains more filler and repetition."
+    ],
+    "recommendation": "Prefer the more concise structure of B for further iteration."
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live research comparison of clean hybrid vs card-deck Step 6 replay."
+}

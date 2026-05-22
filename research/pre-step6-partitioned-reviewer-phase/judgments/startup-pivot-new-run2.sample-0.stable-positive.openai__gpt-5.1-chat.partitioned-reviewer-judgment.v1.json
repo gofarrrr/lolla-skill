@@ -1,0 +1,50 @@
+{
+  "schema_version": "pre_step6_partitioned_reviewer_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_partitioned_reviewer_phase_v0",
+  "partition_case_id": "startup-pivot-new-run2.sample-0.stable-positive",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"review_label\": \"step6_better\",\n  \"winner_label\": \"B\",\n  \"confidence\": \"high\",\n  \"rationale\": \"B preserves all of A’s concrete, action‑guiding steps and adds two decision‑critical checks (competition and migration cost) without diluting the payload. It stays grounded and operational while avoiding unnecessary verbosity.\",\n  \"step6_value_if_any\": [\n    \"Adds competitive landscape check and migration‑cost assessment as explicit go/no‑go inputs.\"\n  ],\n  \"anchor_strengths\": [\n    \"Concise pre‑buy test framing with clear pass bar.\"\n  ],\n  \"payload_loss_or_bloat\": [\n    \"B is longer but does not add fluff; added length corresponds to useful decision inputs.\"\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 1102,
+    "completion_tokens": 190,
+    "total_tokens": 1292,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter",
+    "model_family": "openai"
+  },
+  "blind_map": {
+    "A": "anchor_visible",
+    "B": "step6_visible"
+  },
+  "reviewer_output": {
+    "review_label": "step6_better",
+    "winner_label": "B",
+    "confidence": "high",
+    "rationale": "B preserves all of A’s concrete, action‑guiding steps and adds two decision‑critical checks (competition and migration cost) without diluting the payload. It stays grounded and operational while avoiding unnecessary verbosity.",
+    "step6_value_if_any": [
+      "Adds competitive landscape check and migration‑cost assessment as explicit go/no‑go inputs."
+    ],
+    "anchor_strengths": [
+      "Concise pre‑buy test framing with clear pass bar."
+    ],
+    "payload_loss_or_bloat": [
+      "B is longer but does not add fluff; added length corresponds to useful decision inputs."
+    ]
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample partitioned reviewer judgment."
+}

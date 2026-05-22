@@ -1,0 +1,53 @@
+{
+  "schema_version": "pre_step6_partitioned_reviewer_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_partitioned_reviewer_phase_v0",
+  "partition_case_id": "multi-offer-new-run2.sample-0.stable-positive",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"review_label\": \"step6_better\",\n  \"winner_label\": \"B\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Candidate B provides a concrete, actionable process (a 'decision tree') that directly addresses the user's time pressure and high-stakes trade-offs. Candidate A is a summary that lacks the necessary tactical steps (like requesting extensions or specific due diligence items) required to navigate the 7-day deadline effectively. Candidate B preserves all critical constraints and provides a clear, logical sequence for the user to follow.\",\n  \"step6_value_if_any\": [\n    \"Provides a clear, sequenced decision tree.\",\n    \"Includes tactical advice on deadline extensions.\",\n    \"Defines specific gate conditions (wife buy-in, due diligence, negotiation) to prevent emotional or rushed decision-making.\"\n  ],\n  \"anchor_strengths\": [\n    \"Concise synthesis of the final recommendation.\"\n  ],\n  \"payload_loss_or_bloat\": [\n    \"Candidate A suffers from significant payload loss by omitting the 'how-to' of the decision process.\",\n    \"Candidate B is not bloated; every step is directly relevant to the user's stated constraints and the 7-day deadline.\"\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 1471,
+    "completion_tokens": 279,
+    "total_tokens": 1750,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter",
+    "model_family": "google"
+  },
+  "blind_map": {
+    "A": "anchor_visible",
+    "B": "step6_visible"
+  },
+  "reviewer_output": {
+    "review_label": "step6_better",
+    "winner_label": "B",
+    "confidence": "high",
+    "rationale": "Candidate B provides a concrete, actionable process (a 'decision tree') that directly addresses the user's time pressure and high-stakes trade-offs. Candidate A is a summary that lacks the necessary tactical steps (like requesting extensions or specific due diligence items) required to navigate the 7-day deadline effectively. Candidate B preserves all critical constraints and provides a clear, logical sequence for the user to follow.",
+    "step6_value_if_any": [
+      "Provides a clear, sequenced decision tree.",
+      "Includes tactical advice on deadline extensions.",
+      "Defines specific gate conditions (wife buy-in, due diligence, negotiation) to prevent emotional or rushed decision-making."
+    ],
+    "anchor_strengths": [
+      "Concise synthesis of the final recommendation."
+    ],
+    "payload_loss_or_bloat": [
+      "Candidate A suffers from significant payload loss by omitting the 'how-to' of the decision process.",
+      "Candidate B is not bloated; every step is directly relevant to the user's stated constraints and the 7-day deadline."
+    ]
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample partitioned reviewer judgment."
+}

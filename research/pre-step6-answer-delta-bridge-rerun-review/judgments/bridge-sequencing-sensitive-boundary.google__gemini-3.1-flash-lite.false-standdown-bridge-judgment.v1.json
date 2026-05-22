@@ -1,0 +1,54 @@
+{
+  "schema_version": "pre_step6_false_standdown_bridge_judgment.v1",
+  "runtime_policy": "runtime_dormant",
+  "probe_id": "false_standdown_bridge_probe_v0",
+  "case_id": "bridge-sequencing-sensitive-boundary",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"standdown_label\": \"false_standdown\",\n  \"winner_label\": \"B\",\n  \"confidence\": \"high\",\n  \"expected_failure_observed\": \"true\",\n  \"rationale\": \"Candidate A (the anchor) provides a concise recommendation but ignores the critical sequencing constraints (advisor support, feasibility checks, and the 18-month fallback) explicitly required by the deck. Candidate B preserves these pressures, making it materially better for the student's situation.\",\n  \"anchor_missing_payload\": [\n    \"advisor support verification\",\n    \"data-access and funding feasibility checks\",\n    \"18-month go/no-go checkpoint\"\n  ],\n  \"deck_added_payload\": [\n    \"advisor support before approaching the outside lab\",\n    \"data-access and funding feasibility before committee commitment\",\n    \"18-month go/no-go checkpoint with fallback\"\n  ],\n  \"regressions_or_bloat\": [\n    \"None\"\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 859,
+    "completion_tokens": 227,
+    "total_tokens": 1086,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter",
+    "model_family": "google"
+  },
+  "blind_map": {
+    "A": "anchor_visible",
+    "B": "deck_visible"
+  },
+  "reviewer_output": {
+    "standdown_label": "false_standdown",
+    "winner_label": "B",
+    "confidence": "high",
+    "expected_failure_observed": true,
+    "rationale": "Candidate A (the anchor) provides a concise recommendation but ignores the critical sequencing constraints (advisor support, feasibility checks, and the 18-month fallback) explicitly required by the deck. Candidate B preserves these pressures, making it materially better for the student's situation.",
+    "anchor_missing_payload": [
+      "advisor support verification",
+      "data-access and funding feasibility checks",
+      "18-month go/no-go checkpoint"
+    ],
+    "deck_added_payload": [
+      "advisor support before approaching the outside lab",
+      "data-access and funding feasibility before committee commitment",
+      "18-month go/no-go checkpoint with fallback"
+    ],
+    "regressions_or_bloat": [
+      "None"
+    ]
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live non-promotional false-standdown bridge-probe judgment."
+}

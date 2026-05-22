@@ -1,0 +1,88 @@
+{
+  "schema_version": "pre_step6_lens_step6_replay.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "third-year-phd-student",
+  "replay_mode": "bevelin_lens_static_replay",
+  "source_attention_map": "research/pre-step6-attention-maps/third-year-phd-student.v2.step6-attention-map.v1.json",
+  "source_attention_map_render_sha256": "c6c6a2d32afa3312879a025d9d3c18c48261cb5ea29155d2ac9479e536825a3c",
+  "source_lens_answer_core": "research/pre-step6-lens-answer-cores/third-year-phd-student.v2.bevelin-answer-core.v1.json",
+  "prior_portfolio_replay": "research/pre-step6-portfolio-step6-replays/third-year-phd-student.v2.portfolio-step6-replay.v1.json",
+  "lens_comparison_ref": "research/pre-step6-lens-comparisons/third-year-phd-student.v2.bevelin-comparison.v1.json",
+  "cognitive_gate": {
+    "judgment_mode": "human_static_research_judgment",
+    "cognitive_question": "Did the lens improve the Step 6 replay answer enough to preserve useful commitment and inversion pressure without prematurely selecting Silva or the fallback?",
+    "cognitive_inputs": [
+      "Rendered attention map for PhD v2.",
+      "Base portfolio Step 6 replay answer.",
+      "Bevelin v0 lens answer core.",
+      "Bevelin v0 local comparison fixture."
+    ],
+    "deterministic_checks": [
+      "Validate source refs, hashes, fixture schemas, expected inclusions, expected exclusions, public hygiene, and promotion blocks.",
+      "Ensure runtime wiring and skill updates remain false.",
+      "Ensure the cognitive judgment is recorded as a private research judgment rather than inferred from a score."
+    ],
+    "cognitive_judgment": [
+      "The lens replay is better because it names premature commitment as the main failure mode for Silva.",
+      "The replay adds inversion around what must remain true at the stop date for the fallback to be real.",
+      "The replay preserves optionality by keeping Silva unproven rather than wrong and the fallback live rather than chosen."
+    ],
+    "why_this_is_not_deterministic": "The code validates custody, hygiene, and consistency; it does not infer quality. Quality is judged by a cognitive reviewer comparing the answer's usefulness, edge preservation, public burden, and pruning risk."
+  },
+  "replay_answer": "I would not choose the Silva direction yet, and I would not default to the safer lab path. Treat both as live gates: Silva executability and fallback survivability.\n\nFor Silva, the danger is premature commitment to the exciting path before the constraint is real. Do not count it viable until data access, sharing terms, collaborator role, timeline, and advisor support can carry a dissertation.\n\nFor the fallback, invert the plan: ask what has to remain true at the stop date for the reversal to work. It is useful only if it remains advisor-backed, funded, technically ready, identity-coherent, and available when needed. A delayed pivot is unsafe if the fallback quietly disappears.\n\nSequence the next moves tightly: advisor first, short Silva evidence probe second, committee only after the data path is real. Use broad success rates as humility checks, not probabilities for this case. Do not build a finished proposal around Silva, do not run all options in parallel, and do not let fallback comfort hide the binding constraints.",
+  "expected_inclusions": [
+    "would not choose the Silva direction yet",
+    "would not default to the safer lab path",
+    "Silva executability and fallback survivability",
+    "premature commitment",
+    "data access, sharing terms, collaborator role",
+    "invert the plan",
+    "stop date",
+    "fallback quietly disappears",
+    "advisor first",
+    "humility checks"
+  ],
+  "expected_exclusions": [
+    "attention map",
+    "portfolio",
+    "artifact",
+    "bundle",
+    "worker",
+    "bevelin",
+    "munger",
+    "lens pack",
+    "lens probe",
+    "V60",
+    "numeric success priors",
+    "choose Silva now",
+    "default to the fallback"
+  ],
+  "comparison_vs_prior_replay": {
+    "winner": "lens_replay",
+    "rationale": "The prior portfolio replay already framed Silva executability and fallback survivability well, but the lens replay improves the reason to delay commitment and adds a clearer inversion test for the fallback.",
+    "improvements": [
+      "Names premature commitment as the failure mode instead of only naming constraints.",
+      "Adds the inversion test for the stop date.",
+      "Preserves base rates as humility checks without numeric probability language."
+    ],
+    "regressions_or_watch_items": [
+      "The inversion phrasing is slightly more abstract than the prior portfolio replay.",
+      "This remains a static research replay, not a live runtime result."
+    ]
+  },
+  "gates": {
+    "attention_map_loaded": true,
+    "lens_answer_core_validated": true,
+    "prior_replay_loaded": true,
+    "lens_comparison_validated": true,
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "outcome": {
+    "replay_decision": "pass_to_polya_comparison",
+    "product_promotion": "blocked",
+    "next_step": "Retain Bevelin v0 as research-only enrichment and compare with a Polya problem-shape lens before any integration discussion."
+  },
+  "notes": "Research-only Bevelin static replay for PhD v2. It passes to the next lens comparison stage, not product promotion."
+}

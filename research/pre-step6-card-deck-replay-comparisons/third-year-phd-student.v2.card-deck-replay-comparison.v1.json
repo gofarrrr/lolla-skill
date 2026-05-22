@@ -1,0 +1,52 @@
+{
+  "schema_version": "pre_step6_card_deck_replay_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "third-year-phd-student.v2",
+  "comparison_kind": "clean_hybrid_vs_card_deck_replay",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"winner_label\": \"B\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Both answers are similar in structure and guidance, but B delivers the same decision‑useful content with less bloat and clearer phrasing while maintaining nuance.\",\n  \"visible_improvements\": [\n    \"More concise expression of the two‑gate framework.\",\n    \"Clearer sequencing of actions without extra narrative weight.\"\n  ],\n  \"visible_regressions_or_bloat\": [],\n  \"recommendation\": \"Keep developing B’s concise structure while ensuring no loss of essential decision criteria.\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 727,
+    "completion_tokens": 156,
+    "total_tokens": 883,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter"
+  },
+  "candidate_refs": {
+    "clean_hybrid": "research/pre-step6-rendered-hybrid-answer-cores/third-year-phd-student.conflict.native.rendered-hybrid-answer-core.v1.json",
+    "card_deck_replay": "research/pre-step6-card-deck-replays/third-year-phd-student.v2.card-deck-replay.v1.json"
+  },
+  "blind_map": {
+    "A": "clean_hybrid",
+    "B": "card_deck_replay"
+  },
+  "reviewer_output": {
+    "winner_label": "B",
+    "deck_effect": "improves",
+    "confidence": "high",
+    "rationale": "Both answers are similar in structure and guidance, but B delivers the same decision‑useful content with less bloat and clearer phrasing while maintaining nuance.",
+    "visible_improvements": [
+      "More concise expression of the two‑gate framework.",
+      "Clearer sequencing of actions without extra narrative weight."
+    ],
+    "visible_regressions_or_bloat": [
+      "Reviewer returned no regressions or bloat."
+    ],
+    "recommendation": "Keep developing B’s concise structure while ensuring no loss of essential decision criteria."
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live research comparison of clean hybrid vs card-deck Step 6 replay."
+}

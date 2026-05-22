@@ -1,0 +1,76 @@
+{
+  "schema_version": "pre_step6_bridge_step6_ledger_replay.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "bridge_step6_ledger_replay_v0",
+  "case_id": "bridge-high-clutter-sensitive-overlay",
+  "replay_mode": "bridge_packet_step6_ledger_replay",
+  "source_bridge_probe_contract": "research/pre-step6-false-standdown-bridge-probe/false-standdown-bridge-probe.v1.json",
+  "input_packet": {
+    "case_brief": "Founder must respond to an anxious early employee who claims an informal equity promise, while a financing deadline and team fragility make tone risky.",
+    "pre_run_failure_hypothesis": "If runtime shows the anchor because it sounds calmer, but hides the deck pressure separating empathy from binding equity or deadline commitments, this is a false stand-down.",
+    "expected_deck_adds": [
+      "separate the humane check-in from equity commitment",
+      "name the evidence threshold before any cap-table promise",
+      "protect the financing deadline without turning the employee into the enemy"
+    ],
+    "anchor_risk_if_hidden": [
+      "calm tone may mask an accidental commitment",
+      "employee concern and investor deadline may get collapsed into one conversation"
+    ],
+    "anchor_visible_candidate": "Talk to her directly and calmly. Acknowledge that the earlier conversation may have created expectations, explain that you need to check the facts before making any promise, and set a short follow-up. Keep the financing process separate and avoid arguing over memory in the first conversation.",
+    "deck_pressure_candidate": "Do two separate things, in this order. First, have a humane conversation that names the concern without conceding the equity claim: you will review written notes, emails, and board-approved terms before making any cap-table commitment. Second, protect the financing deadline by telling investors only what is true now: no new grant or correction exists until evidence and board process support it. If she has written evidence, inspect it quickly; if she only has a memory of an informal promise, offer a bounded review path rather than a negotiation under pressure."
+  },
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"answer_core\": \"Start with a short, calm check‑in. Acknowledge that the earlier conversation may have created expectations, but make clear you’re not confirming any equity change until you review written notes, emails, and prior approvals. Set a concrete follow‑up window, such as within 48–72 hours. Keep the financing process separate: investors should hear only what is currently true — no new grant or correction exists unless and until the evidence and board process support it. If she brings written evidence, review it quickly. If she has only a recollection, outline a bounded review path rather than negotiating under deadline pressure.\",\n  \"private_bridge_consideration_ledger\": [\n    {\n      \"source_id\": \"anchor_visible_candidate\",\n      \"disposition\": \"combined\",\n      \"novelty_role\": \"visible_backbone\",\n      \"why\": \"Anchor provides the humane tone and basic structure of the first conversation.\",\n      \"visible_effect\": \"Calm acknowledgment and a short follow‑up window remain central.\"\n    },\n    {\n      \"source_id\": \"deck_pressure_candidate\",\n      \"disposition\": \"combined\",\n      \"novelty_role\": \"additive_pressure\",\n      \"why\": \"It adds essential separation between empathy and commitments, explicit evidence checks, and investor‑facing boundaries.\",\n      \"visible_effect\": \"Clear evidence review, no commitment before board process, and protecting the financing timeline.\"\n    }\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 652,
+    "completion_tokens": 370,
+    "total_tokens": 1022,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 64,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter"
+  },
+  "step6_output": {
+    "answer_core": "Start with a short, calm check‑in. Acknowledge that the earlier conversation may have created expectations, but make clear you’re not confirming any equity change until you review written notes, emails, and prior approvals. Set a concrete follow‑up window, such as within 48–72 hours. Keep the financing process separate: investors should hear only what is currently true — no new grant or correction exists unless and until the evidence and board process support it. If she brings written evidence, review it quickly. If she has only a recollection, outline a bounded review path rather than negotiating under deadline pressure.",
+    "private_bridge_consideration_ledger": [
+      {
+        "source_id": "anchor_visible_candidate",
+        "disposition": "combined",
+        "novelty_role": "visible_backbone",
+        "why": "Anchor provides the humane tone and basic structure of the first conversation.",
+        "visible_effect": "Calm acknowledgment and a short follow‑up window remain central."
+      },
+      {
+        "source_id": "deck_pressure_candidate",
+        "disposition": "combined",
+        "novelty_role": "additive_pressure",
+        "why": "It adds essential separation between empathy and commitments, explicit evidence checks, and investor‑facing boundaries.",
+        "visible_effect": "Clear evidence review, no commitment before board process, and protecting the financing timeline."
+      }
+    ]
+  },
+  "ledger_signal": "additive_pressure_present",
+  "visibility_redesign_read": {
+    "would_unlock_redesigned_policy": true,
+    "policy_dependency": "cache_hit plus additive Step 6 ledger plus preserved payload can make deck-aware output visible; this replay only tests the ledger dependency."
+  },
+  "deterministic_role": [
+    "validate_bridge_contract_case",
+    "validate_step6_ledger_schema",
+    "derive_ledger_signal",
+    "preserve_audit_custody"
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live research-only bridge Step 6 replay. The model wrote the answer and private ledger; code only normalized and derived the ledger signal."
+}

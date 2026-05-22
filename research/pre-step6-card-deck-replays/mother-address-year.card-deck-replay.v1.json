@@ -1,0 +1,56 @@
+{
+  "schema_version": "pre_step6_card_deck_replay.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mother-address-year",
+  "replay_mode": "manual_live_step6_from_card_deck",
+  "source_card_deck": "research/pre-step6-step6-card-decks/mother-address-year.step6-card-deck.v1.json",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"answer_core\": \"I wouldn’t make one sweeping decision right now. Break this into smaller, reversible steps: get legal or professional guidance, decide how you want to handle blocking and phone access, think through what (and how much) to tell your ex, and plan for therapy and rebuilding honesty with your daughter. A professional (RAINN, a therapist, or counsel) can help you judge whether reporting or sharply cutting contact is needed, because those steps can improve safety but can also push contact into places you can’t see.\\n\\nSilence from his side is weak evidence and shouldn’t reassure you. Keep clear tripwires in place: any request to meet, sexual images, threats, secrecy pressure, new accounts, ignoring a clear stop, or signs he’s talking to other minors. If any of these appear, update the plan quickly.\\n\\nWith your ex, share enough context so he doesn’t minimize the situation, but don’t pass along screenshots or exact wording that could circle back to your daughter or shame her. The aim is safety and a way back to honest communication, not punishment.\",\n  \"private_card_consideration_ledger\": [\n    {\n      \"card_id\": \"clean_hybrid_card\",\n      \"disposition\": \"used\",\n      \"novelty_role\": \"visible_backbone\",\n      \"why\": \"It already provides the needed sequence, boundaries, and tripwires for a safety decision under uncertainty.\",\n      \"visible_effect\": \"It forms the structure and content of the answer.\"\n    },\n    {\n      \"card_id\": \"bevelin_card\",\n      \"disposition\": \"private_guardrail\",\n      \"novelty_role\": \"private_guardrail\",\n      \"why\": \"Its cautions against false certainty were important internally but already covered by the anchor’s handling of uncertainty.\",\n      \"visible_effect\": \"none\"\n    },\n    {\n      \"card_id\": \"polya_card\",\n      \"disposition\": \"private_guardrail\",\n      \"novelty_role\": \"private_guardrail\",\n      \"why\": \"Its framing of reversible moves and avoiding a trial-like posture reinforced the anchor but didn’t require new public content.\",\n      \"visible_effect\": \"none\"\n    }\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 1521,
+    "completion_tokens": 550,
+    "total_tokens": 2071,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 64,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter"
+  },
+  "step6_output": {
+    "answer_core": "I wouldn’t make one sweeping decision right now. Break this into smaller, reversible steps: get legal or professional guidance, decide how you want to handle blocking and phone access, think through what (and how much) to tell your ex, and plan for therapy and rebuilding honesty with your daughter. A professional (RAINN, a therapist, or counsel) can help you judge whether reporting or sharply cutting contact is needed, because those steps can improve safety but can also push contact into places you can’t see.\n\nSilence from his side is weak evidence and shouldn’t reassure you. Keep clear tripwires in place: any request to meet, sexual images, threats, secrecy pressure, new accounts, ignoring a clear stop, or signs he’s talking to other minors. If any of these appear, update the plan quickly.\n\nWith your ex, share enough context so he doesn’t minimize the situation, but don’t pass along screenshots or exact wording that could circle back to your daughter or shame her. The aim is safety and a way back to honest communication, not punishment.",
+    "private_card_consideration_ledger": [
+      {
+        "card_id": "clean_hybrid_card",
+        "disposition": "used",
+        "novelty_role": "visible_backbone",
+        "why": "It already provides the needed sequence, boundaries, and tripwires for a safety decision under uncertainty.",
+        "visible_effect": "It forms the structure and content of the answer."
+      },
+      {
+        "card_id": "bevelin_card",
+        "disposition": "private_guardrail",
+        "novelty_role": "private_guardrail",
+        "why": "Its cautions against false certainty were important internally but already covered by the anchor’s handling of uncertainty.",
+        "visible_effect": "none"
+      },
+      {
+        "card_id": "polya_card",
+        "disposition": "private_guardrail",
+        "novelty_role": "private_guardrail",
+        "why": "Its framing of reversible moves and avoiding a trial-like posture reinforced the anchor but didn’t require new public content.",
+        "visible_effect": "none"
+      }
+    ]
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live research replay from full Step 6 private card deck. This records Step 6's own card dispositions; code did not select the winning card."
+}

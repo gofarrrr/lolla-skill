@@ -1,0 +1,70 @@
+{
+  "schema_version": "pre_step6_cognitive_gate_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mid-level-consultant-report-2",
+  "gate_kind": "live_small_cognitive_comparison",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"winner_label\": \"A\",\n  \"promotion_read\": \"stop\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Candidate A is the most disciplined. It avoids the repetitive 'do not' list bloat found in B, C, and D, and it correctly prioritizes the cognitive framing of the problem (legal risk management) over the tactical checklist. It provides the cleanest input for Step 6 to build upon without forcing a specific narrative structure.\",\n  \"improvements\": [\n    \"Reframes the problem as a legal risk management exercise rather than a procedural checklist.\",\n    \"Maintains a concise, high-signal tone that allows Step 6 to expand on the 'why' without being constrained by the candidate's own wordiness.\"\n  ],\n  \"regressions_or_watch_items\": [\n    \"None; the candidate is sufficiently lean to avoid premature pruning.\"\n  ],\n  \"stand_down_reason\": \"The candidate is already optimal for the research-only negative control case. Further iteration would likely introduce bloat or redundant 'counsel-first' reinforcement that is already well-established in the prompt's context.\",\n  \"composition_note\": \"Use Candidate A as the primary structural template for Step 6.\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 1873,
+    "completion_tokens": 274,
+    "total_tokens": 2147,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter"
+  },
+  "candidate_refs": {
+    "rendered_hybrid": "research/pre-step6-rendered-hybrid-answer-cores/mid-level-consultant-report-2.native.rendered-hybrid-answer-core.v1.json",
+    "portfolio_base": "research/pre-step6-portfolio-answer-cores/mid-level-consultant-report-2.native.portfolio-answer-core.v1.json",
+    "bevelin_lens": "research/pre-step6-lens-answer-cores/mid-level-consultant-report-2.bevelin-answer-core.v1.json",
+    "polya_lens": "research/pre-step6-lens-answer-cores/mid-level-consultant-report-2.polya-answer-core.v1.json"
+  },
+  "blind_map": {
+    "A": "polya_lens",
+    "B": "rendered_hybrid",
+    "C": "portfolio_base",
+    "D": "bevelin_lens"
+  },
+  "reviewer_output": {
+    "winner_label": "A",
+    "promotion_read": "stop",
+    "confidence": "high",
+    "rationale": "Candidate A is the most disciplined. It avoids the repetitive 'do not' list bloat found in B, C, and D, and it correctly prioritizes the cognitive framing of the problem (legal risk management) over the tactical checklist. It provides the cleanest input for Step 6 to build upon without forcing a specific narrative structure.",
+    "improvements": [
+      "Reframes the problem as a legal risk management exercise rather than a procedural checklist.",
+      "Maintains a concise, high-signal tone that allows Step 6 to expand on the 'why' without being constrained by the candidate's own wordiness."
+    ],
+    "regressions_or_watch_items": [
+      "None; the candidate is sufficiently lean to avoid premature pruning."
+    ],
+    "stand_down_reason": "The candidate is already optimal for the research-only negative control case. Further iteration would likely introduce bloat or redundant 'counsel-first' reinforcement that is already well-established in the prompt's context.",
+    "composition_note": "Use Candidate A as the primary structural template for Step 6."
+  },
+  "static_expectation": {
+    "allowed_winner_arms": [
+      "rendered_hybrid"
+    ],
+    "allowed_promotion_reads": [
+      "stop"
+    ]
+  },
+  "agreement": {
+    "winner_matches_static": false,
+    "promotion_matches_static": true,
+    "overall_match": false
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live small cognitive comparison. Research-only artifact; it records reviewer agreement or disagreement with static expectations."
+}

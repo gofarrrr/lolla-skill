@@ -1,0 +1,71 @@
+{
+  "schema_version": "pre_step6_context_composition_gate_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mid-level-consultant-report-2",
+  "gate_kind": "live_context_composition_comparison",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"winner_label\": \"C\",\n  \"research_action\": \"retest\",\n  \"confidence\": \"medium\",\n  \"rationale\": \"Packet C adds some genuinely useful edge‑pressure receipts without the heavier bloat of B or D. It reinforces counsel‑first sequencing, channel‑bias screening, and fear‑versus‑paralysis framing, which extend the anchor’s reasoning space without duplicating too many points. B and D add more receipts but mostly restate the anchor, triggering a complexity tax. A is too sparse and risks premature pruning.\",\n  \"protected_value\": [\n    \"Counsel‑first sequencing\",\n    \"Channel‑bias intake for attorney selection\",\n    \"Fear‑versus‑paralysis framing that keeps actions reversible\",\n    \"Wednesday‑behavior boundary clarity\"\n  ],\n  \"bloat_or_pruning_risk\": [\n    \"May still omit some potentially helpful distinctions included in B (e.g., explicit legal‑option‑preservation framing)\",\n    \"Risk that Step 6 might miss a nuance due to reduced redundancy\"\n  ],\n  \"composition_note\": \"Step 6 should treat Packet C as a compact but adequately enriched anchor, using receipts only when they genuinely expand reasoning pressure, not as directives.\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 2015,
+    "completion_tokens": 434,
+    "total_tokens": 2449,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 128,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter"
+  },
+  "candidate_refs": {
+    "rendered_hybrid": "research/pre-step6-rendered-hybrid-answer-cores/mid-level-consultant-report-2.native.rendered-hybrid-answer-core.v1.json",
+    "bevelin_lens": "research/pre-step6-lens-answer-cores/mid-level-consultant-report-2.bevelin-answer-core.v1.json",
+    "polya_lens": "research/pre-step6-lens-answer-cores/mid-level-consultant-report-2.polya-answer-core.v1.json"
+  },
+  "blind_map": {
+    "A": "rendered_only",
+    "B": "rendered_plus_polya_receipts",
+    "C": "rendered_plus_bevelin_receipts",
+    "D": "rendered_plus_dual_receipts"
+  },
+  "reviewer_output": {
+    "winner_label": "C",
+    "research_action": "retest",
+    "confidence": "medium",
+    "rationale": "Packet C adds some genuinely useful edge‑pressure receipts without the heavier bloat of B or D. It reinforces counsel‑first sequencing, channel‑bias screening, and fear‑versus‑paralysis framing, which extend the anchor’s reasoning space without duplicating too many points. B and D add more receipts but mostly restate the anchor, triggering a complexity tax. A is too sparse and risks premature pruning.",
+    "protected_value": [
+      "Counsel‑first sequencing",
+      "Channel‑bias intake for attorney selection",
+      "Fear‑versus‑paralysis framing that keeps actions reversible",
+      "Wednesday‑behavior boundary clarity"
+    ],
+    "bloat_or_pruning_risk": [
+      "May still omit some potentially helpful distinctions included in B (e.g., explicit legal‑option‑preservation framing)",
+      "Risk that Step 6 might miss a nuance due to reduced redundancy"
+    ],
+    "composition_note": "Step 6 should treat Packet C as a compact but adequately enriched anchor, using receipts only when they genuinely expand reasoning pressure, not as directives."
+  },
+  "static_expectation": {
+    "allowed_winner_arms": [
+      "rendered_only"
+    ],
+    "allowed_research_actions": [
+      "stop"
+    ]
+  },
+  "agreement": {
+    "winner_matches_static": false,
+    "action_matches_static": false,
+    "overall_match": false
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live context-composition comparison. Research-only artifact; it tests whether protected private receipts improve a rendered-hybrid anchor."
+}

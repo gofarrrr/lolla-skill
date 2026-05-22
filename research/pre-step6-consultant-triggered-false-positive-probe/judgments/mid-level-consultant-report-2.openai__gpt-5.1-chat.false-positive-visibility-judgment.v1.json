@@ -1,0 +1,50 @@
+{
+  "schema_version": "pre_step6_false_positive_visibility_judgment.v1",
+  "runtime_policy": "runtime_dormant",
+  "probe_id": "false_positive_visibility_probe_v0",
+  "case_id": "mid-level-consultant-report-2",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\"visibility_label\":\"true_visible\",\"winner_label\":\"B\",\"confidence\":\"high\",\"rationale\":\"B is a shorter but materially equivalent version of A with no substantive safety or guidance loss.\",\"anchor_strengths\":[\"Slightly more detail around attorney intake questions and caution language.\"],\"deck_regressions_or_bloat\":[],\"payload_loss_or_entity_loss\":[],\"non_inferiority_read\":\"non_inferior\"}",
+    "temperature": 0.2,
+    "prompt_tokens": 924,
+    "completion_tokens": 173,
+    "total_tokens": 1097,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 64,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter",
+    "model_family": "openai"
+  },
+  "blind_map": {
+    "A": "anchor_visible",
+    "B": "deck_visible"
+  },
+  "reviewer_output": {
+    "visibility_label": "true_visible",
+    "winner_label": "B",
+    "confidence": "high",
+    "rationale": "B is a shorter but materially equivalent version of A with no substantive safety or guidance loss.",
+    "anchor_strengths": [
+      "Slightly more detail around attorney intake questions and caution language."
+    ],
+    "deck_regressions_or_bloat": [
+      "none"
+    ],
+    "payload_loss_or_entity_loss": [
+      "none"
+    ],
+    "non_inferiority_read": "non_inferior"
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live visibility judgment for false-positive probe."
+}

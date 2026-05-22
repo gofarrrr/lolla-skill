@@ -1,0 +1,58 @@
+{
+  "schema_version": "step6_attention_map.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "third-year-phd-student",
+  "source_refs": [
+    "research/pre-step6-comparison-fixtures/third-year-phd-student-20260430T140800Z.md",
+    "research/pre-step6-raw-artifact-fixtures/third-year-phd-student.raw-artifact-handoff.v1.json:artifacts[0]"
+  ],
+  "problem_read": {
+    "user_goal": "Choose a PhD path while preserving fallback viability and avoiding false precision about outcomes.",
+    "problem_type": "decision_evaluation",
+    "suggested_next_move": "answer_now"
+  },
+  "active_working_set": [
+    {
+      "artifact_id": "no_active_pressure",
+      "why_available": "No active affordance was provided; preserve a no-extra-pressure receipt.",
+      "step6_use": "Answer from the problem read and scan reserves before finalizing.",
+      "boundary": "Do not invent active pressure just because the map exists.",
+      "risk_if_ignored": "The answer may add unnecessary conceptual burden.",
+      "expansion_ref": "research/pre-step6-raw-artifact-fixtures/third-year-phd-student.raw-artifact-handoff.v1.json"
+    }
+  ],
+  "edge_latticework_reserve": [
+    {
+      "artifact_id": "no_edge_pressure",
+      "protected_slot": "none",
+      "why_available": "No protected edge affordance was provided.",
+      "cheap_test": "Confirm no protected slot is needed before finalizing.",
+      "risk_if_forced": "The answer may become cluttered.",
+      "risk_if_ignored": "No known protected edge is lost.",
+      "expansion_ref": "research/pre-step6-raw-artifact-fixtures/third-year-phd-student.raw-artifact-handoff.v1.json"
+    }
+  ],
+  "weak_or_negative_space_receipts": [
+    {
+      "artifact_id": "no_weak_receipt",
+      "why_preserved": "No weak or negative-space receipt was provided.",
+      "reactivate_if": "New uncertainty appears during Step 6 drafting.",
+      "expansion_ref": "research/pre-step6-raw-artifact-fixtures/third-year-phd-student.raw-artifact-handoff.v1.json"
+    }
+  ],
+  "parked_but_preserved": [
+    {
+      "artifact_id": "phd_fallback_viability_boundary_parked",
+      "park_reason": "Engine surfaced sequence-stop pressure around fallback viability.",
+      "reactivate_if": "Promote if the answer uses option 1 as a reversal target.",
+      "expansion_ref": "research/pre-step6-raw-artifact-fixtures/third-year-phd-student.raw-artifact-handoff.v1.json:artifacts[0]"
+    }
+  ],
+  "ask_user_if_any": [],
+  "review_admission": "none",
+  "full_archive_refs": [
+    "research/pre-step6-raw-artifact-fixtures/third-year-phd-student.raw-artifact-handoff.v1.json"
+  ],
+  "step6_instruction": "Use this as an attention map, not as a verdict. Consider active pressure, scan the edge reserve before finalizing, and reject any item that fails its boundary. Do not expose internal labels."
+}

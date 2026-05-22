@@ -1,0 +1,132 @@
+{
+  "schema_version": "pre_step6_lens_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "polya_v0_fixed_suite",
+  "case_id": "mid-level-consultant-report-2",
+  "comparison_kind": "polya_lens_local_rubric",
+  "lens_pack": "polya_problem_solving_v0",
+  "candidate_refs": {
+    "rendered_hybrid_answer_core": "research/pre-step6-rendered-hybrid-answer-cores/mid-level-consultant-report-2.native.rendered-hybrid-answer-core.v1.json",
+    "portfolio_base_answer_core": "research/pre-step6-portfolio-answer-cores/mid-level-consultant-report-2.native.portfolio-answer-core.v1.json",
+    "lens_answer_core": "research/pre-step6-lens-answer-cores/mid-level-consultant-report-2.polya-answer-core.v1.json",
+    "lens_probe": "research/pre-step6-lens-probes/mid-level-consultant-report-2.polya-lens-probe.v1.json"
+  },
+  "criteria": [
+    {
+      "criterion_id": "decision_usefulness",
+      "question": "Which answer gives the safest first move?",
+      "winner_arm": "rendered_hybrid",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Cleanest counsel-first sequence.",
+        "portfolio_base": "Good reproduction.",
+        "lens": "Clarifies problem type but adds little to action."
+      },
+      "rationale": "Rendered hybrid remains best."
+    },
+    {
+      "criterion_id": "source_grounding",
+      "question": "Which answer stays grounded?",
+      "winner_arm": "tie",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Grounded.",
+        "portfolio_base": "Grounded.",
+        "lens": "Grounded."
+      },
+      "rationale": "All candidates stay inside the facts."
+    },
+    {
+      "criterion_id": "overclaim_risk",
+      "question": "Which answer avoids premature legal claims?",
+      "winner_arm": "rendered_hybrid",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Best channel deferral.",
+        "portfolio_base": "Also defers.",
+        "lens": "Defers but opens with abstraction."
+      },
+      "rationale": "Rendered hybrid is safest."
+    },
+    {
+      "criterion_id": "answer_length_cognitive_load",
+      "question": "Which answer is easiest under stress?",
+      "winner_arm": "rendered_hybrid",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Most natural.",
+        "portfolio_base": "Natural.",
+        "lens": "Slightly more conceptual."
+      },
+      "rationale": "Stress favors the prior answer."
+    },
+    {
+      "criterion_id": "machinery_hygiene",
+      "question": "Which answer avoids private terms?",
+      "winner_arm": "tie",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Clean.",
+        "portfolio_base": "Clean.",
+        "lens": "Clean."
+      },
+      "rationale": "All are clean."
+    },
+    {
+      "criterion_id": "conflict_preservation",
+      "question": "Which answer preserves counsel-first versus channel-choice tension?",
+      "winner_arm": "rendered_hybrid",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Best tension.",
+        "portfolio_base": "Good tension.",
+        "lens": "Good, but framed as problem type."
+      },
+      "rationale": "Rendered hybrid still wins."
+    },
+    {
+      "criterion_id": "edge_pressure_preservation",
+      "question": "Which answer preserves the useful edge?",
+      "winner_arm": "lens",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Preserves core safety edge.",
+        "portfolio_base": "Preserves core edge.",
+        "lens": "Adds useful warning that this is not an investigation problem."
+      },
+      "rationale": "The lens contributes a private edge."
+    },
+    {
+      "criterion_id": "breadth_depth_preservation",
+      "question": "Which answer preserves enough breadth?",
+      "winner_arm": "rendered_hybrid",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Enough breadth and no bloat.",
+        "portfolio_base": "Similar.",
+        "lens": "Adds breadth, but not needed."
+      },
+      "rationale": "Extra breadth does not improve public answer."
+    },
+    {
+      "criterion_id": "premature_pruning_risk",
+      "question": "Which answer least risks deleting useful material?",
+      "winner_arm": "lens",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Keeps essentials.",
+        "portfolio_base": "Keeps essentials.",
+        "lens": "Preserves problem-type warning."
+      },
+      "rationale": "The lens is useful as private pressure."
+    },
+    {
+      "criterion_id": "negative_control_discipline",
+      "question": "Does the lens stand down?",
+      "winner_arm": "rendered_hybrid",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Wins cleanly.",
+        "portfolio_base": "Does not over-promote.",
+        "lens": "Contributes, but should stop."
+      },
+      "rationale": "Healthy stand-down behavior."
+    }
+  ],
+  "tie_break_rule": "lens_must_add_edge_without_pruning",
+  "aggregate_winner_arm": "rendered_hybrid",
+  "aggregate_decision": "lens_boundary_case",
+  "promotion_read": "stop",
+  "notes": "Polya v0 identifies the right problem type but does not beat counsel-first rendered hybrid."
+}

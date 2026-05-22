@@ -1,0 +1,72 @@
+{
+  "schema_version": "pre_step6_cognitive_gate_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "third-year-phd-student.v2",
+  "gate_kind": "live_small_cognitive_comparison",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"winner_label\": \"C\",\n  \"promotion_read\": \"expand_replay\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Candidate C provides the most actionable and structured framework for Step 6. It explicitly introduces the 'stop-loss' concept and the 'three-month deadline' constraint, which adds necessary temporal pressure that the other candidates lack. It balances the need for advisor alignment with the reality of the student's current position.\",\n  \"improvements\": [\n    \"Introduces a clear 'stop-loss' mechanism for the Silva probe.\",\n    \"Explicitly incorporates the advisor's retirement timeline as a constraint.\",\n    \"Provides a clearer, more logical sequence of operations (advisor -> reality check -> committee).\"\n  ],\n  \"regressions_or_watch_items\": [\n    \"Slightly longer than others, but the added depth regarding the advisor's retirement timeline justifies the length.\"\n  ],\n  \"stand_down_reason\": \"Not applicable; candidate C provides superior cognitive scaffolding for the next step.\",\n  \"composition_note\": \"Candidate C should be used as the primary structural template for Step 6, potentially incorporating the 'invert the plan' phrasing from Candidate B for additional clarity.\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 1973,
+    "completion_tokens": 270,
+    "total_tokens": 2243,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter"
+  },
+  "candidate_refs": {
+    "rendered_hybrid": "research/pre-step6-rendered-hybrid-answer-cores/third-year-phd-student.conflict.native.rendered-hybrid-answer-core.v1.json",
+    "portfolio_base": "research/pre-step6-portfolio-answer-cores/third-year-phd-student.v2.native.portfolio-answer-core.v1.json",
+    "bevelin_lens": "research/pre-step6-lens-answer-cores/third-year-phd-student.v2.bevelin-answer-core.v1.json",
+    "polya_lens": "research/pre-step6-lens-answer-cores/third-year-phd-student.v2.polya-answer-core.v1.json"
+  },
+  "blind_map": {
+    "A": "portfolio_base",
+    "B": "bevelin_lens",
+    "C": "rendered_hybrid",
+    "D": "polya_lens"
+  },
+  "reviewer_output": {
+    "winner_label": "C",
+    "promotion_read": "expand_replay",
+    "confidence": "high",
+    "rationale": "Candidate C provides the most actionable and structured framework for Step 6. It explicitly introduces the 'stop-loss' concept and the 'three-month deadline' constraint, which adds necessary temporal pressure that the other candidates lack. It balances the need for advisor alignment with the reality of the student's current position.",
+    "improvements": [
+      "Introduces a clear 'stop-loss' mechanism for the Silva probe.",
+      "Explicitly incorporates the advisor's retirement timeline as a constraint.",
+      "Provides a clearer, more logical sequence of operations (advisor -> reality check -> committee)."
+    ],
+    "regressions_or_watch_items": [
+      "Slightly longer than others, but the added depth regarding the advisor's retirement timeline justifies the length."
+    ],
+    "stand_down_reason": "Not applicable; candidate C provides superior cognitive scaffolding for the next step.",
+    "composition_note": "Candidate C should be used as the primary structural template for Step 6, potentially incorporating the 'invert the plan' phrasing from Candidate B for additional clarity."
+  },
+  "static_expectation": {
+    "allowed_winner_arms": [
+      "bevelin_lens",
+      "polya_lens"
+    ],
+    "allowed_promotion_reads": [
+      "expand_replay"
+    ]
+  },
+  "agreement": {
+    "winner_matches_static": false,
+    "promotion_matches_static": true,
+    "overall_match": false
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live small cognitive comparison. Research-only artifact; it records reviewer agreement or disagreement with static expectations."
+}

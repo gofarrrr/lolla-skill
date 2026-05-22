@@ -1,0 +1,256 @@
+{
+  "schema_version": "pre_step6_gpt_stability_correctness_contract.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_gpt_stability_correctness_review_v0",
+  "promotion_effect": "none_research_only",
+  "source_sample_dir_ref": "research/pre-step6-variable-case-alt-model-gpt51/step6-samples",
+  "model_under_review": "openai/gpt-5.1-chat",
+  "reviewer_rule": {
+    "reviewer_count": 2,
+    "model_family_policy": "two_families_required_with_model_under_review_overlap_recorded",
+    "prompt_policy": "same_split_rubric_saved_gpt_samples_only",
+    "blind_shuffle_policy": "fresh_blind_shuffle_per_reviewer",
+    "reviewer_question_split": [
+      "answer_correctness",
+      "visibility_decision_correctness"
+    ]
+  },
+  "precommitted_response_shapes": {
+    "gpt_visible_rejected": "Do not route to GPT for stability alone; inspect whether GPT is confidently over-promoting before any model commitment.",
+    "gpt_anchor_rejected": "Do not treat GPT stand-down stability as correctness; inspect whether Kimi variance was surfacing real borderline value.",
+    "structural_delta_only_rejected": "Design review of answer_delta specificity vocabulary and Step 6 prompt; do not add another field as a quick fix.",
+    "ambiguous_visibility": "Keep as calibration evidence; do not promote or model-shop from split reviewer evidence.",
+    "gpt_stability_supported": "Model-family stability becomes a candidate input to the design discussion, not a runtime selector by itself."
+  },
+  "review_cases": [
+    {
+      "review_case_id": "mid-level-consultant-report-2.sample-0.gpt-anchor-visible",
+      "source_case_id": "mid-level-consultant-report-2",
+      "sample_ref": "research/pre-step6-variable-case-alt-model-gpt51/step6-samples/mid-level-consultant-report-2.sample-0.calibration-step6.v1.json",
+      "sample_index": 0,
+      "model_under_review": "openai/gpt-5.1-chat",
+      "expected_visibility_decision": "anchor_visible",
+      "case_brief": "Choose first moves after seeing a partner's suspicious activity while preserving legal safety, evidence integrity, and personal safety. action_planning",
+      "anchor_visible": "Do not confront the partner, investigate privately, access systems unusually, or pick a reporting channel yourself. Tonight, write down exactly what you saw, preserve your own notes, tell your spouse in broad strokes, and contact two or three whistleblower attorneys.\n\nYour first move is independent counsel first, not GC-first by default and not a self-chosen audit committee or external report. Let counsel review the facts and decide whether GC, the audit committee, regulators, or another path is safest. During intake, ask practical questions that test whether the attorney has a reflexive channel preference: when have they advised internal-first, audit-committee-first, or external-first, and why?\n\nAttend Wednesday normally and avoid anything that looks like a sudden change in behavior. If the partner raises the encounter, keep the response narrow: do not deny, elaborate, confront, investigate, or be alone with the partner if avoidable. This is high risk, so do not let fear push you into filing before evidence review, but do not let fear make you do nothing either. Get counsel involved quickly and keep the first moves reversible.",
+      "step6_visible": "Do not confront the partner or try to investigate on your own. Preserve what you already remember: write down exactly what you saw, when, and where, and keep those notes private and unchanged. Share only a broad, non‑detail version with your spouse for personal grounding. As your next concrete step, contact two or three independent attorneys experienced in whistleblower and employment matters. Give each a factual, minimal intake and let them evaluate legal risks, evidence handling, and whether any internal or external reporting channel is safest. Ask how they decide among internal, audit‑committee, or external regulators so you can spot any built‑in preferences before relying on their guidance.\n\nContinue your normal schedule and avoid abrupt behavior shifts. If the partner brings up the encounter, keep your response brief and neutral, do not elaborate, and avoid one‑on‑one situations when possible. Move promptly, but keep all early steps reversible until counsel reviews the facts and advises on next steps.",
+      "ledger_signal": "all_private_or_confirming",
+      "answer_delta_specificity": "not_applicable",
+      "answer_delta_summary": {
+        "added_entities": [],
+        "removed_entities": [],
+        "reordered_sequences": [],
+        "structural_delta": [],
+        "reframed_emphasis": []
+      },
+      "pure_structural_delta_only": false
+    },
+    {
+      "review_case_id": "mid-level-consultant-report-2.sample-1.gpt-anchor-visible",
+      "source_case_id": "mid-level-consultant-report-2",
+      "sample_ref": "research/pre-step6-variable-case-alt-model-gpt51/step6-samples/mid-level-consultant-report-2.sample-1.calibration-step6.v1.json",
+      "sample_index": 1,
+      "model_under_review": "openai/gpt-5.1-chat",
+      "expected_visibility_decision": "anchor_visible",
+      "case_brief": "Choose first moves after seeing a partner's suspicious activity while preserving legal safety, evidence integrity, and personal safety. action_planning",
+      "anchor_visible": "Do not confront the partner, investigate privately, access systems unusually, or pick a reporting channel yourself. Tonight, write down exactly what you saw, preserve your own notes, tell your spouse in broad strokes, and contact two or three whistleblower attorneys.\n\nYour first move is independent counsel first, not GC-first by default and not a self-chosen audit committee or external report. Let counsel review the facts and decide whether GC, the audit committee, regulators, or another path is safest. During intake, ask practical questions that test whether the attorney has a reflexive channel preference: when have they advised internal-first, audit-committee-first, or external-first, and why?\n\nAttend Wednesday normally and avoid anything that looks like a sudden change in behavior. If the partner raises the encounter, keep the response narrow: do not deny, elaborate, confront, investigate, or be alone with the partner if avoidable. This is high risk, so do not let fear push you into filing before evidence review, but do not let fear make you do nothing either. Get counsel involved quickly and keep the first moves reversible.",
+      "step6_visible": "Do not confront the partner or investigate on your own. Make a dated, factual note of exactly what you observed and keep it secure. Share only a high‑level description with someone you trust at home. Contact a few independent attorneys who handle whistleblower or workplace‑risk matters and get confidential advice before choosing any reporting path. Ask them how they decide between internal channels, an audit committee route, or external reporting so you understand their approach. Keep your work routine steady and avoid sudden behavioral changes. If the partner brings up the encounter, keep your response brief and non‑committal and avoid being alone with them when possible. Move promptly but keep early steps reversible until counsel directs the next move.",
+      "ledger_signal": "all_private_or_confirming",
+      "answer_delta_specificity": "not_applicable",
+      "answer_delta_summary": {
+        "added_entities": [],
+        "removed_entities": [],
+        "reordered_sequences": [],
+        "structural_delta": [],
+        "reframed_emphasis": []
+      },
+      "pure_structural_delta_only": false
+    },
+    {
+      "review_case_id": "mid-level-consultant-report-2.sample-2.gpt-anchor-visible",
+      "source_case_id": "mid-level-consultant-report-2",
+      "sample_ref": "research/pre-step6-variable-case-alt-model-gpt51/step6-samples/mid-level-consultant-report-2.sample-2.calibration-step6.v1.json",
+      "sample_index": 2,
+      "model_under_review": "openai/gpt-5.1-chat",
+      "expected_visibility_decision": "anchor_visible",
+      "case_brief": "Choose first moves after seeing a partner's suspicious activity while preserving legal safety, evidence integrity, and personal safety. action_planning",
+      "anchor_visible": "Do not confront the partner, investigate privately, access systems unusually, or pick a reporting channel yourself. Tonight, write down exactly what you saw, preserve your own notes, tell your spouse in broad strokes, and contact two or three whistleblower attorneys.\n\nYour first move is independent counsel first, not GC-first by default and not a self-chosen audit committee or external report. Let counsel review the facts and decide whether GC, the audit committee, regulators, or another path is safest. During intake, ask practical questions that test whether the attorney has a reflexive channel preference: when have they advised internal-first, audit-committee-first, or external-first, and why?\n\nAttend Wednesday normally and avoid anything that looks like a sudden change in behavior. If the partner raises the encounter, keep the response narrow: do not deny, elaborate, confront, investigate, or be alone with the partner if avoidable. This is high risk, so do not let fear push you into filing before evidence review, but do not let fear make you do nothing either. Get counsel involved quickly and keep the first moves reversible.",
+      "step6_visible": "Do not confront your partner or investigate on your own. Do not pick an internal or external reporting channel yet. Tonight, write down exactly what you observed and keep those notes secure. Share only broad context with your spouse if you need personal support. Contact two or three independent whistleblower or employment‑law attorneys as your next step. Let them review the facts and advise whether any internal, audit‑committee, or external path is safest. When speaking with attorneys, ask how they decide among those channels so you can see if any have a built‑in preference. Go into Wednesday normally and avoid abrupt changes in behavior. If your partner brings up the encounter, keep your response brief, avoid elaboration, and avoid being alone with them when possible. Move promptly, but keep early steps reversible until counsel directs the next move.",
+      "ledger_signal": "all_private_or_confirming",
+      "answer_delta_specificity": "not_applicable",
+      "answer_delta_summary": {
+        "added_entities": [],
+        "removed_entities": [],
+        "reordered_sequences": [],
+        "structural_delta": [],
+        "reframed_emphasis": []
+      },
+      "pure_structural_delta_only": false
+    },
+    {
+      "review_case_id": "third-year-phd-student.v2.v60-off.sample-0.gpt-step6-visible",
+      "source_case_id": "third-year-phd-student.v2.v60-off",
+      "sample_ref": "research/pre-step6-variable-case-alt-model-gpt51/step6-samples/third-year-phd-student.v2.v60-off.sample-0.calibration-step6.v1.json",
+      "sample_index": 0,
+      "model_under_review": "openai/gpt-5.1-chat",
+      "expected_visibility_decision": "step6_visible",
+      "case_brief": "Choose a PhD path while preserving fallback viability and avoiding false precision about outcomes. decision_evaluation",
+      "anchor_visible": "I would not choose the hybrid direction yet. Treat two questions as gates, not vibes: does Dr. Silva actually have usable data you can access on a clear timeline, and is your fallback still advisor-backed, resourced, technically ready, identity-coherent, and protected by a stop-loss plan?\n\nKeep the political sequence clean. Talk to your advisor first. Use Dr. Silva only as a low-cost reality check on concrete data access, collaboration depth, and timing. Go to the committee only after you know whether the data path is real and whether your advisor would support the move without quietly pulling you back toward the safer lab path.\n\nFor the next two weeks, do dated evidence checks instead of building a finished proposal. Ask what data exists, who controls it, when you could inspect it, what authorship or collaboration terms would look like, and what work would still be yours. In parallel, test whether the fallback path can genuinely carry a dissertation if the Silva path fails.\n\nDo not run all three options in parallel. Do not treat broad PhD success-rate claims as calibrated probabilities for this case; use them only as humility checks. Choose the path only after the Silva/data gate and the fallback gate both have concrete evidence. The best path is not the hottest story; it is the one with a real chance of becoming a finishable PhD.",
+      "step6_visible": "Do not choose a direction yet. Use the next short window to run two evidence gates. First, test whether the Silva path is real: confirm what data already exists, who controls access, when you can inspect it, what collaboration and authorship terms would be, and whether someone can cover the single‑cell gaps. Get explicit support from your advisor before treating this as viable, and use Dr. Silva only to clarify data, timing, and collaboration depth. Second, verify that your fallback remains a real fallback: advisor‑backed, resourced, technically ready, and protected by a clear stop‑date for walking away from the Silva test if the evidence does not land. Do not take this to your committee until these two gates are resolved. Make the final choice only after you have concrete evidence on both fronts, not vibes or general PhD success heuristics.",
+      "ledger_signal": "additive_pressure_present",
+      "answer_delta_specificity": "structural_delta_present",
+      "answer_delta_summary": {
+        "added_entities": [],
+        "removed_entities": [],
+        "reordered_sequences": [],
+        "structural_delta": [
+          "Explicit short‑window test framing",
+          "Explicit stop‑date for fallback protection"
+        ],
+        "reframed_emphasis": []
+      },
+      "pure_structural_delta_only": true
+    },
+    {
+      "review_case_id": "third-year-phd-student.v2.v60-off.sample-1.gpt-step6-visible",
+      "source_case_id": "third-year-phd-student.v2.v60-off",
+      "sample_ref": "research/pre-step6-variable-case-alt-model-gpt51/step6-samples/third-year-phd-student.v2.v60-off.sample-1.calibration-step6.v1.json",
+      "sample_index": 1,
+      "model_under_review": "openai/gpt-5.1-chat",
+      "expected_visibility_decision": "step6_visible",
+      "case_brief": "Choose a PhD path while preserving fallback viability and avoiding false precision about outcomes. decision_evaluation",
+      "anchor_visible": "I would not choose the hybrid direction yet. Treat two questions as gates, not vibes: does Dr. Silva actually have usable data you can access on a clear timeline, and is your fallback still advisor-backed, resourced, technically ready, identity-coherent, and protected by a stop-loss plan?\n\nKeep the political sequence clean. Talk to your advisor first. Use Dr. Silva only as a low-cost reality check on concrete data access, collaboration depth, and timing. Go to the committee only after you know whether the data path is real and whether your advisor would support the move without quietly pulling you back toward the safer lab path.\n\nFor the next two weeks, do dated evidence checks instead of building a finished proposal. Ask what data exists, who controls it, when you could inspect it, what authorship or collaboration terms would look like, and what work would still be yours. In parallel, test whether the fallback path can genuinely carry a dissertation if the Silva path fails.\n\nDo not run all three options in parallel. Do not treat broad PhD success-rate claims as calibrated probabilities for this case; use them only as humility checks. Choose the path only after the Silva/data gate and the fallback gate both have concrete evidence. The best path is not the hottest story; it is the one with a real chance of becoming a finishable PhD.",
+      "step6_visible": "Do not choose a dissertation direction yet. Treat the next couple of weeks as a short probe. Your decision hinges on two gates: whether the Silva data path is real, and whether your original fallback path is still fully viable.\n\nGate 1 (Silva): Confirm whether there is concrete data you can access on a clear timeline, what work would be yours, what authorship/collaboration terms look like, and whether your advisor explicitly supports you pursuing this without pulling you back to the safer lab path. Get only the information needed to verify data access and collaboration depth; do not build a full proposal.\n\nGate 2 (Fallback): Check that the fallback remains advisor‑backed, resourced, technically ready, and able to carry a dissertation if the Silva path fails. Set a visible stop date and conditions for saying no to Silva if the gate fails.\n\nSequence: Speak with your advisor first. Use Dr. Silva only for low‑cost, concrete checks about data and timelines. Talk to the committee only after you and your advisor know whether the Silva path is real and whether the fallback remains protected.\n\nDo not run all options in parallel. Make the final direction choice only after both gates return actual evidence within your defined short window.",
+      "ledger_signal": "additive_pressure_present",
+      "answer_delta_specificity": "concrete_delta_present",
+      "answer_delta_summary": {
+        "added_entities": [
+          "Stop date for Silva probe"
+        ],
+        "removed_entities": [],
+        "reordered_sequences": [],
+        "structural_delta": [
+          "Added explicit stop condition for ending Silva probe if gate fails"
+        ],
+        "reframed_emphasis": [
+          "Stronger emphasis on fallback protection during probe"
+        ]
+      },
+      "pure_structural_delta_only": false
+    },
+    {
+      "review_case_id": "third-year-phd-student.v2.v60-off.sample-2.gpt-step6-visible",
+      "source_case_id": "third-year-phd-student.v2.v60-off",
+      "sample_ref": "research/pre-step6-variable-case-alt-model-gpt51/step6-samples/third-year-phd-student.v2.v60-off.sample-2.calibration-step6.v1.json",
+      "sample_index": 2,
+      "model_under_review": "openai/gpt-5.1-chat",
+      "expected_visibility_decision": "step6_visible",
+      "case_brief": "Choose a PhD path while preserving fallback viability and avoiding false precision about outcomes. decision_evaluation",
+      "anchor_visible": "I would not choose the hybrid direction yet. Treat two questions as gates, not vibes: does Dr. Silva actually have usable data you can access on a clear timeline, and is your fallback still advisor-backed, resourced, technically ready, identity-coherent, and protected by a stop-loss plan?\n\nKeep the political sequence clean. Talk to your advisor first. Use Dr. Silva only as a low-cost reality check on concrete data access, collaboration depth, and timing. Go to the committee only after you know whether the data path is real and whether your advisor would support the move without quietly pulling you back toward the safer lab path.\n\nFor the next two weeks, do dated evidence checks instead of building a finished proposal. Ask what data exists, who controls it, when you could inspect it, what authorship or collaboration terms would look like, and what work would still be yours. In parallel, test whether the fallback path can genuinely carry a dissertation if the Silva path fails.\n\nDo not run all three options in parallel. Do not treat broad PhD success-rate claims as calibrated probabilities for this case; use them only as humility checks. Choose the path only after the Silva/data gate and the fallback gate both have concrete evidence. The best path is not the hottest story; it is the one with a real chance of becoming a finishable PhD.",
+      "step6_visible": "Do not choose a dissertation direction right now. Treat the next few weeks as a short, low‑cost test of whether the Silva/data path is actually real and whether your existing fallback can still carry a dissertation if the data path fails.\n\nUse two gates. Gate 1: the Silva/data gate. Confirm what data exists, who controls it, when you can inspect it, what the collaboration terms and authorship expectations are, and whether someone can cover the single‑cell gaps. Only proceed if you get concrete access on a clear timeline and your advisor explicitly supports the move. Gate 2: the fallback gate. Verify that your current direction remains advisor‑backed, resourced, technically ready, and available for you to re‑enter. Set a clear stop‑date for the Silva probe and define visible conditions for saying no.\n\nKeep the political sequence clean. Talk to your advisor first. Use Silva only for concrete checks on data availability and timing. Go to the committee only after you know whether the data path is real and whether your advisor would support a shift without pulling you back toward the safer lab path.\n\nRun the Silva probe strictly within the window you set. Make the dissertation decision only after both gates have evidence, not vibes. Choose the direction that can actually become a finishable PhD, not the one that merely feels exciting.",
+      "ledger_signal": "additive_pressure_present",
+      "answer_delta_specificity": "structural_delta_present",
+      "answer_delta_summary": {
+        "added_entities": [],
+        "removed_entities": [],
+        "reordered_sequences": [],
+        "structural_delta": [
+          "Added explicit stop‑date and conditions for saying no"
+        ],
+        "reframed_emphasis": [
+          "Stronger emphasis on low‑cost short test rather than early commitment"
+        ]
+      },
+      "pure_structural_delta_only": true
+    },
+    {
+      "review_case_id": "third-year-phd-student.v2.v60-on.sample-0.gpt-step6-visible",
+      "source_case_id": "third-year-phd-student.v2.v60-on",
+      "sample_ref": "research/pre-step6-variable-case-alt-model-gpt51/step6-samples/third-year-phd-student.v2.v60-on.sample-0.calibration-step6.v1.json",
+      "sample_index": 0,
+      "model_under_review": "openai/gpt-5.1-chat",
+      "expected_visibility_decision": "step6_visible",
+      "case_brief": "Choose a PhD path while preserving fallback viability and avoiding false precision about outcomes. decision_evaluation",
+      "anchor_visible": "I would not choose the hybrid direction yet. Treat two questions as gates, not vibes: does Dr. Silva actually have usable data you can access on a clear timeline, and is your fallback still advisor-backed, resourced, technically ready, identity-coherent, and protected by a stop-loss plan?\n\nKeep the political sequence clean. Talk to your advisor first. Use Dr. Silva only as a low-cost reality check on concrete data access, collaboration depth, and timing. Go to the committee only after you know whether the data path is real and whether your advisor would support the move without quietly pulling you back toward the safer lab path.\n\nFor the next two weeks, do dated evidence checks instead of building a finished proposal. Ask what data exists, who controls it, when you could inspect it, what authorship or collaboration terms would look like, and what work would still be yours. In parallel, test whether the fallback path can genuinely carry a dissertation if the Silva path fails.\n\nDo not run all three options in parallel. Do not treat broad PhD success-rate claims as calibrated probabilities for this case; use them only as humility checks. Choose the path only after the Silva/data gate and the fallback gate both have concrete evidence. The best path is not the hottest story; it is the one with a real chance of becoming a finishable PhD.",
+      "step6_visible": "Do not choose your dissertation direction yet. Treat the next short window as a low‑cost test with two evidence gates.\n\nFirst gate: the Silva/data path. Speak with your advisor before involving anyone else. Then use a brief, time‑bounded check with Dr. Silva to verify concrete facts: what data exists, who controls access, when you can see it, what collaboration terms look like, and what portion of the work would clearly be yours. Only continue if these answers show a realistic, finishable dissertation path and your advisor explicitly supports the move.\n\nSecond gate: the fallback. Confirm it truly remains viable—your advisor keeps it resourced, you can re‑enter without penalty, and it can carry a full dissertation. Set a clear stop date and visible conditions for saying no to the Silva direction.\n\nRun only these two probes for the next couple of weeks. Do not develop a full proposal, do not attempt to advance all options in parallel, and do not extrapolate from broad PhD success statistics to this specific choice. Make the actual decision only once you have evidence on both gates.",
+      "ledger_signal": "additive_pressure_present",
+      "answer_delta_specificity": "concrete_delta_present",
+      "answer_delta_summary": {
+        "added_entities": [
+          "Short-window phrasing",
+          "Explicit stop-date condition"
+        ],
+        "removed_entities": [],
+        "reordered_sequences": [],
+        "structural_delta": [
+          "Added explicit stop-date boundary to the fallback gate."
+        ],
+        "reframed_emphasis": [
+          "Greater emphasis on low-commitment testing rather than decision-making."
+        ]
+      },
+      "pure_structural_delta_only": false
+    },
+    {
+      "review_case_id": "third-year-phd-student.v2.v60-on.sample-1.gpt-step6-visible",
+      "source_case_id": "third-year-phd-student.v2.v60-on",
+      "sample_ref": "research/pre-step6-variable-case-alt-model-gpt51/step6-samples/third-year-phd-student.v2.v60-on.sample-1.calibration-step6.v1.json",
+      "sample_index": 1,
+      "model_under_review": "openai/gpt-5.1-chat",
+      "expected_visibility_decision": "step6_visible",
+      "case_brief": "Choose a PhD path while preserving fallback viability and avoiding false precision about outcomes. decision_evaluation",
+      "anchor_visible": "I would not choose the hybrid direction yet. Treat two questions as gates, not vibes: does Dr. Silva actually have usable data you can access on a clear timeline, and is your fallback still advisor-backed, resourced, technically ready, identity-coherent, and protected by a stop-loss plan?\n\nKeep the political sequence clean. Talk to your advisor first. Use Dr. Silva only as a low-cost reality check on concrete data access, collaboration depth, and timing. Go to the committee only after you know whether the data path is real and whether your advisor would support the move without quietly pulling you back toward the safer lab path.\n\nFor the next two weeks, do dated evidence checks instead of building a finished proposal. Ask what data exists, who controls it, when you could inspect it, what authorship or collaboration terms would look like, and what work would still be yours. In parallel, test whether the fallback path can genuinely carry a dissertation if the Silva path fails.\n\nDo not run all three options in parallel. Do not treat broad PhD success-rate claims as calibrated probabilities for this case; use them only as humility checks. Choose the path only after the Silva/data gate and the fallback gate both have concrete evidence. The best path is not the hottest story; it is the one with a real chance of becoming a finishable PhD.",
+      "step6_visible": "Do not pick a dissertation direction yet. Treat the next two weeks as a short, low‑cost probe with two concrete gates.\n\nGate 1 (Silva/data): Confirm whether the Silva direction can actually become a dissertation. Ask what data already exists, who controls access, when you can see it, what collaboration or authorship terms would be, and what technical gaps would require support from others. Make these checks with your advisor’s knowledge. Use Dr. Silva only to verify data availability, collaboration depth, and timelines—not to make a political commitment.\n\nGate 2 (fallback viability): Confirm that your fallback direction is genuinely alive. That means your advisor explicitly supports keeping it resourced, that you still have access to the needed materials and collaborators, and that you have a clear stop‑date and criteria for returning to it if the Silva probe fails.\n\nSequence: speak with your advisor first, run the short Silva probe second, and only involve the committee after you know whether the data path is real and whether your advisor would back a shift without undermining your fallback.\n\nChoose your direction only after both gates have concrete evidence. Focus on what can actually turn into a finishable dissertation, not on which story feels more exciting.",
+      "ledger_signal": "additive_pressure_present",
+      "answer_delta_specificity": "structural_delta_present",
+      "answer_delta_summary": {
+        "added_entities": [],
+        "removed_entities": [],
+        "reordered_sequences": [],
+        "structural_delta": [
+          "Short, bounded probe window made explicit"
+        ],
+        "reframed_emphasis": [
+          "Stronger insistence on maintaining the fallback as a live option"
+        ]
+      },
+      "pure_structural_delta_only": true
+    },
+    {
+      "review_case_id": "third-year-phd-student.v2.v60-on.sample-2.gpt-step6-visible",
+      "source_case_id": "third-year-phd-student.v2.v60-on",
+      "sample_ref": "research/pre-step6-variable-case-alt-model-gpt51/step6-samples/third-year-phd-student.v2.v60-on.sample-2.calibration-step6.v1.json",
+      "sample_index": 2,
+      "model_under_review": "openai/gpt-5.1-chat",
+      "expected_visibility_decision": "step6_visible",
+      "case_brief": "Choose a PhD path while preserving fallback viability and avoiding false precision about outcomes. decision_evaluation",
+      "anchor_visible": "I would not choose the hybrid direction yet. Treat two questions as gates, not vibes: does Dr. Silva actually have usable data you can access on a clear timeline, and is your fallback still advisor-backed, resourced, technically ready, identity-coherent, and protected by a stop-loss plan?\n\nKeep the political sequence clean. Talk to your advisor first. Use Dr. Silva only as a low-cost reality check on concrete data access, collaboration depth, and timing. Go to the committee only after you know whether the data path is real and whether your advisor would support the move without quietly pulling you back toward the safer lab path.\n\nFor the next two weeks, do dated evidence checks instead of building a finished proposal. Ask what data exists, who controls it, when you could inspect it, what authorship or collaboration terms would look like, and what work would still be yours. In parallel, test whether the fallback path can genuinely carry a dissertation if the Silva path fails.\n\nDo not run all three options in parallel. Do not treat broad PhD success-rate claims as calibrated probabilities for this case; use them only as humility checks. Choose the path only after the Silva/data gate and the fallback gate both have concrete evidence. The best path is not the hottest story; it is the one with a real chance of becoming a finishable PhD.",
+      "step6_visible": "Do not choose a dissertation direction yet. Use the next short window to run two concrete gates. First, test whether the Silva path is real: confirm what data exists, who controls it, when you can see it, what collaboration and authorship would look like, and whether you would have the needed support to cover single‑cell gaps. Second, verify that your fallback still functions as a genuine dissertation path: advisor‑backed, resourced, technically ready, and protected by a clear stop‑loss date. Talk to your advisor first, use Dr. Silva only for low‑cost data and feasibility checks, and go to the committee only after both gates have evidence. Make the actual direction decision only after this limited probe window closes and both gates have been tested.",
+      "ledger_signal": "additive_pressure_present",
+      "answer_delta_specificity": "concrete_delta_present",
+      "answer_delta_summary": {
+        "added_entities": [
+          "Single‑cell‑gap support check",
+          "Authorship/collaboration terms check"
+        ],
+        "removed_entities": [],
+        "reordered_sequences": [],
+        "structural_delta": [
+          "Added explicit short probe window."
+        ],
+        "reframed_emphasis": [
+          "Stronger emphasis on running a bounded test before choosing direction."
+        ]
+      },
+      "pure_structural_delta_only": false
+    }
+  ],
+  "excluded_case_ids": [
+    "founder-grant-marcus-equity.high-clutter.v60-on"
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Reviews GPT-stable saved outputs with answer correctness and visibility correctness separated. This does not make GPT the runtime model and does not add a deterministic wisdom gate."
+}

@@ -1,0 +1,84 @@
+{
+  "schema_version": "pre_step6_calibration_step6_sample.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_calibration_corpus_v0",
+  "case_id": "fp-bevelin-irrelevant-incentives",
+  "base_case_id": "fp-bevelin-irrelevant-incentives",
+  "sample_index": 0,
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "moonshotai/kimi-k2.6",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"answer_core\": \"Thanks for the discussion. I will send the revised timeline by Thursday, flag the two open assumptions, and confirm whether the finance input changes the launch date.\",\n  \"private_visibility_ledger\": [\n    {\n      \"source_id\": \"anchor_visible_candidate\",\n      \"disposition\": \"used\",\n      \"novelty_role\": \"visible_backbone\",\n      \"why\": \"The anchor supplies a concrete, actionable follow-up with a specific deadline (Thursday), explicit deliverables (revised timeline), named items to surface (two open assumptions), and a targeted conditional check (finance input’s impact on the launch date). This directly meets the brief for a short client follow-up and preserves all specific entities and sequences.\",\n      \"visible_effect\": \"The public answer is this exact message, carried forward as the backbone.\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"structural_delta\": [],\n        \"reframed_emphasis\": []\n      }\n    },\n    {\n      \"source_id\": \"deck_pressure_candidate\",\n      \"disposition\": \"rejected\",\n      \"novelty_role\": \"private_guardrail\",\n      \"why\": \"The deck pressure offers abstract incentive mapping and meta-framing (naming incentives, punishing hidden uncertainty, decision ownership) that does not produce a concrete change to deadlines, deliverables, commitments, or actor sequences in a routine status follow-up. Per the negative-control expectation, such pressure stands down when no concrete delta exists; adding it would trade specificity for theory.\",\n      \"visible_effect\": \"none\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"structural_delta\": [],\n        \"reframed_emphasis\": []\n      }\n    }\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 626,
+    "completion_tokens": 2768,
+    "total_tokens": 3394,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 2988,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter",
+    "model_family": "moonshotai"
+  },
+  "input_packet": {
+    "case_brief": "User needs a short client follow-up after a normal status meeting. The useful answer is a concrete message, not a theory of incentives.",
+    "case_type_tags": [
+      "negative_control"
+    ],
+    "pre_registered_expectation": "deck_pressure_should_stand_down_unless_concrete_delta_exists",
+    "v60_mode": "not_applicable",
+    "v60_private_context": "",
+    "anchor_visible_candidate": "Send a short note today: 'Thanks for the discussion. I will send the revised timeline by Thursday, flag the two open assumptions, and confirm whether the finance input changes the launch date.'",
+    "deck_pressure_candidate": "Before replying, consider the incentive map: the client may reward confidence but punish hidden uncertainty, finance may be protecting its own deadline, and your safest move is to avoid false precision. Name incentives, uncertainty, and decision ownership in the follow-up."
+  },
+  "step6_output": {
+    "answer_core": "Thanks for the discussion. I will send the revised timeline by Thursday, flag the two open assumptions, and confirm whether the finance input changes the launch date.",
+    "private_visibility_ledger": [
+      {
+        "source_id": "anchor_visible_candidate",
+        "disposition": "used",
+        "novelty_role": "visible_backbone",
+        "why": "The anchor supplies a concrete, actionable follow-up with a specific deadline (Thursday), explicit deliverables (revised timeline), named items to surface (two open assumptions), and a targeted conditional check (finance input’s impact on the launch date). This directly meets the brief for a short client follow-up and preserves all specific entities and sequences.",
+        "visible_effect": "The public answer is this exact message, carried forward as the backbone.",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [],
+          "removed_entities": [],
+          "reordered_sequences": [],
+          "structural_delta": []
+        }
+      },
+      {
+        "source_id": "deck_pressure_candidate",
+        "disposition": "rejected",
+        "novelty_role": "private_guardrail",
+        "why": "The deck pressure offers abstract incentive mapping and meta-framing (naming incentives, punishing hidden uncertainty, decision ownership) that does not produce a concrete change to deadlines, deliverables, commitments, or actor sequences in a routine status follow-up. Per the negative-control expectation, such pressure stands down when no concrete delta exists; adding it would trade specificity for theory.",
+        "visible_effect": "none",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [],
+          "removed_entities": [],
+          "reordered_sequences": [],
+          "structural_delta": []
+        }
+      }
+    ]
+  },
+  "ledger_signal": "all_private_or_confirming",
+  "answer_delta_specificity": "not_applicable",
+  "deterministic_role": [
+    "validate_calibration_case",
+    "derive_ledger_signal",
+    "derive_answer_delta_specificity",
+    "preserve_repeated_sample_custody"
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live research-only Step 6 calibration sample."
+}

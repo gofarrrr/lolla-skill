@@ -1,0 +1,70 @@
+{
+  "schema_version": "pre_step6_context_composition_gate_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "founder-grant-marcus-equity.high-clutter",
+  "gate_kind": "live_context_composition_comparison",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"winner_label\": \"A\",\n  \"research_action\": \"stop\",\n  \"confidence\": \"high\",\n  \"rationale\": \"The primary anchor is already highly optimized for the specific decision-making constraints of the case. Candidates B, C, and D add 'enrichment receipts' that are essentially summaries or restatements of the anchor's own logic. Since the anchor already contains the core reasoning (staged partnership, avoiding irreversible commitments, dependency management, and false-precision warnings), the extra receipts introduce a complexity tax without adding novel decision pressure.\",\n  \"protected_value\": [\n    \"Maintains the integrity of the primary anchor without diluting it with redundant meta-commentary.\",\n    \"Preserves the focus on the 'dependency system' as the primary cognitive frame.\"\n  ],\n  \"bloat_or_pruning_risk\": [\n    \"No risk of pruning; the anchor is complete.\",\n    \"Candidates B, C, and D risk bloat by forcing the model to process redundant summaries of its own primary instructions.\"\n  ],\n  \"composition_note\": \"Step 6 should treat the primary anchor as the sole source of truth. The enrichment receipts in other candidates are strictly derivative and can be ignored to maintain cognitive efficiency.\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 2518,
+    "completion_tokens": 274,
+    "total_tokens": 2792,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter"
+  },
+  "candidate_refs": {
+    "rendered_hybrid": "research/pre-step6-rendered-hybrid-answer-cores/founder-grant-marcus-equity.high-clutter.native.rendered-hybrid-answer-core.v1.json",
+    "bevelin_lens": "research/pre-step6-lens-answer-cores/founder-grant-marcus-equity.high-clutter.bevelin-answer-core.v1.json",
+    "polya_lens": "research/pre-step6-lens-answer-cores/founder-grant-marcus-equity.high-clutter.polya-answer-core.v1.json"
+  },
+  "blind_map": {
+    "A": "rendered_only",
+    "B": "rendered_plus_polya_receipts",
+    "C": "rendered_plus_bevelin_receipts",
+    "D": "rendered_plus_dual_receipts"
+  },
+  "reviewer_output": {
+    "winner_label": "A",
+    "research_action": "stop",
+    "confidence": "high",
+    "rationale": "The primary anchor is already highly optimized for the specific decision-making constraints of the case. Candidates B, C, and D add 'enrichment receipts' that are essentially summaries or restatements of the anchor's own logic. Since the anchor already contains the core reasoning (staged partnership, avoiding irreversible commitments, dependency management, and false-precision warnings), the extra receipts introduce a complexity tax without adding novel decision pressure.",
+    "protected_value": [
+      "Maintains the integrity of the primary anchor without diluting it with redundant meta-commentary.",
+      "Preserves the focus on the 'dependency system' as the primary cognitive frame."
+    ],
+    "bloat_or_pruning_risk": [
+      "No risk of pruning; the anchor is complete.",
+      "Candidates B, C, and D risk bloat by forcing the model to process redundant summaries of its own primary instructions."
+    ],
+    "composition_note": "Step 6 should treat the primary anchor as the sole source of truth. The enrichment receipts in other candidates are strictly derivative and can be ignored to maintain cognitive efficiency."
+  },
+  "static_expectation": {
+    "allowed_winner_arms": [
+      "rendered_plus_bevelin_receipts",
+      "rendered_plus_dual_receipts"
+    ],
+    "allowed_research_actions": [
+      "expand_replay"
+    ]
+  },
+  "agreement": {
+    "winner_matches_static": false,
+    "action_matches_static": false,
+    "overall_match": false
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live context-composition comparison. Research-only artifact; it tests whether protected private receipts improve a rendered-hybrid anchor."
+}

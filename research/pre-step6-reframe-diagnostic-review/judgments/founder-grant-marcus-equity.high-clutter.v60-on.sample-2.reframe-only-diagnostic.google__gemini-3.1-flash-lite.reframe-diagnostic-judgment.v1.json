@@ -1,0 +1,49 @@
+{
+  "schema_version": "pre_step6_reframe_diagnostic_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "calibration_reframe_diagnostic_review_v0",
+  "diagnostic_case_id": "founder-grant-marcus-equity.high-clutter.v60-on.sample-2.reframe-only-diagnostic",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"diagnostic_label\": \"step6_non_inferior\",\n  \"winner_label\": \"A\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Answer A is more concise and action-oriented. It avoids the unnecessary bloat of Answer B, which spends significant space explaining why it is avoiding math and instrument catalogs—ironically drawing more attention to them. Answer A provides a cleaner, more direct framework for the user's upcoming meeting.\",\n  \"reframe_value_if_any\": [\n    \"Both answers successfully shift the focus from valuation math to the necessity of defining explicit, evidence-based unlock conditions for equity and governance roles.\"\n  ],\n  \"anchor_strengths\": [\n    \"Answer A's strength is its brevity and focus on the immediate tactical goal: a structured, staged-partnership proposal.\"\n  ],\n  \"payload_loss_or_bloat\": [\n    \"Answer B suffers from significant bloat, including meta-commentary on why it is not using math, which distracts from the core advice.\"\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 1076,
+    "completion_tokens": 236,
+    "total_tokens": 1312,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "model_family": "google"
+  },
+  "blind_map": {
+    "A": "step6_visible",
+    "B": "anchor_visible"
+  },
+  "reviewer_output": {
+    "diagnostic_label": "step6_non_inferior",
+    "winner_label": "A",
+    "confidence": "high",
+    "rationale": "Answer A is more concise and action-oriented. It avoids the unnecessary bloat of Answer B, which spends significant space explaining why it is avoiding math and instrument catalogs—ironically drawing more attention to them. Answer A provides a cleaner, more direct framework for the user's upcoming meeting.",
+    "reframe_value_if_any": [
+      "Both answers successfully shift the focus from valuation math to the necessity of defining explicit, evidence-based unlock conditions for equity and governance roles."
+    ],
+    "anchor_strengths": [
+      "Answer A's strength is its brevity and focus on the immediate tactical goal: a structured, staged-partnership proposal."
+    ],
+    "payload_loss_or_bloat": [
+      "Answer B suffers from significant bloat, including meta-commentary on why it is not using math, which distracts from the core advice."
+    ]
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample reframe diagnostic judgment."
+}

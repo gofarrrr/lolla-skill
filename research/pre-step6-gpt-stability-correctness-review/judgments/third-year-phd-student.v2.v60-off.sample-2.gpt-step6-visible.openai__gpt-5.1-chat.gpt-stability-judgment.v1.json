@@ -1,0 +1,55 @@
+{
+  "schema_version": "pre_step6_gpt_stability_correctness_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_gpt_stability_correctness_review_v0",
+  "review_case_id": "third-year-phd-student.v2.v60-off.sample-2.gpt-step6-visible",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"output_label\": \"non_inferior\",\n  \"winner_label\": \"tie\",\n  \"visibility_judgment\": \"correct_visible\",\n  \"confidence\": \"medium\",\n  \"rationale\": \"Both answers preserve the core payload, avoid false precision, and maintain clean political sequencing. A adds a stop-date; B adds a short two‑week test window. Neither introduces harmful drift. Neither is clearly superior.\",\n  \"answer_correctness_notes\": [\n    \"Both preserve the two‑gate framing and avoid overcommitting.\",\n    \"A’s explicit stop-date is concrete; B’s two‑week window is similarly actionable.\",\n    \"Neither adds unsupported claims or false calibration.\"\n  ],\n  \"visibility_decision_notes\": [\n    \"Structural delta is small, safe, and clarifying, so exposing Step 6 output is acceptable.\",\n    \"No payload drift that would justify anchoring instead.\"\n  ],\n  \"payload_loss_or_bloat\": [\n    \"No major loss; minor additions are bounded and non-bloated.\"\n  ],\n  \"structural_delta_read\": \"useful_structural_delta\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 1190,
+    "completion_tokens": 232,
+    "total_tokens": 1422,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter",
+    "model_family": "openai"
+  },
+  "blind_map": {
+    "A": "step6_visible",
+    "B": "anchor_visible"
+  },
+  "reviewer_output": {
+    "output_label": "non_inferior",
+    "winner_label": "tie",
+    "visibility_judgment": "correct_visible",
+    "confidence": "medium",
+    "rationale": "Both answers preserve the core payload, avoid false precision, and maintain clean political sequencing. A adds a stop-date; B adds a short two‑week test window. Neither introduces harmful drift. Neither is clearly superior.",
+    "answer_correctness_notes": [
+      "Both preserve the two‑gate framing and avoid overcommitting.",
+      "A’s explicit stop-date is concrete; B’s two‑week window is similarly actionable.",
+      "Neither adds unsupported claims or false calibration."
+    ],
+    "visibility_decision_notes": [
+      "Structural delta is small, safe, and clarifying, so exposing Step 6 output is acceptable.",
+      "No payload drift that would justify anchoring instead."
+    ],
+    "payload_loss_or_bloat": [
+      "No major loss; minor additions are bounded and non-bloated."
+    ],
+    "structural_delta_read": "useful_structural_delta"
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample GPT-stability correctness judgment."
+}

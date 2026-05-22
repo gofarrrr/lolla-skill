@@ -1,0 +1,92 @@
+{
+  "schema_version": "pre_step6_calibration_step6_sample.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_calibration_corpus_v0",
+  "case_id": "marker-entity-attempt-2-tripwire-compression",
+  "base_case_id": "marker-entity-attempt-2-tripwire-compression",
+  "sample_index": 2,
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "moonshotai/kimi-k2.6",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n\"answer_core\": \"Use professional support first, keep the safety plan concrete, and name the tripwires before acting: request to meet, sexual images, threats, evidence involving other minors, a move into hidden channels, or your daughter saying she feels pressured or afraid. Keep communication boundaries stable while you gather evidence checks.\",\n\"private_visibility_ledger\": [\n{\n\"source_id\": \"anchor_visible_candidate\",\n\"disposition\": \"used\",\n\"novelty_role\": \"visible_backbone\",\n\"why\": \"The anchor contains the critical safety infrastructure: six enumerated tripwires (request to meet, sexual images, threats, evidence involving other minors, move to hidden channels, daughter reports pressure/fear), the actor sequence (professional support first, then named triggers, then action), and the concrete evidence-gathering step. These are exactly the specificity elements the case brief warns may be compressed by deck pressure.\",\n\"visible_effect\": \"Full preservation of enumerated tripwires, causal ordering, and named evidence action.\",\n\"answer_delta\": {\n\"added_entities\": [],\n\"removed_entities\": [],\n\"reordered_sequences\": [],\n\"structural_delta\": [],\n\"reframed_emphasis\": []\n}\n},\n{\n\"source_id\": \"deck_pressure_candidate\",\n\"disposition\": \"rejected\",\n\"novelty_role\": \"private_guardrail\",\n\"why\": \"The deck pressure strips all six concrete tripwires into the generic phrase 'track tripwires,' collapses 'name the tripwires before acting' into 'treat any concerning pattern as a reason to update the plan' (removing the conditional-action structure), and eliminates the daughter's own voice as a named trigger. It also removes 'first' from professional support, weakening sequence. This is precisely the compression pattern the pre-registered expectation warns against: generic marker-preserving pressure that would overpromote if accepted. No additive value; accepting it would violate the negative control's integrity.\",\n\"visible_effect\": \"none\",\n\"answer_delta\": {\n\"added_entities\": [],\n\"removed_entities\": [\n\"generic 'track tripwires' replacing six named conditions\",\n\"'treat any concerning pattern' replacing conditional trigger-to-action mapping\",\n\"weakened sequencing on professional support\"\n],\n\"reordered_sequences\": [],\n\"structural_delta\": [\n\"Rejected removal of conditional-action structure tied to specific triggers\",\n\"Rejected replacement of daughter's reported state with abstract 'concerning pattern'\"\n],\n\"reframed_emphasis\": []\n}\n}\n]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 640,
+    "completion_tokens": 507,
+    "total_tokens": 1147,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter",
+    "model_family": "moonshotai"
+  },
+  "input_packet": {
+    "case_brief": "Sensitive case where the anchor lists concrete tripwires. The deck pressure may compress them into a generic escalation phrase.",
+    "case_type_tags": [
+      "sensitive_safety_legal",
+      "negative_control"
+    ],
+    "pre_registered_expectation": "generic_marker_preserving_pressure_should_not_overpromote",
+    "v60_mode": "not_applicable",
+    "v60_private_context": "",
+    "anchor_visible_candidate": "Use professional support first, keep the safety plan concrete, and name the tripwires before acting: request to meet, sexual images, threats, evidence involving other minors, a move into hidden channels, or your daughter saying she feels pressured or afraid. Keep communication boundaries stable while you gather evidence checks.",
+    "deck_pressure_candidate": "Use professional support, keep a safety plan, track tripwires, maintain communication boundaries, and run evidence checks before escalating. Treat any concerning pattern as a reason to update the plan."
+  },
+  "step6_output": {
+    "answer_core": "Use professional support first, keep the safety plan concrete, and name the tripwires before acting: request to meet, sexual images, threats, evidence involving other minors, a move into hidden channels, or your daughter saying she feels pressured or afraid. Keep communication boundaries stable while you gather evidence checks.",
+    "private_visibility_ledger": [
+      {
+        "source_id": "anchor_visible_candidate",
+        "disposition": "used",
+        "novelty_role": "visible_backbone",
+        "why": "The anchor contains the critical safety infrastructure: six enumerated tripwires (request to meet, sexual images, threats, evidence involving other minors, move to hidden channels, daughter reports pressure/fear), the actor sequence (professional support first, then named triggers, then action), and the concrete evidence-gathering step. These are exactly the specificity elements the case brief warns may be compressed by deck pressure.",
+        "visible_effect": "Full preservation of enumerated tripwires, causal ordering, and named evidence action.",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [],
+          "removed_entities": [],
+          "reordered_sequences": [],
+          "structural_delta": []
+        }
+      },
+      {
+        "source_id": "deck_pressure_candidate",
+        "disposition": "rejected",
+        "novelty_role": "private_guardrail",
+        "why": "The deck pressure strips all six concrete tripwires into the generic phrase 'track tripwires,' collapses 'name the tripwires before acting' into 'treat any concerning pattern as a reason to update the plan' (removing the conditional-action structure), and eliminates the daughter's own voice as a named trigger. It also removes 'first' from professional support, weakening sequence. This is precisely the compression pattern the pre-registered expectation warns against: generic marker-preserving pressure that would overpromote if accepted. No additive value; accepting it would violate the negative control's integrity.",
+        "visible_effect": "none",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [],
+          "removed_entities": [
+            "generic 'track tripwires' replacing six named conditions",
+            "'treat any concerning pattern' replacing conditional trigger-to-action mapping",
+            "weakened sequencing on professional support"
+          ],
+          "reordered_sequences": [],
+          "structural_delta": [
+            "Rejected removal of conditional-action structure tied to specific triggers",
+            "Rejected replacement of daughter's reported state with abstract 'concerning pattern'"
+          ]
+        }
+      }
+    ]
+  },
+  "ledger_signal": "all_private_or_confirming",
+  "answer_delta_specificity": "not_applicable",
+  "deterministic_role": [
+    "validate_calibration_case",
+    "derive_ledger_signal",
+    "derive_answer_delta_specificity",
+    "preserve_repeated_sample_custody"
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live research-only Step 6 calibration sample."
+}

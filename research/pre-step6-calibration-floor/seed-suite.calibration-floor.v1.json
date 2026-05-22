@@ -1,0 +1,200 @@
+{
+  "schema_version": "pre_step6_calibration_floor.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "design_preamble_calibration_floor_v0",
+  "manifest_id": "seed-suite",
+  "required_floor": {
+    "min_cases": 12,
+    "target_max_cases": 20,
+    "bucket_minimums": {
+      "high_clutter": 3,
+      "sequencing_or_problem_shape": 3,
+      "sensitive_safety_legal": 3,
+      "negative_control": 3,
+      "v60_on_off_pairs": 2
+    },
+    "v60_toggle_requirement": "At least two cases must be evaluated as V60-on/V60-off pairs to separate card-deck effects from existing enrichment effects.",
+    "v60_pair_origin": {
+      "primary_definition": "same_case_run_twice_v60_on_off",
+      "unit_of_pair": "Same case, same prompt contract, same card deck policy; one run with V60 selected items available and one run with V60 selected items withheld.",
+      "substantive_vs_minimal_v60": "Useful stratification label, not a substitute for same-case on/off pairs."
+    }
+  },
+  "current_suite": {
+    "suite_role": "seed_suite_not_calibration",
+    "case_count": 4,
+    "cases": [
+      {
+        "case_id": "founder-grant-marcus-equity.high-clutter",
+        "case_type_tags": [
+          "high_clutter"
+        ],
+        "calibration_role": "positive_seed",
+        "visibility_policy_ref": "research/pre-step6-card-deck-visibility-policies/founder-grant-marcus-equity.high-clutter.card-deck-visibility-policy.v1.json",
+        "v60_toggle_pair_id": ""
+      },
+      {
+        "case_id": "third-year-phd-student.v2",
+        "case_type_tags": [
+          "sequencing_or_problem_shape"
+        ],
+        "calibration_role": "positive_seed",
+        "visibility_policy_ref": "research/pre-step6-card-deck-visibility-policies/third-year-phd-student.v2.card-deck-visibility-policy.v1.json",
+        "v60_toggle_pair_id": ""
+      },
+      {
+        "case_id": "mid-level-consultant-report-2",
+        "case_type_tags": [
+          "sensitive_safety_legal"
+        ],
+        "calibration_role": "positive_seed",
+        "visibility_policy_ref": "research/pre-step6-card-deck-visibility-policies/mid-level-consultant-report-2.card-deck-visibility-policy.v1.json",
+        "v60_toggle_pair_id": ""
+      },
+      {
+        "case_id": "mother-address-year",
+        "case_type_tags": [
+          "sensitive_safety_legal",
+          "negative_control"
+        ],
+        "calibration_role": "standdown_seed",
+        "visibility_policy_ref": "research/pre-step6-card-deck-visibility-policies/mother-address-year.card-deck-visibility-policy.v1.json",
+        "v60_toggle_pair_id": ""
+      }
+    ]
+  },
+  "bucket_status": [
+    {
+      "bucket": "high_clutter",
+      "required": 3,
+      "observed": 1,
+      "missing": 2,
+      "met": false
+    },
+    {
+      "bucket": "sequencing_or_problem_shape",
+      "required": 3,
+      "observed": 1,
+      "missing": 2,
+      "met": false
+    },
+    {
+      "bucket": "sensitive_safety_legal",
+      "required": 3,
+      "observed": 2,
+      "missing": 1,
+      "met": false
+    },
+    {
+      "bucket": "negative_control",
+      "required": 3,
+      "observed": 1,
+      "missing": 2,
+      "met": false
+    },
+    {
+      "bucket": "v60_on_off_pairs",
+      "required": 2,
+      "observed": 0,
+      "missing": 2,
+      "met": false
+    }
+  ],
+  "case_curation_gaps": [
+    {
+      "bucket": "total_cases",
+      "missing": 8,
+      "why_it_matters": "Four cases are useful seed evidence, not a calibration floor."
+    },
+    {
+      "bucket": "high_clutter",
+      "missing": 2,
+      "why_it_matters": "Tests whether card decks improve cluttered edge-pressure cases."
+    },
+    {
+      "bucket": "sequencing_or_problem_shape",
+      "missing": 2,
+      "why_it_matters": "Tests Polya-style problem-shape and next-move pressure."
+    },
+    {
+      "bucket": "sensitive_safety_legal",
+      "missing": 1,
+      "why_it_matters": "Tests whether anchor bias avoids unsafe phrasing drift."
+    },
+    {
+      "bucket": "negative_control",
+      "missing": 2,
+      "why_it_matters": "Tests stand-down behavior when the anchor is already sufficient."
+    },
+    {
+      "bucket": "v60_on_off_pairs",
+      "missing": 2,
+      "why_it_matters": "Separates card-deck effect from existing V60 enrichment effect."
+    }
+  ],
+  "standdown_recall": {
+    "primary_runtime_failure_mode": "false_standdown",
+    "measurement_status": "not_calibrated",
+    "classification_values": [
+      "true_standdown",
+      "false_standdown",
+      "ambiguous_standdown",
+      "not_observed"
+    ],
+    "observed_standdowns": [
+      {
+        "case_id": "mother-address-year",
+        "visible_policy_ref": "research/pre-step6-card-deck-visibility-policies/mother-address-year.card-deck-visibility-policy.v1.json",
+        "current_label": "true_standdown_candidate",
+        "calibration_weight": "seed_only"
+      }
+    ],
+    "audit_dimensions": [
+      "case_type",
+      "card_type",
+      "v60_overlap",
+      "ledger_signal",
+      "reviewer_signal",
+      "protected_payload_preservation"
+    ],
+    "payload_preservation_outcomes": [
+      "case_n_a",
+      "preserved_marker_and_anchor_entities",
+      "preserved_by_marker_anchor_entities_missing",
+      "introduced_category_omission",
+      "deck_added_payload"
+    ],
+    "promotion_condition": "False-standdown recall must be measured on the calibration floor before runtime promotion."
+  },
+  "next_bridge_probe": {
+    "probe_id": "false_standdown_bridge_probe_v0",
+    "status": "planned_non_promotional",
+    "target_case_count_min": 2,
+    "target_case_count_max": 3,
+    "selection_rule": "Choose cases deliberately likely to expose false stand-down: the anchor is plausible, runtime asymmetry would suppress the deck, and the deck plausibly adds concrete protected pressure.",
+    "case_shapes": [
+      {
+        "shape_id": "high_clutter_sensitive_overlay",
+        "why_it_matters": "Tests whether runtime anchor bias suppresses useful deck pressure when clutter and tone sensitivity coexist."
+      },
+      {
+        "shape_id": "sensitive_anchor_misses_tripwire",
+        "why_it_matters": "Tests the dangerous case where the deck adds a concrete tripwire the anchor missed."
+      },
+      {
+        "shape_id": "sequencing_sensitive_boundary",
+        "why_it_matters": "Tests whether Polya-style sequencing survives when the answer also needs careful safety or legal boundaries."
+      }
+    ],
+    "promotion_effect": "none_bridge_only",
+    "stop_condition": "Any confirmed false_standdown triggers design review before an integration draft."
+  },
+  "calibration_floor_met": false,
+  "promotion_read": "runtime_promotion_blocked",
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Research-only manifest. It intentionally treats the current four cases as a seed suite and records the missing curation work instead of fabricating calibration coverage."
+}

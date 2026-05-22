@@ -1,0 +1,36 @@
+{
+  "schema_version": "pre_step6_visibility_asymmetry.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "design_preamble_visibility_asymmetry_v0",
+  "case_id": "deck-confirmed",
+  "mode": "research",
+  "ledger_signal": "additive_pressure_present",
+  "reviewer_signal": "deck_confirmed",
+  "runtime_asymmetry": {
+    "private_default": "deck_private",
+    "public_bias": "anchor_visible_when_unresolved",
+    "principle": "broad_private_narrow_public",
+    "normal_runtime_comparison_loop": false
+  },
+  "retest_policy": {
+    "allowed": true,
+    "max_retests": 1,
+    "normal_runtime_reviewer_calls": 0,
+    "second_reviewer_model_policy": "different_model_family_if_available",
+    "second_reviewer_prompt_policy": "same_rubric_fresh_blind_shuffle",
+    "deck_visible_threshold": "second_reviewer_prefers_deck",
+    "non_inferior_deck_result": "keep_for_research_only",
+    "tie_after_retest_result": "anchor_visible_deck_private"
+  },
+  "visible_policy": {
+    "result": "card_deck_visible_after_aligned_signals",
+    "why": "Step 6 found additive pressure and cognitive comparison preferred the deck.",
+    "false_standdown_risk": "tracked_if_deck_later_suppressed"
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Research-only visibility-asymmetry policy. It names runtime anchor bias and bounded research retest behavior; it does not wire a live reviewer loop."
+}

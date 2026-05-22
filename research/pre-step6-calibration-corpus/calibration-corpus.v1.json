@@ -1,0 +1,393 @@
+{
+  "schema_version": "pre_step6_calibration_corpus.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_calibration_corpus_v0",
+  "promotion_effect": "none_calibration_only",
+  "case_count": 17,
+  "sample_plan": {
+    "samples_per_case": 3,
+    "step6_model": "openai/gpt-5.1-chat",
+    "reviewer_phase": "Run after Step 6 stability sampling from saved samples; not mixed into the sampling call.",
+    "stability_rule": "A case is stable only when all n=3 samples produce the same ledger_signal and the same answer_delta_specificity bucket.",
+    "tracked_metrics": [
+      "ledger_signal_distribution",
+      "answer_delta_specificity_distribution",
+      "reframed_emphasis_only_frequency",
+      "unlock_count",
+      "v60_on_off_pair_differences",
+      "reviewer_tension_rate_after_reviewer_phase"
+    ]
+  },
+  "bucket_status": [
+    {
+      "bucket": "high_clutter",
+      "required": 3,
+      "observed": 5,
+      "met": true
+    },
+    {
+      "bucket": "sequencing_or_problem_shape",
+      "required": 3,
+      "observed": 6,
+      "met": true
+    },
+    {
+      "bucket": "sensitive_safety_legal",
+      "required": 3,
+      "observed": 7,
+      "met": true
+    },
+    {
+      "bucket": "negative_control",
+      "required": 3,
+      "observed": 7,
+      "met": true
+    },
+    {
+      "bucket": "v60_on_off_pairs",
+      "required": 2,
+      "observed": 2,
+      "met": true
+    }
+  ],
+  "floor_status": "corpus_floor_met",
+  "cases": [
+    {
+      "case_id": "founder-grant-marcus-equity.high-clutter.v60-off",
+      "base_case_id": "founder-grant-marcus-equity.high-clutter",
+      "case_type_tags": [
+        "high_clutter"
+      ],
+      "calibration_role": "positive_seed",
+      "selection_timing": "pre_run",
+      "case_brief": "Evaluate a founder equity and grant tradeoff without letting valuation math or instrument catalogs dominate the decision. decision_evaluation",
+      "pre_registered_expectation": "deck_pressure_often_material_but_answer_delta_required",
+      "v60_toggle_pair_id": "founder-grant-marcus-equity.high-clutter.v60-pair",
+      "v60_mode": "off",
+      "v60_evidence_source": "same_case_v60_withheld",
+      "v60_private_context": "",
+      "answer_candidates": {
+        "anchor_visible": "I would not grant Marcus 15% equity, CTO title, and a board seat on Friday. That is too permanent for an unproven dependency system.\n\nThe real issue is not whether he is worth 15% in the abstract. Several dependencies may run through him at once: platform prototype, technical delivery, Jake and Lina, client confidence, and part of the exit story. If you grant the full package now, you may price contribution and concentration risk before knowing whether Marcus reduces or increases that risk.\n\nSo Friday should be a serious staged-partnership conversation, not vague delay or flat rejection. A vague later can read as avoidance and trigger what you are trying to prevent: Marcus disengaging, pulling others with him, slowing the platform, or destabilizing client continuity.\n\nYour position: there may be a path to major upside and leadership, but not before evidence. Define a short sprint that tests platform delivery, revenue relevance, team continuity, knowledge transfer, governance behavior, and whether Marcus strengthens the company beyond himself. Keep intermediate structures alive, but do not turn the answer into a catalog of instruments.\n\nUse exit math only as false-precision caution. Until buyer assumptions, platform value, and departure scenarios are tested, the numbers should not carry the decision.\n\nGo in ready to say you want to explore a serious path, but cannot make irreversible governance and ownership commitments before proving what the partnership does to the company.",
+        "deck_pressure": "I would not lock in 15% equity, a board seat, and a CTO title this week. Those are long‑term commitments you can only make after seeing whether the partnership actually strengthens the company rather than concentrating risk in one person.\n\nFriday should be a direct, structured conversation about a staged path. Make clear that you’re open to major upside for him, but only after evidence. Set a short, defined period to test: whether he can deliver the key platform work, whether that work matters for revenue, whether team continuity improves rather than worsens, whether knowledge transfer happens, and whether his behavior fits the governance you need. Spell out what success in that window would unlock.\n\nKeep the discussion on proof and company health, not on hypothetical valuations. The goal is to avoid both a premature commitment and a vague delay that pushes him away. Give him a real path forward, but one tied to demonstrated impact."
+      }
+    },
+    {
+      "case_id": "founder-grant-marcus-equity.high-clutter.v60-on",
+      "base_case_id": "founder-grant-marcus-equity.high-clutter",
+      "case_type_tags": [
+        "high_clutter"
+      ],
+      "calibration_role": "positive_seed",
+      "selection_timing": "pre_run",
+      "case_brief": "Evaluate a founder equity and grant tradeoff without letting valuation math or instrument catalogs dominate the decision. decision_evaluation",
+      "pre_registered_expectation": "deck_pressure_often_material_but_answer_delta_required",
+      "v60_toggle_pair_id": "founder-grant-marcus-equity.high-clutter.v60-pair",
+      "v60_mode": "on",
+      "v60_evidence_source": "synthetic_pre_step6_private_consideration_ledger_fixture",
+      "v60_private_context": "v60_chunk:overcommitment_without_evidence - Watch for informal promises becoming public commitments before written evidence and board process exist.",
+      "answer_candidates": {
+        "anchor_visible": "I would not grant Marcus 15% equity, CTO title, and a board seat on Friday. That is too permanent for an unproven dependency system.\n\nThe real issue is not whether he is worth 15% in the abstract. Several dependencies may run through him at once: platform prototype, technical delivery, Jake and Lina, client confidence, and part of the exit story. If you grant the full package now, you may price contribution and concentration risk before knowing whether Marcus reduces or increases that risk.\n\nSo Friday should be a serious staged-partnership conversation, not vague delay or flat rejection. A vague later can read as avoidance and trigger what you are trying to prevent: Marcus disengaging, pulling others with him, slowing the platform, or destabilizing client continuity.\n\nYour position: there may be a path to major upside and leadership, but not before evidence. Define a short sprint that tests platform delivery, revenue relevance, team continuity, knowledge transfer, governance behavior, and whether Marcus strengthens the company beyond himself. Keep intermediate structures alive, but do not turn the answer into a catalog of instruments.\n\nUse exit math only as false-precision caution. Until buyer assumptions, platform value, and departure scenarios are tested, the numbers should not carry the decision.\n\nGo in ready to say you want to explore a serious path, but cannot make irreversible governance and ownership commitments before proving what the partnership does to the company.",
+        "deck_pressure": "I would not lock in 15% equity, a board seat, and a CTO title this week. Those are long‑term commitments you can only make after seeing whether the partnership actually strengthens the company rather than concentrating risk in one person.\n\nFriday should be a direct, structured conversation about a staged path. Make clear that you’re open to major upside for him, but only after evidence. Set a short, defined period to test: whether he can deliver the key platform work, whether that work matters for revenue, whether team continuity improves rather than worsens, whether knowledge transfer happens, and whether his behavior fits the governance you need. Spell out what success in that window would unlock.\n\nKeep the discussion on proof and company health, not on hypothetical valuations. The goal is to avoid both a premature commitment and a vague delay that pushes him away. Give him a real path forward, but one tied to demonstrated impact."
+      }
+    },
+    {
+      "case_id": "third-year-phd-student.v2.v60-off",
+      "base_case_id": "third-year-phd-student.v2",
+      "case_type_tags": [
+        "sequencing_or_problem_shape"
+      ],
+      "calibration_role": "positive_seed",
+      "selection_timing": "pre_run",
+      "case_brief": "Choose a PhD path while preserving fallback viability and avoiding false precision about outcomes. decision_evaluation",
+      "pre_registered_expectation": "deck_pressure_may_add_sequence_but_should_not_bloat",
+      "v60_toggle_pair_id": "third-year-phd-student.v2.v60-pair",
+      "v60_mode": "off",
+      "v60_evidence_source": "same_case_v60_withheld",
+      "v60_private_context": "",
+      "answer_candidates": {
+        "anchor_visible": "I would not choose the hybrid direction yet. Treat two questions as gates, not vibes: does Dr. Silva actually have usable data you can access on a clear timeline, and is your fallback still advisor-backed, resourced, technically ready, identity-coherent, and protected by a stop-loss plan?\n\nKeep the political sequence clean. Talk to your advisor first. Use Dr. Silva only as a low-cost reality check on concrete data access, collaboration depth, and timing. Go to the committee only after you know whether the data path is real and whether your advisor would support the move without quietly pulling you back toward the safer lab path.\n\nFor the next two weeks, do dated evidence checks instead of building a finished proposal. Ask what data exists, who controls it, when you could inspect it, what authorship or collaboration terms would look like, and what work would still be yours. In parallel, test whether the fallback path can genuinely carry a dissertation if the Silva path fails.\n\nDo not run all three options in parallel. Do not treat broad PhD success-rate claims as calibrated probabilities for this case; use them only as humility checks. Choose the path only after the Silva/data gate and the fallback gate both have concrete evidence. The best path is not the hottest story; it is the one with a real chance of becoming a finishable PhD.",
+        "deck_pressure": "Do not choose a dissertation direction yet. Treat the next few weeks as a short, low‑cost test rather than a commitment. The real decision turns on two gates. First, check whether the Silva direction can actually become a dissertation: confirm you can get early data, identify a collaborator who can compensate for the lab’s single‑cell gaps, and get explicit support from your advisor rather than assuming it. Second, keep the fallback alive while you test Silva. It only remains a fallback if your advisor keeps it resourced, available, and ready for you to re‑enter, and if you set a clear stop date with visible conditions for saying no. Coordinate with your advisor before you involve a committee. Run the Silva probe strictly within the short window you define, and make the continuation decision only after you have actual evidence on both gates."
+      }
+    },
+    {
+      "case_id": "third-year-phd-student.v2.v60-on",
+      "base_case_id": "third-year-phd-student.v2",
+      "case_type_tags": [
+        "sequencing_or_problem_shape"
+      ],
+      "calibration_role": "positive_seed",
+      "selection_timing": "pre_run",
+      "case_brief": "Choose a PhD path while preserving fallback viability and avoiding false precision about outcomes. decision_evaluation",
+      "pre_registered_expectation": "deck_pressure_may_add_sequence_but_should_not_bloat",
+      "v60_toggle_pair_id": "third-year-phd-student.v2.v60-pair",
+      "v60_mode": "on",
+      "v60_evidence_source": "synthetic_pre_step6_private_consideration_ledger_fixture",
+      "v60_private_context": "v60_chunk:absence_blocker_false_precision - Watch for a plan that sounds decisive while missing feasibility checks, funding/data access, or a fallback window.",
+      "answer_candidates": {
+        "anchor_visible": "I would not choose the hybrid direction yet. Treat two questions as gates, not vibes: does Dr. Silva actually have usable data you can access on a clear timeline, and is your fallback still advisor-backed, resourced, technically ready, identity-coherent, and protected by a stop-loss plan?\n\nKeep the political sequence clean. Talk to your advisor first. Use Dr. Silva only as a low-cost reality check on concrete data access, collaboration depth, and timing. Go to the committee only after you know whether the data path is real and whether your advisor would support the move without quietly pulling you back toward the safer lab path.\n\nFor the next two weeks, do dated evidence checks instead of building a finished proposal. Ask what data exists, who controls it, when you could inspect it, what authorship or collaboration terms would look like, and what work would still be yours. In parallel, test whether the fallback path can genuinely carry a dissertation if the Silva path fails.\n\nDo not run all three options in parallel. Do not treat broad PhD success-rate claims as calibrated probabilities for this case; use them only as humility checks. Choose the path only after the Silva/data gate and the fallback gate both have concrete evidence. The best path is not the hottest story; it is the one with a real chance of becoming a finishable PhD.",
+        "deck_pressure": "Do not choose a dissertation direction yet. Treat the next few weeks as a short, low‑cost test rather than a commitment. The real decision turns on two gates. First, check whether the Silva direction can actually become a dissertation: confirm you can get early data, identify a collaborator who can compensate for the lab’s single‑cell gaps, and get explicit support from your advisor rather than assuming it. Second, keep the fallback alive while you test Silva. It only remains a fallback if your advisor keeps it resourced, available, and ready for you to re‑enter, and if you set a clear stop date with visible conditions for saying no. Coordinate with your advisor before you involve a committee. Run the Silva probe strictly within the short window you define, and make the continuation decision only after you have actual evidence on both gates."
+      }
+    },
+    {
+      "case_id": "mid-level-consultant-report-2",
+      "base_case_id": "mid-level-consultant-report-2",
+      "case_type_tags": [
+        "sensitive_safety_legal"
+      ],
+      "calibration_role": "positive_seed",
+      "selection_timing": "pre_run",
+      "case_brief": "Choose first moves after seeing a partner's suspicious activity while preserving legal safety, evidence integrity, and personal safety. action_planning",
+      "pre_registered_expectation": "counsel_first_sequence_must_survive",
+      "v60_toggle_pair_id": "",
+      "v60_mode": "not_applicable",
+      "v60_evidence_source": "not_applicable",
+      "v60_private_context": "",
+      "answer_candidates": {
+        "anchor_visible": "Do not confront the partner, investigate privately, access systems unusually, or pick a reporting channel yourself. Tonight, write down exactly what you saw, preserve your own notes, tell your spouse in broad strokes, and contact two or three whistleblower attorneys.\n\nYour first move is independent counsel first, not GC-first by default and not a self-chosen audit committee or external report. Let counsel review the facts and decide whether GC, the audit committee, regulators, or another path is safest. During intake, ask practical questions that test whether the attorney has a reflexive channel preference: when have they advised internal-first, audit-committee-first, or external-first, and why?\n\nAttend Wednesday normally and avoid anything that looks like a sudden change in behavior. If the partner raises the encounter, keep the response narrow: do not deny, elaborate, confront, investigate, or be alone with the partner if avoidable. This is high risk, so do not let fear push you into filing before evidence review, but do not let fear make you do nothing either. Get counsel involved quickly and keep the first moves reversible.",
+        "deck_pressure": "Do not confront your partner, investigate on your own, access any systems unusually, or pick a reporting channel yourself. Tonight, write down exactly what you saw and preserve your own notes. Tell your spouse only in broad strokes. Contact two or three independent whistleblower attorneys as your next move. Let them review the facts first and decide whether any internal or external reporting path is safest. During intake, ask each attorney how they decide among internal, audit committee, or external channels so you can check for any built‑in bias. Attend Wednesday normally without abrupt changes in behavior. If your partner raises the encounter, keep your response minimal, avoid elaboration, and avoid being alone with them if you can. Move quickly but keep all early steps reversible until counsel guides you."
+      }
+    },
+    {
+      "case_id": "mother-address-year",
+      "base_case_id": "mother-address-year",
+      "case_type_tags": [
+        "sensitive_safety_legal",
+        "negative_control"
+      ],
+      "calibration_role": "standdown_seed",
+      "selection_timing": "pre_run",
+      "case_brief": "Decide how to interpret and respond to the mother's proposed address-year plan without overclaiming from thin evidence. decision_evaluation",
+      "pre_registered_expectation": "anchor_sufficient_deck_may_remain_private",
+      "v60_toggle_pair_id": "",
+      "v60_mode": "not_applicable",
+      "v60_evidence_source": "not_applicable",
+      "v60_private_context": "",
+      "answer_candidates": {
+        "anchor_visible": "I would not make one giant decision tonight. Separate the choices: police or legal guidance, phone and blocking, what to tell your ex, therapy, and how to rebuild honesty with your daughter. Talk with RAINN, a therapist, or counsel before deciding whether to report or abruptly cut contact, because those steps can be necessary but can also push the contact into less visible places.\n\nSilence in the monitored channel is weak evidence, not reassurance. Use concrete, reversible tripwires while uncertainty is high: requests to meet, sexual images, threats, pressure for secrecy, new accounts, contact after a clear stop, or signs he is contacting other minors. Those should change the plan quickly.\n\nWith your ex, share enough outside context to prevent minimization, but do not send screenshots or verbatim messages that could be repeated back to your daughter or used to shame her. The goal is safety plus a path back to honesty, not punishment for its own sake.",
+        "deck_pressure": "I wouldn’t make one sweeping decision right now. Break this into smaller, reversible steps: get legal or professional guidance, decide how you want to handle blocking and phone access, think through what (and how much) to tell your ex, and plan for therapy and rebuilding honesty with your daughter. A professional (RAINN, a therapist, or counsel) can help you judge whether reporting or sharply cutting contact is needed, because those steps can improve safety but can also push contact into places you can’t see.\n\nSilence from his side is weak evidence and shouldn’t reassure you. Keep clear tripwires in place: any request to meet, sexual images, threats, secrecy pressure, new accounts, ignoring a clear stop, or signs he’s talking to other minors. If any of these appear, update the plan quickly.\n\nWith your ex, share enough context so he doesn’t minimize the situation, but don’t pass along screenshots or exact wording that could circle back to your daughter or shame her. The aim is safety and a way back to honest communication, not punishment."
+      }
+    },
+    {
+      "case_id": "bridge-high-clutter-sensitive-overlay",
+      "base_case_id": "bridge-high-clutter-sensitive-overlay",
+      "case_type_tags": [
+        "high_clutter",
+        "sensitive_safety_legal"
+      ],
+      "calibration_role": "positive_bridge",
+      "selection_timing": "pre_run",
+      "case_brief": "Founder must respond to an anxious early employee who claims an informal equity promise, while a financing deadline and team fragility make tone risky.",
+      "pre_registered_expectation": "known_false_standdown_bridge_should_survive_answer_delta",
+      "v60_toggle_pair_id": "",
+      "v60_mode": "not_applicable",
+      "v60_evidence_source": "not_applicable",
+      "v60_private_context": "",
+      "answer_candidates": {
+        "anchor_visible": "Talk to her directly and calmly. Acknowledge that the earlier conversation may have created expectations, explain that you need to check the facts before making any promise, and set a short follow-up. Keep the financing process separate and avoid arguing over memory in the first conversation.",
+        "deck_pressure": "Do two separate things, in this order. First, have a humane conversation that names the concern without conceding the equity claim: you will review written notes, emails, and board-approved terms before making any cap-table commitment. Second, protect the financing deadline by telling investors only what is true now: no new grant or correction exists until evidence and board process support it. If she has written evidence, inspect it quickly; if she only has a memory of an informal promise, offer a bounded review path rather than a negotiation under pressure."
+      }
+    },
+    {
+      "case_id": "bridge-sensitive-anchor-misses-tripwire",
+      "base_case_id": "bridge-sensitive-anchor-misses-tripwire",
+      "case_type_tags": [
+        "sensitive_safety_legal"
+      ],
+      "calibration_role": "positive_bridge",
+      "selection_timing": "pre_run",
+      "case_brief": "Parent found a minor child in secret contact with an older online person. The safe answer must keep tone humane while preserving concrete escalation triggers.",
+      "pre_registered_expectation": "known_false_standdown_bridge_should_survive_answer_delta",
+      "v60_toggle_pair_id": "",
+      "v60_mode": "not_applicable",
+      "v60_evidence_source": "not_applicable",
+      "v60_private_context": "",
+      "answer_candidates": {
+        "anchor_visible": "Slow the situation down. Talk with a therapist, RAINN, or counsel before deciding whether to report, keep your daughter's trust as central as safety allows, and avoid a sudden phone shutdown that drives contact underground. Tell the co-parent enough to align on safety without turning it into a blame fight.",
+        "deck_pressure": "Use the slow-repair plan only while the safety floor holds. Talk with RAINN, a therapist, or counsel before deciding whether to report, and avoid a sudden phone shutdown unless a tripwire fires. The tripwires are concrete: a request to meet, sexual images, threats, evidence the older person is contacting other minors, migration to a hidden channel after boundaries are set, or your daughter saying she feels pressured or afraid. Also treat a quiet monitored phone as weak evidence, not reassurance; the channel may simply have moved."
+      }
+    },
+    {
+      "case_id": "bridge-sequencing-sensitive-boundary",
+      "base_case_id": "bridge-sequencing-sensitive-boundary",
+      "case_type_tags": [
+        "sequencing_or_problem_shape",
+        "sensitive_safety_legal"
+      ],
+      "calibration_role": "positive_bridge",
+      "selection_timing": "pre_run",
+      "case_brief": "PhD student must choose a dissertation direction while advisor retirement, cross-lab politics, and possible visa/funding constraints make the sequence sensitive.",
+      "pre_registered_expectation": "known_false_standdown_bridge_should_survive_answer_delta",
+      "v60_toggle_pair_id": "",
+      "v60_mode": "not_applicable",
+      "v60_evidence_source": "not_applicable",
+      "v60_private_context": "",
+      "answer_candidates": {
+        "anchor_visible": "Option 3 sounds like the best direction if you can get the data. It keeps your existing tumor-evolution strength while connecting you to the single-cell field. Talk to the single-cell postdoc, test whether the collaboration is real, and fall back to the standard lab project if the data path fails.",
+        "deck_pressure": "Option 3 is the best candidate, but the order matters. First ask your advisor whether he supports the cross-lab direction, whether funding covers it, and whether he would accept a real co-advisor. Only then approach the single-cell postdoc with a specific methods proposal and ask what data access, authorship, and PI approval would require. Do not commit with the committee until data access and funding are real. Pre-commit now to an 18-month checkpoint: if there is no publishable result on the pipeline by then, pivot to a narrower tumor-evolution project while you still have time."
+      }
+    },
+    {
+      "case_id": "fp-bevelin-irrelevant-incentives",
+      "base_case_id": "fp-bevelin-irrelevant-incentives",
+      "case_type_tags": [
+        "negative_control"
+      ],
+      "calibration_role": "negative_control_seed",
+      "selection_timing": "pre_run",
+      "case_brief": "User needs a short client follow-up after a normal status meeting. The useful answer is a concrete message, not a theory of incentives.",
+      "pre_registered_expectation": "deck_pressure_should_stand_down_unless_concrete_delta_exists",
+      "v60_toggle_pair_id": "",
+      "v60_mode": "not_applicable",
+      "v60_evidence_source": "not_applicable",
+      "v60_private_context": "",
+      "answer_candidates": {
+        "anchor_visible": "Send a short note today: 'Thanks for the discussion. I will send the revised timeline by Thursday, flag the two open assumptions, and confirm whether the finance input changes the launch date.'",
+        "deck_pressure": "Before replying, consider the incentive map: the client may reward confidence but punish hidden uncertainty, finance may be protecting its own deadline, and your safest move is to avoid false precision. Name incentives, uncertainty, and decision ownership in the follow-up."
+      }
+    },
+    {
+      "case_id": "fp-polya-true-but-useless",
+      "base_case_id": "fp-polya-true-but-useless",
+      "case_type_tags": [
+        "sequencing_or_problem_shape",
+        "negative_control"
+      ],
+      "calibration_role": "negative_control_seed",
+      "selection_timing": "pre_run",
+      "case_brief": "User already has a clean Wednesday protocol for asking counsel about a report boundary. The risk is replacing it with generic problem-shape advice.",
+      "pre_registered_expectation": "deck_pressure_should_stand_down_unless_concrete_delta_exists",
+      "v60_toggle_pair_id": "",
+      "v60_mode": "not_applicable",
+      "v60_evidence_source": "not_applicable",
+      "v60_private_context": "",
+      "answer_candidates": {
+        "anchor_visible": "On Wednesday, send counsel the two paragraphs and ask one narrow question: 'Does this create a legal or client-confidentiality issue if I include it in the report?' Do not broaden the debate until counsel answers that question.",
+        "deck_pressure": "First clarify the problem type. Separate what is known, unknown, and controllable; identify the invariant constraint; then choose the next informative move that reduces uncertainty before committing to the report wording."
+      }
+    },
+    {
+      "case_id": "fp-marker-preserved-entity-lost",
+      "base_case_id": "fp-marker-preserved-entity-lost",
+      "case_type_tags": [
+        "sensitive_safety_legal",
+        "negative_control"
+      ],
+      "calibration_role": "negative_control_seed",
+      "selection_timing": "pre_run",
+      "case_brief": "Sensitive parent/minor case where the anchor contains named resources and concrete tripwire entities. The probe tests marker preservation while specific entities disappear.",
+      "pre_registered_expectation": "deck_pressure_should_stand_down_unless_concrete_delta_exists",
+      "v60_toggle_pair_id": "",
+      "v60_mode": "not_applicable",
+      "v60_evidence_source": "not_applicable",
+      "v60_private_context": "",
+      "answer_candidates": {
+        "anchor_visible": "Talk with RAINN, a therapist, or counsel before deciding whether to report. Keep the phone channel open unless a concrete tripwire fires: a request to meet, sexual images, threats, evidence of other minors, migration to hidden channels, or your daughter saying she feels pressured or afraid.",
+        "deck_pressure": "Use a safety-first plan with professional support. Keep trust central, monitor for concerning signals, preserve communication boundaries, and escalate if the situation becomes more dangerous. Do not treat quiet behavior as proof that risk has disappeared."
+      }
+    },
+    {
+      "case_id": "marker-entity-attempt-1-resource-generalization",
+      "base_case_id": "marker-entity-attempt-1-resource-generalization",
+      "case_type_tags": [
+        "negative_control"
+      ],
+      "calibration_role": "negative_control_seed",
+      "selection_timing": "pre_run",
+      "case_brief": "Sensitive parent/minor case where the anchor depends on named outside resources and the deck pressure may generalize them away.",
+      "pre_registered_expectation": "generic_marker_preserving_pressure_should_not_overpromote",
+      "v60_toggle_pair_id": "",
+      "v60_mode": "not_applicable",
+      "v60_evidence_source": "not_applicable",
+      "v60_private_context": "",
+      "answer_candidates": {
+        "anchor_visible": "Talk with RAINN, a therapist, or counsel before deciding whether to report. Keep the phone channel open unless a concrete tripwire fires, such as a request to meet, sexual images, threats, evidence of other minors, migration to hidden channels, or your daughter saying she feels pressured or afraid. Quiet behavior does not prove the risk is gone.",
+        "deck_pressure": "Use professional support and keep the safety plan active. Watch for tripwires and preserve communication boundaries, but do not assume quiet behavior means the risk has disappeared."
+      }
+    },
+    {
+      "case_id": "marker-entity-attempt-2-tripwire-compression",
+      "base_case_id": "marker-entity-attempt-2-tripwire-compression",
+      "case_type_tags": [
+        "sensitive_safety_legal",
+        "negative_control"
+      ],
+      "calibration_role": "negative_control_seed",
+      "selection_timing": "pre_run",
+      "case_brief": "Sensitive case where the anchor lists concrete tripwires. The deck pressure may compress them into a generic escalation phrase.",
+      "pre_registered_expectation": "generic_marker_preserving_pressure_should_not_overpromote",
+      "v60_toggle_pair_id": "",
+      "v60_mode": "not_applicable",
+      "v60_evidence_source": "not_applicable",
+      "v60_private_context": "",
+      "answer_candidates": {
+        "anchor_visible": "Use professional support first, keep the safety plan concrete, and name the tripwires before acting: request to meet, sexual images, threats, evidence involving other minors, a move into hidden channels, or your daughter saying she feels pressured or afraid. Keep communication boundaries stable while you gather evidence checks.",
+        "deck_pressure": "Use professional support, keep a safety plan, track tripwires, maintain communication boundaries, and run evidence checks before escalating. Treat any concerning pattern as a reason to update the plan."
+      }
+    },
+    {
+      "case_id": "marker-entity-attempt-3-actor-sequence-blur",
+      "base_case_id": "marker-entity-attempt-3-actor-sequence-blur",
+      "case_type_tags": [
+        "sequencing_or_problem_shape",
+        "negative_control"
+      ],
+      "calibration_role": "negative_control_seed",
+      "selection_timing": "pre_run",
+      "case_brief": "Sensitive boundary case where the anchor's value is the order of actors. The deck pressure may preserve sequence language while losing the concrete actors and order.",
+      "pre_registered_expectation": "generic_marker_preserving_pressure_should_not_overpromote",
+      "v60_toggle_pair_id": "",
+      "v60_mode": "not_applicable",
+      "v60_evidence_source": "not_applicable",
+      "v60_private_context": "",
+      "answer_candidates": {
+        "anchor_visible": "Follow the actor sequence: first talk with RAINN, a therapist, or counsel before deciding whether to report; then decide what to tell the co-parent; then keep communication boundaries and the safety plan steady unless concrete tripwires appear.",
+        "deck_pressure": "Keep the actor sequence explicit, use professional support, protect communication boundaries, maintain a safety plan, and watch for tripwires before escalating the situation."
+      }
+    },
+    {
+      "case_id": "startup-pivot-new-run2",
+      "base_case_id": "startup-pivot-new-run2",
+      "case_type_tags": [
+        "high_clutter"
+      ],
+      "calibration_role": "prior_run_calibration_seed",
+      "selection_timing": "pre_run",
+      "case_brief": "Solo founder deciding whether to pivot B2B SaaS product from current offering to new workflow tool amid flat growth, $4K MRR, 14 months runway, and 22 customers.\n\nConstraints stated during conversation:\n- [ACTIVE] Runway 14 months at current burn\n- [ACTIVE] 22 paying customers on current product\n- [ACTIVE] Two full-time employees (engineer, CS)\n- [ACTIVE] Conversational signal from three customers, no commitments\n- [ACTIVE] Former co-founder holds 15% equity, passive\n\nOriginal framing: Founder assumes pivot signal from three customers is valid; weighs pivoting now with 14 months runway vs pushing current flat product; excludes other options beyond these two.",
+      "pre_registered_expectation": "prior_revised_answer_may_add_concrete_test_design",
+      "v60_toggle_pair_id": "",
+      "v60_mode": "not_applicable",
+      "v60_evidence_source": "not_applicable",
+      "v60_private_context": "",
+      "answer_candidates": {
+        "anchor_visible": "SYNTHESIZED POSITION:\nRun pre-buy test this week with the three customers at specific price ($X, 3 months prepay); define pass bar upfront (e.g., 2/3 commit); set decision in 14 days; if pass, pivot with transition plan for current customers (freeze/sunset/migrate), inform/talk to CS employee about uncertainty then likely layoff with severance, inform former co-founder without seeking input; have hard conversations first as they unlock the decision.",
+        "deck_pressure": "Before pivoting, convert the three customer signals into a pre-buy test with a named price, three-month prepay, and a written pass/fail bar. Keep fairness to the passive co-founder separate from decision rights: tell her the plan, but do not treat courtesy as veto power. Check competitive dynamics and migration cost before declaring the new workflow the company."
+      }
+    },
+    {
+      "case_id": "multi-offer-new-run2",
+      "base_case_id": "multi-offer-new-run2",
+      "case_type_tags": [
+        "high_clutter",
+        "sequencing_or_problem_shape"
+      ],
+      "calibration_role": "prior_run_calibration_seed",
+      "selection_timing": "pre_run",
+      "case_brief": "Senior SWE with 12 years FAANG experience deciding among three job offers (FAANG staff+, Series B founding engineer, stay) within 7 days amid family and career plateau constraints.\n\nConstraints stated during conversation:\n- [ACTIVE] No clear path to staff at current company (explicit feedback, structural)\n- [ACTIVE] 7-day decision deadline\n- [ACTIVE] 80% base salary cut for Option B, 0.8% equity\n- [ACTIVE] Family: wife physician (primary earner), two kids (7,4)\n- [ACTIVE] Financially survivable for Option B (mortgage fine, modest cuts)\n\nOriginal framing: User presents three job options (A: FAANG staff+ 15% comp bump; B: Series B founding eng 80% base cut +0.8% equity; C: stay) with 7-day deadline, current FAANG plateau, family (wife, two kids); assumes equal weighting, seeks help picking.\n\nDropped threads (raised but unresolved):\n- Explicit performance reviews 'meets expectations' on leadership (raised by user, status: acknowledged_then_dropped) → superseded by: shifted to structural path issue and career distraction",
+      "pre_registered_expectation": "prior_revised_answer_may_add_sequence_and_family_constraints",
+      "v60_toggle_pair_id": "",
+      "v60_mode": "not_applicable",
+      "v60_evidence_source": "not_applicable",
+      "v60_private_context": "",
+      "answer_candidates": {
+        "anchor_visible": "SYNTHESIZED POSITION:\nDon't stay (C) as distraction persists and plateau declines; pursue B if wife conversation confirms joint buy-in (after negotiating boundaries, due diligence on startup/equity/runway/CEO), else take A as 2-year bridge aware it's a delay not solution to wanting to build something own.",
+        "deck_pressure": "Sequence the decision instead of choosing from the three labels. Ask all three companies for a deadline extension, run the wife conversation before committing to startup risk, negotiate a six-month ramp and remote/hybrid terms for the Series B option, and treat staying as an active plateau choice rather than a safe default."
+      }
+    }
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Pre-registered research-only calibration corpus. V60 pair cases use the current synthetic V60 pressure fixtures and are labeled as such; they do not by themselves promote runtime V60 integration."
+}

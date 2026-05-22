@@ -1,0 +1,54 @@
+{
+  "schema_version": "pre_step6_gpt_stability_correctness_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_gpt_stability_correctness_review_v0",
+  "review_case_id": "mid-level-consultant-report-2.sample-1.gpt-anchor-visible",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"output_label\": \"better\",\n  \"winner_label\": \"B\",\n  \"visibility_judgment\": \"correct_visible\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Candidate B provides a more comprehensive and actionable framework for selecting legal counsel, specifically advising on how to vet attorneys for potential biases in reporting channels. It also provides clearer behavioral guardrails for the interim period.\",\n  \"answer_correctness_notes\": [\n    \"Candidate B correctly emphasizes the importance of independent counsel over default internal reporting.\",\n    \"Candidate B provides specific, practical interview questions for potential attorneys, which is a high-value addition.\",\n    \"Candidate A is concise but lacks the depth regarding the strategic selection of reporting channels that B provides.\"\n  ],\n  \"visibility_decision_notes\": [\n    \"The visibility decision to show the Step 6 output is correct because the added detail in B significantly improves the user's ability to execute the advice safely and effectively.\"\n  ],\n  \"payload_loss_or_bloat\": [\n    \"Candidate B is longer but the additional length is justified by the inclusion of specific vetting questions and clearer strategic guidance.\"\n  ],\n  \"structural_delta_read\": \"useful_structural_delta\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 1069,
+    "completion_tokens": 272,
+    "total_tokens": 1341,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter",
+    "model_family": "google"
+  },
+  "blind_map": {
+    "A": "step6_visible",
+    "B": "anchor_visible"
+  },
+  "reviewer_output": {
+    "output_label": "better",
+    "winner_label": "B",
+    "visibility_judgment": "correct_visible",
+    "confidence": "high",
+    "rationale": "Candidate B provides a more comprehensive and actionable framework for selecting legal counsel, specifically advising on how to vet attorneys for potential biases in reporting channels. It also provides clearer behavioral guardrails for the interim period.",
+    "answer_correctness_notes": [
+      "Candidate B correctly emphasizes the importance of independent counsel over default internal reporting.",
+      "Candidate B provides specific, practical interview questions for potential attorneys, which is a high-value addition.",
+      "Candidate A is concise but lacks the depth regarding the strategic selection of reporting channels that B provides."
+    ],
+    "visibility_decision_notes": [
+      "The visibility decision to show the Step 6 output is correct because the added detail in B significantly improves the user's ability to execute the advice safely and effectively."
+    ],
+    "payload_loss_or_bloat": [
+      "Candidate B is longer but the additional length is justified by the inclusion of specific vetting questions and clearer strategic guidance."
+    ],
+    "structural_delta_read": "useful_structural_delta"
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample GPT-stability correctness judgment."
+}

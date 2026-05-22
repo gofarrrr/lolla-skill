@@ -1,0 +1,55 @@
+{
+  "schema_version": "pre_step6_gpt_stability_correctness_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_gpt_stability_correctness_review_v0",
+  "review_case_id": "third-year-phd-student.v2.v60-on.sample-1.gpt-step6-visible",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"output_label\": \"better\",\n  \"winner_label\": \"A\",\n  \"visibility_judgment\": \"correct_visible\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Candidate A provides a more structured, actionable framework by explicitly defining the 'two-gate' process. It avoids the slightly more conversational and repetitive tone of Candidate B, focusing on the procedural steps required to maintain the fallback option while vetting the new path.\",\n  \"answer_correctness_notes\": [\n    \"Candidate A's use of numbered gates makes the advice easier to operationalize.\",\n    \"Candidate A correctly prioritizes the advisor-first sequence, which is critical for PhD political stability.\",\n    \"Candidate B is slightly more verbose and uses less precise language ('vibes', 'identity-coherent').\"\n  ],\n  \"visibility_decision_notes\": [\n    \"The step6_visible output (Candidate A) is superior because it provides a more disciplined, concise approach to the decision-making process.\",\n    \"The structural delta of explicitly bounding the probe window is a high-value addition that justifies the visibility of the new output.\"\n  ],\n  \"payload_loss_or_bloat\": [\n    \"Candidate B suffers from minor bloat due to the inclusion of 'identity-coherent' and 'vibes', which add little practical value.\"\n  ],\n  \"structural_delta_read\": \"useful_structural_delta\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 1280,
+    "completion_tokens": 313,
+    "total_tokens": 1593,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter",
+    "model_family": "google"
+  },
+  "blind_map": {
+    "A": "step6_visible",
+    "B": "anchor_visible"
+  },
+  "reviewer_output": {
+    "output_label": "better",
+    "winner_label": "A",
+    "visibility_judgment": "correct_visible",
+    "confidence": "high",
+    "rationale": "Candidate A provides a more structured, actionable framework by explicitly defining the 'two-gate' process. It avoids the slightly more conversational and repetitive tone of Candidate B, focusing on the procedural steps required to maintain the fallback option while vetting the new path.",
+    "answer_correctness_notes": [
+      "Candidate A's use of numbered gates makes the advice easier to operationalize.",
+      "Candidate A correctly prioritizes the advisor-first sequence, which is critical for PhD political stability.",
+      "Candidate B is slightly more verbose and uses less precise language ('vibes', 'identity-coherent')."
+    ],
+    "visibility_decision_notes": [
+      "The step6_visible output (Candidate A) is superior because it provides a more disciplined, concise approach to the decision-making process.",
+      "The structural delta of explicitly bounding the probe window is a high-value addition that justifies the visibility of the new output."
+    ],
+    "payload_loss_or_bloat": [
+      "Candidate B suffers from minor bloat due to the inclusion of 'identity-coherent' and 'vibes', which add little practical value."
+    ],
+    "structural_delta_read": "useful_structural_delta"
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample GPT-stability correctness judgment."
+}

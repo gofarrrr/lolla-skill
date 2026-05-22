@@ -1,0 +1,56 @@
+{
+  "schema_version": "pre_step6_gpt_stability_correctness_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_gpt_stability_correctness_review_v0",
+  "review_case_id": "third-year-phd-student.v2.v60-on.sample-0.gpt-step6-visible",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"output_label\": \"non_inferior\",\n  \"winner_label\": \"B\",\n  \"visibility_judgment\": \"correct_visible\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Candidate B is more concise and actionable, effectively distilling the advice into two clear 'gates' without the slightly repetitive framing found in Candidate A. Candidate B's structure is more readable and adheres better to the requirement of avoiding bloat.\",\n  \"answer_correctness_notes\": [\n    \"Candidate B provides a more direct, structured approach to the decision-making process.\",\n    \"Candidate A is slightly more verbose and repetitive in its phrasing.\",\n    \"Both candidates correctly identify the need for evidence-based gates rather than speculative decision-making.\"\n  ],\n  \"visibility_decision_notes\": [\n    \"The Step 6 output (Candidate B) provides a cleaner, more refined version of the advice, justifying its visibility over the anchor.\",\n    \"The added structural clarity in the Step 6 output improves the utility of the response.\"\n  ],\n  \"payload_loss_or_bloat\": [\n    \"Candidate A suffers from minor bloat.\",\n    \"Candidate B successfully preserves all critical payload while reducing word count.\"\n  ],\n  \"structural_delta_read\": \"useful_structural_delta\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 1275,
+    "completion_tokens": 290,
+    "total_tokens": 1565,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter",
+    "model_family": "google"
+  },
+  "blind_map": {
+    "A": "anchor_visible",
+    "B": "step6_visible"
+  },
+  "reviewer_output": {
+    "output_label": "non_inferior",
+    "winner_label": "B",
+    "visibility_judgment": "correct_visible",
+    "confidence": "high",
+    "rationale": "Candidate B is more concise and actionable, effectively distilling the advice into two clear 'gates' without the slightly repetitive framing found in Candidate A. Candidate B's structure is more readable and adheres better to the requirement of avoiding bloat.",
+    "answer_correctness_notes": [
+      "Candidate B provides a more direct, structured approach to the decision-making process.",
+      "Candidate A is slightly more verbose and repetitive in its phrasing.",
+      "Both candidates correctly identify the need for evidence-based gates rather than speculative decision-making."
+    ],
+    "visibility_decision_notes": [
+      "The Step 6 output (Candidate B) provides a cleaner, more refined version of the advice, justifying its visibility over the anchor.",
+      "The added structural clarity in the Step 6 output improves the utility of the response."
+    ],
+    "payload_loss_or_bloat": [
+      "Candidate A suffers from minor bloat.",
+      "Candidate B successfully preserves all critical payload while reducing word count."
+    ],
+    "structural_delta_read": "useful_structural_delta"
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample GPT-stability correctness judgment."
+}

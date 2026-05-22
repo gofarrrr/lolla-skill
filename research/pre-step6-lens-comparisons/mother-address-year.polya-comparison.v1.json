@@ -1,0 +1,132 @@
+{
+  "schema_version": "pre_step6_lens_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "polya_v0_fixed_suite",
+  "case_id": "mother-address-year",
+  "comparison_kind": "polya_lens_local_rubric",
+  "lens_pack": "polya_problem_solving_v0",
+  "candidate_refs": {
+    "rendered_hybrid_answer_core": "research/pre-step6-rendered-hybrid-answer-cores/mother-address-year.native.rendered-hybrid-answer-core.v1.json",
+    "portfolio_base_answer_core": "research/pre-step6-portfolio-answer-cores/mother-address-year.native.portfolio-answer-core.v1.json",
+    "lens_answer_core": "research/pre-step6-lens-answer-cores/mother-address-year.polya-answer-core.v1.json",
+    "lens_probe": "research/pre-step6-lens-probes/mother-address-year.polya-lens-probe.v1.json"
+  },
+  "criteria": [
+    {
+      "criterion_id": "decision_usefulness",
+      "question": "Which answer best supports safe action?",
+      "winner_arm": "lens",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Good slow path.",
+        "portfolio_base": "Good weak-evidence path.",
+        "lens": "Best reversible-action framing under uncertainty."
+      },
+      "rationale": "Polya helps the action shape."
+    },
+    {
+      "criterion_id": "source_grounding",
+      "question": "Which answer stays grounded?",
+      "winner_arm": "tie",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Grounded.",
+        "portfolio_base": "Grounded.",
+        "lens": "Grounded."
+      },
+      "rationale": "All are grounded."
+    },
+    {
+      "criterion_id": "overclaim_risk",
+      "question": "Which answer avoids certainty?",
+      "winner_arm": "lens",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Avoids certainty.",
+        "portfolio_base": "Avoids certainty.",
+        "lens": "Explicitly frames it as a safety decision under uncertainty."
+      },
+      "rationale": "The lens is strongest on uncertainty."
+    },
+    {
+      "criterion_id": "answer_length_cognitive_load",
+      "question": "Which answer is easiest to use?",
+      "winner_arm": "portfolio_base",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Calm.",
+        "portfolio_base": "Most compact.",
+        "lens": "Helpful but a bit more conceptual."
+      },
+      "rationale": "Base is lighter."
+    },
+    {
+      "criterion_id": "machinery_hygiene",
+      "question": "Which answer avoids private terms?",
+      "winner_arm": "tie",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Clean.",
+        "portfolio_base": "Clean.",
+        "lens": "Clean."
+      },
+      "rationale": "All are clean."
+    },
+    {
+      "criterion_id": "conflict_preservation",
+      "question": "Which answer preserves safety versus honesty?",
+      "winner_arm": "tie",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Preserves it.",
+        "portfolio_base": "Preserves it.",
+        "lens": "Preserves it."
+      },
+      "rationale": "No clear winner."
+    },
+    {
+      "criterion_id": "edge_pressure_preservation",
+      "question": "Which answer preserves subtle uncertainty pressure?",
+      "winner_arm": "lens",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Keeps weak evidence.",
+        "portfolio_base": "Keeps weak evidence.",
+        "lens": "Adds reversible-next-move framing."
+      },
+      "rationale": "Polya adds a useful edge."
+    },
+    {
+      "criterion_id": "breadth_depth_preservation",
+      "question": "Which answer preserves breadth without overforcing?",
+      "winner_arm": "portfolio_base",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Good.",
+        "portfolio_base": "Best balance.",
+        "lens": "Good but slightly more abstract."
+      },
+      "rationale": "Base remains stronger overall."
+    },
+    {
+      "criterion_id": "premature_pruning_risk",
+      "question": "Which answer least risks narrowing too early?",
+      "winner_arm": "lens",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Keeps uncertainty.",
+        "portfolio_base": "Keeps uncertainty.",
+        "lens": "Avoids proof-or-no-proof framing."
+      },
+      "rationale": "Polya helps prevent premature closure."
+    },
+    {
+      "criterion_id": "negative_control_discipline",
+      "question": "Does the lens avoid over-promotion?",
+      "winner_arm": "tie",
+      "evidence_by_arm": {
+        "rendered_hybrid": "No over-promotion.",
+        "portfolio_base": "No over-promotion.",
+        "lens": "Useful but still not a runtime promotion case."
+      },
+      "rationale": "Retest is the right posture."
+    }
+  ],
+  "tie_break_rule": "lens_must_add_edge_without_pruning",
+  "aggregate_winner_arm": "tie",
+  "aggregate_decision": "lens_boundary_case",
+  "promotion_read": "retest",
+  "notes": "Polya v0 helps mother by framing reversible safety action under uncertainty, but it remains a retest case."
+}

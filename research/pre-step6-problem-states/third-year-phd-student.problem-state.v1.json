@@ -1,0 +1,31 @@
+{
+  "schema_version": "problem_state.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "third-year-phd-student",
+  "source_refs": [
+    "research/pre-step6-comparison-fixtures/third-year-phd-student-20260430T140800Z.md"
+  ],
+  "user_goal": "Choose a PhD path while preserving fallback viability and avoiding false precision about outcomes.",
+  "problem_type": "decision_evaluation",
+  "knowns": [
+    "The advisor may retire in 2-3 years.",
+    "The debated plan includes delayed reversal triggers.",
+    "Fallback viability depends on supervision and lab continuity."
+  ],
+  "unknowns": [
+    "Whether the advisor will preserve the fallback path.",
+    "Whether funding remains available through the trigger date."
+  ],
+  "constraints": [
+    "Do not use numeric success priors without grounding.",
+    "Do not assume the fallback remains open after delay."
+  ],
+  "success_condition": "Step 6 keeps the reversal-trigger plan tied to whether the fallback path remains executable.",
+  "missing_user_owned_info": [
+    "Advisor commitment to preserve the fallback path.",
+    "Funding and supervision availability at the trigger date."
+  ],
+  "suggested_next_move": "answer_now",
+  "why": "The case can be answered with bounded advice if fallback viability is treated as a live constraint."
+}

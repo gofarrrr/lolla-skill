@@ -1,0 +1,146 @@
+{
+  "schema_version": "pre_step6_portfolio_blind_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "third-year-phd-student",
+  "comparison_kind": "portfolio_blind_local_rubric",
+  "blind_seed": 2026052005,
+  "candidate_refs": {
+    "control_or_raw_answer_core": "research/pre-step6-raw-artifact-answer-cores/third-year-phd-student.raw-answer-core.v1.json",
+    "rendered_hybrid_answer_core": "research/pre-step6-rendered-hybrid-answer-cores/third-year-phd-student.conflict.native.rendered-hybrid-answer-core.v1.json",
+    "portfolio_answer_core": "research/pre-step6-portfolio-answer-cores/third-year-phd-student.v2.native.portfolio-answer-core.v1.json"
+  },
+  "blind_map": {
+    "A": "portfolio",
+    "B": "rendered_hybrid",
+    "C": "control_or_raw",
+    "D": "unused"
+  },
+  "criteria": [
+    {
+      "criterion_id": "decision_usefulness",
+      "question": "Which answer best guides the PhD decision?",
+      "winner_label": "A",
+      "evidence_by_label": {
+        "A": "Turns the decision into two named live gates: Silva executability and fallback survivability.",
+        "B": "Very useful two-gate framing from the prior rendered-hybrid pass.",
+        "C": "Useful but more raw-pressure-heavy.",
+        "D": "Unused arm."
+      },
+      "rationale": "A is slightly more operational because it names both live gates and their failure modes."
+    },
+    {
+      "criterion_id": "source_grounding",
+      "question": "Which answer stays inside the advisor, data, and fallback facts?",
+      "winner_label": "tie",
+      "evidence_by_label": {
+        "A": "Grounded in data access, sharing terms, collaborator role, advisor support, and fallback survival.",
+        "B": "Grounded in usable data, collaborator depth, advisor support, and fallback protection.",
+        "C": "Grounded but more raw.",
+        "D": "Unused arm."
+      },
+      "rationale": "A and B are both source-grounded."
+    },
+    {
+      "criterion_id": "overclaim_risk",
+      "question": "Which answer best avoids broad probability claims?",
+      "winner_label": "A",
+      "evidence_by_label": {
+        "A": "Explicitly says broad success rates are humility checks, not probabilities for this case.",
+        "B": "Also rejects broad PhD success-rate claims as probabilities.",
+        "C": "Avoids numeric priors but keeps more raw pressure visible.",
+        "D": "Unused arm."
+      },
+      "rationale": "A has the cleanest outside-view boundary."
+    },
+    {
+      "criterion_id": "answer_length_cognitive_load",
+      "question": "Which answer is easier to use?",
+      "winner_label": "A",
+      "evidence_by_label": {
+        "A": "Compact and names the two gates in one sentence.",
+        "B": "Fluent but a little more explanatory.",
+        "C": "More burdened by raw detail.",
+        "D": "Unused arm."
+      },
+      "rationale": "A is the lightest answer that still carries the binding constraints."
+    },
+    {
+      "criterion_id": "machinery_hygiene",
+      "question": "Which answer avoids internal terms and framework residue?",
+      "winner_label": "tie",
+      "evidence_by_label": {
+        "A": "No internal terms.",
+        "B": "No internal terms.",
+        "C": "No internal terms.",
+        "D": "Unused arm."
+      },
+      "rationale": "All live candidates are clean."
+    },
+    {
+      "criterion_id": "conflict_preservation",
+      "question": "Which answer best preserves the Silva-vs-fallback tension?",
+      "winner_label": "A",
+      "evidence_by_label": {
+        "A": "Keeps both not choosing Silva yet and not defaulting to the safer path, then names Silva executability and fallback survivability.",
+        "B": "Very explicitly preserves not choosing Silva yet and not defaulting to the safer path.",
+        "C": "Preserves tension with more raw detail.",
+        "D": "Unused arm."
+      },
+      "rationale": "B is strong, but A better converts the tension into a usable constraint pair."
+    },
+    {
+      "criterion_id": "duplicate_demotion",
+      "question": "Which answer avoids adding extra options or duplicate reasoning?",
+      "winner_label": "tie",
+      "evidence_by_label": {
+        "A": "No new options and no all-options drift.",
+        "B": "No new options and no all-options drift.",
+        "C": "No new options but more raw pressure.",
+        "D": "Unused arm."
+      },
+      "rationale": "A and B tie on duplicate demotion."
+    },
+    {
+      "criterion_id": "unforcedness",
+      "question": "Which answer feels most naturally reasoned?",
+      "winner_label": "B",
+      "evidence_by_label": {
+        "A": "Natural and compact, but more compressed.",
+        "B": "Most fluent public-answer rhythm from the prior rendered-hybrid pass.",
+        "C": "More research-shaped.",
+        "D": "Unused arm."
+      },
+      "rationale": "B keeps a small style advantage."
+    },
+    {
+      "criterion_id": "edge_pressure_preservation",
+      "question": "Which answer best preserves Silva executability and trigger-date fallback viability?",
+      "winner_label": "A",
+      "evidence_by_label": {
+        "A": "Names data access, sharing terms, collaborator role, fallback availability at the stop date, and disappearance risk.",
+        "B": "Preserves data access and fallback protection, but less sharply names sharing terms and disappearance risk.",
+        "C": "Preserves the pressures with more raw burden.",
+        "D": "Unused arm."
+      },
+      "rationale": "A best expresses the v2 map's active Silva pressure plus parked fallback stop-rule."
+    },
+    {
+      "criterion_id": "reserve_overuse",
+      "question": "Which answer avoids overusing reserve material?",
+      "winner_label": "A",
+      "evidence_by_label": {
+        "A": "Uses base-rate and fallback reserve material once and stops.",
+        "B": "Uses hybrid pressure cleanly.",
+        "C": "More reserve material visible.",
+        "D": "Unused arm."
+      },
+      "rationale": "A has the best balance of preserving edge pressure without opening new threads."
+    }
+  ],
+  "tie_break_rule": "portfolio_must_beat_or_simplify",
+  "aggregate_winner_label": "A",
+  "aggregate_decision": "portfolio_wins",
+  "promotion_read": "pass_to_step6_replay",
+  "notes": "Retest result: adding active Silva pressure changes the earlier tie. The portfolio answer is still research-only, but it now earns a replay check rather than stopping at comparison."
+}

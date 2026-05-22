@@ -1,0 +1,63 @@
+{
+  "schema_version": "pre_step6_portfolio_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mother-address-year",
+  "source_refs": [
+    "research/pre-step6-attention-maps/mother-address-year.step6-attention-map.v1.json",
+    "research/pre-step6-raw-artifact-fixtures/mother-address-year.raw-artifact-handoff.v1.json",
+    "research/pre-step6-hybrid-handoff-fixtures/mother-address-year.hybrid-handoff.v1.json"
+  ],
+  "modes": [
+    {
+      "mode_id": "B",
+      "label": "raw artifact handoff",
+      "source_ref": "research/pre-step6-raw-artifact-fixtures/mother-address-year.raw-artifact-handoff.v1.json",
+      "render_chars": 4000,
+      "active_count": 4,
+      "edge_count": 0,
+      "parked_count": 0,
+      "source_ref_count": 4,
+      "premature_pruning_risk": "low",
+      "answer_usefulness_judgment": "Preserves pressure but carries more raw burden than needed for the quiet case."
+    },
+    {
+      "mode_id": "C",
+      "label": "hybrid no extra pressure",
+      "source_ref": "research/pre-step6-hybrid-handoff-fixtures/mother-address-year.hybrid-handoff.v1.json",
+      "render_chars": 3200,
+      "active_count": 0,
+      "edge_count": 0,
+      "parked_count": 1,
+      "source_ref_count": 2,
+      "premature_pruning_risk": "medium",
+      "answer_usefulness_judgment": "Good negative-control behavior, but less explicit about preserved negative space."
+    },
+    {
+      "mode_id": "E",
+      "label": "reasoning portfolio",
+      "source_ref": "research/pre-step6-attention-maps/mother-address-year.step6-attention-map.v1.json",
+      "render_chars": 2100,
+      "active_count": 1,
+      "edge_count": 1,
+      "parked_count": 1,
+      "source_ref_count": 4,
+      "premature_pruning_risk": "low",
+      "answer_usefulness_judgment": "Keeps the weak-evidence caution active while parking wider system pressure."
+    }
+  ],
+  "metrics": {
+    "latency_proxy": "No provider calls in fixture path; deterministic validation only.",
+    "token_cost_proxy": "Portfolio render is smaller than raw and more explicit than no-extra-pressure hybrid.",
+    "edge_pressure_preservation": "Negative-space and parked receipts remain available.",
+    "artifact_bloat": "Reduced versus raw dump.",
+    "negative_control_behavior": "No extra active pressure beyond the weak-evidence caution."
+  },
+  "aggregate_judgment": "negative_control_success",
+  "falsifiers": [
+    "If Step 6 overuses the edge reserve, hybrid no-extra-pressure may still be safer.",
+    "If active weak-evidence caution is already present in the answer, portfolio may be unnecessary."
+  ],
+  "recommendation": "Keep portfolio research-only, but include mother as a negative-control case in future evaluation.",
+  "notes": "Manual comparison fixture; not an automated quality judge."
+}

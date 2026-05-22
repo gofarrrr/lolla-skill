@@ -1,0 +1,23 @@
+{
+  "schema_version": "reasoning_affordance.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mid-level-consultant-report-2",
+  "artifact_id": "consultant_counsel_incentive_gate",
+  "source_refs": [
+    "research/pre-step6-raw-artifact-fixtures/mid-level-consultant-report-2.raw-artifact-handoff.v1.json:artifacts[0]"
+  ],
+  "selection_basis": "Raw and hybrid handoffs both preserve counsel-first sequencing with an intake check for channel bias.",
+  "affordance_class": "direct_pressure",
+  "protected_slot": "incentive",
+  "what_it_might_reveal": "Counsel selection is part of the safety sequence because different attorneys may lean toward different reporting channels.",
+  "source_grounding": "The raw handoff warns that counsel-first should include questions about internal-first, audit-committee-first, and external-first choices.",
+  "cheap_test_for_step6": "Check whether the answer tells the user to contact counsel while also asking how counsel decides among reporting channels.",
+  "hard_boundary": "Do not replace counsel with self-directed reporting or make channel choice before legal review.",
+  "relaxation_condition": "Relax only if the answer avoids reporting-channel choice entirely.",
+  "discard_condition": "Discard only if counsel selection and reporting channel are absent from the answer.",
+  "risk_if_forced": "The answer may make the user distrust counsel and act alone.",
+  "risk_if_ignored": "The user may outsource judgment to an advisor whose incentives are unexamined.",
+  "attention_weight": "active",
+  "expansion_ref": "research/pre-step6-raw-artifact-fixtures/mid-level-consultant-report-2.raw-artifact-handoff.v1.json:artifacts[0]"
+}

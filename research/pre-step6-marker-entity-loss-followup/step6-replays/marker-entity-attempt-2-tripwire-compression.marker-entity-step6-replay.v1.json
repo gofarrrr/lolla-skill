@@ -1,0 +1,87 @@
+{
+  "schema_version": "pre_step6_marker_entity_loss_step6_replay.v1",
+  "runtime_policy": "runtime_dormant",
+  "followup_id": "marker_entity_loss_followup_v0",
+  "attempt_id": "marker-entity-attempt-2-tripwire-compression",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"answer_core\": \"Lean on professional support and keep your safety plan specific. Name the key warning signs you will act on: any request to meet, sexual images, threats, signs involving other minors, attempts to move conversations into hidden channels, or your daughter saying she feels pressured or afraid. Keep communication boundaries steady so she feels able to talk, and check whatever evidence you have before taking further steps.\",\n  \"private_visibility_ledger\": [\n    {\n      \"source_id\": \"anchor_visible_candidate\",\n      \"disposition\": \"used\",\n      \"novelty_role\": \"visible_backbone\",\n      \"why\": \"It offers concrete, parent-appropriate warning signs and boundary guidance that can be shared safely.\",\n      \"visible_effect\": \"Forms the core structure and explicit warning signs.\"\n    },\n    {\n      \"source_id\": \"deck_pressure_candidate\",\n      \"disposition\": \"rejected\",\n      \"novelty_role\": \"private_guardrail\",\n      \"why\": \"It adds only abstract labels without concrete safety value beyond the anchor and risks diluting the explicit warning signs.\",\n      \"visible_effect\": \"none\"\n    }\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 545,
+    "completion_tokens": 352,
+    "total_tokens": 897,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 64,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter",
+    "model_family": "openai"
+  },
+  "input_packet": {
+    "case_brief": "Sensitive case where the anchor lists concrete tripwires. The deck pressure may compress them into a generic escalation phrase.",
+    "pre_run_failure_hypothesis": "If Step 6 marks the compressed tripwire framing additive while the answer keeps the word tripwires but drops request to meet, sexual images, threats, other minors, hidden channels, and pressured or afraid, that is the target false positive.",
+    "critical_anchor_entities": [
+      "request to meet",
+      "sexual images",
+      "threats",
+      "other minors",
+      "hidden channels",
+      "pressured or afraid"
+    ],
+    "category_markers": [
+      "tripwires",
+      "professional support",
+      "safety plan",
+      "communication boundaries",
+      "evidence checks"
+    ],
+    "anchor_visible_candidate": "Use professional support first, keep the safety plan concrete, and name the tripwires before acting: request to meet, sexual images, threats, evidence involving other minors, a move into hidden channels, or your daughter saying she feels pressured or afraid. Keep communication boundaries stable while you gather evidence checks.",
+    "deck_pressure_candidate": "Use professional support, keep a safety plan, track tripwires, maintain communication boundaries, and run evidence checks before escalating. Treat any concerning pattern as a reason to update the plan."
+  },
+  "step6_output": {
+    "answer_core": "Lean on professional support and keep your safety plan specific. Name the key warning signs you will act on: any request to meet, sexual images, threats, signs involving other minors, attempts to move conversations into hidden channels, or your daughter saying she feels pressured or afraid. Keep communication boundaries steady so she feels able to talk, and check whatever evidence you have before taking further steps.",
+    "private_visibility_ledger": [
+      {
+        "source_id": "anchor_visible_candidate",
+        "disposition": "used",
+        "novelty_role": "visible_backbone",
+        "why": "It offers concrete, parent-appropriate warning signs and boundary guidance that can be shared safely.",
+        "visible_effect": "Forms the core structure and explicit warning signs."
+      },
+      {
+        "source_id": "deck_pressure_candidate",
+        "disposition": "rejected",
+        "novelty_role": "private_guardrail",
+        "why": "It adds only abstract labels without concrete safety value beyond the anchor and risks diluting the explicit warning signs.",
+        "visible_effect": "none"
+      }
+    ]
+  },
+  "ledger_signal": "all_private_or_confirming",
+  "marker_entity_detection": {
+    "markers_present": false,
+    "anchor_entities_missing": false,
+    "failure_shape_observed": false,
+    "present_markers": [
+      "professional support",
+      "safety plan",
+      "communication boundaries"
+    ],
+    "missing_entities": []
+  },
+  "deterministic_role": [
+    "detect_category_markers",
+    "detect_missing_anchor_entities",
+    "derive_step6_ledger_signal",
+    "preserve_audit_custody"
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live Step 6 replay for marker/entity-loss follow-up."
+}

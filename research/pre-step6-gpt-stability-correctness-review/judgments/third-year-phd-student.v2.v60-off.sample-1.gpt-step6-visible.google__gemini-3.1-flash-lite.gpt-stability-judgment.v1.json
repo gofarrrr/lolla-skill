@@ -1,0 +1,56 @@
+{
+  "schema_version": "pre_step6_gpt_stability_correctness_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_gpt_stability_correctness_review_v0",
+  "review_case_id": "third-year-phd-student.v2.v60-off.sample-1.gpt-step6-visible",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"output_label\": \"better\",\n  \"winner_label\": \"A\",\n  \"visibility_judgment\": \"correct_visible\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Candidate A provides a more structured, actionable framework by explicitly defining the 'Gate' system and the necessity of a stop date for the Silva probe. Candidate B is slightly more verbose and uses less precise language ('identity-coherent', 'vibes'), whereas A focuses on the mechanics of the decision-making process.\",\n  \"answer_correctness_notes\": [\n    \"Candidate A's use of explicit gates makes the advice easier to operationalize.\",\n    \"Candidate A correctly identifies the need for a hard stop date for the Silva probe, which is a critical risk-mitigation step.\",\n    \"Candidate B includes unnecessary filler ('identity-coherent') that adds bloat without adding actionable value.\"\n  ],\n  \"visibility_decision_notes\": [\n    \"The visibility of the Step 6 output is correct because it provides a more refined, structured approach to the user's specific risk-management problem compared to the anchor.\",\n    \"The added structural clarity in A justifies the visibility of the new output.\"\n  ],\n  \"payload_loss_or_bloat\": [\n    \"Candidate B suffers from minor bloat due to fluffier language.\",\n    \"Candidate A maintains high payload density by focusing on the sequence of operations.\"\n  ],\n  \"structural_delta_read\": \"useful_structural_delta\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 1294,
+    "completion_tokens": 328,
+    "total_tokens": 1622,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter",
+    "model_family": "google"
+  },
+  "blind_map": {
+    "A": "step6_visible",
+    "B": "anchor_visible"
+  },
+  "reviewer_output": {
+    "output_label": "better",
+    "winner_label": "A",
+    "visibility_judgment": "correct_visible",
+    "confidence": "high",
+    "rationale": "Candidate A provides a more structured, actionable framework by explicitly defining the 'Gate' system and the necessity of a stop date for the Silva probe. Candidate B is slightly more verbose and uses less precise language ('identity-coherent', 'vibes'), whereas A focuses on the mechanics of the decision-making process.",
+    "answer_correctness_notes": [
+      "Candidate A's use of explicit gates makes the advice easier to operationalize.",
+      "Candidate A correctly identifies the need for a hard stop date for the Silva probe, which is a critical risk-mitigation step.",
+      "Candidate B includes unnecessary filler ('identity-coherent') that adds bloat without adding actionable value."
+    ],
+    "visibility_decision_notes": [
+      "The visibility of the Step 6 output is correct because it provides a more refined, structured approach to the user's specific risk-management problem compared to the anchor.",
+      "The added structural clarity in A justifies the visibility of the new output."
+    ],
+    "payload_loss_or_bloat": [
+      "Candidate B suffers from minor bloat due to fluffier language.",
+      "Candidate A maintains high payload density by focusing on the sequence of operations."
+    ],
+    "structural_delta_read": "useful_structural_delta"
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample GPT-stability correctness judgment."
+}

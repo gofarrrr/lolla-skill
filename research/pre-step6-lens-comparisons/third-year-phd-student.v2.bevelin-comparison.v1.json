@@ -1,0 +1,132 @@
+{
+  "schema_version": "pre_step6_lens_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "bevelin_v0_fixed_suite",
+  "case_id": "third-year-phd-student",
+  "comparison_kind": "bevelin_lens_local_rubric",
+  "lens_pack": "bevelin_seeking_wisdom_v0",
+  "candidate_refs": {
+    "rendered_hybrid_answer_core": "research/pre-step6-rendered-hybrid-answer-cores/third-year-phd-student.conflict.native.rendered-hybrid-answer-core.v1.json",
+    "portfolio_base_answer_core": "research/pre-step6-portfolio-answer-cores/third-year-phd-student.v2.native.portfolio-answer-core.v1.json",
+    "lens_answer_core": "research/pre-step6-lens-answer-cores/third-year-phd-student.v2.bevelin-answer-core.v1.json",
+    "lens_probe": "research/pre-step6-lens-probes/third-year-phd-student.v2.bevelin-lens-probe.v1.json"
+  },
+  "criteria": [
+    {
+      "criterion_id": "decision_usefulness",
+      "question": "Which answer best guides the PhD path decision?",
+      "winner_arm": "lens",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Strong two-gate framing around Silva and fallback.",
+        "portfolio_base": "Strong live-gate framing with fallback disappearance.",
+        "lens": "Adds premature commitment and inversion while preserving the same gates."
+      },
+      "rationale": "The lens turns the gates into sharper tests of commitment and survivability."
+    },
+    {
+      "criterion_id": "source_grounding",
+      "question": "Which answer stays inside advisor, data, collaborator, and fallback constraints?",
+      "winner_arm": "tie",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Grounded in advisor, data, collaborator, and fallback facts.",
+        "portfolio_base": "Grounded in the same facts.",
+        "lens": "Grounded in the same facts and does not add a new dissertation option."
+      },
+      "rationale": "All candidates are grounded."
+    },
+    {
+      "criterion_id": "overclaim_risk",
+      "question": "Which answer best avoids false precision from broad success rates?",
+      "winner_arm": "lens",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Rejects broad success-rate probabilities.",
+        "portfolio_base": "Uses broad success rates as humility checks.",
+        "lens": "Keeps humility checks and explicitly avoids probabilities for this case."
+      },
+      "rationale": "The lens is the clearest on base-rate misuse."
+    },
+    {
+      "criterion_id": "answer_length_cognitive_load",
+      "question": "Which answer is easiest to execute?",
+      "winner_arm": "portfolio_base",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Fluent but a little more explanatory.",
+        "portfolio_base": "Compact and already practical.",
+        "lens": "Still compact, but adds inversion language."
+      },
+      "rationale": "The base portfolio is slightly lighter."
+    },
+    {
+      "criterion_id": "machinery_hygiene",
+      "question": "Which answer avoids private system terms?",
+      "winner_arm": "tie",
+      "evidence_by_arm": {
+        "rendered_hybrid": "No private system terms.",
+        "portfolio_base": "No private system terms.",
+        "lens": "No private system terms."
+      },
+      "rationale": "All public answers are clean."
+    },
+    {
+      "criterion_id": "conflict_preservation",
+      "question": "Which answer best preserves Silva exploration versus fallback safety?",
+      "winner_arm": "lens",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Preserves two gates.",
+        "portfolio_base": "Preserves Silva executability and fallback survivability.",
+        "lens": "Preserves both and adds premature commitment as the failure mode."
+      },
+      "rationale": "The lens makes the tension harder to flatten."
+    },
+    {
+      "criterion_id": "edge_pressure_preservation",
+      "question": "Which answer best preserves the edge pressure Step 6 might otherwise ignore?",
+      "winner_arm": "lens",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Keeps fallback protection and advisor sequencing.",
+        "portfolio_base": "Keeps fallback disappearance and base-rate caution.",
+        "lens": "Keeps both and adds inversion around what must remain true at the stop date."
+      },
+      "rationale": "This is a strong positive case for the lens."
+    },
+    {
+      "criterion_id": "breadth_depth_preservation",
+      "question": "Which answer preserves breadth without narrowing to one attractive story?",
+      "winner_arm": "lens",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Good breadth across advisor, Silva, and fallback.",
+        "portfolio_base": "Good breadth across the two gates.",
+        "lens": "Adds social commitment and fallback disappearance without adding new options."
+      },
+      "rationale": "The lens adds breadth that is still decision-relevant."
+    },
+    {
+      "criterion_id": "premature_pruning_risk",
+      "question": "Which answer least risks killing useful exploration too early?",
+      "winner_arm": "lens",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Avoids choosing too early.",
+        "portfolio_base": "Avoids choosing too early.",
+        "lens": "Explicitly says Silva is not wrong, only unproven until constraints are tested."
+      },
+      "rationale": "The lens preserves optionality while preventing premature commitment."
+    },
+    {
+      "criterion_id": "negative_control_discipline",
+      "question": "Does the lens avoid forcing itself into final advice?",
+      "winner_arm": "tie",
+      "evidence_by_arm": {
+        "rendered_hybrid": "No private machinery.",
+        "portfolio_base": "No private machinery.",
+        "lens": "No private labels and no final path selection."
+      },
+      "rationale": "The lens stays private and non-finalizing."
+    }
+  ],
+  "tie_break_rule": "lens_must_add_edge_without_pruning",
+  "aggregate_winner_arm": "lens",
+  "aggregate_decision": "lens_improves",
+  "promotion_read": "expand_replay",
+  "notes": "PhD v2 is a keep case. Bevelin v0 improves commitment, inversion, and false-precision pressure while preserving optionality."
+}

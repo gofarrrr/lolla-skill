@@ -1,0 +1,56 @@
+{
+  "schema_version": "pre_step6_gpt_stability_correctness_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_gpt_stability_correctness_review_v0",
+  "review_case_id": "third-year-phd-student.v2.v60-on.sample-2.gpt-step6-visible",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"output_label\": \"better\",\n  \"winner_label\": \"B\",\n  \"visibility_judgment\": \"correct_visible\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Candidate B is significantly more effective because it distills the advice into a concise, actionable framework. Candidate A suffers from unnecessary bloat and moralizing tone, whereas B integrates the specific structural improvements (single-cell gap checks, authorship terms, and the short probe window) into a coherent, high-density response.\",\n  \"answer_correctness_notes\": [\n    \"Candidate B provides a superior, action-oriented structure.\",\n    \"Candidate A includes redundant filler ('does Dr. Silva actually have usable data you can access on a clear timeline') that B handles more efficiently.\",\n    \"Candidate B successfully incorporates the requested structural delta without losing the core advice.\"\n  ],\n  \"visibility_decision_notes\": [\n    \"The step6_visible decision is correct because the refined output (B) provides a more professional and actionable summary than the anchor (A).\",\n    \"The added specificity regarding 'single-cell gaps' and 'authorship terms' justifies the update.\"\n  ],\n  \"payload_loss_or_bloat\": [\n    \"Candidate A contains significant bloat.\",\n    \"Candidate B has zero payload loss and eliminates the bloat found in A.\"\n  ],\n  \"structural_delta_read\": \"useful_structural_delta\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 1197,
+    "completion_tokens": 317,
+    "total_tokens": 1514,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter",
+    "model_family": "google"
+  },
+  "blind_map": {
+    "A": "anchor_visible",
+    "B": "step6_visible"
+  },
+  "reviewer_output": {
+    "output_label": "better",
+    "winner_label": "B",
+    "visibility_judgment": "correct_visible",
+    "confidence": "high",
+    "rationale": "Candidate B is significantly more effective because it distills the advice into a concise, actionable framework. Candidate A suffers from unnecessary bloat and moralizing tone, whereas B integrates the specific structural improvements (single-cell gap checks, authorship terms, and the short probe window) into a coherent, high-density response.",
+    "answer_correctness_notes": [
+      "Candidate B provides a superior, action-oriented structure.",
+      "Candidate A includes redundant filler ('does Dr. Silva actually have usable data you can access on a clear timeline') that B handles more efficiently.",
+      "Candidate B successfully incorporates the requested structural delta without losing the core advice."
+    ],
+    "visibility_decision_notes": [
+      "The step6_visible decision is correct because the refined output (B) provides a more professional and actionable summary than the anchor (A).",
+      "The added specificity regarding 'single-cell gaps' and 'authorship terms' justifies the update."
+    ],
+    "payload_loss_or_bloat": [
+      "Candidate A contains significant bloat.",
+      "Candidate B has zero payload loss and eliminates the bloat found in A."
+    ],
+    "structural_delta_read": "useful_structural_delta"
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample GPT-stability correctness judgment."
+}

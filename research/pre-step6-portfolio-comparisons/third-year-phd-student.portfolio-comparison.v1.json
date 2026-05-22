@@ -1,0 +1,63 @@
+{
+  "schema_version": "pre_step6_portfolio_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "third-year-phd-student",
+  "source_refs": [
+    "research/pre-step6-attention-maps/third-year-phd-student.step6-attention-map.v1.json",
+    "research/pre-step6-raw-artifact-fixtures/third-year-phd-student.raw-artifact-handoff.v1.json",
+    "research/pre-step6-hybrid-handoff-fixtures/third-year-phd-student.hybrid-handoff.v1.json"
+  ],
+  "modes": [
+    {
+      "mode_id": "B",
+      "label": "raw artifact handoff",
+      "source_ref": "research/pre-step6-raw-artifact-fixtures/third-year-phd-student.raw-artifact-handoff.v1.json",
+      "render_chars": 4000,
+      "active_count": 4,
+      "edge_count": 0,
+      "parked_count": 0,
+      "source_ref_count": 4,
+      "premature_pruning_risk": "low",
+      "answer_usefulness_judgment": "Strong preservation, but multiple raw artifacts compete for Step 6 attention."
+    },
+    {
+      "mode_id": "C",
+      "label": "hybrid card first",
+      "source_ref": "research/pre-step6-hybrid-handoff-fixtures/third-year-phd-student.hybrid-handoff.v1.json",
+      "render_chars": 3200,
+      "active_count": 1,
+      "edge_count": 1,
+      "parked_count": 0,
+      "source_ref_count": 3,
+      "premature_pruning_risk": "medium",
+      "answer_usefulness_judgment": "Good compact pressure, but can hide sequence-stop reserve if not inspected."
+    },
+    {
+      "mode_id": "E",
+      "label": "reasoning portfolio",
+      "source_ref": "research/pre-step6-attention-maps/third-year-phd-student.step6-attention-map.v1.json",
+      "render_chars": 1900,
+      "active_count": 1,
+      "edge_count": 1,
+      "parked_count": 1,
+      "source_ref_count": 2,
+      "premature_pruning_risk": "low",
+      "answer_usefulness_judgment": "Keeps fallback viability parked with a clear trigger and archive ref."
+    }
+  ],
+  "metrics": {
+    "latency_proxy": "Static affordance and deterministic assembly only.",
+    "token_cost_proxy": "Portfolio is compact while preserving reactivation paths.",
+    "edge_pressure_preservation": "Sequence-stop pressure remains parked instead of deleted.",
+    "artifact_bloat": "Lower than raw handoff.",
+    "negative_control_behavior": "Not a negative-control case."
+  },
+  "aggregate_judgment": "portfolio_promising",
+  "falsifiers": [
+    "If Step 6 needs the full raw artifact to understand fallback viability, the compact portfolio is too lossy.",
+    "If no-active placeholder distracts the answer, builder defaults should change."
+  ],
+  "recommendation": "Use as a focused test for parked protected pressure and reactivation conditions.",
+  "notes": "Manual comparison fixture; not an automated quality judge."
+}

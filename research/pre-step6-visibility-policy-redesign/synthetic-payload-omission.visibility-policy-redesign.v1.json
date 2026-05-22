@@ -1,0 +1,39 @@
+{
+  "schema_version": "pre_step6_visibility_policy_redesign.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "design_preamble_visibility_policy_redesign_v0",
+  "case_id": "synthetic-payload-omission",
+  "inputs": {
+    "cache_state": "cache_hit",
+    "step6_ledger_signal": "additive_pressure_present",
+    "payload_gate_result": "introduced_omission",
+    "bridge_probe_label": "false_standdown"
+  },
+  "legacy_policy": {
+    "result": "anchor_visible_deck_private",
+    "would_suppress_deck": true,
+    "why": "Legacy runtime unresolved policy defaults to anchor visible and deck private."
+  },
+  "redesigned_policy": {
+    "result": "anchor_visible_payload_omission_guardrail",
+    "why": "Protected anchor payload was lost, so deck visibility is blocked.",
+    "cognitive_signal_source": "step6_private_ledger_blocked_by_payload_gate",
+    "normal_runtime_reviewer_calls": 0
+  },
+  "deterministic_role": [
+    "validate_cache_state",
+    "validate_step6_ledger_schema",
+    "validate_payload_preservation",
+    "preserve_audit_custody"
+  ],
+  "bridge_probe_read": {
+    "case_was_false_standdown_probe": true,
+    "design_pressure": "Do not use universal anchor fallback when Step 6 records additive pressure."
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Research-only redesign. It does not add a runtime reviewer loop and does not wire product behavior."
+}

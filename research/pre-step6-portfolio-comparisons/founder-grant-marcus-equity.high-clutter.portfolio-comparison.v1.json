@@ -1,0 +1,63 @@
+{
+  "schema_version": "pre_step6_portfolio_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "founder-grant-marcus-equity.high-clutter",
+  "source_refs": [
+    "research/pre-step6-attention-maps/founder-grant-marcus-equity.high-clutter.step6-attention-map.v1.json",
+    "research/pre-step6-raw-artifact-fixtures/founder-grant-marcus-equity.raw-artifact-handoff.v1.json",
+    "research/pre-step6-hybrid-handoff-fixtures/founder-grant-marcus-equity.high-clutter.hybrid-handoff.v1.json"
+  ],
+  "modes": [
+    {
+      "mode_id": "B",
+      "label": "raw artifact handoff",
+      "source_ref": "research/pre-step6-raw-artifact-fixtures/founder-grant-marcus-equity.raw-artifact-handoff.v1.json",
+      "render_chars": 4000,
+      "active_count": 5,
+      "edge_count": 0,
+      "parked_count": 0,
+      "source_ref_count": 4,
+      "premature_pruning_risk": "low",
+      "answer_usefulness_judgment": "Preserves breadth but risks recreating the bloat problem."
+    },
+    {
+      "mode_id": "C",
+      "label": "hybrid card first",
+      "source_ref": "research/pre-step6-hybrid-handoff-fixtures/founder-grant-marcus-equity.high-clutter.hybrid-handoff.v1.json",
+      "render_chars": 3200,
+      "active_count": 1,
+      "edge_count": 1,
+      "parked_count": 2,
+      "source_ref_count": 3,
+      "premature_pruning_risk": "medium",
+      "answer_usefulness_judgment": "Strong clutter reduction but less explicit about protected slots."
+    },
+    {
+      "mode_id": "E",
+      "label": "reasoning portfolio",
+      "source_ref": "research/pre-step6-attention-maps/founder-grant-marcus-equity.high-clutter.step6-attention-map.v1.json",
+      "render_chars": 2600,
+      "active_count": 1,
+      "edge_count": 2,
+      "parked_count": 1,
+      "source_ref_count": 5,
+      "premature_pruning_risk": "low",
+      "answer_usefulness_judgment": "Best fit for high clutter: valuation denominator and middle-instrument pressure remain visible without raw dumping."
+    }
+  ],
+  "metrics": {
+    "latency_proxy": "Deterministic fixture path; live calls remain untested.",
+    "token_cost_proxy": "Portfolio is smaller than raw while carrying more edge diversity than hybrid.",
+    "edge_pressure_preservation": "Denominator, opportunity-cost, and model-forcing slots remain visible.",
+    "artifact_bloat": "Materially lower than raw artifact injection.",
+    "negative_control_behavior": "Not a negative-control case."
+  },
+  "aggregate_judgment": "portfolio_wins",
+  "falsifiers": [
+    "If Step 6 over-explains every reserve item, portfolio will still create answer bloat.",
+    "If the active placeholder feels artificial, high-clutter maps should allow edge-only portfolios."
+  ],
+  "recommendation": "Use this as the main high-clutter promotion case if later Step 6 replay confirms answer lift.",
+  "notes": "Manual comparison fixture; not an automated quality judge."
+}

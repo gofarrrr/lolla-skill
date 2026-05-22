@@ -1,0 +1,77 @@
+{
+  "schema_version": "pre_step6_false_positive_step6_replay.v1",
+  "runtime_policy": "runtime_dormant",
+  "probe_id": "false_positive_visibility_probe_v0",
+  "case_id": "founder-grant-marcus-equity.high-clutter",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"answer_core\": \"Do not give Marcus 15% equity, a board seat, or a CTO title this Friday. Those are irreversible commitments before you know whether the partnership actually reduces rather than concentrates risk.\\n\\nUse Friday for a direct, structured conversation about a staged path. Tell him you’re open to meaningful upside, but only after evidence. Define a short sprint that tests whether he can deliver the platform work, whether it matters for revenue, whether it stabilizes Jake and Lina, whether client confidence improves, whether knowledge transfer happens, and whether his governance behavior strengthens the company. Make clear what meeting those conditions would unlock.\\n\\nAvoid vague delay, but don’t treat valuation math as decisive. The decision should follow demonstrated impact, not hypothetical numbers.\",\n  \"private_visibility_ledger\": [\n    {\n      \"source_id\": \"anchor_visible_candidate\",\n      \"disposition\": \"used\",\n      \"novelty_role\": \"visible_backbone\",\n      \"why\": \"Anchor provided the core stance, entities, and evidence checks required.\",\n      \"visible_effect\": \"Forms the main structure and content of the public answer.\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"reframed_emphasis\": []\n      }\n    },\n    {\n      \"source_id\": \"deck_pressure_candidate\",\n      \"disposition\": \"rejected\",\n      \"novelty_role\": \"confirming_support\",\n      \"why\": \"It echoed the anchor without adding materially new decision value.\",\n      \"visible_effect\": \"none\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"reframed_emphasis\": []\n      }\n    }\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 1067,
+    "completion_tokens": 391,
+    "total_tokens": 1458,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter",
+    "model_family": "openai"
+  },
+  "input_packet": {
+    "case_brief": "Evaluate a founder equity and grant tradeoff without letting valuation math or instrument catalogs dominate the decision. Step 6 preserves valuation humility and middle-option awareness without producing an artifact dump. Shadow telemetry flagged marker/entity-loss risk in: actor_sequence, communication_boundaries, dates_or_dated_windows, evidence_checks, named_resources_or_channels, tripwires_or_gates.",
+    "pre_run_failure_hypothesis": "If Step 6 marks the deck-aware answer additive and both reviewers prefer the anchor because concrete anchor payload was lost inside present-looking categories, this is a confirmed false positive.",
+    "false_positive_risk": [
+      "Shadow harness flagged deck_visible_with_marker_entity_loss before reviewer calls.",
+      "Mechanistic payload telemetry flagged categories: actor_sequence, communication_boundaries, dates_or_dated_windows, evidence_checks, named_resources_or_channels, tripwires_or_gates.",
+      "The deck-aware answer may preserve category markers while losing specific anchor entities or sequencing details."
+    ],
+    "anchor_visible_candidate": "I would not grant Marcus 15% equity, CTO title, and a board seat on Friday. That is too permanent for an unproven dependency system.\n\nThe real issue is not whether he is worth 15% in the abstract. Several dependencies may run through him at once: platform prototype, technical delivery, Jake and Lina, client confidence, and part of the exit story. If you grant the full package now, you may price contribution and concentration risk before knowing whether Marcus reduces or increases that risk.\n\nSo Friday should be a serious staged-partnership conversation, not vague delay or flat rejection. A vague later can read as avoidance and trigger what you are trying to prevent: Marcus disengaging, pulling others with him, slowing the platform, or destabilizing client continuity.\n\nYour position: there may be a path to major upside and leadership, but not before evidence. Define a short sprint that tests platform delivery, revenue relevance, team continuity, knowledge transfer, governance behavior, and whether Marcus strengthens the company beyond himself. Keep intermediate structures alive, but do not turn the answer into a catalog of instruments.\n\nUse exit math only as false-precision caution. Until buyer assumptions, platform value, and departure scenarios are tested, the numbers should not carry the decision.\n\nGo in ready to say you want to explore a serious path, but cannot make irreversible governance and ownership commitments before proving what the partnership does to the company.",
+    "deck_pressure_candidate": "I would not lock in 15% equity, a board seat, and a CTO title this week. Those are long‑term commitments you can only make after seeing whether the partnership actually strengthens the company rather than concentrating risk in one person.\n\nFriday should be a direct, structured conversation about a staged path. Make clear that you’re open to major upside for him, but only after evidence. Set a short, defined period to test: whether he can deliver the key platform work, whether that work matters for revenue, whether team continuity improves rather than worsens, whether knowledge transfer happens, and whether his behavior fits the governance you need. Spell out what success in that window would unlock.\n\nKeep the discussion on proof and company health, not on hypothetical valuations. The goal is to avoid both a premature commitment and a vague delay that pushes him away. Give him a real path forward, but one tied to demonstrated impact."
+  },
+  "step6_output": {
+    "answer_core": "Do not give Marcus 15% equity, a board seat, or a CTO title this Friday. Those are irreversible commitments before you know whether the partnership actually reduces rather than concentrates risk.\n\nUse Friday for a direct, structured conversation about a staged path. Tell him you’re open to meaningful upside, but only after evidence. Define a short sprint that tests whether he can deliver the platform work, whether it matters for revenue, whether it stabilizes Jake and Lina, whether client confidence improves, whether knowledge transfer happens, and whether his governance behavior strengthens the company. Make clear what meeting those conditions would unlock.\n\nAvoid vague delay, but don’t treat valuation math as decisive. The decision should follow demonstrated impact, not hypothetical numbers.",
+    "private_visibility_ledger": [
+      {
+        "source_id": "anchor_visible_candidate",
+        "disposition": "used",
+        "novelty_role": "visible_backbone",
+        "why": "Anchor provided the core stance, entities, and evidence checks required.",
+        "visible_effect": "Forms the main structure and content of the public answer.",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [],
+          "removed_entities": [],
+          "reordered_sequences": []
+        }
+      },
+      {
+        "source_id": "deck_pressure_candidate",
+        "disposition": "rejected",
+        "novelty_role": "confirming_support",
+        "why": "It echoed the anchor without adding materially new decision value.",
+        "visible_effect": "none",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [],
+          "removed_entities": [],
+          "reordered_sequences": []
+        }
+      }
+    ]
+  },
+  "ledger_signal": "all_private_or_confirming",
+  "deterministic_role": [
+    "validate_step6_ledger_schema",
+    "derive_visibility_precondition",
+    "preserve_blind_review_custody"
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live Step 6 replay for false-positive visibility probe."
+}

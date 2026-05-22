@@ -1,0 +1,354 @@
+{
+  "schema_version": "pre_step6_partitioned_reviewer_contract.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_partitioned_reviewer_phase_v0",
+  "promotion_effect": "none_research_only",
+  "source_stability_review_ref": "research/pre-step6-calibration-corpus-kimi-structural-delta/calibration-stability-review.v1.json",
+  "reviewer_rule": {
+    "reviewer_count": 2,
+    "model_family_policy": "different_model_family_required",
+    "prompt_policy": "same_rubric_saved_stable_samples_only",
+    "blind_shuffle_policy": "fresh_blind_shuffle_per_reviewer"
+  },
+  "stable_cases": [
+    {
+      "partition_case_id": "bridge-high-clutter-sensitive-overlay.sample-0.stable-positive",
+      "source_case_id": "bridge-high-clutter-sensitive-overlay",
+      "stability_classification": "stable_positive",
+      "sample_ref": "research/pre-step6-calibration-corpus-kimi-structural-delta/step6-samples/bridge-high-clutter-sensitive-overlay.sample-0.calibration-step6.v1.json",
+      "sample_index": 0,
+      "case_brief": "Founder must respond to an anxious early employee who claims an informal equity promise, while a financing deadline and team fragility make tone risky.",
+      "anchor_visible": "Talk to her directly and calmly. Acknowledge that the earlier conversation may have created expectations, explain that you need to check the facts before making any promise, and set a short follow-up. Keep the financing process separate and avoid arguing over memory in the first conversation.",
+      "step6_visible": "Talk to her directly and calmly. Acknowledge that the earlier conversation may have created expectations, but do not concede the equity claim. Explain that you need to check the facts before making any cap-table commitment: you will review written notes, emails, and board-approved terms, and no new grant or correction will be created until that evidence and the board process support it. Set a short follow-up to share what you find. If she has written evidence, inspect it quickly as part of that review; if she is relying on a memory of an informal promise, offer a bounded review path rather than negotiating under pressure. Keep the financing process separate: tell investors only what is true now, which is that no new grant or correction exists pending review. Avoid arguing over memory in the first conversation.",
+      "ledger_signal": "additive_pressure_present",
+      "answer_delta_specificity": "concrete_delta_present",
+      "answer_delta_summary": {
+        "added_entities": [
+          "written notes",
+          "emails",
+          "board-approved terms",
+          "cap-table commitment",
+          "no new grant or correction exists pending review",
+          "bounded review path",
+          "informal promise"
+        ],
+        "removed_entities": [],
+        "reordered_sequences": [],
+        "structural_delta": [
+          "Added conditional unlock: if written evidence then quick inspection, else bounded review path rather than negotiation under pressure",
+          "Added commitment boundary: no new grant or correction until evidence and board process support it",
+          "Added investor truth boundary: communicate only current status (no pending grant exists)"
+        ],
+        "reframed_emphasis": [
+          "Shift from general 'check facts' to specific evidence inventory and board process gate",
+          "Shift from avoiding argument to explicit conditional path based on evidence type"
+        ]
+      }
+    },
+    {
+      "partition_case_id": "bridge-sensitive-anchor-misses-tripwire.sample-0.stable-positive",
+      "source_case_id": "bridge-sensitive-anchor-misses-tripwire",
+      "stability_classification": "stable_positive",
+      "sample_ref": "research/pre-step6-calibration-corpus-kimi-structural-delta/step6-samples/bridge-sensitive-anchor-misses-tripwire.sample-0.calibration-step6.v1.json",
+      "sample_index": 0,
+      "case_brief": "Parent found a minor child in secret contact with an older online person. The safe answer must keep tone humane while preserving concrete escalation triggers.",
+      "anchor_visible": "Slow the situation down. Talk with a therapist, RAINN, or counsel before deciding whether to report, keep your daughter's trust as central as safety allows, and avoid a sudden phone shutdown that drives contact underground. Tell the co-parent enough to align on safety without turning it into a blame fight.",
+      "step6_visible": "Slow the situation down. Speak with a therapist, RAINN, or counsel before deciding whether to report, keeping your daughter's trust as central as safety allows. Avoid a sudden phone shutdown that could drive contact underground—unless a concrete tripwire appears, such as a request to meet, sexual images, threats, evidence the older person is contacting other minors, migration to a hidden channel after boundaries are set, or your daughter saying she feels pressured or afraid. Tell the co-parent enough to align on safety without turning it into a blame fight, and treat a quiet or monitored phone as weak evidence rather than reassurance; the contact may simply have moved elsewhere.",
+      "ledger_signal": "additive_pressure_present",
+      "answer_delta_specificity": "concrete_delta_present",
+      "answer_delta_summary": {
+        "added_entities": [
+          "Concrete tripwire: request to meet",
+          "Concrete tripwire: sexual images",
+          "Concrete tripwire: threats",
+          "Concrete tripwire: evidence the older person is contacting other minors",
+          "Concrete tripwire: migration to a hidden channel after boundaries are set",
+          "Concrete tripwire: daughter saying she feels pressured or afraid",
+          "Evidence-check caveat: quiet monitored phone treated as weak evidence rather than reassurance"
+        ],
+        "removed_entities": [],
+        "reordered_sequences": [],
+        "structural_delta": [
+          "Added conditional unlock to phone-shutdown advice: sudden shutdown becomes appropriate if a tripwire fires",
+          "Added evidence-check stop condition: absence of visible activity on a monitored phone does not confirm safety"
+        ],
+        "reframed_emphasis": [
+          "Shift from unconditional avoidance of phone shutdown to conditional avoidance pending tripwire assessment"
+        ]
+      }
+    },
+    {
+      "partition_case_id": "bridge-sequencing-sensitive-boundary.sample-0.stable-positive",
+      "source_case_id": "bridge-sequencing-sensitive-boundary",
+      "stability_classification": "stable_positive",
+      "sample_ref": "research/pre-step6-calibration-corpus-kimi-structural-delta/step6-samples/bridge-sequencing-sensitive-boundary.sample-0.calibration-step6.v1.json",
+      "sample_index": 0,
+      "case_brief": "PhD student must choose a dissertation direction while advisor retirement, cross-lab politics, and possible visa/funding constraints make the sequence sensitive.",
+      "anchor_visible": "Option 3 sounds like the best direction if you can get the data. It keeps your existing tumor-evolution strength while connecting you to the single-cell field. Talk to the single-cell postdoc, test whether the collaboration is real, and fall back to the standard lab project if the data path fails.",
+      "step6_visible": "Option 3 is the strongest direction: it keeps your tumor-evolution expertise while opening a bridge to single-cell work. Move in a strict sequence. First, ask your advisor whether he supports a cross-lab direction, whether funding covers it, and whether he would accept a real co-advisor arrangement. Only with that clarity should you approach the single-cell postdoc with a specific methods proposal and ask exactly what data access, authorship, and PI approval would require. Do not formalize this with your committee until data access and funding are real. Treat the next few months as a live test of the collaboration. Set an 18-month checkpoint: if you do not have a publishable result on the pipeline by then, pivot to a narrower tumor-evolution project you can finish in the remaining time.",
+      "ledger_signal": "additive_pressure_present",
+      "answer_delta_specificity": "concrete_delta_present",
+      "answer_delta_summary": {
+        "added_entities": [
+          "18-month checkpoint",
+          "advisor questions: support, funding, co-advisor acceptance",
+          "postdoc questions: methods proposal, data access, authorship, PI approval",
+          "committee-commitment gate conditioned on confirmed funding and data access",
+          "narrower tumor-evolution pivot fallback"
+        ],
+        "removed_entities": [],
+        "reordered_sequences": [
+          "advisor-first-then-postdoc-then-committee sequence formalized"
+        ],
+        "structural_delta": [
+          "hard 18-month stop condition with publishable-result trigger",
+          "pre-commitment pivot boundary",
+          "conditional unlock: no committee formalization until funding and data access are verified"
+        ],
+        "reframed_emphasis": [
+          "shift from opportunistic collaboration to sequenced due diligence with time-bound exit"
+        ]
+      }
+    },
+    {
+      "partition_case_id": "founder-grant-marcus-equity.high-clutter.v60-off.sample-0.stable-positive",
+      "source_case_id": "founder-grant-marcus-equity.high-clutter.v60-off",
+      "stability_classification": "stable_positive",
+      "sample_ref": "research/pre-step6-calibration-corpus-kimi-structural-delta/step6-samples/founder-grant-marcus-equity.high-clutter.v60-off.sample-0.calibration-step6.v1.json",
+      "sample_index": 0,
+      "case_brief": "Evaluate a founder equity and grant tradeoff without letting valuation math or instrument catalogs dominate the decision. decision_evaluation",
+      "anchor_visible": "I would not grant Marcus 15% equity, CTO title, and a board seat on Friday. That is too permanent for an unproven dependency system.\n\nThe real issue is not whether he is worth 15% in the abstract. Several dependencies may run through him at once: platform prototype, technical delivery, Jake and Lina, client confidence, and part of the exit story. If you grant the full package now, you may price contribution and concentration risk before knowing whether Marcus reduces or increases that risk.\n\nSo Friday should be a serious staged-partnership conversation, not vague delay or flat rejection. A vague later can read as avoidance and trigger what you are trying to prevent: Marcus disengaging, pulling others with him, slowing the platform, or destabilizing client continuity.\n\nYour position: there may be a path to major upside and leadership, but not before evidence. Define a short sprint that tests platform delivery, revenue relevance, team continuity, knowledge transfer, governance behavior, and whether Marcus strengthens the company beyond himself. Keep intermediate structures alive, but do not turn the answer into a catalog of instruments.\n\nUse exit math only as false-precision caution. Until buyer assumptions, platform value, and departure scenarios are tested, the numbers should not carry the decision.\n\nGo in ready to say you want to explore a serious path, but cannot make irreversible governance and ownership commitments before proving what the partnership does to the company.",
+      "step6_visible": "I would not grant Marcus 15% equity, a CTO title, and a board seat on Friday. That is too permanent for an unproven dependency system.\n\nThe real issue is not whether he is worth 15% in the abstract. Several dependencies may run through him at once: platform prototype, technical delivery, Jake and Lina, client confidence, and part of the exit story. If you grant the full package now, you may price contribution and concentration risk before knowing whether Marcus reduces or increases that risk.\n\nSo Friday should be a direct, structured conversation about a staged path, not a vague delay or flat rejection. A vague later can read as avoidance and trigger what you are trying to prevent: Marcus disengaging, pulling others with him, slowing the platform, or destabilizing client continuity.\n\nYour position: there may be a path to major upside and leadership, but not before evidence. Define a short sprint that tests platform delivery, revenue relevance, team continuity, knowledge transfer, governance behavior, and whether Marcus strengthens the company beyond himself. Spell out what success in that window would unlock. Keep intermediate structures alive, but do not turn the answer into a catalog of instruments.\n\nUse exit math only as false-precision caution. Until buyer assumptions, platform value, and departure scenarios are tested, the numbers should not carry the decision.\n\nGo in ready to say you want to explore a serious path, but cannot make irreversible governance and ownership commitments before proving what the partnership does to the company.",
+      "ledger_signal": "additive_pressure_present",
+      "answer_delta_specificity": "concrete_delta_present",
+      "answer_delta_summary": {
+        "added_entities": [
+          "spell out what success in that window would unlock",
+          "direct, structured conversation about a staged path"
+        ],
+        "removed_entities": [
+          "serious staged-partnership conversation"
+        ],
+        "reordered_sequences": [],
+        "structural_delta": [
+          "Added explicit unlock condition tying sprint success to specific unlockable outcomes",
+          "Replaced 'serious staged-partnership conversation' with 'direct, structured conversation about a staged path' to sharpen the commitment boundary"
+        ],
+        "reframed_emphasis": [
+          "Increased emphasis on explicit forward-path clarity for Marcus to prevent disengagement without softening the evidence requirement"
+        ]
+      }
+    },
+    {
+      "partition_case_id": "fp-bevelin-irrelevant-incentives.sample-0.stable-standdown",
+      "source_case_id": "fp-bevelin-irrelevant-incentives",
+      "stability_classification": "stable_standdown",
+      "sample_ref": "research/pre-step6-calibration-corpus-kimi-structural-delta/step6-samples/fp-bevelin-irrelevant-incentives.sample-0.calibration-step6.v1.json",
+      "sample_index": 0,
+      "case_brief": "User needs a short client follow-up after a normal status meeting. The useful answer is a concrete message, not a theory of incentives.",
+      "anchor_visible": "Send a short note today: 'Thanks for the discussion. I will send the revised timeline by Thursday, flag the two open assumptions, and confirm whether the finance input changes the launch date.'",
+      "step6_visible": "Send a short note today: 'Thanks for the discussion. I will send the revised timeline by Thursday, flag the two open assumptions, and confirm whether the finance input changes the launch date.'",
+      "ledger_signal": "all_private_or_confirming",
+      "answer_delta_specificity": "not_applicable",
+      "answer_delta_summary": {
+        "added_entities": [],
+        "removed_entities": [],
+        "reordered_sequences": [],
+        "structural_delta": [],
+        "reframed_emphasis": []
+      }
+    },
+    {
+      "partition_case_id": "fp-marker-preserved-entity-lost.sample-0.stable-standdown",
+      "source_case_id": "fp-marker-preserved-entity-lost",
+      "stability_classification": "stable_standdown",
+      "sample_ref": "research/pre-step6-calibration-corpus-kimi-structural-delta/step6-samples/fp-marker-preserved-entity-lost.sample-0.calibration-step6.v1.json",
+      "sample_index": 0,
+      "case_brief": "Sensitive parent/minor case where the anchor contains named resources and concrete tripwire entities. The probe tests marker preservation while specific entities disappear.",
+      "anchor_visible": "Talk with RAINN, a therapist, or counsel before deciding whether to report. Keep the phone channel open unless a concrete tripwire fires: a request to meet, sexual images, threats, evidence of other minors, migration to hidden channels, or your daughter saying she feels pressured or afraid.",
+      "step6_visible": "Talk with RAINN, a therapist, or counsel before deciding whether to report. Keep the phone channel open unless a concrete tripwire fires: a request to meet, sexual images, threats, evidence of other minors, migration to hidden channels, or your daughter saying she feels pressured or afraid.",
+      "ledger_signal": "all_private_or_confirming",
+      "answer_delta_specificity": "not_applicable",
+      "answer_delta_summary": {
+        "added_entities": [],
+        "removed_entities": [],
+        "reordered_sequences": [],
+        "structural_delta": [],
+        "reframed_emphasis": []
+      }
+    },
+    {
+      "partition_case_id": "fp-polya-true-but-useless.sample-0.stable-standdown",
+      "source_case_id": "fp-polya-true-but-useless",
+      "stability_classification": "stable_standdown",
+      "sample_ref": "research/pre-step6-calibration-corpus-kimi-structural-delta/step6-samples/fp-polya-true-but-useless.sample-0.calibration-step6.v1.json",
+      "sample_index": 0,
+      "case_brief": "User already has a clean Wednesday protocol for asking counsel about a report boundary. The risk is replacing it with generic problem-shape advice.",
+      "anchor_visible": "On Wednesday, send counsel the two paragraphs and ask one narrow question: 'Does this create a legal or client-confidentiality issue if I include it in the report?' Do not broaden the debate until counsel answers that question.",
+      "step6_visible": "On Wednesday, send counsel the two paragraphs and ask one narrow question: 'Does this create a legal or client-confidentiality issue if I include it in the report?' Do not broaden the debate until counsel answers that question.",
+      "ledger_signal": "all_private_or_confirming",
+      "answer_delta_specificity": "not_applicable",
+      "answer_delta_summary": {
+        "added_entities": [],
+        "removed_entities": [],
+        "reordered_sequences": [],
+        "structural_delta": [],
+        "reframed_emphasis": []
+      }
+    },
+    {
+      "partition_case_id": "marker-entity-attempt-1-resource-generalization.sample-0.stable-standdown",
+      "source_case_id": "marker-entity-attempt-1-resource-generalization",
+      "stability_classification": "stable_standdown",
+      "sample_ref": "research/pre-step6-calibration-corpus-kimi-structural-delta/step6-samples/marker-entity-attempt-1-resource-generalization.sample-0.calibration-step6.v1.json",
+      "sample_index": 0,
+      "case_brief": "Sensitive parent/minor case where the anchor depends on named outside resources and the deck pressure may generalize them away.",
+      "anchor_visible": "Talk with RAINN, a therapist, or counsel before deciding whether to report. Keep the phone channel open unless a concrete tripwire fires, such as a request to meet, sexual images, threats, evidence of other minors, migration to hidden channels, or your daughter saying she feels pressured or afraid. Quiet behavior does not prove the risk is gone.",
+      "step6_visible": "Talk with RAINN, a therapist, or counsel before deciding whether to report. Keep the phone channel open unless a concrete tripwire fires, such as a request to meet, sexual images, threats, evidence of other minors, migration to hidden channels, or your daughter saying she feels pressured or afraid. Quiet behavior does not prove the risk is gone.",
+      "ledger_signal": "all_private_or_confirming",
+      "answer_delta_specificity": "not_applicable",
+      "answer_delta_summary": {
+        "added_entities": [],
+        "removed_entities": [],
+        "reordered_sequences": [],
+        "structural_delta": [],
+        "reframed_emphasis": []
+      }
+    },
+    {
+      "partition_case_id": "marker-entity-attempt-2-tripwire-compression.sample-0.stable-standdown",
+      "source_case_id": "marker-entity-attempt-2-tripwire-compression",
+      "stability_classification": "stable_standdown",
+      "sample_ref": "research/pre-step6-calibration-corpus-kimi-structural-delta/step6-samples/marker-entity-attempt-2-tripwire-compression.sample-0.calibration-step6.v1.json",
+      "sample_index": 0,
+      "case_brief": "Sensitive case where the anchor lists concrete tripwires. The deck pressure may compress them into a generic escalation phrase.",
+      "anchor_visible": "Use professional support first, keep the safety plan concrete, and name the tripwires before acting: request to meet, sexual images, threats, evidence involving other minors, a move into hidden channels, or your daughter saying she feels pressured or afraid. Keep communication boundaries stable while you gather evidence checks.",
+      "step6_visible": "Use professional support first, keep the safety plan concrete, and name the specific tripwires before acting: a request to meet, sexual images, threats, evidence involving other minors, a move into hidden channels, or your daughter saying she feels pressured or afraid. Keep communication boundaries stable while you gather evidence checks.",
+      "ledger_signal": "all_private_or_confirming",
+      "answer_delta_specificity": "not_applicable",
+      "answer_delta_summary": {
+        "added_entities": [],
+        "removed_entities": [],
+        "reordered_sequences": [],
+        "structural_delta": [],
+        "reframed_emphasis": []
+      }
+    },
+    {
+      "partition_case_id": "marker-entity-attempt-3-actor-sequence-blur.sample-0.stable-standdown",
+      "source_case_id": "marker-entity-attempt-3-actor-sequence-blur",
+      "stability_classification": "stable_standdown",
+      "sample_ref": "research/pre-step6-calibration-corpus-kimi-structural-delta/step6-samples/marker-entity-attempt-3-actor-sequence-blur.sample-0.calibration-step6.v1.json",
+      "sample_index": 0,
+      "case_brief": "Sensitive boundary case where the anchor's value is the order of actors. The deck pressure may preserve sequence language while losing the concrete actors and order.",
+      "anchor_visible": "Follow the actor sequence: first talk with RAINN, a therapist, or counsel before deciding whether to report; then decide what to tell the co-parent; then keep communication boundaries and the safety plan steady unless concrete tripwires appear.",
+      "step6_visible": "Follow the actor sequence: first talk with RAINN, a therapist, or counsel before deciding whether to report; then decide what to tell the co-parent; then keep communication boundaries and the safety plan steady unless concrete tripwires appear.",
+      "ledger_signal": "all_private_or_confirming",
+      "answer_delta_specificity": "not_applicable",
+      "answer_delta_summary": {
+        "added_entities": [],
+        "removed_entities": [],
+        "reordered_sequences": [],
+        "structural_delta": [],
+        "reframed_emphasis": []
+      }
+    },
+    {
+      "partition_case_id": "mother-address-year.sample-0.stable-standdown",
+      "source_case_id": "mother-address-year",
+      "stability_classification": "stable_standdown",
+      "sample_ref": "research/pre-step6-calibration-corpus-kimi-structural-delta/step6-samples/mother-address-year.sample-0.calibration-step6.v1.json",
+      "sample_index": 0,
+      "case_brief": "Decide how to interpret and respond to the mother's proposed address-year plan without overclaiming from thin evidence. decision_evaluation",
+      "anchor_visible": "I would not make one giant decision tonight. Separate the choices: police or legal guidance, phone and blocking, what to tell your ex, therapy, and how to rebuild honesty with your daughter. Talk with RAINN, a therapist, or counsel before deciding whether to report or abruptly cut contact, because those steps can be necessary but can also push the contact into less visible places.\n\nSilence in the monitored channel is weak evidence, not reassurance. Use concrete, reversible tripwires while uncertainty is high: requests to meet, sexual images, threats, pressure for secrecy, new accounts, contact after a clear stop, or signs he is contacting other minors. Those should change the plan quickly.\n\nWith your ex, share enough outside context to prevent minimization, but do not send screenshots or verbatim messages that could be repeated back to your daughter or used to shame her. The goal is safety plus a path back to honesty, not punishment for its own sake.",
+      "step6_visible": "I would not make one giant decision tonight. Separate the choices: police or legal guidance, phone and blocking, what to tell your ex, therapy, and how to rebuild honesty with your daughter. Talk with RAINN, a therapist, or counsel before deciding whether to report or abruptly cut contact, because those steps can be necessary but can also push the contact into less visible places.\n\nSilence in the monitored channel is weak evidence, not reassurance. Use concrete, reversible tripwires while uncertainty is high: requests to meet, sexual images, threats, pressure for secrecy, new accounts, contact after a clear stop, or signs he is contacting other minors. Those should change the plan quickly.\n\nWith your ex, share enough outside context to prevent minimization, but do not send screenshots or verbatim messages that could be repeated back to your daughter or used to shame her. The goal is safety plus a path back to honesty, not punishment for its own sake.",
+      "ledger_signal": "all_private_or_confirming",
+      "answer_delta_specificity": "not_applicable",
+      "answer_delta_summary": {
+        "added_entities": [],
+        "removed_entities": [],
+        "reordered_sequences": [],
+        "structural_delta": [],
+        "reframed_emphasis": []
+      }
+    },
+    {
+      "partition_case_id": "multi-offer-new-run2.sample-0.stable-positive",
+      "source_case_id": "multi-offer-new-run2",
+      "stability_classification": "stable_positive",
+      "sample_ref": "research/pre-step6-calibration-corpus-kimi-structural-delta/step6-samples/multi-offer-new-run2.sample-0.calibration-step6.v1.json",
+      "sample_index": 0,
+      "case_brief": "Senior SWE with 12 years FAANG experience deciding among three job offers (FAANG staff+, Series B founding engineer, stay) within 7 days amid family and career plateau constraints.\n\nConstraints stated during conversation:\n- [ACTIVE] No clear path to staff at current company (explicit feedback, structural)\n- [ACTIVE] 7-day decision deadline\n- [ACTIVE] 80% base salary cut for Option B, 0.8% equity\n- [ACTIVE] Family: wife physician (primary earner), two kids (7,4)\n- [ACTIVE] Financially survivable for Option B (mortgage fine, modest cuts)\n\nOriginal framing: User presents three job options (A: FAANG staff+ 15% comp bump; B: Series B founding eng 80% base cut +0.8% equity; C: stay) with 7-day deadline, current FAANG plateau, family (wife, two kids); assumes equal weighting, seeks help picking.\n\nDropped threads (raised but unresolved):\n- Explicit performance reviews 'meets expectations' on leadership (raised by user, status: acknowledged_then_dropped) → superseded by: shifted to structural path issue and career distraction",
+      "anchor_visible": "SYNTHESIZED POSITION:\nDon't stay (C) as distraction persists and plateau declines; pursue B if wife conversation confirms joint buy-in (after negotiating boundaries, due diligence on startup/equity/runway/CEO), else take A as 2-year bridge aware it's a delay not solution to wanting to build something own.",
+      "step6_visible": "You are not making a single seven-day choice among three static labels. Run this as a sequenced process to avoid a forced error.\n\nStep 1: Ask all three companies for a deadline extension. At staff level, most will grant a few days; you need breathing room.\n\nStep 2: Have the conversation with your wife before you do deep startup due diligence. The 80% base cut and 0.8% equity only make sense if there is genuine joint buy-in on what “modest cuts” means for a family with a 7- and 4-year-old while she is the primary earner. If she is not fully in, eliminate Option B now.\n\nStep 3: If you have alignment at home, negotiate two things with the Series B before committing: a six-month compensation ramp and remote/hybrid boundaries that protect family time. In parallel, verify runway length, CEO quality through back-channel references, and whether the 0.8% is on a fully diluted basis—or get a credible dilution model. Do not treat the offer as final until those terms close.\n\nStep 4: If the wife conversation says no, or if the startup due diligence surfaces red flags, take Option A. Treat it as a 24-month bridge: the staff+ title and 15% comp bump are real, but it is a delay, not a solution, to wanting to build something you own.\n\nStep 5: Do not stay at your current company as a safe default. The structural block on staff means staying is an active choice to ride a declining plateau, and the distraction you feel will likely worsen.\n\nYour decision tree: extensions → wife gate → (if yes) negotiate B + diligence → (if no/red flags) take A → reject C as a passive default.",
+      "ledger_signal": "additive_pressure_present",
+      "answer_delta_specificity": "concrete_delta_present",
+      "answer_delta_summary": {
+        "added_entities": [
+          "deadline extension requests to all three companies",
+          "six-month compensation ramp",
+          "remote/hybrid boundaries",
+          "back-channel CEO references",
+          "fully diluted equity check"
+        ],
+        "removed_entities": [],
+        "reordered_sequences": [
+          "extensions requested first, before any commitment",
+          "wife conversation gated before B due diligence",
+          "negotiation with B gated before final acceptance"
+        ],
+        "structural_delta": [
+          "sequenced decision gates replacing simultaneous comparison",
+          "unlock condition: wife buy-in required before B due diligence",
+          "commitment boundary: B offer treated as conditional until ramp/remote terms close",
+          "stop condition: eliminate B immediately if wife conversation yields no"
+        ],
+        "reframed_emphasis": [
+          "from 'picking among three options' to 'running a sequenced process'",
+          "C reframed from safe default to active choice to accept a declining plateau"
+        ]
+      }
+    },
+    {
+      "partition_case_id": "startup-pivot-new-run2.sample-0.stable-positive",
+      "source_case_id": "startup-pivot-new-run2",
+      "stability_classification": "stable_positive",
+      "sample_ref": "research/pre-step6-calibration-corpus-kimi-structural-delta/step6-samples/startup-pivot-new-run2.sample-0.calibration-step6.v1.json",
+      "sample_index": 0,
+      "case_brief": "Solo founder deciding whether to pivot B2B SaaS product from current offering to new workflow tool amid flat growth, $4K MRR, 14 months runway, and 22 customers.\n\nConstraints stated during conversation:\n- [ACTIVE] Runway 14 months at current burn\n- [ACTIVE] 22 paying customers on current product\n- [ACTIVE] Two full-time employees (engineer, CS)\n- [ACTIVE] Conversational signal from three customers, no commitments\n- [ACTIVE] Former co-founder holds 15% equity, passive\n\nOriginal framing: Founder assumes pivot signal from three customers is valid; weighs pivoting now with 14 months runway vs pushing current flat product; excludes other options beyond these two.",
+      "anchor_visible": "SYNTHESIZED POSITION:\nRun pre-buy test this week with the three customers at specific price ($X, 3 months prepay); define pass bar upfront (e.g., 2/3 commit); set decision in 14 days; if pass, pivot with transition plan for current customers (freeze/sunset/migrate), inform/talk to CS employee about uncertainty then likely layoff with severance, inform former co-founder without seeking input; have hard conversations first as they unlock the decision.",
+      "step6_visible": "Run a pre-buy test this week with the three customers who signaled interest: name a specific price, require a three-month prepay, and write down the pass/fail bar before you reach out (e.g., two of three commit within 14 days). In that same 14-day window, quickly check two additional things: who already competes in this workflow space and what it would cost to freeze, sunset, or migrate your 22 current customers. Those are go/no-go inputs alongside the pre-buy test.\n\nHave the hard conversations now because they unlock the decision. Tell your CS employee you are seriously exploring a pivot, that the next two weeks are uncertain, and that if you proceed you will likely need to part ways with a severance package. Notify your former co-founder as a courtesy—share the plan, but make clear you are informing her, not requesting approval; 15% passive equity does not confer a veto on strategy.\n\nIf the pre-buy bar clears and the competitive/migration checks do not reveal fatal flaws, commit: pivot to the workflow tool with a concrete transition plan for the existing 22 customers (freeze development, set sunset or migration terms, communicate timelines). If the test fails, do not pivot. Use the remaining runway to find a different path forward rather than gambling on unvalidated demand.",
+      "ledger_signal": "additive_pressure_present",
+      "answer_delta_specificity": "concrete_delta_present",
+      "answer_delta_summary": {
+        "added_entities": [
+          "competitive dynamics check",
+          "migration cost estimate for current 22 customers",
+          "explicit 'notification not consent' framing for former co-founder disclosure"
+        ],
+        "removed_entities": [],
+        "reordered_sequences": [],
+        "structural_delta": [
+          "Added due diligence stop-condition assessing competitive landscape and migration cost before declaring the pivot",
+          "Inserted commitment boundary clarifying co-founder equity does not grant strategic veto"
+        ],
+        "reframed_emphasis": [
+          "Sharpened founder autonomy in equity relationships",
+          "Treated competitive and migration risk as equal in weight to customer pre-buy signal"
+        ]
+      }
+    }
+  ],
+  "excluded_variable_case_ids": [
+    "founder-grant-marcus-equity.high-clutter.v60-on",
+    "mid-level-consultant-report-2",
+    "third-year-phd-student.v2.v60-off",
+    "third-year-phd-student.v2.v60-on"
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Reviewer cognition is restricted to stable cases. A pass here does not unlock shadow implementation because variable cases remain quarantined."
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": "pre_step6_reframe_diagnostic_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "calibration_reframe_diagnostic_review_v0",
+  "diagnostic_case_id": "founder-grant-marcus-equity.high-clutter.v60-off.sample-1.reframe-only-diagnostic",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"diagnostic_label\": \"step6_non_inferior\",\n  \"winner_label\": \"A\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Answer A provides a more nuanced tactical framework for the conversation. While B is concise, A explicitly addresses the 'why' behind the risk (the dependency system) and provides better guidance on how to manage the interpersonal fallout (avoiding the perception of avoidance). A's advice to avoid 'false-precision' in exit math is a superior reframe compared to B's simpler directive.\",\n  \"reframe_value_if_any\": [\n    \"Reframing the equity grant as a 'dependency system' risk rather than just a valuation problem.\",\n    \"Reframing the Friday meeting as a 'staged-partnership conversation' rather than a negotiation.\"\n  ],\n  \"anchor_strengths\": [\n    \"Answer B is highly efficient and action-oriented.\"\n  ],\n  \"payload_loss_or_bloat\": [\n    \"Answer A is slightly verbose but the extra context regarding 'exit math' and 'governance behavior' adds necessary weight to the decision-making process.\"\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 1046,
+    "completion_tokens": 258,
+    "total_tokens": 1304,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "model_family": "google"
+  },
+  "blind_map": {
+    "A": "anchor_visible",
+    "B": "step6_visible"
+  },
+  "reviewer_output": {
+    "diagnostic_label": "step6_non_inferior",
+    "winner_label": "A",
+    "confidence": "high",
+    "rationale": "Answer A provides a more nuanced tactical framework for the conversation. While B is concise, A explicitly addresses the 'why' behind the risk (the dependency system) and provides better guidance on how to manage the interpersonal fallout (avoiding the perception of avoidance). A's advice to avoid 'false-precision' in exit math is a superior reframe compared to B's simpler directive.",
+    "reframe_value_if_any": [
+      "Reframing the equity grant as a 'dependency system' risk rather than just a valuation problem.",
+      "Reframing the Friday meeting as a 'staged-partnership conversation' rather than a negotiation."
+    ],
+    "anchor_strengths": [
+      "Answer B is highly efficient and action-oriented."
+    ],
+    "payload_loss_or_bloat": [
+      "Answer A is slightly verbose but the extra context regarding 'exit math' and 'governance behavior' adds necessary weight to the decision-making process."
+    ]
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample reframe diagnostic judgment."
+}

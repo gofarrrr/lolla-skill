@@ -1,0 +1,54 @@
+{
+  "schema_version": "pre_step6_gpt_stability_correctness_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_gpt_stability_correctness_review_v0",
+  "review_case_id": "mid-level-consultant-report-2.sample-2.gpt-anchor-visible",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"output_label\": \"better\",\n  \"winner_label\": \"A\",\n  \"visibility_judgment\": \"correct_visible\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Candidate A provides a concise, actionable, and professional response that avoids the unnecessary filler and repetitive phrasing found in Candidate B. Candidate A's tone is more appropriate for a high-stakes legal/professional context.\",\n  \"answer_correctness_notes\": [\n    \"Candidate A is more direct and avoids the slightly redundant 'do not' list in Candidate B.\",\n    \"Candidate A's advice on attorney selection is more focused and actionable.\",\n    \"Candidate B contains unnecessary conversational filler ('This is high risk, so do not let fear...').\"\n  ],\n  \"visibility_decision_notes\": [\n    \"The visibility decision to present the model output (Step 6) is correct as it provides a more refined and professional synthesis than the anchor.\"\n  ],\n  \"payload_loss_or_bloat\": [\n    \"Candidate B suffers from bloat, adding approximately 300 characters of redundant advice and filler without adding substantive value.\"\n  ],\n  \"structural_delta_read\": \"useful_structural_delta\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 1091,
+    "completion_tokens": 271,
+    "total_tokens": 1362,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter",
+    "model_family": "google"
+  },
+  "blind_map": {
+    "A": "step6_visible",
+    "B": "anchor_visible"
+  },
+  "reviewer_output": {
+    "output_label": "better",
+    "winner_label": "A",
+    "visibility_judgment": "correct_visible",
+    "confidence": "high",
+    "rationale": "Candidate A provides a concise, actionable, and professional response that avoids the unnecessary filler and repetitive phrasing found in Candidate B. Candidate A's tone is more appropriate for a high-stakes legal/professional context.",
+    "answer_correctness_notes": [
+      "Candidate A is more direct and avoids the slightly redundant 'do not' list in Candidate B.",
+      "Candidate A's advice on attorney selection is more focused and actionable.",
+      "Candidate B contains unnecessary conversational filler ('This is high risk, so do not let fear...')."
+    ],
+    "visibility_decision_notes": [
+      "The visibility decision to present the model output (Step 6) is correct as it provides a more refined and professional synthesis than the anchor."
+    ],
+    "payload_loss_or_bloat": [
+      "Candidate B suffers from bloat, adding approximately 300 characters of redundant advice and filler without adding substantive value."
+    ],
+    "structural_delta_read": "useful_structural_delta"
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample GPT-stability correctness judgment."
+}

@@ -1,0 +1,65 @@
+{
+  "schema_version": "pre_step6_false_positive_step6_replay.v1",
+  "runtime_policy": "runtime_dormant",
+  "probe_id": "false_positive_visibility_probe_v0",
+  "case_id": "mid-level-consultant-report-2",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"answer_core\": \"Do not confront the partner, investigate on your own, access systems unusually, or choose a reporting channel yourself. Write down exactly what you observed, preserve your notes, and tell your spouse only in broad strokes. Contact two or three independent whistleblower attorneys as your next step. Let counsel review the facts first and determine whether GC, the audit committee, regulators, or another route is safest. During intake, ask how they decide among internal, audit‑committee, or external channels. Attend Wednesday normally without abrupt changes. If the partner raises the encounter, keep your response minimal, avoid elaboration, and avoid being alone with them if possible. Move quickly but keep early steps reversible until counsel directs you.\",\n  \"private_visibility_ledger\": [\n    {\n      \"source_id\": \"anchor_visible_candidate\",\n      \"disposition\": \"combined\",\n      \"novelty_role\": \"visible_backbone\",\n      \"why\": \"Anchor provides the full structured sequence, actors, and cautions needed for a clean public answer.\",\n      \"visible_effect\": \"Backbone of the final wording.\"\n    },\n    {\n      \"source_id\": \"deck_pressure_candidate\",\n      \"disposition\": \"combined\",\n      \"novelty_role\": \"additive_pressure\",\n      \"why\": \"Deck version sharpened phrasing on minimization and bias‑checking questions without altering meaning.\",\n      \"visible_effect\": \"Slightly more concise and aligned phrasing in final answer.\"\n    }\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 839,
+    "completion_tokens": 353,
+    "total_tokens": 1192,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter",
+    "model_family": "openai"
+  },
+  "input_packet": {
+    "case_brief": "Mid-level consultant observed a partner's suspicious document-handling behavior in a legal/safety-sensitive reporting situation. pre-registered classification: positive_seed. The prior calibration manifest mislabeled this as negative_control_seed, but the card-deck comparison and the shadow harness fired deck_visible_shadow_only.",
+    "pre_run_failure_hypothesis": "If both reviewers prefer the anchor over the deck-aware answer, the consultant reclassification is wrong and this is a confirmed false positive for the redesigned resolver on a real fixed-suite case.",
+    "false_positive_risk": [
+      "The manifest previously mislabeled this as negative_control_seed.",
+      "The deck-aware answer may be merely shorter rather than materially better.",
+      "A counsel-first safety case can be harmed if additive pressure creates overconfidence."
+    ],
+    "anchor_visible_candidate": "Do not confront the partner, investigate privately, access systems unusually, or pick a reporting channel yourself. Tonight, write down exactly what you saw, preserve your own notes, tell your spouse in broad strokes, and contact two or three whistleblower attorneys.\n\nYour first move is independent counsel first, not GC-first by default and not a self-chosen audit committee or external report. Let counsel review the facts and decide whether GC, the audit committee, regulators, or another path is safest. During intake, ask practical questions that test whether the attorney has a reflexive channel preference: when have they advised internal-first, audit-committee-first, or external-first, and why?\n\nAttend Wednesday normally and avoid anything that looks like a sudden change in behavior. If the partner raises the encounter, keep the response narrow: do not deny, elaborate, confront, investigate, or be alone with the partner if avoidable. This is high risk, so do not let fear push you into filing before evidence review, but do not let fear make you do nothing either. Get counsel involved quickly and keep the first moves reversible.",
+    "deck_pressure_candidate": "Do not confront your partner, investigate on your own, access any systems unusually, or pick a reporting channel yourself. Tonight, write down exactly what you saw and preserve your own notes. Tell your spouse only in broad strokes. Contact two or three independent whistleblower attorneys as your next move. Let them review the facts first and decide whether any internal or external reporting path is safest. During intake, ask each attorney how they decide among internal, audit committee, or external channels so you can check for any built‑in bias. Attend Wednesday normally without abrupt changes in behavior. If your partner raises the encounter, keep your response minimal, avoid elaboration, and avoid being alone with them if you can. Move quickly but keep all early steps reversible until counsel guides you."
+  },
+  "step6_output": {
+    "answer_core": "Do not confront the partner, investigate on your own, access systems unusually, or choose a reporting channel yourself. Write down exactly what you observed, preserve your notes, and tell your spouse only in broad strokes. Contact two or three independent whistleblower attorneys as your next step. Let counsel review the facts first and determine whether GC, the audit committee, regulators, or another route is safest. During intake, ask how they decide among internal, audit‑committee, or external channels. Attend Wednesday normally without abrupt changes. If the partner raises the encounter, keep your response minimal, avoid elaboration, and avoid being alone with them if possible. Move quickly but keep early steps reversible until counsel directs you.",
+    "private_visibility_ledger": [
+      {
+        "source_id": "anchor_visible_candidate",
+        "disposition": "combined",
+        "novelty_role": "visible_backbone",
+        "why": "Anchor provides the full structured sequence, actors, and cautions needed for a clean public answer.",
+        "visible_effect": "Backbone of the final wording."
+      },
+      {
+        "source_id": "deck_pressure_candidate",
+        "disposition": "combined",
+        "novelty_role": "additive_pressure",
+        "why": "Deck version sharpened phrasing on minimization and bias‑checking questions without altering meaning.",
+        "visible_effect": "Slightly more concise and aligned phrasing in final answer."
+      }
+    ]
+  },
+  "ledger_signal": "additive_pressure_present",
+  "deterministic_role": [
+    "validate_step6_ledger_schema",
+    "derive_visibility_precondition",
+    "preserve_blind_review_custody"
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live Step 6 replay for false-positive visibility probe."
+}

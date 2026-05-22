@@ -1,0 +1,51 @@
+{
+  "schema_version": "pre_step6_false_positive_visibility_judgment.v1",
+  "runtime_policy": "runtime_dormant",
+  "probe_id": "false_positive_visibility_probe_v0",
+  "case_id": "mid-level-consultant-report-2",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"visibility_label\": \"true_visible\",\n  \"winner_label\": \"B\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Candidate B (the deck-aware answer) provides the same actionable advice as the anchor but with significantly improved conciseness and clarity. It removes redundant phrasing while retaining all critical safety instructions, making it a superior response for a user in a high-stress, time-sensitive situation.\",\n  \"anchor_strengths\": [\n    \"Comprehensive detail\",\n    \"Explicitly lists 'GC-first' as a path to avoid\"\n  ],\n  \"deck_regressions_or_bloat\": [\n    \"None; the deck-aware version successfully condensed the advice without losing nuance.\"\n  ],\n  \"payload_loss_or_entity_loss\": [\n    \"None\"\n  ],\n  \"non_inferiority_read\": \"better\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 1017,
+    "completion_tokens": 203,
+    "total_tokens": 1220,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter",
+    "model_family": "google"
+  },
+  "blind_map": {
+    "A": "anchor_visible",
+    "B": "deck_visible"
+  },
+  "reviewer_output": {
+    "visibility_label": "true_visible",
+    "winner_label": "B",
+    "confidence": "high",
+    "rationale": "Candidate B (the deck-aware answer) provides the same actionable advice as the anchor but with significantly improved conciseness and clarity. It removes redundant phrasing while retaining all critical safety instructions, making it a superior response for a user in a high-stress, time-sensitive situation.",
+    "anchor_strengths": [
+      "Comprehensive detail",
+      "Explicitly lists 'GC-first' as a path to avoid"
+    ],
+    "deck_regressions_or_bloat": [
+      "None; the deck-aware version successfully condensed the advice without losing nuance."
+    ],
+    "payload_loss_or_entity_loss": [
+      "None"
+    ],
+    "non_inferiority_read": "better"
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live visibility judgment for false-positive probe."
+}

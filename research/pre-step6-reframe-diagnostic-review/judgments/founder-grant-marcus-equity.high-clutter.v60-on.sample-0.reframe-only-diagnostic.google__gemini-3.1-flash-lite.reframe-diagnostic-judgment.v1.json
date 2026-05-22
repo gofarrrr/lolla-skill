@@ -1,0 +1,49 @@
+{
+  "schema_version": "pre_step6_reframe_diagnostic_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "calibration_reframe_diagnostic_review_v0",
+  "diagnostic_case_id": "founder-grant-marcus-equity.high-clutter.v60-on.sample-0.reframe-only-diagnostic",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"diagnostic_label\": \"step6_non_inferior\",\n  \"winner_label\": \"B\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Answer B provides a more comprehensive framework for the user's decision-making process. While Answer A is concise, Answer B effectively addresses the 'why' behind the decision (dependency risk vs. contribution) and provides a more nuanced strategy for the conversation on Friday, specifically addressing how to avoid the pitfalls of 'vague delay' while maintaining the necessary boundary.\",\n  \"reframe_value_if_any\": [\n    \"Answer B successfully reframes the equity grant as a 'dependency risk' issue rather than a valuation issue, which aligns with the diagnostic goal of avoiding instrument-catalog thinking.\"\n  ],\n  \"anchor_strengths\": [\n    \"Answer A is highly actionable and direct, which is useful for a user needing immediate, low-friction guidance.\"\n  ],\n  \"payload_loss_or_bloat\": [\n    \"Answer B is slightly verbose, but the extra length is used to explain the strategic stakes of the conversation, which is valuable for a high-stakes founder decision.\"\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 1046,
+    "completion_tokens": 257,
+    "total_tokens": 1303,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "model_family": "google"
+  },
+  "blind_map": {
+    "A": "step6_visible",
+    "B": "anchor_visible"
+  },
+  "reviewer_output": {
+    "diagnostic_label": "step6_non_inferior",
+    "winner_label": "B",
+    "confidence": "high",
+    "rationale": "Answer B provides a more comprehensive framework for the user's decision-making process. While Answer A is concise, Answer B effectively addresses the 'why' behind the decision (dependency risk vs. contribution) and provides a more nuanced strategy for the conversation on Friday, specifically addressing how to avoid the pitfalls of 'vague delay' while maintaining the necessary boundary.",
+    "reframe_value_if_any": [
+      "Answer B successfully reframes the equity grant as a 'dependency risk' issue rather than a valuation issue, which aligns with the diagnostic goal of avoiding instrument-catalog thinking."
+    ],
+    "anchor_strengths": [
+      "Answer A is highly actionable and direct, which is useful for a user needing immediate, low-friction guidance."
+    ],
+    "payload_loss_or_bloat": [
+      "Answer B is slightly verbose, but the extra length is used to explain the strategic stakes of the conversation, which is valuable for a high-stakes founder decision."
+    ]
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample reframe diagnostic judgment."
+}

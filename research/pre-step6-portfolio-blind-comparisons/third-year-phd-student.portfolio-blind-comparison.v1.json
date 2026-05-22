@@ -1,0 +1,146 @@
+{
+  "schema_version": "pre_step6_portfolio_blind_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "third-year-phd-student",
+  "comparison_kind": "portfolio_blind_local_rubric",
+  "blind_seed": 2026052003,
+  "candidate_refs": {
+    "control_or_raw_answer_core": "research/pre-step6-raw-artifact-answer-cores/third-year-phd-student.raw-answer-core.v1.json",
+    "rendered_hybrid_answer_core": "research/pre-step6-rendered-hybrid-answer-cores/third-year-phd-student.conflict.native.rendered-hybrid-answer-core.v1.json",
+    "portfolio_answer_core": "research/pre-step6-portfolio-answer-cores/third-year-phd-student.native.portfolio-answer-core.v1.json"
+  },
+  "blind_map": {
+    "A": "portfolio",
+    "B": "rendered_hybrid",
+    "C": "control_or_raw",
+    "D": "unused"
+  },
+  "criteria": [
+    {
+      "criterion_id": "decision_usefulness",
+      "question": "Which answer best guides the PhD decision?",
+      "winner_label": "tie",
+      "evidence_by_label": {
+        "A": "Clear executability framing and fallback trigger warning.",
+        "B": "Clear two-gate framing and sequence guidance.",
+        "C": "Useful raw-pressure answer but more burdened.",
+        "D": "Unused arm."
+      },
+      "rationale": "A and B are both strong."
+    },
+    {
+      "criterion_id": "source_grounding",
+      "question": "Which answer stays inside the advisor/data/fallback facts?",
+      "winner_label": "tie",
+      "evidence_by_label": {
+        "A": "Grounded in advisor, data, fallback, and trigger date.",
+        "B": "Grounded in advisor, data, fallback, and deadline.",
+        "C": "Grounded but more raw-pressure-heavy.",
+        "D": "Unused arm."
+      },
+      "rationale": "No live candidate adds unsupported facts."
+    },
+    {
+      "criterion_id": "overclaim_risk",
+      "question": "Which answer best avoids broad probability claims?",
+      "winner_label": "tie",
+      "evidence_by_label": {
+        "A": "Rejects broad success-rate claims as probabilities.",
+        "B": "Rejects broad PhD success-rate claims as probabilities.",
+        "C": "Also avoids numeric priors.",
+        "D": "Unused arm."
+      },
+      "rationale": "All live candidates handle overclaim risk."
+    },
+    {
+      "criterion_id": "answer_length_cognitive_load",
+      "question": "Which answer is easier to use?",
+      "winner_label": "A",
+      "evidence_by_label": {
+        "A": "Slightly more compact while preserving trigger-date pressure.",
+        "B": "Useful but a bit denser.",
+        "C": "More raw burden.",
+        "D": "Unused arm."
+      },
+      "rationale": "A has a small lightness advantage."
+    },
+    {
+      "criterion_id": "machinery_hygiene",
+      "question": "Which answer avoids internal terms and framework residue?",
+      "winner_label": "tie",
+      "evidence_by_label": {
+        "A": "No internal terms.",
+        "B": "No internal terms.",
+        "C": "No internal terms.",
+        "D": "Unused arm."
+      },
+      "rationale": "All live candidates are clean."
+    },
+    {
+      "criterion_id": "conflict_preservation",
+      "question": "Which answer preserves the Silva-vs-fallback tension?",
+      "winner_label": "B",
+      "evidence_by_label": {
+        "A": "Preserves the tension through executability.",
+        "B": "Very explicitly preserves both not choosing Silva yet and not defaulting to the safer path.",
+        "C": "Preserves tension but with more raw detail.",
+        "D": "Unused arm."
+      },
+      "rationale": "B has a small edge on explicit tension."
+    },
+    {
+      "criterion_id": "duplicate_demotion",
+      "question": "Which answer avoids adding extra options or duplicate reasoning?",
+      "winner_label": "tie",
+      "evidence_by_label": {
+        "A": "No new options.",
+        "B": "No new options.",
+        "C": "No new options but more raw pressure.",
+        "D": "Unused arm."
+      },
+      "rationale": "A and B tie."
+    },
+    {
+      "criterion_id": "unforcedness",
+      "question": "Which answer feels most naturally reasoned?",
+      "winner_label": "B",
+      "evidence_by_label": {
+        "A": "Natural but slightly compressed.",
+        "B": "Most fluent and already proven in prior replay.",
+        "C": "More research-shaped.",
+        "D": "Unused arm."
+      },
+      "rationale": "B has a small naturalness advantage."
+    },
+    {
+      "criterion_id": "edge_pressure_preservation",
+      "question": "Which answer best preserves trigger-date fallback viability?",
+      "winner_label": "A",
+      "evidence_by_label": {
+        "A": "Makes availability at the trigger date and disappearance risk explicit.",
+        "B": "Preserves fallback protection but less sharply names disappearance at trigger date.",
+        "C": "Preserves fallback pressure with more raw burden.",
+        "D": "Unused arm."
+      },
+      "rationale": "A best expresses the parked sequence-stop receipt."
+    },
+    {
+      "criterion_id": "reserve_overuse",
+      "question": "Which answer avoids overusing reserve material?",
+      "winner_label": "tie",
+      "evidence_by_label": {
+        "A": "Uses the reserve once and stops.",
+        "B": "Uses the hybrid pressure cleanly.",
+        "C": "More reserve material visible.",
+        "D": "Unused arm."
+      },
+      "rationale": "A and B tie."
+    }
+  ],
+  "tie_break_rule": "portfolio_must_beat_or_simplify",
+  "aggregate_winner_label": "tie",
+  "aggregate_decision": "tie_keep_research_only",
+  "promotion_read": "retest",
+  "notes": "Portfolio improves trigger-date pressure but does not clearly beat the prior rendered-hybrid answer overall."
+}

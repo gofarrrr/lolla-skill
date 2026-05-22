@@ -1,0 +1,62 @@
+{
+  "schema_version": "pre_step6_portfolio_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mid-level-consultant-report-2",
+  "source_refs": [
+    "research/pre-step6-raw-artifact-fixtures/mid-level-consultant-report-2.raw-artifact-handoff.v1.json",
+    "research/pre-step6-hybrid-handoff-fixtures/mid-level-consultant-report-2.hybrid-handoff.v1.json"
+  ],
+  "modes": [
+    {
+      "mode_id": "B",
+      "label": "raw artifact handoff",
+      "source_ref": "research/pre-step6-raw-artifact-fixtures/mid-level-consultant-report-2.raw-artifact-handoff.v1.json",
+      "render_chars": 4000,
+      "active_count": 5,
+      "edge_count": 0,
+      "parked_count": 0,
+      "source_ref_count": 4,
+      "premature_pruning_risk": "low",
+      "answer_usefulness_judgment": "Preserves nuance but risks too much process pressure for a negative-control case."
+    },
+    {
+      "mode_id": "C",
+      "label": "hybrid card first",
+      "source_ref": "research/pre-step6-hybrid-handoff-fixtures/mid-level-consultant-report-2.hybrid-handoff.v1.json",
+      "render_chars": 3200,
+      "active_count": 1,
+      "edge_count": 1,
+      "parked_count": 0,
+      "source_ref_count": 3,
+      "premature_pruning_risk": "medium",
+      "answer_usefulness_judgment": "Likely enough pressure without a portfolio map."
+    },
+    {
+      "mode_id": "unavailable",
+      "label": "reasoning portfolio not yet generated",
+      "source_ref": "research/pre-step6-portfolio-comparisons/mid-level-consultant-report-2.portfolio-comparison.v1.json",
+      "render_chars": 0,
+      "active_count": 0,
+      "edge_count": 0,
+      "parked_count": 0,
+      "source_ref_count": 2,
+      "premature_pruning_risk": "unknown",
+      "answer_usefulness_judgment": "Leave this as a future negative-control portfolio case before promotion."
+    }
+  ],
+  "metrics": {
+    "latency_proxy": "No portfolio generation run yet.",
+    "token_cost_proxy": "Hybrid is currently cheaper than adding portfolio calls.",
+    "edge_pressure_preservation": "Unknown for portfolio; hybrid preserves the current needed nuance.",
+    "artifact_bloat": "Raw looks too heavy for this case.",
+    "negative_control_behavior": "Current evidence favors not adding extra machinery yet."
+  },
+  "aggregate_judgment": "tie_keep_research_only",
+  "falsifiers": [
+    "If a generated portfolio cleanly preserves counsel-channel nuance with less burden, this case should be revisited.",
+    "If hybrid misses Wednesday-specific nuance in replay, portfolio may be justified."
+  ],
+  "recommendation": "Do not use this case as promotion evidence until a portfolio fixture exists.",
+  "notes": "Manual comparison fixture; not an automated quality judge."
+}

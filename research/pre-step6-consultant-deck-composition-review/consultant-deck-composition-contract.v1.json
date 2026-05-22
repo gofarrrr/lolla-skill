@@ -1,0 +1,39 @@
+{
+  "schema_version": "pre_step6_consultant_deck_composition_contract.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "consultant_deck_composition_review_v0",
+  "promotion_effect": "none_research_only",
+  "program_scope": "cleaning_review_not_visibility_gate",
+  "case_id": "mid-level-consultant-report-2",
+  "cleaning_question": "Does the Consultant deck give Step 6 the right material to reach a clean answer, or are anchor/cards/V60 packaging the case poorly?",
+  "source_refs": {
+    "card_deck_ref": "research/pre-step6-step6-card-decks/mid-level-consultant-report-2.step6-card-deck.v1.json",
+    "private_cards_ref": "research/pre-step6-private-reasoning-cards/mid-level-consultant-report-2.private-reasoning-cards.v1.json",
+    "problem_state_ref": "research/pre-step6-problem-states/mid-level-consultant-report-2.problem-state.v1.json",
+    "anchor_ref": "research/pre-step6-rendered-hybrid-answer-cores/mid-level-consultant-report-2.native.rendered-hybrid-answer-core.v1.json",
+    "card_deck_replay_ref": "research/pre-step6-card-deck-replays/mid-level-consultant-report-2.card-deck-replay.v1.json",
+    "variable_case_diagnostic_ref": "research/pre-step6-variable-case-diagnostic/variable-case-diagnostic-result.v1.json",
+    "gpt_stability_correctness_ref": "research/pre-step6-gpt-stability-correctness-review/gpt-stability-correctness-result.v1.json",
+    "kimi_sample_dir_ref": "research/pre-step6-calibration-corpus-kimi-structural-delta/step6-samples",
+    "gpt_sample_dir_ref": "research/pre-step6-variable-case-alt-model-gpt51/step6-samples"
+  },
+  "precommitted_hypotheses": {
+    "anchor_sufficient_but_deck_compression_helpful": "The anchor carries the safety payload, while deck pressure adds concise wording or small concrete refinements.",
+    "deck_pressure_too_thin_or_generic": "The deck pressure is mostly confirming, so Step 6 flips between treating it as additive and private support.",
+    "lens_composition_misaligned": "Bevelin/Polya receipts overlap the anchor too much or miss the actual structural pressure needed for this case shape.",
+    "case_intrinsically_ambiguous_after_cleaning": "Even with a clean deck, multiple visible answers may be valid because the useful delta is small and stylistic.",
+    "v60_not_active_for_consultant": "No V60 context is active on this case, so V60 should not be used as the explanation for Consultant variance."
+  },
+  "explicit_limits": [
+    "does_not_add_or_change_visibility_gates",
+    "does_not_decide_legal_correctness",
+    "does_not_promote_runtime_or_skill",
+    "does_not_route_by_model_family"
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Research-only cleaning review. The output may recommend deck material experiments, not runtime resolver changes."
+}

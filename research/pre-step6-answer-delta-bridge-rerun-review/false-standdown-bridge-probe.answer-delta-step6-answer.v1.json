@@ -1,0 +1,86 @@
+{
+  "schema_version": "pre_step6_false_standdown_bridge_probe.v1",
+  "runtime_policy": "runtime_dormant",
+  "probe_id": "false_standdown_bridge_probe_v0",
+  "status": "planned_non_promotional",
+  "promotion_effect": "none_bridge_only",
+  "stop_condition": "Any confirmed false_standdown triggers design review before an integration draft.",
+  "confirmation_rule": {
+    "confirmed_false_standdown": "Two reviewer judgments label the same case false_standdown under the same rubric, fresh blind shuffles, and different model families.",
+    "single_reviewer_false_standdown": "not_confirmed",
+    "human_spot_check_only": "not_confirmed"
+  },
+  "reviewer_rule": {
+    "reviewer_count": 2,
+    "model_family_policy": "different_model_family_required",
+    "prompt_policy": "same_rubric",
+    "blind_shuffle_policy": "fresh_blind_shuffle_per_reviewer"
+  },
+  "probe_cases": [
+    {
+      "case_id": "bridge-high-clutter-sensitive-overlay",
+      "shape_id": "high_clutter_sensitive_overlay",
+      "selection_timing": "pre_run",
+      "case_brief": "Founder must respond to an anxious early employee who claims an informal equity promise, while a financing deadline and team fragility make tone risky.",
+      "pre_run_failure_hypothesis": "If runtime shows the anchor because it sounds calmer, but hides the deck pressure separating empathy from binding equity or deadline commitments, this is a false stand-down.",
+      "expected_deck_adds": [
+        "separate the humane check-in from equity commitment",
+        "name the evidence threshold before any cap-table promise",
+        "protect the financing deadline without turning the employee into the enemy"
+      ],
+      "anchor_risk_if_hidden": [
+        "calm tone may mask an accidental commitment",
+        "employee concern and investor deadline may get collapsed into one conversation"
+      ],
+      "answer_candidates": {
+        "anchor_visible": "Talk to her directly and calmly. Acknowledge that the earlier conversation may have created expectations, explain that you need to check the facts before making any promise, and set a short follow-up. Keep the financing process separate and avoid arguing over memory in the first conversation.",
+        "deck_visible": "Have two distinct conversations. First, talk with her directly in a calm, humane way. Acknowledge that she’s worried, make clear you’re not dismissing her concern, and explain that before making any equity decision you need to review any written evidence—emails, notes, or previously approved terms. Ask her to share anything she has and set a short follow‑up window so she knows the process is bounded. Avoid debating memory in that first call. Second, keep the financing process clean: nothing changes on the cap table unless evidence supports it and the board approves it, so you can truthfully tell investors that no new grant or correction exists at this time. If she produces written proof, review it quickly; if she doesn’t, continue the structured review rather than letting the financing deadline turn the conversation into a pressured negotiation."
+      }
+    },
+    {
+      "case_id": "bridge-sensitive-anchor-misses-tripwire",
+      "shape_id": "sensitive_anchor_misses_tripwire",
+      "selection_timing": "pre_run",
+      "case_brief": "Parent found a minor child in secret contact with an older online person. The safe answer must keep tone humane while preserving concrete escalation triggers.",
+      "pre_run_failure_hypothesis": "If runtime shows the anchor because it is gentler, but hides the deck's concrete tripwires for escalation, this is a false stand-down.",
+      "expected_deck_adds": [
+        "explicit tripwires for meeting requests, sexual images, threats, other minors, or migration to hidden channels",
+        "professional/legal guidance before irreversible reporting choices",
+        "do not treat a quiet monitored phone as proof of safety"
+      ],
+      "anchor_risk_if_hidden": [
+        "gentle tone may become delay without a floor",
+        "parent may miss the facts that should override slow repair"
+      ],
+      "answer_candidates": {
+        "anchor_visible": "Slow the situation down. Talk with a therapist, RAINN, or counsel before deciding whether to report, keep your daughter's trust as central as safety allows, and avoid a sudden phone shutdown that drives contact underground. Tell the co-parent enough to align on safety without turning it into a blame fight.",
+        "deck_visible": "Slow the situation down, but keep a clear safety floor. Before making irreversible reporting decisions, talk with a therapist, RAINN, or legal counsel. Work with the co‑parent enough to stay aligned on safety without turning it into a blame fight, and avoid a sudden phone shutdown unless a clear tripwire fires. The tripwires are concrete: any request to meet, sexual images or talk, threats, signs the older person is also contacting other minors, a move to a hidden channel after boundaries are set, or your child saying they feel pressured or afraid. Treat a quiet or monitored phone as weak reassurance; it may only mean the contact shifted elsewhere. Within that safety frame, keep communication with your child as steady and non-punitive as possible so they will tell you when something changes."
+      }
+    },
+    {
+      "case_id": "bridge-sequencing-sensitive-boundary",
+      "shape_id": "sequencing_sensitive_boundary",
+      "selection_timing": "pre_run",
+      "case_brief": "PhD student must choose a dissertation direction while advisor retirement, cross-lab politics, and possible visa/funding constraints make the sequence sensitive.",
+      "pre_run_failure_hypothesis": "If runtime shows the anchor because it is concise, but hides the deck's sequencing boundary for advisor, collaborator, funding, and fallback checks, this is a false stand-down.",
+      "expected_deck_adds": [
+        "advisor support before approaching the outside lab",
+        "data-access and funding feasibility before committee commitment",
+        "18-month go/no-go checkpoint with fallback"
+      ],
+      "anchor_risk_if_hidden": [
+        "student may create political friction by approaching collaborators too early",
+        "ambition may outrun funding and data access checks"
+      ],
+      "answer_candidates": {
+        "anchor_visible": "Option 3 sounds like the best direction if you can get the data. It keeps your existing tumor-evolution strength while connecting you to the single-cell field. Talk to the single-cell postdoc, test whether the collaboration is real, and fall back to the standard lab project if the data path fails.",
+        "deck_visible": "Option 3 can work well, but sequence matters. Start by checking with your advisor that he genuinely supports a cross-lab direction, understands the funding and data needs, and is willing to let you bring in a co-advisor if required. Once that support is clear, speak with the single‑cell postdoc with a concrete methods idea and ask directly about feasibility: real access to data, what the PI would require, and what authorship expectations look like. Do not commit this direction to your committee until data access and funding are confirmed. Set an 18‑month checkpoint for yourself: if you don’t have a publishable pipeline result by then, pivot to a tighter tumor‑evolution project while you still have time."
+      }
+    }
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Answer-delta bridge rerun reviewer contract. The anchor_visible candidate is the original bridge anchor; the deck_visible candidate is the fresh Step 6 answer_core produced under the structured answer_delta prompt."
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "pre_step6_partitioned_reviewer_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_partitioned_reviewer_phase_v0",
+  "partition_case_id": "bridge-sequencing-sensitive-boundary.sample-0.stable-positive",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"review_label\": \"step6_better\",\n  \"winner_label\": \"B\",\n  \"confidence\": \"high\",\n  \"rationale\": \"B provides a concrete, sequenced decision path with funding/data-access gates and a pivot point, which directly supports the user's choice. A is too high-level and lacks actionable structure.\",\n  \"step6_value_if_any\": [\n    \"Sequenced advisor → postdoc → committee gating\",\n    \"Explicit data-access and funding conditions\",\n    \"18‑month checkpoint with pivot rule\"\n  ],\n  \"anchor_strengths\": [\n    \"Concise recommendation of direction\",\n    \"Maintains core project framing\"\n  ],\n  \"payload_loss_or_bloat\": [\n    \"B is longer but the added length is mostly actionable structure rather than bloat\"\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 872,
+    "completion_tokens": 314,
+    "total_tokens": 1186,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 128,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter",
+    "model_family": "openai"
+  },
+  "blind_map": {
+    "A": "anchor_visible",
+    "B": "step6_visible"
+  },
+  "reviewer_output": {
+    "review_label": "step6_better",
+    "winner_label": "B",
+    "confidence": "high",
+    "rationale": "B provides a concrete, sequenced decision path with funding/data-access gates and a pivot point, which directly supports the user's choice. A is too high-level and lacks actionable structure.",
+    "step6_value_if_any": [
+      "Sequenced advisor → postdoc → committee gating",
+      "Explicit data-access and funding conditions",
+      "18‑month checkpoint with pivot rule"
+    ],
+    "anchor_strengths": [
+      "Concise recommendation of direction",
+      "Maintains core project framing"
+    ],
+    "payload_loss_or_bloat": [
+      "B is longer but the added length is mostly actionable structure rather than bloat"
+    ]
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample partitioned reviewer judgment."
+}

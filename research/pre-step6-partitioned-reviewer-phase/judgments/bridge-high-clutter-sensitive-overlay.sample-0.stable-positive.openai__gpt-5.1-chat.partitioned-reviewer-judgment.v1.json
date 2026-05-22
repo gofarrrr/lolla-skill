@@ -1,0 +1,50 @@
+{
+  "schema_version": "pre_step6_partitioned_reviewer_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_partitioned_reviewer_phase_v0",
+  "partition_case_id": "bridge-high-clutter-sensitive-overlay.sample-0.stable-positive",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\"review_label\":\"step6_better\",\"winner_label\":\"A\",\"confidence\":\"high\",\"rationale\":\"A preserves the anchor’s core while adding concrete evidence review steps, board‑process gates, and clear investor‑communication boundaries; B omits these and becomes less action‑guiding.\",\"step6_value_if_any\":[\"Evidence inventory, conditional review path, board‑process gate, investor truth boundary\"],\"anchor_strengths\":[\"Calm tone, separate financing, avoid memory arguments\"],\"payload_loss_or_bloat\":[\"B loses concrete procedures; A’s additions are concise and payload‑preserving\"]}",
+    "temperature": 0.2,
+    "prompt_tokens": 856,
+    "completion_tokens": 181,
+    "total_tokens": 1037,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter",
+    "model_family": "openai"
+  },
+  "blind_map": {
+    "A": "step6_visible",
+    "B": "anchor_visible"
+  },
+  "reviewer_output": {
+    "review_label": "step6_better",
+    "winner_label": "A",
+    "confidence": "high",
+    "rationale": "A preserves the anchor’s core while adding concrete evidence review steps, board‑process gates, and clear investor‑communication boundaries; B omits these and becomes less action‑guiding.",
+    "step6_value_if_any": [
+      "Evidence inventory, conditional review path, board‑process gate, investor truth boundary"
+    ],
+    "anchor_strengths": [
+      "Calm tone, separate financing, avoid memory arguments"
+    ],
+    "payload_loss_or_bloat": [
+      "B loses concrete procedures; A’s additions are concise and payload‑preserving"
+    ]
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample partitioned reviewer judgment."
+}

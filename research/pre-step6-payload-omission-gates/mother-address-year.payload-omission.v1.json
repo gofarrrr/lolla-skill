@@ -1,0 +1,147 @@
+{
+  "schema_version": "pre_step6_payload_omission.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "design_preamble_payload_omission_v0",
+  "case_id": "mother-address-year",
+  "anchor_ref": "research/pre-step6-rendered-hybrid-answer-cores/mother-address-year.native.rendered-hybrid-answer-core.v1.json",
+  "deck_ref": "research/pre-step6-card-deck-replays/mother-address-year.card-deck-replay.v1.json",
+  "categories": [
+    {
+      "category": "dates_or_dated_windows",
+      "anchor_present": true,
+      "deck_present": true,
+      "case_live": true,
+      "judgment": "preserved",
+      "detector": "regex_date_window_v0",
+      "anchor_evidence": [
+        "tonight"
+      ],
+      "deck_evidence": [
+        "right now"
+      ],
+      "missing_anchor_evidence": [
+        "tonight"
+      ]
+    },
+    {
+      "category": "actor_sequence",
+      "anchor_present": true,
+      "deck_present": true,
+      "case_live": true,
+      "judgment": "preserved",
+      "detector": "sequence_marker_v0",
+      "anchor_evidence": [
+        "Talk with RAINN, a therapist, or counsel before deciding whether to report or abruptly cut contact, because those steps can be necessary but can also push the contact into less visible places.",
+        "Use concrete, reversible tripwires while uncertainty is high: requests to meet, sexual images, threats, pressure for secrecy, new accounts, contact after a clear stop, or signs he is contacting other minors."
+      ],
+      "deck_evidence": [
+        "Break this into smaller, reversible steps: get legal or professional guidance, decide how you want to handle blocking and phone access, think through what (and how much) to tell your ex, and plan for therapy and rebuilding honesty with your daughter."
+      ],
+      "missing_anchor_evidence": [
+        "Talk with RAINN, a therapist, or counsel before deciding whether to report or abruptly cut contact, because those steps can be necessary but can also push the contact into less visible places.",
+        "Use concrete, reversible tripwires while uncertainty is high: requests to meet, sexual images, threats, pressure for secrecy, new accounts, contact after a clear stop, or signs he is contacting other minors."
+      ]
+    },
+    {
+      "category": "named_resources_or_channels",
+      "anchor_present": true,
+      "deck_present": true,
+      "case_live": true,
+      "judgment": "preserved",
+      "detector": "named_resource_channel_v0",
+      "anchor_evidence": [
+        "police",
+        "legal guidance",
+        "phone",
+        "blocking",
+        "RAINN",
+        "therapist",
+        "counsel",
+        "monitored channel",
+        "screenshots",
+        "messages"
+      ],
+      "deck_evidence": [
+        "blocking",
+        "phone access",
+        "RAINN",
+        "therapist",
+        "counsel",
+        "screenshots"
+      ],
+      "missing_anchor_evidence": [
+        "police",
+        "legal guidance",
+        "phone",
+        "monitored channel",
+        "messages"
+      ]
+    },
+    {
+      "category": "communication_boundaries",
+      "anchor_present": true,
+      "deck_present": true,
+      "case_live": true,
+      "judgment": "preserved",
+      "detector": "communication_boundary_v0",
+      "anchor_evidence": [
+        "With your ex, share enough outside context to prevent minimization, but do not send screenshots or verbatim messages that could be repeated back to your daughter or used to shame her."
+      ],
+      "deck_evidence": [
+        "Keep clear tripwires in place: any request to meet, sexual images, threats, secrecy pressure, new accounts, ignoring a clear stop, or signs he’s talking to other minors."
+      ],
+      "missing_anchor_evidence": [
+        "With your ex, share enough outside context to prevent minimization, but do not send screenshots or verbatim messages that could be repeated back to your daughter or used to shame her."
+      ]
+    },
+    {
+      "category": "tripwires_or_gates",
+      "anchor_present": true,
+      "deck_present": true,
+      "case_live": true,
+      "judgment": "preserved",
+      "detector": "tripwire_gate_marker_v0",
+      "anchor_evidence": [
+        "Talk with RAINN, a therapist, or counsel before deciding whether to report or abruptly cut contact, because those steps can be necessary but can also push the contact into less visible places.",
+        "With your ex, share enough outside context to prevent minimization, but do not send screenshots or verbatim messages that could be repeated back to your daughter or used to shame her."
+      ],
+      "deck_evidence": [
+        "If any of these appear, update the plan quickly."
+      ],
+      "missing_anchor_evidence": [
+        "Talk with RAINN, a therapist, or counsel before deciding whether to report or abruptly cut contact, because those steps can be necessary but can also push the contact into less visible places.",
+        "With your ex, share enough outside context to prevent minimization, but do not send screenshots or verbatim messages that could be repeated back to your daughter or used to shame her."
+      ]
+    },
+    {
+      "category": "evidence_checks",
+      "anchor_present": true,
+      "deck_present": true,
+      "case_live": true,
+      "judgment": "preserved",
+      "detector": "evidence_check_marker_v0",
+      "anchor_evidence": [
+        "Talk with RAINN, a therapist, or counsel before deciding whether to report or abruptly cut contact, because those steps can be necessary but can also push the contact into less visible places.",
+        "Silence in the monitored channel is weak evidence, not reassurance."
+      ],
+      "deck_evidence": [
+        "A professional (RAINN, a therapist, or counsel) can help you judge whether reporting or sharply cutting contact is needed, because those steps can improve safety but can also push contact into places you can’t see.",
+        "Silence from his side is weak evidence and shouldn’t reassure you."
+      ],
+      "missing_anchor_evidence": [
+        "Talk with RAINN, a therapist, or counsel before deciding whether to report or abruptly cut contact, because those steps can be necessary but can also push the contact into less visible places.",
+        "Silence in the monitored channel is weak evidence, not reassurance."
+      ]
+    }
+  ],
+  "gate_result": "preserved",
+  "gate_action": "promote_eligible",
+  "visibility_decision": "not_decided_by_omission_gate",
+  "deterministic_limit": "Mechanistic detectors flag introduced omission candidates; this gate does not choose between anchor and deck answers.",
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Research-only omission gate. Anchor activates categories; only anchor-present/deck-absent rows affect the gate."
+}

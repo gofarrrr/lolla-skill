@@ -1,0 +1,70 @@
+{
+  "schema_version": "step6_attention_map.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mid-level-consultant-report-2",
+  "source_refs": [
+    "research/pre-step6-comparison-fixtures/mid-level-consultant-report-2-20260430T142700Z.md",
+    "research/pre-step6-raw-artifact-fixtures/mid-level-consultant-report-2.raw-artifact-handoff.v1.json:artifacts[0]",
+    "research/pre-step6-raw-artifact-fixtures/mid-level-consultant-report-2.raw-artifact-handoff.v1.json:artifacts[1]",
+    "research/pre-step6-raw-artifact-fixtures/mid-level-consultant-report-2.raw-artifact-handoff.v1.json:artifacts[2]",
+    "research/pre-step6-raw-artifact-fixtures/mid-level-consultant-report-2.raw-artifact-handoff.v1.json:artifacts[4]"
+  ],
+  "problem_read": {
+    "user_goal": "Choose first moves after seeing a partner's suspicious activity while preserving legal safety, evidence integrity, and personal safety.",
+    "problem_type": "action_planning",
+    "suggested_next_move": "answer_now"
+  },
+  "active_working_set": [
+    {
+      "artifact_id": "consultant_counsel_incentive_gate",
+      "why_available": "Raw and hybrid handoffs both preserve counsel-first sequencing with an intake check for channel bias.",
+      "step6_use": "Check whether the answer tells the user to contact counsel while also asking how counsel decides among reporting channels.",
+      "boundary": "Do not replace counsel with self-directed reporting or make channel choice before legal review.",
+      "risk_if_ignored": "The user may outsource judgment to an advisor whose incentives are unexamined.",
+      "expansion_ref": "research/pre-step6-raw-artifact-fixtures/mid-level-consultant-report-2.raw-artifact-handoff.v1.json:artifacts[0]"
+    },
+    {
+      "artifact_id": "consultant_wednesday_protocol_boundary",
+      "why_available": "Raw and hybrid handoffs both preserve the need for a narrow Wednesday response if the partner raises the encounter.",
+      "step6_use": "Check whether the answer gives a short behavior boundary for Wednesday without over-scripting.",
+      "boundary": "Do not deny, elaborate, confront, investigate, or be alone with the partner if avoidable.",
+      "risk_if_ignored": "The user may improvise under pressure and create avoidable risk.",
+      "expansion_ref": "research/pre-step6-raw-artifact-fixtures/mid-level-consultant-report-2.raw-artifact-handoff.v1.json:artifacts[1]"
+    }
+  ],
+  "edge_latticework_reserve": [
+    {
+      "artifact_id": "consultant_internal_channel_distinction",
+      "protected_slot": "sequence_stop_rule",
+      "why_available": "Raw handoff preserves the distinction among GC, audit committee, and regulator as counsel-reviewed channels.",
+      "cheap_test": "Scan whether the answer collapses all reporting paths into one internal-or-external binary.",
+      "risk_if_forced": "The answer may imply the user should bypass counsel and choose a channel alone.",
+      "risk_if_ignored": "The answer may overstate the external-versus-internal binary.",
+      "expansion_ref": "research/pre-step6-raw-artifact-fixtures/mid-level-consultant-report-2.raw-artifact-handoff.v1.json:artifacts[2]"
+    }
+  ],
+  "weak_or_negative_space_receipts": [
+    {
+      "artifact_id": "no_weak_receipt",
+      "why_preserved": "No weak or negative-space receipt was provided.",
+      "reactivate_if": "New uncertainty appears during Step 6 drafting.",
+      "expansion_ref": "research/pre-step6-raw-artifact-fixtures/mid-level-consultant-report-2.raw-artifact-handoff.v1.json"
+    }
+  ],
+  "parked_but_preserved": [
+    {
+      "artifact_id": "consultant_power_dynamics_misfit_discard",
+      "park_reason": "Raw handoff marks leverage and walk-away framing as attractive but structurally wrong for this case.",
+      "reactivate_if": "Promote only if the answer drifts toward leverage framing.",
+      "expansion_ref": "research/pre-step6-raw-artifact-fixtures/mid-level-consultant-report-2.raw-artifact-handoff.v1.json:artifacts[4]"
+    }
+  ],
+  "ask_user_if_any": [],
+  "review_admission": "none",
+  "full_archive_refs": [
+    "research/pre-step6-raw-artifact-fixtures/mid-level-consultant-report-2.raw-artifact-handoff.v1.json",
+    "research/pre-step6-hybrid-handoff-fixtures/mid-level-consultant-report-2.hybrid-handoff.v1.json"
+  ],
+  "step6_instruction": "Use this as an attention map, not as a verdict. Consider active pressure, scan the edge reserve before finalizing, and reject any item that fails its boundary. Do not expose internal labels."
+}

@@ -1,0 +1,89 @@
+{
+  "schema_version": "pre_step6_calibration_step6_sample.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_calibration_corpus_v0",
+  "case_id": "mid-level-consultant-report-2",
+  "base_case_id": "mid-level-consultant-report-2",
+  "sample_index": 4,
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "moonshotai/kimi-k2.6",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": " {\n  \"answer_core\": \"Do not confront the partner, investigate privately, access systems unusually, or pick a reporting channel yourself. Tonight, write down exactly what you saw, preserve your own notes, tell your spouse in broad strokes, and contact two or three independent whistleblower attorneys. Your first move is independent counsel first, not GC-first by default and not a self-chosen audit committee or external report. Let counsel review the facts and decide whether GC, the audit committee, regulators, or another path is safest. During intake, ask practical questions that test whether the attorney has a reflexive channel preference: when have they advised internal-first, audit-committee-first, or external-first, and why? Attend Wednesday normally and avoid anything that looks like a sudden change in behavior. If the partner raises the encounter, keep the response narrow: do not deny, elaborate, confront, investigate, or be alone with the partner if avoidable. This is high risk, so do not let fear push you into filing before evidence review, but do not let fear make you do nothing either. Get counsel involved quickly and keep the first moves reversible until counsel guides you.\",\n  \"private_visibility_ledger\": [\n    {\n      \"source_id\": \"anchor_visible_candidate\",\n      \"disposition\": \"used\",\n      \"novelty_role\": \"visible_backbone\",\n      \"why\": \"Anchor supplies the essential tripwires (no confrontation, no private investigation, no unusual system access, no self-selected channel), the actor sequence (document, spouse, counsel), the specific Wednesday window, the detailed intake questions for counsel, and the fear-management guardrail. It satisfies the pre-registered expectation that the counsel-first sequence must survive.\",\n      \"visible_effect\": \"Determines the bulk of the public text, including ordering, named entities, and stop conditions.\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"structural_delta\": [],\n        \"reframed_emphasis\": []\n      }\n    },\n    {\n      \"source_id\": \"deck_pressure_candidate\",\n      \"disposition\": \"combined\",\n      \"novelty_role\": \"additive_pressure\",\n      \"why\": \"Deck pressure confirmed the core sequence but introduced two precise refinements: (1) qualifying attorneys as 'independent' to reinforce separation from firm-aligned counsel, and (2) adding an explicit unlock condition 'until counsel guides you' to the reversibility commitment, sharpening the decision boundary. These are concrete, low-noise additions that improve legal safety without altering the anchor's architecture.\",\n      \"visible_effect\": \"Adds the qualifier 'independent' to the attorney resource and appends an explicit stop-condition to the reversibility clause.\",\n      \"answer_delta\": {\n        \"added_entities\": [\n          \"independent (qualifier for whistleblower attorneys)\",\n          \"until counsel guides you (unlock condition on reversibility)\"\n        ],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"structural_delta\": [\n          \"Added explicit commitment boundary: early steps remain reversible only until counsel guides next actions, converting a general reversibility reminder into a conditional stop-rule.\"\n        ],\n        \"reframed_emphasis\": []\n      }\n    }\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 917,
+    "completion_tokens": 4567,
+    "total_tokens": 5484,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 4941,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter",
+    "model_family": "moonshotai"
+  },
+  "input_packet": {
+    "case_brief": "Choose first moves after seeing a partner's suspicious activity while preserving legal safety, evidence integrity, and personal safety. action_planning",
+    "case_type_tags": [
+      "sensitive_safety_legal"
+    ],
+    "pre_registered_expectation": "counsel_first_sequence_must_survive",
+    "v60_mode": "not_applicable",
+    "v60_private_context": "",
+    "anchor_visible_candidate": "Do not confront the partner, investigate privately, access systems unusually, or pick a reporting channel yourself. Tonight, write down exactly what you saw, preserve your own notes, tell your spouse in broad strokes, and contact two or three whistleblower attorneys.\n\nYour first move is independent counsel first, not GC-first by default and not a self-chosen audit committee or external report. Let counsel review the facts and decide whether GC, the audit committee, regulators, or another path is safest. During intake, ask practical questions that test whether the attorney has a reflexive channel preference: when have they advised internal-first, audit-committee-first, or external-first, and why?\n\nAttend Wednesday normally and avoid anything that looks like a sudden change in behavior. If the partner raises the encounter, keep the response narrow: do not deny, elaborate, confront, investigate, or be alone with the partner if avoidable. This is high risk, so do not let fear push you into filing before evidence review, but do not let fear make you do nothing either. Get counsel involved quickly and keep the first moves reversible.",
+    "deck_pressure_candidate": "Do not confront your partner, investigate on your own, access any systems unusually, or pick a reporting channel yourself. Tonight, write down exactly what you saw and preserve your own notes. Tell your spouse only in broad strokes. Contact two or three independent whistleblower attorneys as your next move. Let them review the facts first and decide whether any internal or external reporting path is safest. During intake, ask each attorney how they decide among internal, audit committee, or external channels so you can check for any built‑in bias. Attend Wednesday normally without abrupt changes in behavior. If your partner raises the encounter, keep your response minimal, avoid elaboration, and avoid being alone with them if you can. Move quickly but keep all early steps reversible until counsel guides you."
+  },
+  "step6_output": {
+    "answer_core": "Do not confront the partner, investigate privately, access systems unusually, or pick a reporting channel yourself. Tonight, write down exactly what you saw, preserve your own notes, tell your spouse in broad strokes, and contact two or three independent whistleblower attorneys. Your first move is independent counsel first, not GC-first by default and not a self-chosen audit committee or external report. Let counsel review the facts and decide whether GC, the audit committee, regulators, or another path is safest. During intake, ask practical questions that test whether the attorney has a reflexive channel preference: when have they advised internal-first, audit-committee-first, or external-first, and why? Attend Wednesday normally and avoid anything that looks like a sudden change in behavior. If the partner raises the encounter, keep the response narrow: do not deny, elaborate, confront, investigate, or be alone with the partner if avoidable. This is high risk, so do not let fear push you into filing before evidence review, but do not let fear make you do nothing either. Get counsel involved quickly and keep the first moves reversible until counsel guides you.",
+    "private_visibility_ledger": [
+      {
+        "source_id": "anchor_visible_candidate",
+        "disposition": "used",
+        "novelty_role": "visible_backbone",
+        "why": "Anchor supplies the essential tripwires (no confrontation, no private investigation, no unusual system access, no self-selected channel), the actor sequence (document, spouse, counsel), the specific Wednesday window, the detailed intake questions for counsel, and the fear-management guardrail. It satisfies the pre-registered expectation that the counsel-first sequence must survive.",
+        "visible_effect": "Determines the bulk of the public text, including ordering, named entities, and stop conditions.",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [],
+          "removed_entities": [],
+          "reordered_sequences": [],
+          "structural_delta": []
+        }
+      },
+      {
+        "source_id": "deck_pressure_candidate",
+        "disposition": "combined",
+        "novelty_role": "additive_pressure",
+        "why": "Deck pressure confirmed the core sequence but introduced two precise refinements: (1) qualifying attorneys as 'independent' to reinforce separation from firm-aligned counsel, and (2) adding an explicit unlock condition 'until counsel guides you' to the reversibility commitment, sharpening the decision boundary. These are concrete, low-noise additions that improve legal safety without altering the anchor's architecture.",
+        "visible_effect": "Adds the qualifier 'independent' to the attorney resource and appends an explicit stop-condition to the reversibility clause.",
+        "answer_delta": {
+          "added_entities": [
+            "independent (qualifier for whistleblower attorneys)",
+            "until counsel guides you (unlock condition on reversibility)"
+          ],
+          "reframed_emphasis": [],
+          "removed_entities": [],
+          "reordered_sequences": [],
+          "structural_delta": [
+            "Added explicit commitment boundary: early steps remain reversible only until counsel guides next actions, converting a general reversibility reminder into a conditional stop-rule."
+          ]
+        }
+      }
+    ]
+  },
+  "ledger_signal": "additive_pressure_present",
+  "answer_delta_specificity": "concrete_delta_present",
+  "deterministic_role": [
+    "validate_calibration_case",
+    "derive_ledger_signal",
+    "derive_answer_delta_specificity",
+    "preserve_repeated_sample_custody"
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live research-only Step 6 calibration sample."
+}
