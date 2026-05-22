@@ -38,6 +38,55 @@
         "lane1_tendency_route",
         "reviewer_note"
       ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The proposed commitment and its reversibility."
+            ],
+            "do_not_use_when": [
+              "The decision already has stable reference classes, credible probabilities, and operator-level thresholds."
+            ],
+            "use_when": [
+              "A plan assigns forecast-like confidence while core drivers remain ambiguous, unstable, or only partly observable."
+            ]
+          },
+          "affordance_id": "risk-vs-uncertainty.commitment-sizing-under-unknowns",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "Which part of this decision has earned probabilities, and which part is still uncertainty?"
+          ],
+          "mechanism": "When confidence is outrunning evidence, require the answer to separate measurable risk from unresolved uncertainty before sizing commitment, preserving reversible probes, buffers, or no-regrets moves where the distribution has not earned point estimates.",
+          "misuse_guards": [
+            "Do not use uncertainty language to avoid execution when measurable risk is already available."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "risk-vs-uncertainty.commitment-sizing-under-unknowns",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Application Context: Strengths and Weaknesses",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Risk_Vs_Uncertainty_rag.md",
+              "source_quote": "Most useful when confidence is outrunning evidence"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "risk-vs-uncertainty.commitment-sizing-under-unknowns",
+              "description": "Require the answer to classify what is measurable risk versus unresolved uncertainty, then size the commitment around reversibility, buffers, no-regrets moves, and explicit stop/change evidence.",
+              "evidence_required": [
+                "The commitment under consideration."
+              ],
+              "good_output_shape": [
+                "Separates measurable risk from uncertainty."
+              ],
+              "requirement_id": "classify-risk-before-commitment"
+            }
+          ]
+        }
+      ],
       "reviewed_affordance_fields": {
         "affordance_ids": [
           "risk-vs-uncertainty.commitment-sizing-under-unknowns"
@@ -162,6 +211,55 @@
       },
       "pulled_by": [
         "lane4_gap_route"
+      ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The incumbent state, alternative state, and proposed switch."
+            ],
+            "do_not_use_when": [
+              "Switching cost is reduced to license price or headline migration budget."
+            ],
+            "use_when": [
+              "A platform or ERP exit is framed as reversible while dual-run coexistence, partner workflows, and reporting dependencies shrink the rollback window."
+            ]
+          },
+          "affordance_id": "switching-costs.reversibility-decay-exit-plan",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "What must run in both old and new states, and for how long?"
+          ],
+          "mechanism": "When a migration, platform exit, or strategic switch is framed as reversible, require the answer to expose dual-run dependency drag, reversal-cost growth, dependency cleanup, rollback ownership, and unwind gates before commitment deepens.",
+          "misuse_guards": [
+            "Do not treat license price as the full switching cost."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "switching-costs.reversibility-decay-exit-plan",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Application Context: Strengths and Weaknesses",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Switching_Costs_rag.md",
+              "source_quote": "a platform or ERP exit is framed as reversible even though dual-run coexistence, partner workflows, and reporting dependencies are quietly shrinking the rollback window"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "switching-costs.reversibility-decay-exit-plan",
+              "description": "Require the answer to treat the exit plan as a decision object by mapping dual-run dependencies, reversal-cost growth, rollback ownership, and unwind gates.",
+              "evidence_required": [
+                "The migration or switch under consideration."
+              ],
+              "good_output_shape": [
+                "Names the hidden coexistence costs."
+              ],
+              "requirement_id": "map-dual-run-and-unwind-gates"
+            }
+          ]
+        }
       ],
       "reviewed_affordance_fields": {
         "affordance_ids": [
@@ -288,6 +386,55 @@
       "pulled_by": [
         "lane4_gap_route"
       ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The component, decision path, memory, resource, or viewpoint that could fail."
+            ],
+            "do_not_use_when": [
+              "Duplication is added by habit without a named failure mode."
+            ],
+            "use_when": [
+              "Single-point failure is unacceptable because continuity, resilience, recall, or survival matters more than lean elegance."
+            ]
+          },
+          "affordance_id": "redundancy.single-point-failure-backup-test",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "What exactly fails if this one path, person, component, or assumption breaks?"
+          ],
+          "mechanism": "When failure of one path, component, memory, viewpoint, or process would cripple the system, require the answer to name the specific failure mode, the backup path, and the cost/drag trade-off that makes redundancy worth it.",
+          "misuse_guards": [
+            "Do not treat duplication as free insurance."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "redundancy.single-point-failure-backup-test",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Application Context: Strengths and Weaknesses",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Redundancy_rag.md",
+              "source_quote": "Most useful when single-point failure is unacceptable"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "redundancy.single-point-failure-backup-test",
+              "description": "Require the answer to justify redundancy by naming the specific failure mode it protects against, the backup path it creates, and the point where added duplication becomes drag.",
+              "evidence_required": [
+                "The single point of failure."
+              ],
+              "good_output_shape": [
+                "Names what can fail."
+              ],
+              "requirement_id": "tie-backup-to-failure-mode"
+            }
+          ]
+        }
+      ],
       "reviewed_affordance_fields": {
         "affordance_ids": [
           "redundancy.single-point-failure-backup-test"
@@ -412,6 +559,55 @@
       },
       "pulled_by": [
         "lane3_frame_route"
+      ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The rule, enforcement priority, policy narrative, or weak signal being monitored."
+            ],
+            "do_not_use_when": [
+              "Horizon scanning would become trend-slide collection without thresholds, owners, or response triggers."
+            ],
+            "use_when": [
+              "External rules, enforcement priorities, or policy narratives are moving early enough that waiting for certainty would create strategic or compliance lag."
+            ]
+          },
+          "affordance_id": "regulatory-horizon-scanning.weak-signal-response-trigger",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "Which weak signal is structurally meaningful enough to monitor?"
+          ],
+          "mechanism": "When external rules, enforcement priorities, or policy narratives are shifting before certainty arrives, require the answer to turn weak signals into scenarios, accountable owners, response triggers, and preparatory options.",
+          "misuse_guards": [
+            "Do not treat regulatory trend language as readiness."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "regulatory-horizon-scanning.weak-signal-response-trigger",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Application Context: Strengths and Weaknesses",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Regulatory_Horizon_Scanning_rag.md",
+              "source_quote": "external rules, enforcement priorities, or policy narratives are moving early enough that waiting for certainty would create strategic or compliance lag"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "regulatory-horizon-scanning.weak-signal-response-trigger",
+              "description": "Require the answer to translate regulatory weak signals into explicit scenarios, named owners, thresholds, preparatory options, and present-day decisions that would change if the signal strengthens.",
+              "evidence_required": [
+                "The weak regulatory or policy signal."
+              ],
+              "good_output_shape": [
+                "Separates signal detection from interpretation."
+              ],
+              "requirement_id": "convert-signal-to-owner-trigger"
+            }
+          ]
+        }
       ],
       "reviewed_affordance_fields": {
         "affordance_ids": [
@@ -538,6 +734,55 @@
       "pulled_by": [
         "lane2_detected_model"
       ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The asset, dependency, or surface being protected."
+            ],
+            "do_not_use_when": [
+              "The team is fetishizing threat models, simulations, or mental frameworks while skipping asset specificity, attack surface reality, or operational ownership."
+            ],
+            "use_when": [
+              "The problem is adversarial, fast-changing, and can cascade across technical, human, and governance layers."
+            ]
+          },
+          "affordance_id": "cybersecurity-thinking-models.adversarial-failure-chain-map",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "Who benefits if this plan underperforms quietly rather than fails visibly?"
+          ],
+          "mechanism": "When a plan depends on security, adversarial response, or control reliability, require the answer to name attacker or misaligned-stakeholder incentives, asset specificity, attack-surface reality, operational ownership, and cascading failure chains.",
+          "misuse_guards": [
+            "Do not treat control enumeration as security."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "cybersecurity-thinking-models.adversarial-failure-chain-map",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Application Context: Strengths and Weaknesses",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Cybersecurity_Thinking_Models_rag.md",
+              "source_quote": "the problem is adversarial, fast-changing, and capable of cascading across technical, human, and governance layers at once"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "cybersecurity-thinking-models.adversarial-failure-chain-map",
+              "description": "Require the answer to identify the asset, adversary or misaligned actor, attack or failure chain, control owner, and fallback dependency before treating the security plan as robust.",
+              "evidence_required": [
+                "The protected asset or dependency."
+              ],
+              "good_output_shape": [
+                "Names the adversarial or misaligned actor."
+              ],
+              "requirement_id": "name-adversary-asset-owner-chain"
+            }
+          ]
+        }
+      ],
       "reviewed_affordance_fields": {
         "affordance_ids": [
           "cybersecurity-thinking-models.adversarial-failure-chain-map"
@@ -663,6 +908,55 @@
       "pulled_by": [
         "lane4_gap_route"
       ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The local intervention or optimization being proposed."
+            ],
+            "do_not_use_when": [
+              "Complexity language is being used to avoid concrete levers, checkpoints, or experiments."
+            ],
+            "use_when": [
+              "Modest interventions may trigger disproportionate upside, delayed blowback, or threshold crossings."
+            ]
+          },
+          "affordance_id": "non-linear-dynamics.feedback-threshold-local-optimization-check",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "What feedback loop or delay could make this local move behave non-linearly?"
+          ],
+          "mechanism": "When small moves may trigger delayed blowback, threshold crossings, or whole-system degradation, require the answer to identify feedback loops, timing effects, and the concrete lever/checkpoint that keeps complexity from becoming an excuse.",
+          "misuse_guards": [
+            "Do not invoke complexity to avoid choosing a lever."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "non-linear-dynamics.feedback-threshold-local-optimization-check",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Application Context: Strengths and Weaknesses",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Non_Linear_Dynamics_rag.md",
+              "source_quote": "Most useful when small moves can create outsized effects"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "non-linear-dynamics.feedback-threshold-local-optimization-check",
+              "description": "Require the answer to name the feedback loop, delay, or threshold that makes the system non-linear, then state the concrete lever, checkpoint, or experiment that can still improve the system.",
+              "evidence_required": [
+                "The proposed local move."
+              ],
+              "good_output_shape": [
+                "Identifies the nonlinear mechanism."
+              ],
+              "requirement_id": "map-loop-delay-and-lever"
+            }
+          ]
+        }
+      ],
       "reviewed_affordance_fields": {
         "affordance_ids": [
           "non-linear-dynamics.feedback-threshold-local-optimization-check"
@@ -786,6 +1080,55 @@
       },
       "pulled_by": [
         "lane3_frame_route"
+      ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The proposed threshold variable or social dynamic."
+            ],
+            "do_not_use_when": [
+              "Leaders are romanticizing breakthrough moments while underinvesting in the prerequisite buildup."
+            ],
+            "use_when": [
+              "Progress is not linear and one constrained variable, threshold, or social dynamic could unlock disproportionate change."
+            ]
+          },
+          "affordance_id": "tipping-points.threshold-prerequisite-test",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "What exact threshold variable would make this change nonlinear?"
+          ],
+          "mechanism": "When progress is nonlinear and a constrained variable or social dynamic could unlock disproportionate change, require the answer to name the threshold variable, the prerequisite buildup, and the evidence that the system is near a real tipping point.",
+          "misuse_guards": [
+            "Do not romanticize breakthrough while ignoring slow prerequisite buildup."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "tipping-points.threshold-prerequisite-test",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Core Principles and Analogies",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Tipping_Points_rag.md",
+              "source_quote": "a threshold where a small quantitative change leads to a massive, non-linear qualitative shift"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "tipping-points.threshold-prerequisite-test",
+              "description": "Require the answer to identify the controlling threshold, the prerequisite buildup, and the evidence that a marginal move could become self-reinforcing instead of merely incremental.",
+              "evidence_required": [
+                "The threshold variable."
+              ],
+              "good_output_shape": [
+                "Names the threshold variable."
+              ],
+              "requirement_id": "name-threshold-and-prerequisite-buildup"
+            }
+          ]
+        }
       ],
       "reviewed_affordance_fields": {
         "affordance_ids": [
@@ -912,6 +1255,55 @@
       "pulled_by": [
         "lane2_companion_chunk"
       ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The local intervention or small initial condition."
+            ],
+            "do_not_use_when": [
+              "Butterfly-effect language would justify vague fear or grandiosity without a plausible transmission path."
+            ],
+            "use_when": [
+              "Seemingly local decisions could cascade through interdependence, delay, amplification, or sequencing."
+            ]
+          },
+          "affordance_id": "butterfly-effect.cascade-path-trace",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "What is the first-order consequence, and why is it not the main risk?"
+          ],
+          "mechanism": "When a local decision could cascade through interdependence, delay, amplification, or sequencing, require the answer to trace the plausible second- and third-order transmission path before calling a small move safe or dangerous.",
+          "misuse_guards": [
+            "Do not use butterfly-effect language for vague fear or grandiosity."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "butterfly-effect.cascade-path-trace",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Core Principles and Analogies",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Butterfly_Effect_rag.md",
+              "source_quote": "small changes in inputs can lead to massive, non-linear, and often unpredictable changes in outputs over time"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "butterfly-effect.cascade-path-trace",
+              "description": "Require the answer to trace how a small move could propagate through the system, naming the first-order effect, downstream dependency, amplification path, and where the chain becomes speculative.",
+              "evidence_required": [
+                "The initial local move."
+              ],
+              "good_output_shape": [
+                "Shows the cascade path rather than invoking vague systemic risk."
+              ],
+              "requirement_id": "trace-plausible-cascade-path"
+            }
+          ]
+        }
+      ],
       "reviewed_affordance_fields": {
         "affordance_ids": [
           "butterfly-effect.cascade-path-trace"
@@ -1035,6 +1427,55 @@
       },
       "pulled_by": [
         "lane2_companion_chunk"
+      ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The nonlinear system or environment under decision."
+            ],
+            "do_not_use_when": [
+              "Chaos language is being used as a reason to avoid prioritization, bounded bets, or accountability."
+            ],
+            "use_when": [
+              "Local interventions, timing shifts, or minor shocks can propagate unpredictably."
+            ]
+          },
+          "affordance_id": "chaos-theory.resilience-over-precision-bet-sizing",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "Where does this plan rely on a precise forecast the system cannot support?"
+          ],
+          "mechanism": "When the system is nonlinear and not controllable enough for precise prediction, require the answer to size exposure around resilience, buffers, monitoring, reversibility, and adaptation rather than a single high-confidence forecast.",
+          "misuse_guards": [
+            "Do not use chaos as an excuse for helplessness or lack of accountability."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "chaos-theory.resilience-over-precision-bet-sizing",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Application Context: Strengths and Weaknesses",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Chaos_Theory_rag.md",
+              "source_quote": "Works when resilience matters more than precise prediction"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "chaos-theory.resilience-over-precision-bet-sizing",
+              "description": "Require the answer to shift from exact prediction to bounded exposure: name the bet size, buffer, monitoring signal, reversibility path, and adaptation trigger.",
+              "evidence_required": [
+                "The unstable system or decision environment."
+              ],
+              "good_output_shape": [
+                "Acknowledges irreducible uncertainty without helplessness."
+              ],
+              "requirement_id": "size-bet-for-adaptation-not-forecast"
+            }
+          ]
+        }
       ],
       "reviewed_affordance_fields": {
         "affordance_ids": [
@@ -1161,6 +1602,55 @@
       "pulled_by": [
         "lane4_gap_route"
       ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The candidate interacting forces."
+            ],
+            "do_not_use_when": [
+              "Combination thinking becomes complexity worship."
+            ],
+            "use_when": [
+              "The visible result comes from several reinforcing forces rather than one dominant driver."
+            ]
+          },
+          "affordance_id": "combinatorial-effects.make-or-break-interaction-map",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "Which few forces interact in a way one-cause reasoning would miss?"
+          ],
+          "mechanism": "When no single cause explains the outcome, require the answer to identify the few interacting forces whose sequencing, fit, or mutual reinforcement could create disproportionate upside or cascading downside.",
+          "misuse_guards": [
+            "Do not make the analysis more complex mainly to sound sophisticated."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "combinatorial-effects.make-or-break-interaction-map",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Application Context: Strengths and Weaknesses",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Combinatorial_Effects_rag.md",
+              "source_quote": "Most useful when no single cause explains the outcome"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "combinatorial-effects.make-or-break-interaction-map",
+              "description": "Require the answer to isolate the few interactions that could create emergent lift or fragility, rather than expanding the variable list for sophistication.",
+              "evidence_required": [
+                "The interacting forces."
+              ],
+              "good_output_shape": [
+                "Names the few make-or-break interactions."
+              ],
+              "requirement_id": "identify-few-critical-interactions"
+            }
+          ]
+        }
+      ],
       "reviewed_affordance_fields": {
         "affordance_ids": [
           "combinatorial-effects.make-or-break-interaction-map"
@@ -1284,6 +1774,55 @@
       },
       "pulled_by": [
         "lane3_frame_route"
+      ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The threshold variable and the area, segment, or network boundary."
+            ],
+            "do_not_use_when": [
+              "Early energy, launch excitement, or one-off seeding is being mistaken for durable mass."
+            ],
+            "use_when": [
+              "Adoption, liquidity, trust, or participation only starts working once activity crosses a minimum density."
+            ]
+          },
+          "affordance_id": "critical-mass.viability-threshold-density-test",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "What density or participation threshold must hold before this becomes viable?"
+          ],
+          "mechanism": "When a system only becomes viable after enough density, adoption, liquidity, trust, or participation exists in a defined area, require the answer to name the threshold, boundary, reinforcement loop, and evidence that early wins are compounding.",
+          "misuse_guards": [
+            "Do not treat launch excitement as threshold security."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "critical-mass.viability-threshold-density-test",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Core Principles and Analogies",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Critical_Mass_rag.md",
+              "source_quote": "threshold that determines viability and sustained momentum"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "critical-mass.viability-threshold-density-test",
+              "description": "Require the answer to define the minimum viable threshold, the boundary where it must hold, and the reinforcement loop that turns isolated wins into self-sustaining momentum.",
+              "evidence_required": [
+                "The threshold variable."
+              ],
+              "good_output_shape": [
+                "Names the threshold and its boundary."
+              ],
+              "requirement_id": "define-threshold-boundary-and-loop"
+            }
+          ]
+        }
       ],
       "reviewed_affordance_fields": {
         "affordance_ids": [
@@ -1409,6 +1948,55 @@
       },
       "pulled_by": [
         "lane1_tendency_route"
+      ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The current reference point or perceived entitlement."
+            ],
+            "do_not_use_when": [
+              "Framing is being used to manipulate rather than clarify."
+            ],
+            "use_when": [
+              "The choice depends heavily on reference points, recent expectations, or fear of losing what people think they already have."
+            ]
+          },
+          "affordance_id": "prospect-theory.loss-frame-decision-quality-check",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "What reference point makes this option feel like a gain or a loss?"
+          ],
+          "mechanism": "When behavior is being driven by perceived gains, losses, reference points, or short-term bias rather than objective value, require the answer to identify the frame and protect decision quality from manipulation or emotional overreaction.",
+          "misuse_guards": [
+            "Do not use loss framing to force compliance."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "prospect-theory.loss-frame-decision-quality-check",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Application Context: Strengths and Weaknesses",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Prospect_Theory_rag.md",
+              "source_quote": "Most useful when behavior is being driven by perceived losses and gains, not objective value"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "prospect-theory.loss-frame-decision-quality-check",
+              "description": "Require the answer to identify the reference point and loss/gain frame, then compare it against objective economics, long-term value, and manipulation risk.",
+              "evidence_required": [
+                "The perceived gain or loss frame."
+              ],
+              "good_output_shape": [
+                "Names the reference point."
+              ],
+              "requirement_id": "separate-frame-from-economics"
+            }
+          ]
+        }
       ],
       "reviewed_affordance_fields": {
         "affordance_ids": [

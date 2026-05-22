@@ -38,6 +38,55 @@
         "lane4_gap_route",
         "reviewer_note"
       ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The decision under approval and the scarce resource it consumes: people, budget, calendar time, launch window, leadership attention, trust, or optionality."
+            ],
+            "do_not_use_when": [
+              "The real alternatives, constraints, or objective function are not framed well enough for comparison without false precision."
+            ],
+            "use_when": [
+              "A roadmap addition, renewal, sprint, vendor, project, or channel looks cheap because the explicit spend is small while the same people, budget, launch window, or attention are needed elsewhere."
+            ]
+          },
+          "affordance_id": "opportunity-cost.displaced-alternative-commitment-gate",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "What is the single best executable alternative use of the same people, budget, launch window, or attention?"
+          ],
+          "mechanism": "Before treating a commitment as cheap, force the decision to name the best real alternative that loses the same scarce resource, test whether that alternative is executable, and define the stop condition for the current yes when the displaced work becomes more valuable.",
+          "misuse_guards": [
+            "Do not count unrealistic alternatives that the team cannot actually fund, execute, or own."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "opportunity-cost.displaced-alternative-commitment-gate",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Core Principles and Analogies",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Opportunity_Cost_rag.md",
+              "source_quote": "The fundamental essence of this model is the value of the best alternative opportunity you didn't choose"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "opportunity-cost.displaced-alternative-commitment-gate",
+              "description": "Require the answer to name the best real alternative displaced by the current yes, not a vague list of possibilities or a decorative comparison set.",
+              "evidence_required": [
+                "The current commitment, continuation, renewal, feature, market, or project under consideration."
+              ],
+              "good_output_shape": [
+                "States the current yes and the next-best alternative in the same operational currency."
+              ],
+              "requirement_id": "name-real-next-best-alternative"
+            }
+          ]
+        }
+      ],
       "reviewed_affordance_fields": {
         "affordance_ids": [
           "opportunity-cost.displaced-alternative-commitment-gate"
@@ -161,6 +210,55 @@
       },
       "pulled_by": [
         "lane4_gap_route"
+      ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The proposed deal or agreement being considered."
+            ],
+            "do_not_use_when": [
+              "The supposed BATNA is vague, unexecutable, or worse than continuing to negotiate."
+            ],
+            "use_when": [
+              "Negotiation leverage depends on knowing the walk-away path before entering a pressured conversation."
+            ]
+          },
+          "affordance_id": "batna.credible-walk-away-alternative-test",
+          "confidence": "medium",
+          "diagnostic_questions": [
+            "What is the concrete outside option if this negotiation fails?"
+          ],
+          "mechanism": "When a negotiation or deal decision is pressured, require the answer to compare the proposed agreement against a credible, executable outside option rather than hope, sunk effort, or a vague fallback.",
+          "misuse_guards": [
+            "Do not treat a vague fallback as a BATNA."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "batna.credible-walk-away-alternative-test",
+              "confidence": "medium",
+              "extraction_type": "explicit",
+              "section_hint": "Application Context: Strengths and Weaknesses",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Batna_rag.md",
+              "source_quote": "negotiation leverage depends on knowing the walk-away path before entering a pressured conversation"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "batna.credible-walk-away-alternative-test",
+              "description": "Require the answer to name the walk-away option, test whether it is executable, and compare the deal against that option rather than against hope or sunk effort.",
+              "evidence_required": [
+                "The concrete proposed deal."
+              ],
+              "good_output_shape": [
+                "Names the deal and the fallback."
+              ],
+              "requirement_id": "compare-deal-against-executable-fallback"
+            }
+          ]
+        }
       ],
       "reviewed_affordance_fields": {
         "affordance_ids": [
@@ -287,6 +385,55 @@
       "pulled_by": [
         "lane2_companion_chunk"
       ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The players or counterparties involved."
+            ],
+            "do_not_use_when": [
+              "The actors are not actually playing the same game because reputation, ideology, politics, or internal incentives dominate."
+            ],
+            "use_when": [
+              "A rival, partner, regulator, buyer, seller, or negotiating counterparty can change the value of the proposed action."
+            ]
+          },
+          "affordance_id": "game-theory-payoffs.counterparty-response-payoff-map",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "Whose response changes the value of this move?"
+          ],
+          "mechanism": "When the value of a move depends on another actor's response, require the answer to name the players, available moves, information asymmetries, payoff drivers, and the few decisive branches rather than judging the move in isolation.",
+          "misuse_guards": [
+            "Do not assume both sides are optimizing the same payoff model."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "game-theory-payoffs.counterparty-response-payoff-map",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Core Principles and Analogies",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Game_Theory_Payoffs_rag.md",
+              "source_quote": "identifying the players, the actions available to them, the information they possess, and the resultant payoff for each potential action"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "game-theory-payoffs.counterparty-response-payoff-map",
+              "description": "Require the answer to map the relevant players, likely moves, and payoff drivers, while pruning branches that do not materially change the decision.",
+              "evidence_required": [
+                "The actor taking the proposed action."
+              ],
+              "good_output_shape": [
+                "Names the players."
+              ],
+              "requirement_id": "name-players-moves-and-decisive-payoffs"
+            }
+          ]
+        }
+      ],
       "reviewed_affordance_fields": {
         "affordance_ids": [
           "game-theory-payoffs.counterparty-response-payoff-map"
@@ -410,6 +557,55 @@
       },
       "pulled_by": [
         "lane3_frame_route"
+      ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The rival, substitute, benchmark, or environmental pressure that changes the relative standard."
+            ],
+            "do_not_use_when": [
+              "The situation is not relative-performance driven and effort can be judged on absolute outcomes."
+            ],
+            "use_when": [
+              "Standing still effectively means losing ground because rivals, substitutes, or environmental pressures are improving."
+            ]
+          },
+          "affordance_id": "red-queen-effect.relative-position-adaptation-test",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "Are we improving absolutely but falling behind relatively?"
+          ],
+          "mechanism": "When a team is working hard in a competitive environment, require the answer to distinguish maintenance effort from true advantage and decide where adaptation is non-optional versus where an arms race should be refused.",
+          "misuse_guards": [
+            "Do not frame every challenge as an arms race."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "red-queen-effect.relative-position-adaptation-test",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Core Principles and Analogies",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Red_Queen_Effect_rag.md",
+              "source_quote": "continuous adaptation and evolution are necessary just to maintain one\u2019s current state"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "red-queen-effect.relative-position-adaptation-test",
+              "description": "Require the answer to identify whether the proposed effort maintains relative position, creates advantage, or merely reacts to competitor motion.",
+              "evidence_required": [
+                "The competitive or environmental reference point."
+              ],
+              "good_output_shape": [
+                "Names the relative standard."
+              ],
+              "requirement_id": "separate-maintenance-from-advantage"
+            }
+          ]
+        }
       ],
       "reviewed_affordance_fields": {
         "affordance_ids": [
@@ -536,6 +732,55 @@
       "pulled_by": [
         "lane4_gap_route"
       ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The action, intervention, or commitment under review."
+            ],
+            "do_not_use_when": [
+              "The next useful move is already clear and waiting would mainly defer ownership."
+            ],
+            "use_when": [
+              "A plan, intervention, workflow, or project has consequences that will arrive after a meaningful lag."
+            ]
+          },
+          "affordance_id": "delays.lagged-feedback-timing-gate",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "What feedback are we reading too early, and what delay must pass before that signal means anything?"
+          ],
+          "mechanism": "When action and consequence are separated in time, force the answer to distinguish useful waiting from avoidant delay, name the feedback lag, and avoid interpreting early silence as either failure or success before the system has had time to respond.",
+          "misuse_guards": [
+            "Do not romanticize waiting when the next useful move is already clear."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "delays.lagged-feedback-timing-gate",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Core Principles and Analogies",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Delays_rag.md",
+              "source_quote": "time is a dynamic factor within any system"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "delays.lagged-feedback-timing-gate",
+              "description": "Require the answer to name the relevant delay, specify the feedback signal and review window, and separate patience from drift before recommending action or non-action.",
+              "evidence_required": [
+                "The intervention or decision whose effect is delayed."
+              ],
+              "good_output_shape": [
+                "Names the lagged signal explicitly."
+              ],
+              "requirement_id": "name-lag-before-reacting"
+            }
+          ]
+        }
+      ],
       "reviewed_affordance_fields": {
         "affordance_ids": [
           "delays.lagged-feedback-timing-gate"
@@ -661,6 +906,55 @@
       "pulled_by": [
         "lane4_gap_route"
       ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The obligation, requirement, responsibility, or success criterion being translated."
+            ],
+            "do_not_use_when": [
+              "The proposed mapping would create documentation theater without changing live decision points or behavior."
+            ],
+            "use_when": [
+              "A team knows what must be true or delivered but has not mapped how the obligation will be controlled in practice."
+            ]
+          },
+          "affordance_id": "obligations-controls-mapping.obligation-to-control-trace",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "What obligation is this control supposed to satisfy, and where is that trace visible?"
+          ],
+          "mechanism": "When responsibility is known but execution discipline is weak, translate the obligation into explicit controls, checkpoints, owners, and boundaries so actions can be traced back to purpose rather than hidden in documentation or vague intent.",
+          "misuse_guards": [
+            "Do not treat a control map as useful unless it is tied to an actual obligation, decision point, or operating behavior."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "obligations-controls-mapping.obligation-to-control-trace",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Core Principles and Analogies",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Obligations_Controls_Mapping_rag.md",
+              "source_quote": "ensuring that a system's structure and behavior are inherently aligned with its mandated goals, responsibilities, and constraints"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "obligations-controls-mapping.obligation-to-control-trace",
+              "description": "Require the answer to name the obligation, the control that enforces it, the owner or checkpoint, and how the control will be observed in real operation.",
+              "evidence_required": [
+                "The specific obligation or responsibility at stake."
+              ],
+              "good_output_shape": [
+                "Pairs each obligation with an operating control."
+              ],
+              "requirement_id": "trace-obligation-to-live-control"
+            }
+          ]
+        }
+      ],
       "reviewed_affordance_fields": {
         "affordance_ids": [
           "obligations-controls-mapping.obligation-to-control-trace"
@@ -784,6 +1078,55 @@
       },
       "pulled_by": [
         "lane3_frame_route"
+      ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "Evidence of adoption, switching, abandonment, workaround, or repeated use."
+            ],
+            "do_not_use_when": [
+              "The answer would call every preference a job."
+            ],
+            "use_when": [
+              "Customers are adopting, switching, or abandoning solutions for reasons that feature comparisons alone do not explain."
+            ]
+          },
+          "affordance_id": "jobs-to-be-done.real-progress-job-discovery",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "What progress is the customer trying to make when they hire this product?"
+          ],
+          "mechanism": "When product, positioning, or roadmap decisions are being driven by features or surface feedback, require the answer to identify the real progress customers are hiring the product to make and separate that job from preferences, channels, or internal wishes.",
+          "misuse_guards": [
+            "Do not call every preference a job."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "jobs-to-be-done.real-progress-job-discovery",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Core Principles and Analogies",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Jobs_To_Be_Done_rag.md",
+              "source_quote": "customers \"hire\" a product or service to fulfill a specific task or achieve a desired outcome"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "jobs-to-be-done.real-progress-job-discovery",
+              "description": "Require the answer to name the customer's real progress goal and distinguish it from feature requests or internal product assumptions.",
+              "evidence_required": [
+                "Customer behavior showing adoption, switching, or abandonment."
+              ],
+              "good_output_shape": [
+                "States the job as customer progress."
+              ],
+              "requirement_id": "separate-job-from-feature-preference"
+            }
+          ]
+        }
       ],
       "reviewed_affordance_fields": {
         "affordance_ids": [
@@ -910,6 +1253,55 @@
       "pulled_by": [
         "lane4_gap_route"
       ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The platform, vendor, architecture, or path being locked in."
+            ],
+            "do_not_use_when": [
+              "The current path is deliberately sticky because stability, standardization, or commitment is still compounding advantage."
+            ],
+            "use_when": [
+              "A vendor exit, platform shift, ERP migration, or infrastructure decision is being framed as normal implementation effort."
+            ]
+          },
+          "affordance_id": "lock-in.reversal-cost-dependency-audit",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "What dependency becomes harder to unwind each month we stay on this path?"
+          ],
+          "mechanism": "When a platform, vendor, architecture, or migration decision is framed as reversible, require the answer to test whether integration debt, dual-run burden, retraining, contract sequencing, and local workarounds are quietly narrowing the future option set.",
+          "misuse_guards": [
+            "Do not treat future switching as equally cheap after custom workflows and contracts harden."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "lock-in.reversal-cost-dependency-audit",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Core Principles and Analogies",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Lock_In_rag.md",
+              "source_quote": "persistent adherence to a previous state"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "lock-in.reversal-cost-dependency-audit",
+              "description": "Require the answer to price the reversal and coexistence costs before accepting claims that the team can switch later.",
+              "evidence_required": [
+                "The claimed reversible decision."
+              ],
+              "good_output_shape": [
+                "Names the lock-in mechanism."
+              ],
+              "requirement_id": "price-reversal-cost-before-deferring-switch"
+            }
+          ]
+        }
+      ],
       "reviewed_affordance_fields": {
         "affordance_ids": [
           "lock-in.reversal-cost-dependency-audit"
@@ -1034,6 +1426,55 @@
       "pulled_by": [
         "lane2_detected_model"
       ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The historical path, early choice, or inherited architecture shaping the current option set."
+            ],
+            "do_not_use_when": [
+              "The reset is genuinely cheap and reversible because the installed base is shallow and switching costs are paid down."
+            ],
+            "use_when": [
+              "Early choices are constraining current options more than people realize."
+            ]
+          },
+          "affordance_id": "path-dependence.installed-dependency-unwind-map",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "Which current constraints exist because of the route we already took?"
+          ],
+          "mechanism": "When a redesign, migration, or exit plan treats options as if they start today, require the answer to map the customers, contracts, interfaces, incentives, approvals, training, and data flows created by the existing path before recommending a target state.",
+          "misuse_guards": [
+            "Do not use path history as an excuse to avoid redesign or responsibility."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "path-dependence.installed-dependency-unwind-map",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Core Principles and Analogies",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Path_Dependence_rag.md",
+              "source_quote": "initial conditions and historical sequential choices significantly shape outcomes"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "path-dependence.installed-dependency-unwind-map",
+              "description": "Require the answer to map dependencies created by the existing path and price the unwind before comparing target options.",
+              "evidence_required": [
+                "The prior choices or installed path."
+              ],
+              "good_output_shape": [
+                "Names the inherited path."
+              ],
+              "requirement_id": "price-inherited-dependencies-before-target-state"
+            }
+          ]
+        }
+      ],
       "reviewed_affordance_fields": {
         "affordance_ids": [
           "path-dependence.installed-dependency-unwind-map"
@@ -1157,6 +1598,55 @@
       },
       "pulled_by": [
         "lane1_tendency_route"
+      ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The message, decision, or action that must be understood."
+            ],
+            "do_not_use_when": [
+              "Cultural models are being used as stereotype shortcuts instead of prompts to investigate the actual audience."
+            ],
+            "use_when": [
+              "The same message must survive translation across cultures, functions, or status differences without losing the intended action."
+            ]
+          },
+          "affordance_id": "cross-cultural-communication-frameworks.frame-translation-action-check",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "What does this audience need to understand, trust, and do?"
+          ],
+          "mechanism": "When the same message must survive cultures, functions, or status differences, require the answer to translate the message for the actual audience frame while preserving the intended action, disagreement, urgency, and hard trade-offs.",
+          "misuse_guards": [
+            "Do not use cultural models as stereotype shortcuts."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "cross-cultural-communication-frameworks.frame-translation-action-check",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Core Principles and Analogies",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Cross_Cultural_Communication_Frameworks_rag.md",
+              "source_quote": "to bridge the inherent disconnect between the sender's intricate understanding and the receiver's often simplified, emotionally filtered processing of information"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "cross-cultural-communication-frameworks.frame-translation-action-check",
+              "description": "Require the answer to adapt message framing for the actual audience while preserving the core action and hard trade-offs.",
+              "evidence_required": [
+                "The message or strategy to communicate."
+              ],
+              "good_output_shape": [
+                "Names the sender/audience mismatch."
+              ],
+              "requirement_id": "translate-frame-without-hiding-action"
+            }
+          ]
+        }
       ],
       "reviewed_affordance_fields": {
         "affordance_ids": [

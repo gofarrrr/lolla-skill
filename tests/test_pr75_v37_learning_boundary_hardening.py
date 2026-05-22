@@ -121,14 +121,14 @@ def test_pr75_perceptual_learning_hardens_tacit_cue_extraction() -> None:
     record = _load_record("perceptual-learning")
     affordance = _affordance_by_id(
         record,
-        "perceptual-learning.train-cue-discrimination",
+        "perceptual-learning.tacit-cue-extraction-before-training",
     )
     requirement = _requirement_by_id(
         affordance,
-        "extract-tacit-cues-with-stories-and-pari",
+        "elicit-stories-and-pari-before-cue-training",
     )
 
-    assert "cue library" in str(requirement["description"])
+    assert "gather expert stories and PARI details" in str(requirement["description"])
     assert "Precursor, Action, Result, and Interpretation" in str(
         affordance["source_evidence"]
     )

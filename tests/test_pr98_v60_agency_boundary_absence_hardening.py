@@ -211,8 +211,13 @@ def test_pr98_competence_and_internal_locus_owner_boundaries_prevent_bloat() -> 
     )["status"] == "source_too_thin"
 
 
-def test_pr98_v60_is_not_imported_by_live_runtime_paths() -> None:
-    forbidden = ("affordances_v60", "model_affordances_v60")
+def test_pr98_v60_is_loaded_as_explicit_default_artifact_not_runtime_module() -> None:
+    run_pipeline_text = (REPO_ROOT / "scripts" / "run_pipeline.py").read_text(
+        encoding="utf-8"
+    )
+    assert "affordances_v60.json" in run_pipeline_text
+
+    forbidden = ("model_affordances_v60",)
 
     for path in LIVE_RUNTIME_PATHS:
         text = path.read_text(encoding="utf-8")

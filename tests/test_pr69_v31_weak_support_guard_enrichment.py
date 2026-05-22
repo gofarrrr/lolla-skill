@@ -132,16 +132,31 @@ def test_pr69_weak_support_treatments_surface_use_conditions() -> None:
     assert any(
         isinstance(requirement, dict)
         and requirement.get("requirement_id")
-        == "anchor-offer-differences-against-comparison-and-limits"
+        == "separate-value-segments-with-trust-check"
         for requirement in price_affordance["treatment_requirements"]
     )
     assert any(
-        "Compared to what alternative" in str(question)
+        "long-term trust" in str(question)
         for question in price_affordance["diagnostic_questions"]
     )
     assert any(
         "persona, archetype, or buyer-psychology" in str(guard)
         for guard in price_affordance["misuse_guards"]
+    )
+
+    comparison_affordance = _affordance_by_id(
+        price_discrimination,
+        "price-discrimination.justify-offer-differences-against-alternatives",
+    )
+    assert any(
+        isinstance(requirement, dict)
+        and requirement.get("requirement_id")
+        == "anchor-offer-differences-against-comparison-and-limits"
+        for requirement in comparison_affordance["treatment_requirements"]
+    )
+    assert any(
+        "Compared to what alternative" in str(question)
+        for question in comparison_affordance["diagnostic_questions"]
     )
 
 

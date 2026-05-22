@@ -38,6 +38,55 @@
         "lane2_companion_chunk",
         "reviewer_note"
       ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The players or counterparties involved."
+            ],
+            "do_not_use_when": [
+              "The actors are not actually playing the same game because reputation, ideology, politics, or internal incentives dominate."
+            ],
+            "use_when": [
+              "A rival, partner, regulator, buyer, seller, or negotiating counterparty can change the value of the proposed action."
+            ]
+          },
+          "affordance_id": "game-theory-payoffs.counterparty-response-payoff-map",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "Whose response changes the value of this move?"
+          ],
+          "mechanism": "When the value of a move depends on another actor's response, require the answer to name the players, available moves, information asymmetries, payoff drivers, and the few decisive branches rather than judging the move in isolation.",
+          "misuse_guards": [
+            "Do not assume both sides are optimizing the same payoff model."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "game-theory-payoffs.counterparty-response-payoff-map",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Core Principles and Analogies",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Game_Theory_Payoffs_rag.md",
+              "source_quote": "identifying the players, the actions available to them, the information they possess, and the resultant payoff for each potential action"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "game-theory-payoffs.counterparty-response-payoff-map",
+              "description": "Require the answer to map the relevant players, likely moves, and payoff drivers, while pruning branches that do not materially change the decision.",
+              "evidence_required": [
+                "The actor taking the proposed action."
+              ],
+              "good_output_shape": [
+                "Names the players."
+              ],
+              "requirement_id": "name-players-moves-and-decisive-payoffs"
+            }
+          ]
+        }
+      ],
       "reviewed_affordance_fields": {
         "affordance_ids": [
           "game-theory-payoffs.counterparty-response-payoff-map"
@@ -162,6 +211,55 @@
       "pulled_by": [
         "lane4_gap_route"
       ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The players whose responses matter."
+            ],
+            "do_not_use_when": [
+              "The equilibrium is computationally or behaviorally unreachable for the actual actors."
+            ],
+            "use_when": [
+              "A decision only makes sense relative to the likely stable responses of other players, not in isolation."
+            ]
+          },
+          "affordance_id": "nash-equilibrium.stable-best-response-map",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "What is each actor's best response if the other actors hold their current moves?"
+          ],
+          "mechanism": "When a strategic move only makes sense relative to other actors' stable responses, require the answer to name the players, credible moves, payoff drivers, beliefs, and whether the resulting pattern is reachable and worth preserving.",
+          "misuse_guards": [
+            "Do not assume a stable outcome is a good outcome."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "nash-equilibrium.stable-best-response-map",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Core Principles and Analogies",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Nash_Equilibrium_rag.md",
+              "source_quote": "no player can increase their payoff by unilaterally changing their action"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "nash-equilibrium.stable-best-response-map",
+              "description": "Require the answer to distinguish whether the proposed equilibrium is stable, reachable, and desirable as three separate claims.",
+              "evidence_required": [
+                "The candidate stable response pattern."
+              ],
+              "good_output_shape": [
+                "Names each player's best response."
+              ],
+              "requirement_id": "separate-stable-from-good-and-reachable"
+            }
+          ]
+        }
+      ],
       "reviewed_affordance_fields": {
         "affordance_ids": [
           "nash-equilibrium.stable-best-response-map"
@@ -285,6 +383,55 @@
       },
       "pulled_by": [
         "lane3_frame_route"
+      ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The actors and choices available to each."
+            ],
+            "do_not_use_when": [
+              "The situation is a coordination or process repair problem rather than a betrayal dynamic."
+            ],
+            "use_when": [
+              "Each actor has a credible incentive to defect even though everyone would benefit from stable cooperation."
+            ]
+          },
+          "affordance_id": "prisoners-dilemma.defection-incentive-reframe-test",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "What is each actor rewarded for doing alone, and why does that hurt the group?"
+          ],
+          "mechanism": "When individually sensible behavior creates a collectively bad outcome, require the answer to map the defection incentive and identify whether trust, enforcement, repeated interaction, or game redesign could keep cooperation from collapsing.",
+          "misuse_guards": [
+            "Do not treat every coordination problem as betrayal."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "prisoners-dilemma.defection-incentive-reframe-test",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Core Principles and Analogies",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Prisoners_Dilemma_rag.md",
+              "source_quote": "conflict between individual rationality and collective optimality"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "prisoners-dilemma.defection-incentive-reframe-test",
+              "description": "Require the answer to test whether bad collective behavior is produced by flawed rules before assigning bad intent to individual actors.",
+              "evidence_required": [
+                "The individually rational defection move."
+              ],
+              "good_output_shape": [
+                "Maps the defection incentive."
+              ],
+              "requirement_id": "redesign-game-before-blaming-actors"
+            }
+          ]
+        }
       ],
       "reviewed_affordance_fields": {
         "affordance_ids": [
@@ -411,6 +558,55 @@
       "pulled_by": [
         "lane1_tendency_route"
       ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The message, decision, or action that must be understood."
+            ],
+            "do_not_use_when": [
+              "Cultural models are being used as stereotype shortcuts instead of prompts to investigate the actual audience."
+            ],
+            "use_when": [
+              "The same message must survive translation across cultures, functions, or status differences without losing the intended action."
+            ]
+          },
+          "affordance_id": "cross-cultural-communication-frameworks.frame-translation-action-check",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "What does this audience need to understand, trust, and do?"
+          ],
+          "mechanism": "When the same message must survive cultures, functions, or status differences, require the answer to translate the message for the actual audience frame while preserving the intended action, disagreement, urgency, and hard trade-offs.",
+          "misuse_guards": [
+            "Do not use cultural models as stereotype shortcuts."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "cross-cultural-communication-frameworks.frame-translation-action-check",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Core Principles and Analogies",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Cross_Cultural_Communication_Frameworks_rag.md",
+              "source_quote": "to bridge the inherent disconnect between the sender's intricate understanding and the receiver's often simplified, emotionally filtered processing of information"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "cross-cultural-communication-frameworks.frame-translation-action-check",
+              "description": "Require the answer to adapt message framing for the actual audience while preserving the core action and hard trade-offs.",
+              "evidence_required": [
+                "The message or strategy to communicate."
+              ],
+              "good_output_shape": [
+                "Names the sender/audience mismatch."
+              ],
+              "requirement_id": "translate-frame-without-hiding-action"
+            }
+          ]
+        }
+      ],
       "reviewed_affordance_fields": {
         "affordance_ids": [
           "cross-cultural-communication-frameworks.frame-translation-action-check"
@@ -534,6 +730,55 @@
       },
       "pulled_by": [
         "lane1_tendency_route"
+      ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The visible disagreement, objection, or emotional signal."
+            ],
+            "do_not_use_when": [
+              "Listening language is being used performatively to manage optics or extract information after the answer is already decided."
+            ],
+            "use_when": [
+              "The surface objection may be hiding fear, misaligned incentives, identity threat, unstated constraints, or different success criteria."
+            ]
+          },
+          "affordance_id": "active-listening.hidden-disagreement-diagnostic-loop",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "What does the other side think we do not understand about their perspective?"
+          ],
+          "mechanism": "When the visible disagreement may not be the real disagreement, require the answer to gather factual and emotional content, ask how the other side thinks, and confirm understanding before advising, rebutting, or designing a solution.",
+          "misuse_guards": [
+            "Do not use listening language performatively when the answer is already decided."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "active-listening.hidden-disagreement-diagnostic-loop",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Core Principles and Analogies",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Active Listening_rag.md",
+              "source_quote": "comprehending your conversation partner 100 percent clearly and certainly"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "active-listening.hidden-disagreement-diagnostic-loop",
+              "description": "Require the answer to ask how the other side thinks, reflect the content and emotion, and confirm understanding before moving to solution or rebuttal.",
+              "evidence_required": [
+                "The current visible disagreement."
+              ],
+              "good_output_shape": [
+                "Names what may be hidden beneath the surface objection."
+              ],
+              "requirement_id": "diagnose-before-rebuttal-or-advice"
+            }
+          ]
+        }
       ],
       "reviewed_affordance_fields": {
         "affordance_ids": [
@@ -660,6 +905,55 @@
       "pulled_by": [
         "lane4_gap_route"
       ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The action, output, or behavior being evaluated."
+            ],
+            "do_not_use_when": [
+              "Feedback is technically accurate but delivered without timing, context, or respect."
+            ],
+            "use_when": [
+              "Performance, learning, or trust depends on giving people information they can act on rather than vague reassurance."
+            ]
+          },
+          "affordance_id": "constructive-feedback-models.specific-standard-correction",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "What specific behavior or output deviated from the standard?"
+          ],
+          "mechanism": "When performance, learning, or trust depends on corrective information, require the answer to tie accurate criticism to a specific action, objective standard, cause/effect context, and supportive next adjustment rather than vague reassurance or personal attack.",
+          "misuse_guards": [
+            "Do not use rank or authority as a substitute for observation quality."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "constructive-feedback-models.specific-standard-correction",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Core Principles and Analogies",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Constructive_Feedback_Models_rag.md",
+              "source_quote": "structured process for evaluating an action, output, or behavior against an objective standard"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "constructive-feedback-models.specific-standard-correction",
+              "description": "Require the answer to name the observed deviation, the standard it missed, the impact, and the actionable adjustment without turning correction into rank pressure or vague advice.",
+              "evidence_required": [
+                "The observed action, output, or behavior."
+              ],
+              "good_output_shape": [
+                "Names the specific observation."
+              ],
+              "requirement_id": "tie-feedback-to-standard-and-adjustment"
+            }
+          ]
+        }
+      ],
       "reviewed_affordance_fields": {
         "affordance_ids": [
           "constructive-feedback-models.specific-standard-correction"
@@ -783,6 +1077,55 @@
       },
       "pulled_by": [
         "lane2_detected_model"
+      ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The concrete situation or incident."
+            ],
+            "do_not_use_when": [
+              "The model is being used as a script to deliver judgment while skipping curiosity, listening, or the receiver's constraints."
+            ],
+            "use_when": [
+              "A feedback conversation needs to stay tied to specific observable behavior rather than personality labels or vague frustration."
+            ]
+          },
+          "affordance_id": "feedback-models-sbi.situation-impact-invitation-structure",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "What exactly happened, and what can be observed rather than inferred?"
+          ],
+          "mechanism": "When feedback risks becoming vague or defensive, require the answer to anchor the conversation in a concrete situation/action, explain impact, invite collaboration, and state consequences without smuggling in a preloaded judgment.",
+          "misuse_guards": [
+            "Do not use the structure as a script for judgment while skipping curiosity."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "feedback-models-sbi.situation-impact-invitation-structure",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Core Principles and Analogies",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Feedback_Models_Sbi_rag.md",
+              "source_quote": "clear link between a specific action and its observed consequence"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "feedback-models-sbi.situation-impact-invitation-structure",
+              "description": "Require the answer to keep feedback tied to concrete observation, impact, invitation, and implications while preserving curiosity about the receiver's constraints.",
+              "evidence_required": [
+                "The specific situation or incident."
+              ],
+              "good_output_shape": [
+                "Names the situation."
+              ],
+              "requirement_id": "anchor-feedback-in-observable-incident"
+            }
+          ]
+        }
       ],
       "reviewed_affordance_fields": {
         "affordance_ids": [
@@ -909,6 +1252,55 @@
       "pulled_by": [
         "lane3_frame_route"
       ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The target concept or decision that needs explanation."
+            ],
+            "do_not_use_when": [
+              "The analogy is based on superficial similarity rather than shared mechanism."
+            ],
+            "use_when": [
+              "The audience lacks a usable schema for a new concept but has adjacent experience that can carry the explanation."
+            ]
+          },
+          "affordance_id": "analogies-and-metaphors.structural-fit-transfer-test",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "What mechanism transfers from the source domain to the target domain?"
+          ],
+          "mechanism": "When an analogy is used to make a new idea graspable, require the answer to test whether the source and target domains share the relevant mechanism, state the analogy boundary, and prevent a vivid comparison from replacing evidence about the target system.",
+          "misuse_guards": [
+            "Do not let a vivid analogy become proof."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "analogies-and-metaphors.structural-fit-transfer-test",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Core Principles and Analogies",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Analogies_And_Metaphors_rag.md",
+              "source_quote": "**bridges**, connecting what an audience already understands to the new ideas"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "analogies-and-metaphors.structural-fit-transfer-test",
+              "description": "Require the answer to line up assumptions in the source analogy against the target case and name at least one limitation before relying on the comparison.",
+              "evidence_required": [
+                "The source analogy or metaphor."
+              ],
+              "good_output_shape": [
+                "Names the analogy and target."
+              ],
+              "requirement_id": "test-reference-class-fit-before-transfer"
+            }
+          ]
+        }
+      ],
       "reviewed_affordance_fields": {
         "affordance_ids": [
           "analogies-and-metaphors.structural-fit-transfer-test"
@@ -1033,6 +1425,55 @@
       },
       "pulled_by": [
         "lane3_frame_route"
+      ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The variants or options to test."
+            ],
+            "do_not_use_when": [
+              "Leaders use emergence language to excuse weak goals, absent decision rights, or undefined fitness criteria."
+            ],
+            "use_when": [
+              "The team can generate multiple credible variants and let real feedback, market response, or operational evidence eliminate weak options."
+            ]
+          },
+          "affordance_id": "natural-selection-analogy.variation-selection-retention-loop",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "What variants can we generate and test cheaply enough to learn?"
+          ],
+          "mechanism": "When uncertainty makes one perfect design unlikely, require the answer to generate credible variants, define the selection environment and fitness criteria, test against real feedback, and retain what works without using emergence language to excuse weak goals or absent decision rights.",
+          "misuse_guards": [
+            "Do not use emergence as an excuse for weak goals or absent decision rights."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "natural-selection-analogy.variation-selection-retention-loop",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Core Principles and Analogies",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Natural_Selection_Analogy_rag.md",
+              "source_quote": "variation, selection, and retention"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "natural-selection-analogy.variation-selection-retention-loop",
+              "description": "Require the answer to define variants, fitness criteria, feedback channels, and retention rules before invoking adaptation or emergence.",
+              "evidence_required": [
+                "The candidate variants."
+              ],
+              "good_output_shape": [
+                "Names variants."
+              ],
+              "requirement_id": "define-fitness-before-letting-feedback-select"
+            }
+          ]
+        }
       ],
       "reviewed_affordance_fields": {
         "affordance_ids": [

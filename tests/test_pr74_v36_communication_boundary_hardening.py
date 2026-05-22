@@ -95,14 +95,17 @@ def test_pr74_compiled_v36_hardens_without_new_affordance_ids() -> None:
     assert v36_metadata["validation"]["source_quote_rejection_count"] == 0
 
 
-def test_pr74_active_listening_hardens_without_split() -> None:
+def test_pr74_active_listening_preserves_diagnostic_and_tacit_process_boundaries() -> None:
     record = _load_record("active-listening")
     affordance_ids = {affordance["affordance_id"] for affordance in record["affordances"]}
-    assert affordance_ids == {"active-listening.hidden-disagreement-diagnostic-loop"}
+    assert {
+        "active-listening.hidden-disagreement-diagnostic-loop",
+        "active-listening.tacit-process-capture-before-abstraction",
+    }.issubset(affordance_ids)
 
     affordance = _affordance_by_id(
         record,
-        "active-listening.hidden-disagreement-diagnostic-loop",
+        "active-listening.tacit-process-capture-before-abstraction",
     )
     requirement = _requirement_by_id(
         affordance,
@@ -122,8 +125,25 @@ def test_pr74_communication_hardeners_preserve_adjacent_boundaries() -> None:
         _load_record("curse-of-knowledge"),
         "curse-of-knowledge.audience-starting-state-reconstruction",
     )
-    assert _requirement_by_id(curse, "verify-with-novice-demonstration")
-    assert "direct novice observation" in str(curse["misuse_guards"])
+    assert _requirement_by_id(curse, "rebuild-recipient-model")
+    assert "nodding is not proof of comprehension" in str(
+        _requirement_by_id(curse, "rebuild-recipient-model")["good_output_shape"]
+    )
+
+    novice_validation = _affordance_by_id(
+        _load_record("curse-of-knowledge"),
+        "curse-of-knowledge.observed-novice-validation-before-clarity-trust",
+    )
+    assert _requirement_by_id(
+        novice_validation,
+        "verify-clarity-with-recipient-demonstration",
+    )
+    assert "observed novice use or teach-back" in str(
+        _requirement_by_id(
+            novice_validation,
+            "verify-clarity-with-recipient-demonstration",
+        )["good_output_shape"]
+    )
 
     storytelling = _affordance_by_id(
         _load_record("storytelling-frameworks"),
