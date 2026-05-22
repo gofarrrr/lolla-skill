@@ -8,6 +8,11 @@ Code records; humans decide.
 
 A cleaner pre-Step-6 table may reduce the useful residual work that Step 7 pressure-check agents find.
 
+## Product Intent
+
+- Desired direction: Move more useful reasoning pressure before Step 6 so the default Step 7 post-Step-6 pressure-check agents can become optional or manual-triggered if evidence supports it.
+- Non-claim: Step 7 is not obsolete by assertion.
+
 ## Comparison Arms
 
 - `legacy_required_pressure_check`
@@ -18,6 +23,19 @@ A cleaner pre-Step-6 table may reduce the useful residual work that Step 7 press
   - Step 6 table: cleaner private table from dormant pre-Step-6 foundation and case-appropriate pressure atoms
   - Step 7: still_required_for_each_non_empty_lane_after_step6b
   - Visible behavior: unchanged_shadow_only
+
+## Measurement Protocol
+
+- Record unit: `case_sample_pair`
+- Sample count per case: `3`
+- Target record count: `12`
+- Cleaner-table operational definition:
+  - Step 6 receives cleaner private table: `True`
+  - Step 7 runs in both arms: `True`
+  - Shadow portfolio role: May record cached-deck custody and evidence, but it is not the whole treatment. The treatment is the Step 6 private table composition.
+- Operator labeling:
+  - Primary label source: `human_operator_review`
+  - LLM reviewers authoritative: `False`
 
 ## Case Set
 
@@ -51,6 +69,12 @@ A cleaner pre-Step-6 table may reduce the useful residual work that Step 7 press
 - `supports_optional_pressure_check_trial` - Cleaner-table arm preserves payload and materially reduces Step 7 correction work; proceed to a separate gated SKILL.md optional-pressure trial.
 - `preserve_required_pressure_check` - Step 7 still adds meaningful independent or corrective work; keep current skill flow.
 - `ambiguous_continue_research` - Results split by case role or reviewer interpretation; do not change SKILL.md.
+
+## Decision Thresholds
+
+- `supports_optional_pressure_check_trial`: 12 records, >= 9 support labels, <= 1 preserve label, 0 safety-blocked records.
+- `preserve_required_pressure_check`: fires on any safety-blocked record, >= 4 preserve labels, or no aggregate divergence reduction.
+- `ambiguous_continue_research`: default for everything between those thresholds.
 
 ## Boundary
 

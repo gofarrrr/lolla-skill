@@ -377,6 +377,7 @@ def _summarize_arm(arm: object) -> dict[str, object]:
 
 def _aggregate_case_summaries(case_summaries: Sequence[Mapping[str, object]]) -> dict[str, object]:
     label_counts = {label: 0 for label in sorted(OUTCOME_LABELS)}
+    preserve_labels_by_case_role: dict[str, int] = {}
     total_legacy = 0
     total_cleaner = 0
     total_delta = 0
@@ -396,6 +397,9 @@ def _aggregate_case_summaries(case_summaries: Sequence[Mapping[str, object]]) ->
         label = str(summary["operator_review_label"])
         if label in label_counts:
             label_counts[label] += 1
+        if label == "preserve_required_pressure_check":
+            role = str(summary["case_role"])
+            preserve_labels_by_case_role[role] = preserve_labels_by_case_role.get(role, 0) + 1
         if summary["safety_blocked"]:
             safety_blocked_count += 1
         if cleaner["protected_payload_preserved"]:
@@ -413,19 +417,43 @@ def _aggregate_case_summaries(case_summaries: Sequence[Mapping[str, object]]) ->
         "cleaner_memo_complete_count": cleaner_memo_complete_count,
         "safety_blocked_count": safety_blocked_count,
         "operator_review_distribution": label_counts,
+        "preserve_labels_by_case_role": preserve_labels_by_case_role,
         "human_decision_required": True,
-        "candidate_read": _candidate_read(label_counts, safety_blocked_count),
+        "candidate_read": _candidate_read(
+            label_counts=label_counts,
+            preserve_labels_by_case_role=preserve_labels_by_case_role,
+            safety_blocked_count=safety_blocked_count,
+            case_count=len(case_summaries),
+            total_legacy=total_legacy,
+            total_cleaner=total_cleaner,
+        ),
     }
 
 
-def _candidate_read(label_counts: Mapping[str, int], safety_blocked_count: int) -> str:
+def _candidate_read(
+    *,
+    label_counts: Mapping[str, int],
+    preserve_labels_by_case_role: Mapping[str, int],
+    safety_blocked_count: int,
+    case_count: int,
+    total_legacy: int,
+    total_cleaner: int,
+) -> str:
     if safety_blocked_count:
         return "preserve_required_pressure_check"
-    if label_counts.get("ambiguous_continue_research", 0):
-        return "ambiguous_continue_research"
-    if label_counts.get("preserve_required_pressure_check", 0):
+    if label_counts.get("preserve_required_pressure_check", 0) >= 4:
         return "preserve_required_pressure_check"
-    if label_counts.get("supports_optional_pressure_check_trial", 0):
+    if any(count >= 2 for count in preserve_labels_by_case_role.values()):
+        return "preserve_required_pressure_check"
+    if case_count >= 12 and total_cleaner >= total_legacy:
+        return "preserve_required_pressure_check"
+    if case_count < 12:
+        return "ambiguous_continue_research"
+    if (
+        label_counts.get("supports_optional_pressure_check_trial", 0) >= 9
+        and label_counts.get("preserve_required_pressure_check", 0) <= 1
+        and total_cleaner < total_legacy
+    ):
         return "supports_optional_pressure_check_trial"
     return "ambiguous_continue_research"
 

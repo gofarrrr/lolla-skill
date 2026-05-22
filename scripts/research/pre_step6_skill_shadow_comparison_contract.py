@@ -57,6 +57,14 @@ def build_skill_shadow_comparison_contract(*, root: Path) -> dict[str, object]:
         "skill_update_allowed": False,
         "runtime_visibility_change_allowed": False,
         "manual_interpretation_required": True,
+        "product_intent": {
+            "desired_direction": (
+                "Move more useful reasoning pressure before Step 6 so the "
+                "default Step 7 post-Step-6 pressure-check agents can become "
+                "optional or manual-triggered if evidence supports it."
+            ),
+            "non_claim": "Step 7 is not obsolete by assertion.",
+        },
         "principles": {
             "code_records": True,
             "humans_decide": True,
@@ -66,9 +74,11 @@ def build_skill_shadow_comparison_contract(*, root: Path) -> dict[str, object]:
             "model_selector_allowed": False,
         },
         "comparison_arms": _comparison_arms(),
+        "measurement_protocol": _measurement_protocol(),
         "case_set": _case_set(),
         "metrics": _metrics(),
         "outcomes": _outcomes(),
+        "decision_thresholds": _decision_thresholds(),
         "stop_rules": {
             "do_not_edit_skill_md_in_this_slice": True,
             "do_not_make_step7_default_off_without_shadow_evidence": True,
@@ -121,6 +131,11 @@ def render_skill_shadow_comparison_contract_markdown(contract: Mapping[str, obje
             "that Step 7 pressure-check agents find."
         ),
         "",
+        "## Product Intent",
+        "",
+        f"- Desired direction: {contract['product_intent']['desired_direction']}",  # type: ignore[index]
+        f"- Non-claim: {contract['product_intent']['non_claim']}",  # type: ignore[index]
+        "",
         "## Comparison Arms",
         "",
     ]
@@ -135,6 +150,37 @@ def render_skill_shadow_comparison_contract_markdown(contract: Mapping[str, obje
                 f"  - Visible behavior: {arm.get('visible_behavior')}",
             ]
         )
+    protocol = contract["measurement_protocol"]  # type: ignore[index]
+    if isinstance(protocol, Mapping):
+        cleaner = protocol.get("cleaner_table_operational_definition")
+        labels = protocol.get("operator_labeling_protocol")
+        lines.extend(
+            [
+                "",
+                "## Measurement Protocol",
+                "",
+                f"- Record unit: `{protocol.get('record_unit')}`",
+                f"- Sample count per case: `{protocol.get('sample_count_per_case')}`",
+                f"- Target record count: `{protocol.get('target_record_count')}`",
+            ]
+        )
+        if isinstance(cleaner, Mapping):
+            lines.extend(
+                [
+                    "- Cleaner-table operational definition:",
+                    f"  - Step 6 receives cleaner private table: `{cleaner.get('step6_receives_cleaner_private_table')}`",
+                    f"  - Step 7 runs in both arms: `{cleaner.get('step7_runs_in_both_arms')}`",
+                    f"  - Shadow portfolio role: {cleaner.get('shadow_portfolio_code_role')}",
+                ]
+            )
+        if isinstance(labels, Mapping):
+            lines.extend(
+                [
+                    "- Operator labeling:",
+                    f"  - Primary label source: `{labels.get('primary_label_source')}`",
+                    f"  - LLM reviewers authoritative: `{labels.get('llm_reviewers_authoritative')}`",
+                ]
+            )
     lines.extend(["", "## Case Set", ""])
     for case in contract["case_set"]:  # type: ignore[index]
         if not isinstance(case, Mapping):
@@ -156,6 +202,26 @@ def render_skill_shadow_comparison_contract_markdown(contract: Mapping[str, obje
         if not isinstance(outcome, Mapping):
             continue
         lines.append(f"- `{outcome.get('label')}` - {outcome.get('meaning')}")
+    thresholds = contract["decision_thresholds"]  # type: ignore[index]
+    if isinstance(thresholds, Mapping):
+        supports = thresholds.get("supports_optional_pressure_check_trial")
+        preserve = thresholds.get("preserve_required_pressure_check")
+        lines.extend(["", "## Decision Thresholds", ""])
+        if isinstance(supports, Mapping):
+            lines.append(
+                "- `supports_optional_pressure_check_trial`: "
+                f"{supports.get('minimum_records')} records, "
+                f">= {supports.get('min_support_labels')} support labels, "
+                f"<= {supports.get('max_preserve_labels')} preserve label, "
+                f"{supports.get('max_safety_blocked_records')} safety-blocked records."
+            )
+        if isinstance(preserve, Mapping):
+            lines.append(
+                "- `preserve_required_pressure_check`: fires on any safety-blocked "
+                f"record, >= {preserve.get('min_preserve_labels')} preserve labels, "
+                "or no aggregate divergence reduction."
+            )
+        lines.append("- `ambiguous_continue_research`: default for everything between those thresholds.")
     lines.extend(["", "## Boundary", ""])
     lines.extend(
         [
@@ -192,11 +258,14 @@ def iter_skill_shadow_comparison_contract_errors(
         "skill_update_allowed",
         "runtime_visibility_change_allowed",
         "manual_interpretation_required",
+        "product_intent",
         "principles",
         "comparison_arms",
+        "measurement_protocol",
         "case_set",
         "metrics",
         "outcomes",
+        "decision_thresholds",
         "stop_rules",
         "next_artifacts",
     }
@@ -218,11 +287,14 @@ def iter_skill_shadow_comparison_contract_errors(
         yield "runtime_visibility_change_allowed must be false"
     if contract.get("manual_interpretation_required") is not True:
         yield "manual_interpretation_required must be true"
+    yield from _validate_product_intent(contract.get("product_intent"))
     yield from _validate_principles(contract.get("principles"))
     yield from _validate_arms(contract.get("comparison_arms"))
+    yield from _validate_measurement_protocol(contract.get("measurement_protocol"))
     yield from _validate_cases(contract.get("case_set"), root=root)
     yield from _validate_metrics(contract.get("metrics"))
     yield from _validate_outcomes(contract.get("outcomes"))
+    yield from _validate_decision_thresholds(contract.get("decision_thresholds"))
     stop_rules = contract.get("stop_rules")
     if not isinstance(stop_rules, Mapping):
         yield "stop_rules must be object"
@@ -250,6 +322,58 @@ def _comparison_arms() -> list[dict[str, object]]:
             "purpose": "test whether Step 7 residual work shrinks without removing it",
         },
     ]
+
+
+def _measurement_protocol() -> dict[str, object]:
+    return {
+        "record_unit": "case_sample_pair",
+        "sample_count_per_case": 3,
+        "target_record_count": 12,
+        "cleaner_table_operational_definition": {
+            "uses_current_pipeline_through_step4": True,
+            "step6_receives_cleaner_private_table": True,
+            "step7_runs_in_both_arms": True,
+            "shadow_portfolio_code_role": (
+                "May record cached-deck custody and evidence, but it is not the "
+                "whole treatment. The treatment is the Step 6 private table "
+                "composition."
+            ),
+            "included_material": [
+                "current four-lane outputs",
+                "V60 private enrichment when active for the case",
+                "case-appropriate atomic pressure cards from the cleaning evidence surface",
+                "answer_delta / structural_delta ledger vocabulary for Step 6 custody",
+            ],
+            "excluded_material": [
+                "new model selector",
+                "automatic card graduation",
+                "deterministic borderline suppression",
+                "any change that skips Step 7 during this comparison",
+            ],
+        },
+        "operator_labeling_protocol": {
+            "primary_label_source": "human_operator_review",
+            "llm_reviewers_allowed_as_supporting_evidence": True,
+            "llm_reviewers_authoritative": False,
+            "rubric": [
+                (
+                    "Label supports_optional_pressure_check_trial only when the "
+                    "cleaner-table arm preserves payload and Step 7 no longer "
+                    "adds meaningful corrective work for that record."
+                ),
+                (
+                    "Label preserve_required_pressure_check when Step 7 still "
+                    "adds a material correction, independent mechanism, or "
+                    "safety-relevant divergence."
+                ),
+                (
+                    "Label ambiguous_continue_research when the residual Step 7 "
+                    "work is mostly cognitive-independence nuance, reviewer "
+                    "evidence is split, or the record is hard to classify."
+                ),
+            ],
+        },
+    }
 
 
 def _case_set() -> list[dict[str, object]]:
@@ -377,6 +501,46 @@ def _outcomes() -> list[dict[str, object]]:
     ]
 
 
+def _decision_thresholds() -> dict[str, object]:
+    return {
+        "supports_optional_pressure_check_trial": {
+            "minimum_records": 12,
+            "required_case_roles_covered": sorted(REQUIRED_CASE_ROLES),
+            "max_safety_blocked_records": 0,
+            "min_support_labels": 9,
+            "max_preserve_labels": 1,
+            "max_preserve_labels_per_case_role": 1,
+            "requires_cleaner_less_than_legacy_divergence_count": True,
+            "meaning": (
+                "Cleaner table looks strong enough to justify a separate "
+                "optional-pressure SKILL.md trial, not direct activation."
+            ),
+        },
+        "preserve_required_pressure_check": {
+            "any_safety_blocked_records": True,
+            "min_preserve_labels": 4,
+            "min_preserve_labels_per_case_role": 2,
+            "cleaner_divergence_not_lower_than_legacy": True,
+            "meaning": "Keep current required Step 7 flow.",
+        },
+        "ambiguous_continue_research": {
+            "default_when_support_and_preserve_thresholds_do_not_fire": True,
+            "meaning": "Do not change SKILL.md; inspect the mixed cases.",
+        },
+    }
+
+
+def _validate_product_intent(value: object) -> Iterable[str]:
+    if not isinstance(value, Mapping):
+        yield "product_intent must be object"
+        return
+    desired = str(value.get("desired_direction") or "")
+    if "Step 7" not in desired or "optional" not in desired:
+        yield "product_intent.desired_direction must name Step 7 optionalization"
+    if value.get("non_claim") != "Step 7 is not obsolete by assertion.":
+        yield "product_intent.non_claim must preserve the Step 7 non-obsolescence boundary"
+
+
 def _validate_principles(value: object) -> Iterable[str]:
     if not isinstance(value, Mapping):
         yield "principles must be object"
@@ -410,6 +574,37 @@ def _validate_arms(value: object) -> Iterable[str]:
         if arm.get("arm_id") == "cleaner_table_shadow_required_pressure_check":
             if arm.get("visible_behavior") != "unchanged_shadow_only":
                 yield "cleaner-table arm must stay shadow-only"
+
+
+def _validate_measurement_protocol(value: object) -> Iterable[str]:
+    if not isinstance(value, Mapping):
+        yield "measurement_protocol must be object"
+        return
+    if value.get("record_unit") != "case_sample_pair":
+        yield "measurement_protocol.record_unit must be case_sample_pair"
+    if value.get("sample_count_per_case") != 3:
+        yield "measurement_protocol.sample_count_per_case must be 3"
+    if value.get("target_record_count") != 12:
+        yield "measurement_protocol.target_record_count must be 12"
+    cleaner = value.get("cleaner_table_operational_definition")
+    if not isinstance(cleaner, Mapping):
+        yield "cleaner_table_operational_definition must be object"
+    else:
+        if cleaner.get("step7_runs_in_both_arms") is not True:
+            yield "cleaner table protocol must keep Step 7 running in both arms"
+        if cleaner.get("step6_receives_cleaner_private_table") is not True:
+            yield "cleaner table protocol must define Step 6 private-table treatment"
+        excluded = cleaner.get("excluded_material")
+        if not isinstance(excluded, list) or "new model selector" not in excluded:
+            yield "cleaner table protocol must exclude new model selectors"
+    labels = value.get("operator_labeling_protocol")
+    if not isinstance(labels, Mapping):
+        yield "operator_labeling_protocol must be object"
+    else:
+        if labels.get("primary_label_source") != "human_operator_review":
+            yield "primary label source must be human_operator_review"
+        if labels.get("llm_reviewers_authoritative") is not False:
+            yield "LLM reviewers must not be authoritative"
 
 
 def _validate_cases(value: object, *, root: Path) -> Iterable[str]:
@@ -471,6 +666,36 @@ def _validate_outcomes(value: object) -> Iterable[str]:
             continue
         if outcome.get("allows_skill_md_edit") is not False:
             yield f"{outcome.get('label')} must not directly allow SKILL.md edits"
+
+
+def _validate_decision_thresholds(value: object) -> Iterable[str]:
+    if not isinstance(value, Mapping):
+        yield "decision_thresholds must be object"
+        return
+    missing = sorted(OUTCOME_LABELS - set(str(key) for key in value))
+    if missing:
+        yield f"decision_thresholds missing labels: {missing}"
+        return
+    supports = value.get("supports_optional_pressure_check_trial")
+    if not isinstance(supports, Mapping):
+        yield "supports threshold must be object"
+    else:
+        if supports.get("minimum_records") != 12:
+            yield "supports threshold must require 12 records"
+        if supports.get("max_safety_blocked_records") != 0:
+            yield "supports threshold must allow zero safety blocked records"
+        if supports.get("min_support_labels") != 9:
+            yield "supports threshold must require at least 9 support labels"
+        if supports.get("max_preserve_labels") != 1:
+            yield "supports threshold must allow at most 1 preserve label"
+    preserve = value.get("preserve_required_pressure_check")
+    if not isinstance(preserve, Mapping):
+        yield "preserve threshold must be object"
+    else:
+        if preserve.get("any_safety_blocked_records") is not True:
+            yield "preserve threshold must fire on any safety blocked record"
+        if preserve.get("min_preserve_labels") != 4:
+            yield "preserve threshold must fire at 4 preserve labels"
 
 
 def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
