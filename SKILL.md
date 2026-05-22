@@ -32,14 +32,14 @@ The system audits conversations for structural reasoning weaknesses using four i
 Calibrated on Claude Opus 4.7. Cross-model validation (2026-04-22) yielded three tiers:
 
 - **Opus 4.7** — recommended. Full doctrine compliance (anchor accounting, machinery-leak avoidance, full pipeline cycle executed).
-- **Sonnet 4.6** — acceptable. Completes the full pipeline cycle with sub-agents and artifact persistence; modest phrasing regressions (public anchor naming may be over-explicit; occasional machinery-term leaks like "sub-agents" or "the audit changes").
-- **Haiku 4.5** — below floor. Skips Steps 6b / 7 / 8b / 8c (no revised_answer persistence, no pressure-check sub-agents, no gap_check persistence, no final memo render) while generating plausible-looking output for the steps that didn't run. Do not use.
+- **Sonnet 4.6** — acceptable. Completes the full default pipeline cycle with artifact persistence; modest phrasing regressions (public anchor naming may be over-explicit; occasional machinery-term leaks like "sub-agents" or "the audit changes").
+- **Haiku 4.5** — below floor. Skips Steps 6b / 8b / 8c (no revised_answer persistence, no intentional pressure-check state, no final memo render) while generating plausible-looking output for the steps that didn't run. Do not use.
 
 The skill cannot detect the orchestrator model mechanically (`$CLAUDE_MODEL` is not exposed). Self-identify before Step 1:
 
 - **Opus 4.7 or later** — proceed normally.
 - **Sonnet 4.6 or later** — proceed normally, with reduced narration and strict live-output hygiene.
-- **Haiku (any version)** — STOP. Tell the user, verbatim: *"This skill requires Opus or Sonnet to run reliably. Haiku has been observed to skip critical parallel-review and artifact-persistence steps while generating plausible-looking output for the steps that didn't run. Please re-run on Opus or Sonnet."*
+- **Haiku (any version)** — STOP. Tell the user, verbatim: *"This skill requires Opus or Sonnet to run reliably. Haiku has been observed to skip critical artifact-persistence steps while generating plausible-looking output for the steps that didn't run. Please re-run on Opus or Sonnet."*
 - **Cannot identify with confidence** — proceed without a model caveat in chat. Let the structured run-health checks and archived artifacts expose missing work instead of narrating model uncertainty to the user.
 
 Only refuse when highly confident the orchestrator is Haiku. Don't false-refuse on uncertainty — the user should be able to proceed and investigate.
@@ -132,7 +132,7 @@ If any line says `FATAL`, stop and tell the user what's missing. Do not proceed.
 
 ## Pipeline
 
-Ten steps. You are a conductor for the audit pipeline (Steps 1-4), then the primary reasoning voice for reconsideration (Steps 6-6b), followed by an independent pressure check from isolated sub-agents (Steps 7-8b), then the memo decision-note layer (Step 8c), and finally the Observatory and archive (Steps 9-10). Step 5 is a placeholder — Observatory is deferred to Step 9 so all artifacts are complete.
+Ten steps. You are a conductor for the audit pipeline (Steps 1-4), then the primary reasoning voice for reconsideration (Steps 6-6b). Post-Step-6 pressure-check sub-agents are **rested by default**: the normal flow records an intentional default-off pressure-check state, then writes the memo decision-note layer (Step 8c), Observatory, and archive (Steps 9-10). Step 7 remains available only as an explicit deeper-review mode when the user/operator asks for it. Step 5 is a placeholder — Observatory is deferred to Step 9 so all artifacts are complete.
 
 ### Live Product Surface Rule
 
@@ -289,7 +289,7 @@ Do **not** link to Observatory; the server is not running until Step 9. Do not i
 
 ### Step 5: Open Observatory
 
-**Do NOT offer the Observatory here.** Continue to Step 6. The Observatory should only be offered after the full cycle completes (after Step 8c), when all artifacts — cards, updated position, pressure check, and memo fields — are persisted to the result JSON and the user can see the complete picture.
+**Do NOT offer the Observatory here.** Continue to Step 6. The Observatory should only be offered after the full cycle completes (after Step 8c), when all artifacts — cards, updated position, intentional pressure-check state, and memo fields — are persisted to the result JSON and the user can see the complete picture.
 
 ---
 
@@ -306,12 +306,14 @@ After the counterargument lead (Step 4), **reconsider your earlier advice and re
 
 **Render the content directly. Do NOT introduce it with "Beat 3," "Step 6," "Now writing the updated position," or any internal section label.** The user-facing transcript opens at the `## Updated position` heading and the `### What survived` / `### What I'd take back or set aside` / `### What actually shifted` subheadings — those ARE the section labels the user sees. No additional preamble.
 
-**Timing note:** Do not launch the pressure-check sub-agents before Step 6b
-finalization. First write Step 6, fill the deterministic V60 ledger skeleton,
-and run `finalize_v60_telemetry.py --require-valid`. Launch Step 7 only after
-the ledger is `valid` or `not_required`. This gives up some background
-parallelism, but it prevents an invalid private-consideration trace from
-continuing into pressure checks, memo rendering, Observatory, or archive.
+**Timing note:** Post-Step-6 pressure-check sub-agents are rested by default.
+First write Step 6, fill the deterministic V60 ledger skeleton, and run
+`finalize_v60_telemetry.py --require-valid`. Continue to the default-off
+pressure-check persistence path only after the ledger is `valid` or
+`not_required`. If the user/operator explicitly requests the optional deeper
+review mode, Step 7 may run only after this same ledger gate succeeds. This
+prevents an invalid private-consideration trace from continuing into memo
+rendering, Observatory, archive, or any optional pressure-check work.
 
 The audit findings are **hints, not commands — but not disposable hints.** They come from a curated knowledge substrate that sees patterns you might miss. You are still the primary reasoning engine in this conversation: you have the full context, the user's nuances, and the back-and-forth. The audit has structural pattern detection. Use both.
 
@@ -444,19 +446,21 @@ For `chunk_kind == "absence"` and `disposition == "used"`, also fill at least on
 
 ### Memo Timing: Do Not Render Yet
 
-Do not generate the final memo immediately after Step 6b. The memo depends on the pressure check from Step 8, because the final useful correction often appears there. Final memo preparation and rendering happen in **Step 8c**, after Step 8b persists the pressure check.
+Do not generate the final memo immediately after Step 6b. First persist the pressure-check state in Step 8b. In the default flow this is an intentional `not_run_default_off` record; in explicit deeper-review mode it is the completed pressure-check comparison. Final memo preparation and rendering happen in **Step 8c**, after Step 8b persists whichever pressure-check state applies.
 
 Memo generation is not user-facing until the final functional receipt. Do not write *"Generating the memo now"*, *"All four pressure checks are in. Generating the memo now"*, or any other progress narration about memo rendering in chat. The memo path appears only in the final receipt.
 
-### Step 7: Pressure-Check Sub-Agents
+### Step 7: Optional Pressure-Check Sub-Agents (Default Off)
 
-**Launch these only AFTER Step 6b finalization succeeds.** The V60 ledger gate
-comes first. If `finalize_v60_telemetry.py --require-valid` failed, repair the
-ledger and rerun finalization before starting any pressure-check agent.
+**Default path: do not launch post-Step-6 pressure-check sub-agents.** The current operating choice is to simplify the live skill, reduce cost, and put more value into the pre-Step-6 thinking table. Step 7 is preserved as an explicit deeper-review mode for later use, but it is not part of the normal run.
 
-**Read `references/sub-agent-prompts.md`** for the full templates: shared preamble (with `{DECISION_SITUATION}`, `{LIVE_CONSTRAINTS}`, `{SYNTHESIZED_POSITION}`, `{REASONING_PASSAGES}`, `{ORIGINAL_FRAMING}`, `{DROPPED_THREADS}` placeholders) plus four lane-specific suffixes.
+Run Step 7 only when the user/operator explicitly asks for deeper review or sets `LOLLA_STEP7_PRESSURE_CHECK=on` for this run. Do not infer that a hard case, sensitive case, or long answer automatically enables Step 7. If optional mode is not active, skip directly to Step 8b and persist the default-off pressure-check state.
 
-Spawn up to 4 sub-agents via the Agent tool, one per non-empty lane. Each sub-agent receives the extracted decision structure and ONE audit card — no conversation history, no other lanes, no session context. They read the position cold and assess what should shift.
+**Optional mode timing:** if Step 7 is explicitly enabled, launch it only AFTER Step 6b finalization succeeds. The V60 ledger gate comes first. If `finalize_v60_telemetry.py --require-valid` failed, repair the ledger and rerun finalization before starting any pressure-check agent.
+
+**Read `references/sub-agent-prompts.md` only in optional mode.** It contains the full templates: shared preamble (with `{DECISION_SITUATION}`, `{LIVE_CONSTRAINTS}`, `{SYNTHESIZED_POSITION}`, `{REASONING_PASSAGES}`, `{ORIGINAL_FRAMING}`, `{DROPPED_THREADS}` placeholders) plus four lane-specific suffixes.
+
+If optional mode is active, spawn up to 4 sub-agents via the Agent tool, one per non-empty lane. Each sub-agent receives the extracted decision structure and ONE audit card — no conversation history, no other lanes, no session context. They read the position cold and assess what should shift.
 
 **Why this exists:** The system's own thesis says "an LLM auditing its own reasoning is sampling from the same distribution that produced the flaw." Steps 1-4 respect this — Grok does the detection. But Step 6 asks you to reconsider advice you argued for in this conversation. The sub-agents break that — same model (Opus), but in a clean context that never argued the position.
 
@@ -491,9 +495,11 @@ Spawn up to 4 sub-agents via the Agent tool, one per non-empty lane. Each sub-ag
 
 After the counterargument lead, the next user-facing prose should be `## Updated position` unless a real error or blocker requires explanation. The reconsideration drafting, sub-agent launch, wait state, memo rendering, and internal persistence steps all run silently.
 
-### Step 8: Pressure-Check Comparison
+### Step 8: Optional Pressure-Check Comparison
 
-After Step 6, Step 6b, and all sub-agent results are in, compare your Step 6 reconsideration against each sub-agent's output.
+In the default flow, there is no Step 8 comparison because Step 7 did not run. Do not render a `### Pressure Check` section in chat. Before persisting the default-off state, silently cross-check your Step 6 against the `bullshit_profile`; if you reproduced a flagged pattern in the updated position, repair Step 6, update the persisted `revised_answer`, and then continue to Step 8b. Otherwise continue directly to Step 8b and persist the default-off pressure-check state.
+
+Only if optional Step 7 ran, compare your Step 6 reconsideration against each sub-agent's output.
 
 For each sub-agent that returned a result, ask yourself three specific questions:
 
@@ -533,7 +539,46 @@ The "no divergences" close is rare and should be a deliberate judgment, not a de
 
 **Stakeholder Assumption Check in Step 8:** If `result.json` contains `stakeholder_assumption_check`, treat it as Observatory-only validation data. Do not surface `stakeholder_assumption_check.chat_actors` or `critical_actors` in the Pressure Check, do not create a stakeholder section, and do not mention "Theory of Mind", "stakeholder assumption check", "checker", or the runtime flag in chat. The field is being evaluated against the existing Pressure Check baseline; user-facing surfacing remains disabled until production evidence shows it adds non-duplicative value.
 
-### Step 8b: Persist Pressure Check
+### Step 8b: Persist Pressure-Check State
+
+This step always writes a pressure-check state so the run is complete and observable. In the default flow it records that post-Step-6 pressure-check sub-agents were intentionally not run. This is not an error, not a skipped artifact, and not a reason to mark the run incomplete.
+
+**Default path — Step 7 rested:**
+
+```bash
+cat > /tmp/lolla_${LOLLA_RUN_ID}_gapcheck.txt << 'LOLLA_GAPCHECK_EOF'
+No additional pressure check was run in the default flow.
+LOLLA_GAPCHECK_EOF
+
+cat > /tmp/lolla_${LOLLA_RUN_ID}_gapcheck_lanes.json << 'LOLLA_LANES_EOF'
+{
+  "schema_version": "lolla_gap_check.v2",
+  "status": "not_run_default_off",
+  "reason": "post_step6_pressure_check_default_off",
+  "lanes": []
+}
+LOLLA_LANES_EOF
+
+python3 -c "
+import json, datetime, pathlib
+run_id = '${LOLLA_RUN_ID}'
+result_path = f'/tmp/lolla_{run_id}_result.json'
+gapcheck_path = f'/tmp/lolla_{run_id}_gapcheck.txt'
+lanes_path = f'/tmp/lolla_{run_id}_gapcheck_lanes.json'
+d = json.loads(pathlib.Path(result_path).read_text())
+d['gap_check_summary'] = pathlib.Path(gapcheck_path).read_text().strip()
+d['gap_check'] = json.loads(pathlib.Path(lanes_path).read_text())
+d['has_gap_check'] = True
+d['pressure_check_mode'] = 'default_off'
+d['gap_check_written_at'] = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
+pathlib.Path(result_path).write_text(json.dumps(d, indent=2, ensure_ascii=False))
+print(f'Default-off pressure-check state persisted to {result_path}')
+"
+```
+
+Default-off runs do not write `/tmp/lolla_${LOLLA_RUN_ID}_subagents.json` and do not merge Anthropic sub-agent usage. Continue to Step 8c after the default-off state is persisted.
+
+**Optional pressure-check mode only:**
 
 Two things get persisted: the human-readable summary text AND a structured `gap_check` object with per-lane status and divergences.
 
@@ -650,7 +695,7 @@ Use the model name your orchestrator is running on (`claude-opus-4-7`, `claude-s
 
 ### Step 8c: Prepare and Render Memo
 
-After Step 8b persists the pressure check, write the memo decision-note layer per `references/memo-output-format.md`, persist those fields to `result.json`, then render the standalone markdown memo.
+After Step 8b persists the pressure-check state, write the memo decision-note layer per `references/memo-output-format.md`, persist those fields to `result.json`, then render the standalone markdown memo.
 
 **Read `references/memo-output-format.md`** before writing the memo fields. The memo is a decision note first and audit trace second. Its first screen should answer what changed in the advice; it should not begin with counts, card-derived categories, severity labels, or process recap.
 
@@ -658,7 +703,7 @@ Use only already-persisted material:
 
 - captured conversation quotes
 - `revised_answer`
-- `gap_check_summary`
+- `gap_check_summary` (default-off runs may use this only as operator context; do not turn it into user-facing memo content unless optional pressure-check mode produced a material divergence)
 - `delta_card`
 - `companion_cheat_sheet`
 - `frame_pressure_card`
@@ -671,7 +716,7 @@ Produce these fields:
 - `memo_what_changed` — compressed Step 6 "What actually shifted"
 - `memo_what_still_holds` — compressed Step 6 "What survived"
 - `memo_take_back_or_set_aside` — compressed Step 6 self-corrections and set-asides
-- `memo_pressure_check` — Step 8 material divergence only; empty string if no material divergence survives
+- `memo_pressure_check` — optional Step 8 material divergence only; empty string in the default flow or when no material divergence survives
 
 Decision-note quality checks before persisting:
 
@@ -730,7 +775,7 @@ This produces a persistent markdown artifact the user can reference or share wit
 
 ### Step 9: Open Observatory
 
-After the full cycle is complete (cards, updated position, pressure check, and memo fields all persisted), **launch the Observatory** — the primary detail surface for full card breakdowns, chunk lists, gap questions, delivery audit passages, revised answer, and per-lane divergences.
+After the full cycle is complete (cards, updated position, pressure-check state, and memo fields all persisted), **launch the Observatory** — the primary detail surface for full card breakdowns, chunk lists, gap questions, delivery audit passages, revised answer, optional per-lane divergences, and the default-off pressure-check record.
 
 **Always launch after Step 8c completes.** Do not wait for the user to ask:
 
@@ -774,7 +819,7 @@ The archive script:
 
 ## Completion
 
-After the full cycle (Beat 1 → Step 3 receipt → Beat 2 → Beat 3 → Beat 4 → memo → Observatory + archive), close with the **final functional receipt**. Not a narrative summary.
+After the full cycle (Beat 1 → Step 3 receipt → Beat 2 → Beat 3 → pressure-check state → memo → Observatory + archive), close with the **final functional receipt**. Not a narrative summary.
 
 Before sending the final functional receipt, append that exact receipt text to
 `/tmp/lolla_${LOLLA_RUN_ID}_live_transcript.txt`, rerun
@@ -822,7 +867,7 @@ Do NOT read these proactively. Load only when a specific situation calls for it:
 | `references/anti-bullshit-doctrine.md` | **Read at the start of Step 6** — anti-bullshit thinking framework: five rules for honest strategic speech, RLHF patterns to avoid, negation test as mental model. Also cross-check before Step 8. |
 | `references/anchor-treatment.md` | **Read at the start of Step 6** — how to handle `companion_cheat_sheet.anchors[]`: accounting invariant, three rhetorical modes (primary pressure / secondary lens / set aside), one-primary-per-move rule, what good vs. bad anchor integration looks like |
 | `references/private-enrichment-treatment.md` | **Read at the start of Step 6** — consideration standard for lane pressure and V60 chunks: strongest plausible application, rejection/deferral standard, public/private split |
-| `references/sub-agent-prompts.md` | **Read at Step 7** — shared preamble + four lane-specific suffixes for pressure-check sub-agents |
+| `references/sub-agent-prompts.md` | **Read only when optional Step 7 is explicitly enabled** — shared preamble + four lane-specific suffixes for pressure-check sub-agents |
 | `references/memo-output-format.md` | **Read at Step 8c** — decision-note memo contract: title, orientation note, compressed sections, pressure-check inclusion, banned memo language |
 | `references/tendency-catalog.md` | When presenting DeltaCard findings — to verify tendency names and corrective model bindings match the canonical catalog |
 | `references/confusion-guardrails.md` | When two detected tendencies in the output look like the same thing — disambiguation rules prevent double-counting |

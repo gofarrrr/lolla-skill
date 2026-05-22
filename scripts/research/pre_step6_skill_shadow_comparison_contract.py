@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
-"""Research-only contract for the cleaner-table skill shadow comparison.
+"""Historical research-only contract for the cleaner-table skill shadow comparison.
 
-The contract defines what the next skill-level comparison must measure before
-`SKILL.md` can change. It does not run the skill, call models, change runtime,
-or decide whether Step 7 is obsolete.
+The original contract defined what a skill-level comparison would have measured
+before `SKILL.md` changed. It does not run the skill, call models, change
+runtime, or decide whether Step 7 is obsolete.
+
+As of the Step-7-rest decision, this contract is superseded. It remains in the
+repo as evidence of the prior measurement plan, not as an active gate.
 """
 from __future__ import annotations
 
@@ -57,6 +60,14 @@ def build_skill_shadow_comparison_contract(*, root: Path) -> dict[str, object]:
         "skill_update_allowed": False,
         "runtime_visibility_change_allowed": False,
         "manual_interpretation_required": True,
+        "contract_state": "superseded_by_step7_rest_decision",
+        "superseded_reason": (
+            "The board decided the pre-Step-6 cleaner-table approach and the "
+            "old post-Step-6 pressure-check loop are different product designs, "
+            "not arms of a fair comparison. Step 7 is rested by default now for "
+            "simplicity and cost, while explicit deeper-review mode remains "
+            "available."
+        ),
         "product_intent": {
             "desired_direction": (
                 "Move more useful reasoning pressure before Step 6 so the "
@@ -80,8 +91,8 @@ def build_skill_shadow_comparison_contract(*, root: Path) -> dict[str, object]:
         "outcomes": _outcomes(),
         "decision_thresholds": _decision_thresholds(),
         "stop_rules": {
-            "do_not_edit_skill_md_in_this_slice": True,
-            "do_not_make_step7_default_off_without_shadow_evidence": True,
+            "historical_do_not_edit_skill_md_in_this_slice": True,
+            "superseded_do_not_use_as_step7_default_off_gate": True,
             "do_not_treat_cost_savings_as_correctness": True,
             "do_not_treat_recurrence_as_automatic_wisdom": True,
         },
@@ -120,9 +131,11 @@ def render_skill_shadow_comparison_contract_markdown(contract: Mapping[str, obje
     lines = [
         "# Skill Shadow Comparison Contract",
         "",
-        "Status: research-only. Runtime dormant. SKILL.md unchanged.",
+        "Status: superseded by the Step-7-rest product decision. Historical research-only contract.",
         "",
         "Code records; humans decide.",
+        "",
+        "This contract is not the active gate for changing `SKILL.md`. The board decided the default live skill should rest post-Step-6 sub-agents now, because pre-Step-6 table cleaning and post-Step-6 pressure checks are different product designs rather than comparable arms.",
         "",
         "## Hypothesis",
         "",

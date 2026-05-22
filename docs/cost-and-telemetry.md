@@ -37,7 +37,7 @@ The `/usage` page surfaces the following blocks (server-side rendered, no SPA re
 - **By vendor** — OpenRouter / OpenAI / Anthropic totals, calls, tokens, cache-hit rate, cost.
 - **OpenRouter — by stage** — per-stage call count, prompt / cached / completion tokens, and **cache-hit % per stage**. This per-stage cache rate is the highest-value diagnostic on the page: stages with identical system prompts across calls (e.g. `bullshit_index` across 50+ passages) cache at 80 %+ on a typical run; stages with per-call-varying system prompts (most pipeline lanes) cache at 2-3 % and are the candidates for the prompt-restructure follow-up.
 - **OpenAI — by model** — embedding model vs. expansion model split.
-- **Anthropic Step-7 sub-agents — by lane** — which Step-7 lane (1 = Delta, 2 = Companion, 3 = Frame, 4 = Coverage) was spawned, its model, status, total tokens, duration, and estimated cost. Lanes that were `skipped_empty` or `skipped_error` do not appear because they were never spawned (per the SKILL Step 8b filter — see `merge_subagent_calls` and the input-record validation).
+- **Anthropic Step-7 sub-agents — by lane, optional only** — which Step-7 lane (1 = Delta, 2 = Companion, 3 = Frame, 4 = Coverage) was spawned when deeper-review mode was explicitly enabled, its model, status, total tokens, duration, and estimated cost. Default-off runs show no Anthropic sub-agent calls. Lanes that were `skipped_empty` or `skipped_error` do not appear because they were never spawned (per the SKILL Step 8b filter — see `merge_subagent_calls` and the input-record validation).
 - **Prompt versions** — 12-char hash of the system prompt used at each pipeline stage. Useful for reproducibility ("which prompt revision produced this finding?") and for diffing two runs of the same case.
 - **V60 private enrichment** — selected chunks, skipped candidates, not-presented model IDs, embedding mode, and Step-6 consideration-ledger uptake live under `/audit/v60`. This is reasoning-transport telemetry, not a separate vendor-cost block.
 
@@ -86,13 +86,13 @@ Total OpenAI cost per run is typically well under $0.01.
 
 V60 enrichment can reuse the same `embedding_retriever.rank_models_expanded(...)` path for low-trust model recall when embeddings are enabled. Those OpenAI calls are captured by the same `capture_usage()` scope and therefore appear in `usage_summary.vendors.openai_embeddings`; V60 itself does not introduce a new vendor or manual cost hook.
 
-### Anthropic (Step 7 sub-agents)
+### Anthropic (optional Step 7 sub-agents)
 
-The 4 pressure-check sub-agents fire from inside the SKILL orchestration via Claude Code's Agent tool, NOT through `OpenAICompatibleBoundaryClient`. Their cost is the largest single line item on most runs because they use whatever Claude model the orchestrator runs on (typically Opus).
+The 4 pressure-check sub-agents are rested by default. If the user/operator explicitly enables deeper-review mode, they fire from inside the SKILL orchestration via Claude Code's Agent tool, NOT through `OpenAICompatibleBoundaryClient`. Their cost can be the largest single line item on optional runs because they use whatever Claude model the orchestrator runs on (typically Opus).
 
 **Resolution gap:** Claude Code's task notification surfaces only `total_tokens`, not a prompt/completion split. The cost estimator treats the entire total as input tokens at the model's input price — a conservative over-estimate. The real cost is somewhere lower, depending on how much was completion vs. prompt. The result JSON marks this with `vendors.anthropic_subagents.estimation_method = "conservative_input_only_no_split_available"`.
 
-Step 8b (`SKILL.md`) records the sub-agent records into the `usage_summary` after both Step 6 and Step 7 are complete.
+Default-off runs do not write sub-agent usage records. Optional Step 8b (`SKILL.md`) records the sub-agent records into the `usage_summary` after both Step 6 and Step 7 are complete.
 
 ## Where the numbers come from (data flow)
 
@@ -129,7 +129,7 @@ Step 8b (`SKILL.md`) records the sub-agent records into the `usage_summary` afte
                                                  usage_summary block in
                                                  /tmp/lolla_<run_id>_result.json
 
-[ later, after Step 7 sub-agents complete, SKILL Step 8b: ]
+[ optional only, after Step 7 sub-agents complete, SKILL Step 8b: ]
 
 ┌─────────────────────┐                           ┌─────────────────────────┐
 │ task notifications  │ total_tokens per agent    │ merge_subagent_calls()  │
@@ -144,7 +144,7 @@ Five input streams → one canonical `usage_summary` block. Per-run isolation is
 1. Each script invocation is its own Python process — boundary clients are instantiated fresh.
 2. The embedding `capture_usage()` context manager uses `ContextVar`, not module globals.
 3. The extraction sidecar path is namespaced by `$LOLLA_RUN_ID`.
-4. Sub-agent records are passed in by the SKILL after Step 7, not pulled from any shared state.
+4. Optional sub-agent records are passed in by the SKILL after Step 7, not pulled from any shared state. Default-off runs pass no sub-agent records.
 
 V60 adds a second, non-cost telemetry stream inside the same `result.json`:
 
@@ -239,4 +239,4 @@ The CI script at `scripts/inspect_run.py` (or the planned `scripts/audit_telemet
 - Observatory route: `observatory/serve_result.py` (`/usage` and `/api/case/<id>/usage`)
 - V60 enrichment and ledger validation: `engine/system_b/v60_enrichment.py`
 - V60 Observatory route: `observatory/serve_result.py` (`/audit/v60`)
-- SKILL chat surface: `SKILL.md` Step 4 (cost line) and Step 8b (sub-agent merge)
+- SKILL chat surface: `SKILL.md` Step 4 (cost line), Step 8b default-off state, and optional Step 8b sub-agent merge

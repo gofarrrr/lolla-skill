@@ -1,8 +1,10 @@
 # Skill Shadow Comparison Contract
 
-Status: research-only. Runtime dormant. SKILL.md unchanged.
+Status: superseded by the Step-7-rest product decision. Historical research-only contract.
 
 Code records; humans decide.
+
+This contract is not the active gate for changing `SKILL.md`. The board decided the default live skill should rest post-Step-6 sub-agents now, because pre-Step-6 table cleaning and post-Step-6 pressure checks are different product designs rather than comparable arms.
 
 ## Hypothesis
 
