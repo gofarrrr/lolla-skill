@@ -1,6 +1,6 @@
 # Problem and Thesis
 
-Detailed background for the short map in ../../HOW_IT_WORKS.md. Read this when you need the why, not the operating procedure.
+Detailed background for the overview in ../../HOW_IT_WORKS.md. Read this when you need the reason Lolla exists, not the operating procedure.
 
 ## The Problem
 
