@@ -6,7 +6,7 @@ Detailed reference for the /lolla skill flow from activation through archive. Th
 
 - Step 0-2.5: activation, preamble, capture, extraction, readback
 - Step 3: pipeline execution and the four audit lanes
-- Step 4-8c: counterargument, updated position, private ledgers, pressure check, memo
+- Step 4-8c: counterargument, updated position, private ledgers, default-off pressure-check state, optional deeper review, memo
 - Step 9-10: Observatory and archive
 - Cross-cutting: Bullshit Index fact registry
 
@@ -196,11 +196,11 @@ Claude reads the pipeline output JSON and renders one focused counterargument le
 
 Length target: 220-300 words in normal mode; 140-220 words in thin-material mode. The hard cap is 350 words.
 
-After the counterargument lead, Claude continues into the reasoning + persistence + pressure-check arc (Steps 6-8b), prepares the memo decision-note layer (Step 8c), then opens the Observatory in Step 9 and archives in Step 10. The full lifecycle is documented in `SKILL.md`; the steps below summarize each stage's product role.
+After the counterargument lead, Claude continues into the reasoning + persistence arc (Steps 6-8b), records the default-off pressure-check state unless optional deeper review was explicitly requested, prepares the memo decision-note layer (Step 8c), then opens the Observatory in Step 9 and archives in Step 10. The full lifecycle is documented in `SKILL.md`; the steps below summarize each stage's product role.
 
 ### Step 5: Observatory Placeholder (deferred)
 
-Step 5 in the SKILL flow is intentionally a no-op. The Observatory is *not* offered here — it is deferred to Step 9 so the launched view contains the complete artifact set (cards + revised answer + pressure check + memo). Offering Observatory mid-cycle would show an incomplete run.
+Step 5 in the SKILL flow is intentionally a no-op. The Observatory is *not* offered here — it is deferred to Step 9 so the launched view contains the complete artifact set (cards + revised answer + pressure-check state + memo). Offering Observatory mid-cycle would show an incomplete run.
 
 ### Step 6: Update Your Position (Claude reconsiders)
 
@@ -223,7 +223,7 @@ Claude integrates anchors into the "What survived" / "What I'd take back or set 
 
 The "What actually shifted" section is capped at 3-4 substantive shifts. A shift means a different action, threshold, sequence, condition, risk treatment, or decision question. Tail additions that merely add one more caveat are not allowed to bypass the cap; they must be folded into an existing shift or dropped.
 
-**Timing detail:** Claude does not launch Step 7 before the updated position is persisted. Current `SKILL.md` requires Step 6 to be written, the V60 consideration ledger skeleton to be filled, and `finalize_v60_telemetry.py --require-valid` to succeed before pressure-check agents start. This sacrifices background parallelism to prevent invalid private-consideration traces from flowing into pressure checks, memo rendering, Observatory, or archive.
+**Timing detail:** Claude does not launch Step 7 in the default flow. Current `SKILL.md` requires Step 6 to be written, the V60 consideration ledger skeleton to be filled, and `finalize_v60_telemetry.py --require-valid` to succeed before the default-off pressure-check state, memo rendering, Observatory, archive, or optional pressure-check work can proceed.
 
 ### Step 6b: Persist Revised Answer
 
@@ -235,11 +235,13 @@ Step 6b also rolls the ledger status back into `run_health` with the transaction
 
 ### Memo timing: deferred until Step 8c
 
-The final memo is **not** rendered immediately after Step 6b. Step 8 often catches the final useful correction, so the memo waits until the pressure check has been persisted. This prevents the portable artifact from missing the last decision-relevant change.
+The final memo is **not** rendered immediately after Step 6b. The memo waits until Step 8b has persisted the pressure-check state. In the default flow that state says Step 7 was intentionally not run; in explicit deeper-review mode it contains the completed comparison.
 
-### Step 7: Pressure-Check Sub-Agents
+### Step 7: Optional Pressure-Check Sub-Agents (default off)
 
-Up to 4 Agent sub-agents (one per non-empty lane) are spawned in parallel via the Agent tool **in the background** (`run_in_background: true`), but only after Step 6b validation succeeds. Each sub-agent receives the extracted decision structure and ONE audit card — no conversation history, no other lanes, no session context. They read the position cold and assess what should shift.
+Post-Step-6 pressure-check sub-agents are rested by default. This is now a product simplification choice: the live skill pushes value into the pre-Step-6 thinking table and avoids paying for a second post-Step-6 cognitive layer unless the user/operator explicitly asks for deeper review.
+
+If optional mode is enabled, up to 4 Agent sub-agents (one per non-empty lane) are spawned in parallel via the Agent tool **in the background** (`run_in_background: true`), but only after Step 6b validation succeeds. Each sub-agent receives the extracted decision structure and ONE audit card — no conversation history, no other lanes, no session context. They read the position cold and assess what should shift.
 
 **Why this exists.** The system's own thesis says "an LLM auditing its own reasoning is sampling from the same distribution that produced the flaw." Steps 1–4 honor this — Grok does the detection. But Step 6 asks Claude to reconsider advice it argued for in this conversation. Sub-agents break that loop: same model class as the orchestrator (Opus), but in a clean context that never argued the position.
 
@@ -249,11 +251,11 @@ Up to 4 Agent sub-agents (one per non-empty lane) are spawned in parallel via th
 - Lane 3: both `frame_pressure_card.frame_elements` AND `reframings` empty/null
 - Lane 4: `structural_coverage_card.dimensions` empty/null OR every dimension has `covered: true`
 
-A sub-agent that times out or errors is logged as `skipped_error`; it does not block Step 8.
+A sub-agent that times out or errors is logged as `skipped_error`; it does not block Step 8. These skip conditions apply only when optional mode is active.
 
-### Step 8: Pressure-Check Comparison
+### Step 8: Optional Pressure-Check Comparison
 
-After Step 6, Step 6b, and all sub-agent results are in, Claude compares its Step 6 reconsideration against each sub-agent's output by asking three questions:
+In the default flow, no comparison is rendered in chat because Step 7 did not run. Claude still silently cross-checks the updated position against the `bullshit_profile` before persisting the default-off state; if Step 6 reproduced a flagged pattern, it repairs and re-persists the revised answer before continuing. If optional Step 7 ran, Claude compares its Step 6 reconsideration against each sub-agent's output by asking three questions:
 
 1. Did the sub-agent identify a shift I dismissed or minimized in Step 6?
 2. Did the sub-agent treat a finding as material that I treated as noise?
@@ -261,9 +263,9 @@ After Step 6, Step 6b, and all sub-agent results are in, Claude compares its Ste
 
 Only "yes" answers get reported, under a `### Pressure Check` heading after the Step 6 updated position. If no divergence survives, the section says so quietly. The user never hears about the sub-agent machinery — divergences are attributed to the *argument*, not its source. Claude is also expected to cross-check Step 6 against the `bullshit_profile` to confirm it didn't reproduce the patterns the BI flagged in the original.
 
-### Step 8b: Persist Pressure Check
+### Step 8b: Persist Pressure-Check State
 
-Two artifacts are persisted into `result.json`: a human-readable summary string (`gap_check_summary`), and a structured per-lane object (`gap_check`) with one entry per lane recording `lane_number`, `lane_name`, `status` (`completed` / `skipped_empty` / `skipped_error`), and a `divergences[]` array (each tagged with the question that surfaced it). The Observatory's Pressure Check view consumes the structured object; Step 8c uses the persisted pressure check to write the memo decision-note layer. Without this step the run is observable only as far as Step 6b — the pressure-check loop disappears.
+Two artifacts are persisted into `result.json`: a human-readable summary string (`gap_check_summary`), and a structured object (`gap_check`). In the default flow, `gap_check.status` is `not_run_default_off`, `reason` is `post_step6_pressure_check_default_off`, and `lanes` is empty. If optional mode ran, `gap_check` contains one entry per lane recording `lane_number`, `lane_name`, `status` (`completed` / `skipped_empty` / `skipped_error`), and a `divergences[]` array (each tagged with the question that surfaced it). The Observatory's Pressure Check view consumes the structured object; Step 8c uses the persisted pressure-check state to write the memo decision-note layer. Without this step the run is observable only as far as Step 6b.
 
 ### Step 8c: Prepare and Render Memo
 
@@ -292,7 +294,7 @@ Old archived `result.json` files without the memo fields still render in the leg
 
 ### Step 9: Open Observatory
 
-After the full cycle is complete (cards, updated position, pressure check, memo fields, and memo all persisted), the Observatory is launched.
+After the full cycle is complete (cards, updated position, pressure-check state, memo fields, and memo all persisted), the Observatory is launched.
 
 ```bash
 python3 $SKILL_DIR/scripts/finalize_v60_telemetry.py --run-id "${LOLLA_RUN_ID}" --quiet --require-valid
@@ -311,7 +313,7 @@ Zero dependencies (stdlib Python server + pre-built Svelte frontend). The backen
 - FramePressureCard — frame elements with reframings
 - StructuralCoverageCard — gap dimensions with discovery questions
 - Revised answer with source provenance badge (`claude_step6`)
-- Pressure Check — per-lane divergences from `gap_check`
+- Pressure Check — default-off status or optional per-lane divergences from `gap_check`
 
 **Trust / health context:**
 - Run health — overall, capture, substrate, embeddings, fingerprint status

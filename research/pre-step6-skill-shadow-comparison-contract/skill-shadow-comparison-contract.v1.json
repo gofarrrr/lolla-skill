@@ -7,6 +7,8 @@
   "skill_update_allowed": false,
   "runtime_visibility_change_allowed": false,
   "manual_interpretation_required": true,
+  "contract_state": "superseded_by_step7_rest_decision",
+  "superseded_reason": "The board decided the pre-Step-6 cleaner-table approach and the old post-Step-6 pressure-check loop are different product designs, not arms of a fair comparison. Step 7 is rested by default now for simplicity and cost, while explicit deeper-review mode remains available.",
   "product_intent": {
     "desired_direction": "Move more useful reasoning pressure before Step 6 so the default Step 7 post-Step-6 pressure-check agents can become optional or manual-triggered if evidence supports it.",
     "non_claim": "Step 7 is not obsolete by assertion."
@@ -203,8 +205,8 @@
     }
   },
   "stop_rules": {
-    "do_not_edit_skill_md_in_this_slice": true,
-    "do_not_make_step7_default_off_without_shadow_evidence": true,
+    "historical_do_not_edit_skill_md_in_this_slice": true,
+    "superseded_do_not_use_as_step7_default_off_gate": true,
     "do_not_treat_cost_savings_as_correctness": true,
     "do_not_treat_recurrence_as_automatic_wisdom": true
   },

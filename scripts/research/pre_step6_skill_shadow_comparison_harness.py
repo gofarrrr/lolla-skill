@@ -5,6 +5,10 @@ This harness does not run `/lolla`, call models, edit `SKILL.md`, or decide
 whether Step 7 should be removed. It validates paired case records and computes
 mechanical summaries so humans can decide whether a later skill-change trial is
 earned.
+
+The active skill decision now rests Step 7 by default. This harness remains as
+historical research tooling and should not be treated as the active gate for
+the default-off skill change.
 """
 from __future__ import annotations
 
@@ -87,7 +91,8 @@ def build_skill_shadow_comparison_result(
         },
         "notes": [
             "Mechanical aggregate only; humans decide whether any later skill trial is earned.",
-            "Both comparison arms keep Step 7 required; this harness measures residual work, not removal.",
+            "Historical harness only; Step 7 is now rested by default in the live skill.",
+            "Both historical comparison arms kept Step 7 required; this harness measured residual work, not removal.",
         ],
     }
     validate_skill_shadow_comparison_result(result)

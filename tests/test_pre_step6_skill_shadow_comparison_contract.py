@@ -16,7 +16,7 @@ from pre_step6_skill_shadow_comparison_contract import (  # noqa: E402
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_skill_shadow_contract_is_research_only_and_does_not_edit_skill() -> None:
+def test_skill_shadow_contract_is_superseded_historical_evidence() -> None:
     contract = build_skill_shadow_comparison_contract(root=REPO_ROOT)
 
     validate_skill_shadow_comparison_contract(contract, root=REPO_ROOT)
@@ -27,6 +27,8 @@ def test_skill_shadow_contract_is_research_only_and_does_not_edit_skill() -> Non
     assert contract["skill_update_allowed"] is False
     assert contract["runtime_visibility_change_allowed"] is False
     assert contract["manual_interpretation_required"] is True
+    assert contract["contract_state"] == "superseded_by_step7_rest_decision"
+    assert "different product designs" in contract["superseded_reason"]
     assert contract["principles"]["step7_not_obsolete_by_assertion"] is True
     assert contract["principles"]["automatic_graduation_allowed"] is False
     assert contract["principles"]["model_selector_allowed"] is False
@@ -131,8 +133,9 @@ def test_skill_shadow_contract_markdown_is_human_readable() -> None:
     markdown = render_skill_shadow_comparison_contract_markdown(contract)
 
     assert "Skill Shadow Comparison Contract" in markdown
+    assert "superseded by the Step-7-rest product decision" in markdown
     assert "Code records; humans decide." in markdown
-    assert "SKILL.md unchanged" in markdown
+    assert "not the active gate for changing `SKILL.md`" in markdown
     assert "Product Intent" in markdown
     assert "Measurement Protocol" in markdown
     assert "Decision Thresholds" in markdown
