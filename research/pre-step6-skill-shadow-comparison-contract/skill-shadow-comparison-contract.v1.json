@@ -1,0 +1,151 @@
+{
+  "schema_version": "pre_step6_skill_shadow_comparison_contract.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "skill_shadow_comparison_v0",
+  "promotion_effect": "none_research_only",
+  "skill_update_allowed": false,
+  "runtime_visibility_change_allowed": false,
+  "manual_interpretation_required": true,
+  "principles": {
+    "code_records": true,
+    "humans_decide": true,
+    "step6_is_cognitive_solver": true,
+    "step7_not_obsolete_by_assertion": true,
+    "automatic_graduation_allowed": false,
+    "model_selector_allowed": false
+  },
+  "comparison_arms": [
+    {
+      "arm_id": "legacy_required_pressure_check",
+      "step6_table": "current Step 6 material: four lanes plus V60 private enrichment",
+      "step7_policy": "required_for_each_non_empty_lane_after_step6b",
+      "visible_behavior": "current_skill_behavior",
+      "purpose": "baseline"
+    },
+    {
+      "arm_id": "cleaner_table_shadow_required_pressure_check",
+      "step6_table": "cleaner private table from dormant pre-Step-6 foundation and case-appropriate pressure atoms",
+      "step7_policy": "still_required_for_each_non_empty_lane_after_step6b",
+      "visible_behavior": "unchanged_shadow_only",
+      "purpose": "test whether Step 7 residual work shrinks without removing it"
+    }
+  ],
+  "case_set": [
+    {
+      "case_id": "mid-level-consultant-report-2",
+      "case_role": "consultant_graduation_candidate",
+      "tests": "whether upstream-carried counsel reversibility reduces Step 7 correction work",
+      "failure_read": "Step 7 still finds the same counsel-boundary miss after cleaner table",
+      "source_refs": [
+        "research/pre-step6-consultant-anchor-boundary-patch-probe/consultant-anchor-boundary-patch-probe-result.v1.json",
+        "research/pre-step6-cleaning-evidence-surface/cleaning-evidence-surface.v1.json"
+      ]
+    },
+    {
+      "case_id": "third-year-phd-student.v2.v60-off",
+      "case_role": "phd_distributed_atom",
+      "tests": "whether distributed atomic cards reduce preventable Step 7 corrections",
+      "failure_read": "Step 7 still finds avoidable omissions across the PhD pressure atoms",
+      "source_refs": [
+        "research/pre-step6-phd-kimi-variance-cleaning-review/phd-kimi-variance-cleaning-review-result.v1.json",
+        "research/pre-step6-cleaning-evidence-surface/cleaning-evidence-surface.v1.json"
+      ]
+    },
+    {
+      "case_id": "founder-grant-marcus-equity.high-clutter.v60-on",
+      "case_role": "founder_v60_destabilization",
+      "tests": "whether cleaner table avoids hiding V60 packet instability behind Step 7 removal",
+      "failure_read": "cleaner table reduces visible pressure checks while V60 instability remains unexplained",
+      "source_refs": [
+        "research/pre-step6-founder-v60-private-context-audit/founder-v60-private-context-audit-result.v1.json",
+        "research/pre-step6-founder-v60-symmetry-check/founder-v60-symmetry-result.v1.json"
+      ]
+    },
+    {
+      "case_id": "mother-address-year",
+      "case_role": "negative_control",
+      "tests": "whether cleaner table preserves stand-down behavior on a sensitive case",
+      "failure_read": "cleaner table creates performative extra pressure where anchor should remain sufficient",
+      "source_refs": [
+        "research/pre-step6-step6-card-decks/mother-address-year.step6-card-deck.v1.json",
+        "research/pre-step6-rendered-hybrid-answer-cores/mother-address-year.native.rendered-hybrid-answer-core.v1.json"
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "metric_id": "step7_meaningful_divergence_rate",
+      "why": "Primary signal: how often Step 7 still adds material after Step 6.",
+      "human_review_required": true
+    },
+    {
+      "metric_id": "question_1_shift_missed_rate",
+      "why": "Tracks shifts Step 6 dismissed or minimized.",
+      "human_review_required": true
+    },
+    {
+      "metric_id": "question_2_material_noise_rate",
+      "why": "Tracks findings Step 6 treated as noise but Step 7 treated as material.",
+      "human_review_required": true
+    },
+    {
+      "metric_id": "question_3_named_mechanism_missed_rate",
+      "why": "Tracks named mechanisms Step 7 connected that Step 6 did not.",
+      "human_review_required": true
+    },
+    {
+      "metric_id": "clean_table_atom_uptake_rate",
+      "why": "Checks whether Step 6 considers pressure atoms discriminately.",
+      "human_review_required": false
+    },
+    {
+      "metric_id": "protected_payload_preservation",
+      "why": "Guards against cleaner-table narrowing that drops concrete payload.",
+      "human_review_required": false
+    },
+    {
+      "metric_id": "memo_completeness",
+      "why": "Ensures Step 8c still has enough material if Step 7 work shrinks.",
+      "human_review_required": true
+    },
+    {
+      "metric_id": "anthropic_subagent_cost_delta",
+      "why": "Measures cost upside without treating cost as correctness.",
+      "human_review_required": false
+    },
+    {
+      "metric_id": "operator_review_label",
+      "why": "Captures human interpretation; code may nominate but humans decide.",
+      "human_review_required": true
+    }
+  ],
+  "outcomes": [
+    {
+      "label": "supports_optional_pressure_check_trial",
+      "meaning": "Cleaner-table arm preserves payload and materially reduces Step 7 correction work; proceed to a separate gated SKILL.md optional-pressure trial.",
+      "allows_skill_md_edit": false
+    },
+    {
+      "label": "preserve_required_pressure_check",
+      "meaning": "Step 7 still adds meaningful independent or corrective work; keep current skill flow.",
+      "allows_skill_md_edit": false
+    },
+    {
+      "label": "ambiguous_continue_research",
+      "meaning": "Results split by case role or reviewer interpretation; do not change SKILL.md.",
+      "allows_skill_md_edit": false
+    }
+  ],
+  "stop_rules": {
+    "do_not_edit_skill_md_in_this_slice": true,
+    "do_not_make_step7_default_off_without_shadow_evidence": true,
+    "do_not_treat_cost_savings_as_correctness": true,
+    "do_not_treat_recurrence_as_automatic_wisdom": true
+  },
+  "next_artifacts": {
+    "expected_contract_runner": "pre_step6_skill_shadow_comparison_harness_v0",
+    "expected_result_schema": "pre_step6_skill_shadow_comparison_result.v1",
+    "expected_readout": "research/pre-step6-skill-shadow-comparison-readout-2026-05-22.md"
+  }
+}
