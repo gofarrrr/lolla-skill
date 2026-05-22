@@ -56,8 +56,8 @@ Lolla succeeds when it makes better reconsideration possible, not when it dictat
 | `LOLLA_V60_ENRICHMENT` | No | Set to `off` or `0` to disable private V60 enrichment for a run; default is on/auto when `affordances_v60.json` exists |
 | `LOLLA_ACTIVATION_TIEBREAKER` | No | Set to `off`/`0` to disable the near-tie activation-condition tiebreaker in graph routing; default is on. |
 | `LOLLA_STAKEHOLDER_CHECK` | No | Experimental optional stakeholder assumption check. If enabled and it fails, `run_health` records `stakeholder_check_failed`; user-facing surfacing remains disabled. |
-| `LOLLA_PRE_STEP6_PORTFOLIO` | No | Set to `shadow` to enable the dormant pre-Step-6 shadow portfolio recorder. Default is `off`; shadow mode never changes visible output. |
-| `LOLLA_PRE_STEP6_PORTFOLIO_CACHE_DIR` | No | Cache directory for precomputed pre-Step-6 card decks used by shadow mode. Cache misses stand down. |
+| `LOLLA_PRE_STEP6_PORTFOLIO` | No | `off`, `shadow`, or `step6_private`. The live skill passes `step6_private`: it writes a compact private Step 6 thinking table with zero extra LLM calls and no live card generation. |
+| `LOLLA_PRE_STEP6_PORTFOLIO_CACHE_DIR` | No | Cache directory for precomputed pre-Step-6 card decks used by `shadow` and `step6_private`. Cache misses still render the current-run private table; they do not generate live cards. |
 | `LOLLA_CASE_ID` | No | Force a specific archive case folder name, skipping fingerprint matching. |
 | `LOLLA_ARCHIVE_DIR` | No | Override the archive root; default is `~/.local/share/lolla/runs/`. |
 | `LOLLA_REPO_ROOT` | No | Override engine location (not needed for standard installs) |
@@ -77,8 +77,9 @@ Lolla succeeds when it makes better reconsideration possible, not when it dictat
 | `OPENAI_API_KEY` not set | Embeddings disabled. Pipeline runs purely on LLM triage + deterministic routing. Works fine, just without the swiss cheese redundancy layer. |
 | V60 artifact missing or disabled | The four lanes still run. `v60_enrichment` becomes `disabled` or `skipped_error`; if enabled but unavailable, `run_health.issues[]` includes `v60_enrichment_failed`. |
 | V60 active but ledger missing | `finalize_v60_telemetry.py` marks `run_health.v60_consideration_ledger: missing`, adds `v60_consideration_ledger_missing`, and records every selected chunk as unaccounted. The run archives, but it is visibly incomplete. |
-| Pre-Step-6 shadow portfolio disabled | Normal behavior. The live run does not record `pre_step6_shadow_portfolio`, and visible output is unchanged. |
-| Pre-Step-6 shadow cache miss | Shadow mode records a stand-down result and still leaves visible Step 6 unchanged. |
+| Pre-Step-6 private table ready | Normal live-skill behavior. `pre_step6_private_table` is recorded, `/tmp/lolla_<run_id>_pre_step6_private_table.md` is written for Step 6, and code still does not select the visible answer. |
+| Pre-Step-6 private table cache miss | The compact current-run table is still written. Cached portfolio cards are omitted; no live card generation or reviewer calls are triggered. |
+| Pre-Step-6 shadow portfolio disabled | Normal behavior outside explicit shadow runs. The live run does not record `pre_step6_shadow_portfolio`, and visible output is unchanged by the shadow resolver. |
 | Multiple strategic threads in one conversation | Extraction captures the most developed/recent thread. |
 
 ---

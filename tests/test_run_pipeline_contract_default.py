@@ -352,6 +352,54 @@ def test_v60_enrichment_can_be_disabled_by_cli(
     assert "v60_enrichment_failed" not in payload["run_health"]["issues"]
 
 
+def test_pre_step6_private_mode_writes_step6_table_sidecars(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    extraction_path, conversation_path = _write_extraction_and_conversation(tmp_path)
+    output_path = tmp_path / "result.json"
+    _install_live_pipeline_fakes(monkeypatch, tmp_path)
+    monkeypatch.setenv("LOLLA_RUN_ID", "prestep6private")
+
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "run_pipeline.py",
+            "--extraction-file",
+            str(extraction_path),
+            "--conversation-file",
+            str(conversation_path),
+            "--output-file",
+            str(output_path),
+            "--skip-revision",
+            "--v60-enrichment",
+            "off",
+            "--pre-step6-portfolio",
+            "step6_private",
+        ],
+    )
+
+    try:
+        assert run_pipeline.main() == 0
+        payload = json.loads(output_path.read_text(encoding="utf-8"))
+        private_table = payload["pre_step6_private_table"]
+        assert private_table["status"] == "ready"
+        assert private_table["promotion_effect"] == "none_private_context_only"
+        assert private_table["gates"]["step6_private_context_allowed"] is True
+        assert private_table["gates"]["code_visible_answer_selection_allowed"] is False
+        assert payload["run_health"]["pre_step6_private_table"] == "ready"
+        markdown_path = Path(private_table["sidecars"]["markdown"])
+        json_path = Path(private_table["sidecars"]["json"])
+        assert markdown_path.exists()
+        assert json_path.exists()
+        assert "Pre-Step-6 Private Thinking Table" in markdown_path.read_text(encoding="utf-8")
+        assert "Should we accept the offer?" in markdown_path.read_text(encoding="utf-8")
+    finally:
+        Path("/tmp/lolla_prestep6private_pre_step6_private_table.md").unlink(missing_ok=True)
+        Path("/tmp/lolla_prestep6private_pre_step6_private_table.json").unlink(missing_ok=True)
+
+
 def test_stakeholder_check_flag_persists_payload_and_usage(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,

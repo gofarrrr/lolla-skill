@@ -146,10 +146,12 @@ Five input streams → one canonical `usage_summary` block. Per-run isolation is
 3. The extraction sidecar path is namespaced by `$LOLLA_RUN_ID`.
 4. Optional sub-agent records are passed in by the SKILL after Step 7, not pulled from any shared state. Default-off runs pass no sub-agent records.
 
-V60 adds a second, non-cost telemetry stream inside the same `result.json`:
+V60 and the pre-Step-6 private table add non-cost telemetry streams inside the same `result.json`:
 
 | Block | Written by | What it answers |
 |---|---|---|
+| `pre_step6_private_table` | `scripts/run_pipeline.py` | Which compact private table was placed in front of Step 6, whether cached portfolio cards were appended, which sidecars were written, and the zero-call/no-live-generation envelope |
+| `pre_step6_private_table_ledger` | `SKILL.md` Step 6b | Which private-table sections or cached cards Step 6 used, rejected, deferred, kept private as guardrails, or treated as confirming support |
 | `v60_enrichment` | `scripts/run_pipeline.py` | Which lane/embedding candidates were considered, which V60 cards/chunks were selected, local chunk selection score/reason/effect type, record-order fallback counts, which candidates were skipped, which model IDs were left outside the hot context, and whether the explicit `affordances_v60.json` artifact loaded cleanly |
 | `v60_consideration_ledger` | `SKILL.md` Step 6b | For every selected V60 chunk shell from the deterministic skeleton: did Claude/Codex use it, reject it, defer it, or not consider it; through what route; and what visible/private effect, blocker, or guardrail it had |
 | `v60_consideration_validation` | `engine/system_b/v60_enrichment.py` | Whether the ledger accounts for every selected chunk exactly once, preserves card/model/chunk identity, respects route/disposition compatibility, and fills required visible/private/absence-blocker fields |
@@ -158,6 +160,8 @@ V60 adds a second, non-cost telemetry stream inside the same `result.json`:
 | `live_output_hygiene` + `run_health.live_output_*` | `scripts/finalize_live_output_hygiene.py` + `scripts/archive_run.py` + `engine/system_b/output_hygiene.py` | Scan of `/tmp/lolla_<run_id>_live_transcript.txt`, the Claude Code prose/status transcript artifact; unsafe live output degrades the run, missing capture is recorded as `missing`, and a clean manual artifact is `not_checked` until a complete trusted transcript is finalized with `--trusted-transcript` |
 
 The operational kill switch is `LOLLA_V60_ENRICHMENT=off` or `--v60-enrichment off`. Disabled runs still write a small `v60_enrichment.status = "disabled"` block so the absence is intentional and observable.
+
+The pre-Step-6 private table adds no OpenRouter or Anthropic calls. `--pre-step6-portfolio step6_private` renders from already-built lane/V60 payloads and only reads cached card decks when present. A cache miss does not generate cards.
 
 The `/audit/v60` Observatory panel is the process-comparison surface: it renders the candidate pool, lane source counts, embedding hits as retrieval/rank signals, selected cards/chunks, local relevance/fallback methods, skipped or not-presented candidates, effect-type labels, and the Step-6 consideration ledger. Use it to compare how the system reasoned, not only whether the final answer changed. For archived run-to-run comparison, use `scripts/compare_archived_runs.py`; it reports trace/product eligibility before answer and memo diffs.
 
