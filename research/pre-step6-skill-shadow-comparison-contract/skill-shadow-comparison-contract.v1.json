@@ -7,6 +7,10 @@
   "skill_update_allowed": false,
   "runtime_visibility_change_allowed": false,
   "manual_interpretation_required": true,
+  "product_intent": {
+    "desired_direction": "Move more useful reasoning pressure before Step 6 so the default Step 7 post-Step-6 pressure-check agents can become optional or manual-triggered if evidence supports it.",
+    "non_claim": "Step 7 is not obsolete by assertion."
+  },
   "principles": {
     "code_records": true,
     "humans_decide": true,
@@ -31,6 +35,39 @@
       "purpose": "test whether Step 7 residual work shrinks without removing it"
     }
   ],
+  "measurement_protocol": {
+    "record_unit": "case_sample_pair",
+    "sample_count_per_case": 3,
+    "target_record_count": 12,
+    "cleaner_table_operational_definition": {
+      "uses_current_pipeline_through_step4": true,
+      "step6_receives_cleaner_private_table": true,
+      "step7_runs_in_both_arms": true,
+      "shadow_portfolio_code_role": "May record cached-deck custody and evidence, but it is not the whole treatment. The treatment is the Step 6 private table composition.",
+      "included_material": [
+        "current four-lane outputs",
+        "V60 private enrichment when active for the case",
+        "case-appropriate atomic pressure cards from the cleaning evidence surface",
+        "answer_delta / structural_delta ledger vocabulary for Step 6 custody"
+      ],
+      "excluded_material": [
+        "new model selector",
+        "automatic card graduation",
+        "deterministic borderline suppression",
+        "any change that skips Step 7 during this comparison"
+      ]
+    },
+    "operator_labeling_protocol": {
+      "primary_label_source": "human_operator_review",
+      "llm_reviewers_allowed_as_supporting_evidence": true,
+      "llm_reviewers_authoritative": false,
+      "rubric": [
+        "Label supports_optional_pressure_check_trial only when the cleaner-table arm preserves payload and Step 7 no longer adds meaningful corrective work for that record.",
+        "Label preserve_required_pressure_check when Step 7 still adds a material correction, independent mechanism, or safety-relevant divergence.",
+        "Label ambiguous_continue_research when the residual Step 7 work is mostly cognitive-independence nuance, reviewer evidence is split, or the record is hard to classify."
+      ]
+    }
+  },
   "case_set": [
     {
       "case_id": "mid-level-consultant-report-2",
@@ -137,6 +174,34 @@
       "allows_skill_md_edit": false
     }
   ],
+  "decision_thresholds": {
+    "supports_optional_pressure_check_trial": {
+      "minimum_records": 12,
+      "required_case_roles_covered": [
+        "consultant_graduation_candidate",
+        "founder_v60_destabilization",
+        "negative_control",
+        "phd_distributed_atom"
+      ],
+      "max_safety_blocked_records": 0,
+      "min_support_labels": 9,
+      "max_preserve_labels": 1,
+      "max_preserve_labels_per_case_role": 1,
+      "requires_cleaner_less_than_legacy_divergence_count": true,
+      "meaning": "Cleaner table looks strong enough to justify a separate optional-pressure SKILL.md trial, not direct activation."
+    },
+    "preserve_required_pressure_check": {
+      "any_safety_blocked_records": true,
+      "min_preserve_labels": 4,
+      "min_preserve_labels_per_case_role": 2,
+      "cleaner_divergence_not_lower_than_legacy": true,
+      "meaning": "Keep current required Step 7 flow."
+    },
+    "ambiguous_continue_research": {
+      "default_when_support_and_preserve_thresholds_do_not_fire": true,
+      "meaning": "Do not change SKILL.md; inspect the mixed cases."
+    }
+  },
   "stop_rules": {
     "do_not_edit_skill_md_in_this_slice": true,
     "do_not_make_step7_default_off_without_shadow_evidence": true,

@@ -56,6 +56,7 @@ after completing a whole parent task.
   - [x] 2.4 Define pass, fail, and ambiguous outcomes before running any comparison.
   - [x] 2.5 Keep the comparison research-only and runtime-dormant.
   - [x] 2.6 Add a research-only harness that can aggregate paired comparison records without running models or editing `SKILL.md`.
+  - [x] 2.7 Pin the cleaner-table operational definition, n=3 sampling plan, human labeling protocol, and decision thresholds before record generation.
 - [ ] 3.0 Decide whether a `SKILL.md` behavior change is earned
   - [ ] 3.1 Review shadow-comparison results against the precommitted outcomes.
   - [ ] 3.2 Decide whether Step 7 correction work has shrunk enough to test optional pressure checks.
