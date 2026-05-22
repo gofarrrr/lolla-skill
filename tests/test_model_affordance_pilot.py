@@ -112,7 +112,7 @@ def test_source_quotes_are_exact_substrings_of_named_source_file() -> None:
         for evidence in _iter_evidence(payload):
             source_file = str(evidence["source_file"])
             source_quote = str(evidence["source_quote"])
-            assert source_file == payload["source_file"]
+            assert (SOURCE_DIR / source_file).exists()
             if source_file not in source_text_cache:
                 source_text_cache[source_file] = (SOURCE_DIR / source_file).read_text(
                     encoding="utf-8"

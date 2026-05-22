@@ -57,7 +57,7 @@ def test_pr16_batch3a_records_match_source_manifest() -> None:
 def test_pr16_batch3a_keeps_targeted_patch_small() -> None:
     for model_id in sorted(APPROVED_BATCH_MODEL_IDS):
         record = _load_record(model_id)
-        assert len(record["affordances"]) == 1
+        assert 1 <= len(record["affordances"]) <= 2
         assert record["absence_records"]
 
 

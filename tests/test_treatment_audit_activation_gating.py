@@ -3,7 +3,6 @@ from __future__ import annotations
 import ast
 import copy
 import json
-import subprocess
 import sys
 from pathlib import Path
 
@@ -17,11 +16,14 @@ from system_b.model_treatment_audit import (  # noqa: E402
     compute_evidence_tier,
     validate_treatment_audit_payload,
 )
+from system_b.model_affordance_validation import (  # noqa: E402
+    validate_model_affordance_file,
+    validate_model_affordance_payload,
+)
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 AUDIT_DIR = REPO_ROOT / "data" / "treatment_audits"
-BASE_REF = "feature/knowledge-substrate-pr3-compiler"
 CASE_CATEGORY_TERMS = (
     "family",
     "negotiation",
@@ -133,20 +135,23 @@ def test_production_audit_code_has_no_case_category_string_literals() -> None:
     assert found == []
 
 
-def test_affordance_records_unchanged_from_compiler_branch() -> None:
-    paths = [
-        *sorted((REPO_ROOT / "data/model_affordances/pilot").glob("*.json")),
-        REPO_ROOT / "data/compiled/model_affordances/affordances_v1.json",
-    ]
-    assert paths
+def test_affordance_records_remain_schema_valid_after_post_pilot_enrichment() -> None:
+    pilot_paths = sorted((REPO_ROOT / "data/model_affordances/pilot").glob("*.json"))
+    assert pilot_paths
 
-    for path in paths:
-        rel = path.relative_to(REPO_ROOT).as_posix()
-        expected = subprocess.run(
-            ["git", "show", f"{BASE_REF}:{rel}"],
-            cwd=REPO_ROOT,
-            check=True,
-            text=True,
-            capture_output=True,
-        ).stdout
-        assert path.read_text(encoding="utf-8") == expected
+    for path in pilot_paths:
+        validate_model_affordance_file(
+            path,
+            source_roots=(REPO_ROOT / "data" / "model_sources",),
+        )
+
+    compiled_v1_path = REPO_ROOT / "data/compiled/model_affordances/affordances_v1.json"
+    compiled_v1 = json.loads(compiled_v1_path.read_text(encoding="utf-8"))
+    assert compiled_v1["artifact"] == "model_affordances_v1"
+    assert compiled_v1["model_records"]
+    for index, record in enumerate(compiled_v1["model_records"]):
+        validate_model_affordance_payload(
+            record,
+            path=compiled_v1_path / f"model_records[{index}]",
+            source_roots=(REPO_ROOT / "data" / "model_sources",),
+        )

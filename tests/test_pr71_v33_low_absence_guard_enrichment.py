@@ -168,12 +168,10 @@ def test_pr71_treatment_repairs_stay_inside_existing_affordances() -> None:
         sunk_affordance,
         "bind-next-phase-to-evidence",
     )
-    assert "before investment creates sunk-cost pressure" in str(
-        bind_next_phase["good_output_shape"]
-    )
+    assert "opportunity cost or future damage path" in str(bind_next_phase["good_output_shape"])
     assert "cash-flow reality" in str(bind_next_phase["good_output_shape"])
     assert any(
-        "high-cost commitment" in str(use_when)
+        "start-again-today reset" in str(use_when)
         for use_when in sunk_affordance["activation_shape"]["use_when"]
     )
 

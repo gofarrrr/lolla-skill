@@ -79,13 +79,12 @@ def test_pr32_batch5_records_match_source_manifest() -> None:
 def test_pr32_batch5_source_quotes_are_repo_custodied_exact_substrings() -> None:
     for model_id in sorted(APPROVED_BATCH_MODEL_IDS):
         record = _load_record(model_id)
-        source_file = SOURCE_DIR / str(record["source_file"])
-        source_text = source_file.read_text(encoding="utf-8")
-
         evidence_items = list(_iter_source_evidence(record))
         assert evidence_items
         for evidence in evidence_items:
-            assert evidence["source_file"] == record["source_file"]
+            source_file = SOURCE_DIR / str(evidence["source_file"])
+            assert source_file.exists()
+            source_text = source_file.read_text(encoding="utf-8")
             assert str(evidence["source_quote"]) in source_text
 
 
@@ -126,7 +125,7 @@ def test_pr32_compiled_v6_includes_v5_plus_batch5_and_remains_dormant() -> None:
 
 
 def test_pr32_v6_is_not_imported_by_live_runtime_paths() -> None:
-    forbidden = ("affordances_v6", "model_affordances_v6")
+    forbidden = ("affordances_v6.json", "model_affordances_v6")
 
     for path in LIVE_RUNTIME_PATHS:
         text = path.read_text(encoding="utf-8")

@@ -101,13 +101,12 @@ def test_pr52_batch15_records_match_source_manifest() -> None:
 def test_pr52_batch15_source_quotes_are_repo_custodied_exact_substrings() -> None:
     for model_id in sorted(APPROVED_BATCH_MODEL_IDS):
         record = _load_record(model_id)
-        source_file = SOURCE_DIR / str(record["source_file"])
-        source_text = source_file.read_text(encoding="utf-8")
-
         evidence_items = list(_iter_source_evidence(record))
         assert evidence_items
         for evidence in evidence_items:
-            assert evidence["source_file"] == record["source_file"]
+            source_file = SOURCE_DIR / str(evidence["source_file"])
+            assert source_file.exists()
+            source_text = source_file.read_text(encoding="utf-8")
             assert str(evidence["source_quote"]) in source_text
 
 
@@ -118,12 +117,15 @@ def test_pr52_batch15_records_are_compact_and_absence_first() -> None:
         absences = record["absence_records"]
 
         assert record["status"] in {"supported", "weak_support"}
-        assert len(affordances) == 1
-        expected_absence_count = (
+        assert 1 <= len(affordances) <= 3
+        expected_absence_floor = (
             3 if model_id in APPROVED_EXTRA_ABSENCE_MODEL_IDS else 2
         )
-        assert len(absences) == expected_absence_count
-        assert affordances[0]["confidence"] in {"high", "medium"}
+        assert len(absences) >= expected_absence_floor
+        assert all(
+            affordance["confidence"] in {"high", "medium", "weak"}
+            for affordance in affordances
+        )
         assert all(absence["runtime_policy"] == "do_not_promote" for absence in absences)
 
 

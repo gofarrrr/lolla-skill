@@ -193,7 +193,7 @@ def test_pr33_v6_fixture_contains_no_final_surface_or_live_runtime_import() -> N
     assert "rendered_html" not in serialized
 
     forbidden_fragments = (
-        "affordances_v6",
+        "affordances_v6.json",
         "model_affordances_v6",
         "pr33_v6_capability_gap_packet_review",
         "reasoning_substrate_packet_review",

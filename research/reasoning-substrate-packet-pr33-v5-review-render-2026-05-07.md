@@ -35,13 +35,14 @@
 - Why pulled:
   - lane4_gap_route: The advice commits the same team and launch window without naming the displaced alternative.
 - Reviewed handoff signals:
-  - affordance_ids: opportunity-cost.displaced-alternative-commitment-gate
-  - use_when: A roadmap addition, renewal, sprint, vendor, project, or channel looks cheap because the explicit spend is small while the same people, budget, launch window, or attention are needed elsewhere.
-  - case_evidence_needed: The decision under approval and the scarce resource it consumes: people, budget, calendar time, launch window, leadership attention, trust, or optionality.
-  - do_not_use_when: The real alternatives, constraints, or objective function are not framed well enough for comparison without false precision.
-  - misuse_guards: Do not count unrealistic alternatives that the team cannot actually fund, execute, or own.
-  - source_evidence: opportunity-cost.displaced-alternative-commitment-gate: "The fundamental essence of this model is the value of the best alternative opportunity you didn't choose"
-  - treatment_requirements: name-real-next-best-alternative: Require the answer to name the best real alternative displaced by the current yes, not a vague list of possibilities or a decorative comparison set.
+  - reviewed_affordance_cards:
+    - `opportunity-cost.displaced-alternative-commitment-gate` (supported; high)
+      - use_when: A roadmap addition, renewal, sprint, vendor, project, or channel looks cheap because the explicit spend is small while the same people, budget, launch window, or attention are needed elsewhere.
+      - case_evidence_needed: The decision under approval and the scarce resource it consumes: people, budget, calendar time, launch window, leadership attention, trust, or optionality.
+      - do_not_use_when: The real alternatives, constraints, or objective function are not framed well enough for comparison without false precision.
+      - treatment_requirements: name-real-next-best-alternative: Require the answer to name the best real alternative displaced by the current yes, not a vague list of possibilities or a decorative comparison set.
+      - misuse_guards: Do not count unrealistic alternatives that the team cannot actually fund, execute, or own.
+      - source_evidence: opportunity-cost.displaced-alternative-commitment-gate: "The fundamental essence of this model is the value of the best alternative opportunity you didn't choose"
   - absence_record: generic-alternative-comparison-affordance (duplicate_of_existing_field)
 
 ### `batna`

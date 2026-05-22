@@ -38,6 +38,55 @@
         "lane2_companion_chunk",
         "reviewer_note"
       ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The players or counterparties involved."
+            ],
+            "do_not_use_when": [
+              "The actors are not actually playing the same game because reputation, ideology, politics, or internal incentives dominate."
+            ],
+            "use_when": [
+              "A rival, partner, regulator, buyer, seller, or negotiating counterparty can change the value of the proposed action."
+            ]
+          },
+          "affordance_id": "game-theory-payoffs.counterparty-response-payoff-map",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "Whose response changes the value of this move?"
+          ],
+          "mechanism": "When the value of a move depends on another actor's response, require the answer to name the players, available moves, information asymmetries, payoff drivers, and the few decisive branches rather than judging the move in isolation.",
+          "misuse_guards": [
+            "Do not assume both sides are optimizing the same payoff model."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "game-theory-payoffs.counterparty-response-payoff-map",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Core Principles and Analogies",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Game_Theory_Payoffs_rag.md",
+              "source_quote": "identifying the players, the actions available to them, the information they possess, and the resultant payoff for each potential action"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "game-theory-payoffs.counterparty-response-payoff-map",
+              "description": "Require the answer to map the relevant players, likely moves, and payoff drivers, while pruning branches that do not materially change the decision.",
+              "evidence_required": [
+                "The actor taking the proposed action."
+              ],
+              "good_output_shape": [
+                "Names the players."
+              ],
+              "requirement_id": "name-players-moves-and-decisive-payoffs"
+            }
+          ]
+        }
+      ],
       "reviewed_affordance_fields": {
         "affordance_ids": [
           "game-theory-payoffs.counterparty-response-payoff-map"
@@ -156,6 +205,7 @@
       "pulled_by": [
         "lane4_gap_route"
       ],
+      "reviewed_affordance_cards": [],
       "reviewed_affordance_fields": {},
       "runtime_graph_fields": {
         "danger_when": [
@@ -231,6 +281,7 @@
       "pulled_by": [
         "lane3_frame_route"
       ],
+      "reviewed_affordance_cards": [],
       "reviewed_affordance_fields": {},
       "runtime_graph_fields": {
         "danger_when": [
@@ -312,6 +363,55 @@
       },
       "pulled_by": [
         "lane1_tendency_route"
+      ],
+      "reviewed_affordance_cards": [
+        {
+          "activation_shape": {
+            "case_evidence_needed": [
+              "The message, decision, or action that must be understood."
+            ],
+            "do_not_use_when": [
+              "Cultural models are being used as stereotype shortcuts instead of prompts to investigate the actual audience."
+            ],
+            "use_when": [
+              "The same message must survive translation across cultures, functions, or status differences without losing the intended action."
+            ]
+          },
+          "affordance_id": "cross-cultural-communication-frameworks.frame-translation-action-check",
+          "confidence": "high",
+          "diagnostic_questions": [
+            "What does this audience need to understand, trust, and do?"
+          ],
+          "mechanism": "When the same message must survive cultures, functions, or status differences, require the answer to translate the message for the actual audience frame while preserving the intended action, disagreement, urgency, and hard trade-offs.",
+          "misuse_guards": [
+            "Do not use cultural models as stereotype shortcuts."
+          ],
+          "source_evidence": [
+            {
+              "affordance_id": "cross-cultural-communication-frameworks.frame-translation-action-check",
+              "confidence": "high",
+              "extraction_type": "explicit",
+              "section_hint": "Core Principles and Analogies",
+              "source_custody": "reviewed_manifest",
+              "source_file": "Cross_Cultural_Communication_Frameworks_rag.md",
+              "source_quote": "to bridge the inherent disconnect between the sender's intricate understanding and the receiver's often simplified, emotionally filtered processing of information"
+            }
+          ],
+          "status": "supported",
+          "treatment_requirements": [
+            {
+              "affordance_id": "cross-cultural-communication-frameworks.frame-translation-action-check",
+              "description": "Require the answer to adapt message framing for the actual audience while preserving the core action and hard trade-offs.",
+              "evidence_required": [
+                "The message or strategy to communicate."
+              ],
+              "good_output_shape": [
+                "Names the sender/audience mismatch."
+              ],
+              "requirement_id": "translate-frame-without-hiding-action"
+            }
+          ]
+        }
       ],
       "reviewed_affordance_fields": {
         "affordance_ids": [
@@ -431,6 +531,7 @@
       "pulled_by": [
         "lane1_tendency_route"
       ],
+      "reviewed_affordance_cards": [],
       "reviewed_affordance_fields": {},
       "runtime_graph_fields": {
         "danger_when": [
@@ -507,6 +608,7 @@
       "pulled_by": [
         "lane4_gap_route"
       ],
+      "reviewed_affordance_cards": [],
       "reviewed_affordance_fields": {},
       "runtime_graph_fields": {
         "danger_when": [
@@ -582,6 +684,7 @@
       "pulled_by": [
         "lane2_detected_model"
       ],
+      "reviewed_affordance_cards": [],
       "reviewed_affordance_fields": {},
       "runtime_graph_fields": {
         "danger_when": [
@@ -658,6 +761,7 @@
       "pulled_by": [
         "lane3_frame_route"
       ],
+      "reviewed_affordance_cards": [],
       "reviewed_affordance_fields": {},
       "runtime_graph_fields": {
         "danger_when": [
@@ -734,6 +838,7 @@
       "pulled_by": [
         "lane3_frame_route"
       ],
+      "reviewed_affordance_cards": [],
       "reviewed_affordance_fields": {},
       "runtime_graph_fields": {
         "danger_when": [

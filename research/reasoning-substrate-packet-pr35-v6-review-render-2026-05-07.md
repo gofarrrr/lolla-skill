@@ -35,13 +35,14 @@
 - Why pulled:
   - lane2_companion_chunk: The assistant assumes partner and competitor responses will stay stable after the team escalates.
 - Reviewed handoff signals:
-  - affordance_ids: game-theory-payoffs.counterparty-response-payoff-map
-  - use_when: A rival, partner, regulator, buyer, seller, or negotiating counterparty can change the value of the proposed action.
-  - case_evidence_needed: The players or counterparties involved.
-  - do_not_use_when: The actors are not actually playing the same game because reputation, ideology, politics, or internal incentives dominate.
-  - misuse_guards: Do not assume both sides are optimizing the same payoff model.
-  - source_evidence: game-theory-payoffs.counterparty-response-payoff-map: "identifying the players, the actions available to them, the information they possess, and the resultant payoff for each potential action"
-  - treatment_requirements: name-players-moves-and-decisive-payoffs: Require the answer to map the relevant players, likely moves, and payoff drivers, while pruning branches that do not materially change the decision.
+  - reviewed_affordance_cards:
+    - `game-theory-payoffs.counterparty-response-payoff-map` (supported; high)
+      - use_when: A rival, partner, regulator, buyer, seller, or negotiating counterparty can change the value of the proposed action.
+      - case_evidence_needed: The players or counterparties involved.
+      - do_not_use_when: The actors are not actually playing the same game because reputation, ideology, politics, or internal incentives dominate.
+      - treatment_requirements: name-players-moves-and-decisive-payoffs: Require the answer to map the relevant players, likely moves, and payoff drivers, while pruning branches that do not materially change the decision.
+      - misuse_guards: Do not assume both sides are optimizing the same payoff model.
+      - source_evidence: game-theory-payoffs.counterparty-response-payoff-map: "identifying the players, the actions available to them, the information they possess, and the resultant payoff for each potential action"
   - absence_record: same-game-assumption-affordance (not_supported_by_source)
 
 ### `nash-equilibrium`
@@ -82,13 +83,14 @@
 - Why pulled:
   - lane1_tendency_route: The feedback and partner messages must carry across function, status, and regional frames.
 - Reviewed handoff signals:
-  - affordance_ids: cross-cultural-communication-frameworks.frame-translation-action-check
-  - use_when: The same message must survive translation across cultures, functions, or status differences without losing the intended action.
-  - case_evidence_needed: The message, decision, or action that must be understood.
-  - do_not_use_when: Cultural models are being used as stereotype shortcuts instead of prompts to investigate the actual audience.
-  - misuse_guards: Do not use cultural models as stereotype shortcuts.
-  - source_evidence: cross-cultural-communication-frameworks.frame-translation-action-check: "to bridge the inherent disconnect between the sender's intricate understanding and the receiver's often simplified, emotionally filtered processing of information"
-  - treatment_requirements: translate-frame-without-hiding-action: Require the answer to adapt message framing for the actual audience while preserving the core action and hard trade-offs.
+  - reviewed_affordance_cards:
+    - `cross-cultural-communication-frameworks.frame-translation-action-check` (supported; high)
+      - use_when: The same message must survive translation across cultures, functions, or status differences without losing the intended action.
+      - case_evidence_needed: The message, decision, or action that must be understood.
+      - do_not_use_when: Cultural models are being used as stereotype shortcuts instead of prompts to investigate the actual audience.
+      - treatment_requirements: translate-frame-without-hiding-action: Require the answer to adapt message framing for the actual audience while preserving the core action and hard trade-offs.
+      - misuse_guards: Do not use cultural models as stereotype shortcuts.
+      - source_evidence: cross-cultural-communication-frameworks.frame-translation-action-check: "to bridge the inherent disconnect between the sender's intricate understanding and the receiver's often simplified, emotionally filtered processing of information"
   - absence_record: stereotype-shortcut-communication (not_supported_by_source)
 
 ### `active-listening`

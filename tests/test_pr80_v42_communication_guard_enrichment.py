@@ -204,7 +204,7 @@ def test_pr80_feedback_and_motivation_records_harden_without_splits() -> None:
 
     motivation_affordance = _affordance_by_id(
         motivations,
-        "understanding-motivations.hidden-driver-hypothesis-test",
+        "understanding-motivations.motive-to-implementation-path-check",
     )
     motivation_guard = _absence_by_field(
         motivations,
