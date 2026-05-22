@@ -102,6 +102,7 @@ _AUDIT_NAV = (
     ("/audit/expansions", "Expansions"),
     ("/audit/stakeholders", "Stakeholders"),
     ("/audit/v60", "V60"),
+    ("/audit/pre-step6", "Pre-Step-6"),
     ("/usage", "Usage"),
 )
 
@@ -722,6 +723,7 @@ def _build_case_response() -> dict:
         "v60_enrichment": r.get("v60_enrichment"),
         "v60_consideration_ledger": r.get("v60_consideration_ledger"),
         "v60_consideration_validation": r.get("v60_consideration_validation"),
+        "pre_step6_shadow_portfolio": r.get("pre_step6_shadow_portfolio"),
     }
 
     # Run health — surfaces capture, substrate, embeddings, fingerprint status
@@ -2323,6 +2325,85 @@ def _render_v60_html() -> str:
     return _render_scaffold(title="Lolla — V60", body=body, current_path="/audit/v60")
 
 
+def _render_pre_step6_shadow_html() -> str:
+    _reload_result_if_changed()
+    header = _render_run_header()
+    shadow = _RESULT.get("pre_step6_shadow_portfolio") or {}
+
+    if not shadow:
+        body = (
+            "<h1>Pre-Step-6 Shadow Portfolio</h1>"
+            f"{header}"
+            + _empty_inline(
+                "This run has no <code>pre_step6_shadow_portfolio</code> block. "
+                "Run the pipeline in shadow mode to record cached-card policy evidence."
+            )
+        )
+        return _render_scaffold(
+            title="Lolla — Pre-Step-6 Shadow",
+            body=body,
+            current_path="/audit/pre-step6",
+        )
+
+    cache = shadow.get("cache") or {}
+    decision = shadow.get("shadow_visibility_decision") or {}
+    gates = shadow.get("gates") or {}
+    payload_gate = shadow.get("payload_gate") or {}
+    custody = shadow.get("custody_validation") or {}
+    cost = shadow.get("cost_envelope") or {}
+    deterministic_role = shadow.get("deterministic_role") or []
+
+    role_rows = [
+        f"<tr><td>{_esc(index)}</td><td>{_esc(role)}</td></tr>"
+        for index, role in enumerate(deterministic_role, start=1)
+    ]
+    gate_rows = [
+        f"<tr><td>{_esc(key)}</td><td>{_esc(value)}</td></tr>"
+        for key, value in gates.items()
+    ]
+
+    body = f"""
+<h1>Pre-Step-6 Shadow Portfolio</h1>
+{header}
+<p class="lede">Dormant evidence for the proposed portfolio policy. This panel records the cached-card state, Step 6 ledger signal, and guardrails; it does not imply a user-visible answer change.</p>
+<h2>Shadow Decision</h2>
+<table>
+  <tr><th>Status</th><td><span class="tag">{_esc(shadow.get("status", ""))}</span></td></tr>
+  <tr><th>Mode</th><td>{_esc(shadow.get("mode", ""))}</td></tr>
+  <tr><th>Decision</th><td><strong>{_esc(decision.get("result", ""))}</strong></td></tr>
+  <tr><th>Why</th><td>{_esc(decision.get("why", ""))}</td></tr>
+  <tr><th>Step 6 ledger signal</th><td>{_esc(shadow.get("step6_ledger_signal", ""))}</td></tr>
+  <tr><th>Cognitive signal source</th><td>{_esc(decision.get("cognitive_signal_source", ""))}</td></tr>
+  <tr><th>Applied</th><td>applied: {_esc(str(bool(decision.get("applied_to_user_visible_output"))).lower())}</td></tr>
+</table>
+<h2>Cache + Cost</h2>
+<table>
+  <tr><th>Compiled key</th><td><code>{_esc(shadow.get("compiled_card_deck_key", ""))}</code></td></tr>
+  <tr><th>Cache state</th><td>{_esc(cache.get("state", ""))}</td></tr>
+  <tr><th>Cache ref</th><td>{_esc(cache.get("cache_ref", ""))}</td></tr>
+  <tr><th>Live generation</th><td>live generation: {_esc(str(bool(cache.get("live_card_generation_allowed"))).lower())}</td></tr>
+  <tr><th>Runtime reviewer calls</th><td>{_esc(cost.get("normal_runtime_reviewer_calls", decision.get("normal_runtime_reviewer_calls", 0)))}</td></tr>
+  <tr><th>Promotion effect</th><td>{_esc(shadow.get("promotion_effect", ""))}</td></tr>
+</table>
+<h2>Guardrails</h2>
+<table>
+  <tr><th>Payload gate</th><td>{_esc(payload_gate.get("status", ""))}</td></tr>
+  <tr><th>Custody</th><td>{_esc(custody.get("status", ""))}</td></tr>
+  {"".join(gate_rows) if gate_rows else "<tr><td colspan='2' class='empty'>No gate records.</td></tr>"}
+</table>
+<h2>Deterministic Role</h2>
+<table>
+  <tr><th>#</th><th>Responsibility</th></tr>
+  {"".join(role_rows) if role_rows else "<tr><td colspan='2' class='empty'>No deterministic-role records.</td></tr>"}
+</table>
+"""
+    return _render_scaffold(
+        title="Lolla — Pre-Step-6 Shadow",
+        body=body,
+        current_path="/audit/pre-step6",
+    )
+
+
 def _render_audit_index_html() -> str:
     _reload_result_if_changed()
     audit_present = bool(_audit_summary())
@@ -2345,6 +2426,8 @@ def _render_audit_index_html() -> str:
          "When enabled: actor dependencies, grounding tiers, known/unknown splits, and any plan-changing correction."),
         ("/audit/v60", "V60 private enrichment",
          "Post-lane source-backed affordance and absence chunks: selected, skipped, not presented, and consideration-ledger uptake."),
+        ("/audit/pre-step6", "Pre-Step-6 shadow portfolio",
+         "Dormant cached-card policy evidence: Step 6 ledger signal, payload/custody guardrails, and whether any deck-visible decision stayed shadow-only."),
     ]
     cards = []
     for href, title, desc in items:
@@ -2437,6 +2520,7 @@ class ResultHandler(SimpleHTTPRequestHandler):
             "/audit/expansions": _render_expansions_html,
             "/audit/stakeholders": _render_stakeholder_html,
             "/audit/v60": _render_v60_html,
+            "/audit/pre-step6": _render_pre_step6_shadow_html,
         }
         if path in _audit_routes:
             self._html_response(_audit_routes[path]())

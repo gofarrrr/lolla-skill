@@ -234,6 +234,17 @@ def _v60_mode_enabled(mode: str) -> bool:
     return not _env_flag_disabled("LOLLA_V60_ENRICHMENT")
 
 
+def _derive_run_id_from_path(raw_path: str | None) -> str:
+    """Pull <run_id> out of a path like ``lolla_<run_id>_*.{json,txt}``."""
+    if not raw_path:
+        return ""
+    stem = Path(raw_path).stem
+    parts = stem.split("_")
+    if len(parts) >= 2 and parts[0] == "lolla":
+        return parts[1]
+    return ""
+
+
 _HEALTH_SEVERITY_RANK = {
     "info": 0,
     "optional_off": 0,
@@ -667,6 +678,24 @@ def main() -> int:
         default=8,
         help="Maximum private V60 cards to attach to result.json.",
     )
+    parser.add_argument(
+        "--pre-step6-portfolio",
+        choices=("off", "shadow"),
+        default=None,
+        help=(
+            "Dormant pre-Step-6 portfolio recorder. 'shadow' records cached-card "
+            "policy evidence only; it never changes the visible answer."
+        ),
+    )
+    parser.add_argument(
+        "--pre-step6-portfolio-cache-dir",
+        type=Path,
+        default=None,
+        help=(
+            "Directory containing precomputed pre-Step-6 card decks. Shadow mode "
+            "does not generate decks when the cache misses."
+        ),
+    )
     args = parser.parse_args()
 
     contract_error = _contract_error(args)
@@ -685,6 +714,14 @@ def main() -> int:
             if candidate.exists():
                 _load_env_file(candidate)
                 break
+
+    if args.pre_step6_portfolio is None:
+        env_mode = os.environ.get("LOLLA_PRE_STEP6_PORTFOLIO", "off").strip().lower()
+        args.pre_step6_portfolio = env_mode if env_mode in {"off", "shadow"} else "off"
+    if args.pre_step6_portfolio_cache_dir is None:
+        env_cache_dir = os.environ.get("LOLLA_PRE_STEP6_PORTFOLIO_CACHE_DIR", "").strip()
+        if env_cache_dir:
+            args.pre_step6_portfolio_cache_dir = Path(env_cache_dir)
 
     # Parse extraction
     if args.extraction_file:
@@ -962,16 +999,6 @@ def main() -> int:
     # Plus embedding_usage_records and (later) Step-7 subagent records.
     from system_b.usage_summary import build_usage_summary, is_valid_run_id, load_extraction_sidecar
 
-    def _derive_run_id_from_path(raw_path: str | None) -> str:
-        """Pull <run_id> out of a path like ``lolla_<run_id>_*.{json,txt}``."""
-        if not raw_path:
-            return ""
-        stem = Path(raw_path).stem
-        parts = stem.split("_")
-        if len(parts) >= 2 and parts[0] == "lolla":
-            return parts[1]
-        return ""
-
     # Resolve run_id with three fallbacks. The third (extraction_file) covers
     # the standard headless invocation in the docstring, where only
     # --extraction-file and --conversation-file are passed; without it,
@@ -982,6 +1009,45 @@ def main() -> int:
         or _derive_run_id_from_path(args.output_file)
         or _derive_run_id_from_path(args.extraction_file)
     )
+
+    if args.pre_step6_portfolio == "shadow":
+        try:
+            from system_b.pre_step6_shadow_portfolio import (
+                build_pre_step6_shadow_portfolio,
+                write_pre_step6_shadow_portfolio_sidecar,
+            )
+
+            pre_step6_shadow = build_pre_step6_shadow_portfolio(
+                result_payload=serialized,
+                mode="shadow",
+                cache_dir=args.pre_step6_portfolio_cache_dir,
+            )
+            serialized["pre_step6_shadow_portfolio"] = pre_step6_shadow
+            if _run_id and is_valid_run_id(_run_id):
+                write_pre_step6_shadow_portfolio_sidecar(
+                    pre_step6_shadow,
+                    run_id=_run_id,
+                )
+        except Exception as exc:
+            serialized["pre_step6_shadow_portfolio"] = {
+                "schema_version": "pre_step6_shadow_portfolio.v1",
+                "status": "shadow_error",
+                "mode": "shadow",
+                "promotion_effect": "none_shadow_only",
+                "error": f"{type(exc).__name__}: {exc}",
+                "shadow_visibility_decision": {
+                    "result": "current_step6_visible_shadow_error",
+                    "why": "Shadow portfolio recorder failed; visible output remains unchanged.",
+                    "cognitive_signal_source": "not_run",
+                    "normal_runtime_reviewer_calls": 0,
+                    "applied_to_user_visible_output": False,
+                },
+                "gates": {
+                    "runtime_wiring_allowed": False,
+                    "skill_update_allowed": False,
+                    "visible_behavior_change_allowed": False,
+                },
+            }
 
     _v60_skeleton = (
         (serialized.get("v60_enrichment") or {}).get("consideration_ledger_skeleton")
@@ -1092,6 +1158,12 @@ def main() -> int:
         _health_issue_details.append(
             _health_issue_detail("v60_enrichment_failed", v60_status=_v60_status or "unknown")
         )
+    _pre_step6_shadow = serialized.get("pre_step6_shadow_portfolio") or {}
+    _pre_step6_shadow_status = (
+        str(_pre_step6_shadow.get("status") or "")
+        if isinstance(_pre_step6_shadow, dict)
+        else ""
+    )
 
     _health_issues = [str(detail["code"]) for detail in _health_issue_details]
     _overall = _overall_health_from_issue_details(_health_issue_details)
@@ -1119,6 +1191,8 @@ def main() -> int:
             ((_v60.get("telemetry") or {}).get("selected_chunk_count", 0) or 0)
         ),
     }
+    if _pre_step6_shadow_status:
+        serialized["run_health"]["pre_step6_shadow_portfolio"] = _pre_step6_shadow_status
     if stakeholder_check_payload:
         serialized["run_health"]["stakeholder_assumption_check"] = stakeholder_check_payload.get("status")
     if _capture_manifest:

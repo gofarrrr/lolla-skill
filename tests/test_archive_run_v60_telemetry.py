@@ -66,6 +66,53 @@ def test_archive_run_marks_active_v60_missing_ledger_before_copy(tmp_path: Path)
     assert archived_result["v60_consideration_validation"]["status"] == "missing"
 
 
+def test_archive_run_copies_pre_step6_shadow_portfolio_sidecar(tmp_path: Path) -> None:
+    run_id = "shadowcopy"
+    tmp_dir = tmp_path / "tmp"
+    archive_root = tmp_path / "archive"
+    tmp_dir.mkdir()
+
+    (tmp_dir / f"lolla_{run_id}_extraction.json").write_text(
+        json.dumps(
+            {
+                "extraction": {
+                    "decision_situation": "Founder deciding whether to pivot",
+                }
+            }
+        ),
+        encoding="utf-8",
+    )
+    (tmp_dir / f"lolla_{run_id}_result.json").write_text(
+        json.dumps(
+            {
+                "run_health": {"overall": "healthy", "issues": [], "issue_details": []},
+                "v60_enrichment": {"status": "disabled"},
+            }
+        ),
+        encoding="utf-8",
+    )
+    (tmp_dir / f"lolla_{run_id}_pre_step6_shadow_portfolio.json").write_text(
+        json.dumps(
+            {
+                "schema_version": "pre_step6_shadow_portfolio.v1",
+                "status": "shadow_cache_miss",
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    archive_run = _load_archive_run_module()
+    archived = archive_run.archive_run(
+        run_id,
+        archive_root=archive_root,
+        tmp_dir=tmp_dir,
+    )
+
+    run_dir = Path(archived["run_dir"])
+    assert "pre_step6_shadow_portfolio.json" in archived["files_copied"]
+    assert (run_dir / "pre_step6_shadow_portfolio.json").exists()
+
+
 def test_archive_run_records_product_output_hygiene_before_copy(tmp_path: Path) -> None:
     run_id = "hygiene"
     tmp_dir = tmp_path / "tmp"

@@ -17,6 +17,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from engine.system_b.boundary_provider import (
     BoundaryCallMetadata,
+    OpenAICompatibleBoundaryClient,
     _record_from_metadata,
 )
 from engine.system_b.boundary_tracing import (
@@ -81,3 +82,15 @@ def test_record_and_trace_share_same_field_set_for_three_new_fields():
         assert getattr(record, field_name) == getattr(trace, field_name), (
             f"record.{field_name} drifted from trace.{field_name}"
         )
+
+
+def test_openrouter_can_disable_reasoning_by_env(monkeypatch):
+    monkeypatch.setenv("LOLLA_OPENROUTER_DISABLE_REASONING", "1")
+    client = OpenAICompatibleBoundaryClient(
+        provider_name="openrouter",
+        api_key="test-key",
+        base_url="https://openrouter.ai/api/v1",
+        model="moonshotai/kimi-k2.6",
+    )
+
+    assert client._reasoning_config() == {"effort": "none"}

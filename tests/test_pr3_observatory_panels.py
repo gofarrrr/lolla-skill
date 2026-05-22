@@ -776,6 +776,58 @@ def test_v60_panel_renders_process_telemetry(monkeypatch):
     assert "Would add ceremony." in html
 
 
+def test_pre_step6_shadow_panel_renders_shadow_decision(monkeypatch):
+    r = _fixture_result()
+    r["pre_step6_shadow_portfolio"] = {
+        "schema_version": "pre_step6_shadow_portfolio.v1",
+        "status": "shadow_resolved",
+        "mode": "shadow",
+        "compiled_card_deck_key": "pre-step6-shadow-card-deck-abc123",
+        "cache": {
+            "state": "cache_hit",
+            "cache_ref": "/tmp/cache/pre-step6-shadow-card-deck-abc123.pre-step6-shadow-card-deck.v1.json",
+            "live_card_generation_allowed": False,
+        },
+        "step6_ledger_signal": "additive_pressure_present",
+        "payload_gate": {"status": "preserved"},
+        "custody_validation": {"status": "valid"},
+        "shadow_visibility_decision": {
+            "result": "deck_visible_shadow_only",
+            "why": "Step 6 recorded additive pressure and guards passed.",
+            "cognitive_signal_source": "step6_private_ledger",
+            "normal_runtime_reviewer_calls": 0,
+            "applied_to_user_visible_output": False,
+        },
+        "gates": {
+            "runtime_wiring_allowed": False,
+            "skill_update_allowed": False,
+            "visible_behavior_change_allowed": False,
+        },
+    }
+    monkeypatch.setattr(serve_result, "_RESULT", r)
+
+    html = serve_result._render_pre_step6_shadow_html()
+
+    assert "Pre-Step-6 Shadow Portfolio" in html
+    assert "deck_visible_shadow_only" in html
+    assert "additive_pressure_present" in html
+    assert "applied: false" in html
+    assert "live generation: false" in html
+
+
+def test_case_api_includes_pre_step6_shadow_portfolio(monkeypatch):
+    r = _fixture_result()
+    r["pre_step6_shadow_portfolio"] = {
+        "schema_version": "pre_step6_shadow_portfolio.v1",
+        "status": "shadow_cache_miss",
+    }
+    monkeypatch.setattr(serve_result, "_RESULT", r)
+
+    response = serve_result._build_case_response()
+
+    assert response["pre_step6_shadow_portfolio"]["status"] == "shadow_cache_miss"
+
+
 def test_audit_index_handles_no_audit_summary(monkeypatch):
     monkeypatch.setattr(serve_result, "_RESULT", _minimal_result())
     html = serve_result._render_audit_index_html()
