@@ -13,6 +13,8 @@
 - `research/pre-step6-cleaning-evidence-surface/cleaning-evidence-surface.md` - Existing human-readable evidence surface for pressure-atom recurrence.
 - `scripts/research/pre_step6_skill_shadow_comparison_contract.py` - Research-only contract builder/validator for the legacy-vs-cleaner-table comparison.
 - `tests/test_pre_step6_skill_shadow_comparison_contract.py` - Tests proving the comparison contract keeps Step 7 required, stays runtime-dormant, and does not authorize `SKILL.md` edits.
+- `scripts/research/pre_step6_skill_shadow_comparison_harness.py` - Research-only harness for aggregating paired legacy-vs-cleaner-table case records once real comparison runs exist.
+- `tests/test_pre_step6_skill_shadow_comparison_harness.py` - Tests proving the harness computes mechanical summaries without authorizing skill changes or automatic Step 7 optionalization.
 - `research/pre-step6-skill-shadow-comparison-contract/skill-shadow-comparison-contract.v1.json` - Generated JSON contract for the skill shadow comparison.
 - `research/pre-step6-skill-shadow-comparison-contract/skill-shadow-comparison-contract.md` - Human-readable rendering of the skill shadow comparison contract.
 - `tests/test_skill_contract.py` - Existing skill contract tests that guard Step 6b/Step 7 ordering and live-output hygiene.
@@ -53,6 +55,7 @@ after completing a whole parent task.
   - [x] 2.3 Define metrics for Step 7 residual work, atom uptake, protected payload preservation, memo completeness, and cost.
   - [x] 2.4 Define pass, fail, and ambiguous outcomes before running any comparison.
   - [x] 2.5 Keep the comparison research-only and runtime-dormant.
+  - [x] 2.6 Add a research-only harness that can aggregate paired comparison records without running models or editing `SKILL.md`.
 - [ ] 3.0 Decide whether a `SKILL.md` behavior change is earned
   - [ ] 3.1 Review shadow-comparison results against the precommitted outcomes.
   - [ ] 3.2 Decide whether Step 7 correction work has shrunk enough to test optional pressure checks.
