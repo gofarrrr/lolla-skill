@@ -1,0 +1,71 @@
+{
+  "schema_version": "pre_step6_context_composition_gate_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "founder-grant-marcus-equity.high-clutter",
+  "gate_kind": "live_context_composition_comparison",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"winner_label\": \"D\",\n  \"research_action\": \"expand_replay\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Packet D provides the most comprehensive set of cognitive heuristics by merging the distinct analytical lenses provided in B and C. It maintains the core anchor while layering in both the 'look-back' exit strategy perspective and the 'incentive/dependency' pressure, offering the most robust input for Step 6 to synthesize a nuanced negotiation strategy.\",\n  \"protected_value\": [\n    \"Synthesized analytical lenses from multiple perspectives.\",\n    \"Preservation of the 'evidence-first' negotiation framework.\",\n    \"Explicit inclusion of both exit-math caution and dependency-system risks.\"\n  ],\n  \"bloat_or_pruning_risk\": [\n    \"Minimal risk of bloat as the receipts are concise and additive rather than repetitive.\",\n    \"No pruning risk as it retains all critical edge-pressure points.\"\n  ],\n  \"composition_note\": \"Step 6 should treat the receipts in D as a checklist of 'pressure points' to validate during the reasoning process, ensuring the final output addresses both the immediate negotiation tactics and the long-term structural risks.\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 2428,
+    "completion_tokens": 262,
+    "total_tokens": 2690,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter"
+  },
+  "candidate_refs": {
+    "rendered_hybrid": "research/pre-step6-rendered-hybrid-answer-cores/founder-grant-marcus-equity.high-clutter.native.rendered-hybrid-answer-core.v1.json",
+    "bevelin_lens": "research/pre-step6-lens-answer-cores/founder-grant-marcus-equity.high-clutter.bevelin-answer-core.v1.json",
+    "polya_lens": "research/pre-step6-lens-answer-cores/founder-grant-marcus-equity.high-clutter.polya-answer-core.v1.json"
+  },
+  "blind_map": {
+    "A": "rendered_only",
+    "B": "rendered_plus_polya_receipts",
+    "C": "rendered_plus_bevelin_receipts",
+    "D": "rendered_plus_dual_receipts"
+  },
+  "reviewer_output": {
+    "winner_label": "D",
+    "research_action": "expand_replay",
+    "confidence": "high",
+    "rationale": "Packet D provides the most comprehensive set of cognitive heuristics by merging the distinct analytical lenses provided in B and C. It maintains the core anchor while layering in both the 'look-back' exit strategy perspective and the 'incentive/dependency' pressure, offering the most robust input for Step 6 to synthesize a nuanced negotiation strategy.",
+    "protected_value": [
+      "Synthesized analytical lenses from multiple perspectives.",
+      "Preservation of the 'evidence-first' negotiation framework.",
+      "Explicit inclusion of both exit-math caution and dependency-system risks."
+    ],
+    "bloat_or_pruning_risk": [
+      "Minimal risk of bloat as the receipts are concise and additive rather than repetitive.",
+      "No pruning risk as it retains all critical edge-pressure points."
+    ],
+    "composition_note": "Step 6 should treat the receipts in D as a checklist of 'pressure points' to validate during the reasoning process, ensuring the final output addresses both the immediate negotiation tactics and the long-term structural risks."
+  },
+  "static_expectation": {
+    "allowed_winner_arms": [
+      "rendered_plus_bevelin_receipts",
+      "rendered_plus_dual_receipts"
+    ],
+    "allowed_research_actions": [
+      "expand_replay"
+    ]
+  },
+  "agreement": {
+    "winner_matches_static": true,
+    "action_matches_static": true,
+    "overall_match": true
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live context-composition comparison. Research-only artifact; it tests whether protected private receipts improve a rendered-hybrid anchor."
+}

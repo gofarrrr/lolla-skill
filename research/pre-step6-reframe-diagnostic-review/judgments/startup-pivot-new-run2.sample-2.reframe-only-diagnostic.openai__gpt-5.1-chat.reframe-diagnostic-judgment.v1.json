@@ -1,0 +1,49 @@
+{
+  "schema_version": "pre_step6_reframe_diagnostic_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "calibration_reframe_diagnostic_review_v0",
+  "diagnostic_case_id": "startup-pivot-new-run2.sample-2.reframe-only-diagnostic",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\"diagnostic_label\":\"step6_non_inferior\",\"winner_label\":\"A\",\"confidence\":\"medium\",\"rationale\":\"Both answers offer similar actionable guidance, but A is more concise without losing key decision‑relevant payload. B adds extra framing and options that don’t materially increase usefulness for the user's immediate decision.\",\"reframe_value_if_any\":[\"Clear emphasis on converting soft signals into a hard pre‑buy test.\"],\"anchor_strengths\":[\"Concrete pass bar, prepay test, timeline, and transition planning.\"],\"payload_loss_or_bloat\":[\"B includes extra narrative and branching that create mild bloat without adding decisive value.\"]}",
+    "temperature": 0.2,
+    "prompt_tokens": 924,
+    "completion_tokens": 131,
+    "total_tokens": 1055,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "model_family": "openai"
+  },
+  "blind_map": {
+    "A": "anchor_visible",
+    "B": "step6_visible"
+  },
+  "reviewer_output": {
+    "diagnostic_label": "step6_non_inferior",
+    "winner_label": "A",
+    "confidence": "medium",
+    "rationale": "Both answers offer similar actionable guidance, but A is more concise without losing key decision‑relevant payload. B adds extra framing and options that don’t materially increase usefulness for the user's immediate decision.",
+    "reframe_value_if_any": [
+      "Clear emphasis on converting soft signals into a hard pre‑buy test."
+    ],
+    "anchor_strengths": [
+      "Concrete pass bar, prepay test, timeline, and transition planning."
+    ],
+    "payload_loss_or_bloat": [
+      "B includes extra narrative and branching that create mild bloat without adding decisive value."
+    ]
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample reframe diagnostic judgment."
+}

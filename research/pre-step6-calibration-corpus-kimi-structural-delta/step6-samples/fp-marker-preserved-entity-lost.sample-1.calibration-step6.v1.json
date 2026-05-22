@@ -1,0 +1,85 @@
+{
+  "schema_version": "pre_step6_calibration_step6_sample.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_calibration_corpus_v0",
+  "case_id": "fp-marker-preserved-entity-lost",
+  "base_case_id": "fp-marker-preserved-entity-lost",
+  "sample_index": 1,
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "moonshotai/kimi-k2.6",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"answer_core\": \"Talk with RAINN, a therapist, or counsel before deciding whether to report. Keep the phone channel open unless a concrete tripwire fires: a request to meet, sexual images, threats, evidence of other minors, migration to hidden channels, or your daughter saying she feels pressured or afraid.\",\n  \"private_visibility_ledger\": [\n    {\n      \"source_id\": \"anchor_visible_candidate\",\n      \"disposition\": \"used\",\n      \"novelty_role\": \"visible_backbone\",\n      \"why\": \"It contains the concrete named resources (RAINN, therapist, counsel), the explicit tripwire list, and the conditional keep-open/unlock structure required for this sensitive safety/legal context. Preserving it prevents entity loss and satisfies the marker-preservation requirement.\",\n      \"visible_effect\": \"Defines the entire public answer.\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"structural_delta\": [],\n        \"reframed_emphasis\": []\n      }\n    },\n    {\n      \"source_id\": \"deck_pressure_candidate\",\n      \"disposition\": \"rejected\",\n      \"novelty_role\": \"private_guardrail\",\n      \"why\": \"The candidate is abstract ('concerning signals,' 'more dangerous') and lacks concrete delta. Adopting it would displace the anchor's specific tripwires and named resources, causing entity loss. The pre-registered expectation for this negative-control case is that deck pressure should stand down unless a concrete delta exists; none is present.\",\n      \"visible_effect\": \"none\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"structural_delta\": [],\n        \"reframed_emphasis\": []\n      }\n    }\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 645,
+    "completion_tokens": 3308,
+    "total_tokens": 3953,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 2930,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter",
+    "model_family": "moonshotai"
+  },
+  "input_packet": {
+    "case_brief": "Sensitive parent/minor case where the anchor contains named resources and concrete tripwire entities. The probe tests marker preservation while specific entities disappear.",
+    "case_type_tags": [
+      "sensitive_safety_legal",
+      "negative_control"
+    ],
+    "pre_registered_expectation": "deck_pressure_should_stand_down_unless_concrete_delta_exists",
+    "v60_mode": "not_applicable",
+    "v60_private_context": "",
+    "anchor_visible_candidate": "Talk with RAINN, a therapist, or counsel before deciding whether to report. Keep the phone channel open unless a concrete tripwire fires: a request to meet, sexual images, threats, evidence of other minors, migration to hidden channels, or your daughter saying she feels pressured or afraid.",
+    "deck_pressure_candidate": "Use a safety-first plan with professional support. Keep trust central, monitor for concerning signals, preserve communication boundaries, and escalate if the situation becomes more dangerous. Do not treat quiet behavior as proof that risk has disappeared."
+  },
+  "step6_output": {
+    "answer_core": "Talk with RAINN, a therapist, or counsel before deciding whether to report. Keep the phone channel open unless a concrete tripwire fires: a request to meet, sexual images, threats, evidence of other minors, migration to hidden channels, or your daughter saying she feels pressured or afraid.",
+    "private_visibility_ledger": [
+      {
+        "source_id": "anchor_visible_candidate",
+        "disposition": "used",
+        "novelty_role": "visible_backbone",
+        "why": "It contains the concrete named resources (RAINN, therapist, counsel), the explicit tripwire list, and the conditional keep-open/unlock structure required for this sensitive safety/legal context. Preserving it prevents entity loss and satisfies the marker-preservation requirement.",
+        "visible_effect": "Defines the entire public answer.",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [],
+          "removed_entities": [],
+          "reordered_sequences": [],
+          "structural_delta": []
+        }
+      },
+      {
+        "source_id": "deck_pressure_candidate",
+        "disposition": "rejected",
+        "novelty_role": "private_guardrail",
+        "why": "The candidate is abstract ('concerning signals,' 'more dangerous') and lacks concrete delta. Adopting it would displace the anchor's specific tripwires and named resources, causing entity loss. The pre-registered expectation for this negative-control case is that deck pressure should stand down unless a concrete delta exists; none is present.",
+        "visible_effect": "none",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [],
+          "removed_entities": [],
+          "reordered_sequences": [],
+          "structural_delta": []
+        }
+      }
+    ]
+  },
+  "ledger_signal": "all_private_or_confirming",
+  "answer_delta_specificity": "not_applicable",
+  "deterministic_role": [
+    "validate_calibration_case",
+    "derive_ledger_signal",
+    "derive_answer_delta_specificity",
+    "preserve_repeated_sample_custody"
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live research-only Step 6 calibration sample."
+}

@@ -1,0 +1,59 @@
+{
+  "schema_version": "pre_step6_hybrid_vs_raw_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "third-year-phd-student",
+  "raw_answer_core_ref": "research/pre-step6-raw-artifact-answer-cores/third-year-phd-student.raw-answer-core.v1.json",
+  "pressure_answer_core_ref": "research/pre-step6-pressure-card-answer-cores/third-year-phd-student.native.pressure-answer-core.v1.json",
+  "hybrid_answer_core_ref": "research/pre-step6-hybrid-answer-cores/third-year-phd-student.native.hybrid-answer-core.v1.json",
+  "criteria": [
+    {
+      "criterion_id": "political_sequence",
+      "question": "Does the answer preserve advisor-first sequencing and avoid going around the advisor?",
+      "winner": "tie",
+      "raw_evidence": "Raw says advisor first, Silva second, committee third and warns against a finished proposal.",
+      "pressure_evidence": "Pressure keeps advisor first, Silva as reality check, committee later, and warns against a finished proposal.",
+      "hybrid_evidence": "Hybrid keeps Silva as a low-cost reality check until advisor consultation and warns against a finished proposal.",
+      "rationale": "All three preserve the political sequence."
+    },
+    {
+      "criterion_id": "fallback_executability",
+      "question": "Does the answer make fallback executability a real condition before a pivot?",
+      "winner": "hybrid",
+      "raw_evidence": "Raw says option 1 must still have supervision, funding, and lab continuity when the trigger fires.",
+      "pressure_evidence": "Pressure adds advisor-backed, resourced, technically ready, identity-coherent, and stop-loss criteria.",
+      "hybrid_evidence": "Hybrid preserves the pressure criteria and asks the advisor what support, time, resources, authorship expectations, and fallback remain available.",
+      "rationale": "Hybrid keeps the stronger pressure-card gate while making the advisor probe more concrete."
+    },
+    {
+      "criterion_id": "silva_data_constraint",
+      "question": "Does the answer make Silva/data access a concrete constraint test?",
+      "winner": "hybrid",
+      "raw_evidence": "Raw asks for usable data, sharing terms, and collaborator depth.",
+      "pressure_evidence": "Pressure asks for dated evidence that data is usable, access is allowed, and collaboration is deep enough.",
+      "hybrid_evidence": "Hybrid asks what data exists, what access exists, on what date, under whose approval, and what analysis is feasible quickly enough.",
+      "rationale": "Hybrid gives the most operational version of the data constraint."
+    },
+    {
+      "criterion_id": "base_rate_humility",
+      "question": "Does the answer preserve caution around broad success-rate claims?",
+      "winner": "tie",
+      "raw_evidence": "Raw explicitly keeps broad success-rate talk qualitative without a real reference class.",
+      "pressure_evidence": "Pressure omits this caution.",
+      "hybrid_evidence": "Hybrid restores that broad success-rate claims are humility checks, not calibrated probabilities, unless the setting is closely comparable.",
+      "rationale": "Hybrid recovers the raw nuance that pressure-only lost."
+    },
+    {
+      "criterion_id": "attention_load",
+      "question": "Does the answer stay compact while preserving the useful pressure?",
+      "winner": "tie",
+      "raw_evidence": "Raw is compact and decision-focused.",
+      "pressure_evidence": "Pressure is compact but dropped base-rate nuance.",
+      "hybrid_evidence": "Hybrid is longer but still under cap and integrates the missing nuance without public machinery.",
+      "rationale": "Neither raw nor hybrid clearly dominates on public readability."
+    }
+  ],
+  "tie_break_rule": "hybrid_tie_with_raw_stops",
+  "aggregate_decision": "hybrid_wins",
+  "notes": "Hybrid wins by combining pressure-card fallback/data gates with raw base-rate humility."
+}

@@ -1,0 +1,75 @@
+{
+  "schema_version": "pre_step6_cognitive_gate_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mother-address-year",
+  "gate_kind": "live_small_cognitive_comparison",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"winner_label\": \"A\",\n  \"promotion_read\": \"retest\",\n  \"confidence\": \"medium\",\n  \"rationale\": \"Candidate A provides the most robust framework for Step 6 by explicitly categorizing the decision-making process into distinct, manageable domains (legal, therapeutic, parental, and technical). It avoids the repetitive 'safety-first' mantra found in B, C, and D, instead offering a more nuanced view of how to handle the 'quiet' period as a strategic variable rather than just a signal to be ignored.\",\n  \"improvements\": [\n    \"Introduces the concept of 'separate choices' which prevents the user from feeling forced into a binary (act vs. wait) decision.\",\n    \"Explicitly frames the risk of 'less visible places' (the 'displacement' risk), which is a critical cognitive input for Step 6 to consider regarding the consequences of intervention.\",\n    \"Provides a clearer distinction between the goal of safety and the goal of rebuilding honesty.\"\n  ],\n  \"regressions_or_watch_items\": [\n    \"The advice to 'talk with RAINN' is standard, but Step 6 needs to ensure this doesn't become a generic placeholder for actual professional engagement.\",\n    \"The 'tripwire' list is consistent across candidates, but A's framing of these as 'reversible' is a helpful cognitive anchor.\"\n  ],\n  \"stand_down_reason\": \"Not a stand-down because the framing of 'displacement risk' (the idea that intervention might push the contact to more dangerous, hidden channels) is a high-value cognitive addition that the other candidates missed.\",\n  \"composition_note\": \"Use A as the primary structural template for Step 6, incorporating the 'tripwire' list from C/D if necessary, but prioritize A's modular approach to the problem.\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 2023,
+    "completion_tokens": 397,
+    "total_tokens": 2420,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter"
+  },
+  "candidate_refs": {
+    "rendered_hybrid": "research/pre-step6-rendered-hybrid-answer-cores/mother-address-year.native.rendered-hybrid-answer-core.v1.json",
+    "portfolio_base": "research/pre-step6-portfolio-answer-cores/mother-address-year.native.portfolio-answer-core.v1.json",
+    "bevelin_lens": "research/pre-step6-lens-answer-cores/mother-address-year.bevelin-answer-core.v1.json",
+    "polya_lens": "research/pre-step6-lens-answer-cores/mother-address-year.polya-answer-core.v1.json"
+  },
+  "blind_map": {
+    "A": "rendered_hybrid",
+    "B": "bevelin_lens",
+    "C": "polya_lens",
+    "D": "portfolio_base"
+  },
+  "reviewer_output": {
+    "winner_label": "A",
+    "promotion_read": "retest",
+    "confidence": "medium",
+    "rationale": "Candidate A provides the most robust framework for Step 6 by explicitly categorizing the decision-making process into distinct, manageable domains (legal, therapeutic, parental, and technical). It avoids the repetitive 'safety-first' mantra found in B, C, and D, instead offering a more nuanced view of how to handle the 'quiet' period as a strategic variable rather than just a signal to be ignored.",
+    "improvements": [
+      "Introduces the concept of 'separate choices' which prevents the user from feeling forced into a binary (act vs. wait) decision.",
+      "Explicitly frames the risk of 'less visible places' (the 'displacement' risk), which is a critical cognitive input for Step 6 to consider regarding the consequences of intervention.",
+      "Provides a clearer distinction between the goal of safety and the goal of rebuilding honesty."
+    ],
+    "regressions_or_watch_items": [
+      "The advice to 'talk with RAINN' is standard, but Step 6 needs to ensure this doesn't become a generic placeholder for actual professional engagement.",
+      "The 'tripwire' list is consistent across candidates, but A's framing of these as 'reversible' is a helpful cognitive anchor."
+    ],
+    "stand_down_reason": "Not a stand-down because the framing of 'displacement risk' (the idea that intervention might push the contact to more dangerous, hidden channels) is a high-value cognitive addition that the other candidates missed.",
+    "composition_note": "Use A as the primary structural template for Step 6, incorporating the 'tripwire' list from C/D if necessary, but prioritize A's modular approach to the problem."
+  },
+  "static_expectation": {
+    "allowed_winner_arms": [
+      "portfolio_base",
+      "bevelin_lens",
+      "polya_lens",
+      "tie"
+    ],
+    "allowed_promotion_reads": [
+      "retest"
+    ]
+  },
+  "agreement": {
+    "winner_matches_static": false,
+    "promotion_matches_static": true,
+    "overall_match": false
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live small cognitive comparison. Research-only artifact; it records reviewer agreement or disagreement with static expectations."
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": "pre_step6_lens_step6_replay.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "founder-grant-marcus-equity.high-clutter",
+  "replay_mode": "bevelin_lens_static_replay",
+  "source_attention_map": "research/pre-step6-attention-maps/founder-grant-marcus-equity.high-clutter.step6-attention-map.v1.json",
+  "source_attention_map_render_sha256": "a201226fb50033729f95b8f4bc6cddde2251d27664b18d5bb8239529f1bfed50",
+  "source_lens_answer_core": "research/pre-step6-lens-answer-cores/founder-grant-marcus-equity.high-clutter.bevelin-answer-core.v1.json",
+  "prior_portfolio_replay": "research/pre-step6-portfolio-step6-replays/founder-grant-marcus-equity.high-clutter.portfolio-step6-replay.v1.json",
+  "lens_comparison_ref": "research/pre-step6-lens-comparisons/founder-grant-marcus-equity.high-clutter.bevelin-comparison.v1.json",
+  "cognitive_gate": {
+    "judgment_mode": "human_static_research_judgment",
+    "cognitive_question": "Did the lens improve the Step 6 replay answer enough to preserve more useful edge pressure without adding public bloat or narrowing the decision too early?",
+    "cognitive_inputs": [
+      "Rendered attention map for the founder high-clutter case.",
+      "Base portfolio Step 6 replay answer.",
+      "Bevelin v0 lens answer core.",
+      "Bevelin v0 local comparison fixture."
+    ],
+    "deterministic_checks": [
+      "Validate source refs, hashes, fixture schemas, expected inclusions, expected exclusions, public hygiene, and promotion blocks.",
+      "Ensure runtime wiring and skill updates remain false.",
+      "Ensure the cognitive judgment is recorded as a private research judgment rather than inferred from a score."
+    ],
+    "cognitive_judgment": [
+      "The lens replay is better because it names the incentive and dependency-system change created by granting equity and governance rights.",
+      "The replay still preserves the previous useful answer shape: no Friday grant, no vague no, staged evidence path, middle-path availability, and false-precision caution.",
+      "The replay does not expose private labels or turn the answer into an ownership-instrument catalog."
+    ],
+    "why_this_is_not_deterministic": "The code validates custody, hygiene, and consistency; it does not infer quality. Quality is judged by a cognitive reviewer comparing the answer's usefulness, edge preservation, public burden, and pruning risk."
+  },
+  "replay_answer": "I would not grant Marcus 15% equity, CTO title, and governance rights on Friday. That is too permanent before you know what system you are creating.\n\nThe question is not only price or whether Marcus is valuable. The package would change the company's incentive and dependency system. You need to know whether Marcus makes the company stronger beyond himself, or whether he becomes the center of a new dependency.\n\nBut Friday should not be a vague no or flat rejection. Make it a serious staged path: major upside and authority may be possible after evidence. The evidence window should test platform delivery, revenue relevance, client continuity, team dependence, knowledge transfer, and governance behavior.\n\nKeep the middle path alive without turning the meeting into a catalog. The distinction is commitment after proof versus irreversible commitment before proof.\n\nUse exit math only as a warning about false precision. Until buyer assumptions, departure scenarios, and platform value are tested, numbers should not carry the ownership decision.\n\nFriday message: I want to explore a serious path with you, but I cannot grant irreversible ownership and governance rights before we prove what this partnership does to the company.",
+  "expected_inclusions": [
+    "would not grant Marcus 15% equity",
+    "incentive and dependency system",
+    "makes the company stronger beyond himself",
+    "vague no or flat rejection",
+    "serious staged path",
+    "platform delivery",
+    "knowledge transfer",
+    "commitment after proof versus irreversible commitment before proof",
+    "false precision",
+    "numbers should not carry the ownership decision"
+  ],
+  "expected_exclusions": [
+    "attention map",
+    "portfolio",
+    "artifact",
+    "bundle",
+    "worker",
+    "bevelin",
+    "munger",
+    "lens pack",
+    "lens probe",
+    "V60",
+    "$9-13M",
+    "4-6x",
+    "buyer multiples",
+    "phantom equity",
+    "revenue share",
+    "technical architecture"
+  ],
+  "comparison_vs_prior_replay": {
+    "winner": "lens_replay",
+    "rationale": "The prior portfolio replay already gave a strong staged path, but the lens replay more directly names the incentive and dependency-system change that makes the Friday package dangerous.",
+    "improvements": [
+      "Adds the incentive-system frame without adding an instrument catalog.",
+      "Keeps the company-stronger-beyond-him test central.",
+      "Preserves false-precision caution and irreversible-commitment timing."
+    ],
+    "regressions_or_watch_items": [
+      "The prior portfolio replay more explicitly mentioned disengagement risk.",
+      "This remains a static research replay, not a live runtime result."
+    ]
+  },
+  "gates": {
+    "attention_map_loaded": true,
+    "lens_answer_core_validated": true,
+    "prior_replay_loaded": true,
+    "lens_comparison_validated": true,
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "outcome": {
+    "replay_decision": "pass_to_polya_comparison",
+    "product_promotion": "blocked",
+    "next_step": "Retain Bevelin v0 as research-only enrichment and compare with a Polya problem-shape lens before any integration discussion."
+  },
+  "notes": "Research-only Bevelin static replay for the founder high-clutter case. It passes to the next lens comparison stage, not product promotion."
+}

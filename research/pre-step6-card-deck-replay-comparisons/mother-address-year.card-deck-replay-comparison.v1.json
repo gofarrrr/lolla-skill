@@ -1,0 +1,52 @@
+{
+  "schema_version": "pre_step6_card_deck_replay_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mother-address-year",
+  "comparison_kind": "clean_hybrid_vs_card_deck_replay",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\"winner_label\":\"B\",\"confidence\":\"high\",\"rationale\":\"Both are strong and nearly parallel, but B is slightly clearer and more concise without losing nuance or usefulness.\",\"visible_improvements\":[\"More concise phrasing while retaining all key decision‑making structure.\",\"Slightly clearer articulation of tripwires and reporting considerations.\"],\"visible_regressions_or_bloat\":[\"None; no added bloat or leakage.\"],\"recommendation\":\"Favor the stylistic approach of B for future iterations—concise, clear, and still nuanced.\"}",
+    "temperature": 0.2,
+    "prompt_tokens": 732,
+    "completion_tokens": 154,
+    "total_tokens": 886,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter"
+  },
+  "candidate_refs": {
+    "clean_hybrid": "research/pre-step6-rendered-hybrid-answer-cores/mother-address-year.native.rendered-hybrid-answer-core.v1.json",
+    "card_deck_replay": "research/pre-step6-card-deck-replays/mother-address-year.card-deck-replay.v1.json"
+  },
+  "blind_map": {
+    "A": "card_deck_replay",
+    "B": "clean_hybrid"
+  },
+  "reviewer_output": {
+    "winner_label": "B",
+    "deck_effect": "regresses",
+    "confidence": "high",
+    "rationale": "Both are strong and nearly parallel, but B is slightly clearer and more concise without losing nuance or usefulness.",
+    "visible_improvements": [
+      "More concise phrasing while retaining all key decision‑making structure.",
+      "Slightly clearer articulation of tripwires and reporting considerations."
+    ],
+    "visible_regressions_or_bloat": [
+      "None; no added bloat or leakage."
+    ],
+    "recommendation": "Favor the stylistic approach of B for future iterations—concise, clear, and still nuanced."
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live research comparison of clean hybrid vs card-deck Step 6 replay."
+}

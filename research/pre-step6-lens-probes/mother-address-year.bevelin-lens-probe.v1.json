@@ -1,0 +1,80 @@
+{
+  "schema_version": "pre_step6_lens_probe.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mother-address-year",
+  "lens_pack": "bevelin_seeking_wisdom_v0",
+  "source_refs": [
+    "/Users/marcin/Desktop/ksiazki pdf/outbox/ready/01_Mental_Models_Thinking/Peter Bevelin - Seeking Wisdom.md",
+    "research/pre-step6-attention-maps/mother-address-year.step6-attention-map.v1.json",
+    "research/pre-step6-raw-artifact-fixtures/mother-address-year.raw-artifact-handoff.v1.json"
+  ],
+  "problem_state_ref": "research/pre-step6-problem-states/mother-address-year.problem-state.v1.json",
+  "attention_map_ref": "research/pre-step6-attention-maps/mother-address-year.step6-attention-map.v1.json",
+  "lens_candidates": [
+    {
+      "lens_id": "bevelin_absence_of_evidence",
+      "lens_name": "absence of evidence and disconfirmation",
+      "why_it_might_matter": "Quiet monitoring can feel reassuring even though silence in a visible channel is weak evidence.",
+      "source_hooks": [
+        "Bevelin-style evidence and disconfirmation caution.",
+        "Attention map active silence gate."
+      ],
+      "supported_by_artifact_ids": [
+        "mother_surveillance_instrument_trust_gate"
+      ],
+      "cheap_test_for_step6": "Check whether the answer treats quiet as safety.",
+      "risk_if_forced": "The answer may become too alarmist.",
+      "risk_if_ignored": "The answer may falsely reassure the user.",
+      "suggested_attention": "scan",
+      "false_friend_warning": "Do not infer current danger either; keep quiet as weak evidence."
+    },
+    {
+      "lens_id": "bevelin_authority_and_missing_guidance",
+      "lens_name": "authority, expertise, and missing guidance",
+      "why_it_might_matter": "Professional guidance can be important, but the system must not invent that guidance or make the answer depend on it already existing.",
+      "source_hooks": [
+        "Bevelin-style respect for evidence boundaries.",
+        "Attention map negative-space receipt for missing professional guidance."
+      ],
+      "supported_by_artifact_ids": [
+        "mother_missing_professional_guidance"
+      ],
+      "cheap_test_for_step6": "Check whether the answer recommends guidance without assuming it exists.",
+      "risk_if_forced": "The answer may become vague and outsource all judgment.",
+      "risk_if_ignored": "The answer may overclaim beyond known facts.",
+      "suggested_attention": "scan",
+      "false_friend_warning": "Do not use authority as a way to avoid giving bounded practical guidance."
+    },
+    {
+      "lens_id": "bevelin_fear_and_availability",
+      "lens_name": "fear, availability, and overreaction risk",
+      "why_it_might_matter": "Safety-sensitive facts can make vivid scenarios dominate, so Step 6 should preserve tripwires without inventing probabilities.",
+      "source_hooks": [
+        "Bevelin-style fear and availability caution.",
+        "Portfolio answer core tripwire framing."
+      ],
+      "supported_by_artifact_ids": [
+        "mother_current_safety_signals_unknown"
+      ],
+      "cheap_test_for_step6": "Check whether the answer uses concrete tripwires rather than probability claims.",
+      "risk_if_forced": "The answer may become a catalog of frightening scenarios.",
+      "risk_if_ignored": "The answer may understate why quiet is not enough.",
+      "suggested_attention": "parked",
+      "false_friend_warning": "Do not add unsupported grooming or risk probabilities."
+    }
+  ],
+  "off_narrative_preservation": {
+    "lens_id": "bevelin_family_power_dynamics_parked",
+    "why_preserve_even_if_not_obvious": "Family power dynamics could matter, but making them active risks turning a safety answer into a broad family-system essay.",
+    "preserve_as": "parked",
+    "reactivate_if": "Reactivate only if Step 6 starts using leverage, secrecy, or family-system claims.",
+    "risk_if_forced": "The answer may overburden a humane safety response."
+  },
+  "do_not_force": [
+    "Do not expose Bevelin or Munger labels in the public answer.",
+    "Do not turn weak evidence into reassurance or danger certainty.",
+    "Do not add broad family-system analysis unless the answer drifts there."
+  ],
+  "notes": "Bevelin v0 negative-control probe for humane weak-evidence handling. The probe should preserve caution without making the answer heavier."
+}

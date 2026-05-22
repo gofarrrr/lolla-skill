@@ -1,0 +1,51 @@
+{
+  "schema_version": "pre_step6_partitioned_reviewer_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_partitioned_reviewer_phase_v0",
+  "partition_case_id": "startup-pivot-new-run2.sample-0.stable-positive",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"review_label\": \"step6_better\",\n  \"winner_label\": \"A\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Answer A provides the necessary context and nuance for the founder to execute the suggested actions. Answer B is a summary that strips away the 'why' and the specific guidance on how to handle the competitive/migration risk, which were identified as critical additions in the experiment. Answer A is actionable and comprehensive without being bloated.\",\n  \"step6_value_if_any\": [\n    \"Includes explicit due diligence steps (competitive check and migration cost) as go/no-go inputs.\",\n    \"Provides clear, professional framing for the co-founder relationship, distinguishing between courtesy notification and strategic veto power.\"\n  ],\n  \"anchor_strengths\": [\n    \"High-density summary for quick scanning.\"\n  ],\n  \"payload_loss_or_bloat\": [\n    \"Answer B suffers from significant payload loss by omitting the rationale for the competitive and migration checks, which are essential for a founder making a high-stakes pivot decision.\"\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 1221,
+    "completion_tokens": 241,
+    "total_tokens": 1462,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter",
+    "model_family": "google"
+  },
+  "blind_map": {
+    "A": "step6_visible",
+    "B": "anchor_visible"
+  },
+  "reviewer_output": {
+    "review_label": "step6_better",
+    "winner_label": "A",
+    "confidence": "high",
+    "rationale": "Answer A provides the necessary context and nuance for the founder to execute the suggested actions. Answer B is a summary that strips away the 'why' and the specific guidance on how to handle the competitive/migration risk, which were identified as critical additions in the experiment. Answer A is actionable and comprehensive without being bloated.",
+    "step6_value_if_any": [
+      "Includes explicit due diligence steps (competitive check and migration cost) as go/no-go inputs.",
+      "Provides clear, professional framing for the co-founder relationship, distinguishing between courtesy notification and strategic veto power."
+    ],
+    "anchor_strengths": [
+      "High-density summary for quick scanning."
+    ],
+    "payload_loss_or_bloat": [
+      "Answer B suffers from significant payload loss by omitting the rationale for the competitive and migration checks, which are essential for a founder making a high-stakes pivot decision."
+    ]
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample partitioned reviewer judgment."
+}

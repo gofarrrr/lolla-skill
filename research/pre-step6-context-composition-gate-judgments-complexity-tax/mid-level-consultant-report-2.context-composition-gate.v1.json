@@ -1,0 +1,69 @@
+{
+  "schema_version": "pre_step6_context_composition_gate_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mid-level-consultant-report-2",
+  "gate_kind": "live_context_composition_comparison",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"winner_label\": \"A\",\n  \"research_action\": \"stop\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Packet A is the most efficient, adhering strictly to the 'smallest sufficient packet' rule. The primary anchor already contains the necessary instructions regarding counsel-first strategy, behavioral constraints, and the specific intake questions for attorneys. The enrichment receipts in B, C, and D are redundant restatements of the anchor's existing logic, adding unnecessary complexity tax without introducing novel decision pressure.\",\n  \"protected_value\": [\n    \"Preserves the core directive of independent counsel-first strategy.\",\n    \"Maintains the integrity of the behavioral instructions for the Wednesday encounter.\"\n  ],\n  \"bloat_or_pruning_risk\": [\n    \"Packets B, C, and D introduce bloat by restating the anchor's content as 'receipts'.\",\n    \"Packet A avoids the risk of over-explaining, which could lead to cognitive drift in Step 6.\"\n  ],\n  \"composition_note\": \"Step 6 should treat the primary anchor as the definitive source of truth and ignore the redundant metadata found in the other candidates.\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 2132,
+    "completion_tokens": 259,
+    "total_tokens": 2391,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter"
+  },
+  "candidate_refs": {
+    "rendered_hybrid": "research/pre-step6-rendered-hybrid-answer-cores/mid-level-consultant-report-2.native.rendered-hybrid-answer-core.v1.json",
+    "bevelin_lens": "research/pre-step6-lens-answer-cores/mid-level-consultant-report-2.bevelin-answer-core.v1.json",
+    "polya_lens": "research/pre-step6-lens-answer-cores/mid-level-consultant-report-2.polya-answer-core.v1.json"
+  },
+  "blind_map": {
+    "A": "rendered_only",
+    "B": "rendered_plus_polya_receipts",
+    "C": "rendered_plus_bevelin_receipts",
+    "D": "rendered_plus_dual_receipts"
+  },
+  "reviewer_output": {
+    "winner_label": "A",
+    "research_action": "stop",
+    "confidence": "high",
+    "rationale": "Packet A is the most efficient, adhering strictly to the 'smallest sufficient packet' rule. The primary anchor already contains the necessary instructions regarding counsel-first strategy, behavioral constraints, and the specific intake questions for attorneys. The enrichment receipts in B, C, and D are redundant restatements of the anchor's existing logic, adding unnecessary complexity tax without introducing novel decision pressure.",
+    "protected_value": [
+      "Preserves the core directive of independent counsel-first strategy.",
+      "Maintains the integrity of the behavioral instructions for the Wednesday encounter."
+    ],
+    "bloat_or_pruning_risk": [
+      "Packets B, C, and D introduce bloat by restating the anchor's content as 'receipts'.",
+      "Packet A avoids the risk of over-explaining, which could lead to cognitive drift in Step 6."
+    ],
+    "composition_note": "Step 6 should treat the primary anchor as the definitive source of truth and ignore the redundant metadata found in the other candidates."
+  },
+  "static_expectation": {
+    "allowed_winner_arms": [
+      "rendered_only"
+    ],
+    "allowed_research_actions": [
+      "stop"
+    ]
+  },
+  "agreement": {
+    "winner_matches_static": true,
+    "action_matches_static": true,
+    "overall_match": true
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live context-composition comparison. Research-only artifact; it tests whether protected private receipts improve a rendered-hybrid anchor."
+}

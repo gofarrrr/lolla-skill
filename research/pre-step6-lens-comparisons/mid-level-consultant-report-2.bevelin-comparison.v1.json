@@ -1,0 +1,132 @@
+{
+  "schema_version": "pre_step6_lens_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "bevelin_v0_fixed_suite",
+  "case_id": "mid-level-consultant-report-2",
+  "comparison_kind": "bevelin_lens_local_rubric",
+  "lens_pack": "bevelin_seeking_wisdom_v0",
+  "candidate_refs": {
+    "rendered_hybrid_answer_core": "research/pre-step6-rendered-hybrid-answer-cores/mid-level-consultant-report-2.native.rendered-hybrid-answer-core.v1.json",
+    "portfolio_base_answer_core": "research/pre-step6-portfolio-answer-cores/mid-level-consultant-report-2.native.portfolio-answer-core.v1.json",
+    "lens_answer_core": "research/pre-step6-lens-answer-cores/mid-level-consultant-report-2.bevelin-answer-core.v1.json",
+    "lens_probe": "research/pre-step6-lens-probes/mid-level-consultant-report-2.bevelin-lens-probe.v1.json"
+  },
+  "criteria": [
+    {
+      "criterion_id": "decision_usefulness",
+      "question": "Which answer gives the safest first-move sequence?",
+      "winner_arm": "rendered_hybrid",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Best counsel-first sequence with Wednesday protocol and calibrated fear line.",
+        "portfolio_base": "Reproduces the same sequence cleanly.",
+        "lens": "Adds channel-bias and fear language, but the action order is not better."
+      },
+      "rationale": "The previous rendered hybrid is already the strongest practical answer."
+    },
+    {
+      "criterion_id": "source_grounding",
+      "question": "Which answer stays inside the captured facts and legal-risk constraints?",
+      "winner_arm": "tie",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Grounded in counsel-first and Wednesday behavior pressure.",
+        "portfolio_base": "Grounded in the same pressure.",
+        "lens": "Grounded and does not invent a reporting channel."
+      },
+      "rationale": "No candidate invents facts."
+    },
+    {
+      "criterion_id": "overclaim_risk",
+      "question": "Which answer best avoids premature legal or reporting claims?",
+      "winner_arm": "rendered_hybrid",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Most clearly lets counsel choose the safest path.",
+        "portfolio_base": "Also defers channel choice to counsel.",
+        "lens": "Counsel-first remains, but channel-bias questions add a little more material."
+      },
+      "rationale": "Rendered hybrid is cleaner under legal uncertainty."
+    },
+    {
+      "criterion_id": "answer_length_cognitive_load",
+      "question": "Which answer is easiest to execute under stress?",
+      "winner_arm": "rendered_hybrid",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Compact and already includes stress calibration.",
+        "portfolio_base": "Compact but mostly duplicate.",
+        "lens": "Still compact, but adds another intake concept."
+      },
+      "rationale": "The lens does not simplify the case."
+    },
+    {
+      "criterion_id": "machinery_hygiene",
+      "question": "Which answer avoids private system terms?",
+      "winner_arm": "tie",
+      "evidence_by_arm": {
+        "rendered_hybrid": "No private system terms.",
+        "portfolio_base": "No private system terms.",
+        "lens": "No private system terms."
+      },
+      "rationale": "All public answers are clean."
+    },
+    {
+      "criterion_id": "conflict_preservation",
+      "question": "Which answer best preserves counsel-first versus channel-choice tension?",
+      "winner_arm": "rendered_hybrid",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Names channel options while leaving choice to counsel.",
+        "portfolio_base": "Preserves the same tension.",
+        "lens": "Preserves the tension but does not improve the sequence."
+      },
+      "rationale": "Rendered hybrid remains the best expression of the tension."
+    },
+    {
+      "criterion_id": "edge_pressure_preservation",
+      "question": "Which answer best preserves the useful edge without overusing it?",
+      "winner_arm": "lens",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Preserves the main legal edge.",
+        "portfolio_base": "Preserves counsel-first and Wednesday edges.",
+        "lens": "Adds a useful attorney-incentive question without changing the action order."
+      },
+      "rationale": "The lens contributes a small edge, but not enough to beat the simpler answer."
+    },
+    {
+      "criterion_id": "breadth_depth_preservation",
+      "question": "Which answer preserves enough breadth for Step 6?",
+      "winner_arm": "tie",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Wide enough for the task and focused enough for safety.",
+        "portfolio_base": "Carries similar breadth.",
+        "lens": "Carries slightly more attorney-selection texture."
+      },
+      "rationale": "Extra breadth is available, but not decisive."
+    },
+    {
+      "criterion_id": "premature_pruning_risk",
+      "question": "Which answer least risks deleting useful but non-obvious material?",
+      "winner_arm": "tie",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Keeps the main reversible first moves.",
+        "portfolio_base": "Keeps the same first moves.",
+        "lens": "Keeps attorney-incentive material available."
+      },
+      "rationale": "The case is already narrow enough because safety and counsel dominate."
+    },
+    {
+      "criterion_id": "negative_control_discipline",
+      "question": "Does the lens stand down when rendered hybrid is already sufficient?",
+      "winner_arm": "rendered_hybrid",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Wins by remaining clean and executable.",
+        "portfolio_base": "Correctly does not over-expand.",
+        "lens": "Useful edge exists, but it should stay private or optional."
+      },
+      "rationale": "This is the negative-control success: the lens should not promote."
+    }
+  ],
+  "tie_break_rule": "lens_must_add_edge_without_pruning",
+  "aggregate_winner_arm": "rendered_hybrid",
+  "aggregate_decision": "lens_boundary_case",
+  "promotion_read": "stop",
+  "notes": "Consultant remains a stand-down case. The lens found one useful edge, but rendered hybrid is still cleaner and safer."
+}

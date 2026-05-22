@@ -1,0 +1,53 @@
+{
+  "schema_version": "pre_step6_answer_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mother-deciding-address-year",
+  "control_answer_core": "I would not make one giant decision tonight. Split it into police/professional guidance, phone and blocking, co-parent communication, therapy, and trust repair.\n\nDo not block immediately just to feel safer, because contact may move underground. Keep the relationship repair central, talk with RAINN or a therapist about escalation, and use behavior triggers rather than a calendar: requests to meet, images, threats, escalating secrecy, or contact with other minors should change the plan.\n\nWith your ex, give enough outside context to counter minimization, but do not send screenshots or verbatim messages that can be reframed back to your daughter. The goal is safety plus a path back to honesty, not punishment for its own sake.",
+  "raw_answer_core_ref": "research/pre-step6-raw-artifact-answer-cores/mother-address-year.raw-answer-core.v1.json",
+  "criteria": [
+    {
+      "criterion_id": "safety_trust_sequence",
+      "question": "Does the answer preserve the safety/trust sequence?",
+      "winner": "tie",
+      "control_evidence": "Control splits decisions, keeps repair central, and avoids immediate blocking.",
+      "raw_evidence": "Raw keeps the slow-repair plan and trigger-based escalation.",
+      "rationale": "Both preserve the core current-control strength."
+    },
+    {
+      "criterion_id": "instrument_trust",
+      "question": "Does the answer warn that quiet monitoring is weak evidence?",
+      "winner": "raw",
+      "control_evidence": "Control says blocking may move contact underground but does not audit silence in monitored channels.",
+      "raw_evidence": "Raw says quiet phone monitoring should not reassure too much and silence in the visible channel is weak evidence.",
+      "rationale": "Raw adds the missing instrument-trust warning."
+    },
+    {
+      "criterion_id": "tripwire_sizing",
+      "question": "Does the answer tie commitments to explicit safety triggers?",
+      "winner": "raw",
+      "control_evidence": "Control names behavior triggers in general.",
+      "raw_evidence": "Raw names the slow path's conditions and says the plan changes immediately if triggers appear.",
+      "rationale": "Raw makes commitment sizing sharper."
+    },
+    {
+      "criterion_id": "ex_information_guard",
+      "question": "Does the answer preserve the ex communication guard?",
+      "winner": "tie",
+      "control_evidence": "Control says do not send screenshots or verbatim messages.",
+      "raw_evidence": "Raw says share enough context but not screenshots or verbatim content.",
+      "rationale": "Both preserve the information-weaponization guard."
+    },
+    {
+      "criterion_id": "leverage_decline",
+      "question": "Does the answer avoid leverage framing?",
+      "winner": "raw",
+      "control_evidence": "Control does not use leverage framing, but does not explicitly reject it.",
+      "raw_evidence": "Raw says not to turn this into a leverage strategy with the daughter or ex.",
+      "rationale": "Raw makes the no-worker/no-lens decision visible in public judgment."
+    }
+  ],
+  "tie_break_rule": "raw_tie_with_control_stops",
+  "aggregate_decision": "raw_wins",
+  "notes": "Strict local rubric comparison; not a blind model judgment."
+}

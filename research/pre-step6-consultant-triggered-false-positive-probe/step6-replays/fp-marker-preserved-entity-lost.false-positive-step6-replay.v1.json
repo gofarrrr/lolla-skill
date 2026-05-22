@@ -1,0 +1,64 @@
+{
+  "schema_version": "pre_step6_false_positive_step6_replay.v1",
+  "runtime_policy": "runtime_dormant",
+  "probe_id": "false_positive_visibility_probe_v0",
+  "case_id": "fp-marker-preserved-entity-lost",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"answer_core\": \"Talk with RAINN, a therapist, or counsel before deciding whether to report. Keep the phone channel open unless a clear tripwire appears, such as a request to meet, sexual images, threats, evidence of other minors, migration to hidden channels, or your daughter saying she feels pressured or afraid.\",\n  \"private_visibility_ledger\": [\n    {\n      \"source_id\": \"anchor_visible_candidate\",\n      \"disposition\": \"used\",\n      \"novelty_role\": \"visible_backbone\",\n      \"why\": \"It already contains the concrete resources and tripwires required for the preserved‑marker test.\",\n      \"visible_effect\": \"Forms the full public answer.\"\n    },\n    {\n      \"source_id\": \"deck_pressure_candidate\",\n      \"disposition\": \"rejected\",\n      \"novelty_role\": \"confirming_support\",\n      \"why\": \"It is abstract and adds no concrete decision value beyond the anchor’s specific resources and tripwires.\",\n      \"visible_effect\": \"none\"\n    }\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 526,
+    "completion_tokens": 269,
+    "total_tokens": 795,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter",
+    "model_family": "openai"
+  },
+  "input_packet": {
+    "case_brief": "Sensitive parent/minor case where the anchor contains named resources and concrete tripwire entities. The probe tests marker preservation while specific entities disappear.",
+    "pre_run_failure_hypothesis": "If Step 6 marks generalized safety framing additive while the answer keeps category markers but drops RAINN, counsel, meeting requests, sexual images, threats, and hidden-channel migration, this is a false positive.",
+    "false_positive_risk": [
+      "Omission gate may see resources and tripwires as present by marker.",
+      "Specific resources and tripwire entities may be lost inside those categories."
+    ],
+    "anchor_visible_candidate": "Talk with RAINN, a therapist, or counsel before deciding whether to report. Keep the phone channel open unless a concrete tripwire fires: a request to meet, sexual images, threats, evidence of other minors, migration to hidden channels, or your daughter saying she feels pressured or afraid.",
+    "deck_pressure_candidate": "Use a safety-first plan with professional support. Keep trust central, monitor for concerning signals, preserve communication boundaries, and escalate if the situation becomes more dangerous. Do not treat quiet behavior as proof that risk has disappeared."
+  },
+  "step6_output": {
+    "answer_core": "Talk with RAINN, a therapist, or counsel before deciding whether to report. Keep the phone channel open unless a clear tripwire appears, such as a request to meet, sexual images, threats, evidence of other minors, migration to hidden channels, or your daughter saying she feels pressured or afraid.",
+    "private_visibility_ledger": [
+      {
+        "source_id": "anchor_visible_candidate",
+        "disposition": "used",
+        "novelty_role": "visible_backbone",
+        "why": "It already contains the concrete resources and tripwires required for the preserved‑marker test.",
+        "visible_effect": "Forms the full public answer."
+      },
+      {
+        "source_id": "deck_pressure_candidate",
+        "disposition": "rejected",
+        "novelty_role": "confirming_support",
+        "why": "It is abstract and adds no concrete decision value beyond the anchor’s specific resources and tripwires.",
+        "visible_effect": "none"
+      }
+    ]
+  },
+  "ledger_signal": "all_private_or_confirming",
+  "deterministic_role": [
+    "validate_step6_ledger_schema",
+    "derive_visibility_precondition",
+    "preserve_blind_review_custody"
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live Step 6 replay for false-positive visibility probe."
+}

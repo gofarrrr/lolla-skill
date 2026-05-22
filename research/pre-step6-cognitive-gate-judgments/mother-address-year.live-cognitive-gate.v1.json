@@ -1,0 +1,74 @@
+{
+  "schema_version": "pre_step6_cognitive_gate_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mother-address-year",
+  "gate_kind": "live_small_cognitive_comparison",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"winner_label\": \"A\",\n  \"promotion_read\": \"expand_replay\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Candidate A provides the most robust framework for Step 6 by explicitly categorizing the decision-making process into distinct, manageable domains (legal, therapeutic, communication, and monitoring). It avoids the repetitive 'safety-first' mantra found in the other candidates and instead offers actionable, structural advice on how to handle the ex-partner and the daughter, which is critical for the complexity of this case.\",\n  \"improvements\": [\n    \"Introduces the concept of 'separate choices' which prevents the user from feeling forced into a binary 'act/don't act' decision.\",\n    \"Provides a clearer distinction between the goal of safety and the goal of rebuilding honesty.\",\n    \"Offers a more nuanced approach to the ex-partner, focusing on preventing minimization without creating a 'leverage' dynamic.\"\n  ],\n  \"regressions_or_watch_items\": [\n    \"The advice to 'talk with RAINN' is excellent but needs to be balanced against the risk of the user feeling overwhelmed by the number of external resources suggested.\"\n  ],\n  \"stand_down_reason\": \"Not a stand-down; the candidate adds structural value that helps organize the chaotic nature of the case for the next reasoning step.\",\n  \"composition_note\": \"Candidate A's structure should be used as the primary template for the final response, potentially incorporating the specific 'tripwire' list from Candidate C if more granularity is needed.\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 1875,
+    "completion_tokens": 336,
+    "total_tokens": 2211,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter"
+  },
+  "candidate_refs": {
+    "rendered_hybrid": "research/pre-step6-rendered-hybrid-answer-cores/mother-address-year.native.rendered-hybrid-answer-core.v1.json",
+    "portfolio_base": "research/pre-step6-portfolio-answer-cores/mother-address-year.native.portfolio-answer-core.v1.json",
+    "bevelin_lens": "research/pre-step6-lens-answer-cores/mother-address-year.bevelin-answer-core.v1.json",
+    "polya_lens": "research/pre-step6-lens-answer-cores/mother-address-year.polya-answer-core.v1.json"
+  },
+  "blind_map": {
+    "A": "rendered_hybrid",
+    "B": "bevelin_lens",
+    "C": "polya_lens",
+    "D": "portfolio_base"
+  },
+  "reviewer_output": {
+    "winner_label": "A",
+    "promotion_read": "expand_replay",
+    "confidence": "high",
+    "rationale": "Candidate A provides the most robust framework for Step 6 by explicitly categorizing the decision-making process into distinct, manageable domains (legal, therapeutic, communication, and monitoring). It avoids the repetitive 'safety-first' mantra found in the other candidates and instead offers actionable, structural advice on how to handle the ex-partner and the daughter, which is critical for the complexity of this case.",
+    "improvements": [
+      "Introduces the concept of 'separate choices' which prevents the user from feeling forced into a binary 'act/don't act' decision.",
+      "Provides a clearer distinction between the goal of safety and the goal of rebuilding honesty.",
+      "Offers a more nuanced approach to the ex-partner, focusing on preventing minimization without creating a 'leverage' dynamic."
+    ],
+    "regressions_or_watch_items": [
+      "The advice to 'talk with RAINN' is excellent but needs to be balanced against the risk of the user feeling overwhelmed by the number of external resources suggested."
+    ],
+    "stand_down_reason": "Not a stand-down; the candidate adds structural value that helps organize the chaotic nature of the case for the next reasoning step.",
+    "composition_note": "Candidate A's structure should be used as the primary template for the final response, potentially incorporating the specific 'tripwire' list from Candidate C if more granularity is needed."
+  },
+  "static_expectation": {
+    "allowed_winner_arms": [
+      "portfolio_base",
+      "bevelin_lens",
+      "polya_lens",
+      "tie"
+    ],
+    "allowed_promotion_reads": [
+      "retest"
+    ]
+  },
+  "agreement": {
+    "winner_matches_static": false,
+    "promotion_matches_static": false,
+    "overall_match": false
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live small cognitive comparison. Research-only artifact; it records reviewer agreement or disagreement with static expectations."
+}

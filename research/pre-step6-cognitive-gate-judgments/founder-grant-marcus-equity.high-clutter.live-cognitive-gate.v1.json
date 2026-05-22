@@ -1,0 +1,72 @@
+{
+  "schema_version": "pre_step6_cognitive_gate_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "founder-grant-marcus-equity.high-clutter",
+  "gate_kind": "live_small_cognitive_comparison",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"winner_label\": \"D\",\n  \"promotion_read\": \"expand_replay\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Candidate D provides the most robust cognitive framing for Step 6. It explicitly identifies the 'dependency system' as the core risk, rather than just the equity percentage. By highlighting the specific risks of Marcus disengaging or destabilizing the team/clients if the 'no' is too vague, it provides the necessary tactical pressure that Step 6 needs to navigate the Friday meeting effectively.\",\n  \"improvements\": [\n    \"Identifies the specific risks of 'vague delay' (disengagement, team/client instability).\",\n    \"Frames the decision as a test of whether Marcus reduces or increases concentration risk.\",\n    \"Provides a clearer, more actionable 'sprint' framework for the staged-partnership approach.\"\n  ],\n  \"regressions_or_watch_items\": [\n    \"Candidate D is longer than the others, but the additional length is high-density reasoning rather than bloat.\",\n    \"Must ensure Step 6 does not treat the 'sprint' as a rigid contract but as a diagnostic tool.\"\n  ],\n  \"stand_down_reason\": \"Not a stand-down; the candidate adds significant depth to the strategic framing of the conflict.\",\n  \"composition_note\": \"Candidate D should be the primary input for Step 6. Its framing of the 'dependency system' is superior to the more generic 'partnership' language in A, B, and C.\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 2019,
+    "completion_tokens": 331,
+    "total_tokens": 2350,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter"
+  },
+  "candidate_refs": {
+    "rendered_hybrid": "research/pre-step6-rendered-hybrid-answer-cores/founder-grant-marcus-equity.high-clutter.native.rendered-hybrid-answer-core.v1.json",
+    "portfolio_base": "research/pre-step6-portfolio-answer-cores/founder-grant-marcus-equity.high-clutter.native.portfolio-answer-core.v1.json",
+    "bevelin_lens": "research/pre-step6-lens-answer-cores/founder-grant-marcus-equity.high-clutter.bevelin-answer-core.v1.json",
+    "polya_lens": "research/pre-step6-lens-answer-cores/founder-grant-marcus-equity.high-clutter.polya-answer-core.v1.json"
+  },
+  "blind_map": {
+    "A": "polya_lens",
+    "B": "portfolio_base",
+    "C": "bevelin_lens",
+    "D": "rendered_hybrid"
+  },
+  "reviewer_output": {
+    "winner_label": "D",
+    "promotion_read": "expand_replay",
+    "confidence": "high",
+    "rationale": "Candidate D provides the most robust cognitive framing for Step 6. It explicitly identifies the 'dependency system' as the core risk, rather than just the equity percentage. By highlighting the specific risks of Marcus disengaging or destabilizing the team/clients if the 'no' is too vague, it provides the necessary tactical pressure that Step 6 needs to navigate the Friday meeting effectively.",
+    "improvements": [
+      "Identifies the specific risks of 'vague delay' (disengagement, team/client instability).",
+      "Frames the decision as a test of whether Marcus reduces or increases concentration risk.",
+      "Provides a clearer, more actionable 'sprint' framework for the staged-partnership approach."
+    ],
+    "regressions_or_watch_items": [
+      "Candidate D is longer than the others, but the additional length is high-density reasoning rather than bloat.",
+      "Must ensure Step 6 does not treat the 'sprint' as a rigid contract but as a diagnostic tool."
+    ],
+    "stand_down_reason": "Not a stand-down; the candidate adds significant depth to the strategic framing of the conflict.",
+    "composition_note": "Candidate D should be the primary input for Step 6. Its framing of the 'dependency system' is superior to the more generic 'partnership' language in A, B, and C."
+  },
+  "static_expectation": {
+    "allowed_winner_arms": [
+      "bevelin_lens"
+    ],
+    "allowed_promotion_reads": [
+      "expand_replay"
+    ]
+  },
+  "agreement": {
+    "winner_matches_static": false,
+    "promotion_matches_static": true,
+    "overall_match": false
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live small cognitive comparison. Research-only artifact; it records reviewer agreement or disagreement with static expectations."
+}

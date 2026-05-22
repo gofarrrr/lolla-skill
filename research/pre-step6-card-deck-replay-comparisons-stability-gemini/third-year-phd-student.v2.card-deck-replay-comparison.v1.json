@@ -1,0 +1,53 @@
+{
+  "schema_version": "pre_step6_card_deck_replay_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "third-year-phd-student.v2",
+  "comparison_kind": "clean_hybrid_vs_card_deck_replay",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"winner_label\": \"B\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Candidate B provides the same actionable advice as Candidate A but with significantly higher clarity and conciseness. Candidate A includes unnecessary editorializing ('not on which story feels more exciting or safer') and slightly more convoluted phrasing that adds length without adding value.\",\n  \"visible_improvements\": [\n    \"Improved conciseness and directness.\",\n    \"Better flow and logical structure.\",\n    \"Removal of unnecessary filler text.\"\n  ],\n  \"visible_regressions_or_bloat\": [\n    \"Candidate A suffers from bloat and slightly more verbose, less impactful sentence structures.\"\n  ],\n  \"recommendation\": \"Adopt the style and brevity of Candidate B for future responses.\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 770,
+    "completion_tokens": 172,
+    "total_tokens": 942,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter"
+  },
+  "candidate_refs": {
+    "clean_hybrid": "research/pre-step6-rendered-hybrid-answer-cores/third-year-phd-student.conflict.native.rendered-hybrid-answer-core.v1.json",
+    "card_deck_replay": "research/pre-step6-card-deck-replays/third-year-phd-student.v2.card-deck-replay.v1.json"
+  },
+  "blind_map": {
+    "A": "clean_hybrid",
+    "B": "card_deck_replay"
+  },
+  "reviewer_output": {
+    "winner_label": "B",
+    "deck_effect": "improves",
+    "confidence": "high",
+    "rationale": "Candidate B provides the same actionable advice as Candidate A but with significantly higher clarity and conciseness. Candidate A includes unnecessary editorializing ('not on which story feels more exciting or safer') and slightly more convoluted phrasing that adds length without adding value.",
+    "visible_improvements": [
+      "Improved conciseness and directness.",
+      "Better flow and logical structure.",
+      "Removal of unnecessary filler text."
+    ],
+    "visible_regressions_or_bloat": [
+      "Candidate A suffers from bloat and slightly more verbose, less impactful sentence structures."
+    ],
+    "recommendation": "Adopt the style and brevity of Candidate B for future responses."
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live research comparison of clean hybrid vs card-deck Step 6 replay."
+}

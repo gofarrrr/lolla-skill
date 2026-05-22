@@ -1,0 +1,50 @@
+{
+  "schema_version": "pre_step6_partitioned_reviewer_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_partitioned_reviewer_phase_v0",
+  "partition_case_id": "marker-entity-attempt-2-tripwire-compression.sample-0.stable-standdown",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"review_label\": \"step6_non_inferior\",\n  \"winner_label\": \"B\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Candidate B is slightly better because it includes the word 'specific' before 'tripwires', which reinforces the importance of the concrete list provided. Both answers are functionally identical in content and utility.\",\n  \"step6_value_if_any\": [\n    \"Retains all critical tripwire entities.\"\n  ],\n  \"anchor_strengths\": [\n    \"Concise and direct.\"\n  ],\n  \"payload_loss_or_bloat\": [\n    \"No significant payload loss or bloat in either candidate.\"\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 709,
+    "completion_tokens": 159,
+    "total_tokens": 868,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter",
+    "model_family": "google"
+  },
+  "blind_map": {
+    "A": "anchor_visible",
+    "B": "step6_visible"
+  },
+  "reviewer_output": {
+    "review_label": "step6_non_inferior",
+    "winner_label": "B",
+    "confidence": "high",
+    "rationale": "Candidate B is slightly better because it includes the word 'specific' before 'tripwires', which reinforces the importance of the concrete list provided. Both answers are functionally identical in content and utility.",
+    "step6_value_if_any": [
+      "Retains all critical tripwire entities."
+    ],
+    "anchor_strengths": [
+      "Concise and direct."
+    ],
+    "payload_loss_or_bloat": [
+      "No significant payload loss or bloat in either candidate."
+    ]
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample partitioned reviewer judgment."
+}

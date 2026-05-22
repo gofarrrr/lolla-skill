@@ -307,6 +307,11 @@ class OpenAICompatibleBoundaryClient:
         return _extract_json_payload(raw_message_content), metadata
 
     def _reasoning_config(self) -> dict[str, object]:
+        if (
+            _is_truthy_env("LOLLA_OPENROUTER_DISABLE_REASONING")
+            and str(self.provider_name).strip().lower() == "openrouter"
+        ):
+            return {"effort": "none"}
         if _is_openrouter_grok_fast(self.provider_name, self.model):
             return {"effort": "none"}
         return {}
@@ -503,6 +508,10 @@ def _is_openrouter_grok_fast(provider_name: str, model: str) -> bool:
     normalized_provider = str(provider_name or "").strip().lower()
     normalized_model = str(model or "").strip().lower()
     return normalized_provider == "openrouter" and normalized_model.startswith("x-ai/grok-4.1-fast")
+
+
+def _is_truthy_env(name: str) -> bool:
+    return str(os.getenv(name, "")).strip().lower() in {"1", "true", "yes", "on"}
 
 
 def _reasoning_disabled(reasoning_config: Mapping[str, object] | None) -> bool:

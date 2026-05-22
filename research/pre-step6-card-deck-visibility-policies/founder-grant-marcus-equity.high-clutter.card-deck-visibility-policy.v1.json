@@ -1,0 +1,53 @@
+{
+  "schema_version": "pre_step6_card_deck_visibility_policy.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "founder-grant-marcus-equity.high-clutter",
+  "policy_kind": "ledger_based_anchor_standdown",
+  "source_refs": {
+    "card_deck_replay": "research/pre-step6-card-deck-replays/founder-grant-marcus-equity.high-clutter.card-deck-replay.v1.json",
+    "cognitive_comparison": "research/pre-step6-card-deck-replay-comparisons/founder-grant-marcus-equity.high-clutter.card-deck-replay-comparison.v1.json"
+  },
+  "ledger_summary": [
+    {
+      "card_id": "clean_hybrid_card",
+      "disposition": "used",
+      "novelty_role": "visible_backbone",
+      "visible_effect": "Anchor reasoning and staged‑partnership language appear directly in the answer."
+    },
+    {
+      "card_id": "bevelin_card",
+      "disposition": "combined",
+      "novelty_role": "additive_pressure",
+      "visible_effect": "Emphasis on concentration risk and on proving that the partnership improves company stability."
+    },
+    {
+      "card_id": "polya_card",
+      "disposition": "combined",
+      "novelty_role": "additive_pressure",
+      "visible_effect": "Explicit framing of a short test window with clear evidence gates."
+    }
+  ],
+  "deterministic_read": {
+    "anchor_standdown_eligible": false,
+    "deterministic_quality_decision": false,
+    "non_anchor_additive_count": 2,
+    "non_anchor_private_or_confirming_count": 0,
+    "reason": "Step 6 marked at least one non-anchor card as additive pressure."
+  },
+  "cognitive_confirmation": {
+    "status": "deck_confirmed_by_reviewer",
+    "reviewer_winner": "card_deck_replay",
+    "reviewer_deck_effect": "improves",
+    "reviewer_confidence": "high"
+  },
+  "visible_policy": {
+    "result": "card_deck_visible_after_cognitive_confirmation",
+    "why_this_is_not_deterministic": "The deterministic read only records Step 6 ledger roles. The visible answer policy requires the cognitive comparison result before it can prefer anchor or card-deck replay."
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Research-only policy. Code records Step 6's own private ledger and the cognitive comparison result; it does not infer answer quality from counts."
+}

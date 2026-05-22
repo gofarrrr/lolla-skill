@@ -1,0 +1,53 @@
+{
+  "schema_version": "pre_step6_answer_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "third-year-phd-student",
+  "control_answer_core": "I would not choose the advisor's hybrid direction yet. Keep the political sequence clean: talk to your advisor first, use Dr. Silva only as a low-cost reality check, and go to the committee only after you know whether the data path is real.\n\nThe most important question is whether option 3 can become a dissertation rather than just a hot-field story. In the next two weeks, test whether Dr. Silva has usable data, whether the collaboration would be deep enough, and whether your advisor would support the move without quietly pushing you back to the lab's safer path.\n\nDo not go around your advisor with a finished proposal. Do not run all three options in parallel. Set evidence-specific triggers, then choose the path that gives you the best chance of finishing a PhD.",
+  "raw_answer_core_ref": "research/pre-step6-raw-artifact-answer-cores/third-year-phd-student.raw-answer-core.v1.json",
+  "criteria": [
+    {
+      "criterion_id": "political_sequence",
+      "question": "Does the answer preserve advisor-first sequencing?",
+      "winner": "tie",
+      "control_evidence": "Control says talk to advisor first, Silva second, committee later.",
+      "raw_evidence": "Raw says advisor first, Silva second, committee third.",
+      "rationale": "Both preserve the political sequence."
+    },
+    {
+      "criterion_id": "fallback_executability",
+      "question": "Does the answer make the fallback real before using an 18-month trigger?",
+      "winner": "raw",
+      "control_evidence": "Control says set evidence-specific triggers but does not test whether option 1 still exists when they fire.",
+      "raw_evidence": "Raw says the 18-month pivot is fake comfort unless option 1 still has supervision, funding, and lab continuity.",
+      "rationale": "Raw preserves the missing fallback boundary."
+    },
+    {
+      "criterion_id": "constraint_retest",
+      "question": "Does the answer make Silva/data access a measured constraint test?",
+      "winner": "raw",
+      "control_evidence": "Control asks whether data and collaboration are real.",
+      "raw_evidence": "Raw names usable data, sharing terms, and collaborator depth as the condition for option 3 viability.",
+      "rationale": "Raw is more operational about what would move the constraint."
+    },
+    {
+      "criterion_id": "base_rate_humility",
+      "question": "Does the answer avoid pseudo-quantitative success-rate language?",
+      "winner": "raw",
+      "control_evidence": "Control avoids numbers but does not explicitly guard against broad success-rate use.",
+      "raw_evidence": "Raw says broad success-rate talk should stay qualitative unless a real reference class appears.",
+      "rationale": "Raw carries the outside-view caution more explicitly."
+    },
+    {
+      "criterion_id": "compactness",
+      "question": "Does the answer stay compact and usable?",
+      "winner": "tie",
+      "control_evidence": "Control is shorter.",
+      "raw_evidence": "Raw is slightly longer but still compact and adds decision-relevant boundaries.",
+      "rationale": "Neither answer bloats."
+    }
+  ],
+  "tie_break_rule": "raw_tie_with_control_stops",
+  "aggregate_decision": "raw_wins",
+  "notes": "Strict local rubric comparison; not a blind model judgment."
+}

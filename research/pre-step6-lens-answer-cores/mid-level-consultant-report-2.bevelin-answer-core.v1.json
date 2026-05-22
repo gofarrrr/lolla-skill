@@ -1,0 +1,51 @@
+{
+  "schema_version": "pre_step6_lens_answer_core.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mid-level-consultant-report-2",
+  "lens_pack": "bevelin_seeking_wisdom_v0",
+  "source_attention_map": "research/pre-step6-attention-maps/mid-level-consultant-report-2.step6-attention-map.v1.json",
+  "source_attention_map_render_sha256": "a3978cb52b52f6b1bd8ac035731374423fad47ab3bdd8c68b2a01b27d4bee4dd",
+  "source_lens_probe": "research/pre-step6-lens-probes/mid-level-consultant-report-2.bevelin-lens-probe.v1.json",
+  "answer_core": "Do not confront the partner, investigate privately, access systems unusually, or pick a reporting channel yourself. Tonight, write down exactly what you saw, preserve your own notes, tell your spouse in broad strokes, and contact two or three whistleblower attorneys.\n\nCounsel first does not mean blind deference. During intake, ask practical questions that reveal channel bias: when have they advised internal-first, audit-committee-first, or external-first, and why? Let counsel review the facts and choose the safest path.\n\nAttend Wednesday normally. If the partner raises the encounter, keep the response narrow: do not deny, elaborate, confront, investigate, or be alone with the partner if avoidable. Fear can push premature filing or paralysis, so keep the first moves reversible.",
+  "expected_inclusions": [
+    "Do not confront the partner, investigate privately, access systems unusually, or pick a reporting channel yourself.",
+    "contact two or three whistleblower attorneys",
+    "Counsel first does not mean blind deference",
+    "when have they advised internal-first, audit-committee-first, or external-first, and why?",
+    "Attend Wednesday normally",
+    "Fear can push premature filing or paralysis",
+    "keep the first moves reversible"
+  ],
+  "expected_exclusions": [
+    "attention map",
+    "portfolio",
+    "artifact",
+    "bundle",
+    "worker",
+    "bevelin",
+    "munger",
+    "lens pack",
+    "lens probe",
+    "confront the partner directly",
+    "investigate privately before counsel",
+    "file immediately before evidence review"
+  ],
+  "lens_effect": {
+    "preserved_from_base": [
+      "Preserves counsel-first sequencing.",
+      "Preserves Wednesday behavior guidance.",
+      "Preserves no confrontation, no private investigation, and no self-selected channel."
+    ],
+    "changed_by_lens": [
+      "Adds a light channel-bias intake question for counsel selection.",
+      "Adds a fear-versus-paralysis caution without changing the action order."
+    ],
+    "kept_private_or_discarded": [
+      "Keeps leverage and negotiation framing out of the answer.",
+      "Keeps internal-channel granularity private unless counsel activates it.",
+      "Keeps private lens labels out of the answer."
+    ]
+  },
+  "notes": "Bevelin v0 answer core for the consultant negative control. It should not over-promote beyond the already strong counsel-first sequence."
+}

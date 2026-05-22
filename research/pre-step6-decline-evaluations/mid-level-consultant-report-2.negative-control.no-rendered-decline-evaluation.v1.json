@@ -1,0 +1,51 @@
+{
+  "schema_version": "pre_step6_decline_evaluation.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mid-level-consultant-report-2",
+  "evaluation_mode": "off_by_default_static_decline_replay",
+  "decline_candidate_ref": "research/pre-step6-no-rendered-handoffs/mid-level-consultant-report-2.negative-control.native-rejudge.no-rendered-handoff.v1.json",
+  "comparison_ref": "research/pre-step6-raw-artifact-comparisons/mid-level-consultant-report-2.raw-vs-control-comparison.v1.json",
+  "gates": {
+    "decline_candidate_loaded": true,
+    "simpler_comparison_recorded": true,
+    "rendered_candidate_required": false,
+    "source_overclaim_audit_required": false,
+    "runtime_wiring_allowed": false,
+    "product_promotion_allowed": false,
+    "generator_implementation_allowed": false
+  },
+  "outcome": {
+    "comparison_decision": "raw_wins",
+    "decline_evaluation_decision": "healthy_decline",
+    "product_promotion": "blocked",
+    "generator_next_step": "blocked"
+  },
+  "naturalness_debt_avoided": {
+    "level": "medium",
+    "evidence": "The existing rendered negative-control audit had medium naturalness debt; the no-rendered decline avoids that tax while preserving a simpler raw/control path."
+  },
+  "miss_checks": [
+    {
+      "check_id": "no_critical_pressure_lost",
+      "severity": "pass",
+      "evidence": "The raw-vs-control comparison shows the simpler arms preserve counsel-first sequencing, no confrontation, no unusual access, and immediate documentation."
+    },
+    {
+      "check_id": "control_sufficiency_survives",
+      "severity": "pass",
+      "evidence": "Control remains short, grounded, humane, and sufficient for immediate safety; raw adds useful counsel/channel nuance without requiring rendered."
+    },
+    {
+      "check_id": "receipt_stayed_small",
+      "severity": "pass",
+      "evidence": "The decline receipt is six short fields and does not outline a public answer."
+    },
+    {
+      "check_id": "reactivation_condition_clear",
+      "severity": "pass",
+      "evidence": "The receipt reactivates only if the simpler path drops a live risk, counsel boundary, or immediate safety step."
+    }
+  ],
+  "notes": "First static decline evaluation. It counts the consultant no-rendered fixture as a healthy decline using simpler raw/control comparison evidence, without requiring a rendered candidate or source/overclaim audit for the decline itself."
+}

@@ -1,0 +1,105 @@
+{
+  "schema_version": "pre_step6_calibration_step6_sample.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_calibration_corpus_v0",
+  "case_id": "multi-offer-new-run2",
+  "base_case_id": "multi-offer-new-run2",
+  "sample_index": 1,
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "moonshotai/kimi-k2.6",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": " {\n  \"answer_core\": \"You don't have to pick among A, B, and C in the next 48 hours. You have to run a two-stage sequence in the remaining 7 days.\\n\\nStage 1 (Days 1–3): The only decision that actually unlocks everything else is the conversation with your wife. Not a briefing—a joint decision on risk tolerance, geographic flexibility, and what \\\"survivable\\\" means if the startup equity goes to zero. Do not negotiate with the startup until this conversation produces a genuine shared yes/no. If the answer is no, you immediately eliminate B and stop romanticizing it.\\n\\nStage 2 (Days 4–7): Conditional moves.\\n\\n- If wife = yes on B: Ask all three companies for a 3–5 day extension. Most will grant it if you are direct. Then run due diligence on the Series B as if you were an angel investor, not an employee: 18–24 months of runway post-Series B, CEO's previous exit or failure mode, whether the 0.8% is fully diluted, and what a six-month ramp to reduced base would look like. Negotiate boundaries before you sign: title, scope, remote/hybrid terms, and what happens if the runway shortens. Treat this as a 4-year bet, not a forever identity.\\n\\n- If wife = no on B, or due diligence fails: Take A, but sign it as a 2-year bridge, not a solution. The structural staff block at your current company is real; A gives you optionality, network, and time to find a better B later. Do not stay at C out of inertia. Staying is only defensible if you have a credible, time-bound plan to fix the structural path issue—and \\\"meets expectations\\\" on leadership is a signal that plan does not currently exist.\\n\\nTripwires:\\n- If the startup will not give you a six-month ramp or runway transparency, do not treat that as a minor red flag; treat it as a no-go.\\n- If your wife's hesitation is about logistics (kids, location) rather than risk, solve for logistics before you decide on risk.\\n- If you find yourself framing C as \\\"safe,\\\" re-examine: a plateau with no path to staff in a FAANG environment is a declining asset, not a safe one.\\n\\nYour real choice is not A vs. B vs. C. It is: (1) Is your household willing to make a joint bet on startup risk? (2) If yes, is this specific startup worth the bet? (3) If no to either, take the bridge and keep building.\",\n  \"private_visibility_ledger\": [\n    {\n      \"source_id\": \"anchor_visible_candidate\",\n      \"disposition\": \"combined\",\n      \"novelty_role\": \"visible_backbone\",\n      \"why\": \"The anchor's core substance—eliminate C, conditionalize B on wife buy-in, treat A as bridge—is correct and should remain the public backbone. The synthesized position already contained the key tripwires (wife conversation, due diligence, boundaries).\",\n      \"visible_effect\": \"Retained the eliminate-C stance, the wife-conversation gate, the due diligence checklist, and the 2-year bridge framing for A.\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"structural_delta\": [],\n        \"reframed_emphasis\": []\n      }\n    },\n    {\n      \"source_id\": \"deck_pressure_candidate\",\n      \"disposition\": \"combined\",\n      \"novelty_role\": \"additive_pressure\",\n      \"why\": \"The deck pressure adds concrete sequencing (Days 1–3 vs. 4–7), explicit extension-asking, the six-month ramp negotiation, and the 'angel investor' due diligence frame. These are specific, actionable structural additions that change what the user actually does without changing the final outcome space. The pressure to treat staying as 'active plateau choice rather than safe default' is already present in the anchor but is sharpened here.\",\n      \"visible_effect\": \"Added explicit day-bounded sequencing, introduced the extension-ask as a normative step, inserted the six-month ramp and remote/hybrid negotiation as concrete asks, and sharpened the 'declining asset' reframe of C.\",\n      \"answer_delta\": {\n        \"added_entities\": [\n          \"Days 1–3 / Days 4–7 sequencing\",\n          \"3–5 day extension ask\",\n          \"six-month ramp to reduced base\",\n          \"remote/hybrid terms negotiation\",\n          \"angel investor due diligence frame\",\n          \"18–24 months runway post-Series B\",\n          \"0.8% fully diluted check\",\n          \"CEO previous exit/failure mode check\"\n        ],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [\n          \"Moved wife conversation from 'before committing' to explicit Days 1–3 gate that unlocks Stage 2\"\n        ],\n        \"structural_delta\": [\n          \"Added time-bound stage-gate architecture (Stage 1 unlocks Stage 2)\",\n          \"Added extension-ask as default step before due diligence\",\n          \"Added six-month ramp and remote/hybrid as pre-signing negotiation requirements, not post-hoc preferences\",\n          \"Added explicit tripwire: startup refusal on ramp/runway transparency = no-go\"\n        ],\n        \"reframed_emphasis\": [\n          \"Shifted from 'choose among three labels' to 'run a two-stage sequence'\",\n          \"Sharpened C from 'distraction/decline' to 'declining asset, not safe'\",\n          \"Reframed B due diligence from 'check boxes' to 'angel investor mindset'\"\n        ]\n      }\n    }\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 897,
+    "completion_tokens": 1201,
+    "total_tokens": 2098,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter",
+    "model_family": "moonshotai"
+  },
+  "input_packet": {
+    "case_brief": "Senior SWE with 12 years FAANG experience deciding among three job offers (FAANG staff+, Series B founding engineer, stay) within 7 days amid family and career plateau constraints.\n\nConstraints stated during conversation:\n- [ACTIVE] No clear path to staff at current company (explicit feedback, structural)\n- [ACTIVE] 7-day decision deadline\n- [ACTIVE] 80% base salary cut for Option B, 0.8% equity\n- [ACTIVE] Family: wife physician (primary earner), two kids (7,4)\n- [ACTIVE] Financially survivable for Option B (mortgage fine, modest cuts)\n\nOriginal framing: User presents three job options (A: FAANG staff+ 15% comp bump; B: Series B founding eng 80% base cut +0.8% equity; C: stay) with 7-day deadline, current FAANG plateau, family (wife, two kids); assumes equal weighting, seeks help picking.\n\nDropped threads (raised but unresolved):\n- Explicit performance reviews 'meets expectations' on leadership (raised by user, status: acknowledged_then_dropped) → superseded by: shifted to structural path issue and career distraction",
+    "case_type_tags": [
+      "high_clutter",
+      "sequencing_or_problem_shape"
+    ],
+    "pre_registered_expectation": "prior_revised_answer_may_add_sequence_and_family_constraints",
+    "v60_mode": "not_applicable",
+    "v60_private_context": "",
+    "anchor_visible_candidate": "SYNTHESIZED POSITION:\nDon't stay (C) as distraction persists and plateau declines; pursue B if wife conversation confirms joint buy-in (after negotiating boundaries, due diligence on startup/equity/runway/CEO), else take A as 2-year bridge aware it's a delay not solution to wanting to build something own.",
+    "deck_pressure_candidate": "Sequence the decision instead of choosing from the three labels. Ask all three companies for a deadline extension, run the wife conversation before committing to startup risk, negotiate a six-month ramp and remote/hybrid terms for the Series B option, and treat staying as an active plateau choice rather than a safe default."
+  },
+  "step6_output": {
+    "answer_core": "You don't have to pick among A, B, and C in the next 48 hours. You have to run a two-stage sequence in the remaining 7 days.\n\nStage 1 (Days 1–3): The only decision that actually unlocks everything else is the conversation with your wife. Not a briefing—a joint decision on risk tolerance, geographic flexibility, and what \"survivable\" means if the startup equity goes to zero. Do not negotiate with the startup until this conversation produces a genuine shared yes/no. If the answer is no, you immediately eliminate B and stop romanticizing it.\n\nStage 2 (Days 4–7): Conditional moves.\n\n- If wife = yes on B: Ask all three companies for a 3–5 day extension. Most will grant it if you are direct. Then run due diligence on the Series B as if you were an angel investor, not an employee: 18–24 months of runway post-Series B, CEO's previous exit or failure mode, whether the 0.8% is fully diluted, and what a six-month ramp to reduced base would look like. Negotiate boundaries before you sign: title, scope, remote/hybrid terms, and what happens if the runway shortens. Treat this as a 4-year bet, not a forever identity.\n\n- If wife = no on B, or due diligence fails: Take A, but sign it as a 2-year bridge, not a solution. The structural staff block at your current company is real; A gives you optionality, network, and time to find a better B later. Do not stay at C out of inertia. Staying is only defensible if you have a credible, time-bound plan to fix the structural path issue—and \"meets expectations\" on leadership is a signal that plan does not currently exist.\n\nTripwires:\n- If the startup will not give you a six-month ramp or runway transparency, do not treat that as a minor red flag; treat it as a no-go.\n- If your wife's hesitation is about logistics (kids, location) rather than risk, solve for logistics before you decide on risk.\n- If you find yourself framing C as \"safe,\" re-examine: a plateau with no path to staff in a FAANG environment is a declining asset, not a safe one.\n\nYour real choice is not A vs. B vs. C. It is: (1) Is your household willing to make a joint bet on startup risk? (2) If yes, is this specific startup worth the bet? (3) If no to either, take the bridge and keep building.",
+    "private_visibility_ledger": [
+      {
+        "source_id": "anchor_visible_candidate",
+        "disposition": "combined",
+        "novelty_role": "visible_backbone",
+        "why": "The anchor's core substance—eliminate C, conditionalize B on wife buy-in, treat A as bridge—is correct and should remain the public backbone. The synthesized position already contained the key tripwires (wife conversation, due diligence, boundaries).",
+        "visible_effect": "Retained the eliminate-C stance, the wife-conversation gate, the due diligence checklist, and the 2-year bridge framing for A.",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [],
+          "removed_entities": [],
+          "reordered_sequences": [],
+          "structural_delta": []
+        }
+      },
+      {
+        "source_id": "deck_pressure_candidate",
+        "disposition": "combined",
+        "novelty_role": "additive_pressure",
+        "why": "The deck pressure adds concrete sequencing (Days 1–3 vs. 4–7), explicit extension-asking, the six-month ramp negotiation, and the 'angel investor' due diligence frame. These are specific, actionable structural additions that change what the user actually does without changing the final outcome space. The pressure to treat staying as 'active plateau choice rather than safe default' is already present in the anchor but is sharpened here.",
+        "visible_effect": "Added explicit day-bounded sequencing, introduced the extension-ask as a normative step, inserted the six-month ramp and remote/hybrid negotiation as concrete asks, and sharpened the 'declining asset' reframe of C.",
+        "answer_delta": {
+          "added_entities": [
+            "Days 1–3 / Days 4–7 sequencing",
+            "3–5 day extension ask",
+            "six-month ramp to reduced base",
+            "remote/hybrid terms negotiation",
+            "angel investor due diligence frame",
+            "18–24 months runway post-Series B",
+            "0.8% fully diluted check",
+            "CEO previous exit/failure mode check"
+          ],
+          "reframed_emphasis": [
+            "Shifted from 'choose among three labels' to 'run a two-stage sequence'",
+            "Sharpened C from 'distraction/decline' to 'declining asset, not safe'",
+            "Reframed B due diligence from 'check boxes' to 'angel investor mindset'"
+          ],
+          "removed_entities": [],
+          "reordered_sequences": [
+            "Moved wife conversation from 'before committing' to explicit Days 1–3 gate that unlocks Stage 2"
+          ],
+          "structural_delta": [
+            "Added time-bound stage-gate architecture (Stage 1 unlocks Stage 2)",
+            "Added extension-ask as default step before due diligence",
+            "Added six-month ramp and remote/hybrid as pre-signing negotiation requirements, not post-hoc preferences",
+            "Added explicit tripwire: startup refusal on ramp/runway transparency = no-go"
+          ]
+        }
+      }
+    ]
+  },
+  "ledger_signal": "additive_pressure_present",
+  "answer_delta_specificity": "concrete_delta_present",
+  "deterministic_role": [
+    "validate_calibration_case",
+    "derive_ledger_signal",
+    "derive_answer_delta_specificity",
+    "preserve_repeated_sample_custody"
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live research-only Step 6 calibration sample."
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "pre_step6_reframe_diagnostic_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "calibration_reframe_diagnostic_review_v0",
+  "diagnostic_case_id": "startup-pivot-new-run2.sample-1.reframe-only-diagnostic",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\"diagnostic_label\":\"anchor_better\",\"winner_label\":\"A\",\"confidence\":\"high\",\"rationale\":\"Answer A provides fuller, concrete operational steps and preserves action-relevant detail that B compresses away, improving usefulness for the founder’s decision.\",\"reframe_value_if_any\":[],\"anchor_strengths\":[\"Clear pass/fail test, full transition plan, actionable sequencing.\"],\"payload_loss_or_bloat\":[\"B loses detail on transition options, employment steps, and test structure.\"]}",
+    "temperature": 0.2,
+    "prompt_tokens": 979,
+    "completion_tokens": 181,
+    "total_tokens": 1160,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 64,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "model_family": "openai"
+  },
+  "blind_map": {
+    "A": "step6_visible",
+    "B": "anchor_visible"
+  },
+  "reviewer_output": {
+    "diagnostic_label": "anchor_better",
+    "winner_label": "A",
+    "confidence": "high",
+    "rationale": "Answer A provides fuller, concrete operational steps and preserves action-relevant detail that B compresses away, improving usefulness for the founder’s decision.",
+    "reframe_value_if_any": [
+      "none"
+    ],
+    "anchor_strengths": [
+      "Clear pass/fail test, full transition plan, actionable sequencing."
+    ],
+    "payload_loss_or_bloat": [
+      "B loses detail on transition options, employment steps, and test structure."
+    ]
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample reframe diagnostic judgment."
+}

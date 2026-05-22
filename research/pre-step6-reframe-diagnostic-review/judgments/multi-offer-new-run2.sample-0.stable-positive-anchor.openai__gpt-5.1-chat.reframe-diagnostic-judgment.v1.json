@@ -1,0 +1,50 @@
+{
+  "schema_version": "pre_step6_reframe_diagnostic_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "calibration_reframe_diagnostic_review_v0",
+  "diagnostic_case_id": "multi-offer-new-run2.sample-0.stable-positive-anchor",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\"diagnostic_label\":\"step6_non_inferior\",\"winner_label\":\"tie\",\"confidence\":\"medium\",\"rationale\":\"Both answers provide the same actionable decision path (don’t stay; choose between A and B based on spousal alignment and validated startup conditions). B is more verbose but not more useful; A is more concise without losing payload.\",\"reframe_value_if_any\":[],\"anchor_strengths\":[\"Clear decision sequence\",\"Actionable gating on spouse alignment and startup diligence\"],\"payload_loss_or_bloat\":[\"B contains verbosity without added actionable content\"]}",
+    "temperature": 0.2,
+    "prompt_tokens": 948,
+    "completion_tokens": 196,
+    "total_tokens": 1144,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 64,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "model_family": "openai"
+  },
+  "blind_map": {
+    "A": "anchor_visible",
+    "B": "step6_visible"
+  },
+  "reviewer_output": {
+    "diagnostic_label": "step6_non_inferior",
+    "winner_label": "tie",
+    "confidence": "medium",
+    "rationale": "Both answers provide the same actionable decision path (don’t stay; choose between A and B based on spousal alignment and validated startup conditions). B is more verbose but not more useful; A is more concise without losing payload.",
+    "reframe_value_if_any": [
+      "none"
+    ],
+    "anchor_strengths": [
+      "Clear decision sequence",
+      "Actionable gating on spouse alignment and startup diligence"
+    ],
+    "payload_loss_or_bloat": [
+      "B contains verbosity without added actionable content"
+    ]
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample reframe diagnostic judgment."
+}

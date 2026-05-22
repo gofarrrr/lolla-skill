@@ -1,0 +1,55 @@
+{
+  "schema_version": "pre_step6_false_standdown_bridge_judgment.v1",
+  "runtime_policy": "runtime_dormant",
+  "probe_id": "false_standdown_bridge_probe_v0",
+  "case_id": "bridge-sequencing-sensitive-boundary",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\"standdown_label\":\"false_standdown\",\"winner_label\":\"B\",\"confidence\":\"high\",\"expected_failure_observed\":\"true\",\"rationale\":\"B adds the sequencing boundaries and checks pre-registered as missing from A, making it materially safer and better.\",\"anchor_missing_payload\":[\"advisor support before cross-lab approach\",\"funding and data-access verification before committee commitment\",\"18-month checkpoint with fallback\"],\"deck_added_payload\":[\"explicit advisor-approval sequencing\",\"funding and co-advisor feasibility check\",\"data-access and authorship requirements\",\"18-month go/no-go checkpoint and pivot plan\"],\"regressions_or_bloat\":[]}",
+    "temperature": 0.2,
+    "prompt_tokens": 763,
+    "completion_tokens": 209,
+    "total_tokens": 972,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 64,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter",
+    "model_family": "openai"
+  },
+  "blind_map": {
+    "A": "anchor_visible",
+    "B": "deck_visible"
+  },
+  "reviewer_output": {
+    "standdown_label": "false_standdown",
+    "winner_label": "B",
+    "confidence": "high",
+    "expected_failure_observed": true,
+    "rationale": "B adds the sequencing boundaries and checks pre-registered as missing from A, making it materially safer and better.",
+    "anchor_missing_payload": [
+      "advisor support before cross-lab approach",
+      "funding and data-access verification before committee commitment",
+      "18-month checkpoint with fallback"
+    ],
+    "deck_added_payload": [
+      "explicit advisor-approval sequencing",
+      "funding and co-advisor feasibility check",
+      "data-access and authorship requirements",
+      "18-month go/no-go checkpoint and pivot plan"
+    ],
+    "regressions_or_bloat": [
+      "Reviewer returned no regressions or bloat."
+    ]
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live non-promotional false-standdown bridge-probe judgment."
+}

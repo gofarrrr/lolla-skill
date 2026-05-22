@@ -1,0 +1,112 @@
+{
+  "schema_version": "pre_step6_calibration_stability_review.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_calibration_corpus_v0",
+  "promotion_effect": "none_calibration_only",
+  "source_result_ref": "research/pre-step6-answer-delta-structural-delta-design/calibration-step6-result.v1.json",
+  "case_reviews": [
+    {
+      "case_id": "founder-grant-marcus-equity.high-clutter.v60-on",
+      "sample_count": 3,
+      "stability_classification": "stable_positive",
+      "reviewer_phase_eligibility": "eligible_stable_positive_candidate",
+      "ledger_signal_counts": {
+        "additive_pressure_present": 3
+      },
+      "answer_delta_specificity_counts": {
+        "concrete_delta_present": 3
+      },
+      "unlock_count": 3,
+      "reframe_only_count": 0,
+      "structural_delta_count": 0,
+      "structural_delta_field_count": 3,
+      "sample_refs": [
+        "step6-samples/founder-grant-marcus-equity.high-clutter.v60-on.sample-0.calibration-step6.v1.json",
+        "step6-samples/founder-grant-marcus-equity.high-clutter.v60-on.sample-1.calibration-step6.v1.json",
+        "step6-samples/founder-grant-marcus-equity.high-clutter.v60-on.sample-2.calibration-step6.v1.json"
+      ],
+      "rationale": "All samples produced additive pressure with concrete or specific structural answer deltas."
+    },
+    {
+      "case_id": "fp-bevelin-irrelevant-incentives",
+      "sample_count": 3,
+      "stability_classification": "stable_standdown",
+      "reviewer_phase_eligibility": "eligible_stable_standdown_candidate",
+      "ledger_signal_counts": {
+        "all_private_or_confirming": 3
+      },
+      "answer_delta_specificity_counts": {
+        "not_applicable": 3
+      },
+      "unlock_count": 0,
+      "reframe_only_count": 0,
+      "structural_delta_count": 0,
+      "structural_delta_field_count": 0,
+      "sample_refs": [
+        "step6-samples/fp-bevelin-irrelevant-incentives.sample-0.calibration-step6.v1.json",
+        "step6-samples/fp-bevelin-irrelevant-incentives.sample-1.calibration-step6.v1.json",
+        "step6-samples/fp-bevelin-irrelevant-incentives.sample-2.calibration-step6.v1.json"
+      ],
+      "rationale": "All samples kept deck pressure private or confirming."
+    },
+    {
+      "case_id": "startup-pivot-new-run2",
+      "sample_count": 1,
+      "stability_classification": "stable_positive",
+      "reviewer_phase_eligibility": "eligible_stable_positive_candidate",
+      "ledger_signal_counts": {
+        "additive_pressure_present": 1
+      },
+      "answer_delta_specificity_counts": {
+        "concrete_delta_present": 1
+      },
+      "unlock_count": 1,
+      "reframe_only_count": 0,
+      "structural_delta_count": 0,
+      "structural_delta_field_count": 1,
+      "sample_refs": [
+        "step6-samples/startup-pivot-new-run2.sample-0.calibration-step6.v1.json"
+      ],
+      "rationale": "All samples produced additive pressure with concrete or specific structural answer deltas."
+    },
+    {
+      "case_id": "third-year-phd-student.v2.v60-off",
+      "sample_count": 3,
+      "stability_classification": "stable_positive",
+      "reviewer_phase_eligibility": "eligible_stable_positive_candidate",
+      "ledger_signal_counts": {
+        "additive_pressure_present": 3
+      },
+      "answer_delta_specificity_counts": {
+        "concrete_delta_present": 3
+      },
+      "unlock_count": 3,
+      "reframe_only_count": 0,
+      "structural_delta_count": 0,
+      "structural_delta_field_count": 3,
+      "sample_refs": [
+        "step6-samples/third-year-phd-student.v2.v60-off.sample-0.calibration-step6.v1.json",
+        "step6-samples/third-year-phd-student.v2.v60-off.sample-1.calibration-step6.v1.json",
+        "step6-samples/third-year-phd-student.v2.v60-off.sample-2.calibration-step6.v1.json"
+      ],
+      "rationale": "All samples produced additive pressure with concrete or specific structural answer deltas."
+    }
+  ],
+  "aggregate": {
+    "case_count": 4,
+    "stable_positive_count": 3,
+    "stable_standdown_count": 1,
+    "borderline_unlock_count": 0,
+    "abstract_additive_only_count": 0,
+    "unstable_mixed_count": 0,
+    "repeat_sample_case_ids": [],
+    "reviewer_phase_decision": "stable_cases_ready_for_reviewer_phase",
+    "recommended_next_action": "run_reviewer_phase_from_saved_samples"
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "No-redesign review of saved Step 6 calibration samples. This artifact classifies stability before any reviewer adjudication."
+}

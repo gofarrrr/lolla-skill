@@ -1,0 +1,48 @@
+{
+  "schema_version": "pre_step6_consultant_anchor_boundary_patch_probe_contract.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "consultant_anchor_boundary_patch_probe_v0",
+  "promotion_effect": "none_research_only",
+  "case_id": "mid-level-consultant-report-2",
+  "source_refs": {
+    "consultant_cleaning_variant_ref": "research/pre-step6-consultant-deck-composition-review/consultant-cleaning-variant.v1.json",
+    "source_replay_result_ref": "research/pre-step6-consultant-cleaning-variant-replay/consultant-cleaning-variant-replay-result.v1.json"
+  },
+  "patch": {
+    "patch_phrase": "keep the first moves reversible until counsel guides the next action",
+    "original_phrase": "keep the first moves reversible",
+    "placement": "hypothesis_test_not_architecture",
+    "allowed_change": "one_phrase_only_no_style_rewrite",
+    "non_purpose": [
+      "not_a_per_case_patch_architecture",
+      "not_visibility_policy",
+      "not_runtime_promotion",
+      "not_skill_update"
+    ]
+  },
+  "sample_plan": {
+    "step6_model": "moonshotai/kimi-k2.6",
+    "sample_count": 6,
+    "max_wording_reruns_on_unobserved": 1,
+    "success_read": "Test whether the recurring reversibility-until-counsel pressure is carried by the patched anchor so the same micro-card can stand down."
+  },
+  "preflight_checklist": [
+    "makes_step6_table_better",
+    "preserves_broad_private_edge",
+    "keeps_cognition_in_step6_or_human_review",
+    "avoids_automatic_wisdom_from_recurrence",
+    "learns_upstream_rather_than_suppressing_context"
+  ],
+  "decision_tree": {
+    "yes": "classify Consultant as graduation_candidate and investigate upstream origin.",
+    "no": "classify Consultant as card_needed or anchor_wording_failed; no permanent patch layer.",
+    "mixed": "classify Consultant as borderline_by_design and stop Consultant refinement.",
+    "unobserved": "allow at most one operator-reviewed wording rerun; if still unobserved, park."
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "The patched anchor is a hypothesis-test input. If it works, the next question is why the existing pipeline did not surface this pressure naturally."
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "pre_step6_reframe_diagnostic_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "calibration_reframe_diagnostic_review_v0",
+  "diagnostic_case_id": "startup-pivot-new-run2.sample-2.reframe-only-diagnostic",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"diagnostic_label\": \"anchor_better\",\n  \"winner_label\": \"A\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Answer A provides a complete, actionable narrative that guides the founder through the decision-making process. Answer B is a fragmented summary that loses the nuance of the 'why' behind the actions, particularly regarding the handling of the current 22 customers and the strategic value of the 14-month runway. Answer A is more professional and easier to digest as a strategic plan.\",\n  \"reframe_value_if_any\": [\n    \"The reframing successfully shifts the focus from 'should I pivot' to 'how to validate the pivot signal immediately', which is the most critical step for a founder with limited runway.\"\n  ],\n  \"anchor_strengths\": [\n    \"Clear, logical flow.\",\n    \"Actionable steps for both the pivot scenario and the 'stay the course' scenario.\",\n    \"Addresses the human element (CS employee, former co-founder) with appropriate professional guidance.\"\n  ],\n  \"payload_loss_or_bloat\": [\n    \"Answer B suffers from excessive brevity that strips away the context necessary for the founder to execute the advice effectively.\"\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 1018,
+    "completion_tokens": 273,
+    "total_tokens": 1291,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "model_family": "google"
+  },
+  "blind_map": {
+    "A": "step6_visible",
+    "B": "anchor_visible"
+  },
+  "reviewer_output": {
+    "diagnostic_label": "anchor_better",
+    "winner_label": "A",
+    "confidence": "high",
+    "rationale": "Answer A provides a complete, actionable narrative that guides the founder through the decision-making process. Answer B is a fragmented summary that loses the nuance of the 'why' behind the actions, particularly regarding the handling of the current 22 customers and the strategic value of the 14-month runway. Answer A is more professional and easier to digest as a strategic plan.",
+    "reframe_value_if_any": [
+      "The reframing successfully shifts the focus from 'should I pivot' to 'how to validate the pivot signal immediately', which is the most critical step for a founder with limited runway."
+    ],
+    "anchor_strengths": [
+      "Clear, logical flow.",
+      "Actionable steps for both the pivot scenario and the 'stay the course' scenario.",
+      "Addresses the human element (CS employee, former co-founder) with appropriate professional guidance."
+    ],
+    "payload_loss_or_bloat": [
+      "Answer B suffers from excessive brevity that strips away the context necessary for the founder to execute the advice effectively."
+    ]
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample reframe diagnostic judgment."
+}

@@ -1,0 +1,81 @@
+{
+  "schema_version": "pre_step6_lens_probe.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "third-year-phd-student",
+  "lens_pack": "polya_problem_solving_v0",
+  "source_refs": [
+    "plans/lolla-solver-control-layer-prd-2026-05-19.md:412",
+    "research/pre-step6-attention-maps/third-year-phd-student.v2.step6-attention-map.v1.json",
+    "research/pre-step6-problem-states/third-year-phd-student.problem-state.v1.json"
+  ],
+  "problem_state_ref": "research/pre-step6-problem-states/third-year-phd-student.problem-state.v1.json",
+  "attention_map_ref": "research/pre-step6-attention-maps/third-year-phd-student.v2.step6-attention-map.v1.json",
+  "lens_candidates": [
+    {
+      "lens_id": "polya_restate_unknown_conditions",
+      "lens_name": "restate unknowns as conditions",
+      "why_it_might_matter": "The decision is not which project feels best; it is which conditions must be true for each path to remain viable.",
+      "source_hooks": [
+        "PRD Polya prompt: what is known and unknown.",
+        "Attention map Silva executability and fallback survivability."
+      ],
+      "supported_by_artifact_ids": [
+        "phd_silva_constraint_retest",
+        "phd_fallback_viability_boundary_parked"
+      ],
+      "cheap_test_for_step6": "Check whether the answer turns options into viability conditions rather than preferences.",
+      "risk_if_forced": "The answer may sound mechanical and underplay motivation.",
+      "risk_if_ignored": "The answer may choose a story before defining what would make it executable.",
+      "suggested_attention": "active",
+      "false_friend_warning": "Do not turn conditions into a demand for perfect certainty."
+    },
+    {
+      "lens_id": "polya_work_backward_deadline",
+      "lens_name": "work backward from the deadline",
+      "why_it_might_matter": "The three-month proposal deadline and advisor retirement mean the next tests need an order and stop point.",
+      "source_hooks": [
+        "PRD Polya prompt: what move would help thinking progress.",
+        "Attention map stop-date and advisor-first pressure."
+      ],
+      "supported_by_artifact_ids": [
+        "phd_fallback_viability_boundary_parked"
+      ],
+      "cheap_test_for_step6": "Check whether the answer sequences advisor, Silva evidence probe, stop date, and committee.",
+      "risk_if_forced": "The answer may over-plan before advisor input.",
+      "risk_if_ignored": "The answer may preserve options in language while losing them in time.",
+      "suggested_attention": "active",
+      "false_friend_warning": "Do not make a rigid plan where advisor feedback should change the plan."
+    },
+    {
+      "lens_id": "polya_simplify_next_move",
+      "lens_name": "simplify to the next informative move",
+      "why_it_might_matter": "The next move is not a full proposal; it is an advisor conversation and short evidence probe.",
+      "source_hooks": [
+        "PRD Polya prompt: simplify, reframe, ask, or proceed.",
+        "Attention map active Silva pressure."
+      ],
+      "supported_by_artifact_ids": [
+        "phd_silva_constraint_retest"
+      ],
+      "cheap_test_for_step6": "Check whether the answer blocks finished-proposal and all-options-in-parallel failure modes.",
+      "risk_if_forced": "The answer may understate the strategic stakes of the dissertation choice.",
+      "risk_if_ignored": "The answer may generate a plan too large to run inside the real deadline.",
+      "suggested_attention": "scan",
+      "false_friend_warning": "Do not simplify so much that fallback survival disappears."
+    }
+  ],
+  "off_narrative_preservation": {
+    "lens_id": "polya_look_back_identity",
+    "why_preserve_even_if_not_obvious": "Looking back from a chosen dissertation path can reveal whether the fallback is usable by the person, not only available on paper.",
+    "preserve_as": "parked",
+    "reactivate_if": "Reactivate if Step 6 treats identity coherence as irrelevant to fallback survivability.",
+    "risk_if_forced": "The answer may drift into therapy-like speculation."
+  },
+  "do_not_force": [
+    "Do not expose Polya labels in the public answer.",
+    "Do not replace advisor-first sequencing with a generic problem-solving frame.",
+    "Do not ask for more information when the next evidence probe is already identifiable."
+  ],
+  "notes": "Polya v0 probe for PhD v2. It should be strongest where problem shape and next-move sequencing are the real bottleneck."
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "pre_step6_reframe_diagnostic_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "calibration_reframe_diagnostic_review_v0",
+  "diagnostic_case_id": "third-year-phd-student.v2.v60-off.sample-2.reframe-only-diagnostic",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"diagnostic_label\": \"step6_non_inferior\",\n  \"winner_label\": \"B\",\n  \"confidence\": \"medium\",\n  \"rationale\": \"Answer B is slightly more effective because it explicitly frames the 'stop-loss' and 'dated evidence checks' as a mechanism for decision-making, which aligns with the reframe-only diagnostic goal of emphasizing stop-date conditions. While both answers provide similar tactical advice, B's structure feels more action-oriented regarding the 'stop-loss' requirement.\",\n  \"reframe_value_if_any\": [\n    \"The emphasis on 'stop-loss' and 'dated evidence checks' transforms the decision from a choice between two paths into a process of verifying two gates.\"\n  ],\n  \"anchor_strengths\": [\n    \"Answer A is concise and provides a very clear, logical sequence for the political navigation of the advisor/committee dynamic.\"\n  ],\n  \"payload_loss_or_bloat\": [\n    \"No significant payload loss; both answers effectively cover the required tactical steps.\"\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 1138,
+    "completion_tokens": 238,
+    "total_tokens": 1376,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "model_family": "google"
+  },
+  "blind_map": {
+    "A": "step6_visible",
+    "B": "anchor_visible"
+  },
+  "reviewer_output": {
+    "diagnostic_label": "step6_non_inferior",
+    "winner_label": "B",
+    "confidence": "medium",
+    "rationale": "Answer B is slightly more effective because it explicitly frames the 'stop-loss' and 'dated evidence checks' as a mechanism for decision-making, which aligns with the reframe-only diagnostic goal of emphasizing stop-date conditions. While both answers provide similar tactical advice, B's structure feels more action-oriented regarding the 'stop-loss' requirement.",
+    "reframe_value_if_any": [
+      "The emphasis on 'stop-loss' and 'dated evidence checks' transforms the decision from a choice between two paths into a process of verifying two gates."
+    ],
+    "anchor_strengths": [
+      "Answer A is concise and provides a very clear, logical sequence for the political navigation of the advisor/committee dynamic."
+    ],
+    "payload_loss_or_bloat": [
+      "No significant payload loss; both answers effectively cover the required tactical steps."
+    ]
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample reframe diagnostic judgment."
+}

@@ -1,7 +1,11 @@
 from __future__ import annotations
 
 from engine.system_b.output_hygiene import (
+    LIVE_OUTPUT_LEAK_ISSUE,
+    LIVE_OUTPUT_MISSING_ISSUE,
+    LIVE_OUTPUT_UNVERIFIED_ISSUE,
     PRODUCT_OUTPUT_LEAK_ISSUE,
+    finalize_live_output_hygiene,
     finalize_product_output_hygiene,
     scan_output_hygiene,
 )
@@ -73,12 +77,37 @@ def test_product_hygiene_flags_live_orchestration_narration() -> None:
     assert {"Beat", "pressure-check agents", "V60", "ledger"}.issubset(terms)
 
 
+def test_product_hygiene_flags_live_reader_and_model_orchestration_narration() -> None:
+    report = scan_output_hygiene(
+        {
+            "live_narration": (
+                "Spawning pressure-check readers in parallel now.\n"
+                "All three readers are in.\n"
+                "Orchestrator: Sonnet — phrasing quality may be mildly degraded "
+                "vs Opus (see Model Requirements).\n"
+                "Now persisting the pressure check and rendering the memo."
+            ),
+        }
+    )
+
+    assert report["status"] == "unsafe"
+    terms = {leak["term"] for leak in report["leaks"]}
+    assert {
+        "pressure-check readers",
+        "reader status",
+        "orchestrator",
+        "Model Requirements",
+        "Now persisting",
+        "rendering the memo",
+    }.issubset(terms)
+
+
 def test_product_hygiene_allows_public_pressure_check_language() -> None:
     report = scan_output_hygiene(
         {
             "pressure_check": (
                 "One more pressure check: define the reversal trigger before "
-                "the sprint starts. This needs to beat 2 incumbent workflows."
+                "the sprint starts. This needs to outperform 2 incumbent workflows."
             ),
         }
     )
@@ -151,3 +180,141 @@ def test_finalize_product_output_hygiene_clears_stale_leak_issue_after_clean_rer
         item["code"] != PRODUCT_OUTPUT_LEAK_ISSUE
         for item in cleaned["run_health"]["issue_details"]
     )
+
+
+def test_finalize_live_output_hygiene_records_manual_clean_transcript_as_not_checked() -> None:
+    result = finalize_live_output_hygiene(
+        {
+            "run_health": {"overall": "healthy", "issues": [], "issue_details": []},
+        },
+        "I have the counterargument; I am folding it into the revised answer now.",
+    )
+
+    assert result["run_health"]["overall"] == "healthy"
+    assert result["run_health"]["live_output_health"] == "not_checked"
+    assert result["run_health"]["live_output_leak_count"] == 0
+    assert result["run_health"]["live_output_leaks"] == []
+    assert result["live_output_hygiene"]["status"] == "not_checked"
+    assert result["live_output_hygiene"]["transcript_status"] == "clean"
+    assert result["live_output_hygiene"]["capture_mode"] == "manual_unverified"
+
+
+def test_finalize_live_output_hygiene_records_clean_trusted_live_transcript() -> None:
+    result = finalize_live_output_hygiene(
+        {
+            "run_health": {"overall": "healthy", "issues": [], "issue_details": []},
+        },
+        "I have the counterargument; I am folding it into the revised answer now.",
+        trusted_capture=True,
+    )
+
+    assert result["run_health"]["overall"] == "healthy"
+    assert result["run_health"]["live_output_health"] == "clean"
+    assert result["run_health"]["live_output_leak_count"] == 0
+    assert result["run_health"]["live_output_leaks"] == []
+    assert result["live_output_hygiene"]["status"] == "clean"
+    assert result["live_output_hygiene"]["transcript_status"] == "clean"
+    assert result["live_output_hygiene"]["capture_mode"] == "trusted"
+    assert len(result["live_output_hygiene"]["transcript_sha256"]) == 64
+
+
+def test_finalize_live_output_hygiene_degrades_unsafe_live_transcript() -> None:
+    result = finalize_live_output_hygiene(
+        {
+            "run_health": {"overall": "healthy", "issues": [], "issue_details": []},
+        },
+        "Beat 2 is done. Now debugging the V60 ledger.",
+    )
+
+    assert result["run_health"]["overall"] == "degraded"
+    assert result["run_health"]["live_output_health"] == "unsafe"
+    assert result["run_health"]["live_output_leak_count"] >= 3
+    assert LIVE_OUTPUT_LEAK_ISSUE in result["run_health"]["issues"]
+    detail = next(
+        item
+        for item in result["run_health"]["issue_details"]
+        if item["code"] == LIVE_OUTPUT_LEAK_ISSUE
+    )
+    assert detail["severity"] == "degraded"
+    assert detail["axis"] == "live_output"
+
+
+def test_finalize_live_output_hygiene_clears_stale_leak_issue_after_clean_rerun() -> None:
+    unsafe = finalize_live_output_hygiene(
+        {
+            "run_health": {"overall": "healthy", "issues": [], "issue_details": []},
+        },
+        "Beat 2 is done. Now debugging the V60 ledger.",
+    )
+
+    cleaned = finalize_live_output_hygiene(
+        unsafe,
+        "I have the counterargument; I am folding it into the revised answer now.",
+        trusted_capture=True,
+    )
+
+    assert cleaned["run_health"]["overall"] == "healthy"
+    assert cleaned["run_health"]["live_output_health"] == "clean"
+    assert LIVE_OUTPUT_LEAK_ISSUE not in cleaned["run_health"]["issues"]
+    assert all(
+        item["code"] != LIVE_OUTPUT_LEAK_ISSUE
+        for item in cleaned["run_health"]["issue_details"]
+    )
+
+
+def test_finalize_live_output_hygiene_marks_manual_clean_transcript_partial_when_required() -> None:
+    result = finalize_live_output_hygiene(
+        {
+            "run_health": {"overall": "healthy", "issues": [], "issue_details": []},
+        },
+        "I have the counterargument; I am folding it into the revised answer now.",
+        require_live_output_clean=True,
+    )
+
+    assert result["run_health"]["overall"] == "partial"
+    assert result["run_health"]["live_output_health"] == "not_checked"
+    assert LIVE_OUTPUT_UNVERIFIED_ISSUE in result["run_health"]["issues"]
+    detail = next(
+        item
+        for item in result["run_health"]["issue_details"]
+        if item["code"] == LIVE_OUTPUT_UNVERIFIED_ISSUE
+    )
+    assert detail["severity"] == "partial"
+    assert detail["axis"] == "live_output"
+
+
+def test_finalize_live_output_hygiene_records_missing_without_degrading_by_default() -> None:
+    result = finalize_live_output_hygiene(
+        {
+            "run_health": {"overall": "healthy", "issues": [], "issue_details": []},
+        },
+        None,
+    )
+
+    assert result["run_health"]["overall"] == "healthy"
+    assert result["run_health"]["live_output_health"] == "missing"
+    assert result["run_health"]["live_output_leak_count"] == 0
+    assert result["run_health"]["live_output_leaks"] == []
+    assert LIVE_OUTPUT_MISSING_ISSUE not in result["run_health"]["issues"]
+    assert result["live_output_hygiene"]["status"] == "missing"
+
+
+def test_finalize_live_output_hygiene_marks_missing_partial_when_required() -> None:
+    result = finalize_live_output_hygiene(
+        {
+            "run_health": {"overall": "healthy", "issues": [], "issue_details": []},
+        },
+        None,
+        require_live_output_clean=True,
+    )
+
+    assert result["run_health"]["overall"] == "partial"
+    assert result["run_health"]["live_output_health"] == "missing"
+    assert LIVE_OUTPUT_MISSING_ISSUE in result["run_health"]["issues"]
+    detail = next(
+        item
+        for item in result["run_health"]["issue_details"]
+        if item["code"] == LIVE_OUTPUT_MISSING_ISSUE
+    )
+    assert detail["severity"] == "partial"
+    assert detail["axis"] == "live_output"

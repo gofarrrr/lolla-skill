@@ -1,0 +1,113 @@
+{
+  "schema_version": "pre_step6_semi_blind_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mother-deciding-address-year",
+  "comparison_kind": "semi_blind_local_rubric",
+  "blind_seed": 23,
+  "candidate_refs": {
+    "control_answer_comparison": "research/pre-step6-raw-artifact-comparisons/mother-address-year.raw-vs-control-comparison.v1.json",
+    "raw_answer_core": "research/pre-step6-raw-artifact-answer-cores/mother-address-year.raw-answer-core.v1.json",
+    "rendered_hybrid_answer_core": "research/pre-step6-rendered-hybrid-answer-cores/mother-address-year.native.rendered-hybrid-answer-core.v1.json"
+  },
+  "blind_map": {
+    "A": "control",
+    "B": "rendered_hybrid",
+    "C": "raw"
+  },
+  "criteria": [
+    {
+      "criterion_id": "decision_usefulness",
+      "question": "Which answer gives the mother a safe next action without escalating unnecessarily?",
+      "winner_label": "B",
+      "evidence_by_label": {
+        "A": "Splits the decisions and keeps repair central, but lacks the explicit monitored-channel caution.",
+        "B": "Separates choices, keeps RAINN/therapist/counsel central, preserves monitored-channel caution, and names reversible tripwires.",
+        "C": "Preserves the slow-repair plan and trigger-based escalation, but is less clear about the first decision split."
+      },
+      "rationale": "B is most useful for a distressed parent because it combines the control's decomposition with the missing quiet-monitoring caution."
+    },
+    {
+      "criterion_id": "source_grounding",
+      "question": "Which answer stays inside the actual mother/daughter/ex/RAINN/surveillance facts?",
+      "winner_label": "tie",
+      "evidence_by_label": {
+        "A": "Uses the known police/professional guidance, phone/blocking, ex communication, therapy, and trust-repair facts.",
+        "B": "Uses the same facts and adds the surveillance-instrument caution from the raw artifact handoff.",
+        "C": "Uses the same facts and directly preserves the visible-channel caution."
+      },
+      "rationale": "All three stay within the fixture; B and C carry more of the missing source discipline, but A does not introduce unsupported facts."
+    },
+    {
+      "criterion_id": "overclaim_risk",
+      "question": "Which answer best avoids grooming-probability claims, safety certainty, or treating silence as reassurance?",
+      "winner_label": "tie",
+      "evidence_by_label": {
+        "A": "Avoids numeric claims but does not explicitly warn that silence in monitored channels is weak evidence.",
+        "B": "Says silence in the monitored channel is weak evidence, not reassurance, and avoids numeric grooming claims.",
+        "C": "Says quiet phone monitoring should not reassure too much and avoids numeric grooming claims."
+      },
+      "rationale": "B and C are stronger than A on monitored-channel overclaim, but the overall criterion is recorded as a tie because all candidates avoid explicit probability claims."
+    },
+    {
+      "criterion_id": "answer_length_cognitive_load",
+      "question": "Which answer is easiest for a distressed parent to process?",
+      "winner_label": "A",
+      "evidence_by_label": {
+        "A": "Shortest and still usable.",
+        "B": "Longer because it carries the missing caution and concrete tripwires.",
+        "C": "Similar length to B and somewhat denser."
+      },
+      "rationale": "A wins the pure lightness criterion."
+    },
+    {
+      "criterion_id": "machinery_hygiene",
+      "question": "Which answer best avoids visible private terms, procedural feel, power framing, and leverage language?",
+      "winner_label": "B",
+      "evidence_by_label": {
+        "A": "Clean and humane, but omits the explicit instrument-trust caution.",
+        "B": "Avoids private terms, pressure-card language, worker language, power/leverage framing, and raw-inspection feel.",
+        "C": "Avoids private machinery but explicitly says not to use leverage strategy, which still surfaces the leverage frame."
+      },
+      "rationale": "B carries the needed caution while staying quiet about the private machinery and tempting leverage lens."
+    },
+    {
+      "criterion_id": "conflict_preservation",
+      "question": "Which answer best preserves the safety/trust tension without forcing a dramatic intervention?",
+      "winner_label": "B",
+      "evidence_by_label": {
+        "A": "Preserves the safety/trust sequence but is less explicit about weak monitoring evidence.",
+        "B": "Keeps safety, trust repair, professional guidance, and reversible tripwires together without forcing immediate escalation.",
+        "C": "Preserves slow repair and escalation triggers, but leans more on the monitoring caution than the decision split."
+      },
+      "rationale": "B best holds the quiet-sentinel tension: do not overreact, but do not let silence become reassurance."
+    },
+    {
+      "criterion_id": "duplicate_demotion",
+      "question": "Which answer avoids re-surfacing quiet or demoted duplicate pressures?",
+      "winner_label": "B",
+      "evidence_by_label": {
+        "A": "Avoids duplicates by staying short, but also drops the monitored-channel caution.",
+        "B": "Keeps only the survivor caution and does not resurface power-dynamics, leverage, grooming-probability, or raw duplicate pressure.",
+        "C": "Explicitly declines leverage strategy, which preserves the warning but also reintroduces the demoted frame."
+      },
+      "rationale": "B is the best quiet-mode behavior: the important caution survives while demoted frames stay quiet."
+    },
+    {
+      "criterion_id": "unforcedness",
+      "question": "Which answer feels most like humane situated judgment rather than hidden checklist execution?",
+      "winner_label": "A",
+      "evidence_by_label": {
+        "A": "Most natural and compact.",
+        "B": "Still humane, but more visibly organized around tripwires and separated choices.",
+        "C": "Humane but denser and more explicit about not using leverage."
+      },
+      "rationale": "A wins unforcedness. This keeps the rendered-hybrid result honest: it wins by preserving caution while staying quiet, not by being the most natural prose."
+    }
+  ],
+  "tie_break_rule": "rendered_must_beat_or_simplify",
+  "aggregate_winner_label": "B",
+  "aggregate_decision": "rendered_hybrid_wins",
+  "promotion_read": "pass_to_replay",
+  "notes": "Local semi-blind rubric, not native judge output. Rendered quiet wins aggregate because it preserves the monitored-channel caution and reversible tripwires while avoiding pressure/lens machinery. Control remains lighter and more natural; raw preserves caution but surfaces leverage language."
+}

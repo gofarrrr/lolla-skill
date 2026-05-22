@@ -1,0 +1,53 @@
+{
+  "schema_version": "pre_step6_pressure_vs_raw_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mid-level-consultant-report-2",
+  "raw_answer_core_ref": "research/pre-step6-raw-artifact-answer-cores/mid-level-consultant-report-2.raw-answer-core.v1.json",
+  "pressure_answer_core_ref": "research/pre-step6-pressure-card-answer-cores/mid-level-consultant-report-2.native.pressure-answer-core.v1.json",
+  "criteria": [
+    {
+      "criterion_id": "safety_sequence",
+      "question": "Does the answer preserve the immediate safety sequence?",
+      "winner": "tie",
+      "raw_evidence": "Raw keeps no confrontation, no private investigation, no unusual access, documentation, and attorney calls.",
+      "pressure_evidence": "Pressure keeps the same boundaries and first-night preservation steps.",
+      "rationale": "Both protect the high-stakes first moves."
+    },
+    {
+      "criterion_id": "counsel_incentive",
+      "question": "Does the answer test counsel's channel incentives without replacing counsel?",
+      "winner": "raw",
+      "raw_evidence": "Raw says not to treat counsel as magic and asks how counsel handles internal-first or audit-committee-first cases.",
+      "pressure_evidence": "Pressure warns not to treat GC as automatically aligned, but does not test the attorney's own channel incentives.",
+      "rationale": "Raw preserves a more subtle counsel-selection gate."
+    },
+    {
+      "criterion_id": "channel_distinction",
+      "question": "Does the answer distinguish GC, audit committee, regulators, and external paths?",
+      "winner": "tie",
+      "raw_evidence": "Raw asks counsel to distinguish general counsel, audit committee, and regulator.",
+      "pressure_evidence": "Pressure says counsel should help choose among GC, audit committee, regulators, or another external path.",
+      "rationale": "Both prevent treating internal versus external as the only distinction."
+    },
+    {
+      "criterion_id": "wednesday_protocol",
+      "question": "Does the answer give a concrete Wednesday protocol?",
+      "winner": "raw",
+      "raw_evidence": "Raw gives a plain response pattern if the partner raises the encounter and warns against overdenying or elaborating.",
+      "pressure_evidence": "Pressure says attend normally unless counsel says otherwise and avoid unusual behavior.",
+      "rationale": "Raw makes the immediate encounter less improvisational."
+    },
+    {
+      "criterion_id": "legal_conclusion_boundary",
+      "question": "Does the answer avoid self-directed legal conclusions and extra proof collection?",
+      "winner": "pressure",
+      "raw_evidence": "Raw keeps no confrontation, no investigation, and counsel-first boundaries.",
+      "pressure_evidence": "Pressure explicitly says not to draw a final conclusion, not to collect extra proof, and not to decide the reporting path alone.",
+      "rationale": "Pressure sharpens a legal-adjacent boundary."
+    }
+  ],
+  "tie_break_rule": "pressure_tie_with_raw_stops",
+  "aggregate_decision": "raw_wins",
+  "notes": "Pressure-card consumption was useful, but raw preserved counsel-incentive and Wednesday-protocol nuance better."
+}

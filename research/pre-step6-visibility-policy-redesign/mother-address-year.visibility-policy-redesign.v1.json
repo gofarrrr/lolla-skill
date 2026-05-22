@@ -1,0 +1,39 @@
+{
+  "schema_version": "pre_step6_visibility_policy_redesign.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "design_preamble_visibility_policy_redesign_v0",
+  "case_id": "mother-address-year",
+  "inputs": {
+    "cache_state": "cache_hit",
+    "step6_ledger_signal": "all_private_or_confirming",
+    "payload_gate_result": "preserved",
+    "bridge_probe_label": "not_observed"
+  },
+  "legacy_policy": {
+    "result": "anchor_visible_deck_private",
+    "would_suppress_deck": false,
+    "why": "Legacy runtime unresolved policy defaults to anchor visible and deck private."
+  },
+  "redesigned_policy": {
+    "result": "anchor_visible_deck_private",
+    "why": "Step 6 did not record additive non-anchor pressure.",
+    "cognitive_signal_source": "step6_private_ledger",
+    "normal_runtime_reviewer_calls": 0
+  },
+  "deterministic_role": [
+    "validate_cache_state",
+    "validate_step6_ledger_schema",
+    "validate_payload_preservation",
+    "preserve_audit_custody"
+  ],
+  "bridge_probe_read": {
+    "case_was_false_standdown_probe": false,
+    "design_pressure": "No bridge-probe false-standdown pressure recorded for this case."
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Research-only redesign. It does not add a runtime reviewer loop and does not wire product behavior."
+}

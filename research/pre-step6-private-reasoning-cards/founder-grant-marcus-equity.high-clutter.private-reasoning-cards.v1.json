@@ -1,0 +1,126 @@
+{
+  "schema_version": "pre_step6_private_reasoning_card_interface.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "design_preamble_card_interface_v0",
+  "case_id": "founder-grant-marcus-equity.high-clutter",
+  "source_refs": {
+    "rendered_hybrid": "research/pre-step6-rendered-hybrid-answer-cores/founder-grant-marcus-equity.high-clutter.native.rendered-hybrid-answer-core.v1.json",
+    "bevelin_lens": "research/pre-step6-lens-answer-cores/founder-grant-marcus-equity.high-clutter.bevelin-answer-core.v1.json",
+    "polya_lens": "research/pre-step6-lens-answer-cores/founder-grant-marcus-equity.high-clutter.polya-answer-core.v1.json",
+    "problem_state": "research/pre-step6-problem-states/founder-grant-marcus-equity.high-clutter.problem-state.v1.json"
+  },
+  "cards": [
+    {
+      "card_schema_version": "private_reasoning_card.v1",
+      "card_id": "clean_hybrid_card",
+      "card_type": "anchor",
+      "source_kind": "rendered_hybrid_answer_core",
+      "source_ref": "research/pre-step6-rendered-hybrid-answer-cores/founder-grant-marcus-equity.high-clutter.native.rendered-hybrid-answer-core.v1.json",
+      "cognitive_role": "Concrete anchor: start from this because it preserves case-specific pressure in ordinary answer shape.",
+      "receipts": [
+        "Anchor answer core is the visible backbone."
+      ],
+      "handling_rule": "Use as the concrete starting anchor, but revise it if another card reveals pressure the anchor underweights.",
+      "activation_scope": "Always present as concrete anchor and visible-backbone candidate.",
+      "misuse_guard": "Do not treat the anchor as immune from private challenge.",
+      "standdown_condition": "Stand down only as sole public answer when Step 6 finds additive private pressure that improves the visible answer.",
+      "public_hygiene_terms": [
+        "card",
+        "deck",
+        "lens",
+        "Bevelin",
+        "Polya",
+        "schema"
+      ],
+      "expansion_ref": "research/pre-step6-rendered-hybrid-answer-cores/founder-grant-marcus-equity.high-clutter.native.rendered-hybrid-answer-core.v1.json"
+    },
+    {
+      "card_schema_version": "private_reasoning_card.v1",
+      "card_id": "bevelin_card",
+      "card_type": "lens",
+      "source_kind": "bevelin_lens_answer_core",
+      "source_ref": "research/pre-step6-lens-answer-cores/founder-grant-marcus-equity.high-clutter.bevelin-answer-core.v1.json",
+      "cognitive_role": "Edge-pressure scan: incentives, dependency, false precision, commitment before proof, and inversion pressure.",
+      "receipts": [
+        "Makes incentive and dependency-system pressure more explicit.",
+        "Adds the test of whether Marcus makes the company stronger beyond himself.",
+        "Sharpens irreversible commitment before proof as the central danger."
+      ],
+      "handling_rule": "Give this card a serious hearing. Use, reject, defer, or combine it; do not treat source identity as proof.",
+      "activation_scope": "Use when incentives, commitment, dependency, or false precision may hide edge pressure.",
+      "misuse_guard": "Do not force every problem into incentives, inversion, or commitment framing.",
+      "standdown_condition": "Stand down when it only confirms pressure already preserved by the anchor.",
+      "public_hygiene_terms": [
+        "card",
+        "deck",
+        "lens",
+        "Bevelin",
+        "Polya",
+        "schema"
+      ],
+      "expansion_ref": "research/pre-step6-lens-answer-cores/founder-grant-marcus-equity.high-clutter.bevelin-answer-core.v1.json"
+    },
+    {
+      "card_schema_version": "private_reasoning_card.v1",
+      "card_id": "polya_card",
+      "card_type": "lens",
+      "source_kind": "polya_lens_answer_core",
+      "source_ref": "research/pre-step6-lens-answer-cores/founder-grant-marcus-equity.high-clutter.polya-answer-core.v1.json",
+      "cognitive_role": "Problem-shape scan: knowns, unknowns, testable next move, sequence, and avoiding the wrong problem.",
+      "receipts": [
+        "Frames the problem as defining what evidence would justify irreversible rights.",
+        "Simplifies Friday into the next real test rather than a full instrument design.",
+        "Adds a look-back check on what kind of company would be sold."
+      ],
+      "handling_rule": "Give this card a serious hearing. Use, reject, defer, or combine it; do not treat source identity as proof.",
+      "activation_scope": "Use when problem shape, knowns/unknowns, or next informative move is unclear.",
+      "misuse_guard": "Do not turn the answer into a generic problem-solving worksheet.",
+      "standdown_condition": "Stand down when the anchor already names the next real test and no problem-shape error is present.",
+      "public_hygiene_terms": [
+        "card",
+        "deck",
+        "lens",
+        "Bevelin",
+        "Polya",
+        "schema"
+      ],
+      "expansion_ref": "research/pre-step6-lens-answer-cores/founder-grant-marcus-equity.high-clutter.polya-answer-core.v1.json"
+    }
+  ],
+  "synthetic_future_card": {
+    "card_schema_version": "private_reasoning_card.v1",
+    "card_id": "future_decision_quality_card",
+    "card_type": "lens",
+    "source_kind": "synthetic_future_lens_fixture",
+    "source_ref": "research/synthetic/future-decision-quality-card.fixture",
+    "cognitive_role": "Decision-quality pressure: inspect missing options, reversible tests, and what evidence would change the recommendation.",
+    "receipts": [
+      "Forces a check for missing options before narrowing.",
+      "Separates reversible experiments from irreversible commitments."
+    ],
+    "handling_rule": "Use only if it adds a concrete option, evidence gate, or reversal test; otherwise keep it private.",
+    "activation_scope": "Cases with high uncertainty, irreversible action, or sparse option exploration.",
+    "misuse_guard": "Do not turn this into a generic decision worksheet or public taxonomy.",
+    "standdown_condition": "Stand down when the anchor already names the reversible next test and the card adds no new constraint.",
+    "public_hygiene_terms": [
+      "card",
+      "lens",
+      "fixture",
+      "deck",
+      "schema"
+    ],
+    "expansion_ref": "synthetic_future_card_fixture_only"
+  },
+  "interface_read": {
+    "bevelin_polya_special_cased": false,
+    "new_card_requires_policy_change": false,
+    "new_card_requires_ledger_change": false,
+    "reason": "Cards satisfy a generic private-card schema; policy and ledger consume card roles and consideration items, not Bevelin/Polya IDs."
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Research-only card-interface proof. This validates a generic schema without wiring a new runtime deck builder."
+}

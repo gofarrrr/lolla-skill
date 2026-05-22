@@ -1,0 +1,146 @@
+{
+  "schema_version": "pre_step6_portfolio_blind_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "founder-grant-marcus-equity.high-clutter",
+  "comparison_kind": "portfolio_blind_local_rubric",
+  "blind_seed": 2026052001,
+  "candidate_refs": {
+    "control_or_raw_answer_core": "research/pre-step6-raw-artifact-answer-cores/founder-grant-marcus-equity.raw-answer-core.v1.json",
+    "rendered_hybrid_answer_core": "research/pre-step6-rendered-hybrid-answer-cores/founder-grant-marcus-equity.high-clutter.native.rendered-hybrid-answer-core.v1.json",
+    "portfolio_answer_core": "research/pre-step6-portfolio-answer-cores/founder-grant-marcus-equity.high-clutter.native.portfolio-answer-core.v1.json"
+  },
+  "blind_map": {
+    "A": "control_or_raw",
+    "B": "rendered_hybrid",
+    "C": "portfolio",
+    "D": "unused"
+  },
+  "criteria": [
+    {
+      "criterion_id": "decision_usefulness",
+      "question": "Which answer gives the founder the clearest Friday stance?",
+      "winner_label": "C",
+      "evidence_by_label": {
+        "A": "Useful, but more terms-heavy.",
+        "B": "Strong staged-partnership stance.",
+        "C": "Cleanly frames commitment after proof versus irreversible commitment before proof.",
+        "D": "Unused arm."
+      },
+      "rationale": "C is the cleanest decision sentence while preserving the staged path."
+    },
+    {
+      "criterion_id": "source_grounding",
+      "question": "Which answer stays inside the Marcus/platform/client/exit facts?",
+      "winner_label": "tie",
+      "evidence_by_label": {
+        "A": "Uses the existing case facts.",
+        "B": "Uses dependency, client continuity, platform, and governance facts.",
+        "C": "Uses dependency, platform, client continuity, governance, and exit caution facts.",
+        "D": "Unused arm."
+      },
+      "rationale": "All live candidates are materially grounded."
+    },
+    {
+      "criterion_id": "overclaim_risk",
+      "question": "Which answer best avoids unsupported valuation precision?",
+      "winner_label": "C",
+      "evidence_by_label": {
+        "A": "Keeps caution but can carry more valuation detail.",
+        "B": "Avoids numeric reactivation and buyer multiples.",
+        "C": "Names exit math as caution and says numbers should not carry the decision without repeating numbers.",
+        "D": "Unused arm."
+      },
+      "rationale": "C preserves the denominator warning with the least numeric pull."
+    },
+    {
+      "criterion_id": "answer_length_cognitive_load",
+      "question": "Which answer stays most usable without becoming a private notebook?",
+      "winner_label": "C",
+      "evidence_by_label": {
+        "A": "More raw-pressure residue.",
+        "B": "Useful but denser.",
+        "C": "Compact and still covers the live constraints.",
+        "D": "Unused arm."
+      },
+      "rationale": "C is lighter than the prior rendered-hybrid answer while retaining the useful pieces."
+    },
+    {
+      "criterion_id": "machinery_hygiene",
+      "question": "Which answer avoids private machinery and visible framework residue?",
+      "winner_label": "tie",
+      "evidence_by_label": {
+        "A": "No private machinery.",
+        "B": "No private machinery but more system-shaped wording.",
+        "C": "No private machinery; staged language remains natural enough.",
+        "D": "Unused arm."
+      },
+      "rationale": "No live candidate leaks internal terms."
+    },
+    {
+      "criterion_id": "conflict_preservation",
+      "question": "Which answer best preserves no-full-grant without vague delay?",
+      "winner_label": "C",
+      "evidence_by_label": {
+        "A": "Preserves staged refusal.",
+        "B": "Names vague delay risk clearly.",
+        "C": "Names not a vague no and makes the alternative commitment-after-proof.",
+        "D": "Unused arm."
+      },
+      "rationale": "C preserves the tension in the most compact form."
+    },
+    {
+      "criterion_id": "duplicate_demotion",
+      "question": "Which answer best keeps duplicate instruments quiet without deleting the concern?",
+      "winner_label": "C",
+      "evidence_by_label": {
+        "A": "Can list more instruments.",
+        "B": "Says not to turn the answer into a catalog.",
+        "C": "Keeps middle structures alive while explicitly avoiding an instrument catalog.",
+        "D": "Unused arm."
+      },
+      "rationale": "C most directly shows the quiet receipt doing its job."
+    },
+    {
+      "criterion_id": "unforcedness",
+      "question": "Which answer feels naturally reasoned rather than optimized to hidden structure?",
+      "winner_label": "C",
+      "evidence_by_label": {
+        "A": "Somewhat terms-heavy.",
+        "B": "Good but more engineered.",
+        "C": "Direct and ordinary-language despite carrying more reserves.",
+        "D": "Unused arm."
+      },
+      "rationale": "C feels less like a checklist than B while preserving the same pressure."
+    },
+    {
+      "criterion_id": "edge_pressure_preservation",
+      "question": "Which answer best preserves off-frame edge without dumping raw artifacts?",
+      "winner_label": "C",
+      "evidence_by_label": {
+        "A": "Preserves edge through raw breadth.",
+        "B": "Preserves edge through hybrid receipts.",
+        "C": "Preserves denominator, middle structures, and model-forcing caution without raw dumping.",
+        "D": "Unused arm."
+      },
+      "rationale": "C is the best expression of the portfolio thesis for this case."
+    },
+    {
+      "criterion_id": "reserve_overuse",
+      "question": "Which answer avoids overusing the reserve material?",
+      "winner_label": "C",
+      "evidence_by_label": {
+        "A": "Raw pressure can overpopulate the answer.",
+        "B": "Mostly good, but denser.",
+        "C": "Uses reserves selectively and leaves out unsupported diagnosis and instrument catalog.",
+        "D": "Unused arm."
+      },
+      "rationale": "C uses the reserve without explaining the reserve."
+    }
+  ],
+  "tie_break_rule": "portfolio_must_beat_or_simplify",
+  "aggregate_winner_label": "C",
+  "aggregate_decision": "portfolio_wins",
+  "promotion_read": "pass_to_step6_replay",
+  "notes": "Manual local rubric comparison. This is promotion to Step 6 replay only, not runtime promotion."
+}

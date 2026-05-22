@@ -1,0 +1,47 @@
+{
+  "schema_version": "pre_step6_portfolio_answer_core.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mid-level-consultant-report-2",
+  "source_attention_map": "research/pre-step6-attention-maps/mid-level-consultant-report-2.step6-attention-map.v1.json",
+  "source_attention_map_render_sha256": "a3978cb52b52f6b1bd8ac035731374423fad47ab3bdd8c68b2a01b27d4bee4dd",
+  "answer_core": "Do not confront the partner, investigate privately, access systems unusually, or pick a reporting channel yourself. Tonight, write down exactly what you saw, preserve your own notes, tell your spouse in broad strokes, and contact two or three whistleblower attorneys.\n\nYour first move is independent counsel first, not GC-first by default and not a self-chosen audit committee or external report. Let counsel review the facts and decide whether GC, the audit committee, regulators, or another path is safest. During intake, ask practical questions that test whether the attorney has a reflexive channel preference: when have they advised internal-first, audit-committee-first, or external-first, and why?\n\nAttend Wednesday normally and avoid anything that looks like a sudden change in behavior. If the partner raises the encounter, keep the response narrow: do not deny, elaborate, confront, investigate, or be alone with the partner if avoidable. Keep counsel involved quickly and keep the first moves reversible.",
+  "expected_inclusions": [
+    "Do not confront the partner, investigate privately, access systems unusually, or pick a reporting channel yourself.",
+    "contact two or three whistleblower attorneys",
+    "independent counsel first",
+    "when have they advised internal-first, audit-committee-first, or external-first, and why?",
+    "Attend Wednesday normally",
+    "If the partner raises the encounter, keep the response narrow",
+    "keep the first moves reversible"
+  ],
+  "expected_exclusions": [
+    "confront the partner directly",
+    "investigate privately before counsel",
+    "self-selected reporting path",
+    "file immediately before evidence review",
+    "private handoff",
+    "attention map",
+    "portfolio",
+    "artifact",
+    "bundle",
+    "worker"
+  ],
+  "comparison_to_baselines": {
+    "preserved_from_previous_best": [
+      "Preserves the rendered-hybrid counsel-first sequence.",
+      "Preserves the Wednesday response boundary.",
+      "Preserves the no-confrontation, no-investigation, and no-self-channel-choice limits."
+    ],
+    "improved_from_portfolio": [
+      "Confirms the portfolio map can reproduce the previous best without adding machinery.",
+      "Keeps the false-friend leverage frame out of public advice."
+    ],
+    "kept_private_or_discarded": [
+      "Does not expose internal labels.",
+      "Does not expand into negotiation framing.",
+      "Does not turn channel distinction into self-directed reporting."
+    ]
+  },
+  "notes": "Research-only negative-control portfolio answer core. It is intentionally close to the rendered-hybrid answer so the blind comparison can test over-promotion risk."
+}

@@ -1,0 +1,89 @@
+{
+  "schema_version": "pre_step6_calibration_step6_sample.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_calibration_corpus_v0",
+  "case_id": "bridge-high-clutter-sensitive-overlay",
+  "base_case_id": "bridge-high-clutter-sensitive-overlay",
+  "sample_index": 1,
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"answer_core\": \"Start with a direct, calm conversation. Acknowledge that an earlier discussion may have created expectations, but make clear you need to check written records and any board‑approved terms before confirming anything. Ask her to share whatever notes or emails she believes support the claim and commit to a short review window. Do not debate memory in that first meeting. After that, keep the financing process clean: tell investors only what is true now, namely that no new grant or correction exists unless evidence and proper approvals support it. Close the loop with her once the review is complete and outline the next steps rather than negotiating under pressure.\",\n  \"private_visibility_ledger\": [\n    {\n      \"source_id\": \"anchor_visible_candidate\",\n      \"disposition\": \"combined\",\n      \"novelty_role\": \"visible_backbone\",\n      \"why\": \"The anchor provides the core sequence: humane conversation, acknowledge expectations, check facts, avoid arguing over memory, set a short follow‑up.\",\n      \"visible_effect\": \"Forms the structure and tone of the public answer.\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"reframed_emphasis\": [\n          \"Maintains a non‑confrontational first meeting and focuses on evidence review.\"\n        ]\n      }\n    },\n    {\n      \"source_id\": \"deck_pressure_candidate\",\n      \"disposition\": \"combined\",\n      \"novelty_role\": \"confirming_support\",\n      \"why\": \"Its guidance on handling investor communications and keeping the cap‑table status factual strengthens the public answer without overcomplicating it.\",\n      \"visible_effect\": \"Adds clear direction to keep financing communications limited to verified, board‑approved facts.\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [\n          \"After the employee conversation, a second step clarifies how to communicate with investors.\"\n        ],\n        \"reframed_emphasis\": [\n          \"Separates internal evidence review from external financing communications.\"\n        ]\n      }\n    }\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 656,
+    "completion_tokens": 499,
+    "total_tokens": 1155,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter",
+    "model_family": "openai"
+  },
+  "input_packet": {
+    "case_brief": "Founder must respond to an anxious early employee who claims an informal equity promise, while a financing deadline and team fragility make tone risky.",
+    "case_type_tags": [
+      "high_clutter",
+      "sensitive_safety_legal"
+    ],
+    "pre_registered_expectation": "known_false_standdown_bridge_should_survive_answer_delta",
+    "v60_mode": "not_applicable",
+    "v60_private_context": "",
+    "anchor_visible_candidate": "Talk to her directly and calmly. Acknowledge that the earlier conversation may have created expectations, explain that you need to check the facts before making any promise, and set a short follow-up. Keep the financing process separate and avoid arguing over memory in the first conversation.",
+    "deck_pressure_candidate": "Do two separate things, in this order. First, have a humane conversation that names the concern without conceding the equity claim: you will review written notes, emails, and board-approved terms before making any cap-table commitment. Second, protect the financing deadline by telling investors only what is true now: no new grant or correction exists until evidence and board process support it. If she has written evidence, inspect it quickly; if she only has a memory of an informal promise, offer a bounded review path rather than a negotiation under pressure."
+  },
+  "step6_output": {
+    "answer_core": "Start with a direct, calm conversation. Acknowledge that an earlier discussion may have created expectations, but make clear you need to check written records and any board‑approved terms before confirming anything. Ask her to share whatever notes or emails she believes support the claim and commit to a short review window. Do not debate memory in that first meeting. After that, keep the financing process clean: tell investors only what is true now, namely that no new grant or correction exists unless evidence and proper approvals support it. Close the loop with her once the review is complete and outline the next steps rather than negotiating under pressure.",
+    "private_visibility_ledger": [
+      {
+        "source_id": "anchor_visible_candidate",
+        "disposition": "combined",
+        "novelty_role": "visible_backbone",
+        "why": "The anchor provides the core sequence: humane conversation, acknowledge expectations, check facts, avoid arguing over memory, set a short follow‑up.",
+        "visible_effect": "Forms the structure and tone of the public answer.",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [
+            "Maintains a non‑confrontational first meeting and focuses on evidence review."
+          ],
+          "removed_entities": [],
+          "reordered_sequences": []
+        }
+      },
+      {
+        "source_id": "deck_pressure_candidate",
+        "disposition": "combined",
+        "novelty_role": "confirming_support",
+        "why": "Its guidance on handling investor communications and keeping the cap‑table status factual strengthens the public answer without overcomplicating it.",
+        "visible_effect": "Adds clear direction to keep financing communications limited to verified, board‑approved facts.",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [
+            "Separates internal evidence review from external financing communications."
+          ],
+          "removed_entities": [],
+          "reordered_sequences": [
+            "After the employee conversation, a second step clarifies how to communicate with investors."
+          ]
+        }
+      }
+    ]
+  },
+  "ledger_signal": "all_private_or_confirming",
+  "answer_delta_specificity": "not_applicable",
+  "deterministic_role": [
+    "validate_calibration_case",
+    "derive_ledger_signal",
+    "derive_answer_delta_specificity",
+    "preserve_repeated_sample_custody"
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live research-only Step 6 calibration sample."
+}

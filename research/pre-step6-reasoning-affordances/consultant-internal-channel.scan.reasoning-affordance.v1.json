@@ -1,0 +1,23 @@
+{
+  "schema_version": "reasoning_affordance.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mid-level-consultant-report-2",
+  "artifact_id": "consultant_internal_channel_distinction",
+  "source_refs": [
+    "research/pre-step6-raw-artifact-fixtures/mid-level-consultant-report-2.raw-artifact-handoff.v1.json:artifacts[2]"
+  ],
+  "selection_basis": "Raw handoff preserves the distinction among GC, audit committee, and regulator as counsel-reviewed channels.",
+  "affordance_class": "structural_lens",
+  "protected_slot": "sequence_stop_rule",
+  "what_it_might_reveal": "Internal versus external is too coarse; counsel may need to evaluate several different channels.",
+  "source_grounding": "The raw handoff says to ask counsel to distinguish general counsel, audit committee, and regulator.",
+  "cheap_test_for_step6": "Scan whether the answer collapses all reporting paths into one internal-or-external binary.",
+  "hard_boundary": "Do not advise internal reporting directly or tell the user to pick a channel alone.",
+  "relaxation_condition": "Relax if the answer leaves all channel selection to counsel.",
+  "discard_condition": "Discard if the answer does not discuss reporting-channel choice.",
+  "risk_if_forced": "The answer may imply the user should bypass counsel and choose a channel alone.",
+  "risk_if_ignored": "The answer may overstate the external-versus-internal binary.",
+  "attention_weight": "scan",
+  "expansion_ref": "research/pre-step6-raw-artifact-fixtures/mid-level-consultant-report-2.raw-artifact-handoff.v1.json:artifacts[2]"
+}

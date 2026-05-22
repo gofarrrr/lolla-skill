@@ -1,0 +1,36 @@
+{
+  "schema_version": "pre_step6_visibility_asymmetry.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "design_preamble_visibility_asymmetry_v0",
+  "case_id": "runtime-unresolved",
+  "mode": "runtime",
+  "ledger_signal": "additive_pressure_present",
+  "reviewer_signal": "not_run",
+  "runtime_asymmetry": {
+    "private_default": "deck_private",
+    "public_bias": "anchor_visible_when_unresolved",
+    "principle": "broad_private_narrow_public",
+    "normal_runtime_comparison_loop": false
+  },
+  "retest_policy": {
+    "allowed": false,
+    "max_retests": 0,
+    "normal_runtime_reviewer_calls": 0,
+    "second_reviewer_model_policy": "not_applicable",
+    "second_reviewer_prompt_policy": "not_applicable",
+    "deck_visible_threshold": "not_applicable",
+    "non_inferior_deck_result": "not_applicable",
+    "tie_after_retest_result": "not_applicable"
+  },
+  "visible_policy": {
+    "result": "anchor_visible_deck_private",
+    "why": "Normal runtime has no reviewer loop; unresolved deck value stays private.",
+    "false_standdown_risk": "primary_runtime_failure_mode"
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Research-only visibility-asymmetry policy. It names runtime anchor bias and bounded research retest behavior; it does not wire a live reviewer loop."
+}

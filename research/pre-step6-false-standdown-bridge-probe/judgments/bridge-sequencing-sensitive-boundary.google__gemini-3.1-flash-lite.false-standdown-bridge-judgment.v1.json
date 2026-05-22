@@ -1,0 +1,54 @@
+{
+  "schema_version": "pre_step6_false_standdown_bridge_judgment.v1",
+  "runtime_policy": "runtime_dormant",
+  "probe_id": "false_standdown_bridge_probe_v0",
+  "case_id": "bridge-sequencing-sensitive-boundary",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"standdown_label\": \"false_standdown\",\n  \"winner_label\": \"B\",\n  \"confidence\": \"high\",\n  \"expected_failure_observed\": true,\n  \"rationale\": \"Candidate A (the anchor) is concise but omits the critical sequencing boundaries (advisor approval, funding/data feasibility, and the 18-month checkpoint) required by the pre-registered hypothesis. Candidate B (the deck) preserves these pressures, making it materially better for the student's risk management.\",\n  \"anchor_missing_payload\": [\n    \"advisor support verification\",\n    \"funding and data access feasibility checks\",\n    \"18-month go/no-go checkpoint\"\n  ],\n  \"deck_added_payload\": [\n    \"advisor support before approaching the outside lab\",\n    \"data-access and funding feasibility before committee commitment\",\n    \"18-month go/no-go checkpoint with fallback\"\n  ],\n  \"regressions_or_bloat\": [\n    \"None; the additional length in B is necessary to address the pre-registered constraints.\"\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 834,
+    "completion_tokens": 248,
+    "total_tokens": 1082,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter",
+    "model_family": "google"
+  },
+  "blind_map": {
+    "A": "anchor_visible",
+    "B": "deck_visible"
+  },
+  "reviewer_output": {
+    "standdown_label": "false_standdown",
+    "winner_label": "B",
+    "confidence": "high",
+    "expected_failure_observed": true,
+    "rationale": "Candidate A (the anchor) is concise but omits the critical sequencing boundaries (advisor approval, funding/data feasibility, and the 18-month checkpoint) required by the pre-registered hypothesis. Candidate B (the deck) preserves these pressures, making it materially better for the student's risk management.",
+    "anchor_missing_payload": [
+      "advisor support verification",
+      "funding and data access feasibility checks",
+      "18-month go/no-go checkpoint"
+    ],
+    "deck_added_payload": [
+      "advisor support before approaching the outside lab",
+      "data-access and funding feasibility before committee commitment",
+      "18-month go/no-go checkpoint with fallback"
+    ],
+    "regressions_or_bloat": [
+      "None; the additional length in B is necessary to address the pre-registered constraints."
+    ]
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live non-promotional false-standdown bridge-probe judgment."
+}

@@ -1,0 +1,90 @@
+{
+  "schema_version": "pre_step6_consultant_cleaning_variant.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "consultant_cleaning_variant_v0",
+  "promotion_effect": "none_research_only",
+  "program_scope": "cleaning_variant_not_visibility_gate",
+  "case_id": "mid-level-consultant-report-2",
+  "source_review_schema_version": "pre_step6_consultant_deck_composition_result.v1",
+  "source_refs": {
+    "card_deck_ref": "research/pre-step6-step6-card-decks/mid-level-consultant-report-2.step6-card-deck.v1.json",
+    "private_cards_ref": "research/pre-step6-private-reasoning-cards/mid-level-consultant-report-2.private-reasoning-cards.v1.json",
+    "problem_state_ref": "research/pre-step6-problem-states/mid-level-consultant-report-2.problem-state.v1.json",
+    "anchor_ref": "research/pre-step6-rendered-hybrid-answer-cores/mid-level-consultant-report-2.native.rendered-hybrid-answer-core.v1.json",
+    "card_deck_replay_ref": "research/pre-step6-card-deck-replays/mid-level-consultant-report-2.card-deck-replay.v1.json",
+    "variable_case_diagnostic_ref": "research/pre-step6-variable-case-diagnostic/variable-case-diagnostic-result.v1.json",
+    "gpt_stability_correctness_ref": "research/pre-step6-gpt-stability-correctness-review/gpt-stability-correctness-result.v1.json",
+    "kimi_sample_dir_ref": "research/pre-step6-calibration-corpus-kimi-structural-delta/step6-samples",
+    "gpt_sample_dir_ref": "research/pre-step6-variable-case-alt-model-gpt51/step6-samples"
+  },
+  "anchor_policy": {
+    "policy": "keep_anchor_as_backbone",
+    "anchor_ref": "research/pre-step6-rendered-hybrid-answer-cores/mid-level-consultant-report-2.native.rendered-hybrid-answer-core.v1.json",
+    "preserved_payload": [
+      "counsel-first sequencing",
+      "no confrontation, private investigation, unusual access, or self-selected channel",
+      "notes preserved and spouse told only in broad strokes",
+      "attorney intake tests channel bias",
+      "Wednesday normal-behavior protocol",
+      "partner-encounter tripwires including do not deny",
+      "early steps stay reversible"
+    ]
+  },
+  "micro_cards": [
+    {
+      "card_id": "counsel_independence_and_channel_bias_card",
+      "card_type": "cleaning_micro_card",
+      "source_pressure": "bevelin_pressure_atom_without_lens_label",
+      "cognitive_role": "Make counsel independence and channel-bias testing explicit without expanding into generic incentives theory.",
+      "receipts": [
+        "Use independent whistleblower or employment-law counsel.",
+        "Ask how counsel decides among internal, audit-committee, and external channels.",
+        "Check for any built-in bias before treating counsel-first as blind deference."
+      ],
+      "handling_rule": "Use if it sharpens attorney selection or intake; keep private if the anchor already states the same check with enough force.",
+      "misuse_guard": "Do not turn built-in bias into a public mental-model explanation or a reason to distrust counsel.",
+      "standdown_condition": "Stand down when the answer already asks concrete channel-bias intake questions."
+    },
+    {
+      "card_id": "wednesday_tripwire_preservation_card",
+      "card_type": "cleaning_micro_card",
+      "source_pressure": "anchor_payload_preservation_atom",
+      "cognitive_role": "Protect the Wednesday protocol and partner-encounter tripwires from over-compression.",
+      "receipts": [
+        "Attend Wednesday normally and avoid abrupt changes in behavior.",
+        "If the partner raises the encounter, keep the response minimal and narrow.",
+        "Preserve the do not deny, elaborate, confront, investigate, or be alone tripwire."
+      ],
+      "handling_rule": "Use as a preservation guard when making the answer shorter; compression must not drop the concrete tripwires.",
+      "misuse_guard": "Do not simplify the Wednesday protocol so far that do not deny or avoid being alone disappears.",
+      "standdown_condition": "Stand down when the final answer retains the complete Wednesday and partner-encounter protocol."
+    },
+    {
+      "card_id": "reversibility_until_counsel_boundary_card",
+      "card_type": "cleaning_micro_card",
+      "source_pressure": "polya_and_deck_boundary_atom_without_lens_label",
+      "cognitive_role": "Make the reversibility boundary concrete: move fast, but only until counsel guides the next action.",
+      "receipts": [
+        "Move quickly without filing or choosing a channel before evidence review.",
+        "Keep early steps reversible until counsel guides the next move.",
+        "Do not let fear cause premature filing or paralysis."
+      ],
+      "handling_rule": "Use if the answer needs a sharper stop boundary between safe first moves and irreversible reporting/channel decisions.",
+      "misuse_guard": "Do not convert reversibility into delay, inaction, or avoidance of getting counsel involved.",
+      "standdown_condition": "Stand down when urgency and reversibility are both already clear in the public answer."
+    }
+  ],
+  "expected_cleaning_effect": "Replace broad lens labels with concrete pressure atoms so Step 6 sees what can improve the answer without over-reading generic Bevelin/Polya identity.",
+  "explicit_limits": [
+    "does_not_add_or_change_visibility_gates",
+    "does_not_decide_legal_correctness",
+    "does_not_promote_runtime_or_skill",
+    "does_not_route_by_model_family"
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Research-only deck-cleaning variant. It can be replayed later, but it does not wire runtime behavior or decide visibility."
+}

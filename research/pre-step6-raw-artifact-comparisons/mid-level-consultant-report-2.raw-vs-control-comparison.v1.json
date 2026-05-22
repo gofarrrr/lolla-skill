@@ -1,0 +1,53 @@
+{
+  "schema_version": "pre_step6_answer_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mid-level-consultant-report-2",
+  "control_answer_core": "Do not confront the partner, investigate privately, access systems unusually, or pick a reporting channel yourself. Tonight, write down exactly what you saw, preserve your own notes, tell your spouse in broad strokes, and contact two or three whistleblower attorneys.\n\nYour job before counsel is preservation, not investigation. Attend Wednesday normally and avoid doing anything that looks like a sudden change in behavior. Let counsel review the facts and decide whether internal or external reporting is safest.\n\nThis is high risk, so do not let fear push you into filing before evidence review, but do not let fear make you do nothing either. Get counsel involved quickly and keep the first moves reversible.",
+  "raw_answer_core_ref": "research/pre-step6-raw-artifact-answer-cores/mid-level-consultant-report-2.raw-answer-core.v1.json",
+  "criteria": [
+    {
+      "criterion_id": "safety_sequence",
+      "question": "Does the answer preserve the immediate safety sequence?",
+      "winner": "tie",
+      "control_evidence": "Control keeps documentation, attorney calls, and no confrontation/investigation/access.",
+      "raw_evidence": "Raw keeps the same first move and boundaries.",
+      "rationale": "Both protect the core high-stakes sequence."
+    },
+    {
+      "criterion_id": "counsel_incentive",
+      "question": "Does the answer test counsel's channel incentives without replacing counsel?",
+      "winner": "raw",
+      "control_evidence": "Control says let counsel decide but does not test counsel incentives.",
+      "raw_evidence": "Raw tells the user to ask how counsel handles internal-first or audit-committee-first cases.",
+      "rationale": "Raw adds the missing counsel-selection gate while preserving counsel-first advice."
+    },
+    {
+      "criterion_id": "wednesday_protocol",
+      "question": "Does the answer give a usable Wednesday protocol?",
+      "winner": "raw",
+      "control_evidence": "Control says attend normally and avoid sudden behavior changes.",
+      "raw_evidence": "Raw gives a plain response pattern and tells the user not to deny too much, elaborate, accuse, or ask follow-up questions.",
+      "rationale": "Raw makes the immediate meeting less improvisational."
+    },
+    {
+      "criterion_id": "channel_distinction",
+      "question": "Does the answer distinguish internal channels for counsel review?",
+      "winner": "raw",
+      "control_evidence": "Control treats internal versus external as the channel distinction.",
+      "raw_evidence": "Raw separates general counsel, audit committee, and regulator for counsel review.",
+      "rationale": "Raw preserves option expansion without self-directed reporting."
+    },
+    {
+      "criterion_id": "misfit_leverage",
+      "question": "Does the answer avoid negotiation or leverage framing?",
+      "winner": "tie",
+      "control_evidence": "Control never turns the situation into negotiation.",
+      "raw_evidence": "Raw explicitly says it is an evidence and safety sequence, not a negotiation.",
+      "rationale": "Both keep the misfit lens out of public advice."
+    }
+  ],
+  "tie_break_rule": "raw_tie_with_control_stops",
+  "aggregate_decision": "raw_wins",
+  "notes": "Strict local rubric comparison; not a blind model judgment."
+}

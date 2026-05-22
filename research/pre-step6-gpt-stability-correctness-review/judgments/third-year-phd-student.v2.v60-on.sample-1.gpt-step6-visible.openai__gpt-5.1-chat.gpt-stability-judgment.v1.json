@@ -1,0 +1,56 @@
+{
+  "schema_version": "pre_step6_gpt_stability_correctness_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_gpt_stability_correctness_review_v0",
+  "review_case_id": "third-year-phd-student.v2.v60-on.sample-1.gpt-step6-visible",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"output_label\": \"tie\",\n  \"winner_label\": \"tie\",\n  \"visibility_judgment\": \"correct_visible\",\n  \"confidence\": \"medium\",\n  \"rationale\": \"Both answers preserve payload, avoid false precision, and maintain the two‑gate structure. Differences are stylistic rather than substantive.\",\n  \"answer_correctness_notes\": [\n    \"Both are concrete, bounded, and decision‑relevant.\",\n    \"Neither introduces unjustified certainty or political missteps.\",\n    \"Both maintain the fallback-as-live-option requirement.\"\n  ],\n  \"visibility_decision_notes\": [\n    \"The structural delta is minimal and does not degrade clarity.\",\n    \"Step 6 version remains safe to show and preserves payload.\"\n  ],\n  \"payload_loss_or_bloat\": [\n    \"No major payload loss.\",\n    \"Minor stylistic bloat in B but not outcome‑distorting.\"\n  ],\n  \"structural_delta_read\": \"useful_structural_delta\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 1164,
+    "completion_tokens": 303,
+    "total_tokens": 1467,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 64,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter",
+    "model_family": "openai"
+  },
+  "blind_map": {
+    "A": "step6_visible",
+    "B": "anchor_visible"
+  },
+  "reviewer_output": {
+    "output_label": "tie",
+    "winner_label": "tie",
+    "visibility_judgment": "correct_visible",
+    "confidence": "medium",
+    "rationale": "Both answers preserve payload, avoid false precision, and maintain the two‑gate structure. Differences are stylistic rather than substantive.",
+    "answer_correctness_notes": [
+      "Both are concrete, bounded, and decision‑relevant.",
+      "Neither introduces unjustified certainty or political missteps.",
+      "Both maintain the fallback-as-live-option requirement."
+    ],
+    "visibility_decision_notes": [
+      "The structural delta is minimal and does not degrade clarity.",
+      "Step 6 version remains safe to show and preserves payload."
+    ],
+    "payload_loss_or_bloat": [
+      "No major payload loss.",
+      "Minor stylistic bloat in B but not outcome‑distorting."
+    ],
+    "structural_delta_read": "useful_structural_delta"
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample GPT-stability correctness judgment."
+}

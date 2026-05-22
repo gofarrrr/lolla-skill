@@ -1,0 +1,85 @@
+{
+  "schema_version": "pre_step6_calibration_step6_sample.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_calibration_corpus_v0",
+  "case_id": "marker-entity-attempt-3-actor-sequence-blur",
+  "base_case_id": "marker-entity-attempt-3-actor-sequence-blur",
+  "sample_index": 0,
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "moonshotai/kimi-k2.6",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n\"answer_core\": \"Follow the actor sequence: first talk with RAINN, a therapist, or counsel before deciding whether to report; then decide what to tell the co-parent; then keep communication boundaries and the safety plan steady unless concrete tripwires appear.\",\n\"private_visibility_ledger\": [\n{\n\"source_id\": \"anchor_visible_candidate\",\n\"disposition\": \"used\",\n\"novelty_role\": \"visible_backbone\",\n\"why\": \"The anchor preserves concrete actor sequence, named resource (RAINN), decision staging, and explicit tripwire conditionality. These are the exact structural elements the case brief warns may be lost under deck pressure. The pre-registered expectation is that generic marker-preserving pressure should not overpromote, and the anchor already satisfies this. The sequence language is the anchor's value per case_brief.\",\n\"visible_effect\": \"Full visible answer drawn from anchor; no public change needed.\",\n\"answer_delta\": {\n\"added_entities\": [],\n\"removed_entities\": [],\n\"reordered_sequences\": [],\n\"structural_delta\": [],\n\"reframed_emphasis\": []\n}\n},\n{\n\"source_id\": \"deck_pressure_candidate\",\n\"disposition\": \"rejected\",\n\"novelty_role\": \"private_guardrail\",\n\"why\": \"The deck pressure candidate strips the explicit actor sequence ('first...then...then'), removes the named resource (RAINN), and collapses the staged decision structure into generic parallel advice. This is exactly the 'sequence language while losing concrete actors and order' failure mode described in the case brief. Adopting it would violate the pre-registered expectation against overpromotion of generic pressure. The pressure's only additive elements ('escalating the situation') are vague and would blur the tripwire specificity. Retaining this pressure privately as a guardrail against such blurring.\",\n\"visible_effect\": \"none — pressure kept private; public answer unchanged.\",\n\"answer_delta\": {\n\"added_entities\": [],\n\"removed_entities\": [],\n\"reordered_sequences\": [],\n\"structural_delta\": [],\n\"reframed_emphasis\": []\n}\n}\n]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 627,
+    "completion_tokens": 426,
+    "total_tokens": 1053,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter",
+    "model_family": "moonshotai"
+  },
+  "input_packet": {
+    "case_brief": "Sensitive boundary case where the anchor's value is the order of actors. The deck pressure may preserve sequence language while losing the concrete actors and order.",
+    "case_type_tags": [
+      "sequencing_or_problem_shape",
+      "negative_control"
+    ],
+    "pre_registered_expectation": "generic_marker_preserving_pressure_should_not_overpromote",
+    "v60_mode": "not_applicable",
+    "v60_private_context": "",
+    "anchor_visible_candidate": "Follow the actor sequence: first talk with RAINN, a therapist, or counsel before deciding whether to report; then decide what to tell the co-parent; then keep communication boundaries and the safety plan steady unless concrete tripwires appear.",
+    "deck_pressure_candidate": "Keep the actor sequence explicit, use professional support, protect communication boundaries, maintain a safety plan, and watch for tripwires before escalating the situation."
+  },
+  "step6_output": {
+    "answer_core": "Follow the actor sequence: first talk with RAINN, a therapist, or counsel before deciding whether to report; then decide what to tell the co-parent; then keep communication boundaries and the safety plan steady unless concrete tripwires appear.",
+    "private_visibility_ledger": [
+      {
+        "source_id": "anchor_visible_candidate",
+        "disposition": "used",
+        "novelty_role": "visible_backbone",
+        "why": "The anchor preserves concrete actor sequence, named resource (RAINN), decision staging, and explicit tripwire conditionality. These are the exact structural elements the case brief warns may be lost under deck pressure. The pre-registered expectation is that generic marker-preserving pressure should not overpromote, and the anchor already satisfies this. The sequence language is the anchor's value per case_brief.",
+        "visible_effect": "Full visible answer drawn from anchor; no public change needed.",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [],
+          "removed_entities": [],
+          "reordered_sequences": [],
+          "structural_delta": []
+        }
+      },
+      {
+        "source_id": "deck_pressure_candidate",
+        "disposition": "rejected",
+        "novelty_role": "private_guardrail",
+        "why": "The deck pressure candidate strips the explicit actor sequence ('first...then...then'), removes the named resource (RAINN), and collapses the staged decision structure into generic parallel advice. This is exactly the 'sequence language while losing concrete actors and order' failure mode described in the case brief. Adopting it would violate the pre-registered expectation against overpromotion of generic pressure. The pressure's only additive elements ('escalating the situation') are vague and would blur the tripwire specificity. Retaining this pressure privately as a guardrail against such blurring.",
+        "visible_effect": "none — pressure kept private; public answer unchanged.",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [],
+          "removed_entities": [],
+          "reordered_sequences": [],
+          "structural_delta": []
+        }
+      }
+    ]
+  },
+  "ledger_signal": "all_private_or_confirming",
+  "answer_delta_specificity": "not_applicable",
+  "deterministic_role": [
+    "validate_calibration_case",
+    "derive_ledger_signal",
+    "derive_answer_delta_specificity",
+    "preserve_repeated_sample_custody"
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live research-only Step 6 calibration sample."
+}

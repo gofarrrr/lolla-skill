@@ -38,9 +38,9 @@ Calibrated on Claude Opus 4.7. Cross-model validation (2026-04-22) yielded three
 The skill cannot detect the orchestrator model mechanically (`$CLAUDE_MODEL` is not exposed). Self-identify before Step 1:
 
 - **Opus 4.7 or later** — proceed normally.
-- **Sonnet 4.6 or later** — proceed; append a one-line advisory after Step 4 findings: *"⚠ Orchestrator: Sonnet — phrasing quality may be mildly degraded vs Opus (see Model Requirements)."*
-- **Haiku (any version)** — STOP. Tell the user, verbatim: *"This skill requires Opus or Sonnet as the orchestrator. Haiku has been observed to skip critical pipeline steps (sub-agent spawning, artifact persistence) while generating plausible-looking output for the steps that didn't run. Please re-run on Opus or Sonnet."*
-- **Cannot identify with confidence** — proceed; append a one-line caveat at the end of Step 4: *"⚠ Could not verify orchestrator model. If this run is on Haiku or below, some outputs may be incomplete — check Observatory for missing artifacts."*
+- **Sonnet 4.6 or later** — proceed normally, with reduced narration and strict live-output hygiene.
+- **Haiku (any version)** — STOP. Tell the user, verbatim: *"This skill requires Opus or Sonnet to run reliably. Haiku has been observed to skip critical parallel-review and artifact-persistence steps while generating plausible-looking output for the steps that didn't run. Please re-run on Opus or Sonnet."*
+- **Cannot identify with confidence** — proceed without a model caveat in chat. Let the structured run-health checks and archived artifacts expose missing work instead of narrating model uncertainty to the user.
 
 Only refuse when highly confident the orchestrator is Haiku. Don't false-refuse on uncertainty — the user should be able to proceed and investigate.
 
@@ -103,6 +103,14 @@ LOLLA_RUN_ID=$(date -u +%Y%m%dT%H%M%SZ)
 export LOLLA_RUN_ID
 echo "RUN_ID: $LOLLA_RUN_ID"
 
+# Durable live transcript for user-visible Claude Code prose.
+# Append every visible status/content/receipt message to this file exactly as
+# sent, separated by blank lines. This is a product surface, not an operator log.
+LOLLA_LIVE_TRANSCRIPT="/tmp/lolla_${LOLLA_RUN_ID}_live_transcript.txt"
+export LOLLA_LIVE_TRANSCRIPT
+: > "$LOLLA_LIVE_TRANSCRIPT"
+echo "LIVE_TRANSCRIPT: $LOLLA_LIVE_TRANSCRIPT"
+
 # Report config
 echo "MODEL: ${LOLLA_OPENROUTER_MODEL:-x-ai/grok-4.1-fast}"
 [ -n "$OPENAI_API_KEY" ] && echo "EMBEDDINGS: enabled" || echo "EMBEDDINGS: disabled"
@@ -131,7 +139,8 @@ Ten steps. You are a conductor for the audit pipeline (Steps 1-4), then the prim
 Treat every visible Claude Code narration line during a `/lolla` run as product
 surface, even if it is not archived. The persisted hygiene gate protects
 `revised.txt`, memo artifacts, and result health; it does not protect the live
-terminal transcript. Therefore the live run must use reduced narration:
+terminal transcript unless you preserve the transcript artifact. Therefore the
+live run must use reduced narration and maintain a live transcript:
 
 - Do not announce internal beat names, step names, lane names, agent launches,
   waiting states, ledger repair/debugging, telemetry finalization, or archive
@@ -144,6 +153,26 @@ terminal transcript. Therefore the live run must use reduced narration:
   If the next action is internal, stay silent unless there is a real blocker.
 - Before sending a visible progress line, mentally apply the product-output
   hygiene rule: if the line would fail as `live_narration`, do not send it.
+- Append every user-visible Claude Code prose line, status receipt, content
+  beat, and final functional receipt exactly as sent to
+  `/tmp/lolla_${LOLLA_RUN_ID}_live_transcript.txt`, separated by blank lines.
+  In short: append every user-visible prose/status/content message before the
+  run is archived.
+  Do not append raw bash output, JSON, Observatory pages, or operator-only
+  artifacts. This file is archived as `live_transcript.txt` and scanned as the
+  `live_narration` product surface.
+- A manually maintained transcript is not proof that the full Claude Code
+  console was captured. The hygiene finalizer records a manual transcript with
+  no detected leaks as `live_output_health: not_checked`, not `clean`. It only
+  records `clean` when a complete captured transcript is supplied with
+  `--trusted-transcript`.
+- Before archive, run `scripts/finalize_live_output_hygiene.py` to record
+  live-output health. For merge-readiness proof, run it with
+  `--require-live-output-clean --trusted-transcript` against a complete captured
+  live session transcript. If it fails on text the user already saw, do not
+  rewrite the transcript to make the run look clean; the live surface is unsafe
+  and the run should be treated as degraded or rerun. Only correct the transcript
+  when it contains a draft or operator note that was never sent.
 
 ### Step 1: Capture Conversation
 
@@ -707,6 +736,7 @@ After the full cycle is complete (cards, updated position, pressure check, and m
 
 ```bash
 python3 $SKILL_DIR/scripts/finalize_v60_telemetry.py --run-id "${LOLLA_RUN_ID}" --quiet --require-valid || exit $?
+python3 $SKILL_DIR/scripts/finalize_live_output_hygiene.py --run-id "${LOLLA_RUN_ID}" --quiet || exit $?
 python3 $SKILL_DIR/observatory/serve_result.py --result /tmp/lolla_${LOLLA_RUN_ID}_result.json
 ```
 
@@ -719,6 +749,7 @@ This starts a local server at http://localhost:8080. Press Ctrl+C in the termina
 After launching the Observatory, archive the run's core artifacts into a persistent case folder under `~/.local/share/lolla/runs/` so the run survives `/tmp` cleanup and stays accessible for later review, memo re-rendering, or stability-harness analysis.
 
 ```bash
+python3 $SKILL_DIR/scripts/finalize_live_output_hygiene.py --run-id "${LOLLA_RUN_ID}" --quiet || exit $?
 python3 $SKILL_DIR/scripts/archive_run.py --run-id "${LOLLA_RUN_ID}"
 ```
 
@@ -726,7 +757,8 @@ The archive script:
 
 - Finalizes V60 consideration telemetry before copying artifacts. If V60 was active and the private ledger is missing, the run is marked degraded with `v60_consideration_ledger_missing` instead of looking complete.
 - Runs the product-output hygiene scanner before copying artifacts. If revised text, memo markdown, or memo-note fields leak internal terms such as V60, affordance, chunk, ledger, lane, pipeline, or independent review, `run_health.product_output_health` becomes `unsafe` and the run is degraded with `product_output_leak`.
-- Reads the 10 core artifacts from `/tmp/lolla_${LOLLA_RUN_ID}_*` (`conversation.txt`, `extraction.json`, `result.json`, `revised.txt`, `memo.md`, `memo_note.json`, `gapcheck.txt`, `gapcheck_lanes.json`, `v60_ledger_skeleton.json`, `v60_ledger.json`). Missing artifacts (e.g., if Step 6b, V60 ledger persistence, or Step 8c did not run on a weaker orchestrator) are skipped gracefully.
+- Runs the live-output hygiene scanner before copying artifacts. If `/tmp/lolla_${LOLLA_RUN_ID}_live_transcript.txt` exists, it is scanned as the `live_narration` product surface; detected leaks set `run_health.live_output_health` to `unsafe`, while a manually maintained no-leak transcript is `not_checked` unless a complete trusted transcript was explicitly supplied to the finalizer. If it is missing, `live_output_health` becomes `missing` without degrading archive compatibility unless the explicit `--require-live-output-clean` gate was run.
+- Reads the 11 core artifacts from `/tmp/lolla_${LOLLA_RUN_ID}_*` (`conversation.txt`, `extraction.json`, `result.json`, `revised.txt`, `memo.md`, `memo_note.json`, `gapcheck.txt`, `gapcheck_lanes.json`, `v60_ledger_skeleton.json`, `v60_ledger.json`, `live_transcript.txt`). Missing artifacts (e.g., if Step 6b, V60 ledger persistence, live transcript capture, or Step 8c did not run on a weaker orchestrator) are skipped gracefully.
 - Computes a case fingerprint from `extraction.decision_situation` (first 120 chars, normalized).
 - Finds-or-creates a case folder. Matching uses **exact fingerprint first, then token-set Jaccard ≥ 0.80** against stored fingerprints — so small extractor paraphrase drift across runs of the same conversation does not split into multiple case folders. Matching is done against the manifest inside each case folder, not against folder names, so user renames of case folders do not break future matching.
 - Auto-names new cases with a slug derived from the first 3-4 significant words of `decision_situation` (e.g., `grant-equity-partnership-status`). Users can rename via `mv` — matching will still find the folder via manifest.
@@ -743,6 +775,16 @@ The archive script:
 ## Completion
 
 After the full cycle (Beat 1 → Step 3 receipt → Beat 2 → Beat 3 → Beat 4 → memo → Observatory + archive), close with the **final functional receipt**. Not a narrative summary.
+
+Before sending the final functional receipt, append that exact receipt text to
+`/tmp/lolla_${LOLLA_RUN_ID}_live_transcript.txt`, rerun
+`finalize_live_output_hygiene.py`, and rerun `archive_run.py --run-id
+"${LOLLA_RUN_ID}" --quiet` so the archived `result.json` and
+`live_transcript.txt` include the latest live transcript check. A manual
+transcript can record `unsafe`, `missing`, or `not_checked`; only a complete
+trusted capture checked with `--require-live-output-clean --trusted-transcript`
+can prove `clean`. If the final receipt itself would fail the live-output
+scanner, fix the receipt before sending it.
 
 **If all lanes completed successfully and `run_health.overall` is `healthy`:**
 

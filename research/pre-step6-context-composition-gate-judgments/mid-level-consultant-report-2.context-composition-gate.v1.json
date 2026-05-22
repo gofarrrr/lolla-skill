@@ -1,0 +1,69 @@
+{
+  "schema_version": "pre_step6_context_composition_gate_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mid-level-consultant-report-2",
+  "gate_kind": "live_context_composition_comparison",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"winner_label\": \"D\",\n  \"research_action\": \"expand_replay\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Packet D provides the most comprehensive set of protected enrichment receipts. While the primary anchor is identical across all candidates, D synthesizes the specific tactical guidance found in B and C, offering the most robust cognitive framework for Step 6 to evaluate the consultant's next moves without forcing a specific outcome.\",\n  \"protected_value\": [\n    \"Strategic prioritization of legal-option preservation over investigative impulse.\",\n    \"Explicit guidance on vetting counsel for channel-bias.\",\n    \"Nuanced behavioral guardrails for the interim period before legal engagement.\"\n  ],\n  \"bloat_or_pruning_risk\": [\n    \"Minimal risk of bloat; the receipts are concise and serve as high-value heuristic markers for the reasoning process.\"\n  ],\n  \"composition_note\": \"Step 6 should treat the receipts as a checklist of tactical considerations rather than a mandatory sequence, ensuring the consultant maintains agency while minimizing exposure.\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 2044,
+    "completion_tokens": 232,
+    "total_tokens": 2276,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter"
+  },
+  "candidate_refs": {
+    "rendered_hybrid": "research/pre-step6-rendered-hybrid-answer-cores/mid-level-consultant-report-2.native.rendered-hybrid-answer-core.v1.json",
+    "bevelin_lens": "research/pre-step6-lens-answer-cores/mid-level-consultant-report-2.bevelin-answer-core.v1.json",
+    "polya_lens": "research/pre-step6-lens-answer-cores/mid-level-consultant-report-2.polya-answer-core.v1.json"
+  },
+  "blind_map": {
+    "A": "rendered_only",
+    "B": "rendered_plus_polya_receipts",
+    "C": "rendered_plus_bevelin_receipts",
+    "D": "rendered_plus_dual_receipts"
+  },
+  "reviewer_output": {
+    "winner_label": "D",
+    "research_action": "expand_replay",
+    "confidence": "high",
+    "rationale": "Packet D provides the most comprehensive set of protected enrichment receipts. While the primary anchor is identical across all candidates, D synthesizes the specific tactical guidance found in B and C, offering the most robust cognitive framework for Step 6 to evaluate the consultant's next moves without forcing a specific outcome.",
+    "protected_value": [
+      "Strategic prioritization of legal-option preservation over investigative impulse.",
+      "Explicit guidance on vetting counsel for channel-bias.",
+      "Nuanced behavioral guardrails for the interim period before legal engagement."
+    ],
+    "bloat_or_pruning_risk": [
+      "Minimal risk of bloat; the receipts are concise and serve as high-value heuristic markers for the reasoning process."
+    ],
+    "composition_note": "Step 6 should treat the receipts as a checklist of tactical considerations rather than a mandatory sequence, ensuring the consultant maintains agency while minimizing exposure."
+  },
+  "static_expectation": {
+    "allowed_winner_arms": [
+      "rendered_only"
+    ],
+    "allowed_research_actions": [
+      "stop"
+    ]
+  },
+  "agreement": {
+    "winner_matches_static": false,
+    "action_matches_static": false,
+    "overall_match": false
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live context-composition comparison. Research-only artifact; it tests whether protected private receipts improve a rendered-hybrid anchor."
+}

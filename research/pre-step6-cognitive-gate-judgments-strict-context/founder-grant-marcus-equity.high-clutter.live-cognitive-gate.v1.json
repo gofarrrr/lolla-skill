@@ -1,0 +1,72 @@
+{
+  "schema_version": "pre_step6_cognitive_gate_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "founder-grant-marcus-equity.high-clutter",
+  "gate_kind": "live_small_cognitive_comparison",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"winner_label\": \"D\",\n  \"promotion_read\": \"expand_replay\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Candidate D provides the most robust cognitive input for Step 6 by explicitly identifying the 'dependency system' risks (Jake, Lina, client confidence, exit story). While other candidates list the same criteria, D frames them as a cohesive risk-management problem rather than just a checklist, which is essential for Step 6 to reason through the potential fallout of a 'no' or 'staged' response.\",\n  \"improvements\": [\n    \"Explicitly links the equity decision to the specific human and operational dependencies (Jake, Lina, client confidence).\",\n    \"Identifies the risk of 'vague delay' as a specific tactical failure mode that could trigger the very destabilization the founder is trying to avoid.\",\n    \"Provides a clearer 'why' for the staged approach, framing it as a test of whether Marcus reduces or increases concentration risk.\"\n  ],\n  \"regressions_or_watch_items\": [\n    \"The increased length (1499 chars) is higher than others, but it is justified by the added depth regarding the 'dependency system' which is the core of the case's clutter.\",\n    \"Must ensure Step 6 does not treat the 'sprint' as a generic HR process but as a strategic risk-mitigation tool.\"\n  ],\n  \"stand_down_reason\": \"Not a stand-down; the inclusion of the 'dependency system' framing provides a necessary analytical lens that the other candidates lack, justifying further testing of this approach.\",\n  \"composition_note\": \"Use D as the primary structural anchor for Step 6, as it best captures the tension between the need for partnership and the danger of premature, irreversible commitment.\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 2169,
+    "completion_tokens": 389,
+    "total_tokens": 2558,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter"
+  },
+  "candidate_refs": {
+    "rendered_hybrid": "research/pre-step6-rendered-hybrid-answer-cores/founder-grant-marcus-equity.high-clutter.native.rendered-hybrid-answer-core.v1.json",
+    "portfolio_base": "research/pre-step6-portfolio-answer-cores/founder-grant-marcus-equity.high-clutter.native.portfolio-answer-core.v1.json",
+    "bevelin_lens": "research/pre-step6-lens-answer-cores/founder-grant-marcus-equity.high-clutter.bevelin-answer-core.v1.json",
+    "polya_lens": "research/pre-step6-lens-answer-cores/founder-grant-marcus-equity.high-clutter.polya-answer-core.v1.json"
+  },
+  "blind_map": {
+    "A": "polya_lens",
+    "B": "portfolio_base",
+    "C": "bevelin_lens",
+    "D": "rendered_hybrid"
+  },
+  "reviewer_output": {
+    "winner_label": "D",
+    "promotion_read": "expand_replay",
+    "confidence": "high",
+    "rationale": "Candidate D provides the most robust cognitive input for Step 6 by explicitly identifying the 'dependency system' risks (Jake, Lina, client confidence, exit story). While other candidates list the same criteria, D frames them as a cohesive risk-management problem rather than just a checklist, which is essential for Step 6 to reason through the potential fallout of a 'no' or 'staged' response.",
+    "improvements": [
+      "Explicitly links the equity decision to the specific human and operational dependencies (Jake, Lina, client confidence).",
+      "Identifies the risk of 'vague delay' as a specific tactical failure mode that could trigger the very destabilization the founder is trying to avoid.",
+      "Provides a clearer 'why' for the staged approach, framing it as a test of whether Marcus reduces or increases concentration risk."
+    ],
+    "regressions_or_watch_items": [
+      "The increased length (1499 chars) is higher than others, but it is justified by the added depth regarding the 'dependency system' which is the core of the case's clutter.",
+      "Must ensure Step 6 does not treat the 'sprint' as a generic HR process but as a strategic risk-mitigation tool."
+    ],
+    "stand_down_reason": "Not a stand-down; the inclusion of the 'dependency system' framing provides a necessary analytical lens that the other candidates lack, justifying further testing of this approach.",
+    "composition_note": "Use D as the primary structural anchor for Step 6, as it best captures the tension between the need for partnership and the danger of premature, irreversible commitment."
+  },
+  "static_expectation": {
+    "allowed_winner_arms": [
+      "bevelin_lens"
+    ],
+    "allowed_promotion_reads": [
+      "expand_replay"
+    ]
+  },
+  "agreement": {
+    "winner_matches_static": false,
+    "promotion_matches_static": true,
+    "overall_match": false
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live small cognitive comparison. Research-only artifact; it records reviewer agreement or disagreement with static expectations."
+}

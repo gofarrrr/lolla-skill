@@ -1,0 +1,85 @@
+{
+  "schema_version": "pre_step6_calibration_step6_sample.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_calibration_corpus_v0",
+  "case_id": "marker-entity-attempt-2-tripwire-compression",
+  "base_case_id": "marker-entity-attempt-2-tripwire-compression",
+  "sample_index": 1,
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"answer_core\": \"Use professional support first, keep your safety plan concrete, and watch for the specific tripwires you named: a request to meet, sexual images, threats, evidence involving other minors, a move into hidden channels, or your daughter saying she feels pressured or afraid. Maintain steady communication boundaries and run evidence checks before taking any escalation steps.\",\n  \"private_visibility_ledger\": [\n    {\n      \"source_id\": \"anchor_visible_candidate\",\n      \"disposition\": \"used\",\n      \"novelty_role\": \"visible_backbone\",\n      \"why\": \"The anchor provides the essential tripwires and actionable sequence the user needs.\",\n      \"visible_effect\": \"The final answer preserves explicit tripwires and the emphasis on professional support, boundaries, and evidence checks.\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"reframed_emphasis\": []\n      }\n    },\n    {\n      \"source_id\": \"deck_pressure_candidate\",\n      \"disposition\": \"combined\",\n      \"novelty_role\": \"confirming_support\",\n      \"why\": \"Deck pressure content aligns with the anchor but is more generic; it supports but does not alter the specific tripwires.\",\n      \"visible_effect\": \"Minor reinforcement of maintaining boundaries and planning, without adding new entities.\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"reframed_emphasis\": [\n          \"Slightly more concise framing around boundaries and planning.\"\n        ]\n      }\n    }\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 591,
+    "completion_tokens": 405,
+    "total_tokens": 996,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 64,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter",
+    "model_family": "openai"
+  },
+  "input_packet": {
+    "case_brief": "Sensitive case where the anchor lists concrete tripwires. The deck pressure may compress them into a generic escalation phrase.",
+    "case_type_tags": [
+      "sensitive_safety_legal",
+      "negative_control"
+    ],
+    "pre_registered_expectation": "generic_marker_preserving_pressure_should_not_overpromote",
+    "v60_mode": "not_applicable",
+    "v60_private_context": "",
+    "anchor_visible_candidate": "Use professional support first, keep the safety plan concrete, and name the tripwires before acting: request to meet, sexual images, threats, evidence involving other minors, a move into hidden channels, or your daughter saying she feels pressured or afraid. Keep communication boundaries stable while you gather evidence checks.",
+    "deck_pressure_candidate": "Use professional support, keep a safety plan, track tripwires, maintain communication boundaries, and run evidence checks before escalating. Treat any concerning pattern as a reason to update the plan."
+  },
+  "step6_output": {
+    "answer_core": "Use professional support first, keep your safety plan concrete, and watch for the specific tripwires you named: a request to meet, sexual images, threats, evidence involving other minors, a move into hidden channels, or your daughter saying she feels pressured or afraid. Maintain steady communication boundaries and run evidence checks before taking any escalation steps.",
+    "private_visibility_ledger": [
+      {
+        "source_id": "anchor_visible_candidate",
+        "disposition": "used",
+        "novelty_role": "visible_backbone",
+        "why": "The anchor provides the essential tripwires and actionable sequence the user needs.",
+        "visible_effect": "The final answer preserves explicit tripwires and the emphasis on professional support, boundaries, and evidence checks.",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [],
+          "removed_entities": [],
+          "reordered_sequences": []
+        }
+      },
+      {
+        "source_id": "deck_pressure_candidate",
+        "disposition": "combined",
+        "novelty_role": "confirming_support",
+        "why": "Deck pressure content aligns with the anchor but is more generic; it supports but does not alter the specific tripwires.",
+        "visible_effect": "Minor reinforcement of maintaining boundaries and planning, without adding new entities.",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [
+            "Slightly more concise framing around boundaries and planning."
+          ],
+          "removed_entities": [],
+          "reordered_sequences": []
+        }
+      }
+    ]
+  },
+  "ledger_signal": "all_private_or_confirming",
+  "answer_delta_specificity": "not_applicable",
+  "deterministic_role": [
+    "validate_calibration_case",
+    "derive_ledger_signal",
+    "derive_answer_delta_specificity",
+    "preserve_repeated_sample_custody"
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live research-only Step 6 calibration sample."
+}

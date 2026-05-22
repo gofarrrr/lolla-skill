@@ -1,0 +1,80 @@
+{
+  "schema_version": "pre_step6_lens_probe.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mid-level-consultant-report-2",
+  "lens_pack": "bevelin_seeking_wisdom_v0",
+  "source_refs": [
+    "/Users/marcin/Desktop/ksiazki pdf/outbox/ready/01_Mental_Models_Thinking/Peter Bevelin - Seeking Wisdom.md",
+    "research/pre-step6-attention-maps/mid-level-consultant-report-2.step6-attention-map.v1.json",
+    "research/pre-step6-raw-artifact-fixtures/mid-level-consultant-report-2.raw-artifact-handoff.v1.json"
+  ],
+  "problem_state_ref": "research/pre-step6-problem-states/mid-level-consultant-report-2.problem-state.v1.json",
+  "attention_map_ref": "research/pre-step6-attention-maps/mid-level-consultant-report-2.step6-attention-map.v1.json",
+  "lens_candidates": [
+    {
+      "lens_id": "bevelin_advisor_incentives",
+      "lens_name": "advisor incentives and channel bias",
+      "why_it_might_matter": "Counsel-first sequencing is safer if Step 6 keeps the intake question that tests whether the attorney has a reflexive channel preference.",
+      "source_hooks": [
+        "Bevelin-style incentive-caused bias caution.",
+        "Attention map active counsel-incentive gate."
+      ],
+      "supported_by_artifact_ids": [
+        "consultant_counsel_incentive_gate"
+      ],
+      "cheap_test_for_step6": "Check whether the answer contacts counsel while still testing channel bias during intake.",
+      "risk_if_forced": "The answer may make the user distrust counsel and act alone.",
+      "risk_if_ignored": "The user may outsource judgment to an advisor whose incentives are unexamined.",
+      "suggested_attention": "scan",
+      "false_friend_warning": "Do not turn counsel-incentive testing into self-directed reporting."
+    },
+    {
+      "lens_id": "bevelin_fear_action_bias",
+      "lens_name": "fear, loss aversion, and action bias",
+      "why_it_might_matter": "High-stress legal risk can push either premature filing or paralysis, so Step 6 should keep first moves reversible.",
+      "source_hooks": [
+        "Bevelin-style fear and loss-aversion caution.",
+        "Rendered hybrid stress-calibration line."
+      ],
+      "supported_by_artifact_ids": [
+        "consultant_wednesday_protocol_boundary"
+      ],
+      "cheap_test_for_step6": "Check whether the answer prevents both panic filing and doing nothing.",
+      "risk_if_forced": "The answer may become a general fear-management essay.",
+      "risk_if_ignored": "The user may take an irreversible step under stress.",
+      "suggested_attention": "scan",
+      "false_friend_warning": "Do not add emotional analysis beyond what helps sequence first moves."
+    },
+    {
+      "lens_id": "bevelin_leverage_false_friend",
+      "lens_name": "power frame as false friend",
+      "why_it_might_matter": "The case tempts leverage and bargaining language, but the safer frame is evidence preservation and legal sequencing.",
+      "source_hooks": [
+        "Bevelin-style incentive and power caution.",
+        "Attention map parked power-dynamics misfit."
+      ],
+      "supported_by_artifact_ids": [
+        "consultant_power_dynamics_misfit_discard"
+      ],
+      "cheap_test_for_step6": "Check whether the answer drifts into leverage, bargaining, or walk-away language.",
+      "risk_if_forced": "The answer may normalize bargaining instead of preserving evidence and legal safety.",
+      "risk_if_ignored": "A tempting but wrong leverage frame may re-enter the answer.",
+      "suggested_attention": "parked",
+      "false_friend_warning": "Keep this as a false-friend guard, not an active advice theme."
+    }
+  ],
+  "off_narrative_preservation": {
+    "lens_id": "bevelin_internal_channel_granularity",
+    "why_preserve_even_if_not_obvious": "Internal channel distinction can look like extra detail, but it prevents the answer from collapsing GC, audit committee, and regulator into one binary.",
+    "preserve_as": "scan",
+    "reactivate_if": "Reactivate if Step 6 discusses reporting channels at all.",
+    "risk_if_forced": "The answer may imply the user should choose a channel alone."
+  },
+  "do_not_force": [
+    "Do not expose Bevelin or Munger labels in the public answer.",
+    "Do not expand beyond the rendered-hybrid answer unless the lens recovers lost pressure.",
+    "Do not let Bevelin turn a legal-safety sequence into a negotiation frame."
+  ],
+  "notes": "Bevelin v0 negative-control probe. The expected result is boundary discipline: preserve the lens receipts but do not beat rendered hybrid unless the answer materially improves."
+}

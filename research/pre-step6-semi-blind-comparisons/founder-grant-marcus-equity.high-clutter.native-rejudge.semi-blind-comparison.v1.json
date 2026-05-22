@@ -1,0 +1,113 @@
+{
+  "schema_version": "pre_step6_semi_blind_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "founder-grant-marcus-equity",
+  "comparison_kind": "semi_blind_native_judge",
+  "blind_seed": 41,
+  "candidate_refs": {
+    "control_answer_comparison": "research/pre-step6-raw-artifact-comparisons/founder-grant-marcus-equity.raw-vs-control-comparison.v1.json",
+    "raw_answer_core": "research/pre-step6-raw-artifact-answer-cores/founder-grant-marcus-equity.raw-answer-core.v1.json",
+    "rendered_hybrid_answer_core": "research/pre-step6-rendered-hybrid-answer-cores/founder-grant-marcus-equity.high-clutter.native.rendered-hybrid-answer-core.v1.json"
+  },
+  "blind_map": {
+    "A": "control",
+    "B": "rendered_hybrid",
+    "C": "raw"
+  },
+  "criteria": [
+    {
+      "criterion_id": "decision_usefulness",
+      "question": "Which answer gives the founder the most usable Friday stance without overcommitting or vaguely delaying?",
+      "winner_label": "B",
+      "evidence_by_label": {
+        "A": "Strong opening: no full grant now and staged conversation, but less language for holding the tension in the room.",
+        "B": "Best usable stance: serious staged-partnership conversation, not vague delay or flat rejection, with clear evidence gates.",
+        "C": "Good practical staged-partnership path with learning goals and unlocks, but slightly more mechanical."
+      },
+      "rationale": "B gives the clearest Friday posture: refuse the full package, avoid vague delay, offer a serious staged path, and define what must be learned before ownership or governance commitments."
+    },
+    {
+      "criterion_id": "source_grounding",
+      "question": "Which answer stays inside the Marcus/Jake/Lina/platform/client/exit facts without adding unsupported diagnosis?",
+      "winner_label": "A",
+      "evidence_by_label": {
+        "A": "Uses only the core case elements: exit math, departure uncertainty, legal leverage limits, code relationship, Jake/Lina, and prototype-to-revenue.",
+        "B": "Grounded overall, but slightly broadens the dependency list and evaluation criteria beyond the brief.",
+        "C": "Grounded overall, though governance terms and commitment design make the answer feel more advisory than evidentiary."
+      },
+      "rationale": "A stays closest to the stated facts and avoids expanding the case; B and C remain grounded but are more constructed."
+    },
+    {
+      "criterion_id": "overclaim_risk",
+      "question": "Which answer best avoids false precision from exit math, buyer multiples, or unsupported technical claims?",
+      "winner_label": "A",
+      "evidence_by_label": {
+        "A": "Explicitly says exit math is unaudited, catastrophe is unknown, legal clauses do not remove practical leverage, and budget/contract certainty should not be invented.",
+        "B": "Uses exit math only as false-precision caution and avoids technical diagnosis, but frames several possible destabilization outcomes more vividly.",
+        "C": "Rejects software architecture diagnosis and false precision, but milestone unlocks could imply more design precision than the facts support."
+      },
+      "rationale": "A is the most disciplined about not inventing numbers, legal certainty, budget precision, or technical diagnosis."
+    },
+    {
+      "criterion_id": "answer_length_cognitive_load",
+      "question": "Which answer stays most usable without becoming a private notebook?",
+      "winner_label": "A",
+      "evidence_by_label": {
+        "A": "Shortest, cleanest, low cognitive load.",
+        "B": "Readable, but more explanatory and multi-part than necessary for a Friday stance.",
+        "C": "Compact, but the middle-instruments list and milestone list increase density."
+      },
+      "rationale": "A is easiest to absorb while still preserving the main decision; B is longest and carries more private-notebook texture."
+    },
+    {
+      "criterion_id": "machinery_hygiene",
+      "question": "Which answer avoids visible frameworkiness, procedural feel, or catalog residue?",
+      "winner_label": "B",
+      "evidence_by_label": {
+        "A": "The intermediate-instruments sentence becomes a catalog: smaller equity, milestone grants, phantom equity, revenue share, and upside path.",
+        "B": "Explicitly warns not to turn the answer into a catalog of instruments and mostly avoids doing so.",
+        "C": "Catalog residue is visible: staged equity, phantom equity, platform revenue share, milestone grants, and smaller grant without governance control."
+      },
+      "rationale": "B has the least visible catalog residue despite being longer; it uses structure to reason rather than enumerate instruments."
+    },
+    {
+      "criterion_id": "conflict_preservation",
+      "question": "Which answer best preserves the tension between refusing the full package and not triggering disengagement?",
+      "winner_label": "B",
+      "evidence_by_label": {
+        "A": "Acknowledges legal leverage and staged conversation, but does not foreground the disengagement/rejection hazard as strongly.",
+        "B": "Directly warns that vague delay can read as avoidance and trigger what the founder is trying to prevent.",
+        "C": "Preserves dependency/commitment tension, but the emotional and relational risk is less sharply rendered than in B."
+      },
+      "rationale": "B best preserves the live tension without manufacturing certainty."
+    },
+    {
+      "criterion_id": "duplicate_demotion",
+      "question": "Which answer best keeps duplicate/misfit pressure quiet without deleting the concern?",
+      "winner_label": "B",
+      "evidence_by_label": {
+        "A": "Good demotion of false precision, but the instruments list feels like carried-over residue.",
+        "B": "Best compression: dependencies are named once, instruments are kept live without listing them.",
+        "C": "The same concern appears in multiple forms: system around him, middle instruments, learning goals, retention, knowledge transfer, and unlocks."
+      },
+      "rationale": "B keeps repeated concerns quiet by collapsing them into a dependency system and warning against cataloging instruments."
+    },
+    {
+      "criterion_id": "unforcedness",
+      "question": "Which answer feels most naturally reasoned rather than optimized to satisfy hidden structure?",
+      "winner_label": "A",
+      "evidence_by_label": {
+        "A": "Plain-spoken and minimally structured; reads like a human answer rather than a scoring-aware synthesis.",
+        "B": "Best overall reasoning, but somewhat optimized because it touches nearly every rubric concern with visible balance.",
+        "C": "Clean but more procedural: dependency problem, caveat, instruments, staged path, learning goals, and unlocks."
+      },
+      "rationale": "A feels least optimized and most naturally advisory; B is strong but has a polished rubric-aware feel."
+    }
+  ],
+  "tie_break_rule": "rendered_must_beat_or_simplify",
+  "aggregate_winner_label": "B",
+  "aggregate_decision": "rendered_hybrid_wins",
+  "promotion_read": "pass_to_replay",
+  "notes": "Native less-author-biased rejudge. Simple criterion count ties control and rendered hybrid at 4-4, with raw at 0. Rendered hybrid wins aggregate because decision usefulness, conflict preservation, machinery hygiene, and duplicate demotion are decisive for this high-clutter founder case. Control remains the cleanest, lightest, most source-cautious arm; this is a pass with medium naturalness debt, not a clean sweep."
+}

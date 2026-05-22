@@ -1,0 +1,61 @@
+{
+  "schema_version": "step6_attention_map.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "third-year-phd-student",
+  "source_refs": [
+    "research/pre-step6-comparison-fixtures/third-year-phd-student-20260430T140800Z.md",
+    "research/pre-step6-raw-artifact-fixtures/third-year-phd-student.raw-artifact-handoff.v1.json:artifacts[1]",
+    "research/pre-step6-raw-artifact-fixtures/third-year-phd-student.raw-artifact-handoff.v1.json:artifacts[2]",
+    "research/pre-step6-raw-artifact-fixtures/third-year-phd-student.raw-artifact-handoff.v1.json:artifacts[0]"
+  ],
+  "problem_read": {
+    "user_goal": "Choose a PhD path while preserving fallback viability and avoiding false precision about outcomes.",
+    "problem_type": "decision_evaluation",
+    "suggested_next_move": "answer_now"
+  },
+  "active_working_set": [
+    {
+      "artifact_id": "phd_silva_constraint_retest",
+      "why_available": "Raw handoff preserves Silva as a constraint test rather than a one-off availability question.",
+      "step6_use": "Check whether the answer tests Silva executability before political commitment.",
+      "boundary": "Do not treat option 3 as viable until data access, sharing terms, and collaborator role can carry a dissertation.",
+      "risk_if_ignored": "The user may commit politically before the binding constraint is tractable.",
+      "expansion_ref": "research/pre-step6-raw-artifact-fixtures/third-year-phd-student.raw-artifact-handoff.v1.json:artifacts[1]"
+    }
+  ],
+  "edge_latticework_reserve": [
+    {
+      "artifact_id": "phd_base_rate_fit_gate",
+      "protected_slot": "denominator",
+      "why_available": "Raw handoff preserves base rates as a humility check, not a calibrated probability claim.",
+      "cheap_test": "Scan whether the answer turns broad PhD success rates into case-specific probabilities.",
+      "risk_if_forced": "The answer may become pseudo-quantitative and distract from next actions.",
+      "risk_if_ignored": "The answer may overstate confidence without an outside-view check.",
+      "expansion_ref": "research/pre-step6-raw-artifact-fixtures/third-year-phd-student.raw-artifact-handoff.v1.json:artifacts[2]"
+    }
+  ],
+  "weak_or_negative_space_receipts": [
+    {
+      "artifact_id": "no_weak_receipt",
+      "why_preserved": "No weak or negative-space receipt was provided.",
+      "reactivate_if": "New uncertainty appears during Step 6 drafting.",
+      "expansion_ref": "research/pre-step6-raw-artifact-fixtures/third-year-phd-student.raw-artifact-handoff.v1.json"
+    }
+  ],
+  "parked_but_preserved": [
+    {
+      "artifact_id": "phd_fallback_viability_boundary_parked",
+      "park_reason": "Engine surfaced sequence-stop pressure around fallback viability.",
+      "reactivate_if": "Promote if the answer uses option 1 as a reversal target.",
+      "expansion_ref": "research/pre-step6-raw-artifact-fixtures/third-year-phd-student.raw-artifact-handoff.v1.json:artifacts[0]"
+    }
+  ],
+  "ask_user_if_any": [],
+  "review_admission": "none",
+  "full_archive_refs": [
+    "research/pre-step6-raw-artifact-fixtures/third-year-phd-student.raw-artifact-handoff.v1.json",
+    "research/pre-step6-hybrid-handoff-fixtures/third-year-phd-student.hybrid-handoff.v1.json"
+  ],
+  "step6_instruction": "Use this as an attention map, not as a verdict. Consider active pressure, scan the edge reserve before finalizing, and reject any item that fails its boundary. Do not expose internal labels."
+}

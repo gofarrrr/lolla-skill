@@ -1,0 +1,58 @@
+{
+  "schema_version": "step6_attention_map.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mother-address-year",
+  "source_refs": [
+    "research/pre-step6-problem-states/mother-address-year.problem-state.v1.json",
+    "research/pre-step6-reasoning-affordances/mother-silence.active.reasoning-affordance.v1.json"
+  ],
+  "problem_read": {
+    "user_goal": "Respond to the address-year plan without overclaiming from quiet evidence.",
+    "problem_type": "decision_evaluation",
+    "suggested_next_move": "answer_now"
+  },
+  "active_working_set": [
+    {
+      "artifact_id": "mother_surveillance_instrument_trust_gate",
+      "why_available": "Silence in a monitored channel is weak evidence rather than reassurance.",
+      "step6_use": "Check whether the answer treats quiet as safety.",
+      "boundary": "Do not infer safety from silence alone.",
+      "risk_if_ignored": "The answer may falsely reassure the user.",
+      "expansion_ref": "research/pre-step6-reasoning-affordances/mother-silence.active.reasoning-affordance.v1.json"
+    }
+  ],
+  "edge_latticework_reserve": [
+    {
+      "artifact_id": "mother_missing_professional_guidance",
+      "protected_slot": "negative_space",
+      "why_available": "Professional guidance is unknown and should not be invented.",
+      "cheap_test": "Check whether the answer assumes professional guidance exists.",
+      "risk_if_forced": "The answer may become too cautious and vague.",
+      "risk_if_ignored": "The answer may overclaim beyond the known facts.",
+      "expansion_ref": "research/pre-step6-reasoning-affordances/mother-missing-professional-guidance.negative-space.reasoning-affordance.v1.json"
+    }
+  ],
+  "weak_or_negative_space_receipts": [
+    {
+      "artifact_id": "mother_current_safety_signals_unknown",
+      "why_preserved": "Recent safety changes are unknown.",
+      "reactivate_if": "The answer starts treating old evidence as current evidence.",
+      "expansion_ref": "research/pre-step6-problem-states/mother-address-year.problem-state.v1.json"
+    }
+  ],
+  "parked_but_preserved": [
+    {
+      "artifact_id": "mother_power_dynamics_worker_decline",
+      "park_reason": "Prior raw artifact marked this as a worker-decline receipt rather than active pressure.",
+      "reactivate_if": "The answer starts explaining the family system as the main issue.",
+      "expansion_ref": "research/pre-step6-raw-artifact-fixtures/mother-address-year.raw-artifact-handoff.v1.json:artifacts[3]"
+    }
+  ],
+  "ask_user_if_any": [],
+  "review_admission": "none",
+  "full_archive_refs": [
+    "research/pre-step6-raw-artifact-fixtures/mother-address-year.raw-artifact-handoff.v1.json"
+  ],
+  "step6_instruction": "Use this as an attention map, not as a verdict. Consider active pressure, scan the edge reserve before finalizing, and reject any item that fails its boundary. Do not expose internal labels."
+}

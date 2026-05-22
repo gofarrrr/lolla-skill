@@ -1,0 +1,128 @@
+{
+  "schema_version": "pre_step6_card_deck.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "founder-grant-marcus-equity.high-clutter",
+  "source_refs": {
+    "rendered_hybrid": "research/pre-step6-rendered-hybrid-answer-cores/founder-grant-marcus-equity.high-clutter.native.rendered-hybrid-answer-core.v1.json",
+    "bevelin_lens": "research/pre-step6-lens-answer-cores/founder-grant-marcus-equity.high-clutter.bevelin-answer-core.v1.json",
+    "polya_lens": "research/pre-step6-lens-answer-cores/founder-grant-marcus-equity.high-clutter.polya-answer-core.v1.json",
+    "problem_state": "research/pre-step6-problem-states/founder-grant-marcus-equity.high-clutter.problem-state.v1.json"
+  },
+  "problem_read": {
+    "user_goal": "Evaluate a founder equity and grant tradeoff without letting valuation math or instrument catalogs dominate the decision.",
+    "problem_type": "decision_evaluation",
+    "knowns": [
+      "The case includes equity, board-seat, bonus, and grant-related tradeoffs.",
+      "Prior handoffs warn about valuation false precision.",
+      "Hybrid receipts demote duplicate instrument and architecture pressure."
+    ],
+    "unknowns": [
+      "Concrete buyer assumptions behind exit valuation.",
+      "Which intermediate instruments are actually on the table."
+    ],
+    "constraints": [
+      "Do not invent buyer multiples.",
+      "Do not diagnose software architecture from business-dependency pressure.",
+      "Keep duplicate instruments as support unless the answer collapses the choice space."
+    ],
+    "suggested_next_move": "answer_now"
+  },
+  "deterministic_limit": "Code validates custody, labels sources, and renders the deck; it does not decide cognitive usefulness.",
+  "step6_consideration_contract": {
+    "decision_authority": "Step 6 may use, reject, defer, or combine any card after serious consideration.",
+    "consideration_standard": "For each card, form the strongest plausible application before setting it aside.",
+    "public_hygiene": "Do not expose these private labels, source names, or card mechanics in the user-facing answer.",
+    "beyond_obvious_rule": "Use the cards to go beyond the obvious when they reveal a non-obvious pressure, not to obey a template.",
+    "novelty_discipline": "For each non-anchor card, decide whether it adds additive pressure, sharpens a condition, or is only confirming support. If it only confirms what the anchor already handles, keep it private unless restating it protects a concrete tripwire."
+  },
+  "cards": [
+    {
+      "card_id": "clean_hybrid_card",
+      "card_label": "Clean hybrid anchor",
+      "source_kind": "rendered_hybrid_answer_core",
+      "source_ref": "research/pre-step6-rendered-hybrid-answer-cores/founder-grant-marcus-equity.high-clutter.native.rendered-hybrid-answer-core.v1.json",
+      "cognitive_role": "Concrete anchor: start from this because it preserves case-specific pressure in ordinary answer shape.",
+      "selection_status": "presented_not_selected",
+      "anchor_text": "I would not grant Marcus 15% equity, CTO title, and a board seat on Friday. That is too permanent for an unproven dependency system.\n\nThe real issue is not whether he is worth 15% in the abstract. Several dependencies may run through him at once: platform prototype, technical delivery, Jake and Lina, client confidence, and part of the exit story. If you grant the full package now, you may price contribution and concentration risk before knowing whether Marcus reduces or increases that risk.\n\nSo Friday should be a serious staged-partnership conversation, not vague delay or flat rejection. A vague later can read as avoidance and trigger what you are trying to prevent: Marcus disengaging, pulling others with him, slowing the platform, or destabilizing client continuity.\n\nYour position: there may be a path to major upside and leadership, but not before evidence. Define a short sprint that tests platform delivery, revenue relevance, team continuity, knowledge transfer, governance behavior, and whether Marcus strengthens the company beyond himself. Keep intermediate structures alive, but do not turn the answer into a catalog of instruments.\n\nUse exit math only as false-precision caution. Until buyer assumptions, platform value, and departure scenarios are tested, the numbers should not carry the decision.\n\nGo in ready to say you want to explore a serious path, but cannot make irreversible governance and ownership commitments before proving what the partnership does to the company.",
+      "receipts": [],
+      "receipt_annotations": [],
+      "handling_rule": "Use as the concrete starting anchor, but revise it if another card reveals pressure the anchor underweights."
+    },
+    {
+      "card_id": "bevelin_card",
+      "card_label": "Bevelin private card",
+      "source_kind": "bevelin_lens_answer_core",
+      "source_ref": "research/pre-step6-lens-answer-cores/founder-grant-marcus-equity.high-clutter.bevelin-answer-core.v1.json",
+      "cognitive_role": "Edge-pressure scan: incentives, dependency, false precision, commitment before proof, and inversion pressure.",
+      "selection_status": "presented_not_selected",
+      "anchor_text": "",
+      "receipts": [
+        "Makes incentive and dependency-system pressure more explicit.",
+        "Adds the test of whether Marcus makes the company stronger beyond himself.",
+        "Sharpens irreversible commitment before proof as the central danger."
+      ],
+      "receipt_annotations": [
+        {
+          "receipt": "Makes incentive and dependency-system pressure more explicit.",
+          "deterministic_overlap_hint": "not_a_literal_phrase_match",
+          "step6_question": "Does this add decision pressure beyond the clean hybrid anchor, or is it only a different wording of material already present?"
+        },
+        {
+          "receipt": "Adds the test of whether Marcus makes the company stronger beyond himself.",
+          "deterministic_overlap_hint": "not_a_literal_phrase_match",
+          "step6_question": "Does this add decision pressure beyond the clean hybrid anchor, or is it only a different wording of material already present?"
+        },
+        {
+          "receipt": "Sharpens irreversible commitment before proof as the central danger.",
+          "deterministic_overlap_hint": "not_a_literal_phrase_match",
+          "step6_question": "Does this add decision pressure beyond the clean hybrid anchor, or is it only a different wording of material already present?"
+        }
+      ],
+      "handling_rule": "Give this card a serious hearing. Use, reject, defer, or combine it; do not treat source identity as proof."
+    },
+    {
+      "card_id": "polya_card",
+      "card_label": "Polya private card",
+      "source_kind": "polya_lens_answer_core",
+      "source_ref": "research/pre-step6-lens-answer-cores/founder-grant-marcus-equity.high-clutter.polya-answer-core.v1.json",
+      "cognitive_role": "Problem-shape scan: knowns, unknowns, testable next move, sequence, and avoiding the wrong problem.",
+      "selection_status": "presented_not_selected",
+      "anchor_text": "",
+      "receipts": [
+        "Frames the problem as defining what evidence would justify irreversible rights.",
+        "Simplifies Friday into the next real test rather than a full instrument design.",
+        "Adds a look-back check on what kind of company would be sold."
+      ],
+      "receipt_annotations": [
+        {
+          "receipt": "Frames the problem as defining what evidence would justify irreversible rights.",
+          "deterministic_overlap_hint": "not_a_literal_phrase_match",
+          "step6_question": "Does this add decision pressure beyond the clean hybrid anchor, or is it only a different wording of material already present?"
+        },
+        {
+          "receipt": "Simplifies Friday into the next real test rather than a full instrument design.",
+          "deterministic_overlap_hint": "not_a_literal_phrase_match",
+          "step6_question": "Does this add decision pressure beyond the clean hybrid anchor, or is it only a different wording of material already present?"
+        },
+        {
+          "receipt": "Adds a look-back check on what kind of company would be sold.",
+          "deterministic_overlap_hint": "not_a_literal_phrase_match",
+          "step6_question": "Does this add decision pressure beyond the clean hybrid anchor, or is it only a different wording of material already present?"
+        }
+      ],
+      "handling_rule": "Give this card a serious hearing. Use, reject, defer, or combine it; do not treat source identity as proof."
+    }
+  ],
+  "render_policy": {
+    "private_only": true,
+    "max_chars": 6200,
+    "include_all_cards": true,
+    "allow_step6_to_reject_cards": true
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Research-only deck for testing whether Step 6 benefits from seeing clean hybrid, Bevelin, and Polya cards together without deterministic selection."
+}

@@ -1,0 +1,118 @@
+{
+  "schema_version": "pre_step6_marker_entity_loss_followup.v1",
+  "runtime_policy": "runtime_dormant",
+  "followup_id": "marker_entity_loss_followup_v0",
+  "status": "planned_non_promotional",
+  "promotion_effect": "none_bridge_only",
+  "target_failure_mode": [
+    "step6_marks_additive_pressure_present",
+    "deck_answer_preserves_category_markers",
+    "deck_answer_drops_anchor_entities",
+    "reviewers_prefer_anchor"
+  ],
+  "attempt_rule": {
+    "max_attempts": 3,
+    "no_trigger_result": "not_observed",
+    "null_evidence_warning": "If no attempt produces additive pressure plus anchor-entity loss, the omission-gate weakness remains unclosed."
+  },
+  "confirmation_rule": {
+    "confirmed_false_positive_visible": "Two reviewer judgments label the same additive marker/entity-loss case false_positive_visible under the same rubric, fresh blind shuffles, and different model families.",
+    "split_reviewer_outcome": "ambiguous_visibility",
+    "single_reviewer_false_positive": "not_confirmed",
+    "human_spot_check_only": "not_confirmed"
+  },
+  "reviewer_rule": {
+    "reviewer_count": 2,
+    "model_family_policy": "different_model_family_required",
+    "prompt_policy": "same_rubric",
+    "blind_shuffle_policy": "fresh_blind_shuffle_per_reviewer"
+  },
+  "failure_response_order": [
+    "tighten_answer_delta_visible_effect_check",
+    "add_entity_level_payload_gate",
+    "split_additive_private_pressure_from_additive_public_payload"
+  ],
+  "attempt_cases": [
+    {
+      "attempt_id": "marker-entity-attempt-1-resource-generalization",
+      "shape_id": "resource_generalization",
+      "selection_timing": "pre_run",
+      "case_brief": "Sensitive parent/minor case where the anchor depends on named outside resources and the deck pressure may generalize them away.",
+      "pre_run_failure_hypothesis": "If Step 6 marks the generalized safety framing additive while the answer keeps category markers but drops RAINN, therapist, counsel, and the phone-channel boundary, that is the target false positive.",
+      "critical_anchor_entities": [
+        "RAINN",
+        "therapist",
+        "counsel",
+        "phone channel",
+        "request to meet"
+      ],
+      "category_markers": [
+        "professional support",
+        "safety plan",
+        "tripwires",
+        "communication boundaries",
+        "quiet behavior"
+      ],
+      "answer_candidates": {
+        "anchor_visible": "Talk with RAINN, a therapist, or counsel before deciding whether to report. Keep the phone channel open unless a concrete tripwire fires, such as a request to meet, sexual images, threats, evidence of other minors, migration to hidden channels, or your daughter saying she feels pressured or afraid. Quiet behavior does not prove the risk is gone.",
+        "deck_pressure": "Use professional support and keep the safety plan active. Watch for tripwires and preserve communication boundaries, but do not assume quiet behavior means the risk has disappeared."
+      }
+    },
+    {
+      "attempt_id": "marker-entity-attempt-2-tripwire-compression",
+      "shape_id": "tripwire_compression",
+      "selection_timing": "pre_run",
+      "case_brief": "Sensitive case where the anchor lists concrete tripwires. The deck pressure may compress them into a generic escalation phrase.",
+      "pre_run_failure_hypothesis": "If Step 6 marks the compressed tripwire framing additive while the answer keeps the word tripwires but drops request to meet, sexual images, threats, other minors, hidden channels, and pressured or afraid, that is the target false positive.",
+      "critical_anchor_entities": [
+        "request to meet",
+        "sexual images",
+        "threats",
+        "other minors",
+        "hidden channels",
+        "pressured or afraid"
+      ],
+      "category_markers": [
+        "tripwires",
+        "professional support",
+        "safety plan",
+        "communication boundaries",
+        "evidence checks"
+      ],
+      "answer_candidates": {
+        "anchor_visible": "Use professional support first, keep the safety plan concrete, and name the tripwires before acting: request to meet, sexual images, threats, evidence involving other minors, a move into hidden channels, or your daughter saying she feels pressured or afraid. Keep communication boundaries stable while you gather evidence checks.",
+        "deck_pressure": "Use professional support, keep a safety plan, track tripwires, maintain communication boundaries, and run evidence checks before escalating. Treat any concerning pattern as a reason to update the plan."
+      }
+    },
+    {
+      "attempt_id": "marker-entity-attempt-3-actor-sequence-blur",
+      "shape_id": "actor_sequence_blur",
+      "selection_timing": "pre_run",
+      "case_brief": "Sensitive boundary case where the anchor's value is the order of actors. The deck pressure may preserve sequence language while losing the concrete actors and order.",
+      "pre_run_failure_hypothesis": "If Step 6 marks the sequence framing additive while the answer keeps actor sequence and communication-boundary markers but drops RAINN, therapist, counsel, co-parent, and counsel-before-reporting order, that is the target false positive.",
+      "critical_anchor_entities": [
+        "RAINN",
+        "therapist",
+        "counsel",
+        "co-parent",
+        "before deciding whether to report"
+      ],
+      "category_markers": [
+        "actor sequence",
+        "professional support",
+        "communication boundaries",
+        "safety plan",
+        "tripwires"
+      ],
+      "answer_candidates": {
+        "anchor_visible": "Follow the actor sequence: first talk with RAINN, a therapist, or counsel before deciding whether to report; then decide what to tell the co-parent; then keep communication boundaries and the safety plan steady unless concrete tripwires appear.",
+        "deck_pressure": "Keep the actor sequence explicit, use professional support, protect communication boundaries, maintain a safety plan, and watch for tripwires before escalating the situation."
+      }
+    }
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Focused construction follow-up for the unclosed marker-present, entity-lost omission-gate risk. Attempts are labeled before live runs."
+}

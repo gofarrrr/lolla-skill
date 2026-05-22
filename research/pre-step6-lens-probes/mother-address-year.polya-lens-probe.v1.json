@@ -1,0 +1,80 @@
+{
+  "schema_version": "pre_step6_lens_probe.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mother-address-year",
+  "lens_pack": "polya_problem_solving_v0",
+  "source_refs": [
+    "plans/lolla-solver-control-layer-prd-2026-05-19.md:412",
+    "research/pre-step6-attention-maps/mother-address-year.step6-attention-map.v1.json",
+    "research/pre-step6-problem-states/mother-address-year.problem-state.v1.json"
+  ],
+  "problem_state_ref": "research/pre-step6-problem-states/mother-address-year.problem-state.v1.json",
+  "attention_map_ref": "research/pre-step6-attention-maps/mother-address-year.step6-attention-map.v1.json",
+  "lens_candidates": [
+    {
+      "lens_id": "polya_uncertainty_problem",
+      "lens_name": "problem under uncertainty",
+      "why_it_might_matter": "The task is not to prove safety or danger; it is to choose reversible safety moves under uncertainty.",
+      "source_hooks": [
+        "PRD Polya prompt: what kind of problem is this.",
+        "Attention map monitored-channel weak evidence."
+      ],
+      "supported_by_artifact_ids": [
+        "mother_monitored_channel_silence"
+      ],
+      "cheap_test_for_step6": "Check whether the answer avoids both certainty and paralysis.",
+      "risk_if_forced": "The answer may become too procedural for a human family situation.",
+      "risk_if_ignored": "The answer may treat quiet monitoring as more informative than it is.",
+      "suggested_attention": "active",
+      "false_friend_warning": "Do not turn uncertainty into inaction."
+    },
+    {
+      "lens_id": "polya_known_unknown_tripwires",
+      "lens_name": "knowns, unknowns, and tripwires",
+      "why_it_might_matter": "Known tripwires can guide action while unknown risk remains unresolved.",
+      "source_hooks": [
+        "PRD Polya prompt: what is known and unknown.",
+        "Attention map tripwire pressure."
+      ],
+      "supported_by_artifact_ids": [
+        "mother_tripwire_escalation"
+      ],
+      "cheap_test_for_step6": "Check whether the answer ties escalation to concrete tripwires rather than dates or feelings.",
+      "risk_if_forced": "The answer may over-list tripwires.",
+      "risk_if_ignored": "The answer may stay too vague to act on.",
+      "suggested_attention": "scan",
+      "false_friend_warning": "Do not make tripwires sound like proof thresholds."
+    },
+    {
+      "lens_id": "polya_next_reversible_move",
+      "lens_name": "next reversible move",
+      "why_it_might_matter": "Professional guidance is the next move that improves information and safety without forcing an irreversible family confrontation.",
+      "source_hooks": [
+        "PRD Polya prompt: what move would help thinking progress.",
+        "Attention map professional-guidance pressure."
+      ],
+      "supported_by_artifact_ids": [
+        "mother_professional_guidance"
+      ],
+      "cheap_test_for_step6": "Check whether the answer routes wording and escalation through RAINN, therapist, or counsel before irreversible action.",
+      "risk_if_forced": "The answer may sound like outsourcing judgment.",
+      "risk_if_ignored": "The answer may leave the parent alone with a high-stakes interpretation problem.",
+      "suggested_attention": "active",
+      "false_friend_warning": "Do not use professional guidance as a delay tactic if tripwires fire."
+    }
+  ],
+  "off_narrative_preservation": {
+    "lens_id": "polya_ask_user_boundary",
+    "why_preserve_even_if_not_obvious": "More facts could matter, but asking the parent for graphic detail may be harmful and unnecessary for the safe next move.",
+    "preserve_as": "parked",
+    "reactivate_if": "Reactivate only if Step 6 cannot state tripwires or professional-guidance path without missing facts.",
+    "risk_if_forced": "The answer may ask for sensitive details instead of giving a safe path."
+  },
+  "do_not_force": [
+    "Do not expose Polya labels in the public answer.",
+    "Do not make the answer a worksheet.",
+    "Do not ask for more details unless the safe next move is impossible."
+  ],
+  "notes": "Polya v0 probe for the mother case. It tests whether problem-shape framing improves reversible action under uncertainty."
+}

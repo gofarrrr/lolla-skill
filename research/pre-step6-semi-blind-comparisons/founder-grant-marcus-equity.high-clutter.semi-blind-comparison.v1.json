@@ -1,0 +1,113 @@
+{
+  "schema_version": "pre_step6_semi_blind_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "founder-grant-marcus-equity",
+  "comparison_kind": "semi_blind_local_rubric",
+  "blind_seed": 31,
+  "candidate_refs": {
+    "control_answer_comparison": "research/pre-step6-raw-artifact-comparisons/founder-grant-marcus-equity.raw-vs-control-comparison.v1.json",
+    "raw_answer_core": "research/pre-step6-raw-artifact-answer-cores/founder-grant-marcus-equity.raw-answer-core.v1.json",
+    "rendered_hybrid_answer_core": "research/pre-step6-rendered-hybrid-answer-cores/founder-grant-marcus-equity.high-clutter.native.rendered-hybrid-answer-core.v1.json"
+  },
+  "blind_map": {
+    "A": "raw",
+    "B": "control",
+    "C": "rendered_hybrid"
+  },
+  "criteria": [
+    {
+      "criterion_id": "decision_usefulness",
+      "question": "Which answer gives the founder the most usable Friday stance without overcommitting or vaguely delaying?",
+      "winner_label": "C",
+      "evidence_by_label": {
+        "A": "Frames the issue as dependency and commitment design with a staged path, but is less explicit about the danger of vague delay.",
+        "B": "Clearly rejects the full package and keeps intermediate instruments alive, but leans more into a terms list.",
+        "C": "Rejects the full package, keeps a serious staged-partnership stance, and names why vague delay or flat rejection can backfire."
+      },
+      "rationale": "C gives the cleanest founder-facing posture: serious path, not full grant now, not vague delay."
+    },
+    {
+      "criterion_id": "source_grounding",
+      "question": "Which answer stays inside the Marcus/Jake/Lina/platform/client/exit facts without adding unsupported diagnosis?",
+      "winner_label": "tie",
+      "evidence_by_label": {
+        "A": "Uses Marcus, Jake, Lina, platform milestones, governance, and exit caution.",
+        "B": "Uses Marcus's demand, exit math, practical leverage, legal limits, and intermediate instruments.",
+        "C": "Uses Marcus, Jake, Lina, platform delivery, client continuity, exit caution, governance, and knowledge transfer."
+      },
+      "rationale": "All three stay materially inside the fixture facts."
+    },
+    {
+      "criterion_id": "overclaim_risk",
+      "question": "Which answer best avoids false precision from exit math, buyer multiples, or unsupported technical claims?",
+      "winner_label": "C",
+      "evidence_by_label": {
+        "A": "Says the $9-13M exit math should not carry the decision, but still repeats the number.",
+        "B": "Rejects false precision and avoids unsupported technical diagnosis.",
+        "C": "Keeps exit math only as a false-precision caution, omits the numbers, and avoids architecture diagnosis."
+      },
+      "rationale": "C carries the false-precision caution with the least numeric reactivation."
+    },
+    {
+      "criterion_id": "answer_length_cognitive_load",
+      "question": "Which answer stays most usable without becoming a private notebook?",
+      "winner_label": "B",
+      "evidence_by_label": {
+        "A": "Moderate length and usable, but includes more instrument detail than C.",
+        "B": "Shortest and easiest to scan.",
+        "C": "Most complete, but close to the length cap and visibly denser."
+      },
+      "rationale": "B wins pure lightness. C's length is a watch item even though the added detail is relevant."
+    },
+    {
+      "criterion_id": "machinery_hygiene",
+      "question": "Which answer avoids private terms, visible frameworkiness, and catalog-like residue?",
+      "winner_label": "tie",
+      "evidence_by_label": {
+        "A": "No private terms, but phrases like dependency problem and commitment design are somewhat framework-shaped.",
+        "B": "No private terms and natural prose, but it lists several intermediate instruments.",
+        "C": "No private terms and avoids the instrument catalog, but dependency-system and evidence-test language is somewhat structured."
+      },
+      "rationale": "No candidate leaks private machinery; each carries a different small hygiene cost."
+    },
+    {
+      "criterion_id": "conflict_preservation",
+      "question": "Which answer best preserves the tension between refusing the full package and not triggering disengagement?",
+      "winner_label": "C",
+      "evidence_by_label": {
+        "A": "Rejects the full first move and proposes a staged path.",
+        "B": "Rejects the opening demand and says staged conversation, not yes/no.",
+        "C": "Explicitly preserves both sides: full package is premature, but vague delay or flat rejection can trigger Marcus disengaging."
+      },
+      "rationale": "C most directly preserves the live tension."
+    },
+    {
+      "criterion_id": "duplicate_demotion",
+      "question": "Which answer best keeps duplicate/misfit pressure quiet without deleting the concern?",
+      "winner_label": "C",
+      "evidence_by_label": {
+        "A": "Still names staged equity, phantom equity, revenue share, milestone grants, and smaller grants.",
+        "B": "Keeps the middle-instrument catalog visible.",
+        "C": "Says to keep intermediate structures alive but not turn the answer into a catalog, and avoids architecture diagnosis."
+      },
+      "rationale": "C best demonstrates quiet_receipts doing their job: duplicate instruments and architecture misfit stay quiet."
+    },
+    {
+      "criterion_id": "unforcedness",
+      "question": "Which answer feels most naturally reasoned rather than optimized to satisfy hidden structure?",
+      "winner_label": "B",
+      "evidence_by_label": {
+        "A": "Natural enough, but more conceptually framed than B.",
+        "B": "Most direct and conversational.",
+        "C": "Useful and coherent, but the dependency-system and multi-measure sprint language feels more engineered."
+      },
+      "rationale": "B wins unforcedness. This keeps the rendered-hybrid pass from becoming a false sweep."
+    }
+  ],
+  "tie_break_rule": "rendered_must_beat_or_simplify",
+  "aggregate_winner_label": "C",
+  "aggregate_decision": "rendered_hybrid_wins",
+  "promotion_read": "pass_to_replay",
+  "notes": "Local semi-blind rubric, not native judge output. Rendered high-clutter wins aggregate because it preserves dependency-system pressure, false-precision caution, and conflict tension while demoting duplicate instrument and architecture residue. Control remains lighter and more natural; rendered length is a watch item."
+}

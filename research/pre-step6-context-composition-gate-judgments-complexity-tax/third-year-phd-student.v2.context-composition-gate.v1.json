@@ -1,0 +1,71 @@
+{
+  "schema_version": "pre_step6_context_composition_gate_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "third-year-phd-student.v2",
+  "gate_kind": "live_context_composition_comparison",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"winner_label\": \"D\",\n  \"research_action\": \"stop\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Packet D provides the optimal balance of cognitive pressure. It includes the necessary 'inversion' and 'identity coherence' checks that add depth to the decision-making process without the redundant list-padding found in Packet C. Packet B is too sparse, and Packet A is slightly less focused on the specific psychological/strategic constraints (inversion/identity) that make the decision robust.\",\n  \"protected_value\": [\n    \"Inversion language for stop-loss dates\",\n    \"Identity coherence as a non-therapeutic viability check\",\n    \"Explicit pressure against premature commitment\"\n  ],\n  \"bloat_or_pruning_risk\": [\n    \"Packet C was rejected for redundant list-padding that added complexity without novel decision pressure.\"\n  ],\n  \"composition_note\": \"Step 6 should treat the receipts in D as strategic heuristics to stress-test the student's plan, specifically focusing on the 'inversion' of the stop-loss date to ensure the fallback remains viable.\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 2256,
+    "completion_tokens": 247,
+    "total_tokens": 2503,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter"
+  },
+  "candidate_refs": {
+    "rendered_hybrid": "research/pre-step6-rendered-hybrid-answer-cores/third-year-phd-student.conflict.native.rendered-hybrid-answer-core.v1.json",
+    "bevelin_lens": "research/pre-step6-lens-answer-cores/third-year-phd-student.v2.bevelin-answer-core.v1.json",
+    "polya_lens": "research/pre-step6-lens-answer-cores/third-year-phd-student.v2.polya-answer-core.v1.json"
+  },
+  "blind_map": {
+    "A": "rendered_plus_polya_receipts",
+    "B": "rendered_only",
+    "C": "rendered_plus_dual_receipts",
+    "D": "rendered_plus_bevelin_receipts"
+  },
+  "reviewer_output": {
+    "winner_label": "D",
+    "research_action": "stop",
+    "confidence": "high",
+    "rationale": "Packet D provides the optimal balance of cognitive pressure. It includes the necessary 'inversion' and 'identity coherence' checks that add depth to the decision-making process without the redundant list-padding found in Packet C. Packet B is too sparse, and Packet A is slightly less focused on the specific psychological/strategic constraints (inversion/identity) that make the decision robust.",
+    "protected_value": [
+      "Inversion language for stop-loss dates",
+      "Identity coherence as a non-therapeutic viability check",
+      "Explicit pressure against premature commitment"
+    ],
+    "bloat_or_pruning_risk": [
+      "Packet C was rejected for redundant list-padding that added complexity without novel decision pressure."
+    ],
+    "composition_note": "Step 6 should treat the receipts in D as strategic heuristics to stress-test the student's plan, specifically focusing on the 'inversion' of the stop-loss date to ensure the fallback remains viable."
+  },
+  "static_expectation": {
+    "allowed_winner_arms": [
+      "rendered_plus_bevelin_receipts",
+      "rendered_plus_polya_receipts",
+      "rendered_plus_dual_receipts"
+    ],
+    "allowed_research_actions": [
+      "expand_replay"
+    ]
+  },
+  "agreement": {
+    "winner_matches_static": true,
+    "action_matches_static": false,
+    "overall_match": false
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live context-composition comparison. Research-only artifact; it tests whether protected private receipts improve a rendered-hybrid anchor."
+}

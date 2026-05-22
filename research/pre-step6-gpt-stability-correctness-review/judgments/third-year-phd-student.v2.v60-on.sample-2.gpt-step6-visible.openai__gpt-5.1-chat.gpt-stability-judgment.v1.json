@@ -1,0 +1,55 @@
+{
+  "schema_version": "pre_step6_gpt_stability_correctness_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_gpt_stability_correctness_review_v0",
+  "review_case_id": "third-year-phd-student.v2.v60-on.sample-2.gpt-step6-visible",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\"output_label\":\"non_inferior\",\"winner_label\":\"B\",\"visibility_judgment\":\"correct_visible\",\"confidence\":\"high\",\"rationale\":\"B preserves the essential payload of A with less bloat while keeping the gated‑decision structure clear and concrete. No harmful loss of guidance and improved concision justify showing it.\",\"answer_correctness_notes\":[\"Both answers give clear two‑gate decision guidance.\",\"B removes excess political narration without losing actionability.\",\"A contains more framing but not more usable signal.\"],\"visibility_decision_notes\":[\"Step 6 output (B) is concise, preserves payload, and avoids false precision; showing it is appropriate.\"],\"payload_loss_or_bloat\":[\"A has moderate bloat; B trims without dropping core checks.\",\"No meaningful payload loss in B.\"],\"structural_delta_read\":\"useful_structural_delta\"}",
+    "temperature": 0.2,
+    "prompt_tokens": 1083,
+    "completion_tokens": 171,
+    "total_tokens": 1254,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter",
+    "model_family": "openai"
+  },
+  "blind_map": {
+    "A": "anchor_visible",
+    "B": "step6_visible"
+  },
+  "reviewer_output": {
+    "output_label": "non_inferior",
+    "winner_label": "B",
+    "visibility_judgment": "correct_visible",
+    "confidence": "high",
+    "rationale": "B preserves the essential payload of A with less bloat while keeping the gated‑decision structure clear and concrete. No harmful loss of guidance and improved concision justify showing it.",
+    "answer_correctness_notes": [
+      "Both answers give clear two‑gate decision guidance.",
+      "B removes excess political narration without losing actionability.",
+      "A contains more framing but not more usable signal."
+    ],
+    "visibility_decision_notes": [
+      "Step 6 output (B) is concise, preserves payload, and avoids false precision; showing it is appropriate."
+    ],
+    "payload_loss_or_bloat": [
+      "A has moderate bloat; B trims without dropping core checks.",
+      "No meaningful payload loss in B."
+    ],
+    "structural_delta_read": "useful_structural_delta"
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample GPT-stability correctness judgment."
+}

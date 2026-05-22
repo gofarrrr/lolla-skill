@@ -1,0 +1,132 @@
+{
+  "schema_version": "pre_step6_lens_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "polya_v0_fixed_suite",
+  "case_id": "founder-grant-marcus-equity.high-clutter",
+  "comparison_kind": "polya_lens_local_rubric",
+  "lens_pack": "polya_problem_solving_v0",
+  "candidate_refs": {
+    "rendered_hybrid_answer_core": "research/pre-step6-rendered-hybrid-answer-cores/founder-grant-marcus-equity.high-clutter.native.rendered-hybrid-answer-core.v1.json",
+    "portfolio_base_answer_core": "research/pre-step6-portfolio-answer-cores/founder-grant-marcus-equity.high-clutter.native.portfolio-answer-core.v1.json",
+    "lens_answer_core": "research/pre-step6-lens-answer-cores/founder-grant-marcus-equity.high-clutter.polya-answer-core.v1.json",
+    "lens_probe": "research/pre-step6-lens-probes/founder-grant-marcus-equity.high-clutter.polya-lens-probe.v1.json"
+  },
+  "criteria": [
+    {
+      "criterion_id": "decision_usefulness",
+      "question": "Which answer best guides the Friday decision?",
+      "winner_arm": "portfolio_base",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Strong staged-partnership answer.",
+        "portfolio_base": "Best balance of decision stance, evidence window, and false-precision caution.",
+        "lens": "Useful problem framing, but less sharp on incentives than the Bevelin path."
+      },
+      "rationale": "Problem framing helps, but base portfolio remains more complete."
+    },
+    {
+      "criterion_id": "source_grounding",
+      "question": "Which answer stays inside the Marcus facts?",
+      "winner_arm": "tie",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Grounded in dependency and platform facts.",
+        "portfolio_base": "Grounded in attention-map pressure.",
+        "lens": "Grounded and does not invent terms."
+      },
+      "rationale": "All candidates are source-grounded."
+    },
+    {
+      "criterion_id": "overclaim_risk",
+      "question": "Which answer avoids overclaiming valuation or evidence?",
+      "winner_arm": "portfolio_base",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Avoids numeric overclaim.",
+        "portfolio_base": "Keeps false precision explicit.",
+        "lens": "Also avoids overclaim but shifts attention toward process."
+      },
+      "rationale": "Base portfolio has the cleanest valuation boundary."
+    },
+    {
+      "criterion_id": "answer_length_cognitive_load",
+      "question": "Which answer is easiest to use?",
+      "winner_arm": "lens",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Useful but dense.",
+        "portfolio_base": "Compact and balanced.",
+        "lens": "Very clean next-test framing."
+      },
+      "rationale": "The problem-shape version is the lightest."
+    },
+    {
+      "criterion_id": "machinery_hygiene",
+      "question": "Which answer avoids private terms?",
+      "winner_arm": "tie",
+      "evidence_by_arm": {
+        "rendered_hybrid": "No private terms.",
+        "portfolio_base": "No private terms.",
+        "lens": "No private terms."
+      },
+      "rationale": "All are clean."
+    },
+    {
+      "criterion_id": "conflict_preservation",
+      "question": "Which answer best preserves yes-path versus no-now tension?",
+      "winner_arm": "portfolio_base",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Strong tension.",
+        "portfolio_base": "Best tension between serious path and irreversible proof boundary.",
+        "lens": "Preserves tension but abstracts it into evidence design."
+      },
+      "rationale": "Base portfolio keeps the negotiation stakes more alive."
+    },
+    {
+      "criterion_id": "edge_pressure_preservation",
+      "question": "Which answer best preserves edge pressure?",
+      "winner_arm": "portfolio_base",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Preserves dependency edge.",
+        "portfolio_base": "Preserves denominator, middle path, and dependency edge.",
+        "lens": "Preserves problem-shape edge but less mental-model pressure."
+      },
+      "rationale": "Polya is useful but not the strongest edge for founder."
+    },
+    {
+      "criterion_id": "breadth_depth_preservation",
+      "question": "Which answer preserves breadth without bloat?",
+      "winner_arm": "portfolio_base",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Broad but denser.",
+        "portfolio_base": "Best breadth-to-size ratio.",
+        "lens": "Narrower but clean."
+      },
+      "rationale": "Base portfolio wins."
+    },
+    {
+      "criterion_id": "premature_pruning_risk",
+      "question": "Which answer least risks narrowing too early?",
+      "winner_arm": "lens",
+      "evidence_by_arm": {
+        "rendered_hybrid": "Keeps options alive.",
+        "portfolio_base": "Keeps options alive.",
+        "lens": "Explicitly asks what evidence would justify commitment."
+      },
+      "rationale": "Polya helps preserve the question before choosing."
+    },
+    {
+      "criterion_id": "negative_control_discipline",
+      "question": "Does the lens avoid forcing itself?",
+      "winner_arm": "portfolio_base",
+      "evidence_by_arm": {
+        "rendered_hybrid": "No issue.",
+        "portfolio_base": "No issue.",
+        "lens": "Useful but not enough to replace the stronger answer."
+      },
+      "rationale": "This is a boundary case, not a promotion case."
+    }
+  ],
+  "tie_break_rule": "lens_must_add_edge_without_pruning",
+  "aggregate_winner_arm": "portfolio_base",
+  "aggregate_decision": "lens_boundary_case",
+  "promotion_read": "stop",
+  "notes": "Polya v0 helps founder problem framing but does not beat the base/Bevelin-positive trajectory."
+}

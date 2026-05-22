@@ -1,0 +1,45 @@
+{
+  "schema_version": "pre_step6_source_overclaim_audit.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mid-level-consultant-report-2",
+  "audited_arm": "rendered_hybrid",
+  "audited_answer_core_ref": "research/pre-step6-rendered-hybrid-answer-cores/mid-level-consultant-report-2.native.rendered-hybrid-answer-core.v1.json",
+  "source_refs": {
+    "source_hybrid_handoff": "research/pre-step6-hybrid-handoff-fixtures/mid-level-consultant-report-2.hybrid-handoff.v1.json",
+    "raw_artifact_handoff": "research/pre-step6-raw-artifact-fixtures/mid-level-consultant-report-2.raw-artifact-handoff.v1.json",
+    "semi_blind_comparison": "research/pre-step6-semi-blind-comparisons/mid-level-consultant-report-2.negative-control.native-rejudge.semi-blind-comparison.v1.json"
+  },
+  "checks": [
+    {
+      "check_id": "source_grounding",
+      "severity": "pass",
+      "rationale": "The native rejudge found rendered mostly grounded: it preserves the observed-partner facts, counsel-first sequencing, no confrontation or private investigation, channel-choice caution, and Wednesday boundaries."
+    },
+    {
+      "check_id": "probability_overclaim",
+      "severity": "pass",
+      "rationale": "The answer does not assign probabilities, predict partner behavior, or claim certainty about legal or reporting outcomes."
+    },
+    {
+      "check_id": "evidence_gate_integrity",
+      "severity": "pass",
+      "rationale": "The answer keeps filing and channel choice behind independent counsel and evidence review."
+    },
+    {
+      "check_id": "unsupported_option_expansion",
+      "severity": "watch",
+      "rationale": "The native judge found the channel taxonomy and attorney-intake questions defensible but somewhat more process-heavy than the simpler control."
+    },
+    {
+      "check_id": "naturalness_debt",
+      "severity": "watch",
+      "rationale": "The native judge marked rendered medium naturalness debt because reflexive channel preference and multi-channel intake language feel somewhat over-engineered."
+    }
+  ],
+  "audit_result": "pass",
+  "overclaim_findings": [],
+  "naturalness_debt_level": "medium",
+  "decision": "does_not_count",
+  "notes": "Rendered passes source/overclaim audit but does not count because the native negative-control rejudge preferred the simpler control arm. This confirms that valid nuance can be too burdensome for a counsel-first restraint case."
+}

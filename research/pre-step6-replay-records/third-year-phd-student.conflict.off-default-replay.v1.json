@@ -1,0 +1,57 @@
+{
+  "schema_version": "pre_step6_replay_record.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "third-year-phd-student",
+  "replay_mode": "off_by_default_static_replay",
+  "candidate_generation": "loaded_existing_rendered_handoff",
+  "answer_generation": "loaded_existing_step6_style_answer_core",
+  "artifact_refs": {
+    "comparison_fixture": "research/pre-step6-comparison-fixtures/third-year-phd-student-20260430T140800Z.md",
+    "raw_artifact_handoff": "research/pre-step6-raw-artifact-fixtures/third-year-phd-student.raw-artifact-handoff.v1.json",
+    "hybrid_handoff": "research/pre-step6-hybrid-handoff-fixtures/third-year-phd-student.hybrid-handoff.v1.json",
+    "control_comparison": "research/pre-step6-raw-artifact-comparisons/third-year-phd-student.raw-vs-control-comparison.v1.json",
+    "raw_answer_core": "research/pre-step6-raw-artifact-answer-cores/third-year-phd-student.raw-answer-core.v1.json",
+    "rendered_hybrid_answer_core": "research/pre-step6-rendered-hybrid-answer-cores/third-year-phd-student.conflict.native.rendered-hybrid-answer-core.v1.json"
+  },
+  "comparison_ref": "research/pre-step6-semi-blind-comparisons/third-year-phd-student.conflict.semi-blind-comparison.v1.json",
+  "source_overclaim_audit_ref": "research/pre-step6-source-overclaim-audits/third-year-phd-student.conflict.rendered-hybrid.source-overclaim-audit.v1.json",
+  "gates": {
+    "archived_artifacts_loaded": true,
+    "candidate_handoff_loaded": true,
+    "step6_style_answer_core_loaded": true,
+    "semi_blind_comparison_recorded": true,
+    "source_overclaim_audit_recorded": true,
+    "source_overclaim_audit_passed": true,
+    "runtime_wiring_allowed": false,
+    "product_promotion_allowed": false
+  },
+  "outcome": {
+    "comparison_decision": "rendered_hybrid_wins",
+    "replay_decision": "pass_to_next_replay",
+    "product_promotion": "blocked"
+  },
+  "failure_modes": [
+    {
+      "failure_mode": "source_overclaim",
+      "status": "absent",
+      "evidence": "Audit found no numeric priors, no new option expansion, and no material claim beyond source constraints."
+    },
+    {
+      "failure_mode": "over_shaped_naturalness_debt",
+      "status": "watch",
+      "evidence": "Audit marked medium naturalness debt because the answer uses engineered terms such as identity-coherent, executability gates, and stop-loss date."
+    },
+    {
+      "failure_mode": "promotion_drift",
+      "status": "absent",
+      "evidence": "Record explicitly blocks runtime wiring and product promotion."
+    }
+  ],
+  "naturalness_debt": {
+    "level": "medium",
+    "evidence": "Rendered hybrid won aggregate comparison but raw-only won unforcedness and overclaim-risk criteria; source audit also marked naturalness debt as watch.",
+    "mitigation": "Count this only as pass-to-next-replay. Future replay wins must keep source/overclaim audit passing and should reduce procedural feel."
+  },
+  "notes": "First off-by-default static replay record. It loads existing archived artifacts and answer cores rather than generating a new runtime answer. This is replay evidence only, not promotion evidence."
+}

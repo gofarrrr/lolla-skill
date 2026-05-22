@@ -1,0 +1,147 @@
+{
+  "schema_version": "pre_step6_portfolio_blind_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mid-level-consultant-report-2",
+  "comparison_kind": "portfolio_blind_local_rubric",
+  "blind_seed": 2026052004,
+  "candidate_refs": {
+    "control_or_raw_answer_core": "research/pre-step6-raw-artifact-answer-cores/mid-level-consultant-report-2.raw-answer-core.v1.json",
+    "rendered_hybrid_answer_core": "research/pre-step6-rendered-hybrid-answer-cores/mid-level-consultant-report-2.native.rendered-hybrid-answer-core.v1.json",
+    "portfolio_answer_core": "research/pre-step6-portfolio-answer-cores/mid-level-consultant-report-2.native.portfolio-answer-core.v1.json"
+  },
+  "blind_map": {
+    "A": "rendered_hybrid",
+    "B": "portfolio",
+    "C": "control_or_raw",
+    "D": "unused"
+  },
+  "criteria": [
+    {
+      "criterion_id": "decision_usefulness",
+      "question": "Which answer gives the safest first-move sequence?",
+      "winner_label": "A",
+      "evidence_by_label": {
+        "A": "Gives counsel-first, no-confrontation, channel deferral, and Wednesday protocol with the clearest practical balance.",
+        "B": "Preserves the same sequence, but mostly reproduces A rather than improving it.",
+        "C": "Useful but more burdened by extra tripwire and channel detail.",
+        "D": "Unused arm."
+      },
+      "rationale": "A remains the most usable expression of the sequence."
+    },
+    {
+      "criterion_id": "source_grounding",
+      "question": "Which answer stays inside the captured facts and source pressures?",
+      "winner_label": "tie",
+      "evidence_by_label": {
+        "A": "Grounded in counsel-first and Wednesday-protocol source pressure.",
+        "B": "Grounded in the same source pressure.",
+        "C": "Grounded but shows more raw source material.",
+        "D": "Unused arm."
+      },
+      "rationale": "No live candidate invents facts."
+    },
+    {
+      "criterion_id": "overclaim_risk",
+      "question": "Which answer best avoids premature legal or reporting claims?",
+      "winner_label": "A",
+      "evidence_by_label": {
+        "A": "Most clearly says counsel decides whether GC, audit committee, regulators, or another path is safest.",
+        "B": "Also defers channel choice to counsel.",
+        "C": "Useful, but its extra channel detail is slightly more likely to feel like action guidance.",
+        "D": "Unused arm."
+      },
+      "rationale": "A has the cleanest channel-deferral wording."
+    },
+    {
+      "criterion_id": "answer_length_cognitive_load",
+      "question": "Which answer is easier for the user to execute under stress?",
+      "winner_label": "A",
+      "evidence_by_label": {
+        "A": "Compact and includes a balancing sentence about fear and evidence review.",
+        "B": "Compact but removes some of A's calming risk calibration.",
+        "C": "Longer and more raw-pressure-heavy.",
+        "D": "Unused arm."
+      },
+      "rationale": "A carries slightly better stress handling."
+    },
+    {
+      "criterion_id": "machinery_hygiene",
+      "question": "Which answer avoids internal terms and framework residue?",
+      "winner_label": "tie",
+      "evidence_by_label": {
+        "A": "No internal terms.",
+        "B": "No internal terms.",
+        "C": "No internal terms.",
+        "D": "Unused arm."
+      },
+      "rationale": "All live candidates are clean."
+    },
+    {
+      "criterion_id": "conflict_preservation",
+      "question": "Which answer preserves the counsel-first versus channel-choice tension?",
+      "winner_label": "A",
+      "evidence_by_label": {
+        "A": "Keeps counsel-first while explicitly naming the channel options counsel may evaluate.",
+        "B": "Keeps the same tension, but does not add value over A.",
+        "C": "Preserves the tension with more visible raw framing.",
+        "D": "Unused arm."
+      },
+      "rationale": "A is the best current form of the tension."
+    },
+    {
+      "criterion_id": "duplicate_demotion",
+      "question": "Which answer avoids duplicate or redundant reasoning?",
+      "winner_label": "A",
+      "evidence_by_label": {
+        "A": "Demotes raw details into one clean sequence.",
+        "B": "Also demotes them, but the portfolio pass does not simplify further.",
+        "C": "Shows more raw material and tripwire detail.",
+        "D": "Unused arm."
+      },
+      "rationale": "A is already the efficient form."
+    },
+    {
+      "criterion_id": "unforcedness",
+      "question": "Which answer feels most naturally reasoned?",
+      "winner_label": "A",
+      "evidence_by_label": {
+        "A": "Most natural, including the line that fear should not push filing too early or doing nothing.",
+        "B": "Natural but more like a reproduction of A.",
+        "C": "More advisory and raw."
+      ,
+        "D": "Unused arm."
+      },
+      "rationale": "A has the strongest public-answer feel."
+    },
+    {
+      "criterion_id": "edge_pressure_preservation",
+      "question": "Which answer best preserves the Wednesday and counsel-incentive edge pressures?",
+      "winner_label": "tie",
+      "evidence_by_label": {
+        "A": "Preserves both named edge pressures.",
+        "B": "Preserves both named edge pressures.",
+        "C": "Preserves both, plus more raw detail.",
+        "D": "Unused arm."
+      },
+      "rationale": "B proves the portfolio map can carry the edges, but does not beat A."
+    },
+    {
+      "criterion_id": "reserve_overuse",
+      "question": "Which answer avoids overusing reserve material?",
+      "winner_label": "A",
+      "evidence_by_label": {
+        "A": "Uses only necessary reserve detail.",
+        "B": "Uses necessary detail but does not improve A's restraint.",
+        "C": "Includes more tripwire and channel expansion than needed.",
+        "D": "Unused arm."
+      },
+      "rationale": "A remains the clean negative-control winner."
+    }
+  ],
+  "tie_break_rule": "portfolio_must_beat_or_simplify",
+  "aggregate_winner_label": "A",
+  "aggregate_decision": "rendered_hybrid_wins",
+  "promotion_read": "stop",
+  "notes": "Negative-control result: the portfolio map reproduces the important pressures but does not beat the previous rendered-hybrid answer, so it should not proceed to replay."
+}

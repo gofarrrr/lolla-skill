@@ -1,0 +1,94 @@
+{
+  "schema_version": "pre_step6_calibration_step6_sample.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_calibration_corpus_v0",
+  "case_id": "third-year-phd-student.v2.v60-off",
+  "base_case_id": "third-year-phd-student.v2",
+  "sample_index": 0,
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "moonshotai/kimi-k2.6",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"answer_core\": \"Do not choose a dissertation direction yet. Treat the next few weeks as a short, low-cost test rather than a commitment. The real decision turns on two gates.\\n\\nGate 1 — Silva viability: confirm you can get early data, identify a collaborator who can compensate for the lab’s single-cell gaps, and get explicit support from your advisor rather than assuming it. Ask what data exists, who controls it, when you could inspect it, what authorship or collaboration terms would look like, and what work would still be yours.\\n\\nGate 2 — Fallback readiness: your current lab path only remains a fallback if your advisor keeps it resourced, available, and ready for you to re-enter, and if you set a clear stop date with visible conditions for saying no. Test whether it can genuinely carry a dissertation if the Silva path fails.\\n\\nCoordinate with your advisor before you involve a committee. Use Dr. Silva only as a low-cost reality check on concrete data access, collaboration depth, and timing. Go to the committee only after you know whether the data path is real and whether your advisor would support the move without quietly pulling you back toward the safer lab path.\\n\\nRun the Silva probe strictly within the short window you define, and make the continuation decision only after you have actual evidence on both gates. Do not run all three options in parallel. Do not treat broad PhD success-rate claims as calibrated probabilities for this case; use them only as humility checks. The best path is not the hottest story; it is the one with a real chance of becoming a finishable PhD.\",\n  \"private_visibility_ledger\": [\n    {\n      \"source_id\": \"anchor_visible_candidate\",\n      \"disposition\": \"used\",\n      \"novelty_role\": \"visible_backbone\",\n      \"why\": \"The anchor already contains the core architecture: two gates, advisor-first sequencing, Silva as low-cost reality check, dated evidence checks, stop-loss framing, and the explicit rejection of parallel options and false precision. It is the stronger, more specific scaffold and should remain the public backbone.\",\n      \"visible_effect\": \"Retains the full gate structure, named actors (advisor, Dr. Silva, committee), sequencing rule, and anti-parallelism warning.\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"structural_delta\": [],\n        \"reframed_emphasis\": []\n      }\n    },\n    {\n      \"source_id\": \"deck_pressure_candidate\",\n      \"disposition\": \"combined\",\n      \"novelty_role\": \"additive_pressure\",\n      \"why\": \"The deck pressure tightens the test framing ('short, low-cost test rather than a commitment') and adds explicit fallback resourcing conditions ('resourced, available, and ready for you to re-enter'). It also sharpens the collaborator requirement for single-cell gaps. These are concrete, non-bloating additions that improve specificity without changing the anchor’s architecture.\",\n      \"visible_effect\": \"Adds 'short, low-cost test' framing at the top; adds 'collaborator who can compensate for the lab’s single-cell gaps' to Gate 1; adds 'resourced, available, and ready for you to re-enter' to Gate 2; tightens the stop-loss language.\",\n      \"answer_delta\": {\n        \"added_entities\": [\n          \"short, low-cost test framing\",\n          \"collaborator who can compensate for the lab’s single-cell gaps\",\n          \"resourced, available, and ready for you to re-enter\"\n        ],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"structural_delta\": [\n          \"Explicit stop date with visible conditions for saying no (tightened from general stop-loss plan to 'clear stop date with visible conditions')\",\n          \"Fallback path must be 'ready for you to re-enter' — an unlock/continuity condition\"\n        ],\n        \"reframed_emphasis\": [\n          \"Stronger test-vs-commitment framing at the opening\",\n          \"Tighter fallback resourcing emphasis\"\n        ]\n      }\n    }\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 979,
+    "completion_tokens": 853,
+    "total_tokens": 1832,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 1040,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter",
+    "model_family": "moonshotai"
+  },
+  "input_packet": {
+    "case_brief": "Choose a PhD path while preserving fallback viability and avoiding false precision about outcomes. decision_evaluation",
+    "case_type_tags": [
+      "sequencing_or_problem_shape"
+    ],
+    "pre_registered_expectation": "deck_pressure_may_add_sequence_but_should_not_bloat",
+    "v60_mode": "off",
+    "v60_private_context": "",
+    "anchor_visible_candidate": "I would not choose the hybrid direction yet. Treat two questions as gates, not vibes: does Dr. Silva actually have usable data you can access on a clear timeline, and is your fallback still advisor-backed, resourced, technically ready, identity-coherent, and protected by a stop-loss plan?\n\nKeep the political sequence clean. Talk to your advisor first. Use Dr. Silva only as a low-cost reality check on concrete data access, collaboration depth, and timing. Go to the committee only after you know whether the data path is real and whether your advisor would support the move without quietly pulling you back toward the safer lab path.\n\nFor the next two weeks, do dated evidence checks instead of building a finished proposal. Ask what data exists, who controls it, when you could inspect it, what authorship or collaboration terms would look like, and what work would still be yours. In parallel, test whether the fallback path can genuinely carry a dissertation if the Silva path fails.\n\nDo not run all three options in parallel. Do not treat broad PhD success-rate claims as calibrated probabilities for this case; use them only as humility checks. Choose the path only after the Silva/data gate and the fallback gate both have concrete evidence. The best path is not the hottest story; it is the one with a real chance of becoming a finishable PhD.",
+    "deck_pressure_candidate": "Do not choose a dissertation direction yet. Treat the next few weeks as a short, low‑cost test rather than a commitment. The real decision turns on two gates. First, check whether the Silva direction can actually become a dissertation: confirm you can get early data, identify a collaborator who can compensate for the lab’s single‑cell gaps, and get explicit support from your advisor rather than assuming it. Second, keep the fallback alive while you test Silva. It only remains a fallback if your advisor keeps it resourced, available, and ready for you to re‑enter, and if you set a clear stop date with visible conditions for saying no. Coordinate with your advisor before you involve a committee. Run the Silva probe strictly within the short window you define, and make the continuation decision only after you have actual evidence on both gates."
+  },
+  "step6_output": {
+    "answer_core": "Do not choose a dissertation direction yet. Treat the next few weeks as a short, low-cost test rather than a commitment. The real decision turns on two gates.\n\nGate 1 — Silva viability: confirm you can get early data, identify a collaborator who can compensate for the lab’s single-cell gaps, and get explicit support from your advisor rather than assuming it. Ask what data exists, who controls it, when you could inspect it, what authorship or collaboration terms would look like, and what work would still be yours.\n\nGate 2 — Fallback readiness: your current lab path only remains a fallback if your advisor keeps it resourced, available, and ready for you to re-enter, and if you set a clear stop date with visible conditions for saying no. Test whether it can genuinely carry a dissertation if the Silva path fails.\n\nCoordinate with your advisor before you involve a committee. Use Dr. Silva only as a low-cost reality check on concrete data access, collaboration depth, and timing. Go to the committee only after you know whether the data path is real and whether your advisor would support the move without quietly pulling you back toward the safer lab path.\n\nRun the Silva probe strictly within the short window you define, and make the continuation decision only after you have actual evidence on both gates. Do not run all three options in parallel. Do not treat broad PhD success-rate claims as calibrated probabilities for this case; use them only as humility checks. The best path is not the hottest story; it is the one with a real chance of becoming a finishable PhD.",
+    "private_visibility_ledger": [
+      {
+        "source_id": "anchor_visible_candidate",
+        "disposition": "used",
+        "novelty_role": "visible_backbone",
+        "why": "The anchor already contains the core architecture: two gates, advisor-first sequencing, Silva as low-cost reality check, dated evidence checks, stop-loss framing, and the explicit rejection of parallel options and false precision. It is the stronger, more specific scaffold and should remain the public backbone.",
+        "visible_effect": "Retains the full gate structure, named actors (advisor, Dr. Silva, committee), sequencing rule, and anti-parallelism warning.",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [],
+          "removed_entities": [],
+          "reordered_sequences": [],
+          "structural_delta": []
+        }
+      },
+      {
+        "source_id": "deck_pressure_candidate",
+        "disposition": "combined",
+        "novelty_role": "additive_pressure",
+        "why": "The deck pressure tightens the test framing ('short, low-cost test rather than a commitment') and adds explicit fallback resourcing conditions ('resourced, available, and ready for you to re-enter'). It also sharpens the collaborator requirement for single-cell gaps. These are concrete, non-bloating additions that improve specificity without changing the anchor’s architecture.",
+        "visible_effect": "Adds 'short, low-cost test' framing at the top; adds 'collaborator who can compensate for the lab’s single-cell gaps' to Gate 1; adds 'resourced, available, and ready for you to re-enter' to Gate 2; tightens the stop-loss language.",
+        "answer_delta": {
+          "added_entities": [
+            "short, low-cost test framing",
+            "collaborator who can compensate for the lab’s single-cell gaps",
+            "resourced, available, and ready for you to re-enter"
+          ],
+          "reframed_emphasis": [
+            "Stronger test-vs-commitment framing at the opening",
+            "Tighter fallback resourcing emphasis"
+          ],
+          "removed_entities": [],
+          "reordered_sequences": [],
+          "structural_delta": [
+            "Explicit stop date with visible conditions for saying no (tightened from general stop-loss plan to 'clear stop date with visible conditions')",
+            "Fallback path must be 'ready for you to re-enter' — an unlock/continuity condition"
+          ]
+        }
+      }
+    ]
+  },
+  "ledger_signal": "additive_pressure_present",
+  "answer_delta_specificity": "concrete_delta_present",
+  "deterministic_role": [
+    "validate_calibration_case",
+    "derive_ledger_signal",
+    "derive_answer_delta_specificity",
+    "preserve_repeated_sample_custody"
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live research-only Step 6 calibration sample."
+}

@@ -1,0 +1,146 @@
+{
+  "schema_version": "pre_step6_portfolio_blind_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mother-address-year",
+  "comparison_kind": "portfolio_blind_local_rubric",
+  "blind_seed": 2026052002,
+  "candidate_refs": {
+    "control_or_raw_answer_core": "research/pre-step6-raw-artifact-answer-cores/mother-address-year.raw-answer-core.v1.json",
+    "rendered_hybrid_answer_core": "research/pre-step6-rendered-hybrid-answer-cores/mother-address-year.native.rendered-hybrid-answer-core.v1.json",
+    "portfolio_answer_core": "research/pre-step6-portfolio-answer-cores/mother-address-year.native.portfolio-answer-core.v1.json"
+  },
+  "blind_map": {
+    "A": "rendered_hybrid",
+    "B": "portfolio",
+    "C": "control_or_raw",
+    "D": "unused"
+  },
+  "criteria": [
+    {
+      "criterion_id": "decision_usefulness",
+      "question": "Which answer gives the most useful bounded guidance?",
+      "winner_label": "tie",
+      "evidence_by_label": {
+        "A": "Strong bounded guidance with tripwires.",
+        "B": "Strong bounded guidance with similar tripwires.",
+        "C": "Also useful, with slightly more raw pressure.",
+        "D": "Unused arm."
+      },
+      "rationale": "A and B are close enough that portfolio should not claim a win."
+    },
+    {
+      "criterion_id": "source_grounding",
+      "question": "Which answer avoids adding unsupported facts?",
+      "winner_label": "tie",
+      "evidence_by_label": {
+        "A": "Grounded in monitoring, tripwires, and professional guidance.",
+        "B": "Grounded in monitoring, tripwires, and professional guidance.",
+        "C": "Grounded but carries more raw-derived emphasis.",
+        "D": "Unused arm."
+      },
+      "rationale": "All live candidates are grounded."
+    },
+    {
+      "criterion_id": "overclaim_risk",
+      "question": "Which answer best avoids unsupported grooming or safety probabilities?",
+      "winner_label": "tie",
+      "evidence_by_label": {
+        "A": "Avoids probability claims.",
+        "B": "Avoids probability claims and treats quiet as weak signal.",
+        "C": "Avoids probability claims.",
+        "D": "Unused arm."
+      },
+      "rationale": "No live candidate overclaims."
+    },
+    {
+      "criterion_id": "answer_length_cognitive_load",
+      "question": "Which answer is easiest to use?",
+      "winner_label": "A",
+      "evidence_by_label": {
+        "A": "Slightly tighter and already sufficient.",
+        "B": "Clear but a little more explanatory.",
+        "C": "More complete but more burdened.",
+        "D": "Unused arm."
+      },
+      "rationale": "For a negative-control case, simpler wins."
+    },
+    {
+      "criterion_id": "machinery_hygiene",
+      "question": "Which answer avoids visible framework residue?",
+      "winner_label": "tie",
+      "evidence_by_label": {
+        "A": "No internal terms.",
+        "B": "No internal terms.",
+        "C": "No internal terms.",
+        "D": "Unused arm."
+      },
+      "rationale": "No live candidate leaks machinery."
+    },
+    {
+      "criterion_id": "conflict_preservation",
+      "question": "Which answer preserves safety while keeping trust repair live?",
+      "winner_label": "tie",
+      "evidence_by_label": {
+        "A": "Preserves safety and path back to honesty.",
+        "B": "Preserves safety and path back to honesty.",
+        "C": "Preserves slow repair and safety triggers.",
+        "D": "Unused arm."
+      },
+      "rationale": "A and B are essentially tied."
+    },
+    {
+      "criterion_id": "duplicate_demotion",
+      "question": "Which answer avoids elevating parked power/system pressure?",
+      "winner_label": "B",
+      "evidence_by_label": {
+        "A": "Does not elevate it.",
+        "B": "Does not elevate it and explicitly avoids leverage framing.",
+        "C": "Declines leverage but is a little more raw-shaped.",
+        "D": "Unused arm."
+      },
+      "rationale": "B has a small edge on keeping the parked pressure quiet."
+    },
+    {
+      "criterion_id": "unforcedness",
+      "question": "Which answer sounds least engineered?",
+      "winner_label": "A",
+      "evidence_by_label": {
+        "A": "Most natural and compact.",
+        "B": "Natural but slightly more formal.",
+        "C": "Useful but more structured.",
+        "D": "Unused arm."
+      },
+      "rationale": "A remains the cleanest negative-control answer."
+    },
+    {
+      "criterion_id": "edge_pressure_preservation",
+      "question": "Which answer preserves the useful edge without adding burden?",
+      "winner_label": "B",
+      "evidence_by_label": {
+        "A": "Preserves the main weak-evidence caution.",
+        "B": "Preserves weak-evidence caution and missing-guidance humility.",
+        "C": "Preserves more raw pressure.",
+        "D": "Unused arm."
+      },
+      "rationale": "B preserves slightly more edge, but not enough to win overall."
+    },
+    {
+      "criterion_id": "reserve_overuse",
+      "question": "Which answer avoids overusing reserve material?",
+      "winner_label": "A",
+      "evidence_by_label": {
+        "A": "Best negative-control restraint.",
+        "B": "Good restraint, but a little more from the map is visible.",
+        "C": "More raw pressure visible.",
+        "D": "Unused arm."
+      },
+      "rationale": "A wins because a negative control should reward restraint."
+    }
+  ],
+  "tie_break_rule": "portfolio_must_beat_or_simplify",
+  "aggregate_winner_label": "tie",
+  "aggregate_decision": "tie_keep_research_only",
+  "promotion_read": "retest",
+  "notes": "Portfolio is viable but does not clearly beat the previous rendered-hybrid answer on a quiet negative-control case."
+}

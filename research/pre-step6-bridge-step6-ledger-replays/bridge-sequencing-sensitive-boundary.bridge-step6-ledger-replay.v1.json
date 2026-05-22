@@ -1,0 +1,76 @@
+{
+  "schema_version": "pre_step6_bridge_step6_ledger_replay.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "bridge_step6_ledger_replay_v0",
+  "case_id": "bridge-sequencing-sensitive-boundary",
+  "replay_mode": "bridge_packet_step6_ledger_replay",
+  "source_bridge_probe_contract": "research/pre-step6-false-standdown-bridge-probe/false-standdown-bridge-probe.v1.json",
+  "input_packet": {
+    "case_brief": "PhD student must choose a dissertation direction while advisor retirement, cross-lab politics, and possible visa/funding constraints make the sequence sensitive.",
+    "pre_run_failure_hypothesis": "If runtime shows the anchor because it is concise, but hides the deck's sequencing boundary for advisor, collaborator, funding, and fallback checks, this is a false stand-down.",
+    "expected_deck_adds": [
+      "advisor support before approaching the outside lab",
+      "data-access and funding feasibility before committee commitment",
+      "18-month go/no-go checkpoint with fallback"
+    ],
+    "anchor_risk_if_hidden": [
+      "student may create political friction by approaching collaborators too early",
+      "ambition may outrun funding and data access checks"
+    ],
+    "anchor_visible_candidate": "Option 3 sounds like the best direction if you can get the data. It keeps your existing tumor-evolution strength while connecting you to the single-cell field. Talk to the single-cell postdoc, test whether the collaboration is real, and fall back to the standard lab project if the data path fails.",
+    "deck_pressure_candidate": "Option 3 is the best candidate, but the order matters. First ask your advisor whether he supports the cross-lab direction, whether funding covers it, and whether he would accept a real co-advisor. Only then approach the single-cell postdoc with a specific methods proposal and ask what data access, authorship, and PI approval would require. Do not commit with the committee until data access and funding are real. Pre-commit now to an 18-month checkpoint: if there is no publishable result on the pipeline by then, pivot to a narrower tumor-evolution project while you still have time."
+  },
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"answer_core\": \"Option 3 is a strong direction if—and only if—the data path and the political alignment are real. Start by checking with your advisor whether he supports you pursuing the cross‑lab work, whether existing funding can cover the collaboration, and whether he is open to a co‑advisor if the external PI requires it. Once that support is explicit, approach the single‑cell postdoc with a concrete methods sketch and ask directly what data access, authorship expectations, and PI approval would involve. Do not present this as a committee‑ready project until the data and funding conditions are confirmed. Set an 18‑month checkpoint for yourself: if you do not have a clear, publishable trajectory on the pipeline by then, pivot to a narrower tumor‑evolution project so you retain a safe, timely completion path.\",\n  \"private_bridge_consideration_ledger\": [\n    {\n      \"source_id\": \"anchor_visible_candidate\",\n      \"disposition\": \"combined\",\n      \"novelty_role\": \"visible_backbone\",\n      \"why\": \"The anchor provides the basic direction and fallback framing that should shape the public answer.\",\n      \"visible_effect\": \"Kept Option 3 as the core choice with a fallback if data access fails.\"\n    },\n    {\n      \"source_id\": \"deck_pressure_candidate\",\n      \"disposition\": \"combined\",\n      \"novelty_role\": \"additive_pressure\",\n      \"why\": \"The deck provides necessary sequencing, advisor‑first checks, PI approval, and the 18‑month tripwire that materially improve decision safety.\",\n      \"visible_effect\": \"Added advisor‑first alignment, explicit data/funding confirmation, authorship/PI questions, and the 18‑month checkpoint.\"\n    }\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 675,
+    "completion_tokens": 420,
+    "total_tokens": 1095,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter"
+  },
+  "step6_output": {
+    "answer_core": "Option 3 is a strong direction if—and only if—the data path and the political alignment are real. Start by checking with your advisor whether he supports you pursuing the cross‑lab work, whether existing funding can cover the collaboration, and whether he is open to a co‑advisor if the external PI requires it. Once that support is explicit, approach the single‑cell postdoc with a concrete methods sketch and ask directly what data access, authorship expectations, and PI approval would involve. Do not present this as a committee‑ready project until the data and funding conditions are confirmed. Set an 18‑month checkpoint for yourself: if you do not have a clear, publishable trajectory on the pipeline by then, pivot to a narrower tumor‑evolution project so you retain a safe, timely completion path.",
+    "private_bridge_consideration_ledger": [
+      {
+        "source_id": "anchor_visible_candidate",
+        "disposition": "combined",
+        "novelty_role": "visible_backbone",
+        "why": "The anchor provides the basic direction and fallback framing that should shape the public answer.",
+        "visible_effect": "Kept Option 3 as the core choice with a fallback if data access fails."
+      },
+      {
+        "source_id": "deck_pressure_candidate",
+        "disposition": "combined",
+        "novelty_role": "additive_pressure",
+        "why": "The deck provides necessary sequencing, advisor‑first checks, PI approval, and the 18‑month tripwire that materially improve decision safety.",
+        "visible_effect": "Added advisor‑first alignment, explicit data/funding confirmation, authorship/PI questions, and the 18‑month checkpoint."
+      }
+    ]
+  },
+  "ledger_signal": "additive_pressure_present",
+  "visibility_redesign_read": {
+    "would_unlock_redesigned_policy": true,
+    "policy_dependency": "cache_hit plus additive Step 6 ledger plus preserved payload can make deck-aware output visible; this replay only tests the ledger dependency."
+  },
+  "deterministic_role": [
+    "validate_bridge_contract_case",
+    "validate_step6_ledger_schema",
+    "derive_ledger_signal",
+    "preserve_audit_custody"
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live research-only bridge Step 6 replay. The model wrote the answer and private ledger; code only normalized and derived the ledger signal."
+}

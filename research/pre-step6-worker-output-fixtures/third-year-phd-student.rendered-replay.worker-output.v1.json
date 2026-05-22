@@ -1,0 +1,13 @@
+{
+  "schema_version": "reasoning_artifact.v1",
+  "why_provided": "Preserve binding constraints so Step 6 does not recommend a trigger plan whose fallback lane is only nominal.",
+  "source_grounding": "Advisor retires in 2-3 years; lab lacks single-cell experience/collaborators; Silva/data access is unproven; pressure check says option 1 may cease to be a real fallback after option-3 exploration.",
+  "contribution": "Convert fallback viability and Silva/data access from soft cautions into preconditions for any trigger-based plan.",
+  "hard_boundary": "Do not recommend a trigger plan unless it defines fallback executability and Silva/data access as explicit stop/go gates.",
+  "relaxation_condition": "Relax only if fallback work remains finishable after the probe and Silva/data access is confirmed with named permissions, timing, and usable minimum data.",
+  "discard_condition": "Discard if Step 6 is not proposing trigger-based optionality or already states both gates as hard constraints.",
+  "relation_to_bundle": "Reinforces advisor-first sequencing, low-cost probing, and evidence-specific triggers by requiring operational reversibility.",
+  "priority_hint": "high",
+  "risk_if_forced": "May make the final answer more conservative and less elegant.",
+  "risk_if_ignored": "Step 6 may endorse fictional optionality while counting unproven Silva/data access as feasibility."
+}

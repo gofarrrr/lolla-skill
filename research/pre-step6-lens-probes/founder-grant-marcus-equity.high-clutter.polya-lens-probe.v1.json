@@ -1,0 +1,80 @@
+{
+  "schema_version": "pre_step6_lens_probe.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "founder-grant-marcus-equity.high-clutter",
+  "lens_pack": "polya_problem_solving_v0",
+  "source_refs": [
+    "plans/lolla-solver-control-layer-prd-2026-05-19.md:412",
+    "research/pre-step6-attention-maps/founder-grant-marcus-equity.high-clutter.step6-attention-map.v1.json",
+    "research/pre-step6-problem-states/founder-grant-marcus-equity.high-clutter.problem-state.v1.json"
+  ],
+  "problem_state_ref": "research/pre-step6-problem-states/founder-grant-marcus-equity.high-clutter.problem-state.v1.json",
+  "attention_map_ref": "research/pre-step6-attention-maps/founder-grant-marcus-equity.high-clutter.step6-attention-map.v1.json",
+  "lens_candidates": [
+    {
+      "lens_id": "polya_restate_unknown",
+      "lens_name": "restate the unknown",
+      "why_it_might_matter": "The unknown is not whether Marcus is valuable in general, but what evidence would justify irreversible ownership and governance rights.",
+      "source_hooks": [
+        "PRD Polya prompt: what is known and unknown.",
+        "Attention map staged-commitment pressure."
+      ],
+      "supported_by_artifact_ids": [
+        "marcus_dependency_system"
+      ],
+      "cheap_test_for_step6": "Check whether the answer names the Friday problem as evidence design rather than valuation alone.",
+      "risk_if_forced": "The answer may become a process memo and lose the emotional negotiation stakes.",
+      "risk_if_ignored": "The answer may solve the wrong problem: what Marcus deserves instead of what commitment is justified.",
+      "suggested_attention": "scan",
+      "false_friend_warning": "Do not reduce the whole case to problem definition; the incentive and dependency pressures still matter."
+    },
+    {
+      "lens_id": "polya_auxiliary_problem",
+      "lens_name": "solve a smaller auxiliary problem",
+      "why_it_might_matter": "Friday can be reframed as designing the shortest evidence window that keeps the relationship alive without granting the full package.",
+      "source_hooks": [
+        "PRD Polya prompt: simplify, reframe, ask, or proceed.",
+        "Attention map middle-path and false-precision pressure."
+      ],
+      "supported_by_artifact_ids": [
+        "marcus_middle_path_opportunity_cost"
+      ],
+      "cheap_test_for_step6": "Check whether the answer gives a bounded next move rather than a full compensation architecture.",
+      "risk_if_forced": "The answer may sound procedural and understate the ownership decision.",
+      "risk_if_ignored": "The answer may jump from no to alternatives without saying what evidence is needed next.",
+      "suggested_attention": "scan",
+      "false_friend_warning": "Do not list instruments just because a middle path exists."
+    },
+    {
+      "lens_id": "polya_look_back_check",
+      "lens_name": "look-back check",
+      "why_it_might_matter": "A useful Friday answer should still look coherent after Marcus reacts, the platform sprint runs, and exit assumptions are inspected.",
+      "source_hooks": [
+        "PRD Polya prompt: what move would help thinking progress.",
+        "Attention map false-precision and disengagement risk."
+      ],
+      "supported_by_artifact_ids": [
+        "marcus_false_precision_denominator"
+      ],
+      "cheap_test_for_step6": "Check whether the answer would remain defensible if the sprint proves or weakens Marcus's contribution.",
+      "risk_if_forced": "The answer may over-index on imagined future regret.",
+      "risk_if_ignored": "The answer may optimize the Friday wording while ignoring whether the test can teach anything.",
+      "suggested_attention": "parked",
+      "false_friend_warning": "Do not add hindsight theater or long scenario planning."
+    }
+  ],
+  "off_narrative_preservation": {
+    "lens_id": "polya_missing_question",
+    "why_preserve_even_if_not_obvious": "The system may need to ask what the founder is truly willing to trade away, but the current case has enough for an answer.",
+    "preserve_as": "parked",
+    "reactivate_if": "Reactivate if Step 6 tries to design exact equity terms rather than a decision stance.",
+    "risk_if_forced": "The answer may ask the user for details when a Friday stance is already possible."
+  },
+  "do_not_force": [
+    "Do not expose Polya labels in the public answer.",
+    "Do not replace decision pressure with generic problem-solving process.",
+    "Do not make Step 6 ask a question unless a concrete answer is impossible."
+  ],
+  "notes": "Polya v0 probe for founder high-clutter. It tests whether problem-shape framing adds value beyond Bevelin-style edge pressure."
+}

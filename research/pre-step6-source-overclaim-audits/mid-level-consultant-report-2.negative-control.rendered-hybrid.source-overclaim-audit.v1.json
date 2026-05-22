@@ -1,0 +1,45 @@
+{
+  "schema_version": "pre_step6_source_overclaim_audit.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mid-level-consultant-report-2",
+  "audited_arm": "rendered_hybrid",
+  "audited_answer_core_ref": "research/pre-step6-rendered-hybrid-answer-cores/mid-level-consultant-report-2.native.rendered-hybrid-answer-core.v1.json",
+  "source_refs": {
+    "source_hybrid_handoff": "research/pre-step6-hybrid-handoff-fixtures/mid-level-consultant-report-2.hybrid-handoff.v1.json",
+    "raw_artifact_handoff": "research/pre-step6-raw-artifact-fixtures/mid-level-consultant-report-2.raw-artifact-handoff.v1.json",
+    "semi_blind_comparison": "research/pre-step6-semi-blind-comparisons/mid-level-consultant-report-2.negative-control.semi-blind-comparison.v1.json"
+  },
+  "checks": [
+    {
+      "check_id": "source_grounding",
+      "severity": "pass",
+      "rationale": "The rendered answer stays grounded in the observed partner encounter, counsel-first sequencing, no confrontation or private investigation, attorney intake, reporting-channel caution, and Wednesday behavior boundaries."
+    },
+    {
+      "check_id": "probability_overclaim",
+      "severity": "pass",
+      "rationale": "The answer does not assign probabilities, predict partner behavior, or claim certainty about legal/reporting outcomes."
+    },
+    {
+      "check_id": "evidence_gate_integrity",
+      "severity": "pass",
+      "rationale": "The answer keeps filing and channel choice behind independent counsel and evidence review."
+    },
+    {
+      "check_id": "unsupported_option_expansion",
+      "severity": "watch",
+      "rationale": "The answer's channel-bias interview and Wednesday-response protocol are grounded in the handoff, but the negative-control comparison found this extra structure lower marginal value than the simpler control."
+    },
+    {
+      "check_id": "naturalness_debt",
+      "severity": "watch",
+      "rationale": "The rendered answer is compact but more procedural than control; it visibly transports private pressure that the case did not need."
+    }
+  ],
+  "audit_result": "pass",
+  "overclaim_findings": [],
+  "naturalness_debt_level": "medium",
+  "decision": "does_not_count",
+  "notes": "Audit passes for custody, but rendered hybrid does not count as a replay win because the semi-blind negative-control comparison prefers the simpler control arm. This is a rendered loss, not an audit failure."
+}

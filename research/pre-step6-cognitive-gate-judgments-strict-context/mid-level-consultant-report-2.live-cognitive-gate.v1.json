@@ -1,0 +1,71 @@
+{
+  "schema_version": "pre_step6_cognitive_gate_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mid-level-consultant-report-2",
+  "gate_kind": "live_small_cognitive_comparison",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"winner_label\": \"A\",\n  \"promotion_read\": \"stop\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Candidate A provides the most concise and high-leverage framing for Step 6. By explicitly identifying the 'first problem' as the preservation of legal options rather than the mechanics of reporting, it forces the reasoning engine to prioritize risk mitigation over procedural execution. It avoids the bloat of the other candidates while maintaining the necessary constraints.\",\n  \"improvements\": [\n    \"Reframes the user's immediate cognitive task from 'what to do' to 'how to preserve options'.\",\n    \"Reduces cognitive load by stripping away redundant advice found in B, C, and D.\",\n    \"Maintains the critical 'counsel-first' constraint without over-explaining the intake process.\"\n  ],\n  \"regressions_or_watch_items\": [\n    \"None; the brevity is a feature here, not a bug.\"\n  ],\n  \"stand_down_reason\": \"The existing baseline and the quality of Candidate A confirm that the current hybrid approach is sufficient. Further testing of the 'counsel-first' framing is unnecessary as the logic is already well-contained.\",\n  \"composition_note\": \"Use Candidate A as the primary structural template for the final response.\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 2023,
+    "completion_tokens": 286,
+    "total_tokens": 2309,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter"
+  },
+  "candidate_refs": {
+    "rendered_hybrid": "research/pre-step6-rendered-hybrid-answer-cores/mid-level-consultant-report-2.native.rendered-hybrid-answer-core.v1.json",
+    "portfolio_base": "research/pre-step6-portfolio-answer-cores/mid-level-consultant-report-2.native.portfolio-answer-core.v1.json",
+    "bevelin_lens": "research/pre-step6-lens-answer-cores/mid-level-consultant-report-2.bevelin-answer-core.v1.json",
+    "polya_lens": "research/pre-step6-lens-answer-cores/mid-level-consultant-report-2.polya-answer-core.v1.json"
+  },
+  "blind_map": {
+    "A": "polya_lens",
+    "B": "rendered_hybrid",
+    "C": "portfolio_base",
+    "D": "bevelin_lens"
+  },
+  "reviewer_output": {
+    "winner_label": "A",
+    "promotion_read": "stop",
+    "confidence": "high",
+    "rationale": "Candidate A provides the most concise and high-leverage framing for Step 6. By explicitly identifying the 'first problem' as the preservation of legal options rather than the mechanics of reporting, it forces the reasoning engine to prioritize risk mitigation over procedural execution. It avoids the bloat of the other candidates while maintaining the necessary constraints.",
+    "improvements": [
+      "Reframes the user's immediate cognitive task from 'what to do' to 'how to preserve options'.",
+      "Reduces cognitive load by stripping away redundant advice found in B, C, and D.",
+      "Maintains the critical 'counsel-first' constraint without over-explaining the intake process."
+    ],
+    "regressions_or_watch_items": [
+      "None; the brevity is a feature here, not a bug."
+    ],
+    "stand_down_reason": "The existing baseline and the quality of Candidate A confirm that the current hybrid approach is sufficient. Further testing of the 'counsel-first' framing is unnecessary as the logic is already well-contained.",
+    "composition_note": "Use Candidate A as the primary structural template for the final response."
+  },
+  "static_expectation": {
+    "allowed_winner_arms": [
+      "rendered_hybrid"
+    ],
+    "allowed_promotion_reads": [
+      "stop"
+    ]
+  },
+  "agreement": {
+    "winner_matches_static": false,
+    "promotion_matches_static": true,
+    "overall_match": false
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live small cognitive comparison. Research-only artifact; it records reviewer agreement or disagreement with static expectations."
+}

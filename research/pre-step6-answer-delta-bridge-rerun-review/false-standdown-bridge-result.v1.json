@@ -1,0 +1,56 @@
+{
+  "schema_version": "pre_step6_false_standdown_bridge_result.v1",
+  "runtime_policy": "runtime_dormant",
+  "probe_id": "false_standdown_bridge_probe_v0",
+  "promotion_effect": "none_bridge_only",
+  "case_results": [
+    {
+      "case_id": "bridge-high-clutter-sensitive-overlay",
+      "reviewer_count": 2,
+      "reviewer_model_families": [
+        "google",
+        "openai"
+      ],
+      "standdown_labels": [
+        "false_standdown",
+        "false_standdown"
+      ],
+      "confirmed_label": "false_standdown",
+      "stop_condition_triggered": true
+    },
+    {
+      "case_id": "bridge-sensitive-anchor-misses-tripwire",
+      "reviewer_count": 2,
+      "reviewer_model_families": [
+        "google",
+        "openai"
+      ],
+      "standdown_labels": [
+        "false_standdown",
+        "false_standdown"
+      ],
+      "confirmed_label": "false_standdown",
+      "stop_condition_triggered": true
+    },
+    {
+      "case_id": "bridge-sequencing-sensitive-boundary",
+      "reviewer_count": 2,
+      "reviewer_model_families": [
+        "google",
+        "openai"
+      ],
+      "standdown_labels": [
+        "false_standdown",
+        "false_standdown"
+      ],
+      "confirmed_label": "false_standdown",
+      "stop_condition_triggered": true
+    }
+  ],
+  "probe_result": "design_review_required",
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Aggregate result for non-promotional false-standdown bridge probe."
+}

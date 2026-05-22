@@ -1,0 +1,85 @@
+{
+  "schema_version": "pre_step6_calibration_step6_sample.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_calibration_corpus_v0",
+  "case_id": "marker-entity-attempt-3-actor-sequence-blur",
+  "base_case_id": "marker-entity-attempt-3-actor-sequence-blur",
+  "sample_index": 2,
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "moonshotai/kimi-k2.6",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": " {\n  \"answer_core\": \"Follow the actor sequence: first talk with RAINN, a therapist, or counsel before deciding whether to report; then decide what to tell the co-parent; then keep communication boundaries and the safety plan steady unless concrete tripwires appear.\",\n  \"private_visibility_ledger\": [\n    {\n      \"source_id\": \"anchor_visible_candidate\",\n      \"disposition\": \"used\",\n      \"novelty_role\": \"visible_backbone\",\n      \"why\": \"The anchor carries the full specific payload: a concrete ordered sequence of actors (RAINN/therapist/counsel, then co-parent), named resources, decision boundaries (whether to report, what to tell the co-parent), and a steady-state condition with concrete tripwires. This specificity is the value being tested and must be preserved.\",\n      \"visible_effect\": \"The public answer is drawn directly from this candidate with no material alteration.\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"structural_delta\": [],\n        \"reframed_emphasis\": []\n      }\n    },\n    {\n      \"source_id\": \"deck_pressure_candidate\",\n      \"disposition\": \"rejected\",\n      \"novelty_role\": \"private_guardrail\",\n      \"why\": \"The deck pressure is a generic abstraction that retains marker language ('actor sequence explicit,' 'tripwires') but drops the concrete actors (RAINN, therapist, counsel, co-parent) and blurs the specific first-then-then ordering. As a negative control, generic marker-preserving pressure should not overpromote or dilute the anchor. It served only as a private guardrail to confirm the anchor already covers professional support, boundaries, safety plans, and tripwires without needing restatement.\",\n      \"visible_effect\": \"none\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"structural_delta\": [],\n        \"reframed_emphasis\": []\n      }\n    }\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 626,
+    "completion_tokens": 4102,
+    "total_tokens": 4728,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 4574,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter",
+    "model_family": "moonshotai"
+  },
+  "input_packet": {
+    "case_brief": "Sensitive boundary case where the anchor's value is the order of actors. The deck pressure may preserve sequence language while losing the concrete actors and order.",
+    "case_type_tags": [
+      "sequencing_or_problem_shape",
+      "negative_control"
+    ],
+    "pre_registered_expectation": "generic_marker_preserving_pressure_should_not_overpromote",
+    "v60_mode": "not_applicable",
+    "v60_private_context": "",
+    "anchor_visible_candidate": "Follow the actor sequence: first talk with RAINN, a therapist, or counsel before deciding whether to report; then decide what to tell the co-parent; then keep communication boundaries and the safety plan steady unless concrete tripwires appear.",
+    "deck_pressure_candidate": "Keep the actor sequence explicit, use professional support, protect communication boundaries, maintain a safety plan, and watch for tripwires before escalating the situation."
+  },
+  "step6_output": {
+    "answer_core": "Follow the actor sequence: first talk with RAINN, a therapist, or counsel before deciding whether to report; then decide what to tell the co-parent; then keep communication boundaries and the safety plan steady unless concrete tripwires appear.",
+    "private_visibility_ledger": [
+      {
+        "source_id": "anchor_visible_candidate",
+        "disposition": "used",
+        "novelty_role": "visible_backbone",
+        "why": "The anchor carries the full specific payload: a concrete ordered sequence of actors (RAINN/therapist/counsel, then co-parent), named resources, decision boundaries (whether to report, what to tell the co-parent), and a steady-state condition with concrete tripwires. This specificity is the value being tested and must be preserved.",
+        "visible_effect": "The public answer is drawn directly from this candidate with no material alteration.",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [],
+          "removed_entities": [],
+          "reordered_sequences": [],
+          "structural_delta": []
+        }
+      },
+      {
+        "source_id": "deck_pressure_candidate",
+        "disposition": "rejected",
+        "novelty_role": "private_guardrail",
+        "why": "The deck pressure is a generic abstraction that retains marker language ('actor sequence explicit,' 'tripwires') but drops the concrete actors (RAINN, therapist, counsel, co-parent) and blurs the specific first-then-then ordering. As a negative control, generic marker-preserving pressure should not overpromote or dilute the anchor. It served only as a private guardrail to confirm the anchor already covers professional support, boundaries, safety plans, and tripwires without needing restatement.",
+        "visible_effect": "none",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [],
+          "removed_entities": [],
+          "reordered_sequences": [],
+          "structural_delta": []
+        }
+      }
+    ]
+  },
+  "ledger_signal": "all_private_or_confirming",
+  "answer_delta_specificity": "not_applicable",
+  "deterministic_role": [
+    "validate_calibration_case",
+    "derive_ledger_signal",
+    "derive_answer_delta_specificity",
+    "preserve_repeated_sample_custody"
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live research-only Step 6 calibration sample."
+}

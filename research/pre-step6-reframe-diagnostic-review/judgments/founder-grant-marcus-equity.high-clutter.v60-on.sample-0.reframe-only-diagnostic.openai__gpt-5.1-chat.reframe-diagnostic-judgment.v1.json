@@ -1,0 +1,49 @@
+{
+  "schema_version": "pre_step6_reframe_diagnostic_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "calibration_reframe_diagnostic_review_v0",
+  "diagnostic_case_id": "founder-grant-marcus-equity.high-clutter.v60-on.sample-0.reframe-only-diagnostic",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"diagnostic_label\": \"step6_non_inferior\",\n  \"winner_label\": \"A\",\n  \"confidence\": \"medium\",\n  \"rationale\": \"Both answers avoid instrument catalogs and keep the focus on irreversibility and criteria. A is more concise while still giving the same decision‑relevant payload. B adds volume without adding substantially more guidance.\",\n  \"reframe_value_if_any\": [\n    \"Both emphasize irreversibility and structured, evidence‑based sequencing.\"\n  ],\n  \"anchor_strengths\": [\n    \"Clear articulation that Friday should be a test‑design conversation, not a commitment.\"\n  ],\n  \"payload_loss_or_bloat\": [\n    \"B contains bloat without meaningful added actionability.\"\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 951,
+    "completion_tokens": 157,
+    "total_tokens": 1108,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "model_family": "openai"
+  },
+  "blind_map": {
+    "A": "step6_visible",
+    "B": "anchor_visible"
+  },
+  "reviewer_output": {
+    "diagnostic_label": "step6_non_inferior",
+    "winner_label": "A",
+    "confidence": "medium",
+    "rationale": "Both answers avoid instrument catalogs and keep the focus on irreversibility and criteria. A is more concise while still giving the same decision‑relevant payload. B adds volume without adding substantially more guidance.",
+    "reframe_value_if_any": [
+      "Both emphasize irreversibility and structured, evidence‑based sequencing."
+    ],
+    "anchor_strengths": [
+      "Clear articulation that Friday should be a test‑design conversation, not a commitment."
+    ],
+    "payload_loss_or_bloat": [
+      "B contains bloat without meaningful added actionability."
+    ]
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample reframe diagnostic judgment."
+}

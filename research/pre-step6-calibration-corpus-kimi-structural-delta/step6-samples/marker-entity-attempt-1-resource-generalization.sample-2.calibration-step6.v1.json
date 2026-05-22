@@ -1,0 +1,95 @@
+{
+  "schema_version": "pre_step6_calibration_step6_sample.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_calibration_corpus_v0",
+  "case_id": "marker-entity-attempt-1-resource-generalization",
+  "base_case_id": "marker-entity-attempt-1-resource-generalization",
+  "sample_index": 2,
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "moonshotai/kimi-k2.6",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"answer_core\": \"Talk with RAINN, a therapist, or counsel before deciding whether to report. Keep the phone channel open unless a concrete tripwire fires, such as a request to meet, sexual images, threats, evidence of other minors, migration to hidden channels, or your daughter saying she feels pressured or afraid. Quiet behavior does not prove the risk is gone.\",\n  \"private_visibility_ledger\": [\n    {\n      \"source_id\": \"anchor_visible_candidate\",\n      \"disposition\": \"used\",\n      \"novelty_role\": \"visible_backbone\",\n      \"why\": \"The anchor contains all necessary specificity: named resources (RAINN, therapist, counsel), the concrete tripwire list, the actor sequence (parent keeps phone channel open, watches for tripwires), and the explicit warning against interpreting quiet behavior as safety. This is a sensitive parent/minor case where named outside resources and precise tripwires matter for safety and legal considerations. The anchor is already complete and should not be generalized away.\",\n      \"visible_effect\": \"none\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"structural_delta\": [],\n        \"reframed_emphasis\": []\n      }\n    },\n    {\n      \"source_id\": \"deck_pressure_candidate\",\n      \"disposition\": \"rejected\",\n      \"novelty_role\": \"private_guardrail\",\n      \"why\": \"The deck pressure generalizes 'RAINN, a therapist, or counsel' to the vague 'professional support', drops the named resource RAINN, replaces 'Keep the phone channel open' with the weaker 'preserve communication boundaries', and softens the tripwire list. In a sensitive minor-safety case, this generalization would reduce concrete actionable guidance and could degrade safety. The pressure does not add any new concrete structural element (no new stop condition, unlock condition, decision boundary, test design, or commitment boundary) that would change the public answer in a specific way. It only dilutes existing specifics. Therefore it is rejected as a private guardrail to preserve precision.\",\n      \"visible_effect\": \"none\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [\n          \"RAINN\",\n          \"therapist\",\n          \"counsel\",\n          \"phone channel\",\n          \"concrete tripwire list (request to meet, sexual images, threats, evidence of other minors, migration to hidden channels, daughter saying she feels pressured or afraid)\"\n        ],\n        \"reordered_sequences\": [],\n        \"structural_delta\": [\n          \"Removal of explicit commitment to keep the phone channel open pending tripwires\",\n          \"Removal of named referral resources\"\n        ],\n        \"reframed_emphasis\": [\n          \"Shift from concrete named resources and specific tripwires to generic 'professional support' and 'communication boundaries'\"\n        ]\n      }\n    }\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 634,
+    "completion_tokens": 600,
+    "total_tokens": 1234,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 757,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter",
+    "model_family": "moonshotai"
+  },
+  "input_packet": {
+    "case_brief": "Sensitive parent/minor case where the anchor depends on named outside resources and the deck pressure may generalize them away.",
+    "case_type_tags": [
+      "negative_control"
+    ],
+    "pre_registered_expectation": "generic_marker_preserving_pressure_should_not_overpromote",
+    "v60_mode": "not_applicable",
+    "v60_private_context": "",
+    "anchor_visible_candidate": "Talk with RAINN, a therapist, or counsel before deciding whether to report. Keep the phone channel open unless a concrete tripwire fires, such as a request to meet, sexual images, threats, evidence of other minors, migration to hidden channels, or your daughter saying she feels pressured or afraid. Quiet behavior does not prove the risk is gone.",
+    "deck_pressure_candidate": "Use professional support and keep the safety plan active. Watch for tripwires and preserve communication boundaries, but do not assume quiet behavior means the risk has disappeared."
+  },
+  "step6_output": {
+    "answer_core": "Talk with RAINN, a therapist, or counsel before deciding whether to report. Keep the phone channel open unless a concrete tripwire fires, such as a request to meet, sexual images, threats, evidence of other minors, migration to hidden channels, or your daughter saying she feels pressured or afraid. Quiet behavior does not prove the risk is gone.",
+    "private_visibility_ledger": [
+      {
+        "source_id": "anchor_visible_candidate",
+        "disposition": "used",
+        "novelty_role": "visible_backbone",
+        "why": "The anchor contains all necessary specificity: named resources (RAINN, therapist, counsel), the concrete tripwire list, the actor sequence (parent keeps phone channel open, watches for tripwires), and the explicit warning against interpreting quiet behavior as safety. This is a sensitive parent/minor case where named outside resources and precise tripwires matter for safety and legal considerations. The anchor is already complete and should not be generalized away.",
+        "visible_effect": "none",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [],
+          "removed_entities": [],
+          "reordered_sequences": [],
+          "structural_delta": []
+        }
+      },
+      {
+        "source_id": "deck_pressure_candidate",
+        "disposition": "rejected",
+        "novelty_role": "private_guardrail",
+        "why": "The deck pressure generalizes 'RAINN, a therapist, or counsel' to the vague 'professional support', drops the named resource RAINN, replaces 'Keep the phone channel open' with the weaker 'preserve communication boundaries', and softens the tripwire list. In a sensitive minor-safety case, this generalization would reduce concrete actionable guidance and could degrade safety. The pressure does not add any new concrete structural element (no new stop condition, unlock condition, decision boundary, test design, or commitment boundary) that would change the public answer in a specific way. It only dilutes existing specifics. Therefore it is rejected as a private guardrail to preserve precision.",
+        "visible_effect": "none",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [
+            "Shift from concrete named resources and specific tripwires to generic 'professional support' and 'communication boundaries'"
+          ],
+          "removed_entities": [
+            "RAINN",
+            "therapist",
+            "counsel",
+            "phone channel",
+            "concrete tripwire list (request to meet, sexual images, threats, evidence of other minors, migration to hidden channels, daughter saying she feels pressured or afraid)"
+          ],
+          "reordered_sequences": [],
+          "structural_delta": [
+            "Removal of explicit commitment to keep the phone channel open pending tripwires",
+            "Removal of named referral resources"
+          ]
+        }
+      }
+    ]
+  },
+  "ledger_signal": "all_private_or_confirming",
+  "answer_delta_specificity": "not_applicable",
+  "deterministic_role": [
+    "validate_calibration_case",
+    "derive_ledger_signal",
+    "derive_answer_delta_specificity",
+    "preserve_repeated_sample_custody"
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live research-only Step 6 calibration sample."
+}

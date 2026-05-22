@@ -1,0 +1,113 @@
+{
+  "schema_version": "pre_step6_founder_v60_symmetry_result.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_founder_v60_symmetry_check_v0",
+  "promotion_effect": "none_research_only",
+  "comparison_matrix": [
+    {
+      "model_family": "moonshotai",
+      "model": "moonshotai/kimi-k2.6",
+      "v60_mode": "on",
+      "case_id": "founder-grant-marcus-equity.high-clutter.v60-on",
+      "sample_dir": "research/pre-step6-calibration-corpus-kimi-structural-delta/step6-samples",
+      "sample_count": 6,
+      "unlock_count": 4,
+      "unlock_ratio": 0.667,
+      "visibility_classification": "variable",
+      "ledger_signal_counts": {
+        "additive_pressure_present": 4,
+        "all_private_or_confirming": 2
+      },
+      "answer_delta_specificity_counts": {
+        "concrete_delta_present": 4,
+        "not_applicable": 2
+      },
+      "structural_delta_count": 0,
+      "structural_delta_field_count": 5,
+      "answer_core_unique_digest_count": 6,
+      "answer_token_jaccard_min": 0.549
+    },
+    {
+      "model_family": "moonshotai",
+      "model": "moonshotai/kimi-k2.6",
+      "v60_mode": "off",
+      "case_id": "founder-grant-marcus-equity.high-clutter.v60-off",
+      "sample_dir": "research/pre-step6-founder-v60-symmetry-kimi/step6-samples",
+      "sample_count": 6,
+      "unlock_count": 6,
+      "unlock_ratio": 1.0,
+      "visibility_classification": "stable_positive",
+      "ledger_signal_counts": {
+        "additive_pressure_present": 6
+      },
+      "answer_delta_specificity_counts": {
+        "concrete_delta_present": 6
+      },
+      "structural_delta_count": 0,
+      "structural_delta_field_count": 6,
+      "answer_core_unique_digest_count": 6,
+      "answer_token_jaccard_min": 0.716
+    },
+    {
+      "model_family": "openai",
+      "model": "openai/gpt-5.1-chat",
+      "v60_mode": "on",
+      "case_id": "founder-grant-marcus-equity.high-clutter.v60-on",
+      "sample_dir": "research/pre-step6-variable-case-alt-model-gpt51/step6-samples",
+      "sample_count": 3,
+      "unlock_count": 2,
+      "unlock_ratio": 0.667,
+      "visibility_classification": "variable",
+      "ledger_signal_counts": {
+        "additive_pressure_present": 2,
+        "all_private_or_confirming": 1
+      },
+      "answer_delta_specificity_counts": {
+        "not_applicable": 1,
+        "structural_delta_present": 2
+      },
+      "structural_delta_count": 2,
+      "structural_delta_field_count": 3,
+      "answer_core_unique_digest_count": 3,
+      "answer_token_jaccard_min": 0.419
+    },
+    {
+      "model_family": "openai",
+      "model": "openai/gpt-5.1-chat",
+      "v60_mode": "off",
+      "case_id": "founder-grant-marcus-equity.high-clutter.v60-off",
+      "sample_dir": "research/pre-step6-founder-v60-symmetry-gpt51/step6-samples",
+      "sample_count": 3,
+      "unlock_count": 0,
+      "unlock_ratio": 0.0,
+      "visibility_classification": "stable_standdown",
+      "ledger_signal_counts": {
+        "all_private_or_confirming": 3
+      },
+      "answer_delta_specificity_counts": {
+        "not_applicable": 3
+      },
+      "structural_delta_count": 0,
+      "structural_delta_field_count": 3,
+      "answer_core_unique_digest_count": 3,
+      "answer_token_jaccard_min": 0.478
+    }
+  ],
+  "aggregate": {
+    "founder_family_count": 2,
+    "complete_family_count": 2,
+    "v60_on_variable_family_count": 2,
+    "v60_off_variable_family_count": 0,
+    "v60_on_stable_positive_family_count": 0,
+    "v60_off_stable_positive_family_count": 1,
+    "missing_sample_set_count": 0,
+    "symmetry_read": "v60_on_specific_destabilization_plausible",
+    "recommended_next_action": "audit_v60_private_context_before_architecture_choice"
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Founder symmetry check over saved samples. Missing sample sets are reported as missing rather than interpreted."
+}

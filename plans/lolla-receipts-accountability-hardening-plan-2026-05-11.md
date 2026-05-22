@@ -16,7 +16,7 @@ The first pass followed the plan with a few concrete choices now reflected in co
 - V60 chunk selection is no longer `record_order_first` by default. It uses local relevance within each model record, records fallback when needed, and labels selected chunk effect types.
 - `scripts/compare_archived_runs.py` now provides a health-first Markdown/JSON comparison surface for archived runs.
 - Post-flight live testing exposed two idempotency bugs and one UX gap. V60 finalization and product-output hygiene finalization now clear stale issue state before re-validating. `scripts/finalize_v60_telemetry.py --require-valid` is the required stop gate before pressure checks, memo rendering, Observatory, or archive. The older instruction to launch pressure-check agents before Step 6 was removed because it contradicted that gate.
-- Live Claude Code narration is now treated as product surface in the orchestration docs. The scanner flags observed leak patterns such as `Beat 2`, `pressure-check agents`, `V60`, and `ledger` when they appear on a product surface; normal public phrases such as `pressure check` remain allowed.
+- Live Claude Code narration is now treated as product surface in the orchestration docs and as a durable artifact: `/tmp/lolla_<run_id>_live_transcript.txt`. The scanner flags observed leak patterns such as `Beat 2`, `pressure-check agents`, `pressure-check readers`, `Orchestrator: Sonnet`, `V60`, and `ledger` when they appear on a product surface; normal public phrases such as `pressure check` remain allowed. `scripts/finalize_live_output_hygiene.py --require-live-output-clean --trusted-transcript` provides the explicit proof gate for complete captured transcripts, while manual no-leak transcript artifacts now record `live_output_health: not_checked` instead of overclaiming `clean`. `scripts/archive_run.py` defensively records `run_health.live_output_*` and archives `live_transcript.txt` when present.
 - V60 local-relevance telemetry now filters more explanatory stopwords so selection reasons are less likely to cite non-informative overlap terms such as `after`, `all`, `before`, `being`, or `should`.
 
 ## Executive Stance
@@ -1125,7 +1125,7 @@ Exit criteria:
 1. Should missing `CONVERSATION:` header with assistant as last turn be `unknown` or `degraded`?
    - My recommendation: keep `unknown` for now, but make final-user-turn critical override it.
 2. Should product-output hygiene failure make overall health `degraded` or a separate `product_output_health: unsafe`?
-   - My recommendation: separate axis plus `partial` or `degraded` depending on live-test mode.
+   - Implemented: separate axes. Persisted product-output leaks and unsafe live transcript leaks degrade; missing live transcript capture is recorded as `live_output_health: missing` and becomes `partial` only when the explicit `--require-live-output-clean` gate is active. A clean manual live transcript is now `not_checked` unless finalized from a complete trusted capture.
 3. Should V60 ledger skeleton live inside `result.json`, as `/tmp/lolla_<RUN_ID>_v60_ledger_skeleton.json`, or both?
    - My recommendation: both. Put canonical skeleton in result for archive custody; write sidecar for runner ergonomics.
 4. Should absence selection use an LLM in Phase 2?

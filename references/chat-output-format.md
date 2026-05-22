@@ -36,7 +36,9 @@ archived into `revised.txt` or the memo, the user still experiences it as part
 of the run. Reduced narration is the default after the audit starts: no agent
 launch updates, no waiting updates, no ledger/debug narration, no internal
 transition labels. If there is no user-facing content or real blocker, stay
-silent.
+silent. Each visible prose/status/content beat must also be appended exactly as
+sent to `/tmp/lolla_${LOLLA_RUN_ID}_live_transcript.txt`; the live-output
+hygiene finalizer scans that artifact as `live_narration` before archive.
 
 ### No machinery leak
 
@@ -166,7 +168,7 @@ After Step 3 pipeline returns, present the strongest counterargument as a story 
 
 ### What goes in
 
-1. **Run-health line, conditional.** Only when `run_health.overall ≠ healthy` AND a material issue is present (`capture_degraded`, `capture_critical`, `substrate_empty`, `no_fingerprint`, `quote_fabrication`, `capture_truncated`, `lane3_all_dropped`, `bullshit_index_partial`, `v60_consideration_ledger_missing`, `v60_consideration_ledger_invalid`, `product_output_leak`). Silent on healthy runs and on optional-off retrieval states such as embeddings disabled by mode.
+1. **Run-health line, conditional.** Only when `run_health.overall ≠ healthy` AND a material issue is present (`capture_degraded`, `capture_critical`, `substrate_empty`, `no_fingerprint`, `quote_fabrication`, `capture_truncated`, `lane3_all_dropped`, `bullshit_index_partial`, `v60_consideration_ledger_missing`, `v60_consideration_ledger_invalid`, `product_output_leak`, `live_output_leak`, `live_output_missing` or `live_output_unverified` when the live-output gate was required). Silent on healthy runs and on optional-off retrieval states such as embeddings disabled by mode. `live_output_health: not_checked` means a manual transcript scanned clean but is not a complete trusted capture; do not call that proof of a clean live run.
 2. **One exact quote** anchored to a specific turn, format *"In Turn N, you wrote: '...'"* or *"In Turn N, I closed with: '...'"*. Drop turn numbers when the quote spans turns or is paraphrased. Use turn numbers as **light source attribution only — never as heading style** (no *"Finding 1 — Turn 4 Evidence Quote"*). The user can inspect referenced turns via the captured transcript at `/tmp/lolla_${LOLLA_RUN_ID}_conversation.txt` and the Observatory's conversation view (both use `[Turn N]` markers); memo navigation is not part of this contract.
 3. **One paragraph (3–5 sentences) making the case against that move.** Specific. Names the structural error in plain language. Avoids machinery vocabulary (no *"deprival-superreaction"*, *"loss aversion pattern"*, etc. — those models go in Beat 3 §3 where they earn context). **Scope general claims to this person / this conversation, not to a class of people.** *"He may be minimizing because he hasn't been shown what specifically makes this different from ordinary teenage drama"* is acceptable; *"People who minimize age-gap online contact rarely do so because they've reviewed the grooming literature"* is not. Where a general claim carries the case-against, it must be scoped. Where a general claim is observational backdrop for a situation-specific argument, it can stay. Lolla audits unverified-claim patterns in others' reasoning; its own output should pass its own audit.
 4. **One alternative-question or alternative-instrument** the audit pushed onto the table. Verbatim from `frame_pressure_card.reframings[0].reframed_question` if it serves; otherwise a sharp paraphrase of the strongest cross-lane alternative. **Fallback rule:** when no single user passage anchors the critique, lead with paraphrased user-position framing (*"The answer treated X as settled before testing Y"*). Exact quote preferred; paraphrase acceptable when the verbatim would be awkward or misleading.

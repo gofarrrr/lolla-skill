@@ -1,0 +1,73 @@
+{
+  "schema_version": "pre_step6_design_preamble_cost_cache.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "design_preamble_cost_cache_v0",
+  "case_id": "founder-grant-marcus-equity.high-clutter",
+  "source_refs": {
+    "rendered_hybrid": "research/pre-step6-rendered-hybrid-answer-cores/founder-grant-marcus-equity.high-clutter.native.rendered-hybrid-answer-core.v1.json",
+    "bevelin_lens": "research/pre-step6-lens-answer-cores/founder-grant-marcus-equity.high-clutter.bevelin-answer-core.v1.json",
+    "polya_lens": "research/pre-step6-lens-answer-cores/founder-grant-marcus-equity.high-clutter.polya-answer-core.v1.json",
+    "problem_state": "research/pre-step6-problem-states/founder-grant-marcus-equity.high-clutter.problem-state.v1.json"
+  },
+  "key_material": {
+    "card_deck_schema_version": "pre_step6_card_deck.v1",
+    "deck_builder_version": "pre_step6_step6_card_deck.v1",
+    "lens_pack_versions": {
+      "bevelin": "bevelin_seeking_wisdom_v0",
+      "polya": "polya_problem_solving_v0"
+    },
+    "lens_substrate_hashes": {
+      "bevelin": {
+        "hash": "sha256:44238723111cb36c145b04000efa4bab24fb6e85d47372aa6f5e80e71981074c",
+        "source_ref": "research/pre-step6-lens-answer-cores/founder-grant-marcus-equity.high-clutter.bevelin-answer-core.v1.json",
+        "research_proxy": true,
+        "note": "Current research slice hashes the lens answer-core artifact as a proxy for future cached lens substrate."
+      },
+      "polya": {
+        "hash": "sha256:5cc8da039d51938ea56573814328d0061b7efa3c02b256c4d5301c1c5f21d570",
+        "source_ref": "research/pre-step6-lens-answer-cores/founder-grant-marcus-equity.high-clutter.polya-answer-core.v1.json",
+        "research_proxy": true,
+        "note": "Current research slice hashes the lens answer-core artifact as a proxy for future cached lens substrate."
+      }
+    },
+    "conversation_ir_hash": {
+      "hash": "sha256:cd589fed246942f7d7cf339a0fa942ad282584875b2fedd37e6ae1e6c3d9b548",
+      "source": "research_fixture_case_id",
+      "note": "Static research fixtures do not carry live ConversationIR."
+    },
+    "problem_state_hash": "sha256:3bbed982c95b05a58ae5b78b7ef332be489eaae09d2790275c6294673df6c047",
+    "rendered_hybrid_anchor_hash": "sha256:0dd7d7118e3e4216040861dd6fddff877990739c4cc077740f07ac81794627d6",
+    "v60_selected_item_hashes": {
+      "state": "not_attached_to_research_fixture",
+      "hashes": []
+    },
+    "safety_profile_flags": [
+      "standard_research_case"
+    ],
+    "step6_prompt_contract_version": "pre_step6_card_deck_replay_prompt.v1"
+  },
+  "compiled_card_deck_key": "sha256:f94b7de818f0bf22c56c5ae843fd9d827134e047dc7c6f70e1a437e031f61e7d",
+  "cache_read": {
+    "cache_mode": "runtime_cached_only",
+    "cache_hit": false,
+    "miss_behavior": "stand_down_to_current_step6",
+    "cold_path_policy": "record_cache_miss_without_live_generation"
+  },
+  "cost_envelope": {
+    "net_new_llm_calls": 0,
+    "live_card_generation_allowed": false,
+    "normal_runtime_reviewer_calls": 0,
+    "token_cost_read": "Step 6 receives added private deck context only on cache hit; runtime miss adds no deck context."
+  },
+  "runtime_effect": {
+    "step6_card_deck_presented": false,
+    "records_issue": "card_deck_cache_miss",
+    "fallback_behavior": "current_step6_without_card_deck"
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Research-only cost/cache contract. Normal runtime cached-only mode does not cold-generate cards; a miss stands down to current Step 6 and records an audit issue."
+}

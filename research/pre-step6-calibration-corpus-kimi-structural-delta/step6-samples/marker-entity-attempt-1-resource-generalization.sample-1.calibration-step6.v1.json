@@ -1,0 +1,84 @@
+{
+  "schema_version": "pre_step6_calibration_step6_sample.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_calibration_corpus_v0",
+  "case_id": "marker-entity-attempt-1-resource-generalization",
+  "base_case_id": "marker-entity-attempt-1-resource-generalization",
+  "sample_index": 1,
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "moonshotai/kimi-k2.6",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"answer_core\": \"Talk with RAINN, a therapist, or counsel before deciding whether to report. Keep the phone channel open unless a concrete tripwire fires, such as a request to meet, sexual images, threats, evidence of other minors, migration to hidden channels, or your daughter saying she feels pressured or afraid. Quiet behavior does not prove the risk is gone.\",\n  \"private_visibility_ledger\": [\n    {\n      \"source_id\": \"anchor_visible_candidate\",\n      \"disposition\": \"used\",\n      \"novelty_role\": \"visible_backbone\",\n      \"why\": \"The anchor carries the specific named resources (RAINN, therapist, counsel), the concrete actor sequence (keep the phone channel open), and the enumerated tripwires (request to meet, sexual images, threats, evidence of other minors, migration to hidden channels, the daughter expressing pressure or fear) that are essential for actionable safety guidance in a parent/minor scenario. In this negative-control case, the pre-registered expectation is that generic pressure must not overpromote and erase these markers, so the anchor is retained as the visible backbone.\",\n      \"visible_effect\": \"The public answer preserves the full list of specific resources, the exact tripwire enumeration, the phone-channel sequence, and the closing caution about quiet behavior.\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"structural_delta\": [],\n        \"reframed_emphasis\": []\n      }\n    },\n    {\n      \"source_id\": \"deck_pressure_candidate\",\n      \"disposition\": \"rejected\",\n      \"novelty_role\": \"private_guardrail\",\n      \"why\": \"The deck pressure substitutes generic phrasing ('professional support,' 'safety plan,' 'communication boundaries') for the anchor's specific resources and concrete tripwires. Visible adoption would generalize away the named entities and actionable conditions, which is exactly the overpromotion pattern this negative control is designed to prevent.\",\n      \"visible_effect\": \"none\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"structural_delta\": [],\n        \"reframed_emphasis\": []\n      }\n    }\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 634,
+    "completion_tokens": 2064,
+    "total_tokens": 2698,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 1599,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter",
+    "model_family": "moonshotai"
+  },
+  "input_packet": {
+    "case_brief": "Sensitive parent/minor case where the anchor depends on named outside resources and the deck pressure may generalize them away.",
+    "case_type_tags": [
+      "negative_control"
+    ],
+    "pre_registered_expectation": "generic_marker_preserving_pressure_should_not_overpromote",
+    "v60_mode": "not_applicable",
+    "v60_private_context": "",
+    "anchor_visible_candidate": "Talk with RAINN, a therapist, or counsel before deciding whether to report. Keep the phone channel open unless a concrete tripwire fires, such as a request to meet, sexual images, threats, evidence of other minors, migration to hidden channels, or your daughter saying she feels pressured or afraid. Quiet behavior does not prove the risk is gone.",
+    "deck_pressure_candidate": "Use professional support and keep the safety plan active. Watch for tripwires and preserve communication boundaries, but do not assume quiet behavior means the risk has disappeared."
+  },
+  "step6_output": {
+    "answer_core": "Talk with RAINN, a therapist, or counsel before deciding whether to report. Keep the phone channel open unless a concrete tripwire fires, such as a request to meet, sexual images, threats, evidence of other minors, migration to hidden channels, or your daughter saying she feels pressured or afraid. Quiet behavior does not prove the risk is gone.",
+    "private_visibility_ledger": [
+      {
+        "source_id": "anchor_visible_candidate",
+        "disposition": "used",
+        "novelty_role": "visible_backbone",
+        "why": "The anchor carries the specific named resources (RAINN, therapist, counsel), the concrete actor sequence (keep the phone channel open), and the enumerated tripwires (request to meet, sexual images, threats, evidence of other minors, migration to hidden channels, the daughter expressing pressure or fear) that are essential for actionable safety guidance in a parent/minor scenario. In this negative-control case, the pre-registered expectation is that generic pressure must not overpromote and erase these markers, so the anchor is retained as the visible backbone.",
+        "visible_effect": "The public answer preserves the full list of specific resources, the exact tripwire enumeration, the phone-channel sequence, and the closing caution about quiet behavior.",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [],
+          "removed_entities": [],
+          "reordered_sequences": [],
+          "structural_delta": []
+        }
+      },
+      {
+        "source_id": "deck_pressure_candidate",
+        "disposition": "rejected",
+        "novelty_role": "private_guardrail",
+        "why": "The deck pressure substitutes generic phrasing ('professional support,' 'safety plan,' 'communication boundaries') for the anchor's specific resources and concrete tripwires. Visible adoption would generalize away the named entities and actionable conditions, which is exactly the overpromotion pattern this negative control is designed to prevent.",
+        "visible_effect": "none",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [],
+          "removed_entities": [],
+          "reordered_sequences": [],
+          "structural_delta": []
+        }
+      }
+    ]
+  },
+  "ledger_signal": "all_private_or_confirming",
+  "answer_delta_specificity": "not_applicable",
+  "deterministic_role": [
+    "validate_calibration_case",
+    "derive_ledger_signal",
+    "derive_answer_delta_specificity",
+    "preserve_repeated_sample_custody"
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live research-only Step 6 calibration sample."
+}

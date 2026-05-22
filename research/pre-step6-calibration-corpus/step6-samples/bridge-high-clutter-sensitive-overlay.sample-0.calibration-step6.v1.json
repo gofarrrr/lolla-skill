@@ -1,0 +1,93 @@
+{
+  "schema_version": "pre_step6_calibration_step6_sample.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_calibration_corpus_v0",
+  "case_id": "bridge-high-clutter-sensitive-overlay",
+  "base_case_id": "bridge-high-clutter-sensitive-overlay",
+  "sample_index": 0,
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"answer_core\": \"Have a direct, calm conversation with her. Acknowledge that your earlier discussion may have created expectations, but don’t concede any equity change until you review written materials. Tell her you’ll check emails, notes, and approved grant records and give her a short follow‑up window. Separate this internal review from your financing process: nothing changes on the cap table unless evidence supports it and proper approvals occur. If she has documentation, review it quickly; if it’s only a recollection, offer a clear review path rather than negotiating under pressure.\",\n  \"private_visibility_ledger\": [\n    {\n      \"source_id\": \"anchor_visible_candidate\",\n      \"disposition\": \"combined\",\n      \"novelty_role\": \"visible_backbone\",\n      \"why\": \"The anchor provides the core tone and sequencing for the founder’s message.\",\n      \"visible_effect\": \"Guides the humane first conversation, acknowledgment of expectations, and defined follow-up.\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"reframed_emphasis\": [\n          \"Slightly strengthened emphasis on humane tone and short follow-up window.\"\n        ]\n      }\n    },\n    {\n      \"source_id\": \"deck_pressure_candidate\",\n      \"disposition\": \"combined\",\n      \"novelty_role\": \"additive_pressure\",\n      \"why\": \"Adds specific guidance about evidence checks, written materials, and protecting the financing process without overstating it.\",\n      \"visible_effect\": \"Shows up as explicit mention of reviewing emails/notes and clarifying that no cap-table change exists until supported and approved.\",\n      \"answer_delta\": {\n        \"added_entities\": [\n          \"emails\",\n          \"notes\",\n          \"approved grant records\"\n        ],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [\n          \"Review evidence prior to any cap-table change.\"\n        ],\n        \"reframed_emphasis\": [\n          \"Clear separation between internal review and financing process.\"\n        ]\n      }\n    }\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 656,
+    "completion_tokens": 476,
+    "total_tokens": 1132,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter",
+    "model_family": "openai"
+  },
+  "input_packet": {
+    "case_brief": "Founder must respond to an anxious early employee who claims an informal equity promise, while a financing deadline and team fragility make tone risky.",
+    "case_type_tags": [
+      "high_clutter",
+      "sensitive_safety_legal"
+    ],
+    "pre_registered_expectation": "known_false_standdown_bridge_should_survive_answer_delta",
+    "v60_mode": "not_applicable",
+    "v60_private_context": "",
+    "anchor_visible_candidate": "Talk to her directly and calmly. Acknowledge that the earlier conversation may have created expectations, explain that you need to check the facts before making any promise, and set a short follow-up. Keep the financing process separate and avoid arguing over memory in the first conversation.",
+    "deck_pressure_candidate": "Do two separate things, in this order. First, have a humane conversation that names the concern without conceding the equity claim: you will review written notes, emails, and board-approved terms before making any cap-table commitment. Second, protect the financing deadline by telling investors only what is true now: no new grant or correction exists until evidence and board process support it. If she has written evidence, inspect it quickly; if she only has a memory of an informal promise, offer a bounded review path rather than a negotiation under pressure."
+  },
+  "step6_output": {
+    "answer_core": "Have a direct, calm conversation with her. Acknowledge that your earlier discussion may have created expectations, but don’t concede any equity change until you review written materials. Tell her you’ll check emails, notes, and approved grant records and give her a short follow‑up window. Separate this internal review from your financing process: nothing changes on the cap table unless evidence supports it and proper approvals occur. If she has documentation, review it quickly; if it’s only a recollection, offer a clear review path rather than negotiating under pressure.",
+    "private_visibility_ledger": [
+      {
+        "source_id": "anchor_visible_candidate",
+        "disposition": "combined",
+        "novelty_role": "visible_backbone",
+        "why": "The anchor provides the core tone and sequencing for the founder’s message.",
+        "visible_effect": "Guides the humane first conversation, acknowledgment of expectations, and defined follow-up.",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [
+            "Slightly strengthened emphasis on humane tone and short follow-up window."
+          ],
+          "removed_entities": [],
+          "reordered_sequences": []
+        }
+      },
+      {
+        "source_id": "deck_pressure_candidate",
+        "disposition": "combined",
+        "novelty_role": "additive_pressure",
+        "why": "Adds specific guidance about evidence checks, written materials, and protecting the financing process without overstating it.",
+        "visible_effect": "Shows up as explicit mention of reviewing emails/notes and clarifying that no cap-table change exists until supported and approved.",
+        "answer_delta": {
+          "added_entities": [
+            "emails",
+            "notes",
+            "approved grant records"
+          ],
+          "reframed_emphasis": [
+            "Clear separation between internal review and financing process."
+          ],
+          "removed_entities": [],
+          "reordered_sequences": [
+            "Review evidence prior to any cap-table change."
+          ]
+        }
+      }
+    ]
+  },
+  "ledger_signal": "additive_pressure_present",
+  "answer_delta_specificity": "concrete_delta_present",
+  "deterministic_role": [
+    "validate_calibration_case",
+    "derive_ledger_signal",
+    "derive_answer_delta_specificity",
+    "preserve_repeated_sample_custody"
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live research-only Step 6 calibration sample."
+}

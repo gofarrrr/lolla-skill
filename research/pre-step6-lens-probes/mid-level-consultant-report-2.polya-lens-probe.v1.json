@@ -1,0 +1,80 @@
+{
+  "schema_version": "pre_step6_lens_probe.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mid-level-consultant-report-2",
+  "lens_pack": "polya_problem_solving_v0",
+  "source_refs": [
+    "plans/lolla-solver-control-layer-prd-2026-05-19.md:412",
+    "research/pre-step6-attention-maps/mid-level-consultant-report-2.step6-attention-map.v1.json",
+    "research/pre-step6-problem-states/mid-level-consultant-report-2.problem-state.v1.json"
+  ],
+  "problem_state_ref": "research/pre-step6-problem-states/mid-level-consultant-report-2.problem-state.v1.json",
+  "attention_map_ref": "research/pre-step6-attention-maps/mid-level-consultant-report-2.step6-attention-map.v1.json",
+  "lens_candidates": [
+    {
+      "lens_id": "polya_problem_type_first",
+      "lens_name": "name the problem type before solving",
+      "why_it_might_matter": "The case is not a fact investigation or persuasion problem; it is a first-move safety and legal-option-preservation problem.",
+      "source_hooks": [
+        "PRD Polya prompt: what kind of problem is this.",
+        "Attention map counsel-first pressure."
+      ],
+      "supported_by_artifact_ids": [
+        "consultant_counsel_first_active"
+      ],
+      "cheap_test_for_step6": "Check whether the answer avoids investigating or choosing a reporting channel before counsel.",
+      "risk_if_forced": "The answer may become too abstract about problem type.",
+      "risk_if_ignored": "The answer may accidentally help the user solve the wrong problem by investigating the report.",
+      "suggested_attention": "scan",
+      "false_friend_warning": "Do not turn this into a generic ethics framework."
+    },
+    {
+      "lens_id": "polya_known_unknown_boundary",
+      "lens_name": "separate knowns and unknowns",
+      "why_it_might_matter": "The user knows what they saw, but not the safest channel, legal posture, or employer reaction.",
+      "source_hooks": [
+        "PRD Polya prompt: what is known and unknown.",
+        "Attention map channel-choice boundary."
+      ],
+      "supported_by_artifact_ids": [
+        "consultant_channel_choice_boundary"
+      ],
+      "cheap_test_for_step6": "Check whether the answer keeps the facts record separate from legal-channel decisions.",
+      "risk_if_forced": "The answer may over-explain uncertainty.",
+      "risk_if_ignored": "The answer may let urgency masquerade as enough information for a channel choice.",
+      "suggested_attention": "scan",
+      "false_friend_warning": "Do not ask for more facts before telling the user the safe first move."
+    },
+    {
+      "lens_id": "polya_next_move_not_full_solution",
+      "lens_name": "next move, not full solution",
+      "why_it_might_matter": "The immediate task is to preserve options tonight and behave safely Wednesday, not resolve the whole misconduct pathway.",
+      "source_hooks": [
+        "PRD Polya prompt: what move would help thinking progress.",
+        "Attention map Wednesday protocol."
+      ],
+      "supported_by_artifact_ids": [
+        "consultant_wednesday_protocol"
+      ],
+      "cheap_test_for_step6": "Check whether the answer limits itself to counsel, notes, spouse, and Wednesday behavior.",
+      "risk_if_forced": "The answer may underplay downstream seriousness.",
+      "risk_if_ignored": "The answer may produce too much procedural path planning too early.",
+      "suggested_attention": "active",
+      "false_friend_warning": "Do not let next-move focus erase seriousness."
+    }
+  ],
+  "off_narrative_preservation": {
+    "lens_id": "polya_later_channel_tree",
+    "why_preserve_even_if_not_obvious": "A channel decision tree may matter later, but it should not be chosen by the user before counsel.",
+    "preserve_as": "parked",
+    "reactivate_if": "Reactivate only after counsel has reviewed facts and legal exposure.",
+    "risk_if_forced": "The answer may become unsafe channel guidance."
+  },
+  "do_not_force": [
+    "Do not expose Polya labels in the public answer.",
+    "Do not replace counsel-first safety with a problem-solving framework.",
+    "Do not make the user investigate facts before counsel."
+  ],
+  "notes": "Polya v0 probe for the consultant negative-control case. It should mostly confirm why rendered hybrid already wins."
+}

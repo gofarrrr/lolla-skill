@@ -1,0 +1,87 @@
+{
+  "schema_version": "pre_step6_calibration_step6_sample.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_calibration_corpus_v0",
+  "case_id": "bridge-high-clutter-sensitive-overlay",
+  "base_case_id": "bridge-high-clutter-sensitive-overlay",
+  "sample_index": 0,
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"answer_core\": \"Have a direct, calm conversation with her. Acknowledge that the earlier discussion may have created expectations, but don’t concede any equity commitment. Say you want to review written notes, emails, and your board‑approved terms before making any determination. Set a short follow‑up window so she knows the process is real. If she has documents, review them quickly; if it’s based on memory alone, explain that you’ll still do a bounded review but can’t negotiate under pressure. Keep this separate from the financing process and avoid debating whose memory is correct in the first conversation.\",\n  \"private_visibility_ledger\": [\n    {\n      \"source_id\": \"anchor_visible_candidate\",\n      \"disposition\": \"combined\",\n      \"novelty_role\": \"visible_backbone\",\n      \"why\": \"The anchor provided the core interpersonal framing and the need to avoid memory disputes.\",\n      \"visible_effect\": \"The public answer keeps the calm conversation, expectation acknowledgment, and no-memory-argument guidance.\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"reframed_emphasis\": [\n          \"Slightly stronger emphasis on setting a short follow-up window.\"\n        ]\n      }\n    },\n    {\n      \"source_id\": \"deck_pressure_candidate\",\n      \"disposition\": \"combined\",\n      \"novelty_role\": \"confirming_support\",\n      \"why\": \"It reinforced the evidence-first review and separation from the financing process without adding new entities.\",\n      \"visible_effect\": \"Echoed the need for a bounded review and keeping investor communications clean.\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"reframed_emphasis\": [\n          \"Clearer note that no cap-table change exists until evidence and board process support it.\"\n        ]\n      }\n    }\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 656,
+    "completion_tokens": 447,
+    "total_tokens": 1103,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter",
+    "model_family": "openai"
+  },
+  "input_packet": {
+    "case_brief": "Founder must respond to an anxious early employee who claims an informal equity promise, while a financing deadline and team fragility make tone risky.",
+    "case_type_tags": [
+      "high_clutter",
+      "sensitive_safety_legal"
+    ],
+    "pre_registered_expectation": "known_false_standdown_bridge_should_survive_answer_delta",
+    "v60_mode": "not_applicable",
+    "v60_private_context": "",
+    "anchor_visible_candidate": "Talk to her directly and calmly. Acknowledge that the earlier conversation may have created expectations, explain that you need to check the facts before making any promise, and set a short follow-up. Keep the financing process separate and avoid arguing over memory in the first conversation.",
+    "deck_pressure_candidate": "Do two separate things, in this order. First, have a humane conversation that names the concern without conceding the equity claim: you will review written notes, emails, and board-approved terms before making any cap-table commitment. Second, protect the financing deadline by telling investors only what is true now: no new grant or correction exists until evidence and board process support it. If she has written evidence, inspect it quickly; if she only has a memory of an informal promise, offer a bounded review path rather than a negotiation under pressure."
+  },
+  "step6_output": {
+    "answer_core": "Have a direct, calm conversation with her. Acknowledge that the earlier discussion may have created expectations, but don’t concede any equity commitment. Say you want to review written notes, emails, and your board‑approved terms before making any determination. Set a short follow‑up window so she knows the process is real. If she has documents, review them quickly; if it’s based on memory alone, explain that you’ll still do a bounded review but can’t negotiate under pressure. Keep this separate from the financing process and avoid debating whose memory is correct in the first conversation.",
+    "private_visibility_ledger": [
+      {
+        "source_id": "anchor_visible_candidate",
+        "disposition": "combined",
+        "novelty_role": "visible_backbone",
+        "why": "The anchor provided the core interpersonal framing and the need to avoid memory disputes.",
+        "visible_effect": "The public answer keeps the calm conversation, expectation acknowledgment, and no-memory-argument guidance.",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [
+            "Slightly stronger emphasis on setting a short follow-up window."
+          ],
+          "removed_entities": [],
+          "reordered_sequences": []
+        }
+      },
+      {
+        "source_id": "deck_pressure_candidate",
+        "disposition": "combined",
+        "novelty_role": "confirming_support",
+        "why": "It reinforced the evidence-first review and separation from the financing process without adding new entities.",
+        "visible_effect": "Echoed the need for a bounded review and keeping investor communications clean.",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [
+            "Clearer note that no cap-table change exists until evidence and board process support it."
+          ],
+          "removed_entities": [],
+          "reordered_sequences": []
+        }
+      }
+    ]
+  },
+  "ledger_signal": "all_private_or_confirming",
+  "answer_delta_specificity": "not_applicable",
+  "deterministic_role": [
+    "validate_calibration_case",
+    "derive_ledger_signal",
+    "derive_answer_delta_specificity",
+    "preserve_repeated_sample_custody"
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live research-only Step 6 calibration sample."
+}

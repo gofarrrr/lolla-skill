@@ -1,0 +1,51 @@
+{
+  "schema_version": "pre_step6_decline_evaluation.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "third-year-phd-student",
+  "evaluation_mode": "off_by_default_static_decline_replay",
+  "decline_candidate_ref": "research/pre-step6-no-rendered-handoffs/third-year-phd-student.conflict.adversarial.no-rendered-handoff.v1.json",
+  "comparison_ref": "research/pre-step6-raw-artifact-comparisons/third-year-phd-student.raw-vs-control-comparison.v1.json",
+  "gates": {
+    "decline_candidate_loaded": true,
+    "simpler_comparison_recorded": true,
+    "rendered_candidate_required": false,
+    "source_overclaim_audit_required": false,
+    "runtime_wiring_allowed": false,
+    "product_promotion_allowed": false,
+    "generator_implementation_allowed": false
+  },
+  "outcome": {
+    "comparison_decision": "raw_wins",
+    "decline_evaluation_decision": "missed_decline",
+    "product_promotion": "blocked",
+    "generator_next_step": "blocked"
+  },
+  "naturalness_debt_avoided": {
+    "level": "none",
+    "evidence": "No-rendered would avoid medium rendered naturalness debt, but the recorded rendered replay won by preserving conflict and evidence-gate pressure."
+  },
+  "miss_checks": [
+    {
+      "check_id": "no_critical_pressure_lost",
+      "severity": "fail",
+      "evidence": "The rendered replay won aggregate because it preserved unresolved Silva-vs-fallback tension, evidence gates, and duplicate demotion."
+    },
+    {
+      "check_id": "control_sufficiency_survives",
+      "severity": "fail",
+      "evidence": "Raw beats control locally, but the semi-blind replay still preferred rendered for decision usefulness and conflict preservation."
+    },
+    {
+      "check_id": "receipt_stayed_small",
+      "severity": "pass",
+      "evidence": "The receipt stays to six short fields and does not outline public advice."
+    },
+    {
+      "check_id": "reactivation_condition_clear",
+      "severity": "pass",
+      "evidence": "The receipt names the exact pressures that would need to survive before decline could become plausible."
+    }
+  ],
+  "notes": "Adversarial calibration record. It proves the decline evaluator can mark no-rendered as missed when rendered-positive evidence already shows pressure loss."
+}

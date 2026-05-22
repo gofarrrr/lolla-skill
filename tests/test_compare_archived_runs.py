@@ -125,3 +125,78 @@ def test_compare_archived_runs_cli_emits_json(tmp_path: Path) -> None:
     payload = json.loads(completed.stdout)
     assert payload["eligibility"]["trustworthy"] is True
     assert payload["diffs"]["revised_answer"]["changed"] is True
+
+
+def test_compare_archived_runs_treats_unsafe_live_output_as_not_trustworthy(tmp_path: Path) -> None:
+    left = tmp_path / "left"
+    right = tmp_path / "right"
+    clean_health = {
+        "overall": "healthy",
+        "capture": "good",
+        "product_output_health": "clean",
+        "product_output_leak_count": 0,
+        "live_output_health": "clean",
+        "live_output_leak_count": 0,
+        "v60_consideration_ledger": "valid",
+        "issues": [],
+        "issue_details": [],
+    }
+    unsafe_live_health = {
+        "overall": "degraded",
+        "capture": "good",
+        "product_output_health": "clean",
+        "product_output_leak_count": 0,
+        "live_output_health": "unsafe",
+        "live_output_leak_count": 2,
+        "v60_consideration_ledger": "valid",
+        "issues": ["live_output_leak"],
+        "issue_details": [
+            {"code": "live_output_leak", "severity": "degraded", "axis": "live_output"}
+        ],
+    }
+    _write_run(left, revised="A", memo="# Memo\n\nA", run_health=clean_health)
+    _write_run(right, revised="B", memo="# Memo\n\nB", run_health=unsafe_live_health)
+
+    report = compare_archived_runs(left, right)
+
+    assert report["eligibility"]["trustworthy"] is False
+    assert any("live_output_health=unsafe" in reason for reason in report["eligibility"]["reasons"])
+    assert report["health"]["right"]["live_output_health"] == "unsafe"
+
+
+def test_compare_archived_runs_treats_not_checked_live_output_as_not_trustworthy(tmp_path: Path) -> None:
+    left = tmp_path / "left"
+    right = tmp_path / "right"
+    clean_health = {
+        "overall": "healthy",
+        "capture": "good",
+        "product_output_health": "clean",
+        "product_output_leak_count": 0,
+        "live_output_health": "clean",
+        "live_output_leak_count": 0,
+        "v60_consideration_ledger": "valid",
+        "issues": [],
+        "issue_details": [],
+    }
+    unchecked_live_health = {
+        "overall": "healthy",
+        "capture": "good",
+        "product_output_health": "clean",
+        "product_output_leak_count": 0,
+        "live_output_health": "not_checked",
+        "live_output_leak_count": 0,
+        "v60_consideration_ledger": "valid",
+        "issues": [],
+        "issue_details": [],
+    }
+    _write_run(left, revised="A", memo="# Memo\n\nA", run_health=clean_health)
+    _write_run(right, revised="B", memo="# Memo\n\nB", run_health=unchecked_live_health)
+
+    report = compare_archived_runs(left, right)
+
+    assert report["eligibility"]["trustworthy"] is False
+    assert any(
+        "live_output_health=not_checked" in reason
+        for reason in report["eligibility"]["reasons"]
+    )
+    assert report["health"]["right"]["live_output_health"] == "not_checked"

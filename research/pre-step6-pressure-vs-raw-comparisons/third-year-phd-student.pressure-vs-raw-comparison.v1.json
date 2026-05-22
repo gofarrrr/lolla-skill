@@ -1,0 +1,53 @@
+{
+  "schema_version": "pre_step6_pressure_vs_raw_comparison.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "third-year-phd-student",
+  "raw_answer_core_ref": "research/pre-step6-raw-artifact-answer-cores/third-year-phd-student.raw-answer-core.v1.json",
+  "pressure_answer_core_ref": "research/pre-step6-pressure-card-answer-cores/third-year-phd-student.native.pressure-answer-core.v1.json",
+  "criteria": [
+    {
+      "criterion_id": "political_sequence",
+      "question": "Does the answer preserve advisor-first sequencing and avoid going around the advisor?",
+      "winner": "tie",
+      "raw_evidence": "Raw says advisor first, Silva second, committee third and warns against a finished proposal.",
+      "pressure_evidence": "Pressure keeps advisor first, Silva as reality check, committee later, and warns against a finished proposal.",
+      "rationale": "Both preserve the political sequence."
+    },
+    {
+      "criterion_id": "fallback_executability",
+      "question": "Does the answer make fallback executability a real condition before a pivot?",
+      "winner": "pressure",
+      "raw_evidence": "Raw says option 1 must still have supervision, funding, and lab continuity when the trigger fires.",
+      "pressure_evidence": "Pressure adds advisor-backed, resourced, technically ready, identity-coherent, and stop-loss criteria.",
+      "rationale": "Pressure turns the fallback into a fuller operational gate."
+    },
+    {
+      "criterion_id": "silva_data_constraint",
+      "question": "Does the answer make Silva/data access a concrete constraint test?",
+      "winner": "tie",
+      "raw_evidence": "Raw asks for usable data, sharing terms, and collaborator depth.",
+      "pressure_evidence": "Pressure asks for dated evidence that data is usable, access is allowed, and collaboration is deep enough.",
+      "rationale": "The wordings differ, but both make Silva/data concrete rather than hopeful."
+    },
+    {
+      "criterion_id": "base_rate_humility",
+      "question": "Does the answer preserve caution around broad success-rate claims?",
+      "winner": "raw",
+      "raw_evidence": "Raw explicitly keeps broad success-rate talk qualitative without a real reference class.",
+      "pressure_evidence": "Pressure omits this caution.",
+      "rationale": "Raw preserves useful outside-view humility that the smaller card dropped."
+    },
+    {
+      "criterion_id": "public_usability",
+      "question": "Does the answer stay readable and actionable?",
+      "winner": "tie",
+      "raw_evidence": "Raw gives advisor/Silva/committee sequence and a clear finishing-a-PhD standard.",
+      "pressure_evidence": "Pressure gives two gates and dated checks without leaking private machinery.",
+      "rationale": "Both are usable public answer cores."
+    }
+  ],
+  "tie_break_rule": "pressure_tie_with_raw_stops",
+  "aggregate_decision": "tie_stop",
+  "notes": "Pressure recovered the main gates, but did not beat raw because raw preserved base-rate humility."
+}

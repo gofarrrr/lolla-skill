@@ -1,0 +1,91 @@
+{
+  "schema_version": "pre_step6_calibration_step6_sample.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_calibration_corpus_v0",
+  "case_id": "multi-offer-new-run2",
+  "base_case_id": "multi-offer-new-run2",
+  "sample_index": 1,
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"answer_core\": \"Given your constraints and the seven‑day clock, treat this as a sequencing problem rather than choosing among A, B, and C in a vacuum.\\n\\n1. Don’t stay. The plateau and lack of a path to staff aren’t going to resolve, and staying is effectively choosing continued stagnation.\\n\\n2. Run the spouse conversation immediately. Option B is only viable with explicit joint buy‑in since it changes income, schedule, and risk exposure. Use that conversation to establish boundaries (expected hours, weekend protection, financial guardrails) and confirm whether this level of volatility is acceptable right now.\\n\\n3. In parallel, perform fast due diligence on Option B: runway, burn, funding cadence, CEO track record, hiring plan, equity structure, dilution model, and what “founding engineer” concretely means. Also ask for a deadline extension if needed.\\n\\n4. If both spouse‑alignment and due‑diligence pass, pursue Option B. It resolves your desire to build, offers meaningful ownership, and avoids another two years of delay.\\n\\n5. If either fails, take Option A as a two‑year bridge. It gives you stability, modest comp lift, and space to rethink your long‑term direction without the structural ceiling of your current job.\\n\\nThis sequence gets you to a decision within the deadline while aligning family constraints, resolving the plateau, and avoiding premature commitment to a startup without validation.\",\n  \"private_visibility_ledger\": [\n    {\n      \"source_id\": \"anchor_visible_candidate\",\n      \"disposition\": \"combined\",\n      \"novelty_role\": \"visible_backbone\",\n      \"why\": \"The anchor’s core recommendation—avoid staying, choose B if spousal alignment holds, otherwise A—forms the main guidance.\",\n      \"visible_effect\": \"The final answer adopts that structure directly.\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": []\n      }\n    },\n    {\n      \"source_id\": \"deck_pressure_candidate\",\n      \"disposition\": \"combined\",\n      \"novelty_role\": \"additive_pressure\",\n      \"why\": \"The deck pressure emphasizes sequencing and deadline‑management, which improves the clarity of the steps needed within seven days.\",\n      \"visible_effect\": \"Added explicit sequencing (spouse conversation first, due diligence parallel, extension requests) rather than only comparative evaluation.\",\n      \"answer_delta\": {\n        \"added_entities\": [\n          \"deadline extension ask\",\n          \"parallel due diligence steps\"\n        ],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [\n          \"spouse alignment placed before Option B commitment\",\n          \"due diligence placed in parallel with alignment conversation\"\n        ],\n        \"reframed_emphasis\": [\n          \"shifted to framing the decision as a sequence rather than a pure comparison\"\n        ]\n      }\n    }\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 848,
+    "completion_tokens": 604,
+    "total_tokens": 1452,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter",
+    "model_family": "openai"
+  },
+  "input_packet": {
+    "case_brief": "Senior SWE with 12 years FAANG experience deciding among three job offers (FAANG staff+, Series B founding engineer, stay) within 7 days amid family and career plateau constraints.\n\nConstraints stated during conversation:\n- [ACTIVE] No clear path to staff at current company (explicit feedback, structural)\n- [ACTIVE] 7-day decision deadline\n- [ACTIVE] 80% base salary cut for Option B, 0.8% equity\n- [ACTIVE] Family: wife physician (primary earner), two kids (7,4)\n- [ACTIVE] Financially survivable for Option B (mortgage fine, modest cuts)\n\nOriginal framing: User presents three job options (A: FAANG staff+ 15% comp bump; B: Series B founding eng 80% base cut +0.8% equity; C: stay) with 7-day deadline, current FAANG plateau, family (wife, two kids); assumes equal weighting, seeks help picking.\n\nDropped threads (raised but unresolved):\n- Explicit performance reviews 'meets expectations' on leadership (raised by user, status: acknowledged_then_dropped) → superseded by: shifted to structural path issue and career distraction",
+    "case_type_tags": [
+      "high_clutter",
+      "sequencing_or_problem_shape"
+    ],
+    "pre_registered_expectation": "prior_revised_answer_may_add_sequence_and_family_constraints",
+    "v60_mode": "not_applicable",
+    "v60_private_context": "",
+    "anchor_visible_candidate": "SYNTHESIZED POSITION:\nDon't stay (C) as distraction persists and plateau declines; pursue B if wife conversation confirms joint buy-in (after negotiating boundaries, due diligence on startup/equity/runway/CEO), else take A as 2-year bridge aware it's a delay not solution to wanting to build something own.",
+    "deck_pressure_candidate": "Sequence the decision instead of choosing from the three labels. Ask all three companies for a deadline extension, run the wife conversation before committing to startup risk, negotiate a six-month ramp and remote/hybrid terms for the Series B option, and treat staying as an active plateau choice rather than a safe default."
+  },
+  "step6_output": {
+    "answer_core": "Given your constraints and the seven‑day clock, treat this as a sequencing problem rather than choosing among A, B, and C in a vacuum.\n\n1. Don’t stay. The plateau and lack of a path to staff aren’t going to resolve, and staying is effectively choosing continued stagnation.\n\n2. Run the spouse conversation immediately. Option B is only viable with explicit joint buy‑in since it changes income, schedule, and risk exposure. Use that conversation to establish boundaries (expected hours, weekend protection, financial guardrails) and confirm whether this level of volatility is acceptable right now.\n\n3. In parallel, perform fast due diligence on Option B: runway, burn, funding cadence, CEO track record, hiring plan, equity structure, dilution model, and what “founding engineer” concretely means. Also ask for a deadline extension if needed.\n\n4. If both spouse‑alignment and due‑diligence pass, pursue Option B. It resolves your desire to build, offers meaningful ownership, and avoids another two years of delay.\n\n5. If either fails, take Option A as a two‑year bridge. It gives you stability, modest comp lift, and space to rethink your long‑term direction without the structural ceiling of your current job.\n\nThis sequence gets you to a decision within the deadline while aligning family constraints, resolving the plateau, and avoiding premature commitment to a startup without validation.",
+    "private_visibility_ledger": [
+      {
+        "source_id": "anchor_visible_candidate",
+        "disposition": "combined",
+        "novelty_role": "visible_backbone",
+        "why": "The anchor’s core recommendation—avoid staying, choose B if spousal alignment holds, otherwise A—forms the main guidance.",
+        "visible_effect": "The final answer adopts that structure directly.",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [],
+          "removed_entities": [],
+          "reordered_sequences": []
+        }
+      },
+      {
+        "source_id": "deck_pressure_candidate",
+        "disposition": "combined",
+        "novelty_role": "additive_pressure",
+        "why": "The deck pressure emphasizes sequencing and deadline‑management, which improves the clarity of the steps needed within seven days.",
+        "visible_effect": "Added explicit sequencing (spouse conversation first, due diligence parallel, extension requests) rather than only comparative evaluation.",
+        "answer_delta": {
+          "added_entities": [
+            "deadline extension ask",
+            "parallel due diligence steps"
+          ],
+          "reframed_emphasis": [
+            "shifted to framing the decision as a sequence rather than a pure comparison"
+          ],
+          "removed_entities": [],
+          "reordered_sequences": [
+            "spouse alignment placed before Option B commitment",
+            "due diligence placed in parallel with alignment conversation"
+          ]
+        }
+      }
+    ]
+  },
+  "ledger_signal": "additive_pressure_present",
+  "answer_delta_specificity": "concrete_delta_present",
+  "deterministic_role": [
+    "validate_calibration_case",
+    "derive_ledger_signal",
+    "derive_answer_delta_specificity",
+    "preserve_repeated_sample_custody"
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live research-only Step 6 calibration sample."
+}

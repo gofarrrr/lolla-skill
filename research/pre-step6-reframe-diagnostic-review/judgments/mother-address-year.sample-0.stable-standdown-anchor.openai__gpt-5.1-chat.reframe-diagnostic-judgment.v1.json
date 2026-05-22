@@ -1,0 +1,51 @@
+{
+  "schema_version": "pre_step6_reframe_diagnostic_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "calibration_reframe_diagnostic_review_v0",
+  "diagnostic_case_id": "mother-address-year.sample-0.stable-standdown-anchor",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"diagnostic_label\": \"step6_non_inferior\",\n  \"winner_label\": \"tie\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Both answers provide the same concrete decision‑relevant guidance, with no meaningful differences in usefulness or actionability.\",\n  \"reframe_value_if_any\": [],\n  \"anchor_strengths\": [\n    \"Clear tripwires\",\n    \"Emphasis on reversible steps\",\n    \"Guarding against overinterpreting silence\"\n  ],\n  \"payload_loss_or_bloat\": []\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 902,
+    "completion_tokens": 142,
+    "total_tokens": 1044,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "model_family": "openai"
+  },
+  "blind_map": {
+    "A": "step6_visible",
+    "B": "anchor_visible"
+  },
+  "reviewer_output": {
+    "diagnostic_label": "step6_non_inferior",
+    "winner_label": "tie",
+    "confidence": "high",
+    "rationale": "Both answers provide the same concrete decision‑relevant guidance, with no meaningful differences in usefulness or actionability.",
+    "reframe_value_if_any": [
+      "none"
+    ],
+    "anchor_strengths": [
+      "Clear tripwires",
+      "Emphasis on reversible steps",
+      "Guarding against overinterpreting silence"
+    ],
+    "payload_loss_or_bloat": [
+      "none"
+    ]
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample reframe diagnostic judgment."
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": "pre_step6_calibration_step6_sample.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_calibration_corpus_v0",
+  "case_id": "fp-polya-true-but-useless",
+  "base_case_id": "fp-polya-true-but-useless",
+  "sample_index": 1,
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "moonshotai/kimi-k2.6",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": " {\n  \"answer_core\": \"On Wednesday, send counsel the two paragraphs and ask one narrow question: \\\"Does this create a legal or client-confidentiality issue if I include it in the report?\\\" Do not broaden the debate until counsel answers that question.\",\n  \"private_visibility_ledger\": [\n    {\n      \"source_id\": \"anchor_visible_candidate\",\n      \"disposition\": \"used\",\n      \"novelty_role\": \"visible_backbone\",\n      \"why\": \"The anchor already encodes a concrete, time-bound protocol with a specific actor (counsel), a discrete deliverable (the two paragraphs), a narrowly scoped question, and a hard stop condition. It satisfies the user's need without any abstraction gap. Because this is a negative-control case where the user already has a clean Wednesday protocol, the pre-registered expectation is that visible output should center on this actionable sequence rather than be displaced by generic meta-reasoning.\",\n      \"visible_effect\": \"The public answer is built entirely around this protocol.\",\n      \"answer_delta\": {\n        \"added_entities\": [\n          \"Wednesday\",\n          \"counsel\",\n          \"two paragraphs\",\n          \"legal or client-confidentiality issue\",\n          \"report\",\n          \"do not broaden the debate until counsel answers\"\n        ],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"structural_delta\": [\n          \"Hard stop condition: do not broaden the debate until counsel answers the narrow question.\",\n          \"Commitment boundary: wait for counsel's answer before reconsidering report wording.\"\n        ],\n        \"reframed_emphasis\": []\n      }\n    },\n    {\n      \"source_id\": \"deck_pressure_candidate\",\n      \"disposition\": \"rejected\",\n      \"novelty_role\": \"private_guardrail\",\n      \"why\": \"The deck pressure offers generic problem-shape framing (clarify problem type, separate known/unknown/controllable, identify invariant constraints) that has no concrete delta over the existing anchor. In a negative-control case, inserting this visibly would risk replacing a specific, sequenced instruction with abstract meta-steps, exactly the failure mode the calibration targets. The pre-registered expectation that deck pressure should stand down unless a concrete delta exists is satisfied by rejecting this candidate from the public answer. It was considered only as a private guardrail to confirm that no structural gap in the anchor required supplementation.\",\n      \"visible_effect\": \"none\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"structural_delta\": [],\n        \"reframed_emphasis\": []\n      }\n    }\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 626,
+    "completion_tokens": 2638,
+    "total_tokens": 3264,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 2639,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter",
+    "model_family": "moonshotai"
+  },
+  "input_packet": {
+    "case_brief": "User already has a clean Wednesday protocol for asking counsel about a report boundary. The risk is replacing it with generic problem-shape advice.",
+    "case_type_tags": [
+      "sequencing_or_problem_shape",
+      "negative_control"
+    ],
+    "pre_registered_expectation": "deck_pressure_should_stand_down_unless_concrete_delta_exists",
+    "v60_mode": "not_applicable",
+    "v60_private_context": "",
+    "anchor_visible_candidate": "On Wednesday, send counsel the two paragraphs and ask one narrow question: 'Does this create a legal or client-confidentiality issue if I include it in the report?' Do not broaden the debate until counsel answers that question.",
+    "deck_pressure_candidate": "First clarify the problem type. Separate what is known, unknown, and controllable; identify the invariant constraint; then choose the next informative move that reduces uncertainty before committing to the report wording."
+  },
+  "step6_output": {
+    "answer_core": "On Wednesday, send counsel the two paragraphs and ask one narrow question: \"Does this create a legal or client-confidentiality issue if I include it in the report?\" Do not broaden the debate until counsel answers that question.",
+    "private_visibility_ledger": [
+      {
+        "source_id": "anchor_visible_candidate",
+        "disposition": "used",
+        "novelty_role": "visible_backbone",
+        "why": "The anchor already encodes a concrete, time-bound protocol with a specific actor (counsel), a discrete deliverable (the two paragraphs), a narrowly scoped question, and a hard stop condition. It satisfies the user's need without any abstraction gap. Because this is a negative-control case where the user already has a clean Wednesday protocol, the pre-registered expectation is that visible output should center on this actionable sequence rather than be displaced by generic meta-reasoning.",
+        "visible_effect": "The public answer is built entirely around this protocol.",
+        "answer_delta": {
+          "added_entities": [
+            "Wednesday",
+            "counsel",
+            "two paragraphs",
+            "legal or client-confidentiality issue",
+            "report",
+            "do not broaden the debate until counsel answers"
+          ],
+          "reframed_emphasis": [],
+          "removed_entities": [],
+          "reordered_sequences": [],
+          "structural_delta": [
+            "Hard stop condition: do not broaden the debate until counsel answers the narrow question.",
+            "Commitment boundary: wait for counsel's answer before reconsidering report wording."
+          ]
+        }
+      },
+      {
+        "source_id": "deck_pressure_candidate",
+        "disposition": "rejected",
+        "novelty_role": "private_guardrail",
+        "why": "The deck pressure offers generic problem-shape framing (clarify problem type, separate known/unknown/controllable, identify invariant constraints) that has no concrete delta over the existing anchor. In a negative-control case, inserting this visibly would risk replacing a specific, sequenced instruction with abstract meta-steps, exactly the failure mode the calibration targets. The pre-registered expectation that deck pressure should stand down unless a concrete delta exists is satisfied by rejecting this candidate from the public answer. It was considered only as a private guardrail to confirm that no structural gap in the anchor required supplementation.",
+        "visible_effect": "none",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [],
+          "removed_entities": [],
+          "reordered_sequences": [],
+          "structural_delta": []
+        }
+      }
+    ]
+  },
+  "ledger_signal": "all_private_or_confirming",
+  "answer_delta_specificity": "not_applicable",
+  "deterministic_role": [
+    "validate_calibration_case",
+    "derive_ledger_signal",
+    "derive_answer_delta_specificity",
+    "preserve_repeated_sample_custody"
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live research-only Step 6 calibration sample."
+}

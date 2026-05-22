@@ -1,0 +1,87 @@
+{
+  "schema_version": "pre_step6_calibration_step6_sample.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_calibration_corpus_v0",
+  "case_id": "startup-pivot-new-run2",
+  "base_case_id": "startup-pivot-new-run2",
+  "sample_index": 1,
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"answer_core\": \"Run a pre-buy test this week with the three interested customers: name the product, scope, and a specific price for a 3‑month prepay. Write down the pass bar before talking to them (for example: at least 2 of 3 commit in writing within 14 days). If you hit the pass bar, pivot; if not, return fully to the current product for the remainder of your runway. Before running the test, tell your two employees that you are entering a decision window that may lead to a pivot and possible role changes; keep communication factual, not alarming. If the pivot triggers, plan the current product transition immediately: freeze new features, maintain reliability, and give existing customers a clear timeline for sunset or migration. If the pivot does not trigger, recommit to the current product with a specific growth thesis. Inform your former co-founder as a courtesy after you decide; do not treat the courtesy as shared decision rights.\",\n  \"private_visibility_ledger\": [\n    {\n      \"source_id\": \"anchor_visible_candidate\",\n      \"disposition\": \"combined\",\n      \"novelty_role\": \"visible_backbone\",\n      \"why\": \"Anchor already contained the concrete test design, decision window, sequencing, and personnel steps needed.\",\n      \"visible_effect\": \"Structured the answer around a dated pre-buy test, pass bar, pivot decision, and comms sequence.\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [\n          \"Placed employee communication before running the test\",\n          \"Clarified decision after 14‑day window\"\n        ],\n        \"reframed_emphasis\": [\n          \"Kept decision rights cleanly separate from courtesy to former co-founder\"\n        ]\n      }\n    },\n    {\n      \"source_id\": \"deck_pressure_candidate\",\n      \"disposition\": \"combined\",\n      \"novelty_role\": \"confirming_support\",\n      \"why\": \"Reinforced the need for a defined pass/fail bar and proper framing of co-founder courtesy.\",\n      \"visible_effect\": \"none\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"reframed_emphasis\": []\n      }\n    }\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 785,
+    "completion_tokens": 513,
+    "total_tokens": 1298,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter",
+    "model_family": "openai"
+  },
+  "input_packet": {
+    "case_brief": "Solo founder deciding whether to pivot B2B SaaS product from current offering to new workflow tool amid flat growth, $4K MRR, 14 months runway, and 22 customers.\n\nConstraints stated during conversation:\n- [ACTIVE] Runway 14 months at current burn\n- [ACTIVE] 22 paying customers on current product\n- [ACTIVE] Two full-time employees (engineer, CS)\n- [ACTIVE] Conversational signal from three customers, no commitments\n- [ACTIVE] Former co-founder holds 15% equity, passive\n\nOriginal framing: Founder assumes pivot signal from three customers is valid; weighs pivoting now with 14 months runway vs pushing current flat product; excludes other options beyond these two.",
+    "case_type_tags": [
+      "high_clutter"
+    ],
+    "pre_registered_expectation": "prior_revised_answer_may_add_concrete_test_design",
+    "v60_mode": "not_applicable",
+    "v60_private_context": "",
+    "anchor_visible_candidate": "SYNTHESIZED POSITION:\nRun pre-buy test this week with the three customers at specific price ($X, 3 months prepay); define pass bar upfront (e.g., 2/3 commit); set decision in 14 days; if pass, pivot with transition plan for current customers (freeze/sunset/migrate), inform/talk to CS employee about uncertainty then likely layoff with severance, inform former co-founder without seeking input; have hard conversations first as they unlock the decision.",
+    "deck_pressure_candidate": "Before pivoting, convert the three customer signals into a pre-buy test with a named price, three-month prepay, and a written pass/fail bar. Keep fairness to the passive co-founder separate from decision rights: tell her the plan, but do not treat courtesy as veto power. Check competitive dynamics and migration cost before declaring the new workflow the company."
+  },
+  "step6_output": {
+    "answer_core": "Run a pre-buy test this week with the three interested customers: name the product, scope, and a specific price for a 3‑month prepay. Write down the pass bar before talking to them (for example: at least 2 of 3 commit in writing within 14 days). If you hit the pass bar, pivot; if not, return fully to the current product for the remainder of your runway. Before running the test, tell your two employees that you are entering a decision window that may lead to a pivot and possible role changes; keep communication factual, not alarming. If the pivot triggers, plan the current product transition immediately: freeze new features, maintain reliability, and give existing customers a clear timeline for sunset or migration. If the pivot does not trigger, recommit to the current product with a specific growth thesis. Inform your former co-founder as a courtesy after you decide; do not treat the courtesy as shared decision rights.",
+    "private_visibility_ledger": [
+      {
+        "source_id": "anchor_visible_candidate",
+        "disposition": "combined",
+        "novelty_role": "visible_backbone",
+        "why": "Anchor already contained the concrete test design, decision window, sequencing, and personnel steps needed.",
+        "visible_effect": "Structured the answer around a dated pre-buy test, pass bar, pivot decision, and comms sequence.",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [
+            "Kept decision rights cleanly separate from courtesy to former co-founder"
+          ],
+          "removed_entities": [],
+          "reordered_sequences": [
+            "Placed employee communication before running the test",
+            "Clarified decision after 14‑day window"
+          ]
+        }
+      },
+      {
+        "source_id": "deck_pressure_candidate",
+        "disposition": "combined",
+        "novelty_role": "confirming_support",
+        "why": "Reinforced the need for a defined pass/fail bar and proper framing of co-founder courtesy.",
+        "visible_effect": "none",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [],
+          "removed_entities": [],
+          "reordered_sequences": []
+        }
+      }
+    ]
+  },
+  "ledger_signal": "all_private_or_confirming",
+  "answer_delta_specificity": "not_applicable",
+  "deterministic_role": [
+    "validate_calibration_case",
+    "derive_ledger_signal",
+    "derive_answer_delta_specificity",
+    "preserve_repeated_sample_custody"
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live research-only Step 6 calibration sample."
+}

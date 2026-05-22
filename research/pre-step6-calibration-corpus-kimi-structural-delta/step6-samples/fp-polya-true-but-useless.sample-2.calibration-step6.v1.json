@@ -1,0 +1,85 @@
+{
+  "schema_version": "pre_step6_calibration_step6_sample.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_calibration_corpus_v0",
+  "case_id": "fp-polya-true-but-useless",
+  "base_case_id": "fp-polya-true-but-useless",
+  "sample_index": 2,
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "moonshotai/kimi-k2.6",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": " {\n  \"answer_core\": \"On Wednesday, send counsel the two paragraphs and ask one narrow question: 'Does this create a legal or client-confidentiality issue if I include it in the report?' Do not broaden the debate until counsel answers that question.\",\n  \"private_visibility_ledger\": [\n    {\n      \"source_id\": \"anchor_visible_candidate\",\n      \"disposition\": \"used\",\n      \"novelty_role\": \"visible_backbone\",\n      \"why\": \"The anchor already supplies a concrete, sequenced protocol with a named actor (counsel), specific payload (the two paragraphs), a narrow test question, a timing trigger (Wednesday), and a hard stop/unlock condition (do not broaden until counsel answers). It is operationally complete and should not be displaced by generic scaffolding.\",\n      \"visible_effect\": \"The public answer is the anchor protocol, preserved with its specific entities, actor sequence, date window, and commitment boundary intact.\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"structural_delta\": [],\n        \"reframed_emphasis\": []\n      }\n    },\n    {\n      \"source_id\": \"deck_pressure_candidate\",\n      \"disposition\": \"private_guardrail\",\n      \"novelty_role\": \"private_guardrail\",\n      \"why\": \"The deck pressure offers generic problem-shape framing (separating known/unknown/controllable, identifying invariant constraints) that would replace the specific Wednesday protocol without adding a concrete operational delta. Per the pre-registered expectation, deck pressure stands down when no concrete delta exists; the user already has an informative next move that reduces uncertainty.\",\n      \"visible_effect\": \"none\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"structural_delta\": [],\n        \"reframed_emphasis\": []\n      }\n    }\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 626,
+    "completion_tokens": 2199,
+    "total_tokens": 2825,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 2321,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter",
+    "model_family": "moonshotai"
+  },
+  "input_packet": {
+    "case_brief": "User already has a clean Wednesday protocol for asking counsel about a report boundary. The risk is replacing it with generic problem-shape advice.",
+    "case_type_tags": [
+      "sequencing_or_problem_shape",
+      "negative_control"
+    ],
+    "pre_registered_expectation": "deck_pressure_should_stand_down_unless_concrete_delta_exists",
+    "v60_mode": "not_applicable",
+    "v60_private_context": "",
+    "anchor_visible_candidate": "On Wednesday, send counsel the two paragraphs and ask one narrow question: 'Does this create a legal or client-confidentiality issue if I include it in the report?' Do not broaden the debate until counsel answers that question.",
+    "deck_pressure_candidate": "First clarify the problem type. Separate what is known, unknown, and controllable; identify the invariant constraint; then choose the next informative move that reduces uncertainty before committing to the report wording."
+  },
+  "step6_output": {
+    "answer_core": "On Wednesday, send counsel the two paragraphs and ask one narrow question: 'Does this create a legal or client-confidentiality issue if I include it in the report?' Do not broaden the debate until counsel answers that question.",
+    "private_visibility_ledger": [
+      {
+        "source_id": "anchor_visible_candidate",
+        "disposition": "used",
+        "novelty_role": "visible_backbone",
+        "why": "The anchor already supplies a concrete, sequenced protocol with a named actor (counsel), specific payload (the two paragraphs), a narrow test question, a timing trigger (Wednesday), and a hard stop/unlock condition (do not broaden until counsel answers). It is operationally complete and should not be displaced by generic scaffolding.",
+        "visible_effect": "The public answer is the anchor protocol, preserved with its specific entities, actor sequence, date window, and commitment boundary intact.",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [],
+          "removed_entities": [],
+          "reordered_sequences": [],
+          "structural_delta": []
+        }
+      },
+      {
+        "source_id": "deck_pressure_candidate",
+        "disposition": "private_guardrail",
+        "novelty_role": "private_guardrail",
+        "why": "The deck pressure offers generic problem-shape framing (separating known/unknown/controllable, identifying invariant constraints) that would replace the specific Wednesday protocol without adding a concrete operational delta. Per the pre-registered expectation, deck pressure stands down when no concrete delta exists; the user already has an informative next move that reduces uncertainty.",
+        "visible_effect": "none",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [],
+          "removed_entities": [],
+          "reordered_sequences": [],
+          "structural_delta": []
+        }
+      }
+    ]
+  },
+  "ledger_signal": "all_private_or_confirming",
+  "answer_delta_specificity": "not_applicable",
+  "deterministic_role": [
+    "validate_calibration_case",
+    "derive_ledger_signal",
+    "derive_answer_delta_specificity",
+    "preserve_repeated_sample_custody"
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live research-only Step 6 calibration sample."
+}

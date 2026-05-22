@@ -1,0 +1,138 @@
+{
+  "schema_version": "pre_step6_raw_artifact_handoff.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "founder-grant-marcus-equity",
+  "source_artifacts": [
+    "research/pre-step6-comparison-fixtures/founder-grant-marcus-equity-20260428T064421Z.md",
+    "data/treatment_audits/founder-grant-marcus-equity__20260428T064421Z.v1.json",
+    "data/treatment_audits/calibration_report_pr6.md"
+  ],
+  "source_excerpts": [
+    {
+      "excerpt_id": "case-context",
+      "text": "Founder is deciding whether to grant Marcus 15% equity, CTO title, and board seat; Marcus drives major technical capability and may pull Jake and Lina."
+    },
+    {
+      "excerpt_id": "valuation-context",
+      "text": "Company has about $14M revenue and $2.2M EBITDA; exit math assumes a $9-13M valuation from a 4-6x EBITDA range."
+    },
+    {
+      "excerpt_id": "pressure-check",
+      "text": "Pressure check already covers practical spinout leverage, unaudited valuation, intermediate instruments, and the I-built-this frame."
+    },
+    {
+      "excerpt_id": "audit-gaps",
+      "text": "Audit marks valuation and middle-instrument pressure as duplicate, while systems feedback loops and measurable leverage design remain net-new gaps."
+    }
+  ],
+  "artifacts": [
+    {
+      "schema_version": "reasoning_artifact.v1",
+      "artifact_id": "founder_duplicate_valuation_base_rate_gate",
+      "worker_type": "duplicate/priority",
+      "why_provided": "The audit flags unaudited exit valuation, but pressure check already covers this point.",
+      "source_grounding": "The 4-6x EBITDA multiple is not agency-specific; audit marks this as duplicate pressure.",
+      "contribution": "Keep valuation uncertainty as support, not a second primary pressure.",
+      "hard_boundary": "Do not let $9-13M exit math carry the equity recommendation until buyer assumptions are tested.",
+      "relaxation_condition": "A buyer/reference-class analysis supports the multiple after concentration and dependency risks.",
+      "discard_condition": "Discard as visible pressure if the answer already says upside and downside math are unaudited.",
+      "relation_to_answer": "quiet duplicate valuation guard",
+      "source_excerpt_ids": [
+        "valuation-context",
+        "pressure-check",
+        "audit-gaps"
+      ],
+      "priority_hint": "quiet",
+      "risk_if_forced": "The answer repeats covered valuation caveats without changing action.",
+      "risk_if_ignored": "Untested exit math may steer the equity comparison."
+    },
+    {
+      "schema_version": "reasoning_artifact.v1",
+      "artifact_id": "founder_duplicate_middle_instruments",
+      "worker_type": "duplicate/priority",
+      "why_provided": "The audit flags option expansion, but pressure check already names intermediate equity and incentive instruments.",
+      "source_grounding": "Pressure check already lists phantom equity, revenue share, smaller grant, milestones, and platform-sub equity.",
+      "contribution": "Demote option-expansion pressure unless the answer lacks concrete middle instruments.",
+      "hard_boundary": "Do not collapse the choice to retention bonus vs 15% equity plus board seat.",
+      "relaxation_condition": "Marcus refuses all intermediate instruments after a real negotiation, making the binary more factual.",
+      "discard_condition": "Discard if the answer already keeps multiple intermediate instruments live for Friday.",
+      "relation_to_answer": "quiet duplicate option guard",
+      "source_excerpt_ids": [
+        "pressure-check",
+        "audit-gaps"
+      ],
+      "priority_hint": "quiet",
+      "risk_if_forced": "The answer becomes an instrument catalog rather than a decision frame.",
+      "risk_if_ignored": "The answer may overcommit before testing cheaper partnership signals."
+    },
+    {
+      "schema_version": "reasoning_artifact.v1",
+      "artifact_id": "founder_systems_feedback_loop_map",
+      "worker_type": "boundary/evidence-gate",
+      "why_provided": "The audit finds a net-new gap: the answer lacks a dynamic map of actors and feedback loops.",
+      "source_grounding": "Marcus controls technical capability; Jake/Lina may follow; platform progress, retention, governance, and client confidence interact.",
+      "contribution": "Treat the equity request as a dependency-system problem, not only a terms negotiation.",
+      "hard_boundary": "Do not recommend terms without mapping effects on retention, delivery, founder control, and platform value.",
+      "relaxation_condition": "Founder has retention data, platform milestones, and governance separating agency risk from platform upside.",
+      "discard_condition": "Discard only if the answer is limited to a first conversation and recommends no terms.",
+      "relation_to_answer": "primary systems pressure",
+      "source_excerpt_ids": [
+        "case-context",
+        "audit-gaps"
+      ],
+      "priority_hint": "high",
+      "risk_if_forced": "The answer may turn into abstract systems language instead of practical Friday prep.",
+      "risk_if_ignored": "The founder may optimize one term while worsening the dependency loop."
+    },
+    {
+      "schema_version": "reasoning_artifact.v1",
+      "artifact_id": "founder_metric_leverage_chain",
+      "worker_type": "boundary/evidence-gate",
+      "why_provided": "The audit finds no goal-process-measure-lever chain for the equity/platform decision.",
+      "source_grounding": "Current answer recommends a 90-day sprint but lacks learning goals, commitment boundary, and retention/platform measures.",
+      "contribution": "Convert the sprint and retention plan into explicit measures before sizing equity.",
+      "hard_boundary": "Do not size permanent equity from vague platform promise or vague retention fear.",
+      "relaxation_condition": "Founder names sprint, retention, and knowledge-transfer milestones plus what each unlocks.",
+      "discard_condition": "Discard if the answer avoids sizing equity and only recommends a discovery conversation.",
+      "relation_to_answer": "primary measurement pressure",
+      "source_excerpt_ids": [
+        "case-context",
+        "audit-gaps"
+      ],
+      "priority_hint": "high",
+      "risk_if_forced": "The answer may over-mechanize a relationship conversation.",
+      "risk_if_ignored": "The 90-day sprint may become theater while commitment still happens on vibes."
+    },
+    {
+      "schema_version": "reasoning_artifact.v1",
+      "artifact_id": "founder_misfit_architecture_note",
+      "worker_type": "duplicate/priority",
+      "why_provided": "The audit marks one systems-thinking affordance not applicable because this is not a software architecture rewrite case.",
+      "source_grounding": "The output concerns equity governance and platform validation, not architecture redesign.",
+      "contribution": "Prevent systems pressure from overreaching into code architecture diagnosis.",
+      "hard_boundary": "Keep systems pressure at the business-dependency level.",
+      "relaxation_condition": "New facts show platform failures caused by technical architecture, not governance or retention.",
+      "discard_condition": "Discard after confirming the answer does not diagnose software architecture.",
+      "relation_to_answer": "discard architecture overreach",
+      "source_excerpt_ids": [
+        "audit-gaps"
+      ],
+      "priority_hint": "quiet",
+      "risk_if_forced": "The answer invents a technical architecture problem not in the case.",
+      "risk_if_ignored": "Systems framing may leak into an unsupported technical diagnosis."
+    }
+  ],
+  "worker_admission": {
+    "decision": "no_worker_needed",
+    "reason": "The two net-new systems pressures and three duplicate/discard checks are already explicit enough for Step 6 to consume directly.",
+    "unnecessary_if": [
+      "Duplicate valuation and middle-instrument pressure can be demoted from raw fields.",
+      "Systems and metric pressure are actionable without a separate worker."
+    ],
+    "admit_only_if": [
+      "A future high-clutter version cannot keep duplicate demotion and systems pressure legible under the raw render cap."
+    ]
+  },
+  "notes": "Research-only compact fixture for testing raw artifact consumption before any bundle or worker implementation."
+}

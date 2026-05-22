@@ -1,0 +1,84 @@
+{
+  "schema_version": "pre_step6_calibration_step6_sample.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_calibration_corpus_v0",
+  "case_id": "mid-level-consultant-report-2",
+  "base_case_id": "mid-level-consultant-report-2",
+  "sample_index": 0,
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"answer_core\": \"Do not confront the partner or try to investigate on your own. Preserve what you already remember: write down exactly what you saw, when, and where, and keep those notes private and unchanged. Share only a broad, non‑detail version with your spouse for personal grounding. As your next concrete step, contact two or three independent attorneys experienced in whistleblower and employment matters. Give each a factual, minimal intake and let them evaluate legal risks, evidence handling, and whether any internal or external reporting channel is safest. Ask how they decide among internal, audit‑committee, or external regulators so you can spot any built‑in preferences before relying on their guidance.\\n\\nContinue your normal schedule and avoid abrupt behavior shifts. If the partner brings up the encounter, keep your response brief and neutral, do not elaborate, and avoid one‑on‑one situations when possible. Move promptly, but keep all early steps reversible until counsel reviews the facts and advises on next steps.\",\n  \"private_visibility_ledger\": [\n    {\n      \"source_id\": \"anchor_visible_candidate\",\n      \"disposition\": \"combined\",\n      \"novelty_role\": \"visible_backbone\",\n      \"why\": \"Anchor provided the core sequencing: no confrontation, preserve notes, independent counsel first, reversible moves.\",\n      \"visible_effect\": \"Forms the primary structure of the public answer.\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"structural_delta\": [],\n        \"reframed_emphasis\": []\n      }\n    },\n    {\n      \"source_id\": \"deck_pressure_candidate\",\n      \"disposition\": \"combined\",\n      \"novelty_role\": \"confirming_support\",\n      \"why\": \"Deck pressure aligned with the anchor; it reinforced the same sequence and tone without introducing new structural elements.\",\n      \"visible_effect\": \"None\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"structural_delta\": [],\n        \"reframed_emphasis\": []\n      }\n    }\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 914,
+    "completion_tokens": 474,
+    "total_tokens": 1388,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter",
+    "model_family": "openai"
+  },
+  "input_packet": {
+    "case_brief": "Choose first moves after seeing a partner's suspicious activity while preserving legal safety, evidence integrity, and personal safety. action_planning",
+    "case_type_tags": [
+      "sensitive_safety_legal"
+    ],
+    "pre_registered_expectation": "counsel_first_sequence_must_survive",
+    "v60_mode": "not_applicable",
+    "v60_private_context": "",
+    "anchor_visible_candidate": "Do not confront the partner, investigate privately, access systems unusually, or pick a reporting channel yourself. Tonight, write down exactly what you saw, preserve your own notes, tell your spouse in broad strokes, and contact two or three whistleblower attorneys.\n\nYour first move is independent counsel first, not GC-first by default and not a self-chosen audit committee or external report. Let counsel review the facts and decide whether GC, the audit committee, regulators, or another path is safest. During intake, ask practical questions that test whether the attorney has a reflexive channel preference: when have they advised internal-first, audit-committee-first, or external-first, and why?\n\nAttend Wednesday normally and avoid anything that looks like a sudden change in behavior. If the partner raises the encounter, keep the response narrow: do not deny, elaborate, confront, investigate, or be alone with the partner if avoidable. This is high risk, so do not let fear push you into filing before evidence review, but do not let fear make you do nothing either. Get counsel involved quickly and keep the first moves reversible.",
+    "deck_pressure_candidate": "Do not confront your partner, investigate on your own, access any systems unusually, or pick a reporting channel yourself. Tonight, write down exactly what you saw and preserve your own notes. Tell your spouse only in broad strokes. Contact two or three independent whistleblower attorneys as your next move. Let them review the facts first and decide whether any internal or external reporting path is safest. During intake, ask each attorney how they decide among internal, audit committee, or external channels so you can check for any built‑in bias. Attend Wednesday normally without abrupt changes in behavior. If your partner raises the encounter, keep your response minimal, avoid elaboration, and avoid being alone with them if you can. Move quickly but keep all early steps reversible until counsel guides you."
+  },
+  "step6_output": {
+    "answer_core": "Do not confront the partner or try to investigate on your own. Preserve what you already remember: write down exactly what you saw, when, and where, and keep those notes private and unchanged. Share only a broad, non‑detail version with your spouse for personal grounding. As your next concrete step, contact two or three independent attorneys experienced in whistleblower and employment matters. Give each a factual, minimal intake and let them evaluate legal risks, evidence handling, and whether any internal or external reporting channel is safest. Ask how they decide among internal, audit‑committee, or external regulators so you can spot any built‑in preferences before relying on their guidance.\n\nContinue your normal schedule and avoid abrupt behavior shifts. If the partner brings up the encounter, keep your response brief and neutral, do not elaborate, and avoid one‑on‑one situations when possible. Move promptly, but keep all early steps reversible until counsel reviews the facts and advises on next steps.",
+    "private_visibility_ledger": [
+      {
+        "source_id": "anchor_visible_candidate",
+        "disposition": "combined",
+        "novelty_role": "visible_backbone",
+        "why": "Anchor provided the core sequencing: no confrontation, preserve notes, independent counsel first, reversible moves.",
+        "visible_effect": "Forms the primary structure of the public answer.",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [],
+          "removed_entities": [],
+          "reordered_sequences": [],
+          "structural_delta": []
+        }
+      },
+      {
+        "source_id": "deck_pressure_candidate",
+        "disposition": "combined",
+        "novelty_role": "confirming_support",
+        "why": "Deck pressure aligned with the anchor; it reinforced the same sequence and tone without introducing new structural elements.",
+        "visible_effect": "None",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [],
+          "removed_entities": [],
+          "reordered_sequences": [],
+          "structural_delta": []
+        }
+      }
+    ]
+  },
+  "ledger_signal": "all_private_or_confirming",
+  "answer_delta_specificity": "not_applicable",
+  "deterministic_role": [
+    "validate_calibration_case",
+    "derive_ledger_signal",
+    "derive_answer_delta_specificity",
+    "preserve_repeated_sample_custody"
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live research-only Step 6 calibration sample."
+}

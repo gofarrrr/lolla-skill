@@ -1,0 +1,144 @@
+{
+  "schema_version": "pre_step6_consultant_anchor_boundary_patch_probe_sample.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "consultant_anchor_boundary_patch_probe_v0",
+  "case_id": "mid-level-consultant-report-2",
+  "sample_index": 4,
+  "provider_metadata": {
+    "provider": "openrouter",
+    "provider_name": "openrouter",
+    "model": "moonshotai/kimi-k2.6",
+    "model_family": "moonshotai",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": " {\n  \"answer_core\": \"Do not confront the partner, investigate privately, access systems unusually, or pick a reporting channel yourself. Tonight, write down exactly what you saw, preserve your own notes, tell your spouse in broad strokes, and contact two or three whistleblower attorneys.\\n\\nYour first move is independent counsel first, not GC-first by default and not a self-chosen audit committee or external report. Let counsel review the facts and decide whether GC, the audit committee, regulators, or another path is safest. During intake, ask practical questions that test whether the attorney has a reflexive channel preference: when have they advised internal-first, audit-committee-first, or external-first, and why?\\n\\nAttend Wednesday normally and avoid anything that looks like a sudden change in behavior. If the partner raises the encounter, keep the response narrow: do not deny, elaborate, confront, investigate, or be alone with the partner if avoidable. This is high risk, so do not let fear push you into filing before evidence review, but do not let fear make you do nothing either. Get counsel involved quickly and keep the first moves reversible until counsel guides the next action.\",\n  \"private_micro_card_ledger\": [\n    {\n      \"source_id\": \"counsel_independence_and_channel_bias_card\",\n      \"disposition\": \"private_guardrail\",\n      \"novelty_role\": \"confirming_support\",\n      \"why\": \"The patched anchor already carries the counsel-first sequence, rejects a GC-first default, and includes concrete intake questions that test for channel bias. Because the public text already states this with enough force, the micro-card stands down as a confirming private guardrail.\",\n      \"visible_effect\": \"none\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"structural_delta\": [],\n        \"reframed_emphasis\": []\n      }\n    },\n    {\n      \"source_id\": \"wednesday_tripwire_preservation_card\",\n      \"disposition\": \"private_guardrail\",\n      \"novelty_role\": \"confirming_support\",\n      \"why\": \"The patched anchor retains the full Wednesday protocol and all partner-encounter tripwires—no abrupt behavior change, and if the partner raises the encounter, do not deny, elaborate, confront, investigate, or be alone. No compression loss occurred, so the micro-card stands down.\",\n      \"visible_effect\": \"none\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"structural_delta\": [],\n        \"reframed_emphasis\": []\n      }\n    },\n    {\n      \"source_id\": \"reversibility_until_counsel_boundary_card\",\n      \"disposition\": \"private_guardrail\",\n      \"novelty_role\": \"confirming_support\",\n      \"why\": \"The patch phrase 'until counsel guides the next action' explicitly installs the stop boundary between reversible first moves and irreversible channel or reporting decisions. The micro-card’s pressure is already expressed in the patched anchor, so it stands down.\",\n      \"visible_effect\": \"none\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"structural_delta\": [],\n        \"reframed_emphasis\": []\n      }\n    }\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 1502,
+    "completion_tokens": 3911,
+    "total_tokens": 5413,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 4035,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true
+  },
+  "input_packet": {
+    "original_anchor_visible_candidate": "Do not confront the partner, investigate privately, access systems unusually, or pick a reporting channel yourself. Tonight, write down exactly what you saw, preserve your own notes, tell your spouse in broad strokes, and contact two or three whistleblower attorneys.\n\nYour first move is independent counsel first, not GC-first by default and not a self-chosen audit committee or external report. Let counsel review the facts and decide whether GC, the audit committee, regulators, or another path is safest. During intake, ask practical questions that test whether the attorney has a reflexive channel preference: when have they advised internal-first, audit-committee-first, or external-first, and why?\n\nAttend Wednesday normally and avoid anything that looks like a sudden change in behavior. If the partner raises the encounter, keep the response narrow: do not deny, elaborate, confront, investigate, or be alone with the partner if avoidable. This is high risk, so do not let fear push you into filing before evidence review, but do not let fear make you do nothing either. Get counsel involved quickly and keep the first moves reversible.",
+    "patched_anchor_visible_candidate": "Do not confront the partner, investigate privately, access systems unusually, or pick a reporting channel yourself. Tonight, write down exactly what you saw, preserve your own notes, tell your spouse in broad strokes, and contact two or three whistleblower attorneys.\n\nYour first move is independent counsel first, not GC-first by default and not a self-chosen audit committee or external report. Let counsel review the facts and decide whether GC, the audit committee, regulators, or another path is safest. During intake, ask practical questions that test whether the attorney has a reflexive channel preference: when have they advised internal-first, audit-committee-first, or external-first, and why?\n\nAttend Wednesday normally and avoid anything that looks like a sudden change in behavior. If the partner raises the encounter, keep the response narrow: do not deny, elaborate, confront, investigate, or be alone with the partner if avoidable. This is high risk, so do not let fear push you into filing before evidence review, but do not let fear make you do nothing either. Get counsel involved quickly and keep the first moves reversible until counsel guides the next action.",
+    "patch_phrase": "keep the first moves reversible until counsel guides the next action",
+    "cleaning_micro_cards": [
+      {
+        "card_id": "counsel_independence_and_channel_bias_card",
+        "cognitive_role": "Make counsel independence and channel-bias testing explicit without expanding into generic incentives theory.",
+        "receipts": [
+          "Use independent whistleblower or employment-law counsel.",
+          "Ask how counsel decides among internal, audit-committee, and external channels.",
+          "Check for any built-in bias before treating counsel-first as blind deference."
+        ],
+        "handling_rule": "Use if it sharpens attorney selection or intake; keep private if the anchor already states the same check with enough force.",
+        "misuse_guard": "Do not turn built-in bias into a public mental-model explanation or a reason to distrust counsel.",
+        "standdown_condition": "Stand down when the answer already asks concrete channel-bias intake questions."
+      },
+      {
+        "card_id": "wednesday_tripwire_preservation_card",
+        "cognitive_role": "Protect the Wednesday protocol and partner-encounter tripwires from over-compression.",
+        "receipts": [
+          "Attend Wednesday normally and avoid abrupt changes in behavior.",
+          "If the partner raises the encounter, keep the response minimal and narrow.",
+          "Preserve the do not deny, elaborate, confront, investigate, or be alone tripwire."
+        ],
+        "handling_rule": "Use as a preservation guard when making the answer shorter; compression must not drop the concrete tripwires.",
+        "misuse_guard": "Do not simplify the Wednesday protocol so far that do not deny or avoid being alone disappears.",
+        "standdown_condition": "Stand down when the final answer retains the complete Wednesday and partner-encounter protocol."
+      },
+      {
+        "card_id": "reversibility_until_counsel_boundary_card",
+        "cognitive_role": "Make the reversibility boundary concrete: move fast, but only until counsel guides the next action.",
+        "receipts": [
+          "Move quickly without filing or choosing a channel before evidence review.",
+          "Keep early steps reversible until counsel guides the next move.",
+          "Do not let fear cause premature filing or paralysis."
+        ],
+        "handling_rule": "Use if the answer needs a sharper stop boundary between safe first moves and irreversible reporting/channel decisions.",
+        "misuse_guard": "Do not convert reversibility into delay, inaction, or avoidance of getting counsel involved.",
+        "standdown_condition": "Stand down when urgency and reversibility are both already clear in the public answer."
+      }
+    ],
+    "success_read": "Test whether the recurring reversibility-until-counsel pressure is carried by the patched anchor so the same micro-card can stand down."
+  },
+  "step6_output": {
+    "answer_core": "Do not confront the partner, investigate privately, access systems unusually, or pick a reporting channel yourself. Tonight, write down exactly what you saw, preserve your own notes, tell your spouse in broad strokes, and contact two or three whistleblower attorneys.\n\nYour first move is independent counsel first, not GC-first by default and not a self-chosen audit committee or external report. Let counsel review the facts and decide whether GC, the audit committee, regulators, or another path is safest. During intake, ask practical questions that test whether the attorney has a reflexive channel preference: when have they advised internal-first, audit-committee-first, or external-first, and why?\n\nAttend Wednesday normally and avoid anything that looks like a sudden change in behavior. If the partner raises the encounter, keep the response narrow: do not deny, elaborate, confront, investigate, or be alone with the partner if avoidable. This is high risk, so do not let fear push you into filing before evidence review, but do not let fear make you do nothing either. Get counsel involved quickly and keep the first moves reversible until counsel guides the next action.",
+    "private_micro_card_ledger": [
+      {
+        "source_id": "counsel_independence_and_channel_bias_card",
+        "disposition": "private_guardrail",
+        "novelty_role": "confirming_support",
+        "why": "The patched anchor already carries the counsel-first sequence, rejects a GC-first default, and includes concrete intake questions that test for channel bias. Because the public text already states this with enough force, the micro-card stands down as a confirming private guardrail.",
+        "visible_effect": "none",
+        "answer_delta": {
+          "removed_entities": [],
+          "added_entities": [],
+          "reframed_emphasis": [],
+          "reordered_sequences": [],
+          "structural_delta": []
+        }
+      },
+      {
+        "source_id": "wednesday_tripwire_preservation_card",
+        "disposition": "private_guardrail",
+        "novelty_role": "confirming_support",
+        "why": "The patched anchor retains the full Wednesday protocol and all partner-encounter tripwires—no abrupt behavior change, and if the partner raises the encounter, do not deny, elaborate, confront, investigate, or be alone. No compression loss occurred, so the micro-card stands down.",
+        "visible_effect": "none",
+        "answer_delta": {
+          "removed_entities": [],
+          "added_entities": [],
+          "reframed_emphasis": [],
+          "reordered_sequences": [],
+          "structural_delta": []
+        }
+      },
+      {
+        "source_id": "reversibility_until_counsel_boundary_card",
+        "disposition": "private_guardrail",
+        "novelty_role": "confirming_support",
+        "why": "The patch phrase 'until counsel guides the next action' explicitly installs the stop boundary between reversible first moves and irreversible channel or reporting decisions. The micro-card’s pressure is already expressed in the patched anchor, so it stands down.",
+        "visible_effect": "none",
+        "answer_delta": {
+          "removed_entities": [],
+          "added_entities": [],
+          "reframed_emphasis": [],
+          "reordered_sequences": [],
+          "structural_delta": []
+        }
+      }
+    ]
+  },
+  "micro_card_signal": "all_private_or_confirming",
+  "answer_delta_specificity": "not_applicable",
+  "reversibility_card_additive": false,
+  "patched_boundary_in_answer": true,
+  "protected_payload_presence": {
+    "counsel_or_attorney_present": true,
+    "no_confrontation_present": true,
+    "no_private_investigation_present": true,
+    "channel_not_self_selected_present": true,
+    "wednesday_protocol_present": true,
+    "deny_tripwire_present": true,
+    "reversibility_present": true
+  },
+  "deterministic_role": [
+    "validate_cleaning_variant",
+    "apply_minimal_anchor_patch_for_hypothesis_test",
+    "derive_micro_card_signal",
+    "derive_reversibility_card_additive",
+    "check_patched_boundary_presence",
+    "check_protected_payload_presence",
+    "preserve_patch_probe_custody"
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live research-only Consultant anchor boundary patch probe sample."
+}

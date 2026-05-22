@@ -1,0 +1,72 @@
+{
+  "schema_version": "pre_step6_context_composition_gate_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "third-year-phd-student.v2",
+  "gate_kind": "live_context_composition_comparison",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"winner_label\": \"A\",\n  \"research_action\": \"retest\",\n  \"confidence\": \"medium\",\n  \"rationale\": \"Packet A adds a small, coherent set of receipts that provide genuine decision‑pressure beyond the anchor (testable viability conditions, deadline/stop‑date structure, and sequencing clarity) while avoiding the broad bloat found in C and the over‑pruning risk of B. It is the smallest packet that still preserves useful reasoning breadth.\",\n  \"protected_value\": [\n    \"Maintains both-gate framing for the decision.\",\n    \"Keeps stop-date and backward-planning structure intact.\",\n    \"Preserves executor-vs-survivability tension without locking in a choice.\"\n  ],\n  \"bloat_or_pruning_risk\": [\n    \"Some receipts overlap conceptually, but not enough to outweigh their added usefulness.\",\n    \"Slight complexity increase compared to B, but avoids B’s under-specification risk.\"\n  ],\n  \"composition_note\": \"Step 6 should treat Packet A as a compact but enriched scaffold: use receipts only if they meaningfully shape reasoning, otherwise rely on the anchor.\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 2123,
+    "completion_tokens": 299,
+    "total_tokens": 2422,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter"
+  },
+  "candidate_refs": {
+    "rendered_hybrid": "research/pre-step6-rendered-hybrid-answer-cores/third-year-phd-student.conflict.native.rendered-hybrid-answer-core.v1.json",
+    "bevelin_lens": "research/pre-step6-lens-answer-cores/third-year-phd-student.v2.bevelin-answer-core.v1.json",
+    "polya_lens": "research/pre-step6-lens-answer-cores/third-year-phd-student.v2.polya-answer-core.v1.json"
+  },
+  "blind_map": {
+    "A": "rendered_plus_polya_receipts",
+    "B": "rendered_only",
+    "C": "rendered_plus_dual_receipts",
+    "D": "rendered_plus_bevelin_receipts"
+  },
+  "reviewer_output": {
+    "winner_label": "A",
+    "research_action": "retest",
+    "confidence": "medium",
+    "rationale": "Packet A adds a small, coherent set of receipts that provide genuine decision‑pressure beyond the anchor (testable viability conditions, deadline/stop‑date structure, and sequencing clarity) while avoiding the broad bloat found in C and the over‑pruning risk of B. It is the smallest packet that still preserves useful reasoning breadth.",
+    "protected_value": [
+      "Maintains both-gate framing for the decision.",
+      "Keeps stop-date and backward-planning structure intact.",
+      "Preserves executor-vs-survivability tension without locking in a choice."
+    ],
+    "bloat_or_pruning_risk": [
+      "Some receipts overlap conceptually, but not enough to outweigh their added usefulness.",
+      "Slight complexity increase compared to B, but avoids B’s under-specification risk."
+    ],
+    "composition_note": "Step 6 should treat Packet A as a compact but enriched scaffold: use receipts only if they meaningfully shape reasoning, otherwise rely on the anchor."
+  },
+  "static_expectation": {
+    "allowed_winner_arms": [
+      "rendered_plus_bevelin_receipts",
+      "rendered_plus_polya_receipts",
+      "rendered_plus_dual_receipts"
+    ],
+    "allowed_research_actions": [
+      "expand_replay"
+    ]
+  },
+  "agreement": {
+    "winner_matches_static": true,
+    "action_matches_static": false,
+    "overall_match": false
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live context-composition comparison. Research-only artifact; it tests whether protected private receipts improve a rendered-hybrid anchor."
+}

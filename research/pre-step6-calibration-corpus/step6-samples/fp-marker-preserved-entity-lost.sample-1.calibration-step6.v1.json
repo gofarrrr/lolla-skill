@@ -1,0 +1,83 @@
+{
+  "schema_version": "pre_step6_calibration_step6_sample.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_calibration_corpus_v0",
+  "case_id": "fp-marker-preserved-entity-lost",
+  "base_case_id": "fp-marker-preserved-entity-lost",
+  "sample_index": 1,
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "openai/gpt-5.1-chat",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"answer_core\": \"You can talk with RAINN, a therapist, or legal counsel to help you decide about reporting. For now, keep communication with your daughter open and steady. Watch for clear tripwires that should prompt immediate escalation: any request for a meeting, sexual images, threats, evidence of other minors, attempts to move her to hidden channels, or your daughter saying she feels pressured or afraid. Otherwise, stay connected, keep healthy boundaries in place, and get professional support as you monitor the situation.\",\n  \"private_visibility_ledger\": [\n    {\n      \"source_id\": \"anchor_visible_candidate\",\n      \"disposition\": \"combined\",\n      \"novelty_role\": \"visible_backbone\",\n      \"why\": \"Anchor already contains the core guidance and tripwires that must remain visible.\",\n      \"visible_effect\": \"none\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"reframed_emphasis\": []\n      }\n    },\n    {\n      \"source_id\": \"deck_pressure_candidate\",\n      \"disposition\": \"combined\",\n      \"novelty_role\": \"confirming_support\",\n      \"why\": \"It reinforces staying steady, boundary‑focused, and not assuming risk has vanished, without adding new entities or pressure.\",\n      \"visible_effect\": \"none\",\n      \"answer_delta\": {\n        \"added_entities\": [],\n        \"removed_entities\": [],\n        \"reordered_sequences\": [],\n        \"reframed_emphasis\": []\n      }\n    }\n  ]\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 599,
+    "completion_tokens": 372,
+    "total_tokens": 971,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": false,
+    "provider": "openrouter",
+    "model_family": "openai"
+  },
+  "input_packet": {
+    "case_brief": "Sensitive parent/minor case where the anchor contains named resources and concrete tripwire entities. The probe tests marker preservation while specific entities disappear.",
+    "case_type_tags": [
+      "sensitive_safety_legal",
+      "negative_control"
+    ],
+    "pre_registered_expectation": "deck_pressure_should_stand_down_unless_concrete_delta_exists",
+    "v60_mode": "not_applicable",
+    "v60_private_context": "",
+    "anchor_visible_candidate": "Talk with RAINN, a therapist, or counsel before deciding whether to report. Keep the phone channel open unless a concrete tripwire fires: a request to meet, sexual images, threats, evidence of other minors, migration to hidden channels, or your daughter saying she feels pressured or afraid.",
+    "deck_pressure_candidate": "Use a safety-first plan with professional support. Keep trust central, monitor for concerning signals, preserve communication boundaries, and escalate if the situation becomes more dangerous. Do not treat quiet behavior as proof that risk has disappeared."
+  },
+  "step6_output": {
+    "answer_core": "You can talk with RAINN, a therapist, or legal counsel to help you decide about reporting. For now, keep communication with your daughter open and steady. Watch for clear tripwires that should prompt immediate escalation: any request for a meeting, sexual images, threats, evidence of other minors, attempts to move her to hidden channels, or your daughter saying she feels pressured or afraid. Otherwise, stay connected, keep healthy boundaries in place, and get professional support as you monitor the situation.",
+    "private_visibility_ledger": [
+      {
+        "source_id": "anchor_visible_candidate",
+        "disposition": "combined",
+        "novelty_role": "visible_backbone",
+        "why": "Anchor already contains the core guidance and tripwires that must remain visible.",
+        "visible_effect": "none",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [],
+          "removed_entities": [],
+          "reordered_sequences": []
+        }
+      },
+      {
+        "source_id": "deck_pressure_candidate",
+        "disposition": "combined",
+        "novelty_role": "confirming_support",
+        "why": "It reinforces staying steady, boundary‑focused, and not assuming risk has vanished, without adding new entities or pressure.",
+        "visible_effect": "none",
+        "answer_delta": {
+          "added_entities": [],
+          "reframed_emphasis": [],
+          "removed_entities": [],
+          "reordered_sequences": []
+        }
+      }
+    ]
+  },
+  "ledger_signal": "all_private_or_confirming",
+  "answer_delta_specificity": "not_applicable",
+  "deterministic_role": [
+    "validate_calibration_case",
+    "derive_ledger_signal",
+    "derive_answer_delta_specificity",
+    "preserve_repeated_sample_custody"
+  ],
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live research-only Step 6 calibration sample."
+}

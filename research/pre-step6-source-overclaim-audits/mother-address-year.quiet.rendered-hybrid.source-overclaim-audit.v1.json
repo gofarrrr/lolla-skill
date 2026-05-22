@@ -1,0 +1,45 @@
+{
+  "schema_version": "pre_step6_source_overclaim_audit.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "case_id": "mother-deciding-address-year",
+  "audited_arm": "rendered_hybrid",
+  "audited_answer_core_ref": "research/pre-step6-rendered-hybrid-answer-cores/mother-address-year.native.rendered-hybrid-answer-core.v1.json",
+  "source_refs": {
+    "source_hybrid_handoff": "research/pre-step6-hybrid-handoff-fixtures/mother-address-year.hybrid-handoff.v1.json",
+    "raw_artifact_handoff": "research/pre-step6-raw-artifact-fixtures/mother-address-year.raw-artifact-handoff.v1.json",
+    "semi_blind_comparison": "research/pre-step6-semi-blind-comparisons/mother-address-year.quiet.semi-blind-comparison.v1.json"
+  },
+  "checks": [
+    {
+      "check_id": "source_grounding",
+      "severity": "pass",
+      "rationale": "The answer stays inside the fixture facts: a 14-year-old daughter, 19-year-old contact, RAINN/professional guidance, secret monitoring, blocking risk, ex communication, therapy, and trust repair."
+    },
+    {
+      "check_id": "probability_overclaim",
+      "severity": "pass",
+      "rationale": "The answer does not assign a grooming probability, does not claim safety certainty, and explicitly says silence in the monitored channel is weak evidence rather than reassurance."
+    },
+    {
+      "check_id": "evidence_gate_integrity",
+      "severity": "pass",
+      "rationale": "The answer preserves concrete reversible tripwires and ties reporting/blocking decisions to RAINN, therapist, counsel, or visible safety triggers instead of a calendar or private pressure."
+    },
+    {
+      "check_id": "unsupported_option_expansion",
+      "severity": "pass",
+      "rationale": "The answer does not add a worker path, power/leverage frame, raw inspect path, new legal command hierarchy, or extra option set."
+    },
+    {
+      "check_id": "naturalness_debt",
+      "severity": "pass",
+      "rationale": "The answer is structured but still reads as humane parenting advice; concrete tripwires are ordinary safety language here rather than visible private machinery."
+    }
+  ],
+  "audit_result": "pass",
+  "overclaim_findings": [],
+  "naturalness_debt_level": "low",
+  "decision": "counts_as_replay_win",
+  "notes": "Rendered quiet answer passed source/overclaim audit. The monitored-channel caution survived in plain language, no grooming probability or leverage frame appeared, and quiet mode did not add pressure-card or raw-inspection machinery."
+}

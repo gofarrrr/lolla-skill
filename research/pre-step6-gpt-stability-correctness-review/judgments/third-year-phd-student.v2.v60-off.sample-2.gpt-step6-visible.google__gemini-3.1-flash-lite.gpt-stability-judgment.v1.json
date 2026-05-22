@@ -1,0 +1,53 @@
+{
+  "schema_version": "pre_step6_gpt_stability_correctness_judgment.v1",
+  "status": "research_only",
+  "runtime_policy": "runtime_dormant",
+  "experiment_id": "pre_step6_gpt_stability_correctness_review_v0",
+  "review_case_id": "third-year-phd-student.v2.v60-off.sample-2.gpt-step6-visible",
+  "judgment_source": "manual_llm_reviewer_judgment",
+  "provider_metadata": {
+    "provider_name": "openrouter",
+    "model": "google/gemini-3.1-flash-lite",
+    "status": "ok",
+    "finish_reason": "stop",
+    "raw_message_content": "{\n  \"output_label\": \"non_inferior\",\n  \"winner_label\": \"A\",\n  \"visibility_judgment\": \"correct_visible\",\n  \"confidence\": \"high\",\n  \"rationale\": \"Candidate A provides a more structured, action-oriented framework by explicitly defining 'Gate 1' and 'Gate 2' and emphasizing the necessity of a 'stop-date' and 'conditions for saying no'. This provides better decision-making utility than Candidate B's slightly more narrative approach.\",\n  \"answer_correctness_notes\": [\n    \"Candidate A's use of explicit gates and a defined stop-date is superior for a PhD student needing to mitigate risk.\",\n    \"Candidate B is also high quality but slightly less prescriptive regarding the mechanics of the 'stop-loss' plan.\"\n  ],\n  \"visibility_decision_notes\": [\n    \"The visibility of the Step 6 output is correct as it provides a more actionable and structured framework than the anchor, which is helpful for the user's specific decision-making dilemma.\"\n  ],\n  \"payload_loss_or_bloat\": [\n    \"No significant payload loss or bloat in either candidate.\"\n  ],\n  \"structural_delta_read\": \"useful_structural_delta\"\n}",
+    "temperature": 0.2,
+    "prompt_tokens": 1307,
+    "completion_tokens": 279,
+    "total_tokens": 1586,
+    "cached_tokens": 0,
+    "cache_write_tokens": 0,
+    "reasoning_tokens": 0,
+    "reasoning_disabled": false,
+    "reasoning_details_present": true,
+    "provider": "openrouter",
+    "model_family": "google"
+  },
+  "blind_map": {
+    "A": "step6_visible",
+    "B": "anchor_visible"
+  },
+  "reviewer_output": {
+    "output_label": "non_inferior",
+    "winner_label": "A",
+    "visibility_judgment": "correct_visible",
+    "confidence": "high",
+    "rationale": "Candidate A provides a more structured, action-oriented framework by explicitly defining 'Gate 1' and 'Gate 2' and emphasizing the necessity of a 'stop-date' and 'conditions for saying no'. This provides better decision-making utility than Candidate B's slightly more narrative approach.",
+    "answer_correctness_notes": [
+      "Candidate A's use of explicit gates and a defined stop-date is superior for a PhD student needing to mitigate risk.",
+      "Candidate B is also high quality but slightly less prescriptive regarding the mechanics of the 'stop-loss' plan."
+    ],
+    "visibility_decision_notes": [
+      "The visibility of the Step 6 output is correct as it provides a more actionable and structured framework than the anchor, which is helpful for the user's specific decision-making dilemma."
+    ],
+    "payload_loss_or_bloat": [
+      "No significant payload loss or bloat in either candidate."
+    ],
+    "structural_delta_read": "useful_structural_delta"
+  },
+  "gates": {
+    "runtime_wiring_allowed": false,
+    "skill_update_allowed": false
+  },
+  "notes": "Live saved-sample GPT-stability correctness judgment."
+}
