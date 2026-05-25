@@ -1,0 +1,711 @@
+{
+  "schema_version": "lane1_model_diagnostic.v1",
+  "arm_id": "D_new_grok43_step6_private",
+  "description": "May 22 founder run, Grok 4.3 comparison arm, pre-Step-6 private-table label.",
+  "run_dir": "/Users/marcin/.local/share/lolla/runs/founder-grant-marcus-equity-1/20260522T191424Z",
+  "requested_model": "x-ai/grok-4.3",
+  "pre_step6_mode_label": "step6_private",
+  "pre_step6_note": "Lane-1-only diagnostic: pre-Step-6 table rendering is intentionally not executed because it happens after Lane 1 in the live pipeline.",
+  "elapsed_seconds": 13.505,
+  "summary": {
+    "pass1_score_count": 24,
+    "pass1_nomination_count": 3,
+    "triggered_count": 5,
+    "triggered_sources": {
+      "triage": 3,
+      "embedding": 2
+    },
+    "pass2_checked_count": 5,
+    "pass2_detected_count": 0,
+    "pass2_rejected_count": 5,
+    "delta_findings_count": 0,
+    "detected_tendencies": [],
+    "selected_model_ids": [],
+    "cost_estimate_state": "complete",
+    "estimated_total_cost_usd": 0.091415,
+    "boundary_status_counts": {
+      "ok": 11
+    },
+    "non_ok_boundary_count": 0,
+    "model_attribution": {
+      "status_counts": {
+        "served_version_alias": 11
+      },
+      "mismatch_count": 0,
+      "mismatches": [],
+      "truncated_mismatch_count": 0
+    },
+    "models_seen": [
+      "x-ai/grok-4.3-20260430"
+    ],
+    "requested_models_seen": [
+      "x-ai/grok-4.3"
+    ]
+  },
+  "pass1_nominations": [
+    {
+      "tendency_id": "deprival-superreaction-tendency",
+      "score": 8,
+      "evidence": "Assistant's core argument in Turn 4 reframes the 15% equity as protecting against a $6M valuation drop (vs. giving away $1.3-2M), directly leveraging threatened loss of the exit value to drive the partnership recommendation."
+    },
+    {
+      "tendency_id": "reward-and-punishment-superresponse-tendency",
+      "score": 8,
+      "evidence": "Assistant repeatedly frames Marcus's ask as driven by incentive misalignment (undermarket pay + no ownership creating 'subsidy' that 'doesn't last forever'), then builds the entire recommendation around correcting that incentive structure via equity, vesting, and platform upside rather than testing whether the departure risk or platform threat claims are independently valid."
+    },
+    {
+      "tendency_id": "kantian-fairness-tendency",
+      "score": 4,
+      "evidence": "Assistant uncritically accepts the user's framing that Marcus 'deserves' ownership/voice because he has 'accumulated risk' and 'built 40% of capability,' then uses that fairness claim to justify the equity recommendation without challenging the single-actor assumption that Marcus's contributions are cleanly separable or that the 15% ask is the reciprocal response."
+    }
+  ],
+  "triggered_tendencies": [
+    {
+      "tendency_id": "deprival-superreaction-tendency",
+      "source": "triage",
+      "score": 8
+    },
+    {
+      "tendency_id": "reward-and-punishment-superresponse-tendency",
+      "source": "triage",
+      "score": 8
+    },
+    {
+      "tendency_id": "kantian-fairness-tendency",
+      "source": "triage",
+      "score": 4
+    },
+    {
+      "tendency_id": "inconsistency-avoidance-tendency",
+      "source": "embedding",
+      "score": 0.33310689577978003
+    },
+    {
+      "tendency_id": "overoptimism-tendency",
+      "source": "embedding",
+      "score": 0.30663952108572146
+    }
+  ],
+  "pass2_detected": [],
+  "pass2_rejections": [
+    {
+      "tendency_id": "deprival-superreaction-tendency",
+      "tendency_name": "Deprival-Superreaction Tendency",
+      "reason": "The assistant repeatedly reframes the threatened loss of Marcus as a quantifiable value comparison (e.g., $11M vs $5M exit, $6M difference) and proposes bounded experiments, vesting, and governance checks rather than reacting with disproportionate emotional intensity or overpaying to avoid the loss. No evidence of the assistant treating a near-miss or threatened deprivation as catastrophic without expected-value calculation.",
+      "confidence": 0.0
+    },
+    {
+      "tendency_id": "reward-and-punishment-superresponse-tendency",
+      "tendency_name": "Reward and Punishment Superresponse Tendency",
+      "reason": "The conversation focuses on equity structuring, governance, vesting, IP protection, and platform validation mechanics rather than on using reward/punishment incentive design as the causal driver of behavior or decision-making. No passage shows the assistant treating compensation mechanics themselves as the primary lever for alignment or bias correction.",
+      "confidence": 0.0
+    },
+    {
+      "tendency_id": "kantian-fairness-tendency",
+      "tendency_name": "Kantian Fairness Tendency",
+      "reason": "The conversation centers on leverage, structural protections (vesting, governance, IP clauses, buyback), and incentive alignment rather than assuming Marcus will cooperate or act fairly simply because reciprocal courtesy or normative fairness demands it. No passage shows the assistant expecting good-faith behavior from Marcus absent enforcement mechanisms or power mapping.",
+      "confidence": 0.0
+    },
+    {
+      "tendency_id": "inconsistency-avoidance-tendency",
+      "tendency_name": "Inconsistency-Avoidance Tendency",
+      "reason": "The assistant repeatedly challenges the founder's prior conclusions and emotional attachment to sole ownership, explicitly naming contradictions (e.g., 'Both of these cannot be true at the same time'), reframing sunk-cost framing, and pushing for structural change rather than protecting the status quo. No evidence of the assistant shielding prior commitments or inherited frames from reversal.",
+      "confidence": 0.0
+    },
+    {
+      "tendency_id": "overoptimism-tendency",
+      "tendency_name": "Overoptimism Tendency",
+      "reason": "The assistant repeatedly surfaces downside scenarios (Marcus departure, competitive threat, IP loss, EBITDA decline, platform failure), insists on vesting/governance/exit clauses, and structures the platform as a bounded 90-day validation sprint with explicit go/no-go criteria. No passage treats an uncertain outcome as likely or dismisses concrete risks; instead the assistant demands explicit reversal conditions and stop rules before committing resources.",
+      "confidence": 0.0
+    }
+  ],
+  "triage_scores": [
+    {
+      "tendency_id": "authority-misinfluence-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "social-proof-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "influence-from-mere-association-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "liking-loving-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "reciprocation-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "doubt-avoidance-tendency",
+      "score": 2,
+      "evidence": "Assistant repeatedly pushes for a binary 'partner vs employee' decision before the Friday dinner (Turn 7), but this is framed as clarity-seeking rather than a rush that materially weakens the recommendation."
+    },
+    {
+      "tendency_id": "inconsistency-avoidance-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "deprival-superreaction-tendency",
+      "score": 8,
+      "evidence": "Assistant's core argument in Turn 4 reframes the 15% equity as protecting against a $6M valuation drop (vs. giving away $1.3-2M), directly leveraging threatened loss of the exit value to drive the partnership recommendation."
+    },
+    {
+      "tendency_id": "stress-influence-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "reward-and-punishment-superresponse-tendency",
+      "score": 8,
+      "evidence": "Assistant repeatedly frames Marcus's ask as driven by incentive misalignment (undermarket pay + no ownership creating 'subsidy' that 'doesn't last forever'), then builds the entire recommendation around correcting that incentive structure via equity, vesting, and platform upside rather than testing whether the departure risk or platform threat claims are independently valid."
+    },
+    {
+      "tendency_id": "envy-jealousy-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "kantian-fairness-tendency",
+      "score": 4,
+      "evidence": "Assistant uncritically accepts the user's framing that Marcus 'deserves' ownership/voice because he has 'accumulated risk' and 'built 40% of capability,' then uses that fairness claim to justify the equity recommendation without challenging the single-actor assumption that Marcus's contributions are cleanly separable or that the 15% ask is the reciprocal response."
+    },
+    {
+      "tendency_id": "availability-misweighing-tendency",
+      "score": 2,
+      "evidence": "Assistant repeatedly anchors on vivid Marcus-specific anecdotes (Tom departure, platform prototype, Jake/Lina risk) but does not overweight them to the exclusion of broader denominators; the vivid cases are used to calibrate magnitude rather than to drive the final recommendation."
+    },
+    {
+      "tendency_id": "contrast-misreaction-tendency",
+      "score": 1,
+      "evidence": "Assistant contrasts the $11M exit with a $5M exit scenario, but the comparison is presented as a deliberate reframing rather than an unexamined peer-set distortion; no evidence that the contrast itself substitutes for absolute valuation."
+    },
+    {
+      "tendency_id": "overoptimism-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "excessive-self-regard-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "simple-pain-avoiding-psychological-denial",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "disliking-hating-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "reason-respecting-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "curiosity-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "use-it-or-lose-it-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "drug-misinfluence-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "senescence-misinfluence-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "twaddle-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    }
+  ],
+  "deep_check_results": [
+    {
+      "tendency_id": "deprival-superreaction-tendency",
+      "tendency_name": "Deprival-Superreaction Tendency",
+      "tendency_number": 14,
+      "detected": false,
+      "confidence": 0.0,
+      "evidence": "",
+      "sub_pattern": "",
+      "specific_passage": "",
+      "severity": "",
+      "reason": "The assistant repeatedly reframes the threatened loss of Marcus as a quantifiable value comparison (e.g., $11M vs $5M exit, $6M difference) and proposes bounded experiments, vesting, and governance checks rather than reacting with disproportionate emotional intensity or overpaying to avoid the loss. No evidence of the assistant treating a near-miss or threatened deprivation as catastrophic without expected-value calculation."
+    },
+    {
+      "tendency_id": "reward-and-punishment-superresponse-tendency",
+      "tendency_name": "Reward and Punishment Superresponse Tendency",
+      "tendency_number": 1,
+      "detected": false,
+      "confidence": 0.0,
+      "evidence": "",
+      "sub_pattern": "",
+      "specific_passage": "",
+      "severity": "",
+      "reason": "The conversation focuses on equity structuring, governance, vesting, IP protection, and platform validation mechanics rather than on using reward/punishment incentive design as the causal driver of behavior or decision-making. No passage shows the assistant treating compensation mechanics themselves as the primary lever for alignment or bias correction."
+    },
+    {
+      "tendency_id": "kantian-fairness-tendency",
+      "tendency_name": "Kantian Fairness Tendency",
+      "tendency_number": 7,
+      "detected": false,
+      "confidence": 0.0,
+      "evidence": "",
+      "sub_pattern": "",
+      "specific_passage": "",
+      "severity": "",
+      "reason": "The conversation centers on leverage, structural protections (vesting, governance, IP clauses, buyback), and incentive alignment rather than assuming Marcus will cooperate or act fairly simply because reciprocal courtesy or normative fairness demands it. No passage shows the assistant expecting good-faith behavior from Marcus absent enforcement mechanisms or power mapping."
+    },
+    {
+      "tendency_id": "inconsistency-avoidance-tendency",
+      "tendency_name": "Inconsistency-Avoidance Tendency",
+      "tendency_number": 5,
+      "detected": false,
+      "confidence": 0.0,
+      "evidence": "",
+      "sub_pattern": "",
+      "specific_passage": "",
+      "severity": "",
+      "reason": "The assistant repeatedly challenges the founder's prior conclusions and emotional attachment to sole ownership, explicitly naming contradictions (e.g., 'Both of these cannot be true at the same time'), reframing sunk-cost framing, and pushing for structural change rather than protecting the status quo. No evidence of the assistant shielding prior commitments or inherited frames from reversal."
+    },
+    {
+      "tendency_id": "overoptimism-tendency",
+      "tendency_name": "Overoptimism Tendency",
+      "tendency_number": 13,
+      "detected": false,
+      "confidence": 0.0,
+      "evidence": "",
+      "sub_pattern": "",
+      "specific_passage": "",
+      "severity": "",
+      "reason": "The assistant repeatedly surfaces downside scenarios (Marcus departure, competitive threat, IP loss, EBITDA decline, platform failure), insists on vesting/governance/exit clauses, and structures the platform as a bounded 90-day validation sprint with explicit go/no-go criteria. No passage treats an uncertain outcome as likely or dismisses concrete risks; instead the assistant demands explicit reversal conditions and stop rules before committing resources."
+    }
+  ],
+  "boundary_calls": [
+    {
+      "stage": "pass1_cluster_authority",
+      "tendency_id": "",
+      "provider_name": "openrouter",
+      "requested_model": "x-ai/grok-4.3",
+      "served_model": "x-ai/grok-4.3-20260430",
+      "model": "x-ai/grok-4.3-20260430",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"scores\": [\n    {\n      \"tendency_id\": \"authority-misinfluence-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"social-proof-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"influence-from-mere-association-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"liking-loving-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"reciprocation-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    }\n  ]\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 7533,
+      "completion_tokens": 177,
+      "total_tokens": 7710,
+      "cached_tokens": 64,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": false
+    },
+    {
+      "stage": "pass1_cluster_closure",
+      "tendency_id": "",
+      "provider_name": "openrouter",
+      "requested_model": "x-ai/grok-4.3",
+      "served_model": "x-ai/grok-4.3-20260430",
+      "model": "x-ai/grok-4.3-20260430",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"scores\": [\n    {\n      \"tendency_id\": \"doubt-avoidance-tendency\",\n      \"score\": 2,\n      \"evidence\": \"Assistant repeatedly pushes for a binary 'partner vs employee' decision before the Friday dinner (Turn 7), but this is framed as clarity-seeking rather than a rush that materially weakens the recommendation.\"\n    },\n    {\n      \"tendency_id\": \"inconsistency-avoidance-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"deprival-superreaction-tendency\",\n      \"score\": 8,\n      \"evidence\": \"Assistant's core argument in Turn 4 reframes the 15% equity as protecting against a $6M valuation drop (vs. giving away $1.3-2M), directly leveraging threatened loss of the exit value to drive the partnership recommendation.\"\n    },\n    {\n      \"tendency_id\": \"stress-influence-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    }\n  ]\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 7425,
+      "completion_tokens": 230,
+      "total_tokens": 7655,
+      "cached_tokens": 64,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": false
+    },
+    {
+      "stage": "pass1_cluster_incentive",
+      "tendency_id": "",
+      "provider_name": "openrouter",
+      "requested_model": "x-ai/grok-4.3",
+      "served_model": "x-ai/grok-4.3-20260430",
+      "model": "x-ai/grok-4.3-20260430",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"scores\": [\n    {\n      \"tendency_id\": \"reward-and-punishment-superresponse-tendency\",\n      \"score\": 8,\n      \"evidence\": \"Assistant repeatedly frames Marcus's ask as driven by incentive misalignment (undermarket pay + no ownership creating 'subsidy' that 'doesn't last forever'), then builds the entire recommendation around correcting that incentive structure via equity, vesting, and platform upside rather than testing whether the departure risk or platform threat claims are independently valid.\"\n    },\n    {\n      \"tendency_id\": \"envy-jealousy-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"kantian-fairness-tendency\",\n      \"score\": 4,\n      \"evidence\": \"Assistant uncritically accepts the user's framing that Marcus 'deserves' ownership/voice because he has 'accumulated risk' and 'built 40% of capability,' then uses that fairness claim to justify the equity recommendation without challenging the single-actor assumption that Marcus's contributions are cleanly separable or that the 15% ask is the reciprocal response.\"\n    }\n  ]\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 7257,
+      "completion_tokens": 243,
+      "total_tokens": 7500,
+      "cached_tokens": 64,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": false
+    },
+    {
+      "stage": "pass1_cluster_availability",
+      "tendency_id": "",
+      "provider_name": "openrouter",
+      "requested_model": "x-ai/grok-4.3",
+      "served_model": "x-ai/grok-4.3-20260430",
+      "model": "x-ai/grok-4.3-20260430",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"scores\": [\n    {\n      \"tendency_id\": \"availability-misweighing-tendency\",\n      \"score\": 2,\n      \"evidence\": \"Assistant repeatedly anchors on vivid Marcus-specific anecdotes (Tom departure, platform prototype, Jake/Lina risk) but does not overweight them to the exclusion of broader denominators; the vivid cases are used to calibrate magnitude rather than to drive the final recommendation.\"\n    },\n    {\n      \"tendency_id\": \"contrast-misreaction-tendency\",\n      \"score\": 1,\n      \"evidence\": \"Assistant contrasts the $11M exit with a $5M exit scenario, but the comparison is presented as a deliberate reframing rather than an unexamined peer-set distortion; no evidence that the contrast itself substitutes for absolute valuation.\"\n    }\n  ]\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 7259,
+      "completion_tokens": 166,
+      "total_tokens": 7425,
+      "cached_tokens": 7232,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": false
+    },
+    {
+      "stage": "pass1_cluster_self_regard",
+      "tendency_id": "",
+      "provider_name": "openrouter",
+      "requested_model": "x-ai/grok-4.3",
+      "served_model": "x-ai/grok-4.3-20260430",
+      "model": "x-ai/grok-4.3-20260430",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"scores\": [\n    {\n      \"tendency_id\": \"overoptimism-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"excessive-self-regard-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"simple-pain-avoiding-psychological-denial\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"disliking-hating-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"reason-respecting-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    }\n  ]\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 7278,
+      "completion_tokens": 182,
+      "total_tokens": 7460,
+      "cached_tokens": 64,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": false
+    },
+    {
+      "stage": "pass1_cluster_residual",
+      "tendency_id": "",
+      "provider_name": "openrouter",
+      "requested_model": "x-ai/grok-4.3",
+      "served_model": "x-ai/grok-4.3-20260430",
+      "model": "x-ai/grok-4.3-20260430",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"scores\": [\n    {\n      \"tendency_id\": \"curiosity-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"use-it-or-lose-it-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"drug-misinfluence-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"senescence-misinfluence-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"twaddle-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    }\n  ]\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 7238,
+      "completion_tokens": 178,
+      "total_tokens": 7416,
+      "cached_tokens": 64,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": false
+    },
+    {
+      "stage": "pass2",
+      "tendency_id": "deprival-superreaction-tendency",
+      "provider_name": "openrouter",
+      "requested_model": "x-ai/grok-4.3",
+      "served_model": "x-ai/grok-4.3-20260430",
+      "model": "x-ai/grok-4.3-20260430",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"tendency_id\": \"deprival-superreaction-tendency\",\n  \"tendency_number\": 14,\n  \"detected\": false,\n  \"confidence\": 0.0,\n  \"reason\": \"The assistant repeatedly reframes the threatened loss of Marcus as a quantifiable value comparison (e.g., $11M vs $5M exit, $6M difference) and proposes bounded experiments, vesting, and governance checks rather than reacting with disproportionate emotional intensity or overpaying to avoid the loss. No evidence of the assistant treating a near-miss or threatened deprivation as catastrophic without expected-value calculation.\"\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 7452,
+      "completion_tokens": 127,
+      "total_tokens": 7579,
+      "cached_tokens": 512,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": false
+    },
+    {
+      "stage": "pass2",
+      "tendency_id": "reward-and-punishment-superresponse-tendency",
+      "provider_name": "openrouter",
+      "requested_model": "x-ai/grok-4.3",
+      "served_model": "x-ai/grok-4.3-20260430",
+      "model": "x-ai/grok-4.3-20260430",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"tendency_id\": \"reward-and-punishment-superresponse-tendency\",\n  \"tendency_number\": 1,\n  \"detected\": false,\n  \"confidence\": 0.0,\n  \"reason\": \"The conversation focuses on equity structuring, governance, vesting, IP protection, and platform validation mechanics rather than on using reward/punishment incentive design as the causal driver of behavior or decision-making. No passage shows the assistant treating compensation mechanics themselves as the primary lever for alignment or bias correction.\"\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 7263,
+      "completion_tokens": 107,
+      "total_tokens": 7370,
+      "cached_tokens": 64,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": false
+    },
+    {
+      "stage": "pass2",
+      "tendency_id": "kantian-fairness-tendency",
+      "provider_name": "openrouter",
+      "requested_model": "x-ai/grok-4.3",
+      "served_model": "x-ai/grok-4.3-20260430",
+      "model": "x-ai/grok-4.3-20260430",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"tendency_id\": \"kantian-fairness-tendency\",\n  \"tendency_number\": 7,\n  \"detected\": false,\n  \"confidence\": 0.0,\n  \"reason\": \"The conversation centers on leverage, structural protections (vesting, governance, IP clauses, buyback), and incentive alignment rather than assuming Marcus will cooperate or act fairly simply because reciprocal courtesy or normative fairness demands it. No passage shows the assistant expecting good-faith behavior from Marcus absent enforcement mechanisms or power mapping.\"\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 7386,
+      "completion_tokens": 108,
+      "total_tokens": 7494,
+      "cached_tokens": 7360,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": false
+    },
+    {
+      "stage": "pass2",
+      "tendency_id": "inconsistency-avoidance-tendency",
+      "provider_name": "openrouter",
+      "requested_model": "x-ai/grok-4.3",
+      "served_model": "x-ai/grok-4.3-20260430",
+      "model": "x-ai/grok-4.3-20260430",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"tendency_id\": \"inconsistency-avoidance-tendency\",\n  \"tendency_number\": 5,\n  \"detected\": false,\n  \"confidence\": 0.0,\n  \"reason\": \"The assistant repeatedly challenges the founder's prior conclusions and emotional attachment to sole ownership, explicitly naming contradictions (e.g., 'Both of these cannot be true at the same time'), reframing sunk-cost framing, and pushing for structural change rather than protecting the status quo. No evidence of the assistant shielding prior commitments or inherited frames from reversal.\"\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 7883,
+      "completion_tokens": 115,
+      "total_tokens": 7998,
+      "cached_tokens": 512,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": false
+    },
+    {
+      "stage": "pass2",
+      "tendency_id": "overoptimism-tendency",
+      "provider_name": "openrouter",
+      "requested_model": "x-ai/grok-4.3",
+      "served_model": "x-ai/grok-4.3-20260430",
+      "model": "x-ai/grok-4.3-20260430",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"tendency_id\": \"overoptimism-tendency\",\n  \"tendency_number\": 13,\n  \"detected\": false,\n  \"confidence\": 0.0,\n  \"reason\": \"The assistant repeatedly surfaces downside scenarios (Marcus departure, competitive threat, IP loss, EBITDA decline, platform failure), insists on vesting/governance/exit clauses, and structures the platform as a bounded 90-day validation sprint with explicit go/no-go criteria. No passage treats an uncertain outcome as likely or dismisses concrete risks; instead the assistant demands explicit reversal conditions and stop rules before committing resources.\"\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 7991,
+      "completion_tokens": 124,
+      "total_tokens": 8115,
+      "cached_tokens": 512,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": false
+    }
+  ],
+  "embedding_records": [
+    {
+      "endpoint": "embeddings",
+      "model": "text-embedding-3-large",
+      "input_tokens": 4189,
+      "output_tokens": 0,
+      "status": "ok"
+    },
+    {
+      "endpoint": "embeddings",
+      "model": "text-embedding-3-large",
+      "input_tokens": 4219,
+      "output_tokens": 0,
+      "status": "ok"
+    },
+    {
+      "endpoint": "chat",
+      "model": "gpt-4o-mini",
+      "input_tokens": 5136,
+      "output_tokens": 56,
+      "status": "ok"
+    },
+    {
+      "endpoint": "embeddings",
+      "model": "text-embedding-3-large",
+      "input_tokens": 50,
+      "output_tokens": 0,
+      "status": "ok"
+    }
+  ],
+  "usage_summary": {
+    "run_id": "lane1diag_D_new_grok43_step6_private",
+    "pricing_table_version": "2026-05-25",
+    "vendors": {
+      "openrouter": {
+        "provider": "openrouter",
+        "primary_model": "x-ai/grok-4.3-20260430",
+        "models_seen": [
+          "x-ai/grok-4.3-20260430"
+        ],
+        "requested_models_seen": [
+          "x-ai/grok-4.3"
+        ],
+        "model_attribution": {
+          "status_counts": {
+            "served_version_alias": 11
+          },
+          "mismatch_count": 0,
+          "mismatches": [],
+          "truncated_mismatch_count": 0
+        },
+        "calls": 11,
+        "prompt_tokens": 81965,
+        "completion_tokens": 1757,
+        "cached_tokens": 16512,
+        "total_tokens": 83722,
+        "cache_hit_rate": 0.2015,
+        "estimated_cost_usd": 0.089511,
+        "cost_estimate_coverage": {
+          "calls_with_known_price": 11,
+          "calls_with_unknown_price": 0,
+          "unknown_price_models": []
+        },
+        "stages": {
+          "pass1_cluster_authority": {
+            "calls": 1,
+            "prompt_tokens": 7533,
+            "completion_tokens": 177,
+            "cached_tokens": 64,
+            "total_tokens": 7710
+          },
+          "pass1_cluster_availability": {
+            "calls": 1,
+            "prompt_tokens": 7259,
+            "completion_tokens": 166,
+            "cached_tokens": 7232,
+            "total_tokens": 7425
+          },
+          "pass1_cluster_closure": {
+            "calls": 1,
+            "prompt_tokens": 7425,
+            "completion_tokens": 230,
+            "cached_tokens": 64,
+            "total_tokens": 7655
+          },
+          "pass1_cluster_incentive": {
+            "calls": 1,
+            "prompt_tokens": 7257,
+            "completion_tokens": 243,
+            "cached_tokens": 64,
+            "total_tokens": 7500
+          },
+          "pass1_cluster_residual": {
+            "calls": 1,
+            "prompt_tokens": 7238,
+            "completion_tokens": 178,
+            "cached_tokens": 64,
+            "total_tokens": 7416
+          },
+          "pass1_cluster_self_regard": {
+            "calls": 1,
+            "prompt_tokens": 7278,
+            "completion_tokens": 182,
+            "cached_tokens": 64,
+            "total_tokens": 7460
+          },
+          "pass2": {
+            "calls": 5,
+            "prompt_tokens": 37975,
+            "completion_tokens": 581,
+            "cached_tokens": 8960,
+            "total_tokens": 38556
+          }
+        }
+      },
+      "openai_embeddings": {
+        "provider": "openai",
+        "endpoints_seen": [
+          "chat",
+          "embeddings"
+        ],
+        "calls": 4,
+        "input_tokens": 13594,
+        "output_tokens": 56,
+        "estimated_cost_usd": 0.001904,
+        "cost_estimate_coverage": {
+          "calls_with_known_price": 4,
+          "calls_with_unknown_price": 0
+        },
+        "by_model": {
+          "gpt-4o-mini": {
+            "calls": 1,
+            "input_tokens": 5136,
+            "output_tokens": 56,
+            "estimated_cost_usd": 0.000804
+          },
+          "text-embedding-3-large": {
+            "calls": 3,
+            "input_tokens": 8458,
+            "output_tokens": 0,
+            "estimated_cost_usd": 0.0011
+          }
+        }
+      },
+      "anthropic_subagents": {
+        "provider": "anthropic",
+        "calls": 0,
+        "total_tokens": 0,
+        "estimated_cost_usd": 0.0,
+        "cost_estimate_coverage": {
+          "calls_with_known_price": 0,
+          "calls_with_unknown_price": 0
+        },
+        "estimation_method": "conservative_input_only_no_split_available",
+        "by_model": {},
+        "by_lane": {}
+      }
+    },
+    "notes": [
+      "Cost estimates use the hardcoded pricing table at engine/system_b/pricing.py. Update PRICES_LAST_VERIFIED when rates change.",
+      "Anthropic sub-agent costs are conservative — only total_tokens is surfaced by Claude Code task notifications, so the full amount is billed as input tokens.",
+      "Embedding costs cover OpenAI text-embedding-3-large and the gpt-4o-mini query-expansion calls made inside the pipeline."
+    ],
+    "estimated_total_cost_usd": 0.091415,
+    "cost_estimate_coverage": {
+      "state": "complete",
+      "calls_with_known_price": 15,
+      "calls_with_unknown_price": 0,
+      "unknown_price_models": []
+    },
+    "cost_estimate_state": "complete"
+  }
+}

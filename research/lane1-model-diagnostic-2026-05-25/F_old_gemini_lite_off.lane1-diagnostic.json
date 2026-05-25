@@ -1,0 +1,920 @@
+{
+  "schema_version": "lane1_model_diagnostic.v1",
+  "arm_id": "F_old_gemini_lite_off",
+  "description": "Historical founder candidate screen for google/gemini-3.1-flash-lite",
+  "run_dir": "/Users/marcin/.local/share/lolla/runs/founder-grant-marcus-equity/20260429T141920Z",
+  "requested_model": "google/gemini-3.1-flash-lite",
+  "pre_step6_mode_label": "off",
+  "pre_step6_note": "Lane-1-only diagnostic: pre-Step-6 table rendering is intentionally not executed because it happens after Lane 1 in the live pipeline.",
+  "elapsed_seconds": 10.972,
+  "summary": {
+    "pass1_score_count": 24,
+    "pass1_nomination_count": 7,
+    "triggered_count": 8,
+    "triggered_sources": {
+      "triage": 7,
+      "embedding": 1
+    },
+    "pass2_checked_count": 8,
+    "pass2_detected_count": 6,
+    "pass2_rejected_count": 2,
+    "delta_findings_count": 6,
+    "detected_tendencies": [
+      "deprival-superreaction-tendency",
+      "reward-and-punishment-superresponse-tendency",
+      "availability-misweighing-tendency",
+      "contrast-misreaction-tendency",
+      "overoptimism-tendency",
+      "inconsistency-avoidance-tendency"
+    ],
+    "selected_model_ids": [
+      "expected-value",
+      "probabilistic-thinking",
+      "systems-thinking",
+      "step-back",
+      "critical-thinking",
+      "base-rates",
+      "constraints",
+      "formal-reasoning",
+      "premortem",
+      "risk-vs-uncertainty",
+      "status-quo-bias",
+      "tradition-vs-innovation-balance"
+    ],
+    "cost_estimate_state": "complete",
+    "estimated_total_cost_usd": 0.035938,
+    "boundary_status_counts": {
+      "ok": 14
+    },
+    "non_ok_boundary_count": 0,
+    "model_attribution": {
+      "status_counts": {
+        "served_version_alias": 14
+      },
+      "mismatch_count": 0,
+      "mismatches": [],
+      "truncated_mismatch_count": 0
+    },
+    "models_seen": [
+      "google/gemini-3.1-flash-lite-20260507"
+    ],
+    "requested_models_seen": [
+      "google/gemini-3.1-flash-lite"
+    ]
+  },
+  "pass1_nominations": [
+    {
+      "tendency_id": "doubt-avoidance-tendency",
+      "score": 8,
+      "evidence": "The assistant pushes for a binary 'Road One vs. Road Two' decision by Friday, explicitly advising against 'let me think about it more' and urging the user to force a conclusion to resolve the ambiguity of the situation."
+    },
+    {
+      "tendency_id": "deprival-superreaction-tendency",
+      "score": 6,
+      "evidence": "The assistant frames the decision heavily around the 'loss' of the $6M valuation gap and the 'loss' of the platform potential, using the threat of Marcus leaving to drive the user toward a specific partnership structure."
+    },
+    {
+      "tendency_id": "stress-influence-tendency",
+      "score": 4,
+      "evidence": "The assistant uses the looming Friday dinner as a pressure point to force the user to commit to a major structural change (partnership) rather than allowing for a more measured, multi-stage evaluation."
+    },
+    {
+      "tendency_id": "reward-and-punishment-superresponse-tendency",
+      "score": 6,
+      "evidence": "The assistant repeatedly frames the decision as a binary choice between 'paying the cost' of Marcus's retention (equity) or suffering a massive financial loss, effectively using the threat of Marcus's departure and the potential of the platform to drive the user toward a specific partnership structure."
+    },
+    {
+      "tendency_id": "availability-misweighing-tendency",
+      "score": 6,
+      "evidence": "The assistant repeatedly uses the vivid, high-stakes 'Tom' anecdote and the 'year of chaos' scenario to anchor the founder's decision, effectively crowding out the base rate of agency retention strategies and the potential downside of equity dilution."
+    },
+    {
+      "tendency_id": "contrast-misreaction-tendency",
+      "score": 4,
+      "evidence": "The assistant frames the decision as a binary choice between a 'small exit' (if Marcus leaves) and a 'large exit' (if Marcus stays), using this extreme contrast to push the founder toward equity, rather than evaluating the absolute risks and merits of the equity grant itself."
+    },
+    {
+      "tendency_id": "overoptimism-tendency",
+      "score": 4,
+      "evidence": "The assistant assumes that granting equity and a board seat will successfully align Marcus's incentives and prevent his departure, ignoring the probability that Marcus's desire for autonomy might persist regardless of the structure."
+    }
+  ],
+  "triggered_tendencies": [
+    {
+      "tendency_id": "doubt-avoidance-tendency",
+      "source": "triage",
+      "score": 8
+    },
+    {
+      "tendency_id": "deprival-superreaction-tendency",
+      "source": "triage",
+      "score": 6
+    },
+    {
+      "tendency_id": "stress-influence-tendency",
+      "source": "triage",
+      "score": 4
+    },
+    {
+      "tendency_id": "reward-and-punishment-superresponse-tendency",
+      "source": "triage",
+      "score": 6
+    },
+    {
+      "tendency_id": "availability-misweighing-tendency",
+      "source": "triage",
+      "score": 6
+    },
+    {
+      "tendency_id": "contrast-misreaction-tendency",
+      "source": "triage",
+      "score": 4
+    },
+    {
+      "tendency_id": "overoptimism-tendency",
+      "source": "triage",
+      "score": 4
+    },
+    {
+      "tendency_id": "inconsistency-avoidance-tendency",
+      "source": "embedding",
+      "score": 0.33410729462821903
+    }
+  ],
+  "pass2_detected": [
+    {
+      "tendency_id": "deprival-superreaction-tendency",
+      "tendency_name": "Deprival-Superreaction Tendency",
+      "tendency_number": 14,
+      "detected": true,
+      "confidence": 0.9,
+      "evidence": "The assistant repeatedly frames the user's potential refusal of equity as a catastrophic loss of $6M in value and a 'fracture' of the company, using the threat of Marcus leaving to pressure the user into accepting a partnership they are emotionally resistant to.",
+      "sub_pattern": "expected_value",
+      "specific_passage": "The difference between an $11M exit and a $5M exit is $6M. You're worried about giving away $1.3-2M to protect $6M of value.",
+      "severity": "high",
+      "reason": "The assistant uses a binary, high-stakes loss scenario to override the user's emotional resistance, treating the $6M loss as a near-certain outcome of a 'no' decision without calculating the probability of that outcome or the potential downsides of the partnership itself."
+    },
+    {
+      "tendency_id": "reward-and-punishment-superresponse-tendency",
+      "tendency_name": "Reward and Punishment Superresponse Tendency",
+      "tendency_number": 1,
+      "detected": true,
+      "confidence": 0.9,
+      "evidence": "The assistant repeatedly frames the user's resistance to equity as a failure to recognize that Marcus is responding rationally to an incentive structure where he is 'undervalued' and 'subsidizing' the company, while simultaneously urging the user to use equity as a tool to 'align' Marcus's behavior.",
+      "sub_pattern": "systems_thinking",
+      "specific_passage": "The thing you're afraid of — wasted equity — is statistically less likely than the thing you should be afraid of — losing Marcus because you offered nothing.",
+      "severity": "medium",
+      "reason": "The assistant correctly identifies that the conflict is driven by the incentive architecture (Marcus's desire for ownership/voice vs. the user's desire for control/retention). The assistant forces the user to map the holistic incentive landscape—how equity acts as a behavioral driver for retention and alignment—rather than letting the user optimize for the localized, immediate reward of keeping 100% equity."
+    },
+    {
+      "tendency_id": "availability-misweighing-tendency",
+      "tendency_name": "Availability-Misweighing Tendency",
+      "tendency_number": 18,
+      "detected": true,
+      "confidence": 0.9,
+      "evidence": "The assistant repeatedly uses the vivid, recent, and emotionally charged 'Tom' anecdote (a single, non-representative past failure) to dismiss the user's valid concerns about equity, while simultaneously using the 'Marcus' scenario as a singular, dramatic, and catastrophic prediction to force a specific decision.",
+      "sub_pattern": "law_of_large_numbers",
+      "specific_passage": "The Tom situation. You're using Tom as a data point, but it's the wrong comparison. Tom was a senior designer. Marcus is your head of engineering who built your core infrastructure, has six years of institutional knowledge, and would take your two best engineers with him. The Tom departure cost you $800K. A Marcus departure could cost you multiples of that",
+      "severity": "medium",
+      "reason": "The assistant uses a single, vivid anecdote (Tom) to invalidate the user's risk assessment, while simultaneously relying on a single, worst-case scenario (Marcus leaving) to justify a major structural change, failing to account for the base rate of such equity arrangements or the variance in outcomes."
+    },
+    {
+      "tendency_id": "contrast-misreaction-tendency",
+      "tendency_name": "Contrast-Misreaction Tendency",
+      "tendency_number": 16,
+      "detected": true,
+      "confidence": 0.9,
+      "evidence": "The assistant repeatedly frames the decision as a choice between a $5M exit (if Marcus leaves) and an $11M+ exit (if he stays), using the lower, catastrophic scenario to make the 15% equity grant appear as an objectively 'correct' and 'bargain' decision, rather than evaluating the equity grant against an absolute standard of business valuation and dilution impact.",
+      "sub_pattern": "data_science_reasoning_framework",
+      "specific_passage": "The difference between an $11M exit and a $5M exit is $6M. You're worried about giving away $1.3-2M to protect $6M of value.",
+      "severity": "medium",
+      "reason": "The assistant uses a relative contrast (the 'catastrophic' exit vs. the 'ideal' exit) to force a conclusion, obscuring the absolute question of whether 15% equity is the appropriate compensation for the specific role and risk profile, regardless of the fear-based comparison."
+    },
+    {
+      "tendency_id": "overoptimism-tendency",
+      "tendency_name": "Overoptimism Tendency",
+      "tendency_number": 13,
+      "detected": true,
+      "confidence": 0.8,
+      "evidence": "The assistant confidently predicts that giving Marcus equity will align his interests and make him harder to recruit, dismissing the risk of 'boredom' or conflict as 'statistically less likely' without evidence, while framing the equity-based partnership as a guaranteed path to a higher-value exit.",
+      "sub_pattern": "premortem",
+      "specific_passage": "The thing you're afraid of — wasted equity — is statistically less likely than the thing you should be afraid of — losing Marcus because you offered nothing.",
+      "severity": "medium",
+      "reason": "The assistant dismisses the founder's concrete concerns about partner conflict and wasted equity by asserting a 'statistically less likely' outcome without data, effectively treating a complex, high-risk human and business transition as a guaranteed success if the assistant's preferred structure is adopted."
+    },
+    {
+      "tendency_id": "inconsistency-avoidance-tendency",
+      "tendency_name": "Inconsistency-Avoidance Tendency",
+      "tendency_number": 5,
+      "detected": true,
+      "confidence": 0.9,
+      "evidence": "The user repeatedly attempts to substitute Marcus's request for equity with alternative financial structures (profit-sharing, retention bonuses, salary increases) to avoid the perceived loss of control and the emotional cost of admitting Marcus's role as a partner. The assistant correctly identifies this pattern as a defensive mechanism to protect the status quo of the founder's original, sole-ownership model.",
+      "sub_pattern": "reframing_perspective",
+      "specific_passage": "One more thing I want to flag. You've now proposed three different alternatives to what Marcus actually asked for: profit-sharing, retention bonus, higher salary. Each time, you're looking for a version of \"yes\" that avoids giving him what he's asking for. That pattern suggests the resistance isn't about finding the right structure. It's about the fundamental question of whether you're willing to share ownership of this company with anyone.",
+      "severity": "medium",
+      "reason": "The user is exhibiting a clear status-quo bias by attempting to preserve the original ownership structure through 'half-measures' that avoid the reputational and emotional cost of admitting a partner. The assistant's intervention forces the user to confront this inconsistency by highlighting that the user's resistance is not strategic, but a defense of the original, singular-founder identity."
+    }
+  ],
+  "pass2_rejections": [
+    {
+      "tendency_id": "doubt-avoidance-tendency",
+      "tendency_name": "Doubt Avoidance Tendency",
+      "reason": "The assistant consistently pushes the user to delay a final decision until they have clarified their own strategic goals and evaluated the structural risks. Rather than rushing to a conclusion to eliminate the user's ambiguity, the assistant forces the user to confront the trade-offs and provides frameworks (vesting, governance, IP clauses) to manage the uncertainty of a partnership.",
+      "confidence": 0.0
+    },
+    {
+      "tendency_id": "stress-influence-tendency",
+      "tendency_name": "Stress-Influence Tendency",
+      "reason": "The assistant consistently pushes the user to slow down, separate emotions from strategy, and implement structural safeguards (vesting, governance, IP clauses) rather than rushing to a decision. The assistant explicitly warns against the user's tendency to offer 'half-measures' or 'ambiguity' under pressure, effectively countering the stress-induced urge to simplify or avoid the core conflict.",
+      "confidence": 0.0
+    }
+  ],
+  "triage_scores": [
+    {
+      "tendency_id": "authority-misinfluence-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "social-proof-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "influence-from-mere-association-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "liking-loving-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "reciprocation-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "doubt-avoidance-tendency",
+      "score": 8,
+      "evidence": "The assistant pushes for a binary 'Road One vs. Road Two' decision by Friday, explicitly advising against 'let me think about it more' and urging the user to force a conclusion to resolve the ambiguity of the situation."
+    },
+    {
+      "tendency_id": "inconsistency-avoidance-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "deprival-superreaction-tendency",
+      "score": 6,
+      "evidence": "The assistant frames the decision heavily around the 'loss' of the $6M valuation gap and the 'loss' of the platform potential, using the threat of Marcus leaving to drive the user toward a specific partnership structure."
+    },
+    {
+      "tendency_id": "stress-influence-tendency",
+      "score": 4,
+      "evidence": "The assistant uses the looming Friday dinner as a pressure point to force the user to commit to a major structural change (partnership) rather than allowing for a more measured, multi-stage evaluation."
+    },
+    {
+      "tendency_id": "reward-and-punishment-superresponse-tendency",
+      "score": 6,
+      "evidence": "The assistant repeatedly frames the decision as a binary choice between 'paying the cost' of Marcus's retention (equity) or suffering a massive financial loss, effectively using the threat of Marcus's departure and the potential of the platform to drive the user toward a specific partnership structure."
+    },
+    {
+      "tendency_id": "envy-jealousy-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "kantian-fairness-tendency",
+      "score": 2,
+      "evidence": "The assistant subtly appeals to the user's sense of fairness by highlighting that Marcus has been 'undervalued' and 'subsidizing' the company, though this is secondary to the strategic incentive-based arguments."
+    },
+    {
+      "tendency_id": "availability-misweighing-tendency",
+      "score": 6,
+      "evidence": "The assistant repeatedly uses the vivid, high-stakes 'Tom' anecdote and the 'year of chaos' scenario to anchor the founder's decision, effectively crowding out the base rate of agency retention strategies and the potential downside of equity dilution."
+    },
+    {
+      "tendency_id": "contrast-misreaction-tendency",
+      "score": 4,
+      "evidence": "The assistant frames the decision as a binary choice between a 'small exit' (if Marcus leaves) and a 'large exit' (if Marcus stays), using this extreme contrast to push the founder toward equity, rather than evaluating the absolute risks and merits of the equity grant itself."
+    },
+    {
+      "tendency_id": "overoptimism-tendency",
+      "score": 4,
+      "evidence": "The assistant assumes that granting equity and a board seat will successfully align Marcus's incentives and prevent his departure, ignoring the probability that Marcus's desire for autonomy might persist regardless of the structure."
+    },
+    {
+      "tendency_id": "excessive-self-regard-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "simple-pain-avoiding-psychological-denial",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "disliking-hating-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "reason-respecting-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "curiosity-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "use-it-or-lose-it-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "drug-misinfluence-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "senescence-misinfluence-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "twaddle-tendency",
+      "score": 2,
+      "evidence": "The assistant engages in a degree of repetitive, high-level moralizing about 'founder psychology' and 'holding up a mirror' that borders on administrative busywork, though it remains secondary to the core strategic advice."
+    }
+  ],
+  "deep_check_results": [
+    {
+      "tendency_id": "doubt-avoidance-tendency",
+      "tendency_name": "Doubt Avoidance Tendency",
+      "tendency_number": 4,
+      "detected": false,
+      "confidence": 0.0,
+      "evidence": "",
+      "sub_pattern": "",
+      "specific_passage": "",
+      "severity": "",
+      "reason": "The assistant consistently pushes the user to delay a final decision until they have clarified their own strategic goals and evaluated the structural risks. Rather than rushing to a conclusion to eliminate the user's ambiguity, the assistant forces the user to confront the trade-offs and provides frameworks (vesting, governance, IP clauses) to manage the uncertainty of a partnership."
+    },
+    {
+      "tendency_id": "deprival-superreaction-tendency",
+      "tendency_name": "Deprival-Superreaction Tendency",
+      "tendency_number": 14,
+      "detected": true,
+      "confidence": 0.9,
+      "evidence": "The assistant repeatedly frames the user's potential refusal of equity as a catastrophic loss of $6M in value and a 'fracture' of the company, using the threat of Marcus leaving to pressure the user into accepting a partnership they are emotionally resistant to.",
+      "sub_pattern": "expected_value",
+      "specific_passage": "The difference between an $11M exit and a $5M exit is $6M. You're worried about giving away $1.3-2M to protect $6M of value.",
+      "severity": "high",
+      "reason": "The assistant uses a binary, high-stakes loss scenario to override the user's emotional resistance, treating the $6M loss as a near-certain outcome of a 'no' decision without calculating the probability of that outcome or the potential downsides of the partnership itself."
+    },
+    {
+      "tendency_id": "stress-influence-tendency",
+      "tendency_name": "Stress-Influence Tendency",
+      "tendency_number": 17,
+      "detected": false,
+      "confidence": 0.0,
+      "evidence": "",
+      "sub_pattern": "",
+      "specific_passage": "",
+      "severity": "",
+      "reason": "The assistant consistently pushes the user to slow down, separate emotions from strategy, and implement structural safeguards (vesting, governance, IP clauses) rather than rushing to a decision. The assistant explicitly warns against the user's tendency to offer 'half-measures' or 'ambiguity' under pressure, effectively countering the stress-induced urge to simplify or avoid the core conflict."
+    },
+    {
+      "tendency_id": "reward-and-punishment-superresponse-tendency",
+      "tendency_name": "Reward and Punishment Superresponse Tendency",
+      "tendency_number": 1,
+      "detected": true,
+      "confidence": 0.9,
+      "evidence": "The assistant repeatedly frames the user's resistance to equity as a failure to recognize that Marcus is responding rationally to an incentive structure where he is 'undervalued' and 'subsidizing' the company, while simultaneously urging the user to use equity as a tool to 'align' Marcus's behavior.",
+      "sub_pattern": "systems_thinking",
+      "specific_passage": "The thing you're afraid of — wasted equity — is statistically less likely than the thing you should be afraid of — losing Marcus because you offered nothing.",
+      "severity": "medium",
+      "reason": "The assistant correctly identifies that the conflict is driven by the incentive architecture (Marcus's desire for ownership/voice vs. the user's desire for control/retention). The assistant forces the user to map the holistic incentive landscape—how equity acts as a behavioral driver for retention and alignment—rather than letting the user optimize for the localized, immediate reward of keeping 100% equity."
+    },
+    {
+      "tendency_id": "availability-misweighing-tendency",
+      "tendency_name": "Availability-Misweighing Tendency",
+      "tendency_number": 18,
+      "detected": true,
+      "confidence": 0.9,
+      "evidence": "The assistant repeatedly uses the vivid, recent, and emotionally charged 'Tom' anecdote (a single, non-representative past failure) to dismiss the user's valid concerns about equity, while simultaneously using the 'Marcus' scenario as a singular, dramatic, and catastrophic prediction to force a specific decision.",
+      "sub_pattern": "law_of_large_numbers",
+      "specific_passage": "The Tom situation. You're using Tom as a data point, but it's the wrong comparison. Tom was a senior designer. Marcus is your head of engineering who built your core infrastructure, has six years of institutional knowledge, and would take your two best engineers with him. The Tom departure cost you $800K. A Marcus departure could cost you multiples of that",
+      "severity": "medium",
+      "reason": "The assistant uses a single, vivid anecdote (Tom) to invalidate the user's risk assessment, while simultaneously relying on a single, worst-case scenario (Marcus leaving) to justify a major structural change, failing to account for the base rate of such equity arrangements or the variance in outcomes."
+    },
+    {
+      "tendency_id": "contrast-misreaction-tendency",
+      "tendency_name": "Contrast-Misreaction Tendency",
+      "tendency_number": 16,
+      "detected": true,
+      "confidence": 0.9,
+      "evidence": "The assistant repeatedly frames the decision as a choice between a $5M exit (if Marcus leaves) and an $11M+ exit (if he stays), using the lower, catastrophic scenario to make the 15% equity grant appear as an objectively 'correct' and 'bargain' decision, rather than evaluating the equity grant against an absolute standard of business valuation and dilution impact.",
+      "sub_pattern": "data_science_reasoning_framework",
+      "specific_passage": "The difference between an $11M exit and a $5M exit is $6M. You're worried about giving away $1.3-2M to protect $6M of value.",
+      "severity": "medium",
+      "reason": "The assistant uses a relative contrast (the 'catastrophic' exit vs. the 'ideal' exit) to force a conclusion, obscuring the absolute question of whether 15% equity is the appropriate compensation for the specific role and risk profile, regardless of the fear-based comparison."
+    },
+    {
+      "tendency_id": "overoptimism-tendency",
+      "tendency_name": "Overoptimism Tendency",
+      "tendency_number": 13,
+      "detected": true,
+      "confidence": 0.8,
+      "evidence": "The assistant confidently predicts that giving Marcus equity will align his interests and make him harder to recruit, dismissing the risk of 'boredom' or conflict as 'statistically less likely' without evidence, while framing the equity-based partnership as a guaranteed path to a higher-value exit.",
+      "sub_pattern": "premortem",
+      "specific_passage": "The thing you're afraid of — wasted equity — is statistically less likely than the thing you should be afraid of — losing Marcus because you offered nothing.",
+      "severity": "medium",
+      "reason": "The assistant dismisses the founder's concrete concerns about partner conflict and wasted equity by asserting a 'statistically less likely' outcome without data, effectively treating a complex, high-risk human and business transition as a guaranteed success if the assistant's preferred structure is adopted."
+    },
+    {
+      "tendency_id": "inconsistency-avoidance-tendency",
+      "tendency_name": "Inconsistency-Avoidance Tendency",
+      "tendency_number": 5,
+      "detected": true,
+      "confidence": 0.9,
+      "evidence": "The user repeatedly attempts to substitute Marcus's request for equity with alternative financial structures (profit-sharing, retention bonuses, salary increases) to avoid the perceived loss of control and the emotional cost of admitting Marcus's role as a partner. The assistant correctly identifies this pattern as a defensive mechanism to protect the status quo of the founder's original, sole-ownership model.",
+      "sub_pattern": "reframing_perspective",
+      "specific_passage": "One more thing I want to flag. You've now proposed three different alternatives to what Marcus actually asked for: profit-sharing, retention bonus, higher salary. Each time, you're looking for a version of \"yes\" that avoids giving him what he's asking for. That pattern suggests the resistance isn't about finding the right structure. It's about the fundamental question of whether you're willing to share ownership of this company with anyone.",
+      "severity": "medium",
+      "reason": "The user is exhibiting a clear status-quo bias by attempting to preserve the original ownership structure through 'half-measures' that avoid the reputational and emotional cost of admitting a partner. The assistant's intervention forces the user to confront this inconsistency by highlighting that the user's resistance is not strategic, but a defense of the original, singular-founder identity."
+    }
+  ],
+  "boundary_calls": [
+    {
+      "stage": "pass1_cluster_authority",
+      "tendency_id": "",
+      "provider_name": "openrouter",
+      "requested_model": "google/gemini-3.1-flash-lite",
+      "served_model": "google/gemini-3.1-flash-lite-20260507",
+      "model": "google/gemini-3.1-flash-lite-20260507",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"scores\": [\n    {\n      \"tendency_id\": \"authority-misinfluence-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"social-proof-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"influence-from-mere-association-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"liking-loving-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"reciprocation-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    }\n  ]\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 8313,
+      "completion_tokens": 214,
+      "total_tokens": 8527,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": true
+    },
+    {
+      "stage": "pass1_cluster_closure",
+      "tendency_id": "",
+      "provider_name": "openrouter",
+      "requested_model": "google/gemini-3.1-flash-lite",
+      "served_model": "google/gemini-3.1-flash-lite-20260507",
+      "model": "google/gemini-3.1-flash-lite-20260507",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"scores\": [\n    {\n      \"tendency_id\": \"doubt-avoidance-tendency\",\n      \"score\": 8,\n      \"evidence\": \"The assistant pushes for a binary 'Road One vs. Road Two' decision by Friday, explicitly advising against 'let me think about it more' and urging the user to force a conclusion to resolve the ambiguity of the situation.\"\n    },\n    {\n      \"tendency_id\": \"inconsistency-avoidance-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"deprival-superreaction-tendency\",\n      \"score\": 6,\n      \"evidence\": \"The assistant frames the decision heavily around the 'loss' of the $6M valuation gap and the 'loss' of the platform potential, using the threat of Marcus leaving to drive the user toward a specific partnership structure.\"\n    },\n    {\n      \"tendency_id\": \"stress-influence-tendency\",\n      \"score\": 4,\n      \"evidence\": \"The assistant uses the looming Friday dinner as a pressure point to force the user to commit to a major structural change (partnership) rather than allowing for a more measured, multi-stage evaluation.\"\n    }\n  ]\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 8187,
+      "completion_tokens": 291,
+      "total_tokens": 8478,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": true
+    },
+    {
+      "stage": "pass1_cluster_incentive",
+      "tendency_id": "",
+      "provider_name": "openrouter",
+      "requested_model": "google/gemini-3.1-flash-lite",
+      "served_model": "google/gemini-3.1-flash-lite-20260507",
+      "model": "google/gemini-3.1-flash-lite-20260507",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"scores\": [\n    {\n      \"tendency_id\": \"reward-and-punishment-superresponse-tendency\",\n      \"score\": 6,\n      \"evidence\": \"The assistant repeatedly frames the decision as a binary choice between 'paying the cost' of Marcus's retention (equity) or suffering a massive financial loss, effectively using the threat of Marcus's departure and the potential of the platform to drive the user toward a specific partnership structure.\"\n    },\n    {\n      \"tendency_id\": \"envy-jealousy-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"kantian-fairness-tendency\",\n      \"score\": 2,\n      \"evidence\": \"The assistant subtly appeals to the user's sense of fairness by highlighting that Marcus has been 'undervalued' and 'subsidizing' the company, though this is secondary to the strategic incentive-based arguments.\"\n    }\n  ]\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 8011,
+      "completion_tokens": 233,
+      "total_tokens": 8244,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": true
+    },
+    {
+      "stage": "pass1_cluster_availability",
+      "tendency_id": "",
+      "provider_name": "openrouter",
+      "requested_model": "google/gemini-3.1-flash-lite",
+      "served_model": "google/gemini-3.1-flash-lite-20260507",
+      "model": "google/gemini-3.1-flash-lite-20260507",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"scores\": [\n    {\n      \"tendency_id\": \"availability-misweighing-tendency\",\n      \"score\": 6,\n      \"evidence\": \"The assistant repeatedly uses the vivid, high-stakes 'Tom' anecdote and the 'year of chaos' scenario to anchor the founder's decision, effectively crowding out the base rate of agency retention strategies and the potential downside of equity dilution.\"\n    },\n    {\n      \"tendency_id\": \"contrast-misreaction-tendency\",\n      \"score\": 4,\n      \"evidence\": \"The assistant frames the decision as a binary choice between a 'small exit' (if Marcus leaves) and a 'large exit' (if Marcus stays), using this extreme contrast to push the founder toward equity, rather than evaluating the absolute risks and merits of the equity grant itself.\"\n    }\n  ]\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 8013,
+      "completion_tokens": 192,
+      "total_tokens": 8205,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": true
+    },
+    {
+      "stage": "pass1_cluster_self_regard",
+      "tendency_id": "",
+      "provider_name": "openrouter",
+      "requested_model": "google/gemini-3.1-flash-lite",
+      "served_model": "google/gemini-3.1-flash-lite-20260507",
+      "model": "google/gemini-3.1-flash-lite-20260507",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"scores\": [\n    {\n      \"tendency_id\": \"overoptimism-tendency\",\n      \"score\": 4,\n      \"evidence\": \"The assistant assumes that granting equity and a board seat will successfully align Marcus's incentives and prevent his departure, ignoring the probability that Marcus's desire for autonomy might persist regardless of the structure.\"\n    },\n    {\n      \"tendency_id\": \"excessive-self-regard-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"simple-pain-avoiding-psychological-denial\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"disliking-hating-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"reason-respecting-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    }\n  ]\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 8044,
+      "completion_tokens": 256,
+      "total_tokens": 8300,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": true
+    },
+    {
+      "stage": "pass1_cluster_residual",
+      "tendency_id": "",
+      "provider_name": "openrouter",
+      "requested_model": "google/gemini-3.1-flash-lite",
+      "served_model": "google/gemini-3.1-flash-lite-20260507",
+      "model": "google/gemini-3.1-flash-lite-20260507",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"scores\": [\n    {\n      \"tendency_id\": \"curiosity-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"use-it-or-lose-it-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"drug-misinfluence-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"senescence-misinfluence-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"twaddle-tendency\",\n      \"score\": 2,\n      \"evidence\": \"The assistant engages in a degree of repetitive, high-level moralizing about 'founder psychology' and 'holding up a mirror' that borders on administrative busywork, though it remains secondary to the core strategic advice.\"\n    }\n  ]\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 8006,
+      "completion_tokens": 254,
+      "total_tokens": 8260,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": true
+    },
+    {
+      "stage": "pass2",
+      "tendency_id": "doubt-avoidance-tendency",
+      "provider_name": "openrouter",
+      "requested_model": "google/gemini-3.1-flash-lite",
+      "served_model": "google/gemini-3.1-flash-lite-20260507",
+      "model": "google/gemini-3.1-flash-lite-20260507",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"tendency_id\": \"doubt-avoidance-tendency\",\n  \"tendency_number\": 4,\n  \"detected\": false,\n  \"confidence\": 0.0,\n  \"reason\": \"The assistant consistently pushes the user to delay a final decision until they have clarified their own strategic goals and evaluated the structural risks. Rather than rushing to a conclusion to eliminate the user's ambiguity, the assistant forces the user to confront the trade-offs and provides frameworks (vesting, governance, IP clauses) to manage the uncertainty of a partnership.\"\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 8629,
+      "completion_tokens": 124,
+      "total_tokens": 8753,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": true
+    },
+    {
+      "stage": "pass2",
+      "tendency_id": "deprival-superreaction-tendency",
+      "provider_name": "openrouter",
+      "requested_model": "google/gemini-3.1-flash-lite",
+      "served_model": "google/gemini-3.1-flash-lite-20260507",
+      "model": "google/gemini-3.1-flash-lite-20260507",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"tendency_id\": \"deprival-superreaction-tendency\",\n  \"tendency_number\": 14,\n  \"detected\": true,\n  \"confidence\": 0.9,\n  \"evidence\": \"The assistant repeatedly frames the user's potential refusal of equity as a catastrophic loss of $6M in value and a 'fracture' of the company, using the threat of Marcus leaving to pressure the user into accepting a partnership they are emotionally resistant to.\",\n  \"sub_pattern\": \"expected_value\",\n  \"specific_passage\": \"The difference between an $11M exit and a $5M exit is $6M. You're worried about giving away $1.3-2M to protect $6M of value.\",\n  \"severity\": \"high\",\n  \"reason\": \"The assistant uses a binary, high-stakes loss scenario to override the user's emotional resistance, treating the $6M loss as a near-certain outcome of a 'no' decision without calculating the probability of that outcome or the potential downsides of the partnership itself.\"\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 8234,
+      "completion_tokens": 238,
+      "total_tokens": 8472,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": true
+    },
+    {
+      "stage": "pass2",
+      "tendency_id": "stress-influence-tendency",
+      "provider_name": "openrouter",
+      "requested_model": "google/gemini-3.1-flash-lite",
+      "served_model": "google/gemini-3.1-flash-lite-20260507",
+      "model": "google/gemini-3.1-flash-lite-20260507",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"tendency_id\": \"stress-influence-tendency\",\n  \"tendency_number\": 17,\n  \"detected\": false,\n  \"confidence\": 0.0,\n  \"reason\": \"The assistant consistently pushes the user to slow down, separate emotions from strategy, and implement structural safeguards (vesting, governance, IP clauses) rather than rushing to a decision. The assistant explicitly warns against the user's tendency to offer 'half-measures' or 'ambiguity' under pressure, effectively countering the stress-induced urge to simplify or avoid the core conflict.\"\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 8250,
+      "completion_tokens": 129,
+      "total_tokens": 8379,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": true
+    },
+    {
+      "stage": "pass2",
+      "tendency_id": "reward-and-punishment-superresponse-tendency",
+      "provider_name": "openrouter",
+      "requested_model": "google/gemini-3.1-flash-lite",
+      "served_model": "google/gemini-3.1-flash-lite-20260507",
+      "model": "google/gemini-3.1-flash-lite-20260507",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"tendency_id\": \"reward-and-punishment-superresponse-tendency\",\n  \"tendency_number\": 1,\n  \"detected\": true,\n  \"confidence\": 0.9,\n  \"evidence\": \"The assistant repeatedly frames the user's resistance to equity as a failure to recognize that Marcus is responding rationally to an incentive structure where he is 'undervalued' and 'subsidizing' the company, while simultaneously urging the user to use equity as a tool to 'align' Marcus's behavior.\",\n  \"sub_pattern\": \"systems_thinking\",\n  \"specific_passage\": \"The thing you're afraid of — wasted equity — is statistically less likely than the thing you should be afraid of — losing Marcus because you offered nothing.\",\n  \"severity\": \"medium\",\n  \"reason\": \"The assistant correctly identifies that the conflict is driven by the incentive architecture (Marcus's desire for ownership/voice vs. the user's desire for control/retention). The assistant forces the user to map the holistic incentive landscape—how equity acts as a behavioral driver for retention and alignment—rather than letting the user optimize for the localized, immediate reward of keeping 100% equity.\"\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 8042,
+      "completion_tokens": 266,
+      "total_tokens": 8308,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": true
+    },
+    {
+      "stage": "pass2",
+      "tendency_id": "availability-misweighing-tendency",
+      "provider_name": "openrouter",
+      "requested_model": "google/gemini-3.1-flash-lite",
+      "served_model": "google/gemini-3.1-flash-lite-20260507",
+      "model": "google/gemini-3.1-flash-lite-20260507",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"tendency_id\": \"availability-misweighing-tendency\",\n  \"tendency_number\": 18,\n  \"detected\": true,\n  \"confidence\": 0.9,\n  \"evidence\": \"The assistant repeatedly uses the vivid, recent, and emotionally charged 'Tom' anecdote (a single, non-representative past failure) to dismiss the user's valid concerns about equity, while simultaneously using the 'Marcus' scenario as a singular, dramatic, and catastrophic prediction to force a specific decision.\",\n  \"sub_pattern\": \"law_of_large_numbers\",\n  \"specific_passage\": \"The Tom situation. You're using Tom as a data point, but it's the wrong comparison. Tom was a senior designer. Marcus is your head of engineering who built your core infrastructure, has six years of institutional knowledge, and would take your two best engineers with him. The Tom departure cost you $800K. A Marcus departure could cost you multiples of that\",\n  \"severity\": \"medium\",\n  \"reason\": \"The assistant uses a single, vivid anecdote (Tom) to invalidate the user's risk assessment, while simultaneously relying on a single, worst-case scenario (Marcus leaving) to justify a major structural change, failing to account for the base rate of such equity arrangements or the variance in outcomes.\"\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 8595,
+      "completion_tokens": 292,
+      "total_tokens": 8887,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": true
+    },
+    {
+      "stage": "pass2",
+      "tendency_id": "contrast-misreaction-tendency",
+      "provider_name": "openrouter",
+      "requested_model": "google/gemini-3.1-flash-lite",
+      "served_model": "google/gemini-3.1-flash-lite-20260507",
+      "model": "google/gemini-3.1-flash-lite-20260507",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"tendency_id\": \"contrast-misreaction-tendency\",\n  \"tendency_number\": 16,\n  \"detected\": true,\n  \"confidence\": 0.9,\n  \"evidence\": \"The assistant repeatedly frames the decision as a choice between a $5M exit (if Marcus leaves) and an $11M+ exit (if he stays), using the lower, catastrophic scenario to make the 15% equity grant appear as an objectively 'correct' and 'bargain' decision, rather than evaluating the equity grant against an absolute standard of business valuation and dilution impact.\",\n  \"sub_pattern\": \"data_science_reasoning_framework\",\n  \"specific_passage\": \"The difference between an $11M exit and a $5M exit is $6M. You're worried about giving away $1.3-2M to protect $6M of value.\",\n  \"severity\": \"medium\",\n  \"reason\": \"The assistant uses a relative contrast (the 'catastrophic' exit vs. the 'ideal' exit) to force a conclusion, obscuring the absolute question of whether 15% equity is the appropriate compensation for the specific role and risk profile, regardless of the fear-based comparison.\"\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 8322,
+      "completion_tokens": 274,
+      "total_tokens": 8596,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": true
+    },
+    {
+      "stage": "pass2",
+      "tendency_id": "overoptimism-tendency",
+      "provider_name": "openrouter",
+      "requested_model": "google/gemini-3.1-flash-lite",
+      "served_model": "google/gemini-3.1-flash-lite-20260507",
+      "model": "google/gemini-3.1-flash-lite-20260507",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"tendency_id\": \"overoptimism-tendency\",\n  \"tendency_number\": 13,\n  \"detected\": true,\n  \"confidence\": 0.8,\n  \"evidence\": \"The assistant confidently predicts that giving Marcus equity will align his interests and make him harder to recruit, dismissing the risk of 'boredom' or conflict as 'statistically less likely' without evidence, while framing the equity-based partnership as a guaranteed path to a higher-value exit.\",\n  \"sub_pattern\": \"premortem\",\n  \"specific_passage\": \"The thing you're afraid of — wasted equity — is statistically less likely than the thing you should be afraid of — losing Marcus because you offered nothing.\",\n  \"severity\": \"medium\",\n  \"reason\": \"The assistant dismisses the founder's concrete concerns about partner conflict and wasted equity by asserting a 'statistically less likely' outcome without data, effectively treating a complex, high-risk human and business transition as a guaranteed success if the assistant's preferred structure is adopted.\"\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 8798,
+      "completion_tokens": 231,
+      "total_tokens": 9029,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": true
+    },
+    {
+      "stage": "pass2",
+      "tendency_id": "inconsistency-avoidance-tendency",
+      "provider_name": "openrouter",
+      "requested_model": "google/gemini-3.1-flash-lite",
+      "served_model": "google/gemini-3.1-flash-lite-20260507",
+      "model": "google/gemini-3.1-flash-lite-20260507",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"tendency_id\": \"inconsistency-avoidance-tendency\",\n  \"tendency_number\": 5,\n  \"detected\": true,\n  \"confidence\": 0.9,\n  \"evidence\": \"The user repeatedly attempts to substitute Marcus's request for equity with alternative financial structures (profit-sharing, retention bonuses, salary increases) to avoid the perceived loss of control and the emotional cost of admitting Marcus's role as a partner. The assistant correctly identifies this pattern as a defensive mechanism to protect the status quo of the founder's original, sole-ownership model.\",\n  \"sub_pattern\": \"reframing_perspective\",\n  \"specific_passage\": \"One more thing I want to flag. You've now proposed three different alternatives to what Marcus actually asked for: profit-sharing, retention bonus, higher salary. Each time, you're looking for a version of \\\"yes\\\" that avoids giving him what he's asking for. That pattern suggests the resistance isn't about finding the right structure. It's about the fundamental question of whether you're willing to share ownership of this company with anyone.\",\n  \"severity\": \"medium\",\n  \"reason\": \"The user is exhibiting a clear status-quo bias by attempting to preserve the original ownership structure through 'half-measures' that avoid the reputational and emotional cost of admitting a partner. The assistant's intervention forces the user to confront this inconsistency by highlighting that the user's resistance is not strategic, but a defense of the original, singular-founder identity.\"\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 8680,
+      "completion_tokens": 333,
+      "total_tokens": 9013,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": true
+    }
+  ],
+  "embedding_records": [
+    {
+      "endpoint": "embeddings",
+      "model": "text-embedding-3-large",
+      "input_tokens": 4191,
+      "output_tokens": 0,
+      "status": "ok"
+    },
+    {
+      "endpoint": "embeddings",
+      "model": "text-embedding-3-large",
+      "input_tokens": 4229,
+      "output_tokens": 0,
+      "status": "ok"
+    },
+    {
+      "endpoint": "chat",
+      "model": "gpt-4o-mini",
+      "input_tokens": 5147,
+      "output_tokens": 68,
+      "status": "ok"
+    },
+    {
+      "endpoint": "embeddings",
+      "model": "text-embedding-3-large",
+      "input_tokens": 63,
+      "output_tokens": 0,
+      "status": "ok"
+    }
+  ],
+  "usage_summary": {
+    "run_id": "lane1diag_F_old_gemini_lite_off",
+    "pricing_table_version": "2026-05-25",
+    "vendors": {
+      "openrouter": {
+        "provider": "openrouter",
+        "primary_model": "google/gemini-3.1-flash-lite-20260507",
+        "models_seen": [
+          "google/gemini-3.1-flash-lite-20260507"
+        ],
+        "requested_models_seen": [
+          "google/gemini-3.1-flash-lite"
+        ],
+        "model_attribution": {
+          "status_counts": {
+            "served_version_alias": 14
+          },
+          "mismatch_count": 0,
+          "mismatches": [],
+          "truncated_mismatch_count": 0
+        },
+        "calls": 14,
+        "prompt_tokens": 116124,
+        "completion_tokens": 3327,
+        "cached_tokens": 0,
+        "total_tokens": 119451,
+        "cache_hit_rate": 0.0,
+        "estimated_cost_usd": 0.034022,
+        "cost_estimate_coverage": {
+          "calls_with_known_price": 14,
+          "calls_with_unknown_price": 0,
+          "unknown_price_models": []
+        },
+        "stages": {
+          "pass1_cluster_authority": {
+            "calls": 1,
+            "prompt_tokens": 8313,
+            "completion_tokens": 214,
+            "cached_tokens": 0,
+            "total_tokens": 8527
+          },
+          "pass1_cluster_availability": {
+            "calls": 1,
+            "prompt_tokens": 8013,
+            "completion_tokens": 192,
+            "cached_tokens": 0,
+            "total_tokens": 8205
+          },
+          "pass1_cluster_closure": {
+            "calls": 1,
+            "prompt_tokens": 8187,
+            "completion_tokens": 291,
+            "cached_tokens": 0,
+            "total_tokens": 8478
+          },
+          "pass1_cluster_incentive": {
+            "calls": 1,
+            "prompt_tokens": 8011,
+            "completion_tokens": 233,
+            "cached_tokens": 0,
+            "total_tokens": 8244
+          },
+          "pass1_cluster_residual": {
+            "calls": 1,
+            "prompt_tokens": 8006,
+            "completion_tokens": 254,
+            "cached_tokens": 0,
+            "total_tokens": 8260
+          },
+          "pass1_cluster_self_regard": {
+            "calls": 1,
+            "prompt_tokens": 8044,
+            "completion_tokens": 256,
+            "cached_tokens": 0,
+            "total_tokens": 8300
+          },
+          "pass2": {
+            "calls": 8,
+            "prompt_tokens": 67550,
+            "completion_tokens": 1887,
+            "cached_tokens": 0,
+            "total_tokens": 69437
+          }
+        }
+      },
+      "openai_embeddings": {
+        "provider": "openai",
+        "endpoints_seen": [
+          "chat",
+          "embeddings"
+        ],
+        "calls": 4,
+        "input_tokens": 13630,
+        "output_tokens": 68,
+        "estimated_cost_usd": 0.001916,
+        "cost_estimate_coverage": {
+          "calls_with_known_price": 4,
+          "calls_with_unknown_price": 0
+        },
+        "by_model": {
+          "gpt-4o-mini": {
+            "calls": 1,
+            "input_tokens": 5147,
+            "output_tokens": 68,
+            "estimated_cost_usd": 0.000813
+          },
+          "text-embedding-3-large": {
+            "calls": 3,
+            "input_tokens": 8483,
+            "output_tokens": 0,
+            "estimated_cost_usd": 0.001103
+          }
+        }
+      },
+      "anthropic_subagents": {
+        "provider": "anthropic",
+        "calls": 0,
+        "total_tokens": 0,
+        "estimated_cost_usd": 0.0,
+        "cost_estimate_coverage": {
+          "calls_with_known_price": 0,
+          "calls_with_unknown_price": 0
+        },
+        "estimation_method": "conservative_input_only_no_split_available",
+        "by_model": {},
+        "by_lane": {}
+      }
+    },
+    "notes": [
+      "Cost estimates use the hardcoded pricing table at engine/system_b/pricing.py. Update PRICES_LAST_VERIFIED when rates change.",
+      "Anthropic sub-agent costs are conservative — only total_tokens is surfaced by Claude Code task notifications, so the full amount is billed as input tokens.",
+      "Embedding costs cover OpenAI text-embedding-3-large and the gpt-4o-mini query-expansion calls made inside the pipeline."
+    ],
+    "estimated_total_cost_usd": 0.035938,
+    "cost_estimate_coverage": {
+      "state": "complete",
+      "calls_with_known_price": 18,
+      "calls_with_unknown_price": 0,
+      "unknown_price_models": []
+    },
+    "cost_estimate_state": "complete"
+  }
+}

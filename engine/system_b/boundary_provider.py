@@ -21,7 +21,7 @@ _LOLLA_CONV_ID_NAMESPACE = uuid.UUID("c0c4c1d2-1010-4011-8a1a-15b1ab2c5d57")
 
 _LOGGER = logging.getLogger("system_b.boundary_provider")
 
-DEFAULT_OPENROUTER_MODEL = "deepseek/deepseek-v4-flash"
+DEFAULT_OPENROUTER_MODEL = "google/gemini-3.1-flash-lite"
 
 
 @dataclass(frozen=True)

@@ -168,7 +168,7 @@ PUBLIC_DELTA_TYPE_PRIORITY = {
     "risk_caveat": 2,
     "option_space_expansion": 3,
 }
-DEFAULT_GENERATOR_MODEL = "deepseek/deepseek-v4-flash"
+DEFAULT_GENERATOR_MODEL = "google/gemini-3.1-flash-lite"
 DEFAULT_JUDGE_MODEL = "moonshotai/kimi-k2.6"
 DEFAULT_SEED = 60
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
@@ -2243,6 +2243,7 @@ def call_openrouter_json(
         (
             "deepseek/deepseek-v4-flash",
             "deepseek/deepseek-v4-pro",
+            "google/gemini-3.1-flash-lite",
             "qwen/qwen3.5-flash-02-23",
             "x-ai/grok-4.1-fast",
             "x-ai/grok-4.3",

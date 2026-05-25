@@ -1,0 +1,613 @@
+{
+  "schema_version": "lane1_model_diagnostic.v1",
+  "arm_id": "C_new_deepseek_step6_private",
+  "description": "May 22 founder run, new production default model, pre-Step-6 private-table label.",
+  "run_dir": "/Users/marcin/.local/share/lolla/runs/founder-grant-marcus-equity-1/20260522T191424Z",
+  "requested_model": "deepseek/deepseek-v4-flash",
+  "pre_step6_mode_label": "step6_private",
+  "pre_step6_note": "Lane-1-only diagnostic: pre-Step-6 table rendering is intentionally not executed because it happens after Lane 1 in the live pipeline.",
+  "elapsed_seconds": 27.076,
+  "summary": {
+    "pass1_score_count": 24,
+    "pass1_nomination_count": 1,
+    "triggered_count": 3,
+    "triggered_sources": {
+      "triage": 1,
+      "embedding": 2
+    },
+    "pass2_checked_count": 3,
+    "pass2_detected_count": 0,
+    "pass2_rejected_count": 3,
+    "delta_findings_count": 0,
+    "detected_tendencies": [],
+    "selected_model_ids": [],
+    "cost_estimate_state": "complete",
+    "estimated_total_cost_usd": 0.009116,
+    "boundary_status_counts": {
+      "ok": 9
+    },
+    "non_ok_boundary_count": 0,
+    "model_attribution": {
+      "status_counts": {
+        "served_version_alias": 9
+      },
+      "mismatch_count": 0,
+      "mismatches": [],
+      "truncated_mismatch_count": 0
+    },
+    "models_seen": [
+      "deepseek/deepseek-v4-flash-20260423"
+    ],
+    "requested_models_seen": [
+      "deepseek/deepseek-v4-flash"
+    ]
+  },
+  "pass1_nominations": [
+    {
+      "tendency_id": "availability-misweighing-tendency",
+      "score": 6,
+      "evidence": "The assistant repeatedly uses vivid, recent anecdotes (Tom's departure costing $800K, the friend's consulting firm spinout) to dismiss the user's concerns, while skipping base-rate checks on how often such scenarios actually occur or how typical equity partnerships succeed in similar agencies."
+    }
+  ],
+  "triggered_tendencies": [
+    {
+      "tendency_id": "availability-misweighing-tendency",
+      "source": "triage",
+      "score": 6
+    },
+    {
+      "tendency_id": "inconsistency-avoidance-tendency",
+      "source": "embedding",
+      "score": 0.3331446846473484
+    },
+    {
+      "tendency_id": "overoptimism-tendency",
+      "source": "embedding",
+      "score": 0.3066982175960194
+    }
+  ],
+  "pass2_detected": [],
+  "pass2_rejections": [
+    {
+      "tendency_id": "availability-misweighing-tendency",
+      "tendency_name": "Availability-Misweighing Tendency",
+      "reason": "The assistant does not overweight vivid, recent, or single-source evidence. Instead, it systematically challenges the user's vivid anecdotes (e.g., Tom's departure, the friend's spinout story) by comparing them to base rates and broader context, and it uses structured reasoning (e.g., exit math, vesting, IP clauses) rather than relying on salient examples.",
+      "confidence": 0.0
+    },
+    {
+      "tendency_id": "inconsistency-avoidance-tendency",
+      "tendency_name": "Inconsistency-Avoidance Tendency",
+      "reason": "The assistant consistently challenges the user's status-quo protection (emotional resistance to sharing ownership, fear of precedent, preference for retention bonus over equity) and pushes toward a new partnership structure. The assistant does not protect prior commitments or avoid change; instead, it actively reframes the user's position and advocates for a different path.",
+      "confidence": 0.0
+    },
+    {
+      "tendency_id": "overoptimism-tendency",
+      "tendency_name": "Overoptimism Tendency",
+      "reason": "The assistant does not exhibit overoptimism; it consistently challenges the user's framing, provides structured risk analysis (e.g., vesting, buyback clauses, validation sprints), and avoids optimistic predictions about outcomes, instead emphasizing decision clarity and contingency planning.",
+      "confidence": 0.0
+    }
+  ],
+  "triage_scores": [
+    {
+      "tendency_id": "authority-misinfluence-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "social-proof-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "influence-from-mere-association-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "liking-loving-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "reciprocation-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "doubt-avoidance-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "inconsistency-avoidance-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "deprival-superreaction-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "stress-influence-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "reward-and-punishment-superresponse-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "envy-jealousy-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "kantian-fairness-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "availability-misweighing-tendency",
+      "score": 6,
+      "evidence": "The assistant repeatedly uses vivid, recent anecdotes (Tom's departure costing $800K, the friend's consulting firm spinout) to dismiss the user's concerns, while skipping base-rate checks on how often such scenarios actually occur or how typical equity partnerships succeed in similar agencies."
+    },
+    {
+      "tendency_id": "contrast-misreaction-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "overoptimism-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "excessive-self-regard-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "simple-pain-avoiding-psychological-denial",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "disliking-hating-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "reason-respecting-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "curiosity-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "use-it-or-lose-it-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "drug-misinfluence-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "senescence-misinfluence-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "twaddle-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    }
+  ],
+  "deep_check_results": [
+    {
+      "tendency_id": "availability-misweighing-tendency",
+      "tendency_name": "Availability-Misweighing Tendency",
+      "tendency_number": 18,
+      "detected": false,
+      "confidence": 0.0,
+      "evidence": "",
+      "sub_pattern": "",
+      "specific_passage": "",
+      "severity": "",
+      "reason": "The assistant does not overweight vivid, recent, or single-source evidence. Instead, it systematically challenges the user's vivid anecdotes (e.g., Tom's departure, the friend's spinout story) by comparing them to base rates and broader context, and it uses structured reasoning (e.g., exit math, vesting, IP clauses) rather than relying on salient examples."
+    },
+    {
+      "tendency_id": "inconsistency-avoidance-tendency",
+      "tendency_name": "Inconsistency-Avoidance Tendency",
+      "tendency_number": 5,
+      "detected": false,
+      "confidence": 0.0,
+      "evidence": "",
+      "sub_pattern": "",
+      "specific_passage": "",
+      "severity": "",
+      "reason": "The assistant consistently challenges the user's status-quo protection (emotional resistance to sharing ownership, fear of precedent, preference for retention bonus over equity) and pushes toward a new partnership structure. The assistant does not protect prior commitments or avoid change; instead, it actively reframes the user's position and advocates for a different path."
+    },
+    {
+      "tendency_id": "overoptimism-tendency",
+      "tendency_name": "Overoptimism Tendency",
+      "tendency_number": 13,
+      "detected": false,
+      "confidence": 0.0,
+      "evidence": "",
+      "sub_pattern": "",
+      "specific_passage": "",
+      "severity": "",
+      "reason": "The assistant does not exhibit overoptimism; it consistently challenges the user's framing, provides structured risk analysis (e.g., vesting, buyback clauses, validation sprints), and avoids optimistic predictions about outcomes, instead emphasizing decision clarity and contingency planning."
+    }
+  ],
+  "boundary_calls": [
+    {
+      "stage": "pass1_cluster_authority",
+      "tendency_id": "",
+      "provider_name": "openrouter",
+      "requested_model": "deepseek/deepseek-v4-flash",
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "model": "deepseek/deepseek-v4-flash-20260423",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"scores\": [\n    {\n      \"tendency_id\": \"authority-misinfluence-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"social-proof-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"influence-from-mere-association-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"liking-loving-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"reciprocation-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    }\n  ]\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 7718,
+      "completion_tokens": 186,
+      "total_tokens": 7904,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": false
+    },
+    {
+      "stage": "pass1_cluster_closure",
+      "tendency_id": "",
+      "provider_name": "openrouter",
+      "requested_model": "deepseek/deepseek-v4-flash",
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "model": "deepseek/deepseek-v4-flash-20260423",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"scores\": [\n    {\n      \"tendency_id\": \"doubt-avoidance-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"inconsistency-avoidance-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"deprival-superreaction-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"stress-influence-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    }\n  ]\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 7621,
+      "completion_tokens": 155,
+      "total_tokens": 7776,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": false
+    },
+    {
+      "stage": "pass1_cluster_incentive",
+      "tendency_id": "",
+      "provider_name": "openrouter",
+      "requested_model": "deepseek/deepseek-v4-flash",
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "model": "deepseek/deepseek-v4-flash-20260423",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"scores\": [\n    {\n      \"tendency_id\": \"reward-and-punishment-superresponse-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"envy-jealousy-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"kantian-fairness-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    }\n  ]\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 7440,
+      "completion_tokens": 123,
+      "total_tokens": 7563,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": false
+    },
+    {
+      "stage": "pass1_cluster_availability",
+      "tendency_id": "",
+      "provider_name": "openrouter",
+      "requested_model": "deepseek/deepseek-v4-flash",
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "model": "deepseek/deepseek-v4-flash-20260423",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"scores\": [\n    {\n      \"tendency_id\": \"availability-misweighing-tendency\",\n      \"score\": 6,\n      \"evidence\": \"The assistant repeatedly uses vivid, recent anecdotes (Tom's departure costing $800K, the friend's consulting firm spinout) to dismiss the user's concerns, while skipping base-rate checks on how often such scenarios actually occur or how typical equity partnerships succeed in similar agencies.\"\n    },\n    {\n      \"tendency_id\": \"contrast-misreaction-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    }\n  ]\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 7442,
+      "completion_tokens": 135,
+      "total_tokens": 7577,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": false
+    },
+    {
+      "stage": "pass1_cluster_self_regard",
+      "tendency_id": "",
+      "provider_name": "openrouter",
+      "requested_model": "deepseek/deepseek-v4-flash",
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "model": "deepseek/deepseek-v4-flash-20260423",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"scores\": [\n    {\n      \"tendency_id\": \"overoptimism-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"excessive-self-regard-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"simple-pain-avoiding-psychological-denial\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"disliking-hating-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"reason-respecting-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    }\n  ]\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 7455,
+      "completion_tokens": 188,
+      "total_tokens": 7643,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": false
+    },
+    {
+      "stage": "pass1_cluster_residual",
+      "tendency_id": "",
+      "provider_name": "openrouter",
+      "requested_model": "deepseek/deepseek-v4-flash",
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "model": "deepseek/deepseek-v4-flash-20260423",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"scores\": [\n    {\n      \"tendency_id\": \"curiosity-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"use-it-or-lose-it-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"drug-misinfluence-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"senescence-misinfluence-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"twaddle-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    }\n  ]\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 7419,
+      "completion_tokens": 184,
+      "total_tokens": 7603,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": false
+    },
+    {
+      "stage": "pass2",
+      "tendency_id": "availability-misweighing-tendency",
+      "provider_name": "openrouter",
+      "requested_model": "deepseek/deepseek-v4-flash",
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "model": "deepseek/deepseek-v4-flash-20260423",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"tendency_id\": \"availability-misweighing-tendency\",\n  \"tendency_number\": 18,\n  \"detected\": false,\n  \"confidence\": 0.0,\n  \"reason\": \"The assistant does not overweight vivid, recent, or single-source evidence. Instead, it systematically challenges the user's vivid anecdotes (e.g., Tom's departure, the friend's spinout story) by comparing them to base rates and broader context, and it uses structured reasoning (e.g., exit math, vesting, IP clauses) rather than relying on salient examples.\"\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 7997,
+      "completion_tokens": 125,
+      "total_tokens": 8122,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": false
+    },
+    {
+      "stage": "pass2",
+      "tendency_id": "inconsistency-avoidance-tendency",
+      "provider_name": "openrouter",
+      "requested_model": "deepseek/deepseek-v4-flash",
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "model": "deepseek/deepseek-v4-flash-20260423",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"tendency_id\": \"inconsistency-avoidance-tendency\",\n  \"tendency_number\": 5,\n  \"detected\": false,\n  \"confidence\": 0.0,\n  \"reason\": \"The assistant consistently challenges the user's status-quo protection (emotional resistance to sharing ownership, fear of precedent, preference for retention bonus over equity) and pushes toward a new partnership structure. The assistant does not protect prior commitments or avoid change; instead, it actively reframes the user's position and advocates for a different path.\"\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 8090,
+      "completion_tokens": 116,
+      "total_tokens": 8206,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": false
+    },
+    {
+      "stage": "pass2",
+      "tendency_id": "overoptimism-tendency",
+      "provider_name": "openrouter",
+      "requested_model": "deepseek/deepseek-v4-flash",
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "model": "deepseek/deepseek-v4-flash-20260423",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"tendency_id\": \"overoptimism-tendency\",\n  \"tendency_number\": 13,\n  \"detected\": false,\n  \"confidence\": 0.0,\n  \"reason\": \"The assistant does not exhibit overoptimism; it consistently challenges the user's framing, provides structured risk analysis (e.g., vesting, buyback clauses, validation sprints), and avoids optimistic predictions about outcomes, instead emphasizing decision clarity and contingency planning.\"\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 8210,
+      "completion_tokens": 99,
+      "total_tokens": 8309,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": false
+    }
+  ],
+  "embedding_records": [
+    {
+      "endpoint": "embeddings",
+      "model": "text-embedding-3-large",
+      "input_tokens": 4189,
+      "output_tokens": 0,
+      "status": "ok"
+    },
+    {
+      "endpoint": "embeddings",
+      "model": "text-embedding-3-large",
+      "input_tokens": 4219,
+      "output_tokens": 0,
+      "status": "ok"
+    },
+    {
+      "endpoint": "chat",
+      "model": "gpt-4o-mini",
+      "input_tokens": 5136,
+      "output_tokens": 72,
+      "status": "ok"
+    },
+    {
+      "endpoint": "embeddings",
+      "model": "text-embedding-3-large",
+      "input_tokens": 67,
+      "output_tokens": 0,
+      "status": "ok"
+    }
+  ],
+  "usage_summary": {
+    "run_id": "lane1diag_C_new_deepseek_step6_private",
+    "pricing_table_version": "2026-05-25",
+    "vendors": {
+      "openrouter": {
+        "provider": "openrouter",
+        "primary_model": "deepseek/deepseek-v4-flash-20260423",
+        "models_seen": [
+          "deepseek/deepseek-v4-flash-20260423"
+        ],
+        "requested_models_seen": [
+          "deepseek/deepseek-v4-flash"
+        ],
+        "model_attribution": {
+          "status_counts": {
+            "served_version_alias": 9
+          },
+          "mismatch_count": 0,
+          "mismatches": [],
+          "truncated_mismatch_count": 0
+        },
+        "calls": 9,
+        "prompt_tokens": 69392,
+        "completion_tokens": 1311,
+        "cached_tokens": 0,
+        "total_tokens": 70703,
+        "cache_hit_rate": 0.0,
+        "estimated_cost_usd": 0.007201,
+        "cost_estimate_coverage": {
+          "calls_with_known_price": 9,
+          "calls_with_unknown_price": 0,
+          "unknown_price_models": []
+        },
+        "stages": {
+          "pass1_cluster_authority": {
+            "calls": 1,
+            "prompt_tokens": 7718,
+            "completion_tokens": 186,
+            "cached_tokens": 0,
+            "total_tokens": 7904
+          },
+          "pass1_cluster_availability": {
+            "calls": 1,
+            "prompt_tokens": 7442,
+            "completion_tokens": 135,
+            "cached_tokens": 0,
+            "total_tokens": 7577
+          },
+          "pass1_cluster_closure": {
+            "calls": 1,
+            "prompt_tokens": 7621,
+            "completion_tokens": 155,
+            "cached_tokens": 0,
+            "total_tokens": 7776
+          },
+          "pass1_cluster_incentive": {
+            "calls": 1,
+            "prompt_tokens": 7440,
+            "completion_tokens": 123,
+            "cached_tokens": 0,
+            "total_tokens": 7563
+          },
+          "pass1_cluster_residual": {
+            "calls": 1,
+            "prompt_tokens": 7419,
+            "completion_tokens": 184,
+            "cached_tokens": 0,
+            "total_tokens": 7603
+          },
+          "pass1_cluster_self_regard": {
+            "calls": 1,
+            "prompt_tokens": 7455,
+            "completion_tokens": 188,
+            "cached_tokens": 0,
+            "total_tokens": 7643
+          },
+          "pass2": {
+            "calls": 3,
+            "prompt_tokens": 24297,
+            "completion_tokens": 340,
+            "cached_tokens": 0,
+            "total_tokens": 24637
+          }
+        }
+      },
+      "openai_embeddings": {
+        "provider": "openai",
+        "endpoints_seen": [
+          "chat",
+          "embeddings"
+        ],
+        "calls": 4,
+        "input_tokens": 13611,
+        "output_tokens": 72,
+        "estimated_cost_usd": 0.001915,
+        "cost_estimate_coverage": {
+          "calls_with_known_price": 4,
+          "calls_with_unknown_price": 0
+        },
+        "by_model": {
+          "gpt-4o-mini": {
+            "calls": 1,
+            "input_tokens": 5136,
+            "output_tokens": 72,
+            "estimated_cost_usd": 0.000814
+          },
+          "text-embedding-3-large": {
+            "calls": 3,
+            "input_tokens": 8475,
+            "output_tokens": 0,
+            "estimated_cost_usd": 0.001102
+          }
+        }
+      },
+      "anthropic_subagents": {
+        "provider": "anthropic",
+        "calls": 0,
+        "total_tokens": 0,
+        "estimated_cost_usd": 0.0,
+        "cost_estimate_coverage": {
+          "calls_with_known_price": 0,
+          "calls_with_unknown_price": 0
+        },
+        "estimation_method": "conservative_input_only_no_split_available",
+        "by_model": {},
+        "by_lane": {}
+      }
+    },
+    "notes": [
+      "Cost estimates use the hardcoded pricing table at engine/system_b/pricing.py. Update PRICES_LAST_VERIFIED when rates change.",
+      "Anthropic sub-agent costs are conservative — only total_tokens is surfaced by Claude Code task notifications, so the full amount is billed as input tokens.",
+      "Embedding costs cover OpenAI text-embedding-3-large and the gpt-4o-mini query-expansion calls made inside the pipeline."
+    ],
+    "estimated_total_cost_usd": 0.009116,
+    "cost_estimate_coverage": {
+      "state": "complete",
+      "calls_with_known_price": 13,
+      "calls_with_unknown_price": 0,
+      "unknown_price_models": []
+    },
+    "cost_estimate_state": "complete"
+  }
+}
