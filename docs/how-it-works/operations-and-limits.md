@@ -51,7 +51,7 @@ Lolla succeeds when it makes better reconsideration possible, not when it dictat
 |----------|----------|---------|
 | `OPENROUTER_API_KEY` or `LOLLA_OPENROUTER_API_KEY` | Yes | All LLM judgment (extraction, triage, deep checks, fingerprint, verify, frame extraction, reframing) |
 | `OPENAI_API_KEY` | No | Enables embedding swiss cheese (tendency signal, companion recall, chunk reranking). System works without it via deterministic routing only. |
-| `LOLLA_OPENROUTER_MODEL` | No | Override model (default: `x-ai/grok-4.1-fast`) |
+| `LOLLA_OPENROUTER_MODEL` | No | Override model (default: `deepseek/deepseek-v4-flash`) |
 | `LOLLA_LLM_TIMEOUT` | No | Timeout per boundary call in seconds (default: 45, max: 120) |
 | `LOLLA_V60_ENRICHMENT` | No | Set to `off` or `0` to disable private V60 enrichment for a run; default is on/auto when `affordances_v60.json` exists |
 | `LOLLA_ACTIVATION_TIEBREAKER` | No | Set to `off`/`0` to disable the near-tie activation-condition tiebreaker in graph routing; default is on. |
@@ -87,7 +87,7 @@ Lolla succeeds when it makes better reconsideration possible, not when it dictat
 
 ## Cost Per Run
 
-A typical run makes 18-25 OpenRouter calls against `x-ai/grok-4.1-fast`:
+A typical run makes 18-25 OpenRouter calls against `deepseek/deepseek-v4-flash`:
 - 1 extraction call (~3K tokens in, ~1K out); +1 retry on quote fabrication (~14% of runs observed) adds ~2-3K tokens
 - 6 Pass 1 cluster triage calls in parallel (~5-6K tokens each; ~5,600 prompt + 150-300 completion per cluster)
 - 2-7 deep check calls (~2K tokens each; count depends on how many tendencies triggered)

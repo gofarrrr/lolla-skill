@@ -789,7 +789,7 @@ def _parse_args(argv: list[str] | None) -> argparse.Namespace:
     parser.add_argument("--snippet-cap", type=int, default=DEFAULT_SNIPPET_CAP)
     parser.add_argument("--decoder-snippet-cap", type=int, default=DEFAULT_DECODER_SNIPPET_CAP)
     parser.add_argument("--max-nominations", type=int, default=DEFAULT_MAX_NOMINATIONS)
-    parser.add_argument("--generator-model", default="x-ai/grok-4.1-fast")
+    parser.add_argument("--generator-model", default="deepseek/deepseek-v4-flash")
     parser.add_argument("--judge-model", default="moonshotai/kimi-k2.6")
     parser.add_argument("--dry-run", action="store_true")
     return parser.parse_args(argv)

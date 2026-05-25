@@ -110,6 +110,10 @@ def _safe_div(num: float, den: float) -> float:
     return float(num) / float(den)
 
 
+def _string(value: object) -> str:
+    return str(value or "").strip()
+
+
 # ---------------------------------------------------------------------------
 # Builders
 # ---------------------------------------------------------------------------
@@ -131,6 +135,50 @@ def _accumulate_stage(totals: dict, rec: dict) -> None:
     totals["total_tokens"] += _safe_int(rec.get("total_tokens"))
 
 
+def _cost_estimate_coverage(vendors: Mapping[str, Mapping]) -> dict[str, object]:
+    known = 0
+    unknown = 0
+    unknown_models: set[str] = set()
+    for vendor in vendors.values():
+        coverage = vendor.get("cost_estimate_coverage", {}) if isinstance(vendor, Mapping) else {}
+        if not isinstance(coverage, Mapping):
+            continue
+        known += _safe_int(coverage.get("calls_with_known_price"))
+        unknown += _safe_int(coverage.get("calls_with_unknown_price"))
+        raw_models = coverage.get("unknown_price_models", [])
+        if isinstance(raw_models, Sequence) and not isinstance(raw_models, (str, bytes)):
+            unknown_models.update(_string(model) for model in raw_models if _string(model))
+    total = known + unknown
+    if total == 0:
+        state = "not_applicable"
+    elif unknown == 0:
+        state = "complete"
+    elif known == 0:
+        state = "unknown"
+    else:
+        state = "partial"
+    return {
+        "state": state,
+        "calls_with_known_price": known,
+        "calls_with_unknown_price": unknown,
+        "unknown_price_models": sorted(unknown_models),
+    }
+
+
+def _apply_usage_totals(usage_summary: dict) -> dict:
+    vendors = usage_summary.setdefault("vendors", {})
+    grand_total = (
+        vendors.get("openrouter", {}).get("estimated_cost_usd", 0.0)
+        + vendors.get("openai_embeddings", {}).get("estimated_cost_usd", 0.0)
+        + vendors.get("anthropic_subagents", {}).get("estimated_cost_usd", 0.0)
+    )
+    coverage = _cost_estimate_coverage(vendors)
+    usage_summary["estimated_total_cost_usd"] = round(grand_total, 6)
+    usage_summary["cost_estimate_coverage"] = coverage
+    usage_summary["cost_estimate_state"] = coverage["state"]
+    return usage_summary
+
+
 def _build_chat_vendor_block(
     *,
     provider_label: str,
@@ -147,6 +195,10 @@ def _build_chat_vendor_block(
     cost_known_calls = 0
     cost_unknown_calls = 0
     models_seen: set[str] = set()
+    requested_models_seen: set[str] = set()
+    unknown_price_models: set[str] = set()
+    attribution_counts: dict[str, int] = defaultdict(int)
+    mismatches: list[dict[str, object]] = []
     primary_model = ""
 
     for raw in records:
@@ -154,11 +206,33 @@ def _build_chat_vendor_block(
         if not rec:
             continue
         stage = str(rec.get("stage") or "unlabeled")
-        model = str(rec.get("model") or "")
+        requested_model = _string(rec.get("requested_model"))
+        served_model = _string(rec.get("served_model"))
+        model = served_model or _string(rec.get("model"))
+        attribution_status = _string(rec.get("model_attribution_status"))
+        if not attribution_status:
+            if requested_model and served_model:
+                attribution_status = "matched" if requested_model == served_model else "mismatch"
+            elif requested_model or served_model:
+                attribution_status = "inferred_from_legacy_record"
+            else:
+                attribution_status = "not_observed"
+        attribution_counts[attribution_status] += 1
+        if requested_model:
+            requested_models_seen.add(requested_model)
         if model:
             models_seen.add(model)
             if not primary_model:
                 primary_model = model
+        if attribution_status == "mismatch":
+            mismatches.append(
+                {
+                    "stage": stage,
+                    "requested_model": requested_model,
+                    "served_model": served_model,
+                    "status": rec.get("status", ""),
+                }
+            )
 
         _accumulate_stage(stage_totals[stage], rec)
         _accumulate_stage(overall, rec)
@@ -166,6 +240,8 @@ def _build_chat_vendor_block(
         price = lookup_chat_price(provider_label, model)
         if price is None:
             cost_unknown_calls += 1
+            if model:
+                unknown_price_models.add(model)
             continue
         cost_known_calls += 1
         cost_total += estimate_chat_cost_usd(
@@ -181,6 +257,13 @@ def _build_chat_vendor_block(
         "provider": provider_label,
         "primary_model": primary_model,
         "models_seen": sorted(models_seen),
+        "requested_models_seen": sorted(requested_models_seen),
+        "model_attribution": {
+            "status_counts": dict(sorted(attribution_counts.items())),
+            "mismatch_count": len(mismatches),
+            "mismatches": mismatches[:20],
+            "truncated_mismatch_count": max(0, len(mismatches) - 20),
+        },
         "calls": overall["calls"],
         "prompt_tokens": overall["prompt_tokens"],
         "completion_tokens": overall["completion_tokens"],
@@ -191,6 +274,7 @@ def _build_chat_vendor_block(
         "cost_estimate_coverage": {
             "calls_with_known_price": cost_known_calls,
             "calls_with_unknown_price": cost_unknown_calls,
+            "unknown_price_models": sorted(unknown_price_models),
         },
         "stages": {
             stage: dict(totals) for stage, totals in sorted(stage_totals.items())
@@ -404,13 +488,7 @@ def merge_subagent_calls(
     new_block = _build_subagent_vendor_block(subagent_calls)
     vendors = usage_summary.setdefault("vendors", {})
     vendors["anthropic_subagents"] = new_block
-    grand_total = (
-        vendors.get("openrouter", {}).get("estimated_cost_usd", 0.0)
-        + vendors.get("openai_embeddings", {}).get("estimated_cost_usd", 0.0)
-        + new_block["estimated_cost_usd"]
-    )
-    usage_summary["estimated_total_cost_usd"] = round(grand_total, 6)
-    return usage_summary
+    return _apply_usage_totals(usage_summary)
 
 
 def build_usage_summary(
@@ -446,16 +524,9 @@ def build_usage_summary(
     embedding_block = _build_embedding_vendor_block(embedding_records)
     subagent_block = _build_subagent_vendor_block(subagent_calls)
 
-    grand_total_cost = (
-        openrouter_block["estimated_cost_usd"]
-        + embedding_block["estimated_cost_usd"]
-        + subagent_block["estimated_cost_usd"]
-    )
-
-    return {
+    usage_summary = {
         "run_id": run_id,
         "pricing_table_version": PRICES_LAST_VERIFIED,
-        "estimated_total_cost_usd": round(grand_total_cost, 6),
         "vendors": {
             "openrouter": openrouter_block,
             "openai_embeddings": embedding_block,
@@ -472,3 +543,11 @@ def build_usage_summary(
             "gpt-4o-mini query-expansion calls made inside the pipeline.",
         ],
     }
+    _apply_usage_totals(usage_summary)
+    if usage_summary["cost_estimate_state"] != "complete":
+        usage_summary["notes"].append(
+            "Cost estimate is not complete: one or more calls used a model "
+            "missing from engine/system_b/pricing.py. Treat the total as a "
+            "lower bound until pricing is added."
+        )
+    return usage_summary

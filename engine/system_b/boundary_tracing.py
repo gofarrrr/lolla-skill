@@ -30,7 +30,10 @@ class BoundaryCallTrace:
     stage: str
     tendency_id: str = ""
     provider_name: str = ""
+    requested_model: str = ""
+    served_model: str = ""
     model: str = ""
+    model_attribution_status: str = "not_observed"
     status: str = "not_called"
     finish_reason: str = ""
     raw_message_content: str = ""
@@ -56,7 +59,10 @@ def _capture_boundary_call(
         stage=stage,
         tendency_id=tendency_id,
         provider_name=metadata.provider_name,
+        requested_model=metadata.requested_model,
+        served_model=metadata.served_model,
         model=metadata.model,
+        model_attribution_status=metadata.model_attribution_status,
         status=metadata.status,
         finish_reason=metadata.finish_reason,
         raw_message_content=metadata.raw_message_content,
@@ -82,7 +88,10 @@ def _metadata_to_boundary_call_trace(
         stage=stage,
         tendency_id=tendency_id,
         provider_name=metadata.provider_name,
+        requested_model=metadata.requested_model,
+        served_model=metadata.served_model,
         model=metadata.model,
+        model_attribution_status=metadata.model_attribution_status,
         status=metadata.status,
         finish_reason=metadata.finish_reason,
         raw_message_content=metadata.raw_message_content,

@@ -30,7 +30,7 @@ The preamble is a bash block that runs before anything else. It checks:
 4. **Pipeline engine** — the bundled engine at `engine/system_b/` must be present. Fatal if missing.
 5. **Environment source** — project `.claude/lolla.env`, then skill `.env`, then `~/.config/lolla/.env`.
 6. **Run files** — generates `LOLLA_RUN_ID` and initializes `/tmp/lolla_<run_id>_live_transcript.txt`.
-7. **Reports config** — which OpenRouter model (default: `x-ai/grok-4.1-fast`), whether embeddings are enabled (`OPENAI_API_KEY` present or not), and whether V60 is enabled.
+7. **Reports config** — which OpenRouter model (default: `deepseek/deepseek-v4-flash`), whether embeddings are enabled (`OPENAI_API_KEY` present or not), and whether V60 is enabled.
 
 If any check says `FATAL`, Claude stops and tells the user what's missing.
 

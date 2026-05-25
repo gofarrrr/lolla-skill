@@ -100,7 +100,7 @@ def test_v60_replay_lab_dry_run_builds_grouped_packets_and_ledgers(tmp_path: Pat
     summary = json.loads((output_dir / "summary.json").read_text(encoding="utf-8"))
     assert summary["dry_run"] is True
     assert summary["case_count"] == 1
-    assert summary["provider_plan"]["generator_model"] == "x-ai/grok-4.1-fast"
+    assert summary["provider_plan"]["generator_model"] == "deepseek/deepseek-v4-flash"
     assert summary["provider_plan"]["judge_model"] == "moonshotai/kimi-k2.6"
     assert summary["provider_plan"]["paid_calls_made"] is False
 
