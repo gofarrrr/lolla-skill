@@ -30,9 +30,11 @@ The preamble is a bash block that runs before anything else. It checks:
 4. **Pipeline engine** — the bundled engine at `engine/system_b/` must be present. Fatal if missing.
 5. **Environment source** — project `.claude/lolla.env`, then skill `.env`, then `~/.config/lolla/.env`.
 6. **Run files** — generates `LOLLA_RUN_ID` and initializes `/tmp/lolla_<run_id>_live_transcript.txt`.
-7. **Reports config** — which OpenRouter model (default: `google/gemini-3.1-flash-lite`), whether embeddings are enabled (`OPENAI_API_KEY` present or not), and whether V60 is enabled.
+7. **Reports config** — which OpenRouter model (default: `google/gemini-3.1-flash-lite`), whether embeddings are enabled (`OPENAI_API_KEY` present or not), whether a pre-Step-6 cached-card directory is configured, and whether V60 is enabled.
 
 If any check says `FATAL`, Claude stops and tells the user what's missing.
+
+After Step 3, the skill prints an operator-only pre-Step-6 private-table receipt before Step 6 begins. The receipt names the table status, source atom count, cached-card count, cache state, cache directory, compiled key, and default-off Step 7 state. This keeps cache misses visible in real time; it is not appended to the user-facing live transcript.
 
 ### Step 1: Capture Conversation
 
