@@ -168,7 +168,7 @@ PUBLIC_DELTA_TYPE_PRIORITY = {
     "risk_caveat": 2,
     "option_space_expansion": 3,
 }
-DEFAULT_GENERATOR_MODEL = "x-ai/grok-4.1-fast"
+DEFAULT_GENERATOR_MODEL = "deepseek/deepseek-v4-flash"
 DEFAULT_JUDGE_MODEL = "moonshotai/kimi-k2.6"
 DEFAULT_SEED = 60
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
@@ -2239,7 +2239,15 @@ def call_openrouter_json(
         "temperature": 0.2,
         "response_format": {"type": "json_object"},
     }
-    if model.lower().startswith("x-ai/grok-4.1-fast"):
+    if model.lower().startswith(
+        (
+            "deepseek/deepseek-v4-flash",
+            "deepseek/deepseek-v4-pro",
+            "qwen/qwen3.5-flash-02-23",
+            "x-ai/grok-4.1-fast",
+            "x-ai/grok-4.3",
+        )
+    ):
         body["reasoning"] = {"effort": "none"}
 
     headers = {

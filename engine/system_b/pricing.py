@@ -19,7 +19,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 
-PRICES_LAST_VERIFIED = "2026-04-28"
+PRICES_LAST_VERIFIED = "2026-05-25"
 
 
 @dataclass(frozen=True)
@@ -40,7 +40,14 @@ class EmbeddingPrice:
 
 # OpenRouter chat models — prefix-matched (longest prefix wins).
 OPENROUTER_CHAT_PRICES: dict[str, ChatPrice] = {
-    "x-ai/grok-4.1-fast": ChatPrice(0.20, 0.05, 0.50),
+    # Verified against OpenRouter /api/v1/models and model pages on 2026-05-25.
+    "deepseek/deepseek-v4-flash": ChatPrice(0.10, 0.02, 0.20),
+    "qwen/qwen3.5-flash-02-23": ChatPrice(0.065, 0.065, 0.26),
+    "deepseek/deepseek-v4-pro": ChatPrice(0.435, 0.003625, 0.87),
+    "google/gemini-3.1-flash-lite": ChatPrice(0.25, 0.025, 1.50),
+    "moonshotai/kimi-k2.6": ChatPrice(0.73, 0.25, 3.49),
+    "openai/gpt-5.1-chat": ChatPrice(1.25, 0.125, 10.00),
+    "x-ai/grok-4.3": ChatPrice(1.25, 0.20, 2.50),
     # add more as they get used; unknown models report cost=null, calls still counted
 }
 

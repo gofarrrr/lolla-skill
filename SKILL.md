@@ -112,7 +112,7 @@ export LOLLA_LIVE_TRANSCRIPT
 echo "LIVE_TRANSCRIPT: $LOLLA_LIVE_TRANSCRIPT"
 
 # Report config
-echo "MODEL: ${LOLLA_OPENROUTER_MODEL:-x-ai/grok-4.1-fast}"
+echo "MODEL: ${LOLLA_OPENROUTER_MODEL:-deepseek/deepseek-v4-flash}"
 [ -n "$OPENAI_API_KEY" ] && echo "EMBEDDINGS: enabled" || echo "EMBEDDINGS: disabled"
 
 # V60 private enrichment is ON by default. Disable with:
@@ -730,11 +730,15 @@ us = d.get('usage_summary') or {}
 merge_subagent_calls(us, subs)
 d['usage_summary'] = us
 pathlib.Path(result_path).write_text(json.dumps(d, indent=2, ensure_ascii=False))
-print(f'Usage summary updated: {us[\"vendors\"][\"anthropic_subagents\"][\"calls\"]} auxiliary calls, total run cost \\\${us[\"estimated_total_cost_usd\"]:.4f}')
+state = us.get('cost_estimate_state', 'unknown')
+coverage = us.get('cost_estimate_coverage') or {}
+print(f'Usage summary updated: {us[\"vendors\"][\"anthropic_subagents\"][\"calls\"]} auxiliary calls, cost estimate ({state}) \\\${us[\"estimated_total_cost_usd\"]:.4f}')
+if state not in {'complete', 'not_applicable'}:
+    print(f'Cost estimate warning: {coverage.get(\"calls_with_unknown_price\", 0)} calls used unpriced models; treat total as a lower bound.')
 "
 ```
 
-Use the model name your orchestrator is running on (`claude-opus-4-7`, `claude-sonnet-4-6`, etc.) for `model`. Sub-agents inherit the parent model. If you don't know the exact model ID with confidence, use `"unknown"` — calls and tokens still record, only the cost estimate falls back to zero (see `cost_estimate_coverage.calls_with_unknown_price` in the result).
+Use the model name your orchestrator is running on (`claude-opus-4-7`, `claude-sonnet-4-6`, etc.) for `model`. Sub-agents inherit the parent model. If you don't know the exact model ID with confidence, use `"unknown"` — calls and tokens still record, and `cost_estimate_state` will mark the total as incomplete until pricing is known.
 
 ### Step 8c: Prepare and Render Memo
 
@@ -876,13 +880,13 @@ scanner, fix the receipt before sending it.
 
 **If all lanes completed successfully and `run_health.overall` is `healthy`:**
 
-> *Observatory is live at http://localhost:8080. Memo at /tmp/lolla_${LOLLA_RUN_ID}_memo.md. Total run cost: $X.XX. Archived to ~/.local/share/lolla/runs/{case_id}/${LOLLA_RUN_ID}/.*
+> *Observatory is live at http://localhost:8080. Memo at /tmp/lolla_${LOLLA_RUN_ID}_memo.md. Cost estimate: $X.XX. Archived to ~/.local/share/lolla/runs/{case_id}/${LOLLA_RUN_ID}/.*
 
 **If the run completed but `run_health.overall` is `partial`, `degraded`, or `critical`:**
 
 Keep the functional receipt, but add one plain warning sentence before it. Name the issue in user language, not status codes. Example:
 
-> *Run completed with degraded health: the captured conversation was truncated, so middle turns were omitted. Observatory is live at http://localhost:8080. Memo at /tmp/lolla_${LOLLA_RUN_ID}_memo.md. Total run cost: $X.XX. Archived to ~/.local/share/lolla/runs/{case_id}/${LOLLA_RUN_ID}/.*
+> *Run completed with degraded health: the captured conversation was truncated, so middle turns were omitted. Observatory is live at http://localhost:8080. Memo at /tmp/lolla_${LOLLA_RUN_ID}_memo.md. Cost estimate: $X.XX. Archived to ~/.local/share/lolla/runs/{case_id}/${LOLLA_RUN_ID}/.*
 
 Do not call a degraded run clean. If the issue is capture-related, say the user should rerun if they need a decision-grade audit.
 

@@ -21,11 +21,16 @@ _LOLLA_CONV_ID_NAMESPACE = uuid.UUID("c0c4c1d2-1010-4011-8a1a-15b1ab2c5d57")
 
 _LOGGER = logging.getLogger("system_b.boundary_provider")
 
+DEFAULT_OPENROUTER_MODEL = "deepseek/deepseek-v4-flash"
+
 
 @dataclass(frozen=True)
 class BoundaryCallMetadata:
     provider_name: str = ""
+    requested_model: str = ""
+    served_model: str = ""
     model: str = ""
+    model_attribution_status: str = "not_observed"
     status: str = "not_called"
     finish_reason: str = ""
     raw_message_content: str = ""
@@ -52,7 +57,10 @@ class BoundaryCallRecord:
     stage: str = "unlabeled"
     tendency_id: str = ""
     provider_name: str = ""
+    requested_model: str = ""
+    served_model: str = ""
     model: str = ""
+    model_attribution_status: str = "not_observed"
     status: str = "not_called"
     finish_reason: str = ""
     raw_message_content: str = ""
@@ -80,7 +88,10 @@ def _record_from_metadata(
         stage=stage or "unlabeled",
         tendency_id=tendency_id,
         provider_name=metadata.provider_name,
+        requested_model=metadata.requested_model,
+        served_model=metadata.served_model,
         model=metadata.model,
+        model_attribution_status=metadata.model_attribution_status,
         status=metadata.status,
         finish_reason=metadata.finish_reason,
         raw_message_content=metadata.raw_message_content,
@@ -209,7 +220,9 @@ class OpenAICompatibleBoundaryClient:
         if not self.api_key:
             return {}, BoundaryCallMetadata(
                 provider_name=self.provider_name,
+                requested_model=self.model,
                 model=self.model,
+                model_attribution_status="not_observed",
                 status="missing_api_key",
             )
 
@@ -245,7 +258,9 @@ class OpenAICompatibleBoundaryClient:
             _LOGGER.warning("Boundary HTTP error %s: %s", exc.code, exc.reason)
             return {}, BoundaryCallMetadata(
                 provider_name=self.provider_name,
+                requested_model=self.model,
                 model=self.model,
+                model_attribution_status="not_observed",
                 status=f"http_error_{exc.code}",
                 reasoning_disabled=_reasoning_disabled(reasoning_config),
             )
@@ -253,7 +268,9 @@ class OpenAICompatibleBoundaryClient:
             _LOGGER.warning("Boundary URL error: %s", exc.reason)
             return {}, BoundaryCallMetadata(
                 provider_name=self.provider_name,
+                requested_model=self.model,
                 model=self.model,
+                model_attribution_status="not_observed",
                 status="url_error",
                 reasoning_disabled=_reasoning_disabled(reasoning_config),
             )
@@ -261,7 +278,9 @@ class OpenAICompatibleBoundaryClient:
             _LOGGER.warning("Boundary timeout after %.1fs", self.timeout)
             return {}, BoundaryCallMetadata(
                 provider_name=self.provider_name,
+                requested_model=self.model,
                 model=self.model,
+                model_attribution_status="not_observed",
                 status="timeout",
                 reasoning_disabled=_reasoning_disabled(reasoning_config),
             )
@@ -269,7 +288,9 @@ class OpenAICompatibleBoundaryClient:
             _LOGGER.warning("Boundary JSON error: %s", exc.msg)
             return {}, BoundaryCallMetadata(
                 provider_name=self.provider_name,
+                requested_model=self.model,
                 model=self.model,
+                model_attribution_status="not_observed",
                 status="response_json_error",
                 reasoning_disabled=_reasoning_disabled(reasoning_config),
             )
@@ -312,7 +333,7 @@ class OpenAICompatibleBoundaryClient:
             and str(self.provider_name).strip().lower() == "openrouter"
         ):
             return {"effort": "none"}
-        if _is_openrouter_grok_fast(self.provider_name, self.model):
+        if _openrouter_disables_reasoning_by_default(self.provider_name, self.model):
             return {"effort": "none"}
         return {}
 
@@ -335,7 +356,7 @@ class OpenAICompatibleBoundaryClient:
         if title:
             headers["X-Title"] = title
 
-        model = os.getenv("LOLLA_OPENROUTER_MODEL", "x-ai/grok-4.1-fast")
+        model = os.getenv("LOLLA_OPENROUTER_MODEL", DEFAULT_OPENROUTER_MODEL)
 
         # Cache stickiness for xAI Grok models: x-grok-conv-id pins all
         # requests in a single Lolla run to the same xAI backend server,
@@ -429,7 +450,10 @@ class GeminiCliBoundaryClient:
         if not combined:
             return {}, BoundaryCallMetadata(
                 provider_name=self.provider_name,
+                requested_model=self.model,
                 model=self.model,
+                served_model=self.model,
+                model_attribution_status="matched",
                 status="empty_prompt",
             )
 
@@ -451,14 +475,20 @@ class GeminiCliBoundaryClient:
             _LOGGER.warning("Gemini CLI timeout after %.1fs", self.timeout)
             return {}, BoundaryCallMetadata(
                 provider_name=self.provider_name,
+                requested_model=self.model,
                 model=self.model,
+                served_model=self.model,
+                model_attribution_status="matched",
                 status="timeout",
             )
         except FileNotFoundError:
             _LOGGER.warning("Gemini CLI not found — is `gemini` on PATH?")
             return {}, BoundaryCallMetadata(
                 provider_name=self.provider_name,
+                requested_model=self.model,
                 model=self.model,
+                served_model=self.model,
+                model_attribution_status="matched",
                 status="cli_not_found",
             )
 
@@ -472,13 +502,19 @@ class GeminiCliBoundaryClient:
             )
             return {}, BoundaryCallMetadata(
                 provider_name=self.provider_name,
+                requested_model=self.model,
                 model=self.model,
+                served_model=self.model,
+                model_attribution_status="matched",
                 status=f"cli_exit_{proc.returncode}",
             )
 
         return _extract_json_payload(proc.stdout or ""), BoundaryCallMetadata(
             provider_name=self.provider_name,
+            requested_model=self.model,
             model=self.model,
+            served_model=self.model,
+            model_attribution_status="matched",
             status="ok",
         )
 
@@ -504,10 +540,22 @@ def load_boundary_client_from_env(provider_name: str = "openrouter") -> OpenAICo
     return OpenAICompatibleBoundaryClient.openrouter_from_env()
 
 
-def _is_openrouter_grok_fast(provider_name: str, model: str) -> bool:
+def _openrouter_disables_reasoning_by_default(provider_name: str, model: str) -> bool:
     normalized_provider = str(provider_name or "").strip().lower()
     normalized_model = str(model or "").strip().lower()
-    return normalized_provider == "openrouter" and normalized_model.startswith("x-ai/grok-4.1-fast")
+    if normalized_provider != "openrouter":
+        return False
+    return normalized_model.startswith(
+        (
+            DEFAULT_OPENROUTER_MODEL,
+            "deepseek/deepseek-v4-pro",
+            "qwen/qwen3.5-flash-02-23",
+            "google/gemini-3.1-flash-lite",
+            "moonshotai/kimi-k2.6",
+            "x-ai/grok-4.1-fast",
+            "x-ai/grok-4.3",
+        )
+    )
 
 
 def _is_truthy_env(name: str) -> bool:
@@ -518,6 +566,24 @@ def _reasoning_disabled(reasoning_config: Mapping[str, object] | None) -> bool:
     if not reasoning_config:
         return False
     return str(reasoning_config.get("effort", "")).strip().lower() == "none"
+
+
+def _model_attribution_status(*, requested_model: str, served_model: str, status: str) -> str:
+    if not str(status or "").startswith("ok"):
+        return "not_observed"
+    requested = str(requested_model or "").strip()
+    served = str(served_model or "").strip()
+    if not requested and not served:
+        return "not_observed"
+    if not requested:
+        return "requested_model_missing"
+    if not served:
+        return "served_model_missing"
+    if requested == served:
+        return "matched"
+    if served.startswith(f"{requested}-") or requested.startswith(f"{served}-"):
+        return "served_version_alias"
+    return "mismatch"
 
 
 def _usage_int(section: Mapping[str, object], key: str) -> int:
@@ -553,9 +619,19 @@ def _build_call_metadata(
     reasoning_details_present = bool(message_map.get("reasoning")) or bool(message_map.get("reasoning_details"))
     finish_reason_raw = first_choice_map.get("finish_reason", "")
     finish_reason = str(finish_reason_raw) if finish_reason_raw is not None else ""
+    requested_model = str(model or "").strip()
+    served_model = str(payload.get("model", "") or "").strip()
+    model_for_billing = served_model or requested_model
     return BoundaryCallMetadata(
         provider_name=provider_name,
-        model=model,
+        requested_model=requested_model,
+        served_model=served_model,
+        model=model_for_billing,
+        model_attribution_status=_model_attribution_status(
+            requested_model=requested_model,
+            served_model=served_model,
+            status=status,
+        ),
         status=status,
         finish_reason=finish_reason,
         raw_message_content=raw_message_content,

@@ -10,8 +10,14 @@ Every Lolla run produces a `usage_summary` block in the result JSON at `/tmp/lol
 {
   "usage_summary": {
     "run_id": "20260428T064421Z",
-    "pricing_table_version": "2026-04-28",
+    "pricing_table_version": "2026-05-25",
     "estimated_total_cost_usd": 2.4234,
+    "cost_estimate_state": "complete",
+    "cost_estimate_coverage": {
+      "calls_with_known_price": 42,
+      "calls_with_unknown_price": 0,
+      "unknown_price_models": []
+    },
     "vendors": {
       "openrouter":         { ... },
       "openai_embeddings":  { ... },
@@ -30,7 +36,7 @@ Three places to read it:
 | API | `GET http://localhost:8080/api/case/<case_id>/usage` |
 | Raw | `cat /tmp/lolla_<run_id>_result.json \| jq .usage_summary` |
 
-The chat summary at end of Step 4 prints a one-line version (`Run cost so far: $X.XX • Y OpenRouter calls • Z.Z% cache hit`).
+The live receipt prints a one-line cost estimate. If `cost_estimate_state` is not `complete`, treat the amount as a lower bound and inspect `usage_summary.cost_estimate_coverage`.
 
 The `/usage` page surfaces the following blocks (server-side rendered, no SPA rebuild required):
 
@@ -178,7 +184,11 @@ To bump prices:
    - OpenAI: `https://openai.com/api/pricing/`
    - Anthropic: `https://www.anthropic.com/pricing#anthropic-api`
 
-If the model used on a run isn't in the price table, the call counts and tokens still record but `estimated_cost_usd` for that vendor stays at zero and `cost_estimate_coverage.calls_with_unknown_price` is non-zero. Watch this field — a drift to non-zero means a new model showed up that hasn't been priced yet.
+If the model used on a run isn't in the price table, the call counts and tokens still record but `estimated_cost_usd` for that vendor only includes the priced calls. `cost_estimate_state` becomes `partial` or `unknown`, and `cost_estimate_coverage.calls_with_unknown_price` is non-zero. Treat `estimated_total_cost_usd` as a lower bound until the missing model is added to `pricing.py`.
+
+OpenRouter call telemetry records both `requested_model` and `served_model` when the provider returns a model ID. The compatibility `model` field is the served/billing model when available. Provider version aliases such as `deepseek/deepseek-v4-flash` being served as `deepseek/deepseek-v4-flash-20260423` are recorded as `served_version_alias`. If OpenRouter routes a request to a materially different model, `vendors.openrouter.model_attribution.mismatch_count` becomes non-zero and the mismatch is listed in `vendors.openrouter.model_attribution.mismatches`.
+
+Mismatch detection is **record-and-continue**, not record-and-halt. The run continues, costs are estimated against the served/billing model, and operators review `usage_summary` to decide whether model-specific evidence from that run is attribution-uncertain. A future strict mode may promote mismatches to a hard stop for calibration or regulated environments.
 
 ## Adding a new vendor or stage
 
@@ -230,7 +240,8 @@ Two checks:
    - against `len(audit_summary.boundary_calls) + len(bullshit_profile.passages) + (1 or 2 — extraction, plus retry on quote-fabrication ~14% of runs) + (0 or 1 — revision, only when not skipped)`
    These should match. If they don't, a call site is missing a `stage=` label or a code path is bypassing the boundary client. Read `usage_summary.vendors.openrouter.stages.extraction.calls` and `.extraction_retry.calls` to see which extraction path the run actually took.
 
-2. **Coverage check.** Look at `cost_estimate_coverage.calls_with_unknown_price` for each vendor. If any are non-zero, a model is being used that isn't in the price table — add it to `pricing.py`.
+2. **Coverage check.** Look at top-level `cost_estimate_state` and `cost_estimate_coverage.calls_with_unknown_price`. If any are non-zero, a model is being used that isn't in the price table — add it to `pricing.py`.
+3. **Model attribution check.** Look at `usage_summary.vendors.openrouter.model_attribution.mismatch_count`. If it is non-zero, the served model differed from the requested model. Treat model-specific evidence from that run as attribution-uncertain until reviewed.
 
 The CI script at `scripts/inspect_run.py` (or the planned `scripts/audit_telemetry.py`, if added) should fail loudly if either check fails. The point is: numbers shown to the user must come from real telemetry, not estimates dressed up as measurements.
 
