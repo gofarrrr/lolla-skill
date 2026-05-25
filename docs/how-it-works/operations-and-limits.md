@@ -58,6 +58,7 @@ Lolla succeeds when it makes better reconsideration possible, not when it dictat
 | `LOLLA_STAKEHOLDER_CHECK` | No | Experimental optional stakeholder assumption check. If enabled and it fails, `run_health` records `stakeholder_check_failed`; user-facing surfacing remains disabled. |
 | `LOLLA_PRE_STEP6_PORTFOLIO` | No | `off`, `shadow`, or `step6_private`. The live skill passes `step6_private`: it writes a compact private Step 6 thinking table with zero extra LLM calls and no live card generation. |
 | `LOLLA_PRE_STEP6_PORTFOLIO_CACHE_DIR` | No | Cache directory for precomputed pre-Step-6 card decks used by `shadow` and `step6_private`. Cache misses still render the current-run private table; they do not generate live cards. |
+| `LOLLA_PRE_STEP6_REQUIRE_CACHE_HIT` | No | Set to `1`, `true`, `on`, or `yes` only for controlled cache-hit tests. If enabled and cached cards are not loaded, the skill stops after the private-table receipt and before Step 6. |
 | `LOLLA_CASE_ID` | No | Force a specific archive case folder name, skipping fingerprint matching. |
 | `LOLLA_ARCHIVE_DIR` | No | Override the archive root; default is `~/.local/share/lolla/runs/`. |
 | `LOLLA_REPO_ROOT` | No | Override engine location (not needed for standard installs) |

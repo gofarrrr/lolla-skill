@@ -115,6 +115,18 @@ echo "LIVE_TRANSCRIPT: $LOLLA_LIVE_TRANSCRIPT"
 echo "MODEL: ${LOLLA_OPENROUTER_MODEL:-google/gemini-3.1-flash-lite}"
 [ -n "$OPENAI_API_KEY" ] && echo "EMBEDDINGS: enabled" || echo "EMBEDDINGS: disabled"
 
+# Optional pre-Step-6 cached-card lookup. Cache misses never generate live
+# cards; set LOLLA_PRE_STEP6_REQUIRE_CACHE_HIT=1 only for controlled cache-hit
+# tests where a miss should stop the run before Step 6.
+if [ -n "${LOLLA_PRE_STEP6_PORTFOLIO_CACHE_DIR:-}" ]; then
+  echo "PRE_STEP6_CACHE_DIR: $LOLLA_PRE_STEP6_PORTFOLIO_CACHE_DIR"
+else
+  echo "PRE_STEP6_CACHE_DIR: not configured"
+fi
+if [ "${LOLLA_PRE_STEP6_REQUIRE_CACHE_HIT:-off}" = "1" ] || [ "${LOLLA_PRE_STEP6_REQUIRE_CACHE_HIT:-off}" = "true" ] || [ "${LOLLA_PRE_STEP6_REQUIRE_CACHE_HIT:-off}" = "on" ]; then
+  echo "PRE_STEP6_REQUIRE_CACHE_HIT: on"
+fi
+
 # V60 private enrichment is ON by default. Disable with:
 #   export LOLLA_V60_ENRICHMENT=off
 if [ "${LOLLA_V60_ENRICHMENT:-on}" = "off" ] || [ "${LOLLA_V60_ENRICHMENT:-on}" = "0" ]; then
@@ -135,6 +147,22 @@ export LOLLA_RUN_ID="$LOLLA_RUN_ID"
 export LOLLA_LIVE_TRANSCRIPT="$LOLLA_LIVE_TRANSCRIPT"
 export LOLLA_ENV_STATE="$LOLLA_ENV_STATE"
 EOF
+python3 - "$LOLLA_ENV_STATE" << 'PY'
+import os
+import shlex
+import sys
+
+path = sys.argv[1]
+keys = [
+    "LOLLA_PRE_STEP6_PORTFOLIO_CACHE_DIR",
+    "LOLLA_PRE_STEP6_REQUIRE_CACHE_HIT",
+]
+with open(path, "a", encoding="utf-8") as handle:
+    for key in keys:
+        value = os.environ.get(key)
+        if value:
+            handle.write(f"export {key}={shlex.quote(value)}\n")
+PY
 ln -sf "$LOLLA_ENV_STATE" /tmp/lolla_latest_env.sh
 echo "ENV_STATE: $LOLLA_ENV_STATE"
 ```
@@ -294,7 +322,14 @@ Do not link to Observatory; the server is not running until Step 9. See `plans/v
 This is a functional receipt, not a content beat. Do not extend it with prose. Then launch:
 
 ```bash
-python3 $SKILL_DIR/scripts/run_pipeline.py --extraction-file /tmp/lolla_${LOLLA_RUN_ID}_extraction.json --conversation-file /tmp/lolla_${LOLLA_RUN_ID}_conversation.txt --output-file /tmp/lolla_${LOLLA_RUN_ID}_result.json --skip-revision --pre-step6-portfolio step6_private
+if { [ -z "$LOLLA_RUN_ID" ] || [ -z "$SKILL_DIR" ]; } && [ -f /tmp/lolla_latest_env.sh ]; then
+  . /tmp/lolla_latest_env.sh
+fi
+if [ -n "${LOLLA_PRE_STEP6_PORTFOLIO_CACHE_DIR:-}" ]; then
+  python3 $SKILL_DIR/scripts/run_pipeline.py --extraction-file /tmp/lolla_${LOLLA_RUN_ID}_extraction.json --conversation-file /tmp/lolla_${LOLLA_RUN_ID}_conversation.txt --output-file /tmp/lolla_${LOLLA_RUN_ID}_result.json --skip-revision --pre-step6-portfolio step6_private --pre-step6-portfolio-cache-dir "$LOLLA_PRE_STEP6_PORTFOLIO_CACHE_DIR"
+else
+  python3 $SKILL_DIR/scripts/run_pipeline.py --extraction-file /tmp/lolla_${LOLLA_RUN_ID}_extraction.json --conversation-file /tmp/lolla_${LOLLA_RUN_ID}_conversation.txt --output-file /tmp/lolla_${LOLLA_RUN_ID}_result.json --skip-revision --pre-step6-portfolio step6_private
+fi
 ```
 
 This runs the full Lolla pipeline — all four lanes — via OpenRouter. With both `--extraction-file` and `--conversation-file`, the pipeline uses the production `ConversationContext` runtime by default: raw turns, extraction fields, and capture metadata are passed together so all four lanes audit the conversation directly. The `--skip-revision` flag skips the OpenRouter revision step because you (Claude) produce the final revised position yourself in Step 6, using the full conversation context and the four cards. The result is written directly to `/tmp/lolla_${LOLLA_RUN_ID}_result.json`.
@@ -302,6 +337,59 @@ This runs the full Lolla pipeline — all four lanes — via OpenRouter. With bo
 By default this also attaches a private `v60_enrichment` block to `result.json`. That block is not user-facing and is not a fifth lane. It is source-backed consideration material selected after the lanes, with telemetry for selected chunks, skipped candidates, not-presented candidates, and embedding mode. To disable it for a run, set `LOLLA_V60_ENRICHMENT=off` before Step 3 or pass `--v60-enrichment off`.
 
 The `--pre-step6-portfolio step6_private` mode also writes `/tmp/lolla_${LOLLA_RUN_ID}_pre_step6_private_table.md`: a compact private thinking table rendered from the four lanes, V60, and any cached pre-Step-6 card deck. It adds **zero** OpenRouter calls, never generates live cards on a cache miss, and never selects a visible answer. Its job is only to give Step 6 a cleaner table to think on.
+
+After the pipeline returns, print the operator-only private-table receipt before Step 4/Step 6 begins. This receipt is Bash output, not user-facing prose; do not append it to the live transcript. It prevents cache misses from being mistaken for cached-card content tests.
+
+```bash
+if { [ -z "$LOLLA_RUN_ID" ] || [ -z "$SKILL_DIR" ]; } && [ -f /tmp/lolla_latest_env.sh ]; then
+  . /tmp/lolla_latest_env.sh
+fi
+python3 - << 'PY'
+import json
+import os
+from pathlib import Path
+
+run_id = os.environ.get("LOLLA_RUN_ID", "")
+result_path = Path(f"/tmp/lolla_{run_id}_result.json")
+if not run_id or not result_path.exists():
+    raise SystemExit("FATAL: cannot render pre-Step-6 receipt; result.json is missing.")
+
+result = json.loads(result_path.read_text(encoding="utf-8"))
+table = result.get("pre_step6_private_table") or {}
+cache = table.get("cache") or {}
+source_items = table.get("source_items") or []
+cached_sources = [
+    item.get("source_id", "")
+    for item in source_items
+    if str(item.get("source_id", "")).startswith("cached_card::")
+]
+cache_dir = str(cache.get("cache_dir") or "")
+compiled_key = str(table.get("compiled_card_deck_key") or "")
+expected_ref = ""
+if cache_dir and compiled_key:
+    expected_ref = str(Path(cache_dir) / f"{compiled_key}.pre-step6-shadow-card-deck.v1.json")
+
+print("Pre-Step-6 private table receipt:")
+print(f"  status: {table.get('status', 'missing')}")
+print(f"  source atoms: {len(source_items)}")
+print(f"  cached cards: {len(cached_sources)}")
+print(f"  cache state: {cache.get('state', 'not_checked')}")
+print(f"  cache dir: {cache_dir or 'not configured'}")
+print(f"  compiled key: {compiled_key or 'not available'}")
+if expected_ref:
+    print(f"  expected cache file: {expected_ref}")
+print("  Step 7: rested by default")
+
+require_hit = os.environ.get("LOLLA_PRE_STEP6_REQUIRE_CACHE_HIT", "").lower() in {
+    "1",
+    "true",
+    "on",
+    "yes",
+}
+if require_hit and cache.get("state") != "cache_hit":
+    raise SystemExit("FATAL: required pre-Step-6 cache hit, but cached cards were not loaded.")
+PY
+```
 
 **If the output `status` is `error`:** Present the error to the user. Common causes: API timeout (try again), missing API key, data file issues.
 
