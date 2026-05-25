@@ -48,6 +48,7 @@ def build_pre_step6_private_table(
     *,
     result_payload: dict[str, Any],
     cache_dir: Path | str | None = None,
+    cache_ref: Path | str | None = None,
     max_chars: int = DEFAULT_MAX_CHARS,
 ) -> tuple[dict[str, Any], str]:
     """Build the private Step-6 table payload and rendered markdown.
@@ -60,7 +61,11 @@ def build_pre_step6_private_table(
     cache_dir_path = Path(cache_dir) if cache_dir is not None else None
     material = _key_material(result)
     compiled_key = _compiled_card_deck_key(material)
-    cache_payload, cached_deck = _load_cached_deck(cache_dir_path, compiled_key)
+    cache_payload, cached_deck = _load_cached_deck(
+        cache_dir_path,
+        compiled_key,
+        cache_ref=cache_ref,
+    )
     sources: list[dict[str, str]] = []
     rendered = _render_private_table(
         result,

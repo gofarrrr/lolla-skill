@@ -34,7 +34,7 @@ The preamble is a bash block that runs before anything else. It checks:
 
 If any check says `FATAL`, Claude stops and tells the user what's missing.
 
-After Step 3, the skill prints an operator-only pre-Step-6 private-table receipt before Step 6 begins. The receipt names the table status, source atom count, cached-card count, cache state, cache directory, compiled key, and default-off Step 7 state. This keeps cache misses visible in real time; it is not appended to the user-facing live transcript.
+After Step 3, the skill prints an operator-only pre-Step-6 private-table receipt before Step 6 begins. The receipt names the table status, source atom count, cached-card count, cache state, cache resolution, cache directory, compiled key, expected cache file, any operator-selected cache ref, and default-off Step 7 state. This keeps cache misses visible in real time; it is not appended to the user-facing live transcript.
 
 ### Step 1: Capture Conversation
 

@@ -193,6 +193,49 @@ def test_private_table_appends_cached_cards_and_writes_sidecars(tmp_path: Path) 
     assert written_payload["sidecars"]["markdown"] == str(paths["markdown"])
 
 
+def test_private_table_can_use_operator_cache_ref_when_exact_key_misses(tmp_path: Path) -> None:
+    operator_deck = tmp_path / "curated-marcus-deck.json"
+    operator_deck.write_text(
+        json.dumps(
+            {
+                "schema_version": "pre_step6_card_deck.v1",
+                "status": "research_only",
+                "runtime_policy": "runtime_dormant",
+                "cards": [
+                    {
+                        "card_id": "curated_boundary_card",
+                        "card_label": "Curated boundary card",
+                        "cognitive_role": "Operator-selected pressure for this controlled test.",
+                        "receipts": ["Keeps the equity decision separate from the platform test."],
+                        "handling_rule": "Use only if it adds concrete decision pressure.",
+                    }
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    payload, rendered = build_pre_step6_private_table(
+        result_payload=_result_payload(),
+        cache_dir=tmp_path / "empty-cache",
+        cache_ref=operator_deck,
+    )
+
+    validate_pre_step6_private_table(payload)
+
+    assert payload["cache"]["state"] == "cache_hit"
+    assert payload["cache"]["resolution"] == "operator_cache_ref"
+    assert payload["cache"]["cache_ref"] == str(operator_deck)
+    assert payload["cache"]["exact_cache_ref"].endswith(
+        ".pre-step6-shadow-card-deck.v1.json"
+    )
+    assert payload["cached_card_deck_summary"]["card_count"] == 1
+    assert "Curated boundary card" in rendered
+    assert "cached_card::curated_boundary_card" in [
+        item["source_id"] for item in payload["source_items"]
+    ]
+
+
 def _completed_private_table_ledger(payload: dict[str, object]) -> dict[str, object]:
     return {
         "schema_version": "pre_step6_private_table_ledger.v1",

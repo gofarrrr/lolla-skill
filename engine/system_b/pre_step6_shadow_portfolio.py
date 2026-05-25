@@ -129,45 +129,107 @@ def _deck_cache_path(cache_dir: Path | None, compiled_key: str) -> Path | None:
     return Path(cache_dir) / f"{compiled_key}{_CACHE_FILE_SUFFIX}"
 
 
-def _load_cached_deck(cache_dir: Path | None, compiled_key: str) -> tuple[dict[str, Any], dict[str, Any]]:
-    cache_path = _deck_cache_path(cache_dir, compiled_key)
+def _resolve_operator_cache_ref(cache_dir: Path | None, cache_ref: Path | str | None) -> Path | None:
+    if cache_ref is None:
+        return None
+    raw = str(cache_ref).strip()
+    if not raw:
+        return None
+    candidate = Path(raw).expanduser()
+    if candidate.exists() or candidate.is_absolute():
+        return candidate
+    if cache_dir is None:
+        return candidate
+    cache_dir_path = Path(cache_dir)
+    cache_candidate = cache_dir_path / raw
+    if cache_candidate.exists() or raw.endswith(_CACHE_FILE_SUFFIX):
+        return cache_candidate
+    return cache_dir_path / f"{raw}{_CACHE_FILE_SUFFIX}"
+
+
+def _read_cached_deck(path: Path) -> tuple[dict[str, Any] | None, str]:
+    try:
+        deck = json.loads(path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError) as exc:
+        return None, f"{type(exc).__name__}: {exc}"
+    if not isinstance(deck, dict) or deck.get("schema_version") != CARD_DECK_SCHEMA_VERSION:
+        return None, "invalid_card_deck_schema"
+    return deck, ""
+
+
+def _load_cached_deck(
+    cache_dir: Path | None,
+    compiled_key: str,
+    *,
+    cache_ref: Path | str | None = None,
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    exact_cache_path = _deck_cache_path(cache_dir, compiled_key)
+    operator_cache_path = _resolve_operator_cache_ref(cache_dir, cache_ref)
     base = {
         "cache_dir": str(cache_dir) if cache_dir is not None else "",
+        "exact_cache_ref": str(exact_cache_path) if exact_cache_path is not None else "",
+        "operator_cache_ref": str(operator_cache_path) if operator_cache_path is not None else "",
         "live_card_generation_allowed": False,
     }
-    if cache_path is None or not cache_path.exists():
-        return (
-            {
-                **base,
-                "state": "cache_miss",
-                "cache_ref": "",
-                "miss_behavior": "stand_down_to_current_step6",
-            },
-            {},
-        )
 
-    try:
-        deck = json.loads(cache_path.read_text(encoding="utf-8"))
-    except (json.JSONDecodeError, OSError) as exc:
+    if exact_cache_path is not None and exact_cache_path.exists():
+        deck, error = _read_cached_deck(exact_cache_path)
+        if not error and deck is not None:
+            return (
+                {
+                    **base,
+                    "state": "cache_hit",
+                    "resolution": "exact_key",
+                    "cache_ref": str(exact_cache_path),
+                    "card_count": len(_as_list(deck.get("cards"))),
+                },
+                deck,
+            )
         return (
             {
                 **base,
                 "state": "cache_invalid",
-                "cache_ref": str(cache_path),
+                "resolution": "exact_key",
+                "cache_ref": str(exact_cache_path),
                 "miss_behavior": "stand_down_to_current_step6",
-                "error": f"{type(exc).__name__}: {exc}",
+                "error": error,
             },
             {},
         )
 
-    if not isinstance(deck, dict) or deck.get("schema_version") != CARD_DECK_SCHEMA_VERSION:
+    if operator_cache_path is not None:
+        if not operator_cache_path.exists():
+            return (
+                {
+                    **base,
+                    "state": "cache_miss",
+                    "resolution": "operator_cache_ref",
+                    "cache_ref": str(operator_cache_path),
+                    "miss_behavior": "stand_down_to_current_step6",
+                    "error": "operator_cache_ref_missing",
+                },
+                {},
+            )
+        deck, error = _read_cached_deck(operator_cache_path)
+        if not error and deck is not None:
+            return (
+                {
+                    **base,
+                    "state": "cache_hit",
+                    "resolution": "operator_cache_ref",
+                    "cache_ref": str(operator_cache_path),
+                    "card_count": len(_as_list(deck.get("cards"))),
+                },
+                deck,
+            )
         return (
             {
                 **base,
                 "state": "cache_invalid",
-                "cache_ref": str(cache_path),
+                "resolution": "operator_cache_ref",
+                "cache_ref": str(operator_cache_path),
                 "miss_behavior": "stand_down_to_current_step6",
-                "error": "invalid_card_deck_schema",
+                "error": error,
             },
             {},
         )
@@ -175,11 +237,12 @@ def _load_cached_deck(cache_dir: Path | None, compiled_key: str) -> tuple[dict[s
     return (
         {
             **base,
-            "state": "cache_hit",
-            "cache_ref": str(cache_path),
-            "card_count": len(_as_list(deck.get("cards"))),
+            "state": "cache_miss",
+            "resolution": "exact_key",
+            "cache_ref": "",
+            "miss_behavior": "stand_down_to_current_step6",
         },
-        deck,
+        {},
     )
 
 
@@ -308,6 +371,7 @@ def build_pre_step6_shadow_portfolio(
     result_payload: dict[str, Any],
     mode: str = "off",
     cache_dir: Path | str | None = None,
+    cache_ref: Path | str | None = None,
     step6_ledger: dict[str, Any] | None = None,
     payload_gate: dict[str, Any] | None = None,
     custody_valid: bool = True,
@@ -369,7 +433,11 @@ def build_pre_step6_shadow_portfolio(
         validate_pre_step6_shadow_portfolio(payload)
         return payload
 
-    cache_payload, deck = _load_cached_deck(cache_dir_path, compiled_key)
+    cache_payload, deck = _load_cached_deck(
+        cache_dir_path,
+        compiled_key,
+        cache_ref=cache_ref,
+    )
     ledger_signal = derive_step6_ledger_signal(step6_ledger)
     answer_delta_specificity = derive_answer_delta_specificity(step6_ledger)
 
