@@ -1,0 +1,162 @@
+{
+  "schema_version": "lane1_model_diagnostic_readout.v1",
+  "thresholds": {
+    "lane1_working": "pass1 triggers >=1 and pass2 detects >=1 on historical founder",
+    "pass2_too_strict": "pass1 triggers >=1 and pass2 detects 0, with rejection reasons preserved",
+    "pre_step6_sensitivity": "same conversation/model differs between off and step6_private labels",
+    "model_effect": "same conversation/pre-step6 label differs between DeepSeek and Grok 4.3"
+  },
+  "arm_summaries": {
+    "A_old_deepseek_off": {
+      "pass1_score_count": 24,
+      "pass1_nomination_count": 2,
+      "triggered_count": 4,
+      "triggered_sources": {
+        "triage": 2,
+        "embedding": 2
+      },
+      "pass2_checked_count": 4,
+      "pass2_detected_count": 0,
+      "pass2_rejected_count": 4,
+      "delta_findings_count": 0,
+      "detected_tendencies": [],
+      "selected_model_ids": [],
+      "cost_estimate_state": "complete",
+      "estimated_total_cost_usd": 0.00866,
+      "boundary_status_counts": {
+        "ok": 10
+      },
+      "non_ok_boundary_count": 0,
+      "model_attribution": {
+        "status_counts": {
+          "served_version_alias": 10
+        },
+        "mismatch_count": 0,
+        "mismatches": [],
+        "truncated_mismatch_count": 0
+      },
+      "models_seen": [
+        "deepseek/deepseek-v4-flash-20260423"
+      ],
+      "requested_models_seen": [
+        "deepseek/deepseek-v4-flash"
+      ]
+    },
+    "B_new_deepseek_off": {
+      "pass1_score_count": 7,
+      "pass1_nomination_count": 0,
+      "triggered_count": 2,
+      "triggered_sources": {
+        "embedding": 2
+      },
+      "pass2_checked_count": 2,
+      "pass2_detected_count": 0,
+      "pass2_rejected_count": 2,
+      "delta_findings_count": 0,
+      "detected_tendencies": [],
+      "selected_model_ids": [],
+      "cost_estimate_state": "complete",
+      "estimated_total_cost_usd": 0.004324,
+      "boundary_status_counts": {
+        "ok": 4,
+        "timeout": 4
+      },
+      "non_ok_boundary_count": 4,
+      "model_attribution": {
+        "status_counts": {
+          "not_observed": 4,
+          "served_version_alias": 4
+        },
+        "mismatch_count": 0,
+        "mismatches": [],
+        "truncated_mismatch_count": 0
+      },
+      "models_seen": [
+        "deepseek/deepseek-v4-flash",
+        "deepseek/deepseek-v4-flash-20260423"
+      ],
+      "requested_models_seen": [
+        "deepseek/deepseek-v4-flash"
+      ]
+    },
+    "C_new_deepseek_step6_private": {
+      "pass1_score_count": 24,
+      "pass1_nomination_count": 1,
+      "triggered_count": 3,
+      "triggered_sources": {
+        "triage": 1,
+        "embedding": 2
+      },
+      "pass2_checked_count": 3,
+      "pass2_detected_count": 0,
+      "pass2_rejected_count": 3,
+      "delta_findings_count": 0,
+      "detected_tendencies": [],
+      "selected_model_ids": [],
+      "cost_estimate_state": "complete",
+      "estimated_total_cost_usd": 0.009116,
+      "boundary_status_counts": {
+        "ok": 9
+      },
+      "non_ok_boundary_count": 0,
+      "model_attribution": {
+        "status_counts": {
+          "served_version_alias": 9
+        },
+        "mismatch_count": 0,
+        "mismatches": [],
+        "truncated_mismatch_count": 0
+      },
+      "models_seen": [
+        "deepseek/deepseek-v4-flash-20260423"
+      ],
+      "requested_models_seen": [
+        "deepseek/deepseek-v4-flash"
+      ]
+    },
+    "D_new_grok43_step6_private": {
+      "pass1_score_count": 24,
+      "pass1_nomination_count": 3,
+      "triggered_count": 5,
+      "triggered_sources": {
+        "triage": 3,
+        "embedding": 2
+      },
+      "pass2_checked_count": 5,
+      "pass2_detected_count": 0,
+      "pass2_rejected_count": 5,
+      "delta_findings_count": 0,
+      "detected_tendencies": [],
+      "selected_model_ids": [],
+      "cost_estimate_state": "complete",
+      "estimated_total_cost_usd": 0.091415,
+      "boundary_status_counts": {
+        "ok": 11
+      },
+      "non_ok_boundary_count": 0,
+      "model_attribution": {
+        "status_counts": {
+          "served_version_alias": 11
+        },
+        "mismatch_count": 0,
+        "mismatches": [],
+        "truncated_mismatch_count": 0
+      },
+      "models_seen": [
+        "x-ai/grok-4.3-20260430"
+      ],
+      "requested_models_seen": [
+        "x-ai/grok-4.3"
+      ]
+    }
+  },
+  "findings": [
+    "boundary_errors_observed:B_new_deepseek_off",
+    "historical_founder_pass1_triggers_but_pass2_rejects_all",
+    "no_pre_step6_flag_sensitivity_observed",
+    "no_model_effect_observed_between_deepseek_and_grok43",
+    "grok43_pass2_rejection_pattern_observed",
+    "pass2_rejection_pattern_across_complete_arms"
+  ],
+  "decision": "rerun_incomplete_arms"
+}

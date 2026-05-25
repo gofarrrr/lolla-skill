@@ -112,7 +112,7 @@ export LOLLA_LIVE_TRANSCRIPT
 echo "LIVE_TRANSCRIPT: $LOLLA_LIVE_TRANSCRIPT"
 
 # Report config
-echo "MODEL: ${LOLLA_OPENROUTER_MODEL:-deepseek/deepseek-v4-flash}"
+echo "MODEL: ${LOLLA_OPENROUTER_MODEL:-google/gemini-3.1-flash-lite}"
 [ -n "$OPENAI_API_KEY" ] && echo "EMBEDDINGS: enabled" || echo "EMBEDDINGS: disabled"
 
 # V60 private enrichment is ON by default. Disable with:

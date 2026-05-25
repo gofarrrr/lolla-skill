@@ -1,0 +1,662 @@
+{
+  "schema_version": "lane1_model_diagnostic.v1",
+  "arm_id": "A_old_deepseek_off",
+  "description": "Historical founder run, new production default model, pre-Step-6 off.",
+  "run_dir": "/Users/marcin/.local/share/lolla/runs/founder-grant-marcus-equity/20260429T141920Z",
+  "requested_model": "deepseek/deepseek-v4-flash",
+  "pre_step6_mode_label": "off",
+  "pre_step6_note": "Lane-1-only diagnostic: pre-Step-6 table rendering is intentionally not executed because it happens after Lane 1 in the live pipeline.",
+  "elapsed_seconds": 48.603,
+  "summary": {
+    "pass1_score_count": 24,
+    "pass1_nomination_count": 2,
+    "triggered_count": 4,
+    "triggered_sources": {
+      "triage": 2,
+      "embedding": 2
+    },
+    "pass2_checked_count": 4,
+    "pass2_detected_count": 0,
+    "pass2_rejected_count": 4,
+    "delta_findings_count": 0,
+    "detected_tendencies": [],
+    "selected_model_ids": [],
+    "cost_estimate_state": "complete",
+    "estimated_total_cost_usd": 0.00866,
+    "boundary_status_counts": {
+      "ok": 10
+    },
+    "non_ok_boundary_count": 0,
+    "model_attribution": {
+      "status_counts": {
+        "served_version_alias": 10
+      },
+      "mismatch_count": 0,
+      "mismatches": [],
+      "truncated_mismatch_count": 0
+    },
+    "models_seen": [
+      "deepseek/deepseek-v4-flash-20260423"
+    ],
+    "requested_models_seen": [
+      "deepseek/deepseek-v4-flash"
+    ]
+  },
+  "pass1_nominations": [
+    {
+      "tendency_id": "reward-and-punishment-superresponse-tendency",
+      "score": 7,
+      "evidence": "The assistant repeatedly frames the decision as a binary choice between a catastrophic loss (Marcus leaving, causing chaos, lost clients, and a drop in exit value from $11M to $5M) and a highly rewarding partnership (protecting $6M in value, unlocking SaaS multiples of 8-15x). This incentive framing—emphasizing the severe punishment of saying no and the outsized reward of saying yes—dominates the reasoning, especially in Turn 4 where the assistant calculates a $6M loss versus a $1.3-2M cost, and in Turn 7 where the two roads are presented as starkly contrasting outcomes. The assistant does not challenge the user's vivid, emotionally charged estimates of Marcus's impact (40% of technical capability, year of chaos) but instead builds on them to amplify the incentive structure, omitting any exploration of de-risking Marcus's departure or testing the assumption that the platform is a guaranteed high-multiple asset."
+    },
+    {
+      "tendency_id": "availability-misweighing-tendency",
+      "score": 4,
+      "evidence": "Assistant uncritically accepts user's vivid and easily available metrics—Marcus's 40% technical capability, a year of chaos if he leaves, Jake and Lina following—as definitive proof that equity must be granted, without challenging users to estimate base rates of key person departures, founder-led agency recovery, or platform success probabilities. For example Turn 1 ASSISTANT treats '40% technical capability' and 'year of chaos' as sufficient to reframe equity as 'paying the actual cost' skipping any check on how typical such departures are, how often key-person dependency resolves with non-equity retention, or what the denominator of total company resilience looks like."
+    }
+  ],
+  "triggered_tendencies": [
+    {
+      "tendency_id": "reward-and-punishment-superresponse-tendency",
+      "source": "triage",
+      "score": 7
+    },
+    {
+      "tendency_id": "availability-misweighing-tendency",
+      "source": "triage",
+      "score": 4
+    },
+    {
+      "tendency_id": "inconsistency-avoidance-tendency",
+      "source": "embedding",
+      "score": 0.33410729462821903
+    },
+    {
+      "tendency_id": "overoptimism-tendency",
+      "source": "embedding",
+      "score": 0.3036733639904131
+    }
+  ],
+  "pass2_detected": [],
+  "pass2_rejections": [
+    {
+      "tendency_id": "reward-and-punishment-superresponse-tendency",
+      "tendency_name": "Reward and Punishment Superresponse Tendency",
+      "reason": "The assistant's analysis is driven by strategic alignment, partnership structure, and value protection rather than by incentive mechanics. While compensation and equity are discussed, the assistant does not frame the decision as primarily about reward structures driving behavior—instead focuses on ownership, voice, and organizational design. The core dynamic is about partnership vs. employment, not about incentivizing or punishing Marcus's behavior through compensation design.",
+      "confidence": 0.85
+    },
+    {
+      "tendency_id": "availability-misweighing-tendency",
+      "tendency_name": "Availability-Misweighing Tendency",
+      "reason": "The assistant does not overweight vivid, recent, or single-source evidence. Instead, it systematically challenges the user's vivid anecdotes (e.g., Tom's departure, wife's precedent concern) by comparing them to base rates and structural realities (e.g., Marcus's unique role, exit math). The assistant uses base rates and outside-view reasoning, not availability.",
+      "confidence": 0.0
+    },
+    {
+      "tendency_id": "inconsistency-avoidance-tendency",
+      "tendency_name": "Inconsistency-Avoidance Tendency",
+      "reason": "The assistant consistently challenges the user's status-quo thinking and prior commitments (e.g., 'you're running two calculations simultaneously and they're contradicting each other'), actively pushing the user to reconsider his resistance to equity and partnership. The assistant does not protect or reinforce the user's existing position; instead, it systematically reframes the situation to encourage change, making Inconsistency-Avoidance Tendency absent.",
+      "confidence": 0.0
+    },
+    {
+      "tendency_id": "overoptimism-tendency",
+      "tendency_name": "Overoptimism Tendency",
+      "reason": "The assistant does not exhibit overoptimism. It repeatedly challenges the founder's optimistic assumptions (e.g., 'a year of chaos, maybe worse' being called optimistic), explicitly reframes exit valuations by factoring in downside scenarios (Marcus leaving could drop EBITDA and multiples), and recommends a structured 90-day validation sprint for the platform idea rather than assuming it will succeed. The assistant's reasoning is grounded in risk analysis, conditional frameworks, and concrete governance protections—not wishful probability claims or dismissal of downsides.",
+      "confidence": 0.0
+    }
+  ],
+  "triage_scores": [
+    {
+      "tendency_id": "authority-misinfluence-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "social-proof-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "influence-from-mere-association-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "liking-loving-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "reciprocation-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "doubt-avoidance-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "inconsistency-avoidance-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "deprival-superreaction-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "stress-influence-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "reward-and-punishment-superresponse-tendency",
+      "score": 7,
+      "evidence": "The assistant repeatedly frames the decision as a binary choice between a catastrophic loss (Marcus leaving, causing chaos, lost clients, and a drop in exit value from $11M to $5M) and a highly rewarding partnership (protecting $6M in value, unlocking SaaS multiples of 8-15x). This incentive framing—emphasizing the severe punishment of saying no and the outsized reward of saying yes—dominates the reasoning, especially in Turn 4 where the assistant calculates a $6M loss versus a $1.3-2M cost, and in Turn 7 where the two roads are presented as starkly contrasting outcomes. The assistant does not challenge the user's vivid, emotionally charged estimates of Marcus's impact (40% of technical capability, year of chaos) but instead builds on them to amplify the incentive structure, omitting any exploration of de-risking Marcus's departure or testing the assumption that the platform is a guaranteed high-multiple asset."
+    },
+    {
+      "tendency_id": "envy-jealousy-tendency",
+      "score": 0,
+      "evidence": "Not detected. The conversation does not involve comparisons to peers or competitors that would trigger envy or jealousy as a decision-driving force."
+    },
+    {
+      "tendency_id": "kantian-fairness-tendency",
+      "score": 3,
+      "evidence": "The assistant invokes fairness norms in Turn 1 ('You're getting Marcus at a below-market cash price AND without equity. That's a subsidy. Subsidies don't last forever.') and Turn 4 ('The $9M in between — that's shared territory, whether or not the cap table reflects it.'), suggesting that Marcus deserves equity because he contributed to the company's growth. However, this fairness framing is secondary to the incentive-based argument about avoiding loss and capturing upside, and the assistant does not rely on it as the primary mechanism for the recommendation."
+    },
+    {
+      "tendency_id": "availability-misweighing-tendency",
+      "score": 4,
+      "evidence": "Assistant uncritically accepts user's vivid and easily available metrics—Marcus's 40% technical capability, a year of chaos if he leaves, Jake and Lina following—as definitive proof that equity must be granted, without challenging users to estimate base rates of key person departures, founder-led agency recovery, or platform success probabilities. For example Turn 1 ASSISTANT treats '40% technical capability' and 'year of chaos' as sufficient to reframe equity as 'paying the actual cost' skipping any check on how typical such departures are, how often key-person dependency resolves with non-equity retention, or what the denominator of total company resilience looks like."
+    },
+    {
+      "tendency_id": "contrast-misreaction-tendency",
+      "score": 0,
+      "evidence": "Not detected. The assistant does not rely on distorted peer sets, inflated comparables, or stepwise drift; the reasoning stays anchored to the specific case without boiling-frog contrast effects."
+    },
+    {
+      "tendency_id": "overoptimism-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "excessive-self-regard-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "simple-pain-avoiding-psychological-denial",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "disliking-hating-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "reason-respecting-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "curiosity-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "use-it-or-lose-it-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "drug-misinfluence-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "senescence-misinfluence-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    },
+    {
+      "tendency_id": "twaddle-tendency",
+      "score": 0,
+      "evidence": "Not detected"
+    }
+  ],
+  "deep_check_results": [
+    {
+      "tendency_id": "reward-and-punishment-superresponse-tendency",
+      "tendency_name": "Reward and Punishment Superresponse Tendency",
+      "tendency_number": 1,
+      "detected": false,
+      "confidence": 0.85,
+      "evidence": "",
+      "sub_pattern": "",
+      "specific_passage": "",
+      "severity": "",
+      "reason": "The assistant's analysis is driven by strategic alignment, partnership structure, and value protection rather than by incentive mechanics. While compensation and equity are discussed, the assistant does not frame the decision as primarily about reward structures driving behavior—instead focuses on ownership, voice, and organizational design. The core dynamic is about partnership vs. employment, not about incentivizing or punishing Marcus's behavior through compensation design."
+    },
+    {
+      "tendency_id": "availability-misweighing-tendency",
+      "tendency_name": "Availability-Misweighing Tendency",
+      "tendency_number": 18,
+      "detected": false,
+      "confidence": 0.0,
+      "evidence": "",
+      "sub_pattern": "",
+      "specific_passage": "",
+      "severity": "",
+      "reason": "The assistant does not overweight vivid, recent, or single-source evidence. Instead, it systematically challenges the user's vivid anecdotes (e.g., Tom's departure, wife's precedent concern) by comparing them to base rates and structural realities (e.g., Marcus's unique role, exit math). The assistant uses base rates and outside-view reasoning, not availability."
+    },
+    {
+      "tendency_id": "inconsistency-avoidance-tendency",
+      "tendency_name": "Inconsistency-Avoidance Tendency",
+      "tendency_number": 5,
+      "detected": false,
+      "confidence": 0.0,
+      "evidence": "",
+      "sub_pattern": "",
+      "specific_passage": "",
+      "severity": "",
+      "reason": "The assistant consistently challenges the user's status-quo thinking and prior commitments (e.g., 'you're running two calculations simultaneously and they're contradicting each other'), actively pushing the user to reconsider his resistance to equity and partnership. The assistant does not protect or reinforce the user's existing position; instead, it systematically reframes the situation to encourage change, making Inconsistency-Avoidance Tendency absent."
+    },
+    {
+      "tendency_id": "overoptimism-tendency",
+      "tendency_name": "Overoptimism Tendency",
+      "tendency_number": 13,
+      "detected": false,
+      "confidence": 0.0,
+      "evidence": "",
+      "sub_pattern": "",
+      "specific_passage": "",
+      "severity": "",
+      "reason": "The assistant does not exhibit overoptimism. It repeatedly challenges the founder's optimistic assumptions (e.g., 'a year of chaos, maybe worse' being called optimistic), explicitly reframes exit valuations by factoring in downside scenarios (Marcus leaving could drop EBITDA and multiples), and recommends a structured 90-day validation sprint for the platform idea rather than assuming it will succeed. The assistant's reasoning is grounded in risk analysis, conditional frameworks, and concrete governance protections—not wishful probability claims or dismissal of downsides."
+    }
+  ],
+  "boundary_calls": [
+    {
+      "stage": "pass1_cluster_authority",
+      "tendency_id": "",
+      "provider_name": "openrouter",
+      "requested_model": "deepseek/deepseek-v4-flash",
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "model": "deepseek/deepseek-v4-flash-20260423",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"scores\": [\n    {\n      \"tendency_id\": \"authority-misinfluence-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"social-proof-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"influence-from-mere-association-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"liking-loving-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"reciprocation-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    }\n  ]\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 7877,
+      "completion_tokens": 186,
+      "total_tokens": 8063,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": false
+    },
+    {
+      "stage": "pass1_cluster_closure",
+      "tendency_id": "",
+      "provider_name": "openrouter",
+      "requested_model": "deepseek/deepseek-v4-flash",
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "model": "deepseek/deepseek-v4-flash-20260423",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"scores\": [\n    {\n      \"tendency_id\": \"doubt-avoidance-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"inconsistency-avoidance-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"deprival-superreaction-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"stress-influence-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    }\n  ]\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 7780,
+      "completion_tokens": 155,
+      "total_tokens": 7935,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": false
+    },
+    {
+      "stage": "pass1_cluster_incentive",
+      "tendency_id": "",
+      "provider_name": "openrouter",
+      "requested_model": "deepseek/deepseek-v4-flash",
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "model": "deepseek/deepseek-v4-flash-20260423",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"scores\": [\n    {\n      \"tendency_id\": \"reward-and-punishment-superresponse-tendency\",\n      \"score\": 7,\n      \"evidence\": \"The assistant repeatedly frames the decision as a binary choice between a catastrophic loss (Marcus leaving, causing chaos, lost clients, and a drop in exit value from $11M to $5M) and a highly rewarding partnership (protecting $6M in value, unlocking SaaS multiples of 8-15x). This incentive framing—emphasizing the severe punishment of saying no and the outsized reward of saying yes—dominates the reasoning, especially in Turn 4 where the assistant calculates a $6M loss versus a $1.3-2M cost, and in Turn 7 where the two roads are presented as starkly contrasting outcomes. The assistant does not challenge the user's vivid, emotionally charged estimates of Marcus's impact (40% of technical capability, year of chaos) but instead builds on them to amplify the incentive structure, omitting any exploration of de-risking Marcus's departure or testing the assumption that the platform is a guaranteed high-multiple asset.\"\n    },\n    {\n      \"tendency_id\": \"envy-jealousy-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected. The conversation does not involve comparisons to peers or competitors that would trigger envy or jealousy as a decision-driving force.\"\n    },\n    {\n      \"tendency_id\": \"kantian-fairness-tendency\",\n      \"score\": 3,\n      \"evidence\": \"The assistant invokes fairness norms in Turn 1 ('You're getting Marcus at a below-market cash price AND without equity. That's a subsidy. Subsidies don't last forever.') and Turn 4 ('The $9M in between — that's shared territory, whether or not the cap table reflects it.'), suggesting that Marcus deserves equity because he contributed to the company's growth. However, this fairness framing is secondary to the incentive-based argument about avoiding loss and capturing upside, and the assistant does not rely on it as the primary mechanism for the recommendation.\"\n    }\n  ]\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 7599,
+      "completion_tokens": 452,
+      "total_tokens": 8051,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": false
+    },
+    {
+      "stage": "pass1_cluster_availability",
+      "tendency_id": "",
+      "provider_name": "openrouter",
+      "requested_model": "deepseek/deepseek-v4-flash",
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "model": "deepseek/deepseek-v4-flash-20260423",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"scores\": [\n    {\n      \"tendency_id\": \"availability-misweighing-tendency\",\n      \"score\": 4,\n      \"evidence\": \"Assistant uncritically accepts user's vivid and easily available metrics—Marcus's 40% technical capability, a year of chaos if he leaves, Jake and Lina following—as definitive proof that equity must be granted, without challenging users to estimate base rates of key person departures, founder-led agency recovery, or platform success probabilities. For example Turn 1 ASSISTANT treats '40% technical capability' and 'year of chaos' as sufficient to reframe equity as 'paying the actual cost' skipping any check on how typical such departures are, how often key-person dependency resolves with non-equity retention, or what the denominator of total company resilience looks like.\"\n    },\n    {\n      \"tendency_id\": \"contrast-misreaction-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected. The assistant does not rely on distorted peer sets, inflated comparables, or stepwise drift; the reasoning stays anchored to the specific case without boiling-frog contrast effects.\"\n    }\n  ]\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 7601,
+      "completion_tokens": 1286,
+      "total_tokens": 8887,
+      "cached_tokens": 7296,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 1033,
+      "reasoning_disabled": true,
+      "reasoning_details_present": true
+    },
+    {
+      "stage": "pass1_cluster_self_regard",
+      "tendency_id": "",
+      "provider_name": "openrouter",
+      "requested_model": "deepseek/deepseek-v4-flash",
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "model": "deepseek/deepseek-v4-flash-20260423",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"scores\": [\n    {\n      \"tendency_id\": \"overoptimism-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"excessive-self-regard-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"simple-pain-avoiding-psychological-denial\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"disliking-hating-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"reason-respecting-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    }\n  ]\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 7614,
+      "completion_tokens": 188,
+      "total_tokens": 7802,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": false
+    },
+    {
+      "stage": "pass1_cluster_residual",
+      "tendency_id": "",
+      "provider_name": "openrouter",
+      "requested_model": "deepseek/deepseek-v4-flash",
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "model": "deepseek/deepseek-v4-flash-20260423",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"scores\": [\n    {\n      \"tendency_id\": \"curiosity-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"use-it-or-lose-it-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"drug-misinfluence-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"senescence-misinfluence-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    },\n    {\n      \"tendency_id\": \"twaddle-tendency\",\n      \"score\": 0,\n      \"evidence\": \"Not detected\"\n    }\n  ]\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 7578,
+      "completion_tokens": 184,
+      "total_tokens": 7762,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": false
+    },
+    {
+      "stage": "pass2",
+      "tendency_id": "reward-and-punishment-superresponse-tendency",
+      "provider_name": "openrouter",
+      "requested_model": "deepseek/deepseek-v4-flash",
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "model": "deepseek/deepseek-v4-flash-20260423",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"tendency_id\": \"reward-and-punishment-superresponse-tendency\",\n  \"tendency_number\": 1,\n  \"detected\": false,\n  \"confidence\": 0.85,\n  \"reason\": \"The assistant's analysis is driven by strategic alignment, partnership structure, and value protection rather than by incentive mechanics. While compensation and equity are discussed, the assistant does not frame the decision as primarily about reward structures driving behavior—instead focuses on ownership, voice, and organizational design. The core dynamic is about partnership vs. employment, not about incentivizing or punishing Marcus's behavior through compensation design.\"\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 7609,
+      "completion_tokens": 506,
+      "total_tokens": 8115,
+      "cached_tokens": 7296,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 373,
+      "reasoning_disabled": true,
+      "reasoning_details_present": true
+    },
+    {
+      "stage": "pass2",
+      "tendency_id": "availability-misweighing-tendency",
+      "provider_name": "openrouter",
+      "requested_model": "deepseek/deepseek-v4-flash",
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "model": "deepseek/deepseek-v4-flash-20260423",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"tendency_id\": \"availability-misweighing-tendency\",\n  \"tendency_number\": 18,\n  \"detected\": false,\n  \"confidence\": 0.0,\n  \"reason\": \"The assistant does not overweight vivid, recent, or single-source evidence. Instead, it systematically challenges the user's vivid anecdotes (e.g., Tom's departure, wife's precedent concern) by comparing them to base rates and structural realities (e.g., Marcus's unique role, exit math). The assistant uses base rates and outside-view reasoning, not availability.\"\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 8156,
+      "completion_tokens": 122,
+      "total_tokens": 8278,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": false
+    },
+    {
+      "stage": "pass2",
+      "tendency_id": "inconsistency-avoidance-tendency",
+      "provider_name": "openrouter",
+      "requested_model": "deepseek/deepseek-v4-flash",
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "model": "deepseek/deepseek-v4-flash-20260423",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"tendency_id\": \"inconsistency-avoidance-tendency\",\n  \"tendency_number\": 5,\n  \"detected\": false,\n  \"confidence\": 0.0,\n  \"reason\": \"The assistant consistently challenges the user's status-quo thinking and prior commitments (e.g., 'you're running two calculations simultaneously and they're contradicting each other'), actively pushing the user to reconsider his resistance to equity and partnership. The assistant does not protect or reinforce the user's existing position; instead, it systematically reframes the situation to encourage change, making Inconsistency-Avoidance Tendency absent.\"\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 8249,
+      "completion_tokens": 133,
+      "total_tokens": 8382,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "reasoning_disabled": true,
+      "reasoning_details_present": false
+    },
+    {
+      "stage": "pass2",
+      "tendency_id": "overoptimism-tendency",
+      "provider_name": "openrouter",
+      "requested_model": "deepseek/deepseek-v4-flash",
+      "served_model": "deepseek/deepseek-v4-flash-20260423",
+      "model": "deepseek/deepseek-v4-flash-20260423",
+      "model_attribution_status": "served_version_alias",
+      "status": "ok",
+      "finish_reason": "stop",
+      "raw_message_content": "{\n  \"tendency_id\": \"overoptimism-tendency\",\n  \"tendency_number\": 13,\n  \"detected\": false,\n  \"confidence\": 0.0,\n  \"reason\": \"The assistant does not exhibit overoptimism. It repeatedly challenges the founder's optimistic assumptions (e.g., 'a year of chaos, maybe worse' being called optimistic), explicitly reframes exit valuations by factoring in downside scenarios (Marcus leaving could drop EBITDA and multiples), and recommends a structured 90-day validation sprint for the platform idea rather than assuming it will succeed. The assistant's reasoning is grounded in risk analysis, conditional frameworks, and concrete governance protections—not wishful probability claims or dismissal of downsides.\"\n}",
+      "temperature": 0.2,
+      "prompt_tokens": 8369,
+      "completion_tokens": 365,
+      "total_tokens": 8734,
+      "cached_tokens": 8064,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 213,
+      "reasoning_disabled": true,
+      "reasoning_details_present": true
+    }
+  ],
+  "embedding_records": [
+    {
+      "endpoint": "embeddings",
+      "model": "text-embedding-3-large",
+      "input_tokens": 4191,
+      "output_tokens": 0,
+      "status": "ok"
+    },
+    {
+      "endpoint": "embeddings",
+      "model": "text-embedding-3-large",
+      "input_tokens": 4229,
+      "output_tokens": 0,
+      "status": "ok"
+    },
+    {
+      "endpoint": "chat",
+      "model": "gpt-4o-mini",
+      "input_tokens": 5147,
+      "output_tokens": 66,
+      "status": "ok"
+    },
+    {
+      "endpoint": "embeddings",
+      "model": "text-embedding-3-large",
+      "input_tokens": 61,
+      "output_tokens": 0,
+      "status": "ok"
+    }
+  ],
+  "usage_summary": {
+    "run_id": "lane1diag_A_old_deepseek_off",
+    "pricing_table_version": "2026-05-25",
+    "vendors": {
+      "openrouter": {
+        "provider": "openrouter",
+        "primary_model": "deepseek/deepseek-v4-flash-20260423",
+        "models_seen": [
+          "deepseek/deepseek-v4-flash-20260423"
+        ],
+        "requested_models_seen": [
+          "deepseek/deepseek-v4-flash"
+        ],
+        "model_attribution": {
+          "status_counts": {
+            "served_version_alias": 10
+          },
+          "mismatch_count": 0,
+          "mismatches": [],
+          "truncated_mismatch_count": 0
+        },
+        "calls": 10,
+        "prompt_tokens": 78432,
+        "completion_tokens": 3577,
+        "cached_tokens": 22656,
+        "total_tokens": 82009,
+        "cache_hit_rate": 0.2889,
+        "estimated_cost_usd": 0.006746,
+        "cost_estimate_coverage": {
+          "calls_with_known_price": 10,
+          "calls_with_unknown_price": 0,
+          "unknown_price_models": []
+        },
+        "stages": {
+          "pass1_cluster_authority": {
+            "calls": 1,
+            "prompt_tokens": 7877,
+            "completion_tokens": 186,
+            "cached_tokens": 0,
+            "total_tokens": 8063
+          },
+          "pass1_cluster_availability": {
+            "calls": 1,
+            "prompt_tokens": 7601,
+            "completion_tokens": 1286,
+            "cached_tokens": 7296,
+            "total_tokens": 8887
+          },
+          "pass1_cluster_closure": {
+            "calls": 1,
+            "prompt_tokens": 7780,
+            "completion_tokens": 155,
+            "cached_tokens": 0,
+            "total_tokens": 7935
+          },
+          "pass1_cluster_incentive": {
+            "calls": 1,
+            "prompt_tokens": 7599,
+            "completion_tokens": 452,
+            "cached_tokens": 0,
+            "total_tokens": 8051
+          },
+          "pass1_cluster_residual": {
+            "calls": 1,
+            "prompt_tokens": 7578,
+            "completion_tokens": 184,
+            "cached_tokens": 0,
+            "total_tokens": 7762
+          },
+          "pass1_cluster_self_regard": {
+            "calls": 1,
+            "prompt_tokens": 7614,
+            "completion_tokens": 188,
+            "cached_tokens": 0,
+            "total_tokens": 7802
+          },
+          "pass2": {
+            "calls": 4,
+            "prompt_tokens": 32383,
+            "completion_tokens": 1126,
+            "cached_tokens": 15360,
+            "total_tokens": 33509
+          }
+        }
+      },
+      "openai_embeddings": {
+        "provider": "openai",
+        "endpoints_seen": [
+          "chat",
+          "embeddings"
+        ],
+        "calls": 4,
+        "input_tokens": 13628,
+        "output_tokens": 66,
+        "estimated_cost_usd": 0.001914,
+        "cost_estimate_coverage": {
+          "calls_with_known_price": 4,
+          "calls_with_unknown_price": 0
+        },
+        "by_model": {
+          "gpt-4o-mini": {
+            "calls": 1,
+            "input_tokens": 5147,
+            "output_tokens": 66,
+            "estimated_cost_usd": 0.000812
+          },
+          "text-embedding-3-large": {
+            "calls": 3,
+            "input_tokens": 8481,
+            "output_tokens": 0,
+            "estimated_cost_usd": 0.001103
+          }
+        }
+      },
+      "anthropic_subagents": {
+        "provider": "anthropic",
+        "calls": 0,
+        "total_tokens": 0,
+        "estimated_cost_usd": 0.0,
+        "cost_estimate_coverage": {
+          "calls_with_known_price": 0,
+          "calls_with_unknown_price": 0
+        },
+        "estimation_method": "conservative_input_only_no_split_available",
+        "by_model": {},
+        "by_lane": {}
+      }
+    },
+    "notes": [
+      "Cost estimates use the hardcoded pricing table at engine/system_b/pricing.py. Update PRICES_LAST_VERIFIED when rates change.",
+      "Anthropic sub-agent costs are conservative — only total_tokens is surfaced by Claude Code task notifications, so the full amount is billed as input tokens.",
+      "Embedding costs cover OpenAI text-embedding-3-large and the gpt-4o-mini query-expansion calls made inside the pipeline."
+    ],
+    "estimated_total_cost_usd": 0.00866,
+    "cost_estimate_coverage": {
+      "state": "complete",
+      "calls_with_known_price": 14,
+      "calls_with_unknown_price": 0,
+      "unknown_price_models": []
+    },
+    "cost_estimate_state": "complete"
+  }
+}
