@@ -400,6 +400,74 @@ def test_pre_step6_private_mode_writes_step6_table_sidecars(
         Path("/tmp/lolla_prestep6private_pre_step6_private_table.json").unlink(missing_ok=True)
 
 
+def test_pre_step6_private_mode_accepts_operator_cache_ref(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    extraction_path, conversation_path = _write_extraction_and_conversation(tmp_path)
+    output_path = tmp_path / "result.json"
+    deck_path = tmp_path / "operator-card-deck.json"
+    deck_path.write_text(
+        json.dumps(
+            {
+                "schema_version": "pre_step6_card_deck.v1",
+                "status": "research_only",
+                "runtime_policy": "runtime_dormant",
+                "cards": [
+                    {
+                        "card_id": "operator_card",
+                        "card_label": "Operator selected card",
+                        "cognitive_role": "Controlled cache-hit test card.",
+                        "receipts": ["A human selected this deck for the run."],
+                        "handling_rule": "Use only if it adds concrete pressure.",
+                    }
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+    _install_live_pipeline_fakes(monkeypatch, tmp_path)
+    monkeypatch.setenv("LOLLA_RUN_ID", "prestep6cacheref")
+
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "run_pipeline.py",
+            "--extraction-file",
+            str(extraction_path),
+            "--conversation-file",
+            str(conversation_path),
+            "--output-file",
+            str(output_path),
+            "--skip-revision",
+            "--v60-enrichment",
+            "off",
+            "--pre-step6-portfolio",
+            "step6_private",
+            "--pre-step6-portfolio-cache-dir",
+            str(tmp_path / "empty-cache"),
+            "--pre-step6-portfolio-cache-ref",
+            str(deck_path),
+        ],
+    )
+
+    try:
+        assert run_pipeline.main() == 0
+        payload = json.loads(output_path.read_text(encoding="utf-8"))
+        private_table = payload["pre_step6_private_table"]
+        assert private_table["cache"]["state"] == "cache_hit"
+        assert private_table["cache"]["resolution"] == "operator_cache_ref"
+        assert private_table["cache"]["cache_ref"] == str(deck_path)
+        assert private_table["cached_card_deck_summary"]["card_count"] == 1
+        assert "cached_card::operator_card" in [
+            item["source_id"] for item in private_table["source_items"]
+        ]
+    finally:
+        Path("/tmp/lolla_prestep6cacheref_pre_step6_private_table.md").unlink(missing_ok=True)
+        Path("/tmp/lolla_prestep6cacheref_pre_step6_private_table.json").unlink(missing_ok=True)
+
+
 def test_reasoning_detail_warning_propagates_to_run_health(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,

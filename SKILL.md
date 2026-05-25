@@ -123,6 +123,9 @@ if [ -n "${LOLLA_PRE_STEP6_PORTFOLIO_CACHE_DIR:-}" ]; then
 else
   echo "PRE_STEP6_CACHE_DIR: not configured"
 fi
+if [ -n "${LOLLA_PRE_STEP6_PORTFOLIO_CACHE_REF:-}" ]; then
+  echo "PRE_STEP6_CACHE_REF: $LOLLA_PRE_STEP6_PORTFOLIO_CACHE_REF"
+fi
 if [ "${LOLLA_PRE_STEP6_REQUIRE_CACHE_HIT:-off}" = "1" ] || [ "${LOLLA_PRE_STEP6_REQUIRE_CACHE_HIT:-off}" = "true" ] || [ "${LOLLA_PRE_STEP6_REQUIRE_CACHE_HIT:-off}" = "on" ]; then
   echo "PRE_STEP6_REQUIRE_CACHE_HIT: on"
 fi
@@ -155,6 +158,7 @@ import sys
 path = sys.argv[1]
 keys = [
     "LOLLA_PRE_STEP6_PORTFOLIO_CACHE_DIR",
+    "LOLLA_PRE_STEP6_PORTFOLIO_CACHE_REF",
     "LOLLA_PRE_STEP6_REQUIRE_CACHE_HIT",
 ]
 with open(path, "a", encoding="utf-8") as handle:
@@ -325,8 +329,12 @@ This is a functional receipt, not a content beat. Do not extend it with prose. T
 if { [ -z "$LOLLA_RUN_ID" ] || [ -z "$SKILL_DIR" ]; } && [ -f /tmp/lolla_latest_env.sh ]; then
   . /tmp/lolla_latest_env.sh
 fi
-if [ -n "${LOLLA_PRE_STEP6_PORTFOLIO_CACHE_DIR:-}" ]; then
+if [ -n "${LOLLA_PRE_STEP6_PORTFOLIO_CACHE_DIR:-}" ] && [ -n "${LOLLA_PRE_STEP6_PORTFOLIO_CACHE_REF:-}" ]; then
+  python3 $SKILL_DIR/scripts/run_pipeline.py --extraction-file /tmp/lolla_${LOLLA_RUN_ID}_extraction.json --conversation-file /tmp/lolla_${LOLLA_RUN_ID}_conversation.txt --output-file /tmp/lolla_${LOLLA_RUN_ID}_result.json --skip-revision --pre-step6-portfolio step6_private --pre-step6-portfolio-cache-dir "$LOLLA_PRE_STEP6_PORTFOLIO_CACHE_DIR" --pre-step6-portfolio-cache-ref "$LOLLA_PRE_STEP6_PORTFOLIO_CACHE_REF"
+elif [ -n "${LOLLA_PRE_STEP6_PORTFOLIO_CACHE_DIR:-}" ]; then
   python3 $SKILL_DIR/scripts/run_pipeline.py --extraction-file /tmp/lolla_${LOLLA_RUN_ID}_extraction.json --conversation-file /tmp/lolla_${LOLLA_RUN_ID}_conversation.txt --output-file /tmp/lolla_${LOLLA_RUN_ID}_result.json --skip-revision --pre-step6-portfolio step6_private --pre-step6-portfolio-cache-dir "$LOLLA_PRE_STEP6_PORTFOLIO_CACHE_DIR"
+elif [ -n "${LOLLA_PRE_STEP6_PORTFOLIO_CACHE_REF:-}" ]; then
+  python3 $SKILL_DIR/scripts/run_pipeline.py --extraction-file /tmp/lolla_${LOLLA_RUN_ID}_extraction.json --conversation-file /tmp/lolla_${LOLLA_RUN_ID}_conversation.txt --output-file /tmp/lolla_${LOLLA_RUN_ID}_result.json --skip-revision --pre-step6-portfolio step6_private --pre-step6-portfolio-cache-ref "$LOLLA_PRE_STEP6_PORTFOLIO_CACHE_REF"
 else
   python3 $SKILL_DIR/scripts/run_pipeline.py --extraction-file /tmp/lolla_${LOLLA_RUN_ID}_extraction.json --conversation-file /tmp/lolla_${LOLLA_RUN_ID}_conversation.txt --output-file /tmp/lolla_${LOLLA_RUN_ID}_result.json --skip-revision --pre-step6-portfolio step6_private
 fi
@@ -374,7 +382,12 @@ print(f"  status: {table.get('status', 'missing')}")
 print(f"  source atoms: {len(source_items)}")
 print(f"  cached cards: {len(cached_sources)}")
 print(f"  cache state: {cache.get('state', 'not_checked')}")
+print(f"  cache resolution: {cache.get('resolution', 'not_available')}")
 print(f"  cache dir: {cache_dir or 'not configured'}")
+if cache.get("operator_cache_ref"):
+    print(f"  operator cache ref: {cache.get('operator_cache_ref')}")
+if cache.get("cache_ref"):
+    print(f"  loaded cache ref: {cache.get('cache_ref')}")
 print(f"  compiled key: {compiled_key or 'not available'}")
 if expected_ref:
     print(f"  expected cache file: {expected_ref}")

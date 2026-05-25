@@ -754,6 +754,16 @@ def main() -> int:
             "does not generate decks when the cache misses."
         ),
     )
+    parser.add_argument(
+        "--pre-step6-portfolio-cache-ref",
+        type=Path,
+        default=None,
+        help=(
+            "Explicit precomputed pre-Step-6 card deck to load if the exact "
+            "compiled-key cache file is absent. Intended for controlled "
+            "operator-selected cache-hit tests."
+        ),
+    )
     args = parser.parse_args()
 
     contract_error = _contract_error(args)
@@ -782,6 +792,10 @@ def main() -> int:
         env_cache_dir = os.environ.get("LOLLA_PRE_STEP6_PORTFOLIO_CACHE_DIR", "").strip()
         if env_cache_dir:
             args.pre_step6_portfolio_cache_dir = Path(env_cache_dir)
+    if args.pre_step6_portfolio_cache_ref is None:
+        env_cache_ref = os.environ.get("LOLLA_PRE_STEP6_PORTFOLIO_CACHE_REF", "").strip()
+        if env_cache_ref:
+            args.pre_step6_portfolio_cache_ref = Path(env_cache_ref)
 
     # Parse extraction
     if args.extraction_file:
@@ -1080,6 +1094,7 @@ def main() -> int:
             pre_step6_table, rendered_table = build_pre_step6_private_table(
                 result_payload=serialized,
                 cache_dir=args.pre_step6_portfolio_cache_dir,
+                cache_ref=args.pre_step6_portfolio_cache_ref,
             )
             if _run_id and is_valid_run_id(_run_id):
                 write_pre_step6_private_table_sidecars(
@@ -1118,6 +1133,7 @@ def main() -> int:
                 result_payload=serialized,
                 mode="shadow",
                 cache_dir=args.pre_step6_portfolio_cache_dir,
+                cache_ref=args.pre_step6_portfolio_cache_ref,
             )
             serialized["pre_step6_shadow_portfolio"] = pre_step6_shadow
             if _run_id and is_valid_run_id(_run_id):

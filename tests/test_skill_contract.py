@@ -8,9 +8,12 @@ def test_skill_rests_post_step6_pressure_checks_by_default() -> None:
 
     assert "--pre-step6-portfolio step6_private" in skill
     assert "--pre-step6-portfolio-cache-dir" in skill
+    assert "--pre-step6-portfolio-cache-ref" in skill
     assert "LOLLA_PRE_STEP6_PORTFOLIO_CACHE_DIR" in skill
+    assert "LOLLA_PRE_STEP6_PORTFOLIO_CACHE_REF" in skill
     assert "LOLLA_PRE_STEP6_REQUIRE_CACHE_HIT" in skill
     assert "Pre-Step-6 private table receipt:" in skill
+    assert "operator cache ref:" in skill
     assert "expected cache file:" in skill
     assert "/tmp/lolla_${LOLLA_RUN_ID}_pre_step6_private_table.md" in skill
     assert "pre_step6_private_table_ledger" in skill
