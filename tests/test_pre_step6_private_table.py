@@ -6,7 +6,9 @@ from pathlib import Path
 from engine.system_b.pre_step6_private_table import (
     SCHEMA_VERSION,
     build_pre_step6_private_table,
+    finalize_pre_step6_private_table_ledger,
     validate_pre_step6_private_table,
+    validate_pre_step6_private_table_ledger,
     write_pre_step6_private_table_sidecars,
 )
 
@@ -189,3 +191,112 @@ def test_private_table_appends_cached_cards_and_writes_sidecars(tmp_path: Path) 
     assert paths["markdown"].read_text(encoding="utf-8") == rendered
     written_payload = json.loads(paths["json"].read_text(encoding="utf-8"))
     assert written_payload["sidecars"]["markdown"] == str(paths["markdown"])
+
+
+def _completed_private_table_ledger(payload: dict[str, object]) -> dict[str, object]:
+    return {
+        "schema_version": "pre_step6_private_table_ledger.v1",
+        "status": "completed",
+        "items": [
+            {
+                **item,
+                "disposition": "confirming_support",
+                "why": "Considered privately.",
+                "visible_effect": "",
+                "private_guardrail": "",
+            }
+            for item in payload["consideration_ledger_skeleton"]["items"]
+        ],
+        "notes": ["Private telemetry only. Not rendered in chat."],
+    }
+
+
+def test_private_table_ledger_validator_accepts_exact_skeleton_ids(tmp_path: Path) -> None:
+    payload, _ = build_pre_step6_private_table(
+        result_payload=_result_payload(),
+        cache_dir=tmp_path / "missing-cache",
+    )
+    ledger = _completed_private_table_ledger(payload)
+
+    validation = validate_pre_step6_private_table_ledger(
+        ledger,
+        private_table=payload,
+    )
+
+    assert validation["status"] == "valid"
+    assert validation["item_count"] == len(payload["source_items"])
+    assert validation["source_item_count"] == len(payload["source_items"])
+    assert validation["missing_source_ids"] == []
+    assert validation["unknown_source_ids"] == []
+
+
+def test_private_table_ledger_validator_rejects_old_aggregate_ids(tmp_path: Path) -> None:
+    payload, _ = build_pre_step6_private_table(
+        result_payload=_result_payload(),
+        cache_dir=tmp_path / "missing-cache",
+    )
+    ledger = {
+        "schema_version": "pre_step6_private_table_ledger.v1",
+        "status": "completed",
+        "items": [
+            {
+                "source_id": "lane1_structural_challenge",
+                "source_kind": "current_run_section",
+                "title": "Lane 1 structural challenge",
+                "disposition": "used",
+                "why": "Old aggregate example.",
+                "visible_effect": "",
+                "private_guardrail": "",
+            }
+        ],
+        "notes": ["Private telemetry only. Not rendered in chat."],
+    }
+
+    validation = validate_pre_step6_private_table_ledger(
+        ledger,
+        private_table=payload,
+    )
+
+    assert validation["status"] == "invalid"
+    assert validation["unknown_source_ids"] == ["lane1_structural_challenge"]
+    assert "lane1::doubt-avoidance-tendency" in validation["missing_source_ids"]
+    assert any("source_id is unknown" in error for error in validation["errors"])
+
+
+def test_private_table_ledger_validator_rejects_duplicates_and_bad_disposition(tmp_path: Path) -> None:
+    payload, _ = build_pre_step6_private_table(
+        result_payload=_result_payload(),
+        cache_dir=tmp_path / "missing-cache",
+    )
+    ledger = _completed_private_table_ledger(payload)
+    ledger["items"][0]["disposition"] = "maybe_used"
+    ledger["items"][1]["source_id"] = ledger["items"][0]["source_id"]
+
+    validation = validate_pre_step6_private_table_ledger(
+        ledger,
+        private_table=payload,
+    )
+
+    assert validation["status"] == "invalid"
+    assert validation["duplicate_source_ids"] == [ledger["items"][0]["source_id"]]
+    assert any("disposition is invalid" in error for error in validation["errors"])
+
+
+def test_finalize_private_table_ledger_records_validation_in_run_health(tmp_path: Path) -> None:
+    payload, _ = build_pre_step6_private_table(
+        result_payload=_result_payload(),
+        cache_dir=tmp_path / "missing-cache",
+    )
+    result = {
+        "status": "ok",
+        "run_health": {"overall": "healthy"},
+        "pre_step6_private_table": payload,
+    }
+    ledger = _completed_private_table_ledger(payload)
+
+    finalized = finalize_pre_step6_private_table_ledger(result, ledger=ledger)
+
+    assert finalized["pre_step6_private_table_ledger"] == ledger
+    assert finalized["pre_step6_private_table_ledger_validation"]["status"] == "valid"
+    assert finalized["run_health"]["pre_step6_private_table_ledger"] == "valid"
+    assert finalized["run_health"]["pre_step6_private_table_unaccounted_source_count"] == 0
