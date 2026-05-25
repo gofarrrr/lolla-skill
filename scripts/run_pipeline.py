@@ -245,6 +245,58 @@ def _derive_run_id_from_path(raw_path: str | None) -> str:
     return ""
 
 
+def _boundary_record_dict(record: object) -> dict[str, object]:
+    if isinstance(record, dict):
+        return dict(record)
+    if hasattr(record, "to_dict"):
+        value = record.to_dict()
+        return value if isinstance(value, dict) else {}
+    if hasattr(record, "__dict__"):
+        return dict(vars(record))
+    return {}
+
+
+def _reasoning_detail_warning(records: list[object]) -> tuple[str, dict[str, object]]:
+    leak_records: list[dict[str, object]] = []
+    models: set[str] = set()
+    stages: set[str] = set()
+    for record in records:
+        rec = _boundary_record_dict(record)
+        if not rec:
+            continue
+        try:
+            reasoning_tokens = int(rec.get("reasoning_tokens") or 0)
+        except (TypeError, ValueError):
+            reasoning_tokens = 0
+        if not (bool(rec.get("reasoning_details_present")) or reasoning_tokens > 0):
+            continue
+        leak_records.append(rec)
+        model = str(rec.get("served_model") or rec.get("model") or "").strip()
+        stage = str(rec.get("stage") or "").strip()
+        if model:
+            models.add(model)
+        if stage:
+            stages.add(stage)
+    if not leak_records:
+        return "", {
+            "detected": False,
+            "count": 0,
+            "models": [],
+            "stages": [],
+        }
+    count = len(leak_records)
+    warning = (
+        "Boundary response returned reasoning details despite reasoning being disabled "
+        f"({count} call{'s' if count != 1 else ''})."
+    )
+    return warning, {
+        "detected": True,
+        "count": count,
+        "models": sorted(models),
+        "stages": sorted(stages),
+    }
+
+
 _HEALTH_SEVERITY_RANK = {
     "info": 0,
     "optional_off": 0,
@@ -470,7 +522,10 @@ def _serialize_result(result, *, embedding_active: bool = False, compiled_chunk_
                 "stage": bc.stage,
                 "tendency_id": bc.tendency_id,
                 "provider_name": bc.provider_name,
+                "requested_model": bc.requested_model,
+                "served_model": bc.served_model,
                 "model": bc.model,
+                "model_attribution_status": bc.model_attribution_status,
                 "status": bc.status,
                 "finish_reason": bc.finish_reason,
                 "raw_message_content": bc.raw_message_content,
@@ -481,6 +536,8 @@ def _serialize_result(result, *, embedding_active: bool = False, compiled_chunk_
                 "cached_tokens": bc.cached_tokens,
                 "cache_write_tokens": bc.cache_write_tokens,
                 "reasoning_tokens": bc.reasoning_tokens,
+                "reasoning_disabled": bc.reasoning_disabled,
+                "reasoning_details_present": bc.reasoning_details_present,
             }
             for bc in result.audit.boundary_calls
         ],
@@ -1105,13 +1162,29 @@ def main() -> int:
             if isinstance(_warnings_for_skeleton, list):
                 _warnings_for_skeleton.append(f"V60 ledger skeleton sidecar write failed: {exc}")
 
+    extraction_boundary_calls = load_extraction_sidecar(_run_id)
+    all_chat_boundary_records = (
+        list(getattr(result.audit, "boundary_calls", ()))
+        + list(bi_call_log)
+        + list(revision_call_log)
+        + list(stakeholder_check_call_log)
+        + list(extraction_boundary_calls)
+    )
+    _reasoning_warning, _reasoning_warning_meta = _reasoning_detail_warning(
+        all_chat_boundary_records
+    )
+    if _reasoning_warning:
+        audit_warnings = serialized.setdefault("audit_summary", {}).setdefault("warnings", [])
+        if isinstance(audit_warnings, list) and _reasoning_warning not in audit_warnings:
+            audit_warnings.append(_reasoning_warning)
+
     serialized["usage_summary"] = build_usage_summary(
         run_id=_run_id,
         pipeline_boundary_calls=getattr(result.audit, "boundary_calls", ()),
         bi_boundary_calls=bi_call_log,
         revision_boundary_calls=revision_call_log,
         stakeholder_check_boundary_calls=stakeholder_check_call_log,
-        extraction_boundary_calls=load_extraction_sidecar(_run_id),
+        extraction_boundary_calls=extraction_boundary_calls,
         embedding_records=embedding_usage_records,
         # subagent_calls are added by SKILL.md Step 8b after sub-agents return.
         subagent_calls=(),
@@ -1122,6 +1195,8 @@ def main() -> int:
     _fingerprint_ok = len(result.audit.companion_fingerprint_validated) > 0
     _has_findings = bool(result.delta_card and result.delta_card.findings)
     _warnings = list(result.audit.warnings)
+    if _reasoning_warning and _reasoning_warning not in _warnings:
+        _warnings.append(_reasoning_warning)
     _lane3_drops_count = len(getattr(result.frame_pressure_card, "dropped_frame_elements", ()) or ())
     _lane3_kept_count = len(getattr(result.frame_pressure_card, "frame_elements", ()) or ())
     _bi_evaluation_failures = int(
@@ -1225,6 +1300,10 @@ def main() -> int:
         "issues": _health_issues,
         "issue_details": _health_issue_details,
         "warnings": _warnings + _capture_warnings,
+        "boundary_reasoning_leak_detected": bool(_reasoning_warning_meta.get("detected")),
+        "boundary_reasoning_leak_count": int(_reasoning_warning_meta.get("count") or 0),
+        "boundary_reasoning_leak_models": list(_reasoning_warning_meta.get("models") or []),
+        "boundary_reasoning_leak_stages": list(_reasoning_warning_meta.get("stages") or []),
         "activation_tiebreaker": "on" if activation_tiebreaker_enabled else "off",
         "v60_enrichment": _v60_status or "unknown",
         "v60_selected_chunk_count": int(

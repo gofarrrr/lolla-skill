@@ -400,6 +400,73 @@ def test_pre_step6_private_mode_writes_step6_table_sidecars(
         Path("/tmp/lolla_prestep6private_pre_step6_private_table.json").unlink(missing_ok=True)
 
 
+def test_reasoning_detail_warning_propagates_to_run_health(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    extraction_path, conversation_path = _write_extraction_and_conversation(tmp_path)
+    output_path = tmp_path / "result.json"
+    _install_clean_health_pipeline_fakes(monkeypatch, tmp_path)
+    run_id = "reasonleak"
+    monkeypatch.setenv("LOLLA_RUN_ID", run_id)
+    sidecar = Path(f"/tmp/lolla_{run_id}_extraction_calls.json")
+    sidecar.write_text(
+        json.dumps(
+            [
+                {
+                    "stage": "extraction",
+                    "provider_name": "openrouter",
+                    "requested_model": "google/gemini-3.1-flash-lite",
+                    "served_model": "google/gemini-3.1-flash-lite-20260507",
+                    "model": "google/gemini-3.1-flash-lite-20260507",
+                    "model_attribution_status": "served_version_alias",
+                    "status": "ok",
+                    "prompt_tokens": 10,
+                    "completion_tokens": 5,
+                    "total_tokens": 15,
+                    "reasoning_disabled": True,
+                    "reasoning_details_present": True,
+                    "reasoning_tokens": 0,
+                }
+            ]
+        ),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "run_pipeline.py",
+            "--extraction-file",
+            str(extraction_path),
+            "--conversation-file",
+            str(conversation_path),
+            "--output-file",
+            str(output_path),
+            "--skip-revision",
+            "--v60-enrichment",
+            "off",
+        ],
+    )
+
+    try:
+        assert run_pipeline.main() == 0
+        payload = json.loads(output_path.read_text(encoding="utf-8"))
+        assert payload["run_health"]["boundary_reasoning_leak_detected"] is True
+        assert payload["run_health"]["boundary_reasoning_leak_count"] == 1
+        assert payload["run_health"]["boundary_reasoning_leak_stages"] == ["extraction"]
+        assert any(
+            "reasoning details despite reasoning being disabled" in warning
+            for warning in payload["run_health"]["warnings"]
+        )
+        assert any(
+            "reasoning details despite reasoning being disabled" in warning
+            for warning in payload["audit_summary"]["warnings"]
+        )
+    finally:
+        sidecar.unlink(missing_ok=True)
+
+
 def test_stakeholder_check_flag_persists_payload_and_usage(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,

@@ -24,6 +24,7 @@ def _result_payload() -> dict[str, object]:
         "delta_card": {
             "top_findings": [
                 {
+                    "tendency_id": "doubt-avoidance-tendency",
                     "tendency_name": "Doubt Avoidance",
                     "severity": "high",
                     "specific_passage": "Marcus is too important to risk upsetting.",
@@ -35,6 +36,7 @@ def _result_payload() -> dict[str, object]:
         "companion_cheat_sheet": {
             "anchors": [
                 {
+                    "model_id": "opportunity-cost",
                     "display_name": "Opportunity Cost",
                     "why_it_matters": "The equity grant closes off cheaper learning paths.",
                     "chunks": [{"text": "Ask what option the commitment displaces."}],
@@ -60,6 +62,7 @@ def _result_payload() -> dict[str, object]:
         "structural_coverage_card": {
             "dimensions": [
                 {
+                    "dimension_id": "commitment-reversibility",
                     "dimension_name": "Commitment Reversibility",
                     "covered": False,
                     "materiality_note": "Equity is hard to unwind.",
@@ -67,6 +70,7 @@ def _result_payload() -> dict[str, object]:
             ],
             "gap_questions": [
                 {
+                    "dimension_id": "commitment-reversibility",
                     "dimension_name": "Commitment Reversibility",
                     "questions": ["What trial could prove fit before equity?"],
                 }
@@ -119,12 +123,20 @@ def test_private_table_renders_current_run_without_live_card_generation(tmp_path
     assert "Name the option displaced" in rendered
     source_ids = [item["source_id"] for item in payload["source_items"]]
     assert source_ids == [
-        "lane1_structural_challenge",
-        "lane2_anchor_pressure",
-        "lane3_frame_pressure",
-        "lane4_coverage_gaps",
-        "v60_private_enrichment",
+        "lane1::doubt-avoidance-tendency",
+        "lane2::opportunity-cost",
+        "lane3::frame_element::0::forced-binary",
+        "lane3::reframe::0::inversion",
+        "lane4::dimension::commitment-reversibility",
+        "lane4::gap_question::commitment-reversibility",
+        "v60::card::opportunity-cost",
     ]
+    skeleton_ids = [
+        item["source_id"]
+        for item in payload["consideration_ledger_skeleton"]["items"]
+    ]
+    assert skeleton_ids == source_ids
+    assert payload["source_items"][0]["section_id"] == "lane1_structural_challenge"
 
 
 def test_private_table_appends_cached_cards_and_writes_sidecars(tmp_path: Path) -> None:

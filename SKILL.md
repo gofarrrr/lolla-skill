@@ -124,6 +124,19 @@ elif [ -n "$SKILL_DIR" ] && [ -f "$SKILL_DIR/data/compiled/model_affordances/aff
 else
   echo "V60: missing artifact"
 fi
+
+# Persist runtime state because Claude Code Bash calls may not share shell
+# exports. Later steps must source this file before using SKILL_DIR/RUN_ID.
+LOLLA_ENV_STATE="/tmp/lolla_${LOLLA_RUN_ID}_env.sh"
+export LOLLA_ENV_STATE
+cat > "$LOLLA_ENV_STATE" << EOF
+export SKILL_DIR="$SKILL_DIR"
+export LOLLA_RUN_ID="$LOLLA_RUN_ID"
+export LOLLA_LIVE_TRANSCRIPT="$LOLLA_LIVE_TRANSCRIPT"
+export LOLLA_ENV_STATE="$LOLLA_ENV_STATE"
+EOF
+ln -sf "$LOLLA_ENV_STATE" /tmp/lolla_latest_env.sh
+echo "ENV_STATE: $LOLLA_ENV_STATE"
 ```
 
 If any line says `FATAL`, stop and tell the user what's missing. Do not proceed.
@@ -196,6 +209,13 @@ CONVERSATION: {N} turns, {X} user messages, {Y} assistant responses
 Write the result to a temp file:
 
 ```bash
+if { [ -z "$LOLLA_RUN_ID" ] || [ -z "$SKILL_DIR" ]; } && [ -f /tmp/lolla_latest_env.sh ]; then
+  . /tmp/lolla_latest_env.sh
+fi
+if [ -z "$LOLLA_RUN_ID" ]; then
+  echo "FATAL: LOLLA_RUN_ID is not set. Re-run /lolla — the preamble must initialize before Step 1."
+  exit 1
+fi
 cat > /tmp/lolla_${LOLLA_RUN_ID}_conversation.txt << 'LOLLA_CONV_EOF'
 {paste the formatted conversation here}
 LOLLA_CONV_EOF
@@ -214,10 +234,18 @@ echo "Conversation written: $(wc -c < /tmp/lolla_${LOLLA_RUN_ID}_conversation.tx
 **Pre-extraction guard.** Before running the extract script, verify the conversation file exists, is non-empty, and that `LOLLA_RUN_ID` is set. If any check fails, surface a clean capture-failure message to the user — do NOT proceed and let Python emit a raw traceback.
 
 ```bash
-if [ -z "$LOLLA_RUN_ID" ]; then
+if { [ -z "$LOLLA_RUN_ID" ] || [ -z "$SKILL_DIR" ]; } && [ -f /tmp/lolla_latest_env.sh ]; then
+  . /tmp/lolla_latest_env.sh
+fi
+if [ -z "$SKILL_DIR" ] || [ ! -f "$SKILL_DIR/scripts/run_extract.py" ]; then
+  echo "FATAL: SKILL_DIR is not set or run_extract.py is missing. Re-run /lolla — the preamble must initialize before Step 2."
+  exit 1
+elif [ -z "$LOLLA_RUN_ID" ]; then
   echo "FATAL: LOLLA_RUN_ID is not set. Re-run /lolla — the preamble must initialize before Step 2."
+  exit 1
 elif [ ! -s "/tmp/lolla_${LOLLA_RUN_ID}_conversation.txt" ]; then
   echo "FATAL: conversation file missing or empty at /tmp/lolla_${LOLLA_RUN_ID}_conversation.txt. Step 1 capture failed; please rerun /lolla."
+  exit 1
 else
   echo "Pre-extraction guard: conversation file present ($(wc -c < /tmp/lolla_${LOLLA_RUN_ID}_conversation.txt) bytes)."
 fi
@@ -395,7 +423,7 @@ print(f'Revised answer persisted to {result_path}')
 "
 ```
 
-**If `pre_step6_private_table.status == "ready"`, persist the compact private-table consideration ledger immediately after the revised answer.** Start from `pre_step6_private_table.consideration_ledger_skeleton` inside `result.json`; it lists the table sections and cached cards that were placed in front of you. Fill each item with one of `used`, `rejected`, `deferred`, `private_guardrail`, or `confirming_support`. This ledger is custody, not public prose.
+**If `pre_step6_private_table.status == "ready"`, persist the compact private-table consideration ledger immediately after the revised answer.** Start from `pre_step6_private_table.consideration_ledger_skeleton` inside `result.json`; it lists the atom-level table items and cached cards that were placed in front of you. Copy the provided `source_id` values exactly — do not invent, rename, or aggregate IDs. Fill each item with one of `used`, `rejected`, `deferred`, `private_guardrail`, or `confirming_support`. This ledger is custody, not public prose.
 
 ```bash
 cat > /tmp/lolla_${LOLLA_RUN_ID}_pre_step6_private_table_ledger.json << 'LOLLA_PRE_STEP6_LEDGER_EOF'
