@@ -432,9 +432,9 @@ cat > /tmp/lolla_${LOLLA_RUN_ID}_pre_step6_private_table_ledger.json << 'LOLLA_P
   "status": "completed",
   "items": [
     {
-      "source_id": "lane1_structural_challenge",
-      "source_kind": "current_run_section",
-      "title": "Lane 1 structural challenge",
+      "source_id": "<copy exact source_id from the skeleton>",
+      "source_kind": "<copy source_kind from the skeleton>",
+      "title": "<copy title from the skeleton>",
       "disposition": "used",
       "why": "Short private rationale for how this affected reasoning.",
       "visible_effect": "Short public-facing effect, or empty if private-only.",
@@ -447,18 +447,10 @@ cat > /tmp/lolla_${LOLLA_RUN_ID}_pre_step6_private_table_ledger.json << 'LOLLA_P
 }
 LOLLA_PRE_STEP6_LEDGER_EOF
 
-python3 -c "
-import json, datetime, pathlib
-run_id = '${LOLLA_RUN_ID}'
-result_path = pathlib.Path(f'/tmp/lolla_{run_id}_result.json')
-ledger_path = pathlib.Path(f'/tmp/lolla_{run_id}_pre_step6_private_table_ledger.json')
-d = json.loads(result_path.read_text())
-d['pre_step6_private_table_ledger'] = json.loads(ledger_path.read_text())
-d['pre_step6_private_table_ledger_written_at'] = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
-result_path.write_text(json.dumps(d, indent=2, ensure_ascii=False))
-print(f'Pre-Step-6 private-table ledger persisted to {result_path}')
-"
+python3 $SKILL_DIR/scripts/finalize_pre_step6_private_table_ledger.py --run-id "${LOLLA_RUN_ID}" --quiet --require-valid
 ```
+
+If the finalization command exits non-zero, stop before V60 finalization, pressure checks, memo rendering, Observatory, or archive. Read the validation errors, repair `/tmp/lolla_${LOLLA_RUN_ID}_pre_step6_private_table_ledger.json` against `pre_step6_private_table.consideration_ledger_skeleton`, rerun the same finalization command, and continue only after `pre_step6_private_table_ledger` is `valid` (or `not_required` when the private table is absent).
 
 **If `v60_enrichment.status == "active"`, persist the private V60 consideration ledger immediately after the revised answer.** This ledger is operator telemetry only. It accounts for what was picked up, what was skipped by your judgment, what was deferred, and what was presented but not used. Do not mention it in chat.
 
@@ -855,6 +847,7 @@ After the full cycle is complete (cards, updated position, pressure-check state,
 **Always launch after Step 8c completes.** Do not wait for the user to ask:
 
 ```bash
+python3 $SKILL_DIR/scripts/finalize_pre_step6_private_table_ledger.py --run-id "${LOLLA_RUN_ID}" --quiet --require-valid || exit $?
 python3 $SKILL_DIR/scripts/finalize_v60_telemetry.py --run-id "${LOLLA_RUN_ID}" --quiet --require-valid || exit $?
 python3 $SKILL_DIR/scripts/finalize_live_output_hygiene.py --run-id "${LOLLA_RUN_ID}" --quiet || exit $?
 python3 $SKILL_DIR/observatory/serve_result.py --result /tmp/lolla_${LOLLA_RUN_ID}_result.json

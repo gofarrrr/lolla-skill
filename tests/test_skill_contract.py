@@ -15,6 +15,9 @@ def test_skill_rests_post_step6_pressure_checks_by_default() -> None:
     assert "exit 1" in skill
     assert "Copy the provided `source_id` values exactly" in skill
     assert "--require-valid" in skill
+    assert "finalize_pre_step6_private_table_ledger.py" in skill
+    assert '"source_id": "<copy exact source_id from the skeleton>"' in skill
+    assert '"source_id": "lane1_structural_challenge"' not in skill
     assert "Launch these BEFORE writing Step 6" not in skill
     assert "Before you begin writing your reconsideration, launch" not in skill
     assert "Post-Step-6 pressure-check sub-agents are rested by default" in skill
@@ -25,6 +28,10 @@ def test_skill_rests_post_step6_pressure_checks_by_default() -> None:
     assert "only AFTER Step 6b finalization succeeds" in skill
     assert (
         'finalize_v60_telemetry.py --run-id "${LOLLA_RUN_ID}" --quiet --require-valid || exit $?'
+        in skill
+    )
+    assert (
+        'finalize_pre_step6_private_table_ledger.py --run-id "${LOLLA_RUN_ID}" --quiet --require-valid || exit $?'
         in skill
     )
 

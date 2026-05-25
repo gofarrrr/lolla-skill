@@ -7,6 +7,7 @@ cards, select a visible answer, or judge wisdom.
 """
 from __future__ import annotations
 
+import datetime as _dt
 import json
 from pathlib import Path
 import re
@@ -25,6 +26,9 @@ LEDGER_SCHEMA_VERSION = "pre_step6_private_table_ledger.v1"
 DEFAULT_MAX_CHARS = 9000
 _MAX_ITEMS_PER_SECTION = 5
 _MAX_TEXT = 420
+LEDGER_DISPOSITIONS = frozenset(
+    {"used", "rejected", "deferred", "private_guardrail", "confirming_support"}
+)
 _GATES = {
     "step6_private_context_allowed": True,
     "live_card_generation_allowed": False,
@@ -125,6 +129,164 @@ def validate_pre_step6_private_table(payload: dict[str, Any]) -> None:
     ]
     if ledger_ids != source_ids:
         raise ValueError("private table ledger skeleton must mirror source_items")
+
+
+def validate_pre_step6_private_table_ledger(
+    ledger: dict[str, Any],
+    *,
+    private_table: dict[str, Any],
+) -> dict[str, Any]:
+    """Validate Step 6's private-table ledger against the rendered skeleton.
+
+    This is custody validation only. It checks that Step 6 accounted for the
+    exact source IDs it was given, once each, with an allowed disposition. It
+    does not judge whether any disposition was cognitively correct.
+    """
+
+    errors: list[str] = []
+    if not isinstance(ledger, dict):
+        return {
+            "status": "invalid",
+            "item_count": 0,
+            "source_item_count": 0,
+            "disposition_counts": {},
+            "missing_source_ids": [],
+            "duplicate_source_ids": [],
+            "unknown_source_ids": [],
+            "errors": ["pre-Step-6 private table ledger must be an object"],
+        }
+    if ledger.get("schema_version") != LEDGER_SCHEMA_VERSION:
+        errors.append("schema_version is invalid")
+    if ledger.get("status") != "completed":
+        errors.append("status must be completed")
+    if not isinstance(ledger.get("items"), list):
+        errors.append("items must be a list")
+
+    source_items = [
+        _as_mapping(item)
+        for item in _as_list(_as_mapping(private_table).get("source_items"))
+    ]
+    skeleton_items = [
+        _as_mapping(item)
+        for item in _as_list(
+            _as_mapping(_as_mapping(private_table).get("consideration_ledger_skeleton")).get("items")
+        )
+    ]
+    expected_ids = [
+        _text(item.get("source_id"))
+        for item in (skeleton_items or source_items)
+        if _text(item.get("source_id"))
+    ]
+    expected_set = set(expected_ids)
+
+    items = [_as_mapping(item) for item in _as_list(ledger.get("items"))]
+    seen: list[str] = []
+    unknown: list[str] = []
+    disposition_counts: dict[str, int] = {}
+    for index, item in enumerate(items):
+        prefix = f"items[{index}]"
+        source_id = _text(item.get("source_id"))
+        disposition = _text(item.get("disposition"))
+        if not source_id:
+            errors.append(f"{prefix}.source_id is required")
+        else:
+            seen.append(source_id)
+            if source_id not in expected_set:
+                errors.append(f"{prefix}.source_id is unknown")
+                unknown.append(source_id)
+        if disposition not in LEDGER_DISPOSITIONS:
+            errors.append(f"{prefix}.disposition is invalid")
+        elif disposition:
+            disposition_counts[disposition] = disposition_counts.get(disposition, 0) + 1
+
+    seen_set = set(seen)
+    missing = sorted(expected_set - seen_set)
+    duplicates = sorted(source_id for source_id in seen_set if seen.count(source_id) > 1)
+    if missing:
+        errors.append(f"items missing private-table source IDs: {missing}")
+    if duplicates:
+        errors.append(f"items duplicate private-table source IDs: {duplicates}")
+
+    return {
+        "status": "invalid" if errors else "valid",
+        "item_count": len(items),
+        "source_item_count": len(expected_ids),
+        "disposition_counts": dict(sorted(disposition_counts.items())),
+        "missing_source_ids": missing,
+        "duplicate_source_ids": duplicates,
+        "unknown_source_ids": sorted(set(unknown)),
+        "errors": errors,
+    }
+
+
+def finalize_pre_step6_private_table_ledger(
+    result_payload: dict[str, Any],
+    *,
+    ledger: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Attach private-table ledger validation to an in-flight result payload."""
+
+    result = dict(result_payload)
+    private_table = _as_mapping(result.get("pre_step6_private_table"))
+    run_health = dict(_as_mapping(result.get("run_health")))
+    if private_table.get("status") != "ready":
+        validation = {
+            "status": "not_required",
+            "item_count": 0,
+            "source_item_count": 0,
+            "disposition_counts": {},
+            "missing_source_ids": [],
+            "duplicate_source_ids": [],
+            "unknown_source_ids": [],
+            "errors": [],
+        }
+        run_health["pre_step6_private_table_ledger"] = "not_required"
+        result["pre_step6_private_table_ledger_validation"] = validation
+        result["run_health"] = run_health
+        return result
+
+    if ledger is None and isinstance(result.get("pre_step6_private_table_ledger"), dict):
+        ledger = _as_mapping(result.get("pre_step6_private_table_ledger"))
+
+    if ledger is None:
+        source_ids = [
+            _text(_as_mapping(item).get("source_id"))
+            for item in _as_list(private_table.get("source_items"))
+            if _text(_as_mapping(item).get("source_id"))
+        ]
+        validation = {
+            "status": "missing",
+            "item_count": 0,
+            "source_item_count": len(source_ids),
+            "disposition_counts": {},
+            "missing_source_ids": source_ids,
+            "duplicate_source_ids": [],
+            "unknown_source_ids": [],
+            "errors": ["pre-Step-6 private table is ready but no ledger was written"],
+        }
+    else:
+        validation = validate_pre_step6_private_table_ledger(
+            ledger,
+            private_table=private_table,
+        )
+        result["pre_step6_private_table_ledger"] = dict(ledger)
+        result["pre_step6_private_table_ledger_written_at"] = _dt.datetime.now(
+            _dt.timezone.utc
+        ).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    result["pre_step6_private_table_ledger_validation"] = validation
+    run_health["pre_step6_private_table_ledger"] = validation.get("status", "unknown")
+    run_health["pre_step6_private_table_ledger_item_count"] = validation.get("item_count", 0)
+    run_health["pre_step6_private_table_source_item_count"] = validation.get("source_item_count", 0)
+    run_health["pre_step6_private_table_ledger_disposition_counts"] = validation.get(
+        "disposition_counts",
+        {},
+    )
+    run_health["pre_step6_private_table_unaccounted_source_count"] = len(
+        validation.get("missing_source_ids") or []
+    )
+    result["run_health"] = run_health
+    return result
 
 
 def write_pre_step6_private_table_sidecars(
