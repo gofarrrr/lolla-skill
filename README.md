@@ -89,8 +89,17 @@ The skill captures the conversation, extracts the decision structure, and runs t
 
 At completion, each run is archived locally under `~/.local/share/lolla/runs/`.
 The archive includes `reasoning_trace.json`: a local-only custody manifest that
-indexes the captured conversation, result, memo, health, usage, and ledger
-artifacts by path and hash without duplicating raw transcript text.
+indexes the captured conversation, result, memo, health, usage, ledger
+artifacts, reasoning-lens IDs, model-call telemetry, and trace-adequacy status
+by path/hash and structured metadata without duplicating raw transcript text.
+To turn archived runs into a local reasoning-eval corpus, run:
+
+```bash
+python3 scripts/export_reasoning_trace_dataset.py \
+  ~/.local/share/lolla/runs \
+  --out /tmp/lolla_reasoning_traces.jsonl \
+  --summary-out /tmp/lolla_reasoning_traces_summary.json
+```
 
 **Trigger phrases** (the skill also activates on these):
 - "audit this", "check my reasoning", "find blind spots"
@@ -118,6 +127,7 @@ lolla-skill/
 │   ├── run_pipeline.py     # Step 3: decision structure → four-lane audit (family-clustered Pass 1, run_health envelope)
 │   ├── render_memo.py      # Deterministic markdown memo from result.json (no LLM)
 │   ├── archive_run.py      # Local archive + reasoning_trace.json custody manifest
+│   ├── export_reasoning_trace_dataset.py # Local JSONL corpus + summary from archived traces
 │   └── stability_check.py  # Diagnostic harness (Mode A aggregate / Mode B pipeline-variance / Mode C extraction-drift)
 ├── observatory/          # Local web UI — four cards, revised answer, reasoning graph, run health, pipeline inspector
 ├── references/           # Tendency catalog, calibration, guardrails (loaded on demand)

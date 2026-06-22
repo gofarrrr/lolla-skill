@@ -30,7 +30,8 @@ Files archived (15 core):
 
 Generated archive artifacts:
   reasoning_trace.json — local-only custody manifest with artifact hashes,
-  process health, usage summary, and future escalation slots.
+  process health, usage summary, reasoning-lens IDs, model-call telemetry,
+  trace-adequacy status, and future escalation slots.
 
 Orchestrator scratch files (preamble.json, lane*.json) are NOT archived
 — they are regenerable from result.json if ever needed.

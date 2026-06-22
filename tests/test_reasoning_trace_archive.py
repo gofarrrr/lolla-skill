@@ -77,6 +77,18 @@ def test_archive_run_writes_reasoning_trace_manifest_with_hashes(tmp_path: Path)
                     "issue_details": [],
                 },
                 "v60_enrichment": {"status": "disabled"},
+                "companion_cheat_sheet": {
+                    "anchors": [
+                        {
+                            "model_id": "opportunity-cost",
+                            "display_name": "Opportunity Cost",
+                            "presence_mode": "executed",
+                            "evidence_quote": "Only pivot after a customer evidence gate.",
+                            "chunks": [{"chunk_id": "opp-1", "chunk_type": "failure_mode"}],
+                        }
+                    ],
+                    "anti_echo_model_ids": [],
+                },
                 "audit_summary": {
                     "triggered_tendencies": ["inconsistency-avoidance"],
                     "deep_check_results": [
@@ -85,10 +97,70 @@ def test_archive_run_writes_reasoning_trace_manifest_with_hashes(tmp_path: Path)
                     ],
                     "routing_decisions": [{"tendency_id": "inconsistency-avoidance"}],
                     "boundary_call_count": 3,
+                    "boundary_calls": [
+                        {
+                            "stage": "lane2.companion",
+                            "tendency_id": "",
+                            "provider_name": "openrouter",
+                            "requested_model": "anthropic/claude-opus-4.7",
+                            "served_model": "anthropic/claude-opus-4.7",
+                            "model": "anthropic/claude-opus-4.7",
+                            "model_attribution_status": "matched",
+                            "status": "ok",
+                            "finish_reason": "stop",
+                            "raw_message_content": "{\"anchors\": []}",
+                            "temperature": 0.2,
+                            "prompt_tokens": 100,
+                            "completion_tokens": 20,
+                            "total_tokens": 120,
+                            "cached_tokens": 10,
+                            "cache_write_tokens": 0,
+                            "reasoning_tokens": 0,
+                            "reasoning_disabled": True,
+                            "reasoning_details_present": False,
+                        }
+                    ],
                     "warnings": ["test warning"],
+                    "companion_verification_accepted_before_cap": [
+                        {"model_id": "opportunity-cost", "presence_mode": "executed"}
+                    ],
+                    "companion_rejected_models": [
+                        {
+                            "model_id": "premortem",
+                            "rejection_reason": "not actually used",
+                        }
+                    ],
                     "route_trace": {
                         "schema_version": "route_trace.v1",
-                        "summary": {"lane1_route_count": 1},
+                        "lanes": {
+                            "lane1": {
+                                "routes": [
+                                    {
+                                        "primary_model_id": "inversion",
+                                        "selected_model_ids": ["inversion"],
+                                        "supporting_model_ids": [],
+                                        "risk_model_ids": [],
+                                        "rejected_candidates": [],
+                                    }
+                                ]
+                            },
+                            "lane2": {
+                                "selected_model_ids": ["opportunity-cost"],
+                                "rejected_candidates": [
+                                    {
+                                        "model_id": "premortem",
+                                        "rejection_reason": "not actually used",
+                                    }
+                                ],
+                            },
+                            "lane3": {"routes": []},
+                            "lane4": {"routes": []},
+                        },
+                        "anti_echo": {"exclusions": []},
+                        "summary": {
+                            "lane1_route_count": 1,
+                            "lane2_rejected_candidate_count": 1,
+                        },
                     },
                 },
                 "gap_check": {
@@ -129,7 +201,7 @@ def test_archive_run_writes_reasoning_trace_manifest_with_hashes(tmp_path: Path)
 
     assert archived["files_generated"] == ["reasoning_trace.json"]
     assert archived["trace_path"] == str(trace_path)
-    assert trace["schema_version"] == "lolla.reasoning_trace.v0.1"
+    assert trace["schema_version"] == "lolla.reasoning_trace.v0.2"
     assert trace["trace_id"] == f"trace_{run_id}"
     assert trace["source"]["adapter"] == "lolla_skill"
     assert trace["source"]["capture_hook"] == "archive_run"
@@ -147,7 +219,13 @@ def test_archive_run_writes_reasoning_trace_manifest_with_hashes(tmp_path: Path)
     assert trace["capture"]["decision_structure"]["live_constraint_count"] == 1
     assert trace["capture"]["decision_structure"]["reasoning_passage_count"] == 1
     assert trace["process"]["audit_summary"]["triggered_tendency_count"] == 1
+    assert trace["process"]["audit_summary"]["triggered_tendency_ids"] == [
+        "inconsistency-avoidance"
+    ]
     assert trace["process"]["audit_summary"]["detected_tendency_count"] == 1
+    assert trace["process"]["audit_summary"]["detected_tendency_ids"] == [
+        "inconsistency-avoidance"
+    ]
     assert trace["process"]["pressure_check"]["status"] == "not_run_default_off"
     assert trace["process"]["usage"]["estimated_total_cost_usd"] == 0.123
     assert trace["process"]["usage"]["vendor_calls"]["openrouter"] == 3
@@ -167,7 +245,44 @@ def test_archive_run_writes_reasoning_trace_manifest_with_hashes(tmp_path: Path)
     assert trace["candidate_commitments"] == []
     assert trace["decision_packets"] == []
     assert trace["outcome_reviews"] == []
-    assert trace["model_calls"] == []
+    lens_by_id = {item["lens_id"]: item for item in trace["reasoning_lenses"]}
+    assert lens_by_id["opportunity-cost"]["selected"] is True
+    assert lens_by_id["opportunity-cost"]["surfaced"] is True
+    assert lens_by_id["opportunity-cost"]["roles"] == [
+        "companion_anchor",
+        "companion_verified",
+    ]
+    assert lens_by_id["opportunity-cost"]["evidence"]["display_name"] == "Opportunity Cost"
+    assert lens_by_id["opportunity-cost"]["evidence"]["chunk_count"] == 1
+    assert lens_by_id["opportunity-cost"]["evidence"]["has_evidence_quote"] is True
+    assert lens_by_id["premortem"]["disposition"] == "rejected"
+    assert lens_by_id["premortem"]["rejection_reasons"] == ["not actually used"]
+    assert trace["trace_adequacy"]["status"] == "sufficient"
+    assert trace["trace_adequacy"]["future_review_ready"] is True
+    assert trace["model_calls"] == [
+        {
+            "index": 0,
+            "stage": "lane2.companion",
+            "tendency_id": "",
+            "provider_name": "openrouter",
+            "requested_model": "anthropic/claude-opus-4.7",
+            "served_model": "anthropic/claude-opus-4.7",
+            "model": "anthropic/claude-opus-4.7",
+            "model_attribution_status": "matched",
+            "status": "ok",
+            "finish_reason": "stop",
+            "temperature": 0.2,
+            "prompt_tokens": 100,
+            "completion_tokens": 20,
+            "total_tokens": 120,
+            "cached_tokens": 10,
+            "cache_write_tokens": 0,
+            "reasoning_tokens": 0,
+            "reasoning_disabled": True,
+            "reasoning_details_present": False,
+            "raw_message_content_present": True,
+        }
+    ]
     assert trace["tool_calls"] == []
     assert "secret launch phrase 7621" not in trace_path.read_text(encoding="utf-8")
 
@@ -207,6 +322,8 @@ def test_archive_run_reasoning_trace_records_missing_artifacts(tmp_path: Path) -
     assert missing_by_path["result.json"]["role"] == "pipeline_result"
     assert trace["process"]["run_health"] == {}
     assert trace["process"]["usage"]["vendor_calls"] == {}
+    assert trace["trace_adequacy"]["status"] == "insufficient"
+    assert trace["trace_adequacy"]["future_review_ready"] is False
 
 
 def test_reasoning_trace_reflects_archive_time_degraded_health(tmp_path: Path) -> None:

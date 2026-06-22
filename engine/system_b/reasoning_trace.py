@@ -14,7 +14,7 @@ from pathlib import Path
 from typing import Any
 
 
-REASONING_TRACE_SCHEMA_VERSION = "lolla.reasoning_trace.v0.1"
+REASONING_TRACE_SCHEMA_VERSION = "lolla.reasoning_trace.v0.2"
 REASONING_TRACE_FILENAME = "reasoning_trace.json"
 
 ARTIFACT_ROLES: dict[str, str] = {
@@ -60,6 +60,8 @@ def build_reasoning_trace(
     result = _read_json_object(run_dir / "result.json")
     artifacts = _artifact_records(run_dir=run_dir, filenames=files_copied)
     missing_artifacts = _missing_artifact_records(files_missing)
+    reasoning_lenses = _reasoning_lenses(result)
+    model_calls = _model_calls(result)
 
     trace: dict[str, Any] = {
         "schema_version": REASONING_TRACE_SCHEMA_VERSION,
@@ -104,10 +106,18 @@ def build_reasoning_trace(
         },
         "artifacts": artifacts,
         "missing_artifacts": missing_artifacts,
+        "reasoning_lenses": reasoning_lenses,
+        "trace_adequacy": _trace_adequacy(
+            run_dir=run_dir,
+            extraction=extraction,
+            result=result,
+            reasoning_lenses=reasoning_lenses,
+            model_calls=model_calls,
+        ),
         "candidate_commitments": [],
         "decision_packets": [],
         "outcome_reviews": [],
-        "model_calls": [],
+        "model_calls": model_calls,
         "tool_calls": [],
     }
     return trace
@@ -270,10 +280,18 @@ def _audit_summary(result: Mapping[str, Any]) -> dict[str, Any]:
     audit = _mapping(result.get("audit_summary"))
     deep_results = [_mapping(item) for item in _list(audit.get("deep_check_results"))]
     route_trace = _mapping(audit.get("route_trace"))
+    triggered = [str(item) for item in _list(audit.get("triggered_tendencies")) if str(item)]
+    detected = [
+        str(item.get("tendency_id") or "")
+        for item in deep_results
+        if item.get("detected") and str(item.get("tendency_id") or "")
+    ]
     return {
-        "triggered_tendency_count": len(_list(audit.get("triggered_tendencies"))),
+        "triggered_tendency_ids": triggered,
+        "triggered_tendency_count": len(triggered),
         "deep_check_count": len(deep_results),
-        "detected_tendency_count": sum(1 for item in deep_results if item.get("detected")),
+        "detected_tendency_ids": detected,
+        "detected_tendency_count": len(detected),
         "routing_decision_count": len(_list(audit.get("routing_decisions"))),
         "boundary_call_count": _safe_int(audit.get("boundary_call_count")),
         "warning_count": len(_list(audit.get("warnings"))),
@@ -329,6 +347,469 @@ def _usage_summary(result: Mapping[str, Any]) -> dict[str, Any]:
         "cost_estimate_state": str(usage.get("cost_estimate_state") or ""),
         "vendor_calls": vendor_calls,
     }
+
+
+def _reasoning_lenses(result: Mapping[str, Any]) -> list[dict[str, Any]]:
+    lenses: dict[str, dict[str, Any]] = {}
+    audit = _mapping(result.get("audit_summary"))
+    route_trace = _mapping(audit.get("route_trace"))
+
+    if _mapping(route_trace.get("lanes")):
+        _add_route_trace_lenses(lenses, route_trace)
+    else:
+        _add_fallback_lenses(lenses, result)
+
+    _add_companion_anchor_details(lenses, result)
+    _add_companion_verification_lenses(lenses, audit)
+    _add_private_enrichment_lenses(lenses, result)
+
+    return [_finalize_lens(row) for row in lenses.values()]
+
+
+def _add_route_trace_lenses(
+    lenses: dict[str, dict[str, Any]],
+    route_trace: Mapping[str, Any],
+) -> None:
+    lanes = _mapping(route_trace.get("lanes"))
+    for lane_id, raw_lane in lanes.items():
+        lane = _mapping(raw_lane)
+        if lane_id == "lane2":
+            for model_id in _list(lane.get("selected_model_ids")):
+                _add_lens(
+                    lenses,
+                    model_id,
+                    lane="lane2",
+                    role="companion_anchor",
+                    selected=True,
+                    surfaced=True,
+                    source_ref="result.json#/audit_summary/route_trace/lanes/lane2/selected_model_ids",
+                )
+            for index, rejected in enumerate(_list(lane.get("rejected_candidates"))):
+                item = _mapping(rejected)
+                _add_lens(
+                    lenses,
+                    item.get("model_id"),
+                    lane="lane2",
+                    role="rejected_candidate",
+                    selected=False,
+                    rejection_reason=_text(item.get("rejection_reason")),
+                    source_ref=(
+                        "result.json#/audit_summary/route_trace/lanes/"
+                        f"lane2/rejected_candidates/{index}"
+                    ),
+                )
+            continue
+
+        for route_index, raw_route in enumerate(_list(lane.get("routes"))):
+            route = _mapping(raw_route)
+            route_ref = (
+                "result.json#/audit_summary/route_trace/lanes/"
+                f"{lane_id}/routes/{route_index}"
+            )
+            if lane_id == "lane1":
+                _add_lens(
+                    lenses,
+                    route.get("primary_model_id"),
+                    lane="lane1",
+                    role="primary_antidote",
+                    selected=True,
+                    surfaced=True,
+                    source_ref=f"{route_ref}/primary_model_id",
+                )
+                for model_id in _list(route.get("supporting_model_ids")):
+                    _add_lens(
+                        lenses,
+                        model_id,
+                        lane="lane1",
+                        role="supporting_antidote",
+                        selected=True,
+                        surfaced=True,
+                        source_ref=f"{route_ref}/supporting_model_ids",
+                    )
+                for model_id in _list(route.get("risk_model_ids")):
+                    _add_lens(
+                        lenses,
+                        model_id,
+                        lane="lane1",
+                        role="risk_model",
+                        selected=True,
+                        surfaced=True,
+                        source_ref=f"{route_ref}/risk_model_ids",
+                    )
+            for model_id in _list(route.get("selected_model_ids")):
+                _add_lens(
+                    lenses,
+                    model_id,
+                    lane=str(lane_id),
+                    role=_selected_lens_role(str(lane_id)),
+                    selected=True,
+                    surfaced=True,
+                    source_ref=f"{route_ref}/selected_model_ids",
+                )
+            for rejected_index, rejected in enumerate(_list(route.get("rejected_candidates"))):
+                item = _mapping(rejected)
+                _add_lens(
+                    lenses,
+                    item.get("model_id"),
+                    lane=str(lane_id),
+                    role="rejected_candidate",
+                    selected=False,
+                    rejection_reason=_text(item.get("rejection_reason")),
+                    source_ref=f"{route_ref}/rejected_candidates/{rejected_index}",
+                )
+
+    anti_echo = _mapping(route_trace.get("anti_echo"))
+    for index, exclusion in enumerate(_list(anti_echo.get("exclusions"))):
+        item = _mapping(exclusion)
+        excluded_from = _text(item.get("excluded_from")) or "unknown"
+        _add_lens(
+            lenses,
+            item.get("model_id"),
+            lane=excluded_from,
+            role="anti_echo_excluded",
+            selected=False,
+            rejection_reason=_text(item.get("reason")) or "anti_echo_excluded",
+            source_ref=f"result.json#/audit_summary/route_trace/anti_echo/exclusions/{index}",
+        )
+
+
+def _add_fallback_lenses(lenses: dict[str, dict[str, Any]], result: Mapping[str, Any]) -> None:
+    delta = _mapping(result.get("delta_card"))
+    for index, finding in enumerate(_list(delta.get("findings"))):
+        item = _mapping(finding)
+        for model_id in _list(item.get("selected_model_ids")):
+            _add_lens(
+                lenses,
+                model_id,
+                lane="lane1",
+                role="lane1_selected",
+                selected=True,
+                surfaced=True,
+                source_ref=f"result.json#/delta_card/findings/{index}/selected_model_ids",
+            )
+
+    companion = _mapping(result.get("companion_cheat_sheet"))
+    for index, anchor in enumerate(_list(companion.get("anchors"))):
+        item = _mapping(anchor)
+        _add_lens(
+            lenses,
+            item.get("model_id"),
+            lane="lane2",
+            role="companion_anchor",
+            selected=True,
+            surfaced=True,
+            source_ref=f"result.json#/companion_cheat_sheet/anchors/{index}",
+        )
+
+    frame = _mapping(result.get("frame_pressure_card"))
+    for index, reframing in enumerate(_list(frame.get("reframings"))):
+        item = _mapping(reframing)
+        _add_lens(
+            lenses,
+            item.get("grounding_model"),
+            lane="lane3",
+            role="frame_reframing",
+            selected=True,
+            surfaced=True,
+            source_ref=f"result.json#/frame_pressure_card/reframings/{index}/grounding_model",
+        )
+
+    coverage = _mapping(result.get("structural_coverage_card"))
+    for index, route in enumerate(_list(coverage.get("gap_routes"))):
+        item = _mapping(route)
+        for model_id in _list(item.get("candidate_model_ids")):
+            _add_lens(
+                lenses,
+                model_id,
+                lane="lane4",
+                role="structural_gap_candidate",
+                selected=True,
+                surfaced=True,
+                source_ref=f"result.json#/structural_coverage_card/gap_routes/{index}",
+            )
+
+
+def _add_companion_anchor_details(
+    lenses: dict[str, dict[str, Any]],
+    result: Mapping[str, Any],
+) -> None:
+    companion = _mapping(result.get("companion_cheat_sheet"))
+    for index, anchor in enumerate(_list(companion.get("anchors"))):
+        item = _mapping(anchor)
+        details = {
+            "display_name": _text(item.get("display_name")),
+            "chunk_count": len(_list(item.get("chunks"))),
+            "presence_mode": _text(item.get("presence_mode")),
+            "has_evidence_quote": bool(_text(item.get("evidence_quote"))),
+            "has_presence_explanation": bool(_text(item.get("presence_explanation"))),
+        }
+        _add_lens(
+            lenses,
+            item.get("model_id"),
+            lane="lane2",
+            role="companion_anchor",
+            selected=True,
+            surfaced=True,
+            source_ref=f"result.json#/companion_cheat_sheet/anchors/{index}",
+            details=details,
+        )
+
+
+def _add_companion_verification_lenses(
+    lenses: dict[str, dict[str, Any]],
+    audit: Mapping[str, Any],
+) -> None:
+    for index, item in enumerate(_list(audit.get("companion_verification_accepted_before_cap"))):
+        accepted = _mapping(item)
+        _add_lens(
+            lenses,
+            accepted.get("model_id"),
+            lane="lane2",
+            role="companion_verified",
+            selected=True,
+            surfaced=False,
+            source_ref=(
+                "result.json#/audit_summary/"
+                f"companion_verification_accepted_before_cap/{index}"
+            ),
+            details={"presence_mode": _text(accepted.get("presence_mode"))},
+        )
+
+    for field, default_reason in (
+        ("companion_rejected_models", "verifier_rejected"),
+        ("companion_verification_capped_models", "capped_at_top_5"),
+        ("companion_verification_duplicate_accepts", "duplicate_accept_dedupe"),
+        ("companion_verification_silently_omitted", "not_in_verifier_response"),
+    ):
+        for index, item in enumerate(_list(audit.get(field))):
+            row = _mapping(item)
+            _add_lens(
+                lenses,
+                row.get("model_id"),
+                lane="lane2",
+                role="companion_not_surfaced",
+                selected=False,
+                rejection_reason=(
+                    _text(row.get("rejection_reason"))
+                    or _text(row.get("drop_reason"))
+                    or default_reason
+                ),
+                source_ref=f"result.json#/audit_summary/{field}/{index}",
+            )
+
+
+def _add_private_enrichment_lenses(
+    lenses: dict[str, dict[str, Any]],
+    result: Mapping[str, Any],
+) -> None:
+    enrichment = _mapping(result.get("v60_enrichment"))
+    telemetry = _mapping(enrichment.get("telemetry"))
+    for model_id in _list(telemetry.get("selected_model_ids")):
+        _add_lens(
+            lenses,
+            model_id,
+            lane="private_enrichment",
+            role="private_enrichment_selected",
+            selected=True,
+            surfaced=False,
+            source_ref="result.json#/v60_enrichment/telemetry/selected_model_ids",
+            details={
+                "private_enrichment_status": _text(enrichment.get("status")),
+                "selected_chunk_count": _safe_int(telemetry.get("selected_chunk_count")),
+            },
+        )
+
+
+def _add_lens(
+    lenses: dict[str, dict[str, Any]],
+    lens_id: Any,
+    *,
+    lane: str,
+    role: str,
+    selected: bool,
+    source_ref: str,
+    surfaced: bool = False,
+    rejection_reason: str = "",
+    details: Mapping[str, Any] | None = None,
+) -> None:
+    model_id = _text(lens_id)
+    if not model_id:
+        return
+    row = lenses.setdefault(
+        model_id,
+        {
+            "lens_id": model_id,
+            "lens_type": "mental_model",
+            "source_lanes": [],
+            "roles": [],
+            "selected": False,
+            "surfaced": False,
+            "disposition": "candidate",
+            "rejection_reasons": [],
+            "source_refs": [],
+            "evidence": {},
+            "usage": {
+                "used_in_revised_answer": "unknown",
+                "changed_recommendation": "unknown",
+                "human_marked_useful": None,
+                "outcome_signal": "unknown",
+            },
+        },
+    )
+    _append_unique(row["source_lanes"], lane)
+    _append_unique(row["roles"], role)
+    _append_unique(row["source_refs"], source_ref)
+    row["selected"] = bool(row["selected"] or selected)
+    row["surfaced"] = bool(row["surfaced"] or surfaced)
+    if rejection_reason:
+        _append_unique(row["rejection_reasons"], rejection_reason)
+    if details:
+        evidence = row["evidence"]
+        for key, value in details.items():
+            if value not in (None, "", [], {}):
+                evidence[key] = value
+
+
+def _finalize_lens(row: Mapping[str, Any]) -> dict[str, Any]:
+    payload = dict(row)
+    if payload.get("selected") and payload.get("rejection_reasons"):
+        payload["disposition"] = "mixed_selected"
+    elif payload.get("selected"):
+        payload["disposition"] = "selected"
+    elif payload.get("rejection_reasons"):
+        payload["disposition"] = "rejected"
+    else:
+        payload["disposition"] = "candidate"
+    payload["source_lanes"] = sorted(_list(payload.get("source_lanes")))
+    payload["roles"] = sorted(_list(payload.get("roles")))
+    payload["rejection_reasons"] = sorted(_list(payload.get("rejection_reasons")))
+    payload["source_refs"] = sorted(_list(payload.get("source_refs")))
+    return payload
+
+
+def _selected_lens_role(lane_id: str) -> str:
+    return {
+        "lane1": "lane1_selected",
+        "lane2": "companion_anchor",
+        "lane3": "frame_reframing",
+        "lane4": "structural_gap_candidate",
+    }.get(lane_id, "selected")
+
+
+def _model_calls(result: Mapping[str, Any]) -> list[dict[str, Any]]:
+    audit = _mapping(result.get("audit_summary"))
+    calls: list[dict[str, Any]] = []
+    for index, raw_call in enumerate(_list(audit.get("boundary_calls"))):
+        call = _mapping(raw_call)
+        calls.append(
+            {
+                "index": index,
+                "stage": _text(call.get("stage")),
+                "tendency_id": _text(call.get("tendency_id")),
+                "provider_name": _text(call.get("provider_name")),
+                "requested_model": _text(call.get("requested_model")),
+                "served_model": _text(call.get("served_model")),
+                "model": _text(call.get("model")),
+                "model_attribution_status": _text(call.get("model_attribution_status")),
+                "status": _text(call.get("status")),
+                "finish_reason": _text(call.get("finish_reason")),
+                "temperature": call.get("temperature"),
+                "prompt_tokens": _safe_int(call.get("prompt_tokens")),
+                "completion_tokens": _safe_int(call.get("completion_tokens")),
+                "total_tokens": _safe_int(call.get("total_tokens")),
+                "cached_tokens": _safe_int(call.get("cached_tokens")),
+                "cache_write_tokens": _safe_int(call.get("cache_write_tokens")),
+                "reasoning_tokens": _safe_int(call.get("reasoning_tokens")),
+                "reasoning_disabled": bool(call.get("reasoning_disabled")),
+                "reasoning_details_present": bool(call.get("reasoning_details_present")),
+                "raw_message_content_present": bool(_text(call.get("raw_message_content"))),
+            }
+        )
+    return calls
+
+
+def _trace_adequacy(
+    *,
+    run_dir: Path,
+    extraction: Mapping[str, Any],
+    result: Mapping[str, Any],
+    reasoning_lenses: Sequence[Mapping[str, Any]],
+    model_calls: Sequence[Mapping[str, Any]],
+) -> dict[str, Any]:
+    run_health = _mapping(result.get("run_health"))
+    capture = _capture_summary(extraction=extraction, result=result)
+    capture_health = _text(capture.get("capture_health")) or "unknown"
+    overall_health = _text(run_health.get("overall")) or "unknown"
+    live_output_health = _text(run_health.get("live_output_health")) or "unknown"
+    product_output_health = _text(run_health.get("product_output_health")) or "unknown"
+    core = {
+        "source_conversation": _artifact_status(run_dir / "conversation.txt"),
+        "decision_structure": _artifact_status(run_dir / "extraction.json"),
+        "pipeline_result": _artifact_status(run_dir / "result.json"),
+        "revised_answer": _artifact_status(run_dir / "revised.txt"),
+        "decision_memo": _artifact_status(run_dir / "memo.md"),
+        "reasoning_lenses": "present" if reasoning_lenses else "missing",
+        "model_call_telemetry": "present" if model_calls else "missing",
+    }
+    missing_context: list[str] = []
+    for label, status in core.items():
+        if status == "missing" and label in {
+            "source_conversation",
+            "decision_structure",
+            "pipeline_result",
+        }:
+            missing_context.append(f"{label} artifact is missing")
+    if capture_health in {"critical", "degraded", "unknown"}:
+        missing_context.append(f"capture_health is {capture_health}")
+    if overall_health in {"critical", "degraded"}:
+        missing_context.append(f"run_health.overall is {overall_health}")
+    if product_output_health == "unsafe":
+        missing_context.append("product output hygiene is unsafe")
+    if live_output_health in {"unsafe", "not_checked"}:
+        missing_context.append(f"live_output_health is {live_output_health}")
+    if not reasoning_lenses:
+        missing_context.append("no reasoning lens route data was extracted")
+
+    core_missing = any(
+        core[key] == "missing"
+        for key in ("source_conversation", "decision_structure", "pipeline_result")
+    )
+    if core_missing or capture_health == "critical":
+        status = "insufficient"
+    elif missing_context:
+        status = "thin"
+    else:
+        status = "sufficient"
+
+    return {
+        "schema_version": "lolla.trace_adequacy.v0.1",
+        "status": status,
+        "future_review_ready": status == "sufficient",
+        "error_analysis_ready": not core_missing and capture_health != "critical",
+        "coverage": core,
+        "missing_context": missing_context,
+        "commitment_detection": {
+            "status": "not_implemented",
+            "candidate_count": 0,
+        },
+        "outcome_review": {
+            "status": "not_started",
+            "review_count": 0,
+        },
+    }
+
+
+def _artifact_status(path: Path) -> str:
+    return "present" if path.exists() and path.is_file() else "missing"
+
+
+def _append_unique(values: list[Any], value: Any) -> None:
+    if value and value not in values:
+        values.append(value)
+
+
+def _text(value: Any) -> str:
+    return str(value or "").strip()
 
 
 def _mapping(value: Any) -> Mapping[str, Any]:
