@@ -28,6 +28,10 @@ Files archived (15 core):
   Missing files are skipped gracefully
   (e.g., if Step 6b was not executed by a weaker orchestrator).
 
+Generated archive artifacts:
+  reasoning_trace.json — local-only custody manifest with artifact hashes,
+  process health, usage summary, and future escalation slots.
+
 Orchestrator scratch files (preamble.json, lane*.json) are NOT archived
 — they are regenerable from result.json if ever needed.
 """
@@ -77,6 +81,11 @@ _STOPWORDS = frozenset({
 })
 
 _RUN_ID_RE = re.compile(r"^[A-Za-z0-9_-]+$")
+
+
+def _ensure_repo_root_on_path() -> None:
+    if str(REPO_ROOT) not in sys.path:
+        sys.path.insert(0, str(REPO_ROOT))
 
 
 # ---------------------------------------------------------------------------
@@ -300,6 +309,16 @@ def archive_run(
             missing.append(fname)
 
     manifest = _write_manifest(case_dir, fingerprint, run_id)
+    trace_path = _write_reasoning_trace_for_archive(
+        run_dir=run_dir,
+        run_id=run_id,
+        case_id=case_dir.name,
+        fingerprint=fingerprint,
+        how_matched=how_matched,
+        files_copied=copied,
+        files_missing=missing,
+        manifest=manifest,
+    )
 
     return {
         "case_dir": str(case_dir),
@@ -309,8 +328,38 @@ def archive_run(
         "fingerprint": fingerprint,
         "files_copied": copied,
         "files_missing": missing,
+        "files_generated": [trace_path.name],
+        "trace_path": str(trace_path),
         "run_count": manifest["run_count"],
     }
+
+
+def _write_reasoning_trace_for_archive(
+    *,
+    run_dir: Path,
+    run_id: str,
+    case_id: str,
+    fingerprint: str,
+    how_matched: str,
+    files_copied: list[str],
+    files_missing: list[str],
+    manifest: dict,
+) -> Path:
+    """Generate the run-level ReasoningTrace manifest after archive copy."""
+    _ensure_repo_root_on_path()
+    from engine.system_b.reasoning_trace import write_reasoning_trace
+
+    trace_path, _payload = write_reasoning_trace(
+        run_dir,
+        run_id=run_id,
+        case_id=case_id,
+        fingerprint=fingerprint,
+        how_matched=how_matched,
+        files_copied=files_copied,
+        files_missing=files_missing,
+        manifest=manifest,
+    )
+    return trace_path
 
 
 def _finalize_v60_telemetry_before_archive(*, tmp_dir: Path, run_id: str) -> None:
@@ -318,8 +367,7 @@ def _finalize_v60_telemetry_before_archive(*, tmp_dir: Path, run_id: str) -> Non
     result_path = tmp_dir / f"lolla_{run_id}_result.json"
     if not result_path.exists():
         return
-    if str(REPO_ROOT) not in sys.path:
-        sys.path.insert(0, str(REPO_ROOT))
+    _ensure_repo_root_on_path()
     from engine.system_b.v60_enrichment import finalize_v60_consideration
 
     ledger_path = tmp_dir / f"lolla_{run_id}_v60_ledger.json"
@@ -336,8 +384,7 @@ def _finalize_product_output_hygiene_before_archive(*, tmp_dir: Path, run_id: st
     result_path = tmp_dir / f"lolla_{run_id}_result.json"
     if not result_path.exists():
         return
-    if str(REPO_ROOT) not in sys.path:
-        sys.path.insert(0, str(REPO_ROOT))
+    _ensure_repo_root_on_path()
     from engine.system_b.output_hygiene import finalize_product_output_hygiene
 
     result = json.loads(result_path.read_text(encoding="utf-8"))
@@ -375,8 +422,7 @@ def _finalize_live_output_hygiene_before_archive(*, tmp_dir: Path, run_id: str) 
     result_path = tmp_dir / f"lolla_{run_id}_result.json"
     if not result_path.exists():
         return
-    if str(REPO_ROOT) not in sys.path:
-        sys.path.insert(0, str(REPO_ROOT))
+    _ensure_repo_root_on_path()
     from engine.system_b.output_hygiene import finalize_live_output_hygiene
 
     result = json.loads(result_path.read_text(encoding="utf-8"))
@@ -456,6 +502,8 @@ def main() -> int:
     print(f"  path:   {result['run_dir']}")
     print(f"  files:  {len(result['files_copied'])} copied"
           + (f", {len(result['files_missing'])} missing" if result['files_missing'] else ""))
+    if result.get("files_generated"):
+        print(f"  generated: {', '.join(result['files_generated'])}")
     if result['files_missing']:
         print(f"  missing: {', '.join(result['files_missing'])}")
     return 0

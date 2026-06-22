@@ -87,6 +87,11 @@ In any Claude Code conversation where you're getting strategic advice, run:
 
 The skill captures the conversation, extracts the decision structure, and runs the full audit pipeline. It works best on conversations where you're making a recommendation, weighing tradeoffs, or giving strategic advice.
 
+At completion, each run is archived locally under `~/.local/share/lolla/runs/`.
+The archive includes `reasoning_trace.json`: a local-only custody manifest that
+indexes the captured conversation, result, memo, health, usage, and ledger
+artifacts by path and hash without duplicating raw transcript text.
+
 **Trigger phrases** (the skill also activates on these):
 - "audit this", "check my reasoning", "find blind spots"
 - "stress test", "what am I missing", "challenge this"
@@ -112,6 +117,7 @@ lolla-skill/
 │   ├── run_extract.py      # Step 2: conversation → decision structure (capture-critical gate, quote-fabrication retry, truncation transparency)
 │   ├── run_pipeline.py     # Step 3: decision structure → four-lane audit (family-clustered Pass 1, run_health envelope)
 │   ├── render_memo.py      # Deterministic markdown memo from result.json (no LLM)
+│   ├── archive_run.py      # Local archive + reasoning_trace.json custody manifest
 │   └── stability_check.py  # Diagnostic harness (Mode A aggregate / Mode B pipeline-variance / Mode C extraction-drift)
 ├── observatory/          # Local web UI — four cards, revised answer, reasoning graph, run health, pipeline inspector
 ├── references/           # Tendency catalog, calibration, guardrails (loaded on demand)

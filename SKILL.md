@@ -977,6 +977,7 @@ The archive script:
 - Finds-or-creates a case folder. Matching uses **exact fingerprint first, then token-set Jaccard ≥ 0.80** against stored fingerprints — so small extractor paraphrase drift across runs of the same conversation does not split into multiple case folders. Matching is done against the manifest inside each case folder, not against folder names, so user renames of case folders do not break future matching.
 - Auto-names new cases with a slug derived from the first 3-4 significant words of `decision_situation` (e.g., `grant-equity-partnership-status`). Users can rename via `mv` — matching will still find the folder via manifest.
 - Copies the artifacts into `{case_folder}/${LOLLA_RUN_ID}/` and updates `{case_folder}/.case-manifest.json` with the new fingerprint (added as an alias) and the run_id.
+- Generates `{case_folder}/${LOLLA_RUN_ID}/reasoning_trace.json`, a local-only custody manifest with artifact paths, SHA-256 hashes, run health, usage summary, pressure-check state, private-custody status, and empty future slots for commitment candidates, decision packets, and outcome reviews. It indexes raw artifacts without duplicating conversation or memo text.
 - `/tmp` originals are **not** moved or deleted — Observatory and subsequent commands continue to reference them as in-flight state.
 
 **Environment overrides (optional):**
