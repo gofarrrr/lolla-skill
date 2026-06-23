@@ -1,124 +1,217 @@
 # Lolla - How It Works
 
-Lolla is a Claude Code skill for pressure-testing AI answers that sound convincing enough to use.
+Lolla is a second-pass reasoning audit for AI advice.
 
-It is built for the moment after Claude gives you advice, a strategy, a recommendation, or a plan and you think: "This sounds right." Lolla slows that moment down. It asks what the answer assumed, what it skipped, what would make it fail, and what questions should have been asked before the answer sounded so sure.
+It starts from a simple problem: modern AI can produce advice that is fluent,
+balanced, and convincing before the reasoning has earned that confidence. The
+danger is not only hallucinated facts. The danger is a recommendation that
+quietly inherits the user's frame, skips a reversal condition, collapses a
+messy decision into a clean story, or treats an emotional signal as if it were
+evidence.
 
-The goal is not to produce a longer answer. The goal is to make the answer harder to trust blindly.
+Lolla slows that moment down.
+
+It captures the conversation, extracts the decision shape, runs a structured
+audit against curated reasoning knowledge, and then makes the assistant revise
+its own answer in public: what survived, what it would take back, and what
+actually changed.
+
+## First Principles
+
+Lolla is built on five principles:
+
+1. **A good answer is not the same as good reasoning.** The answer can be
+   polished while the structure is weak.
+2. **The question can contain the bug.** Strategic advice often fails because
+   the user's framing made one path too natural.
+3. **Useful challenge needs structure.** "Think harder" is weak. "Name the
+   walk-away condition before treating this as a calculated bet" is useful.
+4. **Probabilistic judgment needs deterministic custody.** LLMs are good at
+   reading language. They are bad at being reproducible record keepers. Lolla
+   uses LLMs at the semantic edges and deterministic code for routing,
+   selection, custody, hygiene, telemetry, and archive.
+5. **The run should be inspectable later.** A reasoning audit that cannot be
+   replayed, checked, or compared becomes another polished story.
 
 ## What It Does For You
 
-Lolla helps you catch the parts of an AI answer that polished prose can hide:
+Lolla looks for:
 
-- Hidden assumptions the answer inherited from your question.
-- Constraints or concerns that were mentioned but not carried into the recommendation.
-- Missing failure conditions, reversal triggers, stop rules, or evidence gates.
-- Weak frames where the answer accepted the wrong shape of the problem.
-- Uncovered decision dimensions that only the decision-maker can answer.
-- Places where the model sounded balanced but did not actually test the hard part.
+- assumptions the answer inherited from the user
+- constraints that were mentioned but not carried into the recommendation
+- missing stop rules, evidence gates, and reversal conditions
+- places where "survivable" was treated as "wise"
+- places where a feeling was allowed to become a decision rule
+- structural dimensions the answer never entered
+- internal machinery leaks or run-health issues that make the output less
+  trustworthy
 
-Use it on answers that matter: strategy, product, hiring, investment, negotiation, architecture, career, family, health, ethics, or any decision where a fluent answer could push you toward action.
-
-The best test is simple:
+The best test is still simple:
 
 > Run it on the answer you already liked.
 
-## What Happens In A Run
+## The Run Story
 
-At a high level, Lolla does four things.
+Every `/lolla` run has one visible story and one custody story.
 
-1. **Captures the conversation.** It takes the current Claude Code conversation and preserves the user turns, assistant answers, and decision context.
-2. **Extracts the decision structure.** It identifies the decision situation, live constraints, current recommendation, original framing, reasoning passages, and dropped threads.
-3. **Runs an external reasoning audit.** The engine sends calibrated audit prompts through OpenRouter and checks the answer through four independent lanes.
-4. **Forces reconsideration.** Claude then uses the audit pressure to revise its own position, persist the revised answer, record the pressure-check state, render a memo, open the Observatory, and archive the run.
+The visible story is what the user sees:
 
-The important design choice: Claude does not grade its own original answer during the audit. The detection and routing work happens through the Lolla engine and OpenRouter calls. Claude comes back in later to reconsider the answer using the persisted pressure.
+1. Lolla reads back the decision it captured.
+2. It gives the strongest case against the original answer.
+3. The assistant writes an updated position.
+4. It renders a memo and opens the Observatory.
+5. It gives a final receipt with health, cost, memo path, and archive path.
+
+The custody story is what makes that visible story auditable:
+
+1. The skill creates a collision-resistant run ID such as
+   `20260623T113203Z_c4df83`.
+2. It writes a run-specific env file and exports `LOLLA_EXPECTED_RUN_ID`.
+3. Major scripts verify that active run state and artifact paths match the
+   expected run before model calls or artifact writes.
+4. The conversation, extraction, pipeline result, revised answer, memo,
+   private ledgers, live transcript, run events, graph survival report, and
+   reasoning trace are written under the same run ID.
+5. The archive groups reruns by conversation hash first, then decision
+   fingerprint, so extractor paraphrase drift does not split the same case.
+
+This is why Lolla can support research and iteration instead of only producing
+a one-off answer in chat.
 
 ## The Four Audit Lanes
 
-Lolla does not rely on one giant "be more critical" prompt. It splits the audit into four different checks:
+| Lane | Plain-language job | Product role |
+| --- | --- | --- |
+| Structural Pressure | Find cognitive tendencies and omitted safeguards in the reasoning. | Produces the strongest challenges, failure modes, reversal triggers, and corrective pressure. |
+| Model Companion | Identify mental models the answer is already using or violating. | Adds useful lenses, premortem questions, antagonists, and failure modes. |
+| Frame Pressure | Inspect the user's question for embedded assumptions. | Opens alternative frames and suppressed counterfactuals. |
+| Structural Coverage | Ask what decision territory was never addressed. | Produces gap dimensions and questions only the decision-maker can answer. |
 
-| Lane | Question it asks | What it gives you |
-|---|---|---|
-| Structural Pressure | What reasoning failure pattern is present? | A direct challenge to weak reasoning, with the specific passage and corrective pressure. |
-| Model Companion | What mental models are already being used or violated? | Useful lenses, failure modes, premortem questions, and tensions from the curated substrate. |
-| Frame Pressure | What did the question assume before the answer began? | Alternative ways to frame the problem. |
-| Structural Coverage | What important decision territory was never addressed? | Missing dimensions and user-answerable discovery questions. |
+The lanes do not vote on the answer. They provide pressure. The assistant then
+has to decide what to use, reject, defer, or keep private as a guardrail.
 
-After those four lanes, Lolla can also attach private source-backed material from the V60 affordance/absence layer. That material is not public prose. It is private pressure Claude must consider, reject, defer, or keep as a guardrail before writing the updated position.
+## What Changed In The Newer Machinery
+
+Recent versions do more than run the four lanes. They preserve the reasoning
+process around the lanes:
+
+- **Run identity is collision-resistant.** Timestamp-only IDs are gone; runs
+  get a short random suffix.
+- **The latest-env pointer is no longer trusted inside an active run.**
+  `/tmp/lolla_latest_env.sh` is a convenience pointer, not the source of truth.
+- **Expected-run guards stop cross-run contamination.** Scripts compare
+  `LOLLA_RUN_ID`, `LOLLA_EXPECTED_RUN_ID`, and artifact path-derived run IDs.
+- **Live output is checked semantically.** The hygiene layer scans visible
+  `## Updated position` blocks and degrades a run when the live transcript
+  contains a mismatched position from another case.
+- **Recovery events are recorded.** Restarts, pins, aborts, pointer rewrites,
+  and similar operator recovery moves can be persisted in `run_events.json`.
+- **Coverage is more nuanced.** A dimension can be `covered: true` while still
+  carrying `coverage_quality`, such as `covered_weak_threshold`,
+  `covered_missing_operational_detail`, `covered_strong`, or
+  `covered_immaterial`.
+- **Suppressed lenses are preserved.** `graph_survival_report.*` and
+  `reasoning_trace.json` expose selected, rejected, unadjudicated, suppressed,
+  and budget-suppressed model signals instead of pretending unselected means
+  useless.
+- **Usefulness and outcome review are first-class slots.**
+  `user_usefulness_review.json` and `outcome_review.json` can be archived even
+  when they are not collected yet, giving later evals somewhere clean to land.
 
 ## What You Get Back
 
-A normal run produces:
+A completed run can produce these surfaces:
 
-- A short readback confirming what Lolla captured.
-- The strongest case against the answer you were about to trust.
-- An updated position from Claude, structured around what survived, what should be taken back or set aside, and what actually shifted.
-- An intentional pressure-check state. Post-Step-6 isolated reviewers are rested by default to simplify the live skill and reduce cost; they remain available only as an explicit deeper-review mode.
-- A portable memo.
-- A local Observatory page with the full breakdown, traces, cards, costs, health checks, and archived artifacts.
-- A local `reasoning_trace.json` custody manifest in the archived run folder, with artifact hashes, health, usage, reasoning-lens IDs, model-call telemetry, and trace-adequacy status for replay without duplicating raw transcript text.
+- **Chat output** - readback, counterargument, revised position, final receipt.
+- **Memo** - a portable Markdown decision note, focused on what changed.
+- **Observatory** - a local web breakdown with the full cards, health,
+  telemetry, V60/private-custody panels, graph survival, and usage.
+- **Archive folder** - persistent local run directory under
+  `~/.local/share/lolla/runs/<case>/<run_id>/`.
+- **`reasoning_trace.json`** - local custody manifest with artifact hashes,
+  run health, usage, reasoning-lens IDs, budget-suppressed lenses,
+  candidate-commitment classifications, model-call telemetry, run events,
+  usefulness/outcome review state, and trace adequacy.
+- **Exportable dataset records** - JSONL records generated from archived
+  traces by `scripts/export_reasoning_trace_dataset.py`.
 
-Lolla also records run health. If capture was incomplete, embeddings were off, a private ledger was missing, a lane failed, or public prose leaked internal machinery, the run should not pretend to be clean.
+## Artifact Map
 
-## What Makes It Different
+Core or optional archived artifacts include:
 
-Lolla is not a prompt pack. It is a small reasoning-audit system bundled as a Claude Code skill.
+| Artifact | Role |
+| --- | --- |
+| `conversation.txt` | captured source conversation |
+| `extraction.json` | decision structure and capture health |
+| `result.json` | full pipeline result and run health |
+| `revised.txt` | assistant's updated position |
+| `memo.md` / `memo_note.json` | portable decision note and memo fields |
+| `gapcheck.txt` / `gapcheck_lanes.json` | default-off or optional pressure-check state |
+| `v60_ledger_skeleton.json` / `v60_ledger.json` | private enrichment custody and use/reject/defer accounting |
+| `pre_step6_private_table.*` | private Step 6 thinking surface and ledger |
+| `live_transcript.txt` | visible chat/status surface captured for hygiene checks |
+| `run_events.json` | recovery and operator-event ledger |
+| `graph_survival_report.json` / `.md` | selected/suppressed/unadjudicated model-signal survival |
+| `reasoning_trace.json` | local custody and eval manifest |
+| `user_usefulness_review.json` | optional user usefulness rating |
+| `outcome_review.json` | optional later outcome review |
 
-The engine combines:
+Missing optional artifacts do not block archive. They are recorded as missing
+so the run remains honest about what was and was not captured.
 
-- A curated substrate of 222 mental models.
-- Munger-style cognitive-tendency detection.
-- A graph of model relationships, allies, antagonists, and tensions.
-- Deterministic routing through curated knowledge.
-- LLM calls only where semantic judgment is needed.
-- Traceable artifacts so findings can be inspected after the run.
+## Trust Boundaries
 
-The architecture principle is:
+Lolla separates jobs:
 
-> Probabilistic judgment at the edges, curated structure in the middle.
+- **Claude Code orchestrates the skill.** It captures the conversation, runs
+  scripts, reads the audit output, writes the revised position, and persists
+  artifacts.
+- **OpenRouter-backed calls perform semantic audit work.** Extraction, triage,
+  deep checks, frame extraction, model verification, structural coverage, and
+  delivery-quality checks happen through calibrated boundary calls.
+- **Deterministic code owns custody.** Routing, graph traversal, artifact
+  writing, ledger validation, hygiene scans, pricing, archive, and trace export
+  are code paths, not improvisation.
 
-LLMs are used to read messy natural language. The deterministic engine handles routing, graph traversal, card assembly, custody, validation, and traceability.
+The revised answer is not treated as an oracle. It is treated as a product
+surface built from a recorded audit.
 
-## The Runtime Flow
+## Run Health
 
-This is the live `/lolla` flow in one page:
+Every run reports health. That health is not cosmetic. It tells you whether the
+result is clean enough to compare or rely on:
 
-1. Resolve skill path, API keys, bundled engine/data, run id, and live transcript file.
-2. Capture the current conversation into `/tmp/lolla_<run_id>_conversation.txt`.
-3. Run `scripts/run_extract.py` to create `/tmp/lolla_<run_id>_extraction.json`.
-4. Show a short readback and audit promise.
-5. Run `scripts/run_pipeline.py --skip-revision` with the extraction and conversation files.
-6. Build `ConversationContext`, construct `ConversationIR`, and run the four audit lanes.
-7. Attach Bullshit Index, usage summary, run health, and default-on V60 private enrichment.
-8. Render the strongest counterargument in chat.
-9. Write the updated position.
-10. Persist `revised_answer` and validate the V60 consideration ledger.
-11. Persist the default-off pressure-check state after Step 10 succeeds.
-12. If the user/operator explicitly requested deeper review, run optional pressure-check agents after Step 10 and persist their comparison plus auxiliary token usage.
-13. Persist memo-note fields and render the deterministic memo.
-14. Finalize V60 and live-output hygiene, open the Observatory, archive the 15 core artifacts under `~/.local/share/lolla/runs/`, and generate `reasoning_trace.json` for local custody/replay with enough metadata for local reasoning-eval corpus export.
+- `healthy` - no material integrity issues found
+- `partial` - usable, but at least one non-fatal layer was incomplete or
+  provider behavior needs caution
+- `degraded` - product, live-output, quote, fingerprint, or ledger issues
+  materially weaken trust
+- `critical` - capture or runtime failure makes the run unsuitable as an audit
 
-`SKILL.md` is the executable instruction source. This page is the readable map.
+Common issues include `vendor_boundary_reasoning_leak`, `quote_fabrication`,
+`no_fingerprint`, `bullshit_index_partial`, `product_output_leak`,
+`live_output_leak`, `live_output_semantic_mismatch`, `live_output_missing`,
+and missing or invalid private ledgers.
 
-## Read More
+## Read Next
 
-The detailed docs are split so agents and humans do not have to load one giant file.
+| Document | Use it for |
+| --- | --- |
+| [Problem and Thesis](docs/how-it-works/problem-and-thesis.md) | Why the system exists and what problem it is trying to solve. |
+| [Live Flow](docs/how-it-works/live-flow.md) | Exact `/lolla` sequence from activation to archive. |
+| [Pipeline Lanes](docs/how-it-works/pipeline-lanes.md) | Lane mechanics, V60/private table, coverage quality, and run-health fields. |
+| [Knowledge Substrate](docs/how-it-works/knowledge-substrate.md) | The curated model corpus, graph, embeddings, V60 artifact, and graph-survival view. |
+| [Operations and Limits](docs/how-it-works/operations-and-limits.md) | What Lolla is not, known limits, env vars, edge cases, and failure states. |
+| [Architecture and Evolution](docs/how-it-works/architecture-and-evolution.md) | Trust boundaries, migration history, and why the runtime has this shape. |
+| [Cost and Telemetry](docs/cost-and-telemetry.md) | Per-run API calls, pricing, usage summaries, and telemetry verification. |
 
-| File | Read it for |
-|---|---|
-| [Problem and Thesis](docs/how-it-works/problem-and-thesis.md) | Why Lolla exists: borrowed certainty, sycophancy, structural pressure, and the Munger tendency ontology. |
-| [Knowledge Substrate](docs/how-it-works/knowledge-substrate.md) | The 222 mental models, curation waves, graph, embeddings, V60 records, and bundled data files. |
-| [Architecture and Evolution](docs/how-it-works/architecture-and-evolution.md) | `ConversationContext`, `ConversationIR`, packet builders, migration history, trust boundaries, and observability. |
-| [Live Flow](docs/how-it-works/live-flow.md) | Full chronological `/lolla` flow: capture, extraction, pipeline, reconsideration, default-off pressure-check state, optional deeper review, memo, Observatory, archive. |
-| [Pipeline Lanes](docs/how-it-works/pipeline-lanes.md) | Lane 1-4 mechanics, V60 private enrichment, pre-Step-6 shadow portfolio, `run_health`, and tiebreaker traces. |
-| [Operations and Limits](docs/how-it-works/operations-and-limits.md) | Quality doctrine, environment variables, edge cases, limitations, and cost notes. |
-| [Cost and Telemetry](docs/cost-and-telemetry.md) | Canonical usage-summary and pricing reference. |
+## Current Implementation Notes
 
-## Current Notes
-
-- Checked against `SKILL.md` and runtime entry points on 2026-05-22.
-- Pressure-check agents are rested by default. If explicitly enabled, they start only after the updated position is persisted and the V60 ledger validates.
-- The pre-Step-6 shadow portfolio hook is default-off and shadow-only; it records evidence but never changes visible output.
-- The archive currently copies 15 core artifacts and generates `reasoning_trace.json`, a local-only manifest that indexes those artifacts by path/hash and adds reasoning-lens, model-call, and trace-adequacy metadata.
-- `scripts/export_reasoning_trace_dataset.py` scans archived `reasoning_trace.json` files and writes a JSONL corpus plus aggregate summary so repeated runs can be reviewed with an evals-style error-analysis workflow.
+- `SKILL.md` is the executable source of truth for the live Claude Code flow.
+- The public docs explain the product and architecture; the `references/`
+  directory contains operator contracts for chat voice, memo format, private
+  enrichment treatment, and output hygiene.
+- Archive currently copies 18 core/optional artifacts when present and
+  generates `graph_survival_report.*` plus `reasoning_trace.json`.
+- `scripts/export_reasoning_trace_dataset.py` scans archived traces and writes
+  a JSONL corpus plus aggregate summary for eval-style review.
