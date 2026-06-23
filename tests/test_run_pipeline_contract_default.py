@@ -512,6 +512,8 @@ def test_reasoning_detail_warning_propagates_to_run_health(
             "--output-file",
             str(output_path),
             "--skip-revision",
+            "--embeddings",
+            "off",
             "--v60-enrichment",
             "off",
         ],
@@ -545,6 +547,77 @@ def test_reasoning_detail_warning_propagates_to_run_health(
         )
     finally:
         sidecar.unlink(missing_ok=True)
+
+
+def test_companion_verification_parse_failure_propagates_to_run_health(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    extraction_path, conversation_path = _write_extraction_and_conversation(tmp_path)
+    output_path = tmp_path / "result.json"
+    _install_clean_health_pipeline_fakes(monkeypatch, tmp_path)
+    monkeypatch.setattr(
+        run_pipeline,
+        "_serialize_result",
+        lambda result, **kwargs: {
+            "audit_summary": {
+                "warnings": [],
+                "companion_verification_status": "malformed",
+                "companion_verification_issue_code": "companion_verification_parse_failed",
+                "companion_verification_issue_detail": {
+                    "status": "malformed",
+                    "issue_code": "companion_verification_parse_failed",
+                    "reason": "unparseable_or_truncated_json",
+                    "candidate_count": 60,
+                    "raw_message_content_present": True,
+                    "raw_message_char_count": 4096,
+                    "raw_content_has_accepted_token": True,
+                    "raw_content_has_rejected_token": True,
+                },
+            },
+            "v60_enrichment": {"status": "disabled"},
+        },
+    )
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "run_pipeline.py",
+            "--extraction-file",
+            str(extraction_path),
+            "--conversation-file",
+            str(conversation_path),
+            "--output-file",
+            str(output_path),
+            "--skip-revision",
+            "--embeddings",
+            "off",
+            "--v60-enrichment",
+            "off",
+        ],
+    )
+
+    assert run_pipeline.main() == 0
+    payload = json.loads(output_path.read_text(encoding="utf-8"))
+
+    assert payload["run_health"]["overall"] == "partial"
+    assert "companion_verification_parse_failed" in payload["run_health"]["issues"]
+    assert payload["run_health"]["issue_axis_counts"]["companion"] == 1
+    assert payload["run_health"]["partial_health_causes"] == [
+        "companion_verification_parse_failed"
+    ]
+    detail = next(
+        item
+        for item in payload["run_health"]["issue_details"]
+        if item["code"] == "companion_verification_parse_failed"
+    )
+    assert detail["axis"] == "companion"
+    assert detail["severity"] == "partial"
+    assert detail["reason"] == "unparseable_or_truncated_json"
+    assert detail["candidate_count"] == 60
+    assert detail["raw_message_content_present"] is True
+    assert detail["raw_content_has_accepted_token"] is True
+    assert detail["raw_content_has_rejected_token"] is True
 
 
 def test_stakeholder_check_flag_persists_payload_and_usage(

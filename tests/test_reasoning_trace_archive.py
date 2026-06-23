@@ -5,6 +5,7 @@ import importlib.util
 import json
 from pathlib import Path
 
+from engine.system_b.graph_survival_report import write_graph_survival_artifacts
 from engine.system_b.reasoning_trace import build_reasoning_trace
 
 
@@ -468,6 +469,119 @@ def test_reasoning_trace_marks_spouse_gate_as_corrected_when_revised_answer_says
     assert commitments[0]["audit_effect"] == "corrected"
     assert commitments[0]["correction_status"] == "corrected"
     assert "one gate" in commitments[0]["corrected_to"].lower()
+
+
+def test_reasoning_trace_surfaces_budget_suppressed_lenses_top_level(
+    tmp_path: Path,
+) -> None:
+    run_dir = tmp_path / "run"
+    run_dir.mkdir()
+    (run_dir / "conversation.txt").write_text(
+        "\n\n".join(
+            [
+                "CONVERSATION: 1 turn, 1 user message, 1 assistant response",
+                "[Turn 1] USER:\nShould I take the startup role?",
+                "[Turn 1] ASSISTANT:\nTreat it as a bounded wager.",
+            ]
+        ),
+        encoding="utf-8",
+    )
+    (run_dir / "extraction.json").write_text(
+        json.dumps(
+            {
+                "status": "ok",
+                "capture_health": "good",
+                "extraction": {
+                    "decision_situation": "Career decision",
+                    "turns": [
+                        {
+                            "turn_index": 1,
+                            "speaker": "user",
+                            "text": "Should I take the startup role?",
+                        },
+                        {
+                            "turn_index": 1,
+                            "speaker": "assistant",
+                            "text": "Treat it as a bounded wager.",
+                        },
+                    ],
+                    "live_constraints": [],
+                    "reasoning_passages": ["Treat it as a bounded wager."],
+                    "dropped_threads": [],
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+    (run_dir / "result.json").write_text(
+        json.dumps(
+            {
+                "run_health": {"overall": "healthy", "issues": [], "issue_details": []},
+                "v60_enrichment": {
+                    "status": "active",
+                    "candidate_pool": {
+                        "embedding_mode": "on",
+                        "lane_candidate_count": 1,
+                        "raw_lane_signal_count": 1,
+                        "embedding_model_hits": [
+                            {"model_id": "risk-vs-uncertainty", "score": 0.84}
+                        ],
+                    },
+                    "selected_cards": [],
+                    "telemetry": {
+                        "selected_chunk_count": 0,
+                        "skipped_candidates": [
+                            {
+                                "model_id": "risk-vs-uncertainty",
+                                "source": "embedding_fill",
+                                "reason": "not_presented_packet_cap",
+                                "stage": "fill",
+                                "score": 0.84,
+                            }
+                        ],
+                        "not_presented_candidate_count": 1,
+                    },
+                },
+                "audit_summary": {"warnings": [], "boundary_calls": []},
+                "usage_summary": {"vendors": {}},
+            }
+        ),
+        encoding="utf-8",
+    )
+    write_graph_survival_artifacts(run_dir)
+
+    trace = build_reasoning_trace(
+        run_dir,
+        run_id="budgettrace",
+        case_id="career-decision",
+        fingerprint="career decision",
+        how_matched="new_case",
+        files_copied=[
+            "conversation.txt",
+            "extraction.json",
+            "result.json",
+            "graph_survival_report.json",
+            "graph_survival_report.md",
+        ],
+        files_missing=[],
+        manifest={"run_count": 1},
+        created_at="2026-06-23T09:00:00Z",
+    )
+
+    expected = [
+        {
+            "model_id": "risk-vs-uncertainty",
+            "reason": "not_presented_packet_cap",
+            "source": "embedding_fill",
+            "stage": "fill",
+            "score": 0.84,
+            "research_status": "plausible_budget_suppressed",
+            "unknown_noise_status": True,
+        }
+    ]
+    assert trace["budget_suppressed_lenses"] == expected
+    assert trace["top_budget_suppressed_lenses"] == expected
+    assert trace["process"]["graph_survival"]["top_budget_suppressed_lenses"] == expected
 
 
 def test_reasoning_trace_reflects_archive_time_degraded_health(tmp_path: Path) -> None:

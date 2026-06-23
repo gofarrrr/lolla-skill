@@ -321,6 +321,14 @@ _HEALTH_ISSUE_DEFAULTS = {
         "axis": "companion",
         "trust_impact": "Companion routing produced no validated fingerprint, reducing confidence in model custody.",
     },
+    "companion_verification_parse_failed": {
+        "severity": "partial",
+        "axis": "companion",
+        "trust_impact": (
+            "Lane 2 companion verification returned malformed output; an empty companion card "
+            "may mean verifier signal was lost, not that no companion models applied."
+        ),
+    },
     "pipeline_warnings": {
         "severity": "partial",
         "axis": "pipeline",
@@ -578,6 +586,15 @@ def _serialize_result(result, *, embedding_active: bool = False, compiled_chunk_
         "companion_verification_duplicate_accepts": list(result.audit.companion_verification_duplicate_accepts),
         "companion_verification_quote_repairs": list(result.audit.companion_verification_quote_repairs),
         "companion_verification_silently_omitted": list(result.audit.companion_verification_silently_omitted),
+        "companion_verification_status": getattr(
+            result.audit, "companion_verification_status", "not_run"
+        ),
+        "companion_verification_issue_code": getattr(
+            result.audit, "companion_verification_issue_code", ""
+        ),
+        "companion_verification_issue_detail": dict(
+            getattr(result.audit, "companion_verification_issue_detail", {}) or {}
+        ),
         "companion_candidate_cap": result.audit.companion_candidate_cap,
         "embedding_mode": result.audit.embedding_mode,
         "embedding_tendency_ranks": list(result.audit.embedding_tendency_ranks),
@@ -1258,6 +1275,31 @@ def main() -> int:
         )
     if not _fingerprint_ok and config.enable_companion:
         _health_issue_details.append(_health_issue_detail("no_fingerprint"))
+    _companion_verification_status = str(
+        (serialized.get("audit_summary") or {}).get("companion_verification_status") or ""
+    )
+    if _companion_verification_status == "malformed":
+        _companion_issue = dict(
+            (serialized.get("audit_summary") or {}).get("companion_verification_issue_detail")
+            or {}
+        )
+        _health_issue_details.append(
+            _health_issue_detail(
+                "companion_verification_parse_failed",
+                reason=_companion_issue.get("reason"),
+                candidate_count=_companion_issue.get("candidate_count"),
+                raw_message_content_present=_companion_issue.get(
+                    "raw_message_content_present"
+                ),
+                raw_message_char_count=_companion_issue.get("raw_message_char_count"),
+                raw_content_has_accepted_token=_companion_issue.get(
+                    "raw_content_has_accepted_token"
+                ),
+                raw_content_has_rejected_token=_companion_issue.get(
+                    "raw_content_has_rejected_token"
+                ),
+            )
+        )
     if bool(_reasoning_warning_meta.get("detected")):
         _health_issue_details.append(
             _health_issue_detail(

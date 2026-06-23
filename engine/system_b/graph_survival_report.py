@@ -267,6 +267,19 @@ def graph_survival_summary_for_trace(run_dir: Path | str) -> dict[str, Any]:
     }
 
 
+def budget_suppressed_lenses_for_trace(
+    run_dir: Path | str,
+    *,
+    limit: int | None = None,
+) -> list[dict[str, Any]]:
+    """Return budget-suppressed lenses for direct trace visibility."""
+    report = _read_json_object(Path(run_dir) / GRAPH_SURVIVAL_JSON)
+    if not report:
+        return []
+    max_items = 1_000_000 if limit is None else max(0, int(limit))
+    return _budget_suppressed_lenses(report, limit=max_items)
+
+
 def _model_survival_row(
     *,
     model_id: str,

@@ -66,6 +66,8 @@ def build_reasoning_trace(
     artifacts = _artifact_records(run_dir=run_dir, filenames=files_copied)
     missing_artifacts = _missing_artifact_records(files_missing)
     reasoning_lenses = _reasoning_lenses(result)
+    graph_survival = _graph_survival(run_dir)
+    budget_suppressed_lenses = _budget_suppressed_lenses(run_dir)
     model_calls = _model_calls(result)
     candidate_commitments = _candidate_commitments(
         run_dir=run_dir,
@@ -117,12 +119,16 @@ def build_reasoning_trace(
             "audit_summary": _audit_summary(result),
             "pressure_check": _pressure_check(result),
             "private_custody": _private_custody(result=result, run_dir=run_dir),
-            "graph_survival": _graph_survival(run_dir),
+            "graph_survival": graph_survival,
             "usage": _usage_summary(result),
         },
         "artifacts": artifacts,
         "missing_artifacts": missing_artifacts,
         "reasoning_lenses": reasoning_lenses,
+        "budget_suppressed_lenses": budget_suppressed_lenses,
+        "top_budget_suppressed_lenses": list(
+            _list(graph_survival.get("top_budget_suppressed_lenses"))
+        ),
         "surface_divergence": surface_divergence,
         "trace_adequacy": _trace_adequacy(
             run_dir=run_dir,
@@ -363,6 +369,14 @@ def _graph_survival(run_dir: Path) -> dict[str, Any]:
     except Exception:
         return {"status": "unavailable", "artifact_path": ""}
     return graph_survival_summary_for_trace(run_dir)
+
+
+def _budget_suppressed_lenses(run_dir: Path) -> list[dict[str, Any]]:
+    try:
+        from engine.system_b.graph_survival_report import budget_suppressed_lenses_for_trace
+    except Exception:
+        return []
+    return budget_suppressed_lenses_for_trace(run_dir, limit=None)
 
 
 def _usage_summary(result: Mapping[str, Any]) -> dict[str, Any]:

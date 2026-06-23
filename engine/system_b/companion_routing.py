@@ -3,6 +3,7 @@ from __future__ import annotations
 import logging
 import re
 from collections.abc import Iterable
+from dataclasses import dataclass
 
 _LOGGER = logging.getLogger("system_b.companion_routing")
 
@@ -88,6 +89,22 @@ _QUOTE_REPAIR_STOPWORDS: frozenset[str] = frozenset(
         "your",
     }
 )
+
+
+@dataclass(frozen=True)
+class VerificationCallResult:
+    """Lane 2 verifier result plus parse/schema diagnostics."""
+
+    detected_models: list[DetectedModel]
+    rejected_models: list[dict[str, str]]
+    accepted_before_cap: list[DetectedModel]
+    capped_models: list[dict[str, str]]
+    duplicate_accepts: list[dict[str, str]]
+    quote_repairs: list[dict[str, str]]
+    silently_omitted: list[dict[str, str]]
+    verification_status: str = "ok"
+    verification_issue_code: str = ""
+    verification_issue_detail: dict[str, object] | None = None
 
 _QUOTE_REPAIR_NEGATION_TOKENS: frozenset[str] = frozenset(
     {"no", "not", "never", "without"}
@@ -731,13 +748,46 @@ def run_verification_call_from_packet(
       accounts for every candidate sent in (closes the
       ``cognitive-dissonance`` ghost from the consultant case).
     """
+    result = run_verification_call_with_diagnostics(
+        packet=packet,
+        fingerprint_payload=fingerprint_payload,
+        candidates=candidates,
+        client=client,
+    )
+    return (
+        result.detected_models,
+        result.rejected_models,
+        result.accepted_before_cap,
+        result.capped_models,
+        result.duplicate_accepts,
+        result.quote_repairs,
+        result.silently_omitted,
+    )
+
+
+def run_verification_call_with_diagnostics(
+    *,
+    packet: Lane4Packet,
+    fingerprint_payload: FingerprintPayload,
+    candidates: list[dict[str, str]],
+    client,
+) -> VerificationCallResult:
+    """Packet-driven Lane 2 verification call with parse diagnostics."""
     if not candidates:
-        return [], [], [], [], [], [], []
+        return VerificationCallResult([], [], [], [], [], [], [], verification_status="not_run")
 
     assistant_text = _joined_assistant_turns_from_packet(packet)
     raw_payload = client.run_json(
         _build_verification_system_prompt(),
         _build_verification_user_prompt_from_packet(packet, fingerprint_payload, candidates),
+    )
+    raw_message_content = coerce_str(
+        getattr(getattr(client, "last_call_metadata", None), "raw_message_content", "")
+    )
+    verification_detail = verifier_response_diagnostic(
+        raw_payload,
+        raw_message_content=raw_message_content,
+        candidate_count=len(candidates),
     )
     accepted, rejected, quote_repairs, silently_omitted = parse_verification_response(
         raw_payload,
@@ -795,14 +845,17 @@ def run_verification_call_from_packet(
         }
         for m in accepted_before_cap[_DETECTED_MODELS_CAP:]
     ]
-    return (
-        detected_models,
-        rejected,
-        accepted_before_cap,
-        capped_models,
-        duplicate_accepts,
-        quote_repairs,
-        silently_omitted,
+    return VerificationCallResult(
+        detected_models=detected_models,
+        rejected_models=rejected,
+        accepted_before_cap=accepted_before_cap,
+        capped_models=capped_models,
+        duplicate_accepts=duplicate_accepts,
+        quote_repairs=quote_repairs,
+        silently_omitted=silently_omitted,
+        verification_status=coerce_str(verification_detail.get("status")) or "ok",
+        verification_issue_code=coerce_str(verification_detail.get("issue_code")),
+        verification_issue_detail=verification_detail,
     )
 
 
@@ -826,6 +879,50 @@ def is_malformed_verifier_response(raw_payload: object) -> bool:
     has_accepted = isinstance(raw_payload.get("accepted"), list)
     has_rejected = isinstance(raw_payload.get("rejected"), list)
     return not (has_accepted or has_rejected)
+
+
+def verifier_response_diagnostic(
+    raw_payload: object,
+    *,
+    raw_message_content: str = "",
+    candidate_count: int = 0,
+) -> dict[str, object]:
+    """Return compact diagnostics for Lane 2 verifier parse/schema health."""
+    raw_text = coerce_str(raw_message_content)
+    accepted_present = isinstance(raw_payload, dict) and isinstance(raw_payload.get("accepted"), list)
+    rejected_present = isinstance(raw_payload, dict) and isinstance(raw_payload.get("rejected"), list)
+    detail: dict[str, object] = {
+        "schema_version": "lolla.companion_verification_diagnostic.v0.1",
+        "status": "ok",
+        "candidate_count": candidate_count,
+        "accepted_field_present": accepted_present,
+        "rejected_field_present": rejected_present,
+        "raw_message_content_present": bool(raw_text.strip()),
+        "raw_message_char_count": len(raw_text),
+    }
+    if not is_malformed_verifier_response(raw_payload):
+        return detail
+
+    reason = "schema_incomplete"
+    if not isinstance(raw_payload, dict):
+        reason = "non_object_payload"
+    elif not raw_payload and raw_text.strip():
+        reason = "unparseable_or_truncated_json"
+    elif raw_payload and not (accepted_present or rejected_present):
+        reason = "missing_accepted_and_rejected_lists"
+    if raw_text.strip() and ("\"accepted\"" in raw_text or "\"rejected\"" in raw_text):
+        reason = "unparseable_or_truncated_json"
+
+    detail.update(
+        {
+            "status": "malformed",
+            "issue_code": "companion_verification_parse_failed",
+            "reason": reason,
+            "raw_content_has_accepted_token": "\"accepted\"" in raw_text,
+            "raw_content_has_rejected_token": "\"rejected\"" in raw_text,
+        }
+    )
+    return detail
 
 
 def parse_verification_response(
