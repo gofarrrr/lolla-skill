@@ -41,6 +41,7 @@ class DetectedDimension:
     covered: bool
     coverage_evidence: str  # what in the answer addresses this, or why it's absent
     materiality_note: str  # the "so what" for this gap
+    coverage_quality: str = ""  # covered_strong / covered_* / uncovered
 
 
 @dataclass(frozen=True)
@@ -83,6 +84,7 @@ class StructuralCoverageCard:
                     "covered": d.covered,
                     "coverage_evidence": d.coverage_evidence,
                     "materiality_note": d.materiality_note,
+                    "coverage_quality": d.coverage_quality or _coverage_quality_for(d),
                 }
                 for d in self.dimensions
             ],
@@ -116,6 +118,7 @@ class StructuralCoverageCard:
                 covered=bool(d.get("covered", True)),
                 coverage_evidence=d.get("coverage_evidence", ""),
                 materiality_note=d.get("materiality_note", ""),
+                coverage_quality=d.get("coverage_quality", ""),
             )
             for d in data.get("dimensions", [])
         )
@@ -406,6 +409,11 @@ def _parse_dimension_detection(raw: dict) -> tuple[DetectedDimension, ...]:
             covered=bool(d.get("covered", True)),
             coverage_evidence=coerce_str(d.get("coverage_evidence", "")),
             materiality_note=coerce_str(d.get("materiality_note", "")),
+            coverage_quality=_coverage_quality_from_fields(
+                covered=bool(d.get("covered", True)),
+                coverage_evidence=coerce_str(d.get("coverage_evidence", "")),
+                materiality_note=coerce_str(d.get("materiality_note", "")),
+            ),
         ))
 
     # Enforce hard gap cap — demote excess gaps to covered
@@ -428,11 +436,83 @@ def _parse_dimension_detection(raw: dict) -> tuple[DetectedDimension, ...]:
                         covered=True,
                         coverage_evidence=f"Immaterial (demoted): {d.coverage_evidence}",
                         materiality_note=d.materiality_note,
+                        coverage_quality="covered_demoted_immaterial",
                     )
             capped.append(d)
         dims = capped
 
     return tuple(dims)
+
+
+def _coverage_quality_for(dimension: DetectedDimension) -> str:
+    return _coverage_quality_from_fields(
+        covered=dimension.covered,
+        coverage_evidence=dimension.coverage_evidence,
+        materiality_note=dimension.materiality_note,
+    )
+
+
+def _coverage_quality_from_fields(
+    *,
+    covered: bool,
+    coverage_evidence: str,
+    materiality_note: str,
+) -> str:
+    if not covered:
+        return "uncovered"
+    text = f"{coverage_evidence} {materiality_note}".lower()
+    if "immaterial" in text:
+        return "covered_immaterial"
+    if not text.strip() or text.strip() in {"covered", "addressed", "yes"}:
+        return "covered_weak_threshold"
+    threshold_terms = {
+        "threshold",
+        "criteria",
+        "metric",
+        "measure",
+        "specific",
+        "date",
+        "deadline",
+        "owner",
+        "budget",
+        "headcount",
+        "runway",
+        "cash",
+        "price",
+        "deposit",
+        "commitment",
+        "evidence",
+        "test",
+        "gate",
+        "walk-away",
+        "kill",
+        "minimum",
+        "maximum",
+        "scope",
+        "hours",
+        "sequence",
+        "timeline",
+        "review",
+    }
+    if any(term in text for term in threshold_terms):
+        return "covered_strong"
+    operational_terms = {
+        "how",
+        "who",
+        "when",
+        "what",
+        "where",
+        "plan",
+        "step",
+        "role",
+        "action",
+        "next",
+        "before",
+        "after",
+    }
+    if any(term in text for term in operational_terms):
+        return "covered_missing_operational_detail"
+    return "covered_weak_threshold"
 
 
 # ---------------------------------------------------------------------------

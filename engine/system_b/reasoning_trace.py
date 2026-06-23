@@ -36,6 +36,7 @@ ARTIFACT_ROLES: dict[str, str] = {
     "graph_survival_report.json": "graph_survival_report",
     "graph_survival_report.md": "graph_survival_report_markdown",
     "live_transcript.txt": "live_product_surface",
+    "run_events.json": "run_event_ledger",
     "user_usefulness_review.json": "user_usefulness_review",
     "outcome_review.json": "outcome_review",
 }
@@ -75,6 +76,7 @@ def build_reasoning_trace(
         result=result,
     )
     surface_divergence = _surface_divergence(run_dir=run_dir, result=result)
+    run_events = _run_events(run_dir)
     user_usefulness_review = _user_usefulness_review(run_dir)
     outcome_reviews = _outcome_reviews(run_dir)
     outcome_review_state = _outcome_review_state(outcome_reviews=outcome_reviews, run_dir=run_dir)
@@ -120,6 +122,7 @@ def build_reasoning_trace(
             "pressure_check": _pressure_check(result),
             "private_custody": _private_custody(result=result, run_dir=run_dir),
             "graph_survival": graph_survival,
+            "run_events": run_events,
             "usage": _usage_summary(result),
         },
         "artifacts": artifacts,
@@ -1001,6 +1004,23 @@ def _surface_divergence(*, run_dir: Path, result: Mapping[str, Any]) -> dict[str
             "result_revised_answer": "result.json#/revised_answer" if result_present else "",
         },
     }
+
+
+def _run_events(run_dir: Path) -> dict[str, Any]:
+    try:
+        from .run_events import load_run_events
+
+        return load_run_events(run_dir)
+    except Exception:
+        return {
+            "schema_version": "lolla.run_events.v0.1",
+            "status": "unreadable",
+            "event_count": 0,
+            "artifact_path": (
+                "run_events.json" if (Path(run_dir) / "run_events.json").exists() else ""
+            ),
+            "events": [],
+        }
 
 
 def _candidate_commitments(

@@ -3,6 +3,7 @@ from __future__ import annotations
 from engine.system_b.output_hygiene import (
     LIVE_OUTPUT_LEAK_ISSUE,
     LIVE_OUTPUT_MISSING_ISSUE,
+    LIVE_OUTPUT_SEMANTIC_MISMATCH_ISSUE,
     LIVE_OUTPUT_UNVERIFIED_ISSUE,
     PRODUCT_OUTPUT_LEAK_ISSUE,
     finalize_live_output_hygiene,
@@ -252,6 +253,56 @@ def test_finalize_live_output_hygiene_degrades_unsafe_live_transcript() -> None:
     )
     assert detail["severity"] == "degraded"
     assert detail["axis"] == "live_output"
+
+
+def test_finalize_live_output_hygiene_degrades_cross_case_updated_position() -> None:
+    pivot_revised = """## Updated position
+
+### What survived
+
+I would still keep the main spine of the advice: do not keep grinding the current product just because pivoting is scary, and do not pivot on conversational enthusiasm alone.
+
+### What actually shifted
+
+The next 14 days should be a paid-discovery sprint, not just a pre-buy test. Ask for money, but also force the workflow into concrete shape.
+"""
+    contaminated_live = """## Updated position
+
+### What survived
+
+The core sequence survives: document what was personally observed, do not investigate, do not confront the partner, do not use work systems for private notes, do not tell colleagues, and get a specialized whistleblower lawyer urgently.
+
+### What actually shifted
+
+I would reframe the recommendation as counsel-first, not regulator-first. Let counsel decide whether the first protected move is regulator, internal, both, or a preservation-oriented disclosure.
+
+## Updated position
+
+### What survived
+
+I would still keep the main spine of the advice: do not keep grinding the current product just because pivoting is scary, and do not pivot on conversational enthusiasm alone.
+
+### What actually shifted
+
+The next 14 days should be a paid-discovery sprint, not just a pre-buy test. Ask for money, but also force the workflow into concrete shape.
+"""
+
+    result = finalize_live_output_hygiene(
+        {
+            "revised_answer": pivot_revised,
+            "run_health": {"overall": "healthy", "issues": [], "issue_details": []},
+        },
+        contaminated_live,
+    )
+
+    assert result["run_health"]["overall"] == "degraded"
+    assert result["run_health"]["live_output_health"] == "unsafe"
+    assert result["run_health"]["live_output_semantic_mismatch_count"] == 1
+    assert LIVE_OUTPUT_SEMANTIC_MISMATCH_ISSUE in result["run_health"]["issues"]
+    assert LIVE_OUTPUT_LEAK_ISSUE not in result["run_health"]["issues"]
+    mismatch = result["live_output_hygiene"]["semantic_mismatches"][0]
+    assert mismatch["kind"] == "updated_position_mismatch"
+    assert mismatch["line"] == 1
 
 
 def test_finalize_live_output_hygiene_recomputes_existing_health_summaries() -> None:

@@ -19,12 +19,13 @@ Case matching (the "which case is this?" problem):
 
 Archive root: $LOLLA_ARCHIVE_DIR or ~/.local/share/lolla/runs/
 
-Files archived (17 core/optional):
+Files archived (18 core/optional):
   conversation.txt, extraction.json, result.json, revised.txt, memo.md,
   memo_note.json, gapcheck.txt, gapcheck_lanes.json, v60_ledger_skeleton.json,
   v60_ledger.json, pre_step6_shadow_portfolio.json, pre_step6_private_table.json,
   pre_step6_private_table.md, pre_step6_private_table_ledger.json,
-  live_transcript.txt, user_usefulness_review.json, outcome_review.json.
+  live_transcript.txt, run_events.json, user_usefulness_review.json,
+  outcome_review.json.
   Missing files are skipped gracefully
   (e.g., if Step 6b was not executed by a weaker orchestrator).
 
@@ -54,6 +55,10 @@ from pathlib import Path
 
 DEFAULT_ARCHIVE_ROOT = Path.home() / ".local" / "share" / "lolla" / "runs"
 REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+from engine.system_b.run_state import assert_expected_run_state  # noqa: E402
 
 # Files to archive, in order. Missing files are skipped.
 CORE_FILES = (
@@ -72,6 +77,7 @@ CORE_FILES = (
     "pre_step6_private_table.md",
     "pre_step6_private_table_ledger.json",
     "live_transcript.txt",
+    "run_events.json",
     "user_usefulness_review.json",
     "outcome_review.json",
 )
@@ -261,6 +267,15 @@ def archive_run(
         raise ValueError(
             f"Invalid run_id: {run_id!r}. Expected alphanumeric + underscore/hyphen only."
         )
+    assert_expected_run_state(
+        actual_run_id=run_id,
+        artifact_paths=[
+            tmp_dir / f"lolla_{run_id}_extraction.json",
+            tmp_dir / f"lolla_{run_id}_result.json",
+            tmp_dir / f"lolla_{run_id}_live_transcript.txt",
+        ],
+        phase="archive_run",
+    )
 
     extraction_path = tmp_dir / f"lolla_{run_id}_extraction.json"
     if not extraction_path.exists():

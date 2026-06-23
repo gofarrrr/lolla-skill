@@ -330,6 +330,53 @@ def test_run_structural_coverage_from_ir_orchestrates_three_calls() -> None:
     assert boundary.run_json.call_count == 3
 
 
+def test_structural_coverage_payload_adds_coverage_quality_states() -> None:
+    ctx = _ctx(((1, "user", "should I?"), (1, "assistant", "maybe.")))
+    ir = construct_conversation_ir(ctx)
+    call_payloads = iter([
+        {"question_type": "decision-evaluation"},
+        {"dimensions": [
+            {
+                "dimension_id": "resource_allocation",
+                "dimension_name": "Resource Allocation",
+                "covered": True,
+                "coverage_evidence": "covered",
+                "materiality_note": "",
+            },
+            {
+                "dimension_id": "commitment_reversibility",
+                "dimension_name": "Commitment & Reversibility",
+                "covered": True,
+                "coverage_evidence": "Answer defines a 30-day test gate and walk-away threshold.",
+                "materiality_note": "Specific criteria before commitment.",
+            },
+            {
+                "dimension_id": "stakeholder_alignment",
+                "dimension_name": "Stakeholder Alignment",
+                "covered": False,
+                "coverage_evidence": "not addressed",
+                "materiality_note": "material",
+            },
+        ]},
+        {"gap_questions": {"stakeholder_alignment": ["Who carries the downside?"]}},
+    ])
+    boundary = MagicMock()
+    boundary.run_json = MagicMock(side_effect=lambda *args, **kwargs: next(call_payloads))
+
+    card = run_structural_coverage_from_ir(
+        boundary, ir, _minimal_routing(), anti_echo_model_ids=set(),
+    )
+    payload = card.to_payload()
+    quality_by_id = {
+        item["dimension_id"]: item["coverage_quality"]
+        for item in payload["dimensions"]
+    }
+
+    assert quality_by_id["resource_allocation"] == "covered_weak_threshold"
+    assert quality_by_id["commitment_reversibility"] == "covered_strong"
+    assert quality_by_id["stakeholder_alignment"] == "uncovered"
+
+
 def test_run_structural_coverage_with_traces_records_three_distinct_call_stages() -> None:
     """Trace-returning orchestrator captures each Lane 4 call immediately."""
     ctx = _ctx(((1, "user", "should I?"), (1, "assistant", "maybe.")))

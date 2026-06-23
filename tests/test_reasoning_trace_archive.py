@@ -101,6 +101,24 @@ def test_archive_run_writes_reasoning_trace_manifest_with_hashes(tmp_path: Path)
         ),
         encoding="utf-8",
     )
+    (tmp_dir / f"lolla_{run_id}_run_events.json").write_text(
+        json.dumps(
+            {
+                "schema_version": "lolla.run_events.v0.1",
+                "run_id": run_id,
+                "events": [
+                    {
+                        "event_id": "event_001",
+                        "event_type": "recovery_pinned_run_id",
+                        "occurred_at": "2026-06-23T09:05:00Z",
+                        "actor": "operator",
+                        "details": {"reason": "latest pointer moved"},
+                    }
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
     (tmp_dir / f"lolla_{run_id}_result.json").write_text(
         json.dumps(
             {
@@ -271,7 +289,11 @@ def test_archive_run_writes_reasoning_trace_manifest_with_hashes(tmp_path: Path)
     assert trace["process"]["private_custody"]["graph_survival_report_file_present"] is True
     assert trace["process"]["graph_survival"]["status"] == "ready"
     assert trace["process"]["graph_survival"]["artifact_path"] == "graph_survival_report.json"
+    assert trace["process"]["run_events"]["status"] == "recorded"
+    assert trace["process"]["run_events"]["event_count"] == 1
+    assert trace["process"]["run_events"]["events"][0]["event_type"] == "recovery_pinned_run_id"
     assert artifact_by_path["conversation.txt"]["role"] == "source_conversation"
+    assert artifact_by_path["run_events.json"]["role"] == "run_event_ledger"
     assert artifact_by_path["user_usefulness_review.json"]["role"] == "user_usefulness_review"
     assert artifact_by_path["outcome_review.json"]["role"] == "outcome_review"
     assert artifact_by_path["graph_survival_report.json"]["role"] == "graph_survival_report"

@@ -101,6 +101,7 @@ else:
     sys.exit(1)
 
 from system_b.boundary_provider import load_boundary_client_from_env  # noqa: E402
+from system_b.run_state import assert_expected_run_state, infer_run_id_from_lolla_path  # noqa: E402
 from system_b.text_matching import find_substring_tolerant  # noqa: E402
 
 
@@ -609,6 +610,21 @@ def main() -> int:
                 _load_env_file(candidate)
                 break
 
+    run_id_for_guard = (
+        os.getenv("LOLLA_RUN_ID", "")
+        or infer_run_id_from_lolla_path(args.output_file)
+        or infer_run_id_from_lolla_path(args.conversation_file)
+    )
+    try:
+        assert_expected_run_state(
+            actual_run_id=run_id_for_guard,
+            artifact_paths=[args.conversation_file, args.output_file],
+            phase="run_extract",
+        )
+    except SystemExit as exc:
+        print(json.dumps({"status": "error", "error": str(exc)}))
+        return 1
+
     # Read conversation
     conv_path = Path(args.conversation_file)
     if not conv_path.exists():
@@ -818,10 +834,7 @@ def main() -> int:
 
         run_id = os.getenv("LOLLA_RUN_ID", "")
         if not run_id and args.output_file:
-            stem = Path(args.output_file).stem  # e.g., "lolla_20260428T064421Z_extraction"
-            parts = stem.split("_")
-            if len(parts) >= 2 and parts[0] == "lolla":
-                run_id = parts[1]
+            run_id = infer_run_id_from_lolla_path(args.output_file)
         if run_id:
             if not is_valid_run_id(run_id):
                 # Refuse to interpolate a malformed run_id into a /tmp path.

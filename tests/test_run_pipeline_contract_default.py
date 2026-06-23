@@ -549,6 +549,36 @@ def test_reasoning_detail_warning_propagates_to_run_health(
         sidecar.unlink(missing_ok=True)
 
 
+def test_run_pipeline_aborts_on_expected_run_mismatch_before_work(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    extraction_path, conversation_path = _write_extraction_and_conversation(tmp_path)
+    output_path = tmp_path / "lolla_expected_result.json"
+    monkeypatch.setenv("LOLLA_EXPECTED_RUN_ID", "expected")
+    monkeypatch.setenv("LOLLA_RUN_ID", "stale")
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "run_pipeline.py",
+            "--extraction-file",
+            str(extraction_path),
+            "--conversation-file",
+            str(conversation_path),
+            "--output-file",
+            str(output_path),
+        ],
+    )
+
+    assert run_pipeline.main() == 1
+    assert not output_path.exists()
+    payload = json.loads(capsys.readouterr().out)
+    assert payload["status"] == "error"
+    assert "run state mismatch" in payload["error"]
+
+
 def test_companion_verification_parse_failure_propagates_to_run_health(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,

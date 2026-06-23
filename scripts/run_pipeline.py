@@ -40,6 +40,8 @@ else:
     )
     sys.exit(1)
 
+from system_b.run_state import assert_expected_run_state, infer_run_id_from_lolla_path  # noqa: E402
+
 
 # ---------------------------------------------------------------------------
 # .env loader
@@ -236,13 +238,7 @@ def _v60_mode_enabled(mode: str) -> bool:
 
 def _derive_run_id_from_path(raw_path: str | None) -> str:
     """Pull <run_id> out of a path like ``lolla_<run_id>_*.{json,txt}``."""
-    if not raw_path:
-        return ""
-    stem = Path(raw_path).stem
-    parts = stem.split("_")
-    if len(parts) >= 2 and parts[0] == "lolla":
-        return parts[1]
-    return ""
+    return infer_run_id_from_lolla_path(raw_path)
 
 
 def _boundary_record_dict(record: object) -> dict[str, object]:
@@ -829,6 +825,26 @@ def main() -> int:
         env_cache_ref = os.environ.get("LOLLA_PRE_STEP6_PORTFOLIO_CACHE_REF", "").strip()
         if env_cache_ref:
             args.pre_step6_portfolio_cache_ref = Path(env_cache_ref)
+
+    run_id_for_guard = (
+        os.getenv("LOLLA_RUN_ID", "")
+        or _derive_run_id_from_path(args.output_file)
+        or _derive_run_id_from_path(args.extraction_file)
+        or _derive_run_id_from_path(args.conversation_file)
+    )
+    try:
+        assert_expected_run_state(
+            actual_run_id=run_id_for_guard,
+            artifact_paths=[
+                args.extraction_file,
+                args.conversation_file,
+                args.output_file,
+            ],
+            phase="run_pipeline",
+        )
+    except SystemExit as exc:
+        print(json.dumps({"status": "error", "error": str(exc)}))
+        return 1
 
     # Parse extraction
     if args.extraction_file:

@@ -292,6 +292,80 @@ def test_archive_run_records_manual_clean_live_transcript_as_not_checked_before_
     assert archived_result["live_output_hygiene"]["capture_mode"] == "manual_unverified"
 
 
+def test_archive_run_degrades_cross_case_updated_position_before_copy(tmp_path: Path) -> None:
+    run_id = "pivotsuffix_abc123"
+    tmp_dir = tmp_path / "tmp"
+    archive_root = tmp_path / "archive"
+    tmp_dir.mkdir()
+    pivot_revised = """## Updated position
+
+### What survived
+
+Do not keep grinding the current product just because pivoting is scary, and do not pivot on conversational enthusiasm alone.
+
+### What actually shifted
+
+The next 14 days should be a paid-discovery sprint that tests money commitment, workflow repeatability, buyer path, and build scope.
+"""
+
+    (tmp_dir / f"lolla_{run_id}_extraction.json").write_text(
+        json.dumps(
+            {
+                "extraction": {
+                    "decision_situation": "Whether to pivot a B2B SaaS product",
+                }
+            }
+        ),
+        encoding="utf-8",
+    )
+    (tmp_dir / f"lolla_{run_id}_result.json").write_text(
+        json.dumps(
+            {
+                "revised_answer": pivot_revised,
+                "run_health": {"overall": "healthy", "issues": [], "issue_details": []},
+                "v60_enrichment": {"status": "disabled"},
+            }
+        ),
+        encoding="utf-8",
+    )
+    (tmp_dir / f"lolla_{run_id}_live_transcript.txt").write_text(
+        """## Updated position
+
+### What survived
+
+The core sequence survives: document what was personally observed and get specialized whistleblower counsel urgently.
+
+### What actually shifted
+
+I would reframe the recommendation as counsel-first, not regulator-first.
+
+## Updated position
+
+### What survived
+
+Do not keep grinding the current product just because pivoting is scary, and do not pivot on conversational enthusiasm alone.
+
+### What actually shifted
+
+The next 14 days should be a paid-discovery sprint that tests money commitment, workflow repeatability, buyer path, and build scope.
+""",
+        encoding="utf-8",
+    )
+
+    archive_run = _load_archive_run_module()
+    archived = archive_run.archive_run(
+        run_id,
+        archive_root=archive_root,
+        tmp_dir=tmp_dir,
+    )
+
+    archived_result = json.loads((Path(archived["run_dir"]) / "result.json").read_text())
+    assert archived_result["run_health"]["overall"] == "degraded"
+    assert archived_result["run_health"]["live_output_health"] == "unsafe"
+    assert archived_result["run_health"]["live_output_semantic_mismatch_count"] == 1
+    assert "live_output_semantic_mismatch" in archived_result["run_health"]["issues"]
+
+
 def test_archive_run_preserves_trusted_clean_live_transcript_before_copy(tmp_path: Path) -> None:
     from engine.system_b.output_hygiene import finalize_live_output_hygiene
 

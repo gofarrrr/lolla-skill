@@ -15,6 +15,7 @@ if str(REPO_ROOT) not in sys.path:
 from engine.system_b.pre_step6_private_table import (  # noqa: E402
     finalize_pre_step6_private_table_ledger,
 )
+from engine.system_b.run_state import assert_expected_run_state  # noqa: E402
 
 _RESULT_RE = re.compile(r"^lolla_(?P<run_id>.+)_result\.json$")
 
@@ -59,6 +60,19 @@ def main() -> int:
         return 1
 
     ledger_path = _infer_ledger_path(result_path, args.run_id, args.ledger)
+    inferred_run_id = args.run_id
+    if not inferred_run_id:
+        match = _RESULT_RE.match(result_path.name)
+        inferred_run_id = match.group("run_id") if match else None
+    try:
+        assert_expected_run_state(
+            actual_run_id=inferred_run_id,
+            artifact_paths=[result_path, ledger_path],
+            phase="finalize_pre_step6_private_table_ledger",
+        )
+    except SystemExit as exc:
+        print(str(exc), file=sys.stderr)
+        return 1
     result = json.loads(result_path.read_text(encoding="utf-8"))
     ledger = None
     if ledger_path and ledger_path.exists():
