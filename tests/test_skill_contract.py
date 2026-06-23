@@ -58,3 +58,6 @@ def test_skill_requires_live_transcript_artifact_and_gate_before_archive() -> No
     assert "manual transcript" in skill
     assert "live_output_health: not_checked" in skill
     assert "before archive" in skill.lower()
+    assert "exact captured-conversation hash first" in skill
+    assert "conversation_hashes" in skill
+    assert "exact fingerprint first, then token-set Jaccard" not in skill

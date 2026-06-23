@@ -105,6 +105,7 @@ def test_archive_run_matches_identical_conversation_before_extractor_fingerprint
     )
 
     assert second["how_matched"] == "conversation_match"
+    assert second["run_dir_existed"] is False
     assert second["case_dir"] == first["case_dir"]
     assert second["case_id"] == first["case_id"]
     assert not (archive_root / f"{first['case_id']}-1").exists()
@@ -115,3 +116,14 @@ def test_archive_run_matches_identical_conversation_before_extractor_fingerprint
     assert first_fingerprint in updated_manifest["fingerprints"]
     assert second_fingerprint in updated_manifest["fingerprints"]
     assert updated_manifest["conversation_hashes"] == [first["conversation_hash"]]
+
+    rearchived = archive_run.archive_run(
+        "runtwo_bbbbbb",
+        archive_root=archive_root,
+        tmp_dir=tmp_dir,
+    )
+    assert rearchived["how_matched"] == "conversation_match"
+    assert rearchived["run_dir_existed"] is True
+
+    trace = json.loads((Path(rearchived["run_dir"]) / "reasoning_trace.json").read_text())
+    assert trace["case"]["how_matched"] == "conversation_match"

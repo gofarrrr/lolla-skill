@@ -382,8 +382,6 @@ def archive_run(
     run_dir = case_dir / run_id
     run_dir_existed = run_dir.exists()
     run_dir.mkdir(exist_ok=True)
-    if run_dir_existed:
-        how_matched = "existing_run"
 
     _finalize_v60_telemetry_before_archive(tmp_dir=tmp_dir, run_id=run_id)
     _finalize_product_output_hygiene_before_archive(tmp_dir=tmp_dir, run_id=run_id)
@@ -426,6 +424,7 @@ def archive_run(
         "how_matched": how_matched,
         "fingerprint": fingerprint,
         "conversation_hash": conversation_hash,
+        "run_dir_existed": run_dir_existed,
         "files_copied": copied,
         "files_missing": missing,
         "files_generated": generated_files,
