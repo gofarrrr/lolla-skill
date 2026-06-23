@@ -13,6 +13,7 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from engine.system_b.output_hygiene import finalize_live_output_hygiene  # noqa: E402
+from engine.system_b.run_state import assert_expected_run_state  # noqa: E402
 
 
 _RESULT_RE = re.compile(r"^lolla_(?P<run_id>.+)_result\.json$")
@@ -65,6 +66,19 @@ def main() -> int:
         return 1
 
     transcript_path = _infer_transcript_path(result_path, args.run_id, args.transcript)
+    inferred_run_id = args.run_id
+    if not inferred_run_id:
+        match = _RESULT_RE.match(result_path.name)
+        inferred_run_id = match.group("run_id") if match else None
+    try:
+        assert_expected_run_state(
+            actual_run_id=inferred_run_id,
+            artifact_paths=[result_path, transcript_path],
+            phase="finalize_live_output_hygiene",
+        )
+    except SystemExit as exc:
+        print(str(exc), file=sys.stderr)
+        return 1
     transcript_text = None
     if transcript_path and transcript_path.exists():
         transcript_text = transcript_path.read_text(encoding="utf-8")

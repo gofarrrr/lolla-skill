@@ -1,16 +1,22 @@
 #!/usr/bin/env python3
 """Archive a completed Lolla run from /tmp into the long-term runs directory.
 
-Reads the run's core artifacts from /tmp/lolla_{RUN_ID}_*, computes a case
-fingerprint from extraction.decision_situation, finds or creates the matching
-case folder under the archive root, and copies the artifacts in.
+Reads the run's core artifacts from /tmp/lolla_{RUN_ID}_*, computes a source
+conversation hash and a case fingerprint from extraction.decision_situation,
+finds or creates the matching case folder under the archive root, and copies
+the artifacts in.
 
 Case matching (the "which case is this?" problem):
+- Conversation hash = exact sha256 of conversation.txt. Identical captured
+  reruns archive into the same case even if the extractor paraphrases the
+  decision_situation.
 - Fingerprint = decision_situation first 120 chars, lowercased, stripped of
   punctuation, whitespace collapsed. Same conversation → same fingerprint.
-- Each case folder has .case-manifest.json with the canonical fingerprint(s).
+- Each case folder has .case-manifest.json with the canonical fingerprint(s)
+  and conversation_hashes.
 - Matching scans MANIFESTS, not folder names — user renames of case folders
-  do not break matching.
+  do not break matching. For legacy manifests without conversation_hashes,
+  matching can compute hashes from archived conversation.txt files.
 - First run of a new case auto-creates the folder with a slug derived from
   the first few significant words of decision_situation.
 - $LOLLA_CASE_ID override: if set, archive into that exact folder name
@@ -19,18 +25,24 @@ Case matching (the "which case is this?" problem):
 
 Archive root: $LOLLA_ARCHIVE_DIR or ~/.local/share/lolla/runs/
 
-Files archived (15 core):
+Files archived (18 core/optional):
   conversation.txt, extraction.json, result.json, revised.txt, memo.md,
   memo_note.json, gapcheck.txt, gapcheck_lanes.json, v60_ledger_skeleton.json,
   v60_ledger.json, pre_step6_shadow_portfolio.json, pre_step6_private_table.json,
   pre_step6_private_table.md, pre_step6_private_table_ledger.json,
-  live_transcript.txt.
+  live_transcript.txt, run_events.json, user_usefulness_review.json,
+  outcome_review.json.
   Missing files are skipped gracefully
   (e.g., if Step 6b was not executed by a weaker orchestrator).
 
 Generated archive artifacts:
+  graph_survival_report.json — research/operator report showing graph candidates,
+  embedding recalls, selected cards, Step 6 uptake, suppressed/unadjudicated
+  signals, and visible/private survival.
+  graph_survival_report.md — Markdown rendering of the same report.
   reasoning_trace.json — local-only custody manifest with artifact hashes,
-  process health, usage summary, and future escalation slots.
+  process health, usage summary, reasoning-lens IDs, model-call telemetry,
+  trace-adequacy status, and future escalation slots.
 
 Orchestrator scratch files (preamble.json, lane*.json) are NOT archived
 — they are regenerable from result.json if ever needed.
@@ -49,6 +61,10 @@ from pathlib import Path
 
 DEFAULT_ARCHIVE_ROOT = Path.home() / ".local" / "share" / "lolla" / "runs"
 REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+from engine.system_b.run_state import assert_expected_run_state  # noqa: E402
 
 # Files to archive, in order. Missing files are skipped.
 CORE_FILES = (
@@ -67,6 +83,9 @@ CORE_FILES = (
     "pre_step6_private_table.md",
     "pre_step6_private_table_ledger.json",
     "live_transcript.txt",
+    "run_events.json",
+    "user_usefulness_review.json",
+    "outcome_review.json",
 )
 
 # Stopwords dropped when generating an auto-slug from decision_situation.
@@ -151,17 +170,64 @@ def _token_jaccard(a: str, b: str) -> float:
 FINGERPRINT_MATCH_THRESHOLD = 0.80
 
 
-def _find_matching_case(archive_root: Path, fingerprint: str) -> Path | None:
+def _sha256_uri(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return f"sha256:{digest.hexdigest()}"
+
+
+def _conversation_hash_for_run(*, tmp_dir: Path, run_id: str) -> str:
+    conversation_path = tmp_dir / f"lolla_{run_id}_conversation.txt"
+    if not conversation_path.exists() or not conversation_path.is_file():
+        return ""
+    return _sha256_uri(conversation_path)
+
+
+def _conversation_hashes_for_case(case_dir: Path, manifest: dict) -> list[str]:
+    """Return stored plus legacy-computed conversation hashes for a case."""
+    hashes: list[str] = []
+    seen: set[str] = set()
+    for value in manifest.get("conversation_hashes") or []:
+        if isinstance(value, str) and value and value not in seen:
+            seen.add(value)
+            hashes.append(value)
+
+    # Back-compat: existing archives may predate conversation_hashes. Compute
+    # from archived conversations so the next rerun does not create another
+    # split case before old manifests are migrated.
+    for run_id in manifest.get("runs") or []:
+        if not isinstance(run_id, str) or not run_id:
+            continue
+        path = case_dir / run_id / "conversation.txt"
+        if not path.exists() or not path.is_file():
+            continue
+        digest = _sha256_uri(path)
+        if digest not in seen:
+            seen.add(digest)
+            hashes.append(digest)
+    return hashes
+
+
+def _find_matching_case(
+    archive_root: Path,
+    fingerprint: str,
+    *,
+    conversation_hash: str = "",
+) -> tuple[Path, str] | None:
     """Scan case folders' manifests for a fingerprint match.
 
     Matches in two stages:
-      1. Exact — fingerprint present in manifest.fingerprints[].
-      2. Fuzzy — token-set Jaccard ≥ FINGERPRINT_MATCH_THRESHOLD against any
+      1. Conversation hash — exact captured conversation match.
+      2. Exact — fingerprint present in manifest.fingerprints[].
+      3. Fuzzy — token-set Jaccard ≥ FINGERPRINT_MATCH_THRESHOLD against any
          stored fingerprint. Handles extractor paraphrase drift.
 
-    Returns the matching case folder, or None if no case is similar enough.
+    Returns ``(case folder, match reason)``, or None if no case is similar
+    enough.
     """
-    if not fingerprint or not archive_root.exists():
+    if not archive_root.exists():
         return None
     for case_dir in sorted(archive_root.iterdir()):
         if not case_dir.is_dir():
@@ -173,6 +239,10 @@ def _find_matching_case(archive_root: Path, fingerprint: str) -> Path | None:
             manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
         except (json.JSONDecodeError, OSError):
             continue
+        if conversation_hash and conversation_hash in _conversation_hashes_for_case(case_dir, manifest):
+            return case_dir, "conversation_match"
+        if not fingerprint:
+            continue
         fingerprints = list(manifest.get("fingerprints") or [])
         # Back-compat: older manifests might have a single "fingerprint" key.
         legacy = manifest.get("fingerprint")
@@ -181,11 +251,11 @@ def _find_matching_case(archive_root: Path, fingerprint: str) -> Path | None:
 
         # Stage 1: exact match
         if fingerprint in fingerprints:
-            return case_dir
+            return case_dir, "fingerprint_match"
         # Stage 2: fuzzy (token-set Jaccard)
         for stored in fingerprints:
             if _token_jaccard(fingerprint, stored) >= FINGERPRINT_MATCH_THRESHOLD:
-                return case_dir
+                return case_dir, "fingerprint_match"
     return None
 
 
@@ -193,6 +263,8 @@ def _write_manifest(
     case_dir: Path,
     fingerprint: str,
     run_id: str,
+    *,
+    conversation_hash: str = "",
 ) -> dict:
     """Create or update the case manifest. Returns the written manifest dict."""
     manifest_path = case_dir / ".case-manifest.json"
@@ -211,6 +283,7 @@ def _write_manifest(
     manifest.setdefault("created_at", now_iso)
     manifest.setdefault("first_run_id", run_id)
     manifest.setdefault("fingerprints", [])
+    manifest.setdefault("conversation_hashes", [])
     manifest.setdefault("runs", [])
 
     # Migrate legacy single-fingerprint field if present
@@ -221,6 +294,8 @@ def _write_manifest(
 
     if fingerprint and fingerprint not in manifest["fingerprints"]:
         manifest["fingerprints"].append(fingerprint)
+    if conversation_hash and conversation_hash not in manifest["conversation_hashes"]:
+        manifest["conversation_hashes"].append(conversation_hash)
     if run_id not in manifest["runs"]:
         manifest["runs"].append(run_id)
 
@@ -254,6 +329,15 @@ def archive_run(
         raise ValueError(
             f"Invalid run_id: {run_id!r}. Expected alphanumeric + underscore/hyphen only."
         )
+    assert_expected_run_state(
+        actual_run_id=run_id,
+        artifact_paths=[
+            tmp_dir / f"lolla_{run_id}_extraction.json",
+            tmp_dir / f"lolla_{run_id}_result.json",
+            tmp_dir / f"lolla_{run_id}_live_transcript.txt",
+        ],
+        phase="archive_run",
+    )
 
     extraction_path = tmp_dir / f"lolla_{run_id}_extraction.json"
     if not extraction_path.exists():
@@ -267,6 +351,7 @@ def archive_run(
         extraction_json.get("extraction", {}).get("decision_situation", "") or ""
     )
     fingerprint = _normalize_fingerprint(decision_situation)
+    conversation_hash = _conversation_hash_for_run(tmp_dir=tmp_dir, run_id=run_id)
 
     archive_root.mkdir(parents=True, exist_ok=True)
 
@@ -276,10 +361,13 @@ def archive_run(
         case_dir.mkdir(exist_ok=True)
         how_matched = "env_override"
     else:
-        matched = _find_matching_case(archive_root, fingerprint)
+        matched = _find_matching_case(
+            archive_root,
+            fingerprint,
+            conversation_hash=conversation_hash,
+        )
         if matched is not None:
-            case_dir = matched
-            how_matched = "fingerprint_match"
+            case_dir, how_matched = matched
         else:
             slug = _auto_slug(decision_situation)
             # Prevent collisions with unrelated cases that happened to slug the same way.
@@ -292,6 +380,7 @@ def archive_run(
             how_matched = "new_case"
 
     run_dir = case_dir / run_id
+    run_dir_existed = run_dir.exists()
     run_dir.mkdir(exist_ok=True)
 
     _finalize_v60_telemetry_before_archive(tmp_dir=tmp_dir, run_id=run_id)
@@ -308,17 +397,25 @@ def archive_run(
         else:
             missing.append(fname)
 
-    manifest = _write_manifest(case_dir, fingerprint, run_id)
+    manifest = _write_manifest(
+        case_dir,
+        fingerprint,
+        run_id,
+        conversation_hash=conversation_hash,
+    )
+    generated_files = _write_graph_survival_artifacts_for_archive(run_dir=run_dir)
+    files_for_trace = copied + generated_files
     trace_path = _write_reasoning_trace_for_archive(
         run_dir=run_dir,
         run_id=run_id,
         case_id=case_dir.name,
         fingerprint=fingerprint,
         how_matched=how_matched,
-        files_copied=copied,
+        files_copied=files_for_trace,
         files_missing=missing,
         manifest=manifest,
     )
+    generated_files.append(trace_path.name)
 
     return {
         "case_dir": str(case_dir),
@@ -326,9 +423,11 @@ def archive_run(
         "case_id": case_dir.name,
         "how_matched": how_matched,
         "fingerprint": fingerprint,
+        "conversation_hash": conversation_hash,
+        "run_dir_existed": run_dir_existed,
         "files_copied": copied,
         "files_missing": missing,
-        "files_generated": [trace_path.name],
+        "files_generated": generated_files,
         "trace_path": str(trace_path),
         "run_count": manifest["run_count"],
     }
@@ -360,6 +459,15 @@ def _write_reasoning_trace_for_archive(
         manifest=manifest,
     )
     return trace_path
+
+
+def _write_graph_survival_artifacts_for_archive(*, run_dir: Path) -> list[str]:
+    """Generate graph survival reports after core artifacts are copied."""
+    _ensure_repo_root_on_path()
+    from engine.system_b.graph_survival_report import write_graph_survival_artifacts
+
+    json_path, md_path, _payload = write_graph_survival_artifacts(run_dir)
+    return [json_path.name, md_path.name]
 
 
 def _finalize_v60_telemetry_before_archive(*, tmp_dir: Path, run_id: str) -> None:

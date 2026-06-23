@@ -50,6 +50,7 @@ from .companion_routing import (
     recall_candidates,
     run_fingerprint_call_from_packet,
     run_verification_call_from_packet,
+    run_verification_call_with_diagnostics,
 )
 from .companion_routing import _joined_assistant_turns as _lane2_joined_assistant_turns
 from .companion_selection import CompanionCheatSheet, select_companion_cheat_sheet
@@ -277,6 +278,9 @@ class CompanionRunResult:
     # just dropped them. Surfaced so the audit trail accounts for every
     # candidate that entered verification.
     silently_omitted: list[dict[str, str]] = field(default_factory=list)
+    verification_status: str = "not_run"
+    verification_issue_code: str = ""
+    verification_issue_detail: dict[str, object] = field(default_factory=dict)
 
 
 class SystemBPipeline:
@@ -438,6 +442,9 @@ class SystemBPipeline:
                 companion_verification_duplicate_accepts=list(companion_result.duplicate_accepts),
                 companion_verification_quote_repairs=list(companion_result.quote_repairs),
                 companion_verification_silently_omitted=list(companion_result.silently_omitted),
+                companion_verification_status=companion_result.verification_status,
+                companion_verification_issue_code=companion_result.verification_issue_code,
+                companion_verification_issue_detail=dict(companion_result.verification_issue_detail),
                 companion_candidate_cap=self._config.companion_candidate_cap,
                 embedding_mode="on" if self._config.enable_embeddings else "off",
                 embedding_tendency_ranks=embedding_tendency_ranks,
@@ -586,6 +593,9 @@ class SystemBPipeline:
             companion_verification_duplicate_accepts=list(companion_result.duplicate_accepts),
             companion_verification_quote_repairs=list(companion_result.quote_repairs),
             companion_verification_silently_omitted=list(companion_result.silently_omitted),
+            companion_verification_status=companion_result.verification_status,
+            companion_verification_issue_code=companion_result.verification_issue_code,
+            companion_verification_issue_detail=dict(companion_result.verification_issue_detail),
             companion_candidate_cap=self._config.companion_candidate_cap,
             embedding_mode="on" if self._config.enable_embeddings else "off",
             embedding_tendency_ranks=embedding_tendency_ranks,
@@ -728,15 +738,7 @@ class SystemBPipeline:
             embedding_retriever=self._embedding_retriever if self._config.enable_embeddings else None,
             embedding_api_key=self._embedding_api_key,
         )
-        (
-            detected_models,
-            rejected_models,
-            accepted_before_cap,
-            capped_models,
-            duplicate_accepts,
-            quote_repairs,
-            silently_omitted,
-        ) = run_verification_call_from_packet(
+        verification = run_verification_call_with_diagnostics(
             packet=packet,
             fingerprint_payload=fingerprint_payload,
             candidates=candidates,
@@ -746,19 +748,22 @@ class SystemBPipeline:
             boundary_calls.append(_capture_boundary_call(self._boundary, stage="companion_verification"))
         return CompanionRunResult(
             companion_card=build_companion_card(
-                detected_models=detected_models,
+                detected_models=verification.detected_models,
                 knowledge_graph=self._companion_knowledge_graph,
                 relation_graph=self._companion_relation_graph,
             ),
             fingerprint_payload=fingerprint_payload,
-            detected_models=detected_models,
-            rejected_models=rejected_models,
-            accepted_before_cap=accepted_before_cap,
-            capped_models=capped_models,
-            duplicate_accepts=duplicate_accepts,
-            quote_repairs=quote_repairs,
-            silently_omitted=silently_omitted,
+            detected_models=verification.detected_models,
+            rejected_models=verification.rejected_models,
+            accepted_before_cap=verification.accepted_before_cap,
+            capped_models=verification.capped_models,
+            duplicate_accepts=verification.duplicate_accepts,
+            quote_repairs=verification.quote_repairs,
+            silently_omitted=verification.silently_omitted,
             candidates=candidates,
+            verification_status=verification.verification_status,
+            verification_issue_code=verification.verification_issue_code,
+            verification_issue_detail=dict(verification.verification_issue_detail or {}),
         )
 
     def _run_frame_pressure(

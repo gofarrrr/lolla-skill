@@ -19,7 +19,10 @@ def test_skill_rests_post_step6_pressure_checks_by_default() -> None:
     assert "pre_step6_private_table_ledger" in skill
     assert '"schema_version": "pre_step6_private_table_ledger.v1"' in skill
     assert "LOLLA_ENV_STATE" in skill
-    assert ". /tmp/lolla_latest_env.sh" in skill
+    assert "LOLLA_EXPECTED_RUN_ID" in skill
+    assert '. "$LOLLA_ENV_STATE"' in skill
+    assert ". /tmp/lolla_latest_env.sh" not in skill
+    assert "do not source the latest" in skill
     assert "exit 1" in skill
     assert "Copy the provided `source_id` values exactly" in skill
     assert "--require-valid" in skill
@@ -55,3 +58,6 @@ def test_skill_requires_live_transcript_artifact_and_gate_before_archive() -> No
     assert "manual transcript" in skill
     assert "live_output_health: not_checked" in skill
     assert "before archive" in skill.lower()
+    assert "exact captured-conversation hash first" in skill
+    assert "conversation_hashes" in skill
+    assert "exact fingerprint first, then token-set Jaccard" not in skill

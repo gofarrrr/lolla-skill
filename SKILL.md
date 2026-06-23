@@ -98,9 +98,16 @@ else
   echo "OPENAI: configured"
 fi
 
-# Generate run ID (timestamp) for unique temp filenames
-LOLLA_RUN_ID=$(date -u +%Y%m%dT%H%M%SZ)
+# Generate a collision-resistant run ID for unique temp filenames.
+# Timestamp alone is unsafe when runs start in parallel.
+LOLLA_RUN_ID=$(PYTHONPATH="$SKILL_DIR" python3 - << 'PY'
+from engine.system_b.run_state import make_run_id
+print(make_run_id())
+PY
+)
 export LOLLA_RUN_ID
+LOLLA_EXPECTED_RUN_ID="$LOLLA_RUN_ID"
+export LOLLA_EXPECTED_RUN_ID
 echo "RUN_ID: $LOLLA_RUN_ID"
 
 # Durable live transcript for user-visible Claude Code prose.
@@ -147,6 +154,7 @@ export LOLLA_ENV_STATE
 cat > "$LOLLA_ENV_STATE" << EOF
 export SKILL_DIR="$SKILL_DIR"
 export LOLLA_RUN_ID="$LOLLA_RUN_ID"
+export LOLLA_EXPECTED_RUN_ID="$LOLLA_EXPECTED_RUN_ID"
 export LOLLA_LIVE_TRANSCRIPT="$LOLLA_LIVE_TRANSCRIPT"
 export LOLLA_ENV_STATE="$LOLLA_ENV_STATE"
 EOF
@@ -169,9 +177,20 @@ with open(path, "a", encoding="utf-8") as handle:
 PY
 ln -sf "$LOLLA_ENV_STATE" /tmp/lolla_latest_env.sh
 echo "ENV_STATE: $LOLLA_ENV_STATE"
+python3 "$SKILL_DIR/scripts/record_run_event.py" --run-id "$LOLLA_RUN_ID" --event-type run_initialized --detail latest_env_pointer=/tmp/lolla_latest_env.sh --quiet || true
 ```
 
 If any line says `FATAL`, stop and tell the user what's missing. Do not proceed.
+
+`/tmp/lolla_latest_env.sh` is only a discoverability pointer before a run is active.
+After initialization, source the run-specific `$LOLLA_ENV_STATE` file and keep
+`LOLLA_EXPECTED_RUN_ID` set so guarded scripts abort on stale-run state.
+When a new shell call does not inherit variables, set `LOLLA_ENV_STATE` to the
+exact `ENV_STATE:` path printed above before sourcing; do not source the latest
+symlink inside an active run.
+If you recover from contamination, pin a run ID manually, restart an attempt, or
+overwrite the latest-env pointer, append a recovery event with
+`scripts/record_run_event.py --run-id "$LOLLA_RUN_ID" --event-type <event>`.
 
 ---
 
@@ -241,8 +260,11 @@ CONVERSATION: {N} turns, {X} user messages, {Y} assistant responses
 Write the result to a temp file:
 
 ```bash
-if { [ -z "$LOLLA_RUN_ID" ] || [ -z "$SKILL_DIR" ]; } && [ -f /tmp/lolla_latest_env.sh ]; then
-  . /tmp/lolla_latest_env.sh
+: "${LOLLA_ENV_STATE:?FATAL: set LOLLA_ENV_STATE to the ENV_STATE path printed by the preamble}"
+. "$LOLLA_ENV_STATE"
+if [ -n "${LOLLA_EXPECTED_RUN_ID:-}" ] && [ "${LOLLA_RUN_ID:-}" != "$LOLLA_EXPECTED_RUN_ID" ]; then
+  echo "FATAL: run state mismatch: expected $LOLLA_EXPECTED_RUN_ID but active run is ${LOLLA_RUN_ID:-unset}"
+  exit 1
 fi
 if [ -z "$LOLLA_RUN_ID" ]; then
   echo "FATAL: LOLLA_RUN_ID is not set. Re-run /lolla — the preamble must initialize before Step 1."
@@ -266,8 +288,11 @@ echo "Conversation written: $(wc -c < /tmp/lolla_${LOLLA_RUN_ID}_conversation.tx
 **Pre-extraction guard.** Before running the extract script, verify the conversation file exists, is non-empty, and that `LOLLA_RUN_ID` is set. If any check fails, surface a clean capture-failure message to the user — do NOT proceed and let Python emit a raw traceback.
 
 ```bash
-if { [ -z "$LOLLA_RUN_ID" ] || [ -z "$SKILL_DIR" ]; } && [ -f /tmp/lolla_latest_env.sh ]; then
-  . /tmp/lolla_latest_env.sh
+: "${LOLLA_ENV_STATE:?FATAL: set LOLLA_ENV_STATE to the ENV_STATE path printed by the preamble}"
+. "$LOLLA_ENV_STATE"
+if [ -n "${LOLLA_EXPECTED_RUN_ID:-}" ] && [ "${LOLLA_RUN_ID:-}" != "$LOLLA_EXPECTED_RUN_ID" ]; then
+  echo "FATAL: run state mismatch: expected $LOLLA_EXPECTED_RUN_ID but active run is ${LOLLA_RUN_ID:-unset}"
+  exit 1
 fi
 if [ -z "$SKILL_DIR" ] || [ ! -f "$SKILL_DIR/scripts/run_extract.py" ]; then
   echo "FATAL: SKILL_DIR is not set or run_extract.py is missing. Re-run /lolla — the preamble must initialize before Step 2."
@@ -326,8 +351,11 @@ Do not link to Observatory; the server is not running until Step 9. See `plans/v
 This is a functional receipt, not a content beat. Do not extend it with prose. Then launch:
 
 ```bash
-if { [ -z "$LOLLA_RUN_ID" ] || [ -z "$SKILL_DIR" ]; } && [ -f /tmp/lolla_latest_env.sh ]; then
-  . /tmp/lolla_latest_env.sh
+: "${LOLLA_ENV_STATE:?FATAL: set LOLLA_ENV_STATE to the ENV_STATE path printed by the preamble}"
+. "$LOLLA_ENV_STATE"
+if [ -n "${LOLLA_EXPECTED_RUN_ID:-}" ] && [ "${LOLLA_RUN_ID:-}" != "$LOLLA_EXPECTED_RUN_ID" ]; then
+  echo "FATAL: run state mismatch: expected $LOLLA_EXPECTED_RUN_ID but active run is ${LOLLA_RUN_ID:-unset}"
+  exit 1
 fi
 if [ -n "${LOLLA_PRE_STEP6_PORTFOLIO_CACHE_DIR:-}" ] && [ -n "${LOLLA_PRE_STEP6_PORTFOLIO_CACHE_REF:-}" ]; then
   python3 $SKILL_DIR/scripts/run_pipeline.py --extraction-file /tmp/lolla_${LOLLA_RUN_ID}_extraction.json --conversation-file /tmp/lolla_${LOLLA_RUN_ID}_conversation.txt --output-file /tmp/lolla_${LOLLA_RUN_ID}_result.json --skip-revision --pre-step6-portfolio step6_private --pre-step6-portfolio-cache-dir "$LOLLA_PRE_STEP6_PORTFOLIO_CACHE_DIR" --pre-step6-portfolio-cache-ref "$LOLLA_PRE_STEP6_PORTFOLIO_CACHE_REF"
@@ -349,8 +377,11 @@ The `--pre-step6-portfolio step6_private` mode also writes `/tmp/lolla_${LOLLA_R
 After the pipeline returns, print the operator-only private-table receipt before Step 4/Step 6 begins. This receipt is Bash output, not user-facing prose; do not append it to the live transcript. It prevents cache misses from being mistaken for cached-card content tests.
 
 ```bash
-if { [ -z "$LOLLA_RUN_ID" ] || [ -z "$SKILL_DIR" ]; } && [ -f /tmp/lolla_latest_env.sh ]; then
-  . /tmp/lolla_latest_env.sh
+: "${LOLLA_ENV_STATE:?FATAL: set LOLLA_ENV_STATE to the ENV_STATE path printed by the preamble}"
+. "$LOLLA_ENV_STATE"
+if [ -n "${LOLLA_EXPECTED_RUN_ID:-}" ] && [ "${LOLLA_RUN_ID:-}" != "$LOLLA_EXPECTED_RUN_ID" ]; then
+  echo "FATAL: run state mismatch: expected $LOLLA_EXPECTED_RUN_ID but active run is ${LOLLA_RUN_ID:-unset}"
+  exit 1
 fi
 python3 - << 'PY'
 import json
@@ -972,12 +1003,12 @@ The archive script:
 - Finalizes V60 consideration telemetry before copying artifacts. If V60 was active and the private ledger is missing, the run is marked degraded with `v60_consideration_ledger_missing` instead of looking complete.
 - Runs the product-output hygiene scanner before copying artifacts. If revised text, memo markdown, or memo-note fields leak internal terms such as V60, affordance, chunk, ledger, lane, pipeline, or independent review, `run_health.product_output_health` becomes `unsafe` and the run is degraded with `product_output_leak`.
 - Runs the live-output hygiene scanner before copying artifacts. If `/tmp/lolla_${LOLLA_RUN_ID}_live_transcript.txt` exists, it is scanned as the `live_narration` product surface; detected leaks set `run_health.live_output_health` to `unsafe`, while a manually maintained no-leak transcript is `not_checked` unless a complete trusted transcript was explicitly supplied to the finalizer. If it is missing, `live_output_health` becomes `missing` without degrading archive compatibility unless the explicit `--require-live-output-clean` gate was run.
-- Reads the 15 core artifacts from `/tmp/lolla_${LOLLA_RUN_ID}_*` (`conversation.txt`, `extraction.json`, `result.json`, `revised.txt`, `memo.md`, `memo_note.json`, `gapcheck.txt`, `gapcheck_lanes.json`, `v60_ledger_skeleton.json`, `v60_ledger.json`, `pre_step6_shadow_portfolio.json`, `pre_step6_private_table.json`, `pre_step6_private_table.md`, `pre_step6_private_table_ledger.json`, `live_transcript.txt`). Missing artifacts (e.g., if Step 6b, private-table ledger persistence, V60 ledger persistence, live transcript capture, or Step 8c did not run on a weaker orchestrator) are skipped gracefully.
+- Reads the core artifacts from `/tmp/lolla_${LOLLA_RUN_ID}_*` (`conversation.txt`, `extraction.json`, `result.json`, `revised.txt`, `memo.md`, `memo_note.json`, `gapcheck.txt`, `gapcheck_lanes.json`, `v60_ledger_skeleton.json`, `v60_ledger.json`, `pre_step6_shadow_portfolio.json`, `pre_step6_private_table.json`, `pre_step6_private_table.md`, `pre_step6_private_table_ledger.json`, `live_transcript.txt`, `run_events.json`, `user_usefulness_review.json`, `outcome_review.json`). Missing artifacts (e.g., if Step 6b, private-table ledger persistence, V60 ledger persistence, live transcript capture, recovery-event recording, or Step 8c did not run on a weaker orchestrator) are skipped gracefully.
 - Computes a case fingerprint from `extraction.decision_situation` (first 120 chars, normalized).
-- Finds-or-creates a case folder. Matching uses **exact fingerprint first, then token-set Jaccard ≥ 0.80** against stored fingerprints — so small extractor paraphrase drift across runs of the same conversation does not split into multiple case folders. Matching is done against the manifest inside each case folder, not against folder names, so user renames of case folders do not break future matching.
+- Finds-or-creates a case folder. Matching uses **exact captured-conversation hash first**, then exact/fuzzy extractor fingerprint matching against stored fingerprints (token-set Jaccard ≥ 0.80). Identical captured reruns archive into the same case even when `decision_situation` is paraphrased differently by extraction. Matching is done against the manifest inside each case folder, not against folder names, so user renames of case folders do not break future matching. Legacy manifests without `conversation_hashes` are still matchable because archive time can compute hashes from archived `conversation.txt` files.
 - Auto-names new cases with a slug derived from the first 3-4 significant words of `decision_situation` (e.g., `grant-equity-partnership-status`). Users can rename via `mv` — matching will still find the folder via manifest.
 - Copies the artifacts into `{case_folder}/${LOLLA_RUN_ID}/` and updates `{case_folder}/.case-manifest.json` with the new fingerprint (added as an alias) and the run_id.
-- Generates `{case_folder}/${LOLLA_RUN_ID}/reasoning_trace.json`, a local-only custody manifest with artifact paths, SHA-256 hashes, run health, usage summary, pressure-check state, private-custody status, and empty future slots for commitment candidates, decision packets, and outcome reviews. It indexes raw artifacts without duplicating conversation or memo text.
+- Generates `{case_folder}/${LOLLA_RUN_ID}/reasoning_trace.json`, a local-only custody manifest with artifact paths, SHA-256 hashes, run health, usage summary, pressure-check state, private-custody status, reasoning-lens IDs, model-call telemetry, trace-adequacy status, and future slots for commitment candidates, decision packets, and outcome reviews. It indexes raw artifacts without duplicating conversation or memo text.
 - `/tmp` originals are **not** moved or deleted — Observatory and subsequent commands continue to reference them as in-flight state.
 
 **Environment overrides (optional):**

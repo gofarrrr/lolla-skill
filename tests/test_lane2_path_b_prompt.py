@@ -29,6 +29,7 @@ from engine.system_b.companion_routing import (
     _build_verification_user_prompt_from_packet,
     is_malformed_verifier_response,
     parse_verification_response,
+    verifier_response_diagnostic,
 )
 from engine.system_b.conversation_context import (
     ConversationContext,
@@ -252,6 +253,24 @@ def test_malformed_detector_passes_one_field_present():
     assert is_malformed_verifier_response({"accepted": []}) is False
     assert is_malformed_verifier_response({"rejected": []}) is False
     assert is_malformed_verifier_response({"accepted": [{"model_id": "x", "presence_mode": "executed"}]}) is False
+
+
+def test_verifier_diagnostic_flags_truncated_json_with_candidate_count():
+    raw_text = '{"accepted": [{"model_id": "decomposition"}], "rejected":'
+
+    diagnostic = verifier_response_diagnostic(
+        {},
+        raw_message_content=raw_text,
+        candidate_count=60,
+    )
+
+    assert diagnostic["status"] == "malformed"
+    assert diagnostic["issue_code"] == "companion_verification_parse_failed"
+    assert diagnostic["reason"] == "unparseable_or_truncated_json"
+    assert diagnostic["candidate_count"] == 60
+    assert diagnostic["raw_message_content_present"] is True
+    assert diagnostic["raw_content_has_accepted_token"] is True
+    assert diagnostic["raw_content_has_rejected_token"] is True
 
 
 # ---------------------------------------------------------------------------

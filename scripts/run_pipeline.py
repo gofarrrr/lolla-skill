@@ -40,6 +40,8 @@ else:
     )
     sys.exit(1)
 
+from system_b.run_state import assert_expected_run_state, infer_run_id_from_lolla_path  # noqa: E402
+
 
 # ---------------------------------------------------------------------------
 # .env loader
@@ -236,13 +238,7 @@ def _v60_mode_enabled(mode: str) -> bool:
 
 def _derive_run_id_from_path(raw_path: str | None) -> str:
     """Pull <run_id> out of a path like ``lolla_<run_id>_*.{json,txt}``."""
-    if not raw_path:
-        return ""
-    stem = Path(raw_path).stem
-    parts = stem.split("_")
-    if len(parts) >= 2 and parts[0] == "lolla":
-        return parts[1]
-    return ""
+    return infer_run_id_from_lolla_path(raw_path)
 
 
 def _boundary_record_dict(record: object) -> dict[str, object]:
@@ -321,10 +317,26 @@ _HEALTH_ISSUE_DEFAULTS = {
         "axis": "companion",
         "trust_impact": "Companion routing produced no validated fingerprint, reducing confidence in model custody.",
     },
+    "companion_verification_parse_failed": {
+        "severity": "partial",
+        "axis": "companion",
+        "trust_impact": (
+            "Lane 2 companion verification returned malformed output; an empty companion card "
+            "may mean verifier signal was lost, not that no companion models applied."
+        ),
+    },
     "pipeline_warnings": {
         "severity": "partial",
         "axis": "pipeline",
         "trust_impact": "Pipeline warnings were emitted; inspect warnings before comparing this run.",
+    },
+    "vendor_boundary_reasoning_leak": {
+        "severity": "partial",
+        "axis": "vendor_boundary",
+        "trust_impact": (
+            "A model provider returned reasoning details despite reasoning being disabled; "
+            "product output may still be clean, but model-boundary comparisons need caution."
+        ),
     },
     "capture_critical": {
         "severity": "critical",
@@ -400,6 +412,14 @@ def _overall_health_from_issue_details(issue_details: list[dict[str, object]]) -
             highest = rank
             overall = severity
     return "healthy" if highest == 0 else overall
+
+
+def _health_issue_axis_counts(issue_details: list[dict[str, object]]) -> dict[str, int]:
+    counts: dict[str, int] = {}
+    for detail in issue_details:
+        axis = str(detail.get("axis") or "pipeline")
+        counts[axis] = counts.get(axis, 0) + 1
+    return dict(sorted(counts.items()))
 
 
 # ---------------------------------------------------------------------------
@@ -562,6 +582,15 @@ def _serialize_result(result, *, embedding_active: bool = False, compiled_chunk_
         "companion_verification_duplicate_accepts": list(result.audit.companion_verification_duplicate_accepts),
         "companion_verification_quote_repairs": list(result.audit.companion_verification_quote_repairs),
         "companion_verification_silently_omitted": list(result.audit.companion_verification_silently_omitted),
+        "companion_verification_status": getattr(
+            result.audit, "companion_verification_status", "not_run"
+        ),
+        "companion_verification_issue_code": getattr(
+            result.audit, "companion_verification_issue_code", ""
+        ),
+        "companion_verification_issue_detail": dict(
+            getattr(result.audit, "companion_verification_issue_detail", {}) or {}
+        ),
         "companion_candidate_cap": result.audit.companion_candidate_cap,
         "embedding_mode": result.audit.embedding_mode,
         "embedding_tendency_ranks": list(result.audit.embedding_tendency_ranks),
@@ -796,6 +825,26 @@ def main() -> int:
         env_cache_ref = os.environ.get("LOLLA_PRE_STEP6_PORTFOLIO_CACHE_REF", "").strip()
         if env_cache_ref:
             args.pre_step6_portfolio_cache_ref = Path(env_cache_ref)
+
+    run_id_for_guard = (
+        os.getenv("LOLLA_RUN_ID", "")
+        or _derive_run_id_from_path(args.output_file)
+        or _derive_run_id_from_path(args.extraction_file)
+        or _derive_run_id_from_path(args.conversation_file)
+    )
+    try:
+        assert_expected_run_state(
+            actual_run_id=run_id_for_guard,
+            artifact_paths=[
+                args.extraction_file,
+                args.conversation_file,
+                args.output_file,
+            ],
+            phase="run_pipeline",
+        )
+    except SystemExit as exc:
+        print(json.dumps({"status": "error", "error": str(exc)}))
+        return 1
 
     # Parse extraction
     if args.extraction_file:
@@ -1242,7 +1291,44 @@ def main() -> int:
         )
     if not _fingerprint_ok and config.enable_companion:
         _health_issue_details.append(_health_issue_detail("no_fingerprint"))
-    if _warnings:
+    _companion_verification_status = str(
+        (serialized.get("audit_summary") or {}).get("companion_verification_status") or ""
+    )
+    if _companion_verification_status == "malformed":
+        _companion_issue = dict(
+            (serialized.get("audit_summary") or {}).get("companion_verification_issue_detail")
+            or {}
+        )
+        _health_issue_details.append(
+            _health_issue_detail(
+                "companion_verification_parse_failed",
+                reason=_companion_issue.get("reason"),
+                candidate_count=_companion_issue.get("candidate_count"),
+                raw_message_content_present=_companion_issue.get(
+                    "raw_message_content_present"
+                ),
+                raw_message_char_count=_companion_issue.get("raw_message_char_count"),
+                raw_content_has_accepted_token=_companion_issue.get(
+                    "raw_content_has_accepted_token"
+                ),
+                raw_content_has_rejected_token=_companion_issue.get(
+                    "raw_content_has_rejected_token"
+                ),
+            )
+        )
+    if bool(_reasoning_warning_meta.get("detected")):
+        _health_issue_details.append(
+            _health_issue_detail(
+                "vendor_boundary_reasoning_leak",
+                leak_count=int(_reasoning_warning_meta.get("count") or 0),
+                models=list(_reasoning_warning_meta.get("models") or []),
+                stages=list(_reasoning_warning_meta.get("stages") or []),
+            )
+        )
+    _non_boundary_warnings = [
+        warning for warning in _warnings if warning and warning != _reasoning_warning
+    ]
+    if _non_boundary_warnings:
         _health_issue_details.append(_health_issue_detail("pipeline_warnings"))
     if _capture_health == "critical":
         _health_issue_details.append(_health_issue_detail("capture_critical"))
@@ -1315,6 +1401,12 @@ def main() -> int:
         "bullshit_index_evaluation_failures": _bi_evaluation_failures,
         "issues": _health_issues,
         "issue_details": _health_issue_details,
+        "issue_axis_counts": _health_issue_axis_counts(_health_issue_details),
+        "partial_health_causes": [
+            str(detail["code"])
+            for detail in _health_issue_details
+            if str(detail.get("severity") or "") == "partial"
+        ],
         "warnings": _warnings + _capture_warnings,
         "boundary_reasoning_leak_detected": bool(_reasoning_warning_meta.get("detected")),
         "boundary_reasoning_leak_count": int(_reasoning_warning_meta.get("count") or 0),

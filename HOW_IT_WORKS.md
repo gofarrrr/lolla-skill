@@ -57,7 +57,7 @@ A normal run produces:
 - An intentional pressure-check state. Post-Step-6 isolated reviewers are rested by default to simplify the live skill and reduce cost; they remain available only as an explicit deeper-review mode.
 - A portable memo.
 - A local Observatory page with the full breakdown, traces, cards, costs, health checks, and archived artifacts.
-- A local `reasoning_trace.json` custody manifest in the archived run folder, with artifact hashes, health, usage, and process state for replay without duplicating raw transcript text.
+- A local `reasoning_trace.json` custody manifest in the archived run folder, with artifact hashes, health, usage, reasoning-lens IDs, model-call telemetry, and trace-adequacy status for replay without duplicating raw transcript text.
 
 Lolla also records run health. If capture was incomplete, embeddings were off, a private ledger was missing, a lane failed, or public prose leaked internal machinery, the run should not pretend to be clean.
 
@@ -97,7 +97,7 @@ This is the live `/lolla` flow in one page:
 11. Persist the default-off pressure-check state after Step 10 succeeds.
 12. If the user/operator explicitly requested deeper review, run optional pressure-check agents after Step 10 and persist their comparison plus auxiliary token usage.
 13. Persist memo-note fields and render the deterministic memo.
-14. Finalize V60 and live-output hygiene, open the Observatory, archive the 15 core artifacts under `~/.local/share/lolla/runs/`, and generate `reasoning_trace.json` for local custody/replay.
+14. Finalize V60 and live-output hygiene, open the Observatory, archive the 15 core artifacts under `~/.local/share/lolla/runs/`, and generate `reasoning_trace.json` for local custody/replay with enough metadata for local reasoning-eval corpus export.
 
 `SKILL.md` is the executable instruction source. This page is the readable map.
 
@@ -120,4 +120,5 @@ The detailed docs are split so agents and humans do not have to load one giant f
 - Checked against `SKILL.md` and runtime entry points on 2026-05-22.
 - Pressure-check agents are rested by default. If explicitly enabled, they start only after the updated position is persisted and the V60 ledger validates.
 - The pre-Step-6 shadow portfolio hook is default-off and shadow-only; it records evidence but never changes visible output.
-- The archive currently copies 15 core artifacts and generates `reasoning_trace.json`, a local-only manifest that indexes those artifacts by path and hash.
+- The archive currently copies 15 core artifacts and generates `reasoning_trace.json`, a local-only manifest that indexes those artifacts by path/hash and adds reasoning-lens, model-call, and trace-adequacy metadata.
+- `scripts/export_reasoning_trace_dataset.py` scans archived `reasoning_trace.json` files and writes a JSONL corpus plus aggregate summary so repeated runs can be reviewed with an evals-style error-analysis workflow.

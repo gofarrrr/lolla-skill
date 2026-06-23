@@ -83,6 +83,9 @@ class AuditTrace:
     # audit trail accounts for every candidate that entered verification
     # (closes the cognitive-dissonance ghost from the 2026-04-28 audit memo).
     companion_verification_silently_omitted: list[dict[str, str]] = field(default_factory=list)
+    companion_verification_status: str = "not_run"
+    companion_verification_issue_code: str = ""
+    companion_verification_issue_detail: dict[str, object] = field(default_factory=dict)
     companion_candidate_cap: int = 0
     # Embedding mode in effect for this run: "on" | "off". Recorded so
     # downstream stability/attribution reports can group by mode without
@@ -124,6 +127,9 @@ def build_empty_audit_trace(
     companion_verification_duplicate_accepts: list[dict[str, str]] | None = None,
     companion_verification_quote_repairs: list[dict[str, str]] | None = None,
     companion_verification_silently_omitted: list[dict[str, str]] | None = None,
+    companion_verification_status: str = "not_run",
+    companion_verification_issue_code: str = "",
+    companion_verification_issue_detail: dict[str, object] | None = None,
     companion_candidate_cap: int = 0,
     embedding_mode: str = "",
     embedding_tendency_ranks: list[dict[str, object]] | None = None,
@@ -146,6 +152,9 @@ def build_empty_audit_trace(
         companion_verification_duplicate_accepts=list(companion_verification_duplicate_accepts or []),
         companion_verification_quote_repairs=list(companion_verification_quote_repairs or []),
         companion_verification_silently_omitted=list(companion_verification_silently_omitted or []),
+        companion_verification_status=companion_verification_status,
+        companion_verification_issue_code=companion_verification_issue_code,
+        companion_verification_issue_detail=dict(companion_verification_issue_detail or {}),
         companion_candidate_cap=companion_candidate_cap,
         embedding_mode=embedding_mode,
         embedding_tendency_ranks=list(embedding_tendency_ranks or []),
@@ -178,6 +187,9 @@ def build_pipeline_audit_trace(
     companion_verification_duplicate_accepts: list[dict[str, str]] | None = None,
     companion_verification_quote_repairs: list[dict[str, str]] | None = None,
     companion_verification_silently_omitted: list[dict[str, str]] | None = None,
+    companion_verification_status: str = "not_run",
+    companion_verification_issue_code: str = "",
+    companion_verification_issue_detail: dict[str, object] | None = None,
     companion_candidate_cap: int = 0,
     embedding_mode: str = "",
     embedding_tendency_ranks: list[dict[str, object]] | None = None,
@@ -205,6 +217,9 @@ def build_pipeline_audit_trace(
         companion_verification_duplicate_accepts=list(companion_verification_duplicate_accepts or []),
         companion_verification_quote_repairs=list(companion_verification_quote_repairs or []),
         companion_verification_silently_omitted=list(companion_verification_silently_omitted or []),
+        companion_verification_status=companion_verification_status,
+        companion_verification_issue_code=companion_verification_issue_code,
+        companion_verification_issue_detail=dict(companion_verification_issue_detail or {}),
         companion_candidate_cap=companion_candidate_cap,
         embedding_mode=embedding_mode,
         embedding_tendency_ranks=list(embedding_tendency_ranks or []),

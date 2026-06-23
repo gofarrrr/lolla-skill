@@ -48,7 +48,8 @@ def _fmt_trace(trace: dict | None, label: str) -> str:
     if trace is None:
         return f"  {label:<11} not traced"
     if not trace.get("attempted"):
-        return f"  {label:<11} gate preconditions unmet"
+        reason = trace.get("not_attempted_reason") or "gate_preconditions_unmet"
+        return f"  {label:<11} not attempted · {reason}"
     if trace.get("fired"):
         return (
             f"  {label:<11} FIRED  {trace.get('top1_model','?')} \u2192 {trace.get('top2_model','?')}  "
