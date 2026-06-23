@@ -25,6 +25,20 @@ def test_product_hygiene_flags_internal_terms_on_product_surfaces() -> None:
     assert {"V60", "chunk", "independent review"}.issubset(leaked_terms)
 
 
+def test_product_hygiene_allows_external_due_diligence_independent_review() -> None:
+    report = scan_output_hygiene(
+        {
+            "revised_answer": (
+                "B needs gates: the equity and runway must survive independent "
+                "review before the user treats the offer as a calculated risk."
+            ),
+        }
+    )
+
+    assert report["status"] == "clean"
+    assert report["leaks"] == []
+
+
 def test_product_hygiene_allows_internal_terms_on_operator_surfaces() -> None:
     report = scan_output_hygiene(
         {
@@ -230,6 +244,7 @@ def test_finalize_live_output_hygiene_degrades_unsafe_live_transcript() -> None:
     assert result["run_health"]["live_output_health"] == "unsafe"
     assert result["run_health"]["live_output_leak_count"] >= 3
     assert LIVE_OUTPUT_LEAK_ISSUE in result["run_health"]["issues"]
+    assert result["run_health"]["issue_axis_counts"]["live_output"] == 1
     detail = next(
         item
         for item in result["run_health"]["issue_details"]
@@ -237,6 +252,36 @@ def test_finalize_live_output_hygiene_degrades_unsafe_live_transcript() -> None:
     )
     assert detail["severity"] == "degraded"
     assert detail["axis"] == "live_output"
+
+
+def test_finalize_live_output_hygiene_recomputes_existing_health_summaries() -> None:
+    result = finalize_live_output_hygiene(
+        {
+            "run_health": {
+                "overall": "partial",
+                "issues": ["vendor_boundary_reasoning_leak"],
+                "issue_details": [
+                    {
+                        "code": "vendor_boundary_reasoning_leak",
+                        "severity": "partial",
+                        "axis": "vendor_boundary",
+                    }
+                ],
+                "issue_axis_counts": {"vendor_boundary": 1},
+                "partial_health_causes": ["vendor_boundary_reasoning_leak"],
+            },
+        },
+        "Beat 2 is done. Now debugging the V60 ledger.",
+    )
+
+    assert result["run_health"]["overall"] == "degraded"
+    assert result["run_health"]["issue_axis_counts"] == {
+        "live_output": 1,
+        "vendor_boundary": 1,
+    }
+    assert result["run_health"]["partial_health_causes"] == [
+        "vendor_boundary_reasoning_leak"
+    ]
 
 
 def test_finalize_live_output_hygiene_clears_stale_leak_issue_after_clean_rerun() -> None:

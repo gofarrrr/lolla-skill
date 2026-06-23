@@ -169,6 +169,7 @@ def finalize_product_output_hygiene(
 
     run_health["issues"] = issues
     run_health["issue_details"] = issue_details
+    _refresh_derived_health_fields(run_health)
     result["run_health"] = run_health
     return result
 
@@ -252,6 +253,7 @@ def finalize_live_output_hygiene(
             _refresh_overall_after_clearing_issues(run_health, issues, issue_details)
         run_health["issues"] = issues
         run_health["issue_details"] = issue_details
+        _refresh_derived_health_fields(run_health)
         result["live_output_hygiene"] = scan
         result["run_health"] = run_health
         return result
@@ -309,6 +311,7 @@ def finalize_live_output_hygiene(
 
     run_health["issues"] = issues
     run_health["issue_details"] = issue_details
+    _refresh_derived_health_fields(run_health)
     result["run_health"] = run_health
     return result
 
@@ -318,6 +321,8 @@ def _scan_product_text(*, surface: str, text: str) -> list[dict[str, Any]]:
     for line_number, line in enumerate(text.splitlines() or [text], start=1):
         for term, pattern in _BANNED_PRODUCT_PATTERNS:
             for match in pattern.finditer(line):
+                if _is_allowed_product_match(term=term, line=line, match_text=match.group(0)):
+                    continue
                 leaks.append(
                     {
                         "surface": surface,
@@ -336,6 +341,32 @@ def _scan_product_text(*, surface: str, text: str) -> list[dict[str, Any]]:
                 }
             )
     return leaks
+
+
+def _is_allowed_product_match(*, term: str, line: str, match_text: str) -> bool:
+    """Allow domain uses that share words with internal-hygiene terms."""
+    if term != "independent review":
+        return False
+    lowered = line.lower()
+    if not re.search(r"\bindependent\s+review\b", match_text, re.IGNORECASE):
+        return False
+    # The banned phrase is meant to catch hidden-review attribution such as
+    # "this point survived independent review". It should not punish ordinary
+    # outside diligence, e.g. equity/runway/legal/security review.
+    diligence_terms = {
+        "cap table",
+        "counsel",
+        "diligence",
+        "equity",
+        "financial",
+        "legal",
+        "runway",
+        "security",
+        "technical",
+        "term sheet",
+        "terms",
+    }
+    return any(token in lowered for token in diligence_terms)
 
 
 def _raise_run_health_at_least(run_health: dict[str, Any], severity: str) -> None:
@@ -369,6 +400,30 @@ def _refresh_overall_after_clearing_issues(
         run_health["overall"] = _overall_from_issue_details(issue_details)
     elif not issues:
         run_health["overall"] = "healthy"
+
+
+def _refresh_derived_health_fields(run_health: dict[str, Any]) -> None:
+    details = [
+        dict(item)
+        for item in _list(run_health.get("issue_details"))
+        if isinstance(item, Mapping)
+    ]
+    run_health["issue_axis_counts"] = _issue_axis_counts(details)
+    run_health["partial_health_causes"] = [
+        _text(item.get("code"))
+        for item in details
+        if _text(item.get("code")) and _text(item.get("severity")) == "partial"
+    ]
+
+
+def _issue_axis_counts(issue_details: list[dict[str, Any]]) -> dict[str, int]:
+    counts: dict[str, int] = {}
+    for detail in issue_details:
+        axis = _text(detail.get("axis"))
+        if not axis:
+            continue
+        counts[axis] = counts.get(axis, 0) + 1
+    return counts
 
 
 def _add_issue_detail(issue_details: list[dict[str, Any]], detail: dict[str, Any]) -> None:

@@ -237,6 +237,7 @@ def test_archive_run_records_unsafe_live_transcript_before_copy(tmp_path: Path) 
     assert archived_result["run_health"]["live_output_health"] == "unsafe"
     assert archived_result["run_health"]["live_output_leak_count"] >= 2
     assert "live_output_leak" in archived_result["run_health"]["issues"]
+    assert archived_result["run_health"]["issue_axis_counts"]["live_output"] == 1
     leak_surfaces = {
         leak["surface"]
         for leak in archived_result["run_health"]["live_output_leaks"]
