@@ -23,6 +23,7 @@ def _write_trace(
     adequacy_status: str,
     future_review_ready: bool,
     lenses: list[dict[str, object]],
+    candidate_commitments: list[dict[str, object]] | None = None,
 ) -> Path:
     run_dir = archive_root / case_id / run_id
     run_dir.mkdir(parents=True)
@@ -42,7 +43,35 @@ def _write_trace(
                 "triggered_tendency_ids": ["inconsistency-avoidance"],
                 "detected_tendency_ids": ["inconsistency-avoidance"],
             },
+            "graph_survival": {
+                "status": "ready",
+                "lane_candidate_count": 4,
+                "raw_lane_signal_count": 6,
+                "embedding_hit_count": 3,
+                "selected_card_count": 2,
+                "answer_delta_model_count": 1,
+                "private_guardrail_model_count": 1,
+                "confirming_support_model_count": 0,
+                "suppressed_signal_count": 2,
+                "suppressed_model_count": 2,
+                "budget_suppressed_signal_count": 1,
+                "budget_suppressed_model_count": 1,
+                "unadjudicated_candidate_count": 1,
+                "top_budget_suppressed_lenses": [
+                    {"model_id": "risk-vs-uncertainty"},
+                ],
+            },
             "usage": {"estimated_total_cost_usd": 0.05},
+        },
+        "user_usefulness_review": {
+            "status": "collected" if future_review_ready else "not_collected",
+            "rating": 4 if future_review_ready else None,
+            "helped_change_view": True if future_review_ready else None,
+            "would_reuse": True if future_review_ready else None,
+        },
+        "outcome_review_state": {
+            "status": "available" if future_review_ready else "not_started",
+            "review_count": 1 if future_review_ready else 0,
         },
         "trace_adequacy": {
             "status": adequacy_status,
@@ -54,7 +83,7 @@ def _write_trace(
         "missing_artifacts": [],
         "reasoning_lenses": lenses,
         "model_calls": [{"stage": "lane2.companion"}],
-        "candidate_commitments": [],
+        "candidate_commitments": candidate_commitments or [],
         "decision_packets": [],
         "outcome_reviews": [],
     }
@@ -85,6 +114,13 @@ def test_reasoning_trace_dataset_records_and_summary(tmp_path: Path) -> None:
                 "rejection_reasons": ["not actually used"],
             },
         ],
+        candidate_commitments=[
+            {
+                "candidate_id": "commitment_run-a_001",
+                "kind": "recommendation",
+                "escalation_recommended": True,
+            }
+        ],
     )
     _write_trace(
         archive_root,
@@ -110,8 +146,45 @@ def test_reasoning_trace_dataset_records_and_summary(tmp_path: Path) -> None:
     assert records[0]["selected_reasoning_lens_ids"] == ["opportunity-cost"]
     assert records[0]["rejected_reasoning_lens_ids"] == ["premortem"]
     assert records[0]["model_call_count"] == 1
+    assert records[0]["model_call_record_count"] == 1
+    assert records[0]["candidate_commitment_count"] == 1
+    assert records[0]["graph_survival_status"] == "ready"
+    assert records[0]["graph_suppressed_signal_count"] == 2
+    assert records[0]["graph_suppressed_model_count"] == 2
+    assert records[0]["graph_budget_suppressed_signal_count"] == 1
+    assert records[0]["graph_budget_suppressed_model_count"] == 1
+    assert records[0]["top_budget_suppressed_lens_ids"] == ["risk-vs-uncertainty"]
+    assert records[0]["user_usefulness_status"] == "collected"
+    assert records[0]["user_usefulness_rating"] == 4
+    assert records[0]["outcome_review_status"] == "available"
     assert summary["trace_count"] == 2
     assert summary["future_review_ready_count"] == 1
+    assert summary["traces_with_candidate_commitments_count"] == 1
+    assert summary["candidate_commitment_count"] == 1
+    assert summary["decision_packet_count"] == 0
+    assert summary["outcome_review_count"] == 0
+    assert summary["traces_with_graph_survival_count"] == 2
+    assert summary["graph_lane_candidate_count"] == 8
+    assert summary["graph_raw_lane_signal_count"] == 12
+    assert summary["graph_embedding_hit_count"] == 6
+    assert summary["graph_selected_card_count"] == 4
+    assert summary["graph_answer_delta_model_count"] == 2
+    assert summary["graph_private_guardrail_model_count"] == 2
+    assert summary["graph_suppressed_signal_count"] == 4
+    assert summary["graph_suppressed_model_count"] == 4
+    assert summary["graph_budget_suppressed_signal_count"] == 2
+    assert summary["graph_budget_suppressed_model_count"] == 2
+    assert summary["graph_unadjudicated_candidate_count"] == 2
+    assert summary["user_usefulness_status_counts"] == {
+        "collected": 1,
+        "not_collected": 1,
+    }
+    assert summary["outcome_review_status_counts"] == {
+        "available": 1,
+        "not_started": 1,
+    }
+    assert summary["user_usefulness_rating_average"] == 4.0
+    assert summary["user_usefulness_rating_count"] == 1
     assert summary["trace_adequacy_status_counts"] == {"sufficient": 1, "thin": 1}
     assert summary["reasoning_lens_trace_counts"]["opportunity-cost"] == 2
     assert summary["selected_reasoning_lens_trace_counts"]["opportunity-cost"] == 2

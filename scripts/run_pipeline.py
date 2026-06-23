@@ -326,6 +326,14 @@ _HEALTH_ISSUE_DEFAULTS = {
         "axis": "pipeline",
         "trust_impact": "Pipeline warnings were emitted; inspect warnings before comparing this run.",
     },
+    "vendor_boundary_reasoning_leak": {
+        "severity": "partial",
+        "axis": "vendor_boundary",
+        "trust_impact": (
+            "A model provider returned reasoning details despite reasoning being disabled; "
+            "product output may still be clean, but model-boundary comparisons need caution."
+        ),
+    },
     "capture_critical": {
         "severity": "critical",
         "axis": "capture",
@@ -400,6 +408,14 @@ def _overall_health_from_issue_details(issue_details: list[dict[str, object]]) -
             highest = rank
             overall = severity
     return "healthy" if highest == 0 else overall
+
+
+def _health_issue_axis_counts(issue_details: list[dict[str, object]]) -> dict[str, int]:
+    counts: dict[str, int] = {}
+    for detail in issue_details:
+        axis = str(detail.get("axis") or "pipeline")
+        counts[axis] = counts.get(axis, 0) + 1
+    return dict(sorted(counts.items()))
 
 
 # ---------------------------------------------------------------------------
@@ -1242,7 +1258,19 @@ def main() -> int:
         )
     if not _fingerprint_ok and config.enable_companion:
         _health_issue_details.append(_health_issue_detail("no_fingerprint"))
-    if _warnings:
+    if bool(_reasoning_warning_meta.get("detected")):
+        _health_issue_details.append(
+            _health_issue_detail(
+                "vendor_boundary_reasoning_leak",
+                leak_count=int(_reasoning_warning_meta.get("count") or 0),
+                models=list(_reasoning_warning_meta.get("models") or []),
+                stages=list(_reasoning_warning_meta.get("stages") or []),
+            )
+        )
+    _non_boundary_warnings = [
+        warning for warning in _warnings if warning and warning != _reasoning_warning
+    ]
+    if _non_boundary_warnings:
         _health_issue_details.append(_health_issue_detail("pipeline_warnings"))
     if _capture_health == "critical":
         _health_issue_details.append(_health_issue_detail("capture_critical"))
@@ -1315,6 +1343,12 @@ def main() -> int:
         "bullshit_index_evaluation_failures": _bi_evaluation_failures,
         "issues": _health_issues,
         "issue_details": _health_issue_details,
+        "issue_axis_counts": _health_issue_axis_counts(_health_issue_details),
+        "partial_health_causes": [
+            str(detail["code"])
+            for detail in _health_issue_details
+            if str(detail.get("severity") or "") == "partial"
+        ],
         "warnings": _warnings + _capture_warnings,
         "boundary_reasoning_leak_detected": bool(_reasoning_warning_meta.get("detected")),
         "boundary_reasoning_leak_count": int(_reasoning_warning_meta.get("count") or 0),

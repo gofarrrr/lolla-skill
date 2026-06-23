@@ -523,6 +523,18 @@ def test_reasoning_detail_warning_propagates_to_run_health(
         assert payload["run_health"]["boundary_reasoning_leak_detected"] is True
         assert payload["run_health"]["boundary_reasoning_leak_count"] == 1
         assert payload["run_health"]["boundary_reasoning_leak_stages"] == ["extraction"]
+        assert "vendor_boundary_reasoning_leak" in payload["run_health"]["issues"]
+        assert payload["run_health"]["issue_axis_counts"]["vendor_boundary"] == 1
+        assert payload["run_health"]["partial_health_causes"] == [
+            "vendor_boundary_reasoning_leak"
+        ]
+        boundary_detail = next(
+            detail
+            for detail in payload["run_health"]["issue_details"]
+            if detail["code"] == "vendor_boundary_reasoning_leak"
+        )
+        assert boundary_detail["axis"] == "vendor_boundary"
+        assert boundary_detail["leak_count"] == 1
         assert any(
             "reasoning details despite reasoning being disabled" in warning
             for warning in payload["run_health"]["warnings"]

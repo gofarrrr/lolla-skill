@@ -75,6 +75,11 @@ class DefaultPathInvariantTests(unittest.TestCase):
         # beta second tied by lexicographic tiebreak within _bounded_...).
         result = graph.neighborhood(["seed"], max_supporting_models=2)
         self.assertEqual(result.supporting_model_ids, ("alpha", "beta"))
+        self.assertFalse(result.tiebreaker_supporting.attempted)
+        self.assertEqual(
+            result.tiebreaker_supporting.not_attempted_reason,
+            "missing_reasoning_context",
+        )
 
     def test_reasoning_context_without_db_path_is_noop(self) -> None:
         """Gate requires both `reasoning_context` AND `embeddings_db_path`.
@@ -99,6 +104,11 @@ class DefaultPathInvariantTests(unittest.TestCase):
         )
         self.assertEqual(result.supporting_model_ids, ("alpha", "beta"))
         self.assertEqual(called, [])  # matcher must not have been called
+        self.assertFalse(result.tiebreaker_supporting.attempted)
+        self.assertEqual(
+            result.tiebreaker_supporting.not_attempted_reason,
+            "missing_embeddings_db_path",
+        )
 
 
 class EpsilonGateTests(unittest.TestCase):
@@ -315,6 +325,11 @@ class RelevanceScoresOverrideTests(unittest.TestCase):
         # relevance_scores should order beta above alpha
         self.assertEqual(result.supporting_model_ids, ("beta", "alpha"))
         self.assertEqual(called, [])  # activation matcher not consulted
+        self.assertFalse(result.tiebreaker_supporting.attempted)
+        self.assertEqual(
+            result.tiebreaker_supporting.not_attempted_reason,
+            "relevance_scores_present",
+        )
 
 
 class GracefulDegradationTests(unittest.TestCase):

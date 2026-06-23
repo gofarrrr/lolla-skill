@@ -5,6 +5,8 @@ import importlib.util
 import json
 from pathlib import Path
 
+from engine.system_b.reasoning_trace import build_reasoning_trace
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 ARCHIVE_RUN_PATH = REPO_ROOT / "scripts" / "archive_run.py"
@@ -63,6 +65,37 @@ def test_archive_run_writes_reasoning_trace_manifest_with_hashes(tmp_path: Path)
                         },
                     ],
                 },
+            }
+        ),
+        encoding="utf-8",
+    )
+    (tmp_dir / f"lolla_{run_id}_user_usefulness_review.json").write_text(
+        json.dumps(
+            {
+                "schema_version": "lolla.user_usefulness_review.v0.1",
+                "status": "collected",
+                "rating": 4,
+                "helped_change_view": True,
+                "would_reuse": True,
+                "most_useful_component": "evidence gate",
+                "least_useful_component": "memo",
+                "reviewed_at": "2026-06-23T09:00:00Z",
+            }
+        ),
+        encoding="utf-8",
+    )
+    (tmp_dir / f"lolla_{run_id}_outcome_review.json").write_text(
+        json.dumps(
+            {
+                "schema_version": "lolla.outcome_review.v0.1",
+                "review_id": "outcome-001",
+                "status": "collected",
+                "reviewed_at": "2026-07-23T09:00:00Z",
+                "outcome_status": "pending",
+                "decision_taken": "waited for customer evidence",
+                "surprise_count": 1,
+                "suppressed_lens_relevance": "unknown",
+                "usefulness_rating": 4,
             }
         ),
         encoding="utf-8",
@@ -199,7 +232,11 @@ def test_archive_run_writes_reasoning_trace_manifest_with_hashes(tmp_path: Path)
     trace = json.loads(trace_path.read_text(encoding="utf-8"))
     artifact_by_path = {item["path"]: item for item in trace["artifacts"]}
 
-    assert archived["files_generated"] == ["reasoning_trace.json"]
+    assert set(archived["files_generated"]) == {
+        "graph_survival_report.json",
+        "graph_survival_report.md",
+        "reasoning_trace.json",
+    }
     assert archived["trace_path"] == str(trace_path)
     assert trace["schema_version"] == "lolla.reasoning_trace.v0.2"
     assert trace["trace_id"] == f"trace_{run_id}"
@@ -208,6 +245,7 @@ def test_archive_run_writes_reasoning_trace_manifest_with_hashes(tmp_path: Path)
     assert trace["privacy"]["mode"] == "local_only"
     assert trace["privacy"]["raw_transcript_saved"] is True
     assert trace["privacy"]["raw_text_duplicated_in_trace"] is False
+    assert trace["privacy"]["selected_commitment_snippets_saved"] is True
     assert trace["privacy"]["external_egress_by_trace_builder"] is False
     assert trace["case"]["case_id"] == archived["case_id"]
     assert trace["case"]["run_id"] == run_id
@@ -229,7 +267,14 @@ def test_archive_run_writes_reasoning_trace_manifest_with_hashes(tmp_path: Path)
     assert trace["process"]["pressure_check"]["status"] == "not_run_default_off"
     assert trace["process"]["usage"]["estimated_total_cost_usd"] == 0.123
     assert trace["process"]["usage"]["vendor_calls"]["openrouter"] == 3
+    assert trace["process"]["private_custody"]["graph_survival_report_file_present"] is True
+    assert trace["process"]["graph_survival"]["status"] == "ready"
+    assert trace["process"]["graph_survival"]["artifact_path"] == "graph_survival_report.json"
     assert artifact_by_path["conversation.txt"]["role"] == "source_conversation"
+    assert artifact_by_path["user_usefulness_review.json"]["role"] == "user_usefulness_review"
+    assert artifact_by_path["outcome_review.json"]["role"] == "outcome_review"
+    assert artifact_by_path["graph_survival_report.json"]["role"] == "graph_survival_report"
+    assert artifact_by_path["graph_survival_report.md"]["role"] == "graph_survival_report_markdown"
     assert artifact_by_path["conversation.txt"]["sha256"] == _sha256_uri(
         run_dir / "conversation.txt"
     )
@@ -242,9 +287,32 @@ def test_archive_run_writes_reasoning_trace_manifest_with_hashes(tmp_path: Path)
     )
     assert trace["content_hashes"]["result_sha256"] == _sha256_uri(run_dir / "result.json")
     assert trace["content_hashes"]["artifact_index_sha256"].startswith("sha256:")
-    assert trace["candidate_commitments"] == []
+    commitments = trace["candidate_commitments"]
+    assert len(commitments) == 1
+    assert commitments[0]["candidate_id"] == f"commitment_{run_id}_001"
+    assert commitments[0]["kind"] == "gate"
+    assert commitments[0]["source_surface"] == "conversation"
+    assert commitments[0]["source_ref"] == "conversation.txt#turn1.assistant.span1"
+    assert commitments[0]["source_actor"] == "assistant"
+    assert commitments[0]["actor_type"] == "ai_assistant"
+    assert commitments[0]["commitment_source"] == "ai_recommendation"
+    assert commitments[0]["claim"] == "Only pivot after a customer evidence gate."
+    assert commitments[0]["actionability"] == "high"
+    assert commitments[0]["impact"] == "medium"
+    assert commitments[0]["reversibility"] == "bounded_reversible"
+    assert commitments[0]["evidence_status"] == "evidence_attached_or_requested"
+    assert commitments[0]["correction_status"] == "observed_uncorrected_or_carried_forward"
+    assert commitments[0]["classification"]["kind"] == "gate"
+    assert commitments[0]["semantic_flags"] == ["evidence_gate"]
+    assert commitments[0]["audit_effect"] == "observed"
+    assert commitments[0]["escalation_recommended"] is True
+    assert commitments[0]["decision_packet_ready"] is False
     assert trace["decision_packets"] == []
-    assert trace["outcome_reviews"] == []
+    assert trace["user_usefulness_review"]["status"] == "collected"
+    assert trace["user_usefulness_review"]["rating"] == 4
+    assert trace["outcome_review_state"]["status"] == "available"
+    assert trace["outcome_review_state"]["review_count"] == 1
+    assert trace["outcome_reviews"][0]["review_id"] == "outcome-001"
     lens_by_id = {item["lens_id"]: item for item in trace["reasoning_lenses"]}
     assert lens_by_id["opportunity-cost"]["selected"] is True
     assert lens_by_id["opportunity-cost"]["surfaced"] is True
@@ -259,30 +327,44 @@ def test_archive_run_writes_reasoning_trace_manifest_with_hashes(tmp_path: Path)
     assert lens_by_id["premortem"]["rejection_reasons"] == ["not actually used"]
     assert trace["trace_adequacy"]["status"] == "sufficient"
     assert trace["trace_adequacy"]["future_review_ready"] is True
-    assert trace["model_calls"] == [
-        {
-            "index": 0,
-            "stage": "lane2.companion",
-            "tendency_id": "",
-            "provider_name": "openrouter",
-            "requested_model": "anthropic/claude-opus-4.7",
-            "served_model": "anthropic/claude-opus-4.7",
-            "model": "anthropic/claude-opus-4.7",
-            "model_attribution_status": "matched",
-            "status": "ok",
-            "finish_reason": "stop",
-            "temperature": 0.2,
-            "prompt_tokens": 100,
-            "completion_tokens": 20,
-            "total_tokens": 120,
-            "cached_tokens": 10,
-            "cache_write_tokens": 0,
-            "reasoning_tokens": 0,
-            "reasoning_disabled": True,
-            "reasoning_details_present": False,
-            "raw_message_content_present": True,
-        }
-    ]
+    assert trace["trace_adequacy"]["commitment_detection"] == {
+        "status": "heuristic_v0",
+        "candidate_count": 1,
+        "escalation_recommended_count": 1,
+    }
+    assert trace["trace_adequacy"]["outcome_review"] == {
+        "status": "available",
+        "review_count": 1,
+    }
+    assert trace["surface_divergence"]["status"] == "not_checkable"
+    assert len(trace["model_calls"]) == 2
+    assert trace["model_calls"][0] == {
+        "index": 0,
+        "record_type": "boundary_call",
+        "call_count": 1,
+        "stage": "lane2.companion",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "requested_model": "anthropic/claude-opus-4.7",
+        "served_model": "anthropic/claude-opus-4.7",
+        "model": "anthropic/claude-opus-4.7",
+        "model_attribution_status": "matched",
+        "status": "ok",
+        "finish_reason": "stop",
+        "temperature": 0.2,
+        "prompt_tokens": 100,
+        "completion_tokens": 20,
+        "total_tokens": 120,
+        "cached_tokens": 10,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0,
+        "reasoning_disabled": True,
+        "reasoning_details_present": False,
+        "raw_message_content_present": True,
+    }
+    assert trace["model_calls"][1]["record_type"] == "vendor_usage_summary"
+    assert trace["model_calls"][1]["provider_name"] == "openrouter"
+    assert trace["model_calls"][1]["call_count"] == 2
     assert trace["tool_calls"] == []
     assert "secret launch phrase 7621" not in trace_path.read_text(encoding="utf-8")
 
@@ -324,6 +406,68 @@ def test_archive_run_reasoning_trace_records_missing_artifacts(tmp_path: Path) -
     assert trace["process"]["usage"]["vendor_calls"] == {}
     assert trace["trace_adequacy"]["status"] == "insufficient"
     assert trace["trace_adequacy"]["future_review_ready"] is False
+
+
+def test_reasoning_trace_marks_spouse_gate_as_corrected_when_revised_answer_says_not_sufficient(
+    tmp_path: Path,
+) -> None:
+    run_dir = tmp_path / "run"
+    run_dir.mkdir()
+    (run_dir / "conversation.txt").write_text(
+        "\n\n".join(
+            [
+                "CONVERSATION: 1 turn, 0 user messages, 1 assistant response",
+                "[Turn 1] ASSISTANT:\nIf the wife conversation goes well, take B.",
+            ]
+        ),
+        encoding="utf-8",
+    )
+    (run_dir / "extraction.json").write_text(
+        json.dumps(
+            {
+                "extraction": {
+                    "decision_situation": "Career decision",
+                    "turns": [
+                        {
+                            "turn_index": 1,
+                            "speaker": "assistant",
+                            "text": "If the wife conversation goes well, take B.",
+                        }
+                    ],
+                }
+            }
+        ),
+        encoding="utf-8",
+    )
+    (run_dir / "result.json").write_text(
+        json.dumps({"run_health": {"overall": "healthy", "issues": []}}),
+        encoding="utf-8",
+    )
+    (run_dir / "revised.txt").write_text(
+        (
+            "I would take back the clean ending. "
+            "A real yes from his wife is necessary, but not sufficient."
+        ),
+        encoding="utf-8",
+    )
+
+    trace = build_reasoning_trace(
+        run_dir,
+        run_id="spousegate",
+        case_id="career-decision",
+        fingerprint="career decision",
+        how_matched="new_case",
+        files_copied=["conversation.txt", "extraction.json", "result.json", "revised.txt"],
+        files_missing=[],
+        manifest={"run_count": 1},
+        created_at="2026-06-23T09:00:00Z",
+    )
+
+    commitments = trace["candidate_commitments"]
+    assert len(commitments) == 1
+    assert commitments[0]["audit_effect"] == "corrected"
+    assert commitments[0]["correction_status"] == "corrected"
+    assert "one gate" in commitments[0]["corrected_to"].lower()
 
 
 def test_reasoning_trace_reflects_archive_time_degraded_health(tmp_path: Path) -> None:

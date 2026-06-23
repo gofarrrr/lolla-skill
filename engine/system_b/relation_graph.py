@@ -65,6 +65,7 @@ class TiebreakerTrace:
     attempted: bool = False
     fired: bool = False
     abort_reason: str = ""
+    not_attempted_reason: str = ""
     top1_model: str = ""
     top2_model: str = ""
     top1_affinity: float = 0.0
@@ -255,8 +256,13 @@ class RelationGraph:
         # is supplied AND no relevance_scores are overriding the sort AND a DB
         # path is available. When it doesn't fire, behavior is byte-identical
         # to the pre-wire default path.
-        tb_support = TiebreakerTrace()
-        tb_risk = TiebreakerTrace()
+        not_attempted_reason = _activation_tiebreaker_not_attempted_reason(
+            reasoning_context=reasoning_context,
+            relevance_scores=relevance_scores,
+            embeddings_db_path=embeddings_db_path,
+        )
+        tb_support = TiebreakerTrace(not_attempted_reason=not_attempted_reason)
+        tb_risk = TiebreakerTrace(not_attempted_reason=not_attempted_reason)
         if (
             reasoning_context is not None
             and relevance_scores is None
@@ -306,6 +312,21 @@ class RelationGraph:
                 relevance_scores=relevance_scores,
             ),
         )
+
+
+def _activation_tiebreaker_not_attempted_reason(
+    *,
+    reasoning_context: Any,
+    relevance_scores: dict[str, float] | None,
+    embeddings_db_path: Path | str | None,
+) -> str:
+    if reasoning_context is None:
+        return "missing_reasoning_context"
+    if relevance_scores is not None:
+        return "relevance_scores_present"
+    if embeddings_db_path is None:
+        return "missing_embeddings_db_path"
+    return ""
 
 
 def _activation_retie_if_near_tie(

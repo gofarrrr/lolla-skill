@@ -19,16 +19,20 @@ Case matching (the "which case is this?" problem):
 
 Archive root: $LOLLA_ARCHIVE_DIR or ~/.local/share/lolla/runs/
 
-Files archived (15 core):
+Files archived (17 core/optional):
   conversation.txt, extraction.json, result.json, revised.txt, memo.md,
   memo_note.json, gapcheck.txt, gapcheck_lanes.json, v60_ledger_skeleton.json,
   v60_ledger.json, pre_step6_shadow_portfolio.json, pre_step6_private_table.json,
   pre_step6_private_table.md, pre_step6_private_table_ledger.json,
-  live_transcript.txt.
+  live_transcript.txt, user_usefulness_review.json, outcome_review.json.
   Missing files are skipped gracefully
   (e.g., if Step 6b was not executed by a weaker orchestrator).
 
 Generated archive artifacts:
+  graph_survival_report.json — research/operator report showing graph candidates,
+  embedding recalls, selected cards, Step 6 uptake, suppressed/unadjudicated
+  signals, and visible/private survival.
+  graph_survival_report.md — Markdown rendering of the same report.
   reasoning_trace.json — local-only custody manifest with artifact hashes,
   process health, usage summary, reasoning-lens IDs, model-call telemetry,
   trace-adequacy status, and future escalation slots.
@@ -68,6 +72,8 @@ CORE_FILES = (
     "pre_step6_private_table.md",
     "pre_step6_private_table_ledger.json",
     "live_transcript.txt",
+    "user_usefulness_review.json",
+    "outcome_review.json",
 )
 
 # Stopwords dropped when generating an auto-slug from decision_situation.
@@ -293,7 +299,10 @@ def archive_run(
             how_matched = "new_case"
 
     run_dir = case_dir / run_id
+    run_dir_existed = run_dir.exists()
     run_dir.mkdir(exist_ok=True)
+    if run_dir_existed:
+        how_matched = "existing_run"
 
     _finalize_v60_telemetry_before_archive(tmp_dir=tmp_dir, run_id=run_id)
     _finalize_product_output_hygiene_before_archive(tmp_dir=tmp_dir, run_id=run_id)
@@ -310,16 +319,19 @@ def archive_run(
             missing.append(fname)
 
     manifest = _write_manifest(case_dir, fingerprint, run_id)
+    generated_files = _write_graph_survival_artifacts_for_archive(run_dir=run_dir)
+    files_for_trace = copied + generated_files
     trace_path = _write_reasoning_trace_for_archive(
         run_dir=run_dir,
         run_id=run_id,
         case_id=case_dir.name,
         fingerprint=fingerprint,
         how_matched=how_matched,
-        files_copied=copied,
+        files_copied=files_for_trace,
         files_missing=missing,
         manifest=manifest,
     )
+    generated_files.append(trace_path.name)
 
     return {
         "case_dir": str(case_dir),
@@ -329,7 +341,7 @@ def archive_run(
         "fingerprint": fingerprint,
         "files_copied": copied,
         "files_missing": missing,
-        "files_generated": [trace_path.name],
+        "files_generated": generated_files,
         "trace_path": str(trace_path),
         "run_count": manifest["run_count"],
     }
@@ -361,6 +373,15 @@ def _write_reasoning_trace_for_archive(
         manifest=manifest,
     )
     return trace_path
+
+
+def _write_graph_survival_artifacts_for_archive(*, run_dir: Path) -> list[str]:
+    """Generate graph survival reports after core artifacts are copied."""
+    _ensure_repo_root_on_path()
+    from engine.system_b.graph_survival_report import write_graph_survival_artifacts
+
+    json_path, md_path, _payload = write_graph_survival_artifacts(run_dir)
+    return [json_path.name, md_path.name]
 
 
 def _finalize_v60_telemetry_before_archive(*, tmp_dir: Path, run_id: str) -> None:

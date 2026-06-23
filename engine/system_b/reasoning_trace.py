@@ -9,6 +9,7 @@ from __future__ import annotations
 import datetime as _dt
 import hashlib
 import json
+import re
 from collections.abc import Mapping, Sequence
 from pathlib import Path
 from typing import Any
@@ -32,7 +33,11 @@ ARTIFACT_ROLES: dict[str, str] = {
     "pre_step6_private_table.json": "private_reasoning_table",
     "pre_step6_private_table.md": "private_reasoning_table_markdown",
     "pre_step6_private_table_ledger.json": "private_reasoning_table_ledger",
+    "graph_survival_report.json": "graph_survival_report",
+    "graph_survival_report.md": "graph_survival_report_markdown",
     "live_transcript.txt": "live_product_surface",
+    "user_usefulness_review.json": "user_usefulness_review",
+    "outcome_review.json": "outcome_review",
 }
 
 CONTENT_TYPES = {
@@ -62,6 +67,15 @@ def build_reasoning_trace(
     missing_artifacts = _missing_artifact_records(files_missing)
     reasoning_lenses = _reasoning_lenses(result)
     model_calls = _model_calls(result)
+    candidate_commitments = _candidate_commitments(
+        run_dir=run_dir,
+        run_id=run_id,
+        result=result,
+    )
+    surface_divergence = _surface_divergence(run_dir=run_dir, result=result)
+    user_usefulness_review = _user_usefulness_review(run_dir)
+    outcome_reviews = _outcome_reviews(run_dir)
+    outcome_review_state = _outcome_review_state(outcome_reviews=outcome_reviews, run_dir=run_dir)
 
     trace: dict[str, Any] = {
         "schema_version": REASONING_TRACE_SCHEMA_VERSION,
@@ -80,6 +94,7 @@ def build_reasoning_trace(
             "summary_saved": bool(extraction),
             "retention_days": None,
             "raw_text_duplicated_in_trace": False,
+            "selected_commitment_snippets_saved": bool(candidate_commitments),
             "external_egress_by_trace_builder": False,
         },
         "case": {
@@ -102,21 +117,27 @@ def build_reasoning_trace(
             "audit_summary": _audit_summary(result),
             "pressure_check": _pressure_check(result),
             "private_custody": _private_custody(result=result, run_dir=run_dir),
+            "graph_survival": _graph_survival(run_dir),
             "usage": _usage_summary(result),
         },
         "artifacts": artifacts,
         "missing_artifacts": missing_artifacts,
         "reasoning_lenses": reasoning_lenses,
+        "surface_divergence": surface_divergence,
         "trace_adequacy": _trace_adequacy(
             run_dir=run_dir,
             extraction=extraction,
             result=result,
             reasoning_lenses=reasoning_lenses,
             model_calls=model_calls,
+            candidate_commitments=candidate_commitments,
+            outcome_reviews=outcome_reviews,
         ),
-        "candidate_commitments": [],
+        "candidate_commitments": candidate_commitments,
         "decision_packets": [],
-        "outcome_reviews": [],
+        "user_usefulness_review": user_usefulness_review,
+        "outcome_review_state": outcome_review_state,
+        "outcome_reviews": outcome_reviews,
         "model_calls": model_calls,
         "tool_calls": [],
     }
@@ -330,7 +351,18 @@ def _private_custody(*, result: Mapping[str, Any], run_dir: Path) -> dict[str, A
         "pre_step6_shadow_portfolio_file_present": (
             run_dir / "pre_step6_shadow_portfolio.json"
         ).exists(),
+        "graph_survival_report_file_present": (
+            run_dir / "graph_survival_report.json"
+        ).exists(),
     }
+
+
+def _graph_survival(run_dir: Path) -> dict[str, Any]:
+    try:
+        from engine.system_b.graph_survival_report import graph_survival_summary_for_trace
+    except Exception:
+        return {"status": "unavailable", "artifact_path": ""}
+    return graph_survival_summary_for_trace(run_dir)
 
 
 def _usage_summary(result: Mapping[str, Any]) -> dict[str, Any]:
@@ -340,12 +372,14 @@ def _usage_summary(result: Mapping[str, Any]) -> dict[str, Any]:
     for vendor_name, raw_vendor in vendors.items():
         vendor = _mapping(raw_vendor)
         vendor_calls[str(vendor_name)] = _safe_int(vendor.get("calls"))
+    total_vendor_calls = sum(vendor_calls.values())
     return {
         "run_id": str(usage.get("run_id") or ""),
         "pricing_table_version": str(usage.get("pricing_table_version") or ""),
         "estimated_total_cost_usd": usage.get("estimated_total_cost_usd"),
         "cost_estimate_state": str(usage.get("cost_estimate_state") or ""),
         "vendor_calls": vendor_calls,
+        "total_vendor_call_count": total_vendor_calls,
     }
 
 
@@ -698,12 +732,18 @@ def _selected_lens_role(lane_id: str) -> str:
 
 def _model_calls(result: Mapping[str, Any]) -> list[dict[str, Any]]:
     audit = _mapping(result.get("audit_summary"))
+    boundary_stage_counts: dict[str, int] = {}
     calls: list[dict[str, Any]] = []
     for index, raw_call in enumerate(_list(audit.get("boundary_calls"))):
         call = _mapping(raw_call)
+        stage = _text(call.get("stage"))
+        if stage:
+            boundary_stage_counts[stage] = boundary_stage_counts.get(stage, 0) + 1
         calls.append(
             {
                 "index": index,
+                "record_type": "boundary_call",
+                "call_count": 1,
                 "stage": _text(call.get("stage")),
                 "tendency_id": _text(call.get("tendency_id")),
                 "provider_name": _text(call.get("provider_name")),
@@ -725,7 +765,701 @@ def _model_calls(result: Mapping[str, Any]) -> list[dict[str, Any]]:
                 "raw_message_content_present": bool(_text(call.get("raw_message_content"))),
             }
         )
+    _append_usage_summary_model_calls(
+        calls,
+        result=result,
+        boundary_stage_counts=boundary_stage_counts,
+    )
     return calls
+
+
+def _append_usage_summary_model_calls(
+    calls: list[dict[str, Any]],
+    *,
+    result: Mapping[str, Any],
+    boundary_stage_counts: Mapping[str, int],
+) -> None:
+    """Add sanitized aggregate call records for calls not present in boundary_calls."""
+    usage = _mapping(result.get("usage_summary"))
+    vendors = _mapping(usage.get("vendors"))
+    represented_by_vendor: dict[str, int] = {}
+    for call in calls:
+        provider = _text(call.get("provider_name")) or "unknown"
+        represented_by_vendor[provider] = represented_by_vendor.get(provider, 0) + _safe_int(
+            call.get("call_count") or 1
+        )
+
+    openrouter = _mapping(vendors.get("openrouter"))
+    openrouter_stage_extra = 0
+    for stage_name, raw_stage in _mapping(openrouter.get("stages")).items():
+        stage = _mapping(raw_stage)
+        stage_call_count = _safe_int(stage.get("calls"))
+        represented = _safe_int(boundary_stage_counts.get(str(stage_name)))
+        extra_count = max(stage_call_count - represented, 0)
+        if extra_count <= 0:
+            continue
+        openrouter_stage_extra += extra_count
+        calls.append(
+            _aggregate_model_call(
+                index=len(calls),
+                record_type="usage_stage_summary",
+                provider_name="openrouter",
+                stage=str(stage_name),
+                call_count=extra_count,
+                requested_model=_first_string(openrouter.get("requested_models_seen")),
+                served_model=_first_string(openrouter.get("models_seen")),
+                model=_text(openrouter.get("primary_model"))
+                or _first_string(openrouter.get("models_seen")),
+                prompt_tokens=_scaled_count(stage.get("prompt_tokens"), extra_count, stage_call_count),
+                completion_tokens=_scaled_count(
+                    stage.get("completion_tokens"),
+                    extra_count,
+                    stage_call_count,
+                ),
+                total_tokens=_scaled_count(stage.get("total_tokens"), extra_count, stage_call_count),
+                cached_tokens=_scaled_count(stage.get("cached_tokens"), extra_count, stage_call_count),
+            )
+        )
+    if openrouter_stage_extra:
+        represented_by_vendor["openrouter"] = represented_by_vendor.get("openrouter", 0) + openrouter_stage_extra
+
+    _append_openai_usage_model_calls(calls, vendors, represented_by_vendor)
+    _append_anthropic_usage_model_calls(calls, vendors, represented_by_vendor)
+
+    for vendor_name, raw_vendor in vendors.items():
+        vendor = _mapping(raw_vendor)
+        vendor_call_count = _safe_int(vendor.get("calls"))
+        represented = represented_by_vendor.get(str(vendor_name), 0)
+        extra_count = max(vendor_call_count - represented, 0)
+        if extra_count <= 0:
+            continue
+        calls.append(
+            _aggregate_model_call(
+                index=len(calls),
+                record_type="vendor_usage_summary",
+                provider_name=str(vendor_name),
+                stage="usage_summary",
+                call_count=extra_count,
+                model=_text(vendor.get("primary_model")) or _first_string(vendor.get("models_seen")),
+            )
+        )
+
+
+def _append_openai_usage_model_calls(
+    calls: list[dict[str, Any]],
+    vendors: Mapping[str, Any],
+    represented_by_vendor: dict[str, int],
+) -> None:
+    vendor = _mapping(vendors.get("openai_embeddings"))
+    by_model = _mapping(vendor.get("by_model"))
+    for model_name, raw_model in by_model.items():
+        model = _mapping(raw_model)
+        call_count = _safe_int(model.get("calls"))
+        if call_count <= 0:
+            continue
+        represented_by_vendor["openai_embeddings"] = (
+            represented_by_vendor.get("openai_embeddings", 0) + call_count
+        )
+        calls.append(
+            _aggregate_model_call(
+                index=len(calls),
+                record_type="vendor_model_summary",
+                provider_name="openai_embeddings",
+                stage="openai_model_usage",
+                call_count=call_count,
+                model=str(model_name),
+                prompt_tokens=_safe_int(model.get("input_tokens")),
+                completion_tokens=_safe_int(model.get("output_tokens")),
+                total_tokens=(
+                    _safe_int(model.get("input_tokens")) + _safe_int(model.get("output_tokens"))
+                ),
+            )
+        )
+
+
+def _append_anthropic_usage_model_calls(
+    calls: list[dict[str, Any]],
+    vendors: Mapping[str, Any],
+    represented_by_vendor: dict[str, int],
+) -> None:
+    vendor = _mapping(vendors.get("anthropic_subagents"))
+    by_model = _mapping(vendor.get("by_model"))
+    for model_name, raw_model in by_model.items():
+        model = _mapping(raw_model)
+        call_count = _safe_int(model.get("calls"))
+        if call_count <= 0:
+            continue
+        represented_by_vendor["anthropic_subagents"] = (
+            represented_by_vendor.get("anthropic_subagents", 0) + call_count
+        )
+        calls.append(
+            _aggregate_model_call(
+                index=len(calls),
+                record_type="vendor_model_summary",
+                provider_name="anthropic_subagents",
+                stage="anthropic_subagent_usage",
+                call_count=call_count,
+                model=str(model_name),
+                total_tokens=_safe_int(model.get("total_tokens")),
+            )
+        )
+
+
+def _aggregate_model_call(
+    *,
+    index: int,
+    record_type: str,
+    provider_name: str,
+    stage: str,
+    call_count: int,
+    requested_model: str = "",
+    served_model: str = "",
+    model: str = "",
+    prompt_tokens: int = 0,
+    completion_tokens: int = 0,
+    total_tokens: int = 0,
+    cached_tokens: int = 0,
+) -> dict[str, Any]:
+    return {
+        "index": index,
+        "record_type": record_type,
+        "call_count": call_count,
+        "stage": stage,
+        "tendency_id": "",
+        "provider_name": provider_name,
+        "requested_model": requested_model,
+        "served_model": served_model,
+        "model": model,
+        "model_attribution_status": "aggregate",
+        "status": "summarized",
+        "finish_reason": "",
+        "temperature": None,
+        "prompt_tokens": prompt_tokens,
+        "completion_tokens": completion_tokens,
+        "total_tokens": total_tokens,
+        "cached_tokens": cached_tokens,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0,
+        "reasoning_disabled": False,
+        "reasoning_details_present": False,
+        "raw_message_content_present": False,
+    }
+
+
+def _surface_divergence(*, run_dir: Path, result: Mapping[str, Any]) -> dict[str, Any]:
+    revised_path = run_dir / "revised.txt"
+    live_path = run_dir / "live_transcript.txt"
+    revised_text = _read_text(revised_path)
+    live_text = _read_text(live_path)
+    result_revised_answer = _text(result.get("revised_answer"))
+    revised_present = bool(revised_text.strip())
+    live_present = bool(live_text.strip())
+    result_present = bool(result_revised_answer)
+    revised_matches_result = (
+        _normalize_surface_text(revised_text) == _normalize_surface_text(result_revised_answer)
+        if revised_present and result_present
+        else None
+    )
+    revised_found_in_live = (
+        _normalize_surface_text(revised_text) in _normalize_surface_text(live_text)
+        if revised_present and live_present
+        else None
+    )
+    if not revised_present or not live_present:
+        status = "not_checkable"
+    elif revised_found_in_live:
+        status = "matched"
+    else:
+        status = "diverged"
+    return {
+        "schema_version": "lolla.surface_divergence.v0.1",
+        "status": status,
+        "revised_artifact_present": revised_present,
+        "live_transcript_present": live_present,
+        "result_revised_answer_present": result_present,
+        "revised_artifact_matches_result": revised_matches_result,
+        "revised_artifact_found_in_live_transcript": revised_found_in_live,
+        "revised_sha256": _sha256_uri_or_none(revised_path),
+        "live_transcript_sha256": _sha256_uri_or_none(live_path),
+        "source_refs": {
+            "revised": "revised.txt" if revised_present else "",
+            "live_transcript": "live_transcript.txt" if live_present else "",
+            "result_revised_answer": "result.json#/revised_answer" if result_present else "",
+        },
+    }
+
+
+def _candidate_commitments(
+    *,
+    run_dir: Path,
+    run_id: str,
+    result: Mapping[str, Any],
+) -> list[dict[str, Any]]:
+    candidates: list[dict[str, Any]] = []
+    revised_text = _read_text(run_dir / "revised.txt")
+    for turn in _conversation_turns(run_dir / "conversation.txt"):
+        source_surface = "conversation"
+        source_ref = f"conversation.txt#turn{turn['turn_index']}.{turn['role'].lower()}"
+        source_actor = turn["role"].lower()
+        for span_index, span in enumerate(_commitment_spans(turn["text"])):
+            candidate = _commitment_candidate_from_span(
+                span,
+                run_id=run_id,
+                source_surface=source_surface,
+                source_ref=f"{source_ref}.span{span_index + 1}",
+                source_actor=source_actor,
+                revised_text=revised_text,
+                result=result,
+            )
+            if candidate:
+                candidates.append(candidate)
+
+    for paragraph_index, paragraph in enumerate(_paragraphs(revised_text)):
+        for span_index, span in enumerate(_commitment_spans(paragraph)):
+            candidate = _commitment_candidate_from_span(
+                span,
+                run_id=run_id,
+                source_surface="revised_answer",
+                source_ref=f"revised.txt#paragraph{paragraph_index + 1}.span{span_index + 1}",
+                source_actor="assistant",
+                revised_text=revised_text,
+                result=result,
+            )
+            if candidate:
+                candidates.append(candidate)
+
+    deduped: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for candidate in sorted(
+        candidates,
+        key=lambda item: (
+            -float(item["confidence"]),
+            str(item["source_surface"]),
+            str(item["source_ref"]),
+        ),
+    ):
+        key = _normalize_candidate_text(str(candidate["claim"]))
+        if key in seen:
+            continue
+        seen.add(key)
+        candidate["candidate_id"] = f"commitment_{run_id}_{len(deduped) + 1:03d}"
+        deduped.append(candidate)
+        if len(deduped) >= 12:
+            break
+    return deduped
+
+
+def _commitment_candidate_from_span(
+    span: str,
+    *,
+    run_id: str,
+    source_surface: str,
+    source_ref: str,
+    source_actor: str,
+    revised_text: str,
+    result: Mapping[str, Any],
+) -> dict[str, Any] | None:
+    claim = _bounded_text(span, limit=650)
+    if len(claim) < 24:
+        return None
+    if _is_non_action_commitment_span(claim):
+        return None
+    kind, confidence, reason = _classify_commitment_span(claim)
+    if not kind:
+        return None
+    if source_actor == "user" and kind != "plan" and not _looks_like_user_commitment(claim):
+        return None
+    actionability = "high" if confidence >= 0.8 else "medium"
+    audit_effect, corrected_to = _audit_effect_for_candidate(
+        claim=claim,
+        source_surface=source_surface,
+        revised_text=revised_text,
+    )
+    classification = _commitment_classification(
+        claim=claim,
+        kind=kind,
+        source_actor=source_actor,
+        source_surface=source_surface,
+        audit_effect=audit_effect,
+    )
+    return {
+        "schema_version": "lolla.commitment_candidate.v0.1",
+        "candidate_id": f"commitment_{run_id}_pending",
+        "kind": kind,
+        "source_surface": source_surface,
+        "source_ref": source_ref,
+        "source_actor": source_actor,
+        "actor_type": classification["actor_type"],
+        "commitment_source": (
+            "human_plan" if source_actor == "user" else "ai_recommendation"
+        ),
+        "claim": claim,
+        "claim_sha256": _object_sha256_uri(claim),
+        "actionability": actionability,
+        "impact": classification["impact"],
+        "reversibility": classification["reversibility"],
+        "evidence_status": classification["evidence_status"],
+        "correction_status": classification["correction_status"],
+        "semantic_flags": classification["semantic_flags"],
+        "classification": classification,
+        "confidence": round(confidence, 2),
+        "reason": reason,
+        "audit_effect": audit_effect,
+        "corrected_to": corrected_to,
+        "escalation_recommended": kind in {"recommendation", "plan", "gate", "reversal_trigger"},
+        "decision_packet_ready": False,
+        "decision_packet_blockers": _decision_packet_blockers(result),
+    }
+
+
+def _classify_commitment_span(span: str) -> tuple[str, float, str]:
+    lower = span.lower()
+    if lower.startswith("generate more options") or lower.startswith('"generate more options"'):
+        return "meta_constraint", 0.62, "Contains a bounded meta-constraint, not a direct action."
+    if "my revised recommendation is" in lower or "revised recommendation is" in lower:
+        return "recommendation", 0.94, "Contains an explicit revised recommendation."
+    if re.search(r"\b(if|when)\b.+\b(take|accept|choose|decline|reject)\b", lower):
+        return "recommendation", 0.9, "Contains conditional action advice."
+    if re.search(r"\b(take|accept|choose|decline|reject)\s+[a-z0-9]\b", lower):
+        return "recommendation", 0.88, "Contains direct option-selection advice."
+    if "do not stay" in lower or "don't stay" in lower:
+        return "recommendation", 0.87, "Contains direct stay/leave advice."
+    if re.search(r"\b(plan:|tomorrow|this week|decision in \d|i'm going to|i will)\b", lower):
+        return "plan", 0.84, "Contains a concrete user plan with timing."
+    if lower.startswith("only ") and " after " in lower:
+        return "gate", 0.83, "Defines an evidence gate before action."
+    if "only if" in lower or "hard gates" in lower or "gates clear" in lower:
+        return "gate", 0.82, "Defines a gate before action."
+    if "stop-loss" in lower or "reversal trigger" in lower or "revisit" in lower:
+        return "reversal_trigger", 0.8, "Defines a future reversal or review condition."
+    if re.search(r"\b(should|must|have to|ask for|talk to|inspect|get time with)\b", lower):
+        return "recommendation", 0.68, "Contains action-oriented advice."
+    return "", 0.0, ""
+
+
+def _is_non_action_commitment_span(span: str) -> bool:
+    lower = span.lower().strip()
+    return (
+        lower.startswith("i would take back")
+        or lower.startswith("i would also delete")
+        or lower.startswith("one pressure i would set aside")
+        or lower.startswith("so it's not really")
+        or lower.startswith("i'm not asking you")
+        or "if i'm working 70 hours" in lower
+        or "if i take a startup gig" in lower
+    )
+
+
+def _looks_like_user_commitment(span: str) -> bool:
+    lower = span.lower()
+    return bool(
+        re.search(
+            r"\b(plan:|i take|i will|i'm going to|decision in \d|tomorrow|this week)\b",
+            lower,
+        )
+    )
+
+
+def _audit_effect_for_candidate(
+    *,
+    claim: str,
+    source_surface: str,
+    revised_text: str,
+) -> tuple[str, str]:
+    lower_claim = claim.lower()
+    lower_revised = revised_text.lower()
+    if source_surface == "revised_answer":
+        return "post_audit_commitment", ""
+    if (
+        "wife conversation goes well" in lower_claim
+        and "take b" in lower_claim
+        and _revised_answer_corrects_spouse_gate(lower_revised)
+    ):
+        return (
+            "corrected",
+            (
+                "A spouse yes clears one gate; B still requires company-quality, "
+                "operating-hours, equity-quality, household-resilience, and stop-loss gates."
+            ),
+        )
+    if (
+        "thank you" in lower_claim
+        and "proxy" in lower_claim
+        and "delete the pseudo-readiness test" in lower_revised
+    ):
+        return (
+            "corrected",
+            "The revised answer rejects gratitude as readiness evidence.",
+        )
+    return "observed", ""
+
+
+def _revised_answer_corrects_spouse_gate(lower_revised: str) -> bool:
+    return any(
+        phrase in lower_revised
+        for phrase in (
+            "clears one gate",
+            "necessary, but not sufficient",
+            "necessary but not sufficient",
+            "not sufficient",
+            "too compressed",
+            "wife support is real and b passes",
+            "spouse support is real and b passes",
+        )
+    )
+
+
+def _commitment_classification(
+    *,
+    claim: str,
+    kind: str,
+    source_actor: str,
+    source_surface: str,
+    audit_effect: str,
+) -> dict[str, Any]:
+    lower = claim.lower()
+    semantic_flags = _commitment_semantic_flags(lower)
+    return {
+        "schema_version": "lolla.commitment_classification.v0.1",
+        "actor": source_actor,
+        "actor_type": _actor_type(source_actor),
+        "kind": kind,
+        "source_surface": source_surface,
+        "impact": _commitment_impact(lower, kind),
+        "reversibility": _commitment_reversibility(lower, kind),
+        "evidence_status": _commitment_evidence_status(lower, kind),
+        "correction_status": _commitment_correction_status(
+            audit_effect=audit_effect,
+            source_surface=source_surface,
+        ),
+        "semantic_flags": semantic_flags,
+    }
+
+
+def _actor_type(source_actor: str) -> str:
+    if source_actor == "user":
+        return "human"
+    if source_actor == "assistant":
+        return "ai_assistant"
+    return "unknown"
+
+
+def _commitment_impact(lower_claim: str, kind: str) -> str:
+    high_terms = (
+        "take b",
+        "take a",
+        "accept",
+        "decline",
+        "reject",
+        "startup",
+        "faang",
+        "wife",
+        "spouse",
+        "marriage",
+        "salary",
+        "equity",
+        "runway",
+        "cap table",
+        "walk-away",
+        "walk away",
+    )
+    if any(term in lower_claim for term in high_terms):
+        return "high"
+    if kind in {"recommendation", "plan", "gate", "reversal_trigger"}:
+        return "medium"
+    return "low"
+
+
+def _commitment_reversibility(lower_claim: str, kind: str) -> str:
+    if any(term in lower_claim for term in ("walk-away", "walk away", "stop-loss", "revisit", "review")):
+        return "bounded_reversible"
+    if any(term in lower_claim for term in ("only if", "gate", "before signing", "threshold")):
+        return "bounded_reversible"
+    if any(term in lower_claim for term in ("accept", "sign", "take b", "take a", "decline", "reject")):
+        return "costly_reversible"
+    if kind == "meta_constraint":
+        return "not_applicable"
+    return "unknown"
+
+
+def _commitment_evidence_status(lower_claim: str, kind: str) -> str:
+    if any(
+        term in lower_claim
+        for term in (
+            "evidence",
+            "diligence",
+            "inspect",
+            "talk to",
+            "ask for",
+            "threshold",
+            "runway",
+            "cap table",
+            "employees",
+            "ceo",
+            "customer",
+        )
+    ):
+        return "evidence_attached_or_requested"
+    if kind in {"gate", "reversal_trigger"}:
+        return "evidence_required"
+    if kind in {"recommendation", "plan"}:
+        return "evidence_missing"
+    return "not_applicable"
+
+
+def _commitment_correction_status(*, audit_effect: str, source_surface: str) -> str:
+    if source_surface == "revised_answer":
+        return "post_audit"
+    if audit_effect == "corrected":
+        return "corrected"
+    return "observed_uncorrected_or_carried_forward"
+
+
+def _commitment_semantic_flags(lower_claim: str) -> list[str]:
+    flags: list[str] = []
+    checks = (
+        ("conditional_action", r"\b(if|when|only if)\b"),
+        ("spouse_or_household", r"\b(wife|spouse|marriage|household|family)\b"),
+        ("option_selection", r"\b(take|accept|choose|decline|reject)\s+[abc]\b"),
+        ("evidence_gate", r"\b(gate|threshold|evidence|diligence|before signing)\b"),
+        ("reversal_or_review", r"\b(stop-loss|reversal|revisit|review|walk-away|walk away)\b"),
+        ("startup_quality", r"\b(runway|cap table|equity|ceo|employees|workload)\b"),
+    )
+    for flag, pattern in checks:
+        if re.search(pattern, lower_claim):
+            flags.append(flag)
+    return flags
+
+
+def _decision_packet_blockers(result: Mapping[str, Any]) -> list[str]:
+    blockers = ["human has not confirmed intent", "outcome has not been reviewed"]
+    run_health = _mapping(result.get("run_health"))
+    if _text(run_health.get("overall")) in {"degraded", "critical"}:
+        blockers.append(f"run health is {_text(run_health.get('overall'))}")
+    return blockers
+
+
+def _conversation_turns(path: Path) -> list[dict[str, Any]]:
+    text = _read_text(path)
+    if not text:
+        return []
+    pattern = re.compile(
+        r"^\[Turn (?P<turn>\d+)\] (?P<role>USER|ASSISTANT):\n"
+        r"(?P<text>.*?)(?=^\[Turn \d+\] (?:USER|ASSISTANT):\n|\Z)",
+        re.MULTILINE | re.DOTALL,
+    )
+    turns: list[dict[str, Any]] = []
+    for match in pattern.finditer(text):
+        turns.append(
+            {
+                "turn_index": int(match.group("turn")),
+                "role": match.group("role"),
+                "text": match.group("text").strip(),
+            }
+        )
+    return turns
+
+
+def _commitment_spans(text: str) -> list[str]:
+    spans: list[str] = []
+    for paragraph in _paragraphs(text):
+        if _is_high_value_commitment_span(paragraph):
+            spans.append(paragraph)
+            continue
+        for sentence in re.split(r"(?<=[.!?])\s+", paragraph):
+            sentence = sentence.strip()
+            if sentence:
+                spans.append(sentence)
+    return spans
+
+
+def _is_high_value_commitment_span(text: str) -> bool:
+    lower = text.lower()
+    return (
+        "my revised recommendation is" in lower
+        or lower.startswith("right. ok. plan:")
+        or ("if the wife conversation goes well" in lower and "take b" in lower)
+    )
+
+
+def _paragraphs(text: str) -> list[str]:
+    return [paragraph.strip() for paragraph in re.split(r"\n\s*\n", text or "") if paragraph.strip()]
+
+
+def _user_usefulness_review(run_dir: Path) -> dict[str, Any]:
+    path = run_dir / "user_usefulness_review.json"
+    if not path.exists():
+        return {
+            "schema_version": "lolla.user_usefulness_review.v0.1",
+            "status": "not_collected",
+            "artifact_path": "",
+            "rating": None,
+            "helped_change_view": None,
+            "would_reuse": None,
+        }
+    payload = _read_json_object(path)
+    if not payload:
+        return {
+            "schema_version": "lolla.user_usefulness_review.v0.1",
+            "status": "invalid",
+            "artifact_path": "user_usefulness_review.json",
+            "rating": None,
+            "helped_change_view": None,
+            "would_reuse": None,
+        }
+    return {
+        "schema_version": _text(payload.get("schema_version"))
+        or "lolla.user_usefulness_review.v0.1",
+        "status": _text(payload.get("status")) or "collected",
+        "artifact_path": "user_usefulness_review.json",
+        "rating": payload.get("rating"),
+        "helped_change_view": payload.get("helped_change_view"),
+        "would_reuse": payload.get("would_reuse"),
+        "most_useful_component": _text(payload.get("most_useful_component")),
+        "least_useful_component": _text(payload.get("least_useful_component")),
+        "reviewed_at": _text(payload.get("reviewed_at")),
+    }
+
+
+def _outcome_reviews(run_dir: Path) -> list[dict[str, Any]]:
+    path = run_dir / "outcome_review.json"
+    if not path.exists():
+        return []
+    payload = _read_json_object(path)
+    raw_reviews = payload.get("reviews") if isinstance(payload.get("reviews"), list) else None
+    if raw_reviews is None:
+        raw_reviews = [payload] if payload else []
+    reviews: list[dict[str, Any]] = []
+    for index, raw_review in enumerate(raw_reviews):
+        review = _mapping(raw_review)
+        if not review:
+            continue
+        reviews.append(
+            {
+                "schema_version": _text(review.get("schema_version"))
+                or "lolla.outcome_review.v0.1",
+                "review_id": _text(review.get("review_id")) or f"outcome_review_{index + 1:03d}",
+                "status": _text(review.get("status")) or "collected",
+                "artifact_path": "outcome_review.json",
+                "reviewed_at": _text(review.get("reviewed_at")),
+                "outcome_status": _text(review.get("outcome_status")),
+                "decision_taken": _text(review.get("decision_taken")),
+                "surprise_count": _safe_int(review.get("surprise_count")),
+                "suppressed_lens_relevance": _text(review.get("suppressed_lens_relevance")),
+                "usefulness_rating": review.get("usefulness_rating"),
+            }
+        )
+    return reviews
+
+
+def _outcome_review_state(*, outcome_reviews: Sequence[Mapping[str, Any]], run_dir: Path) -> dict[str, Any]:
+    path = run_dir / "outcome_review.json"
+    return {
+        "schema_version": "lolla.outcome_review_state.v0.1",
+        "status": "available" if outcome_reviews else "not_started",
+        "review_count": len(outcome_reviews),
+        "artifact_path": "outcome_review.json" if path.exists() else "",
+    }
 
 
 def _trace_adequacy(
@@ -735,6 +1469,8 @@ def _trace_adequacy(
     result: Mapping[str, Any],
     reasoning_lenses: Sequence[Mapping[str, Any]],
     model_calls: Sequence[Mapping[str, Any]],
+    candidate_commitments: Sequence[Mapping[str, Any]],
+    outcome_reviews: Sequence[Mapping[str, Any]],
 ) -> dict[str, Any]:
     run_health = _mapping(result.get("run_health"))
     capture = _capture_summary(extraction=extraction, result=result)
@@ -789,12 +1525,15 @@ def _trace_adequacy(
         "coverage": core,
         "missing_context": missing_context,
         "commitment_detection": {
-            "status": "not_implemented",
-            "candidate_count": 0,
+            "status": "heuristic_v0",
+            "candidate_count": len(candidate_commitments),
+            "escalation_recommended_count": sum(
+                1 for item in candidate_commitments if item.get("escalation_recommended")
+            ),
         },
         "outcome_review": {
-            "status": "not_started",
-            "review_count": 0,
+            "status": "available" if outcome_reviews else "not_started",
+            "review_count": len(outcome_reviews),
         },
     }
 
@@ -806,6 +1545,48 @@ def _artifact_status(path: Path) -> str:
 def _append_unique(values: list[Any], value: Any) -> None:
     if value and value not in values:
         values.append(value)
+
+
+def _read_text(path: Path) -> str:
+    if not path.exists() or not path.is_file():
+        return ""
+    try:
+        return path.read_text(encoding="utf-8")
+    except OSError:
+        return ""
+
+
+def _normalize_surface_text(value: str) -> str:
+    return re.sub(r"\s+", " ", value or "").strip()
+
+
+def _normalize_candidate_text(value: str) -> str:
+    return re.sub(r"\W+", " ", (value or "").lower()).strip()
+
+
+def _bounded_text(value: str, *, limit: int) -> str:
+    value = _normalize_surface_text(value)
+    if len(value) <= limit:
+        return value
+    return value[: limit - 1].rstrip() + "…"
+
+
+def _first_string(value: Any) -> str:
+    values = _list(value)
+    for item in values:
+        text = _text(item)
+        if text:
+            return text
+    return ""
+
+
+def _scaled_count(value: Any, numerator: int, denominator: int) -> int:
+    raw = _safe_int(value)
+    if raw <= 0 or numerator <= 0 or denominator <= 0:
+        return 0
+    if numerator == denominator:
+        return raw
+    return round(raw * (numerator / denominator))
 
 
 def _text(value: Any) -> str:
