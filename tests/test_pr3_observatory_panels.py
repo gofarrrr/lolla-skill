@@ -815,6 +815,100 @@ def test_pre_step6_shadow_panel_renders_shadow_decision(monkeypatch):
     assert "live generation: false" in html
 
 
+def test_pre_step6_panel_renders_private_table_and_ledger(monkeypatch):
+    r = _fixture_result()
+    r["pre_step6_private_table"] = {
+        "schema_version": "pre_step6_private_table.v1",
+        "status": "ready",
+        "compiled_card_deck_key": "pre-step6-private-card-deck-abc123",
+        "promotion_effect": "stand_down_to_current_step6",
+        "table_char_count": 1234,
+        "table_section_count": 4,
+        "cache": {
+            "state": "cache_miss",
+            "resolution": "exact_key",
+            "cache_ref": "",
+            "miss_behavior": "stand_down_to_current_step6",
+            "live_card_generation_allowed": False,
+        },
+        "key_material": {
+            "decision_situation": "Whether to report suspected document destruction.",
+            "v60_selected_chunk_ids": ["aff::inversion.anti-goal-failure-mechanism-map"],
+        },
+        "deterministic_role": ["render_current_run_private_table"],
+        "gates": {
+            "step6_private_context_allowed": True,
+            "live_card_generation_allowed": False,
+        },
+        "sidecars": {
+            "markdown": "/tmp/lolla_run_pre_step6_private_table.md",
+            "json": "/tmp/lolla_run_pre_step6_private_table.json",
+        },
+        "source_items": [
+            {
+                "source_id": "lane2::inversion",
+                "source_kind": "lane2_anchor",
+                "title": "Inversion",
+                "section_id": "lane2_anchor_pressure",
+                "source_atom_id": "inversion",
+            },
+            {
+                "source_id": "v60::card::v60-card-001-inversion",
+                "source_kind": "v60_selected_card",
+                "title": "Inversion",
+                "section_id": "v60_private_enrichment",
+                "source_atom_id": "v60-card-001-inversion",
+            },
+        ],
+    }
+    r["pre_step6_private_table_ledger"] = {
+        "schema_version": "pre_step6_private_table_ledger.v1",
+        "status": "completed",
+        "items": [
+            {
+                "source_id": "lane2::inversion",
+                "source_kind": "lane2_anchor",
+                "title": "Inversion",
+                "disposition": "used",
+                "why": "It changed the answer from reporting-path choice to failure avoidance.",
+                "visible_effect": "Counsel became the gatekeeper.",
+                "private_guardrail": "Avoid optimizing for reporting speed before privilege safety.",
+            },
+            {
+                "source_id": "v60::card::v60-card-001-inversion",
+                "source_kind": "v60_selected_card",
+                "title": "Inversion",
+                "disposition": "private_guardrail",
+                "why": "It stayed private as a constraint.",
+                "visible_effect": "",
+                "private_guardrail": "Keep failure avoidance tied to a positive next action.",
+            },
+        ],
+    }
+    r["run_health"] = {}
+    r["run_health"]["pre_step6_private_table_source_item_count"] = 2
+    r["run_health"]["pre_step6_private_table_ledger_item_count"] = 2
+    r["run_health"]["pre_step6_private_table_unaccounted_source_count"] = 0
+    r["run_health"]["pre_step6_private_table_ledger_disposition_counts"] = {
+        "private_guardrail": 1,
+        "used": 1,
+    }
+    monkeypatch.setattr(serve_result, "_RESULT", r)
+
+    html = serve_result._render_pre_step6_shadow_html()
+
+    assert "Pre-Step-6 Private Table" in html
+    assert "Source items" in html
+    assert "ledger: completed" in html
+    assert "cache: cache_miss" in html
+    assert "Disposition counts" in html
+    assert "private_guardrail" in html
+    assert "Counsel became the gatekeeper." in html
+    assert "render_current_run_private_table" in html
+    assert "pre_step6_private_table.md" in html
+    assert "This run has no" not in html
+
+
 def test_case_api_includes_pre_step6_shadow_portfolio(monkeypatch):
     r = _fixture_result()
     r["pre_step6_shadow_portfolio"] = {
