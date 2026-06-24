@@ -596,7 +596,7 @@ def test_audit_index_links_to_all_panels():
     html = serve_result._render_audit_index_html()
     for href in ("/audit/lane1", "/audit/lane2", "/audit/lane4",
                  "/audit/anti-echo", "/audit/routing", "/audit/expansions",
-                 "/audit/stakeholders"):
+                 "/audit/stakeholders", "/audit/events"):
         assert href in html, f"index missing link to {href}"
 
 
@@ -947,6 +947,65 @@ def test_pre_step6_panel_renders_private_table_and_ledger(monkeypatch):
     assert "This run has no" not in html
 
 
+def test_run_events_panel_renders_tmp_sidecar(tmp_path, monkeypatch):
+    r = _fixture_result()
+    r["usage_summary"] = {"run_id": "run-events-test"}
+    result_path = tmp_path / "lolla_run_events_test_result.json"
+    result_path.write_text(json.dumps(r), encoding="utf-8")
+    sidecar_path = tmp_path / "lolla_run_events_test_run_events.json"
+    sidecar_path.write_text(
+        json.dumps(
+            {
+                "schema_version": "lolla.run_events.v1",
+                "run_id": "run-events-test",
+                "events": [
+                    {
+                        "event_id": "event_001",
+                        "event_type": "run_initialized",
+                        "occurred_at": "2026-06-24T10:00:00Z",
+                        "actor": "operator",
+                        "details": {"latest_env_pointer": "/tmp/lolla_latest_env.sh"},
+                    },
+                    {
+                        "event_id": "event_002",
+                        "event_type": "observatory_live",
+                        "occurred_at": "2026-06-24T10:05:00Z",
+                        "actor": "operator",
+                        "details": {"url": "http://localhost:8084", "pid": "123"},
+                    },
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(serve_result, "_RESULT", r)
+    monkeypatch.setattr(serve_result, "_RESULT_PATH", result_path)
+    monkeypatch.setattr(serve_result, "_RESULT_MTIME", result_path.stat().st_mtime)
+
+    html = serve_result._render_run_events_html()
+
+    assert "Run Events" in html
+    assert str(sidecar_path) in html
+    assert "lolla.run_events.v1" in html
+    assert "run_initialized" in html
+    assert "observatory_live" in html
+    assert "http://localhost:8084" in html
+    assert "event_002" in html
+
+
+def test_run_events_panel_handles_missing_sidecar(tmp_path, monkeypatch):
+    result_path = tmp_path / "result.json"
+    result_path.write_text(json.dumps(_fixture_result()), encoding="utf-8")
+    monkeypatch.setattr(serve_result, "_RESULT", _fixture_result())
+    monkeypatch.setattr(serve_result, "_RESULT_PATH", result_path)
+    monkeypatch.setattr(serve_result, "_RESULT_MTIME", result_path.stat().st_mtime)
+
+    html = serve_result._render_run_events_html()
+
+    assert "Run Events" in html
+    assert "No <code>run_events.json</code> sidecar" in html
+
+
 def test_case_api_includes_pre_step6_shadow_portfolio(monkeypatch):
     r = _fixture_result()
     r["pre_step6_shadow_portfolio"] = {
@@ -1097,6 +1156,7 @@ def test_smoke_all_panels_serve_200_without_spa_bundle(running_server):
         "/audit/routing",
         "/audit/expansions",
         "/audit/stakeholders",
+        "/audit/events",
         "/usage",
     ]
     for p in paths:
