@@ -3245,7 +3245,7 @@ def _render_reasoning_trace_html() -> str:
   <tr><th>Error analysis ready</th><td>{_esc(str(bool(adequacy.get("error_analysis_ready"))).lower())}</td></tr>
   <tr><th>Surface divergence</th><td>{_esc(surface.get("status", ""))}</td></tr>
   <tr><th>Artifacts</th><td>{_esc(len(artifacts))}</td></tr>
-  <tr><th>Model calls</th><td>{_esc(len(model_calls))}</td></tr>
+  <tr><th>Model-call telemetry rows</th><td>{_esc(len(model_calls))}</td></tr>
   <tr><th>Reasoning-boundary leaks</th><td>{_esc(reasoning_leak_count)}</td></tr>
 </table>
 <h2>Trace Adequacy</h2>
@@ -3278,7 +3278,8 @@ def _render_reasoning_trace_html() -> str:
 <tr><th>Role</th><th>Path</th><th>Bytes</th><th>Type</th><th>SHA-256</th></tr>
 {"".join(artifact_rows) if artifact_rows else "<tr><td colspan='5' class='empty'>No artifact custody records.</td></tr>"}
 </table>
-<h2>Model Calls</h2>
+<h2>Model-Call Telemetry</h2>
+<p class="hint">Rows may summarize multiple raw provider calls. Use the stage/provider counts here, or <a href="/usage">/usage</a>, for raw call totals.</p>
 <p class="hint">Stage counts: {_esc(json.dumps(stage_counts, sort_keys=True))}</p>
 <p class="hint">Provider counts: {_esc(json.dumps(provider_counts, sort_keys=True))}</p>
 <table>
