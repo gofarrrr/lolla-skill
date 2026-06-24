@@ -1,6 +1,6 @@
 # Live Flow
 
-Detailed reference for the /lolla skill flow from activation through archive. This should mirror SKILL.md, but SKILL.md remains the executable instruction source.
+Detailed reference for the `/lolla` / `$lolla` skill flow from activation through archive. This should mirror SKILL.md, but SKILL.md remains the executable instruction source.
 
 ## Contents
 
@@ -14,21 +14,21 @@ Detailed reference for the /lolla skill flow from activation through archive. Th
 
 ### Step 0: Skill Activation
 
-The skill triggers when Claude sees trigger phrases in the YAML frontmatter description:
+The skill triggers when the orchestrator sees trigger phrases in the YAML frontmatter description:
 - Explicit: "audit this", "check my reasoning", "lolla", "devil's advocate", "what am I missing", "find blind spots", "stress test", "pre-mortem", "what are we not seeing"
 - Proactive: when the conversation contains strategic advice that hasn't been challenged
 
-When triggered, Claude loads the full `SKILL.md` body and runs the **preamble bash block** first.
+When triggered, the orchestrator loads the full `SKILL.md` body and runs the **preamble bash block** first.
 
 ### Step 0b: Preamble
 
 The preamble is a bash block that runs before anything else. It checks:
 
-1. **Skill directory location** — resolves where the skill files live (`$HOME/.claude/skills/lolla` or `.claude/skills/lolla`) and follows symlinks.
+1. **Skill directory location** — resolves where the skill files live (`$HOME/.codex/skills/lolla`, `.codex/skills/lolla`, `$HOME/.claude/skills/lolla`, or `.claude/skills/lolla`) and follows symlinks.
 2. **API key** — `OPENROUTER_API_KEY` or `LOLLA_OPENROUTER_API_KEY` must be set. Fatal if missing.
 3. **Data files** — `data/knowledge_graph.json` must exist. Fatal if missing.
 4. **Pipeline engine** — the bundled engine at `engine/system_b/` must be present. Fatal if missing.
-5. **Environment source** — project `.claude/lolla.env`, then skill `.env`, then `~/.config/lolla/.env`.
+5. **Environment source** — project `.codex/lolla.env`, project `.claude/lolla.env`, then skill `.env`, then `~/.config/lolla/.env`.
 6. **Run files** — generates `LOLLA_RUN_ID` and initializes `/tmp/lolla_<run_id>_live_transcript.txt` plus `/tmp/lolla_<run_id>_operator.log`.
 7. **Reports config** — which OpenRouter model (default: `google/gemini-3.1-flash-lite`), whether embeddings are enabled (`OPENAI_API_KEY` present or not), whether a pre-Step-6 cached-card directory is configured, and whether V60 is enabled.
 
@@ -65,13 +65,13 @@ What about the risk of...
 
 ### Step 2: Extract Decision Structure
 
+The live skill invokes `scripts/skill/run_extract_step.sh`; the helper validates the capture, calls `scripts/run_extract.py`, writes verbose diagnostics to the operator log, and creates `/tmp/lolla_<run_id>_extraction.json`.
+
 ```bash
-python3 $SKILL_DIR/scripts/run_extract.py \
-  --conversation-file /tmp/lolla_{run_id}_conversation.txt \
-  --output-file /tmp/lolla_{run_id}_extraction.json
+bash "$SKILL_DIR/scripts/skill/run_extract_step.sh"
 ```
 
-This script reads the conversation, sends it to OpenRouter with a calibrated extraction prompt, and parses the structured response.
+The underlying extraction script reads the conversation, sends it to OpenRouter with a calibrated extraction prompt, and parses the structured response.
 
 **First question: is this conversation strategic?** A conversation is "strategic" when the AI provides advice, recommendations, or analysis that could influence a material decision — business strategy, architecture choices, hiring, investment, product direction, vendor selection, etc. Code debugging, factual lookup, and creative writing are NOT strategic.
 
@@ -124,15 +124,10 @@ This beat exists because trust is built before the long wait: the user should se
 ### Step 3: Run Pipeline
 
 ```bash
-python3 $SKILL_DIR/scripts/run_pipeline.py \
-  --extraction-file /tmp/lolla_{run_id}_extraction.json \
-  --conversation-file /tmp/lolla_{run_id}_conversation.txt \
-  --output-file /tmp/lolla_{run_id}_result.json \
-  --skip-revision \
-  --pre-step6-portfolio step6_private
+bash "$SKILL_DIR/scripts/skill/run_pipeline_step.sh"
 ```
 
-The `--skip-revision` flag skips the OpenRouter revision step because Claude produces the final revised position itself in Step 6. With both `--extraction-file` and `--conversation-file`, `run_pipeline.py` wraps the raw conversation, extraction JSON, and capture metadata as `ConversationContext` by default. This script initializes the full Lolla pipeline via OpenRouter and runs all four lanes:
+The helper calls `scripts/run_pipeline.py` with the extraction file, conversation file, output path, `--skip-revision`, and `--pre-step6-portfolio step6_private`. The `--skip-revision` flag skips the OpenRouter revision step because Claude/Codex produces the final revised position itself in Step 6. With both `--extraction-file` and `--conversation-file`, `run_pipeline.py` wraps the raw conversation, extraction JSON, and capture metadata as `ConversationContext` by default. This script initializes the full Lolla pipeline via OpenRouter and runs all four lanes:
 
 Immediately before launching the command, Claude sends one functional receipt, not a content section:
 
@@ -231,7 +226,7 @@ Claude integrates anchors into the "What survived" / "What I'd take back or set 
 
 The "What actually shifted" section is capped at 3-4 substantive shifts. A shift means a different action, threshold, sequence, condition, risk treatment, or decision question. Tail additions that merely add one more caveat are not allowed to bypass the cap; they must be folded into an existing shift or dropped.
 
-**Timing detail:** Claude does not launch Step 7 in the default flow. Current `SKILL.md` requires Step 6 to be written, the V60 consideration ledger skeleton to be filled, and `finalize_v60_telemetry.py --require-valid` to succeed before the default-off pressure-check state, memo rendering, Observatory, archive, or optional pressure-check work can proceed.
+**Timing detail:** Claude/Codex does not launch Step 7 in the default flow. Current `SKILL.md` requires Step 6 to be written, the private-table and V60 ledger skeletons to be filled, and `scripts/skill/finalize_step6_ledgers.sh` to succeed before the default-off pressure-check state, memo rendering, Observatory, archive, or optional pressure-check work can proceed.
 
 ### Step 6b: Persist Revised Answer
 
@@ -277,7 +272,7 @@ Two artifacts are persisted into `result.json`: a human-readable summary string 
 
 ### Step 8c: Prepare and Render Memo
 
-Claude writes a small decision-note layer into `result.json`, then `scripts/render_memo.py` renders the standalone markdown memo. The memo is the portable decision artifact: what changed in the advice first; the detailed audit trace stays in Observatory unless an operator explicitly asks for a markdown appendix.
+Claude/Codex writes a small decision-note layer into `result.json`, then `scripts/skill/render_memo_step.sh` persists those fields and calls `scripts/render_memo.py` to render the standalone markdown memo. The memo is the portable decision artifact: what changed in the advice first; the detailed audit trace stays in Observatory unless an operator explicitly asks for a markdown appendix.
 
 New persisted fields:
 
@@ -294,7 +289,7 @@ The Python renderer remains deterministic and does not call an LLM. For new runs
 1. **Decision note** — substantive title, orientation note, what changed, what still holds, what was taken back or set aside, and any material pressure-check divergence.
 2. **Questions still unanswered** — the first three unique structural gap questions as user-answerable bullets; any remaining questions are preserved in a small additional-questions appendix.
 
-The full deterministic audit appendix — challenge points, model connections, alternative frames, and delivery profile — is no longer included by default because it leaks machinery into the portable product artifact. Operators can explicitly render it with `scripts/render_memo.py --include-audit-appendix`; Observatory remains the normal full-trace surface.
+The full deterministic audit appendix — challenge points, model connections, alternative frames, and delivery profile — is no longer included by default because it leaks machinery into the portable product artifact. Operators can explicitly render it through the memo helper with `--include-audit-appendix` when needed; Observatory remains the normal full-trace surface.
 
 Before persisting the memo fields, Claude checks for hidden sequencing contradictions, removes or labels unverified numbers, preserves any materially different pressure-check path, and keeps the unanswered-questions section priority-shaped. The renderer can fall back to sections in `revised_answer` when individual memo fields are missing, but a complete Step 8c writes all fields explicitly.
 
@@ -310,7 +305,17 @@ After the full cycle is complete (cards, updated position, pressure-check state,
 bash "$SKILL_DIR/scripts/skill/finalize_and_archive.sh"
 ```
 
-`finalize_and_archive.sh` delegates the browser server to `scripts/skill/launch_observatory.py`, which starts `observatory/serve_result.py` in a detached local session, writes `/tmp/lolla_<run_id>_observatory.pid`, records the actual URL in `/tmp/lolla_<run_id>_observatory.log`, and returns `live` only after an HTTP check succeeds. The default port is `8080`; if that port is occupied, `serve_result.py` falls forward to the next free port. The final receipt should report the actual URL and should not explain port fallback unless the user asks.
+For a merge-readiness or product-surface proof, pass a complete captured transcript and require it to scan clean:
+
+```bash
+: "${LOLLA_ENV_STATE:?FATAL: set LOLLA_ENV_STATE to the ENV_STATE path printed by the preamble}"
+. "$LOLLA_ENV_STATE"
+bash "$SKILL_DIR/scripts/skill/finalize_and_archive.sh" \
+  --trusted-transcript "/path/to/complete-live-session.txt" \
+  --require-live-output-clean
+```
+
+The helper finalizes private ledgers and live-output hygiene, starts the Observatory, verifies liveness before writing the final receipt, archives the run, appends the generated receipt to the live transcript, re-runs live-output hygiene, and re-archives so the final receipt is included. `finalize_and_archive.sh` delegates the browser server to `scripts/skill/launch_observatory.py`, which starts `observatory/serve_result.py` in a detached local session, writes `/tmp/lolla_<run_id>_observatory.pid`, records the actual URL in `/tmp/lolla_<run_id>_observatory.log`, and returns `live` only after an HTTP check succeeds. The default port is `8080`; if that port is occupied, `serve_result.py` falls forward to the next free port. The final receipt should report the actual URL and should not explain port fallback unless the user asks.
 
 Current scope: the browser Observatory is a **single-run viewer**. Its `Cases` tab is populated from the active result served by this process, not from the full local archive. Historical run review currently lives in the archive folder and comparison/export scripts (`scripts/compare_archived_runs.py`, `scripts/export_reasoning_trace_dataset.py`); an archive-backed browser history would be a separate UI/API feature.
 

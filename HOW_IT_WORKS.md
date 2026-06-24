@@ -1,6 +1,6 @@
 # Lolla - How It Works
 
-Lolla is a Claude Code skill for pressure-testing AI answers that sound convincing enough to use.
+Lolla is a Claude Code and Codex skill for pressure-testing AI answers that sound convincing enough to use.
 
 It is built for the moment after Claude gives you advice, a strategy, a recommendation, or a plan and you think: "This sounds right." Lolla slows that moment down. It asks what the answer assumed, what it skipped, what would make it fail, and what questions should have been asked before the answer sounded so sure.
 
@@ -27,7 +27,7 @@ The best test is simple:
 
 At a high level, Lolla does four things.
 
-1. **Captures the conversation.** It takes the current Claude Code conversation and preserves the user turns, assistant answers, and decision context.
+1. **Captures the conversation.** It takes the current agent conversation and preserves the user turns, assistant answers, and decision context.
 2. **Extracts the decision structure.** It identifies the decision situation, live constraints, current recommendation, original framing, reasoning passages, and dropped threads.
 3. **Runs an external reasoning audit.** The engine sends calibrated audit prompts through OpenRouter and checks the answer through four independent lanes.
 4. **Forces reconsideration.** Claude then uses the audit pressure to revise its own position, persist the revised answer, record the pressure-check state, render a memo, open the Observatory, and archive the run.
@@ -63,7 +63,7 @@ Lolla also records run health. If capture was incomplete, embeddings were off, a
 
 ## What Makes It Different
 
-Lolla is not a prompt pack. It is a small reasoning-audit system bundled as a Claude Code skill.
+Lolla is not a prompt pack. It is a small reasoning-audit system bundled as an agent skill.
 
 The engine combines:
 
@@ -86,18 +86,18 @@ This is the live `/lolla` flow in one page:
 
 1. Resolve skill path, API keys, bundled engine/data, run id, and live transcript file.
 2. Capture the current conversation into `/tmp/lolla_<run_id>_conversation.txt`.
-3. Run `scripts/run_extract.py` to create `/tmp/lolla_<run_id>_extraction.json`.
+3. Invoke the Step 2 helper, which calls `scripts/run_extract.py` and creates `/tmp/lolla_<run_id>_extraction.json`.
 4. Show a short readback and audit promise.
-5. Run `scripts/run_pipeline.py --skip-revision` with the extraction and conversation files.
+5. Invoke the Step 3 helper, which calls `scripts/run_pipeline.py --skip-revision` with the extraction and conversation files.
 6. Build `ConversationContext`, construct `ConversationIR`, and run the four audit lanes.
 7. Attach Bullshit Index, usage summary, run health, and default-on V60 private enrichment.
 8. Render the strongest counterargument in chat.
 9. Write the updated position.
-10. Persist `revised_answer` and validate the V60 consideration ledger.
+10. Persist `revised_answer` and validate the pre-Step-6 private-table and V60 consideration ledgers.
 11. Persist the default-off pressure-check state after Step 10 succeeds.
 12. If the user/operator explicitly requested deeper review, run optional pressure-check agents after Step 10 and persist their comparison plus auxiliary token usage.
 13. Persist memo-note fields and render the deterministic memo.
-14. Finalize V60 and live-output hygiene, open the Observatory, archive the 15 core artifacts under `~/.local/share/lolla/runs/`, and generate `reasoning_trace.json` for local custody/replay with enough metadata for local reasoning-eval corpus export.
+14. Finalize private ledgers and live-output hygiene, open the Observatory, archive the core/optional artifacts under `~/.local/share/lolla/runs/`, and generate `reasoning_trace.json` for local custody/replay with enough metadata for local reasoning-eval corpus export.
 
 `SKILL.md` is the executable instruction source. This page is the readable map.
 
@@ -117,8 +117,9 @@ The detailed docs are split so agents and humans do not have to load one giant f
 
 ## Current Notes
 
-- Checked against `SKILL.md` and runtime entry points on 2026-05-22.
+- Checked against `SKILL.md` and runtime entry points on 2026-06-24.
 - Pressure-check agents are rested by default. If explicitly enabled, they start only after the updated position is persisted and the V60 ledger validates.
 - The pre-Step-6 shadow portfolio hook is default-off and shadow-only; it records evidence but never changes visible output.
-- The archive currently copies 15 core artifacts and generates `reasoning_trace.json`, a local-only manifest that indexes those artifacts by path/hash and adds reasoning-lens, model-call, and trace-adequacy metadata.
+- The archive currently copies the core/optional artifact set, including live transcript, operator log, run-event log, private ledgers, memo fields, and optional usefulness/outcome reviews when present. It also generates `reasoning_trace.json`, a local-only manifest that indexes artifacts by path/hash and adds reasoning-lens, model-call, private-custody, and trace-adequacy metadata.
+- The June 24 accountability pass added run lifecycle events, operator-log separation for helper diagnostics, final-receipt Observatory liveness verification, trusted live-transcript finalization for merge-readiness checks, and graph-survival joins that preserve Lane 2 ledger uptake correctly.
 - `scripts/export_reasoning_trace_dataset.py` scans archived `reasoning_trace.json` files and writes a JSONL corpus plus aggregate summary so repeated runs can be reviewed with an evals-style error-analysis workflow.

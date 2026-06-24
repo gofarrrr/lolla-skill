@@ -49,11 +49,11 @@ The `/usage` page surfaces the following blocks (server-side rendered, no SPA re
 
 ## What gets measured
 
-Lolla makes calls to three vendors. Each is recorded into `usage_summary.vendors.<vendor>`.
+Lolla can record calls to three vendor groups. Each active group is recorded into `usage_summary.vendors.<vendor>`; default runs usually have OpenRouter calls, optional OpenAI embedding calls, and no Anthropic sub-agent calls.
 
 ### OpenRouter (chat completions)
 
-Every Grok / OpenRouter call from anywhere in the pipeline. Recorded automatically by `OpenAICompatibleBoundaryClient` — every `run_json` / `run_json_with_metadata` call appends to `client.call_log` with the `stage=` label the caller passed in.
+Every OpenRouter chat call from anywhere in the pipeline. Recorded automatically by `OpenAICompatibleBoundaryClient` — every `run_json` / `run_json_with_metadata` call appends to `client.call_log` with the `stage=` label the caller passed in.
 
 Stages currently recorded:
 
@@ -163,7 +163,7 @@ V60 and the pre-Step-6 private table add non-cost telemetry streams inside the s
 | `v60_consideration_validation` | `engine/system_b/v60_enrichment.py` | Whether the ledger accounts for every selected chunk exactly once, preserves card/model/chunk identity, respects route/disposition compatibility, and fills required visible/private/absence-blocker fields |
 | `run_health.v60_*` | `scripts/run_pipeline.py` + `SKILL.md` Step 6b | Runtime status/counts before Step 6, then ledger status, transaction count, disposition counts, used chunk count, and presented-but-not-used count after Step 6b |
 | `product_output_hygiene` + `run_health.product_output_*` | `scripts/archive_run.py` + `engine/system_b/output_hygiene.py` | Archive-time scan of revised text, memo markdown, and memo-note fields for internal machinery leaks; unsafe product output degrades the run |
-| `live_output_hygiene` + `run_health.live_output_*` | `scripts/finalize_live_output_hygiene.py` + `scripts/archive_run.py` + `engine/system_b/output_hygiene.py` | Scan of `/tmp/lolla_<run_id>_live_transcript.txt`, the Claude Code prose/status transcript artifact; unsafe live output degrades the run, missing capture is recorded as `missing`, and a clean manual artifact is `not_checked` until a complete trusted transcript is finalized with `--trusted-transcript` |
+| `live_output_hygiene` + `run_health.live_output_*` | `scripts/finalize_live_output_hygiene.py` + `scripts/archive_run.py` + `engine/system_b/output_hygiene.py` | Scan of `/tmp/lolla_<run_id>_live_transcript.txt`, the agent prose/status transcript artifact; unsafe live output degrades the run, missing capture is recorded as `missing`, and a clean manual artifact is `not_checked` until a complete trusted transcript is finalized with `--trusted-transcript` |
 
 The operational kill switch is `LOLLA_V60_ENRICHMENT=off` or `--v60-enrichment off`. Disabled runs still write a small `v60_enrichment.status = "disabled"` block so the absence is intentional and observable.
 

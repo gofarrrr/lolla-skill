@@ -49,11 +49,20 @@ That problem doesn't go away as models improve. It gets harder to see.
 git clone https://github.com/gofarrrr/lolla-skill.git
 ```
 
-2. Symlink into your Claude Code skills directory:
+2. Symlink into your skills directory.
+
+For Claude Code:
 
 ```bash
 mkdir -p ~/.claude/skills
 ln -s /path/to/lolla-skill ~/.claude/skills/lolla
+```
+
+For Codex:
+
+```bash
+mkdir -p ~/.codex/skills
+ln -s /path/to/lolla-skill ~/.codex/skills/lolla
 ```
 
 3. Add your API keys (one of these locations):
@@ -66,8 +75,16 @@ OPENROUTER_API_KEY=your-openrouter-key-here
 OPENAI_API_KEY=your-openai-key-here  # optional — enables embedding swiss cheese layer
 EOF
 
-# Option B: Per-project (create in any project's .claude/ directory)
+# Option B: Per-project for Claude Code
+mkdir -p .claude
 cat > .claude/lolla.env << 'EOF'
+OPENROUTER_API_KEY=your-openrouter-key-here
+OPENAI_API_KEY=your-openai-key-here  # optional
+EOF
+
+# Option C: Per-project for Codex
+mkdir -p .codex
+cat > .codex/lolla.env << 'EOF'
 OPENROUTER_API_KEY=your-openrouter-key-here
 OPENAI_API_KEY=your-openai-key-here  # optional
 EOF
@@ -75,7 +92,7 @@ EOF
 
 Only `OPENROUTER_API_KEY` is required. `OPENAI_API_KEY` enables the embedding swiss cheese layer — a redundancy mechanism that catches tendencies the LLM triage misses (and vice versa). Embeddings use multi-query expansion (gpt-4o-mini generates domain-vocabulary variants, fused via Reciprocal Rank Fusion) to bridge the gap between user language and curated model terminology. The system works without it, just with one fewer detection layer.
 
-4. Restart Claude Code. The `/lolla` command is now available.
+4. Restart the agent surface. In Claude Code, `/lolla` is now available. In Codex, invoke `$lolla` or ask to use the Lolla skill.
 
 ## Usage
 
@@ -83,6 +100,12 @@ In any Claude Code conversation where you're getting strategic advice, run:
 
 ```
 /lolla
+```
+
+In Codex, run:
+
+```
+$lolla
 ```
 
 The skill captures the conversation, extracts the decision structure, and runs the full audit pipeline. It works best on conversations where you're making a recommendation, weighing tradeoffs, or giving strategic advice.
@@ -114,15 +137,15 @@ python3 scripts/export_reasoning_trace_dataset.py \
 - **Python 3.10+** (uses stdlib only, no pip dependencies)
 - **OpenRouter API key** (for LLM inference via calibrated prompts)
 - **Optional:** OpenAI API key (enables semantic embedding search for richer companion matching)
-- **Orchestrator model:** Claude Opus 4.7 recommended. Sonnet 4.6 is acceptable with mild phrasing regressions (~66% anchor-naming rate vs 100% on Opus). Haiku is below the floor — it has been observed to skip critical pipeline steps (sub-agent spawning, artifact persistence) while generating plausible-looking output for the steps that didn't run. The preamble asks the orchestrator to self-identify and refuse if it is Haiku; see [HOW_IT_WORKS.md §Model Requirements](HOW_IT_WORKS.md#model-requirements) for details.
+- **Orchestrator model:** Claude Opus 4.7 recommended. Sonnet 4.6 is acceptable with mild phrasing regressions. Haiku is below the floor — it has been observed to skip critical artifact-persistence steps while generating plausible-looking output for the steps that did not run. The preamble asks the orchestrator to self-identify and refuse if it is Haiku; see [Architecture and Evolution §Model Requirements](docs/how-it-works/architecture-and-evolution.md#model-requirements) for details.
 
 ## What's Inside
 
 ```
 lolla-skill/
-├── SKILL.md              # Skill definition (Claude Code reads this)
+├── SKILL.md              # Skill definition (Claude Code/Codex reads this)
 ├── HOW_IT_WORKS.md       # Full technical reference
-├── engine/system_b/      # Bundled pipeline engine (67 files, zero dependencies)
+├── engine/system_b/      # Bundled pipeline engine (stdlib runtime, zero pip dependencies)
 ├── data/                 # Knowledge graph, curation layers, embeddings
 │   └── curated/          # Compiled substrate files (bundle selector, signal lexicon)
 ├── scripts/
@@ -145,13 +168,13 @@ See **[HOW_IT_WORKS.md](HOW_IT_WORKS.md)** — the full technical reference cove
 
 ## Cost
 
-A typical audit makes ~83 LLM calls across three vendors:
+A typical default audit makes ~50-85 OpenRouter calls, with optional OpenAI embedding calls when `OPENAI_API_KEY` is set:
 
-- **OpenRouter (~75 calls):** ~17 for the four pipeline lanes (6 Pass 1 family-cluster triage calls + 4-7 Pass 2 deep checks + 2 companion + 2 frame + 2 coverage), ~50 for the Bullshit Index (one per passage of the audited answer), and 1-2 for extraction (the second only fires on the quote-fabrication retry path).
-- **OpenAI (~4 calls):** embeddings + query expansion through the model retrieval layer.
-- **Anthropic (4 calls):** the Step-7 pressure-check sub-agents.
+- **OpenRouter:** ~18-25 calls for extraction and the four pipeline lanes, plus one Bullshit Index call per audited passage (often ~30-60 on long answers).
+- **OpenAI:** optional embeddings + query expansion through the model retrieval layer; usually well under $0.01.
+- **Anthropic:** no calls in the default flow. Step-7 pressure-check sub-agents are rested by default and only add Anthropic usage when the user/operator explicitly enables deeper-review mode.
 
-Total: typically $0.05–0.15 OpenRouter + ~$0.01 OpenAI + a larger Anthropic line that depends on which Claude model the orchestrator runs (Opus dominates).
+Default-run cost is typically dominated by OpenRouter and is printed in the final receipt. Optional deeper-review mode can add a larger Anthropic line depending on which Claude model the orchestrator runs.
 
 Every run produces a self-describing `usage_summary` block in the result JSON with per-vendor cost, per-stage call counts, prompt-cache hit rate, and the version date of the price table. Three places to read it:
 - Visual: `http://localhost:8080/usage` (when the Observatory is running)
