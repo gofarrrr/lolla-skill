@@ -2440,19 +2440,156 @@ def _render_v60_html() -> str:
 def _render_pre_step6_shadow_html() -> str:
     _reload_result_if_changed()
     header = _render_run_header()
+    private_table = _RESULT.get("pre_step6_private_table") or {}
+    private_ledger = _RESULT.get("pre_step6_private_table_ledger") or {}
     shadow = _RESULT.get("pre_step6_shadow_portfolio") or {}
+
+    if private_table:
+        source_items = private_table.get("source_items") or []
+        ledger_items = private_ledger.get("items") or []
+        health = _RESULT.get("run_health") or {}
+        validation = _RESULT.get("pre_step6_private_table_ledger_validation") or {}
+        cache = private_table.get("cache") or {}
+        key_material = private_table.get("key_material") or {}
+        sidecars = private_table.get("sidecars") or {}
+        gates = private_table.get("gates") or {}
+        deterministic_role = private_table.get("deterministic_role") or []
+
+        disposition_counts = (
+            health.get("pre_step6_private_table_ledger_disposition_counts")
+            or {
+                item.get("disposition", ""): sum(
+                    1
+                    for other in ledger_items
+                    if other.get("disposition", "") == item.get("disposition", "")
+                )
+                for item in ledger_items
+                if item.get("disposition", "")
+            }
+        )
+        validation_errors = validation.get("errors") or []
+        source_count = health.get(
+            "pre_step6_private_table_source_item_count",
+            len(source_items),
+        )
+        ledger_count = health.get(
+            "pre_step6_private_table_ledger_item_count",
+            len(ledger_items),
+        )
+        unaccounted_count = health.get(
+            "pre_step6_private_table_unaccounted_source_count",
+            max(0, len(source_items) - len(ledger_items)),
+        )
+
+        role_rows = [
+            f"<tr><td>{_esc(index)}</td><td>{_esc(role)}</td></tr>"
+            for index, role in enumerate(deterministic_role, start=1)
+        ]
+        gate_rows = [
+            f"<tr><td>{_esc(key)}</td><td>{_esc(value)}</td></tr>"
+            for key, value in gates.items()
+        ]
+        sidecar_rows = [
+            f"<tr><td>{_esc(key)}</td><td><code>{_esc(value)}</code></td></tr>"
+            for key, value in sidecars.items()
+        ]
+        source_rows = [
+            f"<tr><td><code>{_esc(item.get('source_id', ''))}</code></td>"
+            f"<td>{_esc(item.get('source_kind', ''))}</td>"
+            f"<td>{_esc(item.get('title', ''))}</td>"
+            f"<td>{_esc(item.get('section_id', ''))}</td>"
+            f"<td><code>{_esc(item.get('source_atom_id', ''))}</code></td></tr>"
+            for item in source_items
+        ]
+        ledger_rows = [
+            f"<tr><td><code>{_esc(item.get('source_id', ''))}</code></td>"
+            f"<td>{_esc(item.get('source_kind', ''))}</td>"
+            f"<td>{_esc(item.get('title', ''))}</td>"
+            f"<td><span class=\"tag\">{_esc(item.get('disposition', ''))}</span></td>"
+            f"<td>{_esc(item.get('why', ''))}</td>"
+            f"<td>{_esc(item.get('visible_effect', ''))}</td>"
+            f"<td>{_esc(item.get('private_guardrail', ''))}</td></tr>"
+            for item in ledger_items
+        ]
+
+        body = f"""
+<h1>Pre-Step-6 Private Table</h1>
+{header}
+<p class="lede">Current-run private thinking surface used before Step 6. This panel shows which lane and V60 material entered the private table, how the Step 6 ledger accounted for it, and which guardrails kept it out of public product prose.</p>
+<p>
+  <span class="tag">status: {_esc(private_table.get("status", ""))}</span>
+  <span class="tag">ledger: {_esc(private_ledger.get("status", ""))}</span>
+  <span class="tag">cache: {_esc(cache.get("state", ""))}</span>
+</p>
+<table>
+  <tr><th>Source items</th><td>{_esc(source_count)}</td></tr>
+  <tr><th>Ledger items</th><td>{_esc(ledger_count)}</td></tr>
+  <tr><th>Unaccounted sources</th><td>{_esc(unaccounted_count)}</td></tr>
+  <tr><th>Table chars</th><td>{_esc(private_table.get("table_char_count", 0))}</td></tr>
+  <tr><th>Table sections</th><td>{_esc(private_table.get("table_section_count", 0))}</td></tr>
+  <tr><th>Compiled key</th><td><code>{_esc(private_table.get("compiled_card_deck_key", ""))}</code></td></tr>
+  <tr><th>V60 selected chunks in key</th><td>{_esc(len(key_material.get("v60_selected_chunk_ids") or []))}</td></tr>
+</table>
+<h2>Ledger Uptake</h2>
+<p class="hint">Disposition counts: {_esc(json.dumps(disposition_counts, sort_keys=True))}</p>
+{"<p class='warn'>Validation errors: " + _esc('; '.join(validation_errors)) + "</p>" if validation_errors else ""}
+<table>
+<tr><th>Source</th><th>Kind</th><th>Title</th><th>Disposition</th><th>Why</th><th>Visible effect</th><th>Private guardrail</th></tr>
+{"".join(ledger_rows) if ledger_rows else "<tr><td colspan='7' class='empty'>No pre-Step-6 ledger items written yet.</td></tr>"}
+</table>
+<h2>Source Items</h2>
+<table>
+<tr><th>Source</th><th>Kind</th><th>Title</th><th>Section</th><th>Atom</th></tr>
+{"".join(source_rows) if source_rows else "<tr><td colspan='5' class='empty'>No private-table source items recorded.</td></tr>"}
+</table>
+<h2>Cache + Guardrails</h2>
+<table>
+  <tr><th>Cache resolution</th><td>{_esc(cache.get("resolution", ""))}</td></tr>
+  <tr><th>Cache ref</th><td><code>{_esc(cache.get("cache_ref", ""))}</code></td></tr>
+  <tr><th>Miss behavior</th><td>{_esc(cache.get("miss_behavior", ""))}</td></tr>
+  <tr><th>Live card generation</th><td>{_esc(str(bool(cache.get("live_card_generation_allowed"))).lower())}</td></tr>
+  <tr><th>Promotion effect</th><td>{_esc(private_table.get("promotion_effect", ""))}</td></tr>
+  {"".join(gate_rows) if gate_rows else "<tr><td colspan='2' class='empty'>No gate records.</td></tr>"}
+</table>
+<h2>Deterministic Role</h2>
+<table>
+  <tr><th>#</th><th>Responsibility</th></tr>
+  {"".join(role_rows) if role_rows else "<tr><td colspan='2' class='empty'>No deterministic-role records.</td></tr>"}
+</table>
+<h2>Sidecars</h2>
+<table>
+  <tr><th>Artifact</th><th>Path</th></tr>
+  {"".join(sidecar_rows) if sidecar_rows else "<tr><td colspan='2' class='empty'>No sidecar paths recorded.</td></tr>"}
+</table>
+"""
+        if shadow:
+            body += (
+                "<h2>Legacy Shadow Portfolio</h2>"
+                "<p class=\"hint\">This run also contains the older shadow-policy block. "
+                "The private table above is the current runtime accountability surface.</p>"
+                f"<table><tr><th>Status</th><td>{_esc(shadow.get('status', ''))}</td></tr>"
+                f"<tr><th>Compiled key</th><td><code>{_esc(shadow.get('compiled_card_deck_key', ''))}</code></td></tr></table>"
+            )
+
+        return _render_scaffold(
+            title="Lolla — Pre-Step-6",
+            body=body,
+            current_path="/audit/pre-step6",
+        )
 
     if not shadow:
         body = (
-            "<h1>Pre-Step-6 Shadow Portfolio</h1>"
+            "<h1>Pre-Step-6</h1>"
             f"{header}"
             + _empty_inline(
-                "This run has no <code>pre_step6_shadow_portfolio</code> block. "
-                "Run the pipeline in shadow mode to record cached-card policy evidence."
+                "This run has no <code>pre_step6_private_table</code> or "
+                "<code>pre_step6_shadow_portfolio</code> block. Re-run the "
+                "pipeline with pre-Step-6 private-table capture enabled to "
+                "record the current accountability surface."
             )
         )
         return _render_scaffold(
-            title="Lolla — Pre-Step-6 Shadow",
+            title="Lolla — Pre-Step-6",
             body=body,
             current_path="/audit/pre-step6",
         )
@@ -2538,8 +2675,8 @@ def _render_audit_index_html() -> str:
          "When enabled: actor dependencies, grounding tiers, known/unknown splits, and any plan-changing correction."),
         ("/audit/v60", "V60 private enrichment",
          "Post-lane source-backed affordance and absence chunks: selected, skipped, not presented, and consideration-ledger uptake."),
-        ("/audit/pre-step6", "Pre-Step-6 shadow portfolio",
-         "Dormant cached-card policy evidence: Step 6 ledger signal, payload/custody guardrails, and whether any deck-visible decision stayed shadow-only."),
+        ("/audit/pre-step6", "Pre-Step-6 private table",
+         "Current-run private-table source items, Step 6 ledger uptake, cache/custody guardrails, and legacy shadow-policy evidence when present."),
     ]
     cards = []
     for href, title, desc in items:
