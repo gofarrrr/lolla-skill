@@ -302,15 +302,17 @@ Old archived `result.json` files without the memo fields still render in the leg
 
 ### Step 9: Open Observatory
 
-After the full cycle is complete (cards, updated position, pressure-check state, memo fields, and memo all persisted), the Observatory is launched.
+After the full cycle is complete (cards, updated position, pressure-check state, memo fields, and memo all persisted), the finalizer launches the Observatory through the durable launcher and verifies that the reported URL answers before the receipt is written.
 
 ```bash
-python3 $SKILL_DIR/scripts/finalize_v60_telemetry.py --run-id "${LOLLA_RUN_ID}" --quiet --require-valid
-python3 $SKILL_DIR/scripts/finalize_live_output_hygiene.py --run-id "${LOLLA_RUN_ID}" --quiet
-python3 $SKILL_DIR/observatory/serve_result.py --result /tmp/lolla_${LOLLA_RUN_ID}_result.json
+: "${LOLLA_ENV_STATE:?FATAL: set LOLLA_ENV_STATE to the ENV_STATE path printed by the preamble}"
+. "$LOLLA_ENV_STATE"
+bash "$SKILL_DIR/scripts/skill/finalize_and_archive.sh"
 ```
 
-The default port is `8080`; the server also accepts `--port` when an older run is already holding the default. The final receipt should report the actual URL and should not explain port fallback unless the user asks.
+`finalize_and_archive.sh` delegates the browser server to `scripts/skill/launch_observatory.py`, which starts `observatory/serve_result.py` in a detached local session, writes `/tmp/lolla_<run_id>_observatory.pid`, records the actual URL in `/tmp/lolla_<run_id>_observatory.log`, and returns `live` only after an HTTP check succeeds. The default port is `8080`; if that port is occupied, `serve_result.py` falls forward to the next free port. The final receipt should report the actual URL and should not explain port fallback unless the user asks.
+
+Current scope: the browser Observatory is a **single-run viewer**. Its `Cases` tab is populated from the active result served by this process, not from the full local archive. Historical run review currently lives in the archive folder and comparison/export scripts (`scripts/compare_archived_runs.py`, `scripts/export_reasoning_trace_dataset.py`); an archive-backed browser history would be a separate UI/API feature.
 
 Zero dependencies (stdlib Python server + pre-built Svelte frontend). The backend API serves:
 

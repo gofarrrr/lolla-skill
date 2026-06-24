@@ -629,7 +629,7 @@ After the full cycle is complete (cards, updated position, pressure-check state,
 bash "$SKILL_DIR/scripts/skill/finalize_and_archive.sh"
 ```
 
-The helper finalizes the private-table ledger, V60 ledger, and live-output hygiene, starts the local Observatory server, archives the run, writes a final receipt to `/tmp/lolla_${LOLLA_RUN_ID}_final_receipt.txt`, appends that receipt to the live transcript, re-runs live-output hygiene, re-archives the run, writes Observatory/archive/cost details to `/tmp/lolla_${LOLLA_RUN_ID}_operator.log`, and prints `USER_RECEIPT_BEGIN` / `USER_RECEIPT_END` lines. Keep these for the final receipt; do not narrate them as a separate Step 9 message.
+The helper finalizes the private-table ledger, V60 ledger, and live-output hygiene, starts the local Observatory server through `scripts/skill/launch_observatory.py`, archives the run, writes a final receipt to `/tmp/lolla_${LOLLA_RUN_ID}_final_receipt.txt`, appends that receipt to the live transcript, re-runs live-output hygiene, re-archives the run, writes Observatory/archive/cost details to `/tmp/lolla_${LOLLA_RUN_ID}_operator.log`, and prints `USER_RECEIPT_BEGIN` / `USER_RECEIPT_END` lines. The launcher starts `serve_result.py` in a detached local session and only returns `live` after an HTTP check succeeds. Keep these for the final receipt; do not narrate them as a separate Step 9 message.
 
 If you have a complete captured terminal transcript for the whole live session, pass it to the same finalizer:
 
@@ -648,6 +648,8 @@ The trusted transcript must include the same user-visible prose the user saw. Th
 ## Step 10: Archive Run
 
 Step 9's helper already archives the run's core artifacts into a persistent case folder under `~/.local/share/lolla/runs/` so the run survives `/tmp` cleanup and stays accessible for later review, memo re-rendering, or stability-harness analysis. Step 10 is the silent verification point: confirm the helper reported `ARCHIVE_PATH`. Do not reconstruct or rerun `archive_run.py` by hand unless the helper failed.
+
+The launched browser Observatory is scoped to the currently served run. Its `Cases` tab is not an archive browser; use the archive folder, `scripts/compare_archived_runs.py`, or `scripts/export_reasoning_trace_dataset.py` for historical comparison until an archive-backed local-history UI exists.
 
 The archive script:
 
