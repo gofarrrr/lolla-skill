@@ -195,6 +195,76 @@ def test_graph_survival_report_preserves_used_guardrail_and_unadjudicated_signal
     assert "Unselected signals are preserved as unknown" in markdown
 
 
+def test_graph_survival_report_joins_lane2_ledger_items_without_source_atom_id(
+    tmp_path: Path,
+) -> None:
+    run_dir = tmp_path / "run"
+    run_dir.mkdir()
+    _write_json(
+        run_dir / "result.json",
+        {
+            "v60_enrichment": {
+                "status": "active",
+                "candidate_pool": {
+                    "lane_candidate_count": 1,
+                    "raw_lane_signal_count": 1,
+                    "embedding_mode": "off",
+                    "embedding_model_hits": [],
+                    "lane_candidates": [
+                        {
+                            "model_id": "second-order-thinking",
+                            "source": "lane2_companion_anchor",
+                            "reason": "The answer underweighted downstream effects.",
+                            "evidence": "Month-3 and month-6 failure states were missing.",
+                        }
+                    ],
+                },
+                "selected_cards": [],
+                "telemetry": {
+                    "selected_chunk_count": 0,
+                    "selection_source_counts": {},
+                    "skipped_candidates": [],
+                    "not_presented_candidate_count": 0,
+                },
+            }
+        },
+    )
+    _write_json(
+        run_dir / "v60_ledger.json",
+        {
+            "schema_version": "v60_skill_consideration_ledger.v1",
+            "transactions": [],
+        },
+    )
+    _write_json(
+        run_dir / "pre_step6_private_table_ledger.json",
+        {
+            "schema_version": "pre_step6_private_table_ledger.v1",
+            "status": "completed",
+            "items": [
+                {
+                    "source_id": "lane2::second-order-thinking",
+                    "source_kind": "lane2_anchor",
+                    "title": "Second Order Thinking",
+                    "disposition": "used",
+                    "why": "Shifted the answer toward downstream failure states.",
+                    "visible_effect": "Added month-3 and month-6 stop-loss thresholds.",
+                    "private_guardrail": "Do not let first-order learning value hide second-order family load.",
+                }
+            ],
+        },
+    )
+
+    report = build_graph_survival_report(run_dir)
+
+    by_model = {item["model_id"]: item for item in report["candidate_survival"]}
+    row = by_model["second-order-thinking"]
+    assert row["pre_step6_item_count"] == 1
+    assert row["pre_step6_disposition_counts"] == {"used": 1}
+    assert row["survival_state"] == "answer_delta"
+    assert report["summary"]["answer_delta_model_count"] == 1
+
+
 def test_write_graph_survival_artifacts(tmp_path: Path) -> None:
     run_dir = tmp_path / "run"
     run_dir.mkdir()

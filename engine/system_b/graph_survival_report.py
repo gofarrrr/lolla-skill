@@ -613,7 +613,7 @@ def _pre_step6_model_id(
     source_atom_id = _text(item.get("source_atom_id"))
     source_id = _text(item.get("source_id"))
     if source_kind == "lane2_anchor":
-        return source_atom_id
+        return source_atom_id or source_id.rsplit("::", 1)[-1]
     if source_kind == "v60_selected_card":
         card_id = source_atom_id or source_id.rsplit("::", 1)[-1]
         return _text(_mapping(selected_by_card.get(card_id)).get("model_id"))
