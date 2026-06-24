@@ -687,8 +687,9 @@ Acceptance:
 Scope:
 
 - Add `LOLLA_AUDIT_MODE` or CLI flag.
-- Persist mode through result, trace, archive, Observatory.
-- No behavior changes except final labels/warnings.
+- Persist mode through result, agent result, reasoning trace, archive metadata, and run-event metadata.
+- Explicit Observatory UI surfacing is deferred to the Observatory parity PR.
+- No audit behavior changes: no prompt, cost, Step 7, high-stakes policy, eval, capture, or replay changes.
 
 Why second:
 
