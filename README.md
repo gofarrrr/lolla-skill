@@ -92,6 +92,9 @@ The archive includes `reasoning_trace.json`: a local-only custody manifest that
 indexes the captured conversation, result, memo, health, usage, ledger
 artifacts, reasoning-lens IDs, model-call telemetry, and trace-adequacy status
 by path/hash and structured metadata without duplicating raw transcript text.
+The Observatory URL in the final receipt opens the completed run as a local
+single-run viewer; archive-backed history and run-to-run comparison currently
+live in the archive folder and the comparison/export scripts below.
 To turn archived runs into a local reasoning-eval corpus, run:
 
 ```bash

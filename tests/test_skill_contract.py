@@ -154,6 +154,7 @@ def test_load_bearing_helpers_record_lifecycle_events() -> None:
     pressure_helper = _read("scripts/skill/persist_default_off_pressure_check.py")
     memo_helper = _read("scripts/skill/render_memo_step.sh")
     finalizer_helper = _read("scripts/skill/finalize_and_archive.sh")
+    observatory_launcher = _read("scripts/skill/launch_observatory.py")
 
     helper_contract = "\n".join(
         [
@@ -179,6 +180,8 @@ def test_load_bearing_helpers_record_lifecycle_events() -> None:
     assert "observatory_launch_attempted" in finalizer_helper
     assert "observatory_launch_skipped" in finalizer_helper
     assert "observatory_$OBSERVATORY_STATUS" in finalizer_helper
+    assert "launch_observatory.py" in finalizer_helper
+    assert "start_new_session=True" in observatory_launcher
     assert "archive_completed" in finalizer_helper
     assert "final_receipt_written" in finalizer_helper
 
@@ -270,7 +273,8 @@ def test_load_bearing_steps_use_helpers() -> None:
         < finalizer_helper.rfind("archive_run.py")
         < finalizer_helper.rfind("USER_RECEIPT_BEGIN")
     )
-    assert "for _ in {1..15}" in finalizer_helper
+    assert "launch_observatory.py" in finalizer_helper
+    assert "nohup python3" not in finalizer_helper
 
 
 def test_skill_docs_do_not_expose_direct_load_bearing_commands() -> None:

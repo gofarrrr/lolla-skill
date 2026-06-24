@@ -173,26 +173,19 @@ if [ "$SKIP_OBSERVATORY" -eq 0 ]; then
   OBSERVATORY_STATUS="unavailable"
   record_run_event_quiet observatory_launch_attempted --detail "log=$OBS_LOG"
   : > "$OBS_LOG"
-  nohup python3 -u "$SKILL_DIR/observatory/serve_result.py" --result "$RESULT_PATH" >"$OBS_LOG" 2>&1 &
-  OBSERVATORY_PID="$!"
-  printf '%s\n' "$OBSERVATORY_PID" > "$OBS_PID_FILE"
-  for _ in {1..15}; do
-    OBSERVATORY_URL="$(grep -Eo 'http://localhost:[0-9]+' "$OBS_LOG" | tail -1 || true)"
-    if [ -n "$OBSERVATORY_URL" ] && observatory_http_ok "$OBSERVATORY_URL"; then
-      OBSERVATORY_STATUS="live"
-      break
-    fi
-    if ! kill -0 "$OBSERVATORY_PID" 2>/dev/null; then
-      break
-    fi
-    sleep 1
-  done
+  LAUNCH_OUTPUT="$(python3 "$SKILL_DIR/scripts/skill/launch_observatory.py" \
+    --result "$RESULT_PATH" \
+    --log "$OBS_LOG" \
+    --pid-file "$OBS_PID_FILE")"
+  lolla_operator_block "launch_observatory.py" "$LAUNCH_OUTPUT"
+  OBSERVATORY_STATUS="$(printf '%s\n' "$LAUNCH_OUTPUT" | awk -F= '/^OBSERVATORY_STATUS=/ {print $2; exit}')"
+  OBSERVATORY_URL="$(printf '%s\n' "$LAUNCH_OUTPUT" | awk -F= '/^OBSERVATORY_URL=/ {print $2; exit}')"
+  OBSERVATORY_PID="$(printf '%s\n' "$LAUNCH_OUTPUT" | awk -F= '/^OBSERVATORY_PID=/ {print $2; exit}')"
   if [ "$OBSERVATORY_STATUS" = "live" ]; then
     lolla_operator_note "OBSERVATORY_URL: $OBSERVATORY_URL"
     lolla_operator_note "OBSERVATORY_PID: $OBSERVATORY_PID"
   else
     lolla_operator_note "OBSERVATORY_URL: unavailable (see $OBS_LOG)"
-    kill "$OBSERVATORY_PID" 2>/dev/null || true
   fi
   lolla_operator_note "OBSERVATORY_STATUS: $OBSERVATORY_STATUS"
   record_run_event_quiet "observatory_$OBSERVATORY_STATUS" \
