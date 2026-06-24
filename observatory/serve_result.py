@@ -222,8 +222,103 @@ body:has(.drawer-panel) .telemetry-fab {
 """
 
 
+_MAIN_SURFACE_COPY_PATCH_SCRIPT = """
+<script id="lolla-main-surface-copy-patch">
+(() => {
+  if (window.__lollaMainSurfaceCopyPatch) return;
+  window.__lollaMainSurfaceCopyPatch = true;
+
+  let healthOverall = null;
+
+  const patchTextNodes = (root, replacer) => {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    for (const node of nodes) {
+      const next = replacer(node.nodeValue || "");
+      if (next !== node.nodeValue) node.nodeValue = next;
+    }
+  };
+
+  const patchPressureCheck = () => {
+    for (const section of document.querySelectorAll('[aria-label="Audit Conclusion"]')) {
+      section.setAttribute("aria-label", "Optional Pressure Check");
+      const title = section.querySelector(".conclusion-title");
+      if (title && title.textContent.trim() === "Audit Conclusion") {
+        title.textContent = "Optional Pressure Check";
+      }
+      const stat = section.querySelector(".conclusion-stat");
+      if (!stat) continue;
+      const text = stat.textContent.trim();
+      if (text === "0 lanes reviewed, no divergences") {
+        stat.textContent = "Optional pressure check not run; no Step-7 divergences";
+      } else {
+        stat.textContent = text.replace(
+          /^(\\d+) lanes? reviewed,\\s*no divergences$/,
+          (_match, count) => `${count} optional lane${count === "1" ? "" : "s"} checked, no Step-7 divergences`
+        );
+      }
+    }
+  };
+
+  const patchRunInspector = () => {
+    for (const button of document.querySelectorAll(".inspector-toggle")) {
+      patchTextNodes(button, (text) => text.replace(/(\\d+) calls /g, "$1 boundary calls "));
+    }
+  };
+
+  const patchHeaderHealth = () => {
+    if (healthOverall !== "partial") return;
+    for (const span of document.querySelectorAll(".status-bar span")) {
+      if (span.textContent.trim() === "COMPLETE") span.textContent = "PARTIAL";
+    }
+    for (const dot of document.querySelectorAll(".status-dot")) {
+      dot.classList.add("status-dot--degraded");
+    }
+  };
+
+  const patch = () => {
+    patchPressureCheck();
+    patchRunInspector();
+    patchHeaderHealth();
+  };
+
+  const loadSingleRunHealth = async () => {
+    try {
+      const casesResponse = await fetch("/api/cases");
+      if (!casesResponse.ok) return;
+      const cases = await casesResponse.json();
+      const firstCase = Array.isArray(cases) ? cases[0] : null;
+      if (!firstCase || !firstCase.id) return;
+      const caseResponse = await fetch(`/api/case/${encodeURIComponent(firstCase.id)}`);
+      if (!caseResponse.ok) return;
+      const payload = await caseResponse.json();
+      healthOverall = payload && payload.run_health && payload.run_health.overall;
+      patch();
+    } catch (_error) {
+      // Best-effort product-copy patch only. The Observatory still works if
+      // the health request races the SPA or fails on an older fixture.
+    }
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", patch, { once: true });
+  } else {
+    patch();
+  }
+  new MutationObserver(patch).observe(document.documentElement, {
+    childList: true,
+    subtree: true,
+    characterData: true,
+  });
+  loadSingleRunHealth();
+})();
+</script>
+"""
+
+
 def _inject_telemetry_fab(html_bytes: bytes) -> bytes:
-    """Insert the Telemetry FAB anchor + style into the SPA's index.html.
+    """Insert the Telemetry FAB and root-page copy patch into index.html.
 
     String-injection at the byte-stream layer — does NOT modify the bundle on
     disk and works whether the SPA was built recently or long ago. Idempotent
@@ -236,7 +331,7 @@ def _inject_telemetry_fab(html_bytes: bytes) -> bytes:
         return html_bytes
     if "telemetry-fab" in text:
         return html_bytes
-    inject = _TELEMETRY_FAB_STYLE + _TELEMETRY_FAB_HTML
+    inject = _TELEMETRY_FAB_STYLE + _TELEMETRY_FAB_HTML + _MAIN_SURFACE_COPY_PATCH_SCRIPT
     if "</body>" in text:
         text = text.replace("</body>", inject + "</body>", 1)
     else:
