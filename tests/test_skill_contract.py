@@ -134,6 +134,54 @@ def test_reasoning_trace_archive_contract_is_preserved() -> None:
     assert "exact fingerprint first, then token-set Jaccard" not in contract
 
 
+def test_load_bearing_helpers_record_lifecycle_events() -> None:
+    setup = _read("scripts/skill/setup.sh")
+    run_extract_helper = _read("scripts/skill/run_extract_step.sh")
+    run_pipeline_helper = _read("scripts/skill/run_pipeline_step.sh")
+    revised_helper = _read("scripts/skill/persist_revised_answer.py")
+    ledger_helper = _read("scripts/skill/finalize_step6_ledgers.sh")
+    pressure_helper = _read("scripts/skill/persist_default_off_pressure_check.py")
+    memo_helper = _read("scripts/skill/render_memo_step.sh")
+    finalizer_helper = _read("scripts/skill/finalize_and_archive.sh")
+
+    helper_contract = "\n".join(
+        [
+            setup,
+            run_extract_helper,
+            run_pipeline_helper,
+            revised_helper,
+            ledger_helper,
+            pressure_helper,
+            memo_helper,
+            finalizer_helper,
+        ]
+    )
+
+    assert "run_initialized" in setup
+    assert "record_run_event_quiet" in helper_contract
+    assert "extraction_completed" in run_extract_helper
+    assert "pipeline_completed" in run_pipeline_helper
+    assert "revised_answer_persisted" in revised_helper
+    assert "step6_ledgers_finalized" in ledger_helper
+    assert "pressure_check_state_persisted" in pressure_helper
+    assert "memo_rendered" in memo_helper
+    assert "observatory_launch_attempted" in finalizer_helper
+    assert "observatory_launch_skipped" in finalizer_helper
+    assert "observatory_$OBSERVATORY_STATUS" in finalizer_helper
+    assert "archive_completed" in finalizer_helper
+    assert "final_receipt_written" in finalizer_helper
+
+    for helper in [
+        run_extract_helper,
+        run_pipeline_helper,
+        ledger_helper,
+        memo_helper,
+        finalizer_helper,
+    ]:
+        assert "scripts/record_run_event.py" in helper
+        assert "--quiet || true" in helper
+
+
 def test_skill_externalized_step_anchors_resolve() -> None:
     skill = _read("SKILL.md")
     steps = _read("docs/skill/STEPS.md")

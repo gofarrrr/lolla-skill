@@ -22,6 +22,16 @@ if [ -n "${LOLLA_EXPECTED_RUN_ID:-}" ] && [ "${LOLLA_RUN_ID:-}" != "$LOLLA_EXPEC
   exit 1
 fi
 
+record_run_event_quiet() {
+  local event_type="$1"
+  shift
+  python3 "$SKILL_DIR/scripts/record_run_event.py" \
+    --run-id "$LOLLA_RUN_ID" \
+    --event-type "$event_type" \
+    "$@" \
+    --quiet || true
+}
+
 EXPECTED_EXTRACTION="/tmp/lolla_${LOLLA_RUN_ID}_extraction.json"
 EXPECTED_CONVERSATION="/tmp/lolla_${LOLLA_RUN_ID}_conversation.txt"
 EXPECTED_RESULT="/tmp/lolla_${LOLLA_RUN_ID}_result.json"
@@ -155,3 +165,23 @@ require_hit = os.environ.get("LOLLA_PRE_STEP6_REQUIRE_CACHE_HIT", "").lower() in
 if require_hit and cache.get("state") != "cache_hit":
     raise SystemExit("FATAL: required pre-Step-6 cache hit, but cached cards were not loaded.")
 PY
+
+PIPELINE_HEALTH="$(python3 - <<'PY'
+import json
+import os
+from pathlib import Path
+
+run_id = os.environ.get("LOLLA_RUN_ID", "")
+path = Path(f"/tmp/lolla_{run_id}_result.json")
+try:
+    payload = json.loads(path.read_text(encoding="utf-8"))
+except Exception:
+    print("unknown")
+else:
+    print((payload.get("run_health") or {}).get("overall", "unknown"))
+PY
+)"
+record_run_event_quiet pipeline_completed \
+  --detail "status=ok" \
+  --detail "run_health=$PIPELINE_HEALTH" \
+  --detail "result_path=$EXPECTED_RESULT"

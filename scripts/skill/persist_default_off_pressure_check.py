@@ -14,6 +14,7 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
+from engine.system_b.run_events import append_run_event  # noqa: E402
 from engine.system_b.run_state import assert_expected_run_state  # noqa: E402
 
 
@@ -63,6 +64,14 @@ def persist_default_off(run_id: str, *, tmp_dir: Path = Path("/tmp")) -> Path:
         "written_at": written_at,
     }
     result_path.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
+    try:
+        append_run_event(
+            run_id=run_id,
+            event_type="pressure_check_state_persisted",
+            details={"status": "not_run_default_off", "mode": "default_off"},
+        )
+    except Exception:
+        pass
     return result_path
 
 

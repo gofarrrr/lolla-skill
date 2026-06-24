@@ -65,18 +65,31 @@ if [ -z "${LOLLA_RUN_ID:-}" ]; then
   exit 1
 fi
 
+record_run_event_quiet() {
+  local event_type="$1"
+  shift
+  python3 "$SKILL_DIR/scripts/record_run_event.py" \
+    --run-id "$LOLLA_RUN_ID" \
+    --event-type "$event_type" \
+    "$@" \
+    --quiet || true
+}
+
 case "$MODE" in
   pre)
     python3 "$SKILL_DIR/scripts/finalize_pre_step6_private_table_ledger.py" --run-id "${LOLLA_RUN_ID}" --quiet --require-valid
+    record_run_event_quiet step6_ledgers_finalized --detail "mode=pre_step6"
     echo "STEP6_LEDGER_STATUS: pre_step6 finalized"
     ;;
   v60)
     python3 "$SKILL_DIR/scripts/finalize_v60_telemetry.py" --run-id "${LOLLA_RUN_ID}" --quiet --require-valid
+    record_run_event_quiet step6_ledgers_finalized --detail "mode=v60"
     echo "STEP6_LEDGER_STATUS: v60 finalized"
     ;;
   all)
     python3 "$SKILL_DIR/scripts/finalize_pre_step6_private_table_ledger.py" --run-id "${LOLLA_RUN_ID}" --quiet --require-valid
     python3 "$SKILL_DIR/scripts/finalize_v60_telemetry.py" --run-id "${LOLLA_RUN_ID}" --quiet --require-valid
+    record_run_event_quiet step6_ledgers_finalized --detail "mode=all"
     echo "STEP6_LEDGER_STATUS: all finalized"
     ;;
 esac

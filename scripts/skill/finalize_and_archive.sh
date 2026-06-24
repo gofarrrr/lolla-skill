@@ -94,6 +94,16 @@ if [ -z "${LOLLA_RUN_ID:-}" ]; then
   exit 1
 fi
 
+record_run_event_quiet() {
+  local event_type="$1"
+  shift
+  python3 "$SKILL_DIR/scripts/record_run_event.py" \
+    --run-id "$LOLLA_RUN_ID" \
+    --event-type "$event_type" \
+    "$@" \
+    --quiet || true
+}
+
 RESULT_PATH="/tmp/lolla_${LOLLA_RUN_ID}_result.json"
 TRANSCRIPT_PATH="${LOLLA_LIVE_TRANSCRIPT:-/tmp/lolla_${LOLLA_RUN_ID}_live_transcript.txt}"
 if [ ! -s "$RESULT_PATH" ]; then
@@ -115,6 +125,7 @@ if [ "$SKIP_OBSERVATORY" -eq 0 ]; then
   OBS_LOG="/tmp/lolla_${LOLLA_RUN_ID}_observatory.log"
   OBS_PID_FILE="/tmp/lolla_${LOLLA_RUN_ID}_observatory.pid"
   OBSERVATORY_STATUS="unavailable"
+  record_run_event_quiet observatory_launch_attempted --detail "log=$OBS_LOG"
   : > "$OBS_LOG"
   nohup python3 -u "$SKILL_DIR/observatory/serve_result.py" --result "$RESULT_PATH" >"$OBS_LOG" 2>&1 &
   OBSERVATORY_PID="$!"
@@ -138,6 +149,12 @@ if [ "$SKIP_OBSERVATORY" -eq 0 ]; then
     kill "$OBSERVATORY_PID" 2>/dev/null || true
   fi
   echo "OBSERVATORY_STATUS: $OBSERVATORY_STATUS"
+  record_run_event_quiet "observatory_$OBSERVATORY_STATUS" \
+    --detail "url=${OBSERVATORY_URL:-}" \
+    --detail "pid=${OBSERVATORY_PID:-}" \
+    --detail "log=$OBS_LOG"
+else
+  record_run_event_quiet observatory_launch_skipped
 fi
 
 ARCHIVE_OUTPUT="$(python3 "$SKILL_DIR/scripts/archive_run.py" --run-id "${LOLLA_RUN_ID}")"
@@ -145,6 +162,7 @@ printf '%s\n' "$ARCHIVE_OUTPUT"
 ARCHIVE_PATH="$(printf '%s\n' "$ARCHIVE_OUTPUT" | awk -F'path:[[:space:]]*' '/path:/ {print $2; exit}')"
 if [ -n "$ARCHIVE_PATH" ]; then
   echo "ARCHIVE_PATH: $ARCHIVE_PATH"
+  record_run_event_quiet archive_completed --detail "archive_path=$ARCHIVE_PATH"
 fi
 
 python3 - "$RESULT_PATH" <<'PY'
@@ -173,6 +191,9 @@ if [ -z "$RECEIPT_FILE" ] && [ -n "$ARCHIVE_PATH" ]; then
     --archive-path "$ARCHIVE_PATH" \
     --output "$AUTO_RECEIPT_FILE"
   append_receipt_to_transcript "$AUTO_RECEIPT_FILE" "$TRANSCRIPT_PATH"
+  record_run_event_quiet final_receipt_written \
+    --detail "receipt_file=$AUTO_RECEIPT_FILE" \
+    --detail "observatory_status=$OBSERVATORY_STATUS"
   python3 "$SKILL_DIR/scripts/finalize_live_output_hygiene.py" --run-id "${LOLLA_RUN_ID}" --quiet
   ARCHIVE_OUTPUT="$(python3 "$SKILL_DIR/scripts/archive_run.py" --run-id "${LOLLA_RUN_ID}")"
   printf '%s\n' "$ARCHIVE_OUTPUT"

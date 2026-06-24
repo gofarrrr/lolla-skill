@@ -14,6 +14,7 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
+from engine.system_b.run_events import append_run_event  # noqa: E402
 from engine.system_b.run_state import assert_expected_run_state  # noqa: E402
 
 
@@ -22,6 +23,17 @@ def _run_id(value: str | None) -> str:
     if not run_id:
         raise SystemExit("FATAL: LOLLA_RUN_ID is not set. Re-run /lolla setup before Step 6b.")
     return run_id
+
+
+def _record_event(run_id: str, *, word_count: int) -> None:
+    try:
+        append_run_event(
+            run_id=run_id,
+            event_type="revised_answer_persisted",
+            details={"word_count": word_count},
+        )
+    except Exception:
+        pass
 
 
 def main() -> int:
@@ -61,6 +73,7 @@ def main() -> int:
             if transcript and not transcript.endswith("\n\n"):
                 handle.write("\n\n")
             handle.write(revised_text + "\n")
+    _record_event(run_id, word_count=len(revised_text.split()))
     print(f"Revised answer persisted to {result_path}")
     return 0
 
