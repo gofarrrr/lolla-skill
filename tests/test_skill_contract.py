@@ -81,6 +81,8 @@ def test_run_state_is_pinned_to_env_state_not_latest_symlink_docs() -> None:
     assert "make_run_id" in setup
     assert "LOLLA_EXPECTED_RUN_ID" in setup
     assert "LOLLA_ENV_STATE" in setup
+    assert "LOLLA_OPERATOR_LOG" in setup
+    assert "/tmp/lolla_${LOLLA_RUN_ID}_operator.log" in setup
     assert 'ln -sf "$LOLLA_ENV_STATE" /tmp/lolla_latest_env.sh' in setup
     assert "record_run_event.py" in setup
 
@@ -114,6 +116,8 @@ def test_skill_requires_live_transcript_artifact_and_gate_before_archive() -> No
     assert "manual transcript" in contract
     assert "live_output_health: not_checked" in contract
     assert "before archive" in contract.lower()
+    assert "/tmp/lolla_${LOLLA_RUN_ID}_operator.log" in contract
+    assert "operator.log" in contract
 
 
 def test_reasoning_trace_archive_contract_is_preserved() -> None:
@@ -122,7 +126,8 @@ def test_reasoning_trace_archive_contract_is_preserved() -> None:
     archive = _read("scripts/archive_run.py")
     contract = "\n".join([skill, steps, archive])
 
-    assert "18 core/optional" in contract
+    assert "19 core/optional" in contract
+    assert "operator.log" in contract
     assert "run_events.json" in contract
     assert "user_usefulness_review.json" in contract
     assert "outcome_review.json" in contract

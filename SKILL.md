@@ -74,11 +74,12 @@ else
 fi
 ```
 
-This sets up the skill directory, run ID, live transcript, environment
-variables, cache configuration, run-event logging, and runtime state. It prints
-an `ENV_STATE:` path such as `/tmp/lolla_${LOLLA_RUN_ID}_env.sh`; later shell
-calls should source that run-specific file. `/tmp/lolla_latest_env.sh` is only a
-discoverability fallback before the active run is pinned. Guarded helpers keep
+This sets up the skill directory, run ID, live transcript, operator log,
+environment variables, cache configuration, run-event logging, and runtime
+state. It prints an `ENV_STATE:` path such as
+`/tmp/lolla_${LOLLA_RUN_ID}_env.sh`; later shell calls should source that
+run-specific file. `/tmp/lolla_latest_env.sh` is only a discoverability fallback
+before the active run is pinned. Guarded helpers keep
 `LOLLA_EXPECTED_RUN_ID` set and abort if stale state points at a different run.
 See `scripts/skill/setup.sh` for the full setup procedure.
 
@@ -142,6 +143,7 @@ A completed run leaves a durable artifact chain:
 - pressure-check state, even when default-off
 - memo note fields and rendered memo
 - live transcript hygiene state
+- operator log
 - run-event log
 - Observatory server
 - archived case folder with graph-survival report and reasoning trace
@@ -180,6 +182,10 @@ live run must use reduced narration and maintain a live transcript:
   Do not append raw bash output, JSON, Observatory pages, or operator-only
   artifacts. This file is archived as `live_transcript.txt` and scanned as the
   `live_narration` product surface.
+- Put verbose helper output, provider warnings, raw JSON inspections, validation
+  receipts, and exploratory diagnostics in
+  `/tmp/lolla_${LOLLA_RUN_ID}_operator.log` instead of chat prose or the live
+  transcript. The operator log is archived as `operator.log`.
 - A manually maintained transcript is not proof that the full Claude Code
   console was captured. The hygiene finalizer records a manual transcript with
   no detected leaks as `live_output_health: not_checked`, not `clean`. It only
@@ -207,7 +213,7 @@ Render the user-facing readback and audit promise directly before launching the 
 
 ### Step 3: Run Pipeline
 
-Run the four-lane pipeline through `scripts/skill/run_pipeline_step.sh`; do not reconstruct the `run_pipeline.py` command yourself. The helper preserves cache-dir/cache-ref routing, prints the operator-only pre-Step-6 receipt, and enforces `LOLLA_PRE_STEP6_REQUIRE_CACHE_HIT`. See [Step 3 in STEPS.md](docs/skill/STEPS.md#step-3-run-pipeline) for the status receipt, V60/private-table notes, and stop conditions.
+Run the four-lane pipeline through `scripts/skill/run_pipeline_step.sh`; do not reconstruct the `run_pipeline.py` command yourself. The helper preserves cache-dir/cache-ref routing, writes the operator-only pre-Step-6 receipt to the operator log, and enforces `LOLLA_PRE_STEP6_REQUIRE_CACHE_HIT`. See [Step 3 in STEPS.md](docs/skill/STEPS.md#step-3-run-pipeline) for the status receipt, V60/private-table notes, and stop conditions.
 
 ### Step 4: Counterargument Lead (Beat 2 — internal name)
 

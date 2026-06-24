@@ -119,6 +119,10 @@ def test_archive_run_writes_reasoning_trace_manifest_with_hashes(tmp_path: Path)
         ),
         encoding="utf-8",
     )
+    (tmp_dir / f"lolla_{run_id}_operator.log").write_text(
+        "[2026-06-23T09:05:00Z] synthetic operator note\n",
+        encoding="utf-8",
+    )
     (tmp_dir / f"lolla_{run_id}_result.json").write_text(
         json.dumps(
             {
@@ -293,6 +297,7 @@ def test_archive_run_writes_reasoning_trace_manifest_with_hashes(tmp_path: Path)
     assert trace["process"]["run_events"]["event_count"] == 1
     assert trace["process"]["run_events"]["events"][0]["event_type"] == "recovery_pinned_run_id"
     assert artifact_by_path["conversation.txt"]["role"] == "source_conversation"
+    assert artifact_by_path["operator.log"]["role"] == "operator_log"
     assert artifact_by_path["run_events.json"]["role"] == "run_event_ledger"
     assert artifact_by_path["user_usefulness_review.json"]["role"] == "user_usefulness_review"
     assert artifact_by_path["outcome_review.json"]["role"] == "outcome_review"
