@@ -596,7 +596,7 @@ def test_audit_index_links_to_all_panels():
     html = serve_result._render_audit_index_html()
     for href in ("/audit/lane1", "/audit/lane2", "/audit/lane4",
                  "/audit/anti-echo", "/audit/routing", "/audit/expansions",
-                 "/audit/stakeholders", "/audit/events"):
+                 "/audit/stakeholders", "/audit/reasoning-trace", "/audit/events"):
         assert href in html, f"index missing link to {href}"
 
 
@@ -1006,6 +1006,142 @@ def test_run_events_panel_handles_missing_sidecar(tmp_path, monkeypatch):
     assert "No <code>run_events.json</code> sidecar" in html
 
 
+def test_reasoning_trace_panel_follows_archive_path_from_run_events(tmp_path, monkeypatch):
+    r = _fixture_result()
+    r["usage_summary"] = {"run_id": "trace-test"}
+    result_path = tmp_path / "lolla_trace_test_result.json"
+    result_path.write_text(json.dumps(r), encoding="utf-8")
+
+    archive_dir = tmp_path / "archive" / "trace-test"
+    archive_dir.mkdir(parents=True)
+    run_events_path = tmp_path / "lolla_trace_test_run_events.json"
+    run_events_path.write_text(
+        json.dumps(
+            {
+                "schema_version": "lolla.run_events.v0.1",
+                "run_id": "trace-test",
+                "events": [
+                    {
+                        "event_id": "event_001",
+                        "event_type": "archive_completed",
+                        "occurred_at": "2026-06-24T10:05:00Z",
+                        "actor": "operator",
+                        "details": {"archive_path": str(archive_dir)},
+                    }
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+    trace_path = archive_dir / "reasoning_trace.json"
+    trace_path.write_text(
+        json.dumps(
+            {
+                "schema_version": "lolla.reasoning_trace.v0.1",
+                "trace_id": "trace-test",
+                "created_at": "2026-06-24T10:06:00Z",
+                "trace_adequacy": {
+                    "status": "thin",
+                    "future_review_ready": False,
+                    "error_analysis_ready": True,
+                    "coverage": {"source_conversation": "present"},
+                    "missing_context": ["live_output_health is not_checked"],
+                    "commitment_detection": {
+                        "status": "heuristic_v0",
+                        "candidate_count": 1,
+                    },
+                    "outcome_review": {"status": "not_started"},
+                },
+                "surface_divergence": {
+                    "status": "matched",
+                    "revised_artifact_present": True,
+                    "live_transcript_present": True,
+                    "result_revised_answer_present": True,
+                    "revised_artifact_matches_result": True,
+                    "revised_artifact_found_in_live_transcript": True,
+                    "source_refs": {"revised": "revised.txt"},
+                },
+                "artifacts": [
+                    {
+                        "path": "conversation.txt",
+                        "role": "source_conversation",
+                        "sha256": "sha256:abcdef",
+                        "bytes": 123,
+                        "content_type": "text/plain",
+                    }
+                ],
+                "missing_artifacts": [
+                    {
+                        "path": "pre_step6_shadow_portfolio.json",
+                        "role": "shadow_portfolio_trace",
+                    }
+                ],
+                "model_calls": [
+                    {
+                        "index": 0,
+                        "stage": "pass1_cluster_authority",
+                        "provider_name": "openrouter",
+                        "model": "google/gemini-3.1-flash-lite",
+                        "status": "ok",
+                        "total_tokens": 6312,
+                        "call_count": 1,
+                        "reasoning_disabled": True,
+                        "reasoning_details_present": True,
+                    }
+                ],
+                "reasoning_lenses": [
+                    {
+                        "lens_id": "inversion",
+                        "selected": True,
+                        "surfaced": True,
+                        "disposition": "selected",
+                    }
+                ],
+                "candidate_commitments": [
+                    {
+                        "candidate_id": "commitment_001",
+                        "source_actor": "assistant",
+                        "kind": "recommendation",
+                        "impact": "medium",
+                        "evidence_status": "evidence_missing",
+                        "correction_status": "observed",
+                        "claim": "Call counsel before reporting.",
+                    }
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(serve_result, "_RESULT", r)
+    monkeypatch.setattr(serve_result, "_RESULT_PATH", result_path)
+    monkeypatch.setattr(serve_result, "_RESULT_MTIME", result_path.stat().st_mtime)
+
+    html = serve_result._render_reasoning_trace_html()
+
+    assert "Reasoning Trace" in html
+    assert str(trace_path) in html
+    assert "thin" in html
+    assert "live_output_health is not_checked" in html
+    assert "pre_step6_shadow_portfolio.json" in html
+    assert "pass1_cluster_authority" in html
+    assert "Reasoning-boundary leaks" in html
+    assert "commitment_001" in html
+    assert "Call counsel before reporting." in html
+
+
+def test_reasoning_trace_panel_handles_missing_sidecar(tmp_path, monkeypatch):
+    result_path = tmp_path / "result.json"
+    result_path.write_text(json.dumps(_fixture_result()), encoding="utf-8")
+    monkeypatch.setattr(serve_result, "_RESULT", _fixture_result())
+    monkeypatch.setattr(serve_result, "_RESULT_PATH", result_path)
+    monkeypatch.setattr(serve_result, "_RESULT_MTIME", result_path.stat().st_mtime)
+
+    html = serve_result._render_reasoning_trace_html()
+
+    assert "Reasoning Trace" in html
+    assert "No <code>reasoning_trace.json</code> sidecar" in html
+
+
 def test_case_api_includes_pre_step6_shadow_portfolio(monkeypatch):
     r = _fixture_result()
     r["pre_step6_shadow_portfolio"] = {
@@ -1156,6 +1292,7 @@ def test_smoke_all_panels_serve_200_without_spa_bundle(running_server):
         "/audit/routing",
         "/audit/expansions",
         "/audit/stakeholders",
+        "/audit/reasoning-trace",
         "/audit/events",
         "/usage",
     ]
