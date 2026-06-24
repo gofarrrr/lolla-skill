@@ -78,7 +78,7 @@ Lolla succeeds when it makes better reconsideration possible, not when it dictat
 | OpenRouter times out | Boundary client returns empty payload + a degraded `BoundaryCallMetadata` (status `timeout` / `http_error_*` / `url_error` / `response_json_error`). No internal retry loop. The pipeline degrades — affected lanes return empty/partial results, the run continues, and the failure is visible in `audit_summary.boundary_calls[]`. The only application-level retry is extraction's single quote-fabrication retry (see *Capture validation* in Step 2). |
 | `OPENAI_API_KEY` not set | Embeddings disabled. Pipeline runs purely on LLM triage + deterministic routing. Works fine, just without the swiss cheese redundancy layer. |
 | V60 artifact missing or disabled | The four lanes still run. `v60_enrichment` becomes `disabled` or `skipped_error`; if enabled but unavailable, `run_health.issues[]` includes `v60_enrichment_failed`. |
-| V60 active but ledger missing | `finalize_v60_telemetry.py` marks `run_health.v60_consideration_ledger: missing`, adds `v60_consideration_ledger_missing`, and records every selected chunk as unaccounted. The run archives, but it is visibly incomplete. |
+| V60 active but ledger missing | Step 6b/Step 9 finalization marks `run_health.v60_consideration_ledger: missing`, adds `v60_consideration_ledger_missing`, and records every selected chunk as unaccounted. The run archives, but it is visibly incomplete. |
 | Pre-Step-6 private table ready | Normal live-skill behavior. `pre_step6_private_table` is recorded, `/tmp/lolla_<run_id>_pre_step6_private_table.md` is written for Step 6, and code still does not select the visible answer. |
 | Pre-Step-6 private table cache miss | The compact current-run table is still written. Cached portfolio cards are omitted; no live card generation or reviewer calls are triggered. |
 | Pre-Step-6 shadow portfolio disabled | Normal behavior outside explicit shadow runs. The live run does not record `pre_step6_shadow_portfolio`, and visible output is unchanged by the shadow resolver. |
@@ -97,7 +97,7 @@ A typical run makes 18-25 OpenRouter calls against `google/gemini-3.1-flash-lite
 - 2 frame pressure calls — extraction + reframing (~2K tokens each)
 - 2-3 structural coverage calls (~2K tokens each): question classification, dimension detection + coverage, gap question generation (conditional, only when gaps exist)
 
-Total: roughly 60-110K tokens per run. At Grok 4.1 Fast pricing, approximately $0.04-0.10 per audit. Embeddings (if enabled) add one gpt-4o-mini expansion call (~$0.001) plus a batch embedding call for the original query + 2 domain variants (~$0.0002). The revision step is available for headless/eval runs but skipped in the skill flow — Claude produces the updated position directly.
+Total: roughly 60-110K tokens for the core pipeline before the Bullshit Index pass, with final cost depending on the served OpenRouter model and answer length. Embeddings (if enabled) add one gpt-4o-mini expansion call (~$0.001) plus a batch embedding call for the original query + 2 domain variants (~$0.0002). The revision step is available for headless/eval runs but skipped in the skill flow — Claude/Codex produces the updated position directly.
 
 The Bullshit Index runs one OpenRouter call per passage of the audited answer (typically 30-60 calls in parallel). On a long answer this can dominate the OpenRouter call count. It runs in `_run_bullshit_index` after the lanes complete and is recorded under `stage="bullshit_index"` in the per-run telemetry.
 
