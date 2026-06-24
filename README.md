@@ -1,45 +1,125 @@
 # Lolla
 
-*Named after the Lollapalooza effect — Charlie Munger's term for what happens when multiple cognitive tendencies compound together to produce extreme misjudgment. That compounding is what makes reasoning failures dangerous, and what makes them detectable.*
+**A reasoning audit for AI advice.**
 
-**A reasoning audit for AI conversations.**
+Lolla is the layer you run after an AI answer sounds good enough to trust.
+It captures the conversation, pressure-tests the reasoning, asks what the
+answer skipped, forces a revised position, and preserves the whole run as a
+local artifact you can inspect later.
 
-Lolla detects structural weaknesses in LLM-generated strategic advice — not by generating opinions, but by routing through a curated substrate of 222 mental models, 25 cognitive tendencies, and 1,358 relationship edges compiled from primary sources.
+The name comes from Charlie Munger's "Lollapalooza effect": bad judgment often
+does not come from one bias. It comes from several forces compounding until a
+confident answer feels inevitable. Lolla looks for those compounds in AI
+reasoning.
 
-When you ask an LLM whether to hire a VP of Sales, sign a vendor contract, or restructure your engineering org, the answer sounds confident. Lolla tells you *where that confidence is structurally fragile* — and what specific mental models challenge it.
+## The Simple Idea
 
-Lolla is not in the business of finding better answers. It is in the business of **being less wrong** — reintroducing the friction that LLM fluency removes, so that inconvenient tensions, missing reversal conditions, and embedded assumptions don't get smoothed out of the narrative.
+AI makes polished answers cheap. That is useful, but it creates a new problem:
+the answer can sound finished before the thinking is finished.
 
-Four independent audit lanes:
+Lolla adds a second pass with a different job:
 
-| Lane | What it asks | Output |
-|------|-------------|--------|
-| **Structural Pressure** | Which cognitive tendencies are distorting this reasoning? | DeltaCard — tendency detections with corrective models, challenge statements, reversal triggers |
-| **Model Companion** | Which mental models are already active in this reasoning? | CompanionCheatSheet — verified model presence with failure modes, premortem questions, antagonists |
-| **Frame Pressure** | What assumptions are embedded in the question itself? | FramePressureCard — suppressed counterfactuals, mutable constraints, reframed alternative questions |
-| **Structural Coverage** | What structural territory did the answer never enter? | CoverageCard — gap dimensions with discovery questions only the decision-maker can answer |
+- The first model gives advice.
+- Lolla asks where that advice is structurally fragile.
+- The assistant must then say what survived, what it would take back, and what
+  actually changed.
 
-Each lane produces independent, traceable findings grounded in curated knowledge — not LLM-generated commentary.
+It is not a fact checker, a second consultant, or a longer prompt. It is a
+reasoning audit: a system for finding missing reversal conditions, inherited
+assumptions, weak frames, untested constraints, and gaps that only become
+visible when you challenge the structure of the answer.
 
-## Why This Exists
+## When To Use It
 
-LLMs will keep getting better. They'll get more accurate, more nuanced, more capable of complex reasoning. So why build a deterministic system to challenge them?
+Run Lolla when the conversation contains strategic advice you might act on:
 
-Because fluency and correctness are different problems. An LLM can produce a perfectly coherent recommendation that is structurally fragile — built on an unexamined assumption, missing a reversal condition, or anchored to whichever framing the question happened to use. The better the prose, the harder this is to see. Getting better at generating doesn't mean getting better at knowing where the generation is weak.
+- career decisions
+- startup pivots
+- legal or compliance reporting sequences
+- hiring and org design
+- product strategy
+- investment or vendor decisions
+- architectural tradeoffs
+- any advice where "this sounds right" is not enough
 
-This is not a temporary gap waiting for the next model release to close. It's architectural:
+Do not use it for simple coding help, factual lookup, creative drafting, or
+cases where there is no material decision being shaped by the answer.
 
-- **Probabilistic systems cannot self-verify.** An LLM auditing its own reasoning is sampling from the same distribution that produced the flaw. Anthropic's sycophancy research, Princeton's user studies (N=557), and MIT's Bayesian modeling all converge on the same finding: LLMs systematically agree with users and defend their own outputs, even when wrong. A different model helps — but it shares training biases. A deterministic substrate with curated failure modes doesn't share anything.
+## What Happens In A Run
 
-- **Structure beats context.** Giving a model all the right facts produces 30% accuracy on reasoning tasks. Giving it a structured reasoning framework produces 85% (Car Wash Study, 120 trials, p=0.001). CMU's research shows surface cues dominate implicit constraints by 8-38x across 14 frontier models. The knowledge exists inside the model — it doesn't activate without structural intervention.
+At a high level, every run does four things:
 
-- **Reasoning quality is not factual accuracy.** Almost all existing LLM guardrails check whether the output is *true* or *safe*. Almost nobody checks whether the *reasoning structure* is sound — whether the argument would survive adversarial challenge, whether the confidence is earned, whether the frame suppresses alternatives. This is the gap Lolla occupies.
+1. **Capture the conversation.** Lolla saves the relevant user and assistant
+   turns into a run-specific scratch file.
+2. **Extract the decision shape.** It identifies the decision, constraints,
+   open threads, original framing, and assistant position.
+3. **Run four independent audit lanes.** The system checks cognitive pressure,
+   active mental models, hidden framing, and missing structural territory.
+4. **Force reconsideration and preserve evidence.** The assistant writes a
+   revised position, a memo is rendered, Observatory opens locally, and the run
+   is archived with traces, health, cost, and custody metadata.
 
-The broader landscape is converging on the same insight. Microsoft's GraphRAG, Stanford's DSPy, NVIDIA's NeMo Guardrails, Karpathy's knowledge compilation architecture — all are building hybrid systems where LLMs handle the probabilistic edges and deterministic structures handle the reliable middle. Neurosymbolic AI saw 236 publications in 2023 alone. The question is no longer *whether* to combine LLMs with structured knowledge, but *how* — and for *which problems*.
+The user-facing output is deliberately small:
 
-Most of these systems target factual grounding (is the output true?) or compliance (is the output safe?). Lolla targets a different problem: **is the reasoning structurally sound?** Not "did the LLM hallucinate a fact" but "did the LLM close on a recommendation without testing the frame, dismiss a risk without evidence, or let one scenario do all the argumentative work?"
+- a short readback of what was captured
+- the strongest case against the original answer
+- an updated position with what survived, what changed, and what was taken back
+- a memo path
+- an Observatory URL for the full breakdown
+- a local archive path
 
-That problem doesn't go away as models improve. It gets harder to see.
+The deeper machinery stays in the archive and Observatory.
+
+## The Four Lanes
+
+| Lane | Plain question | What it contributes |
+| --- | --- | --- |
+| Structural Pressure | What cognitive tendency may be distorting the reasoning? | Challenge statements, reversal triggers, corrective pressure |
+| Model Companion | What mental models are already active or being violated? | Failure modes, premortem questions, useful lenses |
+| Frame Pressure | What did the user's framing make too easy to accept? | Alternative questions and suppressed counterfactuals |
+| Structural Coverage | What important decision territory did the answer never enter? | Gap dimensions and user-answerable discovery questions |
+
+Each lane is independent. That separation matters: one lane can challenge the
+answer, another can deepen it, another can challenge the question, and another
+can show what was never addressed.
+
+## What Makes It Different
+
+Lolla is built around one architectural split:
+
+**LLMs read language at the edges. Curated structure governs the middle.**
+
+The probabilistic parts detect reasoning shape, extract frames, verify mental
+model use, and generate situation-specific questions. The deterministic middle
+routes those detections through a curated substrate of:
+
+- 222 mental models
+- 25 cognitive tendencies
+- 241 tendency-to-model antidote bindings
+- 1,358 relationship edges between models
+- source-backed V60 affordance and absence records
+
+That lets the system be flexible where language is messy and strict where
+traceability matters.
+
+## Newer Run-Capture Machinery
+
+Recent runs preserve more than the final answer. Each run now has:
+
+- collision-resistant run IDs such as `20260623T113203Z_c4df83`
+- run-specific env files so stale `/tmp/lolla_latest_env.sh` pointers cannot
+  silently mix runs
+- expected-run guards before major model calls and artifact writes
+- live-output hygiene checks that catch public transcript contamination
+- run-event ledgers for restarts, pins, aborts, and recovery actions
+- graph survival reports that preserve selected, suppressed, and
+  budget-suppressed reasoning lenses
+- `reasoning_trace.json`, a local custody manifest for eval-style review
+- optional `user_usefulness_review.json` and `outcome_review.json` slots for
+  later feedback
+
+The goal is not just "get a better answer." The goal is to make the reasoning
+process inspectable after the moment has passed.
 
 ## Install
 
@@ -49,50 +129,53 @@ That problem doesn't go away as models improve. It gets harder to see.
 git clone https://github.com/gofarrrr/lolla-skill.git
 ```
 
-2. Symlink into your Claude Code skills directory:
+2. Symlink it into your Claude Code skills directory:
 
 ```bash
 mkdir -p ~/.claude/skills
 ln -s /path/to/lolla-skill ~/.claude/skills/lolla
 ```
 
-3. Add your API keys (one of these locations):
+3. Add your API keys:
 
 ```bash
-# Option A: Global config (works across all projects)
 mkdir -p ~/.config/lolla
 cat > ~/.config/lolla/.env << 'EOF'
-OPENROUTER_API_KEY=your-openrouter-key-here
-OPENAI_API_KEY=your-openai-key-here  # optional — enables embedding swiss cheese layer
-EOF
-
-# Option B: Per-project (create in any project's .claude/ directory)
-cat > .claude/lolla.env << 'EOF'
 OPENROUTER_API_KEY=your-openrouter-key-here
 OPENAI_API_KEY=your-openai-key-here  # optional
 EOF
 ```
 
-Only `OPENROUTER_API_KEY` is required. `OPENAI_API_KEY` enables the embedding swiss cheese layer — a redundancy mechanism that catches tendencies the LLM triage misses (and vice versa). Embeddings use multi-query expansion (gpt-4o-mini generates domain-vocabulary variants, fused via Reciprocal Rank Fusion) to bridge the gap between user language and curated model terminology. The system works without it, just with one fewer detection layer.
+Only `OPENROUTER_API_KEY` is required. `OPENAI_API_KEY` enables embedding-based
+retrieval redundancy; the system still works without it.
 
 4. Restart Claude Code. The `/lolla` command is now available.
 
 ## Usage
 
-In any Claude Code conversation where you're getting strategic advice, run:
+In a Claude Code conversation where you want to audit strategic advice, run:
 
-```
+```text
 /lolla
 ```
 
-The skill captures the conversation, extracts the decision structure, and runs the full audit pipeline. It works best on conversations where you're making a recommendation, weighing tradeoffs, or giving strategic advice.
+You can also trigger it with phrases such as:
 
-At completion, each run is archived locally under `~/.local/share/lolla/runs/`.
-The archive includes `reasoning_trace.json`: a local-only custody manifest that
-indexes the captured conversation, result, memo, health, usage, ledger
-artifacts, reasoning-lens IDs, model-call telemetry, and trace-adequacy status
-by path/hash and structured metadata without duplicating raw transcript text.
-To turn archived runs into a local reasoning-eval corpus, run:
+- `audit this`
+- `check my reasoning`
+- `find blind spots`
+- `stress test this`
+- `what am I missing?`
+- `devil's advocate`
+- `pre-mortem`
+
+Completed runs are archived locally under:
+
+```text
+~/.local/share/lolla/runs/
+```
+
+To export archived `reasoning_trace.json` manifests into a local JSONL corpus:
 
 ```bash
 python3 scripts/export_reasoning_trace_dataset.py \
@@ -101,121 +184,88 @@ python3 scripts/export_reasoning_trace_dataset.py \
   --summary-out /tmp/lolla_reasoning_traces_summary.json
 ```
 
-**Trigger phrases** (the skill also activates on these):
-- "audit this", "check my reasoning", "find blind spots"
-- "stress test", "what am I missing", "challenge this"
-- "devil's advocate", "what are we not seeing", "pre-mortem"
-
 ## Requirements
 
-- **Python 3.10+** (uses stdlib only, no pip dependencies)
-- **OpenRouter API key** (for LLM inference via calibrated prompts)
-- **Optional:** OpenAI API key (enables semantic embedding search for richer companion matching)
-- **Orchestrator model:** Claude Opus 4.7 recommended. Sonnet 4.6 is acceptable with mild phrasing regressions (~66% anchor-naming rate vs 100% on Opus). Haiku is below the floor — it has been observed to skip critical pipeline steps (sub-agent spawning, artifact persistence) while generating plausible-looking output for the steps that didn't run. The preamble asks the orchestrator to self-identify and refuse if it is Haiku; see [HOW_IT_WORKS.md §Model Requirements](HOW_IT_WORKS.md#model-requirements) for details.
-
-## What's Inside
-
-```
-lolla-skill/
-├── SKILL.md              # Skill definition (Claude Code reads this)
-├── HOW_IT_WORKS.md       # Full technical reference
-├── engine/system_b/      # Bundled pipeline engine (67 files, zero dependencies)
-├── data/                 # Knowledge graph, curation layers, embeddings
-│   └── curated/          # Compiled substrate files (bundle selector, signal lexicon)
-├── scripts/
-│   ├── run_extract.py      # Step 2: conversation → decision structure (capture-critical gate, quote-fabrication retry, truncation transparency)
-│   ├── run_pipeline.py     # Step 3: decision structure → four-lane audit (family-clustered Pass 1, run_health envelope)
-│   ├── render_memo.py      # Deterministic markdown memo from result.json (no LLM)
-│   ├── archive_run.py      # Local archive + reasoning_trace.json custody manifest
-│   ├── export_reasoning_trace_dataset.py # Local JSONL corpus + summary from archived traces
-│   └── stability_check.py  # Diagnostic harness (Mode A aggregate / Mode B pipeline-variance / Mode C extraction-drift)
-├── observatory/          # Local web UI — four cards, revised answer, reasoning graph, run health, pipeline inspector
-├── references/           # Tendency catalog, calibration, guardrails (loaded on demand)
-└── tests/                # Unit tests (trigger sources, frame validation, fuzzy matching, BI context, memo rendering)
-```
-
-The engine runs entirely on Python stdlib. No virtual environment, no pip install, no external packages.
-
-## How It Works
-
-See **[HOW_IT_WORKS.md](HOW_IT_WORKS.md)** — the full technical reference covering the problem, architecture, knowledge substrate, step-by-step pipeline flow, quality doctrine, known limitations, and cost per run.
+- Python 3.10+
+- OpenRouter API key
+- Optional OpenAI API key for embedding retrieval
+- Claude Opus 4.7 recommended as orchestrator
+- Claude Sonnet 4.6 acceptable with slightly noisier prose and higher need to
+  inspect run health
+- Haiku is below the floor because it has been observed to skip artifact steps
+  while producing plausible-looking output
 
 ## Cost
 
-A typical audit makes ~83 LLM calls across three vendors:
+A normal default run usually costs a few cents. Recent real runs have landed
+around `$0.04-$0.07`, depending on transcript size, the number of deep checks,
+and the Bullshit Index passage count.
 
-- **OpenRouter (~75 calls):** ~17 for the four pipeline lanes (6 Pass 1 family-cluster triage calls + 4-7 Pass 2 deep checks + 2 companion + 2 frame + 2 coverage), ~50 for the Bullshit Index (one per passage of the audited answer), and 1-2 for extraction (the second only fires on the quote-fabrication retry path).
-- **OpenAI (~4 calls):** embeddings + query expansion through the model retrieval layer.
-- **Anthropic (4 calls):** the Step-7 pressure-check sub-agents.
+Default runs use OpenRouter for extraction and audit calls. OpenAI embedding
+costs are tiny when enabled. The post-Step-6 pressure-check sub-agents are
+default-off; if explicitly enabled, they run through Claude Code and can become
+the dominant cost line.
 
-Total: typically $0.05–0.15 OpenRouter + ~$0.01 OpenAI + a larger Anthropic line that depends on which Claude model the orchestrator runs (Opus dominates).
+Every run writes a `usage_summary` block into:
 
-Every run produces a self-describing `usage_summary` block in the result JSON with per-vendor cost, per-stage call counts, prompt-cache hit rate, and the version date of the price table. Three places to read it:
-- Visual: `http://localhost:8080/usage` (when the Observatory is running)
+```text
+/tmp/lolla_<run_id>_result.json
+```
+
+Read it through:
+
+- Observatory: `http://localhost:8080/usage`
 - API: `GET http://localhost:8080/api/case/<case_id>/usage`
-- Raw: `jq .usage_summary /tmp/lolla_<run_id>_result.json`
+- Raw JSON: `jq .usage_summary /tmp/lolla_<run_id>_result.json`
 
-Full doc: **[docs/cost-and-telemetry.md](docs/cost-and-telemetry.md)** — single source of truth for what's measured, where it lives, how to bump prices, and how to add a new vendor or stage.
+See [docs/cost-and-telemetry.md](docs/cost-and-telemetry.md) for the canonical
+cost reference.
 
-## Inspiration and Credits
+## Documentation Map
 
-Lolla exists because of foundational work by others:
+Start here:
 
-- **Charlie Munger** — [*The Psychology of Human Misjudgment*](https://fs.blog/great-talks/psychology-human-misjudgment/) is the intellectual root. The 25 cognitive tendencies are Munger's framework, adapted for LLM-generated reasoning.
-- **Daniel Kahneman** — *Thinking, Fast and Slow* established the System 1 / System 2 framework. LLMs are extraordinary System 1 machines — fast, fluent, pattern-matching — but structurally weak at System 2: slow, deliberate, logically disciplined reasoning. Lolla is an external System 2 guardrail.
-- **Balaji Srinivasan** — His framing of AI as probabilistic (good at "middle-to-middle" generation) but needing a deterministic verification layer directly influenced our architecture: LLMs at the probabilistic edges, curated knowledge in the deterministic middle. "0% AI is slow, but 100% AI is slop" — Lolla occupies the space between, where human-curated structure disciplines LLM flexibility.
-- **Farnam Street / The Knowledge Project** — Shane Parrish's interviews and writing on mental models shaped how the 222-model substrate was selected and organized.
-- **Kenneth Cukier, Viktor Mayer-Schönberger & Francis de Véricourt** — *Framers: Human Advantage in an Age of Technology and Turmoil* directly informed Lane 3 (Frame Pressure). The thesis that framing is humanity's core cognitive advantage — and that the frame constrains the solution space before reasoning even begins — is why Lolla audits the question, not just the answer.
-- **Research foundations** — Perez et al. (2022) on sycophancy, Kadavath et al. (2022) on calibration, Turpin et al. (2023) on unfaithful reasoning, Sharma et al. (2023) on sycophancy taxonomy.
+- [HOW_IT_WORKS.md](HOW_IT_WORKS.md) - the readable system story
+- [docs/how-it-works/problem-and-thesis.md](docs/how-it-works/problem-and-thesis.md) - why Lolla exists
+- [docs/how-it-works/live-flow.md](docs/how-it-works/live-flow.md) - exact `/lolla` runtime flow
+- [docs/how-it-works/pipeline-lanes.md](docs/how-it-works/pipeline-lanes.md) - lane internals
+- [docs/how-it-works/knowledge-substrate.md](docs/how-it-works/knowledge-substrate.md) - curated model substrate
+- [docs/how-it-works/operations-and-limits.md](docs/how-it-works/operations-and-limits.md) - operational doctrine and failure modes
+- [docs/how-it-works/architecture-and-evolution.md](docs/how-it-works/architecture-and-evolution.md) - architecture and migration history
+- [docs/cost-and-telemetry.md](docs/cost-and-telemetry.md) - cost and telemetry
 
-### Projects That Informed Our Approach
+## Repository Layout
 
-- [qmd](https://github.com/tobi/qmd) (Tobi Lutke) — Hybrid search architecture: embeddings as one layer alongside BM25 and LLM re-ranking, fused via reciprocal rank fusion. Validated our swiss cheese approach where embeddings complement LLM triage rather than replacing it.
-- [Karpathy's knowledge wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) (Andrej Karpathy) — Compilation-based knowledge management: raw sources → persistent wiki artifacts with cross-references, not retrieval-based rediscovery. Directly mirrors our curation → compilation pipeline.
-- [autoresearch](https://github.com/karpathy/autoresearch) (Andrej Karpathy) — Clean separation of stable substrate from experimental layer, with documentation as a first-class programming interface.
-- [iwe](https://github.com/iwe-org/iwe) — Structured knowledge graphs from Markdown with hierarchy, polyhierarchy, and context inheritance. "Messy knowledge yields poor results." Validated our curated-Markdown-first doctrine.
-- [Machine Bullshit](https://github.com/synthanai/Machine-Bullshit) (Hannigan et al., 2025) — Four-subtype LLM-as-judge bullshit detector operationalizing Frankfurt's (2005) definition. Adapted for strategic advice domain as Lolla's Bullshit Index layer. MIT license.
-- [Mathematical methods and human thought in the age of AI](https://arxiv.org/abs/2603.26524) (Klowden & Tao, 2026) — "Odorless proof" concept (technically correct output lacking insight), "smell test" as informal quality assessment before formal verification, blue/red team framing for AI-assisted reasoning. Directly informs our anti-bullshit doctrine and Lolla's architectural role as a red team system.
-- [gstack](https://github.com/AshMartian/gstack) — Demonstrated that Claude Code skills can be comprehensive workflow systems, not just prompt snippets.
-- [superpowers](https://github.com/NickHeap2/claude-code-superpowers) — Showed how to present a skill with confidence and clear value proposition.
-- [context-engineering](https://github.com/coleam00/context-engineering) — Validated the academic-rigor approach to skill presentation and that curated knowledge substrates outperform generated content.
-- [supermemory](https://github.com/supermemoryai/supermemory) — Extraction pipeline patterns (relationship typing, deduplication, conversation capture) informed our conversation-to-ConversationContext extraction design.
-- [SkillsBench](https://github.com/benchflow-ai/skillsbench) — Research findings on skill effectiveness (+18.6pp for 2-3 focused modules, +16.2pp for curated knowledge, worked examples as effectiveness separator) validated our architecture choices.
+```text
+lolla-skill/
+├── SKILL.md              # Claude Code skill instructions
+├── HOW_IT_WORKS.md       # Public system overview
+├── engine/system_b/      # Pipeline engine
+├── data/                 # Knowledge graph, curated substrate, embeddings
+├── scripts/              # Capture, pipeline, memo, archive, export tools
+├── observatory/          # Local breakdown UI
+├── docs/                 # Public explanatory docs
+├── references/           # Operator and prompt-surface contracts
+└── tests/                # Unit and regression tests
+```
 
-## Origin
-
-Lolla was built by a lawyer, not a software engineer. I'm a trained legal professional who learned agentic coding about ten months ago. I had no prior software engineering background. Everything in this project — the RAG pipeline that built the canonical articles, the curation methodology, the deterministic routing, the knowledge graph compilation, the evaluation system — I learned by needing it and building it.
-
-That background is not incidental to the design. Lawyers think about reasoning structure professionally: burden of proof, adversarial challenge, the difference between a persuasive argument and a sound one, why a confident brief can be structurally weak. Lolla audits reasoning the way a good opposing counsel reads a brief — not to disagree, but to find where the structure doesn't hold.
-
-Building this project taught me how RAG works (and where it fails), how curation differs from generation, how LLMs actually behave under structured constraints, what knowledge engineering looks like in practice, why the distinction between deterministic and probabilistic matters for trust, and what context engineering means when you're trying to make an LLM focus rather than wander.
-
-What I discovered along the way is that I genuinely love building things. The problem-solving, the architecture decisions, the moment when a system starts working — that's what gets me up in the morning. This project is my proof of work: not a portfolio of tutorials, but a working system built from scratch by someone who did the research and figured out how to make it real in an agentic-first world.
-
-If you're building something where structured reasoning, knowledge engineering, or AI audit systems matter — and you're looking for someone who thinks about these problems obsessively — I'd love to talk.
-
-## What's Next
-
-The system works — but more data from real runs will let us tune the deterministic routing, understand detection patterns better, and calibrate where the system is strong and where it's still rough.
-
-- **More mental models.** Domain-specific model packs — legal reasoning, medical decision-making, engineering tradeoffs — each following the same curation methodology, would make the system sharper in specialized contexts.
-- **New lanes.** The four-lane architecture is extensible. Temporal reasoning, stakeholder mapping, assumption dependency chains — each would follow the same pattern: probabilistic detection at the edges, deterministic routing in the middle.
-- **Better detection calibration.** More runs against more cases means better understanding of where each tendency's detection boundary should sit.
-- **Deeper conversation extraction.** There's more signal in conversational dynamics — how positions shift across turns, where the human pushed back and the LLM folded, where concerns were raised and then quietly dropped.
-- **Beyond the skill.** The curated knowledge substrate and the audit architecture are not limited to a Claude Code skill. The same engine could power API-level reasoning checks, editorial review workflows, decision journaling tools, or structured training environments where people practice spotting reasoning weaknesses. We see directions we haven't built yet — and probably directions we haven't thought of.
-
-If you see an application we're missing or have ideas about where this kind of system would be valuable, open an issue. The most interesting next steps often come from people with different problems than ours.
+The engine uses Python stdlib only. No virtual environment is required for the
+core skill path.
 
 ## Contributing
 
-The most valuable contributions don't require deep knowledge of the codebase:
+The most useful contributions are practical:
 
-- **Run the system and share findings.** Every real-world audit helps us understand detection patterns and calibration gaps.
-- **Add mental models.** Write a canonical article from primary sources, curate its activation and intervention semantics, and it enters the substrate.
-- **Write eval cases.** Professional-grade strategic scenarios with known reasoning weaknesses help us measure whether the system catches what it should.
-- **Challenge the architecture.** Read [HOW_IT_WORKS.md](HOW_IT_WORKS.md) and tell us where the design doesn't hold.
+- Run the system on real strategic advice and report where the audit helped or
+  missed.
+- Add high-quality eval cases.
+- Improve the curated model substrate from primary sources.
+- Tighten docs where the public story and the code drift apart.
+- Challenge the architecture when the trust boundary is unclear.
 
-This is an early-stage project built by someone who learned as he went. The architecture is sound, the knowledge substrate is real, and the system produces genuine structural pressure. But there are rough edges, unexplored directions, and decisions that deserve scrutiny from people with different expertise. That's the point of making it public.
+Lolla is a working system, but it is still early. The right posture is the one
+the tool itself tries to teach: use it, inspect it, pressure-test it, and make
+the reasoning better.
 
 ## License
 

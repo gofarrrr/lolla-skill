@@ -106,6 +106,17 @@ The design philosophy: Lane 4 is **informative only**. It doesn't influence Lane
 
 **Lane 4 prompt structure.** Question classification, dimension detection, and gap question generation use `run_structural_coverage_with_traces_from_ir` in the live pipeline — the orchestrator builds a `Lane4Packet` from the IR, dispatches to the `_from_packet` formatters internally, and captures each boundary-call trace immediately after that stage returns. User-prompt bodies follow the same CONTEXT (extractor summaries, NOT citable) / SOURCE (raw conversation turns) split as Lane 3. For detection specifically, SOURCE contains both user and assistant turns — detect_when conditions read user turns (the question), coverage assessments read assistant turns (the answer). Lane 4 has no evidence-substring validation downstream (unlike Lane 3), so the CONTEXT/SOURCE split is prompt guidance not a mechanical gate; the architectural effect shows up as `coverage_evidence` citations attributed to the assistant's actual replies ("Assistant mentions...", "Assistant proposes...") instead of extractor-paraphrased summaries.
 
+**Coverage quality states.** `covered: true` now remains a boolean compatibility field, but each detected dimension also carries `coverage_quality` so a covered dimension can still be inspected for depth. Current values:
+
+| Value | Meaning |
+|---|---|
+| `uncovered` | The dimension is live and materially unaddressed. |
+| `covered_strong` | The answer named concrete thresholds, owners, dates, budgets, gates, scope, or other decision-grade detail. |
+| `covered_missing_operational_detail` | The answer entered the dimension but stayed at the "how/who/when/plan" level without enough operational specificity. |
+| `covered_weak_threshold` | The answer technically covered the dimension, but the evidence is generic, thin, or close to mere mention. |
+| `covered_immaterial` | The dimension is covered or demoted because the evidence/materiality text makes it non-load-bearing. |
+| `covered_demoted_immaterial` | More than five gaps fired; the code-level cap demoted lower-priority gaps to prevent over-flagging. |
+
 **The 15 structural dimensions:**
 
 | Dimension | Cleaving Frame | Example Gap |
@@ -148,7 +159,7 @@ The V60 block also records what did not enter the hot context: skipped candidate
 - `embeddings` — `active` or `off`
 - `fingerprint` — `ok` if companion verified at least one model, `empty` otherwise
 - `findings_produced` — whether Lane 1 produced any findings
-- `issues` — legacy array naming what happened: `substrate_empty`, `embeddings_off`, `no_fingerprint`, `pipeline_warnings`, `capture_degraded`, `capture_critical`, `quote_fabrication`, `capture_truncated`, `lane3_all_dropped`, `bullshit_index_partial`, `stakeholder_check_failed`, `v60_enrichment_failed`, `v60_consideration_ledger_missing`, `v60_consideration_ledger_invalid`, `product_output_leak`, `live_output_leak`, `live_output_missing`, `live_output_unverified`
+- `issues` — legacy array naming what happened: `substrate_empty`, `embeddings_off`, `no_fingerprint`, `pipeline_warnings`, `capture_degraded`, `capture_critical`, `quote_fabrication`, `capture_truncated`, `lane3_all_dropped`, `bullshit_index_partial`, `vendor_boundary_reasoning_leak`, `stakeholder_check_failed`, `v60_enrichment_failed`, `v60_consideration_ledger_missing`, `v60_consideration_ledger_invalid`, `product_output_leak`, `live_output_leak`, `live_output_semantic_mismatch`, `live_output_missing`, `live_output_unverified`
 - `issue_details` — structured severity records with `code`, `severity`, `axis`, `trust_impact`, and mode/count metadata
 - `warnings` — merged pipeline warnings + capture warnings
 - `capture_manifest` (optional) — actual vs. declared turn counts and character length from the conversation capture
@@ -159,7 +170,7 @@ The V60 block also records what did not enter the hot context: skipped candidate
 - `v60_consideration_ledger` — `valid`, `missing`, `invalid`, or `not_required` after Step 6b/Step 9 finalization
 - `v60_consideration_disposition_counts`, `v60_used_chunk_count`, `v60_presented_but_not_used_chunk_count`, `v60_unaccounted_chunk_count` — process telemetry for comparing what was offered, what was picked up, and what was left unused
 - `product_output_health`, `product_output_leak_count`, `product_output_leaks` — archive-time scanner result for revised text, memo markdown, and memo-note fields
-- `live_output_health`, `live_output_leak_count`, `live_output_leaks` — live-transcript scanner result for `/tmp/lolla_<run_id>_live_transcript.txt`; missing transcripts are recorded as `missing`, manual no-leak transcripts are `not_checked`, and only a trusted complete transcript can be `clean`
+- `live_output_health`, `live_output_leak_count`, `live_output_leaks`, `live_output_semantic_mismatch_count`, `live_output_semantic_mismatches` — live-transcript scanner result for `/tmp/lolla_<run_id>_live_transcript.txt`; missing transcripts are recorded as `missing`, manual no-leak transcripts are `not_checked`, semantic mismatch between visible `## Updated position` blocks and `result.revised_answer` is `unsafe`, and only a trusted complete transcript can be `clean`
 - `pre_step6_private_table` — present when the live skill requests `step6_private`; records the private-table sidecar, cache state, zero-call envelope, and ledger skeleton
 - `pre_step6_shadow_portfolio` — present only when shadow mode ran; records cache hit/miss/error status without changing public output
 

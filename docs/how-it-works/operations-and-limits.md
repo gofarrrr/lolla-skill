@@ -40,6 +40,8 @@ Lolla succeeds when it makes better reconsideration possible, not when it dictat
 - **Embedding threshold is fixed.** 0.30 for tendency signal, not tuned per tendency.
 - **Quote validation has intentionally narrow tolerance.** Extraction-level `reasoning_passages` accept exact transcript spans, case drift, or a symmetric wrapper quote around the whole span; paraphrase is still rejected and dropped. Lane 2 verification has a separate quote-repair path for accepted anchors, but repairs are tracked as `quote_repairs` so evidence cleanup is visible rather than silent.
 - **V60 selection is an opportunity layer, not a truth oracle.** It can surface source-backed affordances and absence blockers that the lanes did not fully express, especially through embedding recall, but Claude/Codex can still reject or defer them. Usefulness is measured through the ledger and final-answer delta, not by forcing every selected chunk into public prose.
+- **Live transcript hygiene is a trust signal, not omniscience.** The manual live transcript can catch banned internal language and cross-case `## Updated position` contamination. Unless a complete trusted transcript is supplied, a no-leak result is recorded as `not_checked`, not as proof that every visible console surface was clean.
+- **Run identity guards stop stale-state accidents, not bad operator intent.** `LOLLA_EXPECTED_RUN_ID` and path-derived run checks prevent accidental cross-run writes before major scripts proceed. A user can still manually edit or copy artifacts; the archive records what it saw, not a tamper-proof chain of custody.
 - **No feedback loop.** Pipeline output doesn't feed back into itself. No learning from past runs — improvements come from reviewed curation at the correct layer.
 
 ---
@@ -53,6 +55,8 @@ Lolla succeeds when it makes better reconsideration possible, not when it dictat
 | `OPENAI_API_KEY` | No | Enables embedding swiss cheese (tendency signal, companion recall, chunk reranking). System works without it via deterministic routing only. |
 | `LOLLA_OPENROUTER_MODEL` | No | Override model (default: `google/gemini-3.1-flash-lite`) |
 | `LOLLA_LLM_TIMEOUT` | No | Timeout per boundary call in seconds (default: 45, max: 120) |
+| `LOLLA_ENV_STATE` | No | Run-specific env file path written by the preamble. Inside an active run, commands should source this file rather than `/tmp/lolla_latest_env.sh`. |
+| `LOLLA_EXPECTED_RUN_ID` | No | Guard value set by the preamble. Guarded scripts abort if active `LOLLA_RUN_ID` or artifact path-derived run IDs do not match it. |
 | `LOLLA_V60_ENRICHMENT` | No | Set to `off` or `0` to disable private V60 enrichment for a run; default is on/auto when `affordances_v60.json` exists |
 | `LOLLA_ACTIVATION_TIEBREAKER` | No | Set to `off`/`0` to disable the near-tie activation-condition tiebreaker in graph routing; default is on. |
 | `LOLLA_STAKEHOLDER_CHECK` | No | Experimental optional stakeholder assumption check. If enabled and it fails, `run_health` records `stakeholder_check_failed`; user-facing surfacing remains disabled. |
@@ -83,6 +87,11 @@ Lolla succeeds when it makes better reconsideration possible, not when it dictat
 | Pre-Step-6 private table cache miss | The compact current-run table is still written. Cached portfolio cards are omitted; no live card generation or reviewer calls are triggered. |
 | Pre-Step-6 shadow portfolio disabled | Normal behavior outside explicit shadow runs. The live run does not record `pre_step6_shadow_portfolio`, and visible output is unchanged by the shadow resolver. |
 | Multiple strategic threads in one conversation | Extraction captures the most developed/recent thread. |
+| Two `/lolla` runs start in the same second | Run IDs include a random suffix (e.g. `20260623T113203Z_c4df83`), so scratch artifacts do not collide by timestamp alone. |
+| `/tmp/lolla_latest_env.sh` points at another run | It is only a convenience pointer. Once `LOLLA_ENV_STATE` is set, the active run should source its specific env file. Guarded scripts abort on `LOLLA_EXPECTED_RUN_ID` mismatch before model calls or writes. |
+| Operator restarts, pins a run, or aborts a contaminated attempt | Recovery actions can be appended to `/tmp/lolla_<run_id>_run_events.json` and archived as `run_events.json`; traces surface the run-event ledger state. |
+| Live transcript contains an old-case updated position | `finalize_live_output_hygiene.py` compares visible `## Updated position` blocks against `result.revised_answer`; semantic mismatch sets `live_output_health: unsafe`, adds `live_output_semantic_mismatch`, and degrades the run. |
+| Structural coverage says `covered: true` but the answer was thin | Inspect `coverage_quality`. `covered_weak_threshold` and `covered_missing_operational_detail` mean the boolean compatibility field is true, but the depth was weak. |
 
 ---
 

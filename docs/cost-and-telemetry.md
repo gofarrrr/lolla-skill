@@ -9,9 +9,9 @@ Every Lolla run produces a `usage_summary` block in the result JSON at `/tmp/lol
 ```json
 {
   "usage_summary": {
-    "run_id": "20260428T064421Z",
+    "run_id": "20260623T113203Z_c4df83",
     "pricing_table_version": "2026-05-25",
-    "estimated_total_cost_usd": 2.4234,
+    "estimated_total_cost_usd": 0.0549,
     "cost_estimate_state": "complete",
     "cost_estimate_coverage": {
       "calls_with_known_price": 42,
@@ -49,7 +49,7 @@ The `/usage` page surfaces the following blocks (server-side rendered, no SPA re
 
 ## What gets measured
 
-Lolla makes calls to three vendors. Each is recorded into `usage_summary.vendors.<vendor>`.
+Lolla records up to three vendor groups in `usage_summary.vendors.<vendor>`. Default runs normally use OpenRouter plus optional OpenAI embedding calls. Anthropic sub-agent usage appears only when explicit deeper-review mode runs Step 7.
 
 ### OpenRouter (chat completions)
 
@@ -163,7 +163,9 @@ V60 and the pre-Step-6 private table add non-cost telemetry streams inside the s
 | `v60_consideration_validation` | `engine/system_b/v60_enrichment.py` | Whether the ledger accounts for every selected chunk exactly once, preserves card/model/chunk identity, respects route/disposition compatibility, and fills required visible/private/absence-blocker fields |
 | `run_health.v60_*` | `scripts/run_pipeline.py` + `SKILL.md` Step 6b | Runtime status/counts before Step 6, then ledger status, transaction count, disposition counts, used chunk count, and presented-but-not-used count after Step 6b |
 | `product_output_hygiene` + `run_health.product_output_*` | `scripts/archive_run.py` + `engine/system_b/output_hygiene.py` | Archive-time scan of revised text, memo markdown, and memo-note fields for internal machinery leaks; unsafe product output degrades the run |
-| `live_output_hygiene` + `run_health.live_output_*` | `scripts/finalize_live_output_hygiene.py` + `scripts/archive_run.py` + `engine/system_b/output_hygiene.py` | Scan of `/tmp/lolla_<run_id>_live_transcript.txt`, the Claude Code prose/status transcript artifact; unsafe live output degrades the run, missing capture is recorded as `missing`, and a clean manual artifact is `not_checked` until a complete trusted transcript is finalized with `--trusted-transcript` |
+| `live_output_hygiene` + `run_health.live_output_*` | `scripts/finalize_live_output_hygiene.py` + `scripts/archive_run.py` + `engine/system_b/output_hygiene.py` | Scan of `/tmp/lolla_<run_id>_live_transcript.txt`, the Claude Code prose/status transcript artifact; unsafe live output degrades the run, visible `## Updated position` blocks that do not match `result.revised_answer` produce `live_output_semantic_mismatch`, missing capture is recorded as `missing`, and a clean manual artifact is `not_checked` until a complete trusted transcript is finalized with `--trusted-transcript` |
+| `run_events` | `scripts/record_run_event.py` | Append-only ledger for run initialization and recovery actions such as restarting, pinning, aborting contaminated attempts, or overwriting the latest-env pointer |
+| `reasoning_trace.json` | `scripts/archive_run.py` + `engine/system_b/reasoning_trace.py` | Archive-time custody manifest that indexes artifact hashes, health, usage, run events, model-call telemetry, selected and budget-suppressed lenses, usefulness/outcome review state, and trace adequacy |
 
 The operational kill switch is `LOLLA_V60_ENRICHMENT=off` or `--v60-enrichment off`. Disabled runs still write a small `v60_enrichment.status = "disabled"` block so the absence is intentional and observable.
 
