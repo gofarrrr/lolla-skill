@@ -263,7 +263,10 @@ _MAIN_SURFACE_COPY_PATCH_SCRIPT = """
 
   const patchRunInspector = () => {
     for (const button of document.querySelectorAll(".inspector-toggle")) {
-      patchTextNodes(button, (text) => text.replace(/(\\d+) calls /g, "$1 boundary calls "));
+      patchTextNodes(button, (text) => text
+        .replace(/(\\d+) calls /g, "$1 boundary calls ")
+        .replace(/ tokens/g, " boundary tokens")
+      );
     }
   };
 
