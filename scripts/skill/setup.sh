@@ -83,6 +83,14 @@ export LOLLA_LIVE_TRANSCRIPT
 : > "$LOLLA_LIVE_TRANSCRIPT"
 echo "LIVE_TRANSCRIPT: $LOLLA_LIVE_TRANSCRIPT"
 
+# Operator-only log for verbose helper output, provider warnings, validation
+# receipts, and diagnostic command summaries. Do not append this to the live
+# transcript; archive it as process evidence.
+LOLLA_OPERATOR_LOG="/tmp/lolla_${LOLLA_RUN_ID}_operator.log"
+export LOLLA_OPERATOR_LOG
+: > "$LOLLA_OPERATOR_LOG"
+echo "OPERATOR_LOG: $LOLLA_OPERATOR_LOG"
+
 # Report config
 echo "MODEL: ${LOLLA_OPENROUTER_MODEL:-google/gemini-3.1-flash-lite}"
 [ -n "$OPENAI_API_KEY" ] && echo "EMBEDDINGS: enabled" || echo "EMBEDDINGS: disabled"
@@ -121,6 +129,7 @@ export SKILL_DIR="$SKILL_DIR"
 export LOLLA_RUN_ID="$LOLLA_RUN_ID"
 export LOLLA_EXPECTED_RUN_ID="$LOLLA_EXPECTED_RUN_ID"
 export LOLLA_LIVE_TRANSCRIPT="$LOLLA_LIVE_TRANSCRIPT"
+export LOLLA_OPERATOR_LOG="$LOLLA_OPERATOR_LOG"
 export LOLLA_ENV_STATE="$LOLLA_ENV_STATE"
 EOF
 python3 - "$LOLLA_ENV_STATE" << 'PY'

@@ -94,6 +94,10 @@ if [ -z "${LOLLA_RUN_ID:-}" ]; then
   exit 1
 fi
 
+# shellcheck source=/dev/null
+. "$SKILL_DIR/scripts/skill/operator_log.sh"
+lolla_operator_log_init
+
 record_run_event_quiet() {
   local event_type="$1"
   shift
@@ -142,13 +146,13 @@ if [ "$SKIP_OBSERVATORY" -eq 0 ]; then
     sleep 1
   done
   if [ "$OBSERVATORY_STATUS" = "live" ]; then
-    echo "OBSERVATORY_URL: $OBSERVATORY_URL"
-    echo "OBSERVATORY_PID: $OBSERVATORY_PID"
+    lolla_operator_note "OBSERVATORY_URL: $OBSERVATORY_URL"
+    lolla_operator_note "OBSERVATORY_PID: $OBSERVATORY_PID"
   else
-    echo "OBSERVATORY_URL: unavailable (see $OBS_LOG)"
+    lolla_operator_note "OBSERVATORY_URL: unavailable (see $OBS_LOG)"
     kill "$OBSERVATORY_PID" 2>/dev/null || true
   fi
-  echo "OBSERVATORY_STATUS: $OBSERVATORY_STATUS"
+  lolla_operator_note "OBSERVATORY_STATUS: $OBSERVATORY_STATUS"
   record_run_event_quiet "observatory_$OBSERVATORY_STATUS" \
     --detail "url=${OBSERVATORY_URL:-}" \
     --detail "pid=${OBSERVATORY_PID:-}" \
@@ -158,14 +162,14 @@ else
 fi
 
 ARCHIVE_OUTPUT="$(python3 "$SKILL_DIR/scripts/archive_run.py" --run-id "${LOLLA_RUN_ID}")"
-printf '%s\n' "$ARCHIVE_OUTPUT"
+lolla_operator_block "archive_run initial" "$ARCHIVE_OUTPUT"
 ARCHIVE_PATH="$(printf '%s\n' "$ARCHIVE_OUTPUT" | awk -F'path:[[:space:]]*' '/path:/ {print $2; exit}')"
 if [ -n "$ARCHIVE_PATH" ]; then
-  echo "ARCHIVE_PATH: $ARCHIVE_PATH"
+  lolla_operator_note "ARCHIVE_PATH: $ARCHIVE_PATH"
   record_run_event_quiet archive_completed --detail "archive_path=$ARCHIVE_PATH"
 fi
 
-python3 - "$RESULT_PATH" <<'PY'
+COST_HEALTH_OUTPUT="$(python3 - "$RESULT_PATH" <<'PY'
 import json
 import sys
 from pathlib import Path
@@ -180,6 +184,8 @@ else:
     print(f"COST_ESTIMATE: unavailable ({state})")
 print(f"RUN_HEALTH: {(payload.get('run_health') or {}).get('overall', 'unknown')}")
 PY
+)"
+lolla_operator_block "final cost and health" "$COST_HEALTH_OUTPUT"
 
 USER_RECEIPT=""
 if [ -z "$RECEIPT_FILE" ] && [ -n "$ARCHIVE_PATH" ]; then
@@ -196,14 +202,19 @@ if [ -z "$RECEIPT_FILE" ] && [ -n "$ARCHIVE_PATH" ]; then
     --detail "observatory_status=$OBSERVATORY_STATUS"
   python3 "$SKILL_DIR/scripts/finalize_live_output_hygiene.py" --run-id "${LOLLA_RUN_ID}" --quiet
   ARCHIVE_OUTPUT="$(python3 "$SKILL_DIR/scripts/archive_run.py" --run-id "${LOLLA_RUN_ID}")"
-  printf '%s\n' "$ARCHIVE_OUTPUT"
+  lolla_operator_block "archive_run final" "$ARCHIVE_OUTPUT"
   ARCHIVE_PATH="$(printf '%s\n' "$ARCHIVE_OUTPUT" | awk -F'path:[[:space:]]*' '/path:/ {print $2; exit}')"
   if [ -n "$ARCHIVE_PATH" ]; then
-    echo "ARCHIVE_PATH: $ARCHIVE_PATH"
+    lolla_operator_note "ARCHIVE_PATH: $ARCHIVE_PATH"
   fi
   USER_RECEIPT="$(cat "$AUTO_RECEIPT_FILE")"
 fi
 
+if [ -n "${ARCHIVE_PATH:-}" ] && [ -s "${LOLLA_OPERATOR_LOG:-}" ]; then
+  python3 "$SKILL_DIR/scripts/archive_run.py" --run-id "${LOLLA_RUN_ID}" --quiet || true
+fi
+
+echo "OPERATOR_LOG: $LOLLA_OPERATOR_LOG"
 if [ -n "$USER_RECEIPT" ]; then
   echo "USER_RECEIPT_BEGIN"
   printf '%s\n' "$USER_RECEIPT"

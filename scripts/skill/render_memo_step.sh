@@ -70,6 +70,10 @@ if [ -z "${LOLLA_RUN_ID:-}" ]; then
   exit 1
 fi
 
+# shellcheck source=/dev/null
+. "$SKILL_DIR/scripts/skill/operator_log.sh"
+lolla_operator_log_init
+
 record_run_event_quiet() {
   local event_type="$1"
   shift
@@ -102,7 +106,7 @@ if [ ! -s "$NOTE_PATH" ]; then
   exit 1
 fi
 
-python3 - "$RESULT_PATH" "$NOTE_PATH" <<'PY'
+if ! lolla_run_logged "Step 8c persist memo note fields" python3 - "$RESULT_PATH" "$NOTE_PATH" <<'PY'
 import datetime as dt
 import json
 import sys
@@ -125,12 +129,21 @@ payload["memo_note_written_at"] = dt.datetime.now(dt.timezone.utc).strftime("%Y-
 result_path.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
 print(f"Memo note fields persisted to {result_path}")
 PY
+then
+  echo "FATAL: memo note persistence failed. See operator log: $LOLLA_OPERATOR_LOG" >&2
+  exit 1
+fi
 
 render_args=(python3 "$SKILL_DIR/scripts/render_memo.py" --result "$RESULT_PATH" --output "$MEMO_PATH")
 if [ "$INCLUDE_APPENDIX" -eq 1 ]; then
   render_args+=(--include-audit-appendix)
 fi
-"${render_args[@]}"
+if ! lolla_run_logged "Step 8c render_memo.py" "${render_args[@]}"; then
+  echo "FATAL: memo rendering failed. See operator log: $LOLLA_OPERATOR_LOG" >&2
+  exit 1
+fi
 record_run_event_quiet memo_rendered \
   --detail "memo_path=$MEMO_PATH" \
   --detail "include_audit_appendix=$INCLUDE_APPENDIX"
+echo "MEMO_PATH: $MEMO_PATH"
+echo "OPERATOR_LOG: $LOLLA_OPERATOR_LOG"

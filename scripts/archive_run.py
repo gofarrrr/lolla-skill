@@ -25,13 +25,13 @@ Case matching (the "which case is this?" problem):
 
 Archive root: $LOLLA_ARCHIVE_DIR or ~/.local/share/lolla/runs/
 
-Files archived (18 core/optional):
+Files archived (19 core/optional):
   conversation.txt, extraction.json, result.json, revised.txt, memo.md,
   memo_note.json, gapcheck.txt, gapcheck_lanes.json, v60_ledger_skeleton.json,
   v60_ledger.json, pre_step6_shadow_portfolio.json, pre_step6_private_table.json,
   pre_step6_private_table.md, pre_step6_private_table_ledger.json,
-  live_transcript.txt, run_events.json, user_usefulness_review.json,
-  outcome_review.json.
+  live_transcript.txt, operator.log, run_events.json,
+  user_usefulness_review.json, outcome_review.json.
   Missing files are skipped gracefully
   (e.g., if Step 6b was not executed by a weaker orchestrator).
 
@@ -83,6 +83,7 @@ CORE_FILES = (
     "pre_step6_private_table.md",
     "pre_step6_private_table_ledger.json",
     "live_transcript.txt",
+    "operator.log",
     "run_events.json",
     "user_usefulness_review.json",
     "outcome_review.json",

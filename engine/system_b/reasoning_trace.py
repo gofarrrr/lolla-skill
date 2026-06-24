@@ -36,6 +36,7 @@ ARTIFACT_ROLES: dict[str, str] = {
     "graph_survival_report.json": "graph_survival_report",
     "graph_survival_report.md": "graph_survival_report_markdown",
     "live_transcript.txt": "live_product_surface",
+    "operator.log": "operator_log",
     "run_events.json": "run_event_ledger",
     "user_usefulness_review.json": "user_usefulness_review",
     "outcome_review.json": "outcome_review",

@@ -22,6 +22,10 @@ if [ -n "${LOLLA_EXPECTED_RUN_ID:-}" ] && [ "${LOLLA_RUN_ID:-}" != "$LOLLA_EXPEC
   exit 1
 fi
 
+# shellcheck source=/dev/null
+. "$SKILL_DIR/scripts/skill/operator_log.sh"
+lolla_operator_log_init
+
 record_run_event_quiet() {
   local event_type="$1"
   shift
@@ -94,8 +98,12 @@ if [ ! -s "/tmp/lolla_${LOLLA_RUN_ID}_conversation.txt" ]; then
   exit 1
 fi
 
-python3 "$SKILL_DIR/scripts/skill/validate_conversation_capture.py" \
-  --conversation-file "$EXPECTED_CONVERSATION"
+if ! lolla_run_logged "Step 3 validate_conversation_capture.py" \
+  python3 "$SKILL_DIR/scripts/skill/validate_conversation_capture.py" \
+    --conversation-file "$EXPECTED_CONVERSATION"; then
+  echo "FATAL: conversation capture is not parseable for Lolla. See operator log: $LOLLA_OPERATOR_LOG" >&2
+  exit 2
+fi
 
 args=(
   python3 "$SKILL_DIR/scripts/run_pipeline.py"
@@ -113,9 +121,12 @@ if [ -n "${LOLLA_PRE_STEP6_PORTFOLIO_CACHE_REF:-}" ]; then
   args+=(--pre-step6-portfolio-cache-ref "$LOLLA_PRE_STEP6_PORTFOLIO_CACHE_REF")
 fi
 
-"${args[@]}"
+if ! lolla_run_logged "Step 3 run_pipeline.py" "${args[@]}"; then
+  echo "FATAL: pipeline command failed. See operator log: $LOLLA_OPERATOR_LOG" >&2
+  exit 1
+fi
 
-python3 - <<'PY'
+if ! lolla_run_logged "Step 3 pre-Step-6 private table receipt" python3 - <<'PY'
 import json
 import os
 from pathlib import Path
@@ -165,6 +176,10 @@ require_hit = os.environ.get("LOLLA_PRE_STEP6_REQUIRE_CACHE_HIT", "").lower() in
 if require_hit and cache.get("state") != "cache_hit":
     raise SystemExit("FATAL: required pre-Step-6 cache hit, but cached cards were not loaded.")
 PY
+then
+  echo "FATAL: pre-Step-6 receipt validation failed. See operator log: $LOLLA_OPERATOR_LOG" >&2
+  exit 1
+fi
 
 PIPELINE_HEALTH="$(python3 - <<'PY'
 import json
@@ -185,3 +200,31 @@ record_run_event_quiet pipeline_completed \
   --detail "status=ok" \
   --detail "run_health=$PIPELINE_HEALTH" \
   --detail "result_path=$EXPECTED_RESULT"
+python3 - <<'PY'
+import json
+import os
+from pathlib import Path
+
+run_id = os.environ.get("LOLLA_RUN_ID", "")
+result_path = Path(f"/tmp/lolla_{run_id}_result.json")
+result = json.loads(result_path.read_text(encoding="utf-8"))
+table = result.get("pre_step6_private_table") or {}
+source_items = table.get("source_items") or []
+cached_sources = [
+    item.get("source_id", "")
+    for item in source_items
+    if str(item.get("source_id", "")).startswith("cached_card::")
+]
+cache = table.get("cache") or {}
+health = (result.get("run_health") or {}).get("overall", "unknown")
+print(f"PIPELINE_STATUS: ok")
+print(f"RUN_HEALTH: {health}")
+print(
+    "PRE_STEP6_PRIVATE_TABLE: "
+    f"status={table.get('status', 'missing')} "
+    f"source_atoms={len(source_items)} "
+    f"cached_cards={len(cached_sources)} "
+    f"cache_state={cache.get('state', 'not_checked')}"
+)
+PY
+echo "OPERATOR_LOG: $LOLLA_OPERATOR_LOG"

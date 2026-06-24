@@ -37,6 +37,12 @@ def test_infer_run_id_from_lolla_path_preserves_underscore_suffixes() -> None:
     )
     assert (
         infer_run_id_from_lolla_path(
+            "/tmp/lolla_20260623T113203Z_c4df83_operator.log"
+        )
+        == "20260623T113203Z_c4df83"
+    )
+    assert (
+        infer_run_id_from_lolla_path(
             "/tmp/lolla_20260623T113203Z_c4df83_pre_step6_private_table_ledger.json"
         )
         == "20260623T113203Z_c4df83"

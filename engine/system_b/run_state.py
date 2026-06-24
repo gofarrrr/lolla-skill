@@ -34,6 +34,7 @@ _KNOWN_ARTIFACT_SUFFIXES = tuple(
             "pre_step6_private_table",
             "pre_step6_private_table_ledger",
             "live_transcript",
+            "operator",
             "user_usefulness_review",
             "outcome_review",
             "run_events",

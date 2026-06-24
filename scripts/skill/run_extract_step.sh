@@ -80,6 +80,10 @@ if [ -z "${LOLLA_RUN_ID:-}" ]; then
   exit 1
 fi
 
+# shellcheck source=/dev/null
+. "$SKILL_DIR/scripts/skill/operator_log.sh"
+lolla_operator_log_init
+
 record_run_event_quiet() {
   local event_type="$1"
   shift
@@ -107,12 +111,21 @@ if [ ! -s "$CONVERSATION_PATH" ]; then
   exit 1
 fi
 
-echo "Pre-extraction guard: conversation file present ($(wc -c < "$CONVERSATION_PATH") bytes)."
-python3 "$SKILL_DIR/scripts/skill/validate_conversation_capture.py" \
-  --conversation-file "$CONVERSATION_PATH"
-python3 "$SKILL_DIR/scripts/run_extract.py" \
-  --conversation-file "$CONVERSATION_PATH" \
-  --output-file "$EXTRACTION_PATH"
+CONVERSATION_BYTES="$(wc -c < "$CONVERSATION_PATH")"
+lolla_operator_note "Step 2 pre-extraction guard: conversation file present (${CONVERSATION_BYTES} bytes)."
+if ! lolla_run_logged "Step 2 validate_conversation_capture.py" \
+  python3 "$SKILL_DIR/scripts/skill/validate_conversation_capture.py" \
+    --conversation-file "$CONVERSATION_PATH"; then
+  echo "FATAL: conversation capture is not parseable for Lolla. See operator log: $LOLLA_OPERATOR_LOG" >&2
+  exit 2
+fi
+if ! lolla_run_logged "Step 2 run_extract.py" \
+  python3 "$SKILL_DIR/scripts/run_extract.py" \
+    --conversation-file "$CONVERSATION_PATH" \
+    --output-file "$EXTRACTION_PATH"; then
+  echo "FATAL: extraction command failed. See operator log: $LOLLA_OPERATOR_LOG" >&2
+  exit 1
+fi
 
 set +e
 python3 - <<'PY'
@@ -171,4 +184,5 @@ PY
 record_run_event_quiet extraction_completed \
   --detail "status=$EXTRACTION_STATUS" \
   --detail "exit_code=$EXTRACTION_EXIT"
+echo "OPERATOR_LOG: $LOLLA_OPERATOR_LOG"
 exit "$EXTRACTION_EXIT"
