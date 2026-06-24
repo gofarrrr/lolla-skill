@@ -1587,6 +1587,7 @@ def test_telemetry_fab_injection_inserts_before_body_close():
     assert "Optional Pressure Check" in out
     assert "no Step-7 divergences" in out
     assert "boundary calls" in out
+    assert "boundary tokens" in out
     assert "PARTIAL" in out
     # Injected before </body>, not after
     assert out.index("telemetry-fab") < out.index("</body>")
