@@ -256,6 +256,7 @@ def test_archive_run_writes_reasoning_trace_manifest_with_hashes(tmp_path: Path)
     artifact_by_path = {item["path"]: item for item in trace["artifacts"]}
 
     assert set(archived["files_generated"]) == {
+        "agent_result.json",
         "graph_survival_report.json",
         "graph_survival_report.md",
         "reasoning_trace.json",
@@ -301,6 +302,7 @@ def test_archive_run_writes_reasoning_trace_manifest_with_hashes(tmp_path: Path)
     assert artifact_by_path["run_events.json"]["role"] == "run_event_ledger"
     assert artifact_by_path["user_usefulness_review.json"]["role"] == "user_usefulness_review"
     assert artifact_by_path["outcome_review.json"]["role"] == "outcome_review"
+    assert artifact_by_path["agent_result.json"]["role"] == "agent_facing_result"
     assert artifact_by_path["graph_survival_report.json"]["role"] == "graph_survival_report"
     assert artifact_by_path["graph_survival_report.md"]["role"] == "graph_survival_report_markdown"
     assert artifact_by_path["conversation.txt"]["sha256"] == _sha256_uri(
@@ -395,6 +397,10 @@ def test_archive_run_writes_reasoning_trace_manifest_with_hashes(tmp_path: Path)
     assert trace["model_calls"][1]["call_count"] == 2
     assert trace["tool_calls"] == []
     assert "secret launch phrase 7621" not in trace_path.read_text(encoding="utf-8")
+    agent_result = json.loads((run_dir / "agent_result.json").read_text(encoding="utf-8"))
+    assert agent_result["schema_version"] == "lolla_agent_result.v1"
+    assert agent_result["caller_action"] == "do_not_use_run_degraded"
+    assert (tmp_dir / f"lolla_{run_id}_agent_result.json").exists()
 
 
 def test_archive_run_reasoning_trace_records_missing_artifacts(tmp_path: Path) -> None:

@@ -146,7 +146,7 @@ A completed run leaves a durable artifact chain:
 - operator log
 - run-event log
 - Observatory server
-- archived case folder with graph-survival report and reasoning trace
+- archived case folder with graph-survival report, agent result, and reasoning trace
 
 If one of these is missing, treat the run as incomplete or degraded, not as a
 clean success.

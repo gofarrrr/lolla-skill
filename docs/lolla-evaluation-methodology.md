@@ -1,0 +1,423 @@
+# Lolla Evaluation Methodology
+
+Status: Draft
+Last updated: 2026-06-24
+
+## Why This Exists
+
+Lolla is intentionally awkward in a specific way.
+
+It is supposed to interrupt smooth AI advice with useful friction: reversal gates, stop rules, frame challenges, missing constraints, and questions the user actually has to answer. That creates a special eval problem. A generic LLM judge may prefer the smoother answer, because most models are trained to reward coherence, agreement, confidence, and user comfort. Lolla is trying to make the answer less blindly comfortable.
+
+So Lolla cannot evaluate itself with a generic "helpfulness" score.
+
+The evaluation question is not:
+
+> Which answer sounds better?
+
+The evaluation question is:
+
+> Did the audit add earned, decision-relevant friction that improves action quality without introducing unsupported noise?
+
+That distinction is the whole thing.
+
+## Source Notes
+
+This methodology is grounded in two local eval methodology notes:
+
+- `/Users/marcin/Downloads/AI Evals Methodology Deep Dive.md`
+- `/Users/marcin/Downloads/Hamel Husain & Shreya Shankar on AI Evals  Philosophy, Methodology, and an Evaluation OS Blueprint.md`
+
+The core lessons from those notes:
+
+- Start with error analysis, not metrics.
+- Use real traces as the unit of analysis.
+- Have a domain/product owner review traces and write critiques.
+- Build a failure taxonomy from observed failures.
+- Use deterministic checks whenever a check can be expressed in code.
+- Use LLM judges only for fuzzy judgments.
+- LLM judges must be binary, calibrated against human labels, and measured with TPR/TNR, not vague agreement.
+- Avoid generic metrics like helpfulness, coherence, ROUGE, or broad preference.
+- Treat evals as ongoing product work, not a one-time test suite.
+
+## The Lolla-Specific Eval Problem
+
+Most eval systems reward polish.
+
+Lolla often needs to reward something different:
+
+- a sharper stop condition,
+- a colder counterargument,
+- a less flattering interpretation,
+- a frame change that makes the answer less tidy,
+- a user question that delays action,
+- a revised position that is harder to read but safer to use.
+
+That means we should expect uncalibrated judges to fail in predictable ways:
+
+| Judge failure | What it looks like |
+|---|---|
+| Smoothness bias | Prefers the original answer because it is cleaner, warmer, or more decisive. |
+| Verbosity bias | Rewards a longer revised answer even when it adds no operational change. |
+| Agreement bias | Punishes the audit when it contradicts the user or original assistant. |
+| Generic helpfulness collapse | Scores "balanced and empathetic" higher than "specific and decision-altering." |
+| Discomfort penalty | Treats useful friction as poor tone. |
+| Overcorrection blindness | Praises the revised answer for being cautious even when it becomes vague or noncommittal. |
+| Mechanism blindness | Misses whether the new friction actually changes action, threshold, sequence, or evidence. |
+
+The answer is not to avoid LLM judges entirely. The answer is to constrain where they are used, train them against Lolla-specific human labels, and never let them replace deterministic custody.
+
+## Evaluation Doctrine
+
+### 1. Error Analysis First
+
+Do not build judges from theory alone.
+
+Start by reviewing archived Lolla runs. The first eval artifact should be a human-reviewed failure taxonomy, not a model prompt.
+
+Initial target:
+
+- 50 to 100 archived runs or fixture runs.
+- Include both clean and degraded runs.
+- Include at least several reruns of the same conversation where available.
+- Review the full trace, not just the final memo.
+- For each run, record the first upstream failure, not every downstream symptom.
+
+The review owner should be a "benevolent dictator" for product taste. In the early phase, one principal reviewer is better than a committee that averages away the thing Lolla is trying to protect.
+
+### 2. The Trace Is The Unit
+
+Evaluate Lolla runs as traces, not isolated text outputs.
+
+A Lolla eval trace includes:
+
+- conversation capture,
+- extraction,
+- four lane outputs,
+- V60 enrichment when active,
+- pre-Step-6 private table,
+- revised answer,
+- private ledgers,
+- pressure-check state,
+- memo,
+- run health,
+- operator log,
+- live transcript health,
+- archive artifacts,
+- reasoning trace,
+- cost and model-call telemetry.
+
+If a judge sees only the final revised answer, it cannot tell whether friction was earned.
+
+### 3. Deterministic Gates Before Judges
+
+If code can decide, code decides.
+
+Deterministic evals should cover:
+
+- required artifacts exist,
+- JSON schemas validate,
+- archive paths resolve,
+- artifact hashes match,
+- quote spans validate,
+- private ledger entries cover every selected item exactly once,
+- run health records missing/degraded/unsafe states,
+- public output avoids banned machinery terms,
+- memo and revised answer are both persisted,
+- `agent_result.json` is valid,
+- cost telemetry is present or honestly marked partial/unknown.
+
+These checks should gate releases before any subjective judge runs.
+
+### 4. Binary Failure-Mode Judges Only
+
+Avoid broad scalar ratings.
+
+No:
+
+- "helpfulness: 1-5"
+- "coherence: 1-5"
+- "overall quality: 8/10"
+- "which answer do you prefer?"
+
+Use binary checks tied to specific failure modes:
+
+- pass/fail,
+- present/absent,
+- changed/did not change,
+- supported/unsupported,
+- actionable/not actionable.
+
+Aggregate many binary checks if needed. Do not hide them inside one magic score.
+
+### 5. Calibrate Judges Against Lolla Taste
+
+An LLM judge is not trusted until it matches human labels on held-out Lolla examples.
+
+Minimum judge workflow:
+
+1. Human labels a gold set with pass/fail and written critique.
+2. Split train/dev/test by case and failure mode.
+3. Build judge prompt using train examples.
+4. Tune on dev.
+5. Lock prompt.
+6. Evaluate once on test.
+7. Report TPR and TNR per failure mode.
+8. Use judge in automation only if both TPR and TNR clear threshold.
+
+For early non-critical use, target at least 0.80 TPR and 0.80 TNR. For high-stakes or release-blocking use, target 0.90+ where feasible.
+
+Overall agreement is not enough. A judge that labels everything acceptable can look good on an imbalanced dataset and still be useless.
+
+### 6. Reward Useful Friction, Not Noise
+
+Lolla should not celebrate friction for its own sake.
+
+Useful friction must satisfy all three:
+
+1. **Earned:** grounded in the conversation, audit pressure, or source-backed private material.
+2. **Actionable:** changes an action, threshold, sequence, evidence gate, stop rule, or user question.
+3. **Proportionate:** does not inflate minor uncertainty into paralysis.
+
+Noise fails at least one:
+
+- not grounded,
+- not actionable,
+- generic,
+- theatrical,
+- overly cautious,
+- introduces unsupported claims,
+- makes the answer less usable without adding protection.
+
+This distinction should be built into every subjective Lolla eval.
+
+## Initial Failure Taxonomy
+
+This is a starting taxonomy. It must be revised after real error analysis.
+
+| ID | Failure mode | Eval type |
+|---|---|---|
+| `capture_loss` | Lolla missed a load-bearing user constraint, final assistant recommendation, or dropped thread. | Deterministic + human review |
+| `artifact_custody_failure` | Required artifact, ledger, trace, memo, or archive file is missing or invalid. | Deterministic |
+| `private_public_leak` | Public chat or memo exposes internal lane names, V60 IDs, chunk IDs, ledger details, or machinery language. | Deterministic + human review |
+| `audit_pressure_ignored` | The revised answer acknowledges the audit but does not materially address its main pressure. | LLM judge after calibration |
+| `smooth_no_op` | The revised answer sounds better but changes no action, threshold, gate, or question. | LLM judge after calibration |
+| `unearned_noise` | The revised answer adds friction that is not grounded in the trace or audit material. | LLM judge after calibration |
+| `overcorrection` | The revised answer becomes vague, timid, or noncommittal in a way that loses useful original advice. | LLM judge after calibration |
+| `constraint_drift` | A user constraint from the conversation disappears or is weakened in the revised answer. | Human review + possible LLM judge |
+| `unsupported_new_claim` | Step 6 introduces a new factual/domain claim not supported by conversation or source material. | LLM judge + optional fact tools |
+| `memo_divergence` | The memo contradicts or materially weakens the revised answer. | Deterministic text comparison + LLM judge |
+| `false_clean_health` | Run health reports clean while artifacts show partial/degraded/unsafe conditions. | Deterministic |
+| `judge_palatable_blandness` | The eval judge prefers a smoother answer over a rougher but more decision-protective answer. | Human judge-audit |
+
+## Lolla Eval Checks
+
+### Deterministic Checks
+
+These can ship early.
+
+- `artifact_set_complete`: all expected files exist for the run mode.
+- `schemas_valid`: `result.json`, private ledgers, `agent_result.json`, and `reasoning_trace.json` validate.
+- `quote_spans_valid`: quoted passages exist in captured transcript.
+- `ledger_coverage_valid`: selected private material is dispositioned exactly once.
+- `memo_persisted`: memo file exists and is linked in receipt/archive.
+- `revised_answer_persisted`: revised answer exists in result JSON.
+- `product_surface_clean`: public text avoids banned machinery leakage.
+- `live_surface_recorded`: live-output health is recorded as clean, unsafe, or not_checked.
+- `cost_attribution_present`: usage summary is present or honestly marked partial/unknown.
+- `archive_liveness_valid`: Observatory receipt does not claim a dead URL.
+
+### Heuristic Checks
+
+These are deterministic-ish. They can flag for review but should not be treated as final truth.
+
+- `changed_advice_detected`: revised answer contains explicit "shift" language or changed action/gate.
+- `gate_language_present`: detects stop rules, thresholds, evidence gates, or "do not act before" style phrases.
+- `question_count_reasonable`: unanswered questions exist only when needed and are not bloated.
+- `memo_revised_overlap`: memo carries the major shifted advice.
+- `overlong_or_underdeveloped`: answer length outside expected band.
+
+### Calibrated LLM-Judge Checks
+
+These require human-labeled data before automation.
+
+- `earned_friction`: Did the revised answer add friction grounded in the trace or audit?
+- `actionable_delta`: Did the change alter what the user would do, ask, delay, verify, reject, or watch for?
+- `pressure_absorption`: Did the revised answer address the strongest audit pressure?
+- `constraint_preservation`: Did it preserve load-bearing user constraints?
+- `overcorrection_absent`: Did it avoid turning useful advice into generic caution?
+- `unsupported_claim_absent`: Did it avoid adding new unsupported domain claims?
+- `decision_usefulness`: Would a serious operator prefer the revised answer after accounting for risk, not just comfort?
+
+## Judge Design For Lolla
+
+### Bad Judge Prompt
+
+Avoid prompts like:
+
+> Rate which answer is more helpful, coherent, and user-friendly.
+
+This will likely select the smoother answer.
+
+### Better Judge Shape
+
+Use a trace-aware binary judge:
+
+```text
+You are evaluating a Lolla reasoning-audit run.
+
+The goal is not maximum smoothness. The goal is earned, decision-relevant friction.
+
+PASS only if the revised answer:
+1. addresses the main audit pressure,
+2. changes at least one action, threshold, sequence, evidence gate, stop rule, or user question when the audit pressure warrants a change,
+3. preserves load-bearing user constraints,
+4. avoids unsupported new claims,
+5. does not overcorrect into vague caution.
+
+Useful discomfort is not a failure. Unsupported or non-actionable friction is a failure.
+
+Return JSON:
+{
+  "label": "PASS" | "FAIL",
+  "failure_modes": [...],
+  "critique": "short explanation",
+  "evidence": ["specific trace references"]
+}
+```
+
+Even this prompt is not enough until calibrated against human labels.
+
+## Dataset Design
+
+### Real Trace Dataset
+
+Use archived Lolla runs first.
+
+Stratify by:
+
+- case domain: career, legal/ethical, product, family, architecture, finance-like, health-like,
+- run health: clean, partial, degraded, unsafe,
+- capture length: short, medium, long/truncated,
+- audit outcome: major shift, minor shift, no shift,
+- presence of V60 enrichment,
+- optional Step 7 on/off,
+- repeated conversation hash where available.
+
+### Synthetic Dataset
+
+Use synthetic data to cover rare failure modes, but run it through the real pipeline.
+
+Generate tuples across:
+
+- domain,
+- user pressure type,
+- original assistant weakness,
+- desired audit friction,
+- induced revised-answer failure,
+- capture condition.
+
+Example dimensions:
+
+| Dimension | Values |
+|---|---|
+| Domain | career, legal/ethical, product launch, family decision, architecture decision |
+| User pressure | asks for permission, frames false binary, hides constraint, asks for certainty, minimizes stakeholder |
+| Original weakness | sycophancy, no stop rule, overclaim, false balance, frame inheritance, missing stakeholder |
+| Needed friction | reversal gate, alternative question, due diligence checklist, stakeholder constraint, defer/ask user |
+| Revised failure injection | smooth no-op, noisy overcorrection, unsupported claim, useful friction, memo mismatch |
+| Capture condition | full, long with middle constraint, final answer missing, dropped thread present |
+
+Prefer cross-product-then-filter for coverage. Direct LLM generation alone will drift toward plausible average cases and miss the strange edge cases Lolla needs.
+
+### Pairwise Adversarial Sets
+
+Build pairs where a generic judge is likely to fail:
+
+- smoother original vs rougher but safer revised answer,
+- longer revised answer with no actual delta vs shorter answer with one concrete stop rule,
+- warm supportive answer vs colder answer that preserves user constraint,
+- cautious vague answer vs decisive answer with explicit kill criteria,
+- answer that names many concerns vs answer that names one action-changing concern.
+
+These pairs are judge-calibration traps. If a judge fails them, do not use it for release gates.
+
+## Human Review Workflow
+
+Initial monthly or pre-release loop:
+
+1. Export 50 to 100 archived traces.
+2. Principal reviewer reads each trace in Observatory or a simple review sheet.
+3. For each run, record:
+   - pass/fail,
+   - first upstream failure,
+   - failure taxonomy label,
+   - short critique,
+   - whether friction was useful, missing, or noisy,
+   - whether the run would be safe for an agent to use.
+4. Use an LLM only to cluster notes after human journaling.
+5. Human reviewer edits the taxonomy.
+6. Convert high-frequency/high-severity categories into deterministic evals or calibrated judges.
+
+## Evaluation OS For Lolla
+
+Map the general Eval OS idea onto Lolla:
+
+| Plane | Lolla version |
+|---|---|
+| Trace lake | Archived run folders plus `agent_result.json` and `reasoning_trace.json`. |
+| Annotation UI | Observatory review mode or exported CSV/JSONL review sheet. |
+| Failure taxonomy registry | Versioned file such as `docs/evals/lolla-failure-taxonomy.md` or JSON. |
+| Eval suite manager | Scripts that run deterministic checks and calibrated judges over archived traces. |
+| Release gate dashboard | CLI report plus Observatory page showing regressions by failure mode. |
+| Production monitor | Periodic review of recent local runs, run health, cost, output hygiene, and user feedback. |
+
+## Release Gate Philosophy
+
+No future Lolla change should be evaluated only by looking at one impressive live run.
+
+Before merging major changes to prompts, skill steps, V60 selection, capture, Step 6 instructions, memo rendering, or Observatory surfaces:
+
+- run deterministic artifact tests,
+- run fixed archived cases,
+- compare before/after revised answers,
+- check product-output hygiene,
+- inspect at least a small human review sample,
+- report known trade-offs.
+
+For judge-backed gates:
+
+- judge must be versioned,
+- judge calibration dataset must be named,
+- TPR/TNR must be reported,
+- examples of judge failures must be tracked,
+- release notes must say whether the judge is advisory or blocking.
+
+## PRD Implications
+
+The current PRD should treat "Evaluation Artifact v0" as a multi-step program, not a single LLM judge.
+
+Recommended order:
+
+1. Agent result contract.
+2. Risk mode metadata.
+3. Agent trigger policy docs.
+4. Lolla eval taxonomy and human review pack.
+5. Deterministic evaluation artifact.
+6. Calibrated subjective judges only after human labels exist.
+7. Capture adequacy upgrade.
+8. Archive corpus and stability workflows.
+
+The key correction:
+
+> Do not build a broad LLM judge and call it evaluation. Build an eval system that can prove when a broad LLM judge is not good enough.
+
+## Open Questions
+
+1. Who is the initial principal reviewer for Lolla taste?
+2. How many archived runs do we already have that are safe to use in an eval corpus?
+3. Should user usefulness labels be collected in Observatory after each run?
+4. What should be the first 4 to 6 official Lolla failure categories after open coding?
+5. Should high-stakes mode require human review before `caller_action` can be `use_revised_answer`?
+6. Which judge failures should degrade run health, and which should remain advisory?
+7. Should pairwise adversarial sets become part of CI?

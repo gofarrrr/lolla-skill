@@ -36,6 +36,8 @@ Files archived (19 core/optional):
   (e.g., if Step 6b was not executed by a weaker orchestrator).
 
 Generated archive artifacts:
+  agent_result.json — compact machine-readable lolla_agent_result.v1 handoff
+  for agents and control systems.
   graph_survival_report.json — research/operator report showing graph candidates,
   embedding recalls, selected cards, Step 6 uptake, suppressed/unadjudicated
   signals, and visible/private survival.
@@ -405,6 +407,13 @@ def archive_run(
         conversation_hash=conversation_hash,
     )
     generated_files = _write_graph_survival_artifacts_for_archive(run_dir=run_dir)
+    agent_result_path = _write_agent_result_for_archive(
+        run_dir=run_dir,
+        run_id=run_id,
+        case_id=case_dir.name,
+        tmp_dir=tmp_dir,
+    )
+    generated_files.append(agent_result_path.name)
     files_for_trace = copied + generated_files
     trace_path = _write_reasoning_trace_for_archive(
         run_dir=run_dir,
@@ -460,6 +469,28 @@ def _write_reasoning_trace_for_archive(
         manifest=manifest,
     )
     return trace_path
+
+
+def _write_agent_result_for_archive(
+    *,
+    run_dir: Path,
+    run_id: str,
+    case_id: str,
+    tmp_dir: Path,
+) -> Path:
+    """Generate the compact agent-facing result after archive copy."""
+    _ensure_repo_root_on_path()
+    from engine.system_b.agent_result import write_agent_result
+
+    agent_path, _payload = write_agent_result(
+        run_dir,
+        run_id=run_id,
+        case_id=case_id,
+        observatory_url=os.environ.get("LOLLA_OBSERVATORY_URL", ""),
+        observatory_status=os.environ.get("LOLLA_OBSERVATORY_STATUS", ""),
+        tmp_copy_path=tmp_dir / f"lolla_{run_id}_agent_result.json",
+    )
+    return agent_path
 
 
 def _write_graph_survival_artifacts_for_archive(*, run_dir: Path) -> list[str]:

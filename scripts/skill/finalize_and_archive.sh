@@ -195,6 +195,8 @@ if [ "$SKIP_OBSERVATORY" -eq 0 ]; then
 else
   record_run_event_quiet observatory_launch_skipped
 fi
+export LOLLA_OBSERVATORY_URL="$OBSERVATORY_URL"
+export LOLLA_OBSERVATORY_STATUS="$OBSERVATORY_STATUS"
 
 ARCHIVE_OUTPUT="$(python3 "$SKILL_DIR/scripts/archive_run.py" --run-id "${LOLLA_RUN_ID}")"
 lolla_operator_block "archive_run initial" "$ARCHIVE_OUTPUT"

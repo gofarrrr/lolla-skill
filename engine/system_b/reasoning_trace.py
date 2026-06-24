@@ -35,6 +35,7 @@ ARTIFACT_ROLES: dict[str, str] = {
     "pre_step6_private_table_ledger.json": "private_reasoning_table_ledger",
     "graph_survival_report.json": "graph_survival_report",
     "graph_survival_report.md": "graph_survival_report_markdown",
+    "agent_result.json": "agent_facing_result",
     "live_transcript.txt": "live_product_surface",
     "operator.log": "operator_log",
     "run_events.json": "run_event_ledger",

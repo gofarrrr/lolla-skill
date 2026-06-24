@@ -56,6 +56,9 @@ A normal run produces:
 - An updated position from Claude, structured around what survived, what should be taken back or set aside, and what actually shifted.
 - An intentional pressure-check state. Post-Step-6 isolated reviewers are rested by default to simplify the live skill and reduce cost; they remain available only as an explicit deeper-review mode.
 - A portable memo.
+- A compact `agent_result.json` contract for machine callers, including
+  `caller_action`, artifact status, artifact pointers, run health, cost, and
+  product-level summary fields.
 - A local Observatory page with the full breakdown, traces, cards, costs, health checks, and archived artifacts.
 - A local `reasoning_trace.json` custody manifest in the archived run folder, with artifact hashes, health, usage, reasoning-lens IDs, model-call telemetry, and trace-adequacy status for replay without duplicating raw transcript text.
 
@@ -97,7 +100,7 @@ This is the live `/lolla` flow in one page:
 11. Persist the default-off pressure-check state after Step 10 succeeds.
 12. If the user/operator explicitly requested deeper review, run optional pressure-check agents after Step 10 and persist their comparison plus auxiliary token usage.
 13. Persist memo-note fields and render the deterministic memo.
-14. Finalize private ledgers and live-output hygiene, open the Observatory, archive the core/optional artifacts under `~/.local/share/lolla/runs/`, and generate `reasoning_trace.json` for local custody/replay with enough metadata for local reasoning-eval corpus export.
+14. Finalize private ledgers and live-output hygiene, open the Observatory, archive the core/optional artifacts under `~/.local/share/lolla/runs/`, generate `agent_result.json` for the compact machine-readable handoff, and generate `reasoning_trace.json` for local custody/replay with enough metadata for local reasoning-eval corpus export.
 
 `SKILL.md` is the executable instruction source. This page is the readable map.
 
@@ -107,6 +110,11 @@ The detailed docs are split so agents and humans do not have to load one giant f
 
 | File | Read it for |
 |---|---|
+| [Pitch and Invitation](docs/lolla-pitch-and-invitation.md) | A plain-language shareable explanation of what Lolla is, why it matters for agents, who it is for, and what kind of feedback we want. |
+| [Agent Result Contract](docs/lolla-agent-result-contract.md) | The shipped `lolla_agent_result.v1` archive artifact: status, `caller_action`, product summaries, artifact pointers, and current limitations. |
+| [Reasoning-Audit Harness PRD](docs/lolla-reasoning-audit-harness-prd.md) | The actionable roadmap for turning Lolla into an agent-callable reasoning-audit harness with risk modes, an agent result contract, evaluation artifacts, and archive-corpus workflows. |
+| [Agent Control Layers And Lolla Integration](docs/agent-control-layers-and-lolla-integration.md) | How Lolla can fit beside CrabTrap-style proxies, guardrails, approvals, sandboxes, identity scopes, and observability/eval systems without pretending to replace them. |
+| [Evaluation Methodology](docs/lolla-evaluation-methodology.md) | Lolla-specific eval doctrine: error analysis first, deterministic gates before judges, calibrated binary judges, and how to avoid rewarding smoothness over useful friction. |
 | [Problem and Thesis](docs/how-it-works/problem-and-thesis.md) | Why Lolla exists: borrowed certainty, sycophancy, structural pressure, and the Munger tendency ontology. |
 | [Knowledge Substrate](docs/how-it-works/knowledge-substrate.md) | The 222 mental models, curation waves, graph, embeddings, V60 records, and bundled data files. |
 | [Architecture and Evolution](docs/how-it-works/architecture-and-evolution.md) | `ConversationContext`, `ConversationIR`, packet builders, migration history, trust boundaries, and observability. |
@@ -120,6 +128,6 @@ The detailed docs are split so agents and humans do not have to load one giant f
 - Checked against `SKILL.md` and runtime entry points on 2026-06-24.
 - Pressure-check agents are rested by default. If explicitly enabled, they start only after the updated position is persisted and the V60 ledger validates.
 - The pre-Step-6 shadow portfolio hook is default-off and shadow-only; it records evidence but never changes visible output.
-- The archive currently copies the core/optional artifact set, including live transcript, operator log, run-event log, private ledgers, memo fields, and optional usefulness/outcome reviews when present. It also generates `reasoning_trace.json`, a local-only manifest that indexes artifacts by path/hash and adds reasoning-lens, model-call, private-custody, and trace-adequacy metadata.
+- The archive currently copies the core/optional artifact set, including live transcript, operator log, run-event log, private ledgers, memo fields, and optional usefulness/outcome reviews when present. It also generates `agent_result.json`, the compact agent-facing handoff, and `reasoning_trace.json`, a local-only manifest that indexes artifacts by path/hash and adds reasoning-lens, model-call, private-custody, and trace-adequacy metadata.
 - The June 24 accountability pass added run lifecycle events, operator-log separation for helper diagnostics, final-receipt Observatory liveness verification, trusted live-transcript finalization for merge-readiness checks, and graph-survival joins that preserve Lane 2 ledger uptake correctly.
 - `scripts/export_reasoning_trace_dataset.py` scans archived `reasoning_trace.json` files and writes a JSONL corpus plus aggregate summary so repeated runs can be reviewed with an evals-style error-analysis workflow.

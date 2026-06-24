@@ -662,6 +662,7 @@ The archive script:
 - Auto-names new cases with a slug derived from the first 3-4 significant words of `decision_situation` (e.g., `grant-equity-partnership-status`). Users can rename via `mv` — matching will still find the folder via manifest.
 - Copies the artifacts into `{case_folder}/${LOLLA_RUN_ID}/` and updates `{case_folder}/.case-manifest.json` with the new fingerprint (added as an alias) and the run_id.
 - Generates `{case_folder}/${LOLLA_RUN_ID}/graph_survival_report.json` and `.md`, operator reports showing graph candidates, embedding recalls, selected cards, Step 6 uptake, suppressed/unadjudicated signals, and visible/private survival.
+- Generates `{case_folder}/${LOLLA_RUN_ID}/agent_result.json`, a compact `lolla_agent_result.v1` handoff for machine callers, plus `/tmp/lolla_${LOLLA_RUN_ID}_agent_result.json` as a convenience copy.
 - Generates `{case_folder}/${LOLLA_RUN_ID}/reasoning_trace.json`, a local-only custody manifest with artifact paths, SHA-256 hashes, run health, usage summary, pressure-check state, private-custody status, reasoning-lens IDs, model-call telemetry, trace-adequacy status, and future slots for commitment candidates, decision packets, and outcome reviews. It indexes raw artifacts without duplicating conversation or memo text.
 - `/tmp` originals are **not** moved or deleted — Observatory and subsequent commands continue to reference them as in-flight state.
 

@@ -111,10 +111,14 @@ $lolla
 The skill captures the conversation, extracts the decision structure, and runs the full audit pipeline. It works best on conversations where you're making a recommendation, weighing tradeoffs, or giving strategic advice.
 
 At completion, each run is archived locally under `~/.local/share/lolla/runs/`.
-The archive includes `reasoning_trace.json`: a local-only custody manifest that
-indexes the captured conversation, result, memo, health, usage, ledger
-artifacts, reasoning-lens IDs, model-call telemetry, and trace-adequacy status
-by path/hash and structured metadata without duplicating raw transcript text.
+The archive includes `agent_result.json`: a compact `lolla_agent_result.v1`
+handoff for agents that says whether the run is fit for automatic use, what
+changed when that is visible from product artifacts, which human questions
+remain, and where to inspect the archive. It also includes
+`reasoning_trace.json`: a local-only custody manifest that indexes the captured
+conversation, result, memo, health, usage, ledger artifacts, reasoning-lens
+IDs, model-call telemetry, and trace-adequacy status by path/hash and structured
+metadata without duplicating raw transcript text.
 The Observatory URL in the final receipt opens the completed run as a local
 viewer. Its `Cases` tab also lists local archived runs from
 `~/.local/share/lolla/runs/` (or `$LOLLA_ARCHIVE_DIR`) so recent history can be
@@ -154,7 +158,7 @@ lolla-skill/
 │   ├── run_extract.py      # Step 2: conversation → decision structure (capture-critical gate, quote-fabrication retry, truncation transparency)
 │   ├── run_pipeline.py     # Step 3: decision structure → four-lane audit (family-clustered Pass 1, run_health envelope)
 │   ├── render_memo.py      # Deterministic markdown memo from result.json (no LLM)
-│   ├── archive_run.py      # Local archive + reasoning_trace.json custody manifest
+│   ├── archive_run.py      # Local archive + agent_result.json + reasoning_trace.json custody manifest
 │   ├── export_reasoning_trace_dataset.py # Local JSONL corpus + summary from archived traces
 │   └── stability_check.py  # Diagnostic harness (Mode A aggregate / Mode B pipeline-variance / Mode C extraction-drift)
 ├── observatory/          # Local web UI — four cards, revised answer, reasoning graph, run health, pipeline inspector
@@ -167,6 +171,16 @@ The engine runs entirely on Python stdlib. No virtual environment, no pip instal
 ## How It Works
 
 See **[HOW_IT_WORKS.md](HOW_IT_WORKS.md)** — the full technical reference covering the problem, architecture, knowledge substrate, step-by-step pipeline flow, quality doctrine, known limitations, and cost per run.
+
+For a plain-language shareable overview, see **[Lolla: A Reasoning Audit Layer for AI Agents](docs/lolla-pitch-and-invitation.md)**.
+
+For the current machine-readable handoff, see **[Lolla Agent Result Contract](docs/lolla-agent-result-contract.md)**.
+
+For the June 2026 roadmap toward an agent-callable reasoning-audit harness, see **[PRD: Lolla As A Reasoning-Audit Harness](docs/lolla-reasoning-audit-harness-prd.md)**.
+
+For how Lolla can fit beside CrabTrap-style proxies, guardrails, approval systems, sandboxes, identity scopes, and trace stores, see **[Agent Control Layers And Lolla Integration](docs/agent-control-layers-and-lolla-integration.md)**.
+
+For the eval doctrine behind that roadmap, see **[Lolla Evaluation Methodology](docs/lolla-evaluation-methodology.md)**.
 
 ## Cost
 
