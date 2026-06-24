@@ -594,10 +594,11 @@ def test_expansions_panel_handles_empty_expansions(monkeypatch):
 
 def test_audit_index_links_to_all_panels():
     html = serve_result._render_audit_index_html()
-    for href in ("/audit/lane1", "/audit/lane2", "/audit/lane4",
-                 "/audit/anti-echo", "/audit/routing", "/audit/expansions",
-                 "/audit/stakeholders", "/audit/graph-survival",
-                 "/audit/reasoning-trace", "/audit/events"):
+    for href in ("/audit/extraction", "/audit/lane1", "/audit/lane2",
+                 "/audit/lane4", "/audit/anti-echo", "/audit/routing",
+                 "/audit/expansions", "/audit/stakeholders",
+                 "/audit/graph-survival", "/audit/reasoning-trace",
+                 "/audit/events"):
         assert href in html, f"index missing link to {href}"
 
 
@@ -946,6 +947,114 @@ def test_pre_step6_panel_renders_private_table_and_ledger(monkeypatch):
     assert "render_current_run_private_table" in html
     assert "pre_step6_private_table.md" in html
     assert "This run has no" not in html
+
+
+def test_extraction_panel_follows_archive_path_from_run_events(tmp_path, monkeypatch):
+    r = _fixture_result()
+    r["usage_summary"] = {"run_id": "extraction-test"}
+    result_path = tmp_path / "lolla_extraction_test_result.json"
+    result_path.write_text(json.dumps(r), encoding="utf-8")
+
+    archive_dir = tmp_path / "archive" / "extraction-test"
+    archive_dir.mkdir(parents=True)
+    run_events_path = tmp_path / "lolla_extraction_test_run_events.json"
+    run_events_path.write_text(
+        json.dumps(
+            {
+                "schema_version": "lolla.run_events.v0.1",
+                "run_id": "extraction-test",
+                "events": [
+                    {
+                        "event_id": "event_001",
+                        "event_type": "archive_completed",
+                        "occurred_at": "2026-06-24T10:05:00Z",
+                        "actor": "operator",
+                        "details": {"archive_path": str(archive_dir)},
+                    }
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+    extraction_path = archive_dir / "extraction.json"
+    extraction_path.write_text(
+        json.dumps(
+            {
+                "status": "ok",
+                "capture_health": "good",
+                "capture_manifest": {
+                    "actual_user_turns": 2,
+                    "actual_assistant_turns": 2,
+                    "last_turn_role": "ASSISTANT",
+                },
+                "capture_warnings": [],
+                "extraction": {
+                    "is_strategic": True,
+                    "decision_situation": "Whether to report suspected misconduct.",
+                    "original_framing": "The user framed reporting as moral duty versus career risk.",
+                    "synthesized_position": "The assistant recommended counsel-first reporting.",
+                    "live_constraints": [
+                        {
+                            "constraint": "Active regulatory audit",
+                            "introduced_turn": 1,
+                            "status": "active",
+                            "weight": "structural",
+                            "canonical_key": "active-regulatory-audit",
+                        }
+                    ],
+                    "reasoning_passages": [
+                        "External-with-counsel is the defensible path."
+                    ],
+                    "dropped_threads": [
+                        {
+                            "thread": "Former colleague may have seen similar conduct",
+                            "raised_by": "user",
+                            "raised_turn": 7,
+                            "status": "acknowledged_then_dropped",
+                            "superseded_by": "focus shifted to user's own obligation",
+                        }
+                    ],
+                    "_quote_validation": {
+                        "total": 1,
+                        "verified": 1,
+                        "fabricated": 0,
+                        "fabricated_passages": [],
+                        "retry_attempted": False,
+                        "retry_succeeded": False,
+                    },
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(serve_result, "_RESULT", r)
+    monkeypatch.setattr(serve_result, "_RESULT_PATH", result_path)
+    monkeypatch.setattr(serve_result, "_RESULT_MTIME", result_path.stat().st_mtime)
+
+    html = serve_result._render_extraction_html()
+
+    assert "Extraction" in html
+    assert str(extraction_path) in html
+    assert "Whether to report suspected misconduct." in html
+    assert "Active regulatory audit" in html
+    assert "External-with-counsel is the defensible path." in html
+    assert "Former colleague may have seen similar conduct" in html
+    assert "Quote Validation" in html
+    assert "actual_user_turns" in html
+    assert "active-regulatory-audit" in html
+
+
+def test_extraction_panel_handles_missing_sidecar(tmp_path, monkeypatch):
+    result_path = tmp_path / "result.json"
+    result_path.write_text(json.dumps({}), encoding="utf-8")
+    monkeypatch.setattr(serve_result, "_RESULT", {})
+    monkeypatch.setattr(serve_result, "_RESULT_PATH", result_path)
+    monkeypatch.setattr(serve_result, "_RESULT_MTIME", result_path.stat().st_mtime)
+
+    html = serve_result._render_extraction_html()
+
+    assert "Extraction" in html
+    assert "No <code>extraction.json</code> sidecar" in html
 
 
 def test_run_events_panel_renders_tmp_sidecar(tmp_path, monkeypatch):
@@ -1444,6 +1553,7 @@ def test_smoke_all_panels_serve_200_without_spa_bundle(running_server):
     even when ``STATIC_DIR`` doesn't exist (skill-portability gate)."""
     paths = [
         "/audit",
+        "/audit/extraction",
         "/audit/lane1",
         "/audit/lane2",
         "/audit/lane4",

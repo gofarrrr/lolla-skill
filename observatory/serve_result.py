@@ -107,6 +107,7 @@ def _fmt_score(value) -> str:
 # left-to-right from "everything" to specific panels.
 _AUDIT_NAV = (
     ("/audit", "Audit Index"),
+    ("/audit/extraction", "Extraction"),
     ("/audit/lane1", "Lane 1"),
     ("/audit/lane2", "Lane 2"),
     ("/audit/lane4", "Lane 4"),
@@ -1733,6 +1734,189 @@ def _lane2_candidate_status(candidate: dict, lane2: dict) -> str:
     return "<span class='tag'>candidate only</span>"
 
 
+def _render_extraction_html() -> str:
+    _reload_result_if_changed()
+    header = _render_run_header()
+    payload, path, error = _load_json_sidecar("extraction.json")
+
+    if error:
+        body = (
+            "<h1>Extraction</h1>"
+            f"{header}"
+            + _empty_inline(
+                f"Could not parse <code>{_esc(path or 'extraction.json')}</code>: "
+                f"{_esc(error)}"
+            )
+        )
+        return _render_scaffold(
+            title="Lolla — Extraction",
+            body=body,
+            current_path="/audit/extraction",
+        )
+
+    source_label = "sidecar"
+    if not isinstance(payload, dict):
+        result_extraction = _RESULT.get("extraction") if isinstance(_RESULT, dict) else None
+        if isinstance(result_extraction, dict):
+            payload = {
+                "status": "from_result",
+                "extraction": result_extraction,
+                "capture_health": _RESULT.get("capture_health", ""),
+                "capture_warnings": _RESULT.get("capture_warnings", []),
+            }
+            path = _RESULT_PATH
+            source_label = "result.json"
+
+    if not isinstance(payload, dict):
+        body = (
+            "<h1>Extraction</h1>"
+            f"{header}"
+            + _empty_inline(
+                "No <code>extraction.json</code> sidecar was found next to the "
+                "served result or in the archived run path recorded by "
+                "<code>run_events.json</code>."
+            )
+        )
+        return _render_scaffold(
+            title="Lolla — Extraction",
+            body=body,
+            current_path="/audit/extraction",
+        )
+
+    extraction = payload.get("extraction")
+    if not isinstance(extraction, dict):
+        extraction = payload
+
+    capture_manifest = payload.get("capture_manifest") or {}
+    capture_warnings = payload.get("capture_warnings") or []
+    quote_validation = extraction.get("_quote_validation") or {}
+    live_constraints = extraction.get("live_constraints") or []
+    reasoning_passages = extraction.get("reasoning_passages") or []
+    dropped_threads = extraction.get("dropped_threads") or []
+
+    constraint_rows = []
+    for index, item in enumerate(live_constraints, start=1):
+        if isinstance(item, dict):
+            constraint = item.get("constraint") or item.get("text") or ""
+            introduced_turn = item.get("introduced_turn") or item.get("turn") or ""
+            status = item.get("status", "")
+            weight = item.get("weight", "")
+            canonical_key = item.get("canonical_key", "")
+        else:
+            constraint = str(item)
+            introduced_turn = ""
+            status = ""
+            weight = ""
+            canonical_key = ""
+        constraint_rows.append(
+            f"<tr><td>{_esc(index)}</td>"
+            f"<td>{_esc(constraint)}</td>"
+            f"<td>{_esc(introduced_turn)}</td>"
+            f"<td>{_esc(status)}</td>"
+            f"<td>{_esc(weight)}</td>"
+            f"<td><code>{_esc(canonical_key)}</code></td></tr>"
+        )
+
+    passage_rows = [
+        f"<tr><td>{_esc(index)}</td><td>{_esc(passage)}</td></tr>"
+        for index, passage in enumerate(reasoning_passages, start=1)
+    ]
+
+    dropped_rows = []
+    for index, item in enumerate(dropped_threads, start=1):
+        if isinstance(item, dict):
+            thread = item.get("thread") or item.get("text") or ""
+            raised_by = item.get("raised_by") or item.get("speaker") or ""
+            raised_turn = item.get("raised_turn") or item.get("turn") or ""
+            status = item.get("status", "")
+            superseded_by = item.get("superseded_by", "")
+        else:
+            thread = str(item)
+            raised_by = ""
+            raised_turn = ""
+            status = ""
+            superseded_by = ""
+        dropped_rows.append(
+            f"<tr><td>{_esc(index)}</td>"
+            f"<td>{_esc(thread)}</td>"
+            f"<td>{_esc(raised_by)}</td>"
+            f"<td>{_esc(raised_turn)}</td>"
+            f"<td>{_esc(status)}</td>"
+            f"<td>{_esc(superseded_by)}</td></tr>"
+        )
+
+    warning_rows = [
+        f"<tr><td>{_esc(item)}</td></tr>"
+        for item in capture_warnings
+    ]
+
+    manifest_rows = [
+        f"<tr><td>{_esc(key)}</td><td>{_esc(value)}</td></tr>"
+        for key, value in capture_manifest.items()
+    ]
+
+    body = f"""
+<h1>Extraction</h1>
+{header}
+<p class="lede">The structured decision snapshot produced before the lanes run. These fields are derived context, not the source of truth; the raw captured conversation remains canonical.</p>
+<table>
+  <tr><th>Source</th><td><code>{_esc(path or '')}</code> ({_esc(source_label)})</td></tr>
+  <tr><th>Status</th><td><span class="tag">{_esc(payload.get("status", ""))}</span></td></tr>
+  <tr><th>Strategic</th><td>{_esc(str(bool(extraction.get("is_strategic", True))).lower())}</td></tr>
+  <tr><th>Capture health</th><td>{_esc(payload.get("capture_health", ""))}</td></tr>
+  <tr><th>Live constraints</th><td>{_esc(len(live_constraints))}</td></tr>
+  <tr><th>Reasoning passages</th><td>{_esc(len(reasoning_passages))}</td></tr>
+  <tr><th>Dropped threads</th><td>{_esc(len(dropped_threads))}</td></tr>
+</table>
+<h2>Decision Structure</h2>
+<table>
+  <tr><th>Decision situation</th><td>{_esc(extraction.get("decision_situation", ""))}</td></tr>
+  <tr><th>Original framing</th><td>{_esc(extraction.get("original_framing", ""))}</td></tr>
+  <tr><th>Synthesized position</th><td>{_esc(extraction.get("synthesized_position", ""))}</td></tr>
+</table>
+<h2>Capture Manifest</h2>
+<table>
+<tr><th>Field</th><th>Value</th></tr>
+{"".join(manifest_rows) if manifest_rows else "<tr><td colspan='2' class='empty'>No capture manifest recorded.</td></tr>"}
+</table>
+<h2>Capture Warnings</h2>
+<table>
+<tr><th>Warning</th></tr>
+{"".join(warning_rows) if warning_rows else "<tr><td class='empty'>No capture warnings recorded.</td></tr>"}
+</table>
+<h2>Quote Validation</h2>
+<table>
+  <tr><th>Total</th><td>{_esc(quote_validation.get("total", len(reasoning_passages)))}</td></tr>
+  <tr><th>Verified</th><td>{_esc(quote_validation.get("verified", ""))}</td></tr>
+  <tr><th>Fabricated</th><td>{_esc(quote_validation.get("fabricated", ""))}</td></tr>
+  <tr><th>Retry attempted</th><td>{_esc(str(bool(quote_validation.get("retry_attempted"))).lower())}</td></tr>
+  <tr><th>Retry succeeded</th><td>{_esc(str(bool(quote_validation.get("retry_succeeded"))).lower())}</td></tr>
+  <tr><th>Fabricated passages</th><td>{_esc(json.dumps(quote_validation.get("fabricated_passages") or [], sort_keys=True))}</td></tr>
+</table>
+<h2>Live Constraints</h2>
+<table>
+<tr><th>#</th><th>Constraint</th><th>Turn</th><th>Status</th><th>Weight</th><th>Canonical key</th></tr>
+{"".join(constraint_rows) if constraint_rows else "<tr><td colspan='6' class='empty'>No live constraints extracted.</td></tr>"}
+</table>
+<h2>Reasoning Passages</h2>
+<p class="hint">These should be literal assistant substrings. Quote validation records whether any passage was fabricated or dropped.</p>
+<table>
+<tr><th>#</th><th>Passage</th></tr>
+{"".join(passage_rows) if passage_rows else "<tr><td colspan='2' class='empty'>No reasoning passages extracted.</td></tr>"}
+</table>
+<h2>Dropped Threads</h2>
+<table>
+<tr><th>#</th><th>Thread</th><th>Raised by</th><th>Turn</th><th>Status</th><th>Superseded by</th></tr>
+{"".join(dropped_rows) if dropped_rows else "<tr><td colspan='6' class='empty'>No dropped threads extracted.</td></tr>"}
+</table>
+"""
+    return _render_scaffold(
+        title="Lolla — Extraction",
+        body=body,
+        current_path="/audit/extraction",
+    )
+
+
 def _render_routing_html() -> str:
     _reload_result_if_changed()
     audit = _audit_summary()
@@ -3211,6 +3395,8 @@ def _render_audit_index_html() -> str:
     _reload_result_if_changed()
     audit_present = bool(_audit_summary())
     items = [
+        ("/audit/extraction", "Extraction",
+         "Structured pre-lane decision snapshot: capture health, quote validation, decision situation, constraints, reasoning passages, framing, and dropped threads."),
         ("/audit/lane1", "Lane 1 — Pass 1 + Pass 2 funnel",
          "Triage scores across the catalog, the threshold, the triggered set with source attribution, and Pass 2 outcomes with rationale."),
         ("/audit/lane2", "Lane 2 — Companion selection funnel",
@@ -3320,6 +3506,7 @@ class ResultHandler(SimpleHTTPRequestHandler):
         # Audit panels — server-rendered HTML, no SPA dependency.
         _audit_routes = {
             "/audit": _render_audit_index_html,
+            "/audit/extraction": _render_extraction_html,
             "/audit/lane1": _render_lane1_html,
             "/audit/lane2": _render_lane2_html,
             "/audit/lane4": _render_lane4_html,
