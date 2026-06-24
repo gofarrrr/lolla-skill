@@ -594,7 +594,7 @@ def test_expansions_panel_handles_empty_expansions(monkeypatch):
 
 def test_audit_index_links_to_all_panels():
     html = serve_result._render_audit_index_html()
-    for href in ("/audit/extraction", "/audit/lane1", "/audit/lane2",
+    for href in ("/audit/extraction", "/audit/memo", "/audit/lane1", "/audit/lane2",
                  "/audit/lane4", "/audit/anti-echo", "/audit/routing",
                  "/audit/expansions", "/audit/stakeholders",
                  "/audit/graph-survival", "/audit/reasoning-trace",
@@ -1055,6 +1055,85 @@ def test_extraction_panel_handles_missing_sidecar(tmp_path, monkeypatch):
 
     assert "Extraction" in html
     assert "No <code>extraction.json</code> sidecar" in html
+
+
+def test_memo_panel_follows_archive_path_from_run_events(tmp_path, monkeypatch):
+    r = _fixture_result()
+    r["usage_summary"] = {"run_id": "memo-test"}
+    result_path = tmp_path / "lolla_memo_test_result.json"
+    result_path.write_text(json.dumps(r), encoding="utf-8")
+
+    archive_dir = tmp_path / "archive" / "memo-test"
+    archive_dir.mkdir(parents=True)
+    run_events_path = tmp_path / "lolla_memo_test_run_events.json"
+    run_events_path.write_text(
+        json.dumps(
+            {
+                "schema_version": "lolla.run_events.v0.1",
+                "run_id": "memo-test",
+                "events": [
+                    {
+                        "event_id": "event_001",
+                        "event_type": "archive_completed",
+                        "occurred_at": "2026-06-24T10:05:00Z",
+                        "actor": "operator",
+                        "details": {"archive_path": str(archive_dir)},
+                    }
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+    memo_path = archive_dir / "memo.md"
+    memo_path.write_text(
+        "# Counsel is the gate before reporting\n\n"
+        "The shareable answer says to preserve optionality before picking a channel.\n\n"
+        "## What changed in the advice\n\n"
+        "Internal versus external reporting became a counsel-led sequence.\n",
+        encoding="utf-8",
+    )
+    memo_note_path = archive_dir / "memo_note.json"
+    memo_note_path.write_text(
+        json.dumps(
+            {
+                "memo_substantive_title": "Counsel is the gate before reporting",
+                "memo_orientation_note": "Use this memo as the product artifact.",
+                "memo_what_changed": "The route became counsel-led.",
+                "memo_what_still_holds": "Do not confront the partner.",
+                "memo_take_back_or_set_aside": "Drop false precision.",
+                "memo_pressure_check": "",
+            }
+        ),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(serve_result, "_RESULT", r)
+    monkeypatch.setattr(serve_result, "_RESULT_PATH", result_path)
+    monkeypatch.setattr(serve_result, "_RESULT_MTIME", result_path.stat().st_mtime)
+
+    html = serve_result._render_memo_html()
+
+    assert "Memo" in html
+    assert str(memo_path) in html
+    assert str(memo_note_path) in html
+    assert "Counsel is the gate before reporting" in html
+    assert "The shareable answer says to preserve optionality" in html
+    assert "What changed in the advice" in html
+    assert "memo_note.json" in html
+    assert "memo_pressure_check" in html
+    assert "empty" in html
+
+
+def test_memo_panel_handles_missing_sidecar(tmp_path, monkeypatch):
+    result_path = tmp_path / "result.json"
+    result_path.write_text(json.dumps(_fixture_result()), encoding="utf-8")
+    monkeypatch.setattr(serve_result, "_RESULT", _fixture_result())
+    monkeypatch.setattr(serve_result, "_RESULT_PATH", result_path)
+    monkeypatch.setattr(serve_result, "_RESULT_MTIME", result_path.stat().st_mtime)
+
+    html = serve_result._render_memo_html()
+
+    assert "Memo" in html
+    assert "No <code>memo.md</code> sidecar" in html
 
 
 def test_run_events_panel_renders_tmp_sidecar(tmp_path, monkeypatch):
@@ -1559,6 +1638,7 @@ def test_smoke_all_panels_serve_200_without_spa_bundle(running_server):
     paths = [
         "/audit",
         "/audit/extraction",
+        "/audit/memo",
         "/audit/lane1",
         "/audit/lane2",
         "/audit/lane4",

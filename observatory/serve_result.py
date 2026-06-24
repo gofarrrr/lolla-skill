@@ -108,6 +108,7 @@ def _fmt_score(value) -> str:
 _AUDIT_NAV = (
     ("/audit", "Audit Index"),
     ("/audit/extraction", "Extraction"),
+    ("/audit/memo", "Memo"),
     ("/audit/lane1", "Lane 1"),
     ("/audit/lane2", "Lane 2"),
     ("/audit/lane4", "Lane 4"),
@@ -144,6 +145,13 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 .tag.warn { background: #fdecec; color: #832; border-color: #e5b8b8; }
 .tag.ok { background: #eafde9; color: #246; border-color: #b8e5b8; }
 blockquote.quote { margin: 0; padding: 0.35rem 0.6rem; background: #fafafa; border-left: 3px solid #ddd; color: #333; }
+.memo-doc { max-width: 860px; line-height: 1.58; margin-bottom: 2rem; }
+.memo-doc h2 { margin-top: 1.6rem; padding-top: 0.4rem; border-top: 1px solid #eee; }
+.memo-doc h2:first-child { border-top: 0; padding-top: 0; }
+.memo-doc h3 { margin-top: 1.2rem; }
+.memo-doc p { margin: 0.75rem 0; }
+.memo-doc ul { margin: 0.75rem 0 1rem 1.4rem; padding: 0; }
+.memo-doc li { margin: 0.25rem 0; }
 nav.audit-nav { font-size: 0.9rem; padding: 0.5rem 0 1rem; border-bottom: 1px solid #eee; margin-bottom: 1.5rem; }
 nav.audit-nav a { color: #336; text-decoration: none; padding: 0.25rem 0.5rem; }
 nav.audit-nav a.active { font-weight: 600; color: #222; background: #eef; border-radius: 3px; }
@@ -492,6 +500,76 @@ def _load_json_sidecar(filename: str) -> tuple[dict | list | None, Path | None, 
             last_error = str(exc)
             return None, path, last_error
     return None, None, last_error
+
+
+def _load_text_sidecar(filename: str) -> tuple[str | None, Path | None, str]:
+    """Load a UTF-8 text sidecar next to the served result or archive path."""
+    last_error = ""
+    for path in _sidecar_candidates(filename):
+        if not path.exists():
+            continue
+        try:
+            return path.read_text(encoding="utf-8"), path, ""
+        except (OSError, UnicodeDecodeError) as exc:
+            last_error = str(exc)
+            return None, path, last_error
+    return None, None, last_error
+
+
+def _render_simple_markdown(text: str) -> str:
+    """Render the memo's small Markdown subset without adding dependencies."""
+    blocks: list[str] = []
+    paragraph: list[str] = []
+    bullets: list[str] = []
+
+    def flush_paragraph() -> None:
+        nonlocal paragraph
+        if paragraph:
+            blocks.append(
+                "<p>" + "<br>".join(_esc(line) for line in paragraph) + "</p>"
+            )
+            paragraph = []
+
+    def flush_bullets() -> None:
+        nonlocal bullets
+        if bullets:
+            blocks.append(
+                "<ul>"
+                + "".join(f"<li>{_esc(item)}</li>" for item in bullets)
+                + "</ul>"
+            )
+            bullets = []
+
+    for raw_line in text.splitlines():
+        line = raw_line.rstrip()
+        stripped = line.strip()
+        if not stripped:
+            flush_paragraph()
+            flush_bullets()
+            continue
+
+        if stripped.startswith("### "):
+            flush_paragraph()
+            flush_bullets()
+            blocks.append(f"<h3>{_esc(stripped[4:].strip())}</h3>")
+        elif stripped.startswith("## "):
+            flush_paragraph()
+            flush_bullets()
+            blocks.append(f"<h2>{_esc(stripped[3:].strip())}</h2>")
+        elif stripped.startswith("# "):
+            flush_paragraph()
+            flush_bullets()
+            blocks.append(f"<h2>{_esc(stripped[2:].strip())}</h2>")
+        elif stripped.startswith("- "):
+            flush_paragraph()
+            bullets.append(stripped[2:].strip())
+        else:
+            flush_bullets()
+            paragraph.append(stripped)
+
+    flush_paragraph()
+    flush_bullets()
+    return "\n".join(blocks) if blocks else "<p class='empty'>Memo is empty.</p>"
 
 
 def _joined_user_turns(extraction: dict) -> str:
@@ -3008,6 +3086,110 @@ def _render_pre_step6_shadow_html() -> str:
     )
 
 
+def _render_memo_html() -> str:
+    _reload_result_if_changed()
+    header = _render_run_header()
+    memo_text, memo_path, memo_error = _load_text_sidecar("memo.md")
+    memo_note, memo_note_path, memo_note_error = _load_json_sidecar("memo_note.json")
+
+    if memo_error:
+        body = (
+            "<h1>Memo</h1>"
+            f"{header}"
+            + _empty_inline(
+                f"Could not read <code>{_esc(memo_path or 'memo.md')}</code>: "
+                f"{_esc(memo_error)}"
+            )
+        )
+        return _render_scaffold(
+            title="Lolla — Memo",
+            body=body,
+            current_path="/audit/memo",
+        )
+
+    if memo_text is None:
+        body = (
+            "<h1>Memo</h1>"
+            f"{header}"
+            + _empty_inline(
+                "No <code>memo.md</code> sidecar was found next to the served "
+                "result or in the archived run path recorded by "
+                "<code>run_events.json</code>."
+            )
+        )
+        return _render_scaffold(
+            title="Lolla — Memo",
+            body=body,
+            current_path="/audit/memo",
+        )
+
+    note_fields = [
+        ("memo_substantive_title", "Title"),
+        ("memo_orientation_note", "Orientation"),
+        ("memo_what_changed", "What changed"),
+        ("memo_what_still_holds", "What still holds"),
+        ("memo_take_back_or_set_aside", "Take back / set aside"),
+        ("memo_pressure_check", "Pressure check"),
+    ]
+    note_rows = []
+    if isinstance(memo_note, dict):
+        for key, label in note_fields:
+            value = str(memo_note.get(key) or "")
+            preview = " ".join(value.split())
+            for marker in ("### ", "## ", "# "):
+                preview = preview.replace(marker, "")
+            status = "present" if value.strip() else "empty"
+            note_rows.append(
+                f"<tr><td><code>{_esc(key)}</code></td>"
+                f"<td>{_esc(label)}</td>"
+                f"<td><span class='tag'>{_esc(status)}</span></td>"
+                f"<td>{_esc(len(value))}</td>"
+                f"<td>{_esc(_short(preview, 180))}</td></tr>"
+            )
+    elif memo_note_error:
+        note_rows.append(
+            f"<tr><td colspan='5' class='empty'>Could not parse "
+            f"<code>{_esc(memo_note_path or 'memo_note.json')}</code>: "
+            f"{_esc(memo_note_error)}</td></tr>"
+        )
+    else:
+        note_rows.append(
+            "<tr><td colspan='5' class='empty'>No <code>memo_note.json</code> "
+            "sidecar was found for field-level memo diagnostics.</td></tr>"
+        )
+
+    note_title = ""
+    if isinstance(memo_note, dict):
+        note_title = str(memo_note.get("memo_substantive_title") or "")
+
+    body = f"""
+<h1>Memo</h1>
+{header}
+<p class="lede">The shareable decision-note artifact produced by Step 8. The detailed audit trace stays in the telemetry panels; this page shows the product memo that the user can actually read or send onward.</p>
+<table>
+  <tr><th>Memo source</th><td><code>{_esc(memo_path or '')}</code></td></tr>
+  <tr><th>Memo characters</th><td>{_esc(len(memo_text))}</td></tr>
+  <tr><th>Memo note source</th><td><code>{_esc(memo_note_path or 'not found')}</code></td></tr>
+  <tr><th>Memo note status</th><td>{_esc('present' if isinstance(memo_note, dict) else ('error' if memo_note_error else 'missing'))}</td></tr>
+  <tr><th>Memo title</th><td>{_esc(note_title or '—')}</td></tr>
+</table>
+<h2>Memo Content</h2>
+<article class="memo-doc">
+{_render_simple_markdown(memo_text)}
+</article>
+<h2>Memo Field Diagnostics</h2>
+<table>
+<tr><th>Field</th><th>Meaning</th><th>Status</th><th>Characters</th><th>Preview</th></tr>
+{"".join(note_rows)}
+</table>
+"""
+    return _render_scaffold(
+        title="Lolla — Memo",
+        body=body,
+        current_path="/audit/memo",
+    )
+
+
 def _render_run_events_html() -> str:
     _reload_result_if_changed()
     header = _render_run_header()
@@ -3496,6 +3678,8 @@ def _render_audit_index_html() -> str:
     items = [
         ("/audit/extraction", "Extraction",
          "Structured pre-lane decision snapshot: capture health, quote validation, decision situation, constraints, reasoning passages, framing, and dropped threads."),
+        ("/audit/memo", "Memo",
+         "The shareable decision-note artifact produced by Step 8, with memo_note field diagnostics and archive-source path."),
         ("/audit/lane1", "Lane 1 — Pass 1 + Pass 2 funnel",
          "Triage scores across the catalog, the threshold, the triggered set with source attribution, and Pass 2 outcomes with rationale."),
         ("/audit/lane2", "Lane 2 — Companion selection funnel",
@@ -3606,6 +3790,7 @@ class ResultHandler(SimpleHTTPRequestHandler):
         _audit_routes = {
             "/audit": _render_audit_index_html,
             "/audit/extraction": _render_extraction_html,
+            "/audit/memo": _render_memo_html,
             "/audit/lane1": _render_lane1_html,
             "/audit/lane2": _render_lane2_html,
             "/audit/lane4": _render_lane4_html,
