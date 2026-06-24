@@ -666,6 +666,50 @@ def test_case_api_includes_stakeholder_assumption_check():
     assert response["stakeholder_assumption_check"]["status"] == "completed"
 
 
+def test_case_api_includes_risk_mode(monkeypatch):
+    r = _fixture_result()
+    r["risk_mode"] = "high_stakes"
+    monkeypatch.setattr(serve_result, "_RESULT", r)
+
+    response = serve_result._build_case_response()
+
+    assert response["risk_mode"] == "high_stakes"
+
+
+def test_case_api_falls_back_to_agent_result_risk_mode(tmp_path):
+    result = _fixture_result()
+    result.pop("risk_mode", None)
+    result_path = tmp_path / "result.json"
+    result_path.write_text(json.dumps(result), encoding="utf-8")
+    (tmp_path / "agent_result.json").write_text(
+        json.dumps({"schema_version": "lolla_agent_result.v1", "risk_mode": "standard"}),
+        encoding="utf-8",
+    )
+
+    response = serve_result._build_case_response(
+        result,
+        case_id="archive:case:run",
+        result_path=result_path,
+    )
+
+    assert response["risk_mode"] == "standard"
+
+
+def test_run_header_renders_risk_mode(monkeypatch):
+    r = _fixture_result()
+    r["risk_mode"] = "stability"
+    r["run_health"] = {"overall": "healthy"}
+    r["usage_summary"] = {"run_id": "run-with-mode"}
+    monkeypatch.setattr(serve_result, "_RESULT", r)
+    monkeypatch.setattr(serve_result, "_CASE_NAME", "Risk mode case")
+    monkeypatch.setattr(serve_result, "_RESULT_PATH", None)
+
+    html = serve_result._render_run_header()
+
+    assert "Risk mode" in html
+    assert "stability" in html
+
+
 def test_cases_api_lists_local_archived_runs(tmp_path, monkeypatch):
     current = _fixture_result()
     current["usage_summary"] = {"run_id": "current-run"}
@@ -710,6 +754,7 @@ def test_archived_case_api_loads_selected_result_and_graph(
 
     archived = json.loads(json.dumps(_fixture_result()))
     archived["usage_summary"] = {"run_id": "20260624T010203Z_archive"}
+    archived.pop("risk_mode", None)
     archived["extraction"] = {
         "decision_situation": "Whether selected archived case renders.",
         "turns": [
@@ -721,6 +766,10 @@ def test_archived_case_api_loads_selected_result_and_graph(
         "anchors": [{"model_id": "archive-only-model", "chunks": []}]
     }
     (run_dir / "result.json").write_text(json.dumps(archived), encoding="utf-8")
+    (run_dir / "agent_result.json").write_text(
+        json.dumps({"schema_version": "lolla_agent_result.v1", "risk_mode": "high_stakes"}),
+        encoding="utf-8",
+    )
     monkeypatch.setenv("LOLLA_ARCHIVE_DIR", str(archive_root))
 
     status, body = _http_get(f"{running_server}/api/cases")
@@ -734,6 +783,7 @@ def test_archived_case_api_loads_selected_result_and_graph(
     assert status == 200
     payload = json.loads(body)
     assert payload["case"]["case_id"] == archived_id
+    assert payload["risk_mode"] == "high_stakes"
     assert "Archived user question" in payload["case"]["query"]
     assert payload["usage_summary"]["run_id"] == "20260624T010203Z_archive"
 

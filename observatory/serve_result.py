@@ -415,6 +415,10 @@ def _render_run_header() -> str:
     if overall:
         bits.append(f"Health: <code>{_esc(overall)}</code>")
 
+    risk_mode = _risk_mode_for_result(_RESULT, _RESULT_PATH)
+    if risk_mode:
+        bits.append(f"Risk mode: <code>{_esc(risk_mode)}</code>")
+
     us = _RESULT.get("usage_summary") or {}
     run_id = us.get("run_id")
     if run_id:
@@ -823,6 +827,20 @@ def _load_case_result(case_id: str) -> tuple[dict | None, Path | None, bool]:
     return result, result_path, False
 
 
+def _risk_mode_for_result(result: dict, result_path: Path | None = None) -> str | None:
+    """Return risk_mode from result.json, falling back to agent_result.json."""
+    risk_mode = result.get("risk_mode")
+    if risk_mode:
+        return str(risk_mode)
+    if result_path is None:
+        return None
+    agent_result = _load_json_safe(result_path.parent / "agent_result.json")
+    if not isinstance(agent_result, dict):
+        return None
+    risk_mode = agent_result.get("risk_mode")
+    return str(risk_mode) if risk_mode else None
+
+
 def _archive_case_summaries(limit: int = 200) -> list[dict]:
     """Return newest-first archived runs for the existing SPA Cases tab."""
     root = _archive_root()
@@ -1108,12 +1126,16 @@ def _build_case_response(
     result: dict | None = None,
     *,
     case_id: str | None = None,
+    result_path: Path | None = None,
 ) -> dict:
     """Build the case response from a current or archived pipeline result."""
     if result is None:
         _reload_result_if_changed()
     r = result if result is not None else _RESULT
     response_case_id = case_id or _CASE_ID
+    response_result_path = result_path
+    if response_result_path is None and result is None:
+        response_result_path = _RESULT_PATH
 
     delta_card = r.get("delta_card")
     companion = r.get("companion_cheat_sheet")
@@ -1135,6 +1157,7 @@ def _build_case_response(
 
     response = {
         "case": case_meta,
+        "risk_mode": _risk_mode_for_result(r, response_result_path),
         "delta_card": delta_card,
         "companion": companion,
         "frame_pressure_card": frame_pressure_card,
@@ -3936,7 +3959,13 @@ class ResultHandler(SimpleHTTPRequestHandler):
                 )
                 return
             if len(parts) == 4:
-                self._json_response(_build_case_response(result, case_id=case_id))
+                self._json_response(
+                    _build_case_response(
+                        result,
+                        case_id=case_id,
+                        result_path=result_path,
+                    )
+                )
                 return
             if len(parts) == 5 and parts[4] == "audit_trace":
                 self._json_response(result.get("audit_summary") or {})
