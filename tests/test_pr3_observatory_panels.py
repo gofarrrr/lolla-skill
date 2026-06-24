@@ -19,6 +19,7 @@ import socket
 import sys
 import threading
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from contextlib import closing
@@ -791,6 +792,119 @@ def test_archived_case_api_loads_selected_result_and_graph(
     assert status == 200
     graph = json.loads(body)
     assert any(node["id"] == "archive-only-model" for node in graph["nodes"])
+
+
+def test_selected_archived_sidecar_endpoints_return_archived_run_artifacts(
+    tmp_path,
+    monkeypatch,
+    running_server,
+):
+    archive_root = tmp_path / "runs"
+    run_dir = archive_root / "archive-case" / "20260624T010203Z_archive"
+    run_dir.mkdir(parents=True)
+
+    active_sidecar = {"run_id": "active-run"}
+    (tmp_path / "agent_result.json").write_text(json.dumps(active_sidecar), encoding="utf-8")
+
+    archived = json.loads(json.dumps(_fixture_result()))
+    archived["usage_summary"] = {"run_id": "archive-run"}
+    (run_dir / "result.json").write_text(json.dumps(archived), encoding="utf-8")
+    (run_dir / "agent_result.json").write_text(
+        json.dumps({"schema_version": "lolla_agent_result.v1", "run_id": "archive-run"}),
+        encoding="utf-8",
+    )
+    (run_dir / "reasoning_trace.json").write_text(
+        json.dumps({"schema_version": "lolla_reasoning_trace.v1", "process": {"run_id": "archive-run"}}),
+        encoding="utf-8",
+    )
+    (run_dir / "run_events.json").write_text(
+        json.dumps([{"event": "archive_completed", "run_id": "archive-run"}]),
+        encoding="utf-8",
+    )
+    (run_dir / "memo.md").write_text("# Archived Memo\n\nSelected run B.\n", encoding="utf-8")
+    (run_dir / "graph_survival_report.json").write_text(
+        json.dumps({"schema_version": "graph_survival_report.v1", "run_id": "archive-run"}),
+        encoding="utf-8",
+    )
+    (run_dir / "graph_survival_report.md").write_text(
+        "# Graph Survival\n\nArchive run B.\n",
+        encoding="utf-8",
+    )
+    monkeypatch.setenv("LOLLA_ARCHIVE_DIR", str(archive_root))
+
+    archived_id = "archive:archive-case:20260624T010203Z_archive"
+    encoded = urllib.parse.quote(archived_id, safe="")
+
+    status, body = _http_get(f"{running_server}/api/case/{encoded}/agent-result")
+    assert status == 200
+    assert json.loads(body)["run_id"] == "archive-run"
+
+    status, body = _http_get(f"{running_server}/api/case/{encoded}/reasoning-trace")
+    assert status == 200
+    assert json.loads(body)["process"]["run_id"] == "archive-run"
+
+    status, body = _http_get(f"{running_server}/api/case/{encoded}/events")
+    assert status == 200
+    assert json.loads(body)[0]["event"] == "archive_completed"
+
+    status, body = _http_get(f"{running_server}/api/case/{encoded}/memo")
+    assert status == 200
+    memo = json.loads(body)
+    assert memo["artifact"]["filename"] == "memo.md"
+    assert "Selected run B" in memo["markdown"]
+
+    status, body = _http_get(f"{running_server}/api/case/{encoded}/graph-survival")
+    assert status == 200
+    survival = json.loads(body)
+    assert survival["report"]["run_id"] == "archive-run"
+    assert survival["markdown"]["artifact"]["filename"] == "graph_survival_report.md"
+    assert "Archive run B" in survival["markdown"]["markdown"]
+
+    status, body = _http_get(f"{running_server}/api/case/{encoded}")
+    assert status == 200
+    assert json.loads(body)["usage_summary"]["run_id"] == "archive-run"
+
+
+def test_selected_archived_sidecar_endpoint_missing_file_returns_404(
+    tmp_path,
+    monkeypatch,
+    running_server,
+):
+    archive_root = tmp_path / "runs"
+    run_dir = archive_root / "archive-case" / "20260624T010203Z_archive"
+    run_dir.mkdir(parents=True)
+    archived = json.loads(json.dumps(_fixture_result()))
+    (run_dir / "result.json").write_text(json.dumps(archived), encoding="utf-8")
+    monkeypatch.setenv("LOLLA_ARCHIVE_DIR", str(archive_root))
+
+    archived_id = urllib.parse.quote("archive:archive-case:20260624T010203Z_archive", safe="")
+    status, body = _http_get_error(f"{running_server}/api/case/{archived_id}/agent-result")
+
+    assert status == 404
+    assert "agent_result.json" in body
+
+
+def test_selected_archived_sidecar_endpoint_rejects_archive_escape(
+    tmp_path,
+    monkeypatch,
+    running_server,
+):
+    archive_root = tmp_path / "runs"
+    archive_root.mkdir()
+    escaped_dir = tmp_path / "outside"
+    escaped_dir.mkdir()
+    (escaped_dir / "result.json").write_text(json.dumps(_fixture_result()), encoding="utf-8")
+    (escaped_dir / "agent_result.json").write_text(
+        json.dumps({"run_id": "escaped-run"}),
+        encoding="utf-8",
+    )
+    monkeypatch.setenv("LOLLA_ARCHIVE_DIR", str(archive_root))
+
+    escaped_id = urllib.parse.quote("archive:archive-case:../../outside", safe="")
+    status, body = _http_get_error(f"{running_server}/api/case/{escaped_id}/agent-result")
+
+    assert status == 404
+    assert "escaped-run" not in body
 
 
 def test_v60_panel_renders_process_telemetry(monkeypatch):
@@ -1721,6 +1835,10 @@ def _free_port() -> int:
         return s.getsockname()[1]
 
 
+def test_observatory_default_bind_host_is_loopback_only():
+    assert serve_result._OBSERVATORY_HOST == "127.0.0.1"
+
+
 @pytest.fixture
 def running_server(tmp_path, monkeypatch):
     """Spin up serve_result.py on a free port with the fixture result.json.
@@ -1742,13 +1860,13 @@ def running_server(tmp_path, monkeypatch):
     monkeypatch.setattr(serve_result, "STATIC_DIR", bogus_static)
 
     port = _free_port()
-    server = HTTPServer(("127.0.0.1", port), serve_result.ResultHandler)
+    server = HTTPServer((serve_result._OBSERVATORY_HOST, port), serve_result.ResultHandler)
     thread = threading.Thread(target=server.serve_forever, daemon=True)
     thread.start()
     # Tiny pause so the listening socket is ready before the first request.
     time.sleep(0.05)
     try:
-        yield f"http://127.0.0.1:{port}"
+        yield f"http://{serve_result._OBSERVATORY_HOST}:{port}"
     finally:
         server.shutdown()
         server.server_close()
@@ -1758,6 +1876,14 @@ def running_server(tmp_path, monkeypatch):
 def _http_get(url: str) -> tuple[int, str]:
     with urllib.request.urlopen(url, timeout=5) as resp:
         return resp.status, resp.read().decode("utf-8")
+
+
+def _http_get_error(url: str) -> tuple[int, str]:
+    try:
+        with urllib.request.urlopen(url, timeout=5) as resp:
+            return resp.status, resp.read().decode("utf-8")
+    except urllib.error.HTTPError as exc:
+        return exc.code, exc.read().decode("utf-8")
 
 
 def test_smoke_all_panels_serve_200_without_spa_bundle(running_server):
@@ -1844,12 +1970,12 @@ def test_root_serves_spa_with_fab_injected(tmp_path, monkeypatch):
     monkeypatch.setattr(serve_result, "STATIC_DIR", fake_static)
 
     port = _free_port()
-    server = HTTPServer(("127.0.0.1", port), serve_result.ResultHandler)
+    server = HTTPServer((serve_result._OBSERVATORY_HOST, port), serve_result.ResultHandler)
     thread = threading.Thread(target=server.serve_forever, daemon=True)
     thread.start()
     time.sleep(0.05)
     try:
-        status, body = _http_get(f"http://127.0.0.1:{port}/")
+        status, body = _http_get(f"http://{serve_result._OBSERVATORY_HOST}:{port}/")
         assert status == 200
         assert "SPA app mount" in body  # original bundle still there
         assert "telemetry-fab" in body  # FAB injected

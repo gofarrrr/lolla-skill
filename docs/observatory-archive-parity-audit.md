@@ -110,17 +110,23 @@ That design is adequate for inspecting the active/manual run, especially when
 the server is launched directly against one archived `result.json`. It is not
 yet archive-parity inspection for local history.
 
-## Recommended Follow-Up PR
+## Selected-Archive Sidecar API Follow-Up
 
-Do not redesign Observatory in one pass. The next implementation PR should be a
-small selected-archive telemetry contract:
+The backend follow-up keeps Observatory boring and read-only. It does not
+redesign the UI; it makes the selected archived run's custody artifacts
+reachable through fixed local endpoints:
 
-1. Add selected-case sidecar API endpoints:
+1. Selected-case sidecar API endpoints:
    - `/api/case/<id>/agent-result`
    - `/api/case/<id>/reasoning-trace`
    - `/api/case/<id>/events`
    - `/api/case/<id>/memo`
    - `/api/case/<id>/graph-survival`
+
+   The first three return the raw JSON sidecar. `memo` returns a JSON wrapper
+   with artifact metadata and the markdown string. `graph-survival` returns a
+   JSON wrapper with the report JSON plus optional markdown artifact metadata and
+   markdown string when `graph_survival_report.md` exists.
 
 2. Resolve selected case IDs to archive run directories using the same archive
    lookup code already used by `/api/case/<id>`.
@@ -132,7 +138,7 @@ small selected-archive telemetry contract:
 4. Add deterministic tests proving selected archived cases can retrieve each
    sidecar independently of the active `_RESULT`.
 
-5. Only after those API endpoints are stable, update the Observatory UI to show a
+5. After those API endpoints are stable, update the Observatory UI to show a
    selected-run custody panel or links for the selected archived case.
 
 This keeps the next step aligned with the manual Lolla loop: run Lolla, open the

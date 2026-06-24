@@ -42,6 +42,7 @@ _CASE_NAME: str = "Lolla Audit"
 _KG_CACHE: dict | None = None
 _FAMILY_CACHE: list[dict] | None = None
 _DEFAULT_ARCHIVE_ROOT = Path.home() / ".local" / "share" / "lolla" / "runs"
+_OBSERVATORY_HOST = "127.0.0.1"
 
 
 # ---------------------------------------------------------------------------
@@ -839,6 +840,28 @@ def _risk_mode_for_result(result: dict, result_path: Path | None = None) -> str 
         return None
     risk_mode = agent_result.get("risk_mode")
     return str(risk_mode) if risk_mode else None
+
+
+def _fixed_sidecar_path(result_path: Path | None, filename: str) -> Path | None:
+    """Resolve a fixed sidecar filename inside the selected run directory."""
+    if result_path is None:
+        return None
+    run_dir = result_path.parent.resolve()
+    sidecar_path = (run_dir / filename).resolve()
+    if run_dir != sidecar_path and run_dir not in sidecar_path.parents:
+        return None
+    if not sidecar_path.is_file():
+        return None
+    return sidecar_path
+
+
+def _artifact_metadata(path: Path, *, content_type: str) -> dict:
+    return {
+        "filename": path.name,
+        "path": str(path),
+        "content_type": content_type,
+        "bytes": path.stat().st_size,
+    }
 
 
 def _archive_case_summaries(limit: int = 200) -> list[dict]:
@@ -3976,6 +3999,21 @@ class ResultHandler(SimpleHTTPRequestHandler):
             if len(parts) == 5 and parts[4] == "usage":
                 self._json_response(result.get("usage_summary") or {})
                 return
+            if len(parts) == 5 and parts[4] == "agent-result":
+                self._json_sidecar_response(result_path, "agent_result.json")
+                return
+            if len(parts) == 5 and parts[4] == "reasoning-trace":
+                self._json_sidecar_response(result_path, "reasoning_trace.json")
+                return
+            if len(parts) == 5 and parts[4] == "events":
+                self._json_sidecar_response(result_path, "run_events.json")
+                return
+            if len(parts) == 5 and parts[4] == "memo":
+                self._memo_sidecar_response(result_path)
+                return
+            if len(parts) == 5 and parts[4] == "graph-survival":
+                self._graph_survival_sidecar_response(result_path)
+                return
 
         if path == "/usage":
             self._html_response(_render_usage_html())
@@ -4091,6 +4129,75 @@ class ResultHandler(SimpleHTTPRequestHandler):
     def _error_response(self, status: int, message: str):
         self._json_response({"error": message}, status=status)
 
+    def _json_sidecar_response(self, result_path: Path | None, filename: str):
+        path = _fixed_sidecar_path(result_path, filename)
+        if path is None:
+            self._error_response(404, f"Sidecar '{filename}' not found for selected case")
+            return
+        payload = _load_json_safe(path)
+        if payload is None:
+            self._error_response(500, f"Sidecar '{filename}' could not be parsed as JSON")
+            return
+        self._json_response(payload)
+
+    def _memo_sidecar_response(self, result_path: Path | None):
+        path = _fixed_sidecar_path(result_path, "memo.md")
+        if path is None:
+            self._error_response(404, "Sidecar 'memo.md' not found for selected case")
+            return
+        try:
+            markdown = path.read_text(encoding="utf-8")
+        except OSError as exc:
+            self._error_response(500, f"Sidecar 'memo.md' could not be read: {exc}")
+            return
+        self._json_response(
+            {
+                "artifact": _artifact_metadata(path, content_type="text/markdown"),
+                "markdown": markdown,
+            }
+        )
+
+    def _graph_survival_sidecar_response(self, result_path: Path | None):
+        json_path = _fixed_sidecar_path(result_path, "graph_survival_report.json")
+        if json_path is None:
+            self._error_response(
+                404,
+                "Sidecar 'graph_survival_report.json' not found for selected case",
+            )
+            return
+        report = _load_json_safe(json_path)
+        if report is None:
+            self._error_response(
+                500,
+                "Sidecar 'graph_survival_report.json' could not be parsed as JSON",
+            )
+            return
+
+        markdown_payload = None
+        markdown_path = _fixed_sidecar_path(result_path, "graph_survival_report.md")
+        if markdown_path is not None:
+            try:
+                markdown_payload = {
+                    "artifact": _artifact_metadata(
+                        markdown_path,
+                        content_type="text/markdown",
+                    ),
+                    "markdown": markdown_path.read_text(encoding="utf-8"),
+                }
+            except OSError:
+                markdown_payload = None
+
+        self._json_response(
+            {
+                "artifact": _artifact_metadata(
+                    json_path,
+                    content_type="application/json",
+                ),
+                "report": report,
+                "markdown": markdown_payload,
+            }
+        )
+
     def log_message(self, format, *args):
         msg = format % args
         if "/api/" in msg or "404" in msg or "500" in msg:
@@ -4133,7 +4240,7 @@ def main():
     server = None
     for attempt in range(10):
         try:
-            server = HTTPServer(("", port), ResultHandler)
+            server = HTTPServer((_OBSERVATORY_HOST, port), ResultHandler)
             break
         except OSError:
             print(f"Port {port} in use, trying {port + 1}...")
