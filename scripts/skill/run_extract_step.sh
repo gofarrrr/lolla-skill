@@ -80,6 +80,16 @@ if [ -z "${LOLLA_RUN_ID:-}" ]; then
   exit 1
 fi
 
+record_run_event_quiet() {
+  local event_type="$1"
+  shift
+  python3 "$SKILL_DIR/scripts/record_run_event.py" \
+    --run-id "$LOLLA_RUN_ID" \
+    --event-type "$event_type" \
+    "$@" \
+    --quiet || true
+}
+
 CONVERSATION_PATH="/tmp/lolla_${LOLLA_RUN_ID}_conversation.txt"
 EXTRACTION_PATH="/tmp/lolla_${LOLLA_RUN_ID}_extraction.json"
 
@@ -104,6 +114,7 @@ python3 "$SKILL_DIR/scripts/run_extract.py" \
   --conversation-file "$CONVERSATION_PATH" \
   --output-file "$EXTRACTION_PATH"
 
+set +e
 python3 - <<'PY'
 import json
 import os
@@ -140,3 +151,24 @@ if status == "capture_critical":
     raise SystemExit(4)
 raise SystemExit(5)
 PY
+EXTRACTION_EXIT="$?"
+set -e
+EXTRACTION_STATUS="$(python3 - <<'PY'
+import json
+import os
+from pathlib import Path
+
+run_id = os.environ.get("LOLLA_RUN_ID", "")
+path = Path(f"/tmp/lolla_{run_id}_extraction.json")
+try:
+    payload = json.loads(path.read_text(encoding="utf-8"))
+except Exception:
+    print("missing")
+else:
+    print(payload.get("status", "missing"))
+PY
+)"
+record_run_event_quiet extraction_completed \
+  --detail "status=$EXTRACTION_STATUS" \
+  --detail "exit_code=$EXTRACTION_EXIT"
+exit "$EXTRACTION_EXIT"

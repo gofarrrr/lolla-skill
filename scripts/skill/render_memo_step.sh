@@ -70,6 +70,16 @@ if [ -z "${LOLLA_RUN_ID:-}" ]; then
   exit 1
 fi
 
+record_run_event_quiet() {
+  local event_type="$1"
+  shift
+  python3 "$SKILL_DIR/scripts/record_run_event.py" \
+    --run-id "$LOLLA_RUN_ID" \
+    --event-type "$event_type" \
+    "$@" \
+    --quiet || true
+}
+
 RESULT_PATH="/tmp/lolla_${LOLLA_RUN_ID}_result.json"
 NOTE_PATH="${REQUESTED_NOTE:-/tmp/lolla_${LOLLA_RUN_ID}_memo_note.json}"
 MEMO_PATH="/tmp/lolla_${LOLLA_RUN_ID}_memo.md"
@@ -121,3 +131,6 @@ if [ "$INCLUDE_APPENDIX" -eq 1 ]; then
   render_args+=(--include-audit-appendix)
 fi
 "${render_args[@]}"
+record_run_event_quiet memo_rendered \
+  --detail "memo_path=$MEMO_PATH" \
+  --detail "include_audit_appendix=$INCLUDE_APPENDIX"
