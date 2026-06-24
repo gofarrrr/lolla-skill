@@ -658,8 +658,21 @@ def _build_graph_response() -> dict:
             "antidote_models": [m["model"] if isinstance(m, dict) else m for m in t.get("antidote_models", [])],
         })
 
+    catalog_stats = _get_kg_stats()
+    graph_stats = {
+        **catalog_stats,
+        "catalog_model_count": catalog_stats.get("model_count", 0),
+        "catalog_tendency_count": catalog_stats.get("tendency_count", 0),
+        "catalog_edge_count": catalog_stats.get("edge_count", 0),
+        "companion_count": len(companion_ids),
+        "tendency_count": len(tendency_list),
+        "total_nodes": len(nodes),
+        "rendered_node_count": len(nodes),
+        "rendered_edge_count": len(graph_edges),
+    }
+
     return {
-        "stats": _get_kg_stats(),
+        "stats": graph_stats,
         "tendencies": tendency_list,
         "nodes": nodes,
         "edges": graph_edges,
@@ -960,6 +973,56 @@ def _audit_summary() -> dict:
     return _RESULT.get("audit_summary") or {}
 
 
+def _computed_anti_echo_exclusions() -> list[dict]:
+    """Reconstruct structural-coverage anti-echo rows from surfaced lanes.
+
+    Older route traces did not persist cross-lane anti-echo rows even though
+    ``structural_coverage_card.anti_echo_model_ids`` carried the computed
+    exclusions. The route page uses this as a display fallback so it does not
+    contradict the dedicated Anti-echo page.
+    """
+    coverage = _RESULT.get("structural_coverage_card") or {}
+    excluded = coverage.get("anti_echo_model_ids") or []
+    if not excluded:
+        return []
+
+    lane1_models: set[str] = set()
+    for finding in (_RESULT.get("delta_card") or {}).get("findings") or []:
+        for model_id in finding.get("selected_model_ids") or []:
+            if model_id:
+                lane1_models.add(model_id)
+
+    lane2_models: set[str] = set()
+    for anchor in (_RESULT.get("companion_cheat_sheet") or {}).get("anchors") or []:
+        if anchor.get("model_id"):
+            lane2_models.add(anchor["model_id"])
+
+    lane3_models: set[str] = set()
+    for reframing in (_RESULT.get("frame_pressure_card") or {}).get("reframings") or []:
+        grounding_model = reframing.get("grounding_model")
+        if grounding_model:
+            lane3_models.add(grounding_model)
+
+    rows: list[dict] = []
+    for model_id in excluded:
+        source_lanes = []
+        if model_id in lane1_models:
+            source_lanes.append("Lane 1")
+        if model_id in lane2_models:
+            source_lanes.append("Lane 2")
+        if model_id in lane3_models:
+            source_lanes.append("Lane 3")
+        rows.append(
+            {
+                "model_id": model_id,
+                "excluded_from": "Lane 4 structural coverage",
+                "reason": "computed_from_structural_coverage_card.anti_echo_model_ids",
+                "source_lanes": source_lanes or ["unattributed"],
+            }
+        )
+    return rows
+
+
 def _route_trace() -> dict:
     audit = _audit_summary()
     trace = audit.get("route_trace")
@@ -1051,10 +1114,44 @@ def _render_lane1_html() -> str:
             f"<td><span class='{cls}'>{label}</span></td></tr>"
         )
 
+    threshold_ids = {
+        row.get("tendency_id")
+        for row in triage
+        if row.get("tendency_id")
+        and int(row.get("score") or 0) >= _TRIAGE_THRESHOLD_DEFAULT
+    }
+    advanced_ids = {
+        row.get("tendency_id")
+        for row in triggered_sources
+        if row.get("tendency_id")
+    }
+    if not advanced_ids:
+        advanced_ids = set(threshold_ids)
+    embedding_promoted_ids = {
+        row.get("tendency_id")
+        for row in triggered_sources
+        if row.get("tendency_id")
+        and row.get("tendency_id") not in threshold_ids
+        and "embedding" in str(row.get("source", "")).lower()
+    }
+    other_advanced_ids = advanced_ids - threshold_ids - embedding_promoted_ids
+
+    advancement_parts = [
+        f"<strong>{len(threshold_ids)}</strong> crossed the triage threshold",
+    ]
+    if embedding_promoted_ids:
+        advancement_parts.append(
+            f"<strong>{len(embedding_promoted_ids)}</strong> were embedding-promoted"
+        )
+    if other_advanced_ids:
+        advancement_parts.append(
+            f"<strong>{len(other_advanced_ids)}</strong> advanced by other route"
+        )
+    advancement = ", ".join(advancement_parts)
     lede = (
         f"Of <strong>{len(triage)}</strong> tendencies the system triaged, "
-        f"<strong>{len(triggered_sources)}</strong> crossed the Pass 1 threshold "
-        f"and Pass 2 confirmed <strong>{detected_count}</strong>."
+        f"{advancement}; Pass 2 checked <strong>{len(deep_results)}</strong> "
+        f"and confirmed <strong>{detected_count}</strong>."
     )
 
     body = f"""
@@ -1069,7 +1166,7 @@ def _render_lane1_html() -> str:
 {"".join(triage_rows) if triage_rows else "<tr><td colspan='3' class='empty'>No triage scores recorded for this run.</td></tr>"}
 </table>
 
-<h2>Triggered set ({len(src_rows)} advanced to Pass 2)</h2>
+<h2>Advanced set ({len(src_rows)} advanced to Pass 2)</h2>
 <p class="hint">Where each promotion came from — <code>triage</code> (Pass 1 score), <code>embedding</code> (cosine match against the catalog), or <code>always_include</code> (rules-based, surfaces regardless of score).</p>
 <table>
 <tr><th>Tendency</th><th>Source</th><th class="num">Score</th></tr>
@@ -1645,13 +1742,26 @@ def _render_routing_html() -> str:
             f"<td>{_format_rejected_models(route.get('rejected_candidates') or [], limit=5)}</td></tr>"
         )
 
+    recorded_anti_exclusions = anti_echo.get("exclusions") or []
+    computed_anti_exclusions = _computed_anti_echo_exclusions()
+    displayed_anti_exclusions = recorded_anti_exclusions or computed_anti_exclusions
     anti_rows = []
-    for exclusion in anti_echo.get("exclusions") or []:
+    for exclusion in displayed_anti_exclusions:
         anti_rows.append(
             f"<tr><td>{_esc(exclusion.get('model_id', ''))}</td>"
             f"<td>{_esc(exclusion.get('excluded_from', ''))}</td>"
             f"<td>{_esc(exclusion.get('reason', ''))}</td>"
             f"<td>{_format_model_list(exclusion.get('source_lanes') or [])}</td></tr>"
+        )
+
+    recorded_anti_count = int(summary.get("anti_echo_exclusion_count", 0) or 0)
+    computed_anti_count = len(computed_anti_exclusions)
+    if recorded_anti_count == computed_anti_count:
+        anti_echo_summary = f"<strong>{_esc(recorded_anti_count)}</strong> anti-echo exclusions"
+    else:
+        anti_echo_summary = (
+            f"<strong>{_esc(recorded_anti_count)}</strong> recorded anti-echo exclusions "
+            f"(<strong>{_esc(computed_anti_count)}</strong> computed Lane 4 exclusions)"
         )
 
     lede = (
@@ -1660,7 +1770,7 @@ def _render_routing_html() -> str:
         f"<strong>{_esc(lane2.get('candidate_count', 0))}</strong> Lane 2 candidates, "
         f"<strong>{_esc(summary.get('lane3_route_count', 0))}</strong> Lane 3 frame routes, "
         f"<strong>{_esc(summary.get('lane4_route_count', 0))}</strong> Lane 4 gap routes, "
-        f"and <strong>{_esc(summary.get('anti_echo_exclusion_count', 0))}</strong> anti-echo exclusions."
+        f"and {anti_echo_summary}."
     )
 
     body = f"""
@@ -1698,7 +1808,7 @@ def _render_routing_html() -> str:
 </table>
 
 <h2>Anti-Echo / Why-Not</h2>
-<p class="hint">Cross-lane exclusions. A model listed here was withheld from a later lane because an earlier lane already carried it.</p>
+<p class="hint">Cross-lane exclusions. A model listed here was withheld from a later lane because an earlier lane already carried it. When the route trace did not record anti-echo rows, this table falls back to <code>structural_coverage_card.anti_echo_model_ids</code>.</p>
 <table>
 <tr><th>Model</th><th>Excluded from</th><th>Reason</th><th>Earlier source lanes</th></tr>
 {"".join(anti_rows) if anti_rows else "<tr><td colspan='4' class='empty'>No cross-lane anti-echo exclusions recorded for this run.</td></tr>"}

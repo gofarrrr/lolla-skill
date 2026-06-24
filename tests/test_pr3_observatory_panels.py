@@ -330,6 +330,15 @@ def test_lane1_panel_renders_triggered_sources_with_attribution():
     assert "stress-influence-tendency" in html
 
 
+def test_lane1_panel_distinguishes_threshold_from_embedding_promotion():
+    html = serve_result._render_lane1_html()
+    assert "crossed the triage threshold" in html
+    assert "were embedding-promoted" in html
+    assert "Pass 2 checked" in html
+    assert "Advanced set" in html
+    assert "crossed the Pass 1 threshold" not in html
+
+
 def test_lane1_panel_renders_pass2_outcomes_with_reason():
     html = serve_result._render_lane1_html()
     assert "Pass 2" in html
@@ -475,6 +484,35 @@ def test_routing_panel_renders_route_trace_sections():
     assert "not_in_verifier_response" in html
     assert "anti_echo_lane1_overlap" in html
     assert "anti_echo_upstream_lane_overlap" in html
+
+
+def test_routing_panel_falls_back_to_computed_anti_echo_rows(monkeypatch):
+    r = _fixture_result()
+    r["audit_summary"]["route_trace"] = {
+        "schema_version": "route_trace.v1",
+        "summary": {
+            "lane1_route_count": 0,
+            "lane3_route_count": 0,
+            "lane4_route_count": 0,
+            "anti_echo_exclusion_count": 0,
+        },
+        "lanes": {
+            "lane1": {"routes": []},
+            "lane2": {"candidate_count": 0, "candidates": []},
+            "lane3": {"routes": []},
+            "lane4": {"routes": []},
+        },
+        "anti_echo": {"exclusions": []},
+    }
+    monkeypatch.setattr(serve_result, "_RESULT", r)
+
+    html = serve_result._render_routing_html()
+
+    assert "0</strong> recorded anti-echo exclusions" in html
+    assert "5</strong> computed Lane 4 exclusions" in html
+    assert "computed_from_structural_coverage_card.anti_echo_model_ids" in html
+    assert "checklists" in html
+    assert "Lane 4 structural coverage" in html
 
 
 def test_routing_panel_preserves_lane2_rejection_vs_lane4_gap_candidate_from_marcus_2d(monkeypatch):
@@ -844,6 +882,32 @@ def test_case_api_includes_pre_step6_private_table(monkeypatch):
 
     assert response["pre_step6_private_table"]["status"] == "ready"
     assert response["pre_step6_private_table_ledger"]["status"] == "completed"
+
+
+def test_graph_api_reports_rendered_counts_separately_from_catalog_stats():
+    graph = serve_result._build_graph_response()
+    stats = graph["stats"]
+
+    assert stats["companion_count"] == sum(
+        1 for node in graph["nodes"] if node.get("role") == "companion"
+    )
+    assert stats["total_nodes"] == len(graph["nodes"])
+    assert stats["rendered_node_count"] == len(graph["nodes"])
+    assert stats["rendered_edge_count"] == len(graph["edges"])
+    assert stats["catalog_tendency_count"] >= stats["tendency_count"]
+
+
+def test_dashboard_run_inspector_labels_threshold_count_not_triggered():
+    bundle = (
+        Path(__file__).resolve().parents[1]
+        / "observatory"
+        / "build"
+        / "assets"
+        / "index-H3UEopEj.js"
+    ).read_text(encoding="utf-8")
+
+    assert ">threshold</span>" in bundle
+    assert ">triggered</span>" not in bundle
 
 
 def test_audit_index_handles_no_audit_summary(monkeypatch):
