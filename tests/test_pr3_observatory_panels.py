@@ -1234,6 +1234,11 @@ def test_reasoning_trace_panel_follows_archive_path_from_run_events(tmp_path, mo
     assert "live_output_health is not_checked" in html
     assert "pre_step6_shadow_portfolio.json" in html
     assert "pass1_cluster_authority" in html
+    assert "Model-call telemetry rows" in html
+    assert "Model-Call Telemetry" in html
+    assert "Rows may summarize multiple raw provider calls" in html
+    assert "<th>Model calls</th>" not in html
+    assert "<h2>Model Calls</h2>" not in html
     assert "Reasoning-boundary leaks" in html
     assert "commitment_001" in html
     assert "Call counsel before reporting." in html
