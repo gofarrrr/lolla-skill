@@ -191,13 +191,16 @@ live run must use reduced narration and maintain a live transcript:
   no detected leaks as `live_output_health: not_checked`, not `clean`. It only
   records `clean` when a complete captured transcript is supplied with
   `--trusted-transcript`.
-- Before archive, run `scripts/finalize_live_output_hygiene.py` to record
-  live-output health. For merge-readiness proof, run it with
-  `--require-live-output-clean --trusted-transcript` against a complete captured
-  live session transcript. If it fails on text the user already saw, do not
-  rewrite the transcript to make the run look clean; the live surface is unsafe
-  and the run should be treated as degraded or rerun. Only correct the transcript
-  when it contains a draft or operator note that was never sent.
+- Before archive, live-output health must be recorded through
+  `scripts/finalize_live_output_hygiene.py`. The Step 9 finalizer does this
+  automatically. For merge-readiness proof, invoke the finalizer with
+  `--trusted-transcript /path/to/complete-live-session.txt
+  --require-live-output-clean`; it syncs that trusted capture into the archived
+  `live_transcript.txt` artifact before archive. If it fails on text the user
+  already saw, do not rewrite the transcript to make the run look clean; the
+  live surface is unsafe and the run should be treated as degraded or rerun.
+  Only correct the transcript when it contains a draft or operator note that was
+  never sent.
 
 ### Step 1: Capture Conversation
 
