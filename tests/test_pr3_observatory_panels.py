@@ -1578,13 +1578,19 @@ def test_smoke_all_panels_serve_200_without_spa_bundle(running_server):
 
 
 def test_telemetry_fab_injection_inserts_before_body_close():
-    """The FAB injection must place the anchor + style before </body>."""
+    """The root injection must place the anchor, style, and patch before </body>."""
     src = b"<html><head></head><body><div id='root'></div></body></html>"
     out = serve_result._inject_telemetry_fab(src).decode("utf-8")
     assert "telemetry-fab" in out
     assert 'href="/audit"' in out
+    assert "lolla-main-surface-copy-patch" in out
+    assert "Optional Pressure Check" in out
+    assert "no Step-7 divergences" in out
+    assert "boundary calls" in out
+    assert "PARTIAL" in out
     # Injected before </body>, not after
     assert out.index("telemetry-fab") < out.index("</body>")
+    assert out.index("lolla-main-surface-copy-patch") < out.index("</body>")
 
 
 def test_telemetry_fab_injection_is_idempotent():
