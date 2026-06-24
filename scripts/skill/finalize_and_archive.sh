@@ -50,6 +50,25 @@ if receipt and receipt not in transcript:
 PY
 }
 
+observatory_http_ok() {
+  local url="$1"
+  if [ -z "$url" ]; then
+    return 1
+  fi
+  python3 - "$url" <<'PY'
+import sys
+from urllib.request import Request, urlopen
+
+url = sys.argv[1]
+try:
+    request = Request(url, headers={"User-Agent": "lolla-finalizer/1"})
+    with urlopen(request, timeout=1.5) as response:
+        raise SystemExit(0 if response.status < 500 else 1)
+except Exception:
+    raise SystemExit(1)
+PY
+}
+
 if [ -n "${LOLLA_ENV_STATE:-}" ] && [ -f "$LOLLA_ENV_STATE" ]; then
   # shellcheck source=/dev/null
   . "$LOLLA_ENV_STATE"
@@ -91,21 +110,34 @@ python3 "$SKILL_DIR/scripts/finalize_v60_telemetry.py" --run-id "${LOLLA_RUN_ID}
 python3 "$SKILL_DIR/scripts/finalize_live_output_hygiene.py" --run-id "${LOLLA_RUN_ID}" --quiet
 
 OBSERVATORY_URL=""
+OBSERVATORY_STATUS="skipped"
 if [ "$SKIP_OBSERVATORY" -eq 0 ]; then
   OBS_LOG="/tmp/lolla_${LOLLA_RUN_ID}_observatory.log"
-  python3 -u "$SKILL_DIR/observatory/serve_result.py" --result "$RESULT_PATH" >"$OBS_LOG" 2>&1 &
+  OBS_PID_FILE="/tmp/lolla_${LOLLA_RUN_ID}_observatory.pid"
+  OBSERVATORY_STATUS="unavailable"
+  : > "$OBS_LOG"
+  nohup python3 -u "$SKILL_DIR/observatory/serve_result.py" --result "$RESULT_PATH" >"$OBS_LOG" 2>&1 &
+  OBSERVATORY_PID="$!"
+  printf '%s\n' "$OBSERVATORY_PID" > "$OBS_PID_FILE"
   for _ in {1..15}; do
     OBSERVATORY_URL="$(grep -Eo 'http://localhost:[0-9]+' "$OBS_LOG" | tail -1 || true)"
-    if [ -n "$OBSERVATORY_URL" ]; then
+    if [ -n "$OBSERVATORY_URL" ] && observatory_http_ok "$OBSERVATORY_URL"; then
+      OBSERVATORY_STATUS="live"
+      break
+    fi
+    if ! kill -0 "$OBSERVATORY_PID" 2>/dev/null; then
       break
     fi
     sleep 1
   done
-  if [ -n "$OBSERVATORY_URL" ]; then
+  if [ "$OBSERVATORY_STATUS" = "live" ]; then
     echo "OBSERVATORY_URL: $OBSERVATORY_URL"
+    echo "OBSERVATORY_PID: $OBSERVATORY_PID"
   else
-    echo "OBSERVATORY_URL: pending (see $OBS_LOG)"
+    echo "OBSERVATORY_URL: unavailable (see $OBS_LOG)"
+    kill "$OBSERVATORY_PID" 2>/dev/null || true
   fi
+  echo "OBSERVATORY_STATUS: $OBSERVATORY_STATUS"
 fi
 
 ARCHIVE_OUTPUT="$(python3 "$SKILL_DIR/scripts/archive_run.py" --run-id "${LOLLA_RUN_ID}")"
@@ -134,47 +166,12 @@ PY
 USER_RECEIPT=""
 if [ -z "$RECEIPT_FILE" ] && [ -n "$ARCHIVE_PATH" ]; then
   AUTO_RECEIPT_FILE="/tmp/lolla_${LOLLA_RUN_ID}_final_receipt.txt"
-  python3 - "$RESULT_PATH" "${OBSERVATORY_URL:-}" "$ARCHIVE_PATH" "$AUTO_RECEIPT_FILE" <<'PY'
-import json
-import sys
-from pathlib import Path
-
-result_path = Path(sys.argv[1])
-observatory_url = sys.argv[2] or "pending"
-archive_path = sys.argv[3]
-receipt_path = Path(sys.argv[4])
-
-payload = json.loads(result_path.read_text(encoding="utf-8"))
-usage = payload.get("usage_summary") or {}
-cost = usage.get("estimated_total_cost_usd")
-cost_text = f"${float(cost):.2f}" if cost is not None else "unavailable"
-run_health = payload.get("run_health") or {}
-overall = str(run_health.get("overall") or "unknown")
-memo_path = result_path.with_name(result_path.name.replace("_result.json", "_memo.md"))
-
-prefix = ""
-issues = set(run_health.get("issues") or [])
-if overall not in {"healthy", "ok"}:
-    if "quote_fabrication" in issues:
-        prefix = (
-            "Run health is degraded: one extraction quote failed literal validation "
-            "after retry; inspect the Observatory before treating this as decision-grade. "
-        )
-    elif "pipeline_warnings" in issues:
-        prefix = (
-            "Run health is partial: vendor boundary warnings were emitted; substantive "
-            "artifacts are present. "
-        )
-    else:
-        prefix = f"Run health is {overall}; inspect the Observatory for details. "
-
-receipt = (
-    f"{prefix}Observatory is live at {observatory_url}. "
-    f"Memo at {memo_path}. Cost estimate: {cost_text}. "
-    f"Archived to {archive_path}."
-)
-receipt_path.write_text(receipt + "\n", encoding="utf-8")
-PY
+  python3 "$SKILL_DIR/scripts/skill/render_final_receipt.py" \
+    --result "$RESULT_PATH" \
+    --observatory-url "${OBSERVATORY_URL:-}" \
+    --observatory-status "$OBSERVATORY_STATUS" \
+    --archive-path "$ARCHIVE_PATH" \
+    --output "$AUTO_RECEIPT_FILE"
   append_receipt_to_transcript "$AUTO_RECEIPT_FILE" "$TRANSCRIPT_PATH"
   python3 "$SKILL_DIR/scripts/finalize_live_output_hygiene.py" --run-id "${LOLLA_RUN_ID}" --quiet
   ARCHIVE_OUTPUT="$(python3 "$SKILL_DIR/scripts/archive_run.py" --run-id "${LOLLA_RUN_ID}")"
