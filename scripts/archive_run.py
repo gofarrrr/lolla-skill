@@ -268,6 +268,7 @@ def _write_manifest(
     run_id: str,
     *,
     conversation_hash: str = "",
+    risk_mode: str = "standard",
 ) -> dict:
     """Create or update the case manifest. Returns the written manifest dict."""
     manifest_path = case_dir / ".case-manifest.json"
@@ -288,6 +289,7 @@ def _write_manifest(
     manifest.setdefault("fingerprints", [])
     manifest.setdefault("conversation_hashes", [])
     manifest.setdefault("runs", [])
+    manifest.setdefault("risk_modes_by_run", {})
 
     # Migrate legacy single-fingerprint field if present
     if "fingerprint" in manifest and manifest.get("fingerprint"):
@@ -301,6 +303,8 @@ def _write_manifest(
         manifest["conversation_hashes"].append(conversation_hash)
     if run_id not in manifest["runs"]:
         manifest["runs"].append(run_id)
+    if isinstance(manifest.get("risk_modes_by_run"), dict):
+        manifest["risk_modes_by_run"][run_id] = risk_mode
 
     # Always refresh these fields (track latest state + folder renames)
     manifest["case_id"] = case_dir.name
@@ -389,6 +393,7 @@ def archive_run(
     _finalize_v60_telemetry_before_archive(tmp_dir=tmp_dir, run_id=run_id)
     _finalize_product_output_hygiene_before_archive(tmp_dir=tmp_dir, run_id=run_id)
     _finalize_live_output_hygiene_before_archive(tmp_dir=tmp_dir, run_id=run_id)
+    risk_mode = _risk_mode_for_archive(tmp_dir=tmp_dir, run_id=run_id)
 
     copied: list[str] = []
     missing: list[str] = []
@@ -405,6 +410,7 @@ def archive_run(
         fingerprint,
         run_id,
         conversation_hash=conversation_hash,
+        risk_mode=risk_mode,
     )
     generated_files = _write_graph_survival_artifacts_for_archive(run_dir=run_dir)
     agent_result_path = _write_agent_result_for_archive(
@@ -434,6 +440,7 @@ def archive_run(
         "how_matched": how_matched,
         "fingerprint": fingerprint,
         "conversation_hash": conversation_hash,
+        "risk_mode": risk_mode,
         "run_dir_existed": run_dir_existed,
         "files_copied": copied,
         "files_missing": missing,
@@ -500,6 +507,23 @@ def _write_graph_survival_artifacts_for_archive(*, run_dir: Path) -> list[str]:
 
     json_path, md_path, _payload = write_graph_survival_artifacts(run_dir)
     return [json_path.name, md_path.name]
+
+
+def _risk_mode_for_archive(*, tmp_dir: Path, run_id: str) -> str:
+    """Read the normalized risk mode from the finalized result artifact."""
+    result_path = tmp_dir / f"lolla_{run_id}_result.json"
+    if not result_path.exists():
+        return "standard"
+    _ensure_repo_root_on_path()
+    from engine.system_b.audit_mode import risk_mode_from_result
+
+    try:
+        result = json.loads(result_path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return "standard"
+    if not isinstance(result, dict):
+        return "standard"
+    return risk_mode_from_result(result)
 
 
 def _finalize_v60_telemetry_before_archive(*, tmp_dir: Path, run_id: str) -> None:

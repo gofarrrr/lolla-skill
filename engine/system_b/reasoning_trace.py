@@ -14,6 +14,8 @@ from collections.abc import Mapping, Sequence
 from pathlib import Path
 from typing import Any
 
+from .audit_mode import risk_mode_from_result
+
 
 REASONING_TRACE_SCHEMA_VERSION = "lolla.reasoning_trace.v0.2"
 REASONING_TRACE_FILENAME = "reasoning_trace.json"
@@ -119,6 +121,7 @@ def build_reasoning_trace(
         },
         "capture": _capture_summary(extraction=extraction, result=result),
         "process": {
+            "risk_mode": risk_mode_from_result(result),
             "run_health": _mapping(result.get("run_health")),
             "audit_summary": _audit_summary(result),
             "pressure_check": _pressure_check(result),

@@ -119,6 +119,10 @@ remain, and where to inspect the archive. It also includes
 conversation, result, memo, health, usage, ledger artifacts, reasoning-lens
 IDs, model-call telemetry, and trace-adequacy status by path/hash and structured
 metadata without duplicating raw transcript text.
+`LOLLA_AUDIT_MODE` can record the run as `quick`, `standard`, `deep`,
+`high_stakes`, or `stability`; the normalized value is persisted as
+`risk_mode`. Today this is metadata only: it does not change prompts, cost,
+Step 7 behavior, replay, or high-stakes policy.
 The Observatory URL in the final receipt opens the completed run as a local
 viewer. Its `Cases` tab also lists local archived runs from
 `~/.local/share/lolla/runs/` (or `$LOLLA_ARCHIVE_DIR`) so recent history can be

@@ -100,6 +100,7 @@ else:
     )
     sys.exit(1)
 
+from system_b.audit_mode import AuditModeError, audit_mode_from_env  # noqa: E402
 from system_b.boundary_provider import load_boundary_client_from_env  # noqa: E402
 from system_b.run_state import assert_expected_run_state, infer_run_id_from_lolla_path  # noqa: E402
 from system_b.text_matching import find_substring_tolerant  # noqa: E402
@@ -609,6 +610,15 @@ def main() -> int:
             if candidate.exists():
                 _load_env_file(candidate)
                 break
+
+    try:
+        audit_mode_from_env()
+    except AuditModeError as exc:
+        _emit_result(
+            {"status": "error", "error": str(exc)},
+            output_file=args.output_file,
+        )
+        return 1
 
     run_id_for_guard = (
         os.getenv("LOLLA_RUN_ID", "")

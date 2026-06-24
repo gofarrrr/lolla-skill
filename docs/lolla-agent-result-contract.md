@@ -26,6 +26,23 @@ Each archive pass writes:
 The archived `reasoning_trace.json` indexes `agent_result.json` as an
 `agent_facing_result` artifact with path, hash, size, and content type.
 
+## Risk Mode Metadata
+
+The runtime reads `LOLLA_AUDIT_MODE`, defaults missing or empty values to
+`standard`, and accepts only:
+
+- `quick`
+- `standard`
+- `deep`
+- `high_stakes`
+- `stability`
+
+The normalized value is persisted as `risk_mode` in `result.json`,
+`agent_result.json`, `reasoning_trace.json`, and archive metadata. Invalid
+explicit values fail before model calls. Current modes are metadata only: they
+do not change prompts, cost, Step 7 behavior, replay/comparison behavior, or
+high-stakes domain policy yet.
+
 ## Schema
 
 Schema version:
@@ -117,8 +134,9 @@ The first implementation is conservative:
 - Clean completed standard runs can return `use_revised_answer`.
 - Partial, degraded, incomplete, or product/live-output-unsafe runs return
   `do_not_use_run_degraded`.
-- If a future caller supplies `high_stakes` mode before mode behavior is fully
-  implemented, the contract does not claim domain assurance.
+- If `risk_mode` is `high_stakes` on an otherwise clean run, the first contract
+  returns `ask_user_first`. This is a conservative caller hint, not a claim
+  that high-stakes domain policy is implemented.
 
 The caller remains responsible for enforcement. A policy engine, approval
 system, sandbox, proxy, identity broker, or human reviewer can consume this

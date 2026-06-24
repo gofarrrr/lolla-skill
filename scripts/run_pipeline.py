@@ -40,6 +40,11 @@ else:
     )
     sys.exit(1)
 
+from system_b.audit_mode import (  # noqa: E402
+    AuditModeError,
+    apply_risk_mode_metadata,
+    audit_mode_from_env,
+)
 from system_b.run_state import assert_expected_run_state, infer_run_id_from_lolla_path  # noqa: E402
 
 
@@ -812,6 +817,12 @@ def main() -> int:
                 _load_env_file(candidate)
                 break
 
+    try:
+        risk_mode = audit_mode_from_env()
+    except AuditModeError as exc:
+        print(json.dumps({"status": "error", "error": str(exc)}))
+        return 1
+
     if args.pre_step6_portfolio is None:
         env_mode = os.environ.get("LOLLA_PRE_STEP6_PORTFOLIO", "off").strip().lower()
         args.pre_step6_portfolio = (
@@ -960,6 +971,7 @@ def main() -> int:
         embedding_active=_embedding_active,
         compiled_chunk_count=_compiled_chunk_count,
     )
+    apply_risk_mode_metadata(serialized, risk_mode)
 
     # Include the full conversation context as `extraction` for Observatory
     # + render_memo. They derive displayed case focus / audit target from the

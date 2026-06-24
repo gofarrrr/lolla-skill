@@ -14,6 +14,7 @@ def test_skill_rests_post_step6_pressure_checks_by_default() -> None:
     setup = _read("scripts/skill/setup.sh")
     run_extract_helper = _read("scripts/skill/run_extract_step.sh")
     run_pipeline_helper = _read("scripts/skill/run_pipeline_step.sh")
+    audit_mode_validator = _read("scripts/skill/validate_audit_mode.py")
     capture_validator = _read("scripts/skill/validate_conversation_capture.py")
     pressure_helper = _read("scripts/skill/persist_default_off_pressure_check.py")
     memo_helper = _read("scripts/skill/render_memo_step.sh")
@@ -25,6 +26,7 @@ def test_skill_rests_post_step6_pressure_checks_by_default() -> None:
             setup,
             run_extract_helper,
             run_pipeline_helper,
+            audit_mode_validator,
             capture_validator,
             pressure_helper,
             memo_helper,
@@ -38,6 +40,9 @@ def test_skill_rests_post_step6_pressure_checks_by_default() -> None:
     assert "LOLLA_PRE_STEP6_PORTFOLIO_CACHE_DIR" in contract
     assert "LOLLA_PRE_STEP6_PORTFOLIO_CACHE_REF" in contract
     assert "LOLLA_PRE_STEP6_REQUIRE_CACHE_HIT" in contract
+    assert "LOLLA_AUDIT_MODE" in contract
+    assert "risk_mode" in contract
+    assert "validate_audit_mode.py" in contract
     assert "Pre-Step-6 private table receipt:" in contract
     assert "operator cache ref:" in contract
     assert "expected cache file:" in contract
@@ -83,6 +88,8 @@ def test_run_state_is_pinned_to_env_state_not_latest_symlink_docs() -> None:
     assert "LOLLA_ENV_STATE" in setup
     assert "LOLLA_OPERATOR_LOG" in setup
     assert "/tmp/lolla_${LOLLA_RUN_ID}_operator.log" in setup
+    assert "export LOLLA_AUDIT_MODE" in setup
+    assert "risk_mode=\"$LOLLA_AUDIT_MODE\"" in setup
     assert 'ln -sf "$LOLLA_ENV_STATE" /tmp/lolla_latest_env.sh' in setup
     assert "record_run_event.py" in setup
 
@@ -139,6 +146,8 @@ def test_reasoning_trace_archive_contract_is_preserved() -> None:
     assert "outcome_review.json" in contract
     assert "agent_result.json" in contract
     assert "lolla_agent_result.v1" in contract
+    assert "risk_mode" in contract
+    assert "LOLLA_AUDIT_MODE" in contract
     assert "graph_survival_report.json" in contract
     assert "graph_survival_report.md" in contract
     assert "reasoning_trace.json" in contract

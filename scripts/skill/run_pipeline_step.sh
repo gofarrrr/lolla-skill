@@ -22,6 +22,11 @@ if [ -n "${LOLLA_EXPECTED_RUN_ID:-}" ] && [ "${LOLLA_RUN_ID:-}" != "$LOLLA_EXPEC
   exit 1
 fi
 
+if ! LOLLA_AUDIT_MODE="$(PYTHONPATH="$SKILL_DIR" python3 "$SKILL_DIR/scripts/skill/validate_audit_mode.py")"; then
+  exit 1
+fi
+export LOLLA_AUDIT_MODE
+
 # shellcheck source=/dev/null
 . "$SKILL_DIR/scripts/skill/operator_log.sh"
 lolla_operator_log_init

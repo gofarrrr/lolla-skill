@@ -59,6 +59,10 @@ A normal run produces:
 - A compact `agent_result.json` contract for machine callers, including
   `caller_action`, artifact status, artifact pointers, run health, cost, and
   product-level summary fields.
+- A metadata-only `risk_mode` recorded from `LOLLA_AUDIT_MODE` (`quick`,
+  `standard`, `deep`, `high_stakes`, or `stability`). The default is
+  `standard`; these modes do not yet change prompts, cost, Step 7 behavior,
+  replay, or high-stakes policy.
 - A local Observatory page with the full breakdown, traces, cards, costs, health checks, and archived artifacts.
 - A local `reasoning_trace.json` custody manifest in the archived run folder, with artifact hashes, health, usage, reasoning-lens IDs, model-call telemetry, and trace-adequacy status for replay without duplicating raw transcript text.
 

@@ -660,16 +660,17 @@ The archive script:
 - Computes a case fingerprint from `extraction.decision_situation` (first 120 chars, normalized).
 - Finds-or-creates a case folder. Matching uses **exact captured-conversation hash first**, then exact/fuzzy extractor fingerprint matching against stored fingerprints (token-set Jaccard ≥ 0.80). Identical captured reruns archive into the same case even when `decision_situation` is paraphrased differently by extraction. Matching is done against the manifest inside each case folder, not against folder names, so user renames of case folders do not break future matching. Legacy manifests without `conversation_hashes` are still matchable because archive time can compute hashes from archived `conversation.txt` files.
 - Auto-names new cases with a slug derived from the first 3-4 significant words of `decision_situation` (e.g., `grant-equity-partnership-status`). Users can rename via `mv` — matching will still find the folder via manifest.
-- Copies the artifacts into `{case_folder}/${LOLLA_RUN_ID}/` and updates `{case_folder}/.case-manifest.json` with the new fingerprint (added as an alias) and the run_id.
+- Copies the artifacts into `{case_folder}/${LOLLA_RUN_ID}/` and updates `{case_folder}/.case-manifest.json` with the new fingerprint (added as an alias), the run_id, and metadata-only `risk_mode`.
 - Generates `{case_folder}/${LOLLA_RUN_ID}/graph_survival_report.json` and `.md`, operator reports showing graph candidates, embedding recalls, selected cards, Step 6 uptake, suppressed/unadjudicated signals, and visible/private survival.
 - Generates `{case_folder}/${LOLLA_RUN_ID}/agent_result.json`, a compact `lolla_agent_result.v1` handoff for machine callers, plus `/tmp/lolla_${LOLLA_RUN_ID}_agent_result.json` as a convenience copy.
-- Generates `{case_folder}/${LOLLA_RUN_ID}/reasoning_trace.json`, a local-only custody manifest with artifact paths, SHA-256 hashes, run health, usage summary, pressure-check state, private-custody status, reasoning-lens IDs, model-call telemetry, trace-adequacy status, and future slots for commitment candidates, decision packets, and outcome reviews. It indexes raw artifacts without duplicating conversation or memo text.
+- Generates `{case_folder}/${LOLLA_RUN_ID}/reasoning_trace.json`, a local-only custody manifest with artifact paths, SHA-256 hashes, `risk_mode`, run health, usage summary, pressure-check state, private-custody status, reasoning-lens IDs, model-call telemetry, trace-adequacy status, and future slots for commitment candidates, decision packets, and outcome reviews. It indexes raw artifacts without duplicating conversation or memo text.
 - `/tmp` originals are **not** moved or deleted — Observatory and subsequent commands continue to reference them as in-flight state.
 
 **Environment overrides (optional):**
 
 - `$LOLLA_CASE_ID` — force a specific case folder (skips fingerprint match). Useful when a run should be grouped with an existing case despite a mismatched `decision_situation`, or when the user wants a specific folder name from the first run.
 - `$LOLLA_ARCHIVE_DIR` — override the archive root (default: `~/.local/share/lolla/runs/`).
+- `$LOLLA_AUDIT_MODE` — metadata-only audit mode. Accepted values are `quick`, `standard`, `deep`, `high_stakes`, and `stability`; missing or empty defaults to `standard`, and invalid explicit values fail before model calls. The normalized value is persisted as `risk_mode` but does not change prompts, cost, Step 7, replay, or high-stakes policy yet.
 
 **Do not surface the archive path at Step 10 as a separate line.** It's consolidated in the final functional receipt at Completion. Step 10 runs silently from the user's perspective.
 

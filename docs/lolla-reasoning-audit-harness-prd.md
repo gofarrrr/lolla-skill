@@ -324,6 +324,7 @@ Acceptance criteria:
 
 Priority: P0
 Owner area: runtime/docs/skill
+Status: Implemented as metadata-only runtime propagation
 
 Add explicit audit modes:
 
@@ -333,24 +334,34 @@ Add explicit audit modes:
 - `high_stakes`
 - `stability`
 
-Mode may be selected by environment variable, CLI argument, or later by caller metadata.
+Current implementation:
 
-Suggested initial behavior:
+- Mode is selected with `LOLLA_AUDIT_MODE`.
+- Missing or empty mode defaults to `standard`.
+- Invalid explicit mode fails before model calls.
+- The normalized value is persisted as `risk_mode` in `result.json`,
+  `agent_result.json`, `reasoning_trace.json`, and archive metadata.
+- The mode is metadata only for now. It does not change prompts, cost, Step 7,
+  high-stakes warning behavior, evaluation strictness, capture strictness, or
+  replay/comparison behavior.
+
+Future behavior:
 
 | Mode | Use case | Behavior |
 |---|---|---|
-| `quick` | low-stakes strategic check | Core lanes, no optional Step 7, compact memo, lower cost target. |
+| `quick` | low-stakes strategic check | May target fewer optional calls and a compact memo after behavior is explicitly implemented. |
 | `standard` | default serious conversation | Current default behavior. |
-| `deep` | user asks for deeper review | Enables optional Step 7 after Step 6b ledger validation. |
-| `high_stakes` | legal, medical, financial, safety, severe career/family consequences | Strong warning language, stricter capture adequacy, stronger eval requirement, no unsupported domain claims. |
-| `stability` | test or regression mode | Runs comparison/replay flow across repeated runs or archived pair. |
+| `deep` | user asks for deeper review | May enable optional deeper review after Step 6b ledger validation in a later PR. |
+| `high_stakes` | legal, medical, financial, safety, severe career/family consequences | May add stronger capture/eval gates and warning language later; it currently makes no domain-assurance claim. |
+| `stability` | test or regression mode | May run comparison/replay flow across repeated runs or archived pairs later. |
 
 Acceptance criteria:
 
 - Mode is recorded in `result.json`, `reasoning_trace.json`, `agent_result.json`, and archive metadata.
-- Mode changes are visible in Observatory.
+- Mode changes are visible in local artifacts.
 - Default remains `standard`.
-- Existing `$lolla` behavior does not become more expensive unless mode is changed.
+- Existing `$lolla` behavior does not become more expensive or run additional
+  review steps from mode metadata alone.
 
 ### R3: Trigger Policy For Agents
 

@@ -288,6 +288,7 @@ def test_archive_run_writes_reasoning_trace_manifest_with_hashes(tmp_path: Path)
     assert trace["process"]["audit_summary"]["detected_tendency_ids"] == [
         "inconsistency-avoidance"
     ]
+    assert trace["process"]["risk_mode"] == "standard"
     assert trace["process"]["pressure_check"]["status"] == "not_run_default_off"
     assert trace["process"]["usage"]["estimated_total_cost_usd"] == 0.123
     assert trace["process"]["usage"]["vendor_calls"]["openrouter"] == 3

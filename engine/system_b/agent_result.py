@@ -15,6 +15,8 @@ from collections.abc import Mapping, Sequence
 from pathlib import Path
 from typing import Any
 
+from .audit_mode import risk_mode_from_result
+
 
 AGENT_RESULT_SCHEMA_VERSION = "lolla_agent_result.v1"
 AGENT_RESULT_FILENAME = "agent_result.json"
@@ -189,11 +191,7 @@ def _caller_action(
 
 
 def _risk_mode(result: Mapping[str, Any]) -> str:
-    for key in ("risk_mode", "audit_mode", "lolla_audit_mode"):
-        value = _text(result.get(key)).lower()
-        if value:
-            return value
-    return "standard"
+    return risk_mode_from_result(result)
 
 
 def _main_counter_pressure(result: Mapping[str, Any]) -> str:

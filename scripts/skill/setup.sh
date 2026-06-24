@@ -50,6 +50,12 @@ if [ -n "$SKILL_DIR" ] && [ -f "$SKILL_DIR/.env.research" ] && {
   echo "ENV_RESEARCH: $SKILL_DIR/.env.research"
 fi
 
+if ! LOLLA_AUDIT_MODE="$(PYTHONPATH="$SKILL_DIR" python3 "$SKILL_DIR/scripts/skill/validate_audit_mode.py")"; then
+  exit 1
+fi
+export LOLLA_AUDIT_MODE
+echo "AUDIT_MODE: $LOLLA_AUDIT_MODE"
+
 # Check API keys
 if [ -z "$OPENROUTER_API_KEY" ] && [ -z "$LOLLA_OPENROUTER_API_KEY" ]; then
   echo "FATAL: Set OPENROUTER_API_KEY. Run: mkdir -p ~/.config/lolla && echo 'OPENROUTER_API_KEY=your-key' > ~/.config/lolla/.env"
@@ -131,6 +137,7 @@ export LOLLA_EXPECTED_RUN_ID="$LOLLA_EXPECTED_RUN_ID"
 export LOLLA_LIVE_TRANSCRIPT="$LOLLA_LIVE_TRANSCRIPT"
 export LOLLA_OPERATOR_LOG="$LOLLA_OPERATOR_LOG"
 export LOLLA_ENV_STATE="$LOLLA_ENV_STATE"
+export LOLLA_AUDIT_MODE="$LOLLA_AUDIT_MODE"
 EOF
 python3 - "$LOLLA_ENV_STATE" << 'PY'
 import os
@@ -152,4 +159,4 @@ with open(path, "a", encoding="utf-8") as handle:
 PY
 ln -sf "$LOLLA_ENV_STATE" /tmp/lolla_latest_env.sh
 echo "ENV_STATE: $LOLLA_ENV_STATE"
-python3 "$SKILL_DIR/scripts/record_run_event.py" --run-id "$LOLLA_RUN_ID" --event-type run_initialized --detail latest_env_pointer=/tmp/lolla_latest_env.sh --quiet || true
+python3 "$SKILL_DIR/scripts/record_run_event.py" --run-id "$LOLLA_RUN_ID" --event-type run_initialized --detail latest_env_pointer=/tmp/lolla_latest_env.sh --detail risk_mode="$LOLLA_AUDIT_MODE" --quiet || true

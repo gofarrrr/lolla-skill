@@ -75,8 +75,9 @@ fi
 ```
 
 This sets up the skill directory, run ID, live transcript, operator log,
-environment variables, cache configuration, run-event logging, and runtime
-state. It prints an `ENV_STATE:` path such as
+environment variables, metadata-only `LOLLA_AUDIT_MODE` normalization, cache
+configuration, run-event logging, and runtime state. It prints an `ENV_STATE:`
+path such as
 `/tmp/lolla_${LOLLA_RUN_ID}_env.sh`; later shell calls should source that
 run-specific file. `/tmp/lolla_latest_env.sh` is only a discoverability fallback
 before the active run is pinned. Guarded helpers keep
