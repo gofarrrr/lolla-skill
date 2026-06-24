@@ -345,13 +345,21 @@ Zero dependencies (stdlib Python server + pre-built Svelte frontend). The backen
 
 **Server-rendered audit panels** (PR 3 of the 2026-04-28 visibility roadmap; portable, no SPA dependency):
 - `/audit` — index of the panels below
+- `/audit/extraction` — capture health, quote validation, extracted decision situation, live constraints, reasoning passages, original framing, and dropped threads
+- `/audit/memo` — rendered `memo.md` decision-note artifact plus `memo_note.json` field diagnostics and source paths
 - `/audit/lane1` — Pass 1 + Pass 2 funnel: 24 triage scores, threshold, triggered set with source attribution (triage / embedding / always_include), Pass 2 outcomes with `reason`, full top-25 embedding ranks (sub-threshold close-calls visible)
 - `/audit/lane2` — Companion selection funnel: 60 candidates → accepted-before-cap → final cheat-sheet anchors, plus per-bucket views (rejected with reason, capped, duplicates, quote repairs, silently-omitted)
 - `/audit/lane4` — All 15 catalog dimensions with detected/not-detected, covered/gap, gap routes (candidate + excluded models), gap questions
 - `/audit/anti-echo` — Excluded models with lane-of-origin attribution, computed at render time by intersecting against each upstream lane's surfaced models
 - `/audit/routing` — Per-tendency primary, antidotes, activation-tiebreaker traces (fired or aborted with human-readable clause)
+- `/audit/treatment-audit` — optional model-treatment audit results when a separate treatment-audit run exists
 - `/audit/expansions` — Companion expansions grouped by source anchor: relation type, activation condition, why relevant
+- `/audit/stakeholders` — stakeholder assumption check when enabled, including actor dependencies and correction state
 - `/audit/v60` — V60 private enrichment: selected source-backed affordance/absence chunks, skipped candidates, not-presented model IDs, embedding recall, and Step-6 consideration-ledger uptake
+- `/audit/pre-step6` — current private-table source items, Step 6 ledger uptake, custody/cache guardrails, and legacy shadow-policy evidence when present
+- `/audit/graph-survival` — selected/suppressed/answer-changing/private-guardrail graph and embedding candidate accounting
+- `/audit/reasoning-trace` — artifact custody, trace adequacy, model-call telemetry, surface-divergence checks, and commitment candidates
+- `/audit/events` — lifecycle timeline from `run_events.json`: extraction, pipeline, ledger finalization, memo rendering, Observatory launch, archive, and receipt
 - `/usage` — per-run cost & call breakdown (existing, with cross-link to `/audit` added)
 
 Every audit panel is server-rendered HTML and works whether or not `observatory/build/` (the Svelte SPA bundle) exists — design intent is skill portability: anyone downloading the skill can use the panels without a Node toolchain.
