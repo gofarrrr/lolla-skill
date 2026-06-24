@@ -1923,6 +1923,19 @@ def test_telemetry_fab_injection_inserts_before_body_close():
     assert "telemetry-fab" in out
     assert 'href="/audit"' in out
     assert "lolla-main-surface-copy-patch" in out
+    assert "lolla-selected-run-custody-panel" in out
+    assert "Selected run custody" in out
+    assert "lolla-custody-panel--floating" in out
+    assert 'key: "agent-result"' in out
+    assert 'key: "reasoning-trace"' in out
+    assert 'key: "events"' in out
+    assert 'key: "memo"' in out
+    assert 'key: "graph-survival"' in out
+    assert "unavailable" in out
+    assert "loadArtifacts(candidateCaseId);" in out
+    assert "const target = sidebar || document.body;" in out
+    assert "caseId && caseId !== candidateCaseId" in out
+    assert out.index("loadArtifacts(candidateCaseId);") < out.index("const response = await nativeFetch(...args);")
     assert "Optional Pressure Check" in out
     assert "no Step-7 divergences" in out
     assert "boundary calls" in out
@@ -1931,6 +1944,7 @@ def test_telemetry_fab_injection_inserts_before_body_close():
     # Injected before </body>, not after
     assert out.index("telemetry-fab") < out.index("</body>")
     assert out.index("lolla-main-surface-copy-patch") < out.index("</body>")
+    assert out.index("lolla-selected-run-custody-panel") < out.index("</body>")
 
 
 def test_telemetry_fab_injection_is_idempotent():
@@ -1980,6 +1994,7 @@ def test_root_serves_spa_with_fab_injected(tmp_path, monkeypatch):
         assert "SPA app mount" in body  # original bundle still there
         assert "telemetry-fab" in body  # FAB injected
         assert 'href="/audit"' in body  # FAB navigates to /audit
+        assert "lolla-selected-run-custody-panel" in body
     finally:
         server.shutdown()
         server.server_close()

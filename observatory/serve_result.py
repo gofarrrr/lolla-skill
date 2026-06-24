@@ -331,6 +331,286 @@ _MAIN_SURFACE_COPY_PATCH_SCRIPT = """
 """
 
 
+_SELECTED_RUN_CUSTODY_PANEL_STYLE = """
+<style id="lolla-selected-run-custody-panel-style">
+.lolla-custody-panel {
+  margin-top: 0.85rem;
+  padding: 0.9rem 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.82);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+.lolla-custody-panel--floating {
+  position: fixed;
+  top: 6.25rem;
+  right: 1.25rem;
+  z-index: 45;
+  width: min(23rem, calc(100vw - 2rem));
+  max-height: calc(100vh - 8rem);
+  overflow: auto;
+  background: rgba(6, 7, 97, 0.96);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.34);
+}
+.lolla-custody-panel h3 {
+  margin: 0 0 0.6rem;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.lolla-custody-panel ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+.lolla-custody-panel li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.5rem;
+  align-items: start;
+  min-width: 0;
+  padding: 0.45rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.lolla-custody-panel li:first-child { border-top: 0; padding-top: 0; }
+.lolla-custody-name {
+  display: block;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.8rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.lolla-custody-meta {
+  display: block;
+  margin-top: 0.12rem;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.72rem;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+.lolla-custody-status {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  padding: 0.12rem 0.44rem;
+  font-family: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.lolla-custody-status.available {
+  color: #41FFA7;
+  border-color: rgba(65, 255, 167, 0.45);
+  background: rgba(65, 255, 167, 0.08);
+}
+.lolla-custody-status.unavailable {
+  color: rgba(255, 255, 255, 0.52);
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+}
+.lolla-custody-link {
+  color: #41FFA7;
+  text-decoration: none;
+}
+.lolla-custody-link:hover { text-decoration: underline; }
+@media (max-width: 900px) {
+  .lolla-custody-panel--floating {
+    top: auto;
+    right: 0.75rem;
+    bottom: 5.5rem;
+    left: 0.75rem;
+    width: auto;
+    max-height: 46vh;
+  }
+}
+</style>
+"""
+
+
+_SELECTED_RUN_CUSTODY_PANEL_SCRIPT = """
+<script id="lolla-selected-run-custody-panel">
+(() => {
+  if (window.__lollaSelectedRunCustodyPanel) return;
+  window.__lollaSelectedRunCustodyPanel = true;
+
+  const ARTIFACTS = [
+    {
+      key: "agent-result",
+      label: "agent_result.json",
+      describe: (payload) => [
+        payload && payload.schema_version,
+        payload && payload.status ? `status ${payload.status}` : "",
+        payload && payload.caller_action ? `caller ${payload.caller_action}` : "",
+        payload && payload.risk_mode ? `mode ${payload.risk_mode}` : "",
+      ].filter(Boolean).join(" · "),
+    },
+    {
+      key: "reasoning-trace",
+      label: "reasoning_trace.json",
+      describe: (payload) => {
+        const artifacts = Array.isArray(payload && payload.artifacts) ? payload.artifacts.length : null;
+        return artifacts === null ? payload && payload.schema_version : `${artifacts} artifacts`;
+      },
+    },
+    {
+      key: "events",
+      label: "run_events.json",
+      describe: (payload) => {
+        const count = Array.isArray(payload) ? payload.length : 0;
+        return `${count} event${count === 1 ? "" : "s"}`;
+      },
+    },
+    {
+      key: "memo",
+      label: "memo.md",
+      describe: (payload) => {
+        const chars = payload && typeof payload.markdown === "string" ? payload.markdown.length : 0;
+        return chars ? `${chars.toLocaleString()} chars` : "markdown wrapper";
+      },
+    },
+    {
+      key: "graph-survival",
+      label: "graph_survival_report.*",
+      describe: (payload) => {
+        const hasMarkdown = !!(payload && payload.markdown && payload.markdown.markdown);
+        return hasMarkdown ? "json + markdown" : "json report";
+      },
+    },
+  ];
+
+  let selectedCaseId = null;
+  let requestToken = 0;
+  let states = {};
+
+  const encodeCaseId = (caseId) => encodeURIComponent(caseId);
+
+  const caseIdFromRequest = (input) => {
+    try {
+      const raw = typeof input === "string" ? input : input && input.url;
+      if (!raw) return null;
+      const url = new URL(raw, window.location.origin);
+      const prefix = "/api/case/";
+      if (!url.pathname.startsWith(prefix)) return null;
+      const rest = url.pathname.slice(prefix.length);
+      if (!rest || rest.includes("/")) return null;
+      return decodeURIComponent(rest);
+    } catch (_error) {
+      return null;
+    }
+  };
+
+  const endpointFor = (caseId, key) => `/api/case/${encodeCaseId(caseId)}/${key}`;
+
+  const escapeHtml = (value) => String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+
+  const rowHtml = (artifact) => {
+    const state = states[artifact.key] || { status: "loading", detail: "checking..." };
+    const href = selectedCaseId ? endpointFor(selectedCaseId, artifact.key) : "#";
+    const available = state.status === "available";
+    const statusClass = available ? "available" : "unavailable";
+    const statusText = available ? "available" : state.status === "loading" ? "checking" : "unavailable";
+    const label = available
+      ? `<a class="lolla-custody-link" href="${escapeHtml(href)}" target="_blank" rel="noreferrer">${escapeHtml(artifact.label)}</a>`
+      : escapeHtml(artifact.label);
+    return `
+      <li data-custody-artifact="${escapeHtml(artifact.key)}">
+        <span>
+          <span class="lolla-custody-name">${label}</span>
+          <span class="lolla-custody-meta">${escapeHtml(state.detail || "")}</span>
+        </span>
+        <span class="lolla-custody-status ${statusClass}">${escapeHtml(statusText)}</span>
+      </li>
+    `;
+  };
+
+  const render = () => {
+    if (!selectedCaseId) return;
+    const sidebar = document.querySelector(".sidebar");
+    const target = sidebar || document.body;
+    let panel = document.querySelector(".lolla-custody-panel");
+    if (!panel) {
+      panel = document.createElement("section");
+      panel.className = "lolla-custody-panel";
+      panel.setAttribute("aria-label", "Selected run custody");
+    }
+    if (panel.parentElement !== target) {
+      target.appendChild(panel);
+    }
+    panel.classList.toggle("lolla-custody-panel--floating", !sidebar);
+    const html = `
+      <h3>Run Custody</h3>
+      <ul>${ARTIFACTS.map(rowHtml).join("")}</ul>
+    `;
+    if (panel.__lollaCustodyHtml !== html) {
+      panel.__lollaCustodyHtml = html;
+      panel.innerHTML = html;
+    }
+  };
+
+  const loadArtifacts = async (caseId) => {
+    const token = ++requestToken;
+    selectedCaseId = caseId;
+    states = Object.fromEntries(
+      ARTIFACTS.map((artifact) => [artifact.key, { status: "loading", detail: "checking..." }])
+    );
+    render();
+
+    await Promise.all(ARTIFACTS.map(async (artifact) => {
+      try {
+        const response = await window.__lollaNativeFetch(endpointFor(caseId, artifact.key));
+        if (token !== requestToken) return;
+        if (!response.ok) {
+          states[artifact.key] = { status: "unavailable", detail: response.status === 404 ? "not archived" : `HTTP ${response.status}` };
+          render();
+          return;
+        }
+        const payload = await response.json();
+        if (token !== requestToken) return;
+        states[artifact.key] = { status: "available", detail: artifact.describe(payload) || "ready" };
+        render();
+      } catch (_error) {
+        if (token !== requestToken) return;
+        states[artifact.key] = { status: "unavailable", detail: "request failed" };
+        render();
+      }
+    }));
+  };
+
+  window.__lollaNativeFetch = window.__lollaNativeFetch || window.fetch.bind(window);
+  const nativeFetch = window.__lollaNativeFetch;
+  window.fetch = async (...args) => {
+    const candidateCaseId = caseIdFromRequest(args[0]);
+    if (candidateCaseId) {
+      loadArtifacts(candidateCaseId);
+    }
+    const response = await nativeFetch(...args);
+    if (candidateCaseId) {
+      response.clone().json().then((payload) => {
+        const caseId = payload && payload.case && payload.case.case_id;
+        if (caseId && caseId !== candidateCaseId) loadArtifacts(caseId);
+      }).catch(() => {});
+    }
+    return response;
+  };
+
+  new MutationObserver(render).observe(document.documentElement, {
+    childList: true,
+    subtree: true,
+  });
+})();
+</script>
+"""
+
+
 def _inject_telemetry_fab(html_bytes: bytes) -> bytes:
     """Insert the Telemetry FAB and root-page copy patch into index.html.
 
@@ -345,7 +625,13 @@ def _inject_telemetry_fab(html_bytes: bytes) -> bytes:
         return html_bytes
     if "telemetry-fab" in text:
         return html_bytes
-    inject = _TELEMETRY_FAB_STYLE + _TELEMETRY_FAB_HTML + _MAIN_SURFACE_COPY_PATCH_SCRIPT
+    inject = (
+        _TELEMETRY_FAB_STYLE
+        + _SELECTED_RUN_CUSTODY_PANEL_STYLE
+        + _TELEMETRY_FAB_HTML
+        + _MAIN_SURFACE_COPY_PATCH_SCRIPT
+        + _SELECTED_RUN_CUSTODY_PANEL_SCRIPT
+    )
     if "</body>" in text:
         text = text.replace("</body>", inject + "</body>", 1)
     else:

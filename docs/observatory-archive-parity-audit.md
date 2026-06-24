@@ -110,11 +110,11 @@ That design is adequate for inspecting the active/manual run, especially when
 the server is launched directly against one archived `result.json`. It is not
 yet archive-parity inspection for local history.
 
-## Selected-Archive Sidecar API Follow-Up
+## Selected-Archive Custody Follow-Up
 
-The backend follow-up keeps Observatory boring and read-only. It does not
-redesign the UI; it makes the selected archived run's custody artifacts
-reachable through fixed local endpoints:
+The follow-up keeps Observatory boring and read-only. It does not redesign the
+UI; it makes the selected archived run's custody artifacts reachable through
+fixed local endpoints and shows a compact selected-run custody panel in the SPA:
 
 1. Selected-case sidecar API endpoints:
    - `/api/case/<id>/agent-result`
@@ -138,8 +138,9 @@ reachable through fixed local endpoints:
 4. Add deterministic tests proving selected archived cases can retrieve each
    sidecar independently of the active `_RESULT`.
 
-5. After those API endpoints are stable, update the Observatory UI to show a
-   selected-run custody panel or links for the selected archived case.
+5. The SPA selected-run custody panel shows availability and links for those
+   artifacts. Missing sidecars render as unavailable rather than broken. The
+   server-rendered `/audit/*` pages remain active-run scoped.
 
 This keeps the next step aligned with the manual Lolla loop: run Lolla, open the
 Observatory, inspect what happened, and trust the archive because the custody
