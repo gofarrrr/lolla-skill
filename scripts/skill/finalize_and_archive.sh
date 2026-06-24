@@ -4,6 +4,8 @@ set -euo pipefail
 RECEIPT_FILE=""
 SKIP_OBSERVATORY=0
 REQUESTED_RUN_ID=""
+TRUSTED_TRANSCRIPT=""
+REQUIRE_LIVE_OUTPUT_CLEAN=0
 
 while [ "$#" -gt 0 ]; do
   case "$1" in
@@ -17,6 +19,14 @@ while [ "$#" -gt 0 ]; do
       ;;
     --skip-observatory)
       SKIP_OBSERVATORY=1
+      shift
+      ;;
+    --trusted-transcript)
+      TRUSTED_TRANSCRIPT="${2:-}"
+      shift 2
+      ;;
+    --require-live-output-clean)
+      REQUIRE_LIVE_OUTPUT_CLEAN=1
       shift
       ;;
     *)
@@ -69,6 +79,28 @@ except Exception:
 PY
 }
 
+sync_trusted_transcript_to_default() {
+  if [ -z "${TRUSTED_TRANSCRIPT:-}" ] || [ "$TRANSCRIPT_PATH" = "$DEFAULT_TRANSCRIPT_PATH" ]; then
+    return 0
+  fi
+  cp "$TRANSCRIPT_PATH" "$DEFAULT_TRANSCRIPT_PATH"
+}
+
+finalize_live_output_hygiene_current() {
+  local args=(
+    python3 "$SKILL_DIR/scripts/finalize_live_output_hygiene.py"
+    --run-id "${LOLLA_RUN_ID}"
+    --quiet
+  )
+  if [ -n "${TRUSTED_TRANSCRIPT:-}" ]; then
+    args+=(--transcript "$TRANSCRIPT_PATH" --trusted-transcript)
+  fi
+  if [ "$REQUIRE_LIVE_OUTPUT_CLEAN" -eq 1 ]; then
+    args+=(--require-live-output-clean)
+  fi
+  "${args[@]}"
+}
+
 if [ -n "${LOLLA_ENV_STATE:-}" ] && [ -f "$LOLLA_ENV_STATE" ]; then
   # shellcheck source=/dev/null
   . "$LOLLA_ENV_STATE"
@@ -109,7 +141,15 @@ record_run_event_quiet() {
 }
 
 RESULT_PATH="/tmp/lolla_${LOLLA_RUN_ID}_result.json"
-TRANSCRIPT_PATH="${LOLLA_LIVE_TRANSCRIPT:-/tmp/lolla_${LOLLA_RUN_ID}_live_transcript.txt}"
+DEFAULT_TRANSCRIPT_PATH="${LOLLA_LIVE_TRANSCRIPT:-/tmp/lolla_${LOLLA_RUN_ID}_live_transcript.txt}"
+TRANSCRIPT_PATH="$DEFAULT_TRANSCRIPT_PATH"
+if [ -n "$TRUSTED_TRANSCRIPT" ]; then
+  if [ ! -s "$TRUSTED_TRANSCRIPT" ]; then
+    echo "FATAL: trusted transcript missing or empty at $TRUSTED_TRANSCRIPT" >&2
+    exit 1
+  fi
+  TRANSCRIPT_PATH="$TRUSTED_TRANSCRIPT"
+fi
 if [ ! -s "$RESULT_PATH" ]; then
   echo "FATAL: result JSON missing at $RESULT_PATH. Cannot finalize." >&2
   exit 1
@@ -117,11 +157,13 @@ fi
 
 if [ -n "$RECEIPT_FILE" ]; then
   append_receipt_to_transcript "$RECEIPT_FILE" "$TRANSCRIPT_PATH"
+  sync_trusted_transcript_to_default
 fi
 
 python3 "$SKILL_DIR/scripts/finalize_pre_step6_private_table_ledger.py" --run-id "${LOLLA_RUN_ID}" --quiet --require-valid
 python3 "$SKILL_DIR/scripts/finalize_v60_telemetry.py" --run-id "${LOLLA_RUN_ID}" --quiet --require-valid
-python3 "$SKILL_DIR/scripts/finalize_live_output_hygiene.py" --run-id "${LOLLA_RUN_ID}" --quiet
+sync_trusted_transcript_to_default
+finalize_live_output_hygiene_current
 
 OBSERVATORY_URL=""
 OBSERVATORY_STATUS="skipped"
@@ -197,10 +239,11 @@ if [ -z "$RECEIPT_FILE" ] && [ -n "$ARCHIVE_PATH" ]; then
     --archive-path "$ARCHIVE_PATH" \
     --output "$AUTO_RECEIPT_FILE"
   append_receipt_to_transcript "$AUTO_RECEIPT_FILE" "$TRANSCRIPT_PATH"
+  sync_trusted_transcript_to_default
   record_run_event_quiet final_receipt_written \
     --detail "receipt_file=$AUTO_RECEIPT_FILE" \
     --detail "observatory_status=$OBSERVATORY_STATUS"
-  python3 "$SKILL_DIR/scripts/finalize_live_output_hygiene.py" --run-id "${LOLLA_RUN_ID}" --quiet
+  finalize_live_output_hygiene_current
   ARCHIVE_OUTPUT="$(python3 "$SKILL_DIR/scripts/archive_run.py" --run-id "${LOLLA_RUN_ID}")"
   lolla_operator_block "archive_run final" "$ARCHIVE_OUTPUT"
   ARCHIVE_PATH="$(printf '%s\n' "$ARCHIVE_OUTPUT" | awk -F'path:[[:space:]]*' '/path:/ {print $2; exit}')"

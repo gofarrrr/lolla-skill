@@ -557,7 +557,10 @@ def _has_matching_trusted_live_transcript(result: dict[str, object], transcript:
     if live_hygiene.get("trusted_capture") is not True:
         return False
     expected = str(live_hygiene.get("transcript_sha256") or "")
-    actual = hashlib.sha256(transcript.encode("utf-8")).hexdigest()
+    # finalize_live_output_hygiene hashes the normalized text it scans
+    # (currently str(...).strip()), so archive-time trust preservation must use
+    # the same normalization rather than raw artifact bytes.
+    actual = hashlib.sha256(str(transcript or "").strip().encode("utf-8")).hexdigest()
     return bool(expected) and expected == actual
 
 

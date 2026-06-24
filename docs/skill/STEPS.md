@@ -631,6 +631,16 @@ bash "$SKILL_DIR/scripts/skill/finalize_and_archive.sh"
 
 The helper finalizes the private-table ledger, V60 ledger, and live-output hygiene, starts the local Observatory server, archives the run, writes a final receipt to `/tmp/lolla_${LOLLA_RUN_ID}_final_receipt.txt`, appends that receipt to the live transcript, re-runs live-output hygiene, re-archives the run, writes Observatory/archive/cost details to `/tmp/lolla_${LOLLA_RUN_ID}_operator.log`, and prints `USER_RECEIPT_BEGIN` / `USER_RECEIPT_END` lines. Keep these for the final receipt; do not narrate them as a separate Step 9 message.
 
+If you have a complete captured terminal transcript for the whole live session, pass it to the same finalizer:
+
+```bash
+: "${LOLLA_ENV_STATE:?FATAL: set LOLLA_ENV_STATE to the ENV_STATE path printed by the preamble}"
+. "$LOLLA_ENV_STATE"
+bash "$SKILL_DIR/scripts/skill/finalize_and_archive.sh" --trusted-transcript "/path/to/complete-live-session.txt" --require-live-output-clean
+```
+
+The trusted transcript must include the same user-visible prose the user saw. The helper appends the generated final receipt to that transcript before the second hygiene pass, syncs it into `/tmp/lolla_${LOLLA_RUN_ID}_live_transcript.txt`, and archives it as `live_transcript.txt`. Use this only for a complete capture; a manually maintained transcript without this flag remains `live_output_health: not_checked`.
+
 **Do not produce user-facing narrative output at Step 9.** Beat 4 already closed with *"Audit complete. I'm opening the full breakdown now."* — that's the bridge to the Observatory. The artifact paths, cost, and Observatory URL are consolidated in the final functional receipt at Completion (after Step 10). A long *"The Observatory is live at … it has the full audit: all [N] findings…"* narrative at Step 9 is the close-summary anti-pattern banned in `chat-output-format.md`.
 
 <a id="step-10-archive-run"></a>
@@ -676,7 +686,7 @@ If you must override the receipt text manually, write the exact receipt text to 
 bash "$SKILL_DIR/scripts/skill/finalize_and_archive.sh" --receipt-file "/tmp/lolla_${LOLLA_RUN_ID}_final_receipt.txt" --skip-observatory
 ```
 
-The helper appends the receipt to `/tmp/lolla_${LOLLA_RUN_ID}_live_transcript.txt` if it is not already there, reruns live-output hygiene, and re-archives the run so archived `result.json` and `live_transcript.txt` include the latest final receipt check. A manual transcript can record `unsafe`, `missing`, or `not_checked`; only a complete trusted capture checked with `--require-live-output-clean --trusted-transcript` can prove `clean`. If the helper fails, do not send the receipt as if the run completed cleanly.
+When overriding the receipt and using a complete captured transcript, include the same `--trusted-transcript "/path/to/complete-live-session.txt" --require-live-output-clean` flags. The helper appends the receipt to the selected transcript if it is not already there, syncs trusted captures into `/tmp/lolla_${LOLLA_RUN_ID}_live_transcript.txt`, reruns live-output hygiene, and re-archives the run so archived `result.json` and `live_transcript.txt` include the latest final receipt check. A manual transcript can record `unsafe`, `missing`, or `not_checked`; only a complete trusted capture checked through the finalizer can prove `clean`. If the helper fails, do not send the receipt as if the run completed cleanly.
 
 **If all lanes completed successfully and `run_health.overall` is `healthy`:**
 

@@ -106,6 +106,7 @@ def test_run_state_is_pinned_to_env_state_not_latest_symlink_docs() -> None:
 def test_skill_requires_live_transcript_artifact_and_gate_before_archive() -> None:
     skill = _read("SKILL.md")
     steps = _read("docs/skill/STEPS.md")
+    finalizer = _read("scripts/skill/finalize_and_archive.sh")
     contract = "\n".join([skill, steps])
 
     assert "/tmp/lolla_${LOLLA_RUN_ID}_live_transcript.txt" in contract
@@ -118,6 +119,11 @@ def test_skill_requires_live_transcript_artifact_and_gate_before_archive() -> No
     assert "before archive" in contract.lower()
     assert "/tmp/lolla_${LOLLA_RUN_ID}_operator.log" in contract
     assert "operator.log" in contract
+    assert "--trusted-transcript" in contract
+    assert "--require-live-output-clean" in contract
+    assert "--trusted-transcript" in finalizer
+    assert "--require-live-output-clean" in finalizer
+    assert "sync_trusted_transcript_to_default" in finalizer
 
 
 def test_reasoning_trace_archive_contract_is_preserved() -> None:
