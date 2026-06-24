@@ -19,10 +19,11 @@ from __future__ import annotations
 import argparse
 import html
 import json
+import os
 import sys
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import unquote, urlparse
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 STATIC_DIR = SCRIPT_DIR / "build"
@@ -40,6 +41,7 @@ _CASE_ID: str = "lolla-audit"
 _CASE_NAME: str = "Lolla Audit"
 _KG_CACHE: dict | None = None
 _FAMILY_CACHE: list[dict] | None = None
+_DEFAULT_ARCHIVE_ROOT = Path.home() / ".local" / "share" / "lolla" / "runs"
 
 
 # ---------------------------------------------------------------------------
@@ -732,6 +734,162 @@ def _load_json_safe(path: Path) -> dict | None:
         return None
 
 
+def _archive_root() -> Path:
+    """Return the local archive root used by archive_run.py."""
+    override = os.environ.get("LOLLA_ARCHIVE_DIR")
+    if override:
+        return Path(override).expanduser()
+    return _DEFAULT_ARCHIVE_ROOT
+
+
+def _run_id_for_result(result: dict, result_path: Path | None = None) -> str:
+    usage = result.get("usage_summary") or {}
+    if isinstance(usage, dict) and usage.get("run_id"):
+        return str(usage.get("run_id"))
+    if result_path is not None:
+        return result_path.parent.name
+    return ""
+
+
+def _detected_finding_count(result: dict) -> int:
+    detected = result.get("detected_tendencies")
+    if isinstance(detected, list):
+        return len(detected)
+    audit = result.get("audit_summary") or {}
+    deep_checks = audit.get("deep_check_results") or []
+    if isinstance(deep_checks, list):
+        return sum(
+            1
+            for item in deep_checks
+            if isinstance(item, dict) and item.get("detected")
+        )
+    return 0
+
+
+def _case_summary(
+    result: dict,
+    *,
+    case_id: str,
+    name: str,
+    source: str,
+    result_path: Path | None = None,
+) -> dict:
+    finding_count = _detected_finding_count(result)
+    run_id = _run_id_for_result(result, result_path)
+    summary = {
+        "id": case_id,
+        "name": name,
+        "source": source,
+        "run_id": run_id,
+        "has_delta_card": bool(result.get("delta_card")) or finding_count > 0,
+        "has_companion": bool(result.get("companion_cheat_sheet")),
+        "has_audit_trace": bool(result.get("audit_summary")),
+        "finding_count": finding_count,
+    }
+    if result_path is not None:
+        summary["result_path"] = str(result_path)
+    return summary
+
+
+def _archive_case_id(case_dir: Path, run_dir: Path) -> str:
+    return f"archive:{case_dir.name}:{run_dir.name}"
+
+
+def _archive_result_path_for_case_id(case_id: str) -> Path | None:
+    if not case_id.startswith("archive:"):
+        return None
+    parts = case_id.split(":", 2)
+    if len(parts) != 3 or not parts[1] or not parts[2]:
+        return None
+    root = _archive_root().resolve()
+    result_path = (root / parts[1] / parts[2] / "result.json").resolve()
+    if root != result_path and root not in result_path.parents:
+        return None
+    return result_path
+
+
+def _load_case_result(case_id: str) -> tuple[dict | None, Path | None, bool]:
+    """Load the active result or an archived result addressed by API case id."""
+    if case_id == _CASE_ID:
+        _reload_result_if_changed()
+        return _RESULT, _RESULT_PATH, True
+
+    result_path = _archive_result_path_for_case_id(case_id)
+    if result_path is None:
+        return None, None, False
+    result = _load_json_safe(result_path)
+    if result is None:
+        return None, result_path, False
+    return result, result_path, False
+
+
+def _archive_case_summaries(limit: int = 200) -> list[dict]:
+    """Return newest-first archived runs for the existing SPA Cases tab."""
+    root = _archive_root()
+    if not root.is_dir():
+        return []
+
+    current_run_id = _run_id_for_result(_RESULT, _RESULT_PATH)
+    current_path = None
+    if _RESULT_PATH is not None:
+        try:
+            current_path = _RESULT_PATH.resolve()
+        except OSError:
+            current_path = None
+
+    entries: list[tuple[str, float, dict]] = []
+    for case_dir in root.iterdir():
+        if not case_dir.is_dir():
+            continue
+        for run_dir in case_dir.iterdir():
+            if not run_dir.is_dir():
+                continue
+            result_path = run_dir / "result.json"
+            if not result_path.is_file():
+                continue
+            try:
+                resolved = result_path.resolve()
+                stat_mtime = result_path.stat().st_mtime
+            except OSError:
+                continue
+            if current_path is not None and resolved == current_path:
+                continue
+            result = _load_json_safe(result_path)
+            if result is None:
+                continue
+            run_id = _run_id_for_result(result, result_path)
+            if current_run_id and run_id == current_run_id:
+                continue
+            base_name = _derive_case_name(result)
+            display_name = f"{base_name} [{run_dir.name}]"
+            summary = _case_summary(
+                result,
+                case_id=_archive_case_id(case_dir, run_dir),
+                name=display_name,
+                source="archive",
+                result_path=result_path,
+            )
+            summary["archive_case_id"] = case_dir.name
+            entries.append((run_dir.name, stat_mtime, summary))
+
+    entries.sort(key=lambda item: (item[0], item[1]), reverse=True)
+    return [summary for _, __, summary in entries[:limit]]
+
+
+def _build_cases_index() -> list[dict]:
+    _reload_result_if_changed()
+    return [
+        _case_summary(
+            _RESULT,
+            case_id=_CASE_ID,
+            name=_CASE_NAME,
+            source="current",
+            result_path=_RESULT_PATH,
+        ),
+        *_archive_case_summaries(),
+    ]
+
+
 def _load_families() -> list[dict]:
     """Load family clusters, enriching members with display names from KG."""
     global _FAMILY_CACHE
@@ -794,14 +952,15 @@ def _get_family_detail(family_id: str) -> dict | None:
     return {**family, "internal_edges": internal_edges}
 
 
-def _build_graph_response() -> dict:
+def _build_graph_response(result: dict | None = None) -> dict:
     """Build the reasoning graph for the current case.
 
     Nodes: companion models (large), chunk-referenced models (medium),
     KG neighbors (small). Edges: ally/antagonist/tension from KG.
     """
-    _reload_result_if_changed()
-    r = _RESULT
+    if result is None:
+        _reload_result_if_changed()
+    r = result if result is not None else _RESULT
     kg = _load_kg()
     models_db = kg.get("models", {})
     kg_edges = kg.get("edges", [])
@@ -945,10 +1104,16 @@ def _get_tendency_catalog() -> list[dict]:
     return result
 
 
-def _build_case_response() -> dict:
-    """Build the case response from the loaded pipeline result."""
-    _reload_result_if_changed()
-    r = _RESULT
+def _build_case_response(
+    result: dict | None = None,
+    *,
+    case_id: str | None = None,
+) -> dict:
+    """Build the case response from a current or archived pipeline result."""
+    if result is None:
+        _reload_result_if_changed()
+    r = result if result is not None else _RESULT
+    response_case_id = case_id or _CASE_ID
 
     delta_card = r.get("delta_card")
     companion = r.get("companion_cheat_sheet")
@@ -961,7 +1126,7 @@ def _build_case_response() -> dict:
     # in the case header for context alongside cards/audit data.
     extraction = r.get("extraction", {})
     case_meta = {
-        "case_id": _CASE_ID,
+        "case_id": response_case_id,
         "query": _joined_user_turns(extraction),
         "vanilla_answer": _joined_assistant_turns(extraction),
     }
@@ -3756,30 +3921,31 @@ class ResultHandler(SimpleHTTPRequestHandler):
             _reload_result_if_changed()
 
         if path == "/api/cases":
-            finding_count = len(_RESULT.get("detected_tendencies", []))
-            self._json_response([{
-                "id": _CASE_ID,
-                "name": _CASE_NAME,
-                "has_delta_card": finding_count > 0,
-                "has_companion": bool(_RESULT.get("companion_cheat_sheet")),
-                "has_audit_trace": bool(_RESULT.get("audit_summary")),
-                "finding_count": finding_count,
-            }])
+            self._json_response(_build_cases_index())
             return
 
         if path.startswith("/api/case/"):
             parts = path.split("/")
+            case_id = unquote(parts[3]) if len(parts) >= 4 else ""
+            result, result_path, _is_current = _load_case_result(case_id)
+            if result is None:
+                self._error_response(
+                    404,
+                    f"Case '{case_id}' not found"
+                    + (f" at {result_path}" if result_path else ""),
+                )
+                return
             if len(parts) == 4:
-                self._json_response(_build_case_response())
+                self._json_response(_build_case_response(result, case_id=case_id))
                 return
             if len(parts) == 5 and parts[4] == "audit_trace":
-                self._json_response(_RESULT.get("audit_summary") or {})
+                self._json_response(result.get("audit_summary") or {})
                 return
             if len(parts) == 5 and parts[4] == "graph":
-                self._json_response(_build_graph_response())
+                self._json_response(_build_graph_response(result))
                 return
             if len(parts) == 5 and parts[4] == "usage":
-                self._json_response(_RESULT.get("usage_summary") or {})
+                self._json_response(result.get("usage_summary") or {})
                 return
 
         if path == "/usage":

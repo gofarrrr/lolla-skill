@@ -19,6 +19,7 @@ import socket
 import sys
 import threading
 import time
+import urllib.parse
 import urllib.request
 from contextlib import closing
 from http.server import HTTPServer
@@ -663,6 +664,83 @@ def test_stakeholder_panel_absent_for_skipped_check(monkeypatch):
 def test_case_api_includes_stakeholder_assumption_check():
     response = serve_result._build_case_response()
     assert response["stakeholder_assumption_check"]["status"] == "completed"
+
+
+def test_cases_api_lists_local_archived_runs(tmp_path, monkeypatch):
+    current = _fixture_result()
+    current["usage_summary"] = {"run_id": "current-run"}
+    archive_root = tmp_path / "runs"
+    run_dir = archive_root / "archive-case" / "20260624T010203Z_archive"
+    run_dir.mkdir(parents=True)
+
+    archived = json.loads(json.dumps(_fixture_result()))
+    archived["usage_summary"] = {"run_id": "20260624T010203Z_archive"}
+    archived["extraction"] = {
+        "decision_situation": "Whether archived local history should open.",
+        "turns": [
+            {"speaker": "user", "text": "Archived user question"},
+            {"speaker": "assistant", "text": "Archived assistant answer"},
+        ],
+    }
+    (run_dir / "result.json").write_text(json.dumps(archived), encoding="utf-8")
+
+    monkeypatch.setenv("LOLLA_ARCHIVE_DIR", str(archive_root))
+    monkeypatch.setattr(serve_result, "_RESULT", current)
+    monkeypatch.setattr(serve_result, "_CASE_NAME", "Current active run")
+
+    cases = serve_result._build_cases_index()
+
+    assert cases[0]["id"] == "lolla-audit"
+    archive_cases = [item for item in cases if item["source"] == "archive"]
+    assert len(archive_cases) == 1
+    assert archive_cases[0]["id"] == "archive:archive-case:20260624T010203Z_archive"
+    assert "Whether archived local history should open." in archive_cases[0]["name"]
+    assert archive_cases[0]["run_id"] == "20260624T010203Z_archive"
+    assert archive_cases[0]["has_audit_trace"] is True
+
+
+def test_archived_case_api_loads_selected_result_and_graph(
+    tmp_path,
+    monkeypatch,
+    running_server,
+):
+    archive_root = tmp_path / "runs"
+    run_dir = archive_root / "archive-case" / "20260624T010203Z_archive"
+    run_dir.mkdir(parents=True)
+
+    archived = json.loads(json.dumps(_fixture_result()))
+    archived["usage_summary"] = {"run_id": "20260624T010203Z_archive"}
+    archived["extraction"] = {
+        "decision_situation": "Whether selected archived case renders.",
+        "turns": [
+            {"speaker": "user", "text": "Archived user question"},
+            {"speaker": "assistant", "text": "Archived assistant answer"},
+        ],
+    }
+    archived["companion_cheat_sheet"] = {
+        "anchors": [{"model_id": "archive-only-model", "chunks": []}]
+    }
+    (run_dir / "result.json").write_text(json.dumps(archived), encoding="utf-8")
+    monkeypatch.setenv("LOLLA_ARCHIVE_DIR", str(archive_root))
+
+    status, body = _http_get(f"{running_server}/api/cases")
+    assert status == 200
+    cases = json.loads(body)
+    archived_id = "archive:archive-case:20260624T010203Z_archive"
+    assert any(item["id"] == archived_id for item in cases)
+
+    encoded = urllib.parse.quote(archived_id, safe="")
+    status, body = _http_get(f"{running_server}/api/case/{encoded}")
+    assert status == 200
+    payload = json.loads(body)
+    assert payload["case"]["case_id"] == archived_id
+    assert "Archived user question" in payload["case"]["query"]
+    assert payload["usage_summary"]["run_id"] == "20260624T010203Z_archive"
+
+    status, body = _http_get(f"{running_server}/api/case/{encoded}/graph")
+    assert status == 200
+    graph = json.loads(body)
+    assert any(node["id"] == "archive-only-model" for node in graph["nodes"])
 
 
 def test_v60_panel_renders_process_telemetry(monkeypatch):
