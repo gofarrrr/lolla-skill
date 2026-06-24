@@ -649,7 +649,7 @@ The trusted transcript must include the same user-visible prose the user saw. Th
 
 Step 9's helper already archives the run's core artifacts into a persistent case folder under `~/.local/share/lolla/runs/` so the run survives `/tmp` cleanup and stays accessible for later review, memo re-rendering, or stability-harness analysis. Step 10 is the silent verification point: confirm the helper reported `ARCHIVE_PATH`. Do not reconstruct or rerun `archive_run.py` by hand unless the helper failed.
 
-The launched browser Observatory is scoped to the currently served run. Its `Cases` tab is not an archive browser; use the archive folder, `scripts/compare_archived_runs.py`, or `scripts/export_reasoning_trace_dataset.py` for historical comparison until an archive-backed local-history UI exists.
+The launched browser Observatory opens on the currently served run. Its `Cases` tab also lists local archived runs from `~/.local/share/lolla/runs/` (or `$LOLLA_ARCHIVE_DIR`) and can load those archived runs into the main SPA view. The server-rendered `/audit/*` telemetry panels remain scoped to the active served run for now; use `scripts/compare_archived_runs.py` or `scripts/export_reasoning_trace_dataset.py` for historical comparison and dataset export.
 
 The archive script:
 

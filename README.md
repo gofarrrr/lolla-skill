@@ -116,8 +116,10 @@ indexes the captured conversation, result, memo, health, usage, ledger
 artifacts, reasoning-lens IDs, model-call telemetry, and trace-adequacy status
 by path/hash and structured metadata without duplicating raw transcript text.
 The Observatory URL in the final receipt opens the completed run as a local
-single-run viewer; archive-backed history and run-to-run comparison currently
-live in the archive folder and the comparison/export scripts below.
+viewer. Its `Cases` tab also lists local archived runs from
+`~/.local/share/lolla/runs/` (or `$LOLLA_ARCHIVE_DIR`) so recent history can be
+opened without leaving the browser. Run-to-run comparison and dataset export
+still live in the archive folder and the comparison/export scripts below.
 To turn archived runs into a local reasoning-eval corpus, run:
 
 ```bash
