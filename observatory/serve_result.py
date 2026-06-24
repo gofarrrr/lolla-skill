@@ -62,6 +62,13 @@ def _esc(value) -> str:
     return html.escape(str(value), quote=True)
 
 
+def _short(value, limit: int = 240) -> str:
+    text = str(value or "")
+    if len(text) <= limit:
+        return text
+    return text[: max(0, limit - 3)] + "..."
+
+
 def _fmt_int(value) -> str:
     try:
         return f"{int(value):,}"
@@ -103,6 +110,7 @@ _AUDIT_NAV = (
     ("/audit/stakeholders", "Stakeholders"),
     ("/audit/v60", "V60"),
     ("/audit/pre-step6", "Pre-Step-6"),
+    ("/audit/reasoning-trace", "Trace"),
     ("/audit/events", "Run Events"),
     ("/usage", "Usage"),
 )
@@ -333,6 +341,27 @@ def _sidecar_candidates(filename: str) -> list[Path]:
     if stem.endswith("_result"):
         prefix = stem[: -len("_result")]
         candidates.append(_RESULT_PATH.parent / f"{prefix}_{filename}")
+
+    if filename != "run_events.json":
+        for events_path in _sidecar_candidates("run_events.json"):
+            if not events_path.exists():
+                continue
+            try:
+                with open(events_path) as f:
+                    run_events = json.load(f)
+            except (OSError, json.JSONDecodeError):
+                continue
+            if not isinstance(run_events, dict):
+                continue
+            for event in run_events.get("events") or []:
+                if not isinstance(event, dict):
+                    continue
+                details = event.get("details") or {}
+                if not isinstance(details, dict):
+                    continue
+                archive_path = details.get("archive_path")
+                if archive_path:
+                    candidates.append(Path(archive_path) / filename)
 
     unique: list[Path] = []
     seen: set[Path] = set()
@@ -2786,6 +2815,206 @@ def _render_run_events_html() -> str:
     )
 
 
+def _render_reasoning_trace_html() -> str:
+    _reload_result_if_changed()
+    header = _render_run_header()
+    payload, path, error = _load_json_sidecar("reasoning_trace.json")
+
+    if error:
+        body = (
+            "<h1>Reasoning Trace</h1>"
+            f"{header}"
+            + _empty_inline(
+                f"Could not parse <code>{_esc(path or 'reasoning_trace.json')}</code>: "
+                f"{_esc(error)}"
+            )
+        )
+        return _render_scaffold(
+            title="Lolla — Reasoning Trace",
+            body=body,
+            current_path="/audit/reasoning-trace",
+        )
+
+    if not isinstance(payload, dict):
+        body = (
+            "<h1>Reasoning Trace</h1>"
+            f"{header}"
+            + _empty_inline(
+                "No <code>reasoning_trace.json</code> sidecar was found next to "
+                "the served result or in the archived run path recorded by "
+                "<code>run_events.json</code>."
+            )
+        )
+        return _render_scaffold(
+            title="Lolla — Reasoning Trace",
+            body=body,
+            current_path="/audit/reasoning-trace",
+        )
+
+    adequacy = payload.get("trace_adequacy") or {}
+    coverage = adequacy.get("coverage") or {}
+    commitment_detection = adequacy.get("commitment_detection") or {}
+    outcome_review = adequacy.get("outcome_review") or {}
+    surface = payload.get("surface_divergence") or {}
+    artifacts = payload.get("artifacts") or []
+    missing_artifacts = payload.get("missing_artifacts") or []
+    model_calls = payload.get("model_calls") or []
+    reasoning_lenses = payload.get("reasoning_lenses") or []
+    candidate_commitments = payload.get("candidate_commitments") or []
+
+    coverage_rows = [
+        f"<tr><td>{_esc(key)}</td><td>{_esc(value)}</td></tr>"
+        for key, value in coverage.items()
+    ]
+    missing_context_rows = [
+        f"<tr><td>{_esc(item)}</td></tr>"
+        for item in (adequacy.get("missing_context") or [])
+    ]
+    missing_artifact_rows = [
+        f"<tr><td><code>{_esc(item.get('path', ''))}</code></td>"
+        f"<td>{_esc(item.get('role', ''))}</td></tr>"
+        for item in missing_artifacts
+        if isinstance(item, dict)
+    ]
+
+    artifact_rows = [
+        f"<tr><td>{_esc(item.get('role', ''))}</td>"
+        f"<td><code>{_esc(item.get('path', ''))}</code></td>"
+        f"<td>{_esc(item.get('bytes', ''))}</td>"
+        f"<td>{_esc(item.get('content_type', ''))}</td>"
+        f"<td><code>{_esc(_short(item.get('sha256', ''), 32))}</code></td></tr>"
+        for item in artifacts
+        if isinstance(item, dict)
+    ]
+
+    stage_counts: dict[str, int] = {}
+    provider_counts: dict[str, int] = {}
+    reasoning_leak_count = 0
+    call_rows = []
+    for call in model_calls:
+        if not isinstance(call, dict):
+            continue
+        stage = str(call.get("stage") or "")
+        provider = str(call.get("provider_name") or "")
+        if stage:
+            stage_counts[stage] = stage_counts.get(stage, 0) + int(call.get("call_count") or 1)
+        if provider:
+            provider_counts[provider] = provider_counts.get(provider, 0) + int(call.get("call_count") or 1)
+        leaked = bool(call.get("reasoning_disabled") and call.get("reasoning_details_present"))
+        if leaked:
+            reasoning_leak_count += int(call.get("call_count") or 1)
+        call_rows.append(
+            f"<tr><td>{_esc(call.get('index', ''))}</td>"
+            f"<td>{_esc(stage)}</td>"
+            f"<td>{_esc(provider)}</td>"
+            f"<td><code>{_esc(call.get('model') or call.get('served_model') or call.get('requested_model') or '')}</code></td>"
+            f"<td>{_esc(call.get('status', ''))}</td>"
+            f"<td>{_esc(call.get('total_tokens', ''))}</td>"
+            f"<td>{_esc(str(leaked).lower())}</td></tr>"
+        )
+
+    lens_dispositions: dict[str, int] = {}
+    selected_lens_count = 0
+    surfaced_lens_count = 0
+    for lens in reasoning_lenses:
+        if not isinstance(lens, dict):
+            continue
+        if lens.get("selected"):
+            selected_lens_count += 1
+        if lens.get("surfaced"):
+            surfaced_lens_count += 1
+        disposition = str(lens.get("disposition") or "")
+        if disposition:
+            lens_dispositions[disposition] = lens_dispositions.get(disposition, 0) + 1
+
+    commitment_rows = []
+    for item in candidate_commitments[:20]:
+        if not isinstance(item, dict):
+            continue
+        commitment_rows.append(
+            f"<tr><td>{_esc(item.get('candidate_id', ''))}</td>"
+            f"<td>{_esc(item.get('source_actor', ''))}</td>"
+            f"<td>{_esc(item.get('kind', ''))}</td>"
+            f"<td>{_esc(item.get('impact', ''))}</td>"
+            f"<td>{_esc(item.get('evidence_status', ''))}</td>"
+            f"<td>{_esc(item.get('correction_status', ''))}</td>"
+            f"<td>{_esc(_short(item.get('claim', ''), 220))}</td></tr>"
+        )
+
+    body = f"""
+<h1>Reasoning Trace</h1>
+{header}
+<p class="lede">Archive-side custody and adequacy summary. This panel does not duplicate the raw conversation; it tells you whether the trace is complete enough for future review and where to look when it is thin.</p>
+<table>
+  <tr><th>Sidecar</th><td><code>{_esc(path or '')}</code></td></tr>
+  <tr><th>Trace ID</th><td><code>{_esc(payload.get("trace_id", ""))}</code></td></tr>
+  <tr><th>Schema</th><td>{_esc(payload.get("schema_version", ""))}</td></tr>
+  <tr><th>Created</th><td>{_esc(payload.get("created_at", ""))}</td></tr>
+  <tr><th>Adequacy status</th><td><span class="tag">{_esc(adequacy.get("status", ""))}</span></td></tr>
+  <tr><th>Future review ready</th><td>{_esc(str(bool(adequacy.get("future_review_ready"))).lower())}</td></tr>
+  <tr><th>Error analysis ready</th><td>{_esc(str(bool(adequacy.get("error_analysis_ready"))).lower())}</td></tr>
+  <tr><th>Surface divergence</th><td>{_esc(surface.get("status", ""))}</td></tr>
+  <tr><th>Artifacts</th><td>{_esc(len(artifacts))}</td></tr>
+  <tr><th>Model calls</th><td>{_esc(len(model_calls))}</td></tr>
+  <tr><th>Reasoning-boundary leaks</th><td>{_esc(reasoning_leak_count)}</td></tr>
+</table>
+<h2>Trace Adequacy</h2>
+<table>
+  <tr><th>Coverage item</th><th>Status</th></tr>
+  {"".join(coverage_rows) if coverage_rows else "<tr><td colspan='2' class='empty'>No coverage records.</td></tr>"}
+</table>
+<p class="hint">Commitment detection: {_esc(json.dumps(commitment_detection, sort_keys=True))}</p>
+<p class="hint">Outcome review: {_esc(json.dumps(outcome_review, sort_keys=True))}</p>
+<table>
+  <tr><th>Missing context</th></tr>
+  {"".join(missing_context_rows) if missing_context_rows else "<tr><td class='empty'>No missing context recorded.</td></tr>"}
+</table>
+<h2>Missing Artifacts</h2>
+<table>
+<tr><th>Path</th><th>Role</th></tr>
+{"".join(missing_artifact_rows) if missing_artifact_rows else "<tr><td colspan='2' class='empty'>No missing artifacts recorded.</td></tr>"}
+</table>
+<h2>Surface Divergence</h2>
+<table>
+  <tr><th>Revised artifact present</th><td>{_esc(str(bool(surface.get("revised_artifact_present"))).lower())}</td></tr>
+  <tr><th>Live transcript present</th><td>{_esc(str(bool(surface.get("live_transcript_present"))).lower())}</td></tr>
+  <tr><th>Result revised answer present</th><td>{_esc(str(bool(surface.get("result_revised_answer_present"))).lower())}</td></tr>
+  <tr><th>Revised artifact matches result</th><td>{_esc(str(bool(surface.get("revised_artifact_matches_result"))).lower())}</td></tr>
+  <tr><th>Revised artifact found in live transcript</th><td>{_esc(str(bool(surface.get("revised_artifact_found_in_live_transcript"))).lower())}</td></tr>
+  <tr><th>Source refs</th><td>{_esc(json.dumps(surface.get("source_refs") or {}, sort_keys=True))}</td></tr>
+</table>
+<h2>Artifacts</h2>
+<table>
+<tr><th>Role</th><th>Path</th><th>Bytes</th><th>Type</th><th>SHA-256</th></tr>
+{"".join(artifact_rows) if artifact_rows else "<tr><td colspan='5' class='empty'>No artifact custody records.</td></tr>"}
+</table>
+<h2>Model Calls</h2>
+<p class="hint">Stage counts: {_esc(json.dumps(stage_counts, sort_keys=True))}</p>
+<p class="hint">Provider counts: {_esc(json.dumps(provider_counts, sort_keys=True))}</p>
+<table>
+<tr><th>#</th><th>Stage</th><th>Provider</th><th>Model</th><th>Status</th><th>Total tokens</th><th>Reasoning leak</th></tr>
+{"".join(call_rows) if call_rows else "<tr><td colspan='7' class='empty'>No model-call records.</td></tr>"}
+</table>
+<h2>Reasoning Lenses</h2>
+<table>
+  <tr><th>Total</th><td>{_esc(len(reasoning_lenses))}</td></tr>
+  <tr><th>Selected</th><td>{_esc(selected_lens_count)}</td></tr>
+  <tr><th>Surfaced</th><td>{_esc(surfaced_lens_count)}</td></tr>
+  <tr><th>Dispositions</th><td>{_esc(json.dumps(lens_dispositions, sort_keys=True))}</td></tr>
+</table>
+<h2>Commitment Candidates</h2>
+<table>
+<tr><th>ID</th><th>Actor</th><th>Kind</th><th>Impact</th><th>Evidence</th><th>Correction</th><th>Claim</th></tr>
+{"".join(commitment_rows) if commitment_rows else "<tr><td colspan='7' class='empty'>No commitment candidates recorded.</td></tr>"}
+</table>
+"""
+    return _render_scaffold(
+        title="Lolla — Reasoning Trace",
+        body=body,
+        current_path="/audit/reasoning-trace",
+    )
+
+
 def _render_audit_index_html() -> str:
     _reload_result_if_changed()
     audit_present = bool(_audit_summary())
@@ -2810,6 +3039,8 @@ def _render_audit_index_html() -> str:
          "Post-lane source-backed affordance and absence chunks: selected, skipped, not presented, and consideration-ledger uptake."),
         ("/audit/pre-step6", "Pre-Step-6 private table",
          "Current-run private-table source items, Step 6 ledger uptake, cache/custody guardrails, and legacy shadow-policy evidence when present."),
+        ("/audit/reasoning-trace", "Reasoning trace",
+         "Archive-side trace adequacy, missing artifacts/context, surface-divergence checks, artifact custody, model calls, lenses, and commitment candidates."),
         ("/audit/events", "Run events",
          "Single-run lifecycle timeline from the run_events sidecar: extraction, pipeline, ledger finalization, memo rendering, Observatory launch, archive, and receipt."),
     ]
@@ -2905,6 +3136,7 @@ class ResultHandler(SimpleHTTPRequestHandler):
             "/audit/stakeholders": _render_stakeholder_html,
             "/audit/v60": _render_v60_html,
             "/audit/pre-step6": _render_pre_step6_shadow_html,
+            "/audit/reasoning-trace": _render_reasoning_trace_html,
             "/audit/events": _render_run_events_html,
         }
         if path in _audit_routes:
