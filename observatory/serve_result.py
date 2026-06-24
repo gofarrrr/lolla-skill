@@ -94,6 +94,13 @@ def _fmt_pct(value, *, fraction: bool = False) -> str:
     return f"{n:.1f}%"
 
 
+def _fmt_score(value) -> str:
+    try:
+        return f"{float(value):.4f}"
+    except (TypeError, ValueError):
+        return "—"
+
+
 # Audit panel routes, ordered for the top nav. The first column is the URL
 # fragment (used in href + active-state matching); the second is the label
 # the operator sees. Keep the index page (/audit) first so the nav reads
@@ -110,6 +117,7 @@ _AUDIT_NAV = (
     ("/audit/stakeholders", "Stakeholders"),
     ("/audit/v60", "V60"),
     ("/audit/pre-step6", "Pre-Step-6"),
+    ("/audit/graph-survival", "Survival"),
     ("/audit/reasoning-trace", "Trace"),
     ("/audit/events", "Run Events"),
     ("/usage", "Usage"),
@@ -3015,6 +3023,190 @@ def _render_reasoning_trace_html() -> str:
     )
 
 
+def _render_graph_survival_html() -> str:
+    _reload_result_if_changed()
+    header = _render_run_header()
+    payload, path, error = _load_json_sidecar("graph_survival_report.json")
+
+    if error:
+        body = (
+            "<h1>Graph Survival</h1>"
+            f"{header}"
+            + _empty_inline(
+                f"Could not parse <code>{_esc(path or 'graph_survival_report.json')}</code>: "
+                f"{_esc(error)}"
+            )
+        )
+        return _render_scaffold(
+            title="Lolla — Graph Survival",
+            body=body,
+            current_path="/audit/graph-survival",
+        )
+
+    if not isinstance(payload, dict):
+        body = (
+            "<h1>Graph Survival</h1>"
+            f"{header}"
+            + _empty_inline(
+                "No <code>graph_survival_report.json</code> sidecar was found "
+                "next to the served result or in the archived run path recorded "
+                "by <code>run_events.json</code>."
+            )
+        )
+        return _render_scaffold(
+            title="Lolla — Graph Survival",
+            body=body,
+            current_path="/audit/graph-survival",
+        )
+
+    summary = payload.get("summary") or {}
+    source_refs = payload.get("source_refs") or {}
+    noise_policy = payload.get("noise_policy") or {}
+    embedding_selection = payload.get("embedding_selection") or {}
+    v60_ledger_summary = payload.get("v60_ledger_summary") or {}
+    candidate_survival = payload.get("candidate_survival") or []
+    suppressed_signals = payload.get("suppressed_signals") or []
+    private_table_survival = payload.get("private_table_survival") or []
+    embedding_hits = embedding_selection.get("hits") or []
+
+    def _list_lines(values, *, limit: int = 3, width: int = 160) -> str:
+        if not isinstance(values, list) or not values:
+            return "—"
+        rendered = [
+            _esc(_short(value, width))
+            for value in values[:limit]
+        ]
+        if len(values) > limit:
+            rendered.append(_esc(f"+{len(values) - limit} more"))
+        return "<br>".join(rendered)
+
+    candidate_rows = []
+    for item in candidate_survival:
+        if not isinstance(item, dict):
+            continue
+        candidate_rows.append(
+            f"<tr><td><strong>{_esc(item.get('display_name') or item.get('model_id') or '')}</strong><br>"
+            f"<code>{_esc(item.get('model_id', ''))}</code></td>"
+            f"<td><span class='tag'>{_esc(item.get('survival_state', ''))}</span></td>"
+            f"<td>{_esc(str(bool(item.get('selected_for_v60'))).lower())}</td>"
+            f"<td>{_esc(item.get('selection_source', ''))}</td>"
+            f"<td>{_esc(item.get('embedding_rank') if item.get('embedding_rank') is not None else '—')} / "
+            f"{_esc(_fmt_score(item.get('embedding_score')))}</td>"
+            f"<td>{_esc(item.get('selected_chunk_count', 0))}</td>"
+            f"<td>{_esc(json.dumps(item.get('pre_step6_disposition_counts') or {}, sort_keys=True))}</td>"
+            f"<td>{_esc(json.dumps(item.get('v60_disposition_counts') or {}, sort_keys=True))}</td>"
+            f"<td>{_list_lines(item.get('visible_effects') or [], limit=2)}</td>"
+            f"<td>{_list_lines(item.get('private_guardrails') or [], limit=2)}</td>"
+            f"<td>{_esc(', '.join(item.get('skipped_reasons') or []) or '—')}</td></tr>"
+        )
+
+    suppressed_rows = []
+    for item in suppressed_signals:
+        if not isinstance(item, dict):
+            continue
+        suppressed_rows.append(
+            f"<tr><td><code>{_esc(item.get('model_id', ''))}</code></td>"
+            f"<td>{_esc(item.get('research_status', ''))}</td>"
+            f"<td>{_esc(item.get('reason', ''))}</td>"
+            f"<td>{_esc(item.get('source', ''))}</td>"
+            f"<td>{_esc(item.get('stage', ''))}</td>"
+            f"<td>{_esc(_fmt_score(item.get('score')))}</td>"
+            f"<td>{_esc(str(bool(item.get('unknown_noise_status'))).lower())}</td></tr>"
+        )
+
+    private_rows = []
+    for item in private_table_survival:
+        if not isinstance(item, dict):
+            continue
+        private_rows.append(
+            f"<tr><td><code>{_esc(item.get('source_id', ''))}</code></td>"
+            f"<td>{_esc(item.get('source_kind', ''))}</td>"
+            f"<td>{_esc(item.get('title', ''))}</td>"
+            f"<td><span class='tag'>{_esc(item.get('disposition', ''))}</span></td>"
+            f"<td>{_esc(_short(item.get('why', ''), 220))}</td>"
+            f"<td>{_esc(_short(item.get('visible_effect', ''), 220))}</td>"
+            f"<td>{_esc(_short(item.get('private_guardrail', ''), 220))}</td></tr>"
+        )
+
+    embedding_rows = []
+    for item in embedding_hits:
+        if not isinstance(item, dict):
+            continue
+        embedding_rows.append(
+            f"<tr><td>{_esc(item.get('embedding_rank', ''))}</td>"
+            f"<td><code>{_esc(item.get('model_id', ''))}</code></td>"
+            f"<td>{_esc(_fmt_score(item.get('score')))}</td>"
+            f"<td>{_esc(str(bool(item.get('selected_for_v60'))).lower())}</td>"
+            f"<td>{_esc(item.get('selection_source', '') or '—')}</td>"
+            f"<td>{_esc(item.get('research_status', ''))}</td>"
+            f"<td>{_esc(json.dumps(item.get('ledger_disposition_counts') or {}, sort_keys=True))}</td>"
+            f"<td>{_esc(', '.join(item.get('skipped_reasons') or []) or '—')}</td></tr>"
+        )
+
+    selected_model_ids = summary.get("selected_model_ids") or []
+    selected_models = ", ".join(selected_model_ids) if isinstance(selected_model_ids, list) else ""
+
+    body = f"""
+<h1>Graph Survival</h1>
+{header}
+<p class="lede">Archive-side survival accounting: which graph, lane, and embedding candidates reached the private reasoning context, which changed the answer, which became private guardrails, and which were preserved as budget-suppressed signals for later review.</p>
+<table>
+  <tr><th>Sidecar</th><td><code>{_esc(path or '')}</code></td></tr>
+  <tr><th>Schema</th><td>{_esc(payload.get("schema_version", ""))}</td></tr>
+  <tr><th>Status</th><td><span class="tag">{_esc(payload.get("status", ""))}</span></td></tr>
+  <tr><th>Candidate survival records</th><td>{_esc(summary.get("candidate_survival_count", len(candidate_survival)))}</td></tr>
+  <tr><th>Selected cards / chunks</th><td>{_esc(summary.get("selected_card_count", 0))} / {_esc(summary.get("selected_chunk_count", 0))}</td></tr>
+  <tr><th>Answer-delta models</th><td>{_esc(summary.get("answer_delta_model_count", 0))}</td></tr>
+  <tr><th>Private-guardrail models</th><td>{_esc(summary.get("private_guardrail_model_count", 0))}</td></tr>
+  <tr><th>Suppressed models / signals</th><td>{_esc(summary.get("suppressed_model_count", 0))} / {_esc(summary.get("suppressed_signal_count", 0))}</td></tr>
+  <tr><th>Unadjudicated candidates</th><td>{_esc(summary.get("unadjudicated_candidate_count", 0))}</td></tr>
+  <tr><th>Embedding mode / hits</th><td>{_esc(summary.get("embedding_mode", ""))} / {_esc(summary.get("embedding_hit_count", 0))}</td></tr>
+  <tr><th>Selected models</th><td>{_esc(selected_models)}</td></tr>
+</table>
+<h2>Noise Policy</h2>
+<table>
+  <tr><th>Unselected does not mean noise</th><td>{_esc(str(bool(noise_policy.get("unselected_does_not_mean_noise"))).lower())}</td></tr>
+  <tr><th>Unknown noise status</th><td>{_esc(str(bool(noise_policy.get("unknown_noise_status"))).lower())}</td></tr>
+  <tr><th>Reason</th><td>{_esc(noise_policy.get("reason", ""))}</td></tr>
+  <tr><th>Source refs</th><td>{_esc(json.dumps(source_refs, sort_keys=True))}</td></tr>
+</table>
+<h2>Candidate Survival</h2>
+<p class="hint">Rows come from the archive report. <em>Answer delta</em> means the model visibly changed the revised answer; <em>private guardrail</em> means it constrained the answer without becoming visible product prose.</p>
+<table>
+<tr><th>Model</th><th>State</th><th>Selected</th><th>Source</th><th>Rank / score</th><th>Chunks</th><th>Pre-Step6</th><th>V60</th><th>Visible effects</th><th>Private guardrails</th><th>Skipped</th></tr>
+{"".join(candidate_rows) if candidate_rows else "<tr><td colspan='11' class='empty'>No candidate survival records.</td></tr>"}
+</table>
+<h2>Suppressed Signals</h2>
+<p class="hint">These candidates were preserved because budget suppression is not the same as proof of irrelevance.</p>
+<table>
+<tr><th>Model</th><th>Research status</th><th>Reason</th><th>Source</th><th>Stage</th><th>Score</th><th>Unknown noise</th></tr>
+{"".join(suppressed_rows) if suppressed_rows else "<tr><td colspan='7' class='empty'>No suppressed signals recorded.</td></tr>"}
+</table>
+<h2>Private Table Survival</h2>
+<table>
+<tr><th>Source</th><th>Kind</th><th>Title</th><th>Disposition</th><th>Why</th><th>Visible effect</th><th>Private guardrail</th></tr>
+{"".join(private_rows) if private_rows else "<tr><td colspan='7' class='empty'>No private-table survival records.</td></tr>"}
+</table>
+<h2>Embedding Selection</h2>
+<p class="hint">Embedding score is a retrieval/rank signal for recall, not proof of semantic truth or usefulness.</p>
+<table>
+<tr><th>Rank</th><th>Model</th><th>Score</th><th>Selected</th><th>Selection source</th><th>Research status</th><th>Ledger disposition</th><th>Skipped</th></tr>
+{"".join(embedding_rows) if embedding_rows else "<tr><td colspan='8' class='empty'>No embedding hits recorded.</td></tr>"}
+</table>
+<h2>V60 Ledger Summary</h2>
+<table>
+  <tr><th>Transaction count</th><td>{_esc(v60_ledger_summary.get("transaction_count", 0))}</td></tr>
+  <tr><th>Disposition counts</th><td>{_esc(json.dumps(v60_ledger_summary.get("disposition_counts") or {}, sort_keys=True))}</td></tr>
+  <tr><th>Route counts</th><td>{_esc(json.dumps(v60_ledger_summary.get("route_counts") or {}, sort_keys=True))}</td></tr>
+</table>
+"""
+    return _render_scaffold(
+        title="Lolla — Graph Survival",
+        body=body,
+        current_path="/audit/graph-survival",
+    )
+
+
 def _render_audit_index_html() -> str:
     _reload_result_if_changed()
     audit_present = bool(_audit_summary())
@@ -3039,6 +3231,8 @@ def _render_audit_index_html() -> str:
          "Post-lane source-backed affordance and absence chunks: selected, skipped, not presented, and consideration-ledger uptake."),
         ("/audit/pre-step6", "Pre-Step-6 private table",
          "Current-run private-table source items, Step 6 ledger uptake, cache/custody guardrails, and legacy shadow-policy evidence when present."),
+        ("/audit/graph-survival", "Graph survival",
+         "Archive-side survival accounting for selected, answer-changing, private-guardrail, suppressed, and unadjudicated graph/embedding candidates."),
         ("/audit/reasoning-trace", "Reasoning trace",
          "Archive-side trace adequacy, missing artifacts/context, surface-divergence checks, artifact custody, model calls, lenses, and commitment candidates."),
         ("/audit/events", "Run events",
@@ -3136,6 +3330,7 @@ class ResultHandler(SimpleHTTPRequestHandler):
             "/audit/stakeholders": _render_stakeholder_html,
             "/audit/v60": _render_v60_html,
             "/audit/pre-step6": _render_pre_step6_shadow_html,
+            "/audit/graph-survival": _render_graph_survival_html,
             "/audit/reasoning-trace": _render_reasoning_trace_html,
             "/audit/events": _render_run_events_html,
         }

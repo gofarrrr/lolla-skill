@@ -596,7 +596,8 @@ def test_audit_index_links_to_all_panels():
     html = serve_result._render_audit_index_html()
     for href in ("/audit/lane1", "/audit/lane2", "/audit/lane4",
                  "/audit/anti-echo", "/audit/routing", "/audit/expansions",
-                 "/audit/stakeholders", "/audit/reasoning-trace", "/audit/events"):
+                 "/audit/stakeholders", "/audit/graph-survival",
+                 "/audit/reasoning-trace", "/audit/events"):
         assert href in html, f"index missing link to {href}"
 
 
@@ -1142,6 +1143,164 @@ def test_reasoning_trace_panel_handles_missing_sidecar(tmp_path, monkeypatch):
     assert "No <code>reasoning_trace.json</code> sidecar" in html
 
 
+def test_graph_survival_panel_follows_archive_path_from_run_events(tmp_path, monkeypatch):
+    r = _fixture_result()
+    r["usage_summary"] = {"run_id": "survival-test"}
+    result_path = tmp_path / "lolla_survival_test_result.json"
+    result_path.write_text(json.dumps(r), encoding="utf-8")
+
+    archive_dir = tmp_path / "archive" / "survival-test"
+    archive_dir.mkdir(parents=True)
+    run_events_path = tmp_path / "lolla_survival_test_run_events.json"
+    run_events_path.write_text(
+        json.dumps(
+            {
+                "schema_version": "lolla.run_events.v0.1",
+                "run_id": "survival-test",
+                "events": [
+                    {
+                        "event_id": "event_001",
+                        "event_type": "archive_completed",
+                        "occurred_at": "2026-06-24T10:05:00Z",
+                        "actor": "operator",
+                        "details": {"archive_path": str(archive_dir)},
+                    }
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+    survival_path = archive_dir / "graph_survival_report.json"
+    survival_path.write_text(
+        json.dumps(
+            {
+                "schema_version": "lolla.graph_survival_report.v0.1",
+                "status": "ready",
+                "summary": {
+                    "candidate_survival_count": 2,
+                    "selected_card_count": 1,
+                    "selected_chunk_count": 2,
+                    "answer_delta_model_count": 1,
+                    "private_guardrail_model_count": 1,
+                    "suppressed_model_count": 1,
+                    "suppressed_signal_count": 1,
+                    "unadjudicated_candidate_count": 0,
+                    "embedding_mode": "on",
+                    "embedding_hit_count": 2,
+                    "selected_model_ids": ["inversion", "moral-hazard"],
+                },
+                "source_refs": {
+                    "result": "result.json",
+                    "v60_ledger": "v60_ledger.json",
+                },
+                "noise_policy": {
+                    "unselected_does_not_mean_noise": True,
+                    "unknown_noise_status": True,
+                    "reason": "Budget suppression is not irrelevance.",
+                },
+                "candidate_survival": [
+                    {
+                        "display_name": "Inversion",
+                        "model_id": "inversion",
+                        "survival_state": "answer_delta",
+                        "selected_for_v60": True,
+                        "selection_source": "lane_preserved",
+                        "embedding_rank": None,
+                        "embedding_score": None,
+                        "selected_chunk_count": 2,
+                        "pre_step6_disposition_counts": {"used": 1},
+                        "v60_disposition_counts": {"used": 2},
+                        "visible_effects": ["Counsel became the gatekeeper."],
+                        "private_guardrails": ["Avoid optimizing report speed first."],
+                    },
+                    {
+                        "display_name": "Moral Hazard",
+                        "model_id": "moral-hazard",
+                        "survival_state": "budget_suppressed",
+                        "selected_for_v60": False,
+                        "selection_source": "embedding_fill",
+                        "embedding_rank": 8,
+                        "embedding_score": 0.0299,
+                        "selected_chunk_count": 0,
+                        "skipped_reasons": ["not_presented_packet_cap"],
+                    },
+                ],
+                "suppressed_signals": [
+                    {
+                        "model_id": "moral-hazard",
+                        "research_status": "plausible_budget_suppressed",
+                        "reason": "not_presented_packet_cap",
+                        "source": "embedding_fill",
+                        "stage": "fill",
+                        "score": 0.0299,
+                        "unknown_noise_status": True,
+                    }
+                ],
+                "private_table_survival": [
+                    {
+                        "source_id": "lane2::inversion",
+                        "source_kind": "lane2_anchor",
+                        "title": "Inversion",
+                        "disposition": "used",
+                        "why": "Failure avoidance changed the public answer.",
+                        "visible_effect": "Counsel became the gatekeeper.",
+                        "private_guardrail": "Avoid premature evidence moves.",
+                    }
+                ],
+                "embedding_selection": {
+                    "hits": [
+                        {
+                            "embedding_rank": 8,
+                            "model_id": "moral-hazard",
+                            "score": 0.0299,
+                            "selected_for_v60": False,
+                            "selection_source": "",
+                            "research_status": "unadjudicated",
+                            "ledger_disposition_counts": {},
+                            "skipped_reasons": ["not_presented_packet_cap"],
+                        }
+                    ]
+                },
+                "v60_ledger_summary": {
+                    "transaction_count": 2,
+                    "disposition_counts": {"used": 2},
+                    "route_counts": {"updated_position": 1},
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(serve_result, "_RESULT", r)
+    monkeypatch.setattr(serve_result, "_RESULT_PATH", result_path)
+    monkeypatch.setattr(serve_result, "_RESULT_MTIME", result_path.stat().st_mtime)
+
+    html = serve_result._render_graph_survival_html()
+
+    assert "Graph Survival" in html
+    assert str(survival_path) in html
+    assert "lolla.graph_survival_report.v0.1" in html
+    assert "answer_delta" in html
+    assert "Budget suppression is not irrelevance." in html
+    assert "Counsel became the gatekeeper." in html
+    assert "moral-hazard" in html
+    assert "not_presented_packet_cap" in html
+    assert "Private Table Survival" in html
+    assert "V60 Ledger Summary" in html
+
+
+def test_graph_survival_panel_handles_missing_sidecar(tmp_path, monkeypatch):
+    result_path = tmp_path / "result.json"
+    result_path.write_text(json.dumps(_fixture_result()), encoding="utf-8")
+    monkeypatch.setattr(serve_result, "_RESULT", _fixture_result())
+    monkeypatch.setattr(serve_result, "_RESULT_PATH", result_path)
+    monkeypatch.setattr(serve_result, "_RESULT_MTIME", result_path.stat().st_mtime)
+
+    html = serve_result._render_graph_survival_html()
+
+    assert "Graph Survival" in html
+    assert "No <code>graph_survival_report.json</code> sidecar" in html
+
+
 def test_case_api_includes_pre_step6_shadow_portfolio(monkeypatch):
     r = _fixture_result()
     r["pre_step6_shadow_portfolio"] = {
@@ -1292,6 +1451,7 @@ def test_smoke_all_panels_serve_200_without_spa_bundle(running_server):
         "/audit/routing",
         "/audit/expansions",
         "/audit/stakeholders",
+        "/audit/graph-survival",
         "/audit/reasoning-trace",
         "/audit/events",
         "/usage",
