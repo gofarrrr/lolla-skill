@@ -103,6 +103,7 @@ _AUDIT_NAV = (
     ("/audit/stakeholders", "Stakeholders"),
     ("/audit/v60", "V60"),
     ("/audit/pre-step6", "Pre-Step-6"),
+    ("/audit/events", "Run Events"),
     ("/usage", "Usage"),
 )
 
@@ -320,6 +321,41 @@ def _reload_result_if_changed():
         with open(_RESULT_PATH) as f:
             _RESULT = json.load(f)
         _RESULT_MTIME = mtime
+
+
+def _sidecar_candidates(filename: str) -> list[Path]:
+    """Return likely sidecar paths for archive and /tmp result layouts."""
+    if _RESULT_PATH is None:
+        return []
+
+    candidates = [_RESULT_PATH.parent / filename]
+    stem = _RESULT_PATH.stem
+    if stem.endswith("_result"):
+        prefix = stem[: -len("_result")]
+        candidates.append(_RESULT_PATH.parent / f"{prefix}_{filename}")
+
+    unique: list[Path] = []
+    seen: set[Path] = set()
+    for path in candidates:
+        if path not in seen:
+            unique.append(path)
+            seen.add(path)
+    return unique
+
+
+def _load_json_sidecar(filename: str) -> tuple[dict | list | None, Path | None, str]:
+    """Load a JSON sidecar next to the served result, returning payload/path/error."""
+    last_error = ""
+    for path in _sidecar_candidates(filename):
+        if not path.exists():
+            continue
+        try:
+            with open(path) as f:
+                return json.load(f), path, ""
+        except (OSError, json.JSONDecodeError) as exc:
+            last_error = str(exc)
+            return None, path, last_error
+    return None, None, last_error
 
 
 def _joined_user_turns(extraction: dict) -> str:
@@ -2653,6 +2689,103 @@ def _render_pre_step6_shadow_html() -> str:
     )
 
 
+def _render_run_events_html() -> str:
+    _reload_result_if_changed()
+    header = _render_run_header()
+    payload, path, error = _load_json_sidecar("run_events.json")
+
+    if error:
+        body = (
+            "<h1>Run Events</h1>"
+            f"{header}"
+            + _empty_inline(
+                f"Could not parse <code>{_esc(path or 'run_events.json')}</code>: "
+                f"{_esc(error)}"
+            )
+        )
+        return _render_scaffold(
+            title="Lolla — Run Events",
+            body=body,
+            current_path="/audit/events",
+        )
+
+    if not isinstance(payload, dict):
+        body = (
+            "<h1>Run Events</h1>"
+            f"{header}"
+            + _empty_inline(
+                "No <code>run_events.json</code> sidecar was found next to the "
+                "served result. Newer finalized runs record helper lifecycle "
+                "events during extraction, pipeline, memo, Observatory launch, "
+                "archive, and final receipt."
+            )
+        )
+        return _render_scaffold(
+            title="Lolla — Run Events",
+            body=body,
+            current_path="/audit/events",
+        )
+
+    events = payload.get("events") or []
+    if not isinstance(events, list):
+        events = []
+
+    first_event = events[0] if events and isinstance(events[0], dict) else {}
+    last_event = events[-1] if events and isinstance(events[-1], dict) else {}
+    event_type_counts: dict[str, int] = {}
+    actor_counts: dict[str, int] = {}
+    for event in events:
+        if not isinstance(event, dict):
+            continue
+        event_type = str(event.get("event_type") or event.get("event") or "")
+        actor = str(event.get("actor") or "")
+        if event_type:
+            event_type_counts[event_type] = event_type_counts.get(event_type, 0) + 1
+        if actor:
+            actor_counts[actor] = actor_counts.get(actor, 0) + 1
+
+    rows = []
+    for event in events:
+        if not isinstance(event, dict):
+            continue
+        details = event.get("details") or {}
+        if not isinstance(details, dict):
+            details = {"value": details}
+        rows.append(
+            f"<tr><td>{_esc(event.get('event_id', ''))}</td>"
+            f"<td>{_esc(event.get('occurred_at') or event.get('at') or '')}</td>"
+            f"<td><code>{_esc(event.get('event_type') or event.get('event') or '')}</code></td>"
+            f"<td>{_esc(event.get('actor', ''))}</td>"
+            f"<td><code>{_esc(json.dumps(details, sort_keys=True))}</code></td></tr>"
+        )
+
+    body = f"""
+<h1>Run Events</h1>
+{header}
+<p class="lede">Lifecycle sidecar for this run. It records helper milestones so operators can verify what happened without reading the raw operator log.</p>
+<table>
+  <tr><th>Sidecar</th><td><code>{_esc(path or '')}</code></td></tr>
+  <tr><th>Run ID</th><td><code>{_esc(payload.get("run_id", ""))}</code></td></tr>
+  <tr><th>Schema</th><td>{_esc(payload.get("schema_version", ""))}</td></tr>
+  <tr><th>Events</th><td>{_esc(len(events))}</td></tr>
+  <tr><th>First event</th><td>{_esc(first_event.get("event_type", ""))} {_esc(first_event.get("occurred_at", ""))}</td></tr>
+  <tr><th>Last event</th><td>{_esc(last_event.get("event_type", ""))} {_esc(last_event.get("occurred_at", ""))}</td></tr>
+  <tr><th>Event type counts</th><td>{_esc(json.dumps(event_type_counts, sort_keys=True))}</td></tr>
+  <tr><th>Actor counts</th><td>{_esc(json.dumps(actor_counts, sort_keys=True))}</td></tr>
+</table>
+<h2>Timeline</h2>
+<table>
+<tr><th>ID</th><th>Occurred at</th><th>Event</th><th>Actor</th><th>Details</th></tr>
+{"".join(rows) if rows else "<tr><td colspan='5' class='empty'>No run events recorded in this sidecar.</td></tr>"}
+</table>
+"""
+    return _render_scaffold(
+        title="Lolla — Run Events",
+        body=body,
+        current_path="/audit/events",
+    )
+
+
 def _render_audit_index_html() -> str:
     _reload_result_if_changed()
     audit_present = bool(_audit_summary())
@@ -2677,6 +2810,8 @@ def _render_audit_index_html() -> str:
          "Post-lane source-backed affordance and absence chunks: selected, skipped, not presented, and consideration-ledger uptake."),
         ("/audit/pre-step6", "Pre-Step-6 private table",
          "Current-run private-table source items, Step 6 ledger uptake, cache/custody guardrails, and legacy shadow-policy evidence when present."),
+        ("/audit/events", "Run events",
+         "Single-run lifecycle timeline from the run_events sidecar: extraction, pipeline, ledger finalization, memo rendering, Observatory launch, archive, and receipt."),
     ]
     cards = []
     for href, title, desc in items:
@@ -2770,6 +2905,7 @@ class ResultHandler(SimpleHTTPRequestHandler):
             "/audit/stakeholders": _render_stakeholder_html,
             "/audit/v60": _render_v60_html,
             "/audit/pre-step6": _render_pre_step6_shadow_html,
+            "/audit/events": _render_run_events_html,
         }
         if path in _audit_routes:
             self._html_response(_audit_routes[path]())
