@@ -158,6 +158,10 @@ The first implementation is conservative:
 - Clean completed standard runs can return `use_revised_answer`.
 - Partial, degraded, incomplete, or product/live-output-unsafe runs return
   `do_not_use_run_degraded`.
+- A contained provider-boundary warning (`provider_boundary_health.status:
+  "warning_contained"`) is still conservative in this contract. It receives a
+  more specific `status_reason` and note, but it does not become automatic
+  approval.
 - If `risk_mode` is `high_stakes` on an otherwise clean run, the first contract
   returns `ask_user_first`. This is a conservative caller hint, not a claim
   that high-stakes domain policy is implemented.

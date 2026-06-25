@@ -58,6 +58,7 @@ def build_agent_result(
         result=result,
         extraction=extraction,
         run_health=run_health,
+        provider_boundary_health=provider_boundary_health,
         artifact_status=artifact_status,
     )
     caller_action = _caller_action(
@@ -106,7 +107,15 @@ def build_agent_result(
             observatory_status=observatory_status,
         ),
         "usage": _usage(result),
-        "notes": _notes(status=status, caller_action=caller_action),
+        "notes": _notes(
+            status=status,
+            caller_action=caller_action,
+            contained_provider_boundary_warning_only=_contained_provider_boundary_warning_only(
+                run_health=run_health,
+                provider_boundary_health=provider_boundary_health,
+            ),
+            provider_boundary_health=provider_boundary_health,
+        ),
     }
 
 
@@ -144,6 +153,7 @@ def _status(
     result: Mapping[str, Any],
     extraction: Mapping[str, Any],
     run_health: Mapping[str, Any],
+    provider_boundary_health: Mapping[str, Any],
     artifact_status: Mapping[str, str],
 ) -> tuple[str, str]:
     extraction_status = _text(extraction.get("status"))
@@ -163,6 +173,16 @@ def _status(
     if live_health == "unsafe":
         return "degraded", "live output was marked unsafe"
     if overall == "partial":
+        if _contained_provider_boundary_warning_only(
+            run_health=run_health,
+            provider_boundary_health=provider_boundary_health,
+        ):
+            return (
+                "partial",
+                "provider-boundary warning is contained; conservative policy still requires inspection",
+            )
+        if _text(provider_boundary_health.get("status")) == "warning_unknown_persistence":
+            return "partial", "provider-boundary warning has unknown persistence status"
         return "partial", "run_health.overall is partial"
 
     missing_required = [
@@ -370,10 +390,53 @@ def _usage(result: Mapping[str, Any]) -> dict[str, Any]:
     }
 
 
-def _notes(*, status: str, caller_action: str) -> list[str]:
+def _contained_provider_boundary_warning_only(
+    *,
+    run_health: Mapping[str, Any],
+    provider_boundary_health: Mapping[str, Any],
+) -> bool:
+    if _text(provider_boundary_health.get("status")) != "warning_contained":
+        return False
+    if _text(run_health.get("overall")) != "partial":
+        return False
+    if _text(run_health.get("product_output_health")) == "unsafe":
+        return False
+    if _text(run_health.get("live_output_health")) == "unsafe":
+        return False
+    issue_codes = {
+        _text(item.get("code"))
+        for item in _list(run_health.get("issue_details"))
+        if isinstance(item, Mapping)
+        and _text(item.get("severity")) in {"partial", "degraded", "critical"}
+    }
+    if issue_codes:
+        return issue_codes == {"vendor_boundary_reasoning_leak"}
+    partial_causes = set(_clean_items(run_health.get("partial_health_causes")))
+    if partial_causes:
+        return partial_causes == {"vendor_boundary_reasoning_leak"}
+    issues = set(_clean_items(run_health.get("issues")))
+    return issues == {"vendor_boundary_reasoning_leak"}
+
+
+def _notes(
+    *,
+    status: str,
+    caller_action: str,
+    contained_provider_boundary_warning_only: bool,
+    provider_boundary_health: Mapping[str, Any],
+) -> list[str]:
     if caller_action == "use_revised_answer":
         return [
             "Use the revised answer, memo, and artifact pointers together; this contract is not a safety or fact-checking guarantee."
+        ]
+    if (
+        caller_action == "do_not_use_run_degraded"
+        and status == "partial"
+        and contained_provider_boundary_warning_only
+        and _text(provider_boundary_health.get("status")) == "warning_contained"
+    ):
+        return [
+            "Provider-boundary warning was contained by product/live hygiene, but this contract remains conservative until the caller explicitly accepts that policy."
         ]
     if status in {"partial", "degraded", "incomplete"}:
         return [

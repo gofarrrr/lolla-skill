@@ -17,6 +17,97 @@ def _write_json(path: Path, payload: dict) -> None:
     path.write_text(json.dumps(payload), encoding="utf-8")
 
 
+def _write_agent_run(tmp_path: Path, result: dict) -> Path:
+    run_dir = tmp_path / "run"
+    run_dir.mkdir()
+    _write_json(
+        run_dir / "extraction.json",
+        {"status": "ok", "extraction": {"decision_situation": "Career decision"}},
+    )
+    _write_json(run_dir / "result.json", result)
+    (run_dir / "revised.txt").write_text(
+        "Use the revised answer only after inspection.",
+        encoding="utf-8",
+    )
+    (run_dir / "memo.md").write_text("# Memo\n", encoding="utf-8")
+    return run_dir
+
+
+def _provider_boundary_health(
+    *,
+    status: str,
+    product_output_health: str = "clean",
+    live_output_health: str = "not_checked",
+) -> dict:
+    return {
+        "schema_version": "lolla.provider_boundary_health.v0.1",
+        "status": status,
+        "reason": "vendor_returned_reasoning_details_despite_disabled",
+        "issue_code": "vendor_boundary_reasoning_leak",
+        "affected_call_count": 1,
+        "affected_models": ["google/gemini-3.1-flash-lite-20260507"],
+        "affected_stages": ["extraction"],
+        "reasoning_disabled": True,
+        "reasoning_details_returned": True,
+        "product_output_health": product_output_health,
+        "product_contamination_detected": product_output_health == "unsafe",
+        "live_output_health": live_output_health,
+        "live_output_contamination_detected": live_output_health == "unsafe",
+        "archive_custody_contamination_status": "not_detected",
+        "raw_reasoning_details_persisted": False,
+        "raw_reasoning_details_persistence_basis": "boundary_call_metadata_presence_flags_only",
+    }
+
+
+def _provider_boundary_result(
+    *,
+    provider_status: str = "warning_contained",
+    extra_issue: dict | None = None,
+    product_output_health: str = "clean",
+    live_output_health: str = "not_checked",
+    overall: str = "partial",
+) -> dict:
+    issue_details = [
+        {
+            "code": "vendor_boundary_reasoning_leak",
+            "severity": "partial",
+            "axis": "vendor_boundary",
+            "leak_count": 1,
+            "models": ["google/gemini-3.1-flash-lite-20260507"],
+            "stages": ["extraction"],
+        }
+    ]
+    if extra_issue:
+        issue_details.append(extra_issue)
+    return {
+        "status": "ok",
+        "run_health": {
+            "overall": overall,
+            "product_output_health": product_output_health,
+            "live_output_health": live_output_health,
+            "issues": [item["code"] for item in issue_details],
+            "issue_details": issue_details,
+            "partial_health_causes": [
+                item["code"]
+                for item in issue_details
+                if item.get("severity") == "partial"
+            ],
+            "boundary_reasoning_leak_detected": True,
+            "boundary_reasoning_leak_count": 1,
+            "boundary_reasoning_leak_models": [
+                "google/gemini-3.1-flash-lite-20260507"
+            ],
+            "boundary_reasoning_leak_stages": ["extraction"],
+            "provider_boundary_health": _provider_boundary_health(
+                status=provider_status,
+                product_output_health=product_output_health,
+                live_output_health=live_output_health,
+            ),
+        },
+        "revised_answer": "Use the revised answer only after inspection.",
+    }
+
+
 def test_agent_result_contract_for_healthy_archived_run(tmp_path: Path) -> None:
     run_dir = tmp_path / "run"
     run_dir.mkdir()
@@ -207,6 +298,9 @@ def test_agent_result_exposes_provider_boundary_warning_without_raw_reasoning(
     )
 
     assert payload["status"] == "partial"
+    assert payload["status_reason"] == (
+        "provider-boundary warning is contained; conservative policy still requires inspection"
+    )
     assert payload["caller_action"] == "do_not_use_run_degraded"
     provider_health = payload["provider_boundary_health"]
     assert provider_health["status"] == "warning_contained"
@@ -214,9 +308,129 @@ def test_agent_result_exposes_provider_boundary_warning_without_raw_reasoning(
     assert provider_health["product_contamination_detected"] is False
     assert provider_health["live_output_contamination_detected"] is False
     assert provider_health["raw_reasoning_details_persisted"] is False
+    assert "Provider-boundary warning was contained" in payload["notes"][0]
     serialized = json.dumps(payload)
     assert "raw_message_content" not in serialized
     assert "reasoning_details\"" not in serialized
+
+
+def test_agent_result_keeps_contained_provider_boundary_warning_conservative(
+    tmp_path: Path,
+) -> None:
+    run_dir = _write_agent_run(tmp_path, _provider_boundary_result())
+
+    payload = build_agent_result(
+        run_dir,
+        run_id="run-contained-provider-boundary",
+        created_at="2026-06-25T12:00:00Z",
+    )
+
+    assert payload["status"] == "partial"
+    assert payload["status_reason"] == (
+        "provider-boundary warning is contained; conservative policy still requires inspection"
+    )
+    assert payload["caller_action"] == "do_not_use_run_degraded"
+    assert payload["provider_boundary_health"]["status"] == "warning_contained"
+    assert "Provider-boundary warning was contained" in payload["notes"][0]
+
+
+def test_agent_result_contained_provider_boundary_plus_other_partial_stays_generic_conservative(
+    tmp_path: Path,
+) -> None:
+    run_dir = _write_agent_run(
+        tmp_path,
+        _provider_boundary_result(
+            extra_issue={
+                "code": "bullshit_index_partial",
+                "severity": "partial",
+                "axis": "delivery_audit",
+                "trust_impact": "Some passage-level delivery checks failed.",
+            },
+        ),
+    )
+
+    payload = build_agent_result(
+        run_dir,
+        run_id="run-contained-plus-other-partial",
+        created_at="2026-06-25T12:00:00Z",
+    )
+
+    assert payload["status"] == "partial"
+    assert payload["status_reason"] == "run_health.overall is partial"
+    assert payload["caller_action"] == "do_not_use_run_degraded"
+    assert payload["provider_boundary_health"]["status"] == "warning_contained"
+    assert "Provider-boundary warning was contained" not in payload["notes"][0]
+
+
+def test_agent_result_unknown_provider_boundary_persistence_stays_conservative(
+    tmp_path: Path,
+) -> None:
+    run_dir = _write_agent_run(
+        tmp_path,
+        _provider_boundary_result(
+            provider_status="warning_unknown_persistence",
+            product_output_health="unknown",
+        ),
+    )
+
+    payload = build_agent_result(
+        run_dir,
+        run_id="run-provider-boundary-unknown",
+        created_at="2026-06-25T12:00:00Z",
+    )
+
+    assert payload["status"] == "partial"
+    assert payload["status_reason"] == (
+        "provider-boundary warning has unknown persistence status"
+    )
+    assert payload["caller_action"] == "do_not_use_run_degraded"
+    assert payload["provider_boundary_health"]["status"] == "warning_unknown_persistence"
+
+
+def test_agent_result_provider_boundary_with_product_contamination_stays_degraded(
+    tmp_path: Path,
+) -> None:
+    run_dir = _write_agent_run(
+        tmp_path,
+        _provider_boundary_result(
+            provider_status="confirmed_contamination",
+            product_output_health="unsafe",
+        ),
+    )
+
+    payload = build_agent_result(
+        run_dir,
+        run_id="run-provider-boundary-product-unsafe",
+        created_at="2026-06-25T12:00:00Z",
+    )
+
+    assert payload["status"] == "degraded"
+    assert payload["caller_action"] == "do_not_use_run_degraded"
+    assert payload["provider_boundary_health"]["status"] == "confirmed_contamination"
+    assert payload["provider_boundary_health"]["product_contamination_detected"] is True
+
+
+def test_agent_result_provider_boundary_with_live_contamination_stays_degraded(
+    tmp_path: Path,
+) -> None:
+    run_dir = _write_agent_run(
+        tmp_path,
+        _provider_boundary_result(
+            provider_status="confirmed_contamination",
+            live_output_health="unsafe",
+        ),
+    )
+
+    payload = build_agent_result(
+        run_dir,
+        run_id="run-provider-boundary-live-unsafe",
+        created_at="2026-06-25T12:00:00Z",
+    )
+
+    assert payload["status"] == "degraded"
+    assert payload["caller_action"] == "do_not_use_run_degraded"
+    assert payload["provider_boundary_health"]["status"] == "confirmed_contamination"
+    assert payload["provider_boundary_health"]["live_output_contamination_detected"] is True
 
 
 def test_agent_result_high_stakes_clean_run_asks_user_first(tmp_path: Path) -> None:
