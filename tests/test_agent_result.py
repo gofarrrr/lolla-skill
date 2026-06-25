@@ -468,6 +468,59 @@ def test_agent_result_high_stakes_clean_run_asks_user_first(tmp_path: Path) -> N
     assert payload["caller_action"] == "ask_user_first"
 
 
+def test_agent_result_exposes_capture_adequacy_warning_note(tmp_path: Path) -> None:
+    run_dir = tmp_path / "run"
+    run_dir.mkdir()
+    capture_adequacy = {
+        "schema_version": "lolla.capture_adequacy.v0",
+        "status": "warn",
+        "capture_strategy": "first_n_plus_last_n",
+        "declared_turn_count": 30,
+        "captured_turn_count": 18,
+        "omitted_turn_count": 12,
+        "risk_flags": ["middle_turns_omitted"],
+        "notes": ["Middle turns were omitted."],
+    }
+    _write_json(
+        run_dir / "extraction.json",
+        {
+            "status": "ok",
+            "capture_adequacy": capture_adequacy,
+            "extraction": {"decision_situation": "Long strategy conversation"},
+        },
+    )
+    _write_json(
+        run_dir / "result.json",
+        {
+            "status": "ok",
+            "run_health": {
+                "overall": "degraded",
+                "capture": "good",
+                "capture_adequacy": capture_adequacy,
+                "issues": ["capture_truncated"],
+                "issue_details": [
+                    {
+                        "code": "capture_truncated",
+                        "severity": "degraded",
+                        "axis": "capture",
+                    }
+                ],
+            },
+            "revised_answer": "Inspect capture before relying on the advice.",
+        },
+    )
+    (run_dir / "revised.txt").write_text("Inspect capture.", encoding="utf-8")
+    (run_dir / "memo.md").write_text("# Memo\n", encoding="utf-8")
+
+    payload = build_agent_result(run_dir, run_id="run123")
+
+    assert payload["status"] == "degraded"
+    assert payload["caller_action"] == "do_not_use_run_degraded"
+    assert payload["capture_adequacy"]["status"] == "warn"
+    assert payload["capture_adequacy"]["omitted_turn_count"] == 12
+    assert "Capture adequacy is warning-level" in payload["notes"][0]
+
+
 def test_agent_result_handles_capture_critical_without_result(tmp_path: Path) -> None:
     run_dir = tmp_path / "run"
     run_dir.mkdir()

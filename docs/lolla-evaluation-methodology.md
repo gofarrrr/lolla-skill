@@ -119,6 +119,7 @@ Deterministic evals should cover:
 - JSON schemas validate,
 - archive paths resolve,
 - artifact hashes match,
+- capture adequacy is present and not critical,
 - quote spans validate,
 - private ledger entries cover every selected item exactly once,
 - run health records missing/degraded/unsafe states,
@@ -376,8 +377,9 @@ Map the general Eval OS idea onto Lolla:
 
 Archived runs now generate `evaluation.json` (`lolla.evaluation.v0`) as a
 deterministic run-readiness receipt. It checks the run envelope: required
-artifacts, schema versions, reasoning-trace custody, health and hygiene states,
-provider-boundary policy consistency, and caller-action conservatism.
+artifacts, schema versions, reasoning-trace custody, capture adequacy, health
+and hygiene states, provider-boundary policy consistency, and caller-action
+conservatism.
 
 This artifact is intentionally not an advice-quality judge. It does not score
 helpfulness, wisdom, coherence, correctness, taste, or whether the revised

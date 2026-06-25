@@ -11,6 +11,8 @@ Shape rationale:
 - `quote_validation` and `capture_manifest` stay as `dict` passthroughs:
   observability metadata whose shape can evolve with extraction without
   forcing ripple updates here.
+- `capture_adequacy` is also a dict passthrough. It is deterministic capture
+  custody metadata, not semantic reconstruction of omitted turns.
 - `LiveConstraint.canonical_key` is optional. The PR #13 prompt rules no
   longer emit it, but historical extraction artifacts still contain it and
   Track A may reintroduce it. Stay tolerant of both.
@@ -76,5 +78,6 @@ class ConversationContext:
     turns: tuple[Turn, ...]
     extraction: ExtractionPayload
     capture_manifest: dict[str, Any] = field(default_factory=dict)
+    capture_adequacy: dict[str, Any] = field(default_factory=dict)
     capture_health: str = "unknown"
     capture_warnings: tuple[str, ...] = ()

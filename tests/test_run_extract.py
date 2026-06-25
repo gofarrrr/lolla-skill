@@ -323,6 +323,8 @@ def test_not_strategic_path_writes_output_file_with_capture_diagnostics(
     assert payload["status"] == "not_strategic"
     assert payload["capture_health"] == "good"
     assert "capture_manifest" in payload
+    assert payload["capture_adequacy"]["status"] == "good"
+    assert payload["capture_adequacy"]["capture_strategy"] == "full"
     assert "capture_warnings" in payload
     assert capsys.readouterr().out
 
@@ -362,4 +364,5 @@ def test_missing_required_fields_path_writes_output_file_with_capture_diagnostic
     assert "Extraction missing required fields" in payload["error"]
     assert payload["capture_health"] == "good"
     assert "capture_manifest" in payload
+    assert payload["capture_adequacy"]["status"] == "good"
     assert "capture_warnings" in payload

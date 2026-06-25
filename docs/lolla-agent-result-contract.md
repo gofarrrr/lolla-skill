@@ -81,6 +81,13 @@ Core fields:
     "raw_reasoning_details_persisted": false,
     "raw_reasoning_details_persistence_basis": "not_applicable"
   },
+  "capture_adequacy": {
+    "schema_version": "lolla.capture_adequacy.v0",
+    "status": "good",
+    "capture_strategy": "full",
+    "omitted_turn_count": 0,
+    "risk_flags": []
+  },
   "risk_mode": "standard",
   "caller_action": "use_revised_answer",
   "main_counter_pressure": "The answer treated customer interest as evidence before naming a reversal gate.",
@@ -142,6 +149,11 @@ issues. Today it distinguishes a vendor returning reasoning details despite
 disabled reasoning from product/live-output contamination. It intentionally
 records presence/count metadata, model/stage labels, and contamination status;
 it does not expose raw provider reasoning details.
+
+`capture_adequacy` is a compact structured summary of the capture shape. It
+records whether capture was full, warning-level, or critical, including omitted
+turn counts and risk flags. It does not include raw transcript text and does
+not semantically reconstruct omitted turns.
 
 ## Caller Action
 

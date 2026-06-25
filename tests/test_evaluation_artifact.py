@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 from engine.system_b.agent_result import write_agent_result
+from engine.system_b.capture_adequacy import CAPTURE_ADEQUACY_SCHEMA_VERSION
 from engine.system_b.evaluation import (
     EVALUATION_SCHEMA_VERSION,
     build_evaluation,
@@ -70,6 +71,7 @@ def _seed_run(
     health: dict | None = None,
     include_optional_graph: bool = True,
     risk_mode: str = "standard",
+    capture_adequacy: dict | None = None,
 ) -> Path:
     run_dir = tmp_path / case_id / run_id
     run_dir.mkdir(parents=True)
@@ -79,6 +81,27 @@ def _seed_run(
         {
             "status": "ok",
             "capture_health": "good",
+            "capture_adequacy": capture_adequacy
+            or {
+                "schema_version": CAPTURE_ADEQUACY_SCHEMA_VERSION,
+                "run_id": run_id,
+                "status": "good",
+                "capture_strategy": "full",
+                "declared_turn_count": 2,
+                "captured_turn_count": 2,
+                "omitted_turn_count": 0,
+                "captured_windows": [
+                    {
+                        "label": "full",
+                        "start_turn": 1,
+                        "end_turn": 2,
+                        "turn_count": 2,
+                    }
+                ],
+                "omitted_windows": [],
+                "risk_flags": [],
+                "notes": [],
+            },
             "extraction": {
                 "decision_situation": "Founder deciding whether to pivot",
                 "reasoning_passages": ["Only pivot after a customer evidence gate."],
@@ -221,6 +244,87 @@ def test_live_output_not_checked_warns(tmp_path: Path) -> None:
     assert evaluation["overall"] == "warn"
     assert evaluation["caller_readiness"] == "inspect_first"
     assert _check(evaluation, "live_output_health")["status"] == "warn"
+
+
+def test_capture_adequacy_warning_warns_without_blocking(tmp_path: Path) -> None:
+    run_dir = _seed_run(
+        tmp_path,
+        capture_adequacy={
+            "schema_version": CAPTURE_ADEQUACY_SCHEMA_VERSION,
+            "status": "warn",
+            "capture_strategy": "first_n_plus_last_n",
+            "declared_turn_count": 30,
+            "captured_turn_count": 18,
+            "omitted_turn_count": 12,
+            "captured_windows": [],
+            "omitted_windows": [{"start_turn": 4, "end_turn": 15, "turn_count": 12}],
+            "risk_flags": ["middle_turns_omitted"],
+            "notes": ["Middle turns were omitted."],
+        },
+    )
+
+    evaluation = build_evaluation(run_dir, run_id="evalrun", case_id="eval-case")
+
+    assert evaluation["overall"] == "warn"
+    assert evaluation["caller_readiness"] == "inspect_first"
+    assert _check(evaluation, "capture_adequacy_status")["status"] == "warn"
+
+
+def test_capture_adequacy_critical_is_blocking(tmp_path: Path) -> None:
+    run_dir = _seed_run(
+        tmp_path,
+        capture_adequacy={
+            "schema_version": CAPTURE_ADEQUACY_SCHEMA_VERSION,
+            "status": "critical",
+            "capture_strategy": "unknown",
+            "declared_turn_count": 2,
+            "captured_turn_count": 0,
+            "omitted_turn_count": 2,
+            "captured_windows": [],
+            "omitted_windows": [{"start_turn": 1, "end_turn": 2, "turn_count": 2}],
+            "risk_flags": ["zero_user_turns_captured"],
+            "notes": ["No user turns were captured."],
+        },
+    )
+
+    evaluation = build_evaluation(run_dir, run_id="evalrun", case_id="eval-case")
+
+    assert evaluation["overall"] == "fail"
+    assert evaluation["caller_readiness"] == "do_not_use"
+    assert _check(evaluation, "capture_adequacy_status")["severity"] == "blocking"
+
+
+def test_missing_capture_adequacy_warns_for_older_archives(tmp_path: Path) -> None:
+    run_dir = _seed_run(tmp_path)
+    extraction = json.loads((run_dir / "extraction.json").read_text(encoding="utf-8"))
+    extraction.pop("capture_adequacy")
+    _write_json(run_dir / "extraction.json", extraction)
+    write_reasoning_trace(
+        run_dir,
+        run_id="evalrun",
+        case_id="eval-case",
+        fingerprint="founder deciding whether to pivot",
+        how_matched="new_case",
+        files_copied=[
+            "conversation.txt",
+            "extraction.json",
+            "result.json",
+            "revised.txt",
+            "memo.md",
+            "run_events.json",
+            "agent_result.json",
+            "graph_survival_report.json",
+            "graph_survival_report.md",
+        ],
+        files_missing=[],
+        manifest={"run_count": 1},
+    )
+
+    evaluation = build_evaluation(run_dir, run_id="evalrun", case_id="eval-case")
+
+    assert evaluation["overall"] == "warn"
+    assert _check(evaluation, "capture_adequacy_schema_version")["status"] == "warn"
+    assert _check(evaluation, "capture_adequacy_status")["status"] == "warn"
 
 
 def test_missing_required_artifact_is_blocking(tmp_path: Path) -> None:

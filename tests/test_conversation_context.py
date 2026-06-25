@@ -169,10 +169,12 @@ def test_conversation_context_multi_turn_full_metadata() -> None:
         ),
         extraction=_minimal_payload(),
         capture_manifest={"declared_turns": 2, "actual_user_turns": 2},
+        capture_adequacy={"schema_version": "lolla.capture_adequacy.v0", "status": "good"},
         capture_health="good",
         capture_warnings=("minor skew",),
     )
     assert len(ctx.turns) == 3
+    assert ctx.capture_adequacy["status"] == "good"
     assert ctx.capture_health == "good"
     assert ctx.capture_warnings == ("minor skew",)
 
@@ -210,12 +212,14 @@ def test_conversation_context_asdict_roundtrip_preserves_shape() -> None:
             quote_validation={"retry_attempted": False},
         ),
         capture_manifest={"declared_turns": 1},
+        capture_adequacy={"status": "good"},
         capture_health="good",
         capture_warnings=(),
     )
 
     as_dict = dataclasses.asdict(ctx)
     assert as_dict["capture_health"] == "good"
+    assert as_dict["capture_adequacy"]["status"] == "good"
     assert as_dict["turns"][0]["speaker"] == "user"
     assert as_dict["extraction"]["live_constraints"][0]["canonical_key"] == "budget"
     assert as_dict["extraction"]["quote_validation"]["retry_attempted"] is False

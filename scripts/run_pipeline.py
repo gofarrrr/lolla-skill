@@ -45,6 +45,7 @@ from system_b.audit_mode import (  # noqa: E402
     apply_risk_mode_metadata,
     audit_mode_from_env,
 )
+from system_b.capture_adequacy import build_capture_adequacy  # noqa: E402
 from system_b.provider_boundary_health import refresh_provider_boundary_health  # noqa: E402
 from system_b.run_state import assert_expected_run_state, infer_run_id_from_lolla_path  # noqa: E402
 
@@ -872,6 +873,17 @@ def main() -> int:
     _capture_health = extraction.get("capture_health", "unknown")
     _capture_warnings = extraction.get("capture_warnings", [])
     _capture_manifest = extraction.get("capture_manifest")
+    _capture_adequacy = extraction.get("capture_adequacy") or {}
+    if not isinstance(_capture_adequacy, dict) or not _capture_adequacy:
+        _capture_adequacy = build_capture_adequacy(
+            conversation_text=Path(args.conversation_file).read_text(encoding="utf-8")
+            if args.conversation_file
+            else "",
+            run_id=run_id_for_guard,
+            capture_manifest=_capture_manifest,
+            capture_health=str(_capture_health or ""),
+            capture_warnings=_capture_warnings if isinstance(_capture_warnings, list) else [],
+        )
     _quote_validation = extraction.get("extraction", {}).get("_quote_validation", {}) or {}
     _quote_fabricated_count = int(_quote_validation.get("fabricated", 0) or 0)
     _quote_retry_attempted = bool(_quote_validation.get("retry_attempted", False))
@@ -1343,9 +1355,12 @@ def main() -> int:
     ]
     if _non_boundary_warnings:
         _health_issue_details.append(_health_issue_detail("pipeline_warnings"))
-    if _capture_health == "critical":
+    _capture_adequacy_status = str(_capture_adequacy.get("status") or "")
+    if _capture_health == "critical" or _capture_adequacy_status == "critical":
         _health_issue_details.append(_health_issue_detail("capture_critical"))
-    elif _capture_health == "degraded":
+    elif _capture_health == "degraded" or (
+        _capture_adequacy_status == "warn" and not _truncation_applied
+    ):
         _health_issue_details.append(_health_issue_detail("capture_degraded"))
     if _quote_fabricated_count > 0:
         # Fabricated passages survived the extraction retry (if any was attempted).
@@ -1445,6 +1460,8 @@ def main() -> int:
         serialized["run_health"]["stakeholder_assumption_check"] = stakeholder_check_payload.get("status")
     if _capture_manifest:
         serialized["run_health"]["capture_manifest"] = _capture_manifest
+    if _capture_adequacy:
+        serialized["run_health"]["capture_adequacy"] = _capture_adequacy
     refresh_provider_boundary_health(serialized["run_health"])
 
     # Output

@@ -59,12 +59,15 @@ A normal run produces:
 - A compact `agent_result.json` contract for machine callers, including
   `caller_action`, artifact status, artifact pointers, run health, cost, and
   product-level summary fields.
+- A deterministic `evaluation.json` receipt for artifact/schema/custody/health
+  consistency. It includes capture-adequacy checks and does not score advice
+  quality.
 - A metadata-only `risk_mode` recorded from `LOLLA_AUDIT_MODE` (`quick`,
   `standard`, `deep`, `high_stakes`, or `stability`). The default is
   `standard`; these modes do not yet change prompts, cost, Step 7 behavior,
   replay, or high-stakes policy.
 - A local Observatory page with the full breakdown, traces, cards, costs, health checks, and archived artifacts.
-- A local `reasoning_trace.json` custody manifest in the archived run folder, with artifact hashes, health, usage, reasoning-lens IDs, model-call telemetry, and trace-adequacy status for replay without duplicating raw transcript text.
+- A local `reasoning_trace.json` custody manifest in the archived run folder, with artifact hashes, health, capture adequacy, usage, reasoning-lens IDs, model-call telemetry, and trace-adequacy status for replay without duplicating raw transcript text.
 
 Lolla also records run health. If capture was incomplete, embeddings were off, a private ledger was missing, a lane failed, or public prose leaked internal machinery, the run should not pretend to be clean.
 
@@ -132,6 +135,6 @@ The detailed docs are split so agents and humans do not have to load one giant f
 - Checked against `SKILL.md` and runtime entry points on 2026-06-24.
 - Pressure-check agents are rested by default. If explicitly enabled, they start only after the updated position is persisted and the V60 ledger validates.
 - The pre-Step-6 shadow portfolio hook is default-off and shadow-only; it records evidence but never changes visible output.
-- The archive currently copies the core/optional artifact set, including live transcript, operator log, run-event log, private ledgers, memo fields, and optional usefulness/outcome reviews when present. It also generates `agent_result.json`, the compact agent-facing handoff, and `reasoning_trace.json`, a local-only manifest that indexes artifacts by path/hash and adds reasoning-lens, model-call, private-custody, and trace-adequacy metadata.
+- The archive currently copies the core/optional artifact set, including live transcript, operator log, run-event log, private ledgers, memo fields, and optional usefulness/outcome reviews when present. It also generates `agent_result.json`, the compact agent-facing handoff; `evaluation.json`, the deterministic run-readiness receipt; and `reasoning_trace.json`, a local-only manifest that indexes artifacts by path/hash and adds capture-adequacy, reasoning-lens, model-call, private-custody, and trace-adequacy metadata.
 - The June 24 accountability pass added run lifecycle events, operator-log separation for helper diagnostics, final-receipt Observatory liveness verification, trusted live-transcript finalization for merge-readiness checks, and graph-survival joins that preserve Lane 2 ledger uptake correctly.
 - `scripts/export_reasoning_trace_dataset.py` scans archived `reasoning_trace.json` files and writes a JSONL corpus plus aggregate summary so repeated runs can be reviewed with an evals-style error-analysis workflow.

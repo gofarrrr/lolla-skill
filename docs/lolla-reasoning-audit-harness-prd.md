@@ -434,7 +434,20 @@ Acceptance criteria:
 Priority: P1
 Owner area: extraction/capture/runtime
 
-Replace or augment blunt long-conversation truncation with decision-aware capture.
+Status: First metadata slice implemented; decision-aware capture remains roadmap.
+
+Current shipped behavior adds a compact deterministic `capture_adequacy` summary
+with schema `lolla.capture_adequacy.v0`. It records status, strategy,
+declared/captured/omitted counts, captured windows, omitted windows, risk flags,
+and notes, then carries that through run health, `agent_result.json`,
+`reasoning_trace.json`, and deterministic `evaluation.json` checks.
+
+This makes capture loss visible before changing capture strategy. It does not
+semantically reconstruct omitted turns, preserve middle-turn pivots, or replace
+the current first-3-plus-last-15 fallback.
+
+Future work should replace or augment blunt long-conversation truncation with
+decision-aware capture.
 
 The current fallback can remain, but a new capture manifest should identify:
 
@@ -449,10 +462,14 @@ The current fallback can remain, but a new capture manifest should identify:
 
 Acceptance criteria:
 
-- `capture_manifest` records whether capture is full, truncated chronological, or decision-aware.
+- `capture_adequacy` records whether capture is full, first-N-plus-last-N, critical, or unknown.
 - A long conversation run can show which omitted ranges were dropped.
 - The extraction step refuses or degrades when final recommendation text is missing.
-- Tests cover a long conversation where a middle-turn constraint is preserved.
+- Deterministic evaluation warns or fails on capture adequacy problems.
+
+Future decision-aware capture acceptance:
+
+- Tests cover a long conversation where a middle-turn constraint is preserved instead of merely recorded as omitted.
 
 ### R6: Evaluation Methodology And Failure Taxonomy
 
@@ -799,21 +816,22 @@ Acceptance:
 - Judge prompt and dataset version are recorded.
 - False positives and false negatives are reviewed.
 
-### PR 8: Capture Adequacy Manifest
+### PR 10: Capture Adequacy Manifest Upgrade
 
 Scope:
 
-- Add richer capture manifest fields.
-- Preserve middle-turn decision pivots in long conversations.
-- Degrade when critical middle constraints are likely omitted.
+- Add compact deterministic capture adequacy metadata.
+- Record omitted middle-turn windows and risk flags before changing capture strategy.
+- Degrade or fail only on deterministic capture-shape problems.
 
-Why eighth:
+Why now:
 
 - Evaluation is only as good as capture. Do this after the first eval artifact exists.
 
 Acceptance:
 
-- Long-conversation fixture preserves a middle constraint.
+- Long-conversation fixture records omitted middle windows.
+- `result.run_health`, `agent_result.json`, `reasoning_trace.json`, and `evaluation.json` surface capture adequacy.
 - Omitted ranges are explicit.
 
 ### PR 9: Stability And Corpus Export

@@ -858,6 +858,80 @@ def test_capture_critical_remains_critical_with_health_issue_details(
     assert capture_detail["axis"] == "capture"
 
 
+def test_capture_adequacy_warning_propagates_to_run_health(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    extraction_path, conversation_path = _write_extraction_and_conversation(tmp_path)
+    payload = json.loads(extraction_path.read_text(encoding="utf-8"))
+    payload["capture_manifest"] = {
+        "declared_turns": 30,
+        "actual_user_turns": 9,
+        "actual_assistant_turns": 9,
+        "truncation_applied": True,
+        "total_turns": 30,
+        "kept_turns": 18,
+        "keep_first_turns": 3,
+        "keep_last_turns": 15,
+        "omitted_turns": 12,
+    }
+    payload["capture_adequacy"] = {
+        "schema_version": "lolla.capture_adequacy.v0",
+        "run_id": "",
+        "status": "warn",
+        "capture_strategy": "first_n_plus_last_n",
+        "declared_turn_count": 30,
+        "captured_turn_count": 18,
+        "omitted_turn_count": 12,
+        "captured_windows": [
+            {"label": "opening", "start_turn": 1, "end_turn": 3, "turn_count": 3},
+            {"label": "recent", "start_turn": 16, "end_turn": 30, "turn_count": 15},
+        ],
+        "omitted_windows": [
+            {"start_turn": 4, "end_turn": 15, "turn_count": 12}
+        ],
+        "risk_flags": ["middle_turns_omitted"],
+        "notes": ["Middle turns were omitted; constraints introduced there may be missing."],
+    }
+    extraction_path.write_text(json.dumps(payload), encoding="utf-8")
+    output_path = tmp_path / "result.json"
+    _install_clean_health_pipeline_fakes(monkeypatch, tmp_path)
+
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "run_pipeline.py",
+            "--extraction-file",
+            str(extraction_path),
+            "--conversation-file",
+            str(conversation_path),
+            "--output-file",
+            str(output_path),
+            "--skip-revision",
+            "--v60-enrichment",
+            "off",
+        ],
+    )
+
+    assert run_pipeline.main() == 0
+    result = json.loads(output_path.read_text(encoding="utf-8"))
+
+    assert result["run_health"]["overall"] == "degraded"
+    assert result["run_health"]["capture_adequacy"]["status"] == "warn"
+    assert result["run_health"]["capture_adequacy"]["omitted_windows"] == [
+        {"start_turn": 4, "end_turn": 15, "turn_count": 12}
+    ]
+    assert "capture_truncated" in result["run_health"]["issues"]
+    capture_detail = next(
+        detail
+        for detail in result["run_health"]["issue_details"]
+        if detail["code"] == "capture_truncated"
+    )
+    assert capture_detail["axis"] == "capture"
+    assert capture_detail["omitted_turns"] == 12
+
+
 def test_extraction_file_without_conversation_file_requires_conversation_file(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,

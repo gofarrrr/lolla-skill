@@ -102,6 +102,7 @@ else:
 
 from system_b.audit_mode import AuditModeError, audit_mode_from_env  # noqa: E402
 from system_b.boundary_provider import load_boundary_client_from_env  # noqa: E402
+from system_b.capture_adequacy import build_capture_adequacy  # noqa: E402
 from system_b.run_state import assert_expected_run_state, infer_run_id_from_lolla_path  # noqa: E402
 from system_b.text_matching import find_substring_tolerant  # noqa: E402
 
@@ -213,6 +214,8 @@ def _truncate_conversation(text: str) -> tuple[str, dict]:
         "truncated_char_length": len(truncated),
         "total_turns": len(turns),
         "kept_turns": KEEP_FIRST_TURNS + KEEP_LAST_TURNS,
+        "keep_first_turns": KEEP_FIRST_TURNS,
+        "keep_last_turns": KEEP_LAST_TURNS,
         "omitted_turns": omitted,
     }
 
@@ -657,6 +660,13 @@ def main() -> int:
     capture_manifest = capture_result["capture_manifest"]
     capture_health = capture_result["capture_health"]
     capture_warnings = capture_result["capture_warnings"]
+    capture_result["capture_adequacy"] = build_capture_adequacy(
+        conversation_text=conversation_text,
+        run_id=run_id_for_guard,
+        capture_manifest=capture_manifest,
+        capture_health=capture_health,
+        capture_warnings=capture_warnings,
+    )
 
     # If capture is fundamentally broken (>50% assistant turns missing, or zero
     # assistant turns), decline the audit. An extraction on a critically
@@ -694,6 +704,13 @@ def main() -> int:
             f"turns omitted ({truncation_info['original_char_length']} → "
             f"{truncation_info['truncated_char_length']} chars). Audit will run "
             f"on first {KEEP_FIRST_TURNS} + last {KEEP_LAST_TURNS} turns only."
+        )
+        capture_result["capture_adequacy"] = build_capture_adequacy(
+            conversation_text=conversation_text,
+            run_id=run_id_for_guard,
+            capture_manifest=capture_result["capture_manifest"],
+            capture_health=capture_result["capture_health"],
+            capture_warnings=capture_result["capture_warnings"],
         )
 
     # Call OpenRouter for extraction

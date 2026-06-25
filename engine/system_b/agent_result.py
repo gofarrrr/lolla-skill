@@ -16,6 +16,7 @@ from pathlib import Path
 from typing import Any
 
 from .audit_mode import risk_mode_from_result
+from .capture_adequacy import capture_adequacy_from_artifacts
 from .provider_boundary_health import build_provider_boundary_health
 
 
@@ -52,6 +53,10 @@ def build_agent_result(
     extraction = _read_json_object(run_dir / "extraction.json")
     run_health = _mapping(result.get("run_health"))
     provider_boundary_health = build_provider_boundary_health(run_health)
+    capture_adequacy = capture_adequacy_from_artifacts(
+        extraction=extraction,
+        result=result,
+    )
     artifact_status = _artifact_status(run_dir=run_dir, result=result)
     risk_mode = _risk_mode(result)
     status, status_reason = _status(
@@ -59,6 +64,7 @@ def build_agent_result(
         extraction=extraction,
         run_health=run_health,
         provider_boundary_health=provider_boundary_health,
+        capture_adequacy=capture_adequacy,
         artifact_status=artifact_status,
     )
     caller_action = _caller_action(
@@ -88,6 +94,7 @@ def build_agent_result(
         "product_output_health": _text(run_health.get("product_output_health")) or "unknown",
         "live_output_health": _text(run_health.get("live_output_health")) or "unknown",
         "provider_boundary_health": provider_boundary_health,
+        "capture_adequacy": _capture_adequacy_compact(capture_adequacy),
         "risk_mode": risk_mode,
         "caller_action": caller_action,
         "main_counter_pressure": _main_counter_pressure(result),
@@ -115,6 +122,7 @@ def build_agent_result(
                 provider_boundary_health=provider_boundary_health,
             ),
             provider_boundary_health=provider_boundary_health,
+            capture_adequacy=capture_adequacy,
         ),
     }
 
@@ -154,6 +162,7 @@ def _status(
     extraction: Mapping[str, Any],
     run_health: Mapping[str, Any],
     provider_boundary_health: Mapping[str, Any],
+    capture_adequacy: Mapping[str, Any],
     artifact_status: Mapping[str, str],
 ) -> tuple[str, str]:
     extraction_status = _text(extraction.get("status"))
@@ -172,6 +181,8 @@ def _status(
     live_health = _text(run_health.get("live_output_health"))
     if live_health == "unsafe":
         return "degraded", "live output was marked unsafe"
+    if _text(capture_adequacy.get("status")) == "critical":
+        return "degraded", "capture adequacy was marked critical"
     if overall == "partial":
         if _contained_provider_boundary_warning_only(
             run_health=run_health,
@@ -390,6 +401,21 @@ def _usage(result: Mapping[str, Any]) -> dict[str, Any]:
     }
 
 
+def _capture_adequacy_compact(capture_adequacy: Mapping[str, Any]) -> dict[str, Any]:
+    if not capture_adequacy:
+        return {"status": "unknown"}
+    return {
+        "schema_version": _text(capture_adequacy.get("schema_version")),
+        "status": _text(capture_adequacy.get("status")) or "unknown",
+        "capture_strategy": _text(capture_adequacy.get("capture_strategy")) or "unknown",
+        "declared_turn_count": capture_adequacy.get("declared_turn_count"),
+        "captured_turn_count": capture_adequacy.get("captured_turn_count"),
+        "omitted_turn_count": capture_adequacy.get("omitted_turn_count"),
+        "risk_flags": _clean_items(capture_adequacy.get("risk_flags")),
+        "notes": _clean_items(capture_adequacy.get("notes"))[:3],
+    }
+
+
 def _contained_provider_boundary_warning_only(
     *,
     run_health: Mapping[str, Any],
@@ -424,7 +450,18 @@ def _notes(
     caller_action: str,
     contained_provider_boundary_warning_only: bool,
     provider_boundary_health: Mapping[str, Any],
+    capture_adequacy: Mapping[str, Any],
 ) -> list[str]:
+    capture_status = _text(capture_adequacy.get("status"))
+    if capture_status == "critical":
+        return [
+            "Capture adequacy is critical; rerun Lolla with a complete conversation capture before relying on this audit."
+        ]
+    if capture_status == "warn":
+        omitted = _text(capture_adequacy.get("omitted_turn_count")) or "some"
+        return [
+            f"Capture adequacy is warning-level; {omitted} middle turns may be omitted, so inspect capture metadata before relying on this audit."
+        ]
     if caller_action == "use_revised_answer":
         return [
             "Use the revised answer, memo, and artifact pointers together; this contract is not a safety or fact-checking guarantee."

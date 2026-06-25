@@ -15,6 +15,7 @@ from pathlib import Path
 from typing import Any
 
 from .audit_mode import risk_mode_from_result
+from .capture_adequacy import capture_adequacy_from_artifacts
 from .provider_boundary_health import build_provider_boundary_health
 
 
@@ -299,6 +300,10 @@ def _capture_summary(
     return {
         "capture_health": capture_health or "unknown",
         "capture_manifest": dict(capture_manifest),
+        "capture_adequacy": capture_adequacy_from_artifacts(
+            extraction=extraction,
+            result=result,
+        ),
         "decision_structure": _decision_structure_summary(extraction),
     }
 

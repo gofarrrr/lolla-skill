@@ -48,6 +48,25 @@ def test_archive_run_writes_reasoning_trace_manifest_with_hashes(tmp_path: Path)
                 "status": "ok",
                 "capture_health": "good",
                 "capture_manifest": {"declared_turns": 1, "actual_user_turns": 1},
+                "capture_adequacy": {
+                    "schema_version": "lolla.capture_adequacy.v0",
+                    "status": "good",
+                    "capture_strategy": "full",
+                    "declared_turn_count": 2,
+                    "captured_turn_count": 2,
+                    "omitted_turn_count": 0,
+                    "captured_windows": [
+                        {
+                            "label": "full",
+                            "start_turn": 1,
+                            "end_turn": 2,
+                            "turn_count": 2,
+                        }
+                    ],
+                    "omitted_windows": [],
+                    "risk_flags": [],
+                    "notes": [],
+                },
                 "extraction": {
                     "decision_situation": "Founder deciding whether to pivot",
                     "live_constraints": [
@@ -279,6 +298,9 @@ def test_archive_run_writes_reasoning_trace_manifest_with_hashes(tmp_path: Path)
     assert trace["case"]["decision_situation"] == "Founder deciding whether to pivot"
     assert trace["participants"] == ["user", "assistant"]
     assert trace["capture"]["capture_health"] == "good"
+    assert trace["capture"]["capture_adequacy"]["schema_version"] == "lolla.capture_adequacy.v0"
+    assert trace["capture"]["capture_adequacy"]["status"] == "good"
+    assert "secret launch phrase" not in json.dumps(trace["capture"]["capture_adequacy"])
     assert trace["capture"]["decision_structure"]["live_constraint_count"] == 1
     assert trace["capture"]["decision_structure"]["reasoning_passage_count"] == 1
     assert trace["process"]["audit_summary"]["triggered_tendency_count"] == 1

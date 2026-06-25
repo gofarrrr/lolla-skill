@@ -93,6 +93,13 @@ def _ok_extraction(**overrides) -> dict:
             "actual_assistant_turns": 2,
             "char_length": 150,
         },
+        "capture_adequacy": {
+            "schema_version": "lolla.capture_adequacy.v0",
+            "status": "good",
+            "capture_strategy": "full",
+            "captured_turn_count": 4,
+            "omitted_turn_count": 0,
+        },
         "capture_health": "good",
         "capture_warnings": ["minor note"],
     }
@@ -190,6 +197,8 @@ def test_load_capture_metadata_preserved(tmp_path: Path) -> None:
     assert ctx.capture_warnings == ("minor note",)
     assert ctx.capture_manifest["declared_turns"] == 2
     assert ctx.capture_manifest["char_length"] == 150
+    assert ctx.capture_adequacy["schema_version"] == "lolla.capture_adequacy.v0"
+    assert ctx.capture_adequacy["status"] == "good"
 
 
 def test_load_capture_critical_returns_valid_empty_context(tmp_path: Path) -> None:

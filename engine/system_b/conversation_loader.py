@@ -41,6 +41,7 @@ def load_conversation_context(
         turns=_parse_turns(conversation_text),
         extraction=_build_extraction_payload(raw.get("extraction") or {}),
         capture_manifest=raw.get("capture_manifest") or {},
+        capture_adequacy=raw.get("capture_adequacy") or {},
         capture_health=raw.get("capture_health") or "unknown",
         capture_warnings=tuple(raw.get("capture_warnings") or ()),
     )

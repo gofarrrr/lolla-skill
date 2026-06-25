@@ -114,11 +114,14 @@ At completion, each run is archived locally under `~/.local/share/lolla/runs/`.
 The archive includes `agent_result.json`: a compact `lolla_agent_result.v1`
 handoff for agents that says whether the run is fit for automatic use, what
 changed when that is visible from product artifacts, which human questions
-remain, and where to inspect the archive. It also includes
-`reasoning_trace.json`: a local-only custody manifest that indexes the captured
-conversation, result, memo, health, usage, ledger artifacts, reasoning-lens
-IDs, model-call telemetry, and trace-adequacy status by path/hash and structured
-metadata without duplicating raw transcript text.
+remain, and where to inspect the archive. It also includes `evaluation.json`: a
+deterministic run-readiness receipt for artifact/schema/custody/health
+consistency, including capture adequacy, not advice-quality scoring. Finally,
+`reasoning_trace.json` is a local-only custody manifest that indexes the
+captured conversation, result, memo, health, usage, ledger artifacts,
+reasoning-lens IDs, model-call telemetry, capture adequacy, and trace-adequacy
+status by path/hash and structured metadata without duplicating raw transcript
+text.
 `LOLLA_AUDIT_MODE` can record the run as `quick`, `standard`, `deep`,
 `high_stakes`, or `stability`; the normalized value is persisted as
 `risk_mode`. Today this is metadata only: it does not change prompts, cost,
@@ -162,7 +165,7 @@ lolla-skill/
 │   ├── run_extract.py      # Step 2: conversation → decision structure (capture-critical gate, quote-fabrication retry, truncation transparency)
 │   ├── run_pipeline.py     # Step 3: decision structure → four-lane audit (family-clustered Pass 1, run_health envelope)
 │   ├── render_memo.py      # Deterministic markdown memo from result.json (no LLM)
-│   ├── archive_run.py      # Local archive + agent_result.json + reasoning_trace.json custody manifest
+│   ├── archive_run.py      # Local archive + agent_result.json + evaluation.json + reasoning_trace.json custody manifest
 │   ├── export_reasoning_trace_dataset.py # Local JSONL corpus + summary from archived traces
 │   └── stability_check.py  # Diagnostic harness (Mode A aggregate / Mode B pipeline-variance / Mode C extraction-drift)
 ├── observatory/          # Local web UI — four cards, revised answer, reasoning graph, run health, pipeline inspector

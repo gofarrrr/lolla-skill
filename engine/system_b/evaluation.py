@@ -14,6 +14,10 @@ from pathlib import Path
 from typing import Any
 
 from .agent_result import AGENT_RESULT_SCHEMA_VERSION, CALLER_ACTIONS
+from .capture_adequacy import (
+    CAPTURE_ADEQUACY_SCHEMA_VERSION,
+    capture_adequacy_from_artifacts,
+)
 from .provider_boundary_health import PROVIDER_BOUNDARY_HEALTH_SCHEMA_VERSION
 from .reasoning_trace import REASONING_TRACE_SCHEMA_VERSION
 
@@ -52,6 +56,7 @@ def build_evaluation(
     """Build deterministic readiness checks for an archived run directory."""
 
     run_dir = Path(run_dir)
+    extraction = _read_json_object(run_dir / "extraction.json")
     result = _read_json_object(run_dir / "result.json")
     agent_result = _read_json_object(run_dir / "agent_result.json")
     reasoning_trace = _read_json_object(run_dir / "reasoning_trace.json")
@@ -60,12 +65,22 @@ def build_evaluation(
         run_health.get("provider_boundary_health")
         or agent_result.get("provider_boundary_health")
     )
+    capture_adequacy = capture_adequacy_from_artifacts(
+        extraction=extraction,
+        result=result,
+    )
 
     checks: list[dict[str, Any]] = []
     checks.extend(_artifact_presence_checks(run_dir))
-    checks.extend(_schema_checks(agent_result=agent_result, reasoning_trace=reasoning_trace, provider_health=provider_health))
+    checks.extend(_schema_checks(
+        agent_result=agent_result,
+        reasoning_trace=reasoning_trace,
+        provider_health=provider_health,
+        capture_adequacy=capture_adequacy,
+    ))
     checks.extend(_agent_policy_checks(agent_result=agent_result, run_health=run_health, provider_health=provider_health))
     checks.extend(_reasoning_trace_checks(run_dir=run_dir, reasoning_trace=reasoning_trace))
+    checks.extend(_capture_adequacy_checks(capture_adequacy=capture_adequacy))
     checks.extend(_hygiene_checks(run_health=run_health))
     checks.extend(_provider_boundary_checks(agent_result=agent_result, provider_health=provider_health))
     checks.extend(_archive_readiness_checks(run_dir=run_dir, agent_result=agent_result))
@@ -159,6 +174,7 @@ def _schema_checks(
     agent_result: Mapping[str, Any],
     reasoning_trace: Mapping[str, Any],
     provider_health: Mapping[str, Any],
+    capture_adequacy: Mapping[str, Any],
 ) -> list[dict[str, Any]]:
     checks = [
         _schema_check(
@@ -192,6 +208,26 @@ def _schema_checks(
                 severity="warning",
                 message="Provider-boundary health metadata is not present.",
                 artifact="result.json",
+            )
+        )
+    observed_capture_schema = _text(capture_adequacy.get("schema_version"))
+    if observed_capture_schema:
+        checks.append(
+            _schema_check(
+                id="capture_adequacy_schema_version",
+                artifact="extraction.json",
+                observed=observed_capture_schema,
+                expected=CAPTURE_ADEQUACY_SCHEMA_VERSION,
+            )
+        )
+    else:
+        checks.append(
+            _check(
+                id="capture_adequacy_schema_version",
+                status="warn",
+                severity="warning",
+                message="Capture adequacy metadata is not present.",
+                artifact="extraction.json",
             )
         )
     return checks
@@ -362,6 +398,49 @@ def _reasoning_trace_checks(
         )
     )
     return checks
+
+
+def _capture_adequacy_checks(
+    *,
+    capture_adequacy: Mapping[str, Any],
+) -> list[dict[str, Any]]:
+    if not capture_adequacy:
+        return [
+            _check(
+                id="capture_adequacy_status",
+                status="warn",
+                severity="warning",
+                message="Capture adequacy metadata is missing; inspect older archive manually.",
+                artifact="extraction.json",
+            )
+        ]
+    status = _text(capture_adequacy.get("status")) or "unknown"
+    omitted = _safe_int(capture_adequacy.get("omitted_turn_count"))
+    if status == "good":
+        check_status = "pass"
+        severity = "info"
+        message = "Capture adequacy is good."
+    elif status == "warn":
+        check_status = "warn"
+        severity = "warning"
+        message = f"Capture adequacy is warning-level; omitted_turn_count={omitted}."
+    elif status == "critical":
+        check_status = "fail"
+        severity = "blocking"
+        message = "Capture adequacy is critical."
+    else:
+        check_status = "warn"
+        severity = "warning"
+        message = f"Capture adequacy status is {status}."
+    return [
+        _check(
+            id="capture_adequacy_status",
+            status=check_status,
+            severity=severity,
+            message=message,
+            artifact="extraction.json",
+        )
+    ]
 
 
 def _hygiene_checks(run_health: Mapping[str, Any]) -> list[dict[str, Any]]:
@@ -590,6 +669,13 @@ def _list(value: Any) -> list[Any]:
 
 def _text(value: Any) -> str:
     return str(value or "").strip()
+
+
+def _safe_int(value: Any) -> int:
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return 0
 
 
 def _utc_now_iso() -> str:
