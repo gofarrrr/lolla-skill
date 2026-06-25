@@ -131,7 +131,7 @@ viewer. Its `Cases` tab also lists local archived runs from
 `~/.local/share/lolla/runs/` (or `$LOLLA_ARCHIVE_DIR`) so recent history can be
 opened without leaving the browser. Run-to-run comparison and dataset export
 still live in the archive folder and the comparison/export scripts below.
-To turn archived runs into a local reasoning-eval corpus, run:
+To turn archived reasoning traces into a local reasoning-eval corpus, run:
 
 ```bash
 python3 scripts/export_reasoning_trace_dataset.py \
@@ -139,6 +139,21 @@ python3 scripts/export_reasoning_trace_dataset.py \
   --out /tmp/lolla_reasoning_traces.jsonl \
   --summary-out /tmp/lolla_reasoning_traces_summary.json
 ```
+
+To build a broader human-review corpus from archived run envelopes, run:
+
+```bash
+python3 scripts/export_review_corpus.py \
+  ~/.local/share/lolla/runs \
+  --out /tmp/lolla_review_corpus.jsonl \
+  --manifest-out /tmp/lolla_review_corpus_manifest.json
+```
+
+The review corpus is deterministic and local-only. It summarizes artifact
+presence, run health, capture adequacy, `agent_result.json`, `evaluation.json`,
+usage/model metadata, and optional control-plane references with blank
+human-review fields. It does not copy raw transcript/memo text, does not score
+advice quality, and does not use an LLM judge.
 
 **Trigger phrases** (the skill also activates on these):
 - "audit this", "check my reasoning", "find blind spots"
@@ -167,6 +182,7 @@ lolla-skill/
 │   ├── render_memo.py      # Deterministic markdown memo from result.json (no LLM)
 │   ├── archive_run.py      # Local archive + agent_result.json + evaluation.json + reasoning_trace.json custody manifest
 │   ├── export_reasoning_trace_dataset.py # Local JSONL corpus + summary from archived traces
+│   ├── export_review_corpus.py # Local JSONL run-envelope corpus + human-review template
 │   └── stability_check.py  # Diagnostic harness (Mode A aggregate / Mode B pipeline-variance / Mode C extraction-drift)
 ├── observatory/          # Local web UI — four cards, revised answer, reasoning graph, run health, pipeline inspector
 ├── references/           # Tendency catalog, calibration, guardrails (loaded on demand)

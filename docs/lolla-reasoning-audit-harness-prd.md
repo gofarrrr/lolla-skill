@@ -581,6 +581,8 @@ Requirements:
 
 - Export `agent_result.json` fields into JSONL.
 - Include mode, run health, evaluation status, cost, model IDs, and product-output health.
+- Include capture adequacy, provider-boundary status, optional control-plane references, and artifact availability without copying raw transcript or memo text.
+- Carry blank human-review fields so reviewers can label runs later without the exporter performing the review.
 - Support repeated-run grouping by conversation hash.
 - Surface run-to-run variance in:
   - main counter-pressure,
@@ -588,6 +590,13 @@ Requirements:
   - selected model IDs,
   - evaluation verdict,
   - caller action.
+
+Current shipped slice:
+
+- `scripts/export_review_corpus.py` exports a deterministic JSONL run-envelope corpus plus a manifest from archived runs.
+- The export includes compact `agent_result.json`, `evaluation.json`, capture adequacy, run-health, usage/model, artifact-availability, and optional control-plane summaries.
+- The export includes a blank `lolla.human_review.v0` template per run, but does not fill labels, score advice quality, approve actions, or call a model.
+- `scripts/export_reasoning_trace_dataset.py` remains available for lower-level reasoning-trace/lens analysis.
 
 Acceptance criteria:
 

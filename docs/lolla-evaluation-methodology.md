@@ -347,7 +347,7 @@ These pairs are judge-calibration traps. If a judge fails them, do not use it fo
 
 Initial monthly or pre-release loop:
 
-1. Export 50 to 100 archived traces.
+1. Export 50 to 100 archived traces or run-envelope records.
 2. Principal reviewer reads each trace in Observatory or a simple review sheet.
 3. For each run, record:
    - pass/fail,
@@ -360,14 +360,27 @@ Initial monthly or pre-release loop:
 5. Human reviewer edits the taxonomy.
 6. Convert high-frequency/high-severity categories into deterministic evals or calibrated judges.
 
+The current archive-corpus slice for this workflow is
+`scripts/export_review_corpus.py`. It writes a deterministic JSONL record per
+archived run plus a manifest. Each record summarizes the run envelope:
+`agent_result.json`, `evaluation.json`, capture adequacy, run health,
+provider-boundary status, usage/model metadata, artifact availability, and
+optional control-plane references. It also carries blank `lolla.human_review.v0`
+fields for later labeling.
+
+This export is not a reviewer and not an approval layer. It does not score
+helpfulness, wisdom, coherence, correctness, or advice quality; it does not use
+an LLM judge; and it intentionally avoids copying raw transcript, memo, revised
+answer, or proposed-action argument values into the corpus record.
+
 ## Evaluation OS For Lolla
 
 Map the general Eval OS idea onto Lolla:
 
 | Plane | Lolla version |
 |---|---|
-| Trace lake | Archived run folders plus `agent_result.json` and `reasoning_trace.json`. |
-| Annotation UI | Observatory review mode or exported CSV/JSONL review sheet. |
+| Trace lake | Archived run folders plus `agent_result.json`, `evaluation.json`, and `reasoning_trace.json`. |
+| Annotation UI | Observatory review mode or exported JSONL review corpus with blank human-review fields. |
 | Failure taxonomy registry | Versioned file such as `docs/evals/lolla-failure-taxonomy.md` or JSON. |
 | Eval suite manager | Scripts that run deterministic checks and calibrated judges over archived traces. |
 | Release gate dashboard | CLI report plus Observatory page showing regressions by failure mode. |
