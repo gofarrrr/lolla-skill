@@ -136,8 +136,8 @@ content.
 A completed run leaves a durable artifact chain:
 
 - captured conversation
-- extraction JSON
-- pipeline result JSON
+- extraction JSON with capture-adequacy metadata
+- pipeline result JSON with run-health and capture-adequacy custody
 - revised answer
 - pre-Step-6 private-table ledger when required
 - V60 consideration ledger when required
@@ -147,7 +147,9 @@ A completed run leaves a durable artifact chain:
 - operator log
 - run-event log
 - Observatory server
-- archived case folder with graph-survival report, agent result, and reasoning trace
+- deterministic evaluation receipt (`evaluation.json`)
+- archived case folder with graph-survival report, agent result, reasoning trace,
+  and evaluation receipt
 
 If one of these is missing, treat the run as incomplete or degraded, not as a
 clean success.
