@@ -1141,6 +1141,108 @@ def _fixed_sidecar_path(result_path: Path | None, filename: str) -> Path | None:
     return sidecar_path
 
 
+def _append_unique_path(paths: list[Path], seen: set[Path], path: Path) -> None:
+    try:
+        resolved = path.resolve()
+    except OSError:
+        return
+    if resolved in seen:
+        return
+    paths.append(resolved)
+    seen.add(resolved)
+
+
+def _sidecar_path_inside_archive(path: Path) -> Path | None:
+    """Return path only when it resolves inside the configured archive root."""
+    try:
+        root = _archive_root().resolve()
+        resolved = path.resolve()
+    except OSError:
+        return None
+    if root != resolved and root not in resolved.parents:
+        return None
+    return resolved
+
+
+def _events_from_run_events_payload(payload) -> list[dict]:
+    if isinstance(payload, dict):
+        events = payload.get("events") or []
+    elif isinstance(payload, list):
+        events = payload
+    else:
+        events = []
+    return [event for event in events if isinstance(event, dict)]
+
+
+def _active_run_event_paths(result_path: Path) -> list[Path]:
+    """Return active-run event sidecars, preferring /tmp prefixed layout."""
+    paths: list[Path] = []
+    seen: set[Path] = set()
+    stem = result_path.stem
+    if stem.endswith("_result"):
+        prefix = stem[: -len("_result")]
+        _append_unique_path(paths, seen, result_path.parent / f"{prefix}_run_events.json")
+    _append_unique_path(paths, seen, result_path.parent / "run_events.json")
+    return paths
+
+
+def _case_sidecar_candidates(
+    result_path: Path | None,
+    filename: str,
+    *,
+    is_current: bool,
+) -> list[Path]:
+    """Return fixed sidecar candidates for current or selected archived cases."""
+    if result_path is None:
+        return []
+
+    if not is_current:
+        path = _fixed_sidecar_path(result_path, filename)
+        return [path] if path is not None else []
+
+    paths: list[Path] = []
+    seen: set[Path] = set()
+    stem = result_path.stem
+
+    # Active runs served from /tmp use /tmp/lolla_<run_id>_result.json plus
+    # /tmp/lolla_<run_id>_<sidecar>. Prefer that over stale plain filenames.
+    if stem.endswith("_result"):
+        prefix = stem[: -len("_result")]
+        _append_unique_path(paths, seen, result_path.parent / f"{prefix}_{filename}")
+
+    if filename != "run_events.json":
+        for events_path in _active_run_event_paths(result_path):
+            if not events_path.is_file():
+                continue
+            payload = _load_json_safe(events_path)
+            for event in _events_from_run_events_payload(payload):
+                details = event.get("details") or {}
+                if not isinstance(details, dict):
+                    continue
+                archive_path = details.get("archive_path")
+                if not archive_path:
+                    continue
+                archived_sidecar = _sidecar_path_inside_archive(Path(archive_path) / filename)
+                if archived_sidecar is not None:
+                    _append_unique_path(paths, seen, archived_sidecar)
+
+    # Archive-style active results still use sidecars next to result.json.
+    _append_unique_path(paths, seen, result_path.parent / filename)
+    return paths
+
+
+def _case_sidecar_path(
+    result_path: Path | None,
+    filename: str,
+    *,
+    is_current: bool,
+) -> Path | None:
+    for path in _case_sidecar_candidates(result_path, filename, is_current=is_current):
+        if path.is_file():
+            return path
+    return None
+
+
 def _artifact_metadata(path: Path, *, content_type: str) -> dict:
     return {
         "filename": path.name,
@@ -4259,7 +4361,7 @@ class ResultHandler(SimpleHTTPRequestHandler):
         if path.startswith("/api/case/"):
             parts = path.split("/")
             case_id = unquote(parts[3]) if len(parts) >= 4 else ""
-            result, result_path, _is_current = _load_case_result(case_id)
+            result, result_path, is_current = _load_case_result(case_id)
             if result is None:
                 self._error_response(
                     404,
@@ -4286,19 +4388,34 @@ class ResultHandler(SimpleHTTPRequestHandler):
                 self._json_response(result.get("usage_summary") or {})
                 return
             if len(parts) == 5 and parts[4] == "agent-result":
-                self._json_sidecar_response(result_path, "agent_result.json")
+                self._json_sidecar_response(
+                    result_path,
+                    "agent_result.json",
+                    is_current=is_current,
+                )
                 return
             if len(parts) == 5 and parts[4] == "reasoning-trace":
-                self._json_sidecar_response(result_path, "reasoning_trace.json")
+                self._json_sidecar_response(
+                    result_path,
+                    "reasoning_trace.json",
+                    is_current=is_current,
+                )
                 return
             if len(parts) == 5 and parts[4] == "events":
-                self._json_sidecar_response(result_path, "run_events.json")
+                self._json_sidecar_response(
+                    result_path,
+                    "run_events.json",
+                    is_current=is_current,
+                )
                 return
             if len(parts) == 5 and parts[4] == "memo":
-                self._memo_sidecar_response(result_path)
+                self._memo_sidecar_response(result_path, is_current=is_current)
                 return
             if len(parts) == 5 and parts[4] == "graph-survival":
-                self._graph_survival_sidecar_response(result_path)
+                self._graph_survival_sidecar_response(
+                    result_path,
+                    is_current=is_current,
+                )
                 return
 
         if path == "/usage":
@@ -4415,8 +4532,14 @@ class ResultHandler(SimpleHTTPRequestHandler):
     def _error_response(self, status: int, message: str):
         self._json_response({"error": message}, status=status)
 
-    def _json_sidecar_response(self, result_path: Path | None, filename: str):
-        path = _fixed_sidecar_path(result_path, filename)
+    def _json_sidecar_response(
+        self,
+        result_path: Path | None,
+        filename: str,
+        *,
+        is_current: bool,
+    ):
+        path = _case_sidecar_path(result_path, filename, is_current=is_current)
         if path is None:
             self._error_response(404, f"Sidecar '{filename}' not found for selected case")
             return
@@ -4426,8 +4549,8 @@ class ResultHandler(SimpleHTTPRequestHandler):
             return
         self._json_response(payload)
 
-    def _memo_sidecar_response(self, result_path: Path | None):
-        path = _fixed_sidecar_path(result_path, "memo.md")
+    def _memo_sidecar_response(self, result_path: Path | None, *, is_current: bool):
+        path = _case_sidecar_path(result_path, "memo.md", is_current=is_current)
         if path is None:
             self._error_response(404, "Sidecar 'memo.md' not found for selected case")
             return
@@ -4443,8 +4566,17 @@ class ResultHandler(SimpleHTTPRequestHandler):
             }
         )
 
-    def _graph_survival_sidecar_response(self, result_path: Path | None):
-        json_path = _fixed_sidecar_path(result_path, "graph_survival_report.json")
+    def _graph_survival_sidecar_response(
+        self,
+        result_path: Path | None,
+        *,
+        is_current: bool,
+    ):
+        json_path = _case_sidecar_path(
+            result_path,
+            "graph_survival_report.json",
+            is_current=is_current,
+        )
         if json_path is None:
             self._error_response(
                 404,
@@ -4460,7 +4592,11 @@ class ResultHandler(SimpleHTTPRequestHandler):
             return
 
         markdown_payload = None
-        markdown_path = _fixed_sidecar_path(result_path, "graph_survival_report.md")
+        markdown_path = _case_sidecar_path(
+            result_path,
+            "graph_survival_report.md",
+            is_current=is_current,
+        )
         if markdown_path is not None:
             try:
                 markdown_payload = {

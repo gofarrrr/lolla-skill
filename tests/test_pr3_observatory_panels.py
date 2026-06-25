@@ -865,6 +865,189 @@ def test_selected_archived_sidecar_endpoints_return_archived_run_artifacts(
     assert json.loads(body)["usage_summary"]["run_id"] == "archive-run"
 
 
+def _set_active_result(monkeypatch, result_path: Path, result: dict) -> None:
+    result_path.write_text(json.dumps(result), encoding="utf-8")
+    monkeypatch.setattr(serve_result, "_RESULT", result)
+    monkeypatch.setattr(serve_result, "_RESULT_PATH", result_path)
+    monkeypatch.setattr(serve_result, "_RESULT_MTIME", result_path.stat().st_mtime)
+
+
+def test_active_sidecar_endpoints_return_prefixed_tmp_run_artifacts(
+    tmp_path,
+    monkeypatch,
+    running_server,
+):
+    active = json.loads(json.dumps(_fixture_result()))
+    active["usage_summary"] = {"run_id": "active-run"}
+    result_path = tmp_path / "lolla_active_run_result.json"
+    _set_active_result(monkeypatch, result_path, active)
+
+    (tmp_path / "lolla_active_run_agent_result.json").write_text(
+        json.dumps({"schema_version": "lolla_agent_result.v1", "run_id": "active-run"}),
+        encoding="utf-8",
+    )
+    (tmp_path / "lolla_active_run_reasoning_trace.json").write_text(
+        json.dumps({"schema_version": "lolla_reasoning_trace.v1", "process": {"run_id": "active-run"}}),
+        encoding="utf-8",
+    )
+    (tmp_path / "lolla_active_run_run_events.json").write_text(
+        json.dumps({"schema_version": "lolla.run_events.v0.1", "run_id": "active-run", "events": []}),
+        encoding="utf-8",
+    )
+    (tmp_path / "lolla_active_run_memo.md").write_text(
+        "# Active Memo\n\nCurrent run.\n",
+        encoding="utf-8",
+    )
+    (tmp_path / "lolla_active_run_graph_survival_report.json").write_text(
+        json.dumps({"schema_version": "graph_survival_report.v1", "run_id": "active-run"}),
+        encoding="utf-8",
+    )
+    (tmp_path / "lolla_active_run_graph_survival_report.md").write_text(
+        "# Active Graph Survival\n\nCurrent run.\n",
+        encoding="utf-8",
+    )
+
+    status, body = _http_get(f"{running_server}/api/case/lolla-audit/agent-result")
+    assert status == 200
+    assert json.loads(body)["run_id"] == "active-run"
+
+    status, body = _http_get(f"{running_server}/api/case/lolla-audit/reasoning-trace")
+    assert status == 200
+    assert json.loads(body)["process"]["run_id"] == "active-run"
+
+    status, body = _http_get(f"{running_server}/api/case/lolla-audit/events")
+    assert status == 200
+    assert json.loads(body)["run_id"] == "active-run"
+
+    status, body = _http_get(f"{running_server}/api/case/lolla-audit/memo")
+    assert status == 200
+    memo = json.loads(body)
+    assert memo["artifact"]["filename"] == "lolla_active_run_memo.md"
+    assert "Current run" in memo["markdown"]
+
+    status, body = _http_get(f"{running_server}/api/case/lolla-audit/graph-survival")
+    assert status == 200
+    survival = json.loads(body)
+    assert survival["report"]["run_id"] == "active-run"
+    assert survival["markdown"]["artifact"]["filename"] == "lolla_active_run_graph_survival_report.md"
+
+
+def test_active_sidecar_endpoints_fall_back_to_archive_path_from_run_events(
+    tmp_path,
+    monkeypatch,
+    running_server,
+):
+    archive_root = tmp_path / "runs"
+    run_dir = archive_root / "archive-case" / "20260625T010203Z_active"
+    run_dir.mkdir(parents=True)
+    monkeypatch.setenv("LOLLA_ARCHIVE_DIR", str(archive_root))
+
+    active = json.loads(json.dumps(_fixture_result()))
+    active["usage_summary"] = {"run_id": "active-run"}
+    result_path = tmp_path / "lolla_active_run_result.json"
+    _set_active_result(monkeypatch, result_path, active)
+
+    (tmp_path / "lolla_active_run_run_events.json").write_text(
+        json.dumps(
+            {
+                "schema_version": "lolla.run_events.v0.1",
+                "run_id": "active-run",
+                "events": [
+                    {
+                        "event_type": "archive_completed",
+                        "details": {"archive_path": str(run_dir)},
+                    }
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+    (run_dir / "agent_result.json").write_text(
+        json.dumps({"schema_version": "lolla_agent_result.v1", "run_id": "archived-active"}),
+        encoding="utf-8",
+    )
+    (run_dir / "memo.md").write_text("# Archived Active Memo\n\nFallback.\n", encoding="utf-8")
+    (run_dir / "graph_survival_report.json").write_text(
+        json.dumps({"schema_version": "graph_survival_report.v1", "run_id": "archived-active"}),
+        encoding="utf-8",
+    )
+
+    status, body = _http_get(f"{running_server}/api/case/lolla-audit/agent-result")
+    assert status == 200
+    assert json.loads(body)["run_id"] == "archived-active"
+
+    status, body = _http_get(f"{running_server}/api/case/lolla-audit/memo")
+    assert status == 200
+    assert "Fallback" in json.loads(body)["markdown"]
+
+    status, body = _http_get(f"{running_server}/api/case/lolla-audit/graph-survival")
+    assert status == 200
+    assert json.loads(body)["report"]["run_id"] == "archived-active"
+
+
+def test_active_prefixed_sidecar_wins_over_stale_plain_tmp_sidecar(
+    tmp_path,
+    monkeypatch,
+    running_server,
+):
+    active = json.loads(json.dumps(_fixture_result()))
+    active["usage_summary"] = {"run_id": "active-run"}
+    result_path = tmp_path / "lolla_active_run_result.json"
+    _set_active_result(monkeypatch, result_path, active)
+
+    (tmp_path / "agent_result.json").write_text(
+        json.dumps({"run_id": "stale-plain-sidecar"}),
+        encoding="utf-8",
+    )
+    (tmp_path / "lolla_active_run_agent_result.json").write_text(
+        json.dumps({"run_id": "preferred-prefixed-sidecar"}),
+        encoding="utf-8",
+    )
+
+    status, body = _http_get(f"{running_server}/api/case/lolla-audit/agent-result")
+
+    assert status == 200
+    assert json.loads(body)["run_id"] == "preferred-prefixed-sidecar"
+
+
+def test_active_archive_style_result_still_uses_same_directory_sidecar(
+    tmp_path,
+    monkeypatch,
+    running_server,
+):
+    run_dir = tmp_path / "archive-style" / "run"
+    run_dir.mkdir(parents=True)
+    active = json.loads(json.dumps(_fixture_result()))
+    active["usage_summary"] = {"run_id": "active-archive-style"}
+    result_path = run_dir / "result.json"
+    _set_active_result(monkeypatch, result_path, active)
+    (run_dir / "agent_result.json").write_text(
+        json.dumps({"run_id": "same-directory-active"}),
+        encoding="utf-8",
+    )
+
+    status, body = _http_get(f"{running_server}/api/case/lolla-audit/agent-result")
+
+    assert status == 200
+    assert json.loads(body)["run_id"] == "same-directory-active"
+
+
+def test_active_sidecar_endpoint_missing_file_returns_404(
+    tmp_path,
+    monkeypatch,
+    running_server,
+):
+    active = json.loads(json.dumps(_fixture_result()))
+    active["usage_summary"] = {"run_id": "active-run"}
+    result_path = tmp_path / "lolla_active_run_result.json"
+    _set_active_result(monkeypatch, result_path, active)
+
+    status, body = _http_get_error(f"{running_server}/api/case/lolla-audit/agent-result")
+
+    assert status == 404
+    assert "agent_result.json" in body
+
+
 def test_selected_archived_sidecar_endpoint_missing_file_returns_404(
     tmp_path,
     monkeypatch,
