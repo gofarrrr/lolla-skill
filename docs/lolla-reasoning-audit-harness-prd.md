@@ -38,10 +38,10 @@ For a human user, that can create borrowed certainty. For an agent, it can becom
 
 Current Lolla already audits these answers well in a local skill setting. But the current product surface has four practical limitations:
 
-1. **Agent integration is only beginning.** New archived runs now produce a compact `lolla_agent_result.v1` handoff, but risk modes, control-plane input metadata, trigger policy, deterministic evaluation artifacts, and deeper integration behavior are still roadmap items.
-2. **Observability is ahead of evaluation.** Lolla records what happened, but does not yet systematically evaluate whether the revised answer is better, more grounded, less overconfident, or more actionable.
+1. **Agent integration is only beginning.** New archived runs now produce a compact `lolla_agent_result.v1` handoff, metadata-only `risk_mode`, and a deterministic `evaluation.json` run-readiness receipt, but control-plane input metadata, trigger policy, risk-mode behavior changes, subjective evaluation, and deeper integration behavior are still roadmap items.
+2. **Observability is ahead of subjective evaluation.** Lolla records what happened and can now check deterministic run-envelope consistency, but does not yet systematically evaluate whether the revised answer is better, more grounded, less overconfident, or more actionable.
 3. **Long-conversation capture is still blunt.** The first-3-plus-last-15 rule is practical, but can omit middle turns where constraints, reversals, or dropped threads were introduced.
-4. **Risk level is not first-class.** A career decision, legal whistleblower scenario, product roadmap choice, and casual strategy brainstorm should not all use the same cost, evidence standard, optional reviewer behavior, or final warning language.
+4. **Risk level is not behaviorally first-class yet.** A career decision, legal whistleblower scenario, product roadmap choice, and casual strategy brainstorm should not all use the same cost, evidence standard, optional reviewer behavior, or final warning language. Today `risk_mode` is persisted as metadata, but it does not yet change prompts, cost, Step 7, capture strictness, or evaluation behavior.
 
 The Claude Code design-space paper strengthens the architectural direction: successful agent systems keep the model loop simple and invest in the deterministic harness around it. Lolla should apply that lesson to reasoning quality.
 
@@ -502,6 +502,15 @@ Minimum checks:
 - Is run health consistent with the artifact state?
 
 Heuristic checks may flag possible issues for review, such as missing action delta, absent gate language, or overlong/underdeveloped output. These should not be treated as final truth until validated through human error analysis.
+
+Current shipped slice:
+
+- Archived runs now generate `evaluation.json` with schema `lolla.evaluation.v0`.
+- The v0 artifact checks deterministic run-readiness: required artifacts, schema versions, reasoning-trace custody, product/live hygiene states, provider-boundary policy consistency, caller-action conservatism, and archive readiness.
+- It does not score advice quality, helpfulness, coherence, wisdom, or correctness.
+- It does not yet add heuristic answer-quality checks, an Observatory evaluation page, a compact summary inside `agent_result.json`, or run-health degradation beyond existing health policy.
+
+Full R7 acceptance remains broader than this shipped v0 receipt.
 
 Acceptance criteria:
 

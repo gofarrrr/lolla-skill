@@ -372,6 +372,19 @@ Map the general Eval OS idea onto Lolla:
 | Release gate dashboard | CLI report plus Observatory page showing regressions by failure mode. |
 | Production monitor | Periodic review of recent local runs, run health, cost, output hygiene, and user feedback. |
 
+## Current Runtime Artifact
+
+Archived runs now generate `evaluation.json` (`lolla.evaluation.v0`) as a
+deterministic run-readiness receipt. It checks the run envelope: required
+artifacts, schema versions, reasoning-trace custody, health and hygiene states,
+provider-boundary policy consistency, and caller-action conservatism.
+
+This artifact is intentionally not an advice-quality judge. It does not score
+helpfulness, wisdom, coherence, correctness, taste, or whether the revised
+position is substantively right. It answers a narrower release-gate question:
+did this run produce the procedural envelope it claims to have produced, and
+are there deterministic reasons a caller should inspect or reject it?
+
 ## Release Gate Philosophy
 
 No future Lolla change should be evaluated only by looking at one impressive live run.

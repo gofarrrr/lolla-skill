@@ -192,7 +192,7 @@ runtime path writes a mode field into `result.json`.
 Control-plane wrappers such as `lolla_control_input.v1` and
 `lolla_control_result.v1` are still proposed roadmap items.
 
-`evaluation.json` is not implemented yet. The agent result does not claim that
-the revised answer passed a deterministic or calibrated subjective eval. It
-only summarizes existing run health, product artifacts, and safe-to-consume
-status.
+`evaluation.json` now exists as a deterministic run-readiness receipt for
+archived runs. It checks artifact presence, schemas, custody links, hygiene
+states, and caller-policy consistency. It does not claim that the revised
+answer passed a subjective quality, helpfulness, or correctness judge.

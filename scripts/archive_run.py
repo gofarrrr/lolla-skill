@@ -38,6 +38,8 @@ Files archived (19 core/optional):
 Generated archive artifacts:
   agent_result.json — compact machine-readable lolla_agent_result.v1 handoff
   for agents and control systems.
+  evaluation.json — deterministic run-readiness receipt for artifact/schema/
+  custody/health consistency. It is not an advice-quality judge.
   graph_survival_report.json — research/operator report showing graph candidates,
   embedding recalls, selected cards, Step 6 uptake, suppressed/unadjudicated
   signals, and visible/private survival.
@@ -432,6 +434,26 @@ def archive_run(
         manifest=manifest,
     )
     generated_files.append(trace_path.name)
+    evaluation_path = _write_evaluation_for_archive(
+        run_dir=run_dir,
+        run_id=run_id,
+        case_id=case_dir.name,
+        tmp_dir=tmp_dir,
+    )
+    generated_files.append(evaluation_path.name)
+    trace_index_files = copied + [
+        filename for filename in generated_files if filename != trace_path.name
+    ]
+    trace_path = _write_reasoning_trace_for_archive(
+        run_dir=run_dir,
+        run_id=run_id,
+        case_id=case_dir.name,
+        fingerprint=fingerprint,
+        how_matched=how_matched,
+        files_copied=trace_index_files,
+        files_missing=missing,
+        manifest=manifest,
+    )
 
     return {
         "case_dir": str(case_dir),
@@ -498,6 +520,26 @@ def _write_agent_result_for_archive(
         tmp_copy_path=tmp_dir / f"lolla_{run_id}_agent_result.json",
     )
     return agent_path
+
+
+def _write_evaluation_for_archive(
+    *,
+    run_dir: Path,
+    run_id: str,
+    case_id: str,
+    tmp_dir: Path,
+) -> Path:
+    """Generate deterministic evaluation after agent result and trace exist."""
+    _ensure_repo_root_on_path()
+    from engine.system_b.evaluation import write_evaluation
+
+    evaluation_path, _payload = write_evaluation(
+        run_dir,
+        run_id=run_id,
+        case_id=case_id,
+        tmp_copy_path=tmp_dir / f"lolla_{run_id}_evaluation.json",
+    )
+    return evaluation_path
 
 
 def _write_graph_survival_artifacts_for_archive(*, run_dir: Path) -> list[str]:

@@ -66,6 +66,74 @@ def test_archive_run_marks_active_v60_missing_ledger_before_copy(tmp_path: Path)
     assert archived_result["v60_consideration_validation"]["status"] == "missing"
 
 
+def test_archive_run_writes_evaluation_artifact_and_tmp_copy(tmp_path: Path) -> None:
+    run_id = "evalarchive"
+    tmp_dir = tmp_path / "tmp"
+    archive_root = tmp_path / "archive"
+    tmp_dir.mkdir()
+
+    (tmp_dir / f"lolla_{run_id}_conversation.txt").write_text(
+        "CONVERSATION\n\n[Turn 1] USER:\nShould we pivot?\n",
+        encoding="utf-8",
+    )
+    (tmp_dir / f"lolla_{run_id}_extraction.json").write_text(
+        json.dumps(
+            {
+                "status": "ok",
+                "capture_health": "good",
+                "extraction": {
+                    "decision_situation": "Founder deciding whether to pivot",
+                    "reasoning_passages": ["Only pivot after a customer evidence gate."],
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+    (tmp_dir / f"lolla_{run_id}_result.json").write_text(
+        json.dumps(
+            {
+                "run_health": {
+                    "overall": "healthy",
+                    "product_output_health": "clean",
+                    "live_output_health": "clean",
+                    "issues": [],
+                    "issue_details": [],
+                },
+                "v60_enrichment": {"status": "disabled"},
+                "revised_answer": "Only pivot after a customer evidence gate.",
+            }
+        ),
+        encoding="utf-8",
+    )
+    (tmp_dir / f"lolla_{run_id}_revised.txt").write_text(
+        "Only pivot after a customer evidence gate.",
+        encoding="utf-8",
+    )
+    (tmp_dir / f"lolla_{run_id}_memo.md").write_text("# Memo\n", encoding="utf-8")
+    (tmp_dir / f"lolla_{run_id}_run_events.json").write_text(
+        json.dumps({"schema_version": "lolla.run_events.v0.1", "run_id": run_id, "events": []}),
+        encoding="utf-8",
+    )
+
+    archive_run = _load_archive_run_module()
+    archived = archive_run.archive_run(
+        run_id,
+        archive_root=archive_root,
+        tmp_dir=tmp_dir,
+    )
+
+    run_dir = Path(archived["run_dir"])
+    evaluation = json.loads((run_dir / "evaluation.json").read_text(encoding="utf-8"))
+    trace = json.loads((run_dir / "reasoning_trace.json").read_text(encoding="utf-8"))
+    artifact_by_path = {item["path"]: item for item in trace["artifacts"]}
+
+    assert "evaluation.json" in archived["files_generated"]
+    assert (tmp_dir / f"lolla_{run_id}_evaluation.json").exists()
+    assert evaluation["schema_version"] == "lolla.evaluation.v0"
+    assert evaluation["scope"]["llm_judge_used"] is False
+    assert artifact_by_path["evaluation.json"]["role"] == "deterministic_evaluation"
+
+
 def test_archive_run_copies_pre_step6_shadow_portfolio_sidecar(tmp_path: Path) -> None:
     run_id = "shadowcopy"
     tmp_dir = tmp_path / "tmp"
