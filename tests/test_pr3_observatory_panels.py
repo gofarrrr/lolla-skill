@@ -817,6 +817,17 @@ def test_selected_archived_sidecar_endpoints_return_archived_run_artifacts(
         json.dumps({"schema_version": "lolla_reasoning_trace.v1", "process": {"run_id": "archive-run"}}),
         encoding="utf-8",
     )
+    (run_dir / "evaluation.json").write_text(
+        json.dumps(
+            {
+                "schema_version": "lolla.evaluation.v0",
+                "overall": "warn",
+                "caller_readiness": "do_not_use",
+                "run_id": "archive-run",
+            }
+        ),
+        encoding="utf-8",
+    )
     (run_dir / "run_events.json").write_text(
         json.dumps([{"event": "archive_completed", "run_id": "archive-run"}]),
         encoding="utf-8",
@@ -842,6 +853,13 @@ def test_selected_archived_sidecar_endpoints_return_archived_run_artifacts(
     status, body = _http_get(f"{running_server}/api/case/{encoded}/reasoning-trace")
     assert status == 200
     assert json.loads(body)["process"]["run_id"] == "archive-run"
+
+    status, body = _http_get(f"{running_server}/api/case/{encoded}/evaluation")
+    assert status == 200
+    evaluation = json.loads(body)
+    assert evaluation["schema_version"] == "lolla.evaluation.v0"
+    assert evaluation["run_id"] == "archive-run"
+    assert evaluation["caller_readiness"] == "do_not_use"
 
     status, body = _http_get(f"{running_server}/api/case/{encoded}/events")
     assert status == 200
@@ -890,6 +908,17 @@ def test_active_sidecar_endpoints_return_prefixed_tmp_run_artifacts(
         json.dumps({"schema_version": "lolla_reasoning_trace.v1", "process": {"run_id": "active-run"}}),
         encoding="utf-8",
     )
+    (tmp_path / "lolla_active_run_evaluation.json").write_text(
+        json.dumps(
+            {
+                "schema_version": "lolla.evaluation.v0",
+                "overall": "pass",
+                "caller_readiness": "ready",
+                "run_id": "active-run",
+            }
+        ),
+        encoding="utf-8",
+    )
     (tmp_path / "lolla_active_run_run_events.json").write_text(
         json.dumps({"schema_version": "lolla.run_events.v0.1", "run_id": "active-run", "events": []}),
         encoding="utf-8",
@@ -914,6 +943,12 @@ def test_active_sidecar_endpoints_return_prefixed_tmp_run_artifacts(
     status, body = _http_get(f"{running_server}/api/case/lolla-audit/reasoning-trace")
     assert status == 200
     assert json.loads(body)["process"]["run_id"] == "active-run"
+
+    status, body = _http_get(f"{running_server}/api/case/lolla-audit/evaluation")
+    assert status == 200
+    evaluation = json.loads(body)
+    assert evaluation["schema_version"] == "lolla.evaluation.v0"
+    assert evaluation["run_id"] == "active-run"
 
     status, body = _http_get(f"{running_server}/api/case/lolla-audit/events")
     assert status == 200
@@ -966,6 +1001,17 @@ def test_active_sidecar_endpoints_fall_back_to_archive_path_from_run_events(
         json.dumps({"schema_version": "lolla_agent_result.v1", "run_id": "archived-active"}),
         encoding="utf-8",
     )
+    (run_dir / "evaluation.json").write_text(
+        json.dumps(
+            {
+                "schema_version": "lolla.evaluation.v0",
+                "overall": "warn",
+                "caller_readiness": "inspect_first",
+                "run_id": "archived-active",
+            }
+        ),
+        encoding="utf-8",
+    )
     (run_dir / "memo.md").write_text("# Archived Active Memo\n\nFallback.\n", encoding="utf-8")
     (run_dir / "graph_survival_report.json").write_text(
         json.dumps({"schema_version": "graph_survival_report.v1", "run_id": "archived-active"}),
@@ -973,6 +1019,10 @@ def test_active_sidecar_endpoints_fall_back_to_archive_path_from_run_events(
     )
 
     status, body = _http_get(f"{running_server}/api/case/lolla-audit/agent-result")
+    assert status == 200
+    assert json.loads(body)["run_id"] == "archived-active"
+
+    status, body = _http_get(f"{running_server}/api/case/lolla-audit/evaluation")
     assert status == 200
     assert json.loads(body)["run_id"] == "archived-active"
 
@@ -1047,6 +1097,11 @@ def test_active_sidecar_endpoint_missing_file_returns_404(
     assert status == 404
     assert "agent_result.json" in body
 
+    status, body = _http_get_error(f"{running_server}/api/case/lolla-audit/evaluation")
+
+    assert status == 404
+    assert "evaluation.json" in body
+
 
 def test_selected_archived_sidecar_endpoint_missing_file_returns_404(
     tmp_path,
@@ -1066,6 +1121,11 @@ def test_selected_archived_sidecar_endpoint_missing_file_returns_404(
     assert status == 404
     assert "agent_result.json" in body
 
+    status, body = _http_get_error(f"{running_server}/api/case/{archived_id}/evaluation")
+
+    assert status == 404
+    assert "evaluation.json" in body
+
 
 def test_selected_archived_sidecar_endpoint_rejects_archive_escape(
     tmp_path,
@@ -1081,10 +1141,19 @@ def test_selected_archived_sidecar_endpoint_rejects_archive_escape(
         json.dumps({"run_id": "escaped-run"}),
         encoding="utf-8",
     )
+    (escaped_dir / "evaluation.json").write_text(
+        json.dumps({"schema_version": "lolla.evaluation.v0", "run_id": "escaped-run"}),
+        encoding="utf-8",
+    )
     monkeypatch.setenv("LOLLA_ARCHIVE_DIR", str(archive_root))
 
     escaped_id = urllib.parse.quote("archive:archive-case:../../outside", safe="")
     status, body = _http_get_error(f"{running_server}/api/case/{escaped_id}/agent-result")
+
+    assert status == 404
+    assert "escaped-run" not in body
+
+    status, body = _http_get_error(f"{running_server}/api/case/{escaped_id}/evaluation")
 
     assert status == 404
     assert "escaped-run" not in body
@@ -2111,6 +2180,10 @@ def test_telemetry_fab_injection_inserts_before_body_close():
     assert "lolla-custody-panel--floating" in out
     assert 'key: "agent-result"' in out
     assert 'key: "reasoning-trace"' in out
+    assert 'key: "evaluation"' in out
+    assert 'label: "evaluation.json"' in out
+    assert "overall ${payload.overall}" in out
+    assert "readiness ${payload.caller_readiness}" in out
     assert 'key: "events"' in out
     assert 'key: "memo"' in out
     assert 'key: "graph-survival"' in out

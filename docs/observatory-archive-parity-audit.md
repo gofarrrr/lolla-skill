@@ -119,14 +119,17 @@ fixed local endpoints and shows a compact selected-run custody panel in the SPA:
 1. Selected-case sidecar API endpoints:
    - `/api/case/<id>/agent-result`
    - `/api/case/<id>/reasoning-trace`
+   - `/api/case/<id>/evaluation`
    - `/api/case/<id>/events`
    - `/api/case/<id>/memo`
    - `/api/case/<id>/graph-survival`
 
-   The first three return the raw JSON sidecar. `memo` returns a JSON wrapper
-   with artifact metadata and the markdown string. `graph-survival` returns a
-   JSON wrapper with the report JSON plus optional markdown artifact metadata and
-   markdown string when `graph_survival_report.md` exists.
+   `agent-result`, `reasoning-trace`, `evaluation`, and `events` return the raw
+   JSON sidecar. `evaluation` is the deterministic run-readiness receipt, not an
+   advice-quality judge. `memo` returns a JSON wrapper with artifact metadata and
+   the markdown string. `graph-survival` returns a JSON wrapper with the report
+   JSON plus optional markdown artifact metadata and markdown string when
+   `graph_survival_report.md` exists.
 
 2. Resolve selected case IDs to archive run directories using the same archive
    lookup code already used by `/api/case/<id>`.
@@ -138,9 +141,10 @@ fixed local endpoints and shows a compact selected-run custody panel in the SPA:
 4. Add deterministic tests proving selected archived cases can retrieve each
    sidecar independently of the active `_RESULT`.
 
-5. The SPA selected-run custody panel shows availability and links for those
-   artifacts. Missing sidecars render as unavailable rather than broken. The
-   server-rendered `/audit/*` pages remain active-run scoped.
+5. The SPA selected-run custody panel shows availability, compact previews, and
+   links for those artifacts, including `evaluation.json` overall/readiness.
+   Missing sidecars render as unavailable rather than broken. The server-rendered
+   `/audit/*` pages remain active-run scoped.
 
 This keeps the next step aligned with the manual Lolla loop: run Lolla, open the
 Observatory, inspect what happened, and trust the archive because the custody

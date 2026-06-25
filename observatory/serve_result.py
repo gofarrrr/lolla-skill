@@ -458,6 +458,15 @@ _SELECTED_RUN_CUSTODY_PANEL_SCRIPT = """
       },
     },
     {
+      key: "evaluation",
+      label: "evaluation.json",
+      describe: (payload) => [
+        payload && payload.schema_version,
+        payload && payload.overall ? `overall ${payload.overall}` : "",
+        payload && payload.caller_readiness ? `readiness ${payload.caller_readiness}` : "",
+      ].filter(Boolean).join(" · "),
+    },
+    {
       key: "events",
       label: "run_events.json",
       describe: (payload) => {
@@ -4398,6 +4407,13 @@ class ResultHandler(SimpleHTTPRequestHandler):
                 self._json_sidecar_response(
                     result_path,
                     "reasoning_trace.json",
+                    is_current=is_current,
+                )
+                return
+            if len(parts) == 5 and parts[4] == "evaluation":
+                self._json_sidecar_response(
+                    result_path,
+                    "evaluation.json",
                     is_current=is_current,
                 )
                 return
