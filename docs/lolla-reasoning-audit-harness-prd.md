@@ -496,6 +496,13 @@ Requirements:
 - Use LLM judges only for fuzzy checks, only with binary labels, and only after calibration against human labels.
 - Include adversarial judge-calibration pairs where the smoother answer is worse than the rougher but more decision-protective answer.
 
+Current v0 slice:
+
+- `docs/evals/lolla-failure-taxonomy.md` defines the initial human-review failure taxonomy.
+- `docs/evals/lolla-human-review-v0.json` defines the machine-readable `lolla.human_review.v0` label contract.
+- `docs/evals/human-review-workflow.md` defines the first reviewer workflow over PR13 review-corpus records.
+- `engine/system_b/human_review.py` validates label objects for local tooling.
+
 Acceptance criteria:
 
 - The methodology doc is linked from this PRD and `HOW_IT_WORKS.md`.

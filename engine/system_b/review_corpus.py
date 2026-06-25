@@ -15,12 +15,12 @@ from pathlib import Path
 from typing import Any
 
 from .control_plane import control_input_summary
+from .human_review import HUMAN_REVIEW_SCHEMA_VERSION, blank_human_review_template
 from .reasoning_trace_dataset import DEFAULT_ARCHIVE_ROOT
 
 
 REVIEW_CORPUS_RECORD_SCHEMA_VERSION = "lolla.review_corpus_record.v0"
 REVIEW_CORPUS_MANIFEST_SCHEMA_VERSION = "lolla.review_corpus_manifest.v0"
-HUMAN_REVIEW_SCHEMA_VERSION = "lolla.human_review.v0"
 
 REQUIRED_ARTIFACTS = (
     "conversation.txt",
@@ -251,24 +251,6 @@ def build_review_corpus_manifest(
         "caller_readiness_counts": _counter_dict(readiness),
         "provider_boundary_health_status_counts": _counter_dict(provider_statuses),
         "scope": _export_scope("review_corpus_manifest"),
-    }
-
-
-def blank_human_review_template() -> dict[str, Any]:
-    """Return the blank review fields carried by every corpus record."""
-
-    return {
-        "schema_version": HUMAN_REVIEW_SCHEMA_VERSION,
-        "reviewer_id": None,
-        "review_status": None,
-        "primary_failure_mode": None,
-        "severity": None,
-        "useful_friction": None,
-        "noisy_friction": None,
-        "missing_friction": None,
-        "revised_answer_improved": None,
-        "safe_for_agent_use": None,
-        "reviewer_notes": None,
     }
 
 

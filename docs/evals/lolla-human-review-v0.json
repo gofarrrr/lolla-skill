@@ -1,0 +1,91 @@
+{
+  "allowed_values": {
+    "missing_friction": [
+      "present",
+      "partial",
+      "absent",
+      "unclear",
+      "not_applicable"
+    ],
+    "noisy_friction": [
+      "present",
+      "partial",
+      "absent",
+      "unclear",
+      "not_applicable"
+    ],
+    "primary_failure_mode": [
+      "none",
+      "capture_loss",
+      "artifact_custody_failure",
+      "private_public_leak",
+      "audit_pressure_ignored",
+      "smooth_no_op",
+      "unearned_noise",
+      "overcorrection",
+      "constraint_drift",
+      "unsupported_new_claim",
+      "memo_divergence",
+      "false_clean_health",
+      "judge_palatable_blandness"
+    ],
+    "review_status": [
+      "pass",
+      "fail",
+      "needs_followup",
+      "exclude_from_eval"
+    ],
+    "revised_answer_improved": [
+      "yes",
+      "partly",
+      "no",
+      "unclear"
+    ],
+    "safe_for_agent_use": [
+      "yes",
+      "with_human_review",
+      "no",
+      "unclear"
+    ],
+    "severity": [
+      "none",
+      "low",
+      "medium",
+      "high",
+      "critical"
+    ],
+    "useful_friction": [
+      "present",
+      "partial",
+      "absent",
+      "unclear",
+      "not_applicable"
+    ]
+  },
+  "fields": [
+    "schema_version",
+    "reviewer_id",
+    "review_status",
+    "primary_failure_mode",
+    "severity",
+    "useful_friction",
+    "noisy_friction",
+    "missing_friction",
+    "revised_answer_improved",
+    "safe_for_agent_use",
+    "reviewer_notes"
+  ],
+  "review_record_schema_version": "lolla.human_review.v0",
+  "schema_version": "lolla.human_review_schema.v0",
+  "scope": {
+    "advice_quality_scored_automatically": false,
+    "automatic_approval": false,
+    "human_review_only": true,
+    "llm_judge_used": false,
+    "model_calls": 0
+  },
+  "string_or_null_fields": [
+    "reviewer_id",
+    "reviewer_notes"
+  ]
+}

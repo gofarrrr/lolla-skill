@@ -195,6 +195,9 @@ This distinction should be built into every subjective Lolla eval.
 ## Initial Failure Taxonomy
 
 This is a starting taxonomy. It must be revised after real error analysis.
+The versioned v0 review contract now lives in
+`docs/evals/lolla-failure-taxonomy.md`, with the machine-readable label schema
+in `docs/evals/lolla-human-review-v0.json`.
 
 | ID | Failure mode | Eval type |
 |---|---|---|
@@ -373,6 +376,12 @@ helpfulness, wisdom, coherence, correctness, or advice quality; it does not use
 an LLM judge; and it intentionally avoids copying raw transcript, memo, revised
 answer, or proposed-action argument values into the corpus record.
 
+The v0 human workflow is documented in
+`docs/evals/human-review-workflow.md`. It defines how reviewers label the first
+upstream failure, useful/noisy/missing friction, revised-answer improvement, and
+human `safe_for_agent_use` judgment without overriding
+`agent_result.caller_action`.
+
 ## Evaluation OS For Lolla
 
 Map the general Eval OS idea onto Lolla:
@@ -381,7 +390,7 @@ Map the general Eval OS idea onto Lolla:
 |---|---|
 | Trace lake | Archived run folders plus `agent_result.json`, `evaluation.json`, and `reasoning_trace.json`. |
 | Annotation UI | Observatory review mode or exported JSONL review corpus with blank human-review fields. |
-| Failure taxonomy registry | Versioned file such as `docs/evals/lolla-failure-taxonomy.md` or JSON. |
+| Failure taxonomy registry | `docs/evals/lolla-failure-taxonomy.md` plus `docs/evals/lolla-human-review-v0.json`. |
 | Eval suite manager | Scripts that run deterministic checks and calibrated judges over archived traces. |
 | Release gate dashboard | CLI report plus Observatory page showing regressions by failure mode. |
 | Production monitor | Periodic review of recent local runs, run health, cost, output hygiene, and user feedback. |
