@@ -169,6 +169,81 @@ def test_finalize_product_output_hygiene_records_clean_product_output() -> None:
     assert result["run_health"]["product_output_health"] == "clean"
     assert result["run_health"]["product_output_leak_count"] == 0
     assert result["product_output_hygiene"]["status"] == "clean"
+    assert result["run_health"]["provider_boundary_health"]["status"] == "clean"
+
+
+def test_provider_boundary_health_marks_clean_product_output_as_contained_warning() -> None:
+    result = finalize_product_output_hygiene(
+        {
+            "run_health": {
+                "overall": "partial",
+                "issues": ["vendor_boundary_reasoning_leak"],
+                "issue_details": [
+                    {
+                        "code": "vendor_boundary_reasoning_leak",
+                        "severity": "partial",
+                        "axis": "vendor_boundary",
+                        "leak_count": 2,
+                        "models": ["google/gemini-3.1-flash-lite-20260507"],
+                        "stages": ["extraction", "lane2.companion"],
+                    }
+                ],
+                "boundary_reasoning_leak_detected": True,
+                "boundary_reasoning_leak_count": 2,
+                "boundary_reasoning_leak_models": [
+                    "google/gemini-3.1-flash-lite-20260507"
+                ],
+                "boundary_reasoning_leak_stages": ["extraction", "lane2.companion"],
+            },
+        },
+        {
+            "revised_answer": "Ask what evidence would change the decision.",
+            "memo_markdown": "## What changed\n\nThe answer now requires a diligence gate.",
+        },
+    )
+
+    provider_health = result["run_health"]["provider_boundary_health"]
+    assert result["run_health"]["overall"] == "partial"
+    assert provider_health["status"] == "warning_contained"
+    assert provider_health["affected_call_count"] == 2
+    assert provider_health["affected_models"] == [
+        "google/gemini-3.1-flash-lite-20260507"
+    ]
+    assert provider_health["product_output_health"] == "clean"
+    assert provider_health["product_contamination_detected"] is False
+    assert provider_health["archive_custody_contamination_status"] == "not_detected"
+    assert provider_health["raw_reasoning_details_persisted"] is False
+
+
+def test_provider_boundary_health_marks_product_contamination_separately() -> None:
+    result = finalize_product_output_hygiene(
+        {
+            "run_health": {
+                "overall": "partial",
+                "issues": ["vendor_boundary_reasoning_leak"],
+                "issue_details": [
+                    {
+                        "code": "vendor_boundary_reasoning_leak",
+                        "severity": "partial",
+                        "axis": "vendor_boundary",
+                        "leak_count": 1,
+                    }
+                ],
+                "boundary_reasoning_leak_detected": True,
+                "boundary_reasoning_leak_count": 1,
+            },
+        },
+        {
+            "revised_answer": "The V60 chunk should be surfaced.",
+        },
+    )
+
+    provider_health = result["run_health"]["provider_boundary_health"]
+    assert result["run_health"]["overall"] == "degraded"
+    assert provider_health["status"] == "confirmed_contamination"
+    assert provider_health["product_output_health"] == "unsafe"
+    assert provider_health["product_contamination_detected"] is True
+    assert provider_health["live_output_contamination_detected"] is False
 
 
 def test_finalize_product_output_hygiene_clears_stale_leak_issue_after_clean_rerun() -> None:
@@ -253,6 +328,36 @@ def test_finalize_live_output_hygiene_degrades_unsafe_live_transcript() -> None:
     )
     assert detail["severity"] == "degraded"
     assert detail["axis"] == "live_output"
+
+
+def test_provider_boundary_health_marks_live_contamination_separately() -> None:
+    result = finalize_live_output_hygiene(
+        {
+            "run_health": {
+                "overall": "partial",
+                "issues": ["vendor_boundary_reasoning_leak"],
+                "issue_details": [
+                    {
+                        "code": "vendor_boundary_reasoning_leak",
+                        "severity": "partial",
+                        "axis": "vendor_boundary",
+                        "leak_count": 1,
+                    }
+                ],
+                "boundary_reasoning_leak_detected": True,
+                "boundary_reasoning_leak_count": 1,
+                "product_output_health": "clean",
+            },
+        },
+        "Beat 2 is done. Now debugging the V60 ledger.",
+    )
+
+    provider_health = result["run_health"]["provider_boundary_health"]
+    assert result["run_health"]["overall"] == "degraded"
+    assert provider_health["status"] == "confirmed_contamination"
+    assert provider_health["product_contamination_detected"] is False
+    assert provider_health["live_output_health"] == "unsafe"
+    assert provider_health["live_output_contamination_detected"] is True
 
 
 def test_finalize_live_output_hygiene_degrades_cross_case_updated_position() -> None:

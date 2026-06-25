@@ -148,9 +148,10 @@ The V60 block also records what did not enter the hot context: skipped candidate
 - `embeddings` — `active` or `off`
 - `fingerprint` — `ok` if companion verified at least one model, `empty` otherwise
 - `findings_produced` — whether Lane 1 produced any findings
-- `issues` — legacy array naming what happened: `substrate_empty`, `embeddings_off`, `no_fingerprint`, `pipeline_warnings`, `capture_degraded`, `capture_critical`, `quote_fabrication`, `capture_truncated`, `lane3_all_dropped`, `bullshit_index_partial`, `stakeholder_check_failed`, `v60_enrichment_failed`, `v60_consideration_ledger_missing`, `v60_consideration_ledger_invalid`, `product_output_leak`, `live_output_leak`, `live_output_missing`, `live_output_unverified`
+- `issues` — legacy array naming what happened: `substrate_empty`, `embeddings_off`, `no_fingerprint`, `pipeline_warnings`, `vendor_boundary_reasoning_leak`, `capture_degraded`, `capture_critical`, `quote_fabrication`, `capture_truncated`, `lane3_all_dropped`, `bullshit_index_partial`, `stakeholder_check_failed`, `v60_enrichment_failed`, `v60_consideration_ledger_missing`, `v60_consideration_ledger_invalid`, `product_output_leak`, `live_output_leak`, `live_output_missing`, `live_output_unverified`
 - `issue_details` — structured severity records with `code`, `severity`, `axis`, `trust_impact`, and mode/count metadata
 - `warnings` — merged pipeline warnings + capture warnings
+- `provider_boundary_health` — structured provider-boundary metadata. It distinguishes no boundary issue, provider-returned reasoning details with unknown persistence, contained warning after product/live hygiene, and confirmed product/live-output contamination. It records counts, affected model/stage labels, and contamination booleans without exposing raw provider reasoning details.
 - `capture_manifest` (optional) — actual vs. declared turn counts and character length from the conversation capture
 - `bullshit_index_evaluation_failures` — passage-level delivery-audit calls that failed while the remaining passages still produced a partial profile
 - `activation_tiebreaker` — `"on"` or `"off"` (reflects the `LOLLA_ACTIVATION_TIEBREAKER` kill switch; default on)

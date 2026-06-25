@@ -443,6 +443,80 @@ def test_archive_run_reasoning_trace_records_missing_artifacts(tmp_path: Path) -
     assert trace["trace_adequacy"]["future_review_ready"] is False
 
 
+def test_reasoning_trace_records_provider_boundary_health_without_raw_reasoning(
+    tmp_path: Path,
+) -> None:
+    run_dir = tmp_path / "run"
+    run_dir.mkdir()
+    (run_dir / "extraction.json").write_text(
+        json.dumps({"status": "ok", "extraction": {"decision_situation": "Career decision"}}),
+        encoding="utf-8",
+    )
+    (run_dir / "result.json").write_text(
+        json.dumps(
+            {
+                "run_health": {
+                    "overall": "partial",
+                    "product_output_health": "clean",
+                    "live_output_health": "not_checked",
+                    "issues": ["vendor_boundary_reasoning_leak"],
+                    "issue_details": [
+                        {
+                            "code": "vendor_boundary_reasoning_leak",
+                            "severity": "partial",
+                            "axis": "vendor_boundary",
+                            "leak_count": 1,
+                            "models": ["google/gemini-3.1-flash-lite-20260507"],
+                            "stages": ["extraction"],
+                        }
+                    ],
+                    "boundary_reasoning_leak_detected": True,
+                    "boundary_reasoning_leak_count": 1,
+                    "boundary_reasoning_leak_models": [
+                        "google/gemini-3.1-flash-lite-20260507"
+                    ],
+                    "boundary_reasoning_leak_stages": ["extraction"],
+                },
+                "audit_summary": {
+                    "boundary_calls": [
+                        {
+                            "stage": "extraction",
+                            "model": "google/gemini-3.1-flash-lite-20260507",
+                            "status": "ok",
+                            "raw_message_content": "raw content marker should not appear",
+                            "reasoning_disabled": True,
+                            "reasoning_details_present": True,
+                        }
+                    ]
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    trace = build_reasoning_trace(
+        run_dir,
+        run_id="trace-provider-boundary",
+        case_id="career-decision",
+        fingerprint="career decision",
+        how_matched="new_case",
+        files_copied=["extraction.json", "result.json"],
+        files_missing=[],
+        manifest={},
+        created_at="2026-06-25T12:00:00Z",
+    )
+
+    provider_health = trace["process"]["run_health"]["provider_boundary_health"]
+    assert provider_health["status"] == "warning_contained"
+    assert provider_health["affected_call_count"] == 1
+    assert provider_health["raw_reasoning_details_persisted"] is False
+    assert trace["model_calls"][0]["reasoning_details_present"] is True
+    assert trace["model_calls"][0]["raw_message_content_present"] is True
+    serialized = json.dumps(trace)
+    assert "raw content marker should not appear" not in serialized
+    assert "reasoning_details\"" not in serialized
+
+
 def test_reasoning_trace_marks_spouse_gate_as_corrected_when_revised_answer_says_not_sufficient(
     tmp_path: Path,
 ) -> None:

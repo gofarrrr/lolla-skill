@@ -15,6 +15,7 @@ from pathlib import Path
 from typing import Any
 
 from .audit_mode import risk_mode_from_result
+from .provider_boundary_health import build_provider_boundary_health
 
 
 REASONING_TRACE_SCHEMA_VERSION = "lolla.reasoning_trace.v0.2"
@@ -68,6 +69,9 @@ def build_reasoning_trace(
     run_dir = Path(run_dir)
     extraction = _read_json_object(run_dir / "extraction.json")
     result = _read_json_object(run_dir / "result.json")
+    run_health = dict(_mapping(result.get("run_health")))
+    if run_health:
+        run_health["provider_boundary_health"] = build_provider_boundary_health(run_health)
     artifacts = _artifact_records(run_dir=run_dir, filenames=files_copied)
     missing_artifacts = _missing_artifact_records(files_missing)
     reasoning_lenses = _reasoning_lenses(result)
@@ -122,7 +126,7 @@ def build_reasoning_trace(
         "capture": _capture_summary(extraction=extraction, result=result),
         "process": {
             "risk_mode": risk_mode_from_result(result),
-            "run_health": _mapping(result.get("run_health")),
+            "run_health": run_health,
             "audit_summary": _audit_summary(result),
             "pressure_check": _pressure_check(result),
             "private_custody": _private_custody(result=result, run_dir=run_dir),

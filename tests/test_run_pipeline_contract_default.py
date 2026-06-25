@@ -525,6 +525,16 @@ def test_reasoning_detail_warning_propagates_to_run_health(
         assert payload["run_health"]["boundary_reasoning_leak_detected"] is True
         assert payload["run_health"]["boundary_reasoning_leak_count"] == 1
         assert payload["run_health"]["boundary_reasoning_leak_stages"] == ["extraction"]
+        provider_health = payload["run_health"]["provider_boundary_health"]
+        assert provider_health["schema_version"] == "lolla.provider_boundary_health.v0.1"
+        assert provider_health["status"] == "warning_unknown_persistence"
+        assert provider_health["reason"] == "vendor_returned_reasoning_details_despite_disabled"
+        assert provider_health["affected_call_count"] == 1
+        assert provider_health["affected_stages"] == ["extraction"]
+        assert provider_health["product_contamination_detected"] is False
+        assert provider_health["live_output_contamination_detected"] is False
+        assert provider_health["archive_custody_contamination_status"] == "not_checked"
+        assert provider_health["raw_reasoning_details_persisted"] is False
         assert "vendor_boundary_reasoning_leak" in payload["run_health"]["issues"]
         assert payload["run_health"]["issue_axis_counts"]["vendor_boundary"] == 1
         assert payload["run_health"]["partial_health_causes"] == [

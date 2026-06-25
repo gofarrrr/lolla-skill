@@ -10,6 +10,8 @@ import re
 from difflib import SequenceMatcher
 from typing import Any, Mapping
 
+from .provider_boundary_health import refresh_provider_boundary_health
+
 
 PRODUCT_OUTPUT_LEAK_ISSUE = "product_output_leak"
 LIVE_OUTPUT_LEAK_ISSUE = "live_output_leak"
@@ -505,6 +507,7 @@ def _refresh_derived_health_fields(run_health: dict[str, Any]) -> None:
         for item in details
         if _text(item.get("code")) and _text(item.get("severity")) == "partial"
     ]
+    refresh_provider_boundary_health(run_health)
 
 
 def _issue_axis_counts(issue_details: list[dict[str, Any]]) -> dict[str, int]:

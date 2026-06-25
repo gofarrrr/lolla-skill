@@ -63,6 +63,24 @@ Core fields:
   "run_health_overall": "healthy",
   "product_output_health": "clean",
   "live_output_health": "not_checked",
+  "provider_boundary_health": {
+    "schema_version": "lolla.provider_boundary_health.v0.1",
+    "status": "clean",
+    "reason": "no_provider_boundary_issue",
+    "issue_code": "",
+    "affected_call_count": 0,
+    "affected_models": [],
+    "affected_stages": [],
+    "reasoning_disabled": null,
+    "reasoning_details_returned": false,
+    "product_output_health": "clean",
+    "product_contamination_detected": false,
+    "live_output_health": "not_checked",
+    "live_output_contamination_detected": false,
+    "archive_custody_contamination_status": "not_applicable",
+    "raw_reasoning_details_persisted": false,
+    "raw_reasoning_details_persistence_basis": "not_applicable"
+  },
   "risk_mode": "standard",
   "caller_action": "use_revised_answer",
   "main_counter_pressure": "The answer treated customer interest as evidence before naming a reversal gate.",
@@ -118,6 +136,12 @@ Core fields:
 
 `run_health_overall` preserves the runtime value from `result.json`, usually
 `healthy`, `partial`, `degraded`, or `critical`.
+
+`provider_boundary_health` is a compact structured summary of provider-boundary
+issues. Today it distinguishes a vendor returning reasoning details despite
+disabled reasoning from product/live-output contamination. It intentionally
+records presence/count metadata, model/stage labels, and contamination status;
+it does not expose raw provider reasoning details.
 
 ## Caller Action
 

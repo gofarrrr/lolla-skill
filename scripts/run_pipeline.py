@@ -45,6 +45,7 @@ from system_b.audit_mode import (  # noqa: E402
     apply_risk_mode_metadata,
     audit_mode_from_env,
 )
+from system_b.provider_boundary_health import refresh_provider_boundary_health  # noqa: E402
 from system_b.run_state import assert_expected_run_state, infer_run_id_from_lolla_path  # noqa: E402
 
 
@@ -1444,6 +1445,7 @@ def main() -> int:
         serialized["run_health"]["stakeholder_assumption_check"] = stakeholder_check_payload.get("status")
     if _capture_manifest:
         serialized["run_health"]["capture_manifest"] = _capture_manifest
+    refresh_provider_boundary_health(serialized["run_health"])
 
     # Output
     if args.output == "summary":

@@ -156,6 +156,69 @@ def test_agent_result_blocks_automatic_use_for_partial_or_unsafe_run(tmp_path: P
     assert "not suitable for automatic agent action" in payload["notes"][0]
 
 
+def test_agent_result_exposes_provider_boundary_warning_without_raw_reasoning(
+    tmp_path: Path,
+) -> None:
+    run_dir = tmp_path / "run"
+    run_dir.mkdir()
+    _write_json(
+        run_dir / "extraction.json",
+        {"status": "ok", "extraction": {"decision_situation": "Career decision"}},
+    )
+    _write_json(
+        run_dir / "result.json",
+        {
+            "status": "ok",
+            "run_health": {
+                "overall": "partial",
+                "product_output_health": "clean",
+                "live_output_health": "not_checked",
+                "issues": ["vendor_boundary_reasoning_leak"],
+                "issue_details": [
+                    {
+                        "code": "vendor_boundary_reasoning_leak",
+                        "severity": "partial",
+                        "axis": "vendor_boundary",
+                        "leak_count": 51,
+                        "models": ["google/gemini-3.1-flash-lite-20260507"],
+                        "stages": ["extraction"],
+                    }
+                ],
+                "boundary_reasoning_leak_detected": True,
+                "boundary_reasoning_leak_count": 51,
+                "boundary_reasoning_leak_models": [
+                    "google/gemini-3.1-flash-lite-20260507"
+                ],
+                "boundary_reasoning_leak_stages": ["extraction"],
+            },
+            "revised_answer": "Use the revised answer only after inspection.",
+        },
+    )
+    (run_dir / "revised.txt").write_text(
+        "Use the revised answer only after inspection.",
+        encoding="utf-8",
+    )
+    (run_dir / "memo.md").write_text("# Memo\n", encoding="utf-8")
+
+    payload = build_agent_result(
+        run_dir,
+        run_id="run-provider-boundary",
+        created_at="2026-06-25T12:00:00Z",
+    )
+
+    assert payload["status"] == "partial"
+    assert payload["caller_action"] == "do_not_use_run_degraded"
+    provider_health = payload["provider_boundary_health"]
+    assert provider_health["status"] == "warning_contained"
+    assert provider_health["affected_call_count"] == 51
+    assert provider_health["product_contamination_detected"] is False
+    assert provider_health["live_output_contamination_detected"] is False
+    assert provider_health["raw_reasoning_details_persisted"] is False
+    serialized = json.dumps(payload)
+    assert "raw_message_content" not in serialized
+    assert "reasoning_details\"" not in serialized
+
+
 def test_agent_result_high_stakes_clean_run_asks_user_first(tmp_path: Path) -> None:
     run_dir = tmp_path / "run"
     run_dir.mkdir()

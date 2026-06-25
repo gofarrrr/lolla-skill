@@ -16,6 +16,7 @@ from pathlib import Path
 from typing import Any
 
 from .audit_mode import risk_mode_from_result
+from .provider_boundary_health import build_provider_boundary_health
 
 
 AGENT_RESULT_SCHEMA_VERSION = "lolla_agent_result.v1"
@@ -50,6 +51,7 @@ def build_agent_result(
     result = _read_json_object(run_dir / "result.json")
     extraction = _read_json_object(run_dir / "extraction.json")
     run_health = _mapping(result.get("run_health"))
+    provider_boundary_health = build_provider_boundary_health(run_health)
     artifact_status = _artifact_status(run_dir=run_dir, result=result)
     risk_mode = _risk_mode(result)
     status, status_reason = _status(
@@ -84,6 +86,7 @@ def build_agent_result(
         "run_health_overall": _text(run_health.get("overall")) or "unknown",
         "product_output_health": _text(run_health.get("product_output_health")) or "unknown",
         "live_output_health": _text(run_health.get("live_output_health")) or "unknown",
+        "provider_boundary_health": provider_boundary_health,
         "risk_mode": risk_mode,
         "caller_action": caller_action,
         "main_counter_pressure": _main_counter_pressure(result),
