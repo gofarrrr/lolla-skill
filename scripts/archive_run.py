@@ -25,19 +25,21 @@ Case matching (the "which case is this?" problem):
 
 Archive root: $LOLLA_ARCHIVE_DIR or ~/.local/share/lolla/runs/
 
-Files archived (19 core/optional):
+Files archived (20 core/optional):
   conversation.txt, extraction.json, result.json, revised.txt, memo.md,
   memo_note.json, gapcheck.txt, gapcheck_lanes.json, v60_ledger_skeleton.json,
   v60_ledger.json, pre_step6_shadow_portfolio.json, pre_step6_private_table.json,
   pre_step6_private_table.md, pre_step6_private_table_ledger.json,
   live_transcript.txt, operator.log, run_events.json,
-  user_usefulness_review.json, outcome_review.json.
+  user_usefulness_review.json, outcome_review.json, control_input.json.
   Missing files are skipped gracefully
   (e.g., if Step 6b was not executed by a weaker orchestrator).
 
 Generated archive artifacts:
   agent_result.json — compact machine-readable lolla_agent_result.v1 handoff
   for agents and control systems.
+  control_result.json — optional lolla_control_result.v1 wrapper generated
+  only when control_input.json was supplied.
   evaluation.json — deterministic run-readiness receipt for artifact/schema/
   custody/health consistency. It is not an advice-quality judge.
   graph_survival_report.json — research/operator report showing graph candidates,
@@ -91,6 +93,7 @@ CORE_FILES = (
     "run_events.json",
     "user_usefulness_review.json",
     "outcome_review.json",
+    "control_input.json",
 )
 
 # Stopwords dropped when generating an auto-slug from decision_situation.
@@ -422,6 +425,14 @@ def archive_run(
         tmp_dir=tmp_dir,
     )
     generated_files.append(agent_result_path.name)
+    control_result_path = _write_control_result_for_archive(
+        run_dir=run_dir,
+        run_id=run_id,
+        case_id=case_dir.name,
+        tmp_dir=tmp_dir,
+    )
+    if control_result_path is not None:
+        generated_files.append(control_result_path.name)
     files_for_trace = copied + generated_files
     trace_path = _write_reasoning_trace_for_archive(
         run_dir=run_dir,
@@ -520,6 +531,26 @@ def _write_agent_result_for_archive(
         tmp_copy_path=tmp_dir / f"lolla_{run_id}_agent_result.json",
     )
     return agent_path
+
+
+def _write_control_result_for_archive(
+    *,
+    run_dir: Path,
+    run_id: str,
+    case_id: str,
+    tmp_dir: Path,
+) -> Path | None:
+    """Generate the optional control-plane wrapper after agent result."""
+    _ensure_repo_root_on_path()
+    from engine.system_b.control_plane import write_control_result
+
+    control_path, _payload = write_control_result(
+        run_dir,
+        run_id=run_id,
+        case_id=case_id,
+        tmp_copy_path=tmp_dir / f"lolla_{run_id}_control_result.json",
+    )
+    return control_path
 
 
 def _write_evaluation_for_archive(

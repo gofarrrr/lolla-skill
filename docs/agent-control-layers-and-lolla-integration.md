@@ -1,7 +1,7 @@
 # Agent Control Layers And Lolla Integration
 
 Status: Draft
-Last updated: 2026-06-24
+Last updated: 2026-06-25
 
 ## Why This Exists
 
@@ -233,11 +233,19 @@ Output:
 
 This connects to the eval methodology.
 
-## Proposed Interop Contract
+## Implemented Interop Contract v0
 
-Lolla should eventually accept external control-plane metadata without depending on any one vendor.
+Lolla can now preserve external control-plane metadata without depending on any
+one vendor. This is a local archive contract, not a hosted API and not an
+enforcement layer.
 
-Tentative input object:
+Input sidecar:
+
+- Write `/tmp/lolla_<run_id>_control_input.json` before archive.
+- The archive preserves it as `{case}/{run}/control_input.json`.
+- Ordinary `$lolla` runs do not need this file.
+
+Example `lolla_control_input.v1`:
 
 ```json
 {
@@ -266,19 +274,31 @@ Tentative input object:
     "policy_engine": "crabtrap",
     "policy_decision": "needs_review",
     "sandbox_id": "sandbox_abc",
-    "credential_scope": "gmail.send"
+    "credential_scope": "gmail.send",
+    "tool_call_ids": ["tool_call_1"]
   }
 }
 ```
 
-Tentative output object:
+Generated output sidecar:
+
+- When `control_input.json` is present, archive generation writes
+  `{case}/{run}/control_result.json`.
+- It also writes `/tmp/lolla_<run_id>_control_result.json` for caller
+  convenience.
+- `agent_result.json` receives a compact `control_context` summary.
+- `reasoning_trace.json` indexes `control_input.json` and
+  `control_result.json`.
+
+Example `lolla_control_result.v1`:
 
 ```json
 {
   "schema_version": "lolla_control_result.v1",
   "run_id": "20260624T000000Z_example",
-  "mode": "pre_action_reasoning_gate",
+  "control_mode": "pre_action_reasoning_gate",
   "caller_action": "ask_user_first",
+  "approval_outcome": "require_human_approval",
   "reasoning_risk": "The action follows a plausible plan, but the agent has not tested the stakeholder cost or reversal condition.",
   "do_not_act_before": [
     "Confirm the user wants the email sent externally.",
@@ -292,11 +312,29 @@ Tentative output object:
     "agent_result": "/tmp/lolla_agent_result.json",
     "memo": "/tmp/lolla_memo.md",
     "archive": "/Users/example/.local/share/lolla/runs/case/run"
+  },
+  "boundary": {
+    "lolla_approves_actions": false,
+    "lolla_replaces_policy_engine": false,
+    "lolla_replaces_sandbox": false,
+    "lolla_replaces_identity_scope": false
   }
 }
 ```
 
-This should be additive to `lolla_agent_result.v1`, not a replacement for it.
+This is additive to `lolla_agent_result.v1`, not a replacement for it. Proposed
+action argument values are preserved in `control_input.json`; compact public
+summaries expose argument keys only.
+
+`caller_action` maps to control-plane outcome language as follows:
+
+| `caller_action` | Control-plane outcome |
+|---|---|
+| `use_revised_answer` | `proceed_with_external_policy` |
+| `ask_user_first` | `require_human_approval` |
+| `rerun_deeper` | `rerun_deeper` |
+| `do_not_use_run_degraded` | `block_reasoning_incomplete` |
+| `unsupported_high_stakes_domain` | `block_unsupported_stakes` |
 
 ## Design Implications For Lolla
 
@@ -310,7 +348,8 @@ Near-term:
 - `agent_result.json` is the first bridge: a compact archived
   `lolla_agent_result.v1` handoff with `caller_action`, run health, product
   summaries, and artifact pointers.
-- Control-plane fields can be added as optional metadata.
+- `control_input.json` and `control_result.json` are optional sidecars for
+  trace/action/approval metadata.
 
 Longer-term:
 
@@ -329,9 +368,9 @@ Lolla is slower, deeper, and more expensive. It should be triggered at decision 
 - incident review,
 - release/eval regression.
 
-### 3. Add Trace Reference Fields Early
+### 3. Keep Trace Reference Fields Compact
 
-Even before deep integrations, Lolla artifacts should be able to carry:
+The v0 sidecar and summaries carry:
 
 - `external_trace_id`,
 - `external_span_ids`,
@@ -343,7 +382,8 @@ Even before deep integrations, Lolla artifacts should be able to carry:
 - `sandbox_id`,
 - `credential_scope`.
 
-These fields make later interop possible.
+These fields make later interop possible without copying raw tool arguments
+into agent-facing summaries.
 
 ### 4. Make `caller_action` Useful For Control Systems
 
@@ -355,13 +395,8 @@ The current PRD's `caller_action` enum is the right bridge:
 - `do_not_use_run_degraded`
 - `unsupported_high_stakes_domain`
 
-For pre-action use, add or map to:
-
-- `approve_action`
-- `reject_action`
-- `approve_with_conditions`
-- `require_human_approval`
-- `block_reasoning_incomplete`
+For pre-action use, `control_result.json` maps the enum to approval-system
+language without adding a second source of truth.
 
 ### 5. Export To Eval And Observability Tools
 
@@ -381,11 +416,12 @@ Add one roadmap item:
 
 > Control-plane integration contract.
 
-Roadmap acceptance criteria:
+Current v0 acceptance:
 
 - Lolla can receive optional external trace/control metadata.
 - `agent_result.json` includes external trace references when supplied.
-- A pre-action gate mode is specified, even if not implemented.
+- A pre-action gate mode is represented in `control_input.json` /
+  `control_result.json` without changing audit behavior.
 - `caller_action` maps cleanly to approval systems.
 - Lolla docs explain how it complements, not replaces, proxies, sandboxes, and guardrails.
 

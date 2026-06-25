@@ -139,13 +139,17 @@ def test_reasoning_trace_archive_contract_is_preserved() -> None:
     archive = _read("scripts/archive_run.py")
     contract = "\n".join([skill, steps, archive])
 
-    assert "19 core/optional" in contract
+    assert "20 core/optional" in contract
     assert "operator.log" in contract
     assert "run_events.json" in contract
     assert "user_usefulness_review.json" in contract
     assert "outcome_review.json" in contract
     assert "agent_result.json" in contract
     assert "lolla_agent_result.v1" in contract
+    assert "control_input.json" in contract
+    assert "control_result.json" in contract
+    assert "lolla_control_result.v1" in contract
+    assert "does not approve actions" in contract
     assert "risk_mode" in contract
     assert "LOLLA_AUDIT_MODE" in contract
     assert "graph_survival_report.json" in contract

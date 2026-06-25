@@ -17,6 +17,7 @@ from typing import Any
 
 from .audit_mode import risk_mode_from_result
 from .capture_adequacy import capture_adequacy_from_artifacts
+from .control_plane import control_input_summary
 from .provider_boundary_health import build_provider_boundary_health
 
 
@@ -76,6 +77,7 @@ def build_agent_result(
     changed_advice_summary = _changed_advice_summary(result)
     take_backs = _take_backs(result)
     human_questions = _human_questions(result)
+    control_context = control_input_summary(run_dir)
     do_not_act_before = _do_not_act_before(
         result=result,
         caller_action=caller_action,
@@ -97,6 +99,7 @@ def build_agent_result(
         "capture_adequacy": _capture_adequacy_compact(capture_adequacy),
         "risk_mode": risk_mode,
         "caller_action": caller_action,
+        **({"control_context": control_context} if control_context else {}),
         "main_counter_pressure": _main_counter_pressure(result),
         "position_changed": _position_changed(
             result=result,

@@ -1,7 +1,7 @@
 # PRD: Lolla As A Reasoning-Audit Harness
 
 Status: Draft
-Last updated: 2026-06-24
+Last updated: 2026-06-25
 Audience: Lolla maintainers, agent builders, evaluation/governance reviewers, early technical collaborators
 
 ## Source Material
@@ -396,6 +396,12 @@ Acceptance criteria:
 Priority: P0
 Owner area: agent contract/docs/runtime artifacts
 
+Status: v0 metadata sidecar implemented. Archived runs can now preserve
+optional `control_input.json`, summarize compact control references in
+`agent_result.json` and `reasoning_trace.json`, and generate
+`control_result.json` when input is supplied. This does not add auto-triggering,
+approval enforcement, sandboxing, proxy behavior, or tool execution.
+
 Define optional metadata so Lolla can be called from agent frameworks, approval systems, proxies, sandboxes, or trace pipelines without depending on one vendor.
 
 The point is not to make Lolla a security layer. The point is to let security, approval, and observability systems attach Lolla's reasoning-audit result to the decisions they already control.
@@ -750,6 +756,12 @@ Scope:
 - Add optional external trace/control fields to `agent_result.json`.
 - Document `caller_action` mappings for approval systems.
 - Link the control-layer integration note from public docs.
+
+Implementation status: v0 sidecar contract exists. External callers can stage
+`/tmp/lolla_<run_id>_control_input.json`; archive generation preserves it,
+adds compact control references to `agent_result.json` / `reasoning_trace.json`,
+and writes `control_result.json` plus a `/tmp` convenience copy. Ordinary
+`$lolla` runs are unaffected when no control input is supplied.
 
 Why fourth:
 

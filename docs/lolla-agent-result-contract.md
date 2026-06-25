@@ -1,7 +1,7 @@
 # Lolla Agent Result Contract
 
 Status: Implemented
-Last updated: 2026-06-24
+Last updated: 2026-06-25
 
 ## Purpose
 
@@ -25,6 +25,11 @@ Each archive pass writes:
 
 The archived `reasoning_trace.json` indexes `agent_result.json` as an
 `agent_facing_result` artifact with path, hash, size, and content type.
+
+When an external caller supplies `control_input.json`, the archive also
+preserves that file, adds a compact `control_context` summary to
+`agent_result.json`, generates an optional `control_result.json` wrapper, and
+indexes the control artifacts in `reasoning_trace.json`.
 
 ## Risk Mode Metadata
 
@@ -90,6 +95,29 @@ Core fields:
   },
   "risk_mode": "standard",
   "caller_action": "use_revised_answer",
+  "control_context": {
+    "schema_version": "lolla_control_input.v1",
+    "expected_schema_version": "lolla_control_input.v1",
+    "status": "valid",
+    "control_mode": "pre_action_reasoning_gate",
+    "lolla_enforces_actions": false,
+    "external_trace_id": "trace_123",
+    "external_span_ids": ["span_a", "span_b"],
+    "agent_run_id": "agent_run_789",
+    "agent_framework": "openai_agents_sdk",
+    "proposed_action": {
+      "tool_name": "send_email",
+      "risk_class": "external_side_effect",
+      "has_arguments": true,
+      "argument_keys": ["subject", "to"]
+    },
+    "tool_call_ids": ["tool_call_1"],
+    "approval_id": "approval_001",
+    "policy_engine": "crabtrap",
+    "policy_decision": "needs_review",
+    "sandbox_id": "sandbox_abc",
+    "credential_scope": "gmail.send"
+  },
   "main_counter_pressure": "The answer treated customer interest as evidence before naming a reversal gate.",
   "position_changed": true,
   "changed_advice_summary": [
@@ -128,6 +156,10 @@ Core fields:
   ]
 }
 ```
+
+`control_context` is omitted for ordinary `$lolla` runs. When present, it is a
+compact summary only: proposed-action argument values remain in the archived
+`control_input.json` artifact and are not copied into `agent_result.json`.
 
 ## Status Values
 
@@ -196,13 +228,40 @@ The contract deliberately avoids ordinary exposure of:
 Those details remain inspectable in local artifacts where appropriate. The
 agent result is a handoff, not the full instrument panel.
 
+## Control-Plane Wrapper
+
+`lolla_control_input.v1` and `lolla_control_result.v1` are now additive archive
+contracts.
+
+To supply external metadata, write `/tmp/lolla_<run_id>_control_input.json`
+before archive. The archive copies it to `control_input.json`, summarizes it in
+`agent_result.json`, and writes `control_result.json` plus
+`/tmp/lolla_<run_id>_control_result.json`.
+
+`control_result.json` wraps the existing agent result. It maps `caller_action`
+to approval-system language, carries `do_not_act_before`, includes human
+approval context, and points back to artifacts. It does not approve actions,
+replace policy engines, replace sandboxes, replace identity scopes, or make
+network/tool decisions.
+
+Current caller-action mappings:
+
+| `caller_action` | Control-plane outcome |
+|---|---|
+| `use_revised_answer` | `proceed_with_external_policy` |
+| `ask_user_first` | `require_human_approval` |
+| `rerun_deeper` | `rerun_deeper` |
+| `do_not_use_run_degraded` | `block_reasoning_incomplete` |
+| `unsupported_high_stakes_domain` | `block_unsupported_stakes` |
+
 ## Current Limitations
 
 Risk mode is currently metadata only and defaults to `standard` unless a future
 runtime path writes a mode field into `result.json`.
 
-Control-plane wrappers such as `lolla_control_input.v1` and
-`lolla_control_result.v1` are still proposed roadmap items.
+The control-plane wrapper preserves metadata and maps Lolla's result for other
+systems. It does not auto-trigger Lolla, enforce approvals, call tools, replay
+external traces, or turn Lolla into a proxy/firewall/sandbox/identity broker.
 
 `evaluation.json` now exists as a deterministic run-readiness receipt for
 archived runs. It checks artifact presence, schemas, custody links, hygiene

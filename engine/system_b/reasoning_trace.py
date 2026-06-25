@@ -16,6 +16,7 @@ from typing import Any
 
 from .audit_mode import risk_mode_from_result
 from .capture_adequacy import capture_adequacy_from_artifacts
+from .control_plane import control_input_summary
 from .provider_boundary_health import build_provider_boundary_health
 
 
@@ -40,6 +41,8 @@ ARTIFACT_ROLES: dict[str, str] = {
     "graph_survival_report.json": "graph_survival_report",
     "graph_survival_report.md": "graph_survival_report_markdown",
     "agent_result.json": "agent_facing_result",
+    "control_input.json": "control_plane_input",
+    "control_result.json": "control_plane_result",
     "evaluation.json": "deterministic_evaluation",
     "live_transcript.txt": "live_product_surface",
     "operator.log": "operator_log",
@@ -80,6 +83,7 @@ def build_reasoning_trace(
     graph_survival = _graph_survival(run_dir)
     budget_suppressed_lenses = _budget_suppressed_lenses(run_dir)
     model_calls = _model_calls(result)
+    control_plane = control_input_summary(run_dir)
     candidate_commitments = _candidate_commitments(
         run_dir=run_dir,
         run_id=run_id,
@@ -135,6 +139,7 @@ def build_reasoning_trace(
             "graph_survival": graph_survival,
             "run_events": run_events,
             "usage": _usage_summary(result),
+            **({"control_plane": control_plane} if control_plane else {}),
         },
         "artifacts": artifacts,
         "missing_artifacts": missing_artifacts,
