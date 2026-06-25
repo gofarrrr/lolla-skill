@@ -303,7 +303,15 @@ def _agent_policy_checks(
             not pure_provider_warning
             or _text(agent_result.get("status_reason")) == expected_reason
         )
-        conservative_ok = status == "partial" and caller_action == "do_not_use_run_degraded"
+        acceptable_statuses = (
+            {"partial"}
+            if pure_provider_warning
+            else {"partial", "degraded", "incomplete"}
+        )
+        conservative_ok = (
+            status in acceptable_statuses
+            and caller_action == "do_not_use_run_degraded"
+        )
         checks.append(
             _check(
                 id="provider_boundary_contained_policy",

@@ -203,6 +203,33 @@ def test_contained_provider_boundary_warning_is_not_green(tmp_path: Path) -> Non
     assert _check(evaluation, "provider_boundary_contained_policy")["status"] == "pass"
 
 
+def test_contained_provider_boundary_with_other_degraded_cause_stays_conservative(
+    tmp_path: Path,
+) -> None:
+    health = _provider_boundary_health(status="warning_contained")
+    health["overall"] = "degraded"
+    health["issues"].append("no_fingerprint")
+    health["issue_details"].append(
+        {
+            "code": "no_fingerprint",
+            "severity": "degraded",
+            "axis": "case_memory",
+        }
+    )
+    health["provider_boundary_health"] = build_provider_boundary_health(health)
+    run_dir = _seed_run(tmp_path, health=health)
+
+    evaluation = build_evaluation(run_dir, run_id="evalrun", case_id="eval-case")
+    agent_result = json.loads((run_dir / "agent_result.json").read_text(encoding="utf-8"))
+
+    assert agent_result["status"] == "degraded"
+    assert agent_result["status_reason"] == "run_health.overall is degraded"
+    assert agent_result["caller_action"] == "do_not_use_run_degraded"
+    assert evaluation["caller_readiness"] == "do_not_use"
+    assert _check(evaluation, "provider_boundary_policy")["status"] == "warn"
+    assert _check(evaluation, "provider_boundary_contained_policy")["status"] == "pass"
+
+
 def test_product_output_unsafe_is_blocking(tmp_path: Path) -> None:
     health = _base_health(overall="degraded", product_output_health="unsafe")
     run_dir = _seed_run(tmp_path, health=health)
