@@ -397,6 +397,15 @@ Synthetic outputs now have a validator and reusable prompt template:
 `docs/evals/lolla-synthetic-review-v0.json`, and
 `docs/evals/synthetic-review-prompt-template.md`.
 
+The extraction/provenance side has a separate read-only survey:
+`scripts/export_extraction_adequacy_corpus.py`. It aggregates
+`extraction_adequacy_report.json` across archived runs, builds legacy reports in
+memory when possible, and produces local-only JSONL/manifest counts for
+adequacy status, capture shape, turn-reference failures, quote-fabrication
+counts, ConversationContext/ConversationIR availability, and specialist
+extractor opportunities. This is evidence-gathering for future extraction work,
+not a new extractor, answer-quality judge, or automatic review labeler.
+
 When reviewing mixed outcomes, keep answer-level review separate from
 run-envelope/custody review, live-output hygiene review, and agent-readiness
 review. A useful revised answer can pass human review while

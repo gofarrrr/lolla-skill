@@ -449,19 +449,23 @@ Recommended cost posture:
    - Count which fields have quote/source evidence.
    - Report missing provenance.
    - Do not call a model.
-2. Prototype `conversation_understanding_ir.v0` over archived runs, not live
-   runs.
-3. Cache by conversation hash and by window hash.
-4. Use deterministic segmentation before LLM calls:
+2. Aggregate extraction adequacy across archived runs before choosing a repair.
+   - Reuse existing `extraction_adequacy_report.json` files when present.
+   - Build reports in memory for older archives when source artifacts exist.
+   - Keep the survey local-only, read-only, and free of raw transcript text.
+3. Prototype `conversation_understanding_ir.v0` only if the corpus survey shows
+   that a durable projection is the right next repair.
+4. Cache future semantic artifacts by conversation hash and by window hash.
+5. Use deterministic segmentation before LLM calls:
    - turn parsing,
    - speaker windows,
    - capture windows,
    - assistant-final-position windows,
    - constraint-bearing user-turn candidates.
-5. Use LLMs only for semantic interpretation, not for source matching.
-6. Verify quotes and spans deterministically after extraction.
-7. Store token/cost metadata before considering live integration.
-8. Keep embeddings optional and later. They may help candidate retrieval, but
+6. Use LLMs only for semantic interpretation, not for source matching.
+7. Verify quotes and spans deterministically after extraction.
+8. Store token/cost metadata before considering live integration.
+9. Keep embeddings optional and later. They may help candidate retrieval, but
    they should not become the trust mechanism.
 
 This gives Lolla a way to learn whether richer conversation understanding is
@@ -562,7 +566,47 @@ Non-goals:
 This is the safest next PR because it tells us exactly how much provenance the
 current system already has, including what the runtime IR already preserves.
 
-### PR21: Offline Conversation Understanding Prototype
+### PR21: Extraction Adequacy Corpus Survey
+
+Goal: aggregate the per-run adequacy reports across the local archive corpus
+before building any new extraction intelligence.
+
+Scope:
+
+- Add a read-only corpus exporter that scans archived runs and writes a local
+  JSONL record plus aggregate manifest.
+- Prefer existing `extraction_adequacy_report.json` when present.
+- For older archives, build the report in memory from `conversation.txt`,
+  `extraction.json`, `ConversationContext`, and `ConversationIR` when possible,
+  without mutating the archive.
+- Count adequacy statuses, capture adequacy statuses, capture strategies,
+  invalid/missing/speaker-mismatched turn refs, quote-fabrication counts,
+  omitted turns, ConversationContext availability, ConversationIR availability,
+  and specialist-extractor opportunity counts.
+- Bucket runs deterministically into review groups such as
+  `critical_extraction_review`, `warning_extraction_review`,
+  `legacy_missing_report_review`, `clean_baseline_sample`, and
+  `not_reviewable`.
+- Keep the export local-only and privacy-bounded: no raw transcript text, memo
+  text, revised-answer text, raw model messages, provider reasoning details,
+  raw exception strings, fabricated passage text, or control-action argument
+  values.
+
+Non-goals:
+
+- no model calls,
+- no new extraction prompt,
+- no archive mutation by default,
+- no new IR,
+- no answer-quality evaluation,
+- no graph DB,
+- no embeddings.
+
+This PR should answer which extraction/provenance failures are common enough to
+deserve engineering before Lolla adds smarter extraction, specialist-extractor
+reuse, chunking changes, or a durable conversation-understanding projection.
+
+### PR22: Offline Conversation Understanding Prototype
 
 Goal: build `conversation_understanding_ir.v0` for archived runs only.
 
@@ -578,7 +622,7 @@ Scope:
 - Record cost/token metadata.
 - Do not feed the artifact into live Lolla yet.
 
-### PR22: Review/Export Fields For Extracted Conversation Knowledge
+### PR23: Review/Export Fields For Extracted Conversation Knowledge
 
 Goal: let the review corpus expose compact conversation-understanding coverage.
 
@@ -589,7 +633,7 @@ Scope:
 - Do not copy raw semantic item text into public-ish exports unless explicitly
   local-only and reviewed.
 
-### PR23+: Decision-Aware Capture And Runtime Integration
+### PR24+: Decision-Aware Capture And Runtime Integration
 
 Goal: only after offline evidence, use the IR to improve capture or audit input.
 
@@ -601,7 +645,7 @@ Possible later work:
 - rerun/deeper-mode triggers,
 - Observatory inspection for conversation-understanding IR.
 
-Do not do this until PR20-PR22 show the artifact is useful and reviewable.
+Do not do this until PR20-PR23 show the artifact is useful and reviewable.
 
 ## Do Not Build Yet
 
