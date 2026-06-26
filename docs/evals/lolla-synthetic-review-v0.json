@@ -1,0 +1,33 @@
+{
+  "allowed_values": {
+    "confidence": [
+      "low",
+      "medium",
+      "high",
+      "unclear"
+    ],
+    "reviewer_kind": [
+      "synthetic"
+    ]
+  },
+  "fields": [
+    "schema_version",
+    "reviewer_kind",
+    "model_or_agent",
+    "source_corpus_record_ref",
+    "candidate_human_review",
+    "confidence",
+    "uncertainties",
+    "qa_notes",
+    "requires_human_ratification"
+  ],
+  "schema_version": "lolla.synthetic_review_schema.v0",
+  "scope": {
+    "automatic_approval": false,
+    "human_review_ground_truth": false,
+    "may_populate_human_review_without_ratification": false,
+    "requires_human_ratification": true,
+    "synthetic_only": true
+  },
+  "synthetic_review_record_schema_version": "lolla.synthetic_review.v0"
+}

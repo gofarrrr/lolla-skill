@@ -502,6 +502,11 @@ Current v0 slice:
 - `docs/evals/lolla-human-review-v0.json` defines the machine-readable `lolla.human_review.v0` label contract.
 - `docs/evals/human-review-workflow.md` defines the first reviewer workflow over PR13 review-corpus records.
 - `engine/system_b/human_review.py` validates label objects for local tooling.
+- Review-corpus records carry deterministic readiness tiers so legacy content-only
+  archives are not confused with full modern custody runs.
+- Synthetic/subagent review outputs are allowed only as rehearsal notes or
+  candidate labels; they do not populate `lolla.human_review.v0` without human
+  ratification.
 
 Acceptance criteria:
 
@@ -603,6 +608,9 @@ Current shipped slice:
 - `scripts/export_review_corpus.py` exports a deterministic JSONL run-envelope corpus plus a manifest from archived runs.
 - The export includes compact `agent_result.json`, `evaluation.json`, capture adequacy, run-health, usage/model, artifact-availability, and optional control-plane summaries.
 - The export includes a blank `lolla.human_review.v0` template per run, but does not fill labels, score advice quality, approve actions, or call a model.
+- Each record includes `review_readiness_tier`, `content_review`,
+  `custody_review`, and `batch_recommendation` fields so reviewers can separate
+  full modern custody runs from legacy content-only archives.
 - `scripts/export_reasoning_trace_dataset.py` remains available for lower-level reasoning-trace/lens analysis.
 
 Acceptance criteria:

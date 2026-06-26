@@ -23,6 +23,10 @@ The central question is:
 > Did Lolla add earned, decision-relevant friction without losing the user's
 > load-bearing constraints?
 
+Use `review_readiness_tier` before assigning failure labels. Older archives
+missing modern sidecars can still be `legacy_content_reviewable`; that is an
+archive-generation fact, not automatically an answer-quality failure.
+
 ## Fields
 
 Every PR13 review-corpus record carries a blank `human_review` object with
@@ -88,3 +92,8 @@ unsupported, theatrical, overcautious, or less usable without adding protection.
 This v0 taxonomy is intentionally small and revisable. Add new failure modes
 only after they recur in reviewed runs or become necessary for a targeted eval.
 Do not add broad helpfulness, coherence, agreeableness, or elegance scores.
+
+Synthetic reviewers and subagents may propose candidate labels, but those
+outputs are synthetic rehearsal notes. They must not populate
+`lolla.human_review.v0` unless a human reviewer inspects the trace and takes
+responsibility for the final label.

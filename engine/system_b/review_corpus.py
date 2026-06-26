@@ -44,6 +44,34 @@ OPTIONAL_ARTIFACTS = (
 ARTIFACT_FILENAMES = REQUIRED_ARTIFACTS + OPTIONAL_ARTIFACTS
 RUN_ID_TIMESTAMP_RE = re.compile(r"^(?P<date>\d{8})T(?P<time>\d{6})Z")
 
+CONTENT_REVIEW_ARTIFACTS = (
+    "conversation.txt",
+    "extraction.json",
+    "result.json",
+    "revised.txt",
+    "memo.md",
+)
+
+CUSTODY_REVIEW_ARTIFACTS = (
+    "agent_result.json",
+    "reasoning_trace.json",
+    "run_events.json",
+    "evaluation.json",
+)
+
+REVIEW_READINESS_TIERS = (
+    "full_modern_reviewable",
+    "modern_partial_reviewable",
+    "legacy_content_reviewable",
+    "not_reviewable",
+)
+
+BATCH_RECOMMENDATIONS = (
+    "recommended_modern_review_batch",
+    "recommended_legacy_rehearsal_batch",
+    "exclude_or_needs_backfill",
+)
+
 
 def build_review_corpus_records(archive_root: Path | str) -> list[dict[str, Any]]:
     """Build one deterministic, JSON-safe corpus record per archived run."""
@@ -101,6 +129,10 @@ def build_review_corpus_record(
 
     artifacts = _artifact_availability(run_path, reasoning_trace)
     capture_adequacy = _capture_adequacy(extraction=extraction, result=result, reasoning_trace=reasoning_trace)
+    review_readiness = _review_readiness(
+        artifacts=artifacts,
+        capture_adequacy=capture_adequacy,
+    )
     run_health = _run_health(result=result, agent_result=agent_result, reasoning_trace=reasoning_trace)
     provider_boundary_health = _provider_boundary_health(
         run_health=run_health,
@@ -187,6 +219,10 @@ def build_review_corpus_record(
         ),
         "artifacts": artifacts,
         "artifact_counts": _artifact_counts(artifacts),
+        "review_readiness_tier": review_readiness["review_readiness_tier"],
+        "content_review": review_readiness["content_review"],
+        "custody_review": review_readiness["custody_review"],
+        "batch_recommendation": review_readiness["batch_recommendation"],
         "human_review": blank_human_review_template(),
         "scope": _export_scope("review_corpus"),
     }
@@ -205,9 +241,13 @@ def build_review_corpus_manifest(
     evaluation_overalls: Counter[str] = Counter()
     readiness: Counter[str] = Counter()
     provider_statuses: Counter[str] = Counter()
+    review_readiness_tiers: Counter[str] = Counter()
+    batch_recommendations: Counter[str] = Counter()
     invalid_count = 0
     control_input_count = 0
     control_result_count = 0
+    content_review_available_count = 0
+    custody_review_available_count = 0
     total_cost = 0.0
     cost_known_count = 0
 
@@ -219,6 +259,8 @@ def build_review_corpus_manifest(
         evaluation_overalls[_text(_mapping(record.get("evaluation")).get("overall")) or "unavailable"] += 1
         readiness[_text(_mapping(record.get("evaluation")).get("caller_readiness")) or "unavailable"] += 1
         provider_statuses[_text(_mapping(record.get("provider_boundary_health")).get("status")) or "unknown"] += 1
+        review_readiness_tiers[_text(record.get("review_readiness_tier")) or "unknown"] += 1
+        batch_recommendations[_text(record.get("batch_recommendation")) or "unknown"] += 1
         if not record.get("valid_archive"):
             invalid_count += 1
         control = _mapping(record.get("control_plane"))
@@ -226,6 +268,10 @@ def build_review_corpus_manifest(
             control_input_count += 1
         if control.get("control_result_available"):
             control_result_count += 1
+        if _mapping(record.get("content_review")).get("available"):
+            content_review_available_count += 1
+        if _mapping(record.get("custody_review")).get("available"):
+            custody_review_available_count += 1
         cost = _mapping(record.get("usage")).get("estimated_total_cost_usd")
         if isinstance(cost, (int, float)):
             total_cost += float(cost)
@@ -241,6 +287,8 @@ def build_review_corpus_manifest(
         "invalid_record_count": invalid_count,
         "control_input_record_count": control_input_count,
         "control_result_record_count": control_result_count,
+        "content_review_available_count": content_review_available_count,
+        "custody_review_available_count": custody_review_available_count,
         "cost_known_record_count": cost_known_count,
         "estimated_total_cost_usd": round(total_cost, 6) if cost_known_count else None,
         "run_health_status_counts": _counter_dict(statuses),
@@ -250,6 +298,8 @@ def build_review_corpus_manifest(
         "evaluation_overall_counts": _counter_dict(evaluation_overalls),
         "caller_readiness_counts": _counter_dict(readiness),
         "provider_boundary_health_status_counts": _counter_dict(provider_statuses),
+        "review_readiness_tier_counts": _counter_dict(review_readiness_tiers),
+        "batch_recommendation_counts": _counter_dict(batch_recommendations),
         "scope": _export_scope("review_corpus_manifest"),
     }
 
@@ -364,6 +414,98 @@ def _artifact_counts(artifacts: Mapping[str, Mapping[str, Any]]) -> dict[str, in
         "required_missing_count": required_missing,
         "optional_missing_count": optional_missing,
     }
+
+
+def _review_readiness(
+    *,
+    artifacts: Mapping[str, Mapping[str, Any]],
+    capture_adequacy: Mapping[str, Any],
+) -> dict[str, Any]:
+    content_missing = _missing_artifacts(artifacts, CONTENT_REVIEW_ARTIFACTS)
+    custody_missing = _missing_artifacts(artifacts, CUSTODY_REVIEW_ARTIFACTS)
+    custody_missing_metadata = []
+    if not capture_adequacy:
+        custody_missing_metadata.append("capture_adequacy")
+
+    content_available = not content_missing
+    custody_available = not custody_missing and not custody_missing_metadata
+    has_modern_custody = any(
+        _mapping(artifacts.get(filename)).get("available")
+        for filename in CUSTODY_REVIEW_ARTIFACTS
+    ) or bool(capture_adequacy)
+
+    if content_available and custody_available:
+        tier = "full_modern_reviewable"
+        batch = "recommended_modern_review_batch"
+    elif content_available and has_modern_custody:
+        tier = "modern_partial_reviewable"
+        batch = "recommended_modern_review_batch"
+    elif content_available:
+        tier = "legacy_content_reviewable"
+        batch = "recommended_legacy_rehearsal_batch"
+    else:
+        tier = "not_reviewable"
+        batch = "exclude_or_needs_backfill"
+
+    return {
+        "review_readiness_tier": tier,
+        "batch_recommendation": batch,
+        "content_review": {
+            "available": content_available,
+            "missing_artifacts": content_missing,
+            "reason": _review_reason(
+                available=content_available,
+                missing=content_missing,
+                available_message="core content artifacts are available",
+                missing_prefix="missing core content artifacts",
+            ),
+        },
+        "custody_review": {
+            "available": custody_available,
+            "missing_artifacts": custody_missing,
+            "missing_metadata": custody_missing_metadata,
+            "reason": _custody_review_reason(
+                available=custody_available,
+                missing_artifacts=custody_missing,
+                missing_metadata=custody_missing_metadata,
+            ),
+        },
+    }
+
+
+def _missing_artifacts(
+    artifacts: Mapping[str, Mapping[str, Any]],
+    filenames: Sequence[str],
+) -> list[str]:
+    return [
+        filename
+        for filename in filenames
+        if not _mapping(artifacts.get(filename)).get("available")
+    ]
+
+
+def _review_reason(
+    *,
+    available: bool,
+    missing: Sequence[str],
+    available_message: str,
+    missing_prefix: str,
+) -> str:
+    if available:
+        return available_message
+    return f"{missing_prefix}: {', '.join(missing)}"
+
+
+def _custody_review_reason(
+    *,
+    available: bool,
+    missing_artifacts: Sequence[str],
+    missing_metadata: Sequence[str],
+) -> str:
+    if available:
+        return "modern custody artifacts and capture adequacy are available"
+    missing = list(missing_artifacts) + list(missing_metadata)
+    return f"missing modern custody material: {', '.join(missing)}"
 
 
 def _timestamps(

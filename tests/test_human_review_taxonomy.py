@@ -45,6 +45,21 @@ def test_schema_document_matches_code_contract() -> None:
     assert schema_doc == human_review_schema_definition()
 
 
+def test_synthetic_review_schema_stays_outside_human_review() -> None:
+    schema_doc = _load_json("docs/evals/lolla-synthetic-review-v0.json")
+
+    assert schema_doc["schema_version"] == "lolla.synthetic_review_schema.v0"
+    assert schema_doc["synthetic_review_record_schema_version"] == (
+        "lolla.synthetic_review.v0"
+    )
+    assert schema_doc["scope"]["synthetic_only"] is True
+    assert schema_doc["scope"]["human_review_ground_truth"] is False
+    assert schema_doc["scope"]["requires_human_ratification"] is True
+    assert schema_doc["scope"][
+        "may_populate_human_review_without_ratification"
+    ] is False
+
+
 def test_reviewed_example_fixture_is_valid() -> None:
     example = _load_json("docs/evals/examples/human-review-example-fail.json")
 

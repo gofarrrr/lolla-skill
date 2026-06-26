@@ -241,6 +241,44 @@ def _seed_run(
     return run_dir
 
 
+def _seed_legacy_content_run(
+    archive_root: Path,
+    *,
+    case_id: str = "legacy-case",
+    run_id: str = "20260625T150000Z_mnop78",
+) -> Path:
+    run_dir = archive_root / case_id / run_id
+    run_dir.mkdir(parents=True)
+    (run_dir / "conversation.txt").write_text(
+        "[Turn 1] USER:\nShould I take the role?\n\n[Turn 2] ASSISTANT:\nOnly after diligence.\n",
+        encoding="utf-8",
+    )
+    _write_json(
+        run_dir / "extraction.json",
+        {
+            "status": "ok",
+            "extraction": {
+                "decision_situation": "Whether to take a role",
+                "reasoning_passages": ["Only after diligence."],
+            },
+        },
+    )
+    _write_json(
+        run_dir / "result.json",
+        {
+            "status": "ok",
+            "risk_mode": "standard",
+            "revised_answer": "Take the role only after diligence.",
+        },
+    )
+    (run_dir / "revised.txt").write_text(
+        "Take the role only after diligence.",
+        encoding="utf-8",
+    )
+    (run_dir / "memo.md").write_text("# Memo\n\nDiligence first.\n", encoding="utf-8")
+    return run_dir
+
+
 def test_review_corpus_exports_modern_archive_without_sensitive_control_args(
     tmp_path: Path,
 ) -> None:
@@ -262,6 +300,19 @@ def test_review_corpus_exports_modern_archive_without_sensitive_control_args(
     assert record["capture_adequacy"]["status"] == "good"
     assert record["evaluation"]["overall"] == "pass"
     assert record["evaluation"]["caller_readiness"] == "ready"
+    assert record["review_readiness_tier"] == "full_modern_reviewable"
+    assert record["batch_recommendation"] == "recommended_modern_review_batch"
+    assert record["content_review"] == {
+        "available": True,
+        "missing_artifacts": [],
+        "reason": "core content artifacts are available",
+    }
+    assert record["custody_review"] == {
+        "available": True,
+        "missing_artifacts": [],
+        "missing_metadata": [],
+        "reason": "modern custody artifacts and capture adequacy are available",
+    }
     assert record["artifacts"]["evaluation.json"]["available"] is True
     assert record["artifacts"]["agent_result.json"]["sha256"].startswith("sha256:")
     assert record["schema_versions"]["reasoning_trace"] == REASONING_TRACE_SCHEMA_VERSION
@@ -324,6 +375,38 @@ def test_review_corpus_represents_older_archive_missing_evaluation_and_control(
     assert record["control_plane"]["control_result_available"] is False
     assert record["control_plane"]["control_context"] == {}
     assert record["artifact_counts"]["optional_missing_count"] >= 3
+    assert record["review_readiness_tier"] == "modern_partial_reviewable"
+    assert record["batch_recommendation"] == "recommended_modern_review_batch"
+    assert record["content_review"]["available"] is True
+    assert record["custody_review"]["available"] is False
+    assert record["custody_review"]["missing_artifacts"] == ["evaluation.json"]
+    assert record["custody_review"]["missing_metadata"] == []
+
+
+def test_review_corpus_marks_legacy_content_reviewable_without_modern_sidecars(
+    tmp_path: Path,
+) -> None:
+    archive_root = tmp_path / "runs"
+    _seed_legacy_content_run(archive_root)
+
+    record = build_review_corpus_records(archive_root)[0]
+
+    assert record["valid_archive"] is True
+    assert record["review_readiness_tier"] == "legacy_content_reviewable"
+    assert record["batch_recommendation"] == "recommended_legacy_rehearsal_batch"
+    assert record["content_review"] == {
+        "available": True,
+        "missing_artifacts": [],
+        "reason": "core content artifacts are available",
+    }
+    assert record["custody_review"]["available"] is False
+    assert record["custody_review"]["missing_artifacts"] == [
+        "agent_result.json",
+        "reasoning_trace.json",
+        "run_events.json",
+        "evaluation.json",
+    ]
+    assert record["custody_review"]["missing_metadata"] == ["capture_adequacy"]
 
 
 def test_review_corpus_marks_malformed_entries_invalid_deterministically(
@@ -345,6 +428,15 @@ def test_review_corpus_marks_malformed_entries_invalid_deterministically(
         "result.json is not valid JSON",
     ]
     assert first[0]["artifacts"]["result.json"]["available"] is True
+    assert first[0]["review_readiness_tier"] == "not_reviewable"
+    assert first[0]["batch_recommendation"] == "exclude_or_needs_backfill"
+    assert first[0]["content_review"]["available"] is False
+    assert first[0]["content_review"]["missing_artifacts"] == [
+        "conversation.txt",
+        "extraction.json",
+        "revised.txt",
+        "memo.md",
+    ]
 
 
 def test_review_corpus_manifest_and_jsonl_outputs_are_stable(tmp_path: Path) -> None:
@@ -367,6 +459,15 @@ def test_review_corpus_manifest_and_jsonl_outputs_are_stable(tmp_path: Path) -> 
         "pass": 1,
         "unavailable": 1,
     }
+    assert manifest["review_readiness_tier_counts"] == {
+        "full_modern_reviewable": 1,
+        "modern_partial_reviewable": 1,
+    }
+    assert manifest["batch_recommendation_counts"] == {
+        "recommended_modern_review_batch": 2,
+    }
+    assert manifest["content_review_available_count"] == 2
+    assert manifest["custody_review_available_count"] == 1
     assert manifest["scope"] == _expected_scope("review_corpus_manifest")
 
     jsonl_path = tmp_path / "review_corpus.jsonl"

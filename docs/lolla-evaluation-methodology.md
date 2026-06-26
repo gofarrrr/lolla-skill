@@ -382,6 +382,13 @@ upstream failure, useful/noisy/missing friction, revised-answer improvement, and
 human `safe_for_agent_use` judgment without overriding
 `agent_result.caller_action`.
 
+The review corpus also carries deterministic review-readiness fields so humans
+and subagents can distinguish `full_modern_reviewable`,
+`modern_partial_reviewable`, `legacy_content_reviewable`, and `not_reviewable`
+runs before labeling. Synthetic reviewers may produce rehearsal notes,
+candidate labels, or disagreement reports, but those outputs must stay outside
+`lolla.human_review.v0` until a human reviewer ratifies them.
+
 ## Evaluation OS For Lolla
 
 Map the general Eval OS idea onto Lolla:
