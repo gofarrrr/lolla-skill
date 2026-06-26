@@ -1,18 +1,18 @@
 # Lolla: A Reasoning Audit Layer for AI Agents
 
-Last updated: 2026-06-24
+Last updated: 2026-06-26
 
 ## The Short Version
 
 Lolla is a reasoning audit layer for AI agents and serious AI conversations.
 
-It takes a multi-turn advisory exchange, tests the answer against structured mental-model pressure and traceable evidence, then returns a revised position, a clean memo, and an inspectable local audit trail.
+It takes a multi-turn advisory exchange, tests the answer against structured mental-model pressure and traceable evidence, then returns a revised position, a clean memo, a machine-readable run result, and an inspectable local audit trail.
 
 Why does that matter?
 
 Because the dangerous AI answer is often not obviously wrong. It is fluent, useful, and slightly too settled. Lolla is built for that moment.
 
-The point is not to make the answer longer. The point is to make the answer harder to trust blindly.
+The point is not to make the answer longer. The point is to make the answer harder to trust blindly, and easier to inspect when the stakes justify inspection.
 
 ## The Moment Lolla Is Built For
 
@@ -47,6 +47,16 @@ The output is not a second generic opinion. It is a structured reconsideration:
 - What artifacts prove the run was complete, partial, degraded, or incomplete.
 
 The core product is the improved reasoning. The machinery exists so that improvement is not just vibes.
+
+The current product loop is deliberately concrete:
+
+1. Call Lolla on a serious conversation.
+2. Read the revised answer and memo.
+3. Open the local Observatory.
+4. Inspect whether the run was healthy, partial, degraded, or incomplete.
+5. Check the custody artifacts before deciding how much to trust the result.
+
+That may sound prosaic. It is also the difference between "the model sounded better on the second try" and "we can see what happened."
 
 ## How It Works, In Plain English
 
@@ -133,9 +143,16 @@ A completed run produces:
 
 - the revised answer,
 - a portable memo,
+- `agent_result.json`, a compact machine-readable result for callers,
+- `reasoning_trace.json`, a local custody manifest with artifact hashes and trace metadata,
+- `evaluation.json`, a deterministic run-readiness receipt,
+- `capture_adequacy` metadata, a compact summary of what conversation shape was captured or omitted,
 - local Observatory views,
 - run health,
+- metadata-only risk mode,
+- optional control-plane sidecars when supplied,
 - usage and cost telemetry,
+- run-event history,
 - model-call traces,
 - private consideration ledgers,
 - graph-survival reports,
@@ -144,6 +161,17 @@ A completed run produces:
 This is not cosmetic. If an audit system cannot tell you what it saw, what it used, what failed, and what was only partial, it can create the same false confidence it was supposed to fight.
 
 Lolla tries to make the process part of the product.
+
+The current custody loop makes that inspection more explicit. Current and archived runs are not only files on disk; the Observatory can expose run-custody sidecars for the active `lolla-audit` run and for selected local-history runs. Immediately after a run, the user can inspect active-run artifacts. If the user selects an older run from local history, the interface shows whether core artifacts for that selected run exist:
+
+- `agent_result.json`,
+- `reasoning_trace.json`,
+- `run_events.json`,
+- `memo.md`,
+- `graph_survival_report.*`,
+- `evaluation.json`.
+
+That matters because "local history exists" is not enough, and "the active run just finished" is not enough either. The user needs to know whether the run they are looking at is actually inspectable, and whether the displayed artifacts belong to that run rather than a stale active or archived neighbor.
 
 ## Why This Becomes More Necessary As AI Gets Better
 
@@ -194,6 +222,15 @@ It is not a full safety system. It is not a cybersecurity control. It is not a l
 
 It is a reasoning-quality gate.
 
+More precisely, Lolla is a reasoning-audit harness:
+
+- LLMs do semantic judgment where language judgment is needed.
+- Deterministic code handles routing, validation, artifact custody, health, telemetry, archive, and replay.
+- The Observatory exposes the instrument panel.
+- `agent_result.json` gives callers a compact handoff without forcing them to parse the memo.
+
+That boundary is important. Lolla should be able to connect to guardrails, approval systems, sandboxes, proxies, trace stores, and eval suites. It should not pretend to replace them.
+
 ## Who Lolla Is For
 
 Lolla is most useful where the answer is consequential enough that a second pass is worth the cost.
@@ -223,32 +260,65 @@ More precisely, an agent should call Lolla when all of these are true:
 - The answer sounds settled enough that the user may act on it.
 - The agent has not yet run an independent reasoning-quality check.
 
-In a future agent-tool version, the contract could be simple:
+For agent or workflow callers, the local contract is now intentionally compact:
 
 Input:
 
 - conversation transcript,
 - final answer or current recommendation,
 - optional domain/stakes metadata,
-- optional user constraints.
+- optional user constraints,
+- optional control-plane metadata such as trace, approval, policy, sandbox, or credential references.
 
 Output:
 
-- audit status,
-- run health,
+- `agent_result.json`,
+- optional `control_result.json`,
+- audit status and run health,
 - strongest counter-pressure,
 - revised position,
 - take-backs,
 - new gates or stop rules,
 - unanswered user questions,
 - memo,
-- local trace or artifact pointer.
+- local trace and artifact pointers.
 
 The agent does not have to expose all machinery to the user. The user should see the improved advice. The developer or operator should be able to inspect the machinery when something feels off.
 
 That split is important.
 
 Humans need a clear answer. Builders need traces. Lolla tries to serve both without dumping the instrument panel into the chat.
+
+That contract now exists as an archive artifact. A completed modern run has a compact `lolla_agent_result.v1` result with fields like:
+
+- run status,
+- run-health summary,
+- product-output health,
+- live-output health,
+- `caller_action`,
+- main counter-pressure,
+- whether the advice changed,
+- take-backs,
+- human questions,
+- do-not-act-before items,
+- artifact paths,
+- cost and usage summary.
+
+The current `caller_action` is intentionally conservative. If a run is partial, degraded, incomplete, capture-critical, or product-output unsafe, the machine-readable result should not invite an agent to use it automatically.
+
+For external systems, Lolla can now preserve optional control-plane context through local sidecars. A caller may provide `control_input.json` with trace, action, approval, policy, sandbox, or credential references. Lolla then archives that input, adds compact references to the agent result and reasoning trace, and can generate `control_result.json` as a wrapper around `caller_action`. This is not an approval decision. It is a reasoning-audit handoff that another policy, approval, sandbox, identity, or trace system can consume.
+
+The same principle applies to provider-boundary warnings. If a model provider returns reasoning details even though reasoning was disabled, Lolla should not shrug and call the run healthy. The current policy classifies the warning: was it only a provider-boundary violation, did it contaminate product output, did it contaminate live output, or is persistence still unknown? It stays conservative even for contained provider-boundary warnings; classification improves explanation first, not automatic approval.
+
+The same caution applies to evaluation. The current `evaluation.json` is not a judge of whether the answer is wise. It is a deterministic receipt for the run envelope: did the expected artifacts exist, did schemas match, did the trace index the right files, did hygiene checks pass or warn, and did caller policy stay conservative where it should?
+
+Capture adequacy follows the same philosophy. Lolla does not pretend to reconstruct omitted turns from a long conversation. Instead, it records the capture shape: whether capture was full, warning-level, or critical; how many turns were declared, captured, and omitted; which windows were kept; which windows were dropped; and whether the omission should affect trust. That matters because a perfect audit over an incomplete conversation can still be misleading. The first job is to make the missing context visible.
+
+Risk modes are also recorded as metadata. A run can record intent such as `quick`, `standard`, `deep`, `high_stakes`, or `stability`. For now, this is not a promise that the audit behaved differently. It is a way to preserve operator or caller intent before controlled behavior changes are added later.
+
+Across runs, Lolla can export a local review corpus. That corpus summarizes run envelopes, health, capture adequacy, evaluation status, usage/model metadata, artifact availability, and optional control-plane references. It includes blank human-review fields and review-readiness tiers, but it does not copy raw transcript or memo text, does not score advice quality, and does not use an LLM judge. Synthetic reviewers can help rehearse labels, but their outputs stay synthetic and cannot become human review without ratification.
+
+This is the rhythm we want: first make the run legible, then make it inspectable, then make it evaluable, then make it callable by other systems.
 
 ## What Lolla Is Not
 
@@ -273,6 +343,7 @@ That is not enough for serious use.
 If an agent gives advice that later proves flawed, people will ask:
 
 - What conversation did it audit?
+- Was the conversation fully captured, or were important middle turns omitted?
 - Which constraints did it capture?
 - Which reasoning passages were tested?
 - Which model calls ran?
@@ -286,6 +357,32 @@ Lolla's archive and Observatory exist for those questions.
 
 They are not there because dashboards are fun. They are there because reasoning systems need custody. Without custody, every postmortem becomes guesswork.
 
+## The Current Strategy: Custody First, Agents Next
+
+This is also why the current work has prioritized the manual inspection loop before grander agent-control diagrams. It is tempting to jump straight to schemas, gates, and integrations. But if the human cannot open a local run and see what exists, what failed, and what belongs to the selected run, the agent-facing story is premature.
+
+The near-term target is therefore:
+
+```text
+run Lolla manually
+-> get a revised answer and memo
+-> archive the run
+-> open Observatory
+-> select any archived run
+-> inspect custody, health, trace, memo, and cost
+-> decide what to trust
+```
+
+Because that loop is now materially in place, the same artifacts can support agent use:
+
+```text
+agent or workflow calls Lolla
+-> Lolla returns agent_result.json
+-> caller reads caller_action and artifact pointers
+-> human or control system inspects the archive when needed
+-> deterministic evaluation checks the run envelope
+```
+
 ## The Current State
 
 Today, Lolla works as a Claude Code and Codex skill.
@@ -295,20 +392,49 @@ In Claude Code, it is invoked with `/lolla`. In Codex, it can be invoked with `$
 The current live flow:
 
 1. Captures the conversation.
-2. Extracts the decision structure.
-3. Runs the four audit lanes.
-4. Adds private source-backed enrichment.
-5. Produces a strongest-counterargument beat.
-6. Forces an updated position.
-7. Persists private consideration ledgers.
-8. Records pressure-check state.
-9. Renders a memo.
-10. Opens the local Observatory.
-11. Archives the run.
+2. Records capture adequacy metadata.
+3. Extracts the decision structure.
+4. Runs the four audit lanes.
+5. Adds private source-backed enrichment.
+6. Produces a strongest-counterargument beat.
+7. Forces an updated position.
+8. Persists private consideration ledgers.
+9. Records pressure-check state.
+10. Renders a memo.
+11. Opens the local Observatory.
+12. Archives the run.
+13. Generates `agent_result.json`.
+14. Optionally generates `control_result.json` when external control input was supplied.
+15. Generates `reasoning_trace.json`.
+16. Generates `evaluation.json`.
+17. Lets the Observatory expose selected-run custody artifacts from local history.
 
 It is already usable. It is also still early.
 
-The next natural step is to make Lolla easier for agents to call as a compact tool: less like a skill a human invokes manually, more like a reasoning QA layer an agent can call before finalizing consequential advice.
+The major recent shift is that Lolla is no longer only a manual skill that produces a memo. It is a local reasoning-audit harness: a run produces product output, custody artifacts, deterministic readiness checks, machine-readable handoffs, optional control-plane context, and a local review-corpus path.
+
+What is now in place:
+
+1. Modern archived runs are machine-readable through `agent_result.json`.
+2. Risk-mode intent is recorded without pretending behavior has changed.
+3. Active and archived Observatory custody artifacts are reachable.
+4. `evaluation.json` checks the deterministic run envelope before any broad judge exists.
+5. Capture adequacy is visible before long-conversation strategy changes.
+6. Optional `control_input.json` and `control_result.json` preserve external trace/action/approval context without making Lolla the control plane.
+7. Archived run envelopes can be exported into a local review corpus with human-owned labels and synthetic-review rehearsal kept separate.
+
+This order matters. If we build agent-control language before the run is inspectable, we get architecture theater. If we make the local audit trail real first, the agent contract has something solid to point at.
+
+What is still not claimed:
+
+- risk modes do not yet change cost, prompts, capture strictness, Step 7 behavior, replay, or high-stakes policy,
+- `evaluation.json` does not judge answer wisdom,
+- the review corpus does not create gold labels by itself,
+- synthetic review is rehearsal, not human review,
+- Lolla does not approve actions, sandbox tools, enforce policy, or replace domain expertise,
+- capture adequacy makes omissions visible, but does not yet solve decision-aware long-conversation capture.
+
+The next natural step is not more eval-methodology polishing for its own sake. It is either to use the current review workflow on real records, or to keep improving the product/runtime loop where real users still feel friction.
 
 ## What We Want To Learn Next
 
@@ -321,8 +447,15 @@ We especially want feedback on:
 - which decisions deserve this kind of audit,
 - which outputs are most useful to humans,
 - which traces are most useful to builders,
+- whether the local Observatory makes a run genuinely inspectable,
+- whether capture adequacy makes omitted context visible enough to trust or rerun,
+- whether `agent_result.json` contains the right compact handoff for callers,
+- whether `caller_action` is conservative in the right places,
+- how provider-boundary warnings should affect run health,
 - when the audit changes the answer in a valuable way,
 - when the audit adds friction without improving judgment,
+- which deterministic evaluation checks should block trust in a run,
+- whether the review corpus and human-review workflow help people find real failure patterns,
 - what domain-specific model packs would matter,
 - and how agents should decide when to call Lolla automatically.
 
@@ -367,6 +500,12 @@ Internal project docs:
 - [Live Flow](how-it-works/live-flow.md)
 - [Operations and Limits](how-it-works/operations-and-limits.md)
 - [Cost and Telemetry](cost-and-telemetry.md)
+- [Agent Result Contract](lolla-agent-result-contract.md)
+- [Reasoning-Audit Harness PRD](lolla-reasoning-audit-harness-prd.md)
+- [Agent Control Layers And Lolla Integration](agent-control-layers-and-lolla-integration.md)
+- [Evaluation Methodology](lolla-evaluation-methodology.md)
+- [Human Review Workflow](evals/human-review-workflow.md)
+- [Observatory Archive Parity Audit](observatory-archive-parity-audit.md)
 
 External references:
 
