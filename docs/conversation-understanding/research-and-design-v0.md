@@ -821,7 +821,69 @@ Non-goals:
 - no provider-boundary policy change,
 - no `SKILL.md` change.
 
-### PR29+ Or Later: Decision-Aware Capture And Runtime Integration
+### PR29A: Specialist Extractor Probe Runner Harness v0
+
+Goal: build the local/offline runner contract for probing existing specialist
+extractors without making real model calls.
+
+Design note:
+[specialist-extractor-probe-runner-v0.md](specialist-extractor-probe-runner-v0.md).
+
+Scope:
+
+- Load one archive run directory.
+- Build baseline semantic coverage in memory.
+- Load `ConversationContext` from existing archive artifacts.
+- Run selected specialist extractors through an injected fake boundary.
+- Rebuild `ConversationIR` with existing injection hooks.
+- Compare baseline and specialist-enhanced semantic coverage.
+- Export deterministic JSON with candidate counts, validation counts,
+  grounding counts, improvement flags, and zero model-call counters.
+- Keep the harness read-only and custody-bounded.
+
+Non-goals:
+
+- no real model calls,
+- no OpenRouter calls,
+- no runtime behavior change,
+- no archive mutation,
+- no archive integration,
+- no prompt changes,
+- no new user-values extractor,
+- no new IR,
+- no graph DB, embeddings, or chunking,
+- no provider-boundary policy change,
+- no `SKILL.md` change.
+
+### PR29B: Real Specialist Extractor Probe On Four Modern Runs
+
+Goal: only after explicit model-call approval, run the existing specialists on
+the four modern baseline archives and measure whether real specialist outputs
+improve semantic coverage enough to justify later integration.
+
+Scope:
+
+- Use the PR29A runner contract.
+- Record actual model-call counts, requested/served model where available,
+  estimated cost, candidate counts, validation drop rates, grounding counts,
+  and coverage deltas.
+- Keep outputs local-only and free of raw transcript, memo, revised-answer,
+  model-message, provider-reasoning, failed-quote, and absolute-path content.
+- Decide whether existing specialists materially improve live constraints,
+  stance lineage, or dropped-thread coverage.
+
+Non-goals:
+
+- no runtime integration,
+- no prompt changes,
+- no new user-values extractor,
+- no graph DB, embeddings, or chunking,
+- no `conversation_understanding_ir.v0`,
+- no LLM judge,
+- no answer-quality scoring,
+- no provider-boundary policy change.
+
+### PR30+ Or Later: Decision-Aware Capture And Runtime Integration
 
 Goal: only after offline evidence, use the IR to improve capture or audit input.
 
