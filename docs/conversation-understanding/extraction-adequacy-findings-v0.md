@@ -122,6 +122,14 @@ ConversationContext and ConversationIR were unavailable. A narrow deterministic
 quote-validation repair or repair-reporting slice is therefore better justified
 than a broad specialist-extractor implementation.
 
+Before changing quote validation or extraction prompts, PR23 should classify the
+22 quote-validation findings. The classifier should distinguish current-matcher
+accepted legacy failures, formatting-only mismatches, high-overlap near matches,
+true paraphrases, and malformed/empty stored passages. That diagnostic decides
+whether the actual repair should touch matcher tolerance, retry prompting,
+extraction prompting, or no runtime behavior until a new modern smoke confirms
+the issue.
+
 Non-goals for the next slice remain:
 
 - no runtime behavior change without a separate decision,
