@@ -761,7 +761,36 @@ Non-goals:
 - no `SKILL.md` change,
 - no provider-boundary policy change.
 
-### PR27+ Or Later: Decision-Aware Capture And Runtime Integration
+### PR27: Semantic Coverage Corpus Survey v0
+
+Goal: run the PR26 semantic coverage report across archived runs and aggregate
+the repeated status, grounding, artifact-availability, and review-bucket
+patterns.
+
+Design note:
+[semantic-coverage-corpus-survey-v0.md](semantic-coverage-corpus-survey-v0.md).
+
+Scope:
+
+- Prefer existing `semantic_coverage_report.json` when present.
+- Otherwise build semantic coverage reports in memory without mutating
+  archives.
+- Export local JSONL corpus records and an aggregate manifest.
+- Count semantic element statuses and grounding types by element.
+- Keep the survey offline/local and privacy-bounded.
+
+Non-goals:
+
+- no runtime behavior change,
+- no archive integration,
+- no prompt changes,
+- no model calls,
+- no new IR,
+- no graph DB, embeddings, or chunking,
+- no provider-boundary policy change,
+- no `SKILL.md` change.
+
+### PR28+ Or Later: Decision-Aware Capture And Runtime Integration
 
 Goal: only after offline evidence, use the IR to improve capture or audit input.
 
