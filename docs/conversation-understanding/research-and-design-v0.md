@@ -790,7 +790,38 @@ Non-goals:
 - no provider-boundary policy change,
 - no `SKILL.md` change.
 
-### PR28+ Or Later: Decision-Aware Capture And Runtime Integration
+### PR28: Existing Specialist Extractor Offline Probe v0
+
+Goal: inspect whether existing specialist extractors can close repeated
+semantic coverage gaps before adding new IR, new extractors, or runtime
+integration.
+
+Design note:
+[specialist-extractor-offline-probe-v0.md](specialist-extractor-offline-probe-v0.md).
+
+Scope:
+
+- Review `live_constraints_extraction`, `stance_extraction`, and
+  `dropped_threads_extraction`.
+- Confirm whether each extractor can improve grounding from `turn_ref` or
+  `artifact_present_only` to span-grounded IR objects.
+- Identify model-call, cost, validation, and custody requirements for a future
+  offline runner.
+- Keep this PR docs-only because the current specialist APIs require LLM
+  boundary calls to generate candidate events.
+
+Non-goals:
+
+- no runtime behavior change,
+- no model calls,
+- no prompt changes,
+- no new user-values extractor,
+- no new IR,
+- no graph DB, embeddings, or chunking,
+- no provider-boundary policy change,
+- no `SKILL.md` change.
+
+### PR29+ Or Later: Decision-Aware Capture And Runtime Integration
 
 Goal: only after offline evidence, use the IR to improve capture or audit input.
 
