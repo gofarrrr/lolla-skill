@@ -3,6 +3,7 @@
 Status: reusable prompt for synthetic review rehearsal
 Output schema: `lolla.synthetic_review.v0`
 Human label schema: `lolla.human_review.v0`
+Surface policy evidence: `docs/evals/pr16-validated-synthetic-pilot-findings.md`
 
 Use this template when asking subagents to review exported Lolla corpus records.
 The output is synthetic rehearsal material. It is not human review, not ground
@@ -148,7 +149,7 @@ Do not use `minor`, `material`, or `unclear` for severity.
 
 ## Mixed Outcome Rules
 
-Separate the review surfaces:
+Separate the review surfaces before assigning candidate labels:
 
 - Answer-level review: did the revised answer add earned, useful friction?
 - Run-envelope/custody review: are required artifacts and custody metadata
@@ -156,9 +157,21 @@ Separate the review surfaces:
 - Live-output hygiene review: did live narration expose operational machinery?
 - Agent-readiness review: could an autonomous caller rely on the run?
 
-`review_status: pass` can coexist with
-`safe_for_agent_use: with_human_review` when the revised answer is useful but
-the run envelope, live-output hygiene, or domain risk makes autonomous reliance
+For `lolla.human_review.v0`, treat `review_status` as the answer-level
+candidate label unless the prompt explicitly assigns you to review custody,
+live-output hygiene, or agent readiness. Use `safe_for_agent_use` for the
+conservative agent-readiness judgment and use `reviewer_notes` / `qa_notes` to
+record custody and live-output caveats.
+
+Include a compact surface summary in `qa_notes` whenever the surfaces disagree:
+
+```text
+Surfaces: answer=pass; envelope=warn; live_output=fail; agent=with_human_review.
+```
+
+`review_status: pass` can coexist with `safe_for_agent_use: with_human_review`
+when the saved revised answer is useful but the run envelope, live-output
+hygiene, domain risk, or high-stakes context makes autonomous reliance
 inappropriate.
 
 Use `private_public_leak` when the reviewed surface materially exposes private
@@ -166,6 +179,17 @@ machinery, provider reasoning details, internal lane IDs, ledger details, or
 other operational internals. If saved product artifacts are clean but live
 transcript hygiene is degraded, call that out in `qa_notes` and explain whether
 it changes the candidate `review_status`.
+
+Use `artifact_custody_failure` when missing, malformed, or contradictory
+artifacts prevent trace inspection or make the run envelope misleading. Do not
+use it merely because a `modern_partial_reviewable` archive is missing newer
+sidecars while core content remains reviewable.
+
+Use `unsupported_new_claim` when the saved revised answer adds a factual,
+legal, medical, financial, organizational, or other high-stakes domain claim
+that is not supported by the conversation or source material. A better
+counsel-first or diligence-first frame does not excuse unsupported domain
+detail.
 
 When unsure whether a record is a pass or fail, use `review_status:
 needs_followup` rather than inventing a new value.

@@ -4,6 +4,7 @@ Status: v0 workflow for PR13 review-corpus records
 Inputs: `scripts/export_review_corpus.py` JSONL records and archived Lolla run folders
 Label schema: `lolla.human_review.v0`
 Taxonomy: `docs/evals/lolla-failure-taxonomy.md`
+Pilot evidence: `docs/evals/pr16-validated-synthetic-pilot-findings.md`
 
 This workflow turns archived Lolla runs into human-reviewed evidence. It is not
 an LLM judge, not an approval workflow, and not a replacement for deterministic
@@ -131,22 +132,76 @@ the run envelope is not fit for autonomous reliance.
 
 ## 8. Separate Mixed Outcomes
 
-Reviewers should separate four surfaces:
+Reviewers should separate four surfaces before choosing labels:
 
-- answer-level review,
-- run-envelope/custody review,
-- live-output hygiene review,
-- agent-readiness review.
+| Surface | Question | Where to record it in v0 |
+|---|---|---|
+| Answer-level review | Did the saved revised answer and memo add earned, decision-relevant friction without losing load-bearing constraints? | `review_status`, `primary_failure_mode`, friction fields, `revised_answer_improved` |
+| Run-envelope/custody review | Are artifacts, schemas, health, trace, capture adequacy, and evaluation present enough to inspect the run? | `reviewer_notes`; use `artifact_custody_failure` only when the envelope prevents or materially undermines review |
+| Live-output hygiene review | Did live narration expose operational machinery, private reasoning, provider details, or local run internals? | `reviewer_notes`; use `private_public_leak` when the reviewed surface materially exposes private machinery |
+| Agent-readiness review | Could an autonomous caller rely on this result without additional human inspection? | `safe_for_agent_use` |
 
 A useful revised answer can pass answer-level review while the run still carries
 custody, evaluation, live-output, or domain-risk caveats. Do not automatically
 turn those caveats into answer-quality failures.
+
+For v0 review records, treat `review_status` as answer-level unless the review
+assignment explicitly says the target is custody, live-output, or agent
+readiness. Use `safe_for_agent_use` and `reviewer_notes` to carry the more
+conservative run-level judgment. This keeps a useful saved answer from being
+misclassified as bad advice solely because the surrounding run envelope needs
+human inspection.
+
+Write a compact surface summary in `reviewer_notes` when surfaces disagree:
+
+```text
+Surfaces: answer=pass; envelope=warn; live_output=fail; agent=with_human_review.
+```
+
+Use `needs_followup` when the available artifacts are too incomplete or
+conflicted to decide the answer-level review. Use `exclude_from_eval` only when
+the run is not reviewable for the current evaluation question.
 
 Use `private_public_leak` when the reviewed surface materially exposes private
 machinery, provider reasoning details, internal lane IDs, ledger details, or
 other operational internals. If `revised.txt` and `memo.md` are clean but the
 live transcript leaks machinery, record that as a live-output hygiene caveat in
 notes and decide whether it materially changes the candidate `review_status`.
+
+Use `artifact_custody_failure` when missing, malformed, or contradictory
+artifacts prevent trace inspection or make the run envelope misleading. Do not
+use it merely because a `modern_partial_reviewable` archive is missing newer
+sidecars while core content remains reviewable.
+
+Use `unsupported_new_claim` when the revised answer adds a new factual,
+legal, medical, financial, organizational, or other high-stakes domain claim
+that is not supported by the conversation or source material. A counsel-first
+or diligence-first frame can still be useful, but unsupported domain detail can
+still make the answer-level review fail.
+
+### Pilot 2 Disagreement Rules
+
+The validated PR16 synthetic pilot exposed four recurring mixed-outcome cases.
+Apply these rules until the taxonomy is revised:
+
+- **Live-output leakage versus saved-answer usefulness:** if `revised.txt` and
+  `memo.md` are useful but `live_transcript.txt` leaks machinery, the answer can
+  pass while live-output hygiene fails. Mark the leak in `reviewer_notes`; use
+  `private_public_leak` as the primary failure only if the leak is material to
+  the reviewed surface or makes the run unfit as positive evidence.
+- **Degraded or eval-fail envelope versus useful answer:** deterministic
+  `evaluation.json` failure, degraded health, or partial custody can block
+  agent readiness without proving the revised answer failed. Prefer
+  `safe_for_agent_use: with_human_review` or `no`; use `artifact_custody_failure`
+  only when the envelope blocks review or misrepresents readiness.
+- **Older or partial archives:** `modern_partial_reviewable` and
+  `legacy_content_reviewable` are review-readiness facts, not automatic answer
+  failures. Review answer-level content when core artifacts are present, and
+  record custody limits separately.
+- **High-stakes unsupported detail:** legal, regulatory, medical, financial,
+  compliance, or employment-sensitive advice can improve at the strategy level
+  and still fail answer-level review if it introduces unsupported details that
+  could change action.
 
 ## 9. Write Notes
 

@@ -198,6 +198,10 @@ This is a starting taxonomy. It must be revised after real error analysis.
 The versioned v0 review contract now lives in
 `docs/evals/lolla-failure-taxonomy.md`, with the machine-readable label schema
 in `docs/evals/lolla-human-review-v0.json`.
+The first validated synthetic-review pilot finding is captured in
+`docs/evals/pr16-validated-synthetic-pilot-findings.md`: reviewer disagreement
+mostly came from review-surface ambiguity, not from validator or label-vocabulary
+failure.
 
 | ID | Failure mode | Eval type |
 |---|---|---|
