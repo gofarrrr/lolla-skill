@@ -57,8 +57,9 @@ make a degraded run safe for agent use.
 This remains the default.
 
 Normal `$lolla` should continue to use the current artifact chain without extra
-specialist model calls. This protects latency, cost, provider-boundary exposure,
-and the current run contract.
+specialist model calls. There should be zero hidden specialist calls in this
+mode. This protects latency, cost, provider-boundary exposure, and the current
+run contract.
 
 Use when:
 
@@ -349,6 +350,39 @@ worded.
 Do not include user-values extraction in any specialist runtime integration
 proposal. Treat it as a separate future design question.
 
+## Next Evidence Gate Before Runtime Integration
+
+The four PR29B runs justify design work. They do not justify product runtime
+behavior.
+
+Before any PR proposes runtime specialist integration, Lolla needs a broader
+approved modern sample that keeps the same custody contract:
+
+- at least 15-20 modern archives;
+- varied conversation lengths;
+- varied decision types;
+- the same three specialists: `live_constraints`, `stance`, and
+  `dropped_threads`;
+- baseline semantic coverage reports for every sampled archive;
+- specialist-enhanced coverage reports using the same comparison surface;
+- reported model-call count, provider/model metadata, token and cost telemetry
+  where available, validation failures, provider-boundary warnings, and
+  coverage deltas;
+- a privacy scan and archive mutation check over generated outputs.
+
+The broader sample should stop before runtime design if any of these become
+unstable:
+
+- validation failures are common or hard to classify;
+- cost or latency no longer looks bounded;
+- provider-boundary warnings make readiness ambiguous;
+- coverage deltas do not repeat beyond the four-run PR29B sample;
+- outputs cannot stay custody-safe without raw transcript, memo, revised-answer,
+  model-message, provider-reasoning, failed-quote, or absolute-path content.
+
+Passing this gate would still not auto-approve runtime integration. It would
+only make an integration PR eligible for design review.
+
 ## Recommended Next Step
 
 The next implementation step should not be runtime integration.
@@ -358,9 +392,7 @@ Recommended sequence:
 1. Keep PR29B as evidence that specialists are worth designing around.
 2. Use this design as the boundary for any future explicit deeper-mode or
    offline specialist-enhanced semantic coverage work.
-3. Before runtime integration, run a broader approved modern sample and confirm
-   that specialists still improve coverage with acceptable cost, validation,
-   and provider-boundary behavior.
+3. Pass the next evidence gate with a broader approved modern sample.
 4. Only then design archive integration, evaluation checks, or agent-result
    summaries.
 

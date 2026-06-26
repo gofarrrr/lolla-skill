@@ -906,6 +906,10 @@ The safe product path is explicit, operator-approved offline or deeper review
 first. Specialist success should make runs more inspectable, not automatically
 more usable, and should not override provider-boundary degradation. The
 user-values/priorities gap remains out of scope for the current specialist set.
+Any runtime integration proposal remains blocked until a broader approved
+modern sample, at least 15-20 varied archives, repeats the PR29B coverage
+improvement with bounded cost, validation failures, provider-boundary warnings,
+and custody-safe outputs.
 
 Scope:
 
