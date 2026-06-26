@@ -672,32 +672,56 @@ This PR should decide whether the quote-validation repair should target matcher
 tolerance, retry prompting, extraction prompting, legacy-only no-op plus a new
 smoke, or a split repair plan.
 
-### PR24: Offline Conversation Understanding Prototype
+### PR24: Modern Extraction Baseline Findings
 
-Goal: build `conversation_understanding_ir.v0` for archived runs only.
-
-Scope:
-
-- Prototype a script that reads an archived run and writes
-  `conversation_understanding_ir.json`.
-- Reuse the current `ConversationIR` primitives and specialist extractor
-  outputs where possible before adding new object types.
-- Use deterministic turn records plus one LLM extraction pass over selected
-  windows.
-- Verify source turns and quote spans.
-- Record cost/token metadata.
-- Do not feed the artifact into live Lolla yet.
-
-### PR25: Review/Export Fields For Extracted Conversation Knowledge
-
-Goal: let the review corpus expose compact conversation-understanding coverage.
+Goal: record the modern current-main baseline before moving beyond quote
+validation diagnostics.
 
 Scope:
 
-- Add availability and coverage fields to the review corpus.
-- Include counts by item type, unverified quote counts, and needs-review counts.
-- Do not copy raw semantic item text into public-ish exports unless explicitly
-  local-only and reviewed.
+- Document the four modern clean baseline runs.
+- Record that quote fabrication stayed historical and did not reproduce in the
+  modern samples.
+- Close quote-validation runtime repair for now.
+- Keep provider-boundary degradation on a separate policy track.
+- Explicitly state that clean quote/capture/turn-ref mechanics do not prove
+  full conversation understanding.
+
+Non-goals:
+
+- no runtime quote-validation change,
+- no matcher loosening,
+- no prompt change,
+- no provider-boundary policy change,
+- no `conversation_understanding_ir.v0`,
+- no graph DB, embeddings, chunking, or LLM judge.
+
+### PR25: Semantic Extraction Review Pilot
+
+Goal: review whether the current artifacts preserve the important reasoning
+work from a small set of modern conversations before building a new durable IR.
+
+Scope:
+
+- Compare `conversation.txt`, `extraction.json`,
+  `extraction_adequacy_report.json`, `result.json`, `revised.txt`, and
+  `memo.md` for a small modern sample.
+- Review whether extraction captured the real decision, live constraints, user
+  values, changed constraints, dropped threads, assistant overconfidence,
+  counter-pressure, revised-answer change reason, unanswered dimensions, and
+  actionability boundaries.
+- Keep the review evidence-local and custody-bounded.
+- Use findings to decide whether the next slice should be documentation,
+  deterministic coverage reporting, specialist-extractor evaluation, or a later
+  offline conversation-understanding prototype.
+
+Non-goals:
+
+- no production extraction rewrite,
+- no new runtime prompt,
+- no graph DB or embeddings,
+- no answer-quality judge,
+- no automatic human-review labels.
 
 ### PR26+: Decision-Aware Capture And Runtime Integration
 

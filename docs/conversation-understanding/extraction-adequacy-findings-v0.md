@@ -139,3 +139,26 @@ Non-goals for the next slice remain:
 - no LLM judge or answer-quality scoring,
 - no automatic human-review labels,
 - no Observatory or control-plane work.
+
+## Later Evidence Update
+
+PR23 classified the 22 historical quote-validation findings before any runtime
+repair. It found that many old failures were stale relative to the current
+matcher, with 13 of 22 accepted by current replay.
+
+After PR23, a modern current-main baseline added four clean modern samples:
+
+- `launch-limited-beta-workflow / 20260626T125112Z_b861fd`
+- `initiate-pre-sale-coffee / 20260626T131939Z_368960`
+- `implement-price-increase-three / 20260626T132915Z_49172d`
+- `five-person-saas-team / 20260626T133147Z_99712f`
+
+Those runs were quote-clean, extraction-good, capture-good/full, and turn-ref
+clean. The corpus grew to 67 records with `clean_baseline_sample: 4`; the
+historical `quote_fabrication_total` stayed at 22.
+
+This later evidence supersedes the PR22 repair suspicion for current runtime
+planning: quote-validation runtime repair is closed for now unless a fresh
+modern run reproduces a specific failure class. If that happens, classify the
+fresh failure with PR23 tooling before changing matcher tolerance, retry
+prompting, extraction prompting, or quote-validation policy.
