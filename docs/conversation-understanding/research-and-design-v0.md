@@ -606,7 +606,38 @@ This PR should answer which extraction/provenance failures are common enough to
 deserve engineering before Lolla adds smarter extraction, specialist-extractor
 reuse, chunking changes, or a durable conversation-understanding projection.
 
-### PR22: Offline Conversation Understanding Prototype
+### PR22: Extraction Adequacy Findings And Drilldown
+
+Goal: read the PR21 corpus map before building new extraction machinery.
+
+Scope:
+
+- Add a deterministic analyzer for the PR21 JSONL corpus and manifest.
+- Produce a compact Markdown findings report and machine-readable JSON summary.
+- List critical and warning records by case/run/path without raw transcript,
+  memo, revised-answer, model-message, provider-reasoning, or control-argument
+  text.
+- Identify invalid turn-ref records, quote-fabrication records, legacy metadata
+  limits, specialist-extractor opportunities, and whether warning patterns are
+  concentrated or spread.
+- Choose one narrow next slice from the measured evidence.
+
+Non-goals:
+
+- no model calls,
+- no new extraction prompt,
+- no runtime behavior change,
+- no new IR,
+- no answer-quality evaluation,
+- no graph DB,
+- no embeddings,
+- no human-review automation.
+
+This PR should answer what the 11 warning records and 1 critical record teach us
+before Lolla commits to quote repair, turn-ref repair, specialist extraction, or
+any durable conversation-understanding projection.
+
+### PR23: Offline Conversation Understanding Prototype
 
 Goal: build `conversation_understanding_ir.v0` for archived runs only.
 
@@ -622,7 +653,7 @@ Scope:
 - Record cost/token metadata.
 - Do not feed the artifact into live Lolla yet.
 
-### PR23: Review/Export Fields For Extracted Conversation Knowledge
+### PR24: Review/Export Fields For Extracted Conversation Knowledge
 
 Goal: let the review corpus expose compact conversation-understanding coverage.
 
@@ -633,7 +664,7 @@ Scope:
 - Do not copy raw semantic item text into public-ish exports unless explicitly
   local-only and reviewed.
 
-### PR24+: Decision-Aware Capture And Runtime Integration
+### PR25+: Decision-Aware Capture And Runtime Integration
 
 Goal: only after offline evidence, use the IR to improve capture or audit input.
 
@@ -645,7 +676,7 @@ Possible later work:
 - rerun/deeper-mode triggers,
 - Observatory inspection for conversation-understanding IR.
 
-Do not do this until PR20-PR23 show the artifact is useful and reviewable.
+Do not do this until PR20-PR24 show the artifact is useful and reviewable.
 
 ## Do Not Build Yet
 
