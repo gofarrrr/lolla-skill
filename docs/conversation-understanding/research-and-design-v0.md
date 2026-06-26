@@ -938,8 +938,8 @@ Non-goals:
 
 ### PR29D: Broader Specialist Evidence Gate v0
 
-Goal: run a broader offline specialist probe before any runtime integration
-design is allowed to proceed.
+Goal: run a broader offline specialist probe before any runtime or archive
+integration work is allowed to proceed.
 
 Evidence note:
 [broader-specialist-evidence-gate-v0.md](broader-specialist-evidence-gate-v0.md).
