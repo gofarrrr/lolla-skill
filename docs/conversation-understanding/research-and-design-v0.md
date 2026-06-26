@@ -737,6 +737,9 @@ Goal: build a deterministic, offline report over existing archive artifacts
 that shows where semantic evidence lives, how strongly it is grounded, and what
 is missing.
 
+Design note:
+[semantic-coverage-report-v0.md](semantic-coverage-report-v0.md).
+
 Scope:
 
 - Read only existing local archive artifacts.
