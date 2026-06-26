@@ -936,6 +936,45 @@ Non-goals:
 - no answer-quality scoring,
 - no provider-boundary policy change.
 
+### PR29D: Broader Specialist Evidence Gate v0
+
+Goal: run a broader offline specialist probe before any runtime integration
+design is allowed to proceed.
+
+Evidence note:
+[broader-specialist-evidence-gate-v0.md](broader-specialist-evidence-gate-v0.md).
+
+Outcome: Decision B plus Decision D, with an E caution. The existing
+specialists improved 56 of 57 target semantic elements across a 19-run
+reasoning-trace sample, but the sample was mixed-custody rather than 19
+full-modern archives. Stance validation failed to improve one run, and all 57
+model calls repeated the provider-boundary reasoning-detail warning. Runtime
+integration remains blocked.
+
+Scope:
+
+- Use the existing real specialist probe runner.
+- Probe the same three specialists: `live_constraints`, `stance`, and
+  `dropped_threads`.
+- Write generated outputs outside archive folders.
+- Report model calls, cost, provider-boundary warnings, validation failures,
+  grounding counts, semantic coverage deltas, privacy scan, and archive
+  mutation check.
+- Label sample-custody limits explicitly.
+
+Non-goals:
+
+- no `$lolla` runtime integration,
+- no prompt changes,
+- no archive integration,
+- no semantic coverage archive integration,
+- no new user-values extractor,
+- no graph DB, embeddings, or chunking,
+- no `conversation_understanding_ir.v0`,
+- no LLM judge,
+- no answer-quality scoring,
+- no provider-boundary policy change.
+
 ### PR30+ Or Later: Decision-Aware Capture And Runtime Integration
 
 Goal: only after offline evidence, use the IR to improve capture or audit input.
