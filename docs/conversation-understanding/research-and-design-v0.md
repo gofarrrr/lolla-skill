@@ -701,6 +701,14 @@ Non-goals:
 Goal: review whether the current artifacts preserve the important reasoning
 work from a small set of modern conversations before building a new durable IR.
 
+Status: completed/current evidence note. See
+[semantic-extraction-review-pilot-v0.md](semantic-extraction-review-pilot-v0.md).
+
+Outcome: Decision B. Current artifacts preserve quote/capture/turn-reference
+mechanics, but important semantic hinges are scattered across extraction,
+result cards, revised answer, memo, and agent/evaluation artifacts, or only
+partially preserved.
+
 Scope:
 
 - Compare `conversation.txt`, `extraction.json`,
@@ -723,7 +731,34 @@ Non-goals:
 - no answer-quality judge,
 - no automatic human-review labels.
 
-### PR26+: Decision-Aware Capture And Runtime Integration
+### PR26: Semantic Coverage Report v0
+
+Goal: build a deterministic, offline report over existing archive artifacts
+that shows where semantic evidence lives, how strongly it is grounded, and what
+is missing.
+
+Scope:
+
+- Read only existing local archive artifacts.
+- Report coverage for decision, live constraints, user values/priorities
+  signal, changed constraints or later pushback, dropped threads, assistant
+  stance lineage, counter-pressure, revised-answer change reason, unanswered
+  dimensions, and actionability boundaries.
+- Emit hashes, counts, artifact ownership, grounding type, status, and
+  review-needed flags.
+- Keep the report offline/local before any archive integration.
+
+Non-goals:
+
+- no runtime behavior change,
+- no model calls,
+- no prompt changes,
+- no new IR,
+- no graph DB, embeddings, or chunking,
+- no `SKILL.md` change,
+- no provider-boundary policy change.
+
+### PR27+ Or Later: Decision-Aware Capture And Runtime Integration
 
 Goal: only after offline evidence, use the IR to improve capture or audit input.
 
@@ -735,7 +770,8 @@ Possible later work:
 - rerun/deeper-mode triggers,
 - Observatory inspection for conversation-understanding IR.
 
-Do not do this until PR20-PR25 show the artifact is useful and reviewable.
+Do not do this until semantic coverage reporting shows repeated missing fields
+that justify capture or runtime integration.
 
 ## Do Not Build Yet
 
