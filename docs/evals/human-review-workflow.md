@@ -129,7 +129,26 @@ This label does not override `agent_result.caller_action`.
 `safe_for_agent_use: with_human_review` when the answer-level review passes but
 the run envelope is not fit for autonomous reliance.
 
-## 8. Write Notes
+## 8. Separate Mixed Outcomes
+
+Reviewers should separate four surfaces:
+
+- answer-level review,
+- run-envelope/custody review,
+- live-output hygiene review,
+- agent-readiness review.
+
+A useful revised answer can pass answer-level review while the run still carries
+custody, evaluation, live-output, or domain-risk caveats. Do not automatically
+turn those caveats into answer-quality failures.
+
+Use `private_public_leak` when the reviewed surface materially exposes private
+machinery, provider reasoning details, internal lane IDs, ledger details, or
+other operational internals. If `revised.txt` and `memo.md` are clean but the
+live transcript leaks machinery, record that as a live-output hygiene caveat in
+notes and decide whether it materially changes the candidate `review_status`.
+
+## 9. Write Notes
 
 Keep `reviewer_notes` short but traceable.
 
@@ -141,7 +160,7 @@ Good notes name the hinge:
 
 Avoid polished essays. The goal is fast, repeatable error analysis.
 
-## 9. Synthetic Review Rehearsal
+## 10. Synthetic Review Rehearsal
 
 Subagents or synthetic reviewers may help triage records. Their output must be
 kept outside `human_review` unless a human reviewer inspects the trace and takes
@@ -161,8 +180,10 @@ and use them to refine the taxonomy or workflow.
 Do not call synthetic labels "human review." Do not use them as gold labels for
 judge calibration. A tiny reference shape is documented in
 `docs/evals/lolla-synthetic-review-v0.json`.
+The reusable prompt template lives in
+`docs/evals/synthetic-review-prompt-template.md`.
 
-## 10. Use The Labels
+## 11. Use The Labels
 
 After the first labeled sample:
 

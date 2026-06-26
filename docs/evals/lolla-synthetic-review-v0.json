@@ -10,16 +10,45 @@
       "synthetic"
     ]
   },
-  "fields": [
-    "schema_version",
-    "reviewer_kind",
-    "model_or_agent",
-    "source_corpus_record_ref",
+  "candidate_human_review": {
+    "human_review_ground_truth": false,
+    "must_validate_with": "engine.system_b.human_review.validate_human_review",
+    "required_non_null_fields_for_synthetic_output": [
+      "review_status",
+      "primary_failure_mode",
+      "severity",
+      "useful_friction",
+      "noisy_friction",
+      "missing_friction",
+      "revised_answer_improved",
+      "safe_for_agent_use"
+    ],
+    "schema_version": "lolla.human_review.v0"
+  },
+  "record_fields": [
+    "index",
+    "archive_relpath",
+    "case_id",
+    "run_id",
     "candidate_human_review",
     "confidence",
     "uncertainties",
-    "qa_notes",
-    "requires_human_ratification"
+    "qa_notes"
+  ],
+  "required_record_fields": [
+    "index",
+    "archive_relpath",
+    "candidate_human_review",
+    "confidence",
+    "uncertainties",
+    "qa_notes"
+  ],
+  "required_top_level_fields": [
+    "schema_version",
+    "reviewer_kind",
+    "model_or_agent",
+    "scope",
+    "records"
   ],
   "schema_version": "lolla.synthetic_review_schema.v0",
   "scope": {
@@ -29,5 +58,16 @@
     "requires_human_ratification": true,
     "synthetic_only": true
   },
-  "synthetic_review_record_schema_version": "lolla.synthetic_review.v0"
+  "synthetic_review_record_schema_version": "lolla.synthetic_review.v0",
+  "top_level_fields": [
+    "schema_version",
+    "reviewer_kind",
+    "model_or_agent",
+    "scope",
+    "records",
+    "source_corpus_manifest",
+    "pilot_id",
+    "generated_at",
+    "notes"
+  ]
 }

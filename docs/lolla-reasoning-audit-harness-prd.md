@@ -507,6 +507,8 @@ Current v0 slice:
 - Synthetic/subagent review outputs are allowed only as rehearsal notes or
   candidate labels; they do not populate `lolla.human_review.v0` without human
   ratification.
+- `engine/system_b/synthetic_review.py` validates synthetic review outputs and
+  delegates candidate label validation to the human-review contract.
 
 Acceptance criteria:
 

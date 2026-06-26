@@ -388,6 +388,16 @@ and subagents can distinguish `full_modern_reviewable`,
 runs before labeling. Synthetic reviewers may produce rehearsal notes,
 candidate labels, or disagreement reports, but those outputs must stay outside
 `lolla.human_review.v0` until a human reviewer ratifies them.
+Synthetic outputs now have a validator and reusable prompt template:
+`engine/system_b/synthetic_review.py`,
+`docs/evals/lolla-synthetic-review-v0.json`, and
+`docs/evals/synthetic-review-prompt-template.md`.
+
+When reviewing mixed outcomes, keep answer-level review separate from
+run-envelope/custody review, live-output hygiene review, and agent-readiness
+review. A useful revised answer can pass human review while
+`safe_for_agent_use` remains `with_human_review` because custody, live-output,
+or domain-risk caveats make autonomous reliance inappropriate.
 
 ## Evaluation OS For Lolla
 
