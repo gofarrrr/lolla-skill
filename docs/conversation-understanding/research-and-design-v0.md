@@ -898,6 +898,15 @@ Non-goals:
 Goal: design whether and how specialist extraction should ever move from an
 offline probe into a product path, without changing runtime behavior yet.
 
+Design note:
+[specialist-runtime-design-without-integration-v0.md](specialist-runtime-design-without-integration-v0.md).
+
+Outcome: specialist extraction should not run during normal `$lolla` by default.
+The safe product path is explicit, operator-approved offline or deeper review
+first. Specialist success should make runs more inspectable, not automatically
+more usable, and should not override provider-boundary degradation. The
+user-values/priorities gap remains out of scope for the current specialist set.
+
 Scope:
 
 - Use the PR29B measurement result as input.
@@ -907,6 +916,8 @@ Scope:
 - Preserve semantic coverage delta measurement as the acceptance surface.
 - Keep user-values/priorities extraction out of scope unless separately
   designed.
+- Keep normal `$lolla` unchanged unless a later PR explicitly approves runtime
+  integration.
 
 Non-goals:
 
