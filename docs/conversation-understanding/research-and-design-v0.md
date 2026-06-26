@@ -1,0 +1,669 @@
+# Conversation Understanding Research And Design v0
+
+Status: design proposal
+Last updated: 2026-06-26
+
+This note is a research/design slice. It does not propose a runtime rewrite, a
+new memory product, a graph database, an LLM judge, or a change to `SKILL.md`.
+
+The goal is narrower:
+
+Build a source-grounded conversation-understanding layer that helps Lolla
+preserve the reasoning material inside messy conversations: constraints,
+commitments, options, reversals, dropped threads, gates, claims, and audit
+hinges.
+
+Lolla should not become generic personal memory. It should remain a local
+reasoning-audit harness. The raw transcript stays the source of truth; extracted
+structure is a reviewable, fallible, cost-accounted artifact.
+
+## Current Lolla Baseline
+
+The current system already has a strong harness foundation:
+
+- `conversation.txt` is captured as the raw source conversation.
+- `scripts/run_extract.py` performs one semantic extraction pass and writes
+  `extraction.json`.
+- `engine/system_b/conversation_context.py` defines the runtime
+  `ConversationContext` shape: turns, live constraints, synthesized position,
+  reasoning passages, dropped threads, capture metadata, and capture adequacy.
+- `engine/system_b/capture_adequacy.py` deterministically records capture shape:
+  declared/captured/omitted turns, captured windows, omitted windows, risk
+  flags, and status.
+- `agent_result.json` gives callers a conservative machine-readable result.
+- `reasoning_trace.json` indexes artifacts, hashes, run health, capture
+  adequacy, control-plane summaries, and custody metadata without duplicating
+  raw transcript text.
+- `evaluation.json` checks the run envelope and policy consistency, not answer
+  quality.
+- The review corpus exports compact run metadata and blank human-review fields
+  without copying transcript, memo, revised answer, raw model messages, or
+  control-action argument values.
+
+That is good scaffolding. The remaining gap is not "more artifacts." The gap is
+that Lolla still lacks a durable, source-grounded record of what the conversation
+established before the audit began.
+
+### Existing Local Prior Art To Reuse
+
+This design should not be read as "start a new IR from scratch." Lolla already
+has local IR and specialist-extractor work that any next implementation must
+measure and reuse before introducing another ontology:
+
+- `engine/system_b/ir.py` defines the provenance-bearing runtime
+  `ConversationIR` plus `Turn`, `TurnRef`, `SpanRef`, `SpanProvenance`,
+  `TurnRefProvenance`, `DerivationProvenance`, `FrameAnchor`,
+  `UserIssueEvent`, `StanceEvent`, and `drill_back(...)`.
+- `engine/system_b/ir_constructor.py` builds `ConversationIR` from
+  `ConversationContext`. In default production wiring this construction is
+  deterministic and conservative: paraphrased extraction fields become
+  turn-reference or derivation-provenance objects rather than invented exact
+  spans.
+- `engine/system_b/live_constraints_extraction.py` is an LLM-backed specialist
+  extractor for user-side live constraints. It emits verbatim-grounded
+  `UserIssueEvent` objects with `SpanProvenance` or validated multi-turn
+  `DerivationProvenance`.
+- `engine/system_b/dropped_threads_extraction.py` is an LLM-backed specialist
+  extractor for dropped threads raised by either user or assistant. It rejects
+  paraphrase and keeps single-turn substring grounding.
+- `engine/system_b/stance_extraction.py` is an LLM-backed specialist extractor
+  for assistant stance events: commitments, revisions, qualifications,
+  conditions, deferrals, and initial stances, each anchored to a verbatim
+  assistant span.
+- `docs/how-it-works/live-flow.md` documents the current boundary: production
+  constructs `ConversationIR` without specialist extractors by default, while
+  tests, eval harnesses, and ad-hoc callers can inject `stance_extractor`,
+  `live_constraints_extractor`, and `dropped_threads_extractor`.
+
+The naming boundary is:
+
+- `ConversationIR` is the current runtime lane-input representation.
+- `conversation_understanding_ir.v0`, if pursued, is an offline/archive
+  reasoning-custody artifact or projection. It is not a runtime replacement in
+  v0.
+
+The first implementation should therefore measure the existing chain before it
+names or persists anything new:
+
+```text
+conversation.txt -> extraction.json -> ConversationContext -> ConversationIR
+```
+
+Only if that measurement shows gaps the existing `ConversationIR` and
+specialist extractors cannot carry should Lolla introduce a broader durable
+conversation-understanding artifact.
+
+Today, extraction has useful but blunt fields:
+
+- `decision_situation`
+- `live_constraints`
+- `synthesized_position`
+- `reasoning_passages`
+- `original_framing`
+- `dropped_threads`
+
+For a short conversation this is often enough. For long or messy conversations,
+the current shape is too compressed to answer questions like:
+
+- Which assistant recommendation did the audit actually pressure?
+- Which user constraints were current, superseded, contradicted, or unresolved?
+- Which options appeared and disappeared?
+- Which assistant commitments or domain claims later became load-bearing?
+- Which middle-turn hinge was omitted by capture?
+- Which revised-answer claims trace back to transcript evidence?
+
+The next layer should answer those questions without pretending to prove
+semantic correctness.
+
+## Research Survey
+
+The systems below are useful references, but none should be copied wholesale.
+Most are generic memory/context engines. Lolla needs a reasoning-specific
+conversation record.
+
+| System | Representation | Provenance | Temporal handling | Extraction method | Update strategy | Cost strategy | Brittleness risk | Relevance to Lolla |
+|---|---|---|---|---|---|---|---|---|
+| [Graphiti / Zep](https://github.com/getzep/graphiti), [Zep docs](https://help.getzep.com/graphiti/getting-started/overview), [Zep paper](https://arxiv.org/html/2501.13956v1) | Temporal context graph with episodes, entities, relationship/fact edges, and optional custom entity/edge types. | Strong: episodes are raw ingested data and derived entities/facts trace back to episodes. | Strong: facts have validity windows and invalidation rather than deletion. | LLM-based entity/fact extraction, entity resolution, temporal extraction, graph insertion. | Incremental graph construction; new facts can invalidate older facts. | Hybrid semantic, keyword, and graph retrieval; graph DB/runtime infrastructure. | Overkill for Lolla v0; graph schemas, DB ops, entity resolution, and fact invalidation can become the product instead of the audit. | Copy the episode/provenance/temporal invalidation ideas. Do not adopt graph DB integration yet. |
+| [Mem0](https://github.com/mem0ai/mem0), [migration docs](https://docs.mem0.ai/migration/oss-v2-to-v3), [graph memory docs](https://docs.mem0.ai/platform/features/graph-memory) | Memories as records, entity-linked graph memory, user/session/agent scopes. | Moderate: memories originate from added content, but the product is optimized for recall rather than custody. | Newer algorithm emphasizes temporal recall and ADD-only extraction in OSS migration docs. | LLM extracts memories; entities are extracted and linked; retrieval fuses vector, BM25, and entity signals. | ADD-only in current OSS migration path; graph memory links facts by entities/co-occurrence. | Hybrid signals and graceful degradation when optional dependencies are missing. | User-personalization bias; memory may store what is useful to recall rather than what is needed to audit a reasoning path. | Copy multi-signal retrieval and graceful degradation. Avoid user-only memory bias and unlabeled assistant-commitment loss. |
+| [Supermemory](https://github.com/supermemoryai/supermemory) | Memory/context engine with facts, profiles, RAG, connectors, and a single memory structure/ontology. | Product docs emphasize extraction from conversations and connectors more than per-claim custody. | Handles temporal changes, contradictions, and automatic forgetting. | Automatic extraction, profiles, hybrid search, connectors, multimodal ingestion. | Background learning across conversations and sources. | API/local modes; abstracts vector/chunking details away from developers. | Too generic for Lolla; "remember the user" is not the same as "audit this answer's reasoning basis." | Copy the idea that memory should be easy to consume and local-capable. Avoid becoming a broad personal brain. |
+| [LangMem](https://langchain-ai.github.io/langmem/concepts/conceptual_guide/) / LangGraph memory concepts | Semantic, episodic, and procedural memory; profiles or collections; optional schema-specific memory managers. | Depends on developer schema and store; can preserve episodes as structured memories. | Explicitly distinguishes when memories are formed: hot path versus background. | LLM determines how to expand or consolidate memory state. | Application-specific insert/consolidate/update flows. | Background formation avoids latency; hot-path formation is immediate but costly. | Memory consolidation can silently encode product taste if not source-grounded. | Copy the semantic/episodic/procedural distinction and hot-path/background cost split. |
+| [LlamaIndex memory](https://developers.llamaindex.ai/python/framework/module_guides/deploying/agents/memory/) | Short-term chat history plus long-term memory blocks: static, fact extraction, vector. | Vector blocks can store message batches; fact blocks summarize/extract. | Older messages can flush into long-term blocks after token thresholds. | LLM fact extraction block; vector memory block for retrieved chat batches. | Memory blocks are prioritized and truncated when over budget. | Token limits, flush sizes, priority-based truncation. | Fact extraction blocks can become lossy summaries; vector retrieval does not know what is load-bearing. | Copy block separation and priority budgeting. Avoid retrieval-only truth. |
+| [Letta / MemGPT memory](https://www.letta.com/blog/agent-memory/) | Message buffer, core memory blocks, recall memory, archival memory. | Recall stores conversation history; archival stores processed/indexed knowledge. | Memory is framed as context engineering: which tokens enter the window. | Agent-managed memory tools and possible sleep-time memory agents. | Memory can be edited by agents or specialized background agents. | Hierarchy keeps immediate context small and pushes heavier maintenance out of the live path. | Autonomous self-editing memory can create false authority unless edits are auditable. | Copy memory tiers: raw transcript, compact IR, optional retrieval surface. Avoid agent self-editing Lolla's audit record. |
+| [Cognee](https://github.com/topoteretes/cognee) | Persistent memory platform combining knowledge graph, vector search, ontology generation, and data pipelines. | Emphasizes traceability and audit traits in a broader memory platform. | Knowledge evolves as data is ingested and connected. | Ingest/cognify/load style pipeline over documents and memories. | Continuous graph building and recall. | Infrastructure-heavy but self-hosted/local-capable. | Graph-first systems can force premature ontology design. | Copy the pipeline separation and audit posture. Avoid graph-first implementation in v0. |
+| [Karpathy LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) | Raw sources plus LLM-maintained wiki plus a schema/instruction file. | Strong if raw sources are immutable and the wiki cites them. | The wiki is maintained over time; contradictions and stale claims can be noted. | LLM compiles sources into interlinked Markdown pages. | Incremental ingest, query, lint, and log operations. | Moderate scale can work with an index/log before heavier search. | LLM-maintained synthesis can drift if source citations and lint are weak. | Copy "compiled artifact over raw RAG" and append-only log. For Lolla, the compiled artifact should be JSON custody plus optional Markdown views, not a freeform wiki. |
+| [GBrain](https://github.com/garrytan/gbrain) | Local/hosted brain with schema packs, capture/import, hybrid search, synthesis with citations and gap analysis. | Emphasizes source pages, citations, local capture, and schema-pack boundaries. | Trajectory/gap analysis distinguishes stale, uncited, contradictory, or missing knowledge. | Hybrid retrieval plus synthesis; schema packs determine how pages are interpreted. | Capture/import workflows and schema-pack evolution. | Raw search is cheaper; synthesized `think` path costs more. | Broad brain systems optimize for reusable knowledge, not necessarily audit-lineage. | Copy the separation between raw retrieval and synthesized answers with gap analysis. Avoid turning Lolla into a general "brain." |
+| Dialogue-history graph research, e.g. [IWSDS 2025 paper](https://aclanthology.org/2025.iwsds-1.31.pdf) and [GraphWOZ](https://arxiv.org/abs/2211.12852) | Dialogue, turns, semantic units, conversational entities, and graph dialogue state. | Turn-level structure makes references and updates auditable. | Dialogue states update incrementally as turns/actions occur. | Manual or model-assisted annotations/extractions. | New turns update the graph/dialogue state. | Research setups can require detailed annotation or domain constraints. | Domain-specific graphs can be brittle in open-ended strategic conversations. | Copy the layers: turns -> semantic units -> entities/relations. Keep Lolla's ontology small and escape-hatch friendly. |
+| Current Lolla extraction | `ConversationContext` with turns, live constraints, dropped threads, synthesized position, reasoning passages, capture metadata. | Partial: raw transcript persists; reasoning passages are quote-validated; constraints/threads have turn references but not quote spans. | Partial: constraints have active/dropped/modified; dropped threads have unresolved statuses; capture adequacy records omitted windows. | Single LLM extraction over full or truncated transcript, plus deterministic quote validation for reasoning passages. | Per-run artifact; no cross-run or incremental semantic memory yet. | One extraction call; long conversations use first-3/last-15 truncation after char cap. | Can miss middle-turn hinges, assistant commitments, changed options, and non-quoted constraints. | Use as substrate. Add a source-grounded IR beside it rather than replacing it first. |
+
+## Design Position
+
+Lolla should build a reasoning-specific conversation record, not a generic memory
+store.
+
+Generic memory asks:
+
+> What should an agent remember for future personalization or retrieval?
+
+Lolla asks:
+
+> What did this conversation establish that the audit must preserve, pressure,
+> contradict, or qualify?
+
+That means Lolla's conversation-understanding layer should prioritize:
+
+- decision options,
+- constraints and stakeholder boundaries,
+- assistant recommendations and commitments,
+- factual/domain claims,
+- gates and stop conditions,
+- reversals and changed stances,
+- dropped threads and open loops,
+- unresolved uncertainty,
+- final-position lineage,
+- source evidence and missing evidence.
+
+It should not prioritize:
+
+- all user preferences,
+- generic entity recall,
+- a permanent personal graph,
+- reusable profile memory,
+- raw document RAG,
+- automatic action approval,
+- answer-quality scoring.
+
+## Proposed Artifact: `conversation_understanding_ir.v0`
+
+This name is provisional. It should not create a second source of truth beside
+the existing runtime `ConversationIR`.
+
+The safe interpretation is:
+
+> `conversation_understanding_ir.v0` is an offline/archive reasoning-custody
+> projection that can reuse `ConversationIR` primitives and specialist
+> extractor outputs. It is not a runtime replacement in v0.
+
+PR20 should test whether the existing `ConversationIR` plus provenance reports
+are already enough for the first durable artifact. If they are, the eventual
+artifact may be a persisted/exported `ConversationIR` view plus adequacy
+metadata rather than a wholly new shape.
+
+The proposed artifact is an archive-time/offline JSON artifact:
+
+```text
+conversation.txt
+extraction.json
+conversation_understanding_ir.json
+result.json
+agent_result.json
+reasoning_trace.json
+evaluation.json
+```
+
+The artifact should be generated after the existing transcript and extraction
+exist. In v0 it should not block the live `/lolla` path.
+
+### Top-Level Shape
+
+```json
+{
+  "schema_version": "lolla.conversation_understanding_ir.v0",
+  "created_at": "2026-06-26T00:00:00Z",
+  "run_id": "20260626T000000Z_example",
+  "case_id": "example-case",
+  "source": {
+    "conversation_path": "conversation.txt",
+    "conversation_sha256": "sha256:...",
+    "extraction_path": "extraction.json",
+    "extraction_sha256": "sha256:...",
+    "raw_transcript_is_source_of_truth": true
+  },
+  "scope": {
+    "artifact": "conversation_understanding",
+    "runtime_blocking": false,
+    "model_calls": 0,
+    "llm_judge_used": false,
+    "advice_quality_scored": false
+  },
+  "turns": [],
+  "items": [],
+  "relations": [],
+  "coverage": {},
+  "validation": {},
+  "cost": {}
+}
+```
+
+### Turn Records
+
+Turn records are deterministic and should come from the same parser used by
+`load_conversation_context()`.
+
+```json
+{
+  "turn_id": "turn_015",
+  "turn_index": 15,
+  "role": "user",
+  "char_start": 12421,
+  "char_end": 12888,
+  "sha256": "sha256:...",
+  "captured": true,
+  "window": "recent"
+}
+```
+
+The deterministic turn layer is important because every semantic item should
+point back to a source turn.
+
+### Semantic Items
+
+Each extracted object should have a stable id, type, source, evidence, state,
+confidence, visibility, and review flags.
+
+```json
+{
+  "id": "constraint_001",
+  "type": "constraint",
+  "facet": "constraint",
+  "text": "Spouse consent is a hard gate before accepting the startup role.",
+  "source_role": "user",
+  "source_turn_ids": ["turn_015"],
+  "evidence": [
+    {
+      "turn_id": "turn_015",
+      "quote": "my wife has to be really on board",
+      "span": {
+        "char_start": 12603,
+        "char_end": 12637
+      },
+      "match_status": "verified"
+    }
+  ],
+  "state": "current",
+  "confidence": "high",
+  "extraction_status": "extracted",
+  "visibility": "public",
+  "ambiguity_notes": [],
+  "needs_review": false
+}
+```
+
+Recommended v0 `type` values:
+
+- `decision`
+- `option`
+- `constraint`
+- `stakeholder`
+- `gate`
+- `assistant_recommendation`
+- `assistant_commitment`
+- `assistant_claim`
+- `user_fact`
+- `user_preference`
+- `reversal`
+- `changed_stance`
+- `dropped_thread`
+- `open_question`
+- `uncertainty`
+- `evidence_gap`
+- `audit_hinge`
+- `other`
+
+Recommended `facet` values:
+
+- `factual`
+- `preference`
+- `recommendation`
+- `constraint`
+- `question`
+- `option`
+- `inference`
+- `commitment`
+- `domain_claim`
+- `process`
+- `other`
+
+Recommended `state` values:
+
+- `current`
+- `superseded`
+- `contradicted`
+- `unresolved`
+- `dropped`
+- `unknown`
+
+Recommended `visibility` values:
+
+- `public`
+- `private`
+- `review_only`
+
+Recommended `confidence` values:
+
+- `high`
+- `medium`
+- `low`
+- `uncertain`
+
+The `other`, `unknown`, `uncertain`, and `needs_review` escape hatches are not
+cosmetic. They prevent the ontology from forcing false precision.
+
+### Relations
+
+Relations should be simple in v0. The point is lineage, not graph-theory
+completeness.
+
+```json
+{
+  "id": "rel_001",
+  "source_id": "recommendation_001",
+  "relation": "depends_on",
+  "target_id": "constraint_001",
+  "source_turn_ids": ["turn_015"],
+  "confidence": "medium",
+  "state": "current",
+  "needs_review": false
+}
+```
+
+Recommended relation values:
+
+- `depends_on`
+- `contradicts`
+- `supersedes`
+- `supports`
+- `weakens`
+- `qualifies`
+- `raises`
+- `answers`
+- `ignores`
+- `related_to`
+
+`related_to` should remain available as a low-precision fallback.
+
+### Coverage
+
+Coverage should summarize what the IR claims to cover and what it knows it may
+have missed.
+
+```json
+{
+  "turn_count": 30,
+  "captured_turn_count": 30,
+  "omitted_turn_count": 0,
+  "semantic_item_count": 42,
+  "item_counts_by_type": {
+    "constraint": 6,
+    "assistant_recommendation": 3,
+    "audit_hinge": 4
+  },
+  "source_turns_with_items": ["turn_001", "turn_004", "turn_015"],
+  "source_turns_without_items": ["turn_002", "turn_003"],
+  "omitted_windows": [],
+  "known_limitations": [
+    "Semantic extraction is not proof of correctness."
+  ]
+}
+```
+
+### Validation
+
+Validation must stay deterministic and modest. It can check custody and
+structural claims. It cannot check whether a semantic item is truly wise,
+important, or complete.
+
+Recommended checks:
+
+- `schema_version` is expected.
+- source conversation exists and hash matches.
+- source extraction exists and hash matches.
+- every `source_turn_id` exists.
+- every claimed quote span exists inside its source turn.
+- every relation endpoint exists.
+- each item has an allowed type/facet/state/confidence/visibility value.
+- no item stores raw system/tool dumps.
+- no item stores provider reasoning details.
+- extracted quote text is bounded in length.
+- unknown/uncertain/needs-review states are allowed and counted.
+- cost metadata is present.
+
+Validation should not claim:
+
+- "all important constraints were found,"
+- "the revised answer improved,"
+- "this run is agent-usable,"
+- "the extracted item is semantically correct,"
+- "the answer is domain-safe."
+
+Those belong to human review, future calibrated checks, or external domain
+systems.
+
+## Cost Model
+
+The first implementation should be offline and diagnostic.
+
+Recommended cost posture:
+
+1. Start with deterministic adequacy over current artifacts.
+   - Count which existing extraction fields have turn references.
+   - Count which fields have quote/source evidence.
+   - Report missing provenance.
+   - Do not call a model.
+2. Prototype `conversation_understanding_ir.v0` over archived runs, not live
+   runs.
+3. Cache by conversation hash and by window hash.
+4. Use deterministic segmentation before LLM calls:
+   - turn parsing,
+   - speaker windows,
+   - capture windows,
+   - assistant-final-position windows,
+   - constraint-bearing user-turn candidates.
+5. Use LLMs only for semantic interpretation, not for source matching.
+6. Verify quotes and spans deterministically after extraction.
+7. Store token/cost metadata before considering live integration.
+8. Keep embeddings optional and later. They may help candidate retrieval, but
+   they should not become the trust mechanism.
+
+This gives Lolla a way to learn whether richer conversation understanding is
+useful before putting cost into the hot path.
+
+## Brittleness Model
+
+The dangerous failure modes are predictable:
+
+| Failure mode | What it looks like | Mitigation |
+|---|---|---|
+| Over-extraction | The IR fills with trivia and becomes expensive/noisy. | Type allowlist, item count caps, importance/needs-review fields, review corpus checks. |
+| Under-extraction | The middle-turn hinge is still missing. | Coverage reports, omitted-window flags, human review labels, fixture tests with known hinges. |
+| Hallucinated item | LLM invents a constraint or claim. | Required source turn and quote/span verification where possible. |
+| Assistant commitment loss | The system records user facts but not what the assistant promised or recommended. | First-class `assistant_recommendation`, `assistant_commitment`, and `assistant_claim` types. |
+| Stale/superseded item | Old facts remain current after the user changes stance. | `state`, `supersedes`, `contradicts`, and append-only lineage. |
+| False ontology precision | The extractor forces an ambiguous item into the wrong type. | `other`, `related_to`, `uncertain`, `needs_review`. |
+| Broken provenance | A reviewer cannot find where an item came from. | Deterministic source-turn and quote-span validation. |
+| Cost creep | Semantic extraction silently moves into every live run. | Offline-first artifact, cost metadata, cache by hash, no live-blocking v0. |
+| Privacy leak | The IR copies raw transcript, tool dumps, provider reasoning details, or control arguments. | Bounded excerpts only, visibility flags, deterministic banned-surface checks. |
+
+## What To Copy, Adapt, And Avoid
+
+Copy:
+
+- Graphiti/Zep's episode-first provenance and invalidation-over-deletion.
+- LangMem's distinction between semantic, episodic, and procedural memory.
+- LlamaIndex's block separation and priority/cost thinking.
+- Letta's memory hierarchy, especially raw recall versus processed archival
+  memory.
+- Mem0/Supermemory's practical extraction/retrieval ergonomics and graceful
+  degradation.
+- Karpathy's compiled artifact pattern: raw sources remain immutable, derived
+  knowledge compounds, and linting keeps it honest.
+- GBrain's split between raw retrieval and synthesized answers with gap
+  analysis.
+- Dialogue-history graph layering: turns first, semantic units second,
+  entities/relations third.
+
+Adapt:
+
+- Temporal validity becomes `current/superseded/contradicted/unresolved`, not a
+  full graph DB in v0.
+- Entity resolution becomes stable ids and simple relations, not broad
+  cross-run personal memory.
+- Search can start with JSON/Markdown/corpus exports before embeddings.
+- Gap analysis becomes extraction adequacy and evidence-gap reporting.
+
+Avoid:
+
+- Graph DB integration before evidence.
+- Embeddings-first capture.
+- A broad user profile memory.
+- Assistant self-editing of the audit record.
+- Freeform wiki pages as the only machine-readable artifact.
+- Hot-path extraction cost before offline pilots prove value.
+- LLM judges for answer quality.
+- Automatic human labels.
+- Hard ontology gates that make uncertain material disappear.
+
+## Phased Implementation Plan
+
+### PR20: Deterministic Extraction Adequacy Report
+
+Goal: measure current extraction's source-grounding before adding new semantic
+extraction.
+
+Scope:
+
+- Add a deterministic report over the existing transformation chain:
+  `conversation.txt -> extraction.json -> ConversationContext ->
+  ConversationIR`.
+- Count extraction fields, turn references, quote-validated fields, missing or
+  invalid turn refs, and omitted-window exposure.
+- Surface whether `live_constraints` and `dropped_threads` are only turn-linked
+  or also quote-linked.
+- Build `ConversationContext` and `ConversationIR` in the same default mode as
+  production, then report provenance tiers from the constructed IR.
+- Answer where provenance is preserved, weakened, or lost between raw
+  extraction, `ConversationContext`, and `ConversationIR`.
+- Report which existing specialist extractors could fill each gap:
+  `live_constraints_extraction`, `dropped_threads_extraction`, and
+  `stance_extraction`.
+- Add the report as an optional archive artifact, e.g.
+  `extraction_adequacy_report.json`.
+- Index it in `reasoning_trace.json` only if present.
+- Add deterministic tests with synthetic conversations.
+
+Non-goals:
+
+- no model calls,
+- no new extraction prompt,
+- no runtime behavior change,
+- no answer-quality evaluation,
+- no graph DB,
+- no embeddings.
+
+This is the safest next PR because it tells us exactly how much provenance the
+current system already has, including what the runtime IR already preserves.
+
+### PR21: Offline Conversation Understanding Prototype
+
+Goal: build `conversation_understanding_ir.v0` for archived runs only.
+
+Scope:
+
+- Prototype a script that reads an archived run and writes
+  `conversation_understanding_ir.json`.
+- Reuse the current `ConversationIR` primitives and specialist extractor
+  outputs where possible before adding new object types.
+- Use deterministic turn records plus one LLM extraction pass over selected
+  windows.
+- Verify source turns and quote spans.
+- Record cost/token metadata.
+- Do not feed the artifact into live Lolla yet.
+
+### PR22: Review/Export Fields For Extracted Conversation Knowledge
+
+Goal: let the review corpus expose compact conversation-understanding coverage.
+
+Scope:
+
+- Add availability and coverage fields to the review corpus.
+- Include counts by item type, unverified quote counts, and needs-review counts.
+- Do not copy raw semantic item text into public-ish exports unless explicitly
+  local-only and reviewed.
+
+### PR23+: Decision-Aware Capture And Runtime Integration
+
+Goal: only after offline evidence, use the IR to improve capture or audit input.
+
+Possible later work:
+
+- long-conversation candidate-window selection,
+- middle-turn hinge preservation fixtures,
+- high-stakes capture strictness,
+- rerun/deeper-mode triggers,
+- Observatory inspection for conversation-understanding IR.
+
+Do not do this until PR20-PR22 show the artifact is useful and reviewable.
+
+## Do Not Build Yet
+
+- graph database integration,
+- embeddings-first memory,
+- production extraction rewrite,
+- live prompt changes,
+- live runtime cost increase,
+- duplicate durable ontology before measuring existing `ConversationIR`,
+- hard ontology gate,
+- answer-quality judge,
+- automatic human-review labels,
+- human-exception or omitted-hinge annotation workflow,
+- Observatory redesign,
+- SKILL.md expansion.
+
+## Expected Conclusion
+
+Lolla should not become a generic memory layer.
+
+It should build a reasoning-specific conversation record: enough structure to
+preserve constraints, commitments, options, reversals, claims, dropped threads,
+and audit-relevant hinges, while the raw transcript remains source of truth and
+deterministic custody keeps the LLM honest.
+
+The next implementation should be boring: measure current extraction adequacy
+before adding new extraction intelligence.
+
+## Sources
+
+- [Graphiti GitHub README](https://github.com/getzep/graphiti)
+- [Graphiti/Zep overview](https://help.getzep.com/graphiti/getting-started/overview)
+- [Zep temporal knowledge graph paper](https://arxiv.org/html/2501.13956v1)
+- [Mem0 GitHub README](https://github.com/mem0ai/mem0)
+- [Mem0 OSS migration/new algorithm docs](https://docs.mem0.ai/migration/oss-v2-to-v3)
+- [Mem0 graph memory docs](https://docs.mem0.ai/platform/features/graph-memory)
+- [Supermemory GitHub README](https://github.com/supermemoryai/supermemory)
+- [LangMem conceptual guide](https://langchain-ai.github.io/langmem/concepts/conceptual_guide/)
+- [LlamaIndex agent memory docs](https://developers.llamaindex.ai/python/framework/module_guides/deploying/agents/memory/)
+- [Letta agent memory overview](https://www.letta.com/blog/agent-memory/)
+- [Cognee GitHub README](https://github.com/topoteretes/cognee)
+- [Karpathy LLM Wiki gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
+- [GBrain GitHub README](https://github.com/garrytan/gbrain)
+- [GraphWOZ conversational knowledge graph paper](https://arxiv.org/abs/2211.12852)
+- [Integrating Conversational Entities and Dialogue Histories with Knowledge Graphs](https://aclanthology.org/2025.iwsds-1.31.pdf)
+
+## Local Code And Docs Inspected
+
+- [ir.py](../../engine/system_b/ir.py)
+- [ir_constructor.py](../../engine/system_b/ir_constructor.py)
+- [conversation_context.py](../../engine/system_b/conversation_context.py)
+- [conversation_loader.py](../../engine/system_b/conversation_loader.py)
+- [live_constraints_extraction.py](../../engine/system_b/live_constraints_extraction.py)
+- [dropped_threads_extraction.py](../../engine/system_b/dropped_threads_extraction.py)
+- [stance_extraction.py](../../engine/system_b/stance_extraction.py)
+- [capture_adequacy.py](../../engine/system_b/capture_adequacy.py)
+- [agent_result.py](../../engine/system_b/agent_result.py)
+- [reasoning_trace.py](../../engine/system_b/reasoning_trace.py)
+- [evaluation.py](../../engine/system_b/evaluation.py)
+- [review_corpus.py](../../engine/system_b/review_corpus.py)
+- [run_extract.py](../../scripts/run_extract.py)
+- [Lolla PRD](../lolla-reasoning-audit-harness-prd.md)
+- [Evaluation methodology](../lolla-evaluation-methodology.md)
+- [Public pitch](../lolla-pitch-and-invitation.md)
+- [Skill steps](../skill/STEPS.md)
