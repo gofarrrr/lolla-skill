@@ -4,7 +4,9 @@ Status: v0 workflow for PR13 review-corpus records
 Inputs: `scripts/export_review_corpus.py` JSONL records and archived Lolla run folders
 Label schema: `lolla.human_review.v0`
 Taxonomy: `docs/evals/lolla-failure-taxonomy.md`
-Pilot evidence: `docs/evals/pr16-validated-synthetic-pilot-findings.md`
+Pilot evidence:
+`docs/evals/pr16-validated-synthetic-pilot-findings.md`,
+`docs/evals/pr17-disputed-surface-pilot-findings.md`
 
 This workflow turns archived Lolla runs into human-reviewed evidence. It is not
 an LLM judge, not an approval workflow, and not a replacement for deterministic
@@ -118,10 +120,12 @@ another constraint.
 
 Use:
 
-- `yes` only when the run envelope and revised answer are both fit for reliance.
+- `yes` only when the answer-level review passes and the run envelope is strong
+  enough for reliance without additional human inspection.
 - `with_human_review` when a human can use the run but an autonomous caller
   should not proceed without inspection.
-- `no` when the run is misleading, degraded in an action-changing way, or unsafe.
+- `no` when the run should not be treated as agent-usable evidence for the
+  target action until rerun, backfilled, or materially repaired.
 - `unclear` when the reviewer cannot decide from the available artifacts.
 
 This label does not override `agent_result.caller_action`.
@@ -129,6 +133,31 @@ This label does not override `agent_result.caller_action`.
 `review_status: pass` can coexist with
 `safe_for_agent_use: with_human_review` when the answer-level review passes but
 the run envelope is not fit for autonomous reliance.
+
+The key distinction is:
+
+- `with_human_review` means the run can still support a human decision workflow
+  after the reviewer inspects caveats.
+- `no` means the run should not be used by an agent as evidence for the target
+  action, even as a warning-bearing handoff, unless the run is rerun, backfilled,
+  or materially repaired.
+
+Apply these default rules:
+
+| Case | Default `safe_for_agent_use` | Reason |
+|---|---|---|
+| Answer fails. | `no` | An autonomous caller should not rely on a failed answer-level review. |
+| Answer passes, envelope fails. | Usually `no` | The content may be useful to a human, but the run cannot support agent reliance. |
+| Answer passes, envelope warns but remains inspectable. | Often `with_human_review` | A human can inspect caveats; an autonomous caller should not proceed directly. |
+| Answer passes, saved artifacts are clean, live output fails. | Usually `with_human_review` | The saved answer may be useful, but the live surface failed and needs inspection. |
+| Reviewed target is the live product output and live output fails. | Usually `no` | The failed surface is the surface being reviewed. |
+| High-stakes legal, regulatory, medical, financial, employment, safety, or credential-sensitive advice with degraded custody, incomplete capture, or unsupported domain claims. | Prefer `no` | Domain/action risk raises the reliance bar. |
+| Reviewer cannot tell whether the run supports agent reliance. | `unclear` | Do not convert uncertainty into either approval or rejection. |
+
+Use `with_human_review` for inspectable caveats. Use `no` when the caveat blocks
+agent reliance for the target action. For example, a legal/regulatory run with a
+useful counsel-first answer can still be `safe_for_agent_use: no` if custody is
+degraded or the answer includes unsupported domain detail.
 
 ## 8. Separate Mixed Outcomes
 
@@ -202,6 +231,22 @@ Apply these rules until the taxonomy is revised:
   compliance, or employment-sensitive advice can improve at the strategy level
   and still fail answer-level review if it introduces unsupported details that
   could change action.
+
+### Pilot 3 Agent-Readiness Rule
+
+The PR17 disputed-record pilot showed one remaining split: an answer-level pass
+with a warn/degraded envelope, unchecked live output, and high-stakes
+legal/regulatory domain risk. In that case, reviewers should choose between
+`with_human_review` and `no` by asking:
+
+- Can the run still help a human reviewer after caveats are inspected?
+- Would an autonomous caller have enough custody and domain support to act
+  without rerun, backfill, or material repair?
+
+If the first answer is yes and the second is no, use
+`safe_for_agent_use: with_human_review`. If the domain risk, custody gap,
+unsupported claim, or action sensitivity makes the run unfit even as
+agent-usable evidence, use `safe_for_agent_use: no`.
 
 ## 9. Write Notes
 
