@@ -5,12 +5,16 @@ from pathlib import Path
 
 import pytest
 
+from engine.system_b.boundary_provider import BoundaryCallRecord
 from engine.system_b.specialist_extractor_probe import (
     SPECIALIST_EXTRACTOR_PROBE_SCHEMA_VERSION,
+    build_real_specialist_extractor_probe,
     build_specialist_extractor_probe,
     render_specialist_extractor_probe_json,
+    write_real_specialist_extractor_probe,
     write_specialist_extractor_probe,
 )
+from scripts import probe_real_specialist_extractors as real_cli
 from scripts.probe_specialist_extractors import main as cli_main
 
 
@@ -175,6 +179,49 @@ def _fake_boundary_payload() -> dict:
             }
         ],
     }
+
+
+class _RecordingBoundary:
+    def __init__(self) -> None:
+        self.call_log: list[BoundaryCallRecord] = []
+        self.last_call_metadata = None
+
+    def run_json(
+        self,
+        system_prompt: str,
+        user_prompt: str,
+        *,
+        stage: str = "unlabeled",
+        tendency_id: str = "",
+    ) -> dict[str, object]:
+        del user_prompt
+        record = BoundaryCallRecord(
+            stage=stage,
+            tendency_id=tendency_id,
+            provider_name="openrouter",
+            requested_model="google/gemini-3.1-flash-lite",
+            served_model="google/gemini-3.1-flash-lite",
+            model="google/gemini-3.1-flash-lite",
+            model_attribution_status="matched",
+            status="ok",
+            finish_reason="stop",
+            raw_message_content="SECRET RAW MODEL MESSAGE",
+            temperature=0.2,
+            prompt_tokens=100,
+            completion_tokens=20,
+            total_tokens=120,
+            reasoning_disabled=True,
+            reasoning_details_present=False,
+        )
+        self.call_log.append(record)
+        self.last_call_metadata = record
+        if "LIVE CONSTRAINTS" in system_prompt:
+            return {"live_constraints": _fake_boundary_payload()["live_constraints"]}
+        if "STANCE EVENT" in system_prompt:
+            return {"stance_events": _fake_boundary_payload()["stance_events"]}
+        if "DROPPED THREADS" in system_prompt:
+            return {"dropped_threads": _fake_boundary_payload()["dropped_threads"]}
+        return {}
 
 
 def test_fake_boundary_live_constraints_improve_grounding(tmp_path: Path) -> None:
@@ -393,6 +440,199 @@ def test_library_rejects_output_inside_run_dir(tmp_path: Path) -> None:
         )
 
     assert not out.exists()
+
+
+def test_real_boundary_probe_records_sanitized_model_calls_and_cost(
+    tmp_path: Path,
+) -> None:
+    run_dir = _seed_run(tmp_path)
+
+    probe = build_real_specialist_extractor_probe(
+        run_dir,
+        boundary=_RecordingBoundary(),
+        specialists=["live_constraints", "stance", "dropped_threads"],
+    )
+    rendered = render_specialist_extractor_probe_json(probe)
+
+    assert probe["boundary_mode"] == "real"
+    assert probe["model_calls_made"] is True
+    assert probe["model_call_count"] == 3
+    assert probe["model_usage"]["estimated_total_cost_usd"] > 0
+    assert [call["stage"] for call in probe["boundary_calls"]] == [
+        "specialist_probe.live_constraints",
+        "specialist_probe.stance",
+        "specialist_probe.dropped_threads",
+    ]
+    assert probe["specialists"]["live_constraints"]["did_improve_coverage"] is True
+    assert probe["specialists"]["stance"]["did_improve_coverage"] is True
+    assert probe["specialists"]["dropped_threads"]["did_improve_coverage"] is True
+    assert "SECRET RAW MODEL MESSAGE" not in rendered
+    assert "raw_message_content" not in rendered
+    assert "SECRET" not in rendered
+    assert "/Users/" not in rendered
+    assert "six users ready" not in rendered
+
+
+def test_real_library_rejects_output_inside_run_dir(tmp_path: Path) -> None:
+    run_dir = _seed_run(tmp_path)
+    out = run_dir / "real-probe.json"
+
+    with pytest.raises(ValueError, match="out path must not be inside run_dir"):
+        write_real_specialist_extractor_probe(
+            run_dir,
+            out,
+            boundary=_RecordingBoundary(),
+        )
+
+    assert not out.exists()
+
+
+def test_real_probe_cli_requires_explicit_approval(tmp_path: Path) -> None:
+    run_dir = _seed_run(tmp_path)
+    archive_root = run_dir.parents[1]
+
+    exit_code = real_cli.main(
+        [
+            str(archive_root),
+            "--run",
+            "case-a/run-a",
+            "--out-dir",
+            str(tmp_path / "probe-runs"),
+            "--json-out",
+            str(tmp_path / "probe.json"),
+            "--md-out",
+            str(tmp_path / "probe.md"),
+        ]
+    )
+
+    assert exit_code == 2
+
+
+def test_real_probe_cli_writes_reports_without_archive_mutation(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    run_dir = _seed_run(tmp_path)
+    archive_root = run_dir.parents[1]
+    before = sorted(path.relative_to(archive_root) for path in archive_root.rglob("*") if path.is_file())
+    out_dir = tmp_path / "probe-runs"
+    json_out = tmp_path / "probe.json"
+    md_out = tmp_path / "probe.md"
+
+    from engine.system_b import boundary_provider
+
+    monkeypatch.setattr(
+        boundary_provider,
+        "load_boundary_client_from_env",
+        lambda _provider: _RecordingBoundary(),
+    )
+
+    exit_code = real_cli.main(
+        [
+            str(archive_root),
+            "--run",
+            "case-a/run-a",
+            "--out-dir",
+            str(out_dir),
+            "--json-out",
+            str(json_out),
+            "--md-out",
+            str(md_out),
+            "--real-boundary-approved",
+            "--all",
+        ]
+    )
+    after = sorted(path.relative_to(archive_root) for path in archive_root.rglob("*") if path.is_file())
+    rendered = json_out.read_text(encoding="utf-8") + md_out.read_text(encoding="utf-8")
+
+    assert exit_code == 0
+    assert json_out.exists()
+    assert md_out.exists()
+    assert (out_dir / "case-a__run-a.json").exists()
+    assert before == after
+    assert "SECRET" not in rendered
+    assert "/Users/" not in rendered
+    assert "raw_message_content" not in rendered
+    assert "case-a/run-a" in rendered
+
+
+def test_real_probe_cli_rejects_outputs_inside_archive_root(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    run_dir = _seed_run(tmp_path)
+    archive_root = run_dir.parents[1]
+    from engine.system_b import boundary_provider
+
+    monkeypatch.setattr(
+        boundary_provider,
+        "load_boundary_client_from_env",
+        lambda _provider: _RecordingBoundary(),
+    )
+
+    exit_code = real_cli.main(
+        [
+            str(archive_root),
+            "--run",
+            "case-a/run-a",
+            "--out-dir",
+            str(archive_root / "probe-runs"),
+            "--json-out",
+            str(tmp_path / "probe.json"),
+            "--md-out",
+            str(tmp_path / "probe.md"),
+            "--real-boundary-approved",
+        ]
+    )
+
+    assert exit_code == 2
+    assert not (archive_root / "probe-runs").exists()
+
+
+def test_real_probe_cli_rejects_non_openrouter_provider_without_outputs(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    run_dir = _seed_run(tmp_path)
+    archive_root = run_dir.parents[1]
+    out_dir = tmp_path / "probe-runs"
+    json_out = tmp_path / "probe.json"
+    md_out = tmp_path / "probe.md"
+    from engine.system_b import boundary_provider
+
+    def fail_if_called(_provider: str) -> _RecordingBoundary:
+        raise AssertionError("boundary client should not be loaded")
+
+    monkeypatch.setattr(
+        boundary_provider,
+        "load_boundary_client_from_env",
+        fail_if_called,
+    )
+
+    exit_code = real_cli.main(
+        [
+            str(archive_root),
+            "--run",
+            "case-a/run-a",
+            "--out-dir",
+            str(out_dir),
+            "--json-out",
+            str(json_out),
+            "--md-out",
+            str(md_out),
+            "--provider",
+            "openai",
+            "--real-boundary-approved",
+        ]
+    )
+
+    captured = capsys.readouterr()
+    assert exit_code == 2
+    assert "real specialist probe currently supports openrouter cost telemetry only" in captured.err
+    assert not out_dir.exists()
+    assert not json_out.exists()
+    assert not md_out.exists()
 
 
 def test_cli_fails_cleanly_for_missing_run_dir(tmp_path: Path) -> None:

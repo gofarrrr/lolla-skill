@@ -861,6 +861,16 @@ Goal: only after explicit model-call approval, run the existing specialists on
 the four modern baseline archives and measure whether real specialist outputs
 improve semantic coverage enough to justify later integration.
 
+Status: completed local evidence note. See
+[real-specialist-extractor-probe-v0.md](real-specialist-extractor-probe-v0.md).
+
+Outcome: Decision A plus Decision D. The existing `live_constraints`, `stance`,
+and `dropped_threads` specialists improved their target semantic coverage
+elements on all four modern sampled runs. The user-values/priorities gap remains
+unsolved by current specialists and should stay a separate future design
+question. The probe also observed provider-boundary reasoning-detail warnings
+on all 12 calls; keep that separate from extractor validation quality.
+
 Scope:
 
 - Use the PR29A runner contract.
@@ -876,6 +886,34 @@ Non-goals:
 
 - no runtime integration,
 - no prompt changes,
+- no new user-values extractor,
+- no graph DB, embeddings, or chunking,
+- no `conversation_understanding_ir.v0`,
+- no LLM judge,
+- no answer-quality scoring,
+- no provider-boundary policy change.
+
+### PR29C: Specialist Runtime Design Without Integration
+
+Goal: design whether and how specialist extraction should ever move from an
+offline probe into a product path, without changing runtime behavior yet.
+
+Scope:
+
+- Use the PR29B measurement result as input.
+- Specify candidate execution points, cost gates, output custody, failure
+  modes, provider-boundary handling, and whether outputs remain offline or
+  become archived artifacts.
+- Preserve semantic coverage delta measurement as the acceptance surface.
+- Keep user-values/priorities extraction out of scope unless separately
+  designed.
+
+Non-goals:
+
+- no `$lolla` runtime integration,
+- no prompt changes,
+- no archive integration,
+- no semantic coverage archive integration,
 - no new user-values extractor,
 - no graph DB, embeddings, or chunking,
 - no `conversation_understanding_ir.v0`,
