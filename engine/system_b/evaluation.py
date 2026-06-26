@@ -18,6 +18,10 @@ from .capture_adequacy import (
     CAPTURE_ADEQUACY_SCHEMA_VERSION,
     capture_adequacy_from_artifacts,
 )
+from .extraction_adequacy_report import (
+    EXTRACTION_ADEQUACY_REPORT_SCHEMA_VERSION,
+    extraction_adequacy_report_from_artifacts,
+)
 from .provider_boundary_health import PROVIDER_BOUNDARY_HEALTH_SCHEMA_VERSION
 from .reasoning_trace import REASONING_TRACE_SCHEMA_VERSION
 
@@ -37,6 +41,7 @@ REQUIRED_ARTIFACTS = (
 )
 
 OPTIONAL_ARTIFACTS = (
+    "extraction_adequacy_report.json",
     "graph_survival_report.json",
     "graph_survival_report.md",
 )
@@ -69,6 +74,7 @@ def build_evaluation(
         extraction=extraction,
         result=result,
     )
+    extraction_adequacy_report = extraction_adequacy_report_from_artifacts(run_dir)
 
     checks: list[dict[str, Any]] = []
     checks.extend(_artifact_presence_checks(run_dir))
@@ -77,10 +83,12 @@ def build_evaluation(
         reasoning_trace=reasoning_trace,
         provider_health=provider_health,
         capture_adequacy=capture_adequacy,
+        extraction_adequacy_report=extraction_adequacy_report,
     ))
     checks.extend(_agent_policy_checks(agent_result=agent_result, run_health=run_health, provider_health=provider_health))
     checks.extend(_reasoning_trace_checks(run_dir=run_dir, reasoning_trace=reasoning_trace))
     checks.extend(_capture_adequacy_checks(capture_adequacy=capture_adequacy))
+    checks.extend(_extraction_adequacy_checks(report=extraction_adequacy_report))
     checks.extend(_hygiene_checks(run_health=run_health))
     checks.extend(_provider_boundary_checks(agent_result=agent_result, provider_health=provider_health))
     checks.extend(_archive_readiness_checks(run_dir=run_dir, agent_result=agent_result))
@@ -175,6 +183,7 @@ def _schema_checks(
     reasoning_trace: Mapping[str, Any],
     provider_health: Mapping[str, Any],
     capture_adequacy: Mapping[str, Any],
+    extraction_adequacy_report: Mapping[str, Any],
 ) -> list[dict[str, Any]]:
     checks = [
         _schema_check(
@@ -228,6 +237,28 @@ def _schema_checks(
                 severity="warning",
                 message="Capture adequacy metadata is not present.",
                 artifact="extraction.json",
+            )
+        )
+    observed_extraction_adequacy_schema = _text(
+        extraction_adequacy_report.get("schema_version")
+    )
+    if observed_extraction_adequacy_schema:
+        checks.append(
+            _schema_check(
+                id="extraction_adequacy_report_schema_version",
+                artifact="extraction_adequacy_report.json",
+                observed=observed_extraction_adequacy_schema,
+                expected=EXTRACTION_ADEQUACY_REPORT_SCHEMA_VERSION,
+            )
+        )
+    else:
+        checks.append(
+            _check(
+                id="extraction_adequacy_report_schema_version",
+                status="warn",
+                severity="warning",
+                message="Extraction adequacy report is not present.",
+                artifact="extraction_adequacy_report.json",
             )
         )
     return checks
@@ -447,6 +478,45 @@ def _capture_adequacy_checks(
             severity=severity,
             message=message,
             artifact="extraction.json",
+        )
+    ]
+
+
+def _extraction_adequacy_checks(*, report: Mapping[str, Any]) -> list[dict[str, Any]]:
+    if not report:
+        return [
+            _check(
+                id="extraction_adequacy_status",
+                status="warn",
+                severity="warning",
+                message="Extraction adequacy report is missing; inspect older archive manually.",
+                artifact="extraction_adequacy_report.json",
+            )
+        ]
+    status = _text(report.get("adequacy_status")) or "unknown"
+    if status == "good":
+        check_status = "pass"
+        severity = "info"
+        message = "Extraction/provenance adequacy report is good."
+    elif status == "warn":
+        check_status = "warn"
+        severity = "warning"
+        message = "Extraction/provenance adequacy report is warning-level."
+    elif status == "critical":
+        check_status = "fail"
+        severity = "blocking"
+        message = "Extraction/provenance adequacy report is critical."
+    else:
+        check_status = "warn"
+        severity = "warning"
+        message = f"Extraction/provenance adequacy status is {status}."
+    return [
+        _check(
+            id="extraction_adequacy_status",
+            status=check_status,
+            severity=severity,
+            message=message,
+            artifact="extraction_adequacy_report.json",
         )
     ]
 

@@ -9,6 +9,10 @@ from engine.system_b.evaluation import (
     EVALUATION_SCHEMA_VERSION,
     build_evaluation,
 )
+from engine.system_b.extraction_adequacy_report import (
+    EXTRACTION_ADEQUACY_REPORT_SCHEMA_VERSION,
+    write_extraction_adequacy_report,
+)
 from engine.system_b.provider_boundary_health import build_provider_boundary_health
 from engine.system_b.reasoning_trace import write_reasoning_trace
 
@@ -70,6 +74,7 @@ def _seed_run(
     case_id: str = "eval-case",
     health: dict | None = None,
     include_optional_graph: bool = True,
+    include_extraction_adequacy_report: bool = True,
     risk_mode: str = "standard",
     capture_adequacy: dict | None = None,
 ) -> Path:
@@ -142,6 +147,8 @@ def _seed_run(
         )
 
     write_agent_result(run_dir, run_id=run_id, case_id=case_id)
+    if include_extraction_adequacy_report:
+        write_extraction_adequacy_report(run_dir, run_id=run_id, case_id=case_id)
     files_for_trace = [
         "conversation.txt",
         "extraction.json",
@@ -151,6 +158,8 @@ def _seed_run(
         "run_events.json",
         "agent_result.json",
     ]
+    if include_extraction_adequacy_report:
+        files_for_trace.append("extraction_adequacy_report.json")
     if include_optional_graph:
         files_for_trace.extend(["graph_survival_report.json", "graph_survival_report.md"])
     write_reasoning_trace(
@@ -181,6 +190,10 @@ def test_healthy_archive_evaluation_passes(tmp_path: Path) -> None:
     assert evaluation["overall"] == "pass"
     assert evaluation["caller_readiness"] == "ready"
     assert _check(evaluation, "reasoning_trace_indexes_agent_result")["status"] == "pass"
+    assert _check(evaluation, "extraction_adequacy_report_schema_version")[
+        "status"
+    ] == "pass"
+    assert _check(evaluation, "extraction_adequacy_status")["status"] == "pass"
     assert evaluation["scope"] == {
         "artifact": "run_readiness",
         "advice_quality_scored": False,
@@ -340,6 +353,7 @@ def test_missing_capture_adequacy_warns_for_older_archives(tmp_path: Path) -> No
             "memo.md",
             "run_events.json",
             "agent_result.json",
+            "extraction_adequacy_report.json",
             "graph_survival_report.json",
             "graph_survival_report.md",
         ],
@@ -352,6 +366,76 @@ def test_missing_capture_adequacy_warns_for_older_archives(tmp_path: Path) -> No
     assert evaluation["overall"] == "warn"
     assert _check(evaluation, "capture_adequacy_schema_version")["status"] == "warn"
     assert _check(evaluation, "capture_adequacy_status")["status"] == "warn"
+
+
+def test_missing_extraction_adequacy_report_warns_for_older_archives(
+    tmp_path: Path,
+) -> None:
+    run_dir = _seed_run(tmp_path, include_extraction_adequacy_report=False)
+
+    evaluation = build_evaluation(run_dir, run_id="evalrun", case_id="eval-case")
+
+    assert evaluation["overall"] == "warn"
+    assert _check(evaluation, "extraction_adequacy_report_schema_version")[
+        "status"
+    ] == "warn"
+    assert _check(evaluation, "extraction_adequacy_status")["status"] == "warn"
+
+
+def test_extraction_adequacy_critical_is_blocking(tmp_path: Path) -> None:
+    run_dir = _seed_run(tmp_path)
+    report = json.loads(
+        (run_dir / "extraction_adequacy_report.json").read_text(encoding="utf-8")
+    )
+    report["adequacy_status"] = "critical"
+    _write_json(run_dir / "extraction_adequacy_report.json", report)
+
+    write_reasoning_trace(
+        run_dir,
+        run_id="evalrun",
+        case_id="eval-case",
+        fingerprint="founder deciding whether to pivot",
+        how_matched="new_case",
+        files_copied=[
+            "conversation.txt",
+            "extraction.json",
+            "result.json",
+            "revised.txt",
+            "memo.md",
+            "run_events.json",
+            "agent_result.json",
+            "extraction_adequacy_report.json",
+            "graph_survival_report.json",
+            "graph_survival_report.md",
+        ],
+        files_missing=[],
+        manifest={"run_count": 1},
+    )
+
+    evaluation = build_evaluation(run_dir, run_id="evalrun", case_id="eval-case")
+
+    assert evaluation["overall"] == "fail"
+    assert evaluation["caller_readiness"] == "do_not_use"
+    assert _check(evaluation, "extraction_adequacy_status")["severity"] == "blocking"
+
+
+def test_wrong_extraction_adequacy_report_schema_is_blocking(
+    tmp_path: Path,
+) -> None:
+    run_dir = _seed_run(tmp_path)
+    report = json.loads(
+        (run_dir / "extraction_adequacy_report.json").read_text(encoding="utf-8")
+    )
+    assert report["schema_version"] == EXTRACTION_ADEQUACY_REPORT_SCHEMA_VERSION
+    report["schema_version"] = "wrong.schema"
+    _write_json(run_dir / "extraction_adequacy_report.json", report)
+
+    evaluation = build_evaluation(run_dir, run_id="evalrun", case_id="eval-case")
+
+    assert evaluation["overall"] == "fail"
+    assert _check(evaluation, "extraction_adequacy_report_schema_version")[
+        "status"
+    ] == "fail"
 
 
 def test_missing_required_artifact_is_blocking(tmp_path: Path) -> None:

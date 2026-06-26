@@ -70,7 +70,11 @@ def test_archive_run_writes_reasoning_trace_manifest_with_hashes(tmp_path: Path)
                 "extraction": {
                     "decision_situation": "Founder deciding whether to pivot",
                     "live_constraints": [
-                        {"constraint": "Budget is capped.", "status": "active"}
+                        {
+                            "constraint": "Budget is capped.",
+                            "introduced_turn": 1,
+                            "status": "active",
+                        }
                     ],
                     "reasoning_passages": ["Only pivot after a customer evidence gate."],
                     "original_framing": "Should we pivot?",
@@ -277,6 +281,7 @@ def test_archive_run_writes_reasoning_trace_manifest_with_hashes(tmp_path: Path)
     assert set(archived["files_generated"]) == {
         "agent_result.json",
         "evaluation.json",
+        "extraction_adequacy_report.json",
         "graph_survival_report.json",
         "graph_survival_report.md",
         "reasoning_trace.json",
@@ -328,6 +333,9 @@ def test_archive_run_writes_reasoning_trace_manifest_with_hashes(tmp_path: Path)
     assert artifact_by_path["outcome_review.json"]["role"] == "outcome_review"
     assert artifact_by_path["agent_result.json"]["role"] == "agent_facing_result"
     assert artifact_by_path["evaluation.json"]["role"] == "deterministic_evaluation"
+    assert artifact_by_path["extraction_adequacy_report.json"][
+        "role"
+    ] == "extraction_adequacy_report"
     assert artifact_by_path["graph_survival_report.json"]["role"] == "graph_survival_report"
     assert artifact_by_path["graph_survival_report.md"]["role"] == "graph_survival_report_markdown"
     assert artifact_by_path["conversation.txt"]["sha256"] == _sha256_uri(
@@ -426,6 +434,12 @@ def test_archive_run_writes_reasoning_trace_manifest_with_hashes(tmp_path: Path)
     assert agent_result["schema_version"] == "lolla_agent_result.v1"
     assert agent_result["caller_action"] == "do_not_use_run_degraded"
     assert (tmp_dir / f"lolla_{run_id}_agent_result.json").exists()
+    extraction_adequacy = json.loads(
+        (run_dir / "extraction_adequacy_report.json").read_text(encoding="utf-8")
+    )
+    assert extraction_adequacy["schema_version"] == "lolla.extraction_adequacy_report.v0"
+    assert extraction_adequacy["adequacy_status"] == "good"
+    assert (tmp_dir / f"lolla_{run_id}_extraction_adequacy_report.json").exists()
 
 
 def test_archive_run_reasoning_trace_records_missing_artifacts(tmp_path: Path) -> None:

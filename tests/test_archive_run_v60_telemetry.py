@@ -128,10 +128,15 @@ def test_archive_run_writes_evaluation_artifact_and_tmp_copy(tmp_path: Path) -> 
     artifact_by_path = {item["path"]: item for item in trace["artifacts"]}
 
     assert "evaluation.json" in archived["files_generated"]
+    assert "extraction_adequacy_report.json" in archived["files_generated"]
     assert (tmp_dir / f"lolla_{run_id}_evaluation.json").exists()
+    assert (tmp_dir / f"lolla_{run_id}_extraction_adequacy_report.json").exists()
     assert evaluation["schema_version"] == "lolla.evaluation.v0"
     assert evaluation["scope"]["llm_judge_used"] is False
     assert artifact_by_path["evaluation.json"]["role"] == "deterministic_evaluation"
+    assert artifact_by_path["extraction_adequacy_report.json"][
+        "role"
+    ] == "extraction_adequacy_report"
 
 
 def test_archive_run_copies_pre_step6_shadow_portfolio_sidecar(tmp_path: Path) -> None:

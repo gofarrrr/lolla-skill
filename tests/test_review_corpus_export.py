@@ -11,6 +11,7 @@ from engine.system_b.control_plane import (
     write_control_result,
 )
 from engine.system_b.evaluation import EVALUATION_SCHEMA_VERSION, write_evaluation
+from engine.system_b.extraction_adequacy_report import write_extraction_adequacy_report
 from engine.system_b.provider_boundary_health import build_provider_boundary_health
 from engine.system_b.reasoning_trace import REASONING_TRACE_SCHEMA_VERSION, write_reasoning_trace
 from engine.system_b.review_corpus import (
@@ -202,6 +203,7 @@ def _seed_run(
     write_agent_result(run_dir, run_id=run_id, case_id=case_id)
     if include_control:
         write_control_result(run_dir, run_id=run_id, case_id=case_id)
+    write_extraction_adequacy_report(run_dir, run_id=run_id, case_id=case_id)
 
     files_copied = [
         "conversation.txt",
@@ -213,6 +215,7 @@ def _seed_run(
         "graph_survival_report.json",
         "graph_survival_report.md",
         "agent_result.json",
+        "extraction_adequacy_report.json",
     ]
     if include_control:
         files_copied.extend(["control_input.json", "control_result.json"])

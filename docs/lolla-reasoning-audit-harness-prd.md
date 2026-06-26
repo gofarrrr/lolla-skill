@@ -543,7 +543,7 @@ Heuristic checks may flag possible issues for review, such as missing action del
 Current shipped slice:
 
 - Archived runs now generate `evaluation.json` with schema `lolla.evaluation.v0`.
-- The v0 artifact checks deterministic run-readiness: required artifacts, schema versions, reasoning-trace custody, product/live hygiene states, provider-boundary policy consistency, caller-action conservatism, and archive readiness.
+- The v0 artifact checks deterministic run-readiness: required artifacts, schema versions, reasoning-trace custody, capture adequacy, extraction/provenance adequacy when `extraction_adequacy_report.json` is present, product/live hygiene states, provider-boundary policy consistency, caller-action conservatism, and archive readiness.
 - It does not score advice quality, helpfulness, coherence, wisdom, or correctness.
 - It does not yet add heuristic answer-quality checks, an Observatory evaluation page, a compact summary inside `agent_result.json`, or run-health degradation beyond existing health policy.
 

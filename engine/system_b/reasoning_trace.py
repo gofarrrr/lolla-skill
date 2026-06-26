@@ -43,6 +43,7 @@ ARTIFACT_ROLES: dict[str, str] = {
     "agent_result.json": "agent_facing_result",
     "control_input.json": "control_plane_input",
     "control_result.json": "control_plane_result",
+    "extraction_adequacy_report.json": "extraction_adequacy_report",
     "evaluation.json": "deterministic_evaluation",
     "live_transcript.txt": "live_product_surface",
     "operator.log": "operator_log",
