@@ -1,0 +1,219 @@
+{
+  "schema_version": "lolla.complex_baseline_human_review.v0",
+  "review_record_schema_version": "lolla.human_review.v0",
+  "created_at": "2026-06-27",
+  "scope": {
+    "human_review_only": true,
+    "llm_judge_used": false,
+    "model_calls": 0,
+    "runtime_changes": false,
+    "automatic_human_review_population": false,
+    "automatic_approval": false,
+    "raw_transcript_text_included": false,
+    "raw_memo_text_included": false,
+    "raw_revised_answer_text_included": false,
+    "provider_reasoning_details_included": false
+  },
+  "archive_root_ref": "~/.local/share/lolla/runs",
+  "inspected_artifacts": [
+    "conversation.txt",
+    "extraction.json",
+    "revised.txt",
+    "memo.md",
+    "agent_result.json",
+    "evaluation.json",
+    "extraction_adequacy_report.json",
+    "reasoning_trace.json",
+    "result.json"
+  ],
+  "reviewer_id": "pr30_human_product_review",
+  "cases": [
+    {
+      "case_id": "ceo-remove-founding-cofounder",
+      "run_id": "20260627T093131Z_59d153",
+      "archive_ref": "ceo-remove-founding-cofounder/20260627T093131Z_59d153",
+      "human_review": {
+        "schema_version": "lolla.human_review.v0",
+        "reviewer_id": "pr30_human_product_review",
+        "review_status": "pass",
+        "primary_failure_mode": "none",
+        "severity": "none",
+        "useful_friction": "present",
+        "noisy_friction": "absent",
+        "missing_friction": "absent",
+        "revised_answer_improved": "yes",
+        "safe_for_agent_use": "with_human_review",
+        "reviewer_notes": "Surfaces: answer=pass; envelope=warn; live_output=not_checked; agent=with_human_review. Revision moved from a gated reset to immediate authority transfer with stop-loss rules and stakeholder boundaries."
+      },
+      "action_changing_delta": "Authority moves before cooperation is tested; transition role becomes conditional and bounded.",
+      "artifact_sufficiency": "sufficient_with_caveat",
+      "artifact_sufficiency_note": "Artifacts explain the answer delta; stance lineage would be easier with span-grounded assistant events but was not needed for this label.",
+      "candidate_judge_traps": [
+        "smoother_original_vs_rougher_safer_revision",
+        "founder_loyalty_vs_authority_ambiguity"
+      ]
+    },
+    {
+      "case_id": "accept-operations-role-startup",
+      "run_id": "20260627T132700Z_bae7f3",
+      "archive_ref": "accept-operations-role-startup/20260627T132700Z_bae7f3",
+      "human_review": {
+        "schema_version": "lolla.human_review.v0",
+        "reviewer_id": "pr30_human_product_review",
+        "review_status": "pass",
+        "primary_failure_mode": "none",
+        "severity": "none",
+        "useful_friction": "present",
+        "noisy_friction": "absent",
+        "missing_friction": "absent",
+        "revised_answer_improved": "yes",
+        "safe_for_agent_use": "with_human_review",
+        "reviewer_notes": "Surfaces: answer=pass; envelope=warn; live_output=not_checked; agent=with_human_review. Revision required written operating terms from both options and treated household consent as capacity evidence."
+      },
+      "action_changing_delta": "Both paths must produce written operating terms under Friday/Monday deadlines before the user chooses.",
+      "artifact_sufficiency": "sufficient_with_caveat",
+      "artifact_sufficiency_note": "Artifacts make the symmetric gate clear; live output remains not_checked.",
+      "candidate_judge_traps": [
+        "emotional_status_framing_vs_written_terms",
+        "smooth_identity_language_vs_operating_contract"
+      ]
+    },
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "run_id": "20260627T104146Z_7bfe79",
+      "archive_ref": "launch-public-enterprise-beta/20260627T104146Z_7bfe79",
+      "human_review": {
+        "schema_version": "lolla.human_review.v0",
+        "reviewer_id": "pr30_human_product_review",
+        "review_status": "pass",
+        "primary_failure_mode": "none",
+        "severity": "none",
+        "useful_friction": "present",
+        "noisy_friction": "absent",
+        "missing_friction": "absent",
+        "revised_answer_improved": "yes",
+        "safe_for_agent_use": "with_human_review",
+        "reviewer_notes": "Surfaces: answer=pass; envelope=warn; live_output=not_checked; agent=with_human_review. Revision removed default priority for the larger prospect and made buyer behavior the proof source."
+      },
+      "action_changing_delta": "Both prospects get the same written paid pilot shape and priority is assigned by payment, procurement clarity, scope tolerance, and proof value.",
+      "artifact_sufficiency": "sufficient_with_caveat",
+      "artifact_sufficiency_note": "Artifacts explain the move from public posture to private proof; assistant stance remains artifact-level rather than span-grounded.",
+      "candidate_judge_traps": [
+        "marquee_customer_aura_vs_buyer_behavior_proof",
+        "broad_market_excitement_vs_evidence_gate"
+      ]
+    },
+    {
+      "case_id": "pre-sell-undefined-consulting",
+      "run_id": "20260627T133637Z_cad396",
+      "archive_ref": "pre-sell-undefined-consulting/20260627T133637Z_cad396",
+      "human_review": {
+        "schema_version": "lolla.human_review.v0",
+        "reviewer_id": "pr30_human_product_review",
+        "review_status": "pass",
+        "primary_failure_mode": "none",
+        "severity": "none",
+        "useful_friction": "present",
+        "noisy_friction": "absent",
+        "missing_friction": "absent",
+        "revised_answer_improved": "yes",
+        "safe_for_agent_use": "with_human_review",
+        "reviewer_notes": "Surfaces: answer=pass; envelope=warn; live_output=not_checked; agent=with_human_review. Revision corrected an overconfident status read while keeping scope and cash controls."
+      },
+      "action_changing_delta": "The one-pilot plan now requires a client-ready scoped brief and allows only tiny polish that does not define or expand the offer.",
+      "artifact_sufficiency": "sufficient_with_caveat",
+      "artifact_sufficiency_note": "Artifacts distinguish legitimate credibility from premature scope expansion.",
+      "candidate_judge_traps": [
+        "professional_polish_as_signal_vs_status_spending",
+        "credibility_vs_scope_inflation"
+      ]
+    },
+    {
+      "case_id": "pivot-company-product-strategy",
+      "run_id": "20260627T110450Z_5d2da7",
+      "archive_ref": "pivot-company-product-strategy/20260627T110450Z_5d2da7",
+      "human_review": {
+        "schema_version": "lolla.human_review.v0",
+        "reviewer_id": "pr30_human_product_review",
+        "review_status": "pass",
+        "primary_failure_mode": "none",
+        "severity": "none",
+        "useful_friction": "present",
+        "noisy_friction": "absent",
+        "missing_friction": "absent",
+        "revised_answer_improved": "yes",
+        "safe_for_agent_use": "with_human_review",
+        "reviewer_notes": "Surfaces: answer=pass; envelope=warn; live_output=not_checked; agent=with_human_review. Revision put capacity and current obligations before market proof."
+      },
+      "action_changing_delta": "A 14-day capacity and obligation gate must pass before the 60-day market validation gate can consume engineering capacity.",
+      "artifact_sufficiency": "sufficient_with_caveat",
+      "artifact_sufficiency_note": "Artifacts justify the sequencing change even though result-level detected tendency signal was thinner than in other cases.",
+      "candidate_judge_traps": [
+        "market_excitement_vs_capacity_obligation_gate",
+        "higher_acv_opportunity_vs_existing_customer_obligations"
+      ]
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "run_id": "20260627T130339Z_4cd3cb",
+      "archive_ref": "deploy-assisted-intake-routing/20260627T130339Z_4cd3cb",
+      "human_review": {
+        "schema_version": "lolla.human_review.v0",
+        "reviewer_id": "pr30_human_product_review",
+        "review_status": "pass",
+        "primary_failure_mode": "none",
+        "severity": "none",
+        "useful_friction": "present",
+        "noisy_friction": "absent",
+        "missing_friction": "absent",
+        "revised_answer_improved": "yes",
+        "safe_for_agent_use": "with_human_review",
+        "reviewer_notes": "Surfaces: answer=pass; envelope=warn; live_output=not_checked; agent=with_human_review. Revision compressed checklist-heavy launch advice into operable controls and added a backlog diagnosis."
+      },
+      "action_changing_delta": "The launch decision becomes four must-pass controls plus a 48-hour backlog diagnosis and explicit pause/rollback triggers.",
+      "artifact_sufficiency": "sufficient_with_caveat",
+      "artifact_sufficiency_note": "Artifacts make the reduction from checklist theater to operating controls clear; healthcare-adjacent operational risk keeps reliance conservative.",
+      "candidate_judge_traps": [
+        "long_checklist_vs_usable_operating_controls",
+        "broad_ai_launch_language_vs_narrow_operational_pilot"
+      ]
+    }
+  ],
+  "aggregate": {
+    "reviewed_runs": 6,
+    "review_status_counts": {
+      "pass": 6,
+      "fail": 0,
+      "needs_followup": 0,
+      "exclude_from_eval": 0
+    },
+    "primary_failure_mode_counts": {
+      "none": 6
+    },
+    "useful_friction_counts": {
+      "present": 6
+    },
+    "noisy_friction_counts": {
+      "absent": 6
+    },
+    "missing_friction_counts": {
+      "absent": 6
+    },
+    "revised_answer_improved_counts": {
+      "yes": 6
+    },
+    "safe_for_agent_use_counts": {
+      "with_human_review": 6
+    },
+    "artifact_sufficiency_counts": {
+      "sufficient_with_caveat": 6
+    },
+    "shared_caveats": [
+      "live_output_health_not_checked",
+      "user_values_priorities_not_first_class_measured",
+      "assistant_stance_lineage_not_span_grounded",
+      "live_constraints_and_dropped_threads_turn_ref_grounded"
+    ],
+    "recommended_next_slice": "PR31 Actionable Delta Rubric v0"
+  }
+}

@@ -1,7 +1,7 @@
 # Lolla Evaluation Methodology
 
 Status: Draft
-Last updated: 2026-06-24
+Last updated: 2026-06-27
 
 ## Why This Exists
 
@@ -23,10 +23,11 @@ That distinction is the whole thing.
 
 ## Source Notes
 
-This methodology is grounded in two local eval methodology notes:
+This methodology is grounded in two local eval methodology notes supplied by
+the project owner:
 
-- `/Users/marcin/Downloads/AI Evals Methodology Deep Dive.md`
-- `/Users/marcin/Downloads/Hamel Husain & Shreya Shankar on AI Evals  Philosophy, Methodology, and an Evaluation OS Blueprint.md`
+- `AI Evals Methodology Deep Dive.md`
+- `Hamel Husain & Shreya Shankar on AI Evals Philosophy, Methodology, and an Evaluation OS Blueprint.md`
 
 The core lessons from those notes:
 
@@ -439,6 +440,88 @@ helpfulness, wisdom, coherence, correctness, taste, or whether the revised
 position is substantively right. It answers a narrower release-gate question:
 did this run produce the procedural envelope it claims to have produced, and
 are there deterministic reasons a caller should inspect or reject it?
+
+## Current Evidence Checkpoint
+
+As of 2026-06-27, Lolla has a clean six-case complex conversation baseline:
+
+`docs/conversation-understanding/complex-conversation-baseline-v0.md`
+
+The six runs are useful because they are not tiny demos. Each scenario has 12
+user turns and 12 assistant turns, with multiple stakeholders, changed
+constraints, status/sycophancy pressure, operational risk, and non-obvious
+tradeoffs.
+
+Mechanical result:
+
+- all six captured 12 user turns and 12 assistant turns;
+- all six produced the full modern artifact chain;
+- all six had `run_health.overall: healthy`;
+- all six had clean provider-boundary status;
+- all six had clean product output;
+- all six had `capture_adequacy.status: good`;
+- all six had `caller_action: use_revised_answer`;
+- 38 quote-validation passages were verified;
+- 0 quote-validation passages were fabricated.
+
+Substantive result:
+
+- Lolla repeatedly changed the operating shape of the recommendation;
+- the revisions added gates, stop conditions, capacity checks, stakeholder
+  constraints, narrower sales claims, and corrected frames;
+- the improvements were not just smoother prose.
+
+Remaining eval gap:
+
+- the deterministic artifact chain can prove custody, capture, quote, and
+  run-readiness;
+- it cannot yet prove that the revised answer is better;
+- semantic coverage still shows that user values/priorities are not measured,
+  stance lineage is partial/artifact-level, and live constraints/dropped
+  threads are mostly turn-reference grounded;
+- the six-run human review now provides a first seed set, but not enough data
+  for an automated judge.
+
+Current human-review seed:
+
+```text
+docs/evals/complex-baseline-human-review-v0.md
+```
+
+Six of six complex runs passed answer-level review and were labeled improved.
+All six remain `safe_for_agent_use: with_human_review` because saved artifacts
+are reviewable while live output remains `not_checked`.
+
+Recommended next eval slice:
+
+```text
+PR31 Actionable Delta Rubric v0
+```
+
+The actionable roadmap for turning this checkpoint into a repeatable eval loop
+is:
+
+`docs/evals/evaluation-flywheel-action-plan-v0.md`
+
+The next rubric should define the recurring units of real improvement found in
+PR30:
+
+- changed action;
+- changed threshold;
+- changed sequence;
+- added evidence gate;
+- added stop rule;
+- added written term;
+- added user question;
+- no-op prose change.
+
+It should explicitly reject smoother prose, more warmth, longer answers,
+generic comprehensiveness, more caveats without action change, and
+judge-palatable blandness as improvement by themselves.
+
+Do not populate `lolla.human_review.v0` from synthetic reviewers. Do not treat
+this baseline as judge calibration yet. Six runs can define product taste and
+failure categories; they cannot validate an automated judge.
 
 ## Release Gate Philosophy
 

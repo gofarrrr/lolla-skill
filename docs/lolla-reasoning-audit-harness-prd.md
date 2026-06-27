@@ -1,7 +1,7 @@
 # PRD: Lolla As A Reasoning-Audit Harness
 
 Status: Draft
-Last updated: 2026-06-25
+Last updated: 2026-06-27
 Audience: Lolla maintainers, agent builders, evaluation/governance reviewers, early technical collaborators
 
 ## Source Material
@@ -13,7 +13,9 @@ Primary inputs:
 - Existing Lolla runtime and docs, especially `SKILL.md`, `HOW_IT_WORKS.md`, `docs/how-it-works/architecture-and-evolution.md`, `docs/how-it-works/live-flow.md`, and `docs/how-it-works/operations-and-limits.md`.
 - The local paper `2604.14228v1.pdf`, "Dive into Claude Code: The Design Space of Today's and Future AI Agent Systems" by Jiacheng Liu, Xiaohan Zhao, Xinyi Shang, and Zhiqiang Shen.
 - The local paper `2509.10147v1.pdf`, "Virtual Agent Economies" by Nenad Tomasev, Matija Franklin, Joel Z. Leibo, Julian Jacobs, William A. Cunningham, Iason Gabriel, and Simon Osindero.
-- The local notes `/Users/marcin/Downloads/AI Evals Methodology Deep Dive.md` and `/Users/marcin/Downloads/Hamel Husain & Shreya Shankar on AI Evals  Philosophy, Methodology, and an Evaluation OS Blueprint.md`.
+- The local eval methodology notes supplied by the project owner:
+  `AI Evals Methodology Deep Dive.md` and
+  `Hamel Husain & Shreya Shankar on AI Evals Philosophy, Methodology, and an Evaluation OS Blueprint.md`.
 - Current Lolla pitch document: `docs/lolla-pitch-and-invitation.md`.
 - Lolla-specific eval doctrine: `docs/lolla-evaluation-methodology.md`.
 - Agent-control research note: `docs/agent-control-layers-and-lolla-integration.md`, covering CrabTrap-style proxies, guardrails, approval systems, sandboxes, identity scopes, and observability/eval tools.
@@ -203,7 +205,7 @@ Run data should remain local unless the user explicitly exports it. Artifacts sh
 
 ## Current Baseline
 
-As of 2026-06-24, Lolla already has:
+As of 2026-06-27, Lolla already has:
 
 - conversation-native runtime through `ConversationContext`,
 - typed `ConversationIR`,
@@ -224,6 +226,51 @@ As of 2026-06-24, Lolla already has:
 - `agent_result.json` with the `lolla_agent_result.v1` machine-readable handoff,
 - `reasoning_trace.json`,
 - export script for reasoning trace dataset.
+
+Since the first harness PRD pass, the shipped harness layer has also added:
+
+- `risk_mode` metadata propagation;
+- optional local control-plane input/result sidecars;
+- `capture_adequacy` metadata;
+- deterministic `evaluation.json` run-readiness receipts;
+- provider-boundary classification and signature-only reasoning-metadata
+  filtering;
+- review-corpus export with blank human-review fields;
+- human-review taxonomy and workflow v0;
+- synthetic-review boundary, prompt, and validator;
+- review-readiness tiers;
+- extraction adequacy reports, corpus export, findings analysis, and quote
+  validation diagnostics;
+- semantic coverage reports and corpus survey;
+- offline specialist extractor probe harnesses and evidence notes;
+- a six-case complex conversation baseline with full modern artifacts.
+
+The current complex baseline is recorded in:
+
+`docs/conversation-understanding/complex-conversation-baseline-v0.md`
+
+The current evaluation flywheel action plan is recorded in:
+
+`docs/evals/evaluation-flywheel-action-plan-v0.md`
+
+Current product read:
+
+> The harness can now prove that a complex run was captured, archived, checked,
+> and handed off cleanly. It can also show that the revised answer changed. It
+> still cannot automatically prove that the change was good.
+
+That keeps evaluation as the active frontier. The local PR30 review seed
+performs the first human/product review pass over the six complex traces: all
+six answer-level reviews passed, all six revised answers were labeled
+improved, and all six remain `safe_for_agent_use: with_human_review` because
+saved artifacts are reviewable while live output remains `not_checked`.
+
+The next narrow slice is PR31 Actionable Delta Rubric v0, not a judge or
+runtime integration. It should define changed action, changed threshold,
+changed sequence, added evidence gate, added stop rule, added written term, and
+added user question as candidate units of improvement, while rejecting smoother
+prose, warmth, length, generic comprehensiveness, extra caveats without action
+change, and judge-palatable blandness as improvement by themselves.
 
 This roadmap should build on that. It should not restart the architecture.
 
@@ -300,8 +347,8 @@ Minimum fields:
   ],
   "artifact_paths": {
     "memo": "/tmp/lolla_run_memo.md",
-    "archive": "/Users/example/.local/share/lolla/runs/case/run",
-    "reasoning_trace": "/Users/example/.local/share/lolla/runs/case/run/reasoning_trace.json",
+    "archive": "<archive-root>/case/run",
+    "reasoning_trace": "<archive-root>/case/run/reasoning_trace.json",
     "observatory_url": "http://localhost:8084"
   }
 }

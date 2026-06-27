@@ -1,7 +1,7 @@
 # Conversation Understanding Research And Design v0
 
 Status: design proposal
-Last updated: 2026-06-26
+Last updated: 2026-06-27
 
 This note is a research/design slice. It does not propose a runtime rewrite, a
 new memory product, a graph database, an LLM judge, or a change to `SKILL.md`.
@@ -975,7 +975,120 @@ Non-goals:
 - no answer-quality scoring,
 - no provider-boundary policy change.
 
-### PR30+ Or Later: Decision-Aware Capture And Runtime Integration
+### Evidence Gate: Six Complex Conversation Baseline v0
+
+Goal: test whether normal `$lolla` handles longer, messier, manually pasted
+conversations before adding new runtime machinery.
+
+Evidence note:
+[complex-conversation-baseline-v0.md](complex-conversation-baseline-v0.md).
+
+Outcome: six clean complex runs now exist. Each run used a 12-user / 12-assistant
+turn scenario from `plans/lolla-complex-test-conversations-2026-06-27/`. All six
+captured full transcripts, produced the full modern artifact chain, had healthy
+run health, clean provider-boundary status, clean product output, zero quote
+fabrication, and `caller_action: use_revised_answer`.
+
+The product result is encouraging but bounded:
+
+- Lolla repeatedly changed the operating shape of the advice rather than merely
+  adding generic caution.
+- The deterministic artifacts can show capture, quote, custody, and run-health
+  integrity.
+- The semantic coverage reports still show repeated gaps: user
+  values/priorities are not measured, stance lineage is artifact-level, and live
+  constraints / dropped threads are mostly turn-reference grounded rather than
+  span-grounded.
+
+This evidence does not unlock runtime specialist integration, archive
+integration, a new IR, graph memory, embeddings, or judges. It unlocked PR30:
+the human/product review seed over real complex traces. With PR30 complete, the
+next slice is PR31 Actionable Delta Rubric v0.
+
+### PR30: Complex Baseline Human Review v0
+
+Status: completed as
+[complex-baseline-human-review-v0.md](../evals/complex-baseline-human-review-v0.md).
+
+Goal: turn the six complex runs into the first explicit Lolla-specific
+evaluation seed set.
+
+Recommended scope:
+
+- Review the six clean complex runs with the existing
+  `lolla.human_review.v0` contract.
+- For each run, label whether the revised answer passed answer-level review.
+- Identify useful, noisy, and missing friction.
+- Record the first upstream failure if the run fails.
+- Name the action-changing delta: action, threshold, sequence, evidence gate,
+  stop rule, or user question.
+- Record whether the current artifacts are enough to justify the label.
+- Extract candidate adversarial pairs where the smoother original answer may be
+  worse than the rougher revised answer.
+
+Non-goals:
+
+- no LLM judge,
+- no automatic human labels,
+- no answer-quality score,
+- no prompt rewrite,
+- no runtime behavior change,
+- no specialist integration,
+- no new user-values extractor,
+- no `conversation_understanding_ir.v0`,
+- no graph DB, embeddings, or chunking.
+
+Acceptance:
+
+- The six-run review produces a short findings note and optional local review
+  sheet.
+- The review says what Lolla did well, what it missed, and which failure modes
+  or judge traps appear.
+- Any future judge proposal cites these human labels instead of generic
+  helpfulness/coherence scoring.
+
+Outcome:
+
+- all six answer-level reviews passed;
+- all six revised answers were labeled improved;
+- all six remain `safe_for_agent_use: with_human_review` because saved
+  artifacts are reviewable but live output is not independently checked;
+- the next slice is an actionable-delta rubric, not a judge or runtime change.
+
+### PR31: Actionable Delta Rubric v0
+
+Goal: define what counts as a real Lolla improvement before creating
+adversarial pairs or any calibrated judge prototype.
+
+The rubric should use PR30's recurring unit of improvement:
+
+- action changed,
+- threshold changed,
+- sequence changed,
+- evidence gate added,
+- stop rule added,
+- written term added,
+- user question added,
+- no-op prose change rejected.
+
+It should reject these as improvement by themselves:
+
+- smoother prose,
+- more warmth,
+- longer answer,
+- generic comprehensiveness,
+- more caveats without action change,
+- judge-palatable blandness.
+
+Non-goals:
+
+- no generic helpfulness/coherence scoring,
+- no LLM judge,
+- no automatic labels,
+- no prompt rewrite,
+- no runtime behavior change.
+
+### PR32+ Or Later: Decision-Aware Capture And Runtime Integration
 
 Goal: only after offline evidence, use the IR to improve capture or audit input.
 
@@ -1014,8 +1127,11 @@ preserve constraints, commitments, options, reversals, claims, dropped threads,
 and audit-relevant hinges, while the raw transcript remains source of truth and
 deterministic custody keeps the LLM honest.
 
-The next implementation should be boring: measure current extraction adequacy
-before adding new extraction intelligence.
+The current evidence says the next move should still be boring, but the boring
+thing has changed. Extraction adequacy, semantic coverage, and PR30's six-run
+human review seed now exist. The next step is PR31 Actionable Delta Rubric v0:
+define what useful friction changed in real traces before adding judges,
+runtime specialist calls, a new IR, graph memory, embeddings, or prompt changes.
 
 ## Sources
 
