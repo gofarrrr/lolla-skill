@@ -466,12 +466,14 @@ Current result:
 - one degraded record is `exclude_from_eval` because the deterministic envelope
   is not eval-ready;
 - no new failure mode was needed beyond `artifact_custody_failure`;
-- the next slice is PR34 First-Class User Values / Priorities Design v0, not a
-  judge.
+- the next slice was PR34 First-Class User Values / Priorities Design v0, not
+  a judge.
 
 ### PR34: First-Class User Values / Priorities Design v0
 
 Maps to: PRD R5, conversation-understanding roadmap.
+
+Status: completed as a design-only semantic coverage/review surface.
 
 Goal:
 
@@ -486,7 +488,7 @@ gap in every record.
 
 Output:
 
-- design note for `user_values_or_priorities_signal`;
+- `docs/conversation-understanding/user-values-priorities-signal-v0.md`;
 - examples from complex baseline;
 - custody rules;
 - what counts as source evidence;
@@ -498,6 +500,23 @@ Acceptance:
 - does not create a broad personal memory system;
 - does not add runtime calls;
 - defines how human review will decide whether the signal matters.
+
+Current result:
+
+- `user_values_or_priorities_signal` is defined as a future semantic coverage
+  field;
+- the design distinguishes explicit values, inferred priorities, constraints,
+  preferences, fears, identity statements, stakeholder obligations, tradeoff
+  willingness, and non-negotiables;
+- the proposed schema includes status, items, conflicts, open questions,
+  grounding, confidence, and review flags;
+- derived values must be marked as inferred, lower-confidence, and
+  review-needed;
+- deterministic validation is limited to schema, ids, refs, grounding/status
+  consistency, corpus-safe text boundaries, and conflict references;
+- probabilistic extraction and human review remain future work;
+- no runtime extraction, report builder, judge, automatic label, memory layer,
+  prompt change, or `SKILL.md` change is approved.
 
 ### PR35: Live Output Hygiene Decision v0
 
@@ -608,8 +627,8 @@ Before building judges or runtime semantic enrichment, Lolla should have:
 - a documented actionable-delta rubric through PR31;
 - first adversarial pair fixtures through PR32;
 - at least one small human-reviewed corpus batch beyond the six examples;
+- a design note for the user-values/priorities signal;
 - a clear decision on live-output hygiene;
-- a design note for user-values/priorities extraction;
 - no unresolved confusion between deterministic run readiness and answer
   quality.
 

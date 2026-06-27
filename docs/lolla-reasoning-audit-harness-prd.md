@@ -283,8 +283,13 @@ partial record is `needs_followup`, and one degraded record is
 `exclude_from_eval`. This supports the rubric, but still does not create a
 judge, score, automatic labeler, benchmark claim, or runtime integration.
 
-The next narrow slice is PR34 First-Class User Values / Priorities Design v0,
-not judge automation.
+PR34 now designs the first-class `user_values_or_priorities_signal` surface. It
+defines values, priorities, tradeoffs, obligations, non-negotiables, grounding,
+confidence, reviewer use, and implementation gates without adding extraction,
+runtime behavior, prompt changes, memory, automatic labels, or judging.
+
+The next narrow slice is PR35 Live Output Hygiene Decision v0, not judge
+automation.
 
 This roadmap should build on that. It should not restart the architecture.
 

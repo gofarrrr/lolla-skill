@@ -1005,8 +1005,9 @@ integration, a new IR, graph memory, embeddings, or judges. It unlocked PR30:
 the human/product review seed over real complex traces. PR31 now defines the
 human-owned actionable-delta rubric. PR32 now defines seed adversarial pair
 fixtures. PR33 now expands the human review batch beyond the six curated
-complex cases. The next slice is PR34 First-Class User Values / Priorities
-Design v0.
+complex cases. PR34 now designs the user-values/priorities signal without
+implementing extraction. The next slice is PR35 Live Output Hygiene Decision
+v0.
 
 ### PR30: Complex Baseline Human Review v0
 
@@ -1153,7 +1154,40 @@ Next:
 PR34 First-Class User Values / Priorities Design v0
 ```
 
-### PR33+ Or Later: Decision-Aware Capture And Runtime Integration
+### PR34: First-Class User Values / Priorities Design v0
+
+Status: completed as
+[user-values-priorities-signal-v0.md](user-values-priorities-signal-v0.md).
+
+Goal: define the repeated `user_values_or_priorities_signal: not_measured` gap
+as a first-class review/eval design surface before any extraction or runtime
+integration.
+
+Outcome:
+
+- defines what counts as a user value or priority and what does not;
+- distinguishes explicit values, inferred priorities, constraints,
+  preferences, fears/anxieties, identity statements, stakeholder obligations,
+  tradeoff willingness, and non-negotiables;
+- proposes a schema shape with `status`, `items`, `conflicts`,
+  `open_questions`, grounding, confidence, and review flags;
+- requires derived values to be grounded, lower-confidence, and
+  review-needed;
+- defines overclaim, sycophancy, transient-emotion, stakeholder-erasure,
+  memory-drift, and approval-laundering failure modes;
+- keeps raw transcript as source of truth and keeps shareable corpus artifacts
+  free of raw sensitive text;
+- blocks runtime extraction, report building, schema-enforced archive
+  artifacts, memory, graph storage, prompt changes, automatic labels, judges,
+  and `SKILL.md` changes.
+
+Next:
+
+```text
+PR35 Live Output Hygiene Decision v0
+```
+
+### PR35+ Or Later: Decision-Aware Capture And Runtime Integration
 
 Goal: only after offline evidence, use the IR to improve capture or audit input.
 
@@ -1195,11 +1229,11 @@ deterministic custody keeps the LLM honest.
 The current evidence says the next move should still be boring, but the boring
 thing has changed. Extraction adequacy, semantic coverage, PR30's six-run human
 review seed, PR31's actionable-delta rubric, PR32's adversarial pair fixtures,
-and PR33's broader human-review corpus batch now exist. The next step is PR34
-First-Class User Values / Priorities Design v0: design the review surface for
-the repeatedly unmeasured user-values/priorities signal before adding judges,
-runtime specialist calls, a new IR, graph memory, embeddings, or prompt
-changes.
+PR33's broader human-review corpus batch, and PR34's user-values/priorities
+design now exist. The next step is PR35 Live Output Hygiene Decision v0: decide
+whether `live_output_health: not_checked` remains an honest caveat or becomes a
+bounded check before adding judges, runtime specialist calls, a new IR, graph
+memory, embeddings, or prompt changes.
 
 ## Sources
 

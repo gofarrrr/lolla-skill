@@ -253,18 +253,24 @@ This does not justify:
 
 ## Recommended Next Slice
 
-PR34 should be:
+PR34 now defines the design that this note recommended:
 
 ```text
-First-Class User Values / Priorities Design v0
+docs/conversation-understanding/user-values-priorities-signal-v0.md
 ```
 
 Why PR34 and not a judge: PR33 showed the PR31 labels survive a broader modern
 batch, but it also repeated the same review caveat already visible in PR30 and
 PR31: user values and priorities are not first-class measured fields. A judge
-would be premature while that evidence surface remains implicit. PR34 should
-design how to represent that signal in review and custody terms without adding
+would be premature while that evidence surface remains implicit. PR34 designs
+how to represent that signal in review and custody terms without adding
 runtime calls, a memory layer, graph storage, embeddings, or automatic labels.
 
-PR34 should still be docs/design-only. It should prepare evaluation language;
-it should not implement extraction, runtime integration, or judging.
+PR34 remains docs/design-only. It prepares evaluation language; it does not
+implement extraction, runtime integration, or judging.
+
+Next:
+
+```text
+PR35 Live Output Hygiene Decision v0
+```

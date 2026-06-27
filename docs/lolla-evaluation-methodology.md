@@ -552,11 +552,22 @@ judge, score, automatic labels, runtime integration, or benchmark claim.
 Recommended next eval slice:
 
 ```text
-PR34 First-Class User Values / Priorities Design v0
+PR35 Live Output Hygiene Decision v0
 ```
 
-PR34 should design the first-class user-values/priorities review surface before
-any subjective judge is built.
+PR34 now designs the first-class user-values/priorities review surface:
+
+```text
+docs/conversation-understanding/user-values-priorities-signal-v0.md
+```
+
+The design defines values, priorities, tradeoffs, stakeholder obligations,
+non-negotiables, grounding, confidence, overclaim failure modes, and future
+implementation gates. It does not implement extraction, runtime behavior,
+automatic labels, memory, or judging.
+
+PR35 should decide the live-output hygiene question before any subjective judge
+is built.
 
 Do not populate `lolla.human_review.v0` from synthetic reviewers. Do not treat
 these human labels as judge calibration yet. They define product taste and

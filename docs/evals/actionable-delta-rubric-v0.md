@@ -443,6 +443,18 @@ labels were `evidence_gate_added`, `threshold_changed`, and `scope_narrowed`.
 The batch did not require a new actionable-delta label and did not convert this
 rubric into a judge.
 
+## PR34 Values/Priorities Implications
+
+PR34 now designs the missing user-values/priorities signal:
+
+`../conversation-understanding/user-values-priorities-signal-v0.md`
+
+That signal can help reviewers explain why a value conflict should change an
+action, threshold, sequence, written term, scope, stop rule, or user question.
+It is not a new improvement label, not a score, and not a judge. It should make
+actionable-delta review more grounded without turning Lolla into a memory
+product or values-ranking system.
+
 ## What This Does And Does Not Justify
 
 This does justify:
@@ -451,6 +463,7 @@ This does justify:
 - asking reviewers to label actionable delta explicitly;
 - using PR32 adversarial pair fixtures as seed examples;
 - using PR33's broader batch as additional human-review evidence;
+- using PR34's values/priorities design as review context;
 - later testing whether a narrow `actionable_delta` judge can match human
   labels.
 
@@ -478,3 +491,4 @@ This does not justify:
 - No automatic labels.
 - PR32 Adversarial Pair Fixture Set v0 follows this rubric.
 - PR33 Human Review Corpus Batch v0 applies this rubric to a broader batch.
+- PR34 User Values / Priorities Signal v0 defines review context, not a score.

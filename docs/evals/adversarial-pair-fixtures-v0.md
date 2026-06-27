@@ -347,5 +347,7 @@ This does not justify:
 - No judge implementation.
 - No automatic labels.
 - PR33 Human Review Corpus Batch v0 now broadens the human-reviewed seed.
-- PR34 First-Class User Values / Priorities Design v0 is the next evaluation
+- PR34 User Values / Priorities Signal v0 now designs the missing review
+  surface.
+- PR35 Live Output Hygiene Decision v0 is the next evaluation
   slice.
