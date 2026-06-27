@@ -271,6 +271,8 @@ def _reasoning_detail_warning(records: list[object]) -> tuple[str, dict[str, obj
             reasoning_tokens = int(rec.get("reasoning_tokens") or 0)
         except (TypeError, ValueError):
             reasoning_tokens = 0
+        if not bool(rec.get("reasoning_disabled")):
+            continue
         if not (bool(rec.get("reasoning_details_present")) or reasoning_tokens > 0):
             continue
         leak_records.append(rec)

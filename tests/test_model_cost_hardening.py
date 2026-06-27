@@ -74,6 +74,81 @@ def test_boundary_metadata_treats_provider_version_suffix_as_alias():
     assert metadata.model_attribution_status == "served_version_alias"
 
 
+def test_boundary_metadata_ignores_gemini_signature_only_reasoning_details():
+    metadata = _build_call_metadata(
+        provider_name="openrouter",
+        model="google/gemini-3.1-flash-lite",
+        payload={
+            "model": "google/gemini-3.1-flash-lite-20260507",
+            "usage": {
+                "prompt_tokens": 24,
+                "completion_tokens": 18,
+                "total_tokens": 42,
+                "completion_tokens_details": {"reasoning_tokens": 0},
+            },
+            "choices": [
+                {
+                    "finish_reason": "stop",
+                    "message": {
+                        "content": "{}",
+                        "reasoning": None,
+                        "reasoning_details": [
+                            {
+                                "type": "reasoning.encrypted",
+                                "format": "google-gemini-v1",
+                                "index": 0,
+                                "signature": "signed-provider-metadata",
+                            }
+                        ],
+                    },
+                }
+            ],
+        },
+        reasoning_config={"effort": "none"},
+        status="ok",
+    )
+
+    assert metadata.reasoning_disabled is True
+    assert metadata.reasoning_tokens == 0
+    assert metadata.reasoning_details_present is False
+
+
+def test_boundary_metadata_flags_content_bearing_reasoning_details():
+    metadata = _build_call_metadata(
+        provider_name="openrouter",
+        model="google/gemini-3.1-flash-lite",
+        payload={
+            "model": "google/gemini-3.1-flash-lite-20260507",
+            "usage": {
+                "prompt_tokens": 24,
+                "completion_tokens": 18,
+                "total_tokens": 42,
+                "completion_tokens_details": {"reasoning_tokens": 0},
+            },
+            "choices": [
+                {
+                    "finish_reason": "stop",
+                    "message": {
+                        "content": "{}",
+                        "reasoning_details": [
+                            {
+                                "type": "reasoning.summary",
+                                "format": "google-gemini-v1",
+                                "index": 0,
+                                "summary": "private reasoning summary",
+                            }
+                        ],
+                    },
+                }
+            ],
+        },
+        reasoning_config={"effort": "none"},
+        status="ok",
+    )
+
+    assert metadata.reasoning_details_present is True
+
+
 def test_usage_summary_prices_served_model_and_flags_attribution_mismatch():
     summary = build_usage_summary(
         run_id="run123",

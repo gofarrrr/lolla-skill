@@ -559,6 +559,24 @@ def test_reasoning_detail_warning_propagates_to_run_health(
         sidecar.unlink(missing_ok=True)
 
 
+def test_reasoning_detail_warning_ignores_reasoning_when_not_marked_disabled() -> None:
+    warning, metadata = run_pipeline._reasoning_detail_warning(
+        [
+            {
+                "stage": "extraction",
+                "model": "google/gemini-3.1-flash-lite-20260507",
+                "status": "ok",
+                "reasoning_disabled": False,
+                "reasoning_details_present": True,
+                "reasoning_tokens": 12,
+            }
+        ]
+    )
+
+    assert warning == ""
+    assert metadata == {"detected": False, "count": 0, "models": [], "stages": []}
+
+
 def test_run_pipeline_aborts_on_expected_run_mismatch_before_work(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,

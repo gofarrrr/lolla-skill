@@ -616,7 +616,7 @@ def _build_call_metadata(
     first_choice_map = first_choice if isinstance(first_choice, Mapping) else {}
     message = first_choice_map.get("message", {})
     message_map = message if isinstance(message, Mapping) else {}
-    reasoning_details_present = bool(message_map.get("reasoning")) or bool(message_map.get("reasoning_details"))
+    reasoning_details_present = _reasoning_details_include_content(message_map)
     finish_reason_raw = first_choice_map.get("finish_reason", "")
     finish_reason = str(finish_reason_raw) if finish_reason_raw is not None else ""
     requested_model = str(model or "").strip()
@@ -645,3 +645,36 @@ def _build_call_metadata(
         reasoning_disabled=_reasoning_disabled(reasoning_config),
         reasoning_details_present=reasoning_details_present,
     )
+
+
+def _reasoning_details_include_content(message: Mapping[str, object]) -> bool:
+    """Return true only when provider reasoning details include content.
+
+    Some providers, notably Gemini through OpenRouter, may return a
+    ``reasoning_details`` block that only carries signature/format metadata
+    even when reasoning tokens are zero. Treating that structural container as
+    leaked reasoning makes otherwise clean runs look degraded. Content-bearing
+    reasoning fields still remain a boundary warning.
+    """
+
+    reasoning = message.get("reasoning")
+    if bool(reasoning):
+        return True
+
+    details = message.get("reasoning_details")
+    if isinstance(details, Mapping):
+        return _reasoning_detail_item_includes_content(details)
+    if isinstance(details, list):
+        return any(
+            _reasoning_detail_item_includes_content(item)
+            for item in details
+            if isinstance(item, Mapping)
+        )
+    return bool(details)
+
+
+def _reasoning_detail_item_includes_content(item: Mapping[str, object]) -> bool:
+    for key in ("text", "summary", "data", "content", "reasoning"):
+        if bool(item.get(key)):
+            return True
+    return False
