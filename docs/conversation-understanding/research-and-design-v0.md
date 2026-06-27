@@ -1002,8 +1002,9 @@ The product result is encouraging but bounded:
 
 This evidence does not unlock runtime specialist integration, archive
 integration, a new IR, graph memory, embeddings, or judges. It unlocked PR30:
-the human/product review seed over real complex traces. With PR30 complete, the
-next slice is PR31 Actionable Delta Rubric v0.
+the human/product review seed over real complex traces. PR31 now defines the
+human-owned actionable-delta rubric. The next slice is PR32 Adversarial Pair
+Fixture Set v0.
 
 ### PR30: Complex Baseline Human Review v0
 
@@ -1057,6 +1058,9 @@ Outcome:
 
 ### PR31: Actionable Delta Rubric v0
 
+Status: completed as
+[actionable-delta-rubric-v0.md](../evals/actionable-delta-rubric-v0.md).
+
 Goal: define what counts as a real Lolla improvement before creating
 adversarial pairs or any calibrated judge prototype.
 
@@ -1069,6 +1073,8 @@ The rubric should use PR30's recurring unit of improvement:
 - stop rule added,
 - written term added,
 - user question added,
+- scope narrowed,
+- overclaim retracted,
 - no-op prose change rejected.
 
 It should reject these as improvement by themselves:
@@ -1087,6 +1093,12 @@ Non-goals:
 - no automatic labels,
 - no prompt rewrite,
 - no runtime behavior change.
+
+Next:
+
+```text
+PR32 Adversarial Pair Fixture Set v0
+```
 
 ### PR32+ Or Later: Decision-Aware Capture And Runtime Integration
 
@@ -1128,10 +1140,11 @@ and audit-relevant hinges, while the raw transcript remains source of truth and
 deterministic custody keeps the LLM honest.
 
 The current evidence says the next move should still be boring, but the boring
-thing has changed. Extraction adequacy, semantic coverage, and PR30's six-run
-human review seed now exist. The next step is PR31 Actionable Delta Rubric v0:
-define what useful friction changed in real traces before adding judges,
-runtime specialist calls, a new IR, graph memory, embeddings, or prompt changes.
+thing has changed. Extraction adequacy, semantic coverage, PR30's six-run human
+review seed, and PR31's actionable-delta rubric now exist. The next step is
+PR32 Adversarial Pair Fixture Set v0: turn useful-friction patterns into
+paired examples before adding judges, runtime specialist calls, a new IR, graph
+memory, embeddings, or prompt changes.
 
 ## Sources
 

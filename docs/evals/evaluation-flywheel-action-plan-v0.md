@@ -335,20 +335,27 @@ Current result:
 
 Maps to: PRD R6, R8 prerequisite.
 
+Status: completed as the current human-owned actionable-delta rubric.
+
 Goal:
 
 Define what counts as a real Lolla improvement.
 
 Output:
 
-- a short rubric under `docs/evals/`;
+- `docs/evals/actionable-delta-rubric-v0.md`;
+- optional compact label list:
+  `docs/evals/actionable-delta-rubric-v0.json`;
 - examples from the six complex baseline:
   - action changed;
   - threshold changed;
   - sequence changed;
   - evidence gate added;
   - stop rule added;
+  - written term added;
   - user question added;
+  - scope narrowed;
+  - overclaim retracted;
   - no-op prose change.
 
 Acceptance:
@@ -358,6 +365,16 @@ Acceptance:
   comprehensiveness, more caveats without action change, and judge-palatable
   blandness as improvement by themselves;
 - the rubric can seed a later `actionable_delta` judge.
+
+Current result:
+
+- PR31 is docs/eval-only;
+- the rubric is human-owned, not a judge;
+- real improvement requires a decision-relevant delta in action, threshold,
+  sequence, evidence, stop rule, written term, user question, scope, or
+  overclaim handling;
+- `no_op_prose_change` captures nicer prose that changes none of those units;
+- PR32 should use the rubric to create adversarial pair fixtures, not a judge.
 
 ### PR32: Adversarial Pair Fixture Set v0
 
@@ -544,7 +561,7 @@ Use these rules to avoid drift:
 Before building judges or runtime semantic enrichment, Lolla should have:
 
 - six complex runs human-reviewed through PR30;
-- a documented actionable-delta rubric;
+- a documented actionable-delta rubric through PR31;
 - first adversarial pair fixtures;
 - at least one small human-reviewed corpus batch beyond the six examples;
 - a clear decision on live-output hygiene;

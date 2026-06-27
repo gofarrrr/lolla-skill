@@ -1,0 +1,205 @@
+{
+  "schema_version": "lolla.actionable_delta_rubric.v0",
+  "status": "human_owned_rubric_seed",
+  "date": "2026-06-27",
+  "source_review": "docs/evals/complex-baseline-human-review-v0.md",
+  "source_review_json": "reviews/human/complex-baseline-v0/review.json",
+  "scope": {
+    "docs_eval_only": true,
+    "llm_judge": false,
+    "model_calls": 0,
+    "runtime_changes": false,
+    "prompt_changes": false,
+    "skill_changes": false,
+    "automatic_labels": false,
+    "answer_quality_score": false,
+    "agent_approval": false
+  },
+  "labels": [
+    {
+      "id": "action_changed",
+      "definition": "The revised answer would make the user do something materially different.",
+      "positive_pr30_case_ids": [
+        "ceo-remove-founding-cofounder",
+        "accept-operations-role-startup",
+        "launch-public-enterprise-beta"
+      ],
+      "evidence_required": [
+        "original action shape",
+        "revised action shape",
+        "artifact-supported reason for the action change"
+      ],
+      "invalid_if": [
+        "the change is only emotional framing",
+        "the next step is materially the same"
+      ]
+    },
+    {
+      "id": "threshold_changed",
+      "definition": "The revised answer adds or changes a concrete gate, deadline, metric, condition, or acceptance criterion.",
+      "positive_pr30_case_ids": [
+        "accept-operations-role-startup",
+        "pivot-company-product-strategy",
+        "deploy-assisted-intake-routing"
+      ],
+      "evidence_required": [
+        "threshold text",
+        "decision controlled by the threshold",
+        "trace-supported reason for the threshold"
+      ],
+      "invalid_if": [
+        "the threshold is vague",
+        "the threshold does not affect the decision"
+      ]
+    },
+    {
+      "id": "sequence_changed",
+      "definition": "The revised answer changes what must happen first, second, or only after another condition is met.",
+      "positive_pr30_case_ids": [
+        "pivot-company-product-strategy",
+        "ceo-remove-founding-cofounder",
+        "deploy-assisted-intake-routing"
+      ],
+      "evidence_required": [
+        "before-and-after order of operations",
+        "dependency or prerequisite",
+        "protected risk or constraint"
+      ],
+      "invalid_if": [
+        "only paragraph order changed",
+        "no explicit dependency or timing change exists"
+      ]
+    },
+    {
+      "id": "evidence_gate_added",
+      "definition": "The revised answer requires proof before commitment, expansion, selection, or public claim.",
+      "positive_pr30_case_ids": [
+        "launch-public-enterprise-beta",
+        "pivot-company-product-strategy",
+        "deploy-assisted-intake-routing"
+      ],
+      "evidence_required": [
+        "proof required",
+        "proof source",
+        "action controlled by the proof"
+      ],
+      "invalid_if": [
+        "the proof request is generic diligence",
+        "the proof does not change commitment"
+      ]
+    },
+    {
+      "id": "stop_rule_added",
+      "definition": "The revised answer defines when to pause, reverse, kill, rollback, or refuse to continue.",
+      "positive_pr30_case_ids": [
+        "ceo-remove-founding-cofounder",
+        "launch-public-enterprise-beta",
+        "deploy-assisted-intake-routing"
+      ],
+      "evidence_required": [
+        "stopping condition",
+        "protected risk",
+        "action after the condition fires"
+      ],
+      "invalid_if": [
+        "the stop condition is not observable",
+        "the rule is disconnected from trace risk"
+      ]
+    },
+    {
+      "id": "written_term_added",
+      "definition": "The revised answer turns vague alignment into written operating terms, scope, ownership, payment, or acceptance criteria.",
+      "positive_pr30_case_ids": [
+        "accept-operations-role-startup",
+        "launch-public-enterprise-beta",
+        "pre-sell-undefined-consulting",
+        "pivot-company-product-strategy"
+      ],
+      "evidence_required": [
+        "written object",
+        "party or owner",
+        "decision risk reduced by writing it down"
+      ],
+      "invalid_if": [
+        "the written artifact is bureaucratic theater",
+        "the written artifact does not affect action"
+      ]
+    },
+    {
+      "id": "user_question_added",
+      "definition": "The revised answer surfaces a question only the user or a named stakeholder can answer, and the answer changes the decision.",
+      "positive_pr30_case_ids": [
+        "accept-operations-role-startup",
+        "launch-public-enterprise-beta",
+        "deploy-assisted-intake-routing"
+      ],
+      "evidence_required": [
+        "stakeholder-answerable question",
+        "decision affected by the answer",
+        "trace reason the question matters"
+      ],
+      "invalid_if": [
+        "the question is rhetorical",
+        "the question does not control a choice, gate, sequence, or stop rule"
+      ]
+    },
+    {
+      "id": "scope_narrowed",
+      "definition": "The revised answer narrows ambition, audience, launch shape, offer, or operational burden to a safer and more honest path.",
+      "positive_pr30_case_ids": [
+        "pre-sell-undefined-consulting",
+        "deploy-assisted-intake-routing",
+        "launch-public-enterprise-beta"
+      ],
+      "evidence_required": [
+        "original broader scope",
+        "revised narrower scope",
+        "risk or constraint that makes narrowing useful"
+      ],
+      "invalid_if": [
+        "the scope is only shorter prose",
+        "narrowing loses the useful core without creating a better decision"
+      ]
+    },
+    {
+      "id": "overclaim_retracted",
+      "definition": "The revised answer takes back a too-clean psychological, strategic, causal, or status-based read and replaces it with a more precise operating distinction.",
+      "positive_pr30_case_ids": [
+        "pre-sell-undefined-consulting",
+        "accept-operations-role-startup",
+        "launch-public-enterprise-beta"
+      ],
+      "evidence_required": [
+        "overclaim or over-clean read",
+        "replacement distinction",
+        "action consequence"
+      ],
+      "invalid_if": [
+        "the revision retracts a grounded warning merely to sound fair",
+        "the supposed overclaim cannot be located in the comparison"
+      ]
+    },
+    {
+      "id": "no_op_prose_change",
+      "definition": "The revised answer sounds better but does not change action, threshold, sequence, evidence, stop rule, written term, user question, scope, or overclaim handling.",
+      "positive_pr30_case_ids": [
+        "ceo-remove-founding-cofounder",
+        "deploy-assisted-intake-routing",
+        "accept-operations-role-startup"
+      ],
+      "example_type": "PR30-derived fixture candidates, not labels assigned to final PR30 revised answers",
+      "evidence_required": [
+        "original answer",
+        "revised answer",
+        "memo",
+        "changed-advice summary",
+        "absence of material delta"
+      ],
+      "invalid_if": [
+        "the revision contains a supported action-changing delta",
+        "the reviewer is penalizing style rather than checking decision change"
+      ]
+    }
+  ],
+  "next_slice": "PR32 Adversarial Pair Fixture Set v0"
+}

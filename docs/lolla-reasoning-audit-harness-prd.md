@@ -265,12 +265,15 @@ six answer-level reviews passed, all six revised answers were labeled
 improved, and all six remain `safe_for_agent_use: with_human_review` because
 saved artifacts are reviewable while live output remains `not_checked`.
 
-The next narrow slice is PR31 Actionable Delta Rubric v0, not a judge or
-runtime integration. It should define changed action, changed threshold,
-changed sequence, added evidence gate, added stop rule, added written term, and
-added user question as candidate units of improvement, while rejecting smoother
-prose, warmth, length, generic comprehensiveness, extra caveats without action
-change, and judge-palatable blandness as improvement by themselves.
+PR31 now defines the actionable-delta rubric. It names changed action, changed
+threshold, changed sequence, added evidence gate, added stop rule, added
+written term, added user question, narrowed scope, and retracted overclaim as
+candidate units of improvement, while rejecting smoother prose, warmth, length,
+generic comprehensiveness, extra caveats without action change, and
+judge-palatable blandness as improvement by themselves.
+
+The next narrow slice is PR32 Adversarial Pair Fixture Set v0, not a judge or
+runtime integration.
 
 This roadmap should build on that. It should not restart the architecture.
 

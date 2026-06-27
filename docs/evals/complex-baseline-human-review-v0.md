@@ -201,16 +201,17 @@ This does not justify:
 
 ## Recommended Next Slice
 
-Recommended next PR:
+PR31 now defines the rubric that this note recommended:
 
 ```text
-PR31 Actionable Delta Rubric v0
+docs/evals/actionable-delta-rubric-v0.md
 ```
 
-Choose PR31 before adversarial fixtures because the review table shows the
+PR31 came before adversarial fixtures because the review table showed the
 common unit of improvement: action, threshold, sequence, evidence gate, stop
-rule, written term, or user question. A rubric should define those units before
-PR32 turns them into pairwise judge traps.
+rule, written term, user question, narrowed scope, and overclaim retraction.
+The rubric defines those units before PR32 turns them into pairwise judge
+traps.
 
 The rubric should reject smoother prose, more warmth, longer answers, generic
 comprehensiveness, more caveats without action change, and judge-palatable
@@ -218,8 +219,13 @@ blandness as improvement by themselves. It should let reviewers say exactly
 what changed in the user's next action and should include no-op examples from
 adjacent traces when available.
 
-PR32 Adversarial Pair Fixture Set v0 should follow after that, using the traps
-above as the first fixture candidates.
+Next:
+
+```text
+PR32 Adversarial Pair Fixture Set v0
+```
+
+PR32 should use the traps above as the first fixture candidates.
 
 ## Review Receipt
 
