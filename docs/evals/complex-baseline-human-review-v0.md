@@ -199,7 +199,7 @@ This does not justify:
 - treating `evaluation.json` as answer-quality scoring;
 - treating `caller_action: use_revised_answer` as human review.
 
-## Recommended Next Slice
+## Follow-On Slices
 
 PR31 now defines the rubric that this note recommended:
 
@@ -219,15 +219,21 @@ blandness as improvement by themselves. It should let reviewers say exactly
 what changed in the user's next action and should include no-op examples from
 adjacent traces when available.
 
-Next:
+PR32 created the first adversarial pair fixture set:
 
 ```text
 docs/evals/adversarial-pair-fixtures-v0.md
 ```
 
-PR32 uses the traps above as the first fixture candidates. The next evaluation
-slice should expand beyond the six-case seed with a small human-reviewed corpus
-batch, not a judge.
+PR33 then expanded beyond the six-case seed with a small human-reviewed corpus
+batch, not a judge:
+
+```text
+docs/evals/human-review-corpus-batch-v0.md
+```
+
+PR30 remains the complex-run seed set. PR31 supplies the rubric, PR32 supplies
+fixture traps, and PR33 tests the same labels against a broader batch.
 
 ## Review Receipt
 

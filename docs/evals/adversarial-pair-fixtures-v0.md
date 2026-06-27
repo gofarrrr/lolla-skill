@@ -302,6 +302,13 @@ fixtures for error analysis and future calibration. A future judge must first
 prove it can prefer actionable deltas over smooth no-op prose on held-out,
 human-reviewed examples.
 
+PR33 now adds a broader human-review corpus batch:
+
+`docs/evals/human-review-corpus-batch-v0.md`
+
+That batch provides more human-owned examples for future fixtures, but it still
+does not create calibration, benchmark claims, automatic scoring, or a judge.
+
 ## What This Does And Does Not Justify
 
 This does justify:
@@ -339,4 +346,6 @@ This does not justify:
 - No `SKILL.md` changes.
 - No judge implementation.
 - No automatic labels.
-- PR33 Human Review Corpus Batch v0 is the next evaluation slice.
+- PR33 Human Review Corpus Batch v0 now broadens the human-reviewed seed.
+- PR34 First-Class User Values / Priorities Design v0 is the next evaluation
+  slice.

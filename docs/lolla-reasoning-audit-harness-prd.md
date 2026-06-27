@@ -277,8 +277,14 @@ status/aura, checklist theater, generic balance, warmth/confidence, market
 excitement, and authority/loyalty traps without becoming a judge, score, or
 runtime integration.
 
-The next narrow slice is PR33 Human Review Corpus Batch v0, not judge
-automation.
+PR33 now broadens the human review set with a 14-record corpus batch. Twelve
+full-modern records count as positive answer-level eval evidence; one older
+partial record is `needs_followup`, and one degraded record is
+`exclude_from_eval`. This supports the rubric, but still does not create a
+judge, score, automatic labeler, benchmark claim, or runtime integration.
+
+The next narrow slice is PR34 First-Class User Values / Priorities Design v0,
+not judge automation.
 
 This roadmap should build on that. It should not restart the architecture.
 

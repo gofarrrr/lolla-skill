@@ -479,8 +479,8 @@ Remaining eval gap:
 - semantic coverage still shows that user values/priorities are not measured,
   stance lineage is partial/artifact-level, and live constraints/dropped
   threads are mostly turn-reference grounded;
-- the six-run human review now provides a first seed set, but not enough data
-  for an automated judge.
+- the six-run human review and broader PR33 batch provide a human-owned seed
+  set, but not enough data for an automated judge.
 
 Current human-review seed:
 
@@ -504,13 +504,19 @@ Current adversarial fixture seed:
 docs/evals/adversarial-pair-fixtures-v0.md
 ```
 
+Current broader human-review batch:
+
+```text
+docs/evals/human-review-corpus-batch-v0.md
+```
+
 The actionable roadmap for turning this checkpoint into a repeatable eval loop
 is:
 
 `docs/evals/evaluation-flywheel-action-plan-v0.md`
 
-The next rubric should define the recurring units of real improvement found in
-PR30:
+The current rubric defines the recurring units of real improvement found in
+PR30 and reinforced by PR33:
 
 - changed action;
 - changed threshold;
@@ -523,7 +529,7 @@ PR30:
 - retracted an overclaim;
 - no-op prose change.
 
-It should explicitly reject smoother prose, more warmth, longer answers,
+It explicitly rejects smoother prose, more warmth, longer answers,
 generic comprehensiveness, more caveats without action change, and
 judge-palatable blandness as improvement by themselves.
 
@@ -531,18 +537,30 @@ PR32 turns the rubric into pairs that force a reviewer or future judge to
 prefer the stronger actionable delta over the smoother answer. These fixtures
 are not calibration yet and are not benchmark claims.
 
+PR33 moved beyond the six-case seed with a 14-record human-reviewed
+archive/corpus batch:
+
+```text
+docs/evals/human-review-corpus-batch-v0.md
+```
+
+Twelve full-modern records counted as positive answer-level eval evidence, one
+older partial record stayed `needs_followup`, and one degraded record was
+`exclude_from_eval`. The batch reinforced the PR31 labels and did not create a
+judge, score, automatic labels, runtime integration, or benchmark claim.
+
 Recommended next eval slice:
 
 ```text
-PR33 Human Review Corpus Batch v0
+PR34 First-Class User Values / Priorities Design v0
 ```
 
-PR33 should move beyond the six-case seed toward a small human-reviewed
-archive/corpus batch before any subjective judge is built.
+PR34 should design the first-class user-values/priorities review surface before
+any subjective judge is built.
 
 Do not populate `lolla.human_review.v0` from synthetic reviewers. Do not treat
-this baseline as judge calibration yet. Six runs can define product taste and
-failure categories; they cannot validate an automated judge.
+these human labels as judge calibration yet. They define product taste and
+failure categories; they do not validate an automated judge.
 
 ## Release Gate Philosophy
 

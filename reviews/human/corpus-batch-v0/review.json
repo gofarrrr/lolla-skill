@@ -1,0 +1,636 @@
+{
+  "schema_version": "lolla.human_review_corpus_batch.v0",
+  "review_record_schema_version": "lolla.human_review.v0",
+  "created_at": "2026-06-27",
+  "review_slice": "human_review_corpus_batch_v0",
+  "reviewer_id": "pr33_human_product_review",
+  "scope": {
+    "human_review_only": true,
+    "llm_judge_used": false,
+    "model_calls": 0,
+    "runtime_changes": false,
+    "prompt_changes": false,
+    "skill_changes": false,
+    "automatic_human_review_population": false,
+    "automatic_approval": false,
+    "answer_quality_scored_automatically": false,
+    "raw_transcript_text_included": false,
+    "raw_memo_text_included": false,
+    "raw_revised_answer_text_included": false,
+    "provider_reasoning_details_included": false,
+    "archive_mutation": false
+  },
+  "archive_root_ref": "~/.local/share/lolla/runs",
+  "source_docs": [
+    "docs/evals/human-review-workflow.md",
+    "docs/evals/lolla-human-review-v0.json",
+    "docs/evals/lolla-failure-taxonomy.md",
+    "docs/evals/actionable-delta-rubric-v0.md",
+    "docs/evals/adversarial-pair-fixtures-v0.md",
+    "reviews/human/complex-baseline-v0/review.json"
+  ],
+  "records": [
+    {
+      "case_id": "ceo-remove-founding-cofounder",
+      "run_id": "20260627T093131Z_59d153",
+      "archive_relpath": "ceo-remove-founding-cofounder/20260627T093131Z_59d153",
+      "record_role": "pr30_anchor",
+      "review_readiness_tier": "full_modern_reviewable",
+      "batch_recommendation": "pr30_anchor",
+      "human_review": {
+        "schema_version": "lolla.human_review.v0",
+        "reviewer_id": "pr33_human_product_review",
+        "review_status": "pass",
+        "primary_failure_mode": "none",
+        "severity": "none",
+        "useful_friction": "present",
+        "noisy_friction": "absent",
+        "missing_friction": "absent",
+        "revised_answer_improved": "yes",
+        "safe_for_agent_use": "with_human_review",
+        "reviewer_notes": "PR30 anchor. The revision moves authority before cooperation is tested and bounds the transition with stop rules; saved artifacts support the answer-level label while live output remains not_checked."
+      },
+      "actionable_delta_labels": [
+        "action_changed",
+        "sequence_changed",
+        "stop_rule_added",
+        "scope_narrowed"
+      ],
+      "actionable_delta_label_status": "counted",
+      "artifact_sufficiency": "sufficient_with_caveat",
+      "review_surface_summary": {
+        "answer_level": "pass: revised answer delta is explainable from saved artifacts",
+        "run_envelope_custody": "warn: deterministic envelope is reviewable with the shared live-output caveat",
+        "live_output_hygiene": "not_checked",
+        "agent_readiness": "with_human_review"
+      },
+      "short_reviewer_note": "Founder-loyalty language becomes an authority-transfer plan with a real stop condition.",
+      "suitable_for_future_adversarial_fixture": true
+    },
+    {
+      "case_id": "accept-operations-role-startup",
+      "run_id": "20260627T132700Z_bae7f3",
+      "archive_relpath": "accept-operations-role-startup/20260627T132700Z_bae7f3",
+      "record_role": "pr30_anchor",
+      "review_readiness_tier": "full_modern_reviewable",
+      "batch_recommendation": "pr30_anchor",
+      "human_review": {
+        "schema_version": "lolla.human_review.v0",
+        "reviewer_id": "pr33_human_product_review",
+        "review_status": "pass",
+        "primary_failure_mode": "none",
+        "severity": "none",
+        "useful_friction": "present",
+        "noisy_friction": "absent",
+        "missing_friction": "absent",
+        "revised_answer_improved": "yes",
+        "safe_for_agent_use": "with_human_review",
+        "reviewer_notes": "PR30 anchor. The revision requires both career paths to prove operating terms under deadlines; saved artifacts support the label while live output remains not_checked."
+      },
+      "actionable_delta_labels": [
+        "threshold_changed",
+        "evidence_gate_added",
+        "written_term_added",
+        "user_question_added",
+        "overclaim_retracted"
+      ],
+      "actionable_delta_label_status": "counted",
+      "artifact_sufficiency": "sufficient_with_caveat",
+      "review_surface_summary": {
+        "answer_level": "pass: revised answer delta is explainable from saved artifacts",
+        "run_envelope_custody": "warn: deterministic envelope is reviewable with the shared live-output caveat",
+        "live_output_hygiene": "not_checked",
+        "agent_readiness": "with_human_review"
+      },
+      "short_reviewer_note": "A resonant career choice becomes a written-terms and household-capacity test.",
+      "suitable_for_future_adversarial_fixture": true
+    },
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "run_id": "20260627T104146Z_7bfe79",
+      "archive_relpath": "launch-public-enterprise-beta/20260627T104146Z_7bfe79",
+      "record_role": "pr30_anchor",
+      "review_readiness_tier": "full_modern_reviewable",
+      "batch_recommendation": "pr30_anchor",
+      "human_review": {
+        "schema_version": "lolla.human_review.v0",
+        "reviewer_id": "pr33_human_product_review",
+        "review_status": "pass",
+        "primary_failure_mode": "none",
+        "severity": "none",
+        "useful_friction": "present",
+        "noisy_friction": "absent",
+        "missing_friction": "absent",
+        "revised_answer_improved": "yes",
+        "safe_for_agent_use": "with_human_review",
+        "reviewer_notes": "PR30 anchor. The revision makes buyer behavior the proof source instead of letting prospect size decide priority; saved artifacts support the label while live output remains not_checked."
+      },
+      "actionable_delta_labels": [
+        "action_changed",
+        "threshold_changed",
+        "evidence_gate_added",
+        "written_term_added",
+        "scope_narrowed",
+        "overclaim_retracted"
+      ],
+      "actionable_delta_label_status": "counted",
+      "artifact_sufficiency": "sufficient_with_caveat",
+      "review_surface_summary": {
+        "answer_level": "pass: revised answer delta is explainable from saved artifacts",
+        "run_envelope_custody": "warn: deterministic envelope is reviewable with the shared live-output caveat",
+        "live_output_hygiene": "not_checked",
+        "agent_readiness": "with_human_review"
+      },
+      "short_reviewer_note": "Enterprise aura becomes a same-shape paid-pilot proof test.",
+      "suitable_for_future_adversarial_fixture": true
+    },
+    {
+      "case_id": "pre-sell-undefined-consulting",
+      "run_id": "20260627T133637Z_cad396",
+      "archive_relpath": "pre-sell-undefined-consulting/20260627T133637Z_cad396",
+      "record_role": "pr30_anchor",
+      "review_readiness_tier": "full_modern_reviewable",
+      "batch_recommendation": "pr30_anchor",
+      "human_review": {
+        "schema_version": "lolla.human_review.v0",
+        "reviewer_id": "pr33_human_product_review",
+        "review_status": "pass",
+        "primary_failure_mode": "none",
+        "severity": "none",
+        "useful_friction": "present",
+        "noisy_friction": "absent",
+        "missing_friction": "absent",
+        "revised_answer_improved": "yes",
+        "safe_for_agent_use": "with_human_review",
+        "reviewer_notes": "PR30 anchor. The revision retracts an overclean status read while keeping scope and cash discipline; saved artifacts support the label while live output remains not_checked."
+      },
+      "actionable_delta_labels": [
+        "action_changed",
+        "evidence_gate_added",
+        "written_term_added",
+        "scope_narrowed",
+        "overclaim_retracted"
+      ],
+      "actionable_delta_label_status": "counted",
+      "artifact_sufficiency": "sufficient_with_caveat",
+      "review_surface_summary": {
+        "answer_level": "pass: revised answer delta is explainable from saved artifacts",
+        "run_envelope_custody": "warn: deterministic envelope is reviewable with the shared live-output caveat",
+        "live_output_hygiene": "not_checked",
+        "agent_readiness": "with_human_review"
+      },
+      "short_reviewer_note": "The safer answer keeps the paid-pilot constraint while separating client readiness from status spending.",
+      "suitable_for_future_adversarial_fixture": true
+    },
+    {
+      "case_id": "pivot-company-product-strategy",
+      "run_id": "20260627T110450Z_5d2da7",
+      "archive_relpath": "pivot-company-product-strategy/20260627T110450Z_5d2da7",
+      "record_role": "pr30_anchor",
+      "review_readiness_tier": "full_modern_reviewable",
+      "batch_recommendation": "pr30_anchor",
+      "human_review": {
+        "schema_version": "lolla.human_review.v0",
+        "reviewer_id": "pr33_human_product_review",
+        "review_status": "pass",
+        "primary_failure_mode": "none",
+        "severity": "none",
+        "useful_friction": "present",
+        "noisy_friction": "absent",
+        "missing_friction": "absent",
+        "revised_answer_improved": "yes",
+        "safe_for_agent_use": "with_human_review",
+        "reviewer_notes": "PR30 anchor. The revision places capacity and current obligations before market validation; saved artifacts support the label while live output remains not_checked."
+      },
+      "actionable_delta_labels": [
+        "threshold_changed",
+        "sequence_changed",
+        "evidence_gate_added",
+        "written_term_added"
+      ],
+      "actionable_delta_label_status": "counted",
+      "artifact_sufficiency": "sufficient_with_caveat",
+      "review_surface_summary": {
+        "answer_level": "pass: revised answer delta is explainable from saved artifacts",
+        "run_envelope_custody": "warn: deterministic envelope is reviewable with the shared live-output caveat",
+        "live_output_hygiene": "not_checked",
+        "agent_readiness": "with_human_review"
+      },
+      "short_reviewer_note": "Market-upside momentum becomes a capacity-and-obligation gate.",
+      "suitable_for_future_adversarial_fixture": true
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "run_id": "20260627T130339Z_4cd3cb",
+      "archive_relpath": "deploy-assisted-intake-routing/20260627T130339Z_4cd3cb",
+      "record_role": "pr30_anchor",
+      "review_readiness_tier": "full_modern_reviewable",
+      "batch_recommendation": "pr30_anchor",
+      "human_review": {
+        "schema_version": "lolla.human_review.v0",
+        "reviewer_id": "pr33_human_product_review",
+        "review_status": "pass",
+        "primary_failure_mode": "none",
+        "severity": "none",
+        "useful_friction": "present",
+        "noisy_friction": "absent",
+        "missing_friction": "absent",
+        "revised_answer_improved": "yes",
+        "safe_for_agent_use": "with_human_review",
+        "reviewer_notes": "PR30 anchor. The revision narrows the deployment into operable controls, diagnosis, and rollback triggers; saved artifacts support the label while live output remains not_checked."
+      },
+      "actionable_delta_labels": [
+        "action_changed",
+        "threshold_changed",
+        "evidence_gate_added",
+        "stop_rule_added",
+        "user_question_added",
+        "scope_narrowed"
+      ],
+      "actionable_delta_label_status": "counted",
+      "artifact_sufficiency": "sufficient_with_caveat",
+      "review_surface_summary": {
+        "answer_level": "pass: revised answer delta is explainable from saved artifacts",
+        "run_envelope_custody": "warn: deterministic envelope is reviewable with the shared live-output caveat",
+        "live_output_hygiene": "not_checked",
+        "agent_readiness": "with_human_review"
+      },
+      "short_reviewer_note": "Checklist safety theater becomes a narrower pilot with controls that can stop the rollout.",
+      "suitable_for_future_adversarial_fixture": true
+    },
+    {
+      "case_id": "accept-founding-engineer-role",
+      "run_id": "20260627T073034Z_a7c221",
+      "archive_relpath": "accept-founding-engineer-role/20260627T073034Z_a7c221",
+      "record_role": "broader_modern_review",
+      "review_readiness_tier": "full_modern_reviewable",
+      "batch_recommendation": "pr33_selected_modern_extension",
+      "human_review": {
+        "schema_version": "lolla.human_review.v0",
+        "reviewer_id": "pr33_human_product_review",
+        "review_status": "pass",
+        "primary_failure_mode": "none",
+        "severity": "none",
+        "useful_friction": "present",
+        "noisy_friction": "absent",
+        "missing_friction": "absent",
+        "revised_answer_improved": "yes",
+        "safe_for_agent_use": "with_human_review",
+        "reviewer_notes": "The revision changes a spouse-consent leaning into company, role, and household proof gates with written operating rules and kill criteria. The artifacts support answer-level review; live output remains not_checked."
+      },
+      "actionable_delta_labels": [
+        "threshold_changed",
+        "sequence_changed",
+        "evidence_gate_added",
+        "stop_rule_added",
+        "written_term_added"
+      ],
+      "actionable_delta_label_status": "counted",
+      "artifact_sufficiency": "sufficient_with_caveat",
+      "review_surface_summary": {
+        "answer_level": "pass: revised answer delta is explainable from saved artifacts",
+        "run_envelope_custody": "warn: 27 pass, 1 warn, caller_readiness inspect_first",
+        "live_output_hygiene": "not_checked",
+        "agent_readiness": "with_human_review"
+      },
+      "short_reviewer_note": "A personal yes becomes necessary but not sufficient; the offer has to pass proof, role, and family gates.",
+      "suitable_for_future_adversarial_fixture": true
+    },
+    {
+      "case_id": "accept-high-intensity-startup",
+      "run_id": "20260627T094533Z_e1e6fc",
+      "archive_relpath": "accept-high-intensity-startup/20260627T094533Z_e1e6fc",
+      "record_role": "broader_modern_review",
+      "review_readiness_tier": "full_modern_reviewable",
+      "batch_recommendation": "pr33_selected_modern_extension",
+      "human_review": {
+        "schema_version": "lolla.human_review.v0",
+        "reviewer_id": "pr33_human_product_review",
+        "review_status": "pass",
+        "primary_failure_mode": "none",
+        "severity": "none",
+        "useful_friction": "present",
+        "noisy_friction": "absent",
+        "missing_friction": "absent",
+        "revised_answer_improved": "yes",
+        "safe_for_agent_use": "with_human_review",
+        "reviewer_notes": "The revision removes overconfident psychological framing and requires both the startup and current company to prove operating authority in writing. The artifacts support answer-level review; live output remains not_checked."
+      },
+      "actionable_delta_labels": [
+        "threshold_changed",
+        "evidence_gate_added",
+        "written_term_added",
+        "user_question_added",
+        "overclaim_retracted"
+      ],
+      "actionable_delta_label_status": "counted",
+      "artifact_sufficiency": "sufficient_with_caveat",
+      "review_surface_summary": {
+        "answer_level": "pass: revised answer delta is explainable from saved artifacts",
+        "run_envelope_custody": "warn: 27 pass, 1 warn, caller_readiness inspect_first",
+        "live_output_hygiene": "not_checked",
+        "agent_readiness": "with_human_review"
+      },
+      "short_reviewer_note": "Status-flavored confidence is replaced by written startup boundaries, current-company charter proof, and household load planning.",
+      "suitable_for_future_adversarial_fixture": true
+    },
+    {
+      "case_id": "five-person-saas-team-1",
+      "run_id": "20260627T075430Z_a5ba14",
+      "archive_relpath": "five-person-saas-team-1/20260627T075430Z_a5ba14",
+      "record_role": "broader_modern_review",
+      "review_readiness_tier": "full_modern_reviewable",
+      "batch_recommendation": "pr33_selected_modern_extension",
+      "human_review": {
+        "schema_version": "lolla.human_review.v0",
+        "reviewer_id": "pr33_human_product_review",
+        "review_status": "pass",
+        "primary_failure_mode": "none",
+        "severity": "none",
+        "useful_friction": "present",
+        "noisy_friction": "absent",
+        "missing_friction": "absent",
+        "revised_answer_improved": "yes",
+        "safe_for_agent_use": "with_human_review",
+        "reviewer_notes": "The revision avoids treating missing lead names as bad faith and instead requires a partner proof package before build commitment. The artifacts support answer-level review; live output remains not_checked."
+      },
+      "actionable_delta_labels": [
+        "threshold_changed",
+        "evidence_gate_added",
+        "user_question_added",
+        "scope_narrowed",
+        "overclaim_retracted"
+      ],
+      "actionable_delta_label_status": "counted",
+      "artifact_sufficiency": "sufficient_with_caveat",
+      "review_surface_summary": {
+        "answer_level": "pass: revised answer delta is explainable from saved artifacts",
+        "run_envelope_custody": "warn: 27 pass, 1 warn, caller_readiness inspect_first",
+        "live_output_hygiene": "not_checked",
+        "agent_readiness": "with_human_review"
+      },
+      "short_reviewer_note": "A lead-list ultimatum becomes a bounded proof package with shared partner evidence.",
+      "suitable_for_future_adversarial_fixture": true
+    },
+    {
+      "case_id": "implement-price-increase-three",
+      "run_id": "20260627T083231Z_52724d",
+      "archive_relpath": "implement-price-increase-three/20260627T083231Z_52724d",
+      "record_role": "broader_modern_review",
+      "review_readiness_tier": "full_modern_reviewable",
+      "batch_recommendation": "pr33_selected_modern_extension",
+      "human_review": {
+        "schema_version": "lolla.human_review.v0",
+        "reviewer_id": "pr33_human_product_review",
+        "review_status": "pass",
+        "primary_failure_mode": "none",
+        "severity": "none",
+        "useful_friction": "present",
+        "noisy_friction": "absent",
+        "missing_friction": "absent",
+        "revised_answer_improved": "yes",
+        "safe_for_agent_use": "with_human_review",
+        "reviewer_notes": "The revision changes a blunt renewal-price move into support-load pricing, segmented renewals, and enforceable support rules. The artifacts support answer-level review; live output remains not_checked."
+      },
+      "actionable_delta_labels": [
+        "action_changed",
+        "threshold_changed",
+        "evidence_gate_added",
+        "written_term_added",
+        "scope_narrowed"
+      ],
+      "actionable_delta_label_status": "counted",
+      "artifact_sufficiency": "sufficient_with_caveat",
+      "review_surface_summary": {
+        "answer_level": "pass: revised answer delta is explainable from saved artifacts",
+        "run_envelope_custody": "warn: 27 pass, 1 warn, caller_readiness inspect_first",
+        "live_output_hygiene": "not_checked",
+        "agent_readiness": "with_human_review"
+      },
+      "short_reviewer_note": "A broad price increase becomes account-level support economics with enforceable boundaries.",
+      "suitable_for_future_adversarial_fixture": true
+    },
+    {
+      "case_id": "initiate-pre-sale-coffee-1",
+      "run_id": "20260627T080708Z_1e8b85",
+      "archive_relpath": "initiate-pre-sale-coffee-1/20260627T080708Z_1e8b85",
+      "record_role": "broader_modern_review",
+      "review_readiness_tier": "full_modern_reviewable",
+      "batch_recommendation": "pr33_selected_modern_extension",
+      "human_review": {
+        "schema_version": "lolla.human_review.v0",
+        "reviewer_id": "pr33_human_product_review",
+        "review_status": "pass",
+        "primary_failure_mode": "none",
+        "severity": "none",
+        "useful_friction": "present",
+        "noisy_friction": "absent",
+        "missing_friction": "absent",
+        "revised_answer_improved": "yes",
+        "safe_for_agent_use": "with_human_review",
+        "reviewer_notes": "The revision changes a broad pre-sale push into two bounded commitment tests with partner trust gates and runway stop-losses. The artifacts support answer-level review; live output remains not_checked."
+      },
+      "actionable_delta_labels": [
+        "action_changed",
+        "threshold_changed",
+        "evidence_gate_added",
+        "stop_rule_added",
+        "scope_narrowed"
+      ],
+      "actionable_delta_label_status": "counted",
+      "artifact_sufficiency": "sufficient_with_caveat",
+      "review_surface_summary": {
+        "answer_level": "pass: revised answer delta is explainable from saved artifacts",
+        "run_envelope_custody": "warn: 27 pass, 1 warn, caller_readiness inspect_first",
+        "live_output_hygiene": "not_checked",
+        "agent_readiness": "with_human_review"
+      },
+      "short_reviewer_note": "Brand-safe caution becomes a smaller cash-and-demand test with explicit stop-losses.",
+      "suitable_for_future_adversarial_fixture": true
+    },
+    {
+      "case_id": "launch-limited-beta-workflow",
+      "run_id": "20260627T074306Z_7606f7",
+      "archive_relpath": "launch-limited-beta-workflow/20260627T074306Z_7606f7",
+      "record_role": "broader_modern_review",
+      "review_readiness_tier": "full_modern_reviewable",
+      "batch_recommendation": "pr33_selected_modern_extension",
+      "human_review": {
+        "schema_version": "lolla.human_review.v0",
+        "reviewer_id": "pr33_human_product_review",
+        "review_status": "pass",
+        "primary_failure_mode": "none",
+        "severity": "none",
+        "useful_friction": "present",
+        "noisy_friction": "absent",
+        "missing_friction": "absent",
+        "revised_answer_improved": "yes",
+        "safe_for_agent_use": "with_human_review",
+        "reviewer_notes": "The revision separates a learning beta from enterprise proof and requires a branch map before choosing partners. The artifacts support answer-level review; live output remains not_checked."
+      },
+      "actionable_delta_labels": [
+        "threshold_changed",
+        "sequence_changed",
+        "evidence_gate_added",
+        "user_question_added",
+        "scope_narrowed"
+      ],
+      "actionable_delta_label_status": "counted",
+      "artifact_sufficiency": "sufficient_with_caveat",
+      "review_surface_summary": {
+        "answer_level": "pass: revised answer delta is explainable from saved artifacts",
+        "run_envelope_custody": "warn: 27 pass, 1 warn, caller_readiness inspect_first",
+        "live_output_hygiene": "not_checked",
+        "agent_readiness": "with_human_review"
+      },
+      "short_reviewer_note": "A beta launch becomes two distinct tracks: learning with design partners and proof for the enterprise prospect.",
+      "suitable_for_future_adversarial_fixture": true
+    },
+    {
+      "case_id": "accept-founding-engineer-role",
+      "run_id": "20260623T095719Z",
+      "archive_relpath": "accept-founding-engineer-role/20260623T095719Z",
+      "record_role": "partial_boundary_record",
+      "review_readiness_tier": "modern_partial_content_reviewable",
+      "batch_recommendation": "boundary_sample_not_counted_as_positive_eval",
+      "human_review": {
+        "schema_version": "lolla.human_review.v0",
+        "reviewer_id": "pr33_human_product_review",
+        "review_status": "needs_followup",
+        "primary_failure_mode": "artifact_custody_failure",
+        "severity": "medium",
+        "useful_friction": "present",
+        "noisy_friction": "absent",
+        "missing_friction": "unclear",
+        "revised_answer_improved": "partly",
+        "safe_for_agent_use": "no",
+        "reviewer_notes": "Content artifacts show a plausible proof-test delta, but the record predates the modern agent_result, evaluation, and extraction adequacy sidecars. It is useful as boundary evidence, not as a counted positive eval label."
+      },
+      "actionable_delta_labels": [
+        "threshold_changed",
+        "evidence_gate_added",
+        "stop_rule_added",
+        "sequence_changed"
+      ],
+      "actionable_delta_label_status": "candidate_only_not_counted",
+      "artifact_sufficiency": "content_only_insufficient_for_eval",
+      "review_surface_summary": {
+        "answer_level": "needs_followup: content suggests a real delta but lacks the modern review envelope",
+        "run_envelope_custody": "partial: no modern agent_result, evaluation, or extraction adequacy report",
+        "live_output_hygiene": "not_checked",
+        "agent_readiness": "no"
+      },
+      "short_reviewer_note": "Older partial content can be read, but it should not be counted beside full-modern PR33 positives.",
+      "suitable_for_future_adversarial_fixture": false
+    },
+    {
+      "case_id": "prioritize-control-plane-contract",
+      "run_id": "20260625T125625Z_aae54e",
+      "archive_relpath": "prioritize-control-plane-contract/20260625T125625Z_aae54e",
+      "record_role": "degraded_exclusion_record",
+      "review_readiness_tier": "full_modern_degraded",
+      "batch_recommendation": "boundary_sample_exclude_from_eval",
+      "human_review": {
+        "schema_version": "lolla.human_review.v0",
+        "reviewer_id": "pr33_human_product_review",
+        "review_status": "exclude_from_eval",
+        "primary_failure_mode": "artifact_custody_failure",
+        "severity": "high",
+        "useful_friction": "not_applicable",
+        "noisy_friction": "not_applicable",
+        "missing_friction": "not_applicable",
+        "revised_answer_improved": "unclear",
+        "safe_for_agent_use": "no",
+        "reviewer_notes": "The run is explicitly degraded with caller_action do_not_use_run_degraded and a failed deterministic envelope. It is useful as an exclusion example, not as answer-level improvement evidence."
+      },
+      "actionable_delta_labels": [],
+      "actionable_delta_label_status": "not_applicable_excluded",
+      "artifact_sufficiency": "insufficient_for_eval",
+      "review_surface_summary": {
+        "answer_level": "excluded: answer-level delta is not ratified for eval",
+        "run_envelope_custody": "fail: degraded caller action and deterministic envelope failure",
+        "live_output_hygiene": "not_checked",
+        "agent_readiness": "no"
+      },
+      "short_reviewer_note": "A saved answer exists, but custody and readiness prevent this record from joining the positive evaluation seed.",
+      "suitable_for_future_adversarial_fixture": false
+    }
+  ],
+  "aggregate": {
+    "total_reviewed_records": 14,
+    "positive_eval_records_counted": 12,
+    "pr30_anchor_count": 6,
+    "broader_modern_pass_count": 6,
+    "needs_followup_count": 1,
+    "exclude_from_eval_count": 1,
+    "review_status_counts": {
+      "pass": 12,
+      "fail": 0,
+      "needs_followup": 1,
+      "exclude_from_eval": 1
+    },
+    "primary_failure_mode_counts": {
+      "none": 12,
+      "artifact_custody_failure": 2
+    },
+    "severity_counts": {
+      "none": 12,
+      "medium": 1,
+      "high": 1
+    },
+    "useful_friction_counts": {
+      "present": 13,
+      "not_applicable": 1
+    },
+    "noisy_friction_counts": {
+      "absent": 13,
+      "not_applicable": 1
+    },
+    "missing_friction_counts": {
+      "absent": 12,
+      "unclear": 1,
+      "not_applicable": 1
+    },
+    "revised_answer_improved_counts": {
+      "yes": 12,
+      "partly": 1,
+      "unclear": 1
+    },
+    "safe_for_agent_use_counts": {
+      "with_human_review": 12,
+      "no": 2
+    },
+    "artifact_sufficiency_counts": {
+      "sufficient_with_caveat": 12,
+      "content_only_insufficient_for_eval": 1,
+      "insufficient_for_eval": 1
+    },
+    "future_adversarial_fixture_candidate_count": 12,
+    "excluded_or_not_ready_for_positive_eval_count": 2,
+    "actionable_delta_label_counts_counted_records": {
+      "action_changed": 6,
+      "threshold_changed": 10,
+      "sequence_changed": 4,
+      "evidence_gate_added": 11,
+      "stop_rule_added": 4,
+      "written_term_added": 7,
+      "user_question_added": 5,
+      "scope_narrowed": 8,
+      "overclaim_retracted": 5,
+      "no_op_prose_change": 0
+    },
+    "actionable_delta_label_counts_candidate_only_records": {
+      "threshold_changed": 1,
+      "sequence_changed": 1,
+      "evidence_gate_added": 1,
+      "stop_rule_added": 1
+    },
+    "shared_caveats": [
+      "live_output_health_not_checked",
+      "saved_artifacts_reviewable_but_not_live_surface_proof",
+      "evaluation_json_is_run_readiness_not_answer_quality",
+      "caller_action_is_not_human_approval"
+    ],
+    "recommended_next_slice": "PR34 First-Class User Values / Priorities Design v0"
+  }
+}

@@ -432,6 +432,17 @@ The fixture set uses these candidate traps:
 Each fixture is designed to force a future reviewer or judge to pick the answer
 with the stronger actionable delta, not the answer with smoother prose.
 
+## PR33 Corpus Batch Implications
+
+PR33 now applies this rubric to a broader human-review corpus batch:
+
+`docs/evals/human-review-corpus-batch-v0.md`
+
+The batch counts 12 positive answer-level records. The most frequent counted
+labels were `evidence_gate_added`, `threshold_changed`, and `scope_narrowed`.
+The batch did not require a new actionable-delta label and did not convert this
+rubric into a judge.
+
 ## What This Does And Does Not Justify
 
 This does justify:
@@ -439,6 +450,7 @@ This does justify:
 - using PR30's six runs as rubric examples;
 - asking reviewers to label actionable delta explicitly;
 - using PR32 adversarial pair fixtures as seed examples;
+- using PR33's broader batch as additional human-review evidence;
 - later testing whether a narrow `actionable_delta` judge can match human
   labels.
 
@@ -465,3 +477,4 @@ This does not justify:
 - No judge implementation.
 - No automatic labels.
 - PR32 Adversarial Pair Fixture Set v0 follows this rubric.
+- PR33 Human Review Corpus Batch v0 applies this rubric to a broader batch.

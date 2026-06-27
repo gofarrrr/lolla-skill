@@ -169,8 +169,9 @@ This is the important product read:
 > source-grounded way.
 
 That means the next evaluation work should not be a generic LLM judge. PR30 has
-now made the human/product review of these traces explicit; PR31 should define
-the actionable-delta rubric before any adversarial fixtures or judge prototype.
+made the human/product review of these traces explicit; PR31 defined the
+actionable-delta rubric, PR32 defined adversarial fixtures, and PR33 broadened
+the human-review batch before any judge prototype.
 
 ## Evaluation Implication
 
@@ -203,48 +204,53 @@ This is not large enough for judge calibration. It is large enough for:
   prove;
 - a first pairwise/adversarial eval fixture set after the rubric exists.
 
-Recommended next slice:
+Completed follow-on eval slices:
 
 ```text
 PR31 Actionable Delta Rubric v0
+PR32 Adversarial Pair Fixture Set v0
+PR33 Human Review Corpus Batch v0
 ```
 
-PR31 should define what counts as real Lolla improvement: changed action,
-changed threshold, changed sequence, added evidence gate, added stop rule, added
-written term, added user question, and rejected no-op prose change. It should
-explicitly reject smoother prose, more warmth, longer answers, generic
-comprehensiveness, more caveats without action change, and judge-palatable
-blandness as improvement by themselves.
+PR31 defined what counts as real Lolla improvement. PR32 turned the six complex
+cases into paraphrase-only adversarial pair fixtures. PR33 expanded the review
+batch beyond these six anchors while preserving the same boundary: no judge, no
+automatic labels, no answer-quality score, no runtime change.
 
 ## Product Opportunities
 
 The evidence points to several opportunities, in this order:
 
 1. **Actionable-delta rubric from the six reviewed runs.**
-   PR30 defined the first human-reviewed seed. PR31 should turn those labels
-   into a rubric for real improvement versus smooth no-op prose.
+   PR30 defined the first human-reviewed seed. PR31 turned those labels into a
+   rubric for real improvement versus smooth no-op prose.
 
 2. **Adversarial pair fixtures.**
-   Turn some of the six cases into pairs where the smoother original answer
+   PR32 turned the six cases into pairs where the smoother original answer
    competes with the rougher but more protective revised answer.
 
-3. **First-class user-values/priorities design.**
+3. **Broader human-review corpus batch.**
+   PR33 reviewed a 14-record local batch with the PR30/PR31 label language:
+   12 counted positives, one partial boundary record, and one degraded
+   exclusion.
+
+4. **First-class user-values/priorities design.**
    The repeated `user_values_or_priorities_signal: not_measured` gap is now
    visible across the corpus. Do not smuggle this into the existing specialist
    set; design it explicitly.
 
-4. **Span-grounded semantic enrichment.**
+5. **Span-grounded semantic enrichment.**
    Existing specialists have evidence for live constraints, stance lineage, and
    dropped threads, but runtime/archive integration remains blocked until a
    clean 15-20 full-modern sample and provider-boundary behavior are settled.
 
-5. **Live-output hygiene check.**
+6. **Live-output hygiene check.**
    The deterministic evaluator keeps warning that live-output health is
    `not_checked`. That is honest, but if we want clean evaluation receipts, we
    eventually need a bounded way to check the live surface or clearly define why
    it remains advisory.
 
-6. **Calibrated binary judges later.**
+7. **Calibrated binary judges later.**
    Only after human labels exist should Lolla prototype binary judges such as
    `actionable_delta`, `earned_friction`, `pressure_absorption`, and
    `overcorrection_absent`.

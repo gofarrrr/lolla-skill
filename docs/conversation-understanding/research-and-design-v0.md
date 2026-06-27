@@ -1004,7 +1004,9 @@ This evidence does not unlock runtime specialist integration, archive
 integration, a new IR, graph memory, embeddings, or judges. It unlocked PR30:
 the human/product review seed over real complex traces. PR31 now defines the
 human-owned actionable-delta rubric. PR32 now defines seed adversarial pair
-fixtures. The next slice is PR33 Human Review Corpus Batch v0.
+fixtures. PR33 now expands the human review batch beyond the six curated
+complex cases. The next slice is PR34 First-Class User Values / Priorities
+Design v0.
 
 ### PR30: Complex Baseline Human Review v0
 
@@ -1123,6 +1125,34 @@ Next:
 PR33 Human Review Corpus Batch v0
 ```
 
+### PR33: Human Review Corpus Batch v0
+
+Status: completed as
+[human-review-corpus-batch-v0.md](../evals/human-review-corpus-batch-v0.md).
+
+Goal: test whether the PR30 human-review labels and PR31 actionable-delta
+rubric survive contact with a broader local corpus batch.
+
+Outcome:
+
+- 14 records reviewed;
+- 12 full-modern records counted as positive answer-level eval evidence;
+- all 12 counted positives passed and were labeled improved;
+- all 12 counted positives had useful friction present;
+- one older partial record was `needs_followup` because content was readable
+  but the modern custody sidecars were absent;
+- one degraded record was `exclude_from_eval` because the deterministic
+  envelope was not eval-ready;
+- no new failure mode was needed beyond `artifact_custody_failure`;
+- no judge, score, automatic labels, runtime integration, prompt change, or raw
+  transcript/memo/revised-answer text.
+
+Next:
+
+```text
+PR34 First-Class User Values / Priorities Design v0
+```
+
 ### PR33+ Or Later: Decision-Aware Capture And Runtime Integration
 
 Goal: only after offline evidence, use the IR to improve capture or audit input.
@@ -1164,10 +1194,12 @@ deterministic custody keeps the LLM honest.
 
 The current evidence says the next move should still be boring, but the boring
 thing has changed. Extraction adequacy, semantic coverage, PR30's six-run human
-review seed, PR31's actionable-delta rubric, and PR32's adversarial pair
-fixtures now exist. The next step is PR33 Human Review Corpus Batch v0: expand
-human labels beyond the six-case seed before adding judges, runtime specialist
-calls, a new IR, graph memory, embeddings, or prompt changes.
+review seed, PR31's actionable-delta rubric, PR32's adversarial pair fixtures,
+and PR33's broader human-review corpus batch now exist. The next step is PR34
+First-Class User Values / Priorities Design v0: design the review surface for
+the repeatedly unmeasured user-values/priorities signal before adding judges,
+runtime specialist calls, a new IR, graph memory, embeddings, or prompt
+changes.
 
 ## Sources
 

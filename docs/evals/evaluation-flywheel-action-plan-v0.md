@@ -122,6 +122,7 @@ The evaluation layer should produce:
 | review findings note | summary of what passed, failed, and why | PR30 shipped |
 | actionable-delta rubric | human-owned definition of real improvement | PR31 shipped |
 | adversarial-pair fixtures | smoothness-bias traps for future judges | PR32 seed shipped |
+| human-review corpus batch | broader local batch using PR30/PR31 labels | PR33 shipped |
 | taxonomy revision note | evidence-backed changes to failure modes | after labels |
 | deterministic check proposal | repeated failures that code can catch | after labels |
 | judge calibration packet | train/dev/test labels for one binary judge | later |
@@ -176,7 +177,9 @@ Did the audit add earned, decision-relevant friction?
 Current status:
 
 PR30 reviewed the six clean complex baseline runs with
-`lolla.human_review.v0` as a human/product review seed.
+`lolla.human_review.v0` as a human/product review seed. PR33 expanded that
+review to a 14-record local batch: 12 counted positive answer-level reviews,
+one partial boundary record, and one degraded exclusion.
 
 Human labels should capture:
 
@@ -191,8 +194,9 @@ Human labels should capture:
 - action-changing delta;
 - artifact sufficiency notes.
 
-The next active frontier is turning those labels into a rubric for actionable
-delta, then reviewing additional records.
+The current active frontier is still human-owned evidence expansion and review
+surface design, not judging. PR31 defines actionable delta, PR32 defines seed
+adversarial pairs, and PR33 tests the labels on a broader batch.
 
 ### Layer 2: Heuristic Signals
 
@@ -423,23 +427,47 @@ Current result:
 
 Maps to: PRD R6, R9.
 
+Status: completed as the first broader local human-review batch.
+
 Goal:
 
 Move beyond six examples toward the 50-100 trace target.
 
 Scope:
 
-- export review corpus;
-- sample only reviewable records;
-- include clean, warned, partial, degraded, and legacy-limited runs;
+- use the existing review workflow and PR31 rubric;
+- sample reviewable full-modern records plus boundary records;
+- include clean, warned, partial, and degraded examples where useful;
 - keep raw transcript/memo/revised-answer out of corpus records;
-- review manually or use synthetic review only as candidate notes.
+- review manually; do not use synthetic review as ground truth.
+
+Output:
+
+- `docs/evals/human-review-corpus-batch-v0.md`;
+- `reviews/human/corpus-batch-v0/review.json`.
 
 Acceptance:
 
-- 20-30 human-reviewed records as an interim batch;
-- manifest says which records were full-modern versus legacy;
-- taxonomy changes are proposed only when failures recur.
+- 12 or more human-reviewed records if enough safe local records exist;
+- every reviewed record has a `lolla.human_review.v0` object;
+- every record has artifact sufficiency and actionable-delta status;
+- aggregate counts are included;
+- boundary records are separated from positive eval evidence;
+- no raw transcript/memo/revised-answer text is copied.
+
+Current result:
+
+- 14 records reviewed;
+- 12 records counted as positive answer-level eval evidence;
+- all 12 counted positives passed, were labeled improved, and had useful
+  friction present;
+- one older partial record is `needs_followup` because content is readable but
+  modern custody sidecars are absent;
+- one degraded record is `exclude_from_eval` because the deterministic envelope
+  is not eval-ready;
+- no new failure mode was needed beyond `artifact_custody_failure`;
+- the next slice is PR34 First-Class User Values / Priorities Design v0, not a
+  judge.
 
 ### PR34: First-Class User Values / Priorities Design v0
 
