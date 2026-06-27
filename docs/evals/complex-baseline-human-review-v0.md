@@ -179,8 +179,8 @@ These six runs are good seeds for future adversarial pair fixtures:
 This does justify:
 
 - using the six runs as a small human-reviewed seed set;
-- building an actionable-delta rubric next;
-- extracting adversarial pair fixtures next;
+- building an actionable-delta rubric through PR31;
+- extracting adversarial pair fixtures through PR32;
 - using these examples to refine taxonomy language;
 - using the table above as product-taste evidence for what useful Lolla
   friction looked like.
@@ -222,10 +222,12 @@ adjacent traces when available.
 Next:
 
 ```text
-PR32 Adversarial Pair Fixture Set v0
+docs/evals/adversarial-pair-fixtures-v0.md
 ```
 
-PR32 should use the traps above as the first fixture candidates.
+PR32 uses the traps above as the first fixture candidates. The next evaluation
+slice should expand beyond the six-case seed with a small human-reviewed corpus
+batch, not a judge.
 
 ## Review Receipt
 

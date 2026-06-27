@@ -272,8 +272,13 @@ candidate units of improvement, while rejecting smoother prose, warmth, length,
 generic comprehensiveness, extra caveats without action change, and
 judge-palatable blandness as improvement by themselves.
 
-The next narrow slice is PR32 Adversarial Pair Fixture Set v0, not a judge or
+PR32 now defines a six-fixture adversarial pair seed set. It tests smoothness,
+status/aura, checklist theater, generic balance, warmth/confidence, market
+excitement, and authority/loyalty traps without becoming a judge, score, or
 runtime integration.
+
+The next narrow slice is PR33 Human Review Corpus Batch v0, not judge
+automation.
 
 This roadmap should build on that. It should not restart the architecture.
 

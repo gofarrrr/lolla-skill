@@ -498,6 +498,12 @@ Current rubric:
 docs/evals/actionable-delta-rubric-v0.md
 ```
 
+Current adversarial fixture seed:
+
+```text
+docs/evals/adversarial-pair-fixtures-v0.md
+```
+
 The actionable roadmap for turning this checkpoint into a repeatable eval loop
 is:
 
@@ -521,14 +527,18 @@ It should explicitly reject smoother prose, more warmth, longer answers,
 generic comprehensiveness, more caveats without action change, and
 judge-palatable blandness as improvement by themselves.
 
+PR32 turns the rubric into pairs that force a reviewer or future judge to
+prefer the stronger actionable delta over the smoother answer. These fixtures
+are not calibration yet and are not benchmark claims.
+
 Recommended next eval slice:
 
 ```text
-PR32 Adversarial Pair Fixture Set v0
+PR33 Human Review Corpus Batch v0
 ```
 
-PR32 should turn the rubric into pairs that force a reviewer or future judge to
-prefer the stronger actionable delta over the smoother answer.
+PR33 should move beyond the six-case seed toward a small human-reviewed
+archive/corpus batch before any subjective judge is built.
 
 Do not populate `lolla.human_review.v0` from synthetic reviewers. Do not treat
 this baseline as judge calibration yet. Six runs can define product taste and

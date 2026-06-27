@@ -1003,8 +1003,8 @@ The product result is encouraging but bounded:
 This evidence does not unlock runtime specialist integration, archive
 integration, a new IR, graph memory, embeddings, or judges. It unlocked PR30:
 the human/product review seed over real complex traces. PR31 now defines the
-human-owned actionable-delta rubric. The next slice is PR32 Adversarial Pair
-Fixture Set v0.
+human-owned actionable-delta rubric. PR32 now defines seed adversarial pair
+fixtures. The next slice is PR33 Human Review Corpus Batch v0.
 
 ### PR30: Complex Baseline Human Review v0
 
@@ -1054,7 +1054,7 @@ Outcome:
 - all six revised answers were labeled improved;
 - all six remain `safe_for_agent_use: with_human_review` because saved
   artifacts are reviewable but live output is not independently checked;
-- the next slice is an actionable-delta rubric, not a judge or runtime change.
+- the next slice was an actionable-delta rubric, not a judge or runtime change.
 
 ### PR31: Actionable Delta Rubric v0
 
@@ -1100,7 +1100,30 @@ Next:
 PR32 Adversarial Pair Fixture Set v0
 ```
 
-### PR32+ Or Later: Decision-Aware Capture And Runtime Integration
+### PR32: Adversarial Pair Fixture Set v0
+
+Status: completed as
+[adversarial-pair-fixtures-v0.md](../evals/adversarial-pair-fixtures-v0.md).
+
+Goal: turn PR30 examples and PR31 labels into pairwise fixtures where the
+smoother answer pattern can be worse than the rougher but more protective
+revision.
+
+Outcome:
+
+- six paraphrase-only fixtures, one per PR30 complex case;
+- every fixture names PR31 labels, a judge trap, why the revised pattern should
+  win, and why preferring the smoother pattern would be invalid;
+- no judge, score, automatic labels, runtime integration, prompt change, or raw
+  transcript/memo/revised-answer text.
+
+Next:
+
+```text
+PR33 Human Review Corpus Batch v0
+```
+
+### PR33+ Or Later: Decision-Aware Capture And Runtime Integration
 
 Goal: only after offline evidence, use the IR to improve capture or audit input.
 
@@ -1141,10 +1164,10 @@ deterministic custody keeps the LLM honest.
 
 The current evidence says the next move should still be boring, but the boring
 thing has changed. Extraction adequacy, semantic coverage, PR30's six-run human
-review seed, and PR31's actionable-delta rubric now exist. The next step is
-PR32 Adversarial Pair Fixture Set v0: turn useful-friction patterns into
-paired examples before adding judges, runtime specialist calls, a new IR, graph
-memory, embeddings, or prompt changes.
+review seed, PR31's actionable-delta rubric, and PR32's adversarial pair
+fixtures now exist. The next step is PR33 Human Review Corpus Batch v0: expand
+human labels beyond the six-case seed before adding judges, runtime specialist
+calls, a new IR, graph memory, embeddings, or prompt changes.
 
 ## Sources
 

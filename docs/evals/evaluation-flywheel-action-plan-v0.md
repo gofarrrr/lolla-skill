@@ -118,9 +118,10 @@ The evaluation layer should produce:
 | artifact | role | next action |
 |---|---|---|
 | review-corpus JSONL | compact local run-envelope corpus | shipped |
-| human-review labels | human-owned quality/taste labels | next |
-| review findings note | summary of what passed, failed, and why | next |
-| adversarial-pair fixtures | smoothness-bias traps for future judges | next |
+| human-review labels | human-owned quality/taste labels | PR30 seed shipped |
+| review findings note | summary of what passed, failed, and why | PR30 shipped |
+| actionable-delta rubric | human-owned definition of real improvement | PR31 shipped |
+| adversarial-pair fixtures | smoothness-bias traps for future judges | PR32 seed shipped |
 | taxonomy revision note | evidence-backed changes to failure modes | after labels |
 | deterministic check proposal | repeated failures that code can catch | after labels |
 | judge calibration packet | train/dev/test labels for one binary judge | later |
@@ -374,11 +375,13 @@ Current result:
   sequence, evidence, stop rule, written term, user question, scope, or
   overclaim handling;
 - `no_op_prose_change` captures nicer prose that changes none of those units;
-- PR32 should use the rubric to create adversarial pair fixtures, not a judge.
+- PR32 uses the rubric to create adversarial pair fixtures, not a judge.
 
 ### PR32: Adversarial Pair Fixture Set v0
 
 Maps to: PRD R8, R9.
+
+Status: completed as the first seed fixture set.
 
 Goal:
 
@@ -387,7 +390,8 @@ rougher revised answer.
 
 Output:
 
-- local fixture JSONL or Markdown under `docs/evals/` or `tests/fixtures/`;
+- `docs/evals/adversarial-pair-fixtures-v0.md`;
+- `docs/evals/adversarial-pair-fixtures-v0.json`;
 - pairs from the six complex baseline;
 - labels explaining why the protective answer should win.
 
@@ -396,12 +400,24 @@ Acceptance:
 - at least 6-12 pairs;
 - each pair names the trap:
   - smoothness bias;
-  - verbosity bias;
-  - caution overcorrection;
-  - ignored stakeholder;
-  - missing gate;
-  - unsupported new claim;
+  - length/comprehensiveness bias;
+  - status/aura bias;
+  - checklist theater bias;
+  - generic balance bias;
+  - confidence/warmth bias;
+  - market-excitement bias;
+  - authority/loyalty ambiguity bias;
 - no judge is run yet.
+
+Current result:
+
+- six fixtures exist, one per PR30 complex case;
+- every fixture cites PR31 rubric labels;
+- every fixture names why `revised_answer` should win;
+- every fixture names a trap and invalid preference reason;
+- the fixture set is paraphrase-only and excludes raw transcript, memo,
+  revised-answer, model/provider, and private reasoning text;
+- this is seed fixture material, not calibration and not a benchmark claim.
 
 ### PR33: Human Review Corpus Batch v0
 
@@ -562,7 +578,7 @@ Before building judges or runtime semantic enrichment, Lolla should have:
 
 - six complex runs human-reviewed through PR30;
 - a documented actionable-delta rubric through PR31;
-- first adversarial pair fixtures;
+- first adversarial pair fixtures through PR32;
 - at least one small human-reviewed corpus batch beyond the six examples;
 - a clear decision on live-output hygiene;
 - a design note for user-values/priorities extraction;

@@ -1,0 +1,262 @@
+{
+  "schema_version": "lolla.adversarial_pair_fixtures.v0",
+  "status": "seed_fixture_set",
+  "date": "2026-06-27",
+  "source_human_review": "PR30 Complex Baseline Human Review v0",
+  "source_human_review_doc": "docs/evals/complex-baseline-human-review-v0.md",
+  "source_rubric": "PR31 Actionable Delta Rubric v0",
+  "source_rubric_doc": "docs/evals/actionable-delta-rubric-v0.md",
+  "fixture_count": 6,
+  "expected_winner_for_all_fixtures": "revised_answer",
+  "scope": {
+    "docs_eval_only": true,
+    "llm_judge": false,
+    "model_calls": 0,
+    "runtime_changes": false,
+    "prompt_changes": false,
+    "skill_changes": false,
+    "automatic_labels": false,
+    "answer_quality_score": false,
+    "agent_approval": false,
+    "archive_mutation": false
+  },
+  "custody_flags": {
+    "paraphrase_only": true,
+    "raw_transcript_text_included": false,
+    "raw_memo_text_included": false,
+    "raw_revised_answer_text_included": false,
+    "raw_model_provider_content_included": false,
+    "private_reasoning_included": false,
+    "local_absolute_paths_included": false,
+    "secrets_or_credentials_included": false
+  },
+  "fixtures": [
+    {
+      "fixture_id": "apf_v0_001_cofounder_authority_transfer",
+      "source_case_id": "ceo-remove-founding-cofounder",
+      "source_run_id": "20260627T093131Z_59d153",
+      "fixture_type": "founder_loyalty_vs_authority_transfer",
+      "rubric_labels_involved": [
+        "action_changed",
+        "sequence_changed",
+        "stop_rule_added"
+      ],
+      "original_answer_pattern_summary": "A smoother cooperation-reset pattern prioritizes loyalty, trust repair, and a staged conversation while leaving real authority movement ambiguous.",
+      "revised_answer_pattern_summary": "An authority-transfer pattern moves decision rights first, permits only a bounded transition role, and adds stop-loss rules.",
+      "why_revised_should_win": "The revised pattern changes the operating decision and prevents a loyalty-preserving conversation from avoiding the authority problem.",
+      "judge_trap": [
+        "smoothness_bias",
+        "authority_loyalty_ambiguity_bias"
+      ],
+      "evidence_required": [
+        "artifact-supported authority ambiguity in the original decision shape",
+        "revised action that moves authority before testing cooperation",
+        "explicit condition or stop rule for the transition"
+      ],
+      "invalid_preference_reason": "Preferring the smoother reset pattern is wrong if it rewards relational polish while leaving the decision-rights problem unresolved.",
+      "expected_winner": "revised_answer",
+      "human_review_source": "PR30",
+      "rubric_source": "PR31",
+      "custody_flags": {
+        "paraphrase_only": true,
+        "raw_transcript_text_included": false,
+        "raw_memo_text_included": false,
+        "raw_revised_answer_text_included": false,
+        "raw_model_provider_content_included": false,
+        "private_reasoning_included": false,
+        "archive_mutation": false
+      }
+    },
+    {
+      "fixture_id": "apf_v0_002_career_written_terms",
+      "source_case_id": "accept-operations-role-startup",
+      "source_run_id": "20260627T132700Z_bae7f3",
+      "fixture_type": "identity_clarity_vs_written_terms",
+      "rubric_labels_involved": [
+        "written_term_added",
+        "evidence_gate_added",
+        "user_question_added"
+      ],
+      "original_answer_pattern_summary": "An emotionally resonant career-choice pattern weighs identity, aliveness, safety, and status without forcing either option to prove operating authority.",
+      "revised_answer_pattern_summary": "A terms-first pattern requires both paths to produce written operating terms under deadlines and treats household consent as capacity evidence.",
+      "why_revised_should_win": "The revised pattern changes the decision from which story feels truer to which option can produce usable operating conditions.",
+      "judge_trap": [
+        "confidence_warmth_bias",
+        "generic_balance_bias"
+      ],
+      "evidence_required": [
+        "artifact-supported ambiguity about both career options",
+        "written terms required from both options",
+        "stakeholder or household-capacity question that can change the choice"
+      ],
+      "invalid_preference_reason": "Preferring the warmer identity pattern is wrong if it lets either employer win through story, title, or emotional resonance rather than operating proof.",
+      "expected_winner": "revised_answer",
+      "human_review_source": "PR30",
+      "rubric_source": "PR31",
+      "custody_flags": {
+        "paraphrase_only": true,
+        "raw_transcript_text_included": false,
+        "raw_memo_text_included": false,
+        "raw_revised_answer_text_included": false,
+        "raw_model_provider_content_included": false,
+        "private_reasoning_included": false,
+        "archive_mutation": false
+      }
+    },
+    {
+      "fixture_id": "apf_v0_003_enterprise_buyer_proof",
+      "source_case_id": "launch-public-enterprise-beta",
+      "source_run_id": "20260627T104146Z_7bfe79",
+      "fixture_type": "marquee_aura_vs_buyer_proof",
+      "rubric_labels_involved": [
+        "evidence_gate_added",
+        "scope_narrowed",
+        "threshold_changed"
+      ],
+      "original_answer_pattern_summary": "A polished enterprise-growth pattern lets the larger or more impressive prospect pull the launch narrative.",
+      "revised_answer_pattern_summary": "A buyer-proof pattern gives both prospects the same paid pilot shape and assigns priority by payment, procurement clarity, scope tolerance, and proof value.",
+      "why_revised_should_win": "The revised pattern blocks aura from acting as evidence and makes the bigger logo earn priority through buyer behavior.",
+      "judge_trap": [
+        "status_aura_bias",
+        "market_excitement_bias"
+      ],
+      "evidence_required": [
+        "two candidate buyers or paths with different aura/proof profiles",
+        "same written paid pilot shape applied to both",
+        "thresholds for payment, procurement, support load, or scope tolerance"
+      ],
+      "invalid_preference_reason": "Preferring the marquee-customer pattern is wrong if it rewards perceived status while ignoring the proof needed to make the pilot operable.",
+      "expected_winner": "revised_answer",
+      "human_review_source": "PR30",
+      "rubric_source": "PR31",
+      "custody_flags": {
+        "paraphrase_only": true,
+        "raw_transcript_text_included": false,
+        "raw_memo_text_included": false,
+        "raw_revised_answer_text_included": false,
+        "raw_model_provider_content_included": false,
+        "private_reasoning_included": false,
+        "archive_mutation": false
+      }
+    },
+    {
+      "fixture_id": "apf_v0_004_consulting_scoped_pilot",
+      "source_case_id": "pre-sell-undefined-consulting",
+      "source_run_id": "20260627T133637Z_cad396",
+      "fixture_type": "status_read_vs_scoped_pilot",
+      "rubric_labels_involved": [
+        "overclaim_retracted",
+        "scope_narrowed",
+        "action_changed"
+      ],
+      "original_answer_pattern_summary": "A skeptical anti-polish pattern treats professional presentation mainly as status avoidance or premature brand work.",
+      "revised_answer_pattern_summary": "A scoped-pilot pattern keeps one paid pilot, allows only tiny presentation polish, and requires a client-ready offer brief without letting polish define the offer.",
+      "why_revised_should_win": "The revised pattern retracts an overclean status read while preserving cash and scope discipline.",
+      "judge_trap": [
+        "generic_skepticism_bias",
+        "polish_status_confusion"
+      ],
+      "evidence_required": [
+        "trace-supported need for credibility with a real client",
+        "revised distinction between legitimate client readiness and scope inflation",
+        "preserved one-pilot constraint"
+      ],
+      "invalid_preference_reason": "Preferring the anti-polish pattern is wrong if it mistakes useful commercial credibility for status spending and weakens the actual sale.",
+      "expected_winner": "revised_answer",
+      "human_review_source": "PR30",
+      "rubric_source": "PR31",
+      "custody_flags": {
+        "paraphrase_only": true,
+        "raw_transcript_text_included": false,
+        "raw_memo_text_included": false,
+        "raw_revised_answer_text_included": false,
+        "raw_model_provider_content_included": false,
+        "private_reasoning_included": false,
+        "archive_mutation": false
+      }
+    },
+    {
+      "fixture_id": "apf_v0_005_pivot_capacity_gate",
+      "source_case_id": "pivot-company-product-strategy",
+      "source_run_id": "20260627T110450Z_5d2da7",
+      "fixture_type": "market_excitement_vs_capacity_gate",
+      "rubric_labels_involved": [
+        "sequence_changed",
+        "evidence_gate_added",
+        "threshold_changed"
+      ],
+      "original_answer_pattern_summary": "A market-upside pattern gives the higher-ACV opportunity pride of place and treats market validation as the first serious test.",
+      "revised_answer_pattern_summary": "A capacity-first pattern requires a short capacity and current-obligation gate before market validation can consume engineering capacity.",
+      "why_revised_should_win": "The revised pattern protects existing obligations and team capacity before letting market excitement pull the company into a larger pivot.",
+      "judge_trap": [
+        "market_excitement_bias",
+        "higher_acv_bias"
+      ],
+      "evidence_required": [
+        "existing customer or delivery obligation that would be harmed by the pivot",
+        "explicit capacity/obligation gate",
+        "sequencing that puts that gate before market validation"
+      ],
+      "invalid_preference_reason": "Preferring the market-upside pattern is wrong if it treats higher ACV as proof before checking whether the company can honor current obligations.",
+      "expected_winner": "revised_answer",
+      "human_review_source": "PR30",
+      "rubric_source": "PR31",
+      "custody_flags": {
+        "paraphrase_only": true,
+        "raw_transcript_text_included": false,
+        "raw_memo_text_included": false,
+        "raw_revised_answer_text_included": false,
+        "raw_model_provider_content_included": false,
+        "private_reasoning_included": false,
+        "archive_mutation": false
+      }
+    },
+    {
+      "fixture_id": "apf_v0_006_clinic_operable_controls",
+      "source_case_id": "deploy-assisted-intake-routing",
+      "source_run_id": "20260627T130339Z_4cd3cb",
+      "fixture_type": "checklist_theater_vs_operable_controls",
+      "rubric_labels_involved": [
+        "scope_narrowed",
+        "stop_rule_added",
+        "action_changed"
+      ],
+      "original_answer_pattern_summary": "A long, safety-forward checklist pattern looks responsible but risks being too heavy for the operating team to use.",
+      "revised_answer_pattern_summary": "An operable-controls pattern narrows the pilot, requires a backlog diagnosis, and defines must-pass controls plus pause/rollback triggers.",
+      "why_revised_should_win": "The revised pattern makes safety usable under pressure instead of rewarding the appearance of comprehensive governance.",
+      "judge_trap": [
+        "length_comprehensiveness_bias",
+        "checklist_theater_bias"
+      ],
+      "evidence_required": [
+        "operational burden or exhausted-admin context",
+        "revised controls that are fewer, concrete, and must-pass",
+        "diagnosis and rollback conditions tied to the launch decision"
+      ],
+      "invalid_preference_reason": "Preferring the longer checklist is wrong if it rewards apparent caution while making the controls less likely to be operated.",
+      "expected_winner": "revised_answer",
+      "human_review_source": "PR30",
+      "rubric_source": "PR31",
+      "custody_flags": {
+        "paraphrase_only": true,
+        "raw_transcript_text_included": false,
+        "raw_memo_text_included": false,
+        "raw_revised_answer_text_included": false,
+        "raw_model_provider_content_included": false,
+        "private_reasoning_included": false,
+        "archive_mutation": false
+      }
+    }
+  ],
+  "judge_traps_covered": [
+    "smoothness_bias",
+    "length_comprehensiveness_bias",
+    "status_aura_bias",
+    "checklist_theater_bias",
+    "generic_balance_bias",
+    "confidence_warmth_bias",
+    "market_excitement_bias",
+    "authority_loyalty_ambiguity_bias"
+  ],
+  "next_slice": "PR33 Human Review Corpus Batch v0"
+}

@@ -414,7 +414,11 @@ Use these rules before marking a revised answer improved:
 
 ## PR32 Fixture Implications
 
-PR32 should turn this rubric into adversarial pair fixtures. Candidate traps:
+PR32 now turns this rubric into adversarial pair fixtures:
+
+`docs/evals/adversarial-pair-fixtures-v0.md`
+
+The fixture set uses these candidate traps:
 
 - smoother original versus rougher but safer revision;
 - long checklist versus usable operating controls;
@@ -425,8 +429,8 @@ PR32 should turn this rubric into adversarial pair fixtures. Candidate traps:
 - marquee customer aura versus buyer-behavior proof;
 - founder loyalty versus authority ambiguity.
 
-Each fixture should force a future reviewer or judge to pick the answer with
-the stronger actionable delta, not the answer with smoother prose.
+Each fixture is designed to force a future reviewer or judge to pick the answer
+with the stronger actionable delta, not the answer with smoother prose.
 
 ## What This Does And Does Not Justify
 
@@ -434,7 +438,7 @@ This does justify:
 
 - using PR30's six runs as rubric examples;
 - asking reviewers to label actionable delta explicitly;
-- preparing PR32 adversarial pair fixtures;
+- using PR32 adversarial pair fixtures as seed examples;
 - later testing whether a narrow `actionable_delta` judge can match human
   labels.
 
@@ -460,4 +464,4 @@ This does not justify:
 - No `SKILL.md` changes.
 - No judge implementation.
 - No automatic labels.
-- PR32 Adversarial Pair Fixture Set v0 is next.
+- PR32 Adversarial Pair Fixture Set v0 follows this rubric.
