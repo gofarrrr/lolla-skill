@@ -159,6 +159,16 @@ It fills four worksheets from existing reviewed summaries using paraphrase-only
 notes. The recommended next slice after PR53 is PR54 User Values / Priorities
 Pilot Review / V0 Decision v0, not extraction or runtime integration.
 
+PR54 now reviews that pilot:
+
+```text
+user-values-priorities-pilot-review-v0.md
+../../reviews/human/user-values-priorities-pilot-review-v0/review.json
+```
+
+It marks the worksheet lane complete at v0 for human-owned review and paused
+before extraction, runtime integration, automatic labels, memory, or judging.
+
 ## Boundary Confirmation
 
 - PR51 is docs/eval-only.
@@ -178,3 +188,4 @@ Pilot Review / V0 Decision v0, not extraction or runtime integration.
 - No high-stakes archive evidence created.
 - PR52 adds blank worksheet/export structure.
 - PR53 pilots human-filled worksheets without extraction or runtime behavior.
+- PR54 reviews the pilot and pauses the worksheet lane at human-owned v0.

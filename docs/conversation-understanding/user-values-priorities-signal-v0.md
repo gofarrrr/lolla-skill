@@ -559,8 +559,18 @@ PR53 now pilots human-filled worksheets on existing reviewed records:
 The pilot fills four worksheets by hand from reviewed summaries and local
 human-review records. It keeps notes paraphrase-only, leaves all raw/private
 inclusion flags false, records all inferred value items as requiring user
-confirmation, and recommends a PR54 pilot review / v0 decision rather than
-extraction, runtime integration, automatic labels, or judging.
+confirmation, and handed off to PR54 rather than extraction, runtime
+integration, automatic labels, or judging.
+
+PR54 now reviews that pilot and closes the lane at v0 for human-owned review:
+
+```text
+../evals/user-values-priorities-pilot-review-v0.md
+../../reviews/human/user-values-priorities-pilot-review-v0/review.json
+```
+
+The lane is paused before extraction, memory, runtime integration, automatic
+labels, `safe_for_agent_use` automation, or judging.
 
 ## PR34 Answers
 
@@ -630,6 +640,13 @@ shows that the worksheet can add review structure while preserving unresolved
 conflicts and confirmation needs, but it still does not extract values, update
 memory, change runtime behavior, populate automatic labels, or judge.
 
+What did PR54 add?
+
+PR54 reviews the PR53 pilot and closes the worksheet lane at v0 for
+human-owned review. All four pilot worksheets pass, all inferred values remain
+confirmation-needed, and the lane is paused before extraction, memory, runtime
+integration, automatic labels, `safe_for_agent_use` automation, or judging.
+
 ## Review Receipt
 
 - PR34 is docs/design-only.
@@ -643,3 +660,5 @@ memory, change runtime behavior, populate automatic labels, or judge.
 - No schema-enforced runtime artifact added.
 - No judge or answer-quality score added.
 - No automatic labels added.
+- PR49 through PR54 now provide a human-owned worksheet surface and v0 review
+  decision, but still no automated values extraction or runtime integration.

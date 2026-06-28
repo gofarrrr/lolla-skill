@@ -150,6 +150,17 @@ The next recommended slice is PR54 User Values / Priorities Pilot Review / V0
 Decision v0. If that review finds the human pilot confusing or too burdensome,
 the right follow-up is a worksheet-shape patch before any automation.
 
+PR54 now adds that pilot review:
+
+```text
+user-values-priorities-pilot-review-v0.md
+../../reviews/human/user-values-priorities-pilot-review-v0/review.json
+```
+
+It marks the v0 worksheet lane complete for human-owned review and paused
+before extraction, runtime integration, memory, automatic labels,
+`safe_for_agent_use` automation, or judging.
+
 ## Review Receipt
 
 - PR52 is a narrow deterministic helper.
@@ -169,3 +180,4 @@ the right follow-up is a worksheet-shape patch before any automation.
 - No high-stakes archive evidence created.
 - PR53 pilots human-filled worksheets but does not add extraction or runtime
   behavior.
+- PR54 reviews the pilot and pauses the worksheet lane at human-owned v0.

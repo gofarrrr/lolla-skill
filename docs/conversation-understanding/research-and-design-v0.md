@@ -1400,7 +1400,7 @@ Outcome:
 Latest eval slice:
 
 ```text
-PR53 User Values / Priorities Worksheet Human Pilot v0
+PR54 User Values / Priorities Pilot Review v0
 ```
 
 PR43 now completes the fixture-backed review-surface validation. A read-only
@@ -1425,6 +1425,12 @@ high-stakes evidence fixtures. PR48 adds a read-only analyzer that consumes
 review-corpus manifest JSON and reports whether high-stakes
 reliance-present records actually exist. It does not read raw archives, call
 models, judge answer quality, or approve real high-stakes runs.
+
+PR49 through PR54 complete the separate user-values/priorities worksheet lane
+as a human-owned review surface. PR54 reviews the four PR53 pilot worksheets,
+marks all four pass, preserves user-confirmation requirements, and pauses the
+lane before any extraction, memory, runtime/archive integration, automatic
+labels, or judging.
 
 ### Later: Decision-Aware Capture And Runtime Integration
 
@@ -1476,11 +1482,13 @@ review-surface integration, PR43's reliance-surface review batch, PR44's
 manifest counts, PR45's anti-drift handoff, PR46's seed plan, PR47's fixtures,
 PR48's evidence-readiness analyzer, PR49's values/priorities worksheet plan,
 PR50's paraphrase-only worksheet fixtures, PR51's worksheet fixture review,
-PR52's blank worksheet export, and PR53's human-filled worksheet pilot now
-exist. The next step is still explicit approval, not automatic runtime work:
+PR52's blank worksheet export, PR53's human-filled worksheet pilot, and PR54's
+pilot review / v0 decision now exist. The next step is still explicit approval,
+not automatic runtime work:
 either approve a future high-stakes evidence seed under the PR46/PR48 gates, or
-continue the separate safe values lane with a PR54 pilot review / v0 decision
-before any populated extraction, memory, or runtime integration.
+explicitly reopen the values lane after PR54. The default posture is pause:
+no populated extraction, memory, runtime integration, automatic labels, or
+judging.
 
 ## Sources
 

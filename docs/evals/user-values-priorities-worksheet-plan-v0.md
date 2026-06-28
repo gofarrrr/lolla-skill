@@ -342,6 +342,16 @@ It fills four worksheets from existing reviewed summaries, keeps notes
 paraphrase-only, and recommends a PR54 pilot review / v0 decision before any
 extraction, runtime behavior, automatic labels, or judging.
 
+PR54 now reviews that pilot:
+
+```text
+user-values-priorities-pilot-review-v0.md
+../../reviews/human/user-values-priorities-pilot-review-v0/review.json
+```
+
+It marks the v0 worksheet lane complete for human-owned review and paused
+before extraction, memory, runtime integration, automatic labels, or judging.
+
 ## Stop Condition
 
 PR49 stops at documentation and validation. It does not start PR50.

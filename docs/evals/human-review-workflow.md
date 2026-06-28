@@ -162,6 +162,18 @@ help reviewers preserve values, stakeholder obligations, unresolved conflicts,
 and confirmation needs, but they do not populate `lolla.human_review.v0`, change
 `safe_for_agent_use`, approve agent reliance, add extraction, or add a judge.
 
+PR54 reviews the worksheet pilot:
+
+```text
+docs/evals/user-values-priorities-pilot-review-v0.md
+reviews/human/user-values-priorities-pilot-review-v0/review.json
+```
+
+The review marks the v0 worksheet lane complete for human-owned review and
+paused before any extraction, runtime integration, memory, automatic labels,
+`safe_for_agent_use` automation, or judge work. Use worksheet artifacts as
+optional human-review structure, not as generated labels or action approval.
+
 ## 5. Label The First Upstream Failure
 
 Record one `primary_failure_mode`.

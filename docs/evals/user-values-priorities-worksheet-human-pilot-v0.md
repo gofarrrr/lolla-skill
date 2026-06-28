@@ -158,6 +158,18 @@ complete enough to pause, or whether a small worksheet-shape patch is needed.
 It should not add extraction, runtime integration, automatic labels, model
 calls, high-stakes archive evidence, or a judge.
 
+PR54 now completes that review:
+
+```text
+user-values-priorities-pilot-review-v0.md
+../../reviews/human/user-values-priorities-pilot-review-v0/review.json
+```
+
+It marks all four pilot worksheets pass and closes the worksheet lane at v0 for
+human-owned review. The lane is paused before extraction, runtime integration,
+automatic labels, memory, `safe_for_agent_use` automation, high-stakes archive
+evidence, or judging.
+
 ## Boundary Confirmation
 
 - PR53 is docs/local-review only.
@@ -175,4 +187,4 @@ calls, high-stakes archive evidence, or a judge.
 - No automatic labels added.
 - No risk-mode behavior change.
 - No high-stakes archive evidence created.
-- PR54 is recommended but not started.
+- PR54 reviewed this pilot and paused the worksheet lane at v0.

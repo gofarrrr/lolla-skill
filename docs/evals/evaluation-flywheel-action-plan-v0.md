@@ -951,7 +951,7 @@ Status: completed as a docs-only current-state handoff.
 Goal:
 
 Create a compact first-read note so a fresh session can understand what Lolla is,
-what PR30-PR53 built, what evidence is still missing, and what must not be built
+what PR30-PR54 built, what evidence is still missing, and what must not be built
 until explicit approval gates.
 
 Output:
@@ -961,7 +961,7 @@ Output:
 Current result:
 
 - summarizes Lolla as probabilistic reasoning inside deterministic custody;
-- records the PR30-PR53 evaluation/risk-mode/values visibility chain;
+- records the PR30-PR54 evaluation/risk-mode/values visibility chain;
 - records the current real corpus evidence: 80 records, all `risk_mode:
   standard`, with `risk_mode_reliance_present_counts` of `false: 80` and
   `true: 0`;
@@ -969,7 +969,7 @@ Current result:
   reliance-present archive evidence;
 - distinguishes fixture-backed review-surface validation from real archive
   outcome evidence;
-- names the PR48 high-stakes gate, the PR49-PR53 values worksheet lane, and the
+- names the PR48 high-stakes gate, the PR49-PR54 values worksheet lane, and the
   live-output hygiene implementation gate;
 - makes no code, runtime, prompt, archive, judge, scoring, or automatic-label
   change.
@@ -1081,9 +1081,9 @@ Stop point:
 - Do not start real high-stakes archive evidence creation unless the maintainer
   explicitly approves the scenario list, run count, cost, custody path,
   reviewer, and operator procedure.
-- A separate approved safe lane may continue user-values/priorities worksheet
-  fixture and review work without creating high-stakes runs or runtime
-  behavior.
+- The separate user-values/priorities worksheet lane is now paused at PR54
+  unless explicitly reopened; it should not create high-stakes runs or runtime
+  behavior by implication.
 
 ### PR49: User Values / Priorities Worksheet Plan v0
 
@@ -1276,9 +1276,45 @@ Current result:
 Stop point:
 
 - PR53 stops after docs/JSON local review and validation.
-- Do not implement PR54, extraction, runtime integration,
-  `conversation_understanding_ir.v0`, automatic labels, or a judge in this
-  slice.
+- Do not implement extraction, runtime integration,
+  `conversation_understanding_ir.v0`, automatic labels, or a judge from PR53.
+
+### PR54: User Values / Priorities Pilot Review v0
+
+Maps to: PRD R6, R8, conversation-understanding roadmap.
+
+Status: completed as a docs/local-review decision.
+
+Goal:
+
+Review the PR53 human-filled worksheet pilot and decide whether the v0
+worksheet lane is complete enough to pause or needs a small patch.
+
+Output:
+
+- [User Values / Priorities Pilot Review v0](user-values-priorities-pilot-review-v0.md);
+- [review.json](../../reviews/human/user-values-priorities-pilot-review-v0/review.json).
+
+Current result:
+
+- reviews four PR53 worksheets and marks all four `pass`;
+- confirms `values_surface_sufficient_for_review: yes` in all four;
+- confirms conflict preservation, stakeholder-obligation handling, overclaim
+  control, and PR31 usefulness in all four;
+- preserves the conservative stance that all 16 PR53 value items still need
+  user confirmation;
+- records one expected conservative reliance impact for the clinic-controls
+  worksheet;
+- does not change PR31 labels, populate `lolla.human_review.v0`, change
+  `safe_for_agent_use`, or approve agent reliance.
+
+Stop point:
+
+- the user-values/priorities worksheet lane is complete for v0 human-owned
+  review and paused;
+- do not add extraction, runtime/archive integration, memory,
+  `conversation_understanding_ir.v0`, automatic labels, `safe_for_agent_use`
+  automation, answer-quality scoring, or a judge without a new explicit gate.
 
 Later judge work can resume only after human-owned labels and high-stakes
 review evidence are present enough to calibrate a narrow advisory judge. When

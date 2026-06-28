@@ -622,7 +622,7 @@ automatic labels, domain protocols, or a judge.
 Latest eval slice:
 
 ```text
-PR53 User Values / Priorities Worksheet Human Pilot v0
+PR54 User Values / Priorities Pilot Review v0
 ```
 
 PR40 proves current high-stakes reliance behavior remains conservative in
@@ -657,10 +657,10 @@ PR45 now records the current-state handoff:
 docs/evals/current-state-anti-drift-handoff-v0.md
 ```
 
-It is a docs-only anti-drift note. It summarizes the PR30-PR53 evaluation chain,
+It is a docs-only anti-drift note. It summarizes the PR30-PR54 evaluation chain,
 records that the current 80-record real corpus is all `risk_mode: standard` with
 zero reliance-present records, and names the next approval gates before
-high-stakes runs, user-values worksheet decisions, or trusted live-output
+high-stakes runs, user-values worksheet automation, or trusted live-output
 implementation. It does not add a judge, score, automatic label, runtime
 behavior, model call, archive mutation, prompt change, or `SKILL.md` change.
 
@@ -779,6 +779,20 @@ obligations. It does not extract values, populate labels, score answer quality,
 change `safe_for_agent_use`, change runtime behavior, or add a judge. The
 recommended next slice is a PR54 pilot review / v0 decision before any
 automation.
+
+PR54 now reviews that pilot:
+
+```text
+docs/evals/user-values-priorities-pilot-review-v0.md
+reviews/human/user-values-priorities-pilot-review-v0/review.json
+```
+
+It marks all four pilot worksheets pass, confirms the values surface is
+sufficient for human review, preserves stakeholder obligations and unresolved
+conflicts, and keeps every inferred value item user-confirmation-needed. PR54
+closes the worksheet lane at v0 for human-owned review. It does not extract
+values, populate labels, score answer quality, change `safe_for_agent_use`,
+change runtime behavior, create memory, or add a judge.
 
 Do not populate `lolla.human_review.v0` from synthetic reviewers. Do not treat
 these human labels as judge calibration yet. They define product taste and

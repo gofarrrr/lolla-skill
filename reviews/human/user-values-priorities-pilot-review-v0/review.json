@@ -1,0 +1,131 @@
+{
+  "schema_version": "lolla.user_values_priorities_pilot_review.v0",
+  "source": {
+    "local_only": true,
+    "review_type": "human_product_review",
+    "paraphrase_only": true,
+    "raw_transcript_included": false,
+    "raw_memo_included": false,
+    "raw_revised_answer_included": false,
+    "raw_model_message_content_included": false,
+    "provider_reasoning_details_included": false,
+    "private_reasoning_included": false,
+    "local_absolute_paths_included": false,
+    "model_calls": 0,
+    "llm_judge_used": false
+  },
+  "pilot_source": "reviews/human/user-values-priorities-worksheet-pilot-v0/worksheets.json",
+  "pilot_schema_version": "lolla.user_values_priorities_worksheet_pilot.v0",
+  "reviewed_worksheet_count": 4,
+  "aggregate": {
+    "worksheet_review_status_counts": {
+      "pass": 4,
+      "revise": 0,
+      "exclude": 0
+    },
+    "values_surface_sufficient_for_review_counts": {
+      "yes": 4,
+      "no": 0,
+      "unclear": 0
+    },
+    "conflict_preservation_counts": {
+      "preserved": 4,
+      "partly_preserved": 0,
+      "flattened": 0,
+      "unclear": 0
+    },
+    "stakeholder_obligation_handling_counts": {
+      "preserved": 4,
+      "partly_preserved": 0,
+      "flattened": 0,
+      "not_applicable": 0
+    },
+    "overclaim_control_counts": {
+      "yes": 4,
+      "partly": 0,
+      "no": 0
+    },
+    "pr31_usefulness_counts": {
+      "useful": 4,
+      "partly_useful": 0,
+      "not_useful": 0
+    },
+    "safe_for_agent_use_impact_counts": {
+      "none": 3,
+      "makes_more_conservative": 1,
+      "unclear": 0
+    },
+    "primary_issue_counts": {
+      "none": 4,
+      "overclaim_risk": 0,
+      "conflict_flattening": 0,
+      "stakeholder_obligation_loss": 0,
+      "too_burdensome": 0,
+      "unsafe_for_review_use": 0
+    }
+  },
+  "reviews": [
+    {
+      "case_id": "ceo-remove-founding-cofounder",
+      "run_id": "20260627T093131Z_59d153",
+      "review_status": "pass",
+      "values_surface_sufficient_for_review": "yes",
+      "conflict_preservation": "preserved",
+      "stakeholder_obligation_handling": "preserved",
+      "overclaim_control": "yes",
+      "pr31_usefulness": "useful",
+      "safe_for_agent_use_impact": "none",
+      "primary_issue": "none",
+      "review_note": "The worksheet helps explain why authority transfer should be bounded by cooperation tests rather than treated as a simple loyalty decision.",
+      "recommended_change": "none"
+    },
+    {
+      "case_id": "accept-operations-role-startup",
+      "run_id": "20260627T132700Z_bae7f3",
+      "review_status": "pass",
+      "values_surface_sufficient_for_review": "yes",
+      "conflict_preservation": "preserved",
+      "stakeholder_obligation_handling": "preserved",
+      "overclaim_control": "yes",
+      "pr31_usefulness": "useful",
+      "safe_for_agent_use_impact": "none",
+      "primary_issue": "none",
+      "review_note": "The worksheet keeps ambition and household capacity separate, and correctly avoids inventing the user's non-negotiable threshold.",
+      "recommended_change": "none"
+    },
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "run_id": "20260627T104146Z_7bfe79",
+      "review_status": "pass",
+      "values_surface_sufficient_for_review": "yes",
+      "conflict_preservation": "preserved",
+      "stakeholder_obligation_handling": "preserved",
+      "overclaim_control": "yes",
+      "pr31_usefulness": "useful",
+      "safe_for_agent_use_impact": "none",
+      "primary_issue": "none",
+      "review_note": "The worksheet makes the buyer-proof and credibility tradeoff inspectable without converting customer aura into proof.",
+      "recommended_change": "none"
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "run_id": "20260627T130339Z_4cd3cb",
+      "review_status": "pass",
+      "values_surface_sufficient_for_review": "yes",
+      "conflict_preservation": "preserved",
+      "stakeholder_obligation_handling": "preserved",
+      "overclaim_control": "yes",
+      "pr31_usefulness": "useful",
+      "safe_for_agent_use_impact": "makes_more_conservative",
+      "primary_issue": "none",
+      "review_note": "The worksheet preserves safety, adoption, and operator accountability concerns, so it appropriately makes reliance more conservative.",
+      "recommended_change": "none"
+    }
+  ],
+  "decision": {
+    "v0_status": "complete_for_human_owned_review",
+    "feature_complete_for_now": true,
+    "recommended_next_slice": "pause_user_values_runtime_work",
+    "reason": "The worksheet is understandable, preserves conflicts and stakeholder obligations, controls inference overclaim, and adds review structure without changing labels or approving automation."
+  }
+}

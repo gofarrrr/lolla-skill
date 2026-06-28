@@ -341,10 +341,10 @@ status. It keeps the existing review-corpus manifest schema name and does not
 change per-record `risk_mode_reliance`, runtime behavior, caller action, judge
 behavior, or archive contents.
 
-PR45 now records the current-state anti-drift handoff. It summarizes the PR30-PR53
+PR45 now records the current-state anti-drift handoff. It summarizes the PR30-PR54
 chain, records that the current 80-record real review corpus is all `standard`
 with zero high-stakes reliance-present records, and names the approval gates
-before real high-stakes evidence creation, values worksheet decisions, or trusted
+before real high-stakes evidence creation, values worksheet automation, or trusted
 live-output implementation. It does not change runtime behavior, prompts,
 `SKILL.md`, archives, caller action, judges, scoring, or automatic labels.
 
@@ -381,6 +381,11 @@ PR53 now pilots human-filled worksheets on existing reviewed records. It stores
 four paraphrase-only local-review worksheets, keeps confirmation needs visible,
 and recommends a pilot review / v0 decision before any extraction, runtime
 behavior, automatic labels, or judge work.
+
+PR54 now reviews that pilot and closes the user-values/priorities worksheet lane
+at v0 for human-owned review. It marks all four pilot worksheets pass and
+pauses before extraction, memory, runtime integration, automatic labels,
+`safe_for_agent_use` automation, answer-quality scoring, or judge work.
 
 This roadmap should build on that. It should not restart the architecture.
 
@@ -530,6 +535,8 @@ Current implementation:
 - PR51 reviews those worksheet fixtures without changing runtime behavior.
 - PR52 adds blank worksheet/export structure without changing runtime behavior.
 - PR53 pilots human-filled worksheets without changing runtime behavior.
+- PR54 reviews the pilot and pauses the worksheet lane without changing runtime
+  behavior.
 
 Future behavior:
 
@@ -736,6 +743,9 @@ Current v0 slice:
   `reviews/human/user-values-priorities-worksheet-pilot-v0/worksheets.json`
   pilot human-filled worksheets before extraction, runtime behavior, automatic
   labels, or judge work.
+- `docs/evals/user-values-priorities-pilot-review-v0.md` and
+  `reviews/human/user-values-priorities-pilot-review-v0/review.json` close the
+  worksheet lane at v0 for human-owned review before any automation.
 
 Acceptance criteria:
 
