@@ -622,7 +622,7 @@ automatic labels, domain protocols, or a judge.
 Latest eval slice:
 
 ```text
-PR48 Review Corpus Evidence Readiness Analyzer v0
+PR49 User Values / Priorities Worksheet Plan v0
 ```
 
 PR40 proves current high-stakes reliance behavior remains conservative in
@@ -703,6 +703,20 @@ It reads only review-corpus manifest JSON and reports whether high-stakes
 `insufficient_manifest_fields` for old or thin manifests instead of inferring,
 and it does not read raw archives, call models, judge answer quality, populate
 human labels, or approve real high-stakes runs.
+
+PR49 now adds the user-values/priorities worksheet plan:
+
+```text
+docs/evals/user-values-priorities-worksheet-plan-v0.md
+```
+
+It makes PR34's missing values/priorities surface actionable for human review.
+The worksheet is a proposed human-owned artifact for explicit values, inferred
+priorities, tradeoffs, obligations, non-negotiables, unresolved conflicts,
+questions for the user, and answer treatment. It is not extraction, memory, a
+runtime artifact, an answer-quality score, automatic `safe_for_agent_use`, or a
+judge. The recommended next slice is a paraphrase-only worksheet fixture pack
+before any blank exporter or extraction work.
 
 Do not populate `lolla.human_review.v0` from synthetic reviewers. Do not treat
 these human labels as judge calibration yet. They define product taste and

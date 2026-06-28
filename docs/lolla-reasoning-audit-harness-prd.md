@@ -357,6 +357,11 @@ exist. It treats old or thin manifests as insufficient, not as evidence, and it
 does not read raw archives, call models, judge answer quality, or approve real
 high-stakes runs.
 
+PR49 now plans the user-values/priorities worksheet surface. It makes PR34's
+missing values/priorities signal actionable for human review without adding
+extraction, exports, memory, runtime behavior, `conversation_understanding_ir.v0`,
+automatic labels, `safe_for_agent_use` automation, or a judge.
+
 This roadmap should build on that. It should not restart the architecture.
 
 ## Proposed Product
@@ -497,6 +502,8 @@ Current implementation:
 - PR45 records the anti-drift handoff and current decision gates without
   changing runtime behavior.
 - PR48 adds manifest-only evidence-readiness analysis without changing runtime
+  behavior.
+- PR49 plans a human-owned values/priorities worksheet without changing runtime
   behavior.
 
 Future behavior:
@@ -692,6 +699,9 @@ Current v0 slice:
   ratification.
 - `engine/system_b/synthetic_review.py` validates synthetic review outputs and
   delegates candidate label validation to the human-review contract.
+- `docs/evals/user-values-priorities-worksheet-plan-v0.md` defines the next
+  human-review-only worksheet surface for PR34 values/priorities evidence
+  before any exporter, extraction, memory, runtime behavior, or judge exists.
 
 Acceptance criteria:
 

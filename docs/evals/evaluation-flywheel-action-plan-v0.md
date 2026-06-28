@@ -1077,8 +1077,51 @@ Current result:
 Stop point:
 
 - PR48 is the approval gate before any real high-stakes run work.
-- Do not start PR49 or real high-stakes archive evidence creation unless the
-  maintainer explicitly approves the next lane.
+- Do not start real high-stakes archive evidence creation unless the maintainer
+  explicitly approves the scenario list, run count, cost, custody path,
+  reviewer, and operator procedure.
+- A separate approved safe lane may continue user-values/priorities worksheet
+  planning without creating high-stakes runs or runtime behavior.
+
+### PR49: User Values / Priorities Worksheet Plan v0
+
+Maps to: PRD R6, R8, conversation-understanding roadmap.
+
+Status: completed as a docs-only worksheet plan.
+
+Goal:
+
+Turn PR34's `user_values_or_priorities_signal` design into an actionable
+human-review worksheet plan without implementing extraction, blank exports,
+runtime behavior, memory, automatic labels, or judging.
+
+Output:
+
+- [User Values / Priorities Worksheet Plan v0](user-values-priorities-worksheet-plan-v0.md).
+
+Current result:
+
+- defines the worksheet as a human-owned review artifact, not a model output;
+- records explicit values, inferred priorities, tradeoff willingness,
+  non-negotiables, stakeholder obligations, conflicts, unclear values,
+  user-answerable questions, and answer treatment;
+- proposes a future `lolla.user_values_priorities_worksheet.v0` shape without
+  adding production JSON or schema enforcement;
+- explains how worksheet notes can support PR31 labels such as
+  `user_question_added`, `scope_narrowed`, `threshold_changed`,
+  `evidence_gate_added`, `stop_rule_added`, and `overclaim_retracted`;
+- keeps high-stakes unresolved values/stakeholder conflicts conservative
+  without changing `risk_mode`, `caller_action`, `safe_for_agent_use`, review
+  corpus export, or evaluation logic;
+- recommends PR50 as a paraphrase-only worksheet fixture pack before a blank
+  exporter or extraction work.
+
+Stop point:
+
+- PR49 stops after docs and validation.
+- Do not implement PR50, a worksheet exporter, extraction, runtime integration,
+  `conversation_understanding_ir.v0`, automatic labels, or a judge in this
+  slice.
 
 Later judge work can resume only after human-owned labels and high-stakes
 review evidence are present enough to calibrate a narrow advisory judge. When
@@ -1129,6 +1172,7 @@ Before building judges or runtime semantic enrichment, Lolla should have:
 - first adversarial pair fixtures through PR32;
 - at least one small human-reviewed corpus batch beyond the six examples;
 - a design note for the user-values/priorities signal;
+- a human-review worksheet plan for that signal;
 - a clear decision on live-output hygiene;
 - a clear decision on risk-mode reliance policy;
 - risk-mode fixture examples;
@@ -1138,3 +1182,6 @@ Before building judges or runtime semantic enrichment, Lolla should have:
 
 That is the smallest flywheel that can improve Lolla run by run without turning
 it into a vague critic or overbuilt memory system.
+
+The next conservative values/priorities slice is a paraphrase-only worksheet
+fixture pack, not runtime extraction or judge automation.

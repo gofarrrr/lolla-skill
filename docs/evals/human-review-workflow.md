@@ -103,6 +103,18 @@ Minimum inspection surface:
 When needed, read the captured conversation to check whether the revised answer
 preserved the user's constraints. Do not judge from the memo alone.
 
+PR49 now plans a future human-owned values/priorities worksheet:
+
+```text
+docs/evals/user-values-priorities-worksheet-plan-v0.md
+```
+
+Until that worksheet is implemented, treat it as note-taking guidance only. It
+can help reviewers notice explicit values, inferred priorities, stakeholder
+obligations, non-negotiables, tradeoffs, and unresolved conflicts, but it does
+not populate `lolla.human_review.v0`, change `safe_for_agent_use`, or approve
+agent reliance.
+
 ## 5. Label The First Upstream Failure
 
 Record one `primary_failure_mode`.

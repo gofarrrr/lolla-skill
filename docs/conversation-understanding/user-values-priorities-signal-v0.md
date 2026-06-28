@@ -504,6 +504,16 @@ Recommended next implementation sequence, if approved later:
 
 Do not jump directly from this design to runtime extraction.
 
+PR49 now turns the first step into a docs-only worksheet plan:
+
+```text
+../evals/user-values-priorities-worksheet-plan-v0.md
+```
+
+That plan is still human-review-only. It does not add extraction, exports,
+runtime behavior, memory, automatic labels, `conversation_understanding_ir.v0`,
+or a judge.
+
 ## PR34 Answers
 
 Is `user_values_or_priorities_signal` a field in semantic coverage?
@@ -541,6 +551,11 @@ What evidence would justify implementation in a later approved PR?
 A small human-reviewed worksheet or offline report showing that the signal
 helps reviewers explain useful, noisy, or missing friction better than current
 artifacts, without adding overclaim or privacy risk.
+
+What did PR49 add?
+
+PR49 adds the human worksheet plan that PR34 recommended as the first safe
+surface. It makes the signal reviewable, not automatic.
 
 ## Review Receipt
 

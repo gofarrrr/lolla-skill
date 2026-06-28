@@ -1474,10 +1474,12 @@ risk-mode fixture matrix, PR38's fixture review, PR39's implementation plan,
 PR40's contract-lock tests, PR41's evaluation-artifact clarity check, PR42's
 review-surface integration, PR43's reliance-surface review batch, PR44's
 manifest counts, PR45's anti-drift handoff, PR46's seed plan, PR47's fixtures,
-and PR48's evidence-readiness analyzer now exist. The next step is an explicit
-approval decision, not automatic runtime work: either approve a future
-high-stakes evidence seed under the PR46/PR48 gates, or choose a separate safe
-lane such as user-values worksheet planning or live-output hygiene planning.
+PR48's evidence-readiness analyzer, and PR49's values/priorities worksheet plan
+now exist. The next step is still explicit approval, not automatic runtime
+work: either approve a future high-stakes evidence seed under the PR46/PR48
+gates, or continue the separate safe values lane with a paraphrase-only
+worksheet fixture pack before any exporter, extraction, memory, or runtime
+integration.
 
 ## Sources
 

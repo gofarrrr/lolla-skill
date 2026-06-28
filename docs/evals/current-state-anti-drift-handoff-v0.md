@@ -111,7 +111,8 @@ only aggregate keys and counts.
 - no automatic human-review labels;
 - no runtime risk-mode enforcement beyond the existing conservative
   `high_stakes` caller-action contract;
-- no first-class user-values/priorities worksheet or exporter;
+- no implemented user-values/priorities worksheet, exporter, extraction, or
+  report; PR49 only plans the human worksheet;
 - no trusted live-output transcript implementation;
 - no domain, crisis, legal, medical, financial, or safety protocol.
 
@@ -150,15 +151,16 @@ approval.
 
 The later safe lanes are separate:
 
-1. PR49 and PR50 can define and export a blank human values/priorities worksheet
-   without automatic extraction, then stop for a human-pilot decision.
+1. PR49 defines a human values/priorities worksheet plan. PR50 should prefer a
+   paraphrase-only worksheet fixture pack before any blank exporter or
+   extraction work, then stop for a human-pilot decision.
 2. PR51 and PR52 can plan and lock current live-output hygiene behavior, then
    stop for an implementation decision.
 
 ## Decision Gates
 
 - Now: decide whether to create approved real high-stakes evidence.
-- After PR50: decide whether a user-values/priorities worksheet is useful enough
+- After PR50: decide whether a user-values/priorities worksheet is clear enough
   for a human pilot.
 - After PR52: decide whether to implement trusted live-output transcript
   hygiene.
