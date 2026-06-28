@@ -622,7 +622,7 @@ automatic labels, domain protocols, or a judge.
 Latest eval slice:
 
 ```text
-PR45 Current State Anti-Drift Handoff v0
+PR46 Approved High-Stakes Evidence Seed Plan v0
 ```
 
 PR40 proves current high-stakes reliance behavior remains conservative in
@@ -663,6 +663,18 @@ zero reliance-present records, and names the next approval gates before
 high-stakes runs, user-values worksheet pilots, or trusted live-output
 implementation. It does not add a judge, score, automatic label, runtime
 behavior, model call, archive mutation, prompt change, or `SKILL.md` change.
+
+PR46 now plans the approved high-stakes evidence seed:
+
+```text
+docs/evals/high-stakes-evidence-seed-plan-v0.md
+```
+
+It is docs-only and creates no runs. It defines allowed, excluded, and
+domain-review-required scenario categories; expected `risk_mode` and
+`caller_action` behavior; cost, custody, privacy, archive, and human-review
+requirements; and an explicit approval gate before any high-stakes `$lolla`
+case is run. It does not create high-stakes evidence by itself.
 
 Do not populate `lolla.human_review.v0` from synthetic reviewers. Do not treat
 these human labels as judge calibration yet. They define product taste and

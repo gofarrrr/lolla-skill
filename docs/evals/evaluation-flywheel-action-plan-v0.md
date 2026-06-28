@@ -977,6 +977,41 @@ Next safe slice:
 
 - PR46 Approved High-Stakes Evidence Seed Plan v0, docs-only and no runs.
 
+### PR46: Approved High-Stakes Evidence Seed Plan v0
+
+Maps to: PRD R2, R6, R8, R9.
+
+Status: completed as a docs-only approval and custody plan.
+
+Goal:
+
+Define the exact plan for creating high-stakes archive evidence later, without
+creating or running any conversations in this slice.
+
+Output:
+
+- [High-Stakes Evidence Seed Plan v0](high-stakes-evidence-seed-plan-v0.md).
+
+Current result:
+
+- defines nine candidate scenario categories;
+- separates approved-with-approval reasoning-audit cases from excluded or
+  domain-review-required cases;
+- keeps clean high-stakes expected behavior conservative with
+  `caller_action: ask_user_first`;
+- keeps degraded high-stakes behavior dominated by
+  `caller_action: do_not_use_run_degraded`;
+- requires explicit approval of scenario list, run count, cost, custody,
+  privacy treatment, reviewer, and operator procedure before any `$lolla` run;
+- requires future evidence claims to be backed by review-corpus manifest counts
+  showing high-stakes `risk_mode_reliance.present: true` records;
+- makes no code, runtime, prompt, archive, judge, scoring, or automatic-label
+  change.
+
+Next safe slice:
+
+- PR47 High-Stakes Evidence Fixture Pack v0, docs/eval JSON only and no runs.
+
 Later judge work can resume only after human-owned labels and high-stakes
 review evidence are present enough to calibrate a narrow advisory judge. When
 it resumes, it should still require a named dataset, train/dev/test split,
