@@ -273,6 +273,15 @@ high-stakes reference behavior: otherwise clean `high_stakes` runs remain
 conservative with `caller_action: ask_user_first`, and degraded runs remain
 blocked by the existing conservative policy.
 
+PR38 reviews the fixture matrix:
+
+```text
+docs/evals/risk-mode-fixture-review-v0.md
+```
+
+That review says the matrix is usable as a future implementation gate, but it
+does not change this contract or approve new `caller_action` behavior.
+
 The control-plane wrapper preserves metadata and maps Lolla's result for other
 systems. It does not auto-trigger Lolla, enforce approvals, call tools, replay
 external traces, or turn Lolla into a proxy/firewall/sandbox/identity broker.

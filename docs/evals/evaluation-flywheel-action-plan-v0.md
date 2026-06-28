@@ -639,6 +639,8 @@ Current result:
 
 Maps to: PRD R2, R7, R8, R11.
 
+Status: completed as a docs/eval-only fixture review.
+
 Goal:
 
 Human/product review of the PR37 fixture matrix before runtime enforcement or
@@ -662,7 +664,46 @@ Acceptance:
 - clear recommendation for whether risk-mode implementation can start or
   whether more fixture/eval work is required.
 
-### PR39: First Calibrated Binary Judge Prototype
+Current result:
+
+- all 11 original PR37 fixtures reviewed;
+- one missing high-stakes values/priorities conflict fixture added and reviewed;
+- 12 total fixtures now pass review;
+- all fixtures are policy-aligned and useful as implementation gates;
+- drift risk is `none` or `low`; no medium/high drift remains;
+- the matrix is usable as a future implementation gate, but PR38 does not
+  approve runtime enforcement, caller-action changes, automatic labels, domain
+  protocols, or a judge.
+
+### PR39: Risk Mode Implementation Plan v0
+
+Maps to: PRD R2, R7, R8, R11.
+
+Goal:
+
+Design the smallest future risk-mode behavior change before any code is
+written.
+
+Candidate behavior:
+
+- choose one narrow behavior to implement later, such as high-stakes reliance
+  copy, implementation tests around `ask_user_first`, or a non-runtime review
+  worksheet;
+- cite PR36 policy, PR37 fixtures, and PR38 review;
+- define exact fixtures that must pass unchanged;
+- define required tests, contract docs, and rollback conditions;
+- explicitly state whether `caller_action`, `evaluation.json`, `agent_result`,
+  Observatory, or `SKILL.md` would need a later separate PR.
+
+Acceptance:
+
+- no runtime enforcement in the plan PR;
+- no caller-action change;
+- no prompt or `SKILL.md` change;
+- no judge;
+- clear go/no-go criteria for a later implementation PR.
+
+### PR40: First Calibrated Binary Judge Prototype
 
 Maps to: PRD R8.
 
@@ -732,6 +773,7 @@ Before building judges or runtime semantic enrichment, Lolla should have:
 - a clear decision on live-output hygiene;
 - a clear decision on risk-mode reliance policy;
 - risk-mode fixture examples;
+- human/product review of risk-mode fixtures;
 - no unresolved confusion between deterministic run readiness and answer
   quality.
 

@@ -1,0 +1,181 @@
+{
+  "schema_version": "lolla.risk_mode_fixture_review.v0",
+  "status": "complete",
+  "date": "2026-06-28",
+  "review_type": "human_product_review",
+  "source_fixture_matrix": "docs/evals/risk-mode-fixture-matrix-v0.json",
+  "source_policy_refs": [
+    "docs/evals/risk-mode-behavior-plan-v0.md",
+    "docs/evals/live-output-hygiene-decision-v0.md",
+    "docs/conversation-understanding/user-values-priorities-signal-v0.md",
+    "docs/lolla-agent-result-contract.md"
+  ],
+  "boundaries": {
+    "runtime_enforcement_approved": false,
+    "judge_approved": false,
+    "model_review_used": false,
+    "raw_transcript_included": false,
+    "raw_memo_included": false,
+    "raw_revised_answer_included": false,
+    "raw_model_or_provider_content_included": false,
+    "private_reasoning_included": false,
+    "local_absolute_paths_included": false
+  },
+  "patches_made": [
+    {
+      "patch_id": "add_high_stakes_values_conflict_fixture",
+      "target_files": [
+        "docs/evals/risk-mode-fixture-matrix-v0.md",
+        "docs/evals/risk-mode-fixture-matrix-v0.json"
+      ],
+      "reason": "The PR37 matrix lacked an explicit fixture for unresolved user values, stakeholder obligations, or non-negotiables in a high-stakes context. PR34 and PR36 make that distinction material before risk-mode implementation.",
+      "result": "Added risk_high_stakes_values_conflict_unresolved_v0 as a paraphrase-only fixture."
+    }
+  ],
+  "fixture_reviews": [
+    {
+      "fixture_id": "risk_standard_clean_not_checked_v0",
+      "review_status": "pass",
+      "policy_alignment": "aligned",
+      "drift_risk": "low",
+      "notes": "Correctly lets saved answer review pass while keeping live-output and agent reliance conservative.",
+      "required_change": null,
+      "implementation_gate_value": "useful_gate"
+    },
+    {
+      "fixture_id": "risk_standard_clean_trusted_live_v0",
+      "review_status": "pass",
+      "policy_alignment": "aligned",
+      "drift_risk": "low",
+      "notes": "Correctly clears only the live-output caveat and does not convert cleanliness into human approval.",
+      "required_change": null,
+      "implementation_gate_value": "useful_gate"
+    },
+    {
+      "fixture_id": "risk_high_stakes_clean_not_checked_v0",
+      "review_status": "pass",
+      "policy_alignment": "aligned",
+      "drift_risk": "low",
+      "notes": "Correctly preserves high-stakes reliance conservatism and current ask_user_first stance.",
+      "required_change": null,
+      "implementation_gate_value": "useful_gate"
+    },
+    {
+      "fixture_id": "risk_high_stakes_clean_trusted_live_v0",
+      "review_status": "pass",
+      "policy_alignment": "aligned",
+      "drift_risk": "low",
+      "notes": "Correctly says trusted live output clears only that caveat and does not create domain approval.",
+      "required_change": null,
+      "implementation_gate_value": "useful_gate"
+    },
+    {
+      "fixture_id": "risk_high_stakes_artifact_degraded_v0",
+      "review_status": "pass",
+      "policy_alignment": "aligned",
+      "drift_risk": "none",
+      "notes": "Strong custody gate: degraded artifacts block reliance even if content seems useful.",
+      "required_change": null,
+      "implementation_gate_value": "useful_gate"
+    },
+    {
+      "fixture_id": "risk_high_stakes_unsupported_claim_v0",
+      "review_status": "pass",
+      "policy_alignment": "aligned",
+      "drift_risk": "none",
+      "notes": "Correctly maps unsupported high-stakes domain detail to unsupported_new_claim and safe_for_agent_use no.",
+      "required_change": null,
+      "implementation_gate_value": "useful_gate"
+    },
+    {
+      "fixture_id": "risk_high_stakes_values_conflict_unresolved_v0",
+      "review_status": "pass",
+      "policy_alignment": "aligned",
+      "drift_risk": "low",
+      "notes": "Added in PR38. It closes the main missing fixture gap by testing unresolved user values and stakeholder obligations without turning values into approval.",
+      "required_change": null,
+      "implementation_gate_value": "useful_gate"
+    },
+    {
+      "fixture_id": "risk_standard_saved_clean_live_leak_v0",
+      "review_status": "pass",
+      "policy_alignment": "aligned",
+      "drift_risk": "low",
+      "notes": "Correctly separates saved-answer quality from live-output hygiene while still treating live leakage as product-surface material.",
+      "required_change": null,
+      "implementation_gate_value": "useful_gate"
+    },
+    {
+      "fixture_id": "risk_stability_archive_consistency_v0",
+      "review_status": "pass",
+      "policy_alignment": "aligned",
+      "drift_risk": "low",
+      "notes": "Correctly keeps stability focused on repeatability and custody, not answer truth.",
+      "required_change": null,
+      "implementation_gate_value": "useful_gate"
+    },
+    {
+      "fixture_id": "risk_quick_thin_scope_declared_v0",
+      "review_status": "pass",
+      "policy_alignment": "aligned",
+      "drift_risk": "low",
+      "notes": "Correctly allows thin scope only when declared and blocks quick-mode overclaiming.",
+      "required_change": null,
+      "implementation_gate_value": "useful_gate"
+    },
+    {
+      "fixture_id": "risk_excluded_crisis_out_of_scope_v0",
+      "review_status": "pass",
+      "policy_alignment": "aligned",
+      "drift_risk": "none",
+      "notes": "Correctly keeps crisis or excluded-domain handling outside ordinary Lolla reliance.",
+      "required_change": null,
+      "implementation_gate_value": "useful_gate"
+    },
+    {
+      "fixture_id": "risk_deep_intent_not_automatic_v0",
+      "review_status": "pass",
+      "policy_alignment": "aligned",
+      "drift_risk": "low",
+      "notes": "Correctly treats deep as review intent rather than automatic correctness or proof optional reviewers ran.",
+      "required_change": null,
+      "implementation_gate_value": "useful_gate"
+    }
+  ],
+  "aggregate": {
+    "original_pr37_fixtures_reviewed": 11,
+    "fixtures_added_in_pr38": 1,
+    "total_fixtures_reviewed": 12,
+    "review_status_counts": {
+      "pass": 12,
+      "revise": 0,
+      "exclude": 0
+    },
+    "drift_risk_counts": {
+      "none": 3,
+      "low": 9,
+      "medium": 0,
+      "high": 0
+    },
+    "policy_alignment_counts": {
+      "aligned": 12,
+      "needs_revision": 0
+    },
+    "implementation_gate_counts": {
+      "useful_gate": 12,
+      "weak_gate": 0,
+      "not_a_gate": 0
+    },
+    "missing_fixture_recommendations": [
+      "The high-stakes user-values conflict fixture was missing from PR37 and was added in PR38.",
+      "No additional fixture is required before a design-only implementation plan. A future optional fixture could cover external control-plane risk metadata if caller-provided risk classes become part of risk-mode behavior."
+    ]
+  },
+  "conclusion": {
+    "matrix_usable_as_future_implementation_gate": true,
+    "runtime_enforcement_ready": false,
+    "judge_ready": false,
+    "next_slice_recommendation": "PR39 Risk Mode Implementation Plan v0",
+    "next_slice_requirement": "Any future risk-mode implementation or caller-action proposal must cite PR36 policy, PR37 fixtures, and this PR38 fixture review."
+  }
+}

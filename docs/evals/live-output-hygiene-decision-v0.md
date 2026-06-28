@@ -248,22 +248,25 @@ This does not justify:
 ## Recommended Next Slice
 
 PR36 defines risk-mode behavior policy, and PR37 now turns that policy into
-fixtures:
+fixtures. PR38 reviews the matrix and adds the missing high-stakes
+values/priorities conflict fixture:
 
 ```text
 docs/evals/risk-mode-fixture-matrix-v0.md
+docs/evals/risk-mode-fixture-review-v0.md
 ```
 
 The next slice should be:
 
 ```text
-PR38 Risk Mode Fixture Review v0
+PR39 Risk Mode Implementation Plan v0
 ```
 
-Why PR38: PR35 resolved the live product-surface caveat, PR36 defines how risk
-mode should affect review and reliance without changing runtime behavior, and
-PR37 gives concrete fixture cases. A human/product review should check those
-fixtures before runtime enforcement or judge work.
+Why PR39: PR35 resolved the live product-surface caveat, PR36 defines how risk
+mode should affect review and reliance without changing runtime behavior, PR37
+gives concrete fixture cases, and PR38 checks those fixtures as a future gate.
+The next move should still be pre-code planning, not runtime enforcement or
+judge work.
 
 ## Review Receipt
 

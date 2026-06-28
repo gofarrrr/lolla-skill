@@ -346,11 +346,22 @@ between answer improvement, run readiness, and action approval.
 The next slice should be:
 
 ```text
-PR38 Risk Mode Fixture Review v0
+docs/evals/risk-mode-fixture-review-v0.md
 ```
 
-That review should sanity-check the fixture expectations before any risk-mode
-runtime behavior, caller-action change, or judge proposal.
+That review sanity-checks the fixture expectations and adds the missing
+high-stakes values/priorities conflict fixture before any risk-mode runtime
+behavior, caller-action change, or judge proposal.
+
+The next slice should be:
+
+```text
+PR39 Risk Mode Implementation Plan v0
+```
+
+That plan should still be pre-code: name the smallest behavior change, cite
+PR36 policy, PR37 fixtures, and PR38 review, and specify tests/contracts before
+runtime enforcement.
 
 ## Review Receipt
 

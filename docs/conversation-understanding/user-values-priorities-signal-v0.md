@@ -438,6 +438,13 @@ Those fixtures may use values/priorities as review context, but they preserve
 the same boundary: value signals explain why reliance should be stricter; they
 do not approve action.
 
+PR38 reviewed the fixture matrix and added the explicit high-stakes unresolved
+values/stakeholder-obligation fixture:
+
+```text
+docs/evals/risk-mode-fixture-review-v0.md
+```
+
 ## Deterministic Vs Probabilistic Work
 
 Deterministic code could later validate:

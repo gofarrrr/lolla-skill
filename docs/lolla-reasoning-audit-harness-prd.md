@@ -303,8 +303,13 @@ PR37 now adds a risk-mode fixture matrix. It covers `quick`, `standard`,
 expected answer-level, run-envelope, `safe_for_agent_use`, and `caller_action`
 reads before any enforcement.
 
-The next narrow slice is PR38 Risk Mode Fixture Review v0, not judge automation
-or runtime enforcement.
+PR38 now reviews the fixture matrix. All original PR37 fixtures passed, one
+missing high-stakes values/priorities conflict fixture was added, and the matrix
+is usable as a future implementation gate without approving runtime
+enforcement.
+
+The next narrow slice is PR39 Risk Mode Implementation Plan v0, not judge
+automation or runtime enforcement.
 
 This roadmap should build on that. It should not restart the architecture.
 
@@ -430,6 +435,7 @@ Current implementation:
   conservative with `caller_action: ask_user_first`.
 - PR36 documents the behavior policy without implementing enforcement.
 - PR37 documents fixture expectations without implementing enforcement.
+- PR38 reviews the fixture expectations without implementing enforcement.
 
 Future behavior:
 
@@ -450,6 +456,9 @@ PR37 adds the first fixture matrix. Future implementation should cite those
 fixtures and explain whether behavior stays the same or changes before touching
 runtime, caller-action policy, or `SKILL.md`.
 
+PR38 reviews those fixtures and adds the high-stakes values/priorities conflict
+case. Future implementation should cite PR36, PR37, and PR38 before touching
+runtime, caller-action policy, or `SKILL.md`.
 Acceptance criteria:
 
 - Mode is recorded in `result.json`, `reasoning_trace.json`, `agent_result.json`, and archive metadata.

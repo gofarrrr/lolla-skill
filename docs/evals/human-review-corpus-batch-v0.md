@@ -295,8 +295,16 @@ PR37 now adds the fixture matrix:
 docs/evals/risk-mode-fixture-matrix-v0.md
 ```
 
-The next step is fixture review, not runtime enforcement:
+PR38 now reviews that matrix, keeps every original PR37 fixture as a passing
+implementation gate, and adds the missing high-stakes values/priorities conflict
+fixture:
 
 ```text
-PR38 Risk Mode Fixture Review v0
+docs/evals/risk-mode-fixture-review-v0.md
+```
+
+The next step is still planning, not runtime enforcement:
+
+```text
+PR39 Risk Mode Implementation Plan v0
 ```
