@@ -2,10 +2,10 @@
 
 Status: current-state handoff
 Date: 2026-06-28
-Slice: PR45, updated by PR55
+Slice: PR45, updated by PR56
 
 This note is the compact first-read handoff for a fresh Lolla eval session. It
-summarizes what the harness is, what PR30-PR55 built, what evidence exists now,
+summarizes what the harness is, what PR30-PR56 built, what evidence exists now,
 and what must not be built until the next explicit approval gates.
 
 PR45 is docs-only. It does not run Lolla, call models, mutate archives, change
@@ -37,7 +37,7 @@ The product boundary is still sharp:
 - `risk_mode` is reliance and review context, not answer-quality scoring,
   domain approval, or automatic safety.
 
-## PR30-PR55 Chain
+## PR30-PR56 Chain
 
 - PR30 created the six-run human/product review seed over the clean complex
   conversation baseline.
@@ -86,6 +86,12 @@ The product boundary is still sharp:
   graph views while explicitly rejecting graph databases, embeddings, memory,
   policy engines, compliance-platform drift, LLM judges, answer-quality scoring,
   automatic labels, and runtime behavior changes.
+- PR56 lands the Lolla Doctor / Preflight plan as a docs-only planning
+  artifact. It defines a future read-only doctor report for runtime discovery,
+  archive-root discovery, helper script availability, provider/cost readiness,
+  review-corpus manifest visibility, high-stakes evidence absence/presence,
+  output-path safety, repo/runtime boundary checks, and privacy-safe output. It
+  does not add the CLI.
 
 ## Current Corpus Evidence
 
@@ -137,7 +143,7 @@ only aggregate keys and counts.
 - no implemented Semantica-inspired accountability primitive yet: no
   `lolla.audit_decision_record.v0`, `lolla.provenance_map.v0`,
   `lolla.review_conflict_register.v0`, `lolla.case_graph.v0`, or `lolla doctor`
-  CLI exists from PR55;
+  CLI exists from PR55 or PR56;
 - no domain, crisis, legal, medical, financial, or safety protocol.
 
 ## Explicit Non-Goals
@@ -184,11 +190,11 @@ The later safe lanes are separate:
    the worksheet lane at v0 for human-owned review. Do not continue into
    extraction, runtime integration, memory, automatic labels, or judging without
    a new explicit gate.
-2. PR55 records a Semantica-inspired accountability plan. The only recommended
-   next slice from that lane is PR56 Lolla Doctor / Preflight Plan v0, and PR56
-   should still be docs-only. Do not implement doctor, decision records,
-   provenance maps, conflict registers, case graph exports, or any runtime
-   behavior from PR55 alone.
+2. PR55 records a Semantica-inspired accountability plan. PR56 records the
+   doctor/preflight plan. The next possible slice from that lane is PR57 Lolla
+   Doctor Read-Only CLI v0, and it still needs a separate implementation gate.
+   Do not implement decision records, provenance maps, conflict registers, case
+   graph exports, platform work, or runtime behavior from PR55 or PR56 alone.
 3. A later live-output hygiene lane can plan and lock current behavior, then
    stop for an implementation decision.
 
@@ -206,13 +212,22 @@ read:
 docs/conversation-understanding/semantica-inspired-accountability-prd-v0.md
 ```
 
+For the PR56 doctor/preflight design, read:
+
+```text
+docs/evals/lolla-doctor-preflight-plan-v0.md
+```
+
 ## Decision Gates
 
 - Now: decide whether to create approved real high-stakes evidence.
 - Values lane: PR54 has decided the v0 worksheet lane is complete enough to
   pause for human-owned review; reopen only by explicit approval.
-- Accountability lane: PR55 approves only the docs-only plan. PR56 may design
-  doctor/preflight next, but implementation still needs a separate gate.
+- Accountability lane: PR55 approves only the Semantica-inspired roadmap and
+  PR56 approves only the doctor/preflight design. PR57 may implement the
+  smallest read-only doctor CLI next, but only with a separate gate and without
+  model calls, `$lolla` runs, archive mutation, prompt changes, `SKILL.md`
+  changes, provider-boundary policy changes, or high-stakes approval behavior.
 - After a live-output hygiene planning/review lane: decide whether to implement
   trusted live-output transcript hygiene.
 

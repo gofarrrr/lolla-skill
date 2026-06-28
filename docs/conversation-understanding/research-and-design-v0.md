@@ -15,6 +15,10 @@ not become a graph DB, embedding/chunking system, global memory layer, policy
 engine, compliance platform, generic agent safety layer, domain authority, LLM
 judge, or answer-quality scoring product.
 
+PR56 adds the dedicated doctor/preflight plan:
+`../evals/lolla-doctor-preflight-plan-v0.md`. It keeps the future doctor local,
+read-only, deterministic, model-call-free, and outside archive mutation.
+
 The goal is narrower:
 
 Build a source-grounded conversation-understanding layer that helps Lolla
@@ -1465,14 +1469,46 @@ Outcome:
   `lolla.case_graph.v0`;
 - records PR56 through PR65 as a plan, not approval for code.
 
-Next:
+Follow-up now carved out:
 
 ```text
 PR56 Lolla Doctor / Preflight Plan v0
 ```
 
-PR56 should remain docs-only. It should design the preflight checks before any
-CLI, runtime behavior, model calls, or archive mutation.
+PR56 remains docs-only. It designs the preflight checks before any CLI, runtime
+behavior, model calls, or archive mutation.
+
+### PR56: Lolla Doctor / Preflight Plan v0
+
+Status: completed as
+[lolla-doctor-preflight-plan-v0.md](../evals/lolla-doctor-preflight-plan-v0.md).
+
+Goal: define the future read-only doctor/preflight surface before any runtime
+implementation.
+
+Outcome:
+
+- defines planned checks for runtime discovery, archive-root discovery, helper
+  script availability, provider/cost readiness, review-corpus manifests,
+  risk-mode reliance counts, high-stakes evidence absence/presence,
+  output-path safety, archive mutation guards, repo/runtime boundaries, and
+  privacy-safe output;
+- defines deterministic `pass`, `warn`, `fail`, and `not_applicable`
+  semantics;
+- sketches the future `lolla.doctor_report.v0` report shape;
+- keeps the future command from running `$lolla`, calling models, mutating
+  archives, changing prompts, changing `SKILL.md`, changing provider-boundary
+  policy, approving high-stakes runs, adding judges, adding scoring, adding
+  automatic labels, or beginning Semantica-style platform work.
+
+Next:
+
+```text
+PR57 Lolla Doctor Read-Only CLI v0
+```
+
+PR57 should implement only the smallest local read-only doctor CLI from the
+PR56 plan.
 
 ### Later: Decision-Aware Capture And Runtime Integration
 
@@ -1525,10 +1561,11 @@ manifest counts, PR45's anti-drift handoff, PR46's seed plan, PR47's fixtures,
 PR48's evidence-readiness analyzer, PR49's values/priorities worksheet plan,
 PR50's paraphrase-only worksheet fixtures, PR51's worksheet fixture review,
 PR52's blank worksheet export, PR53's human-filled worksheet pilot, PR54's
-pilot review / v0 decision, and PR55's Semantica-inspired accountability PRD
-now exist. The next step is still explicit approval, not automatic runtime
-work. The recommended accountability slice is PR56 Lolla Doctor / Preflight
-Plan v0, docs-only. Other lanes still require their own gates: future
+pilot review / v0 decision, PR55's Semantica-inspired accountability PRD, and
+PR56's Lolla Doctor / Preflight plan now exist. The next step is still explicit
+approval, not automatic runtime work. The recommended accountability slice is
+PR57 Lolla Doctor Read-Only CLI v0, still read-only, local, deterministic, and
+model-call-free. Other lanes still require their own gates: future
 high-stakes evidence under PR46/PR48, reopening the values lane after PR54, or
 any populated extraction, memory, runtime integration, automatic labels, or
 judging.

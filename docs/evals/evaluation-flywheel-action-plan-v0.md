@@ -1373,8 +1373,54 @@ Stop point:
   archive mutation, prompts, `SKILL.md`, graph DB, embeddings, memory, policy
   enforcement, automatic labels, answer-quality scoring, or judges from this
   slice.
-- The recommended next slice is PR56 Lolla Doctor / Preflight Plan v0, still
-  docs-only.
+- PR56 has now landed as the docs-only doctor/preflight plan. The next possible
+  slice is PR57 Lolla Doctor Read-Only CLI v0, still read-only, local,
+  deterministic, and model-call-free.
+
+### PR56: Lolla Doctor / Preflight Plan v0
+
+Maps to: R6/R9 accountability and readiness inspectability.
+
+Status: completed as a docs-only planning artifact.
+
+Goal:
+
+Define the future read-only doctor/preflight surface before adding any CLI.
+The doctor should help users and maintainers verify local wiring, provider/cost
+readiness, review-corpus manifest visibility, high-stakes evidence
+absence/presence, output-path safety, and privacy boundaries before they spend
+tokens or run `$lolla`.
+
+Output:
+
+- [Lolla Doctor / Preflight Plan v0](lolla-doctor-preflight-plan-v0.md).
+
+Current result:
+
+- defines the future command shape, including a possible
+  `python3 scripts/lolla_doctor.py --archive-root ~/.local/share/lolla/runs --json`
+  entry point and later `lolla doctor` alias;
+- defines planned check groups for runtime discovery, archive-root discovery,
+  helper script availability, provider configuration presence, model/provider
+  cost telemetry, review-corpus export availability, manifest readability,
+  risk-mode reliance counts, high-stakes evidence visibility, output-path
+  safety, archive mutation guard expectations, repo/runtime boundary checks,
+  and privacy-safe output;
+- defines deterministic `pass`, `warn`, `fail`, and `not_applicable` semantics;
+- sketches the future `lolla.doctor_report.v0` JSON shape with zero model
+  calls, no archive writes, no `$lolla` run, and safe-to-print check details;
+- distinguishes blocking failures from warnings so missing local wiring does
+  not become wasted model calls.
+
+Stop point:
+
+- PR56 only lands the plan.
+- Do not add the doctor CLI, run `$lolla`, call models, mutate archives, change
+  prompts, change `SKILL.md`, change provider-boundary policy, change
+  `caller_action`, approve high-stakes runs, add judges, add scoring, add
+  automatic labels, or begin Semantica-style platform work from this slice.
+- The next possible slice is PR57 Lolla Doctor Read-Only CLI v0, still local,
+  deterministic, read-only, and model-call-free.
 
 ## What Not To Build Yet
 
@@ -1433,6 +1479,9 @@ Before building judges or runtime semantic enrichment, Lolla should have:
 That is the smallest flywheel that can improve Lolla run by run without turning
 it into a vague critic or overbuilt memory system.
 
-The next conservative accountability slice is PR56 Lolla Doctor / Preflight
-Plan v0. It should remain docs-only and should not add the CLI, run `$lolla`,
-call models, mutate archives, or start PR57 implementation.
+The next conservative accountability slice is PR57 Lolla Doctor Read-Only CLI
+v0. It should implement only the smallest local deterministic preflight command
+from the PR56 plan and should not run `$lolla`, call models, mutate archives,
+change prompts, change `SKILL.md`, change provider-boundary policy, approve
+high-stakes runs, add judges, add scoring, add automatic labels, or start any
+Semantica-style platform work.

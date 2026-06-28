@@ -449,6 +449,9 @@ Do not implement any primitive in PR55.
 
 Type: docs-only design
 
+Status after PR56: completed as the dedicated doctor/preflight plan:
+`docs/evals/lolla-doctor-preflight-plan-v0.md`.
+
 Goal:
 
 Define the preflight checks that help users avoid wasting model calls or
@@ -476,12 +479,12 @@ Must specify checks for:
 
 Acceptance criteria:
 
-- [ ] Defines exact future CLI output sections.
-- [ ] Defines pass/warn/fail semantics.
-- [ ] States that doctor never calls models.
-- [ ] States that doctor never runs `$lolla`.
-- [ ] States that doctor never mutates archives.
-- [ ] Defines what counts as a blocking failure.
+- [x] Defines exact future CLI output sections.
+- [x] Defines pass/warn/fail semantics.
+- [x] States that doctor never calls models.
+- [x] States that doctor never runs `$lolla`.
+- [x] States that doctor never mutates archives.
+- [x] Defines what counts as a blocking failure.
 
 Stop rule:
 
@@ -890,11 +893,19 @@ Semantica Comparative Architecture Note / Accountability PRD v0
 It should be docs-only. Its job is to make the inspiration and anti-copying
 boundary durable before any code-bearing slice begins.
 
-Recommended next slice after PR55 is:
+PR56 has now been carved out as the dedicated doctor/preflight docs-only plan:
 
 ```text
-PR56 Lolla Doctor / Preflight Plan v0
+docs/evals/lolla-doctor-preflight-plan-v0.md
 ```
 
-PR56 should also be docs-only. It should design the preflight surface without
-adding the CLI, running `$lolla`, calling models, or mutating archives.
+The next possible slice after PR56 is:
+
+```text
+PR57 Lolla Doctor Read-Only CLI v0
+```
+
+PR57 should implement only the smallest local read-only doctor CLI. It should
+not run `$lolla`, call models, mutate archives, change prompts, change
+`SKILL.md`, change provider-boundary policy, approve high-stakes runs, or begin
+Semantica-style platform work.

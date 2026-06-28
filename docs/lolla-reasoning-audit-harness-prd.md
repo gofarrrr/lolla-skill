@@ -21,6 +21,8 @@ Primary inputs:
 - Agent-control research note: `docs/agent-control-layers-and-lolla-integration.md`, covering CrabTrap-style proxies, guardrails, approval systems, sandboxes, identity scopes, and observability/eval tools.
 - Semantica-inspired accountability plan:
   `docs/conversation-understanding/semantica-inspired-accountability-prd-v0.md`.
+- Lolla doctor/preflight plan:
+  `docs/evals/lolla-doctor-preflight-plan-v0.md`.
 
 ## Executive Summary
 
@@ -246,10 +248,10 @@ Since the first harness PRD pass, the shipped harness layer has also added:
 - semantic coverage reports and corpus survey;
 - offline specialist extractor probe harnesses and evidence notes;
 - a six-case complex conversation baseline with full modern artifacts;
-- the PR30-PR55 evaluation/accountability handoff chain from human review seed
+- the PR30-PR56 evaluation/accountability handoff chain from human review seed
   through risk-mode reliance visibility, current-state anti-drift docs,
   human-owned values/priorities review, and the Semantica-inspired
-  accountability plan.
+  accountability plan through the doctor/preflight plan.
 
 The current complex baseline is recorded in:
 
@@ -405,8 +407,21 @@ diagnostics, and run-local case graph views. It does not approve graph
 databases, embeddings, chunking, memory, policy enforcement, compliance
 platform work, generic agent safety layers, domain authority, runtime behavior,
 automatic labels, answer-quality scoring, LLM judges, prompts, `SKILL.md`, or
-archive mutation. Its recommended next slice is PR56 Lolla Doctor / Preflight
-Plan v0, still docs-only.
+archive mutation. PR56 has now carved out the doctor/preflight design as a
+separate docs-only plan.
+
+PR56 now lands the Lolla Doctor / Preflight plan:
+
+`docs/evals/lolla-doctor-preflight-plan-v0.md`
+
+It defines the future read-only doctor check groups, pass/warn/fail semantics,
+blocking versus warning examples, and `lolla.doctor_report.v0` draft shape. It
+does not add the CLI, run `$lolla`, call models, mutate archives, change
+prompts, change `SKILL.md`, change provider-boundary policy, change
+`caller_action`, approve high-stakes runs, add judges, add scoring, add
+automatic labels, or begin Semantica-style platform work. Its recommended next
+slice is PR57 Lolla Doctor Read-Only CLI v0, still read-only and
+model-call-free.
 
 This roadmap should build on that. It should not restart the architecture.
 
@@ -772,6 +787,9 @@ Current v0 slice:
   records, provenance maps, conflict registers, doctor/preflight, and case graph
   views separate from graph DBs, memory, policy engines, automatic labels,
   answer-quality scoring, and LLM judges.
+- `docs/evals/lolla-doctor-preflight-plan-v0.md` defines the PR56
+  doctor/preflight plan and keeps the future CLI read-only, local,
+  deterministic, model-call-free, and outside archive mutation.
 
 Acceptance criteria:
 
