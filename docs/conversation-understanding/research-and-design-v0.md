@@ -1400,8 +1400,17 @@ Outcome:
 Next:
 
 ```text
-PR43 Risk Mode Reliance Review Batch v0
+PR44 Review Corpus Reliance Manifest Counts v0
 ```
+
+PR43 now completes the fixture-backed review-surface validation. A read-only
+local export found 80 real archive corpus records, all `risk_mode: standard`,
+and zero `risk_mode_reliance.present: true` examples. PR43 therefore does not
+claim real high-stakes archive evidence; it uses the PR37/PR38 risk-mode
+fixtures to verify that reviewers can treat `risk_mode_reliance.status: pass`
+as conservative reliance-policy expression rather than answer-quality pass,
+domain approval, or automatic `safe_for_agent_use`. The workflow wording was
+sufficient, and no taxonomy/rubric change is recommended from this batch.
 
 ### Later: Decision-Aware Capture And Runtime Integration
 

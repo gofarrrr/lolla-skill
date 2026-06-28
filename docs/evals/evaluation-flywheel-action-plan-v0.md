@@ -868,15 +868,19 @@ Use the PR42 review-corpus field in a small local review batch to verify that
 humans can consistently separate high-stakes reliance caveats from answer-level
 quality and `safe_for_agent_use`.
 
-Candidate behavior:
+Current result:
 
-- export or inspect a local batch with `risk_mode_reliance.present: true` and
-  nearby standard controls;
-- label how reviewers interpreted the caveat without automatically changing
-  human-review labels;
-- record whether the workflow language is sufficient or needs taxonomy/rubric
-  revision;
-- keep the batch local/docs-only and custody-safe.
+- read-only local corpus export found 80 records, all `risk_mode: standard`,
+  with zero `risk_mode_reliance.present: true` records;
+- PR43 therefore does not claim real high-stakes archive outcome evidence;
+- [Risk Mode Reliance Review Batch v0](risk-mode-reliance-review-batch-v0.md)
+  uses PR37/PR38 paraphrase-only risk-mode fixtures to validate the PR42 review
+  surface;
+- reviewers can interpret `risk_mode_reliance.present: true` as a reliance
+  caveat without treating it as answer-quality failure, domain approval, or
+  automatic `safe_for_agent_use`;
+- workflow wording is sufficient for this fixture-backed batch;
+- no taxonomy or rubric change is recommended yet.
 
 Acceptance:
 
@@ -888,30 +892,47 @@ Acceptance:
 - no domain approval or crisis protocol;
 - no LLM judge.
 
-### PR44: First Calibrated Binary Judge Prototype
+### PR44: Review Corpus Reliance Manifest Counts v0
 
-Maps to: PRD R8.
+Maps to: PRD R2, R6, R8.
 
 Goal:
 
-Prototype one advisory judge only after enough human labels exist.
-
-Recommended first judge:
-
-`actionable_delta`
+Add deterministic manifest-level visibility for the absence or presence of
+`risk_mode_reliance` caveats before any judge or real high-stakes archive
+expansion.
 
 Why:
 
-It is narrower than "good answer" and central to Lolla's product thesis.
+PR43 showed that the local real archive corpus has zero high-stakes
+reliance-present records, even though the PR42 per-record surface is ready. The
+manifest should make that absence visible so future review batches cannot
+accidentally imply high-stakes evidence where none exists.
+
+Candidate behavior:
+
+- add aggregate counts for `risk_mode_reliance.present`;
+- count present/absent records by `risk_mode`;
+- keep raw content, answer-quality labels, and human-review labels out of the
+  manifest;
+- preserve current per-record PR42 behavior.
 
 Acceptance:
 
-- named dataset;
-- train/dev/test split;
-- TPR/TNR reported separately;
-- adversarial pairs included;
-- failure examples documented;
-- advisory only.
+- no model calls;
+- no prompt or `SKILL.md` change;
+- no runtime enforcement;
+- no caller-action change;
+- no automatic labels;
+- no domain approval or crisis protocol;
+- no LLM judge;
+- no archive mutation.
+
+Later judge work can resume only after human-owned labels and high-stakes
+review evidence are present enough to calibrate a narrow advisory judge. When
+it resumes, it should still require a named dataset, train/dev/test split,
+separately reported TPR/TNR, adversarial pairs, documented failure examples,
+and advisory-only use.
 
 ## What Not To Build Yet
 

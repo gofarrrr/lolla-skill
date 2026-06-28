@@ -326,8 +326,15 @@ PR42 now exposes that caveat as compact `risk_mode_reliance` metadata in
 review-corpus records and human-review workflow docs. It keeps
 `safe_for_agent_use` human-owned and does not change `caller_action`.
 
-The next narrow slice is PR43 Risk Mode Reliance Review Batch v0, not judge
-automation or runtime enforcement.
+PR43 now reviews that surface with fixtures because the local real archive
+corpus has zero high-stakes `risk_mode_reliance.present: true` records. The
+fixture-backed batch validates that reviewers can read
+`risk_mode_reliance.status: pass` as a conservative reliance-policy expression,
+not as answer-quality pass, domain approval, or automatic
+`safe_for_agent_use`.
+
+The next narrow slice is PR44 Review Corpus Reliance Manifest Counts v0, not
+judge automation or runtime enforcement.
 
 This roadmap should build on that. It should not restart the architecture.
 

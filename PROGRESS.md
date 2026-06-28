@@ -99,8 +99,10 @@ What this means in plain terms:
 - Risk-mode implementation is test-locked at the contract level,
   `evaluation.json` surfaces high-stakes reliance caveats explicitly, and
   review-corpus records now expose those caveats as compact
-  `risk_mode_reliance` metadata. The next step should verify the surface in a
-  local review batch, not enforce runtime behavior.
+  `risk_mode_reliance` metadata. PR43 verified the surface with fixtures after
+  a read-only local export found zero real high-stakes reliance-present archive
+  records; the next step is manifest-level aggregate visibility, not runtime
+  enforcement.
 
 Primary evidence notes to read first in a fresh session:
 
@@ -125,14 +127,16 @@ Current stop rule:
 Recommended next slice:
 
 ```text
-PR43 Risk Mode Reliance Review Batch v0
+PR44 Review Corpus Reliance Manifest Counts v0
 ```
 
 Purpose:
 
-- use PR42's `risk_mode_reliance` field in a small local review batch;
-- check whether reviewers can separate high-stakes reliance caveats from
-  answer-level quality and human-owned `safe_for_agent_use`;
+- add aggregate manifest counts for `risk_mode_reliance.present` so local
+  corpus absence is visible before future high-stakes review claims;
+- preserve PR43's fixture-backed finding that reviewers can separate high-stakes
+  reliance caveats from answer-level quality and human-owned
+  `safe_for_agent_use`;
 - keep PR40, PR41, and PR42 tests green;
 - preserve current `caller_action` behavior unless a later separate contract
   PR explicitly changes it;
@@ -223,9 +227,9 @@ Non-goals for the next slice:
 
 ### Opportunities To Make The Machine Work Better
 
-1. **Risk-mode reliance review batch.** Use PR42's `risk_mode_reliance` surface
-   in a small local review batch to check reviewer consistency before any judge
-   or runtime enforcement.
+1. **Review-corpus reliance manifest counts.** Add aggregate counts for
+   `risk_mode_reliance.present` so future batches cannot imply high-stakes
+   archive evidence when the local corpus still has none.
 2. **User-values/priorities offline worksheet or report.** PR34 designs the
    signal; later work can test it locally before runtime extraction.
 3. **Live-output hygiene implementation.** PR35 keeps `not_checked` honest and
