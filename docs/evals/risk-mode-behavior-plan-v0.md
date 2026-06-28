@@ -328,9 +328,9 @@ This does not justify:
 - an LLM judge;
 - graph DB, embeddings, chunking, memory, or specialist runtime integration.
 
-## Recommended Next Slice
+## Follow-On Slices
 
-PR37 now creates the fixture matrix that this note recommended:
+PR37 creates the fixture matrix that this note recommended:
 
 ```text
 docs/evals/risk-mode-fixture-matrix-v0.md
@@ -343,7 +343,7 @@ that show how the same answer-level result should be treated differently under
 review conditions. The fixtures test whether reviewers preserve the difference
 between answer improvement, run readiness, and action approval.
 
-The next slice should be:
+PR38 reviews that matrix:
 
 ```text
 docs/evals/risk-mode-fixture-review-v0.md
@@ -353,14 +353,14 @@ That review sanity-checks the fixture expectations and adds the missing
 high-stakes values/priorities conflict fixture before any risk-mode runtime
 behavior, caller-action change, or judge proposal.
 
-The next slice should be:
+PR39 now turns PR36-PR38 into a pre-code implementation plan:
 
 ```text
-PR39 Risk Mode Implementation Plan v0
+docs/evals/risk-mode-implementation-plan-v0.md
 ```
 
-That plan should still be pre-code: name the smallest behavior change, cite
-PR36 policy, PR37 fixtures, and PR38 review, and specify tests/contracts before
+That plan names high-stakes reliance/readiness tightening as the smallest
+future behavior change and recommends a test-only contract-lock slice before
 runtime enforcement.
 
 ## Review Receipt

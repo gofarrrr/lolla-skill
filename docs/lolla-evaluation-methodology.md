@@ -549,12 +549,6 @@ older partial record stayed `needs_followup`, and one degraded record was
 `exclude_from_eval`. The batch reinforced the PR31 labels and did not create a
 judge, score, automatic labels, runtime integration, or benchmark claim.
 
-Recommended next eval slice:
-
-```text
-PR39 Risk Mode Implementation Plan v0
-```
-
 PR34 now designs the first-class user-values/priorities review surface:
 
 ```text
@@ -614,8 +608,25 @@ The reviewed matrix is usable as a future implementation gate, but it does not
 approve runtime enforcement, caller-action changes, automatic labels, domain
 protocols, or a judge.
 
-PR39 should be an implementation plan before any subjective judge or runtime
-enforcement is built.
+PR39 now plans the implementation path:
+
+```text
+docs/evals/risk-mode-implementation-plan-v0.md
+```
+
+It names high-stakes reliance/readiness tightening as the smallest future
+behavior change, recommends test-only contract locking first, maps contract
+impacts, and still does not approve runtime enforcement, caller-action changes,
+automatic labels, domain protocols, or a judge.
+
+Recommended next eval slice:
+
+```text
+PR40 Risk Mode Contract Lock Tests v0
+```
+
+PR40 should prove current high-stakes reliance behavior remains conservative
+before any runtime enforcement or subjective judge work.
 
 Do not populate `lolla.human_review.v0` from synthetic reviewers. Do not treat
 these human labels as judge calibration yet. They define product taste and
@@ -667,7 +678,7 @@ The key correction:
 2. How many archived runs do we already have that are safe to use in an eval corpus?
 3. Should user usefulness labels be collected in Observatory after each run?
 4. What should be the first 4 to 6 official Lolla failure categories after open coding?
-5. What is the smallest risk-mode implementation slice that can satisfy PR36,
-   PR37, and PR38?
+5. Which contract-lock tests are enough to preserve PR36, PR37, PR38, and PR39
+   before high-stakes runtime behavior changes?
 6. Which judge failures should degrade run health, and which should remain advisory?
 7. Should pairwise adversarial sets become part of CI?

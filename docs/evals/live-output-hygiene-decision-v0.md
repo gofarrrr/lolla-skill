@@ -247,26 +247,28 @@ This does not justify:
 
 ## Recommended Next Slice
 
-PR36 defines risk-mode behavior policy, and PR37 now turns that policy into
-fixtures. PR38 reviews the matrix and adds the missing high-stakes
-values/priorities conflict fixture:
+PR36 defines risk-mode behavior policy, PR37 turns that policy into fixtures,
+PR38 reviews the matrix and adds the missing high-stakes values/priorities
+conflict fixture, and PR39 plans the implementation path:
 
 ```text
 docs/evals/risk-mode-fixture-matrix-v0.md
 docs/evals/risk-mode-fixture-review-v0.md
+docs/evals/risk-mode-implementation-plan-v0.md
 ```
 
 The next slice should be:
 
 ```text
-PR39 Risk Mode Implementation Plan v0
+PR40 Risk Mode Contract Lock Tests v0
 ```
 
-Why PR39: PR35 resolved the live product-surface caveat, PR36 defines how risk
-mode should affect review and reliance without changing runtime behavior, PR37
-gives concrete fixture cases, and PR38 checks those fixtures as a future gate.
-The next move should still be pre-code planning, not runtime enforcement or
-judge work.
+Why PR40: PR35 resolved the live product-surface caveat, PR36 defines how risk
+mode should affect review and reliance, PR37 gives concrete fixture cases, PR38
+checks those fixtures as a future gate, and PR39 names high-stakes
+reliance/readiness tightening as the smallest future behavior change. The next
+move should lock existing conservative behavior in tests, not add enforcement
+or judge work.
 
 ## Review Receipt
 

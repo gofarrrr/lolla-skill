@@ -679,6 +679,8 @@ Current result:
 
 Maps to: PRD R2, R7, R8, R11.
 
+Status: completed as a docs/design-only implementation plan.
+
 Goal:
 
 Design the smallest future risk-mode behavior change before any code is
@@ -703,7 +705,50 @@ Acceptance:
 - no judge;
 - clear go/no-go criteria for a later implementation PR.
 
-### PR40: First Calibrated Binary Judge Prototype
+Current result:
+
+- smallest future behavior change named:
+  `high_stakes` reliance/readiness tightening;
+- first code-bearing slice should be a test-only contract lock, not runtime
+  enforcement;
+- future tests must prove current `high_stakes -> ask_user_first`, degraded-run
+  blocking, standard-mode regression stability, and PR37/PR38 fixture
+  expectations;
+- contract impacts are mapped for `agent_result.json`, `evaluation.json`,
+  review corpus records, human review workflow, Observatory, and `SKILL.md`;
+- PR39 does not change runtime code, prompts, `SKILL.md`, `caller_action`,
+  evaluation logic, archive behavior, automatic labels, domain protocols, or
+  judges.
+
+### PR40: Risk Mode Contract Lock Tests v0
+
+Maps to: PRD R2, R7, R8, R11.
+
+Goal:
+
+Lock current high-stakes reliance behavior in tests before changing behavior.
+
+Candidate behavior:
+
+- unit tests for `risk_mode` parsing and preservation;
+- agent-result contract tests for otherwise clean
+  `high_stakes -> ask_user_first`;
+- degraded-run tests proving artifact failure still blocks reliance;
+- regression tests proving clean `standard` behavior does not change;
+- fixture-mapped tests for PR37/PR38 high-stakes and standard cases;
+- no broad caller-action rewrite;
+- no domain protocol;
+- no judge.
+
+Acceptance:
+
+- tests pass without runtime behavior change;
+- `caller_action` remains conservative;
+- no prompt or `SKILL.md` change;
+- no automatic `safe_for_agent_use`;
+- fixture expectations remain intact.
+
+### PR41: First Calibrated Binary Judge Prototype
 
 Maps to: PRD R8.
 

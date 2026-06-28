@@ -308,7 +308,11 @@ missing high-stakes values/priorities conflict fixture was added, and the matrix
 is usable as a future implementation gate without approving runtime
 enforcement.
 
-The next narrow slice is PR39 Risk Mode Implementation Plan v0, not judge
+PR39 now plans the risk-mode implementation path. It names high-stakes
+reliance/readiness tightening as the smallest future behavior change and
+recommends contract-lock tests before artifact clarity or runtime enforcement.
+
+The next narrow slice is PR40 Risk Mode Contract Lock Tests v0, not judge
 automation or runtime enforcement.
 
 This roadmap should build on that. It should not restart the architecture.
@@ -436,6 +440,8 @@ Current implementation:
 - PR36 documents the behavior policy without implementing enforcement.
 - PR37 documents fixture expectations without implementing enforcement.
 - PR38 reviews the fixture expectations without implementing enforcement.
+- PR39 plans high-stakes reliance/readiness tightening and recommends
+  contract-lock tests first, without implementing enforcement.
 
 Future behavior:
 
@@ -459,6 +465,12 @@ runtime, caller-action policy, or `SKILL.md`.
 PR38 reviews those fixtures and adds the high-stakes values/priorities conflict
 case. Future implementation should cite PR36, PR37, and PR38 before touching
 runtime, caller-action policy, or `SKILL.md`.
+
+PR39 names the smallest future behavior change as high-stakes
+reliance/readiness tightening. It recommends a test-only contract-lock slice
+before artifact clarity, runtime enforcement, caller-action changes, or judge
+work.
+
 Acceptance criteria:
 
 - Mode is recorded in `result.json`, `reasoning_trace.json`, `agent_result.json`, and archive metadata.
@@ -1002,6 +1014,7 @@ Scope:
 
 Candidate behavior:
 
+- first add contract-lock tests for current high-stakes conservative behavior;
 - `quick`: skip optional expensive eval checks.
 - `deep`: enable optional Step 7.
 - `high_stakes`: stricter warning, stricter capture/eval, stronger unsupported-domain handling.

@@ -173,7 +173,8 @@ conservative enough.
 This does justify:
 
 - using the risk-mode fixture matrix as a gate for future proposals;
-- requiring future risk-mode implementation plans to cite PR36, PR37, and PR38;
+- requiring future risk-mode implementation work to cite PR36, PR37, PR38, and
+  PR39;
 - keeping high-stakes reliance conservative;
 - treating unsupported high-stakes domain claims as answer-level failures or
   follow-up cases;
@@ -195,19 +196,18 @@ This does not justify:
 - `conversation_understanding_ir.v0`;
 - graph DB, embeddings, chunking, memory, or specialist runtime integration.
 
-## Recommended Next Slice
+## Follow-On Plan
 
-PR39 should be:
+PR39 now turns this review into a pre-code implementation plan:
 
 ```text
-Risk Mode Implementation Plan v0
+docs/evals/risk-mode-implementation-plan-v0.md
 ```
 
-Why PR39: PR36 defined policy, PR37 created fixtures, and PR38 reviewed those
-fixtures. The next useful slice is not enforcement yet; it is a design/test
-plan that names the smallest future behavior change, the fixtures it must
-satisfy, the tests it would require, and the contract docs it would need to
-touch. Any implementation plan must cite PR36, PR37, and PR38.
+That plan names high-stakes reliance/readiness tightening as the smallest
+future behavior change and recommends a test-only contract-lock slice before
+artifact clarity or runtime enforcement. Any implementation or caller-action
+proposal must cite PR36, PR37, PR38, and PR39.
 
 ## Review Receipt
 

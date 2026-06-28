@@ -303,8 +303,14 @@ fixture:
 docs/evals/risk-mode-fixture-review-v0.md
 ```
 
-The next step is still planning, not runtime enforcement:
+PR39 now plans high-stakes reliance/readiness tightening without implementation:
 
 ```text
-PR39 Risk Mode Implementation Plan v0
+docs/evals/risk-mode-implementation-plan-v0.md
+```
+
+The next step is contract-lock testing, not runtime enforcement:
+
+```text
+PR40 Risk Mode Contract Lock Tests v0
 ```

@@ -144,14 +144,16 @@ missing high-stakes values/priorities conflict fixture. The matrix is now usable
 as a future implementation gate, but it still does not approve runtime
 enforcement, caller-action changes, or judges.
 
-The next slice should be:
+PR39 now turns the reviewed matrix into a pre-code implementation plan:
 
 ```text
-PR39 Risk Mode Implementation Plan v0
+docs/evals/risk-mode-implementation-plan-v0.md
 ```
 
-That plan should name the smallest future behavior change and cite PR36 policy,
-this fixture matrix, and PR38 review before any code changes.
+That plan names high-stakes reliance/readiness tightening as the smallest
+future behavior change. It recommends contract-lock tests first, so future code
+must preserve this matrix before any enforcement, caller-action change, or
+judge work.
 
 ## Review Receipt
 

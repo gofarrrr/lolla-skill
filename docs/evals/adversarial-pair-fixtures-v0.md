@@ -356,4 +356,6 @@ This does not justify:
 - PR37 Risk Mode Fixture Matrix v0 now documents risk-mode fixture examples.
 - PR38 Risk Mode Fixture Review v0 now reviews those risk-mode fixtures and
   adds the missing high-stakes values/priorities conflict fixture.
-- PR39 Risk Mode Implementation Plan v0 is the next evaluation slice.
+- PR39 Risk Mode Implementation Plan v0 now plans high-stakes
+  reliance/readiness tightening without implementation.
+- PR40 Risk Mode Contract Lock Tests v0 is the next evaluation slice.

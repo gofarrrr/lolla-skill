@@ -1009,8 +1009,9 @@ complex cases. PR34 now designs the user-values/priorities signal without
 implementing extraction. PR35 now decides live-output hygiene policy without
 changing runtime capture. PR36 now decides risk-mode behavior policy without
 changing runtime behavior. PR37 now turns that policy into fixture examples
-without enforcement. PR38 now reviews those fixtures without enforcement. The
-next slice is PR39 Risk Mode Implementation Plan v0.
+without enforcement. PR38 now reviews those fixtures without enforcement. PR39
+now plans high-stakes reliance/readiness tightening without code changes. The
+next slice is PR40 Risk Mode Contract Lock Tests v0.
 
 ### PR30: Complex Baseline Human Review v0
 
@@ -1294,7 +1295,33 @@ Next:
 PR39 Risk Mode Implementation Plan v0
 ```
 
-### PR39+ Or Later: Decision-Aware Capture And Runtime Integration
+### PR39: Risk Mode Implementation Plan v0
+
+Status: completed as
+[risk-mode-implementation-plan-v0.md](../evals/risk-mode-implementation-plan-v0.md).
+
+Goal: name the smallest future risk-mode behavior change and the tests/contracts
+required before runtime enforcement.
+
+Outcome:
+
+- smallest future behavior change is high-stakes reliance/readiness tightening;
+- first code-bearing slice should be test-only contract locking;
+- future tests should preserve current `high_stakes -> ask_user_first`,
+  degraded-run blocking, standard-mode stability, and PR37/PR38 fixture
+  expectations;
+- contract impacts are mapped for `agent_result.json`, `evaluation.json`,
+  review corpus records, human review workflow, Observatory, and `SKILL.md`;
+- no runtime enforcement, prompt, archive, evaluation, agent-result,
+  Observatory, `caller_action`, or `SKILL.md` changes are approved.
+
+Next:
+
+```text
+PR40 Risk Mode Contract Lock Tests v0
+```
+
+### Later: Decision-Aware Capture And Runtime Integration
 
 Goal: only after offline evidence, use the IR to improve capture or audit input.
 
@@ -1338,11 +1365,11 @@ thing has changed. Extraction adequacy, semantic coverage, PR30's six-run human
 review seed, PR31's actionable-delta rubric, PR32's adversarial pair fixtures,
 PR33's broader human-review corpus batch, and PR34's user-values/priorities
 design, PR35's live-output hygiene decision, and PR36's risk-mode behavior
-policy, PR37's risk-mode fixture matrix, and PR38's fixture review now exist.
-The next step is PR39 Risk Mode Implementation Plan v0: define the smallest
-future behavior change and its tests before adding judges, runtime specialist
-calls, a new IR, graph memory, embeddings, prompt changes, or risk-mode
-enforcement.
+policy, PR37's risk-mode fixture matrix, PR38's fixture review, and PR39's
+risk-mode implementation plan now exist. The next step is PR40 Risk Mode
+Contract Lock Tests v0: prove current high-stakes reliance behavior remains
+conservative before adding judges, runtime specialist calls, a new IR, graph
+memory, embeddings, prompt changes, or risk-mode enforcement.
 
 ## Sources
 

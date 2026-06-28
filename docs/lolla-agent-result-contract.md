@@ -282,6 +282,17 @@ docs/evals/risk-mode-fixture-review-v0.md
 That review says the matrix is usable as a future implementation gate, but it
 does not change this contract or approve new `caller_action` behavior.
 
+PR39 plans the implementation path:
+
+```text
+docs/evals/risk-mode-implementation-plan-v0.md
+```
+
+That plan names high-stakes reliance/readiness tightening as the smallest
+future behavior change and recommends contract-lock tests first. It does not
+change this contract, add fields, relax `caller_action`, or approve automatic
+agent use.
+
 The control-plane wrapper preserves metadata and maps Lolla's result for other
 systems. It does not auto-trigger Lolla, enforce approvals, call tools, replay
 external traces, or turn Lolla into a proxy/firewall/sandbox/identity broker.
