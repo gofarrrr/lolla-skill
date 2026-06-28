@@ -1397,7 +1397,7 @@ Outcome:
   runtime-enforcement, automatic-label, answer-quality scoring, domain-approval,
   or judge behavior changed.
 
-Next:
+Latest eval slice:
 
 ```text
 PR44 Review Corpus Reliance Manifest Counts v0
@@ -1411,6 +1411,13 @@ fixtures to verify that reviewers can treat `risk_mode_reliance.status: pass`
 as conservative reliance-policy expression rather than answer-quality pass,
 domain approval, or automatic `safe_for_agent_use`. The workflow wording was
 sufficient, and no taxonomy/rubric change is recommended from this batch.
+
+PR44 now makes that absence visible in the review-corpus manifest through
+additive counts for `risk_mode_reliance.present`,
+`risk_mode_reliance_by_risk_mode_counts`, and
+`risk_mode_reliance_check_status_counts`. It preserves per-record
+`risk_mode_reliance` and does not add runtime behavior, judging, or archive
+mutation.
 
 ### Later: Decision-Aware Capture And Runtime Integration
 

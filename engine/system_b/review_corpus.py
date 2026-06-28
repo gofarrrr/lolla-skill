@@ -247,6 +247,9 @@ def build_review_corpus_manifest(
     statuses: Counter[str] = Counter()
     caller_actions: Counter[str] = Counter()
     risk_modes: Counter[str] = Counter()
+    risk_mode_reliance_present: Counter[str] = Counter()
+    risk_mode_reliance_by_risk_mode: Counter[str] = Counter()
+    risk_mode_reliance_check_statuses: Counter[str] = Counter()
     capture_statuses: Counter[str] = Counter()
     evaluation_overalls: Counter[str] = Counter()
     readiness: Counter[str] = Counter()
@@ -265,6 +268,16 @@ def build_review_corpus_manifest(
         statuses[_text(_mapping(record.get("run_health")).get("overall")) or "unknown"] += 1
         caller_actions[_text(_mapping(record.get("agent_result")).get("caller_action")) or "unknown"] += 1
         risk_modes[_text(record.get("risk_mode")) or "unknown"] += 1
+        reliance = _mapping(record.get("risk_mode_reliance"))
+        reliance_present = "true" if reliance.get("present") is True else "false"
+        reliance_risk_mode = (
+            _text(reliance.get("risk_mode"))
+            or _text(record.get("risk_mode"))
+            or "unknown"
+        )
+        risk_mode_reliance_present[reliance_present] += 1
+        risk_mode_reliance_by_risk_mode[f"{reliance_risk_mode}|{reliance_present}"] += 1
+        risk_mode_reliance_check_statuses[_text(reliance.get("status")) or "unavailable"] += 1
         capture_statuses[_text(_mapping(record.get("capture_adequacy")).get("status")) or "unknown"] += 1
         evaluation_overalls[_text(_mapping(record.get("evaluation")).get("overall")) or "unavailable"] += 1
         readiness[_text(_mapping(record.get("evaluation")).get("caller_readiness")) or "unavailable"] += 1
@@ -304,6 +317,9 @@ def build_review_corpus_manifest(
         "run_health_status_counts": _counter_dict(statuses),
         "caller_action_counts": _counter_dict(caller_actions),
         "risk_mode_counts": _counter_dict(risk_modes),
+        "risk_mode_reliance_present_counts": _boolean_counter_dict(risk_mode_reliance_present),
+        "risk_mode_reliance_by_risk_mode_counts": _counter_dict(risk_mode_reliance_by_risk_mode),
+        "risk_mode_reliance_check_status_counts": _counter_dict(risk_mode_reliance_check_statuses),
         "capture_adequacy_status_counts": _counter_dict(capture_statuses),
         "evaluation_overall_counts": _counter_dict(evaluation_overalls),
         "caller_readiness_counts": _counter_dict(readiness),
@@ -788,6 +804,13 @@ def _counter_dict(counter: Counter[str]) -> dict[str, int]:
             ((key, count) for key, count in counter.items() if key),
             key=lambda item: (-item[1], item[0]),
         )
+    }
+
+
+def _boolean_counter_dict(counter: Counter[str]) -> dict[str, int]:
+    return {
+        "false": counter.get("false", 0),
+        "true": counter.get("true", 0),
     }
 
 

@@ -101,8 +101,8 @@ What this means in plain terms:
   review-corpus records now expose those caveats as compact
   `risk_mode_reliance` metadata. PR43 verified the surface with fixtures after
   a read-only local export found zero real high-stakes reliance-present archive
-  records; the next step is manifest-level aggregate visibility, not runtime
-  enforcement.
+  records. PR44 now adds manifest-level aggregate visibility for that absence
+  without runtime enforcement.
 
 Primary evidence notes to read first in a fresh session:
 
@@ -124,25 +124,24 @@ Current stop rule:
 > Do not run more random smokes by default. We have enough complex-run evidence
 > to pause and turn toward evaluation.
 
-Recommended next slice:
+Latest completed slice:
 
 ```text
 PR44 Review Corpus Reliance Manifest Counts v0
 ```
 
-Purpose:
+Result:
 
-- add aggregate manifest counts for `risk_mode_reliance.present` so local
-  corpus absence is visible before future high-stakes review claims;
-- preserve PR43's fixture-backed finding that reviewers can separate high-stakes
-  reliance caveats from answer-level quality and human-owned
+- added aggregate manifest counts for `risk_mode_reliance.present`;
+- added presence-by-risk-mode and reliance-check-status manifest counts;
+- preserved PR43's fixture-backed finding that reviewers can separate
+  high-stakes reliance caveats from answer-level quality and human-owned
   `safe_for_agent_use`;
-- keep PR40, PR41, and PR42 tests green;
-- preserve current `caller_action` behavior unless a later separate contract
-  PR explicitly changes it;
-- preserve human-owned evaluation before introducing any judge;
-- keep evaluation human-owned until enough labeled examples exist;
-- avoid turning risk mode into domain approval.
+- kept PR40, PR41, and PR42 tests green;
+- preserved current `caller_action` behavior;
+- preserved human-owned evaluation before introducing any judge;
+- kept evaluation human-owned until enough labeled examples exist;
+- avoided turning risk mode into domain approval.
 
 The broader action map for this next phase is:
 
@@ -227,9 +226,9 @@ Non-goals for the next slice:
 
 ### Opportunities To Make The Machine Work Better
 
-1. **Review-corpus reliance manifest counts.** Add aggregate counts for
-   `risk_mode_reliance.present` so future batches cannot imply high-stakes
-   archive evidence when the local corpus still has none.
+1. **Approved high-stakes evidence seed, only with explicit approval.** PR44
+   makes the current absence visible; real high-stakes reliance-present archive
+   evidence should be created only from approved cases, not by default.
 2. **User-values/priorities offline worksheet or report.** PR34 designs the
    signal; later work can test it locally before runtime extraction.
 3. **Live-output hygiene implementation.** PR35 keeps `not_checked` honest and

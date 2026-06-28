@@ -619,7 +619,7 @@ behavior change, recommends test-only contract locking first, maps contract
 impacts, and still does not approve runtime enforcement, caller-action changes,
 automatic labels, domain protocols, or a judge.
 
-Recommended next eval slice:
+Latest eval slice:
 
 ```text
 PR44 Review Corpus Reliance Manifest Counts v0
@@ -643,9 +643,13 @@ not as answer-quality pass, domain approval, or automatic
 `safe_for_agent_use`. No workflow wording, taxonomy, or rubric change is
 recommended from that batch.
 
-PR44 should add manifest-level counts for `risk_mode_reliance.present` so the
-absence of high-stakes reliance-present archive records is visible before any
-future real-run review expansion.
+PR44 now adds manifest-level counts for `risk_mode_reliance.present`,
+`risk_mode_reliance_by_risk_mode_counts`, and
+`risk_mode_reliance_check_status_counts` so the absence or presence of
+high-stakes reliance-present archive records is visible before any future
+real-run review expansion. The change is additive, keeps the existing
+`lolla.review_corpus_manifest.v0` schema name, and does not change per-record
+`risk_mode_reliance`.
 
 Do not populate `lolla.human_review.v0` from synthetic reviewers. Do not treat
 these human labels as judge calibration yet. They define product taste and
@@ -697,7 +701,7 @@ The key correction:
 2. How many archived runs do we already have that are safe to use in an eval corpus?
 3. Should user usefulness labels be collected in Observatory after each run?
 4. What should be the first 4 to 6 official Lolla failure categories after open coding?
-5. After manifest counts exist, when should approved high-stakes runs be added
-   to create real reliance-present archive evidence?
+5. When should approved high-stakes runs be added to create real
+   reliance-present archive evidence?
 6. Which judge failures should degrade run health, and which should remain advisory?
 7. Should pairwise adversarial sets become part of CI?

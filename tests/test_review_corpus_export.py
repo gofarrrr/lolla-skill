@@ -604,6 +604,16 @@ def test_review_corpus_manifest_and_jsonl_outputs_are_stable(tmp_path: Path) -> 
     assert manifest["batch_recommendation_counts"] == {
         "recommended_modern_review_batch": 2,
     }
+    assert manifest["risk_mode_reliance_present_counts"] == {
+        "false": 2,
+        "true": 0,
+    }
+    assert manifest["risk_mode_reliance_by_risk_mode_counts"] == {
+        "standard|false": 2,
+    }
+    assert manifest["risk_mode_reliance_check_status_counts"] == {
+        "unavailable": 2,
+    }
     assert manifest["content_review_available_count"] == 2
     assert manifest["custody_review_available_count"] == 1
     assert manifest["scope"] == _expected_scope("review_corpus_manifest")
@@ -620,3 +630,30 @@ def test_review_corpus_manifest_and_jsonl_outputs_are_stable(tmp_path: Path) -> 
     assert jsonl_path.read_text(encoding="utf-8") == first_jsonl
     assert manifest_path.read_text(encoding="utf-8") == first_manifest
     assert len(first_jsonl.splitlines()) == 2
+
+
+def test_review_corpus_manifest_counts_high_stakes_reliance_caveats(
+    tmp_path: Path,
+) -> None:
+    archive_root = tmp_path / "runs"
+    _seed_run(
+        archive_root,
+        case_id="high-stakes-case",
+        run_id="20260625T160000Z_high01",
+        risk_mode="high_stakes",
+    )
+    records = build_review_corpus_records(archive_root)
+    manifest = build_review_corpus_manifest(archive_root, records)
+
+    assert records[0]["risk_mode_reliance"]["present"] is True
+    assert manifest["schema_version"] == REVIEW_CORPUS_MANIFEST_SCHEMA_VERSION
+    assert manifest["risk_mode_reliance_present_counts"] == {
+        "false": 0,
+        "true": 1,
+    }
+    assert manifest["risk_mode_reliance_by_risk_mode_counts"] == {
+        "high_stakes|true": 1,
+    }
+    assert manifest["risk_mode_reliance_check_status_counts"] == {
+        "pass": 1,
+    }

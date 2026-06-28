@@ -896,6 +896,8 @@ Acceptance:
 
 Maps to: PRD R2, R6, R8.
 
+Status: completed as an additive review-corpus manifest visibility slice.
+
 Goal:
 
 Add deterministic manifest-level visibility for the absence or presence of
@@ -927,6 +929,18 @@ Acceptance:
 - no domain approval or crisis protocol;
 - no LLM judge;
 - no archive mutation.
+
+Current result:
+
+- review-corpus manifests now include `risk_mode_reliance_present_counts`;
+- review-corpus manifests now include
+  `risk_mode_reliance_by_risk_mode_counts`;
+- review-corpus manifests now include
+  `risk_mode_reliance_check_status_counts`;
+- the fields are additive and keep `lolla.review_corpus_manifest.v0`;
+- per-record `risk_mode_reliance` remains unchanged;
+- local export smoke still shows 80 records, all `risk_mode: standard`, with
+  zero reliance-present records.
 
 Later judge work can resume only after human-owned labels and high-stakes
 review evidence are present enough to calibrate a narrow advisory judge. When

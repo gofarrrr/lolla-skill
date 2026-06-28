@@ -183,6 +183,11 @@ batches cannot accidentally imply high-stakes archive evidence when the local
 corpus still contains none. It should remain export/eval-only and should not add
 runtime enforcement, model calls, answer-quality scoring, or automatic labels.
 
+PR44 now implements that additive manifest visibility. It keeps the
+`lolla.review_corpus_manifest.v0` schema name, preserves per-record
+`risk_mode_reliance`, and adds aggregate counts for reliance presence,
+presence-by-risk-mode, and reliance-check status.
+
 ## Review Receipt
 
 - Local real corpus checked read-only.
