@@ -413,6 +413,21 @@ It should not be automatically populated into archive records or used to change
 `caller_action` until a later PR explicitly approves extraction, validation,
 and reliance rules.
 
+## Relation To Risk Mode
+
+PR36 now defines risk mode as a review and reliance policy layer, not domain
+authority:
+
+```text
+docs/evals/risk-mode-behavior-plan-v0.md
+```
+
+Values and priorities can help reviewers understand why a high-stakes or
+risk-sensitive answer needs stronger gates, stop rules, stakeholder questions,
+or domain review. They must not be used to infer that the user approves action,
+that Lolla has resolved a value conflict, or that `safe_for_agent_use` can be
+upgraded automatically.
+
 ## Deterministic Vs Probabilistic Work
 
 Deterministic code could later validate:

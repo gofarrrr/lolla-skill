@@ -1007,7 +1007,8 @@ human-owned actionable-delta rubric. PR32 now defines seed adversarial pair
 fixtures. PR33 now expands the human review batch beyond the six curated
 complex cases. PR34 now designs the user-values/priorities signal without
 implementing extraction. PR35 now decides live-output hygiene policy without
-changing runtime capture. The next slice is PR36 Risk Mode Behavior Plan v0.
+changing runtime capture. PR36 now decides risk-mode behavior policy without
+changing runtime behavior. The next slice is PR37 Risk Mode Fixture Matrix v0.
 
 ### PR30: Complex Baseline Human Review v0
 
@@ -1213,7 +1214,34 @@ Next:
 PR36 Risk Mode Behavior Plan v0
 ```
 
-### PR36+ Or Later: Decision-Aware Capture And Runtime Integration
+### PR36: Risk Mode Behavior Plan v0
+
+Status: completed as
+[risk-mode-behavior-plan-v0.md](../evals/risk-mode-behavior-plan-v0.md).
+
+Goal: decide what `quick`, `standard`, `deep`, `high_stakes`, and `stability`
+should mean for review and reliance before runtime behavior changes.
+
+Outcome:
+
+- existing `risk_mode` names remain canonical;
+- risk mode is a custody, reliance, and review-strictness layer, not
+  answer-quality scoring or domain authority;
+- high-stakes runs can pass answer-level review while still requiring human or
+  domain review before agent reliance;
+- otherwise clean `high_stakes` runs remain conservative through the existing
+  `caller_action: ask_user_first` contract behavior;
+- PR36 does not relax `caller_action`;
+- no runtime, prompt, archive, evaluation, agent-result, Observatory, or
+  `SKILL.md` changes are approved.
+
+Next:
+
+```text
+PR37 Risk Mode Fixture Matrix v0
+```
+
+### PR37+ Or Later: Decision-Aware Capture And Runtime Integration
 
 Goal: only after offline evidence, use the IR to improve capture or audit input.
 
@@ -1256,10 +1284,10 @@ The current evidence says the next move should still be boring, but the boring
 thing has changed. Extraction adequacy, semantic coverage, PR30's six-run human
 review seed, PR31's actionable-delta rubric, PR32's adversarial pair fixtures,
 PR33's broader human-review corpus batch, and PR34's user-values/priorities
-design, and PR35's live-output hygiene decision now exist. The next step is
-PR36 Risk Mode Behavior Plan v0: decide what `deep`, `high_stakes`, and
-`stability` should actually change before adding judges, runtime specialist
-calls, a new IR, graph memory, embeddings, or prompt changes.
+design, PR35's live-output hygiene decision, and PR36's risk-mode behavior
+policy now exist. The next step is PR37 Risk Mode Fixture Matrix v0: turn the
+risk policy into paraphrase-only fixtures before adding judges, runtime
+specialist calls, a new IR, graph memory, embeddings, or prompt changes.
 
 ## Sources
 

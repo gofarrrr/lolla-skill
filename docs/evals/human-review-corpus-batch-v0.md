@@ -279,3 +279,17 @@ PR35 keeps `live_output_health: not_checked` as an honest default caveat for
 normal runs. That policy supports the PR33 treatment: saved answer-level review
 can pass while `safe_for_agent_use` remains conservative and live output remains
 unproven.
+
+PR36 now defines risk-mode behavior policy:
+
+```text
+docs/evals/risk-mode-behavior-plan-v0.md
+```
+
+That policy preserves the PR33 separation between answer-level review,
+run-envelope/custody review, and agent reliance. The next step is fixture work,
+not runtime enforcement:
+
+```text
+PR37 Risk Mode Fixture Matrix v0
+```

@@ -40,10 +40,10 @@ For a human user, that can create borrowed certainty. For an agent, it can becom
 
 Current Lolla already audits these answers well in a local skill setting. But the current product surface has four practical limitations:
 
-1. **Agent integration is only beginning.** New archived runs now produce a compact `lolla_agent_result.v1` handoff, metadata-only `risk_mode`, and a deterministic `evaluation.json` run-readiness receipt, but control-plane input metadata, trigger policy, risk-mode behavior changes, subjective evaluation, and deeper integration behavior are still roadmap items.
+1. **Agent integration is only beginning.** New archived runs now produce a compact `lolla_agent_result.v1` handoff, metadata-first `risk_mode`, and a deterministic `evaluation.json` run-readiness receipt, but trigger policy, risk-mode enforcement, subjective evaluation, and deeper integration behavior are still roadmap items.
 2. **Observability is ahead of subjective evaluation.** Lolla records what happened and can now check deterministic run-envelope consistency, but does not yet systematically evaluate whether the revised answer is better, more grounded, less overconfident, or more actionable.
 3. **Long-conversation capture is still blunt.** The first-3-plus-last-15 rule is practical, but can omit middle turns where constraints, reversals, or dropped threads were introduced.
-4. **Risk level is not behaviorally first-class yet.** A career decision, legal whistleblower scenario, product roadmap choice, and casual strategy brainstorm should not all use the same cost, evidence standard, optional reviewer behavior, or final warning language. Today `risk_mode` is persisted as metadata, but it does not yet change prompts, cost, Step 7, capture strictness, or evaluation behavior.
+4. **Risk level is not behaviorally first-class yet.** A career decision, legal whistleblower scenario, product roadmap choice, and casual strategy brainstorm should not all use the same cost, evidence standard, optional reviewer behavior, or final warning language. Today `risk_mode` is persisted and PR36 defines the reliance policy, but risk mode does not yet change prompts, cost, Step 7, capture strictness, domain routing, or evaluation behavior.
 
 The Claude Code design-space paper strengthens the architectural direction: successful agent systems keep the model loop simple and invest in the deterministic harness around it. Lolla should apply that lesson to reasoning quality.
 
@@ -293,7 +293,13 @@ remains the honest default for normal runs; `clean` requires a complete trusted
 transcript path; manual transcripts are not proof of clean live output; and
 live-output hygiene does not relax `caller_action` or score answer quality.
 
-The next narrow slice is PR36 Risk Mode Behavior Plan v0, not judge automation.
+PR36 now decides risk-mode behavior policy. Existing `risk_mode` names remain
+the vocabulary; risk mode raises review and reliance strictness, but does not
+approve actions, make Lolla a domain authority, relax `caller_action`, or change
+runtime behavior.
+
+The next narrow slice is PR37 Risk Mode Fixture Matrix v0, not judge automation
+or runtime enforcement.
 
 This roadmap should build on that. It should not restart the architecture.
 
@@ -394,7 +400,8 @@ Acceptance criteria:
 
 Priority: P0
 Owner area: runtime/docs/skill
-Status: Implemented as metadata-only runtime propagation
+Status: Implemented as metadata-first runtime propagation plus PR36 policy
+design
 
 Add explicit audit modes:
 
@@ -411,9 +418,12 @@ Current implementation:
 - Invalid explicit mode fails before model calls.
 - The normalized value is persisted as `risk_mode` in `result.json`,
   `agent_result.json`, `reasoning_trace.json`, and archive metadata.
-- The mode is metadata only for now. It does not change prompts, cost, Step 7,
-  high-stakes warning behavior, evaluation strictness, capture strictness, or
+- The mode is metadata-first for now. It does not change prompts, cost, Step 7,
+  high-stakes domain policy, evaluation strictness, capture strictness, or
   replay/comparison behavior.
+- The agent-result contract already keeps otherwise clean `high_stakes` runs
+  conservative with `caller_action: ask_user_first`.
+- PR36 documents the behavior policy without implementing enforcement.
 
 Future behavior:
 
@@ -424,6 +434,11 @@ Future behavior:
 | `deep` | user asks for deeper review | May enable optional deeper review after Step 6b ledger validation in a later PR. |
 | `high_stakes` | legal, medical, financial, safety, severe career/family consequences | May add stronger capture/eval gates and warning language later; it currently makes no domain-assurance claim. |
 | `stability` | test or regression mode | May run comparison/replay flow across repeated runs or archived pairs later. |
+
+PR36 adds the policy decision: risk mode changes review and reliance burden
+before it changes runtime. High-stakes mode is stricter reasoning hygiene, not
+domain assurance. Runtime enforcement requires fixtures, tests, contract docs,
+and a later PR.
 
 Acceptance criteria:
 
@@ -1145,6 +1160,8 @@ Mitigation:
 
 - Explicitly say high-stakes mode is stricter reasoning hygiene, not legal/medical/financial validation.
 - Use `unsupported_high_stakes_domain` when needed.
+- Keep PR36's distinction between answer improvement, run readiness, and action
+  approval.
 
 ### Risk: More Modes Confuse Users
 

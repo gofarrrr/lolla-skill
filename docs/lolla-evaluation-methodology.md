@@ -552,7 +552,7 @@ judge, score, automatic labels, runtime integration, or benchmark claim.
 Recommended next eval slice:
 
 ```text
-PR36 Risk Mode Behavior Plan v0
+PR37 Risk Mode Fixture Matrix v0
 ```
 
 PR34 now designs the first-class user-values/priorities review surface:
@@ -577,7 +577,21 @@ It is a run-envelope and agent-readiness caveat, not answer-level failure by
 default. `clean` requires a complete trusted transcript path; manual
 transcripts are not proof of cleanliness.
 
-PR36 should define risk-mode behavior before any subjective judge is built.
+PR36 now defines risk-mode behavior policy:
+
+```text
+docs/evals/risk-mode-behavior-plan-v0.md
+```
+
+The existing `risk_mode` names remain canonical: `quick`, `standard`, `deep`,
+`high_stakes`, and `stability`. Risk mode is a review/reliance layer, not an
+answer-quality score, action approval, or domain authority. It raises reliance
+strictness, keeps high-stakes agent use conservative, preserves the current
+`caller_action: ask_user_first` behavior for otherwise clean `high_stakes`
+runs, and does not change runtime behavior.
+
+PR37 should turn that policy into fixtures before any subjective judge or
+runtime enforcement is built.
 
 Do not populate `lolla.human_review.v0` from synthetic reviewers. Do not treat
 these human labels as judge calibration yet. They define product taste and
@@ -629,6 +643,6 @@ The key correction:
 2. How many archived runs do we already have that are safe to use in an eval corpus?
 3. Should user usefulness labels be collected in Observatory after each run?
 4. What should be the first 4 to 6 official Lolla failure categories after open coding?
-5. Should high-stakes mode require human review before `caller_action` can be `use_revised_answer`?
+5. Which risk-mode fixtures are needed before enforcement?
 6. Which judge failures should degrade run health, and which should remain advisory?
 7. Should pairwise adversarial sets become part of CI?

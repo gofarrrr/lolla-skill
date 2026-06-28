@@ -558,6 +558,8 @@ Current result:
 
 Maps to: PRD R2, R7, R8, R11.
 
+Status: completed as a design-only risk-mode behavior policy.
+
 Goal:
 
 Decide what `deep`, `high_stakes`, and `stability` should actually change
@@ -576,7 +578,49 @@ Acceptance:
 - no high-stakes domain assurance claim;
 - `standard` remains stable.
 
-### PR37: First Calibrated Binary Judge Prototype
+Current result:
+
+- existing `risk_mode` names remain canonical: `quick`, `standard`, `deep`,
+  `high_stakes`, and `stability`;
+- risk mode is review/reliance context, not answer-quality scoring or action
+  approval;
+- higher-risk modes should raise artifact, live-output, human-review, and
+  domain-review expectations;
+- otherwise clean `high_stakes` runs remain conservative through the existing
+  `caller_action: ask_user_first` contract behavior;
+- PR36 does not relax `caller_action`;
+- PR36 does not change prompts, runtime behavior, capture, evaluation,
+  agent-result schema, Observatory, or `SKILL.md`.
+
+### PR37: Risk Mode Fixture Matrix v0
+
+Maps to: PRD R2, R7, R8, R11.
+
+Goal:
+
+Turn PR36's policy into paraphrase-only fixtures that test whether reviewers
+and future evaluators preserve the distinction between answer improvement, run
+readiness, risk-sensitive reliance, and action approval.
+
+Candidate behavior:
+
+- fixture rows for `standard`, `deep`, `high_stakes`, `stability`, and excluded
+  or domain-review-required cases;
+- risk-domain examples drawn from PR30-PR33 only as paraphrase-safe patterns;
+- expected `safe_for_agent_use` and `caller_action` reads without changing
+  runtime code;
+- traps around clean artifacts, smooth prose, generic disclaimers, and domain
+  assurance.
+
+Acceptance:
+
+- no runtime enforcement;
+- no new `risk_mode` enum;
+- no domain protocol implementation;
+- no automatic labels;
+- no judge.
+
+### PR38: First Calibrated Binary Judge Prototype
 
 Maps to: PRD R8.
 
@@ -644,6 +688,7 @@ Before building judges or runtime semantic enrichment, Lolla should have:
 - at least one small human-reviewed corpus batch beyond the six examples;
 - a design note for the user-values/priorities signal;
 - a clear decision on live-output hygiene;
+- a clear decision on risk-mode reliance policy;
 - no unresolved confusion between deterministic run readiness and answer
   quality.
 

@@ -247,17 +247,17 @@ This does not justify:
 
 ## Recommended Next Slice
 
-PR36 should be:
+PR36 now defines risk-mode behavior policy. The next slice should be:
 
 ```text
-Risk Mode Behavior Plan v0
+PR37 Risk Mode Fixture Matrix v0
 ```
 
-Why PR36: PR35 resolves the main evaluation caveat around live product-surface
-proof. The next design question is how `deep`, `high_stakes`, and `stability`
-should change behavior once human review, actionable deltas, adversarial
-fixtures, broader labels, values/priorities design, and live-output policy all
-exist. PR36 should still be a plan before runtime behavior changes.
+Why PR37: PR35 resolved the live product-surface caveat, and PR36 now defines
+how risk mode should affect review and reliance without changing runtime
+behavior. The next useful step is fixture work: concrete cases that test
+whether reviewers preserve the difference between answer improvement, run
+readiness, risk-sensitive reliance, and action approval.
 
 ## Review Receipt
 

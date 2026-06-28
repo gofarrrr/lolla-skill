@@ -113,16 +113,16 @@ Current stop rule:
 Recommended next slice:
 
 ```text
-PR36 Risk Mode Behavior Plan v0
+PR37 Risk Mode Fixture Matrix v0
 ```
 
 Purpose:
 
-- define what `deep`, `high_stakes`, and `stability` should actually change
-  after PR30-PR35 evaluation/design evidence;
+- turn PR36's risk-mode policy into paraphrase-only fixtures before runtime
+  enforcement;
 - preserve human-owned evaluation before introducing any judge;
 - keep evaluation human-owned until enough labeled examples exist;
-- avoid changing runtime behavior before the policy is explicit.
+- avoid turning risk mode into domain approval.
 
 The broader action map for this next phase is:
 
@@ -170,6 +170,7 @@ Non-goals for the next slice:
 - [x] PR33 broader human-review corpus batch.
 - [x] PR34 first-class user-values/priorities design.
 - [x] PR35 live-output hygiene decision.
+- [x] PR36 risk-mode behavior plan.
 - [x] Public pitch/docs refreshed around Lolla as a reasoning-audit harness.
 
 ### Missing / Not Done
@@ -177,7 +178,8 @@ Non-goals for the next slice:
 - [ ] Human labels on 50-100 archive/corpus records.
 - [ ] Calibrated binary subjective judges.
 - [ ] Agent trigger-policy docs for external builders.
-- [ ] Behavioral risk modes; current `risk_mode` is metadata only.
+- [ ] Behavioral risk-mode enforcement; PR36 is design-only, and current
+  pipeline behavior is still mostly metadata-first.
 - [ ] Decision-aware capture for long conversations and middle-turn hinges.
 - [ ] First-class user-values/priorities extraction or offline report; PR34 is
   design-only.
@@ -194,8 +196,8 @@ Non-goals for the next slice:
 
 ### Opportunities To Make The Machine Work Better
 
-1. **Risk-mode behavior.** Decide what `deep`, `high_stakes`, and `stability`
-   should change before changing runtime behavior.
+1. **Risk-mode fixture matrix.** Turn PR36's policy into fixtures before
+   changing runtime behavior or approving any risk-mode judge.
 2. **User-values/priorities offline worksheet or report.** PR34 designs the
    signal; later work can test it locally before runtime extraction.
 3. **Live-output hygiene implementation.** PR35 keeps `not_checked` honest and
@@ -269,13 +271,13 @@ boundary change.
 | PRD item | Status | Current read |
 |---|---:|---|
 | R1: Agent-Facing Result Contract | Done | `agent_result.json` / `lolla_agent_result.v1` exists, is archived, copied to `/tmp`, indexed in `reasoning_trace.json`, documented, tested, and smoke-tested. |
-| R2: Risk Modes | Metadata done | `LOLLA_AUDIT_MODE` accepts `quick`, `standard`, `deep`, `high_stakes`, and `stability`; normalized value persists as `risk_mode`; invalid explicit values fail before model calls. Behavior is intentionally unchanged. |
+| R2: Risk Modes | Metadata plus policy design done | `LOLLA_AUDIT_MODE` accepts `quick`, `standard`, `deep`, `high_stakes`, and `stability`; normalized value persists as `risk_mode`; invalid explicit values fail before model calls. The pipeline remains mostly metadata-first. The agent-result contract already keeps otherwise clean `high_stakes` runs conservative with `caller_action: ask_user_first`. PR36 now documents the behavior policy without implementing enforcement. |
 | R3: Trigger Policy For Agents | Deferred | Not urgent for current manual workflow. Keep for later external agent-builder docs. |
 | R4: Control-Plane Integration Contract | Done | `lolla_control_input.v1` and `lolla_control_result.v1` now exist as optional local sidecars. External trace/action/approval metadata can be preserved and summarized without changing ordinary `$lolla` runs or making Lolla an approval/sandbox/policy system. |
 | R5: Capture Adequacy Upgrade | Done | `capture_adequacy` / `lolla.capture_adequacy.v0` now makes capture shape, omitted windows, and critical capture problems visible across extraction, run health, agent result, reasoning trace, and evaluation. It does not reconstruct omitted turns or change capture strategy. Real `$lolla` smoke passed with full capture. |
-| R6: Evaluation Methodology And Failure Taxonomy | Human-review v0 done; PR30-PR35 eval/design seeds done | `docs/lolla-evaluation-methodology.md`, `docs/evals/lolla-human-review-v0.json`, `docs/evals/lolla-failure-taxonomy.md`, and `docs/evals/human-review-workflow.md` exist. PR14 added the human-owned label contract. PR15 added a synthetic-review boundary so subagents can help without becoming ground truth. PR16 added a validator and prompt so synthetic candidate outputs must match the human-review schema without becoming human labels. PR30 added the first human/product review seed over the six complex baseline runs. PR31 added the human-owned actionable-delta rubric. PR32 added seed adversarial pair fixtures. PR33 added a 14-record broader human-review corpus batch with 12 counted positives, one partial boundary record, and one degraded exclusion. PR34 designed the first-class user-values/priorities signal without implementing extraction. PR35 documented live-output hygiene policy without runtime changes. |
+| R6: Evaluation Methodology And Failure Taxonomy | Human-review v0 done; PR30-PR36 eval/design seeds done | `docs/lolla-evaluation-methodology.md`, `docs/evals/lolla-human-review-v0.json`, `docs/evals/lolla-failure-taxonomy.md`, and `docs/evals/human-review-workflow.md` exist. PR14 added the human-owned label contract. PR15 added a synthetic-review boundary so subagents can help without becoming ground truth. PR16 added a validator and prompt so synthetic candidate outputs must match the human-review schema without becoming human labels. PR30 added the first human/product review seed over the six complex baseline runs. PR31 added the human-owned actionable-delta rubric. PR32 added seed adversarial pair fixtures. PR33 added a 14-record broader human-review corpus batch with 12 counted positives, one partial boundary record, and one degraded exclusion. PR34 designed the first-class user-values/priorities signal without implementing extraction. PR35 documented live-output hygiene policy without runtime changes. PR36 documented risk-mode behavior policy without runtime changes. |
 | R7: Deterministic Evaluation Artifact v0 | Done | `evaluation.json` / `lolla.evaluation.v0` is generated, copied to `/tmp`, indexed in `reasoning_trace.json`, and exposed through Observatory custody. It checks artifacts, schemas, custody, health, hygiene, and caller-policy consistency without judging advice quality. |
-| R8: Calibrated Subjective Judges | Not started | Correctly deferred. Generic LLM judges may punish useful friction. PR30 supplies a six-run human-reviewed seed, PR31 defines actionable delta, PR32 supplies seed adversarial fixtures, PR33 broadens the human-reviewed corpus batch, PR34 designs values/priorities review context, and PR35 keeps live-output hygiene honest. The next step is PR36 risk-mode behavior planning, not judge automation. |
+| R8: Calibrated Subjective Judges | Not started | Correctly deferred. Generic LLM judges may punish useful friction. PR30 supplies a six-run human-reviewed seed, PR31 defines actionable delta, PR32 supplies seed adversarial fixtures, PR33 broadens the human-reviewed corpus batch, PR34 designs values/priorities review context, PR35 keeps live-output hygiene honest, and PR36 defines risk-mode reliance policy. The next step is PR37 risk-mode fixtures, not judge automation. |
 | R9: Archive Corpus And Stability Workflow | Corpus/readiness/extraction/semantic surveys done | PR13 adds deterministic JSONL corpus + manifest export around `agent_result.json`, `evaluation.json`, capture adequacy, run health, provider-boundary status, usage/model metadata, artifact availability, and optional control-plane summaries. PR15 adds deterministic review-readiness tiers and batch recommendations. Later work added extraction adequacy corpus export, semantic coverage corpus export, and local findings analyzers. |
 | R10: Observatory Parity | Done for current custody loop | Archive parity audit, selected archived sidecar APIs, selected-run custody UI, active-run custody sidecar parity, and evaluation custody parity are landed. Remaining known gap: selected archived dashboard render/readback can still hang after the full case payload resolves. |
 | R11: Human Capability Surface | Not started | Later: optional "what to learn from this audit" surface. |

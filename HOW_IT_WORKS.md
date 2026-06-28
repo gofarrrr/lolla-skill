@@ -66,10 +66,12 @@ A normal run produces:
 - A deterministic `evaluation.json` receipt for artifact/schema/custody/health
   consistency. It includes capture-adequacy checks and does not score advice
   quality.
-- A metadata-only `risk_mode` recorded from `LOLLA_AUDIT_MODE` (`quick`,
+- A metadata-first `risk_mode` recorded from `LOLLA_AUDIT_MODE` (`quick`,
   `standard`, `deep`, `high_stakes`, or `stability`). The default is
   `standard`; these modes do not yet change prompts, cost, Step 7 behavior,
-  replay, or high-stakes policy.
+  replay, or high-stakes domain policy. The agent-result contract already
+  keeps clean `high_stakes` runs conservative with `caller_action:
+  ask_user_first`.
 - A local Observatory page with the full breakdown, traces, cards, costs, health checks, and archived artifacts.
 - A local `reasoning_trace.json` custody manifest in the archived run folder, with artifact hashes, health, capture adequacy, optional control-plane references, usage, reasoning-lens IDs, model-call telemetry, and trace-adequacy status for replay without duplicating raw transcript text.
 
@@ -133,6 +135,7 @@ The detailed docs are split so agents and humans do not have to load one giant f
 | [Human Review Corpus Batch](docs/evals/human-review-corpus-batch-v0.md) | PR33's broader human/product review batch: 12 counted positives, one partial boundary record, one degraded exclusion, aggregate actionable-delta counts, and the PR34 handoff. |
 | [User Values / Priorities Signal](docs/conversation-understanding/user-values-priorities-signal-v0.md) | PR34's design-only surface for representing values, priorities, tradeoffs, obligations, and non-negotiables without adding extraction, memory, runtime calls, or judging. |
 | [Live Output Hygiene Decision](docs/evals/live-output-hygiene-decision-v0.md) | PR35's design-only policy for `live_output_health`: keep `not_checked` honest by default, define a future trusted-transcript path to `clean`, and keep live hygiene separate from answer quality. |
+| [Risk Mode Behavior Plan](docs/evals/risk-mode-behavior-plan-v0.md) | PR36's design-only policy for `quick`, `standard`, `deep`, `high_stakes`, and `stability`: risk changes review/reliance burden, not answer quality or domain authority. |
 | [Human Review Workflow](docs/evals/human-review-workflow.md) | The v0 human-review process and failure taxonomy for labeling exported archive-corpus records before any subjective judge is attempted. |
 | [Problem and Thesis](docs/how-it-works/problem-and-thesis.md) | Why Lolla exists: borrowed certainty, sycophancy, structural pressure, and the Munger tendency ontology. |
 | [Knowledge Substrate](docs/how-it-works/knowledge-substrate.md) | The 222 mental models, curation waves, graph, embeddings, V60 records, and bundled data files. |
@@ -159,3 +162,4 @@ The detailed docs are split so agents and humans do not have to load one giant f
 - PR33 adds a broader local human-review corpus batch. Twelve full-modern records count as positive answer-level eval evidence, one older partial record is `needs_followup`, and one degraded record is `exclude_from_eval`; it still does not create a judge, score, automatic labeler, or runtime integration.
 - PR34 designs the first-class user-values/priorities signal. It defines boundaries, schema shape, grounding, confidence, reviewer use, and implementation gates, but does not add extraction, a report builder, runtime behavior, memory, automatic labels, or a judge.
 - PR35 documents live-output hygiene policy. `live_output_health: not_checked` remains the honest default for normal runs; `clean` requires a future trusted complete transcript path, and live-output hygiene does not score answer quality or relax `caller_action`.
+- PR36 documents risk-mode behavior policy. Existing `risk_mode` names remain the vocabulary; risk raises review and reliance strictness, but it does not approve actions, change runtime behavior, make Lolla a domain authority, or relax `caller_action`.

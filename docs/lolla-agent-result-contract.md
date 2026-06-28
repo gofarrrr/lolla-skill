@@ -44,9 +44,10 @@ The runtime reads `LOLLA_AUDIT_MODE`, defaults missing or empty values to
 
 The normalized value is persisted as `risk_mode` in `result.json`,
 `agent_result.json`, `reasoning_trace.json`, and archive metadata. Invalid
-explicit values fail before model calls. Current modes are metadata only: they
+explicit values fail before model calls. Current modes are metadata-first: they
 do not change prompts, cost, Step 7 behavior, replay/comparison behavior, or
-high-stakes domain policy yet.
+high-stakes domain policy yet. The `caller_action` contract already keeps
+otherwise clean `high_stakes` runs conservative with `ask_user_first`.
 
 ## Schema
 
@@ -141,10 +142,10 @@ Core fields:
     "reasoning_trace": "present"
   },
   "artifact_paths": {
-    "archive": "/Users/example/.local/share/lolla/runs/founder-pivot/20260624T120000Z_example",
-    "agent_result": "/Users/example/.local/share/lolla/runs/founder-pivot/20260624T120000Z_example/agent_result.json",
-    "memo": "/Users/example/.local/share/lolla/runs/founder-pivot/20260624T120000Z_example/memo.md",
-    "reasoning_trace": "/Users/example/.local/share/lolla/runs/founder-pivot/20260624T120000Z_example/reasoning_trace.json"
+    "archive": "<archive_root>/founder-pivot/20260624T120000Z_example",
+    "agent_result": "<archive_root>/founder-pivot/20260624T120000Z_example/agent_result.json",
+    "memo": "<archive_root>/founder-pivot/20260624T120000Z_example/memo.md",
+    "reasoning_trace": "<archive_root>/founder-pivot/20260624T120000Z_example/reasoning_trace.json"
   },
   "usage": {
     "estimated_total_cost_usd": 0.42,
@@ -256,8 +257,10 @@ Current caller-action mappings:
 
 ## Current Limitations
 
-Risk mode is currently metadata only and defaults to `standard` unless a future
-runtime path writes a mode field into `result.json`.
+Risk mode is currently metadata-first and defaults to `standard` unless a
+future runtime path writes a mode field into `result.json`. PR36 documents the
+review/reliance policy, but does not add runtime enforcement, prompt changes,
+or domain authority.
 
 The control-plane wrapper preserves metadata and maps Lolla's result for other
 systems. It does not auto-trigger Lolla, enforce approvals, call tools, replay
