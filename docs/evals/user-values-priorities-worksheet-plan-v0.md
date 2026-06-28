@@ -308,6 +308,17 @@ user-values-priorities-worksheet-fixtures-v0.json
 The recommended next slice after PR50 is human/product fixture review, not a
 blank exporter or extraction code.
 
+PR51 now adds that docs/eval-only fixture review:
+
+```text
+user-values-priorities-worksheet-fixture-review-v0.md
+../../reviews/human/user-values-priorities-worksheet-fixture-review-v0/review.json
+```
+
+It finds all six fixtures understandable and useful for human review. The
+recommended next slice after PR51 is blank worksheet/export structure, not
+extraction, runtime behavior, automatic labels, or judging.
+
 ## Stop Condition
 
 PR49 stops at documentation and validation. It does not start PR50.

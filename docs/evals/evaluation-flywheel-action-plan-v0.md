@@ -951,7 +951,7 @@ Status: completed as a docs-only current-state handoff.
 Goal:
 
 Create a compact first-read note so a fresh session can understand what Lolla is,
-what PR30-PR44 built, what evidence is still missing, and what must not be built
+what PR30-PR51 built, what evidence is still missing, and what must not be built
 until explicit approval gates.
 
 Output:
@@ -961,7 +961,7 @@ Output:
 Current result:
 
 - summarizes Lolla as probabilistic reasoning inside deterministic custody;
-- records the PR30-PR44 evaluation/risk-mode visibility chain;
+- records the PR30-PR51 evaluation/risk-mode/values visibility chain;
 - records the current real corpus evidence: 80 records, all `risk_mode:
   standard`, with `risk_mode_reliance_present_counts` of `false: 80` and
   `true: 0`;
@@ -1157,12 +1157,49 @@ Current result:
   real high-stakes archive evidence or changing `risk_mode`, `caller_action`,
   review-corpus export, evaluation logic, `safe_for_agent_use`, or runtime
   behavior;
-- recommends PR51 as a human/product fixture review, not code.
+- handed off to PR51 for docs/eval-only human/product review.
 
 Stop point:
 
-- PR50 stops after docs/JSON fixtures and validation.
-- Do not implement PR51, a blank worksheet exporter, extraction, runtime
+- PR50 stopped after docs/JSON fixtures and validation.
+- PR50 did not implement a blank worksheet exporter, extraction, runtime
+  integration, `conversation_understanding_ir.v0`, automatic labels, or a judge.
+
+### PR51: User Values / Priorities Worksheet Fixture Review v0
+
+Maps to: PRD R6, R8, conversation-understanding roadmap.
+
+Status: completed as a docs/eval-only fixture review.
+
+Goal:
+
+Review the six PR50 user-values/priorities worksheet fixtures for clarity,
+overclaim risk, stakeholder-obligation handling, conflict preservation, PR31
+usefulness, high-stakes conservatism, and readiness for later blank
+worksheet/export structure.
+
+Output:
+
+- [User Values / Priorities Worksheet Fixture Review v0](user-values-priorities-worksheet-fixture-review-v0.md);
+- [review.json](../../reviews/human/user-values-priorities-worksheet-fixture-review-v0/review.json).
+
+Current result:
+
+- reviews all six PR50 fixtures;
+- marks all six as `pass`;
+- records `clear: 6` worksheet clarity;
+- records `preserved: 6` stakeholder-obligation handling;
+- records `preserved: 6` conflict preservation;
+- records `yes: 6` overclaim control;
+- records `useful: 6` PR31 usefulness;
+- records `yes: 1` and `not_applicable: 5` high-stakes conservatism;
+- records `none: 6` primary issues;
+- recommends PR52 as narrow blank worksheet/export structure, not extraction.
+
+Stop point:
+
+- PR51 stops after docs/JSON review and validation.
+- Do not implement PR52, a blank worksheet exporter, extraction, runtime
   integration, `conversation_understanding_ir.v0`, automatic labels, or a judge
   in this slice.
 

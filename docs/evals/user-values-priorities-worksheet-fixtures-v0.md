@@ -154,16 +154,15 @@ Each fixture includes:
 The custody flags are deliberately repetitive. They make the privacy boundary
 machine-checkable before any future exporter exists.
 
-## Recommended PR51
+## PR51 Fixture Review
 
-Recommended next slice:
+Completed follow-on slice:
 
 ```text
 PR51 User Values / Priorities Worksheet Fixture Review v0
 ```
 
-PR51 should stay docs/eval-only. A human/product reviewer should inspect the
-six fixtures and answer:
+PR51 stays docs/eval-only. It reviews the six fixtures and answers:
 
 - Are the value items understandable?
 - Are inferred priorities too confident?
@@ -173,10 +172,26 @@ six fixtures and answer:
 - Does the high-stakes-like fixture keep reliance conservative without changing
   runtime policy?
 
-Do not jump directly to blank worksheet export. A blank exporter would make the
-shape look more settled than it is. The next safer move is to review the
-fixture pack, patch the worksheet shape if needed, and only then decide whether
-exporter or validator code is justified.
+Review artifacts:
+
+```text
+user-values-priorities-worksheet-fixture-review-v0.md
+../../reviews/human/user-values-priorities-worksheet-fixture-review-v0/review.json
+```
+
+Result:
+
+- all six fixtures pass;
+- all six are clear enough as human-review examples;
+- stakeholder obligations and unresolved conflicts are preserved;
+- inferred values avoid overclaim;
+- the PR31 usefulness connection is strong enough for v0;
+- the high-stakes-like clinic fixture remains conservative.
+
+The recommended next slice is PR52 User Values / Priorities Blank Worksheet
+Export v0. That slice should produce blank deterministic structure only. It
+should not extract values from transcripts, populate labels, change runtime
+behavior, call models, approve high-stakes use, or add a judge.
 
 ## Review Receipt
 
@@ -196,4 +211,6 @@ exporter or validator code is justified.
 - No judge or answer-quality score added.
 - No automatic labels added.
 - No high-stakes runs started.
-- PR51 should be fixture review, not code.
+- PR51 reviewed the fixtures.
+- PR52 should be blank worksheet/export structure, not extraction or runtime
+  code.

@@ -1400,7 +1400,7 @@ Outcome:
 Latest eval slice:
 
 ```text
-PR50 User Values / Priorities Worksheet Fixture Pack v0
+PR51 User Values / Priorities Worksheet Fixture Review v0
 ```
 
 PR43 now completes the fixture-backed review-surface validation. A read-only
@@ -1475,11 +1475,11 @@ PR40's contract-lock tests, PR41's evaluation-artifact clarity check, PR42's
 review-surface integration, PR43's reliance-surface review batch, PR44's
 manifest counts, PR45's anti-drift handoff, PR46's seed plan, PR47's fixtures,
 PR48's evidence-readiness analyzer, PR49's values/priorities worksheet plan,
-and PR50's paraphrase-only worksheet fixtures now exist. The next step is still
-explicit approval, not automatic runtime work: either approve a future
-high-stakes evidence seed under the PR46/PR48 gates, or continue the separate
-safe values lane with human/product fixture review before any exporter,
-extraction, memory, or runtime integration.
+PR50's paraphrase-only worksheet fixtures, and PR51's worksheet fixture review
+now exist. The next step is still explicit approval, not automatic runtime
+work: either approve a future high-stakes evidence seed under the PR46/PR48
+gates, or continue the separate safe values lane with blank worksheet/export
+structure before any populated extraction, memory, or runtime integration.
 
 ## Sources
 

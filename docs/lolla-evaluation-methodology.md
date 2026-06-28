@@ -622,7 +622,7 @@ automatic labels, domain protocols, or a judge.
 Latest eval slice:
 
 ```text
-PR50 User Values / Priorities Worksheet Fixture Pack v0
+PR51 User Values / Priorities Worksheet Fixture Review v0
 ```
 
 PR40 proves current high-stakes reliance behavior remains conservative in
@@ -657,7 +657,7 @@ PR45 now records the current-state handoff:
 docs/evals/current-state-anti-drift-handoff-v0.md
 ```
 
-It is a docs-only anti-drift note. It summarizes the PR30-PR44 evaluation chain,
+It is a docs-only anti-drift note. It summarizes the PR30-PR51 evaluation chain,
 records that the current 80-record real corpus is all `risk_mode: standard` with
 zero reliance-present records, and names the next approval gates before
 high-stakes runs, user-values worksheet pilots, or trusted live-output
@@ -731,8 +731,22 @@ consulting pre-sale scoped pilot, product pivot capacity gate, and clinic
 controls high-risk deployment. The pack tests whether humans can apply the
 worksheet without copying raw content, extracting values automatically, changing
 runtime behavior, populating labels, approving high-stakes use, or adding a
-judge. The recommended next slice is human/product fixture review before any
+judge. The recommended next slice was human/product fixture review before any
 exporter or extraction work.
+
+PR51 now reviews that fixture pack:
+
+```text
+docs/evals/user-values-priorities-worksheet-fixture-review-v0.md
+reviews/human/user-values-priorities-worksheet-fixture-review-v0/review.json
+```
+
+It is docs/eval-only. The review covers all six PR50 fixtures and marks all six
+as pass examples for human review. It records clear worksheet readability,
+preserved stakeholder obligations, preserved conflicts, controlled inference,
+useful PR31 connections, and conservative high-stakes-like handling. The
+recommended next slice is blank worksheet/export structure, not extraction,
+automatic labels, runtime behavior, or a judge.
 
 Do not populate `lolla.human_review.v0` from synthetic reviewers. Do not treat
 these human labels as judge calibration yet. They define product taste and

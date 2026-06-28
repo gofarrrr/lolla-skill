@@ -1,0 +1,156 @@
+{
+  "schema_version": "lolla.user_values_priorities_worksheet_fixture_review.v0",
+  "source": {
+    "local_only": true,
+    "review_type": "human_product_review",
+    "paraphrase_only": true,
+    "raw_transcript_included": false,
+    "raw_memo_included": false,
+    "raw_revised_answer_included": false,
+    "raw_model_message_content_included": false,
+    "provider_reasoning_details_included": false,
+    "private_reasoning_included": false,
+    "local_absolute_paths_included": false,
+    "model_calls": 0,
+    "llm_judge_used": false
+  },
+  "fixture_source": "docs/evals/user-values-priorities-worksheet-fixtures-v0.json",
+  "fixture_count": 6,
+  "reviewed_fixture_count": 6,
+  "aggregate": {
+    "review_status_counts": {
+      "pass": 6,
+      "revise": 0,
+      "exclude": 0
+    },
+    "worksheet_clarity_counts": {
+      "clear": 6,
+      "mostly_clear": 0,
+      "unclear": 0
+    },
+    "stakeholder_obligation_handling_counts": {
+      "preserved": 6,
+      "partly_preserved": 0,
+      "flattened": 0,
+      "not_applicable": 0
+    },
+    "conflict_preservation_counts": {
+      "preserved": 6,
+      "partly_preserved": 0,
+      "flattened": 0,
+      "unclear": 0
+    },
+    "overclaim_control_counts": {
+      "yes": 6,
+      "partly": 0,
+      "no": 0
+    },
+    "pr31_usefulness_counts": {
+      "useful": 6,
+      "partly_useful": 0,
+      "not_useful": 0
+    },
+    "high_stakes_conservatism_counts": {
+      "yes": 1,
+      "partly": 0,
+      "no": 0,
+      "not_applicable": 5
+    },
+    "primary_issue_counts": {
+      "none": 6,
+      "unclear_value_boundary": 0,
+      "overclaimed_inference": 0,
+      "stakeholder_obligation_flattened": 0,
+      "conflict_flattened": 0,
+      "weak_pr31_connection": 0,
+      "high_stakes_overconfidence": 0,
+      "custody_or_privacy_issue": 0,
+      "other": 0
+    }
+  },
+  "reviews": [
+    {
+      "fixture_id": "uvp_v0_001_cofounder_authority_transfer",
+      "review_status": "pass",
+      "worksheet_clarity": "clear",
+      "stakeholder_obligation_handling": "preserved",
+      "conflict_preservation": "preserved",
+      "overclaim_control": "yes",
+      "pr31_usefulness": "useful",
+      "high_stakes_conservatism": "not_applicable",
+      "primary_issue": "none",
+      "notes": "The fixture makes the cooperation, legitimacy, fairness, and authority-transfer tensions legible while keeping the user's motives inferential instead of certain.",
+      "recommended_change": "none"
+    },
+    {
+      "fixture_id": "uvp_v0_002_career_family_written_terms",
+      "review_status": "pass",
+      "worksheet_clarity": "clear",
+      "stakeholder_obligation_handling": "preserved",
+      "conflict_preservation": "preserved",
+      "overclaim_control": "yes",
+      "pr31_usefulness": "useful",
+      "high_stakes_conservatism": "not_applicable",
+      "primary_issue": "none",
+      "notes": "The fixture separates ambition, identity pressure, household capacity, spouse impact, reversibility, and written terms without treating emotional salience as a confirmed non-negotiable.",
+      "recommended_change": "none"
+    },
+    {
+      "fixture_id": "uvp_v0_003_enterprise_beta_buyer_proof",
+      "review_status": "pass",
+      "worksheet_clarity": "clear",
+      "stakeholder_obligation_handling": "preserved",
+      "conflict_preservation": "preserved",
+      "overclaim_control": "yes",
+      "pr31_usefulness": "useful",
+      "high_stakes_conservatism": "not_applicable",
+      "primary_issue": "none",
+      "notes": "The fixture keeps learning speed, credibility, customer trust, revenue momentum, and reliability obligations distinct from enterprise status theater.",
+      "recommended_change": "none"
+    },
+    {
+      "fixture_id": "uvp_v0_004_consulting_presale_scoped_pilot",
+      "review_status": "pass",
+      "worksheet_clarity": "clear",
+      "stakeholder_obligation_handling": "preserved",
+      "conflict_preservation": "preserved",
+      "overclaim_control": "yes",
+      "pr31_usefulness": "useful",
+      "high_stakes_conservatism": "not_applicable",
+      "primary_issue": "none",
+      "notes": "The fixture preserves the cash, credibility, client-trust, and scope-discipline tradeoff while making the scoped-pilot path reviewable rather than automatic.",
+      "recommended_change": "none"
+    },
+    {
+      "fixture_id": "uvp_v0_005_product_pivot_capacity_gate",
+      "review_status": "pass",
+      "worksheet_clarity": "clear",
+      "stakeholder_obligation_handling": "preserved",
+      "conflict_preservation": "preserved",
+      "overclaim_control": "yes",
+      "pr31_usefulness": "useful",
+      "high_stakes_conservatism": "not_applicable",
+      "primary_issue": "none",
+      "notes": "The fixture makes market proof, current obligations, capacity, and commitment risk visible without laundering operational constraints into stable personal values.",
+      "recommended_change": "none"
+    },
+    {
+      "fixture_id": "uvp_v0_006_clinic_controls_high_risk_deployment",
+      "review_status": "pass",
+      "worksheet_clarity": "clear",
+      "stakeholder_obligation_handling": "preserved",
+      "conflict_preservation": "preserved",
+      "overclaim_control": "yes",
+      "pr31_usefulness": "useful",
+      "high_stakes_conservatism": "yes",
+      "primary_issue": "none",
+      "notes": "The fixture keeps patient or client safety, adoption, compliance, and operator accountability visible, and it treats unresolved control quality as a reason for more conservative reliance.",
+      "recommended_change": "none"
+    }
+  ],
+  "decision": {
+    "fixture_pack_ready_for_next_step": true,
+    "recommended_next_slice": "user_values_priorities_blank_worksheet_export_v0",
+    "reason": "All six fixtures are clear enough for a narrow blank worksheet/export design. The next slice should still be deterministic structure only: no automatic extraction, no populated labels, no runtime behavior, and no judge."
+  }
+}

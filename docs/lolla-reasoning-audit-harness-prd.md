@@ -341,7 +341,7 @@ status. It keeps the existing review-corpus manifest schema name and does not
 change per-record `risk_mode_reliance`, runtime behavior, caller action, judge
 behavior, or archive contents.
 
-PR45 now records the current-state anti-drift handoff. It summarizes the PR30-PR44
+PR45 now records the current-state anti-drift handoff. It summarizes the PR30-PR51
 chain, records that the current 80-record real review corpus is all `standard`
 with zero high-stakes reliance-present records, and names the approval gates
 before real high-stakes evidence creation, values worksheet pilots, or trusted
@@ -366,6 +366,11 @@ PR50 now adds paraphrase-only worksheet fixtures for that surface. It tests
 whether the worksheet is understandable through human-review examples before
 any exporter, extraction, memory, runtime behavior, automatic labels, or judge
 work.
+
+PR51 now reviews those worksheet fixtures. It marks all six PR50 fixtures as
+pass examples for human review, preserves the human-owned boundary, and
+recommends blank worksheet/export structure before any extraction, runtime
+behavior, automatic labels, or judge work.
 
 This roadmap should build on that. It should not restart the architecture.
 
@@ -512,6 +517,7 @@ Current implementation:
   behavior.
 - PR50 adds paraphrase-only worksheet fixtures without changing runtime
   behavior.
+- PR51 reviews those worksheet fixtures without changing runtime behavior.
 
 Future behavior:
 
