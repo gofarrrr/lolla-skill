@@ -1008,7 +1008,8 @@ fixtures. PR33 now expands the human review batch beyond the six curated
 complex cases. PR34 now designs the user-values/priorities signal without
 implementing extraction. PR35 now decides live-output hygiene policy without
 changing runtime capture. PR36 now decides risk-mode behavior policy without
-changing runtime behavior. The next slice is PR37 Risk Mode Fixture Matrix v0.
+changing runtime behavior. PR37 now turns that policy into fixture examples
+without enforcement. The next slice is PR38 Risk Mode Fixture Review v0.
 
 ### PR30: Complex Baseline Human Review v0
 
@@ -1241,7 +1242,34 @@ Next:
 PR37 Risk Mode Fixture Matrix v0
 ```
 
-### PR37+ Or Later: Decision-Aware Capture And Runtime Integration
+### PR37: Risk Mode Fixture Matrix v0
+
+Status: completed as
+[risk-mode-fixture-matrix-v0.md](../evals/risk-mode-fixture-matrix-v0.md).
+
+Goal: turn PR36's risk-mode policy into paraphrase-only fixtures before
+runtime behavior, caller-action changes, domain protocols, or judges.
+
+Outcome:
+
+- eleven fixtures cover `quick`, `standard`, `deep`, `high_stakes`,
+  `stability`, and excluded/domain-review routing;
+- each fixture names expected answer-level review, run-envelope read,
+  `safe_for_agent_use`, `caller_action` stance, human/domain review
+  requirement, invalid behavior, and custody flags;
+- fixtures test clean-artifact overtrust, live-output overtrust, high-stakes
+  domain-assurance drift, quick-mode overclaim, stability-as-truth drift,
+  unsupported domain claims, and `deep`-mode overconfidence;
+- no runtime enforcement, prompt, archive, evaluation, agent-result,
+  Observatory, or `SKILL.md` changes are approved.
+
+Next:
+
+```text
+PR38 Risk Mode Fixture Review v0
+```
+
+### PR38+ Or Later: Decision-Aware Capture And Runtime Integration
 
 Goal: only after offline evidence, use the IR to improve capture or audit input.
 
@@ -1285,9 +1313,10 @@ thing has changed. Extraction adequacy, semantic coverage, PR30's six-run human
 review seed, PR31's actionable-delta rubric, PR32's adversarial pair fixtures,
 PR33's broader human-review corpus batch, and PR34's user-values/priorities
 design, PR35's live-output hygiene decision, and PR36's risk-mode behavior
-policy now exist. The next step is PR37 Risk Mode Fixture Matrix v0: turn the
-risk policy into paraphrase-only fixtures before adding judges, runtime
-specialist calls, a new IR, graph memory, embeddings, or prompt changes.
+policy, and PR37's risk-mode fixture matrix now exist. The next step is PR38
+Risk Mode Fixture Review v0: sanity-check the fixtures before adding judges,
+runtime specialist calls, a new IR, graph memory, embeddings, prompt changes,
+or risk-mode enforcement.
 
 ## Sources
 

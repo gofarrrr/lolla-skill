@@ -1,0 +1,303 @@
+{
+  "schema_version": "lolla.risk_mode_fixture_matrix.v0",
+  "status": "seed_fixtures",
+  "date": "2026-06-28",
+  "purpose": "Paraphrase-only fixtures for testing PR36 risk-mode review and reliance policy before runtime enforcement or judges.",
+  "canonical_risk_modes": [
+    "quick",
+    "standard",
+    "deep",
+    "high_stakes",
+    "stability"
+  ],
+  "source_policy_refs": [
+    "docs/evals/risk-mode-behavior-plan-v0.md",
+    "docs/evals/live-output-hygiene-decision-v0.md",
+    "docs/lolla-agent-result-contract.md",
+    "docs/evals/evaluation-flywheel-action-plan-v0.md"
+  ],
+  "custody_policy": {
+    "raw_transcript_included": false,
+    "raw_memo_included": false,
+    "raw_revised_answer_included": false,
+    "raw_model_or_provider_content_included": false,
+    "private_reasoning_included": false,
+    "local_absolute_paths_included": false
+  },
+  "fixtures": [
+    {
+      "fixture_id": "risk_standard_clean_not_checked_v0",
+      "risk_mode": "standard",
+      "domain_or_context": "ordinary strategic decision with clean saved artifacts",
+      "artifact_condition": "required saved product and custody artifacts are present and product-clean",
+      "live_output_condition": "live_output_health: not_checked",
+      "answer_level_expected": "answer can pass or fail on answer merits; not_checked is not an answer-level failure by default",
+      "primary_failure_mode_expected": "none",
+      "run_envelope_expected": "inspect_first or warn for live-output caveat while saved artifacts remain reviewable",
+      "safe_for_agent_use_expected": "with_human_review unless a human reviewer explicitly labels yes",
+      "caller_action_expected": "existing policy only; clean standard run may be use_revised_answer, but that is not human approval",
+      "human_review_requirement": "answer-level review may proceed; note live-output caveat",
+      "domain_review_requirement": "not required by fixture",
+      "invalid_behavior": "treating clean saved artifacts plus not_checked live output as automatic safe_for_agent_use yes",
+      "why": "PR35 separates saved answer review from live-output proof, and PR36 keeps reliance human-owned.",
+      "source_policy_refs": [
+        "docs/evals/risk-mode-behavior-plan-v0.md",
+        "docs/evals/live-output-hygiene-decision-v0.md"
+      ],
+      "custody_flags": {
+        "raw_text_included": false,
+        "paraphrase_only": true,
+        "fixture_not_runtime_enforcement": true
+      }
+    },
+    {
+      "fixture_id": "risk_standard_clean_trusted_live_v0",
+      "risk_mode": "standard",
+      "domain_or_context": "ordinary strategic decision with complete trusted live transcript",
+      "artifact_condition": "required saved product and custody artifacts are present and product-clean",
+      "live_output_condition": "trusted live transcript is complete, synchronized, and scanned clean",
+      "answer_level_expected": "answer can pass or fail on answer merits",
+      "primary_failure_mode_expected": "none",
+      "run_envelope_expected": "live-output caveat can clear if all other deterministic checks pass",
+      "safe_for_agent_use_expected": "still a human label; no automatic human approval",
+      "caller_action_expected": "existing policy only; live-output cleanliness does not relax caller_action",
+      "human_review_requirement": "human review may rely on cleaner custody surface but must still judge answer/reliance separately",
+      "domain_review_requirement": "not required by fixture",
+      "invalid_behavior": "using trusted live-output cleanliness as a substitute for answer-level review or human approval",
+      "why": "PR35 allows a bounded path to live_output_health clean but rejects caller-action relaxation.",
+      "source_policy_refs": [
+        "docs/evals/live-output-hygiene-decision-v0.md",
+        "docs/evals/risk-mode-behavior-plan-v0.md"
+      ],
+      "custody_flags": {
+        "raw_text_included": false,
+        "paraphrase_only": true,
+        "fixture_not_runtime_enforcement": true
+      }
+    },
+    {
+      "fixture_id": "risk_high_stakes_clean_not_checked_v0",
+      "risk_mode": "high_stakes",
+      "domain_or_context": "high-consequence business, employment, clinical, legal, financial, safety, or family-adjacent decision",
+      "artifact_condition": "required saved product and custody artifacts are present and product-clean",
+      "live_output_condition": "live_output_health: not_checked",
+      "answer_level_expected": "answer can pass if it adds real action, evidence, threshold, stop-rule, or expert-question improvements",
+      "primary_failure_mode_expected": "none",
+      "run_envelope_expected": "inspect_first for reliance because high stakes plus unproven live output is not a clean product-surface example",
+      "safe_for_agent_use_expected": "with_human_review or no; never automatic yes",
+      "caller_action_expected": "conservative stance; current contract uses ask_user_first for otherwise clean high_stakes runs",
+      "human_review_requirement": "required before reliance",
+      "domain_review_requirement": "required when the decision depends on domain-specific correctness",
+      "invalid_behavior": "letting clean saved artifacts override high-stakes reliance requirements",
+      "why": "PR36 says risk mode raises reliance burden and does not approve action.",
+      "source_policy_refs": [
+        "docs/evals/risk-mode-behavior-plan-v0.md",
+        "docs/lolla-agent-result-contract.md"
+      ],
+      "custody_flags": {
+        "raw_text_included": false,
+        "paraphrase_only": true,
+        "fixture_not_runtime_enforcement": true
+      }
+    },
+    {
+      "fixture_id": "risk_high_stakes_clean_trusted_live_v0",
+      "risk_mode": "high_stakes",
+      "domain_or_context": "high-stakes decision with trusted clean live-output evidence",
+      "artifact_condition": "required saved product and custody artifacts are present and product-clean",
+      "live_output_condition": "trusted live transcript is complete, synchronized, and scanned clean",
+      "answer_level_expected": "answer can pass if it improves action quality and preserves appropriate uncertainty",
+      "primary_failure_mode_expected": "none",
+      "run_envelope_expected": "live-output caveat can clear, but risk-sensitive reliance remains inspect_first",
+      "safe_for_agent_use_expected": "with_human_review or no unless explicit human/domain ratification supports a narrower yes",
+      "caller_action_expected": "conservative stance remains; current high_stakes behavior is ask_user_first, not automatic use",
+      "human_review_requirement": "required",
+      "domain_review_requirement": "required when domain correctness is material",
+      "invalid_behavior": "treating live-output cleanliness as domain approval",
+      "why": "PR35 clears only live-output proof; PR36 keeps high-stakes reliance separate from answer quality and domain authority.",
+      "source_policy_refs": [
+        "docs/evals/live-output-hygiene-decision-v0.md",
+        "docs/evals/risk-mode-behavior-plan-v0.md"
+      ],
+      "custody_flags": {
+        "raw_text_included": false,
+        "paraphrase_only": true,
+        "fixture_not_runtime_enforcement": true
+      }
+    },
+    {
+      "fixture_id": "risk_high_stakes_artifact_degraded_v0",
+      "risk_mode": "high_stakes",
+      "domain_or_context": "high-stakes decision with missing, degraded, or unsafe custody artifacts",
+      "artifact_condition": "capture critical, required artifact missing, product output unsafe, provider-boundary contamination, or similar degradation",
+      "live_output_condition": "any live-output state; live cleanliness does not rescue degraded saved artifacts",
+      "answer_level_expected": "answer may contain useful ideas but should not be treated as reliance-ready",
+      "primary_failure_mode_expected": "artifact_custody_failure",
+      "run_envelope_expected": "degraded for reliance; require rerun, backfill where legitimate, or explicit review",
+      "safe_for_agent_use_expected": "no",
+      "caller_action_expected": "do_not_use_run_degraded or equivalent existing conservative policy",
+      "human_review_requirement": "required to decide whether any limited learning can be salvaged",
+      "domain_review_requirement": "required before real-world action if domain correctness matters",
+      "invalid_behavior": "using clean live output or fluent prose to rescue degraded saved custody",
+      "why": "PR35 and PR36 both preserve custody failures as reliance blockers.",
+      "source_policy_refs": [
+        "docs/evals/risk-mode-behavior-plan-v0.md",
+        "docs/evals/live-output-hygiene-decision-v0.md"
+      ],
+      "custody_flags": {
+        "raw_text_included": false,
+        "paraphrase_only": true,
+        "fixture_not_runtime_enforcement": true
+      }
+    },
+    {
+      "fixture_id": "risk_high_stakes_unsupported_claim_v0",
+      "risk_mode": "high_stakes",
+      "domain_or_context": "high-stakes run where the revised answer introduces unsupported domain-specific legal, clinical, financial, safety, or crisis detail",
+      "artifact_condition": "artifacts may be present and product-clean, but answer content contains unsupported new domain claim",
+      "live_output_condition": "not material to primary failure unless also unsafe",
+      "answer_level_expected": "fail or needs_followup depending severity",
+      "primary_failure_mode_expected": "unsupported_new_claim",
+      "run_envelope_expected": "custody may be clean while answer-level review fails or requires follow-up",
+      "safe_for_agent_use_expected": "no",
+      "caller_action_expected": "conservative stance; unsupported_high_stakes_domain is the relevant enum if future policy selects it, but PR37 does not implement selection",
+      "human_review_requirement": "required",
+      "domain_review_requirement": "required before relying on the claim",
+      "invalid_behavior": "preferring fluent unsupported domain detail because it sounds decisive",
+      "why": "High-stakes mode is stricter reasoning hygiene, not domain assurance.",
+      "source_policy_refs": [
+        "docs/evals/risk-mode-behavior-plan-v0.md",
+        "docs/evals/lolla-failure-taxonomy.md",
+        "docs/lolla-agent-result-contract.md"
+      ],
+      "custody_flags": {
+        "raw_text_included": false,
+        "paraphrase_only": true,
+        "fixture_not_runtime_enforcement": true
+      }
+    },
+    {
+      "fixture_id": "risk_standard_saved_clean_live_leak_v0",
+      "risk_mode": "standard",
+      "domain_or_context": "standard run where saved revised answer and memo are clean but live narration leaks machinery language",
+      "artifact_condition": "saved product artifacts are present and clean",
+      "live_output_condition": "live transcript leaks machinery or internal process language",
+      "answer_level_expected": "may pass for saved artifacts if the saved answer is otherwise good",
+      "primary_failure_mode_expected": "none for saved-answer review; private_public_leak for live-output surface review",
+      "run_envelope_expected": "live-output hygiene fails or warns; not a clean product-surface example",
+      "safe_for_agent_use_expected": "with_human_review or no depending severity and review surface",
+      "caller_action_expected": "do not relax; live-output issue keeps reliance conservative",
+      "human_review_requirement": "required to separate saved-answer quality from live-output surface failure",
+      "domain_review_requirement": "not required by fixture",
+      "invalid_behavior": "treating the live leak as irrelevant because saved artifacts are clean, or treating it as automatic saved-answer failure",
+      "why": "PR35 separates live-output hygiene from answer-level review while keeping product-surface leaks material.",
+      "source_policy_refs": [
+        "docs/evals/live-output-hygiene-decision-v0.md",
+        "docs/evals/risk-mode-behavior-plan-v0.md"
+      ],
+      "custody_flags": {
+        "raw_text_included": false,
+        "paraphrase_only": true,
+        "fixture_not_runtime_enforcement": true
+      }
+    },
+    {
+      "fixture_id": "risk_stability_archive_consistency_v0",
+      "risk_mode": "stability",
+      "domain_or_context": "evaluation or regression run comparing archived outputs or repeated runs",
+      "artifact_condition": "archive and corpus artifacts should be immutable, consistently indexed, and comparable",
+      "live_output_condition": "secondary unless product-surface stability is the explicit question",
+      "answer_level_expected": "no answer-quality claim from stability mode alone",
+      "primary_failure_mode_expected": "none",
+      "run_envelope_expected": "focus on deterministic artifact stability, archive/corpus consistency, hashes, manifests, and mutation avoidance",
+      "safe_for_agent_use_expected": "with_human_review or not_applicable until a human decides the specific reliance question",
+      "caller_action_expected": "no automatic use; stability is not correctness",
+      "human_review_requirement": "required if the result will be used as answer-quality evidence",
+      "domain_review_requirement": "not required unless the compared runs involve a domain-sensitive decision",
+      "invalid_behavior": "treating repeated-run agreement as proof that the answer is correct",
+      "why": "PR36 says stability mode is about comparison and repeatability, not immediate action approval.",
+      "source_policy_refs": [
+        "docs/evals/risk-mode-behavior-plan-v0.md",
+        "docs/evals/evaluation-flywheel-action-plan-v0.md"
+      ],
+      "custody_flags": {
+        "raw_text_included": false,
+        "paraphrase_only": true,
+        "fixture_not_runtime_enforcement": true
+      }
+    },
+    {
+      "fixture_id": "risk_quick_thin_scope_declared_v0",
+      "risk_mode": "quick",
+      "domain_or_context": "low-stakes exploratory check where speed and scope control matter",
+      "artifact_condition": "artifacts are sufficient for the declared thin scope",
+      "live_output_condition": "not_checked or clean, recorded honestly",
+      "answer_level_expected": "can pass only for the declared low-stakes/thin question",
+      "primary_failure_mode_expected": "none",
+      "run_envelope_expected": "should record scope limits; thinner depth must not be hidden",
+      "safe_for_agent_use_expected": "with_human_review by default; yes only for narrow low-stakes reliance with human label",
+      "caller_action_expected": "existing policy only; quick does not authorize overclaiming",
+      "human_review_requirement": "reviewer should check that scope and confidence are not overstated",
+      "domain_review_requirement": "not required by fixture; if domain risk appears, quick is the wrong mode",
+      "invalid_behavior": "using quick mode to produce broad confident advice or bypass custody expectations",
+      "why": "PR36 allows future compact behavior only if it does not lower product-surface honesty or reliance discipline.",
+      "source_policy_refs": [
+        "docs/evals/risk-mode-behavior-plan-v0.md"
+      ],
+      "custody_flags": {
+        "raw_text_included": false,
+        "paraphrase_only": true,
+        "fixture_not_runtime_enforcement": true
+      }
+    },
+    {
+      "fixture_id": "risk_excluded_crisis_out_of_scope_v0",
+      "risk_mode": "high_stakes",
+      "domain_or_context": "self-harm, crisis, or excluded domain requiring a protocol outside ordinary Lolla use",
+      "artifact_condition": "artifact cleanliness does not make ordinary Lolla reliance appropriate",
+      "live_output_condition": "any live-output state; live cleanliness does not make Lolla the handler",
+      "answer_level_expected": "normal Lolla answer-level review is insufficient; exclude or route to appropriate protocol",
+      "primary_failure_mode_expected": "unsupported_new_claim or none depending whether the answer invented domain-specific claims",
+      "run_envelope_expected": "out of ordinary Lolla reliance even if deterministic custody is clean",
+      "safe_for_agent_use_expected": "no",
+      "caller_action_expected": "do not use as ordinary revised-answer handoff; future unsupported_high_stakes_domain or external escalation may apply, but PR37 does not implement it",
+      "human_review_requirement": "required outside ordinary Lolla review",
+      "domain_review_requirement": "required through appropriate human/domain/escalation protocol",
+      "invalid_behavior": "making Lolla the crisis or domain authority because artifacts are clean",
+      "why": "PR36 treats excluded/crisis domains as routing conclusions, not normal risk_mode success cases.",
+      "source_policy_refs": [
+        "docs/evals/risk-mode-behavior-plan-v0.md",
+        "docs/lolla-agent-result-contract.md"
+      ],
+      "custody_flags": {
+        "raw_text_included": false,
+        "paraphrase_only": true,
+        "fixture_not_runtime_enforcement": true
+      }
+    },
+    {
+      "fixture_id": "risk_deep_intent_not_automatic_v0",
+      "risk_mode": "deep",
+      "domain_or_context": "user or caller asks for deeper review on a complex but not necessarily high-stakes decision",
+      "artifact_condition": "artifacts are clean, but no optional deeper-review evidence is present unless explicitly run",
+      "live_output_condition": "recorded according to PR35; not_checked remains a caveat",
+      "answer_level_expected": "can pass on answer merits; deep intent alone is not proof of better answer quality",
+      "primary_failure_mode_expected": "none",
+      "run_envelope_expected": "clean only for what actually ran; do not imply Step 7 or specialist review occurred if absent",
+      "safe_for_agent_use_expected": "with_human_review until the deeper-review requirement and evidence are explicit",
+      "caller_action_expected": "no automatic rerun_deeper or automatic use from the mode label alone",
+      "human_review_requirement": "reviewer should verify whether the requested deeper surface actually exists",
+      "domain_review_requirement": "not required unless domain-sensitive content is present",
+      "invalid_behavior": "treating deep mode as automatically more correct or as proof that optional reviewers ran",
+      "why": "PR36 says deep is stronger review intent, not automatically higher stakes or automatic correctness.",
+      "source_policy_refs": [
+        "docs/evals/risk-mode-behavior-plan-v0.md"
+      ],
+      "custody_flags": {
+        "raw_text_included": false,
+        "paraphrase_only": true,
+        "fixture_not_runtime_enforcement": true
+      }
+    }
+  ]
+}

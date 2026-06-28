@@ -596,6 +596,8 @@ Current result:
 
 Maps to: PRD R2, R7, R8, R11.
 
+Status: completed as a docs/eval-only fixture matrix.
+
 Goal:
 
 Turn PR36's policy into paraphrase-only fixtures that test whether reviewers
@@ -620,7 +622,47 @@ Acceptance:
 - no automatic labels;
 - no judge.
 
-### PR38: First Calibrated Binary Judge Prototype
+Current result:
+
+- eleven paraphrase-only fixtures now cover `quick`, `standard`, `deep`,
+  `high_stakes`, `stability`, and excluded/domain-review routing;
+- every fixture names expected answer-level review, run-envelope read,
+  `safe_for_agent_use`, `caller_action` stance, human/domain review
+  requirement, invalid behavior, source policy refs, and custody flags;
+- the fixtures test clean-artifact overtrust, live-output overtrust,
+  high-stakes domain-assurance drift, quick-mode overclaim, stability-as-truth
+  drift, unsupported domain claims, and `deep`-mode overconfidence;
+- PR37 does not implement runtime enforcement, caller-action changes,
+  automatic labels, domain protocols, or a judge.
+
+### PR38: Risk Mode Fixture Review v0
+
+Maps to: PRD R2, R7, R8, R11.
+
+Goal:
+
+Human/product review of the PR37 fixture matrix before runtime enforcement or
+judge work.
+
+Candidate behavior:
+
+- check whether the eleven fixtures cover the main risk-mode failure traps;
+- verify that expected `safe_for_agent_use` labels are conservative enough;
+- verify that `caller_action` expectations match the current contract;
+- decide whether any fixture should be split, renamed, removed, or added;
+- decide whether any high-stakes fixture needs domain-review language before
+  implementation.
+
+Acceptance:
+
+- no runtime enforcement;
+- no caller-action change;
+- no automatic labels;
+- no judge;
+- clear recommendation for whether risk-mode implementation can start or
+  whether more fixture/eval work is required.
+
+### PR39: First Calibrated Binary Judge Prototype
 
 Maps to: PRD R8.
 
@@ -689,6 +731,7 @@ Before building judges or runtime semantic enrichment, Lolla should have:
 - a design note for the user-values/priorities signal;
 - a clear decision on live-output hygiene;
 - a clear decision on risk-mode reliance policy;
+- risk-mode fixture examples;
 - no unresolved confusion between deterministic run readiness and answer
   quality.
 

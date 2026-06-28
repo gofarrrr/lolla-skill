@@ -287,9 +287,16 @@ docs/evals/risk-mode-behavior-plan-v0.md
 ```
 
 That policy preserves the PR33 separation between answer-level review,
-run-envelope/custody review, and agent reliance. The next step is fixture work,
-not runtime enforcement:
+run-envelope/custody review, and agent reliance.
+
+PR37 now adds the fixture matrix:
 
 ```text
-PR37 Risk Mode Fixture Matrix v0
+docs/evals/risk-mode-fixture-matrix-v0.md
+```
+
+The next step is fixture review, not runtime enforcement:
+
+```text
+PR38 Risk Mode Fixture Review v0
 ```

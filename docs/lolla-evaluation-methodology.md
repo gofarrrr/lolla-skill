@@ -552,7 +552,7 @@ judge, score, automatic labels, runtime integration, or benchmark claim.
 Recommended next eval slice:
 
 ```text
-PR37 Risk Mode Fixture Matrix v0
+PR38 Risk Mode Fixture Review v0
 ```
 
 PR34 now designs the first-class user-values/priorities review surface:
@@ -590,8 +590,20 @@ strictness, keeps high-stakes agent use conservative, preserves the current
 `caller_action: ask_user_first` behavior for otherwise clean `high_stakes`
 runs, and does not change runtime behavior.
 
-PR37 should turn that policy into fixtures before any subjective judge or
-runtime enforcement is built.
+PR37 now turns that policy into fixtures:
+
+```text
+docs/evals/risk-mode-fixture-matrix-v0.md
+```
+
+The fixture matrix covers `quick`, `standard`, `deep`, `high_stakes`,
+`stability`, and excluded/domain-review routing. It defines expected
+answer-level review, run-envelope read, `safe_for_agent_use`, `caller_action`
+stance, human/domain review requirements, invalid behavior, and custody flags
+without adding runtime enforcement or a judge.
+
+PR38 should review those fixtures before any subjective judge or runtime
+enforcement is built.
 
 Do not populate `lolla.human_review.v0` from synthetic reviewers. Do not treat
 these human labels as judge calibration yet. They define product taste and
@@ -643,6 +655,6 @@ The key correction:
 2. How many archived runs do we already have that are safe to use in an eval corpus?
 3. Should user usefulness labels be collected in Observatory after each run?
 4. What should be the first 4 to 6 official Lolla failure categories after open coding?
-5. Which risk-mode fixtures are needed before enforcement?
+5. Are the PR37 risk-mode fixtures complete and conservative enough before enforcement?
 6. Which judge failures should degrade run health, and which should remain advisory?
 7. Should pairwise adversarial sets become part of CI?

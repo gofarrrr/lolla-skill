@@ -330,18 +330,27 @@ This does not justify:
 
 ## Recommended Next Slice
 
-PR37 should be:
+PR37 now creates the fixture matrix that this note recommended:
 
 ```text
-Risk Mode Fixture Matrix v0
+docs/evals/risk-mode-fixture-matrix-v0.md
 ```
 
-Why PR37: PR36 defines the policy, but before runtime enforcement or judge
-work, the project needs concrete paraphrase-only fixtures that show how the
-same answer-level result should be treated differently under `standard`,
-`deep`, `high_stakes`, `stability`, and excluded-domain review conditions. The
-fixtures should test whether reviewers preserve the difference between answer
-improvement, run readiness, and action approval.
+Why PR37 and not enforcement: PR36 defines the policy, but before runtime
+enforcement or judge work, the project needs concrete paraphrase-only fixtures
+that show how the same answer-level result should be treated differently under
+`quick`, `standard`, `deep`, `high_stakes`, `stability`, and excluded-domain
+review conditions. The fixtures test whether reviewers preserve the difference
+between answer improvement, run readiness, and action approval.
+
+The next slice should be:
+
+```text
+PR38 Risk Mode Fixture Review v0
+```
+
+That review should sanity-check the fixture expectations before any risk-mode
+runtime behavior, caller-action change, or judge proposal.
 
 ## Review Receipt
 

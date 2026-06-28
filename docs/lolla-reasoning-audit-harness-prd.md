@@ -298,7 +298,12 @@ the vocabulary; risk mode raises review and reliance strictness, but does not
 approve actions, make Lolla a domain authority, relax `caller_action`, or change
 runtime behavior.
 
-The next narrow slice is PR37 Risk Mode Fixture Matrix v0, not judge automation
+PR37 now adds a risk-mode fixture matrix. It covers `quick`, `standard`,
+`deep`, `high_stakes`, `stability`, and excluded/domain-review routing with
+expected answer-level, run-envelope, `safe_for_agent_use`, and `caller_action`
+reads before any enforcement.
+
+The next narrow slice is PR38 Risk Mode Fixture Review v0, not judge automation
 or runtime enforcement.
 
 This roadmap should build on that. It should not restart the architecture.
@@ -424,6 +429,7 @@ Current implementation:
 - The agent-result contract already keeps otherwise clean `high_stakes` runs
   conservative with `caller_action: ask_user_first`.
 - PR36 documents the behavior policy without implementing enforcement.
+- PR37 documents fixture expectations without implementing enforcement.
 
 Future behavior:
 
@@ -439,6 +445,10 @@ PR36 adds the policy decision: risk mode changes review and reliance burden
 before it changes runtime. High-stakes mode is stricter reasoning hygiene, not
 domain assurance. Runtime enforcement requires fixtures, tests, contract docs,
 and a later PR.
+
+PR37 adds the first fixture matrix. Future implementation should cite those
+fixtures and explain whether behavior stays the same or changes before touching
+runtime, caller-action policy, or `SKILL.md`.
 
 Acceptance criteria:
 
@@ -1162,6 +1172,7 @@ Mitigation:
 - Use `unsupported_high_stakes_domain` when needed.
 - Keep PR36's distinction between answer improvement, run readiness, and action
   approval.
+- Use PR37 fixtures before changing runtime behavior.
 
 ### Risk: More Modes Confuse Users
 

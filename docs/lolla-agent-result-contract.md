@@ -262,6 +262,17 @@ future runtime path writes a mode field into `result.json`. PR36 documents the
 review/reliance policy, but does not add runtime enforcement, prompt changes,
 or domain authority.
 
+PR37 adds a paraphrase-only fixture matrix for future risk-mode work:
+
+```text
+docs/evals/risk-mode-fixture-matrix-v0.md
+```
+
+Those fixtures do not change this contract. They preserve the current
+high-stakes reference behavior: otherwise clean `high_stakes` runs remain
+conservative with `caller_action: ask_user_first`, and degraded runs remain
+blocked by the existing conservative policy.
+
 The control-plane wrapper preserves metadata and maps Lolla's result for other
 systems. It does not auto-trigger Lolla, enforce approvals, call tools, replay
 external traces, or turn Lolla into a proxy/firewall/sandbox/identity broker.

@@ -353,4 +353,5 @@ This does not justify:
   policy.
 - PR36 Risk Mode Behavior Plan v0 now documents risk-mode review and reliance
   policy.
-- PR37 Risk Mode Fixture Matrix v0 is the next evaluation slice.
+- PR37 Risk Mode Fixture Matrix v0 now documents risk-mode fixture examples.
+- PR38 Risk Mode Fixture Review v0 is the next evaluation slice.

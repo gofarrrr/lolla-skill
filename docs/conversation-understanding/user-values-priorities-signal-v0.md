@@ -428,6 +428,16 @@ or domain review. They must not be used to infer that the user approves action,
 that Lolla has resolved a value conflict, or that `safe_for_agent_use` can be
 upgraded automatically.
 
+PR37 turns that policy into fixtures:
+
+```text
+docs/evals/risk-mode-fixture-matrix-v0.md
+```
+
+Those fixtures may use values/priorities as review context, but they preserve
+the same boundary: value signals explain why reliance should be stricter; they
+do not approve action.
+
 ## Deterministic Vs Probabilistic Work
 
 Deterministic code could later validate:
