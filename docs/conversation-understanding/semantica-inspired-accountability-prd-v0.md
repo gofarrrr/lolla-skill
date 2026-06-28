@@ -494,6 +494,9 @@ Do not add the CLI in PR56.
 
 Type: code/tests/docs
 
+Status after PR57: completed as the smallest read-only doctor CLI:
+`docs/evals/lolla-doctor-readonly-cli-v0.md`.
+
 Goal:
 
 Add the smallest local read-only preflight CLI.
@@ -519,16 +522,16 @@ Required behavior:
 
 Acceptance criteria:
 
-- [ ] Standard healthy local config produces `status: pass` or `status: warn`
+- [x] Standard healthy local config produces `status: pass` or `status: warn`
       with explicit caveats.
-- [ ] Missing archive root produces deterministic fail.
-- [ ] Missing provider config produces deterministic warning/fail according to
+- [x] Missing archive root produces deterministic fail.
+- [x] Missing provider config produces deterministic warning/fail according to
       plan.
-- [ ] Existing review-corpus manifest counts are surfaced without leaking local
+- [x] Existing review-corpus manifest counts are surfaced without leaking local
       raw content.
-- [ ] Secrets and local absolute paths are not printed except where explicitly
+- [x] Secrets and local absolute paths are not printed except where explicitly
       documented as local-only and not intended for checked-in output.
-- [ ] Tests prove no model/client loader is called.
+- [x] Tests prove no model/client loader is called.
 
 Validation:
 
@@ -899,13 +902,19 @@ PR56 has now been carved out as the dedicated doctor/preflight docs-only plan:
 docs/evals/lolla-doctor-preflight-plan-v0.md
 ```
 
-The next possible slice after PR56 is:
+PR57 has now implemented the smallest local read-only doctor CLI:
 
 ```text
-PR57 Lolla Doctor Read-Only CLI v0
+docs/evals/lolla-doctor-readonly-cli-v0.md
 ```
 
-PR57 should implement only the smallest local read-only doctor CLI. It should
-not run `$lolla`, call models, mutate archives, change prompts, change
-`SKILL.md`, change provider-boundary policy, approve high-stakes runs, or begin
-Semantica-style platform work.
+The next possible slice after PR57 is:
+
+```text
+PR58 Audit Decision Record Design v0
+```
+
+PR58 should remain docs/JSON design only. It should not implement an exporter,
+run `$lolla`, call models, mutate archives, change prompts, change `SKILL.md`,
+change provider-boundary policy, approve high-stakes runs, judge answer quality,
+or begin Semantica-style platform work.

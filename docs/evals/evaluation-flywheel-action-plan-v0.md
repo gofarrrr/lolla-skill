@@ -1373,9 +1373,9 @@ Stop point:
   archive mutation, prompts, `SKILL.md`, graph DB, embeddings, memory, policy
   enforcement, automatic labels, answer-quality scoring, or judges from this
   slice.
-- PR56 has now landed as the docs-only doctor/preflight plan. The next possible
-  slice is PR57 Lolla Doctor Read-Only CLI v0, still read-only, local,
-  deterministic, and model-call-free.
+- PR56 has now landed as the docs-only doctor/preflight plan, and PR57 has now
+  implemented the smallest read-only doctor CLI. The next possible slice is
+  PR58 Audit Decision Record Design v0, still docs/JSON design only.
 
 ### PR56: Lolla Doctor / Preflight Plan v0
 
@@ -1419,8 +1419,57 @@ Stop point:
   prompts, change `SKILL.md`, change provider-boundary policy, change
   `caller_action`, approve high-stakes runs, add judges, add scoring, add
   automatic labels, or begin Semantica-style platform work from this slice.
-- The next possible slice is PR57 Lolla Doctor Read-Only CLI v0, still local,
-  deterministic, read-only, and model-call-free.
+- PR57 has now implemented the smallest local read-only doctor CLI. The next
+  possible slice is PR58 Audit Decision Record Design v0, still docs/JSON design
+  only.
+
+### PR57: Lolla Doctor Read-Only CLI v0
+
+Maps to: R6/R9 deterministic readiness inspectability.
+
+Status: completed as a read-only code/tests/docs slice.
+
+Goal:
+
+Add the smallest local preflight command from the PR56 plan so users and
+maintainers can inspect wiring before spending tokens or running `$lolla`.
+
+Output:
+
+- [Lolla Doctor Read-Only CLI v0](lolla-doctor-readonly-cli-v0.md).
+- `engine/system_b/lolla_doctor.py`
+- `scripts/lolla_doctor.py`
+- `tests/test_lolla_doctor.py`
+
+Current result:
+
+- implements `lolla.doctor_report.v0`;
+- checks runtime discovery, archive-root discovery, helper script availability,
+  provider configuration presence, model/provider cost-table readiness,
+  review-corpus manifest readability, risk-mode reliance counts, high-stakes
+  evidence visibility, output-path safety, archive mutation guard expectations,
+  repo/runtime boundary state, and privacy-safe output;
+- supports JSON output as the stable contract and compact text output for local
+  use;
+- refuses `--out` paths inside archive roots;
+- preserves `model_calls: 0`, `archives_mutated: false`, and
+  `would_run_lolla: false`;
+- tests that provider credential values, raw transcript/memo/revised-answer
+  fields, and provider-client import paths are not exposed.
+
+Stop point:
+
+- PR57 only implements the read-only doctor CLI.
+- Do not use doctor output as high-stakes approval, answer-quality judgment,
+  `safe_for_agent_use` automation, or evidence that a future `$lolla` answer is
+  good.
+- Do not add decision-record exporters, provenance maps, conflict registers,
+  case graph exports, runtime integration, prompt changes, `SKILL.md` changes,
+  provider-boundary policy changes, caller-action changes, graph DB, embeddings,
+  chunking, memory, policy engines, automatic labels, answer-quality scoring,
+  or judges from this slice.
+- The next possible slice is PR58 Audit Decision Record Design v0, docs/JSON
+  design only.
 
 ## What Not To Build Yet
 
@@ -1479,9 +1528,10 @@ Before building judges or runtime semantic enrichment, Lolla should have:
 That is the smallest flywheel that can improve Lolla run by run without turning
 it into a vague critic or overbuilt memory system.
 
-The next conservative accountability slice is PR57 Lolla Doctor Read-Only CLI
-v0. It should implement only the smallest local deterministic preflight command
-from the PR56 plan and should not run `$lolla`, call models, mutate archives,
-change prompts, change `SKILL.md`, change provider-boundary policy, approve
-high-stakes runs, add judges, add scoring, add automatic labels, or start any
-Semantica-style platform work.
+The next conservative accountability slice is PR58 Audit Decision Record Design
+v0. It should design only `lolla.audit_decision_record.v0` as a local
+accountability projection over existing artifacts and should not implement an
+exporter, run `$lolla`, call models, mutate archives, change prompts, change
+`SKILL.md`, change provider-boundary policy, approve high-stakes runs, add
+judges, add scoring, add automatic labels, or start any Semantica-style
+platform work.

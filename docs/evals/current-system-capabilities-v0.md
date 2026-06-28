@@ -25,6 +25,7 @@ harness with:
 - actionable-delta rubric;
 - fixture packs for future evaluation;
 - risk-mode reliance visibility;
+- read-only doctor/preflight checks for local wiring;
 - human-owned user-values/priorities worksheet v0.
 
 The key architecture is:
@@ -66,12 +67,25 @@ The deterministic harness can now produce and check:
 - review-corpus JSONL and manifests;
 - risk-mode reliance caveats;
 - manifest-level counts for whether real high-stakes reliance evidence exists.
+- `lolla.doctor_report.v0` preflight reports for local runtime/archive/provider
+  wiring.
 
 This layer does not judge advice quality. It answers:
 
 ```text
 Did the run create the artifacts it claims, and can a reviewer inspect them?
 ```
+
+The read-only doctor answers a separate pre-run question:
+
+```text
+Would a local run likely waste tokens because the environment is miswired?
+```
+
+It checks local paths, helper availability, provider/config presence, cost-table
+visibility, optional manifest counts, output-path safety, runtime boundary
+state, and privacy flags. It does not run `$lolla`, call models, read archive
+payloads, mutate archives, approve high-stakes use, or judge answer quality.
 
 ### 3. Support Human/Product Review
 

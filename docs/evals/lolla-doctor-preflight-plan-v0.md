@@ -4,6 +4,9 @@ Status: PR56 docs-only plan
 Date: 2026-06-28
 Owner: Lolla maintainers
 
+Implementation note: PR57 implements the smallest read-only CLI described here.
+See `docs/evals/lolla-doctor-readonly-cli-v0.md`.
+
 This plan defines a future read-only `lolla doctor` / preflight command. It
 does not implement the command.
 
@@ -249,19 +252,29 @@ The future doctor must stay a deterministic readiness report. It must not become
 an evaluator, judge, policy layer, governance system, archive repair tool,
 runtime orchestrator, or high-stakes approval surface.
 
-## PR57 Gate
+## PR57 Implementation
+
+PR57 has implemented:
+
+```text
+python3 scripts/lolla_doctor.py
+```
+
+The implementation remains read-only, local, deterministic, and
+model-call-free. It emits `lolla.doctor_report.v0`, writes only to stdout or an
+explicit safe external `--out` path, and refuses `--out` inside the archive
+root.
 
 The next possible slice is:
 
 ```text
-PR57 Lolla Doctor Read-Only CLI v0
+PR58 Audit Decision Record Design v0
 ```
 
-PR57 should start only after PR56 is landed. It should remain read-only, local,
-deterministic, and model-call-free. It should implement the smallest useful
-doctor report and tests, not a platform.
+PR58 should be docs/JSON design only and must not implement a decision-record
+exporter.
 
-Before PR57 begins, maintainers should confirm:
+Before extending doctor later, maintainers should confirm:
 
 - the PR56 output contract is still the desired shape;
 - the initial check list is small enough to implement without runtime drift;

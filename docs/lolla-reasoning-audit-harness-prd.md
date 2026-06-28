@@ -23,6 +23,8 @@ Primary inputs:
   `docs/conversation-understanding/semantica-inspired-accountability-prd-v0.md`.
 - Lolla doctor/preflight plan:
   `docs/evals/lolla-doctor-preflight-plan-v0.md`.
+- Lolla doctor read-only CLI:
+  `docs/evals/lolla-doctor-readonly-cli-v0.md`.
 
 ## Executive Summary
 
@@ -248,10 +250,10 @@ Since the first harness PRD pass, the shipped harness layer has also added:
 - semantic coverage reports and corpus survey;
 - offline specialist extractor probe harnesses and evidence notes;
 - a six-case complex conversation baseline with full modern artifacts;
-- the PR30-PR56 evaluation/accountability handoff chain from human review seed
+- the PR30-PR57 evaluation/accountability handoff chain from human review seed
   through risk-mode reliance visibility, current-state anti-drift docs,
   human-owned values/priorities review, and the Semantica-inspired
-  accountability plan through the doctor/preflight plan.
+  accountability plan through the read-only doctor/preflight CLI.
 
 The current complex baseline is recorded in:
 
@@ -419,9 +421,22 @@ blocking versus warning examples, and `lolla.doctor_report.v0` draft shape. It
 does not add the CLI, run `$lolla`, call models, mutate archives, change
 prompts, change `SKILL.md`, change provider-boundary policy, change
 `caller_action`, approve high-stakes runs, add judges, add scoring, add
-automatic labels, or begin Semantica-style platform work. Its recommended next
-slice is PR57 Lolla Doctor Read-Only CLI v0, still read-only and
-model-call-free.
+automatic labels, or begin Semantica-style platform work. PR57 has now
+implemented the smallest read-only doctor CLI from that plan.
+
+PR57 now lands the Lolla Doctor Read-Only CLI:
+
+`docs/evals/lolla-doctor-readonly-cli-v0.md`
+
+It implements `lolla.doctor_report.v0` as a local deterministic preflight
+report for runtime discovery, archive-root discovery, helper availability,
+provider/config presence, cost-table readiness, optional review-corpus manifest
+counts, high-stakes evidence visibility, output-path safety, repo/runtime
+boundary state, and privacy flags. It does not run `$lolla`, call models, read
+archive payloads, mutate archives, change prompts, change `SKILL.md`, change
+provider-boundary policy, approve high-stakes use, judge answer quality, or
+populate labels. Its recommended next slice is PR58 Audit Decision Record
+Design v0, docs/JSON design only.
 
 This roadmap should build on that. It should not restart the architecture.
 
@@ -790,6 +805,10 @@ Current v0 slice:
 - `docs/evals/lolla-doctor-preflight-plan-v0.md` defines the PR56
   doctor/preflight plan and keeps the future CLI read-only, local,
   deterministic, model-call-free, and outside archive mutation.
+- `docs/evals/lolla-doctor-readonly-cli-v0.md` documents the PR57 doctor CLI,
+  which implements `lolla.doctor_report.v0` without running `$lolla`, calling
+  models, reading archive payloads, mutating archives, or judging answer
+  quality.
 
 Acceptance criteria:
 

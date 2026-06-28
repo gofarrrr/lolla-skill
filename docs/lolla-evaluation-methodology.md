@@ -128,6 +128,12 @@ Deterministic evals should cover:
 - memo and revised answer are both persisted,
 - `agent_result.json` is valid,
 - cost telemetry is present or honestly marked partial/unknown.
+- `lolla.doctor_report.v0` can report local wiring readiness before a run
+  without calling models or mutating archives.
+
+The doctor report is preflight only. It can warn that the local environment is
+miswired or that high-stakes evidence is absent from a supplied manifest, but it
+does not decide whether advice is good, safe, or approved for agent use.
 
 These checks should gate releases before any subjective judge runs.
 

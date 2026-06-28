@@ -19,6 +19,11 @@ PR56 adds the dedicated doctor/preflight plan:
 `../evals/lolla-doctor-preflight-plan-v0.md`. It keeps the future doctor local,
 read-only, deterministic, model-call-free, and outside archive mutation.
 
+PR57 implements that doctor as a local read-only CLI:
+`../evals/lolla-doctor-readonly-cli-v0.md`. It remains a deterministic
+preflight report, not runtime approval, high-stakes approval, answer-quality
+scoring, or review automation.
+
 The goal is narrower:
 
 Build a source-grounded conversation-understanding layer that helps Lolla
@@ -1501,14 +1506,44 @@ Outcome:
   policy, approving high-stakes runs, adding judges, adding scoring, adding
   automatic labels, or beginning Semantica-style platform work.
 
-Next:
+Implemented next:
 
 ```text
 PR57 Lolla Doctor Read-Only CLI v0
 ```
 
-PR57 should implement only the smallest local read-only doctor CLI from the
-PR56 plan.
+PR57 implements only the smallest local read-only doctor CLI from the PR56 plan.
+It does not run `$lolla`, call models, mutate archives, change prompts, change
+`SKILL.md`, or judge answer quality.
+
+### PR57: Lolla Doctor Read-Only CLI v0
+
+Status: completed as
+[lolla-doctor-readonly-cli-v0.md](../evals/lolla-doctor-readonly-cli-v0.md).
+
+Goal: implement the smallest deterministic preflight report for local Lolla
+wiring before any model-spending run begins.
+
+Outcome:
+
+- implements `lolla.doctor_report.v0` JSON and compact text output;
+- checks runtime discovery, archive-root discovery, helper availability,
+  provider/config presence, cost-table readiness, review manifest readability,
+  risk-mode reliance counts, high-stakes evidence visibility, output-path
+  safety, archive mutation guards, repo/runtime boundaries, and privacy flags;
+- keeps `model_calls: 0`, `archives_mutated: false`, and raw/private content
+  out of doctor output;
+- remains preflight only, not a conversation-understanding IR, exporter,
+  high-stakes approval surface, judge, score, memory layer, or platform.
+
+Next:
+
+```text
+PR58 Audit Decision Record Design v0
+```
+
+PR58 should design only `lolla.audit_decision_record.v0` before any exporter
+exists.
 
 ### Later: Decision-Aware Capture And Runtime Integration
 
@@ -1561,11 +1596,11 @@ manifest counts, PR45's anti-drift handoff, PR46's seed plan, PR47's fixtures,
 PR48's evidence-readiness analyzer, PR49's values/priorities worksheet plan,
 PR50's paraphrase-only worksheet fixtures, PR51's worksheet fixture review,
 PR52's blank worksheet export, PR53's human-filled worksheet pilot, PR54's
-pilot review / v0 decision, PR55's Semantica-inspired accountability PRD, and
-PR56's Lolla Doctor / Preflight plan now exist. The next step is still explicit
-approval, not automatic runtime work. The recommended accountability slice is
-PR57 Lolla Doctor Read-Only CLI v0, still read-only, local, deterministic, and
-model-call-free. Other lanes still require their own gates: future
+pilot review / v0 decision, PR55's Semantica-inspired accountability PRD,
+PR56's Lolla Doctor / Preflight plan, and PR57's read-only doctor CLI now
+exist. The next step is still explicit approval, not automatic runtime work.
+The recommended accountability slice is PR58 Audit Decision Record Design v0,
+docs/JSON design only. Other lanes still require their own gates: future
 high-stakes evidence under PR46/PR48, reopening the values lane after PR54, or
 any populated extraction, memory, runtime integration, automatic labels, or
 judging.
