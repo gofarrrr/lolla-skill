@@ -250,7 +250,8 @@ This does not justify:
 PR36 defines risk-mode behavior policy, PR37 turns that policy into fixtures,
 PR38 reviews the matrix and adds the missing high-stakes values/priorities
 conflict fixture, PR39 plans the implementation path, PR40 locks the current
-contract in tests, and PR41 clarifies high-stakes reliance in `evaluation.json`:
+contract in tests, PR41 clarifies high-stakes reliance in `evaluation.json`,
+and PR42 exposes that caveat in review-corpus records:
 
 ```text
 docs/evals/risk-mode-fixture-matrix-v0.md
@@ -258,20 +259,21 @@ docs/evals/risk-mode-fixture-review-v0.md
 docs/evals/risk-mode-implementation-plan-v0.md
 tests/test_risk_mode_contract.py
 tests/test_evaluation_artifact.py
+tests/test_review_corpus_export.py
 ```
 
 The next slice should be:
 
 ```text
-PR42 Risk Mode Review Surface Integration v0
+PR43 Risk Mode Reliance Review Batch v0
 ```
 
-Why PR42: PR35 resolved the live product-surface caveat, PR36 defines how risk
+Why PR43: PR35 resolved the live product-surface caveat, PR36 defines how risk
 mode should affect review and reliance, PR37 gives concrete fixture cases, PR38
 checks those fixtures as a future gate, PR40 locks existing conservative
 behavior in tests, and PR41 makes the high-stakes reliance caveat visible in
-`evaluation.json`. The next move should expose that caveat to review/corpus
-surfaces, not add enforcement or judge work.
+`evaluation.json`. PR42 exposes that caveat to review/corpus surfaces. The next
+move should test that surface with reviewers, not add enforcement or judge work.
 
 ## Review Receipt
 

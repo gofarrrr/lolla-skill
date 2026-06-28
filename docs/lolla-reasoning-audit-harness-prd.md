@@ -322,8 +322,12 @@ high-stakes runs. The check makes reliance caveats visible without changing
 `caller_action`, scoring answer quality, approving domain use, or enforcing
 runtime behavior.
 
-The next narrow slice is PR42 Risk Mode Review Surface Integration v0, not
-judge automation or runtime enforcement.
+PR42 now exposes that caveat as compact `risk_mode_reliance` metadata in
+review-corpus records and human-review workflow docs. It keeps
+`safe_for_agent_use` human-owned and does not change `caller_action`.
+
+The next narrow slice is PR43 Risk Mode Reliance Review Batch v0, not judge
+automation or runtime enforcement.
 
 This roadmap should build on that. It should not restart the architecture.
 
@@ -456,6 +460,8 @@ Current implementation:
   changing runtime behavior.
 - PR41 adds deterministic high-stakes reliance-policy clarity to
   `evaluation.json` without changing caller-action policy.
+- PR42 exposes that reliance-policy clarity in review-corpus records and
+  human-review workflow docs without changing caller-action policy.
 
 Future behavior:
 
@@ -491,6 +497,10 @@ work should keep those tests green and should not redesign `caller_action`.
 PR41 adds the deterministic evaluation-artifact clarity slice. Future
 review/corpus surface work should expose the same caveat for humans without
 making `safe_for_agent_use` automatic.
+
+PR42 adds that review/corpus surface integration. Future review batches should
+test whether reviewers can use the caveat consistently before any judge,
+runtime enforcement, or automatic labeling work.
 
 Acceptance criteria:
 

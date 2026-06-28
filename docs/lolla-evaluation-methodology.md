@@ -622,15 +622,17 @@ automatic labels, domain protocols, or a judge.
 Recommended next eval slice:
 
 ```text
-PR42 Risk Mode Review Surface Integration v0
+PR43 Risk Mode Reliance Review Batch v0
 ```
 
 PR40 now proves current high-stakes reliance behavior remains conservative in
 tests. PR41 adds the deterministic `risk_mode_reliance_policy` evaluation check
 so high-stakes reliance caveats are visible in `evaluation.json` without
 changing `caller_action`, scoring answer quality, approving domain use, or
-adding runtime enforcement. PR42 should decide how that caveat appears in human
-review and corpus surfaces.
+adding runtime enforcement. PR42 exposes that caveat as compact
+`risk_mode_reliance` metadata in review-corpus records and explains reviewer
+use in the human-review workflow. PR43 should use the surface in a small local
+review batch before any judge work.
 
 Do not populate `lolla.human_review.v0` from synthetic reviewers. Do not treat
 these human labels as judge calibration yet. They define product taste and
@@ -682,7 +684,8 @@ The key correction:
 2. How many archived runs do we already have that are safe to use in an eval corpus?
 3. Should user usefulness labels be collected in Observatory after each run?
 4. What should be the first 4 to 6 official Lolla failure categories after open coding?
-5. How should human-review and corpus surfaces expose PR41's high-stakes
-   reliance caveat without turning it into automatic `safe_for_agent_use`?
+5. Do reviewers using `risk_mode_reliance` consistently separate high-stakes
+   reliance caveats from answer-level quality and human-owned
+   `safe_for_agent_use`?
 6. Which judge failures should degrade run health, and which should remain advisory?
 7. Should pairwise adversarial sets become part of CI?

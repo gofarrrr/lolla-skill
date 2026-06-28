@@ -180,18 +180,22 @@ PR41 does not change `agent_result.json`, `caller_action`, prompts,
 
 ### Phase 3: Review-Surface Integration
 
+Status: completed by PR42.
+
 Purpose:
 
 Expose high-stakes reliance caveats in review and corpus surfaces without
 enforcing runtime action.
 
-Candidate changes:
+Completed changes:
 
-- review corpus records include a compact risk-mode reliance caveat;
-- human-review workflow tells reviewers how to treat `high_stakes` with clean
-  artifacts, `not_checked` live output, unresolved values conflicts, or
-  unsupported domain claims;
-- aggregate review reports can count risk-mode reliance caveats;
+- review corpus records now include compact `risk_mode_reliance` metadata;
+- high-stakes records expose PR41's `risk_mode_reliance_policy` status,
+  `caller_action`, `caller_readiness`, human/domain review requirements, and
+  `automatic_safe_for_agent_use: false`;
+- standard records without the high-stakes caveat record `present: false`;
+- human-review workflow tells reviewers that the caveat is not answer-quality
+  failure, domain approval, or automatic agent-use approval;
 - `safe_for_agent_use` remains human-owned.
 
 ### Phase 4: Later Runtime Behavior, Explicitly Approved
@@ -384,18 +388,19 @@ This does not justify:
 
 ## Recommended Next Slice
 
-PR42 should be:
+PR43 should be:
 
 ```text
-Risk Mode Review Surface Integration v0
+Risk Mode Reliance Review Batch v0
 ```
 
 Purpose:
 
-Use the PR40 and PR41 tests as guardrails while exposing the deterministic
-`risk_mode_reliance_policy` caveat in review and corpus surfaces. That slice
-should remain human-review/corpus surface work, not answer-quality scoring,
-runtime enforcement, caller-action redesign, or domain approval.
+Use the PR42 review-corpus surface in a small local review batch to verify that
+reviewers can separate high-stakes reliance caveats from answer-level quality
+and human-owned `safe_for_agent_use`. That slice should remain local
+human-review work, not answer-quality scoring, runtime enforcement,
+caller-action redesign, automatic labeling, or domain approval.
 
 ## Review Receipt
 
@@ -405,12 +410,15 @@ runtime enforcement, caller-action redesign, or domain approval.
 - PR40 now completes the first code-bearing slice: test-only contract lock.
 - PR41 now completes deterministic evaluation artifact clarity by adding
   `risk_mode_reliance_policy` to high-stakes evaluation checks.
+- PR42 now completes review-surface integration by exposing
+  `risk_mode_reliance` in review-corpus records and human-review workflow docs.
 - PR36, PR37, and PR38 are cited as prerequisites.
 - Contract impacts are named for `agent_result.json`, `evaluation.json`,
   review corpus records, human review workflow, Observatory, and `SKILL.md`.
 - No `$lolla` run.
 - No model calls.
 - PR41 changes only deterministic evaluation artifact code and tests.
+- PR42 changes only review-corpus export code, tests, and docs.
 - No prompts changed.
 - No `SKILL.md` changes.
 - No risk-mode enforcement.

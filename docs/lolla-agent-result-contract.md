@@ -310,6 +310,11 @@ PR41 clarifies `evaluation.json` with a deterministic
 `agent_result.json`, add a caller-action enum, relax `caller_action`, approve
 domain use, or make `safe_for_agent_use` automatic.
 
+PR42 exposes that evaluation check to review-corpus consumers as
+`risk_mode_reliance`. The field is derived from `evaluation.json` and
+`agent_result.json`; it does not change this contract, does not copy raw run
+content, and does not create automatic human-review labels.
+
 The control-plane wrapper preserves metadata and maps Lolla's result for other
 systems. It does not auto-trigger Lolla, enforce approvals, call tools, replay
 external traces, or turn Lolla into a proxy/firewall/sandbox/identity broker.

@@ -177,6 +177,10 @@ That check makes high-stakes reliance caveats visible in `evaluation.json`
 without changing caller-action policy, approving domain use, or scoring answer
 quality.
 
+PR42 now exposes the same caveat to review-corpus records as
+`risk_mode_reliance`, without changing runtime enforcement or human-owned
+`safe_for_agent_use`.
+
 ## Review Receipt
 
 - Twelve fixtures created.

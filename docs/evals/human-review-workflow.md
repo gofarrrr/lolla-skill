@@ -37,6 +37,7 @@ Each corpus record includes deterministic readiness fields:
 - `content_review`
 - `custody_review`
 - `batch_recommendation`
+- `risk_mode_reliance`
 
 Use them to avoid treating legacy archive gaps as answer-quality failures.
 
@@ -51,6 +52,20 @@ Use them to avoid treating legacy archive gaps as answer-quality failures.
 the conversation/result/memo path. `custody_review.available` means the modern
 run envelope is present enough to inspect agent result, reasoning trace, run
 events, evaluation, and capture adequacy.
+
+`risk_mode_reliance` is a compact review-surface copy of PR41's deterministic
+`risk_mode_reliance_policy` check when present. For standard, quick, deep, or
+stability records without that check, it records `present: false`. For
+high-stakes records, it exposes only custody-safe metadata: `risk_mode`,
+`check_id`, check `status`, `caller_action`, `caller_readiness`, and whether
+human/domain review remains required. It does not include raw transcript, memo,
+revised-answer, provider, private-reasoning, or local path content.
+
+Treat `risk_mode_reliance.present: true` as a reliance caveat, not an
+answer-quality failure by itself. It means the deterministic run envelope says
+high-stakes reliance remains conservative. It does not automatically set
+`safe_for_agent_use`, does not approve domain use, and does not detect
+unsupported domain claims.
 
 ## 3. Select Runs
 
@@ -129,6 +144,13 @@ Use:
 - `unclear` when the reviewer cannot decide from the available artifacts.
 
 This label does not override `agent_result.caller_action`.
+
+It also does not get set automatically by `risk_mode_reliance`. For high-stakes
+runs, clean artifacts can still require `safe_for_agent_use: with_human_review`
+or `safe_for_agent_use: no`, depending on domain risk, custody, unsupported
+claims, unresolved values conflicts, and reviewer judgment. Treat
+`safe_for_agent_use: yes` as rare in high-stakes contexts and always
+human-owned.
 
 `review_status: pass` can coexist with
 `safe_for_agent_use: with_human_review` when the answer-level review passes but

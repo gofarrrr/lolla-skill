@@ -1013,8 +1013,9 @@ without enforcement. PR38 now reviews those fixtures without enforcement. PR39
 now plans high-stakes reliance/readiness tightening without code changes. PR40
 now locks the current risk-mode contract in tests without runtime behavior
 changes. PR41 now clarifies high-stakes reliance caveats in `evaluation.json`
-without changing caller-action policy. The next slice is PR42 Risk Mode Review
-Surface Integration v0.
+without changing caller-action policy. PR42 now exposes that caveat in
+review-corpus and human-review surfaces. The next slice is PR43 Risk Mode
+Reliance Review Batch v0.
 
 ### PR30: Complex Baseline Human Review v0
 
@@ -1375,6 +1376,33 @@ Next:
 PR42 Risk Mode Review Surface Integration v0
 ```
 
+### PR42: Risk Mode Review Surface Integration v0
+
+Status: completed.
+
+Goal: make PR41's deterministic high-stakes reliance caveat visible to
+reviewers and corpus consumers without changing caller behavior or human-review
+labels.
+
+Outcome:
+
+- review-corpus records now include compact `risk_mode_reliance` metadata;
+- high-stakes records with PR41's `risk_mode_reliance_policy` expose check
+  status, caller action, caller readiness, human/domain review requirements,
+  and `automatic_safe_for_agent_use: false`;
+- standard records without the high-stakes caveat record `present: false`;
+- human-review workflow explains that the caveat is not answer-quality failure,
+  domain approval, or automatic `safe_for_agent_use`;
+- no prompt, `SKILL.md`, model-call, archive mutation, caller-action,
+  runtime-enforcement, automatic-label, answer-quality scoring, domain-approval,
+  or judge behavior changed.
+
+Next:
+
+```text
+PR43 Risk Mode Reliance Review Batch v0
+```
+
 ### Later: Decision-Aware Capture And Runtime Integration
 
 Goal: only after offline evidence, use the IR to improve capture or audit input.
@@ -1421,11 +1449,11 @@ PR33's broader human-review corpus batch, and PR34's user-values/priorities
 design, PR35's live-output hygiene decision, and PR36's risk-mode behavior
 policy, PR37's risk-mode fixture matrix, PR38's fixture review, PR39's
 risk-mode implementation plan, PR40's contract-lock tests, and PR41's
-evaluation-artifact clarity check now exist. The next step is PR42 Risk Mode
-Review Surface Integration v0: decide how human-review and corpus surfaces
-should expose the high-stakes reliance caveat before adding judges, runtime
-specialist calls, a new IR, graph memory, embeddings, prompt changes, or
-risk-mode enforcement.
+evaluation-artifact clarity check, and PR42's review-surface integration now
+exist. The next step is PR43 Risk Mode Reliance Review Batch v0: test whether
+reviewers can use the high-stakes reliance caveat consistently before adding
+judges, runtime specialist calls, a new IR, graph memory, embeddings, prompt
+changes, or risk-mode enforcement.
 
 ## Sources
 

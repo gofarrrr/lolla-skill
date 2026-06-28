@@ -362,4 +362,6 @@ This does not justify:
   risk-mode contract in tests.
 - PR41 Risk Mode Evaluation Artifact Clarity v0 now adds deterministic
   high-stakes reliance-policy clarity to `evaluation.json`.
-- PR42 Risk Mode Review Surface Integration v0 is the next evaluation slice.
+- PR42 Risk Mode Review Surface Integration v0 now exposes the high-stakes
+  reliance caveat in review-corpus records.
+- PR43 Risk Mode Reliance Review Batch v0 is the next evaluation slice.

@@ -220,8 +220,9 @@ or enforcement work.
 
 PR41 now adds `risk_mode_reliance_policy` to `evaluation.json` for high-stakes
 runs. It makes the reliance caveat explicit without changing caller-action
-policy, approving domain use, or scoring answer quality. The next slice is
-PR42 Risk Mode Review Surface Integration v0.
+policy, approving domain use, or scoring answer quality. PR42 now exposes that
+caveat in review-corpus records as `risk_mode_reliance`. The next slice is PR43
+Risk Mode Reliance Review Batch v0.
 
 ## Review Receipt
 

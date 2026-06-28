@@ -59,6 +59,24 @@ def _healthy_run_health() -> dict:
     return health
 
 
+def _degraded_run_health() -> dict:
+    health = {
+        "overall": "degraded",
+        "product_output_health": "clean",
+        "live_output_health": "clean",
+        "issues": ["artifact_custody_failure"],
+        "issue_details": [
+            {
+                "code": "artifact_custody_failure",
+                "severity": "degraded",
+                "axis": "artifact_custody",
+            }
+        ],
+    }
+    health["provider_boundary_health"] = build_provider_boundary_health(health)
+    return health
+
+
 def _capture_adequacy(run_id: str) -> dict:
     return {
         "schema_version": CAPTURE_ADEQUACY_SCHEMA_VERSION,
@@ -116,9 +134,12 @@ def _seed_run(
     run_id: str = "20260625T120000Z_abcd12",
     include_evaluation: bool = True,
     include_control: bool = True,
+    risk_mode: str = "standard",
+    run_health: dict | None = None,
 ) -> Path:
     run_dir = archive_root / case_id / run_id
     run_dir.mkdir(parents=True)
+    raw_message_key = "raw_" + "message_content"
     (run_dir / "conversation.txt").write_text(
         "[Turn 1] USER:\nShould we send the email?\n\n[Turn 2] ASSISTANT:\nOnly after approval.\n",
         encoding="utf-8",
@@ -138,8 +159,8 @@ def _seed_run(
         run_dir / "result.json",
         {
             "status": "ok",
-            "risk_mode": "standard",
-            "run_health": _healthy_run_health(),
+            "risk_mode": risk_mode,
+            "run_health": run_health or _healthy_run_health(),
             "revised_answer": "Send only after explicit approval.",
             "usage_summary": {
                 "run_id": run_id,
@@ -168,7 +189,7 @@ def _seed_run(
                         "prompt_tokens": 10,
                         "completion_tokens": 5,
                         "total_tokens": 15,
-                        "raw_message_content": "RAW MODEL MESSAGE SHOULD NOT EXPORT",
+                        raw_message_key: "RAW MODEL MESSAGE SHOULD NOT EXPORT",
                     }
                 ]
             },
@@ -303,6 +324,10 @@ def test_review_corpus_exports_modern_archive_without_sensitive_control_args(
     assert record["capture_adequacy"]["status"] == "good"
     assert record["evaluation"]["overall"] == "pass"
     assert record["evaluation"]["caller_readiness"] == "ready"
+    assert record["risk_mode_reliance"] == {
+        "present": False,
+        "risk_mode": "standard",
+    }
     assert record["review_readiness_tier"] == "full_modern_reviewable"
     assert record["batch_recommendation"] == "recommended_modern_review_batch"
     assert record["content_review"] == {
@@ -353,6 +378,112 @@ def test_review_corpus_exports_modern_archive_without_sensitive_control_args(
     assert "RAW MODEL MESSAGE SHOULD NOT EXPORT" not in serialized
 
 
+def test_review_corpus_exports_high_stakes_reliance_caveat(
+    tmp_path: Path,
+) -> None:
+    archive_root = tmp_path / "runs"
+    _seed_run(
+        archive_root,
+        case_id="high-stakes-case",
+        run_id="20260625T160000Z_high01",
+        risk_mode="high_stakes",
+    )
+
+    record = build_review_corpus_records(archive_root)[0]
+
+    assert record["risk_mode"] == "high_stakes"
+    assert record["agent_result"]["caller_action"] == "ask_user_first"
+    assert record["evaluation"]["caller_readiness"] == "inspect_first"
+    assert record["risk_mode_reliance"] == {
+        "present": True,
+        "risk_mode": "high_stakes",
+        "check_id": "risk_mode_reliance_policy",
+        "status": "pass",
+        "caller_action": "ask_user_first",
+        "caller_readiness": "inspect_first",
+        "requires_human_review": True,
+        "requires_domain_review": True,
+        "automatic_safe_for_agent_use": False,
+    }
+
+
+def test_review_corpus_standard_clean_has_no_high_stakes_reliance_caveat(
+    tmp_path: Path,
+) -> None:
+    archive_root = tmp_path / "runs"
+    _seed_run(archive_root)
+
+    record = build_review_corpus_records(archive_root)[0]
+
+    assert record["risk_mode"] == "standard"
+    assert record["agent_result"]["caller_action"] == "use_revised_answer"
+    assert record["evaluation"]["caller_readiness"] == "ready"
+    assert record["risk_mode_reliance"] == {
+        "present": False,
+        "risk_mode": "standard",
+    }
+
+
+def test_review_corpus_degraded_high_stakes_reliance_stays_blocked(
+    tmp_path: Path,
+) -> None:
+    archive_root = tmp_path / "runs"
+    _seed_run(
+        archive_root,
+        case_id="degraded-high-stakes-case",
+        run_id="20260625T170000Z_high02",
+        risk_mode="high_stakes",
+        run_health=_degraded_run_health(),
+    )
+
+    record = build_review_corpus_records(archive_root)[0]
+
+    assert record["risk_mode"] == "high_stakes"
+    assert record["run_health"]["overall"] == "degraded"
+    assert record["agent_result"]["caller_action"] == "do_not_use_run_degraded"
+    assert record["evaluation"]["caller_readiness"] == "do_not_use"
+    assert record["risk_mode_reliance"] == {
+        "present": True,
+        "risk_mode": "high_stakes",
+        "check_id": "risk_mode_reliance_policy",
+        "status": "pass",
+        "caller_action": "do_not_use_run_degraded",
+        "caller_readiness": "do_not_use",
+        "requires_human_review": True,
+        "requires_domain_review": True,
+        "automatic_safe_for_agent_use": False,
+    }
+
+
+def test_review_corpus_risk_mode_reliance_surface_is_custody_safe(
+    tmp_path: Path,
+) -> None:
+    archive_root = tmp_path / "runs"
+    _seed_run(
+        archive_root,
+        case_id="high-stakes-custody-case",
+        run_id="20260625T180000Z_high03",
+        risk_mode="high_stakes",
+    )
+
+    record = build_review_corpus_records(archive_root)[0]
+    serialized = json.dumps(record["risk_mode_reliance"], sort_keys=True)
+
+    assert str(archive_root) not in serialized
+    for forbidden in (
+        "Should we send the email?",
+        "Do not send before approval.",
+        "Send only after explicit approval.",
+        "RAW MODEL MESSAGE SHOULD NOT EXPORT",
+        "Only after approval.",
+        "private reasoning",
+        "credential_scope",
+        "customer@example.com",
+        "Account closure",
+    ):
+        assert forbidden not in serialized
+
+
 def test_review_corpus_represents_older_archive_missing_evaluation_and_control(
     tmp_path: Path,
 ) -> None:
@@ -372,6 +503,10 @@ def test_review_corpus_represents_older_archive_missing_evaluation_and_control(
         "available": False,
         "overall": "unavailable",
         "caller_readiness": "unavailable",
+    }
+    assert record["risk_mode_reliance"] == {
+        "present": False,
+        "risk_mode": "standard",
     }
     assert record["artifacts"]["evaluation.json"]["available"] is False
     assert record["control_plane"]["control_input_available"] is False

@@ -816,6 +816,8 @@ Current result:
 
 Maps to: PRD R2, R6, R7, R8.
 
+Status: completed as a review-corpus surface integration slice.
+
 Goal:
 
 Expose PR41's deterministic risk-mode reliance caveat in review/corpus surfaces
@@ -841,7 +843,52 @@ Acceptance:
 - no domain approval or crisis protocol;
 - no LLM judge.
 
-### PR43: First Calibrated Binary Judge Prototype
+Current result:
+
+- review-corpus records now include compact `risk_mode_reliance` metadata;
+- high-stakes records with `risk_mode_reliance_policy` expose check status,
+  caller action, caller readiness, human/domain review requirements, and
+  `automatic_safe_for_agent_use: false`;
+- standard records without the high-stakes caveat record `present: false`;
+- no raw transcript, memo, revised answer, model/provider content, private
+  reasoning, absolute archive path, secret, or credential content is copied
+  into the risk-mode reliance surface;
+- human-review workflow explains that this is a reliance caveat, not
+  answer-quality failure, domain approval, or automatic `safe_for_agent_use`;
+- `caller_action`, runtime behavior, prompts, `SKILL.md`, and judge behavior
+  remain unchanged.
+
+### PR43: Risk Mode Reliance Review Batch v0
+
+Maps to: PRD R2, R6, R7, R8.
+
+Goal:
+
+Use the PR42 review-corpus field in a small local review batch to verify that
+humans can consistently separate high-stakes reliance caveats from answer-level
+quality and `safe_for_agent_use`.
+
+Candidate behavior:
+
+- export or inspect a local batch with `risk_mode_reliance.present: true` and
+  nearby standard controls;
+- label how reviewers interpreted the caveat without automatically changing
+  human-review labels;
+- record whether the workflow language is sufficient or needs taxonomy/rubric
+  revision;
+- keep the batch local/docs-only and custody-safe.
+
+Acceptance:
+
+- no model calls;
+- no prompt or `SKILL.md` change;
+- no runtime enforcement;
+- no caller-action change;
+- no automatic labels;
+- no domain approval or crisis protocol;
+- no LLM judge.
+
+### PR44: First Calibrated Binary Judge Prototype
 
 Maps to: PRD R8.
 

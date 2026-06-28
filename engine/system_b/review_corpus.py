@@ -1,9 +1,9 @@
 """Archive corpus export helpers for human review and stability analysis.
 
 This module builds a deterministic, local-only index over archived Lolla runs.
-It deliberately summarizes custody/readiness metadata instead of copying raw
-conversation, memo, revised-answer, or control-action argument values into the
-export.
+It deliberately summarizes custody/readiness metadata, including compact
+risk-mode reliance caveats, instead of copying raw conversation, memo,
+revised-answer, or control-action argument values into the export.
 """
 from __future__ import annotations
 
@@ -139,6 +139,11 @@ def build_review_corpus_record(
         agent_result=agent_result,
     )
     trace_model_calls = [_mapping(item) for item in _list(reasoning_trace.get("model_calls"))]
+    risk_mode = _risk_mode(
+        result=result,
+        agent_result=agent_result,
+        reasoning_trace=reasoning_trace,
+    )
 
     if not any((result, agent_result, reasoning_trace, evaluation)):
         errors.append("no recognized Lolla run artifacts found")
@@ -173,7 +178,7 @@ def build_review_corpus_record(
             "status_reason": _text(agent_result.get("status_reason")),
             "caller_action": _text(agent_result.get("caller_action")) or "unknown",
         },
-        "risk_mode": _risk_mode(result=result, agent_result=agent_result, reasoning_trace=reasoning_trace),
+        "risk_mode": risk_mode,
         "run_health": {
             "overall": _text(run_health.get("overall")) or "unknown",
             "major_causes": _major_causes(run_health),
@@ -199,6 +204,11 @@ def build_review_corpus_record(
             "overall": _text(evaluation.get("overall")) or "unavailable",
             "caller_readiness": _text(evaluation.get("caller_readiness")) or "unavailable",
         },
+        "risk_mode_reliance": _risk_mode_reliance(
+            evaluation=evaluation,
+            agent_result=agent_result,
+            risk_mode=risk_mode,
+        ),
         "hygiene": {
             "product_output_health": _text(run_health.get("product_output_health")) or _text(agent_result.get("product_output_health")) or "unknown",
             "live_output_health": _text(run_health.get("live_output_health")) or _text(agent_result.get("live_output_health")) or "unknown",
@@ -654,6 +664,42 @@ def _risk_mode(
         or _text(_mapping(reasoning_trace.get("process")).get("risk_mode"))
         or "standard"
     )
+
+
+def _risk_mode_reliance(
+    *,
+    evaluation: Mapping[str, Any],
+    agent_result: Mapping[str, Any],
+    risk_mode: str,
+) -> dict[str, Any]:
+    check = _evaluation_check(evaluation, "risk_mode_reliance_policy")
+    if not check:
+        return {
+            "present": False,
+            "risk_mode": risk_mode or "standard",
+        }
+    return {
+        "present": True,
+        "risk_mode": risk_mode or "unknown",
+        "check_id": "risk_mode_reliance_policy",
+        "status": _text(check.get("status")) or "unknown",
+        "caller_action": _text(agent_result.get("caller_action")) or "unknown",
+        "caller_readiness": _text(evaluation.get("caller_readiness")) or "unavailable",
+        "requires_human_review": True,
+        "requires_domain_review": True,
+        "automatic_safe_for_agent_use": False,
+    }
+
+
+def _evaluation_check(
+    evaluation: Mapping[str, Any],
+    check_id: str,
+) -> Mapping[str, Any]:
+    for check in _list(evaluation.get("checks")):
+        item = _mapping(check)
+        if _text(item.get("id")) == check_id:
+            return item
+    return {}
 
 
 def _usage_summary(
