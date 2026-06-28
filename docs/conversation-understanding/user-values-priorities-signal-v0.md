@@ -514,6 +514,17 @@ That plan is still human-review-only. It does not add extraction, exports,
 runtime behavior, memory, automatic labels, `conversation_understanding_ir.v0`,
 or a judge.
 
+PR50 now tests that worksheet shape with paraphrase-only fixtures:
+
+```text
+../evals/user-values-priorities-worksheet-fixtures-v0.md
+../evals/user-values-priorities-worksheet-fixtures-v0.json
+```
+
+Those fixtures are examples for human review. They do not copy raw archive
+content, implement extraction, add export code, populate labels, change runtime
+behavior, or approve a judge.
+
 ## PR34 Answers
 
 Is `user_values_or_priorities_signal` a field in semantic coverage?
@@ -556,6 +567,12 @@ What did PR49 add?
 
 PR49 adds the human worksheet plan that PR34 recommended as the first safe
 surface. It makes the signal reviewable, not automatic.
+
+What did PR50 add?
+
+PR50 adds paraphrase-only worksheet fixtures so reviewers can test whether the
+human worksheet shape is understandable before export, extraction, runtime
+integration, or judging.
 
 ## Review Receipt
 

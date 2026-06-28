@@ -298,6 +298,16 @@ fixture pack shows the shape is noisy, too burdensome, or prone to values
 overclaim, the next implementation step should change the worksheet before any
 exporter exists.
 
+PR50 now adds that paraphrase-only fixture pack:
+
+```text
+user-values-priorities-worksheet-fixtures-v0.md
+user-values-priorities-worksheet-fixtures-v0.json
+```
+
+The recommended next slice after PR50 is human/product fixture review, not a
+blank exporter or extraction code.
+
 ## Stop Condition
 
 PR49 stops at documentation and validation. It does not start PR50.

@@ -1,0 +1,599 @@
+{
+  "schema_version": "lolla.user_values_priorities_worksheet_fixtures.v0",
+  "source": {
+    "local_only": true,
+    "paraphrase_only": true,
+    "raw_transcript_included": false,
+    "raw_memo_included": false,
+    "raw_revised_answer_included": false,
+    "raw_model_message_content_included": false,
+    "provider_reasoning_details_included": false,
+    "private_reasoning_included": false,
+    "local_absolute_paths_included": false,
+    "human_review_labels_copied_verbatim": false
+  },
+  "fixture_count": 6,
+  "fixtures": [
+    {
+      "fixture_id": "uvp_v0_001_cofounder_authority_transfer",
+      "source_pattern": "cofounder_authority_transfer",
+      "risk_mode_context": "standard",
+      "review_scope": "human_review_only",
+      "why_this_fixture_exists": "Tests whether the worksheet can preserve cooperation and fairness concerns while still making authority ambiguity reviewable.",
+      "values_items": [
+        {
+          "id": "value_001",
+          "kind": "inferred_priority",
+          "status": "present",
+          "grounding": "derivation",
+          "confidence": "medium",
+          "review_note": "The user appears to care about preserving a workable relationship while changing decision rights.",
+          "needs_user_confirmation": true
+        },
+        {
+          "id": "value_002",
+          "kind": "stakeholder_obligation",
+          "status": "present",
+          "grounding": "derivation",
+          "confidence": "medium",
+          "review_note": "The company and affected leaders need decision authority to become explicit rather than socially implied.",
+          "needs_user_confirmation": true
+        },
+        {
+          "id": "value_003",
+          "kind": "tradeoff_willingness",
+          "status": "present",
+          "grounding": "reviewer_inference",
+          "confidence": "low",
+          "review_note": "The pattern suggests willingness to trade some relational comfort for legitimacy and execution clarity.",
+          "needs_user_confirmation": true
+        },
+        {
+          "id": "value_004",
+          "kind": "unresolved_conflict",
+          "status": "present",
+          "grounding": "derivation",
+          "confidence": "medium",
+          "review_note": "Cooperation, fairness, authority, and avoiding status theater pull in different directions.",
+          "needs_user_confirmation": true
+        }
+      ],
+      "conflicts": [
+        {
+          "id": "conflict_001",
+          "between": [
+            "value_001",
+            "value_002"
+          ],
+          "status": "preserved_for_user",
+          "review_note": "The revised pattern should not flatten relationship preservation into a reason to delay authority transfer."
+        },
+        {
+          "id": "conflict_002",
+          "between": [
+            "value_003",
+            "value_004"
+          ],
+          "status": "resolved_by_answer",
+          "review_note": "A bounded transition can honor cooperation while still moving real decision rights."
+        }
+      ],
+      "answer_treatment": {
+        "honored_values": [
+          "value_001",
+          "value_002"
+        ],
+        "distorted_values": [],
+        "ignored_values": [],
+        "over_hardened_values": [],
+        "open_questions_added": [
+          "value_004"
+        ]
+      },
+      "expected_review_read": {
+        "values_surface_sufficient_for_review": "yes",
+        "would_change_actionable_delta_label": "no",
+        "safe_for_agent_use_impact": "none"
+      },
+      "rubric_connections": [
+        "action_changed",
+        "sequence_changed",
+        "stop_rule_added",
+        "scope_narrowed"
+      ],
+      "failure_trap": "A reviewer or future judge might over-credit warm cooperation language and miss that authority ambiguity stayed unresolved.",
+      "custody_flags": {
+        "paraphrase_only": true,
+        "raw_content_included": false,
+        "private_reasoning_included": false,
+        "local_paths_included": false
+      }
+    },
+    {
+      "fixture_id": "uvp_v0_002_career_family_written_terms",
+      "source_pattern": "career_family_written_terms",
+      "risk_mode_context": "standard",
+      "review_scope": "human_review_only",
+      "why_this_fixture_exists": "Tests whether the worksheet can separate ambition, household capacity, identity pressure, and written operating terms.",
+      "values_items": [
+        {
+          "id": "value_001",
+          "kind": "inferred_priority",
+          "status": "present",
+          "grounding": "derivation",
+          "confidence": "medium",
+          "review_note": "The user appears to care about a more alive or ambitious path, but that priority is not enough by itself.",
+          "needs_user_confirmation": true
+        },
+        {
+          "id": "value_002",
+          "kind": "stakeholder_obligation",
+          "status": "present",
+          "grounding": "derivation",
+          "confidence": "medium",
+          "review_note": "Household capacity and spouse impact are decision constraints with value weight, not soft color.",
+          "needs_user_confirmation": true
+        },
+        {
+          "id": "value_003",
+          "kind": "non_negotiable",
+          "status": "unclear",
+          "grounding": "reviewer_inference",
+          "confidence": "low",
+          "review_note": "The worksheet should not harden family stability into a non-negotiable without user confirmation.",
+          "needs_user_confirmation": true
+        },
+        {
+          "id": "value_004",
+          "kind": "tradeoff_willingness",
+          "status": "unclear",
+          "grounding": "reviewer_inference",
+          "confidence": "low",
+          "review_note": "The reviewed pattern implies possible willingness to trade safety for growth only if written terms and load limits exist.",
+          "needs_user_confirmation": true
+        }
+      ],
+      "conflicts": [
+        {
+          "id": "conflict_001",
+          "between": [
+            "value_001",
+            "value_002"
+          ],
+          "status": "preserved_for_user",
+          "review_note": "Ambition and household stability should remain a user-resolved tradeoff, not a model-resolved identity story."
+        },
+        {
+          "id": "conflict_002",
+          "between": [
+            "value_003",
+            "value_004"
+          ],
+          "status": "unclear",
+          "review_note": "The worksheet should record uncertainty around what load or risk level becomes unacceptable."
+        }
+      ],
+      "answer_treatment": {
+        "honored_values": [
+          "value_001",
+          "value_002"
+        ],
+        "distorted_values": [],
+        "ignored_values": [],
+        "over_hardened_values": [],
+        "open_questions_added": [
+          "value_003",
+          "value_004"
+        ]
+      },
+      "expected_review_read": {
+        "values_surface_sufficient_for_review": "yes",
+        "would_change_actionable_delta_label": "no",
+        "safe_for_agent_use_impact": "none"
+      },
+      "rubric_connections": [
+        "threshold_changed",
+        "evidence_gate_added",
+        "written_term_added",
+        "user_question_added",
+        "overclaim_retracted"
+      ],
+      "failure_trap": "A reviewer or future judge might treat emotional salience as a stable identity value and miss the need for written terms and household confirmation.",
+      "custody_flags": {
+        "paraphrase_only": true,
+        "raw_content_included": false,
+        "private_reasoning_included": false,
+        "local_paths_included": false
+      }
+    },
+    {
+      "fixture_id": "uvp_v0_003_enterprise_beta_buyer_proof",
+      "source_pattern": "enterprise_beta_buyer_proof",
+      "risk_mode_context": "standard",
+      "review_scope": "human_review_only",
+      "why_this_fixture_exists": "Tests whether the worksheet can keep credibility, buyer proof, revenue momentum, and reliability obligations distinct.",
+      "values_items": [
+        {
+          "id": "value_001",
+          "kind": "inferred_priority",
+          "status": "present",
+          "grounding": "derivation",
+          "confidence": "medium",
+          "review_note": "The user appears to value credibility and learning from serious buyers.",
+          "needs_user_confirmation": true
+        },
+        {
+          "id": "value_002",
+          "kind": "stakeholder_obligation",
+          "status": "present",
+          "grounding": "derivation",
+          "confidence": "medium",
+          "review_note": "Customer trust and product reliability should constrain any public or enterprise-facing promise.",
+          "needs_user_confirmation": true
+        },
+        {
+          "id": "value_003",
+          "kind": "tradeoff_willingness",
+          "status": "present",
+          "grounding": "derivation",
+          "confidence": "medium",
+          "review_note": "The reviewed pattern supports trading logo appeal for same-shape paid-pilot evidence.",
+          "needs_user_confirmation": true
+        },
+        {
+          "id": "value_004",
+          "kind": "unresolved_conflict",
+          "status": "present",
+          "grounding": "derivation",
+          "confidence": "medium",
+          "review_note": "Learning speed, revenue momentum, trust, and support load can conflict if the bigger prospect is over-weighted.",
+          "needs_user_confirmation": true
+        }
+      ],
+      "conflicts": [
+        {
+          "id": "conflict_001",
+          "between": [
+            "value_001",
+            "value_002"
+          ],
+          "status": "resolved_by_answer",
+          "review_note": "Same-shape paid-pilot proof lets the answer pursue learning without overclaiming readiness."
+        },
+        {
+          "id": "conflict_002",
+          "between": [
+            "value_003",
+            "value_004"
+          ],
+          "status": "preserved_for_user",
+          "review_note": "The answer should preserve the fact that buyer priority must be earned by behavior, not aura."
+        }
+      ],
+      "answer_treatment": {
+        "honored_values": [
+          "value_001",
+          "value_002",
+          "value_003"
+        ],
+        "distorted_values": [],
+        "ignored_values": [],
+        "over_hardened_values": [],
+        "open_questions_added": [
+          "value_004"
+        ]
+      },
+      "expected_review_read": {
+        "values_surface_sufficient_for_review": "yes",
+        "would_change_actionable_delta_label": "no",
+        "safe_for_agent_use_impact": "none"
+      },
+      "rubric_connections": [
+        "action_changed",
+        "threshold_changed",
+        "evidence_gate_added",
+        "written_term_added",
+        "scope_narrowed",
+        "overclaim_retracted"
+      ],
+      "failure_trap": "A reviewer or future judge might confuse enterprise status with validated buyer priority and miss reliability obligations.",
+      "custody_flags": {
+        "paraphrase_only": true,
+        "raw_content_included": false,
+        "private_reasoning_included": false,
+        "local_paths_included": false
+      }
+    },
+    {
+      "fixture_id": "uvp_v0_004_consulting_presale_scoped_pilot",
+      "source_pattern": "consulting_presale_scoped_pilot",
+      "risk_mode_context": "standard",
+      "review_scope": "human_review_only",
+      "why_this_fixture_exists": "Tests whether the worksheet can distinguish client-ready credibility from status-driven polish or premature scale.",
+      "values_items": [
+        {
+          "id": "value_001",
+          "kind": "inferred_priority",
+          "status": "present",
+          "grounding": "derivation",
+          "confidence": "medium",
+          "review_note": "The user appears to value revenue validation, but not at the cost of vague promises.",
+          "needs_user_confirmation": true
+        },
+        {
+          "id": "value_002",
+          "kind": "stakeholder_obligation",
+          "status": "present",
+          "grounding": "derivation",
+          "confidence": "medium",
+          "review_note": "Prospective client trust requires the offer to be scoped enough to buy and deliver.",
+          "needs_user_confirmation": true
+        },
+        {
+          "id": "value_003",
+          "kind": "inferred_priority",
+          "status": "present",
+          "grounding": "reviewer_inference",
+          "confidence": "low",
+          "review_note": "Credibility matters, but the worksheet should not equate credibility with broad brand polish.",
+          "needs_user_confirmation": true
+        },
+        {
+          "id": "value_004",
+          "kind": "unresolved_conflict",
+          "status": "present",
+          "grounding": "derivation",
+          "confidence": "medium",
+          "review_note": "Cash runway, client trust, and scope discipline are in tension.",
+          "needs_user_confirmation": true
+        }
+      ],
+      "conflicts": [
+        {
+          "id": "conflict_001",
+          "between": [
+            "value_001",
+            "value_002"
+          ],
+          "status": "resolved_by_answer",
+          "review_note": "A bounded pilot can test revenue while protecting client trust."
+        },
+        {
+          "id": "conflict_002",
+          "between": [
+            "value_003",
+            "value_004"
+          ],
+          "status": "preserved_for_user",
+          "review_note": "Credibility should support the offer, not expand it into agency theater."
+        }
+      ],
+      "answer_treatment": {
+        "honored_values": [
+          "value_001",
+          "value_002",
+          "value_003"
+        ],
+        "distorted_values": [],
+        "ignored_values": [],
+        "over_hardened_values": [],
+        "open_questions_added": [
+          "value_004"
+        ]
+      },
+      "expected_review_read": {
+        "values_surface_sufficient_for_review": "yes",
+        "would_change_actionable_delta_label": "no",
+        "safe_for_agent_use_impact": "none"
+      },
+      "rubric_connections": [
+        "action_changed",
+        "evidence_gate_added",
+        "written_term_added",
+        "scope_narrowed",
+        "overclaim_retracted"
+      ],
+      "failure_trap": "A reviewer or future judge might either dismiss all polish as status spending or over-credit polish while missing scope discipline.",
+      "custody_flags": {
+        "paraphrase_only": true,
+        "raw_content_included": false,
+        "private_reasoning_included": false,
+        "local_paths_included": false
+      }
+    },
+    {
+      "fixture_id": "uvp_v0_005_product_pivot_capacity_gate",
+      "source_pattern": "product_pivot_capacity_gate",
+      "risk_mode_context": "standard",
+      "review_scope": "human_review_only",
+      "why_this_fixture_exists": "Tests whether the worksheet can record market ambition without erasing current obligations and team capacity.",
+      "values_items": [
+        {
+          "id": "value_001",
+          "kind": "inferred_priority",
+          "status": "present",
+          "grounding": "derivation",
+          "confidence": "medium",
+          "review_note": "The user appears to value stronger market proof and a higher-upside direction.",
+          "needs_user_confirmation": true
+        },
+        {
+          "id": "value_002",
+          "kind": "stakeholder_obligation",
+          "status": "present",
+          "grounding": "derivation",
+          "confidence": "medium",
+          "review_note": "Current customer or user obligations remain real even when a new market looks more attractive.",
+          "needs_user_confirmation": true
+        },
+        {
+          "id": "value_003",
+          "kind": "non_negotiable",
+          "status": "unclear",
+          "grounding": "reviewer_inference",
+          "confidence": "low",
+          "review_note": "Team capacity may be a hard boundary, but the exact threshold is not established by the paraphrased review pattern.",
+          "needs_user_confirmation": true
+        },
+        {
+          "id": "value_004",
+          "kind": "tradeoff_willingness",
+          "status": "present",
+          "grounding": "derivation",
+          "confidence": "medium",
+          "review_note": "The pattern supports testing market opportunity only after capacity and existing obligations pass.",
+          "needs_user_confirmation": true
+        }
+      ],
+      "conflicts": [
+        {
+          "id": "conflict_001",
+          "between": [
+            "value_001",
+            "value_002"
+          ],
+          "status": "resolved_by_answer",
+          "review_note": "The reviewed answer sequence protects current obligations before market validation consumes attention."
+        },
+        {
+          "id": "conflict_002",
+          "between": [
+            "value_003",
+            "value_004"
+          ],
+          "status": "preserved_for_user",
+          "review_note": "The worksheet should keep the capacity threshold explicit instead of treating capacity as a vague concern."
+        }
+      ],
+      "answer_treatment": {
+        "honored_values": [
+          "value_001",
+          "value_002",
+          "value_004"
+        ],
+        "distorted_values": [],
+        "ignored_values": [],
+        "over_hardened_values": [],
+        "open_questions_added": [
+          "value_003"
+        ]
+      },
+      "expected_review_read": {
+        "values_surface_sufficient_for_review": "yes",
+        "would_change_actionable_delta_label": "no",
+        "safe_for_agent_use_impact": "none"
+      },
+      "rubric_connections": [
+        "threshold_changed",
+        "sequence_changed",
+        "evidence_gate_added",
+        "written_term_added"
+      ],
+      "failure_trap": "A reviewer or future judge might reward market excitement and miss that current obligations must pass before the pivot earns attention.",
+      "custody_flags": {
+        "paraphrase_only": true,
+        "raw_content_included": false,
+        "private_reasoning_included": false,
+        "local_paths_included": false
+      }
+    },
+    {
+      "fixture_id": "uvp_v0_006_clinic_controls_high_risk_deployment",
+      "source_pattern": "clinic_controls_high_risk_deployment",
+      "risk_mode_context": "high_stakes_like_paraphrase",
+      "review_scope": "human_review_only",
+      "why_this_fixture_exists": "Tests whether the worksheet can keep safety, adoption, compliance, and operator accountability visible without approving high-stakes use.",
+      "values_items": [
+        {
+          "id": "value_001",
+          "kind": "stakeholder_obligation",
+          "status": "present",
+          "grounding": "derivation",
+          "confidence": "medium",
+          "review_note": "Patient or client safety is the central stakeholder obligation in this pattern.",
+          "needs_user_confirmation": true
+        },
+        {
+          "id": "value_002",
+          "kind": "inferred_priority",
+          "status": "present",
+          "grounding": "derivation",
+          "confidence": "medium",
+          "review_note": "The user appears to value adoption and operational learning, but only within controls the team can actually run.",
+          "needs_user_confirmation": true
+        },
+        {
+          "id": "value_003",
+          "kind": "non_negotiable",
+          "status": "present",
+          "grounding": "derivation",
+          "confidence": "medium",
+          "review_note": "Human accountability and pause conditions should be treated as must-preserve in the reviewed pattern.",
+          "needs_user_confirmation": true
+        },
+        {
+          "id": "value_004",
+          "kind": "unresolved_conflict",
+          "status": "present",
+          "grounding": "derivation",
+          "confidence": "medium",
+          "review_note": "Safety, compliance, adoption, and operational throughput can conflict under deployment pressure.",
+          "needs_user_confirmation": true
+        }
+      ],
+      "conflicts": [
+        {
+          "id": "conflict_001",
+          "between": [
+            "value_001",
+            "value_002"
+          ],
+          "status": "resolved_by_answer",
+          "review_note": "A narrower pilot with must-pass controls can support learning without pretending adoption is safe by default."
+        },
+        {
+          "id": "conflict_002",
+          "between": [
+            "value_003",
+            "value_004"
+          ],
+          "status": "preserved_for_user",
+          "review_note": "The answer should preserve unresolved operational risk and require stop conditions instead of checklist theater."
+        }
+      ],
+      "answer_treatment": {
+        "honored_values": [
+          "value_001",
+          "value_002",
+          "value_003"
+        ],
+        "distorted_values": [],
+        "ignored_values": [],
+        "over_hardened_values": [],
+        "open_questions_added": [
+          "value_004"
+        ]
+      },
+      "expected_review_read": {
+        "values_surface_sufficient_for_review": "yes",
+        "would_change_actionable_delta_label": "no",
+        "safe_for_agent_use_impact": "makes_more_conservative"
+      },
+      "rubric_connections": [
+        "action_changed",
+        "threshold_changed",
+        "evidence_gate_added",
+        "stop_rule_added",
+        "user_question_added",
+        "scope_narrowed"
+      ],
+      "failure_trap": "A reviewer or future judge might over-credit a long checklist and miss whether controls are operable, owned, and able to stop rollout.",
+      "custody_flags": {
+        "paraphrase_only": true,
+        "raw_content_included": false,
+        "private_reasoning_included": false,
+        "local_paths_included": false
+      }
+    }
+  ]
+}

@@ -112,7 +112,8 @@ only aggregate keys and counts.
 - no runtime risk-mode enforcement beyond the existing conservative
   `high_stakes` caller-action contract;
 - no implemented user-values/priorities worksheet, exporter, extraction, or
-  report; PR49 only plans the human worksheet;
+  report; PR49 only plans the human worksheet and PR50 only adds
+  paraphrase-only fixtures;
 - no trusted live-output transcript implementation;
 - no domain, crisis, legal, medical, financial, or safety protocol.
 
@@ -151,19 +152,19 @@ approval.
 
 The later safe lanes are separate:
 
-1. PR49 defines a human values/priorities worksheet plan. PR50 should prefer a
-   paraphrase-only worksheet fixture pack before any blank exporter or
-   extraction work, then stop for a human-pilot decision.
-2. PR51 and PR52 can plan and lock current live-output hygiene behavior, then
+1. PR49 defines a human values/priorities worksheet plan. PR50 adds
+   paraphrase-only worksheet fixtures. PR51 should review those fixtures before
+   any blank exporter or extraction work, then stop for a human-pilot decision.
+2. A later live-output hygiene lane can plan and lock current behavior, then
    stop for an implementation decision.
 
 ## Decision Gates
 
 - Now: decide whether to create approved real high-stakes evidence.
-- After PR50: decide whether a user-values/priorities worksheet is clear enough
+- After PR51: decide whether a user-values/priorities worksheet is clear enough
   for a human pilot.
-- After PR52: decide whether to implement trusted live-output transcript
-  hygiene.
+- After a live-output hygiene planning/review lane: decide whether to implement
+  trusted live-output transcript hygiene.
 
 Until those gates are explicitly approved, the machine should keep the evidence
 lane honest: deterministic counts and fixtures may describe readiness, but they

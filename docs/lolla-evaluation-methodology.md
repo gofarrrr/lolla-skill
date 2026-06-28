@@ -622,7 +622,7 @@ automatic labels, domain protocols, or a judge.
 Latest eval slice:
 
 ```text
-PR49 User Values / Priorities Worksheet Plan v0
+PR50 User Values / Priorities Worksheet Fixture Pack v0
 ```
 
 PR40 proves current high-stakes reliance behavior remains conservative in
@@ -717,6 +717,22 @@ questions for the user, and answer treatment. It is not extraction, memory, a
 runtime artifact, an answer-quality score, automatic `safe_for_agent_use`, or a
 judge. The recommended next slice is a paraphrase-only worksheet fixture pack
 before any blank exporter or extraction work.
+
+PR50 now adds that fixture pack:
+
+```text
+docs/evals/user-values-priorities-worksheet-fixtures-v0.md
+docs/evals/user-values-priorities-worksheet-fixtures-v0.json
+```
+
+It is docs/eval-only and paraphrase-only. The six fixtures cover cofounder
+authority transfer, career/family written terms, enterprise beta buyer proof,
+consulting pre-sale scoped pilot, product pivot capacity gate, and clinic
+controls high-risk deployment. The pack tests whether humans can apply the
+worksheet without copying raw content, extracting values automatically, changing
+runtime behavior, populating labels, approving high-stakes use, or adding a
+judge. The recommended next slice is human/product fixture review before any
+exporter or extraction work.
 
 Do not populate `lolla.human_review.v0` from synthetic reviewers. Do not treat
 these human labels as judge calibration yet. They define product taste and

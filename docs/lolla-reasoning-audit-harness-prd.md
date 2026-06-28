@@ -362,6 +362,11 @@ missing values/priorities signal actionable for human review without adding
 extraction, exports, memory, runtime behavior, `conversation_understanding_ir.v0`,
 automatic labels, `safe_for_agent_use` automation, or a judge.
 
+PR50 now adds paraphrase-only worksheet fixtures for that surface. It tests
+whether the worksheet is understandable through human-review examples before
+any exporter, extraction, memory, runtime behavior, automatic labels, or judge
+work.
+
 This roadmap should build on that. It should not restart the architecture.
 
 ## Proposed Product
@@ -504,6 +509,8 @@ Current implementation:
 - PR48 adds manifest-only evidence-readiness analysis without changing runtime
   behavior.
 - PR49 plans a human-owned values/priorities worksheet without changing runtime
+  behavior.
+- PR50 adds paraphrase-only worksheet fixtures without changing runtime
   behavior.
 
 Future behavior:
@@ -702,6 +709,9 @@ Current v0 slice:
 - `docs/evals/user-values-priorities-worksheet-plan-v0.md` defines the next
   human-review-only worksheet surface for PR34 values/priorities evidence
   before any exporter, extraction, memory, runtime behavior, or judge exists.
+- `docs/evals/user-values-priorities-worksheet-fixtures-v0.md` and
+  `docs/evals/user-values-priorities-worksheet-fixtures-v0.json` test that
+  worksheet surface with paraphrase-only fixtures before code or judge work.
 
 Acceptance criteria:
 

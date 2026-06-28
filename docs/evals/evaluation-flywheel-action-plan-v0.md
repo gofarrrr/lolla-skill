@@ -969,7 +969,8 @@ Current result:
   reliance-present archive evidence;
 - distinguishes fixture-backed review-surface validation from real archive
   outcome evidence;
-- names the PR48, PR50, and PR52 approval gates;
+- names the PR48 high-stakes gate, the PR49/PR50 values worksheet lane, and the
+  live-output hygiene implementation gate;
 - makes no code, runtime, prompt, archive, judge, scoring, or automatic-label
   change.
 
@@ -1081,7 +1082,8 @@ Stop point:
   explicitly approves the scenario list, run count, cost, custody path,
   reviewer, and operator procedure.
 - A separate approved safe lane may continue user-values/priorities worksheet
-  planning without creating high-stakes runs or runtime behavior.
+  fixture and review work without creating high-stakes runs or runtime
+  behavior.
 
 ### PR49: User Values / Priorities Worksheet Plan v0
 
@@ -1119,9 +1121,50 @@ Current result:
 Stop point:
 
 - PR49 stops after docs and validation.
-- Do not implement PR50, a worksheet exporter, extraction, runtime integration,
+- Do not implement a worksheet exporter, extraction, runtime integration,
   `conversation_understanding_ir.v0`, automatic labels, or a judge in this
   slice.
+
+### PR50: User Values / Priorities Worksheet Fixture Pack v0
+
+Maps to: PRD R6, R8, conversation-understanding roadmap.
+
+Status: completed as a docs/eval-only fixture pack.
+
+Goal:
+
+Create paraphrase-only filled worksheet examples that test whether the PR49
+worksheet shape is understandable and useful for human review before exporter,
+validator, extraction, runtime, memory, or judge work.
+
+Output:
+
+- [User Values / Priorities Worksheet Fixtures v0](user-values-priorities-worksheet-fixtures-v0.md);
+- [user-values-priorities-worksheet-fixtures-v0.json](user-values-priorities-worksheet-fixtures-v0.json).
+
+Current result:
+
+- adds six paraphrase-only fixtures from existing PR30/PR33 review patterns;
+- covers cofounder authority transfer, career/family written terms, enterprise
+  beta buyer proof, consulting pre-sale scoped pilot, product pivot capacity
+  gate, and clinic controls high-risk deployment;
+- records values items, conflicts, answer treatment, expected review read,
+  rubric connections, failure traps, and custody flags;
+- keeps all raw transcript, memo, revised-answer, model/provider, private
+  reasoning, local absolute path, secret, and credential content out of the
+  fixture pack;
+- keeps high-stakes-like safety/adoption tensions conservative without creating
+  real high-stakes archive evidence or changing `risk_mode`, `caller_action`,
+  review-corpus export, evaluation logic, `safe_for_agent_use`, or runtime
+  behavior;
+- recommends PR51 as a human/product fixture review, not code.
+
+Stop point:
+
+- PR50 stops after docs/JSON fixtures and validation.
+- Do not implement PR51, a blank worksheet exporter, extraction, runtime
+  integration, `conversation_understanding_ir.v0`, automatic labels, or a judge
+  in this slice.
 
 Later judge work can resume only after human-owned labels and high-stakes
 review evidence are present enough to calibrate a narrow advisory judge. When
@@ -1173,6 +1216,7 @@ Before building judges or runtime semantic enrichment, Lolla should have:
 - at least one small human-reviewed corpus batch beyond the six examples;
 - a design note for the user-values/priorities signal;
 - a human-review worksheet plan for that signal;
+- paraphrase-only worksheet fixtures for that signal;
 - a clear decision on live-output hygiene;
 - a clear decision on risk-mode reliance policy;
 - risk-mode fixture examples;
@@ -1183,5 +1227,5 @@ Before building judges or runtime semantic enrichment, Lolla should have:
 That is the smallest flywheel that can improve Lolla run by run without turning
 it into a vague critic or overbuilt memory system.
 
-The next conservative values/priorities slice is a paraphrase-only worksheet
-fixture pack, not runtime extraction or judge automation.
+The next conservative values/priorities slice is human/product fixture review,
+not runtime extraction or judge automation.

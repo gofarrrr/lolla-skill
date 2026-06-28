@@ -115,6 +115,16 @@ obligations, non-negotiables, tradeoffs, and unresolved conflicts, but it does
 not populate `lolla.human_review.v0`, change `safe_for_agent_use`, or approve
 agent reliance.
 
+PR50 adds paraphrase-only examples for that worksheet:
+
+```text
+docs/evals/user-values-priorities-worksheet-fixtures-v0.md
+docs/evals/user-values-priorities-worksheet-fixtures-v0.json
+```
+
+Use those fixtures to rehearse reviewer interpretation before any exporter,
+validator, extraction, or automatic labels exist.
+
 ## 5. Label The First Upstream Failure
 
 Record one `primary_failure_mode`.
