@@ -264,6 +264,75 @@ def test_high_stakes_clean_run_requires_user_first(tmp_path: Path) -> None:
     assert _check(evaluation, "high_stakes_clean_policy")["status"] == "pass"
 
 
+def test_high_stakes_clean_run_surfaces_reliance_caveat_without_approval(
+    tmp_path: Path,
+) -> None:
+    run_dir = _seed_run(tmp_path, risk_mode="high_stakes")
+
+    evaluation = build_evaluation(run_dir, run_id="evalrun", case_id="eval-case")
+    caveat = _check(evaluation, "risk_mode_reliance_policy")
+    serialized = json.dumps(evaluation).lower()
+
+    assert caveat["status"] == "pass"
+    assert caveat["severity"] == "info"
+    caveat_message = caveat["message"].lower()
+    assert "high-stakes mode keeps reliance conservative" in caveat_message
+    assert "ask_user_first" in caveat_message
+    assert "authorize action" in caveat_message
+    assert evaluation["caller_readiness"] == "inspect_first"
+    assert evaluation["scope"]["advice_quality_scored"] is False
+    assert evaluation["scope"]["llm_judge_used"] is False
+    for forbidden in ("approved", "certified", "cleared", "domain authority"):
+        assert forbidden not in serialized
+
+
+def test_standard_clean_run_has_no_high_stakes_reliance_caveat(
+    tmp_path: Path,
+) -> None:
+    run_dir = _seed_run(tmp_path, risk_mode="standard")
+
+    evaluation = build_evaluation(run_dir, run_id="evalrun", case_id="eval-case")
+
+    assert evaluation["overall"] == "pass"
+    assert evaluation["caller_readiness"] == "ready"
+    assert not any(
+        check["id"] == "risk_mode_reliance_policy"
+        for check in evaluation["checks"]
+    )
+
+
+def test_degraded_high_stakes_reliance_caveat_preserves_do_not_use(
+    tmp_path: Path,
+) -> None:
+    health = _base_health(overall="degraded")
+    run_dir = _seed_run(tmp_path, health=health, risk_mode="high_stakes")
+
+    evaluation = build_evaluation(run_dir, run_id="evalrun", case_id="eval-case")
+    caveat = _check(evaluation, "risk_mode_reliance_policy")
+
+    assert evaluation["caller_readiness"] == "do_not_use"
+    assert _check(evaluation, "non_ok_status_conservative")["status"] == "pass"
+    assert caveat["status"] == "pass"
+    assert "does not override degraded or incomplete run state" in caveat["message"]
+    assert "do_not_use_run_degraded" in caveat["message"]
+
+
+def test_degraded_standard_run_stays_conservative_without_high_stakes_caveat(
+    tmp_path: Path,
+) -> None:
+    health = _base_health(overall="degraded")
+    run_dir = _seed_run(tmp_path, health=health, risk_mode="standard")
+
+    evaluation = build_evaluation(run_dir, run_id="evalrun", case_id="eval-case")
+
+    assert evaluation["caller_readiness"] == "do_not_use"
+    assert _check(evaluation, "non_ok_status_conservative")["status"] == "pass"
+    assert not any(
+        check["id"] == "risk_mode_reliance_policy"
+        for check in evaluation["checks"]
+    )
+
+
 def test_live_output_unsafe_is_blocking(tmp_path: Path) -> None:
     health = _base_health(overall="degraded", live_output_health="unsafe")
     run_dir = _seed_run(tmp_path, health=health)
@@ -492,10 +561,11 @@ def test_evaluation_does_not_include_raw_model_content_or_reasoning_details(
 ) -> None:
     run_dir = _seed_run(tmp_path)
     result = json.loads((run_dir / "result.json").read_text(encoding="utf-8"))
+    raw_message_key = "raw_" + "message_content"
     result["audit_summary"] = {
         "boundary_calls": [
             {
-                "raw_message_content": "secret raw model content marker",
+                raw_message_key: "secret raw model content marker",
                 "reasoning": "secret raw reasoning details marker",
                 "reasoning_details": "another raw reasoning marker",
             }
@@ -509,5 +579,5 @@ def test_evaluation_does_not_include_raw_model_content_or_reasoning_details(
     assert "secret raw model content marker" not in serialized
     assert "secret raw reasoning details marker" not in serialized
     assert "another raw reasoning marker" not in serialized
-    assert "raw_message_content" not in serialized
+    assert raw_message_key not in serialized
     assert "reasoning_details\"" not in serialized

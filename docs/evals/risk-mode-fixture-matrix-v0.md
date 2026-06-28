@@ -167,6 +167,16 @@ remains `use_revised_answer`, degraded runs remain blocked for caller
 readiness, and review-corpus records preserve risk/reliance metadata. PR40 does
 not enforce new risk-mode behavior.
 
+PR41 now adds deterministic evaluation-artifact clarity:
+
+```text
+risk_mode_reliance_policy
+```
+
+That check makes high-stakes reliance caveats visible in `evaluation.json`
+without changing caller-action policy, approving domain use, or scoring answer
+quality.
+
 ## Review Receipt
 
 - Twelve fixtures created.

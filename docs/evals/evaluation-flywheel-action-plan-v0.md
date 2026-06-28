@@ -770,6 +770,8 @@ Current result:
 
 Maps to: PRD R2, R7, R8, R11.
 
+Status: completed as a narrow deterministic artifact-clarity slice.
+
 Goal:
 
 Use the PR40 contract-lock tests as a guardrail while deciding whether
@@ -796,7 +798,50 @@ Acceptance:
 - no domain approval or crisis protocol;
 - no LLM judge.
 
-### PR42: First Calibrated Binary Judge Prototype
+Current result:
+
+- added `risk_mode_reliance_policy` to `evaluation.json` checks for
+  `risk_mode: high_stakes`;
+- otherwise clean `high_stakes` now has an explicit reliance caveat while
+  preserving `caller_action: ask_user_first` and `caller_readiness:
+  inspect_first`;
+- degraded high-stakes keeps `caller_action: do_not_use_run_degraded` and
+  `caller_readiness: do_not_use`;
+- clean `standard` has no high-stakes caveat and remains `caller_action:
+  use_revised_answer` / `caller_readiness: ready`;
+- the check is deterministic run-readiness only: no domain correctness, answer
+  quality, `safe_for_agent_use`, prompt, `SKILL.md`, or judge change.
+
+### PR42: Risk Mode Review Surface Integration v0
+
+Maps to: PRD R2, R6, R7, R8.
+
+Goal:
+
+Expose PR41's deterministic risk-mode reliance caveat in review/corpus surfaces
+without changing runtime behavior or caller-action policy.
+
+Candidate behavior:
+
+- review corpus records surface the compact `risk_mode_reliance_policy` result
+  when present;
+- human-review workflow explains how reviewers should treat high-stakes clean
+  artifacts, degraded artifacts, `live_output_health: not_checked`, unresolved
+  values conflicts, and unsupported high-stakes domain claims;
+- aggregate review reports may count risk-mode reliance caveats;
+- `safe_for_agent_use` remains human-owned.
+
+Acceptance:
+
+- PR40 and PR41 tests stay green;
+- no model calls;
+- no prompt or `SKILL.md` change;
+- no runtime enforcement;
+- no caller-action change;
+- no domain approval or crisis protocol;
+- no LLM judge.
+
+### PR43: First Calibrated Binary Judge Prototype
 
 Maps to: PRD R8.
 

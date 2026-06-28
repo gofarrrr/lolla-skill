@@ -317,7 +317,12 @@ PR40 now locks the current risk-mode contract in tests. Otherwise clean
 runs keep `caller_action: do_not_use_run_degraded`; clean `standard` behavior
 does not regress; and review corpus records preserve risk/reliance metadata.
 
-The next narrow slice is PR41 Risk Mode Evaluation Artifact Clarity v0, not
+PR41 now clarifies `evaluation.json` with `risk_mode_reliance_policy` for
+high-stakes runs. The check makes reliance caveats visible without changing
+`caller_action`, scoring answer quality, approving domain use, or enforcing
+runtime behavior.
+
+The next narrow slice is PR42 Risk Mode Review Surface Integration v0, not
 judge automation or runtime enforcement.
 
 This roadmap should build on that. It should not restart the architecture.
@@ -449,6 +454,8 @@ Current implementation:
   contract-lock tests first, without implementing enforcement.
 - PR40 locks the current high-stakes conservative contract in tests without
   changing runtime behavior.
+- PR41 adds deterministic high-stakes reliance-policy clarity to
+  `evaluation.json` without changing caller-action policy.
 
 Future behavior:
 
@@ -480,6 +487,10 @@ work.
 
 PR40 adds that contract-lock test slice. Future evaluation-artifact clarity
 work should keep those tests green and should not redesign `caller_action`.
+
+PR41 adds the deterministic evaluation-artifact clarity slice. Future
+review/corpus surface work should expose the same caveat for humans without
+making `safe_for_agent_use` automatic.
 
 Acceptance criteria:
 

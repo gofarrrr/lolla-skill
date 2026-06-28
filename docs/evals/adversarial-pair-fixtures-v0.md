@@ -360,4 +360,6 @@ This does not justify:
   reliance/readiness tightening without implementation.
 - PR40 Risk Mode Contract Lock Tests v0 now locks the current conservative
   risk-mode contract in tests.
-- PR41 Risk Mode Evaluation Artifact Clarity v0 is the next evaluation slice.
+- PR41 Risk Mode Evaluation Artifact Clarity v0 now adds deterministic
+  high-stakes reliance-policy clarity to `evaluation.json`.
+- PR42 Risk Mode Review Surface Integration v0 is the next evaluation slice.

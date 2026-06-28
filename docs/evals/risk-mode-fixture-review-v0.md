@@ -215,9 +215,13 @@ PR40 now completes that test-only contract-lock slice in:
 tests/test_risk_mode_contract.py
 ```
 
-Those tests preserve the current conservative behavior before any artifact
-clarity or enforcement work. The next slice is PR41 Risk Mode Evaluation
-Artifact Clarity v0.
+Those tests preserve the current conservative behavior before artifact clarity
+or enforcement work.
+
+PR41 now adds `risk_mode_reliance_policy` to `evaluation.json` for high-stakes
+runs. It makes the reliance caveat explicit without changing caller-action
+policy, approving domain use, or scoring answer quality. The next slice is
+PR42 Risk Mode Review Surface Integration v0.
 
 ## Review Receipt
 

@@ -326,6 +326,33 @@ def _agent_policy_checks(
                 artifact="agent_result.json",
             )
         )
+    if risk_mode == "high_stakes":
+        if status == "ok":
+            reliance_ok = caller_action == "ask_user_first"
+            message = (
+                "High-stakes mode keeps reliance conservative through caller_action ask_user_first; "
+                "a human or domain-qualified reviewer must inspect before relying, and this "
+                "run-readiness check does not authorize action."
+                if reliance_ok
+                else "High-stakes mode did not keep reliance conservative through caller_action ask_user_first."
+            )
+        else:
+            reliance_ok = caller_action == "do_not_use_run_degraded"
+            message = (
+                "High-stakes mode does not override degraded or incomplete run state; "
+                "caller_action do_not_use_run_degraded blocks reliance until the run is resolved."
+                if reliance_ok
+                else "High-stakes mode did not preserve degraded-run caller blocking."
+            )
+        checks.append(
+            _check(
+                id="risk_mode_reliance_policy",
+                status="pass" if reliance_ok else "fail",
+                severity="info" if reliance_ok else "blocking",
+                message=message,
+                artifact="agent_result.json",
+            )
+        )
 
     if _text(provider_health.get("status")) == "warning_contained":
         pure_provider_warning = _provider_boundary_only_partial(run_health)

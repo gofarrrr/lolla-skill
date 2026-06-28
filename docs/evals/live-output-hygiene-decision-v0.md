@@ -245,30 +245,33 @@ This does not justify:
 - an LLM judge;
 - provider-boundary policy changes.
 
-## Recommended Next Slice
+## Risk-Mode Follow-On
 
 PR36 defines risk-mode behavior policy, PR37 turns that policy into fixtures,
 PR38 reviews the matrix and adds the missing high-stakes values/priorities
-conflict fixture, and PR39 plans the implementation path:
+conflict fixture, PR39 plans the implementation path, PR40 locks the current
+contract in tests, and PR41 clarifies high-stakes reliance in `evaluation.json`:
 
 ```text
 docs/evals/risk-mode-fixture-matrix-v0.md
 docs/evals/risk-mode-fixture-review-v0.md
 docs/evals/risk-mode-implementation-plan-v0.md
+tests/test_risk_mode_contract.py
+tests/test_evaluation_artifact.py
 ```
 
 The next slice should be:
 
 ```text
-PR40 Risk Mode Contract Lock Tests v0
+PR42 Risk Mode Review Surface Integration v0
 ```
 
-Why PR40: PR35 resolved the live product-surface caveat, PR36 defines how risk
+Why PR42: PR35 resolved the live product-surface caveat, PR36 defines how risk
 mode should affect review and reliance, PR37 gives concrete fixture cases, PR38
-checks those fixtures as a future gate, and PR39 names high-stakes
-reliance/readiness tightening as the smallest future behavior change. The next
-move should lock existing conservative behavior in tests, not add enforcement
-or judge work.
+checks those fixtures as a future gate, PR40 locks existing conservative
+behavior in tests, and PR41 makes the high-stakes reliance caveat visible in
+`evaluation.json`. The next move should expose that caveat to review/corpus
+surfaces, not add enforcement or judge work.
 
 ## Review Receipt
 

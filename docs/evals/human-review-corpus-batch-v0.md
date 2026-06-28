@@ -309,8 +309,11 @@ PR39 now plans high-stakes reliance/readiness tightening without implementation:
 docs/evals/risk-mode-implementation-plan-v0.md
 ```
 
-The next step is contract-lock testing, not runtime enforcement:
+PR40 locks the current conservative contract in tests, and PR41 adds the
+deterministic `risk_mode_reliance_policy` check to `evaluation.json`.
+
+The next step is review/corpus surface integration, not runtime enforcement:
 
 ```text
-PR40 Risk Mode Contract Lock Tests v0
+PR42 Risk Mode Review Surface Integration v0
 ```

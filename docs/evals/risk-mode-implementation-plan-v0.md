@@ -152,24 +152,31 @@ artifact-clarity work may revisit that explicitly.
 
 ### Phase 2: Evaluation Artifact Clarity
 
+Status: completed by PR41.
+
 Purpose:
 
 Make the conservative high-stakes reliance caveat clearer in artifacts, only
 after Phase 1 tests lock current behavior.
 
-Candidate changes:
+Completed changes:
 
-- `evaluation.json` records an explicit high-stakes reliance caveat when
-  `risk_mode: high_stakes` is otherwise clean but still inspect-first;
-- `agent_result.json` `status_reason` or `notes` explain why
-  `ask_user_first` is returned;
-- deterministic consistency checks ensure high-stakes clean artifacts do not
-  silently imply automatic agent use;
+- `evaluation.json` now includes `risk_mode_reliance_policy` for
+  `risk_mode: high_stakes`;
+- otherwise clean high-stakes runs record the reliance caveat while preserving
+  `caller_action: ask_user_first` and `caller_readiness: inspect_first`;
+- degraded high-stakes runs record that risk mode does not override degraded
+  run state, preserving `caller_action: do_not_use_run_degraded` and
+  `caller_readiness: do_not_use`;
+- standard clean runs do not receive the high-stakes caveat and retain current
+  `use_revised_answer` / `ready` behavior;
+- deterministic tests ensure high-stakes clean artifacts do not silently imply
+  automatic agent use;
 - no domain approval;
 - no answer-quality scoring.
 
-Contract docs must be updated in the same PR if artifact fields or wording
-change.
+PR41 does not change `agent_result.json`, `caller_action`, prompts,
+`SKILL.md`, runtime enforcement, or archive behavior.
 
 ### Phase 3: Review-Surface Integration
 
@@ -377,19 +384,18 @@ This does not justify:
 
 ## Recommended Next Slice
 
-PR41 should be:
+PR42 should be:
 
 ```text
-Risk Mode Evaluation Artifact Clarity v0
+Risk Mode Review Surface Integration v0
 ```
 
 Purpose:
 
-Use the PR40 tests as a guardrail while deciding whether `evaluation.json`
-should make high-stakes reliance caveats and degraded reliance states more
-explicit. That slice should remain deterministic artifact clarity, not
-answer-quality scoring, runtime enforcement, caller-action redesign, or domain
-approval.
+Use the PR40 and PR41 tests as guardrails while exposing the deterministic
+`risk_mode_reliance_policy` caveat in review and corpus surfaces. That slice
+should remain human-review/corpus surface work, not answer-quality scoring,
+runtime enforcement, caller-action redesign, or domain approval.
 
 ## Review Receipt
 
@@ -397,12 +403,14 @@ approval.
 - Smallest future behavior change named:
   `high_stakes` reliance/readiness tightening.
 - PR40 now completes the first code-bearing slice: test-only contract lock.
+- PR41 now completes deterministic evaluation artifact clarity by adding
+  `risk_mode_reliance_policy` to high-stakes evaluation checks.
 - PR36, PR37, and PR38 are cited as prerequisites.
 - Contract impacts are named for `agent_result.json`, `evaluation.json`,
   review corpus records, human review workflow, Observatory, and `SKILL.md`.
 - No `$lolla` run.
 - No model calls.
-- No runtime files changed.
+- PR41 changes only deterministic evaluation artifact code and tests.
 - No prompts changed.
 - No `SKILL.md` changes.
 - No risk-mode enforcement.

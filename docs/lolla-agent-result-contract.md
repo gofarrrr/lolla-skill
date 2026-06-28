@@ -305,6 +305,11 @@ return `caller_action: ask_user_first`, degraded runs return
 review-corpus records preserve the risk/reliance fields. PR40 does not change
 this contract or runtime behavior.
 
+PR41 clarifies `evaluation.json` with a deterministic
+`risk_mode_reliance_policy` check for high-stakes runs. It does not change
+`agent_result.json`, add a caller-action enum, relax `caller_action`, approve
+domain use, or make `safe_for_agent_use` automatic.
+
 The control-plane wrapper preserves metadata and maps Lolla's result for other
 systems. It does not auto-trigger Lolla, enforce approvals, call tools, replay
 external traces, or turn Lolla into a proxy/firewall/sandbox/identity broker.
