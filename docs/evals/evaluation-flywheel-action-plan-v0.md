@@ -942,6 +942,41 @@ Current result:
 - local export smoke still shows 80 records, all `risk_mode: standard`, with
   zero reliance-present records.
 
+### PR45: Current State Anti-Drift Handoff v0
+
+Maps to: PRD R2, R6, R8, R11, R12.
+
+Status: completed as a docs-only current-state handoff.
+
+Goal:
+
+Create a compact first-read note so a fresh session can understand what Lolla is,
+what PR30-PR44 built, what evidence is still missing, and what must not be built
+until explicit approval gates.
+
+Output:
+
+- [Current State Anti-Drift Handoff v0](current-state-anti-drift-handoff-v0.md).
+
+Current result:
+
+- summarizes Lolla as probabilistic reasoning inside deterministic custody;
+- records the PR30-PR44 evaluation/risk-mode visibility chain;
+- records the current real corpus evidence: 80 records, all `risk_mode:
+  standard`, with `risk_mode_reliance_present_counts` of `false: 80` and
+  `true: 0`;
+- states that the current corpus contains no real high-stakes
+  reliance-present archive evidence;
+- distinguishes fixture-backed review-surface validation from real archive
+  outcome evidence;
+- names the PR48, PR50, and PR52 approval gates;
+- makes no code, runtime, prompt, archive, judge, scoring, or automatic-label
+  change.
+
+Next safe slice:
+
+- PR46 Approved High-Stakes Evidence Seed Plan v0, docs-only and no runs.
+
 Later judge work can resume only after human-owned labels and high-stakes
 review evidence are present enough to calibrate a narrow advisory judge. When
 it resumes, it should still require a named dataset, train/dev/test split,
@@ -958,6 +993,7 @@ and advisory-only use.
 - archive specialist artifacts;
 - graph DB;
 - embeddings-first memory;
+- high-stakes archive evidence claims before approved high-stakes runs exist;
 - broad conversation-understanding IR;
 - prompt rewrite based only on vibes;
 - quote-validation repair without fresh failures;

@@ -1,7 +1,7 @@
 # Lolla Evaluation Methodology
 
 Status: Draft
-Last updated: 2026-06-27
+Last updated: 2026-06-28
 
 ## Why This Exists
 
@@ -622,7 +622,7 @@ automatic labels, domain protocols, or a judge.
 Latest eval slice:
 
 ```text
-PR44 Review Corpus Reliance Manifest Counts v0
+PR45 Current State Anti-Drift Handoff v0
 ```
 
 PR40 proves current high-stakes reliance behavior remains conservative in
@@ -650,6 +650,19 @@ high-stakes reliance-present archive records is visible before any future
 real-run review expansion. The change is additive, keeps the existing
 `lolla.review_corpus_manifest.v0` schema name, and does not change per-record
 `risk_mode_reliance`.
+
+PR45 now records the current-state handoff:
+
+```text
+docs/evals/current-state-anti-drift-handoff-v0.md
+```
+
+It is a docs-only anti-drift note. It summarizes the PR30-PR44 evaluation chain,
+records that the current 80-record real corpus is all `risk_mode: standard` with
+zero reliance-present records, and names the next approval gates before
+high-stakes runs, user-values worksheet pilots, or trusted live-output
+implementation. It does not add a judge, score, automatic label, runtime
+behavior, model call, archive mutation, prompt change, or `SKILL.md` change.
 
 Do not populate `lolla.human_review.v0` from synthetic reviewers. Do not treat
 these human labels as judge calibration yet. They define product taste and

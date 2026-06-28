@@ -1,7 +1,7 @@
 # PRD: Lolla As A Reasoning-Audit Harness
 
 Status: Draft
-Last updated: 2026-06-27
+Last updated: 2026-06-28
 Audience: Lolla maintainers, agent builders, evaluation/governance reviewers, early technical collaborators
 
 ## Source Material
@@ -205,7 +205,7 @@ Run data should remain local unless the user explicitly exports it. Artifacts sh
 
 ## Current Baseline
 
-As of 2026-06-27, Lolla already has:
+As of 2026-06-28, Lolla already has:
 
 - conversation-native runtime through `ConversationContext`,
 - typed `ConversationIR`,
@@ -243,7 +243,9 @@ Since the first harness PRD pass, the shipped harness layer has also added:
   validation diagnostics;
 - semantic coverage reports and corpus survey;
 - offline specialist extractor probe harnesses and evidence notes;
-- a six-case complex conversation baseline with full modern artifacts.
+- a six-case complex conversation baseline with full modern artifacts;
+- the PR30-PR45 evaluation handoff chain from human review seed through
+  risk-mode reliance visibility and current-state anti-drift docs.
 
 The current complex baseline is recorded in:
 
@@ -338,6 +340,13 @@ PR44 now adds additive review-corpus manifest counts for
 status. It keeps the existing review-corpus manifest schema name and does not
 change per-record `risk_mode_reliance`, runtime behavior, caller action, judge
 behavior, or archive contents.
+
+PR45 now records the current-state anti-drift handoff. It summarizes the PR30-PR44
+chain, records that the current 80-record real review corpus is all `standard`
+with zero high-stakes reliance-present records, and names the approval gates
+before real high-stakes evidence creation, values worksheet pilots, or trusted
+live-output implementation. It does not change runtime behavior, prompts,
+`SKILL.md`, archives, caller action, judges, scoring, or automatic labels.
 
 This roadmap should build on that. It should not restart the architecture.
 
@@ -472,6 +481,12 @@ Current implementation:
   `evaluation.json` without changing caller-action policy.
 - PR42 exposes that reliance-policy clarity in review-corpus records and
   human-review workflow docs without changing caller-action policy.
+- PR43 verifies reviewer interpretation with fixtures because the real local
+  corpus has no high-stakes reliance-present examples.
+- PR44 adds manifest-level counts for the PR42 surface without changing the
+  manifest schema name or per-record behavior.
+- PR45 records the anti-drift handoff and current decision gates without
+  changing runtime behavior.
 
 Future behavior:
 
