@@ -155,6 +155,18 @@ future behavior change. It recommends contract-lock tests first, so future code
 must preserve this matrix before any enforcement, caller-action change, or
 judge work.
 
+PR40 now adds those contract-lock tests:
+
+```text
+tests/test_risk_mode_contract.py
+```
+
+The tests map core matrix expectations to deterministic contract behavior:
+otherwise clean `high_stakes` remains `ask_user_first`, clean `standard`
+remains `use_revised_answer`, degraded runs remain blocked for caller
+readiness, and review-corpus records preserve risk/reliance metadata. PR40 does
+not enforce new risk-mode behavior.
+
 ## Review Receipt
 
 - Twelve fixtures created.

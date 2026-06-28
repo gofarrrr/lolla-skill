@@ -622,11 +622,13 @@ automatic labels, domain protocols, or a judge.
 Recommended next eval slice:
 
 ```text
-PR40 Risk Mode Contract Lock Tests v0
+PR41 Risk Mode Evaluation Artifact Clarity v0
 ```
 
-PR40 should prove current high-stakes reliance behavior remains conservative
-before any runtime enforcement or subjective judge work.
+PR40 now proves current high-stakes reliance behavior remains conservative in
+tests. PR41 should decide whether `evaluation.json` needs clearer deterministic
+checks or wording for high-stakes reliance caveats and degraded reliance states.
+It should not become answer-quality scoring, runtime enforcement, or judge work.
 
 Do not populate `lolla.human_review.v0` from synthetic reviewers. Do not treat
 these human labels as judge calibration yet. They define product taste and
@@ -678,7 +680,7 @@ The key correction:
 2. How many archived runs do we already have that are safe to use in an eval corpus?
 3. Should user usefulness labels be collected in Observatory after each run?
 4. What should be the first 4 to 6 official Lolla failure categories after open coding?
-5. Which contract-lock tests are enough to preserve PR36, PR37, PR38, and PR39
-   before high-stakes runtime behavior changes?
+5. Which deterministic evaluation fields should carry high-stakes reliance
+   caveats now that PR40 locks the current contract?
 6. Which judge failures should degrade run health, and which should remain advisory?
 7. Should pairwise adversarial sets become part of CI?

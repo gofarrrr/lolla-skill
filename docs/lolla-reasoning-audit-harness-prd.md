@@ -312,8 +312,13 @@ PR39 now plans the risk-mode implementation path. It names high-stakes
 reliance/readiness tightening as the smallest future behavior change and
 recommends contract-lock tests before artifact clarity or runtime enforcement.
 
-The next narrow slice is PR40 Risk Mode Contract Lock Tests v0, not judge
-automation or runtime enforcement.
+PR40 now locks the current risk-mode contract in tests. Otherwise clean
+`high_stakes` runs keep `caller_action: ask_user_first`; degraded high-stakes
+runs keep `caller_action: do_not_use_run_degraded`; clean `standard` behavior
+does not regress; and review corpus records preserve risk/reliance metadata.
+
+The next narrow slice is PR41 Risk Mode Evaluation Artifact Clarity v0, not
+judge automation or runtime enforcement.
 
 This roadmap should build on that. It should not restart the architecture.
 
@@ -442,6 +447,8 @@ Current implementation:
 - PR38 reviews the fixture expectations without implementing enforcement.
 - PR39 plans high-stakes reliance/readiness tightening and recommends
   contract-lock tests first, without implementing enforcement.
+- PR40 locks the current high-stakes conservative contract in tests without
+  changing runtime behavior.
 
 Future behavior:
 
@@ -470,6 +477,9 @@ PR39 names the smallest future behavior change as high-stakes
 reliance/readiness tightening. It recommends a test-only contract-lock slice
 before artifact clarity, runtime enforcement, caller-action changes, or judge
 work.
+
+PR40 adds that contract-lock test slice. Future evaluation-artifact clarity
+work should keep those tests green and should not redesign `caller_action`.
 
 Acceptance criteria:
 

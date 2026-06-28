@@ -358,4 +358,6 @@ This does not justify:
   adds the missing high-stakes values/priorities conflict fixture.
 - PR39 Risk Mode Implementation Plan v0 now plans high-stakes
   reliance/readiness tightening without implementation.
-- PR40 Risk Mode Contract Lock Tests v0 is the next evaluation slice.
+- PR40 Risk Mode Contract Lock Tests v0 now locks the current conservative
+  risk-mode contract in tests.
+- PR41 Risk Mode Evaluation Artifact Clarity v0 is the next evaluation slice.

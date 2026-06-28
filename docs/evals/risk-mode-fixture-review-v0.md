@@ -198,7 +198,7 @@ This does not justify:
 
 ## Follow-On Plan
 
-PR39 now turns this review into a pre-code implementation plan:
+PR39 turns this review into a pre-code implementation plan:
 
 ```text
 docs/evals/risk-mode-implementation-plan-v0.md
@@ -208,6 +208,16 @@ That plan names high-stakes reliance/readiness tightening as the smallest
 future behavior change and recommends a test-only contract-lock slice before
 artifact clarity or runtime enforcement. Any implementation or caller-action
 proposal must cite PR36, PR37, PR38, and PR39.
+
+PR40 now completes that test-only contract-lock slice in:
+
+```text
+tests/test_risk_mode_contract.py
+```
+
+Those tests preserve the current conservative behavior before any artifact
+clarity or enforcement work. The next slice is PR41 Risk Mode Evaluation
+Artifact Clarity v0.
 
 ## Review Receipt
 

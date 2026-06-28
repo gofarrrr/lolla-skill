@@ -293,6 +293,18 @@ future behavior change and recommends contract-lock tests first. It does not
 change this contract, add fields, relax `caller_action`, or approve automatic
 agent use.
 
+PR40 adds the contract-lock tests:
+
+```text
+tests/test_risk_mode_contract.py
+```
+
+Those tests lock the current behavior: otherwise clean `high_stakes` runs
+return `caller_action: ask_user_first`, degraded runs return
+`do_not_use_run_degraded`, clean `standard` runs keep `use_revised_answer`, and
+review-corpus records preserve the risk/reliance fields. PR40 does not change
+this contract or runtime behavior.
+
 The control-plane wrapper preserves metadata and maps Lolla's result for other
 systems. It does not auto-trigger Lolla, enforce approvals, call tools, replay
 external traces, or turn Lolla into a proxy/firewall/sandbox/identity broker.

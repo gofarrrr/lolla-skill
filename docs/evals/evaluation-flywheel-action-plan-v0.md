@@ -724,6 +724,8 @@ Current result:
 
 Maps to: PRD R2, R7, R8, R11.
 
+Status: completed as a test-only contract-lock slice.
+
 Goal:
 
 Lock current high-stakes reliance behavior in tests before changing behavior.
@@ -748,7 +750,53 @@ Acceptance:
 - no automatic `safe_for_agent_use`;
 - fixture expectations remain intact.
 
-### PR41: First Calibrated Binary Judge Prototype
+Current result:
+
+- added focused tests in `tests/test_risk_mode_contract.py`;
+- locked otherwise clean `high_stakes -> ask_user_first`;
+- locked clean `standard -> use_revised_answer`;
+- locked degraded high-stakes reliance to
+  `caller_action: do_not_use_run_degraded` and evaluation
+  `caller_readiness: do_not_use`;
+- locked `live_output_health: not_checked` as a caveat that keeps reliance
+  inspect-first without claiming live output is clean;
+- locked review-corpus preservation of `risk_mode`, `caller_action`, and
+  `caller_readiness`;
+- mapped core deterministic expectations to PR37/PR38 fixtures;
+- no production code, runtime enforcement, prompt, `SKILL.md`, caller-action
+  policy, automatic label, domain protocol, or judge change.
+
+### PR41: Risk Mode Evaluation Artifact Clarity v0
+
+Maps to: PRD R2, R7, R8, R11.
+
+Goal:
+
+Use the PR40 contract-lock tests as a guardrail while deciding whether
+`evaluation.json` should make high-stakes reliance caveats and degraded
+reliance states more explicit.
+
+Candidate behavior:
+
+- add or clarify deterministic evaluation checks for high-stakes reliance
+  caveats;
+- document whether `evaluation.overall`, `caller_readiness`, or named checks
+  should carry each reliance signal;
+- preserve current `caller_action` behavior unless a separate contract PR is
+  approved;
+- keep answer quality, domain correctness, and `safe_for_agent_use` outside
+  deterministic scoring.
+
+Acceptance:
+
+- PR40 tests stay green;
+- no model calls;
+- no prompt or `SKILL.md` change;
+- no runtime enforcement;
+- no domain approval or crisis protocol;
+- no LLM judge.
+
+### PR42: First Calibrated Binary Judge Prototype
 
 Maps to: PRD R8.
 

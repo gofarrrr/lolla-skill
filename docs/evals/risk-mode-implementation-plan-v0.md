@@ -7,14 +7,14 @@ Review slice: `risk_mode_implementation_plan_v0`
 PR39 turns PR36 policy, PR37 fixtures, and PR38 fixture review into a concrete
 future implementation path. It does not implement that path.
 
-This is not runtime enforcement. It does not run `$lolla`, call models, change
-runtime code, change prompts, change `SKILL.md`, mutate archives, add tests,
-change `evaluation.py`, change `agent_result.py`, change `archive_run.py`,
-change `caller_action`, change provider-boundary policy, add answer-quality
-scoring, populate labels automatically, add crisis/domain runtime protocols,
-add model-based risk classification, add `conversation_understanding_ir.v0`,
-or add graph DB, embeddings, chunking, memory, or specialist runtime
-integration.
+PR39 itself is not runtime enforcement. It does not run `$lolla`, call models,
+change runtime code, change prompts, change `SKILL.md`, mutate archives, add
+tests, change `evaluation.py`, change `agent_result.py`, change
+`archive_run.py`, change `caller_action`, change provider-boundary policy, add
+answer-quality scoring, populate labels automatically, add crisis/domain
+runtime protocols, add model-based risk classification, add
+`conversation_understanding_ir.v0`, or add graph DB, embeddings, chunking,
+memory, or specialist runtime integration.
 
 ## Source Decisions
 
@@ -115,10 +115,10 @@ Status: already true.
 
 ### Phase 1: Test-Only Contract Lock
 
-Recommended next slice:
+Status: completed by PR40.
 
 ```text
-PR40 Risk Mode Contract Lock Tests v0
+tests/test_risk_mode_contract.py
 ```
 
 Purpose:
@@ -126,10 +126,9 @@ Purpose:
 Add tests that prove current high-stakes reliance behavior remains
 conservative before any behavior change.
 
-Expected work:
+Completed work:
 
-- unit tests for `risk_mode` parsing and preservation;
-- agent-result contract tests proving otherwise clean `high_stakes` maps to
+- contract tests proving otherwise clean `high_stakes` maps to
   `caller_action: ask_user_first`;
 - regression tests proving clean `standard` behavior does not accidentally
   change;
@@ -138,14 +137,18 @@ Expected work:
   output;
 - tests proving `live_output_health: not_checked` remains a caveat, not
   answer-level failure by default;
+- tests proving review-corpus export preserves `risk_mode`, `caller_action`,
+  and `caller_readiness`;
+- tests proving contract wording remains approval-neutral;
 - no behavior change;
 - no `SKILL.md` change;
 - no broad caller-action rewrite.
 
-Phase 1 should be allowed to touch test files and only the minimal code needed
-to expose already-existing behavior to tests. If implementation code changes
-are needed, the PR must explicitly say whether they are refactor-only or
-behavior-changing.
+PR40 observed and locked the current reliance contract: a degraded high-stakes
+run produces `caller_action: do_not_use_run_degraded` and evaluation
+`caller_readiness: do_not_use`. PR40 does not introduce a new rule that every
+contract-consistent degraded run must make `evaluation.overall` fail; future
+artifact-clarity work may revisit that explicitly.
 
 ### Phase 2: Evaluation Artifact Clarity
 
@@ -374,27 +377,26 @@ This does not justify:
 
 ## Recommended Next Slice
 
-PR40 should be:
+PR41 should be:
 
 ```text
-Risk Mode Contract Lock Tests v0
+Risk Mode Evaluation Artifact Clarity v0
 ```
 
 Purpose:
 
-Prove current `high_stakes` reliance behavior is conservative before changing
-it. The slice should add focused tests for risk-mode parsing/preservation,
-otherwise clean `high_stakes -> ask_user_first`, degraded-run blocking,
-standard-mode regression, and fixture-mapped expectations. It should not change
-runtime behavior unless a required refactor is explicitly scoped and proven not
-to alter behavior.
+Use the PR40 tests as a guardrail while deciding whether `evaluation.json`
+should make high-stakes reliance caveats and degraded reliance states more
+explicit. That slice should remain deterministic artifact clarity, not
+answer-quality scoring, runtime enforcement, caller-action redesign, or domain
+approval.
 
 ## Review Receipt
 
 - PR39 is docs/design-only.
 - Smallest future behavior change named:
   `high_stakes` reliance/readiness tightening.
-- Recommended first code-bearing slice: test-only contract lock.
+- PR40 now completes the first code-bearing slice: test-only contract lock.
 - PR36, PR37, and PR38 are cited as prerequisites.
 - Contract impacts are named for `agent_result.json`, `evaluation.json`,
   review corpus records, human review workflow, Observatory, and `SKILL.md`.
@@ -404,6 +406,6 @@ to alter behavior.
 - No prompts changed.
 - No `SKILL.md` changes.
 - No risk-mode enforcement.
-- No tests added.
+- PR40 adds contract-lock tests only; no production code changed.
 - No caller-action change.
 - No judge, answer-quality score, automatic labels, or domain protocol.

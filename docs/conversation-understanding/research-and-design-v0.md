@@ -1010,8 +1010,9 @@ implementing extraction. PR35 now decides live-output hygiene policy without
 changing runtime capture. PR36 now decides risk-mode behavior policy without
 changing runtime behavior. PR37 now turns that policy into fixture examples
 without enforcement. PR38 now reviews those fixtures without enforcement. PR39
-now plans high-stakes reliance/readiness tightening without code changes. The
-next slice is PR40 Risk Mode Contract Lock Tests v0.
+now plans high-stakes reliance/readiness tightening without code changes. PR40
+now locks the current risk-mode contract in tests without runtime behavior
+changes. The next slice is PR41 Risk Mode Evaluation Artifact Clarity v0.
 
 ### PR30: Complex Baseline Human Review v0
 
@@ -1321,6 +1322,32 @@ Next:
 PR40 Risk Mode Contract Lock Tests v0
 ```
 
+### PR40: Risk Mode Contract Lock Tests v0
+
+Status: completed as `tests/test_risk_mode_contract.py`.
+
+Goal: prove current high-stakes reliance behavior remains conservative before
+runtime enforcement.
+
+Outcome:
+
+- otherwise clean `high_stakes` runs keep `caller_action: ask_user_first`;
+- clean `standard` runs keep `caller_action: use_revised_answer`;
+- degraded high-stakes runs keep `caller_action: do_not_use_run_degraded`;
+- `live_output_health: not_checked` remains a caveat that keeps reliance
+  inspect-first without claiming live-output cleanliness;
+- review-corpus records preserve `risk_mode`, `caller_action`, and
+  `caller_readiness`;
+- PR37/PR38 fixture expectations are mapped to deterministic contract tests;
+- no runtime enforcement, prompt, archive, evaluation, agent-result,
+  Observatory, `caller_action`, or `SKILL.md` behavior changes are approved.
+
+Next:
+
+```text
+PR41 Risk Mode Evaluation Artifact Clarity v0
+```
+
 ### Later: Decision-Aware Capture And Runtime Integration
 
 Goal: only after offline evidence, use the IR to improve capture or audit input.
@@ -1365,11 +1392,12 @@ thing has changed. Extraction adequacy, semantic coverage, PR30's six-run human
 review seed, PR31's actionable-delta rubric, PR32's adversarial pair fixtures,
 PR33's broader human-review corpus batch, and PR34's user-values/priorities
 design, PR35's live-output hygiene decision, and PR36's risk-mode behavior
-policy, PR37's risk-mode fixture matrix, PR38's fixture review, and PR39's
-risk-mode implementation plan now exist. The next step is PR40 Risk Mode
-Contract Lock Tests v0: prove current high-stakes reliance behavior remains
-conservative before adding judges, runtime specialist calls, a new IR, graph
-memory, embeddings, prompt changes, or risk-mode enforcement.
+policy, PR37's risk-mode fixture matrix, PR38's fixture review, PR39's
+risk-mode implementation plan, and PR40's contract-lock tests now exist. The
+next step is PR41 Risk Mode Evaluation Artifact Clarity v0: decide how
+`evaluation.json` should express high-stakes reliance caveats before adding
+judges, runtime specialist calls, a new IR, graph memory, embeddings, prompt
+changes, or risk-mode enforcement.
 
 ## Sources
 
