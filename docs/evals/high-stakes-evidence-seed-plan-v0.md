@@ -185,8 +185,21 @@ domain-review-required until that review exists.
 - no new conversation-understanding IR;
 - no graph, embeddings, memory, chunking, or specialist runtime integration.
 
+## Fixture Pack
+
+PR47 now creates the paraphrase-only fixture pack for this plan:
+
+```text
+docs/evals/high-stakes-evidence-fixtures-v0.md
+docs/evals/high-stakes-evidence-fixtures-v0.json
+```
+
+The fixture pack tests reviewer expectations before any real high-stakes archive
+records exist. It is not archive outcome evidence and does not approve future
+runs.
+
 ## Next Slice
 
-PR47 should create paraphrase-only high-stakes evidence fixtures from this plan.
-Those fixtures should test reviewer expectations before any real high-stakes
-archive records exist.
+PR48 should add a read-only review-corpus evidence readiness analyzer that
+answers whether a manifest actually contains high-stakes reliance-present
+records.

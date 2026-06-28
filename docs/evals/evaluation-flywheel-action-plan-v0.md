@@ -1012,6 +1012,39 @@ Next safe slice:
 
 - PR47 High-Stakes Evidence Fixture Pack v0, docs/eval JSON only and no runs.
 
+### PR47: High-Stakes Evidence Fixture Pack v0
+
+Maps to: PRD R2, R6, R8, R9.
+
+Status: completed as a docs/eval-only fixture pack.
+
+Goal:
+
+Create paraphrase-only high-stakes evidence fixtures from the PR46 seed plan so
+reviewers can test expectations before real high-stakes runs exist.
+
+Output:
+
+- [High-Stakes Evidence Fixtures v0](high-stakes-evidence-fixtures-v0.md);
+- [high-stakes-evidence-fixtures-v0.json](high-stakes-evidence-fixtures-v0.json).
+
+Current result:
+
+- adds six paraphrase-only fixtures;
+- covers clean high-stakes with `ask_user_first`;
+- covers unresolved values and stakeholder conflict;
+- covers unsupported domain claim despite otherwise clean custody;
+- covers degraded high-stakes archive custody;
+- covers trusted clean live output while preserving human-owned reliance;
+- covers excluded crisis or out-of-scope cases;
+- keeps fixtures separate from archive evidence, human labels, judge
+  calibration truth, runtime behavior, and prompt changes.
+
+Next safe slice:
+
+- PR48 Review Corpus Evidence Readiness Analyzer v0, offline deterministic
+  tooling.
+
 Later judge work can resume only after human-owned labels and high-stakes
 review evidence are present enough to calibrate a narrow advisory judge. When
 it resumes, it should still require a named dataset, train/dev/test split,

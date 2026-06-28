@@ -622,7 +622,7 @@ automatic labels, domain protocols, or a judge.
 Latest eval slice:
 
 ```text
-PR46 Approved High-Stakes Evidence Seed Plan v0
+PR47 High-Stakes Evidence Fixture Pack v0
 ```
 
 PR40 proves current high-stakes reliance behavior remains conservative in
@@ -675,6 +675,20 @@ domain-review-required scenario categories; expected `risk_mode` and
 `caller_action` behavior; cost, custody, privacy, archive, and human-review
 requirements; and an explicit approval gate before any high-stakes `$lolla`
 case is run. It does not create high-stakes evidence by itself.
+
+PR47 now adds the high-stakes evidence fixture pack:
+
+```text
+docs/evals/high-stakes-evidence-fixtures-v0.md
+docs/evals/high-stakes-evidence-fixtures-v0.json
+```
+
+It is paraphrase-only and creates no runs. The fixtures cover clean
+high-stakes, unresolved values conflict, unsupported domain claims, degraded
+archive custody, trusted live output that still does not imply automatic
+reliance, and excluded crisis/out-of-scope cases. The pack is reviewer
+expectation material, not archive outcome evidence, human labels, judge
+calibration truth, or runtime enforcement.
 
 Do not populate `lolla.human_review.v0` from synthetic reviewers. Do not treat
 these human labels as judge calibration yet. They define product taste and
