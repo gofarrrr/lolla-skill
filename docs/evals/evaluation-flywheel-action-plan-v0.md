@@ -198,6 +198,16 @@ The current active frontier is still human-owned evidence expansion and review
 surface design, not judging. PR31 defines actionable delta, PR32 defines seed
 adversarial pairs, and PR33 tests the labels on a broader batch.
 
+A plain-language current capability map now lives in:
+
+```text
+docs/evals/current-system-capabilities-v0.md
+```
+
+Use it as the first-read explanation of what the system can currently do, which
+recorded cases demonstrate it, and why the evaluation layer stays human-owned
+before judges.
+
 ### Layer 2: Heuristic Signals
 
 Question:

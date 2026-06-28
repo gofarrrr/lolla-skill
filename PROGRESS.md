@@ -137,6 +137,7 @@ Primary evidence notes to read first in a fresh session:
 - `docs/conversation-understanding/complex-conversation-baseline-v0.md`
 - `docs/evals/complex-baseline-human-review-v0.md`
 - `docs/evals/evaluation-flywheel-action-plan-v0.md`
+- `docs/evals/current-system-capabilities-v0.md`
 - `docs/evals/current-state-anti-drift-handoff-v0.md`
 - `docs/evals/high-stakes-evidence-seed-plan-v0.md`
 - `docs/evals/high-stakes-evidence-fixtures-v0.md`
@@ -263,6 +264,7 @@ Non-goals for the next slice:
 - [x] PR52 user-values/priorities blank worksheet export.
 - [x] PR53 user-values/priorities worksheet human pilot.
 - [x] PR54 user-values/priorities pilot review / v0 decision.
+- [x] Current system capabilities explainer, grounded in recorded cases.
 - [x] Public pitch/docs refreshed around Lolla as a reasoning-audit harness.
 
 ### Missing / Not Done

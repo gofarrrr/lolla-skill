@@ -255,6 +255,10 @@ The current evaluation flywheel action plan is recorded in:
 
 `docs/evals/evaluation-flywheel-action-plan-v0.md`
 
+The plain-language current capability map is recorded in:
+
+`docs/evals/current-system-capabilities-v0.md`
+
 Current product read:
 
 > The harness can now prove that a complex run was captured, archived, checked,

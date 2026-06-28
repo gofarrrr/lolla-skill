@@ -515,6 +515,10 @@ is:
 
 `docs/evals/evaluation-flywheel-action-plan-v0.md`
 
+The plain-language current capability map is:
+
+`docs/evals/current-system-capabilities-v0.md`
+
 The current rubric defines the recurring units of real improvement found in
 PR30 and reinforced by PR33:
 

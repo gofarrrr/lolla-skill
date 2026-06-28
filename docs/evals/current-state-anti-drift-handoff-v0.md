@@ -175,6 +175,13 @@ The later safe lanes are separate:
 2. A later live-output hygiene lane can plan and lock current behavior, then
    stop for an implementation decision.
 
+For a plain-language map of what the current system can do and which recorded
+cases demonstrate it, read:
+
+```text
+docs/evals/current-system-capabilities-v0.md
+```
+
 ## Decision Gates
 
 - Now: decide whether to create approved real high-stakes evidence.
