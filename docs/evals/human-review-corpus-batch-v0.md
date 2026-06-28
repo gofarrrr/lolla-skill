@@ -272,5 +272,10 @@ implement extraction, runtime integration, or judging.
 Next:
 
 ```text
-PR35 Live Output Hygiene Decision v0
+docs/evals/live-output-hygiene-decision-v0.md
 ```
+
+PR35 keeps `live_output_health: not_checked` as an honest default caveat for
+normal runs. That policy supports the PR33 treatment: saved answer-level review
+can pass while `safe_for_agent_use` remains conservative and live output remains
+unproven.

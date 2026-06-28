@@ -552,7 +552,7 @@ judge, score, automatic labels, runtime integration, or benchmark claim.
 Recommended next eval slice:
 
 ```text
-PR35 Live Output Hygiene Decision v0
+PR36 Risk Mode Behavior Plan v0
 ```
 
 PR34 now designs the first-class user-values/priorities review surface:
@@ -566,8 +566,18 @@ non-negotiables, grounding, confidence, overclaim failure modes, and future
 implementation gates. It does not implement extraction, runtime behavior,
 automatic labels, memory, or judging.
 
-PR35 should decide the live-output hygiene question before any subjective judge
-is built.
+PR35 now decides the live-output hygiene policy:
+
+```text
+docs/evals/live-output-hygiene-decision-v0.md
+```
+
+`live_output_health: not_checked` remains the honest default for normal runs.
+It is a run-envelope and agent-readiness caveat, not answer-level failure by
+default. `clean` requires a complete trusted transcript path; manual
+transcripts are not proof of cleanliness.
+
+PR36 should define risk-mode behavior before any subjective judge is built.
 
 Do not populate `lolla.human_review.v0` from synthetic reviewers. Do not treat
 these human labels as judge calibration yet. They define product taste and

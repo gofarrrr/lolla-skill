@@ -1006,8 +1006,8 @@ the human/product review seed over real complex traces. PR31 now defines the
 human-owned actionable-delta rubric. PR32 now defines seed adversarial pair
 fixtures. PR33 now expands the human review batch beyond the six curated
 complex cases. PR34 now designs the user-values/priorities signal without
-implementing extraction. The next slice is PR35 Live Output Hygiene Decision
-v0.
+implementing extraction. PR35 now decides live-output hygiene policy without
+changing runtime capture. The next slice is PR36 Risk Mode Behavior Plan v0.
 
 ### PR30: Complex Baseline Human Review v0
 
@@ -1187,7 +1187,33 @@ Next:
 PR35 Live Output Hygiene Decision v0
 ```
 
-### PR35+ Or Later: Decision-Aware Capture And Runtime Integration
+### PR35: Live Output Hygiene Decision v0
+
+Status: completed as
+[live-output-hygiene-decision-v0.md](../evals/live-output-hygiene-decision-v0.md).
+
+Goal: decide whether `live_output_health: not_checked` should remain an honest
+default warning or become a bounded clean path.
+
+Outcome:
+
+- `live_output_health: not_checked` remains the default for normal runs;
+- `not_checked` is a run-envelope and agent-readiness caveat, not answer-level
+  failure by default;
+- `clean` requires a complete trusted transcript path and a clean hygiene scan;
+- manual self-maintained transcripts are not proof of live-output cleanliness;
+- live-output hygiene can keep `safe_for_agent_use` conservative;
+- live-output cleanliness does not relax `caller_action`;
+- no runtime capture, finalizer, archive, evaluation, agent-result,
+  Observatory, prompt, or `SKILL.md` changes are approved.
+
+Next:
+
+```text
+PR36 Risk Mode Behavior Plan v0
+```
+
+### PR36+ Or Later: Decision-Aware Capture And Runtime Integration
 
 Goal: only after offline evidence, use the IR to improve capture or audit input.
 
@@ -1230,10 +1256,10 @@ The current evidence says the next move should still be boring, but the boring
 thing has changed. Extraction adequacy, semantic coverage, PR30's six-run human
 review seed, PR31's actionable-delta rubric, PR32's adversarial pair fixtures,
 PR33's broader human-review corpus batch, and PR34's user-values/priorities
-design now exist. The next step is PR35 Live Output Hygiene Decision v0: decide
-whether `live_output_health: not_checked` remains an honest caveat or becomes a
-bounded check before adding judges, runtime specialist calls, a new IR, graph
-memory, embeddings, or prompt changes.
+design, and PR35's live-output hygiene decision now exist. The next step is
+PR36 Risk Mode Behavior Plan v0: decide what `deep`, `high_stakes`, and
+`stability` should actually change before adding judges, runtime specialist
+calls, a new IR, graph memory, embeddings, or prompt changes.
 
 ## Sources
 

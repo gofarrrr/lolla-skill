@@ -232,8 +232,16 @@ batch, not a judge:
 docs/evals/human-review-corpus-batch-v0.md
 ```
 
+PR35 later defines the live-output hygiene policy for the shared
+`live_output_health: not_checked` caveat:
+
+```text
+docs/evals/live-output-hygiene-decision-v0.md
+```
+
 PR30 remains the complex-run seed set. PR31 supplies the rubric, PR32 supplies
-fixture traps, and PR33 tests the same labels against a broader batch.
+fixture traps, PR33 tests the same labels against a broader batch, and PR35
+keeps live-output hygiene separate from answer-level review.
 
 ## Review Receipt
 

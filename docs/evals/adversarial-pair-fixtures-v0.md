@@ -349,5 +349,6 @@ This does not justify:
 - PR33 Human Review Corpus Batch v0 now broadens the human-reviewed seed.
 - PR34 User Values / Priorities Signal v0 now designs the missing review
   surface.
-- PR35 Live Output Hygiene Decision v0 is the next evaluation
-  slice.
+- PR35 Live Output Hygiene Decision v0 now documents the live-output hygiene
+  policy.
+- PR36 Risk Mode Behavior Plan v0 is the next evaluation slice.

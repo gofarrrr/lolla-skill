@@ -288,8 +288,12 @@ defines values, priorities, tradeoffs, obligations, non-negotiables, grounding,
 confidence, reviewer use, and implementation gates without adding extraction,
 runtime behavior, prompt changes, memory, automatic labels, or judging.
 
-The next narrow slice is PR35 Live Output Hygiene Decision v0, not judge
-automation.
+PR35 now decides live-output hygiene policy. `live_output_health: not_checked`
+remains the honest default for normal runs; `clean` requires a complete trusted
+transcript path; manual transcripts are not proof of clean live output; and
+live-output hygiene does not relax `caller_action` or score answer quality.
+
+The next narrow slice is PR36 Risk Mode Behavior Plan v0, not judge automation.
 
 This roadmap should build on that. It should not restart the architecture.
 

@@ -522,6 +522,8 @@ Current result:
 
 Maps to: PRD R7, R10.
 
+Status: completed as a design-only live-output hygiene policy.
+
 Goal:
 
 Decide whether `live_output_health: not_checked` should remain an honest
@@ -538,6 +540,19 @@ Acceptance:
 
 - no false claim that live chat was clean unless it was checked;
 - saved artifact quality remains separate from live-output hygiene.
+
+Current result:
+
+- `live_output_health: not_checked` remains the honest default for normal runs;
+- `not_checked` is a run-envelope and agent-readiness caveat, not answer-level
+  failure by default;
+- a complete trusted transcript can be a future bounded path to
+  `live_output_health: clean`;
+- a manually maintained transcript is not sufficient to claim `clean`;
+- live-output issues should keep human `safe_for_agent_use` conservative;
+- live-output cleanliness does not relax `caller_action`;
+- no runtime capture, finalizer, archive, evaluation, agent-result,
+  `SKILL.md`, prompt, or Observatory behavior changes are approved.
 
 ### PR36: Risk Mode Behavior Plan v0
 
