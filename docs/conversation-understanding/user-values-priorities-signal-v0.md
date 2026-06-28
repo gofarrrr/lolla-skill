@@ -549,6 +549,19 @@ The helper creates empty `lolla.user_values_priorities_worksheet.v0` JSON with
 optional compact case/run metadata. It does not read archives, infer values,
 populate labels, change runtime behavior, or add a judge.
 
+PR53 now pilots human-filled worksheets on existing reviewed records:
+
+```text
+../evals/user-values-priorities-worksheet-human-pilot-v0.md
+../../reviews/human/user-values-priorities-worksheet-pilot-v0/worksheets.json
+```
+
+The pilot fills four worksheets by hand from reviewed summaries and local
+human-review records. It keeps notes paraphrase-only, leaves all raw/private
+inclusion flags false, records all inferred value items as requiring user
+confirmation, and recommends a PR54 pilot review / v0 decision rather than
+extraction, runtime integration, automatic labels, or judging.
+
 ## PR34 Answers
 
 Is `user_values_or_priorities_signal` a field in semantic coverage?
@@ -609,6 +622,13 @@ What did PR52 add?
 PR52 adds the blank worksheet builder and validator. It makes the empty local
 artifact shape available for human pilots without extracting values, reading
 archives, changing runtime behavior, populating labels, or judging.
+
+What did PR53 add?
+
+PR53 pilots four human-filled worksheets from existing reviewed summaries. It
+shows that the worksheet can add review structure while preserving unresolved
+conflicts and confirmation needs, but it still does not extract values, update
+memory, change runtime behavior, populate automatic labels, or judge.
 
 ## Review Receipt
 

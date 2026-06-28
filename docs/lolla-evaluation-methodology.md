@@ -622,7 +622,7 @@ automatic labels, domain protocols, or a judge.
 Latest eval slice:
 
 ```text
-PR52 User Values / Priorities Blank Worksheet Export v0
+PR53 User Values / Priorities Worksheet Human Pilot v0
 ```
 
 PR40 proves current high-stakes reliance behavior remains conservative in
@@ -657,10 +657,10 @@ PR45 now records the current-state handoff:
 docs/evals/current-state-anti-drift-handoff-v0.md
 ```
 
-It is a docs-only anti-drift note. It summarizes the PR30-PR52 evaluation chain,
+It is a docs-only anti-drift note. It summarizes the PR30-PR53 evaluation chain,
 records that the current 80-record real corpus is all `risk_mode: standard` with
 zero reliance-present records, and names the next approval gates before
-high-stakes runs, user-values worksheet pilots, or trusted live-output
+high-stakes runs, user-values worksheet decisions, or trusted live-output
 implementation. It does not add a judge, score, automatic label, runtime
 behavior, model call, archive mutation, prompt change, or `SKILL.md` change.
 
@@ -761,8 +761,24 @@ It is a narrow deterministic helper. It builds and validates empty
 `lolla.user_values_priorities_worksheet.v0` JSON with optional compact
 case/run metadata. It does not read archives, infer values, populate labels,
 score answer quality, change `safe_for_agent_use`, change runtime behavior, or
-add a judge. The recommended next slice is a local human worksheet pilot before
-any extraction or runtime integration.
+add a judge. It handed off to a local human worksheet pilot before any
+extraction or runtime integration.
+
+PR53 now runs that local human worksheet pilot:
+
+```text
+docs/evals/user-values-priorities-worksheet-human-pilot-v0.md
+reviews/human/user-values-priorities-worksheet-pilot-v0/worksheets.json
+```
+
+It is docs/local-review only. Four worksheets are filled by hand from existing
+reviewed summaries, with paraphrase-only notes, 16 value items, 8 conflicts, and
+16 confirmation-needed items. The pilot finds the worksheet useful enough for
+review structure while preserving unresolved conflicts and stakeholder
+obligations. It does not extract values, populate labels, score answer quality,
+change `safe_for_agent_use`, change runtime behavior, or add a judge. The
+recommended next slice is a PR54 pilot review / v0 decision before any
+automation.
 
 Do not populate `lolla.human_review.v0` from synthetic reviewers. Do not treat
 these human labels as judge calibration yet. They define product taste and

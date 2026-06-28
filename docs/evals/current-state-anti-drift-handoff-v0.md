@@ -5,7 +5,7 @@ Date: 2026-06-28
 Slice: PR45
 
 This note is the compact first-read handoff for a fresh Lolla eval session. It
-summarizes what the harness is, what PR30-PR52 built, what evidence exists now,
+summarizes what the harness is, what PR30-PR53 built, what evidence exists now,
 and what must not be built until the next explicit approval gates.
 
 PR45 is docs-only. It does not run Lolla, call models, mutate archives, change
@@ -37,7 +37,7 @@ The product boundary is still sharp:
 - `risk_mode` is reliance and review context, not answer-quality scoring,
   domain approval, or automatic safety.
 
-## PR30-PR52 Chain
+## PR30-PR53 Chain
 
 - PR30 created the six-run human/product review seed over the clean complex
   conversation baseline.
@@ -75,6 +75,8 @@ The product boundary is still sharp:
   human-review examples.
 - PR52 added deterministic blank worksheet export structure without extraction
   or runtime behavior.
+- PR53 piloted four human-filled values/priorities worksheets from existing
+  reviewed summaries without raw content, extraction, or runtime behavior.
 
 ## Current Corpus Evidence
 
@@ -119,7 +121,8 @@ only aggregate keys and counts.
   `high_stakes` caller-action contract;
 - no implemented user-values/priorities extraction or report; PR49 only plans
   the human worksheet, PR50 only adds paraphrase-only fixtures, PR51 only
-  reviews those fixtures, and PR52 only creates blank worksheet structure;
+  reviews those fixtures, PR52 only creates blank worksheet structure, and PR53
+  only pilots human-filled worksheets from reviewed summaries;
 - no trusted live-output transcript implementation;
 - no domain, crisis, legal, medical, financial, or safety protocol.
 
@@ -161,15 +164,16 @@ The later safe lanes are separate:
 1. PR49 defines a human values/priorities worksheet plan. PR50 adds
    paraphrase-only worksheet fixtures. PR51 reviews those fixtures and
    recommends blank worksheet/export structure. PR52 adds that blank structure.
-   The next safe step is a human pilot decision before any extraction work.
+   PR53 pilots four human-filled worksheets. The next safe step is a PR54 pilot
+   review / v0 decision before any extraction work.
 2. A later live-output hygiene lane can plan and lock current behavior, then
    stop for an implementation decision.
 
 ## Decision Gates
 
 - Now: decide whether to create approved real high-stakes evidence.
-- Next values lane: decide whether to run a local human pilot with blank
-  user-values/priorities worksheets.
+- Next values lane: review the PR53 human pilot and decide whether the v0
+  worksheet lane is complete enough to pause or needs a small patch.
 - After a live-output hygiene planning/review lane: decide whether to implement
   trusted live-output transcript hygiene.
 

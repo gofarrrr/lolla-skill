@@ -145,8 +145,19 @@ Recommended next slice after PR52:
 PR53 User Values / Priorities Worksheet Human Pilot v0
 ```
 
-PR53 should use blank worksheets in local human review before any extraction or
-runtime integration.
+PR53 was the next local human-review use of blank worksheets before any
+extraction or runtime integration.
+
+PR53 now adds that local human pilot:
+
+```text
+user-values-priorities-worksheet-human-pilot-v0.md
+../../reviews/human/user-values-priorities-worksheet-pilot-v0/worksheets.json
+```
+
+It fills four worksheets from existing reviewed summaries using paraphrase-only
+notes. The recommended next slice after PR53 is PR54 User Values / Priorities
+Pilot Review / V0 Decision v0, not extraction or runtime integration.
 
 ## Boundary Confirmation
 
@@ -165,4 +176,5 @@ runtime integration.
 - No automatic labels added.
 - No risk-mode behavior change.
 - No high-stakes archive evidence created.
-- PR52 was recommended but not started by PR51.
+- PR52 adds blank worksheet/export structure.
+- PR53 pilots human-filled worksheets without extraction or runtime behavior.

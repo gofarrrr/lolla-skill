@@ -951,7 +951,7 @@ Status: completed as a docs-only current-state handoff.
 Goal:
 
 Create a compact first-read note so a fresh session can understand what Lolla is,
-what PR30-PR52 built, what evidence is still missing, and what must not be built
+what PR30-PR53 built, what evidence is still missing, and what must not be built
 until explicit approval gates.
 
 Output:
@@ -961,7 +961,7 @@ Output:
 Current result:
 
 - summarizes Lolla as probabilistic reasoning inside deterministic custody;
-- records the PR30-PR52 evaluation/risk-mode/values visibility chain;
+- records the PR30-PR53 evaluation/risk-mode/values visibility chain;
 - records the current real corpus evidence: 80 records, all `risk_mode:
   standard`, with `risk_mode_reliance_present_counts` of `false: 80` and
   `true: 0`;
@@ -969,7 +969,7 @@ Current result:
   reliance-present archive evidence;
 - distinguishes fixture-backed review-surface validation from real archive
   outcome evidence;
-- names the PR48 high-stakes gate, the PR49/PR50 values worksheet lane, and the
+- names the PR48 high-stakes gate, the PR49-PR53 values worksheet lane, and the
   live-output hygiene implementation gate;
 - makes no code, runtime, prompt, archive, judge, scoring, or automatic-label
   change.
@@ -1238,8 +1238,45 @@ Current result:
 
 Stop point:
 
-- PR52 stops after blank helper, CLI, tests, docs, and validation.
-- Do not implement PR53, filled worksheets, extraction, runtime integration,
+- PR52 stopped after blank helper, CLI, tests, docs, and validation.
+- PR52 did not implement filled worksheets, extraction, runtime integration,
+  `conversation_understanding_ir.v0`, automatic labels, or a judge.
+
+### PR53: User Values / Priorities Worksheet Human Pilot v0
+
+Maps to: PRD R6, R8, conversation-understanding roadmap.
+
+Status: completed as a docs/local-review pilot.
+
+Goal:
+
+Pilot human-filled `lolla.user_values_priorities_worksheet.v0` artifacts against
+existing reviewed records, using paraphrase-only notes and no raw archive
+content.
+
+Output:
+
+- [User Values / Priorities Worksheet Human Pilot v0](user-values-priorities-worksheet-human-pilot-v0.md);
+- [worksheets.json](../../reviews/human/user-values-priorities-worksheet-pilot-v0/worksheets.json).
+
+Current result:
+
+- fills four worksheets by hand from existing reviewed summaries and local
+  human-review records;
+- covers cofounder authority transfer, career/family written terms, enterprise
+  beta buyer proof, and clinic controls deployment;
+- records 16 value items, 8 conflicts, and 16 confirmation-needed items;
+- records `values_surface_sufficient_for_review: yes` for all four worksheets;
+- records no actionable-delta label changes from the worksheet itself;
+- keeps one high-risk-like clinic worksheet more conservative for
+  `safe_for_agent_use_impact`;
+- keeps all raw/private/model/judge/source inclusion flags conservative;
+- recommends PR54 as a pilot review / v0 decision, not extraction.
+
+Stop point:
+
+- PR53 stops after docs/JSON local review and validation.
+- Do not implement PR54, extraction, runtime integration,
   `conversation_understanding_ir.v0`, automatic labels, or a judge in this
   slice.
 

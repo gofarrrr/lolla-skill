@@ -127,22 +127,28 @@ Deterministic code can make sure the blank artifact is well-formed. It cannot
 decide what the user values, whether the revised answer handled those values
 well, or whether an agent should rely on the answer.
 
-## Recommended PR53
+## PR53 Follow-Up
 
-Recommended next slice:
+Recommended follow-up:
 
 ```text
 PR53 User Values / Priorities Worksheet Human Pilot v0
 ```
 
-PR53 should be docs/local-review only. It can use the blank worksheet shape
-against 3-6 already-reviewed records and store filled worksheets under a safe
-`reviews/human/...` folder using paraphrase-only reviewer notes. It should not
-add extraction, runtime behavior, automatic labels, model calls, high-stakes
-archive evidence, or a judge.
+PR53 now uses the blank worksheet shape against four already-reviewed records:
 
-If the human pilot shows that fields are confusing or too burdensome, the right
-follow-up is a worksheet-shape patch before any automation.
+```text
+user-values-priorities-worksheet-human-pilot-v0.md
+../../reviews/human/user-values-priorities-worksheet-pilot-v0/worksheets.json
+```
+
+It stores filled worksheets under `reviews/human/...` with paraphrase-only
+reviewer notes. It does not add extraction, runtime behavior, automatic labels,
+model calls, high-stakes archive evidence, or a judge.
+
+The next recommended slice is PR54 User Values / Priorities Pilot Review / V0
+Decision v0. If that review finds the human pilot confusing or too burdensome,
+the right follow-up is a worksheet-shape patch before any automation.
 
 ## Review Receipt
 
@@ -161,4 +167,5 @@ follow-up is a worksheet-shape patch before any automation.
 - No judge or answer-quality score added.
 - No automatic labels added.
 - No high-stakes archive evidence created.
-- PR53 is recommended but not started.
+- PR53 pilots human-filled worksheets but does not add extraction or runtime
+  behavior.

@@ -341,10 +341,10 @@ status. It keeps the existing review-corpus manifest schema name and does not
 change per-record `risk_mode_reliance`, runtime behavior, caller action, judge
 behavior, or archive contents.
 
-PR45 now records the current-state anti-drift handoff. It summarizes the PR30-PR52
+PR45 now records the current-state anti-drift handoff. It summarizes the PR30-PR53
 chain, records that the current 80-record real review corpus is all `standard`
 with zero high-stakes reliance-present records, and names the approval gates
-before real high-stakes evidence creation, values worksheet pilots, or trusted
+before real high-stakes evidence creation, values worksheet decisions, or trusted
 live-output implementation. It does not change runtime behavior, prompts,
 `SKILL.md`, archives, caller action, judges, scoring, or automatic labels.
 
@@ -376,6 +376,11 @@ PR52 now adds that blank worksheet/export structure. It creates empty
 `lolla.user_values_priorities_worksheet.v0` JSON from optional compact metadata
 without reading archives, extracting values, populating labels, changing
 runtime behavior, or adding a judge.
+
+PR53 now pilots human-filled worksheets on existing reviewed records. It stores
+four paraphrase-only local-review worksheets, keeps confirmation needs visible,
+and recommends a pilot review / v0 decision before any extraction, runtime
+behavior, automatic labels, or judge work.
 
 This roadmap should build on that. It should not restart the architecture.
 
@@ -524,6 +529,7 @@ Current implementation:
   behavior.
 - PR51 reviews those worksheet fixtures without changing runtime behavior.
 - PR52 adds blank worksheet/export structure without changing runtime behavior.
+- PR53 pilots human-filled worksheets without changing runtime behavior.
 
 Future behavior:
 
@@ -724,6 +730,12 @@ Current v0 slice:
 - `docs/evals/user-values-priorities-worksheet-fixtures-v0.md` and
   `docs/evals/user-values-priorities-worksheet-fixtures-v0.json` test that
   worksheet surface with paraphrase-only fixtures before code or judge work.
+- `docs/evals/user-values-priorities-blank-worksheet-export-v0.md` defines the
+  deterministic blank worksheet helper.
+- `docs/evals/user-values-priorities-worksheet-human-pilot-v0.md` and
+  `reviews/human/user-values-priorities-worksheet-pilot-v0/worksheets.json`
+  pilot human-filled worksheets before extraction, runtime behavior, automatic
+  labels, or judge work.
 
 Acceptance criteria:
 

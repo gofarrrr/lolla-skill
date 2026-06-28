@@ -109,11 +109,11 @@ PR49 now plans a future human-owned values/priorities worksheet:
 docs/evals/user-values-priorities-worksheet-plan-v0.md
 ```
 
-Until human-filled worksheet pilots exist, treat this surface as optional
-review support. It can help reviewers notice explicit values, inferred
-priorities, stakeholder obligations, non-negotiables, tradeoffs, and unresolved
-conflicts, but it does not populate `lolla.human_review.v0`, change
-`safe_for_agent_use`, or approve agent reliance.
+Treat this surface as optional review support unless a later workflow explicitly
+requires it. It can help reviewers notice explicit values, inferred priorities,
+stakeholder obligations, non-negotiables, tradeoffs, and unresolved conflicts,
+but it does not populate `lolla.human_review.v0`, change `safe_for_agent_use`,
+or approve agent reliance.
 
 PR50 adds paraphrase-only examples for that worksheet:
 
@@ -148,6 +148,19 @@ The helper creates empty `lolla.user_values_priorities_worksheet.v0` JSON with
 optional compact case/run metadata. It does not read archives, infer values,
 populate labels, or change runtime behavior. Human reviewers must still fill
 any semantic fields by hand in a later approved pilot.
+
+PR53 now pilots human-filled worksheets:
+
+```text
+docs/evals/user-values-priorities-worksheet-human-pilot-v0.md
+reviews/human/user-values-priorities-worksheet-pilot-v0/worksheets.json
+```
+
+The pilot fills four worksheets from existing reviewed summaries and local
+human-review records. Treat those worksheets as local review notes: they can
+help reviewers preserve values, stakeholder obligations, unresolved conflicts,
+and confirmation needs, but they do not populate `lolla.human_review.v0`, change
+`safe_for_agent_use`, approve agent reliance, add extraction, or add a judge.
 
 ## 5. Label The First Upstream Failure
 

@@ -204,6 +204,17 @@ user-values-priorities-blank-worksheet-export-v0.md
 The recommended next slice after PR52 is a local human worksheet pilot, not
 extraction or runtime integration.
 
+PR53 now adds that local pilot:
+
+```text
+user-values-priorities-worksheet-human-pilot-v0.md
+../../reviews/human/user-values-priorities-worksheet-pilot-v0/worksheets.json
+```
+
+It fills four worksheets from existing reviewed summaries with paraphrase-only
+notes. The recommended next slice after PR53 is a PR54 pilot review / v0
+decision before any extraction or runtime integration.
+
 ## Review Receipt
 
 - PR50 is docs/eval-only.
@@ -224,3 +235,4 @@ extraction or runtime integration.
 - No high-stakes runs started.
 - PR51 reviewed the fixtures.
 - PR52 adds blank worksheet/export structure, not extraction or runtime code.
+- PR53 pilots human-filled worksheets, not extraction or runtime code.

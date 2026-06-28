@@ -331,6 +331,17 @@ It creates empty worksheet JSON with optional compact metadata. It still does
 not read archives, infer values, populate labels, change runtime behavior, or
 add a judge.
 
+PR53 now pilots human-filled worksheets using that structure:
+
+```text
+user-values-priorities-worksheet-human-pilot-v0.md
+../../reviews/human/user-values-priorities-worksheet-pilot-v0/worksheets.json
+```
+
+It fills four worksheets from existing reviewed summaries, keeps notes
+paraphrase-only, and recommends a PR54 pilot review / v0 decision before any
+extraction, runtime behavior, automatic labels, or judging.
+
 ## Stop Condition
 
 PR49 stops at documentation and validation. It does not start PR50.
