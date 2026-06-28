@@ -193,6 +193,17 @@ Export v0. That slice should produce blank deterministic structure only. It
 should not extract values from transcripts, populate labels, change runtime
 behavior, call models, approve high-stakes use, or add a judge.
 
+PR52 now adds that blank deterministic structure:
+
+```text
+user-values-priorities-blank-worksheet-export-v0.md
+../../engine/system_b/user_values_priorities_worksheet.py
+../../scripts/build_user_values_priorities_worksheet.py
+```
+
+The recommended next slice after PR52 is a local human worksheet pilot, not
+extraction or runtime integration.
+
 ## Review Receipt
 
 - PR50 is docs/eval-only.
@@ -212,5 +223,4 @@ behavior, call models, approve high-stakes use, or add a judge.
 - No automatic labels added.
 - No high-stakes runs started.
 - PR51 reviewed the fixtures.
-- PR52 should be blank worksheet/export structure, not extraction or runtime
-  code.
+- PR52 adds blank worksheet/export structure, not extraction or runtime code.

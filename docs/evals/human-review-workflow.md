@@ -109,11 +109,11 @@ PR49 now plans a future human-owned values/priorities worksheet:
 docs/evals/user-values-priorities-worksheet-plan-v0.md
 ```
 
-Until that worksheet is implemented, treat it as note-taking guidance only. It
-can help reviewers notice explicit values, inferred priorities, stakeholder
-obligations, non-negotiables, tradeoffs, and unresolved conflicts, but it does
-not populate `lolla.human_review.v0`, change `safe_for_agent_use`, or approve
-agent reliance.
+Until human-filled worksheet pilots exist, treat this surface as optional
+review support. It can help reviewers notice explicit values, inferred
+priorities, stakeholder obligations, non-negotiables, tradeoffs, and unresolved
+conflicts, but it does not populate `lolla.human_review.v0`, change
+`safe_for_agent_use`, or approve agent reliance.
 
 PR50 adds paraphrase-only examples for that worksheet:
 
@@ -136,6 +136,18 @@ The review marks all six fixtures as pass examples for human review and
 recommends blank worksheet/export structure as the next conservative slice. It
 does not populate `lolla.human_review.v0`, add a judge, change
 `safe_for_agent_use`, or approve automatic reliance.
+
+PR52 adds the blank worksheet helper:
+
+```text
+docs/evals/user-values-priorities-blank-worksheet-export-v0.md
+scripts/build_user_values_priorities_worksheet.py
+```
+
+The helper creates empty `lolla.user_values_priorities_worksheet.v0` JSON with
+optional compact case/run metadata. It does not read archives, infer values,
+populate labels, or change runtime behavior. Human reviewers must still fill
+any semantic fields by hand in a later approved pilot.
 
 ## 5. Label The First Upstream Failure
 

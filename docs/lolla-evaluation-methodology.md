@@ -622,7 +622,7 @@ automatic labels, domain protocols, or a judge.
 Latest eval slice:
 
 ```text
-PR51 User Values / Priorities Worksheet Fixture Review v0
+PR52 User Values / Priorities Blank Worksheet Export v0
 ```
 
 PR40 proves current high-stakes reliance behavior remains conservative in
@@ -657,7 +657,7 @@ PR45 now records the current-state handoff:
 docs/evals/current-state-anti-drift-handoff-v0.md
 ```
 
-It is a docs-only anti-drift note. It summarizes the PR30-PR51 evaluation chain,
+It is a docs-only anti-drift note. It summarizes the PR30-PR52 evaluation chain,
 records that the current 80-record real corpus is all `risk_mode: standard` with
 zero reliance-present records, and names the next approval gates before
 high-stakes runs, user-values worksheet pilots, or trusted live-output
@@ -745,8 +745,24 @@ It is docs/eval-only. The review covers all six PR50 fixtures and marks all six
 as pass examples for human review. It records clear worksheet readability,
 preserved stakeholder obligations, preserved conflicts, controlled inference,
 useful PR31 connections, and conservative high-stakes-like handling. The
-recommended next slice is blank worksheet/export structure, not extraction,
+recommended next slice was blank worksheet/export structure, not extraction,
 automatic labels, runtime behavior, or a judge.
+
+PR52 now adds that blank worksheet/export structure:
+
+```text
+docs/evals/user-values-priorities-blank-worksheet-export-v0.md
+engine/system_b/user_values_priorities_worksheet.py
+scripts/build_user_values_priorities_worksheet.py
+tests/test_user_values_priorities_worksheet.py
+```
+
+It is a narrow deterministic helper. It builds and validates empty
+`lolla.user_values_priorities_worksheet.v0` JSON with optional compact
+case/run metadata. It does not read archives, infer values, populate labels,
+score answer quality, change `safe_for_agent_use`, change runtime behavior, or
+add a judge. The recommended next slice is a local human worksheet pilot before
+any extraction or runtime integration.
 
 Do not populate `lolla.human_review.v0` from synthetic reviewers. Do not treat
 these human labels as judge calibration yet. They define product taste and

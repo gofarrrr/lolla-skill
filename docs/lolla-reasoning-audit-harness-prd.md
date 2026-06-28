@@ -341,7 +341,7 @@ status. It keeps the existing review-corpus manifest schema name and does not
 change per-record `risk_mode_reliance`, runtime behavior, caller action, judge
 behavior, or archive contents.
 
-PR45 now records the current-state anti-drift handoff. It summarizes the PR30-PR51
+PR45 now records the current-state anti-drift handoff. It summarizes the PR30-PR52
 chain, records that the current 80-record real review corpus is all `standard`
 with zero high-stakes reliance-present records, and names the approval gates
 before real high-stakes evidence creation, values worksheet pilots, or trusted
@@ -371,6 +371,11 @@ PR51 now reviews those worksheet fixtures. It marks all six PR50 fixtures as
 pass examples for human review, preserves the human-owned boundary, and
 recommends blank worksheet/export structure before any extraction, runtime
 behavior, automatic labels, or judge work.
+
+PR52 now adds that blank worksheet/export structure. It creates empty
+`lolla.user_values_priorities_worksheet.v0` JSON from optional compact metadata
+without reading archives, extracting values, populating labels, changing
+runtime behavior, or adding a judge.
 
 This roadmap should build on that. It should not restart the architecture.
 
@@ -518,6 +523,7 @@ Current implementation:
 - PR50 adds paraphrase-only worksheet fixtures without changing runtime
   behavior.
 - PR51 reviews those worksheet fixtures without changing runtime behavior.
+- PR52 adds blank worksheet/export structure without changing runtime behavior.
 
 Future behavior:
 

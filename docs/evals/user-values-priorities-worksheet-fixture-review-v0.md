@@ -115,7 +115,7 @@ That future step should still produce empty structure only. It should not
 extract values from transcripts, populate review labels, change runtime
 behavior, call models, approve high-stakes use, or add a judge.
 
-## Recommended PR52
+## PR52 Follow-Up
 
 Recommended next slice:
 
@@ -123,14 +123,30 @@ Recommended next slice:
 PR52 User Values / Priorities Blank Worksheet Export v0
 ```
 
-PR52 should be narrow and deterministic. It may add a blank worksheet template,
-exporter, or local schema helper so reviewers can fill the worksheet
-explicitly. It must not auto-extract values from transcripts, populate labels,
-score answer quality, change `safe_for_agent_use`, change `caller_action`,
-change risk-mode behavior, call models, or add runtime integration.
+PR52 now adds the narrow deterministic blank worksheet helper:
+
+```text
+user-values-priorities-blank-worksheet-export-v0.md
+../../engine/system_b/user_values_priorities_worksheet.py
+../../scripts/build_user_values_priorities_worksheet.py
+```
+
+It creates empty worksheet JSON so reviewers can fill the worksheet explicitly.
+It does not auto-extract values from transcripts, populate labels, score answer
+quality, change `safe_for_agent_use`, change `caller_action`, change risk-mode
+behavior, call models, or add runtime integration.
 
 If PR52 finds that the blank structure forces awkward or misleading fields, the
 correct follow-up is a worksheet-shape patch, not automatic extraction.
+
+Recommended next slice after PR52:
+
+```text
+PR53 User Values / Priorities Worksheet Human Pilot v0
+```
+
+PR53 should use blank worksheets in local human review before any extraction or
+runtime integration.
 
 ## Boundary Confirmation
 
@@ -149,4 +165,4 @@ correct follow-up is a worksheet-shape patch, not automatic extraction.
 - No automatic labels added.
 - No risk-mode behavior change.
 - No high-stakes archive evidence created.
-- PR52 was recommended but not started.
+- PR52 was recommended but not started by PR51.

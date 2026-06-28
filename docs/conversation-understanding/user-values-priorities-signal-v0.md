@@ -537,6 +537,18 @@ with stakeholder obligations and unresolved conflicts preserved. It recommends
 blank worksheet/export structure as the next narrow slice, not extraction,
 runtime behavior, automatic labels, or judging.
 
+PR52 now adds that blank deterministic structure:
+
+```text
+../evals/user-values-priorities-blank-worksheet-export-v0.md
+../../engine/system_b/user_values_priorities_worksheet.py
+../../scripts/build_user_values_priorities_worksheet.py
+```
+
+The helper creates empty `lolla.user_values_priorities_worksheet.v0` JSON with
+optional compact case/run metadata. It does not read archives, infer values,
+populate labels, change runtime behavior, or add a judge.
+
 ## PR34 Answers
 
 Is `user_values_or_priorities_signal` a field in semantic coverage?
@@ -591,6 +603,12 @@ What did PR51 add?
 PR51 reviews those fixtures and records that all six pass as human-review
 examples. It makes the next safe step blank worksheet/export structure, still
 without extraction, runtime integration, automatic labels, or judging.
+
+What did PR52 add?
+
+PR52 adds the blank worksheet builder and validator. It makes the empty local
+artifact shape available for human pilots without extracting values, reading
+archives, changing runtime behavior, populating labels, or judging.
 
 ## Review Receipt
 

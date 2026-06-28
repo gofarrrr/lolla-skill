@@ -319,6 +319,18 @@ It finds all six fixtures understandable and useful for human review. The
 recommended next slice after PR51 is blank worksheet/export structure, not
 extraction, runtime behavior, automatic labels, or judging.
 
+PR52 now adds that blank deterministic structure:
+
+```text
+user-values-priorities-blank-worksheet-export-v0.md
+../../engine/system_b/user_values_priorities_worksheet.py
+../../scripts/build_user_values_priorities_worksheet.py
+```
+
+It creates empty worksheet JSON with optional compact metadata. It still does
+not read archives, infer values, populate labels, change runtime behavior, or
+add a judge.
+
 ## Stop Condition
 
 PR49 stops at documentation and validation. It does not start PR50.

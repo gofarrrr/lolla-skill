@@ -951,7 +951,7 @@ Status: completed as a docs-only current-state handoff.
 Goal:
 
 Create a compact first-read note so a fresh session can understand what Lolla is,
-what PR30-PR51 built, what evidence is still missing, and what must not be built
+what PR30-PR52 built, what evidence is still missing, and what must not be built
 until explicit approval gates.
 
 Output:
@@ -961,7 +961,7 @@ Output:
 Current result:
 
 - summarizes Lolla as probabilistic reasoning inside deterministic custody;
-- records the PR30-PR51 evaluation/risk-mode/values visibility chain;
+- records the PR30-PR52 evaluation/risk-mode/values visibility chain;
 - records the current real corpus evidence: 80 records, all `risk_mode:
   standard`, with `risk_mode_reliance_present_counts` of `false: 80` and
   `true: 0`;
@@ -1198,10 +1198,50 @@ Current result:
 
 Stop point:
 
-- PR51 stops after docs/JSON review and validation.
-- Do not implement PR52, a blank worksheet exporter, extraction, runtime
-  integration, `conversation_understanding_ir.v0`, automatic labels, or a judge
-  in this slice.
+- PR51 stopped after docs/JSON review and validation.
+- PR51 did not implement extraction, runtime integration,
+  `conversation_understanding_ir.v0`, automatic labels, or a judge.
+
+### PR52: User Values / Priorities Blank Worksheet Export v0
+
+Maps to: PRD R6, R8, conversation-understanding roadmap.
+
+Status: completed as a narrow deterministic code/docs slice.
+
+Goal:
+
+Create a local helper for generating blank
+`lolla.user_values_priorities_worksheet.v0` JSON from compact metadata, without
+reading archives, extracting values, populating labels, changing runtime
+behavior, or adding a judge.
+
+Output:
+
+- [User Values / Priorities Blank Worksheet Export v0](user-values-priorities-blank-worksheet-export-v0.md);
+- [user_values_priorities_worksheet.py](../../engine/system_b/user_values_priorities_worksheet.py);
+- [build_user_values_priorities_worksheet.py](../../scripts/build_user_values_priorities_worksheet.py);
+- [test_user_values_priorities_worksheet.py](../../tests/test_user_values_priorities_worksheet.py).
+
+Current result:
+
+- adds deterministic blank worksheet construction;
+- adds deterministic blank worksheet validation;
+- adds a CLI requiring `--out` and accepting optional compact `--case-id`,
+  `--run-id`, and `--archive-relpath`;
+- rejects absolute paths, parent traversal, home shorthand, path-shaped
+  case/run identifiers, and private/raw-content marker strings in metadata;
+- keeps `values_items`, `conflicts`, answer-treatment arrays, and
+  reviewer notes empty;
+- keeps reviewer-summary fields `unfilled`;
+- keeps all raw/private/model/judge/source inclusion flags conservative;
+- recommends PR53 as a local human worksheet pilot, not extraction.
+
+Stop point:
+
+- PR52 stops after blank helper, CLI, tests, docs, and validation.
+- Do not implement PR53, filled worksheets, extraction, runtime integration,
+  `conversation_understanding_ir.v0`, automatic labels, or a judge in this
+  slice.
 
 Later judge work can resume only after human-owned labels and high-stakes
 review evidence are present enough to calibrate a narrow advisory judge. When
