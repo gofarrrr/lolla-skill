@@ -1,10 +1,19 @@
 # Conversation Understanding Research And Design v0
 
 Status: design proposal
-Last updated: 2026-06-27
+Last updated: 2026-06-28
 
 This note is a research/design slice. It does not propose a runtime rewrite, a
 new memory product, a graph database, an LLM judge, or a change to `SKILL.md`.
+
+PR55 adds a companion accountability plan:
+`semantica-inspired-accountability-prd-v0.md`. Read that note as a boundary,
+not as a graph-platform approval: Lolla may borrow local accountability
+primitives such as decision records, provenance maps, conflict registers,
+doctor/preflight diagnostics, and run-local case graph views, but it still must
+not become a graph DB, embedding/chunking system, global memory layer, policy
+engine, compliance platform, generic agent safety layer, domain authority, LLM
+judge, or answer-quality scoring product.
 
 The goal is narrower:
 
@@ -130,6 +139,7 @@ conversation record.
 | [LlamaIndex memory](https://developers.llamaindex.ai/python/framework/module_guides/deploying/agents/memory/) | Short-term chat history plus long-term memory blocks: static, fact extraction, vector. | Vector blocks can store message batches; fact blocks summarize/extract. | Older messages can flush into long-term blocks after token thresholds. | LLM fact extraction block; vector memory block for retrieved chat batches. | Memory blocks are prioritized and truncated when over budget. | Token limits, flush sizes, priority-based truncation. | Fact extraction blocks can become lossy summaries; vector retrieval does not know what is load-bearing. | Copy block separation and priority budgeting. Avoid retrieval-only truth. |
 | [Letta / MemGPT memory](https://www.letta.com/blog/agent-memory/) | Message buffer, core memory blocks, recall memory, archival memory. | Recall stores conversation history; archival stores processed/indexed knowledge. | Memory is framed as context engineering: which tokens enter the window. | Agent-managed memory tools and possible sleep-time memory agents. | Memory can be edited by agents or specialized background agents. | Hierarchy keeps immediate context small and pushes heavier maintenance out of the live path. | Autonomous self-editing memory can create false authority unless edits are auditable. | Copy memory tiers: raw transcript, compact IR, optional retrieval surface. Avoid agent self-editing Lolla's audit record. |
 | [Cognee](https://github.com/topoteretes/cognee) | Persistent memory platform combining knowledge graph, vector search, ontology generation, and data pipelines. | Emphasizes traceability and audit traits in a broader memory platform. | Knowledge evolves as data is ingested and connected. | Ingest/cognify/load style pipeline over documents and memories. | Continuous graph building and recall. | Infrastructure-heavy but self-hosted/local-capable. | Graph-first systems can force premature ontology design. | Copy the pipeline separation and audit posture. Avoid graph-first implementation in v0. |
+| [Semantica](https://github.com/semantica-agi/semantica) | Context/accountability platform with context graphs, decision intelligence, provenance, conflicts, policies/rules, reasoning engines, pipeline orchestration, and preflight diagnostics. | Strong accountability posture: decision records, source-linked provenance, conflict records, and audit/export concepts are first-class. | Supports temporal/context graph ideas, decision lifecycle, and point-in-time accountability patterns. | Broad ingestion, extraction, graph construction, reasoning, and policy/rule checks. | Platform-style pipeline from sources through graph/storage/export. | Infrastructure-heavy: graph, vector, ontology, rule, CLI/API, and integration surfaces. | Too broad for Lolla. Copying it wholesale would turn Lolla into the kind of platform this doc rejects. | Copy accountability primitives only: local decision records, provenance maps, review conflict registers, doctor/preflight, and run-local case graph views. Avoid graph DB, embeddings, chunking, memory, policy, compliance, and judge drift. |
 | [Karpathy LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) | Raw sources plus LLM-maintained wiki plus a schema/instruction file. | Strong if raw sources are immutable and the wiki cites them. | The wiki is maintained over time; contradictions and stale claims can be noted. | LLM compiles sources into interlinked Markdown pages. | Incremental ingest, query, lint, and log operations. | Moderate scale can work with an index/log before heavier search. | LLM-maintained synthesis can drift if source citations and lint are weak. | Copy "compiled artifact over raw RAG" and append-only log. For Lolla, the compiled artifact should be JSON custody plus optional Markdown views, not a freeform wiki. |
 | [GBrain](https://github.com/garrytan/gbrain) | Local/hosted brain with schema packs, capture/import, hybrid search, synthesis with citations and gap analysis. | Emphasizes source pages, citations, local capture, and schema-pack boundaries. | Trajectory/gap analysis distinguishes stale, uncited, contradictory, or missing knowledge. | Hybrid retrieval plus synthesis; schema packs determine how pages are interpreted. | Capture/import workflows and schema-pack evolution. | Raw search is cheaper; synthesized `think` path costs more. | Broad brain systems optimize for reusable knowledge, not necessarily audit-lineage. | Copy the separation between raw retrieval and synthesized answers with gap analysis. Avoid turning Lolla into a general "brain." |
 | Dialogue-history graph research, e.g. [IWSDS 2025 paper](https://aclanthology.org/2025.iwsds-1.31.pdf) and [GraphWOZ](https://arxiv.org/abs/2211.12852) | Dialogue, turns, semantic units, conversational entities, and graph dialogue state. | Turn-level structure makes references and updates auditable. | Dialogue states update incrementally as turns/actions occur. | Manual or model-assisted annotations/extractions. | New turns update the graph/dialogue state. | Research setups can require detailed annotation or domain constraints. | Domain-specific graphs can be brittle in open-ended strategic conversations. | Copy the layers: turns -> semantic units -> entities/relations. Keep Lolla's ontology small and escape-hatch friendly. |
@@ -1397,7 +1407,7 @@ Outcome:
   runtime-enforcement, automatic-label, answer-quality scoring, domain-approval,
   or judge behavior changed.
 
-Latest eval slice:
+Latest eval slice before the PR55 accountability-plan handoff:
 
 ```text
 PR54 User Values / Priorities Pilot Review v0
@@ -1431,6 +1441,38 @@ as a human-owned review surface. PR54 reviews the four PR53 pilot worksheets,
 marks all four pass, preserves user-confirmation requirements, and pauses the
 lane before any extraction, memory, runtime/archive integration, automatic
 labels, or judging.
+
+### PR55: Semantica-Inspired Accountability PRD v0
+
+Status: completed as
+[semantica-inspired-accountability-prd-v0.md](semantica-inspired-accountability-prd-v0.md).
+
+Goal: preserve the useful accountability primitives from the Semantica
+comparison while keeping Lolla a local reasoning-audit harness.
+
+Outcome:
+
+- records Semantica as inspiration for decision records, provenance, conflict
+  records, preflight diagnostics, graph-shaped accountability views, and
+  pipeline discipline;
+- makes the Lolla difference explicit: local audit artifacts and human review,
+  not graph DB, embeddings, chunking, global memory, policy engine, compliance
+  platform, generic agent safety layer, domain authority, answer-quality score,
+  LLM judge, or automatic labeler;
+- proposes the primitive queue:
+  `lolla.audit_decision_record.v0`, `lolla.provenance_map.v0`,
+  `lolla.review_conflict_register.v0`, `lolla doctor / preflight`, and
+  `lolla.case_graph.v0`;
+- records PR56 through PR65 as a plan, not approval for code.
+
+Next:
+
+```text
+PR56 Lolla Doctor / Preflight Plan v0
+```
+
+PR56 should remain docs-only. It should design the preflight checks before any
+CLI, runtime behavior, model calls, or archive mutation.
 
 ### Later: Decision-Aware Capture And Runtime Integration
 
@@ -1482,12 +1524,13 @@ review-surface integration, PR43's reliance-surface review batch, PR44's
 manifest counts, PR45's anti-drift handoff, PR46's seed plan, PR47's fixtures,
 PR48's evidence-readiness analyzer, PR49's values/priorities worksheet plan,
 PR50's paraphrase-only worksheet fixtures, PR51's worksheet fixture review,
-PR52's blank worksheet export, PR53's human-filled worksheet pilot, and PR54's
-pilot review / v0 decision now exist. The next step is still explicit approval,
-not automatic runtime work:
-either approve a future high-stakes evidence seed under the PR46/PR48 gates, or
-explicitly reopen the values lane after PR54. The default posture is pause:
-no populated extraction, memory, runtime integration, automatic labels, or
+PR52's blank worksheet export, PR53's human-filled worksheet pilot, PR54's
+pilot review / v0 decision, and PR55's Semantica-inspired accountability PRD
+now exist. The next step is still explicit approval, not automatic runtime
+work. The recommended accountability slice is PR56 Lolla Doctor / Preflight
+Plan v0, docs-only. Other lanes still require their own gates: future
+high-stakes evidence under PR46/PR48, reopening the values lane after PR54, or
+any populated extraction, memory, runtime integration, automatic labels, or
 judging.
 
 ## Sources
@@ -1505,6 +1548,8 @@ judging.
 - [Cognee GitHub README](https://github.com/topoteretes/cognee)
 - [Karpathy LLM Wiki gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
 - [GBrain GitHub README](https://github.com/garrytan/gbrain)
+- [Semantica GitHub README](https://github.com/semantica-agi/semantica/blob/main/README.md)
+- [Semantica architecture](https://github.com/semantica-agi/semantica/blob/main/ARCHITECTURE.md)
 - [GraphWOZ conversational knowledge graph paper](https://arxiv.org/abs/2211.12852)
 - [Integrating Conversational Entities and Dialogue Histories with Knowledge Graphs](https://aclanthology.org/2025.iwsds-1.31.pdf)
 

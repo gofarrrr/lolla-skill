@@ -1,7 +1,7 @@
 # Evaluation Flywheel Action Plan v0
 
 Status: action plan
-Date: 2026-06-27
+Date: 2026-06-28
 
 This note turns the current PRD, evaluation methodology, control-layer notes,
 conversation-understanding evidence, and six-case complex baseline into an
@@ -1332,6 +1332,50 @@ it resumes, it should still require a named dataset, train/dev/test split,
 separately reported TPR/TNR, adversarial pairs, documented failure examples,
 and advisory-only use.
 
+### PR55: Semantica Comparative Architecture Note / Accountability PRD v0
+
+Maps to: R6, R9, conversation-understanding/accountability roadmap.
+
+Status: completed as a docs-only planning artifact.
+
+Goal:
+
+Preserve the useful parts of the Semantica comparison without turning Lolla into
+a generic context graph, memory, policy, compliance, or judge product.
+
+Output:
+
+- [Semantica-Inspired Accountability PRD v0](../conversation-understanding/semantica-inspired-accountability-prd-v0.md).
+
+Current result:
+
+- records why Semantica is useful as accountability architecture: decision
+  records, provenance, conflict records, preflight diagnostics, graph-shaped
+  accountability views, and pipeline discipline;
+- makes the Lolla distinction explicit: Lolla is a local reasoning-audit
+  harness, not a graph database product, embeddings system, chunking pipeline,
+  global memory layer, policy engine, compliance platform, generic agent safety
+  layer, domain authority, LLM judge, or answer-quality scoring product;
+- defines a selective borrowing rule for ideas that improve local
+  inspectability, preserve human semantic judgment, can begin as docs/fixtures
+  or read-only exports, and remain useful without a future judge;
+- preserves the primitive queue:
+  `lolla.audit_decision_record.v0`, `lolla.provenance_map.v0`,
+  `lolla.review_conflict_register.v0`, `lolla doctor / preflight`, and
+  `lolla.case_graph.v0`;
+- records PR56 through PR65 as an implementation queue, not approval for code.
+
+Stop point:
+
+- PR55 only lands the plan.
+- Do not implement doctor/preflight, decision records, provenance maps,
+  conflict registers, case graph exports, runtime behavior, model calls,
+  archive mutation, prompts, `SKILL.md`, graph DB, embeddings, memory, policy
+  enforcement, automatic labels, answer-quality scoring, or judges from this
+  slice.
+- The recommended next slice is PR56 Lolla Doctor / Preflight Plan v0, still
+  docs-only.
+
 ## What Not To Build Yet
 
 - broad answer-quality score;
@@ -1343,6 +1387,8 @@ and advisory-only use.
 - graph DB;
 - embeddings-first memory;
 - high-stakes archive evidence claims before approved high-stakes runs exist;
+- Semantica-style graph DB, embeddings, chunking, memory, policy engine,
+  compliance platform, generic agent safety layer, or answer-quality authority;
 - broad conversation-understanding IR;
 - prompt rewrite based only on vibes;
 - quote-validation repair without fresh failures;
@@ -1387,5 +1433,6 @@ Before building judges or runtime semantic enrichment, Lolla should have:
 That is the smallest flywheel that can improve Lolla run by run without turning
 it into a vague critic or overbuilt memory system.
 
-The next conservative values/priorities slice is human/product fixture review,
-not runtime extraction or judge automation.
+The next conservative accountability slice is PR56 Lolla Doctor / Preflight
+Plan v0. It should remain docs-only and should not add the CLI, run `$lolla`,
+call models, mutate archives, or start PR57 implementation.
