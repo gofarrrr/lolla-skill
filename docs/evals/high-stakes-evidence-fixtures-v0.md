@@ -96,9 +96,18 @@ truth, benchmark claims, or evidence that real high-stakes archive runs exist.
 - no `conversation_understanding_ir.v0`;
 - no graph, embeddings, chunking, memory, or specialist runtime integration.
 
-## Next Slice
+## PR48 Readiness Analyzer
 
-PR48 should add a read-only analyzer that consumes a review-corpus manifest and
-reports whether the corpus actually has high-stakes reliance-present evidence.
-It should not read raw archives, mutate archives, call models, or infer answer
-quality.
+PR48 now adds a read-only analyzer that consumes a review-corpus manifest and
+reports whether the corpus actually has high-stakes reliance-present evidence:
+
+```text
+docs/evals/review-corpus-evidence-readiness-v0.md
+engine/system_b/review_corpus_evidence_readiness.py
+scripts/analyze_review_corpus_evidence_readiness.py
+```
+
+The analyzer reads only manifest JSON. It does not read raw archives, mutate
+archives, call models, or infer answer quality. The current expected local read
+is still no high-stakes reliance-present archive evidence, so real high-stakes
+run work remains behind explicit approval.

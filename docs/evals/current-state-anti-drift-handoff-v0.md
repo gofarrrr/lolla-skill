@@ -5,7 +5,7 @@ Date: 2026-06-28
 Slice: PR45
 
 This note is the compact first-read handoff for a fresh Lolla eval session. It
-summarizes what the harness is, what PR30-PR44 built, what evidence exists now,
+summarizes what the harness is, what PR30-PR48 built, what evidence exists now,
 and what must not be built until the next explicit approval gates.
 
 PR45 is docs-only. It does not run Lolla, call models, mutate archives, change
@@ -64,6 +64,11 @@ The product boundary is still sharp:
   surface without confusing a reliance caveat for approval.
 - PR44 added additive manifest-level counts so the corpus-level absence or
   presence of reliance-present high-stakes evidence is visible at a glance.
+- PR45 recorded this anti-drift handoff.
+- PR46 planned the future approved high-stakes evidence seed.
+- PR47 added paraphrase-only high-stakes evidence fixtures.
+- PR48 added a read-only manifest analyzer that reports whether high-stakes
+  reliance-present archive evidence actually exists.
 
 ## Current Corpus Evidence
 
@@ -131,19 +136,17 @@ Do not build any of these from this handoff alone:
 - graph databases, embeddings, chunking, memory layers, or specialist runtime
   integration.
 
-## Next Safe Queue
+## Current Stop Point
 
-The safe queue after PR45 is planning and readiness work only:
+The PR46 -> PR47 -> PR48 readiness queue is now complete:
 
-1. PR46 Approved High-Stakes Evidence Seed Plan v0: design the evidence seed
-   plan without running cases.
-2. PR47 High-Stakes Evidence Fixture Pack v0: create paraphrase-only fixtures
-   for reviewer expectation checks before real runs.
-3. PR48 Review Corpus Evidence Readiness Analyzer v0: add a read-only analyzer
-   for review-corpus manifests.
+1. PR46 designed the evidence seed plan without running cases.
+2. PR47 created paraphrase-only fixtures for reviewer expectation checks before
+   real runs.
+3. PR48 added the read-only analyzer for review-corpus manifests.
 
-Stop after PR48. Creating real high-stakes archive evidence requires explicit
-product approval.
+Stop here. Creating real high-stakes archive evidence requires explicit product
+approval.
 
 The later safe lanes are separate:
 
@@ -154,7 +157,7 @@ The later safe lanes are separate:
 
 ## Decision Gates
 
-- After PR48: decide whether to create approved real high-stakes evidence.
+- Now: decide whether to create approved real high-stakes evidence.
 - After PR50: decide whether a user-values/priorities worksheet is useful enough
   for a human pilot.
 - After PR52: decide whether to implement trusted live-output transcript

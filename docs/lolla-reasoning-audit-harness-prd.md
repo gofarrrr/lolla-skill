@@ -348,6 +348,15 @@ before real high-stakes evidence creation, values worksheet pilots, or trusted
 live-output implementation. It does not change runtime behavior, prompts,
 `SKILL.md`, archives, caller action, judges, scoring, or automatic labels.
 
+PR46 now defines the approval and custody plan for future high-stakes evidence
+creation without running any cases. PR47 adds paraphrase-only high-stakes
+fixtures so reviewers can test expectations before real archive records exist.
+PR48 adds a read-only review-corpus evidence-readiness analyzer that consumes
+manifest JSON and reports whether high-stakes reliance-present records actually
+exist. It treats old or thin manifests as insufficient, not as evidence, and it
+does not read raw archives, call models, judge answer quality, or approve real
+high-stakes runs.
+
 This roadmap should build on that. It should not restart the architecture.
 
 ## Proposed Product
@@ -487,6 +496,8 @@ Current implementation:
   manifest schema name or per-record behavior.
 - PR45 records the anti-drift handoff and current decision gates without
   changing runtime behavior.
+- PR48 adds manifest-only evidence-readiness analysis without changing runtime
+  behavior.
 
 Future behavior:
 

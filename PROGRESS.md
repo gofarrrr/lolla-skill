@@ -67,7 +67,7 @@ conversation or agent run
 Current handoff state:
 
 ```text
-PR47 High-Stakes Evidence Fixture Pack v0 is the latest eval-flywheel slice
+PR48 Review Corpus Evidence Readiness Analyzer v0 is the latest eval-flywheel slice
 recorded in this file. Use git log for the exact current commit hash.
 ```
 
@@ -85,7 +85,9 @@ Current product state:
 > readiness with real high-stakes archive evidence. PR46 adds the docs-only
 > approval and custody plan for creating high-stakes evidence later without
 > running cases now. PR47 adds paraphrase-only fixtures so reviewers can test
-> high-stakes expectations before real runs exist.
+> high-stakes expectations before real runs exist. PR48 adds the read-only
+> manifest analyzer that says whether a review-corpus manifest actually contains
+> high-stakes reliance-present archive evidence.
 
 What this means in plain terms:
 
@@ -117,6 +119,10 @@ What this means in plain terms:
 - PR47 adds six paraphrase-only high-stakes evidence fixtures; they are not
   archive outcome evidence, human labels, judge calibration truth, or runtime
   enforcement.
+- PR48 reads only review-corpus manifest JSON and reports
+  `no_high_stakes_reliance_evidence`, `has_high_stakes_reliance_evidence`, or
+  `insufficient_manifest_fields`; it does not read raw archives, call models,
+  judge answer quality, or approve real high-stakes runs.
 
 Primary evidence notes to read first in a fresh session:
 
@@ -127,6 +133,10 @@ Primary evidence notes to read first in a fresh session:
 - `docs/evals/high-stakes-evidence-seed-plan-v0.md`
 - `docs/evals/high-stakes-evidence-fixtures-v0.md`
 - `docs/evals/high-stakes-evidence-fixtures-v0.json`
+- `docs/evals/review-corpus-evidence-readiness-v0.md`
+- `engine/system_b/review_corpus_evidence_readiness.py`
+- `scripts/analyze_review_corpus_evidence_readiness.py`
+- `tests/test_review_corpus_evidence_readiness.py`
 - `docs/conversation-understanding/broader-specialist-evidence-gate-v0.md`
 - `docs/conversation-understanding/specialist-runtime-design-without-integration-v0.md`
 - `docs/conversation-understanding/research-and-design-v0.md`
@@ -145,20 +155,30 @@ Current stop rule:
 Latest completed slice:
 
 ```text
-PR47 High-Stakes Evidence Fixture Pack v0
+PR48 Review Corpus Evidence Readiness Analyzer v0
 ```
 
 Result:
 
-- added six paraphrase-only high-stakes evidence fixtures;
-- covered clean high-stakes `ask_user_first`, unresolved values conflict,
-  unsupported domain claim, degraded archive custody, trusted live output still
-  not automatic, and excluded crisis/out-of-scope cases;
-- made the central confusion tests explicit: reliance-policy pass is not
-  approval, clean custody is not domain approval, and trusted live output is not
-  automatic `safe_for_agent_use`;
-- kept fixtures separate from real archive evidence, human labels, judge
-  calibration truth, runtime behavior, and prompt changes.
+- added `lolla.review_corpus_evidence_readiness.v0`;
+- added a pure manifest analyzer plus CLI;
+- requires PR44 aggregate manifest fields before making an evidence-readiness
+  call;
+- reports the current expected local read as zero high-stakes
+  reliance-present archive records;
+- keeps manifest path, archive root, raw transcript, memo, revised answer,
+  model/provider text, private reasoning, secrets, and credentials out of the
+  analyzer output;
+- makes no model calls, Lolla runs, archive mutation, runtime behavior change,
+  prompt change, `SKILL.md` change, judge, answer-quality score, or automatic
+  label change.
+
+Stop point:
+
+```text
+Do not start PR49 or real high-stakes run work without explicit maintainer
+approval.
+```
 
 The broader action map for this next phase is:
 
@@ -221,6 +241,7 @@ Non-goals for the next slice:
 - [x] PR45 current-state anti-drift handoff.
 - [x] PR46 approved high-stakes evidence seed plan.
 - [x] PR47 high-stakes evidence fixture pack.
+- [x] PR48 review-corpus evidence readiness analyzer.
 - [x] Public pitch/docs refreshed around Lolla as a reasoning-audit harness.
 
 ### Missing / Not Done
@@ -233,8 +254,9 @@ Non-goals for the next slice:
   a contract-lock test slice, PR41 only clarifies `evaluation.json`, PR42 only
   exposes that caveat in review-corpus records, PR43 only validates reviewer
   interpretation with fixtures, PR44 only adds manifest counts, PR45 only
-  documents the current state, and PR46 only plans future approved high-stakes
-  evidence. PR47 only adds paraphrase-only high-stakes evidence fixtures.
+  documents the current state, PR46 only plans future approved high-stakes
+  evidence, PR47 only adds paraphrase-only high-stakes evidence fixtures, and
+  PR48 only analyzes review-corpus manifests for evidence readiness.
   Current pipeline behavior is still mostly metadata-first.
 - [ ] Decision-aware capture for long conversations and middle-turn hinges.
 - [ ] First-class user-values/priorities extraction or offline report; PR34 is
@@ -253,8 +275,9 @@ Non-goals for the next slice:
 ### Opportunities To Make The Machine Work Better
 
 1. **Approved high-stakes evidence seed, only with explicit approval.** PR44
-   makes the current absence visible; real high-stakes reliance-present archive
-   evidence should be created only from approved cases, not by default.
+   makes the current absence visible and PR48 makes the readiness read explicit;
+   real high-stakes reliance-present archive evidence should be created only
+   from approved cases, not by default.
 2. **User-values/priorities offline worksheet or report.** PR34 designs the
    signal; later work can test it locally before runtime extraction.
 3. **Live-output hygiene implementation.** PR35 keeps `not_checked` honest and
@@ -328,13 +351,13 @@ boundary change.
 | PRD item | Status | Current read |
 |---|---:|---|
 | R1: Agent-Facing Result Contract | Done | `agent_result.json` / `lolla_agent_result.v1` exists, is archived, copied to `/tmp`, indexed in `reasoning_trace.json`, documented, tested, and smoke-tested. |
-| R2: Risk Modes | Metadata plus policy/fixture/plan/tests/eval/review clarity done | `LOLLA_AUDIT_MODE` accepts `quick`, `standard`, `deep`, `high_stakes`, and `stability`; normalized value persists as `risk_mode`; invalid explicit values fail before model calls. The pipeline remains mostly metadata-first. The agent-result contract already keeps otherwise clean `high_stakes` runs conservative with `caller_action: ask_user_first`. PR36 documents policy, PR37 adds fixtures, PR38 reviews them, PR39 plans high-stakes reliance/readiness tightening, PR40 locks the current conservative contract in tests, PR41 adds deterministic `evaluation.json` reliance-policy clarity, PR42 exposes that caveat in review-corpus records, PR43 validates reviewer interpretation with fixtures, PR44 adds manifest counts, PR45 records the anti-drift handoff, PR46 plans future approved high-stakes evidence, and PR47 adds high-stakes evidence fixtures without implementing enforcement. |
+| R2: Risk Modes | Metadata plus policy/fixture/plan/tests/eval/review clarity done | `LOLLA_AUDIT_MODE` accepts `quick`, `standard`, `deep`, `high_stakes`, and `stability`; normalized value persists as `risk_mode`; invalid explicit values fail before model calls. The pipeline remains mostly metadata-first. The agent-result contract already keeps otherwise clean `high_stakes` runs conservative with `caller_action: ask_user_first`. PR36 documents policy, PR37 adds fixtures, PR38 reviews them, PR39 plans high-stakes reliance/readiness tightening, PR40 locks the current conservative contract in tests, PR41 adds deterministic `evaluation.json` reliance-policy clarity, PR42 exposes that caveat in review-corpus records, PR43 validates reviewer interpretation with fixtures, PR44 adds manifest counts, PR45 records the anti-drift handoff, PR46 plans future approved high-stakes evidence, PR47 adds high-stakes evidence fixtures, and PR48 adds a manifest-only evidence-readiness analyzer without implementing enforcement. |
 | R3: Trigger Policy For Agents | Deferred | Not urgent for current manual workflow. Keep for later external agent-builder docs. |
 | R4: Control-Plane Integration Contract | Done | `lolla_control_input.v1` and `lolla_control_result.v1` now exist as optional local sidecars. External trace/action/approval metadata can be preserved and summarized without changing ordinary `$lolla` runs or making Lolla an approval/sandbox/policy system. |
 | R5: Capture Adequacy Upgrade | Done | `capture_adequacy` / `lolla.capture_adequacy.v0` now makes capture shape, omitted windows, and critical capture problems visible across extraction, run health, agent result, reasoning trace, and evaluation. It does not reconstruct omitted turns or change capture strategy. Real `$lolla` smoke passed with full capture. |
-| R6: Evaluation Methodology And Failure Taxonomy | Human-review v0 done; PR30-PR47 eval/design/test/docs seeds done | `docs/lolla-evaluation-methodology.md`, `docs/evals/lolla-human-review-v0.json`, `docs/evals/lolla-failure-taxonomy.md`, and `docs/evals/human-review-workflow.md` exist. PR14 added the human-owned label contract. PR15 added a synthetic-review boundary so subagents can help without becoming ground truth. PR16 added a validator and prompt so synthetic candidate outputs must match the human-review schema without becoming human labels. PR30 added the first human/product review seed over the six complex baseline runs. PR31 added the human-owned actionable-delta rubric. PR32 added seed adversarial pair fixtures. PR33 added a 14-record broader human-review corpus batch with 12 counted positives, one partial boundary record, and one degraded exclusion. PR34 designed the first-class user-values/priorities signal without implementing extraction. PR35 documented live-output hygiene policy without runtime changes. PR36 documented risk-mode behavior policy without runtime changes. PR37 added risk-mode fixture examples without runtime changes. PR38 reviewed those fixtures and added the high-stakes values-conflict fixture without runtime changes. PR39 planned the high-stakes reliance/readiness implementation path without runtime changes. PR40 added contract-lock tests without runtime changes. PR41 added deterministic evaluation-artifact clarity without runtime enforcement. PR42 added review-corpus surface integration without runtime enforcement. PR43 and PR44 verified reviewer interpretation and manifest visibility without runtime enforcement. PR45 records the current state and decision gates. PR46 plans future approved high-stakes evidence without running cases. PR47 adds paraphrase-only high-stakes evidence fixtures. |
+| R6: Evaluation Methodology And Failure Taxonomy | Human-review v0 done; PR30-PR48 eval/design/test/docs seeds done | `docs/lolla-evaluation-methodology.md`, `docs/evals/lolla-human-review-v0.json`, `docs/evals/lolla-failure-taxonomy.md`, and `docs/evals/human-review-workflow.md` exist. PR14 added the human-owned label contract. PR15 added a synthetic-review boundary so subagents can help without becoming ground truth. PR16 added a validator and prompt so synthetic candidate outputs must match the human-review schema without becoming human labels. PR30 added the first human/product review seed over the six complex baseline runs. PR31 added the human-owned actionable-delta rubric. PR32 added seed adversarial pair fixtures. PR33 added a 14-record broader human-review corpus batch with 12 counted positives, one partial boundary record, and one degraded exclusion. PR34 designed the first-class user-values/priorities signal without implementing extraction. PR35 documented live-output hygiene policy without runtime changes. PR36 documented risk-mode behavior policy without runtime changes. PR37 added risk-mode fixture examples without runtime changes. PR38 reviewed those fixtures and added the high-stakes values-conflict fixture without runtime changes. PR39 planned the high-stakes reliance/readiness implementation path without runtime changes. PR40 added contract-lock tests without runtime changes. PR41 added deterministic evaluation-artifact clarity without runtime enforcement. PR42 added review-corpus surface integration without runtime enforcement. PR43 and PR44 verified reviewer interpretation and manifest visibility without runtime enforcement. PR45 records the current state and decision gates. PR46 plans future approved high-stakes evidence without running cases. PR47 adds paraphrase-only high-stakes evidence fixtures. PR48 adds a read-only manifest analyzer for high-stakes evidence readiness. |
 | R7: Deterministic Evaluation Artifact v0 | Done | `evaluation.json` / `lolla.evaluation.v0` is generated, copied to `/tmp`, indexed in `reasoning_trace.json`, and exposed through Observatory custody. It checks artifacts, schemas, custody, health, hygiene, and caller-policy consistency without judging advice quality. |
-| R8: Calibrated Subjective Judges | Not started | Correctly deferred. Generic LLM judges may punish useful friction. PR30 supplies a six-run human-reviewed seed, PR31 defines actionable delta, PR32 supplies seed adversarial fixtures, PR33 broadens the human-reviewed corpus batch, PR34 designs values/priorities review context, PR35 keeps live-output hygiene honest, PR36 defines risk-mode reliance policy, PR37 adds risk-mode fixtures, PR38 reviews those fixtures, PR39 plans contract-first high-stakes reliance tightening, PR40 locks the current contract in tests, PR41 clarifies high-stakes evaluation artifacts, PR42 exposes the caveat to review-corpus records, PR43 validates reviewer interpretation with fixtures, PR44 makes aggregate absence/presence visible, PR45 records the anti-drift handoff, PR46 plans future high-stakes evidence creation without running it, and PR47 adds paraphrase-only high-stakes fixtures. The next safe step is PR48 deterministic evidence-readiness analysis, not judge automation. |
+| R8: Calibrated Subjective Judges | Not started | Correctly deferred. Generic LLM judges may punish useful friction. PR30 supplies a six-run human-reviewed seed, PR31 defines actionable delta, PR32 supplies seed adversarial fixtures, PR33 broadens the human-reviewed corpus batch, PR34 designs values/priorities review context, PR35 keeps live-output hygiene honest, PR36 defines risk-mode reliance policy, PR37 adds risk-mode fixtures, PR38 reviews those fixtures, PR39 plans contract-first high-stakes reliance tightening, PR40 locks the current contract in tests, PR41 clarifies high-stakes evaluation artifacts, PR42 exposes the caveat to review-corpus records, PR43 validates reviewer interpretation with fixtures, PR44 makes aggregate absence/presence visible, PR45 records the anti-drift handoff, PR46 plans future high-stakes evidence creation without running it, PR47 adds paraphrase-only high-stakes fixtures, and PR48 adds deterministic evidence-readiness analysis. The next safe step is an approval decision, not judge automation. |
 | R9: Archive Corpus And Stability Workflow | Corpus/readiness/extraction/semantic surveys done | PR13 adds deterministic JSONL corpus + manifest export around `agent_result.json`, `evaluation.json`, capture adequacy, run health, provider-boundary status, usage/model metadata, artifact availability, and optional control-plane summaries. PR15 adds deterministic review-readiness tiers and batch recommendations. Later work added extraction adequacy corpus export, semantic coverage corpus export, and local findings analyzers. |
 | R10: Observatory Parity | Done for current custody loop | Archive parity audit, selected archived sidecar APIs, selected-run custody UI, active-run custody sidecar parity, and evaluation custody parity are landed. Remaining known gap: selected archived dashboard render/readback can still hang after the full case payload resolves. |
 | R11: Human Capability Surface | Not started | Later: optional "what to learn from this audit" surface. |

@@ -1400,7 +1400,7 @@ Outcome:
 Latest eval slice:
 
 ```text
-PR44 Review Corpus Reliance Manifest Counts v0
+PR48 Review Corpus Evidence Readiness Analyzer v0
 ```
 
 PR43 now completes the fixture-backed review-surface validation. A read-only
@@ -1418,6 +1418,13 @@ additive counts for `risk_mode_reliance.present`,
 `risk_mode_reliance_check_status_counts`. It preserves per-record
 `risk_mode_reliance` and does not add runtime behavior, judging, or archive
 mutation.
+
+PR45 records the current anti-drift handoff. PR46 plans future approved
+high-stakes evidence creation without running cases. PR47 adds paraphrase-only
+high-stakes evidence fixtures. PR48 adds a read-only analyzer that consumes
+review-corpus manifest JSON and reports whether high-stakes
+reliance-present records actually exist. It does not read raw archives, call
+models, judge answer quality, or approve real high-stakes runs.
 
 ### Later: Decision-Aware Capture And Runtime Integration
 
@@ -1461,15 +1468,16 @@ deterministic custody keeps the LLM honest.
 The current evidence says the next move should still be boring, but the boring
 thing has changed. Extraction adequacy, semantic coverage, PR30's six-run human
 review seed, PR31's actionable-delta rubric, PR32's adversarial pair fixtures,
-PR33's broader human-review corpus batch, and PR34's user-values/priorities
-design, PR35's live-output hygiene decision, and PR36's risk-mode behavior
-policy, PR37's risk-mode fixture matrix, PR38's fixture review, PR39's
-risk-mode implementation plan, PR40's contract-lock tests, and PR41's
-evaluation-artifact clarity check, and PR42's review-surface integration now
-exist. The next step is PR43 Risk Mode Reliance Review Batch v0: test whether
-reviewers can use the high-stakes reliance caveat consistently before adding
-judges, runtime specialist calls, a new IR, graph memory, embeddings, prompt
-changes, or risk-mode enforcement.
+PR33's broader human-review corpus batch, PR34's user-values/priorities design,
+PR35's live-output hygiene decision, PR36's risk-mode behavior policy, PR37's
+risk-mode fixture matrix, PR38's fixture review, PR39's implementation plan,
+PR40's contract-lock tests, PR41's evaluation-artifact clarity check, PR42's
+review-surface integration, PR43's reliance-surface review batch, PR44's
+manifest counts, PR45's anti-drift handoff, PR46's seed plan, PR47's fixtures,
+and PR48's evidence-readiness analyzer now exist. The next step is an explicit
+approval decision, not automatic runtime work: either approve a future
+high-stakes evidence seed under the PR46/PR48 gates, or choose a separate safe
+lane such as user-values worksheet planning or live-output hygiene planning.
 
 ## Sources
 

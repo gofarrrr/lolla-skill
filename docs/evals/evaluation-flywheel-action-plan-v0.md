@@ -1040,10 +1040,45 @@ Current result:
 - keeps fixtures separate from archive evidence, human labels, judge
   calibration truth, runtime behavior, and prompt changes.
 
-Next safe slice:
+### PR48: Review Corpus Evidence Readiness Analyzer v0
 
-- PR48 Review Corpus Evidence Readiness Analyzer v0, offline deterministic
-  tooling.
+Maps to: PRD R2, R6, R8, R9.
+
+Status: completed as offline deterministic tooling.
+
+Goal:
+
+Add a read-only analyzer for review-corpus manifests so future sessions can
+answer whether a manifest actually contains high-stakes reliance-present
+archive evidence.
+
+Output:
+
+- [Review Corpus Evidence Readiness v0](review-corpus-evidence-readiness-v0.md);
+- `engine/system_b/review_corpus_evidence_readiness.py`;
+- `scripts/analyze_review_corpus_evidence_readiness.py`;
+- `tests/test_review_corpus_evidence_readiness.py`.
+
+Current result:
+
+- reads only manifest JSON;
+- requires PR44 aggregate fields before making a readiness call;
+- returns `insufficient_manifest_fields` for old or thin manifests;
+- returns `no_high_stakes_reliance_evidence` when the manifest has zero
+  `high_stakes|true` reliance-present records;
+- returns `has_high_stakes_reliance_evidence` only when the manifest explicitly
+  counts high-stakes reliance-present records;
+- omits manifest paths, archive roots, raw transcript, memo, revised-answer,
+  model/provider text, private reasoning, secrets, and credentials;
+- makes no model calls and uses no LLM judge;
+- does not change runtime behavior, prompts, `SKILL.md`, `caller_action`,
+  provider-boundary policy, human-review labels, or answer-quality scoring.
+
+Stop point:
+
+- PR48 is the approval gate before any real high-stakes run work.
+- Do not start PR49 or real high-stakes archive evidence creation unless the
+  maintainer explicitly approves the next lane.
 
 Later judge work can resume only after human-owned labels and high-stakes
 review evidence are present enough to calibrate a narrow advisory judge. When

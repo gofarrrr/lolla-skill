@@ -198,8 +198,20 @@ The fixture pack tests reviewer expectations before any real high-stakes archive
 records exist. It is not archive outcome evidence and does not approve future
 runs.
 
-## Next Slice
+## PR48 Readiness Analyzer
 
-PR48 should add a read-only review-corpus evidence readiness analyzer that
-answers whether a manifest actually contains high-stakes reliance-present
-records.
+PR48 now adds a read-only review-corpus evidence readiness analyzer:
+
+```text
+docs/evals/review-corpus-evidence-readiness-v0.md
+engine/system_b/review_corpus_evidence_readiness.py
+scripts/analyze_review_corpus_evidence_readiness.py
+```
+
+It answers whether a manifest actually contains high-stakes
+reliance-present records. It reads only manifest JSON, not raw archives. If the
+manifest is missing the PR44 aggregate fields, it reports
+`insufficient_manifest_fields` rather than guessing.
+
+The analyzer is an approval gate aid. It does not approve or create real
+high-stakes runs.

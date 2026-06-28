@@ -622,7 +622,7 @@ automatic labels, domain protocols, or a judge.
 Latest eval slice:
 
 ```text
-PR47 High-Stakes Evidence Fixture Pack v0
+PR48 Review Corpus Evidence Readiness Analyzer v0
 ```
 
 PR40 proves current high-stakes reliance behavior remains conservative in
@@ -689,6 +689,20 @@ archive custody, trusted live output that still does not imply automatic
 reliance, and excluded crisis/out-of-scope cases. The pack is reviewer
 expectation material, not archive outcome evidence, human labels, judge
 calibration truth, or runtime enforcement.
+
+PR48 now adds the review-corpus evidence readiness analyzer:
+
+```text
+docs/evals/review-corpus-evidence-readiness-v0.md
+engine/system_b/review_corpus_evidence_readiness.py
+scripts/analyze_review_corpus_evidence_readiness.py
+```
+
+It reads only review-corpus manifest JSON and reports whether high-stakes
+`risk_mode_reliance.present: true` archive records actually exist. It returns
+`insufficient_manifest_fields` for old or thin manifests instead of inferring,
+and it does not read raw archives, call models, judge answer quality, populate
+human labels, or approve real high-stakes runs.
 
 Do not populate `lolla.human_review.v0` from synthetic reviewers. Do not treat
 these human labels as judge calibration yet. They define product taste and
