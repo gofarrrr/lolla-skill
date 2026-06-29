@@ -1,0 +1,2150 @@
+{
+  "boundary": {
+    "agent_action_authorized": false,
+    "answer_quality_scored": false,
+    "archive_mutated": false,
+    "automatic_labels_created": false,
+    "ground_truth": false,
+    "human_validated": false,
+    "judge_calibration_eligible": false,
+    "model_calls": 0,
+    "product_proof": false,
+    "raw_private_content_included": false,
+    "runtime_invoked": false,
+    "skill_invoked": false
+  },
+  "case_count": 2,
+  "cases": [
+    {
+      "archive_relpath": "ceo-remove-founding-cofounder/20260627T093131Z_59d153",
+      "available_context": {
+        "artifact_presence_summary": [
+          {
+            "artifact": "conversation.txt",
+            "raw_content_read": false,
+            "schema_version": null,
+            "status": "present"
+          },
+          {
+            "artifact": "revised.txt",
+            "raw_content_read": false,
+            "schema_version": null,
+            "status": "present"
+          },
+          {
+            "artifact": "memo.md",
+            "raw_content_read": false,
+            "schema_version": null,
+            "status": "present"
+          },
+          {
+            "artifact": "evaluation.json",
+            "raw_content_read": false,
+            "schema_version": "lolla.evaluation.v0",
+            "status": "present"
+          },
+          {
+            "artifact": "agent_result.json",
+            "raw_content_read": false,
+            "schema_version": "lolla_agent_result.v1",
+            "status": "present"
+          },
+          {
+            "artifact": "reasoning_trace.json",
+            "raw_content_read": false,
+            "schema_version": "lolla.reasoning_trace.v0.2",
+            "status": "present"
+          },
+          {
+            "artifact": "extraction_adequacy_report.json",
+            "raw_content_read": false,
+            "schema_version": "lolla.extraction_adequacy_report.v0",
+            "status": "present"
+          }
+        ],
+        "prior_provisional_broad_read_context": {
+          "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/0",
+          "authority": "prior_codex_assisted_broad_read_only",
+          "available": true,
+          "semantic_values_copied_into_packets": false,
+          "use_policy": "A future specialist may inspect the source artifact, but PR81 does not treat prior broad reads as truth or fill specialist answers from them."
+        },
+        "readiness_status": "ready_for_codex_provisional_review",
+        "ready_for_codex_provisional_review": true,
+        "review_safe_context": {
+          "actionable_delta_label_count": 4,
+          "artifact_sufficiency": "sufficient_with_caveat",
+          "prior_review_authority": "historical_context_only",
+          "prior_review_record_found": true,
+          "review_readiness_tier": "full_modern_reviewable",
+          "review_safe_sources": [
+            "docs/evals/human-review-corpus-batch-v0.md",
+            "reviews/human/corpus-batch-v0/review.json"
+          ],
+          "review_safe_summary_available": true,
+          "review_status": "pass"
+        },
+        "review_safe_sources": [
+          "docs/evals/human-review-corpus-batch-v0.md",
+          "reviews/human/corpus-batch-v0/review.json"
+        ],
+        "review_safe_summary_status": "available",
+        "structured_signals": {
+          "agent_caller_action": "use_revised_answer",
+          "caller_readiness": "inspect_first",
+          "evaluation_overall": "warn",
+          "extraction_adequacy_status": null,
+          "reasoning_trace_schema_version": "lolla.reasoning_trace.v0.2"
+        },
+        "vanilla_baseline_status": "actual_strong_model_conversation_in_archive"
+      },
+      "case_id": "ceo-remove-founding-cofounder",
+      "missing_or_thin_context": [
+        "weakening:evaluation_overall_warn",
+        "weakening:caller_readiness_inspect_first",
+        "weakening:artifact_sufficiency_caveat"
+      ],
+      "packetization_notes": [
+        "PR81 prepared input packets only.",
+        "Specialist reads remain unfilled until a later provisional review slice."
+      ],
+      "packets": {
+        "advisory_overclaim": {
+          "allowed_inputs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/0",
+              "content_policy": "case identity and review-safe source metadata"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/0",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/0",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json",
+              "content_policy": "May be inspected as prior broad provisional context only; do not copy its conclusions as the specialist read."
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "Use only the PR80 contract for `advisory_overclaim` output shape."
+            }
+          ],
+          "context": {
+            "archive_relpath": "ceo-remove-founding-cofounder/20260627T093131Z_59d153",
+            "case_id": "ceo-remove-founding-cofounder",
+            "prior_provisional_broad_read_available": true,
+            "prior_provisional_broad_read_use": "source context only; not a specialist answer and not truth",
+            "readiness_status": "ready_for_codex_provisional_review",
+            "safe_context_available": true
+          },
+          "contract_ref": {
+            "contract_schema_version": "lolla.product_delta_specialist_review_contracts.v0",
+            "doc_ref": "docs/evals/product-delta-specialist-review-contracts-v0.md#advisory-overclaim",
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/advisory_overclaim_read"
+          },
+          "expected_output_contract": {
+            "candidate_only": true,
+            "filled_by_packet_builder": false,
+            "must_be_filled_by_future_specialist": true,
+            "required_field_names": [
+              "read_status",
+              "overclaim_risks",
+              "language_to_soften",
+              "missing_non_claims",
+              "advisory_only",
+              "requires_pr78_lint"
+            ],
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/advisory_overclaim_read"
+          },
+          "forbidden_outputs": [
+            "human-validation claim",
+            "ground-truth claim",
+            "judge-calibration claim",
+            "product-proof claim",
+            "answer-quality measurement",
+            "agent-action authorization",
+            "automatic label creation",
+            "runtime integration claim",
+            "filled specialist conclusion inside the packet"
+          ],
+          "known_limits": [
+            "checked-in packet excludes raw transcript, raw revised answer, raw memo, provider text, and private reasoning",
+            "packet builder does not infer likely actions, deltas, friction, lost value, interpretation adequacy, or net read",
+            "weakening:evaluation_overall_warn",
+            "weakening:caller_readiness_inspect_first",
+            "weakening:artifact_sufficiency_caveat"
+          ],
+          "mode": "checked_in_safe_mode",
+          "required_non_claims": [
+            "not human review",
+            "not ground truth",
+            "not judge calibration data",
+            "not product proof",
+            "not agent approval",
+            "not answer-quality scoring",
+            "not automatic labeling",
+            "not runtime integration"
+          ],
+          "review_questions": [
+            "Does any artifact language sound more certain than the metadata supports?",
+            "Which non-claims should be made clearer before a future review packet is trusted?",
+            "What should PR78 lint enforce deterministically instead of leaving to advisory prose?"
+          ],
+          "source_refs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/0",
+              "content_policy": "case identity and review-safe source metadata",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/0",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/0",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions",
+              "source_status": "explicit"
+            }
+          ],
+          "specialist_role": "advisory_overclaim"
+        },
+        "conservative_fan_in": {
+          "allowed_inputs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/0",
+              "content_policy": "case identity and review-safe source metadata"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/0",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/0",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json",
+              "content_policy": "May be inspected as prior broad provisional context only; do not copy its conclusions as the specialist read."
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "Use only the PR80 contract for `conservative_fan_in` output shape."
+            }
+          ],
+          "context": {
+            "archive_relpath": "ceo-remove-founding-cofounder/20260627T093131Z_59d153",
+            "case_id": "ceo-remove-founding-cofounder",
+            "prior_provisional_broad_read_available": true,
+            "prior_provisional_broad_read_use": "source context only; not a specialist answer and not truth",
+            "readiness_status": "ready_for_codex_provisional_review",
+            "safe_context_available": true
+          },
+          "contract_ref": {
+            "contract_schema_version": "lolla.product_delta_specialist_review_contracts.v0",
+            "doc_ref": "docs/evals/product-delta-specialist-review-contracts-v0.md#conservative-fan-in",
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/conservative_fan_in_read"
+          },
+          "expected_output_contract": {
+            "candidate_only": true,
+            "filled_by_packet_builder": false,
+            "must_be_filled_by_future_specialist": true,
+            "required_field_names": [
+              "read_status",
+              "specialist_agreements",
+              "specialist_disagreements",
+              "downgraded_fields",
+              "high_uncertainty_fields",
+              "human_review_priorities",
+              "net_decision_read_candidate",
+              "why_not_stronger",
+              "what_would_change_this_read",
+              "non_claims"
+            ],
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/conservative_fan_in_read"
+          },
+          "forbidden_outputs": [
+            "human-validation claim",
+            "ground-truth claim",
+            "judge-calibration claim",
+            "product-proof claim",
+            "answer-quality measurement",
+            "agent-action authorization",
+            "automatic label creation",
+            "runtime integration claim",
+            "filled specialist conclusion inside the packet"
+          ],
+          "known_limits": [
+            "checked-in packet excludes raw transcript, raw revised answer, raw memo, provider text, and private reasoning",
+            "packet builder does not infer likely actions, deltas, friction, lost value, interpretation adequacy, or net read",
+            "weakening:evaluation_overall_warn",
+            "weakening:caller_readiness_inspect_first",
+            "weakening:artifact_sufficiency_caveat"
+          ],
+          "mode": "checked_in_safe_mode",
+          "required_non_claims": [
+            "not human review",
+            "not ground truth",
+            "not judge calibration data",
+            "not product proof",
+            "not agent approval",
+            "not answer-quality scoring",
+            "not automatic labeling",
+            "not runtime integration"
+          ],
+          "review_questions": [
+            "What can be synthesized while preserving specialist disagreement, uncertainty, missingness, and non-claims?",
+            "Which fields should be downgraded or sent to human review first?",
+            "What would change the candidate read?"
+          ],
+          "source_refs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/0",
+              "content_policy": "case identity and review-safe source metadata",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/0",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/0",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions",
+              "source_status": "explicit"
+            }
+          ],
+          "specialist_role": "conservative_fan_in"
+        },
+        "conversation_interpretation": {
+          "allowed_inputs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/0",
+              "content_policy": "case identity and review-safe source metadata"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/0",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/0",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json",
+              "content_policy": "May be inspected as prior broad provisional context only; do not copy its conclusions as the specialist read."
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "Use only the PR80 contract for `conversation_interpretation` output shape."
+            }
+          ],
+          "context": {
+            "archive_relpath": "ceo-remove-founding-cofounder/20260627T093131Z_59d153",
+            "case_id": "ceo-remove-founding-cofounder",
+            "prior_provisional_broad_read_available": true,
+            "prior_provisional_broad_read_use": "source context only; not a specialist answer and not truth",
+            "readiness_status": "ready_for_codex_provisional_review",
+            "safe_context_available": true
+          },
+          "contract_ref": {
+            "contract_schema_version": "lolla.product_delta_specialist_review_contracts.v0",
+            "doc_ref": "docs/evals/product-delta-specialist-review-contracts-v0.md#conversation-interpretation",
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/conversation_interpretation_read"
+          },
+          "expected_output_contract": {
+            "candidate_only": true,
+            "filled_by_packet_builder": false,
+            "must_be_filled_by_future_specialist": true,
+            "required_field_names": [
+              "read_status",
+              "decision_question",
+              "live_options",
+              "option_status",
+              "constraints",
+              "stakeholders",
+              "values_or_priorities",
+              "assistant_influence",
+              "dropped_threads",
+              "unresolved_questions",
+              "uncertainty_notes",
+              "source_refs",
+              "field_status",
+              "what_would_make_this_wrong"
+            ],
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/conversation_interpretation_read"
+          },
+          "forbidden_outputs": [
+            "human-validation claim",
+            "ground-truth claim",
+            "judge-calibration claim",
+            "product-proof claim",
+            "answer-quality measurement",
+            "agent-action authorization",
+            "automatic label creation",
+            "runtime integration claim",
+            "filled specialist conclusion inside the packet"
+          ],
+          "known_limits": [
+            "checked-in packet excludes raw transcript, raw revised answer, raw memo, provider text, and private reasoning",
+            "packet builder does not infer likely actions, deltas, friction, lost value, interpretation adequacy, or net read",
+            "weakening:evaluation_overall_warn",
+            "weakening:caller_readiness_inspect_first",
+            "weakening:artifact_sufficiency_caveat"
+          ],
+          "mode": "checked_in_safe_mode",
+          "required_non_claims": [
+            "not human review",
+            "not ground truth",
+            "not judge calibration data",
+            "not product proof",
+            "not agent approval",
+            "not answer-quality scoring",
+            "not automatic labeling",
+            "not runtime integration"
+          ],
+          "review_questions": [
+            "What is the decision question visible from review-safe sources?",
+            "What options, constraints, stakeholders, values, assistant influence, and dropped threads should a future reviewer check?",
+            "What would make this interpretation wrong?"
+          ],
+          "source_refs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/0",
+              "content_policy": "case identity and review-safe source metadata",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/0",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/0",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions",
+              "source_status": "explicit"
+            }
+          ],
+          "specialist_role": "conversation_interpretation"
+        },
+        "friction_lost_value": {
+          "allowed_inputs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/0",
+              "content_policy": "case identity and review-safe source metadata"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/0",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/0",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json",
+              "content_policy": "May be inspected as prior broad provisional context only; do not copy its conclusions as the specialist read."
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "Use only the PR80 contract for `friction_lost_value` output shape."
+            }
+          ],
+          "context": {
+            "archive_relpath": "ceo-remove-founding-cofounder/20260627T093131Z_59d153",
+            "case_id": "ceo-remove-founding-cofounder",
+            "prior_provisional_broad_read_available": true,
+            "prior_provisional_broad_read_use": "source context only; not a specialist answer and not truth",
+            "readiness_status": "ready_for_codex_provisional_review",
+            "safe_context_available": true
+          },
+          "contract_ref": {
+            "contract_schema_version": "lolla.product_delta_specialist_review_contracts.v0",
+            "doc_ref": "docs/evals/product-delta-specialist-review-contracts-v0.md#usefulnoisy-friction-and-lost-value",
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/friction_lost_value_read"
+          },
+          "expected_output_contract": {
+            "candidate_only": true,
+            "filled_by_packet_builder": false,
+            "must_be_filled_by_future_specialist": true,
+            "required_field_names": [
+              "read_status",
+              "useful_friction",
+              "noisy_friction",
+              "lost_value",
+              "overcorrection_risk",
+              "momentum_or_simplicity_loss",
+              "generic_prudence_substitution",
+              "decision_burden_added",
+              "uncertainty_notes",
+              "source_refs",
+              "what_would_make_this_wrong"
+            ],
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/friction_lost_value_read"
+          },
+          "forbidden_outputs": [
+            "human-validation claim",
+            "ground-truth claim",
+            "judge-calibration claim",
+            "product-proof claim",
+            "answer-quality measurement",
+            "agent-action authorization",
+            "automatic label creation",
+            "runtime integration claim",
+            "filled specialist conclusion inside the packet"
+          ],
+          "known_limits": [
+            "checked-in packet excludes raw transcript, raw revised answer, raw memo, provider text, and private reasoning",
+            "packet builder does not infer likely actions, deltas, friction, lost value, interpretation adequacy, or net read",
+            "weakening:evaluation_overall_warn",
+            "weakening:caller_readiness_inspect_first",
+            "weakening:artifact_sufficiency_caveat"
+          ],
+          "mode": "checked_in_safe_mode",
+          "required_non_claims": [
+            "not human review",
+            "not ground truth",
+            "not judge calibration data",
+            "not product proof",
+            "not agent approval",
+            "not answer-quality scoring",
+            "not automatic labeling",
+            "not runtime integration"
+          ],
+          "review_questions": [
+            "Was any added friction grounded, actionable, and proportionate?",
+            "Where might the revised answer add process, caution, or hesitation without decision leverage?",
+            "What useful original value, momentum, clarity, simplicity, courage, or user-specific ambition might be weaker?"
+          ],
+          "source_refs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/0",
+              "content_policy": "case identity and review-safe source metadata",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/0",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/0",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions",
+              "source_status": "explicit"
+            }
+          ],
+          "specialist_role": "friction_lost_value"
+        },
+        "interpretation_adequacy": {
+          "allowed_inputs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/0",
+              "content_policy": "case identity and review-safe source metadata"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/0",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/0",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json",
+              "content_policy": "May be inspected as prior broad provisional context only; do not copy its conclusions as the specialist read."
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "Use only the PR80 contract for `interpretation_adequacy` output shape."
+            }
+          ],
+          "context": {
+            "archive_relpath": "ceo-remove-founding-cofounder/20260627T093131Z_59d153",
+            "case_id": "ceo-remove-founding-cofounder",
+            "prior_provisional_broad_read_available": true,
+            "prior_provisional_broad_read_use": "source context only; not a specialist answer and not truth",
+            "readiness_status": "ready_for_codex_provisional_review",
+            "safe_context_available": true
+          },
+          "contract_ref": {
+            "contract_schema_version": "lolla.product_delta_specialist_review_contracts.v0",
+            "doc_ref": "docs/evals/product-delta-specialist-review-contracts-v0.md#interpretation-adequacy",
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/interpretation_adequacy_read"
+          },
+          "expected_output_contract": {
+            "candidate_only": true,
+            "filled_by_packet_builder": false,
+            "must_be_filled_by_future_specialist": true,
+            "required_field_names": [
+              "read_status",
+              "decision_question_drift",
+              "option_loss",
+              "constraint_flattening",
+              "stakeholder_erasure",
+              "value_overwrite",
+              "transient_emotion_hardening",
+              "assistant_influence_blindness",
+              "false_consensus",
+              "dropped_thread_blindness",
+              "quote_or_grounding_misread",
+              "uncertainty_collapse",
+              "risk_mode_mismatch",
+              "overall_interpretation_adequacy"
+            ],
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/interpretation_adequacy_read"
+          },
+          "forbidden_outputs": [
+            "human-validation claim",
+            "ground-truth claim",
+            "judge-calibration claim",
+            "product-proof claim",
+            "answer-quality measurement",
+            "agent-action authorization",
+            "automatic label creation",
+            "runtime integration claim",
+            "filled specialist conclusion inside the packet"
+          ],
+          "known_limits": [
+            "checked-in packet excludes raw transcript, raw revised answer, raw memo, provider text, and private reasoning",
+            "packet builder does not infer likely actions, deltas, friction, lost value, interpretation adequacy, or net read",
+            "weakening:evaluation_overall_warn",
+            "weakening:caller_readiness_inspect_first",
+            "weakening:artifact_sufficiency_caveat"
+          ],
+          "mode": "checked_in_safe_mode",
+          "required_non_claims": [
+            "not human review",
+            "not ground truth",
+            "not judge calibration data",
+            "not product proof",
+            "not agent approval",
+            "not answer-quality scoring",
+            "not automatic labeling",
+            "not runtime integration"
+          ],
+          "review_questions": [
+            "Did Lolla appear to preserve the decision question, options, constraints, stakeholders, values, assistant influence, dropped threads, grounding, uncertainty, and risk mode?",
+            "Which interpretation failure modes should a future reviewer inspect?",
+            "Would better interpretation plausibly change the later answer?"
+          ],
+          "source_refs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/0",
+              "content_policy": "case identity and review-safe source metadata",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/0",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/0",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions",
+              "source_status": "explicit"
+            }
+          ],
+          "specialist_role": "interpretation_adequacy"
+        },
+        "lolla_likely_next_action": {
+          "allowed_inputs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/0",
+              "content_policy": "case identity and review-safe source metadata"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/0",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/0",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json",
+              "content_policy": "May be inspected as prior broad provisional context only; do not copy its conclusions as the specialist read."
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "Use only the PR80 contract for `lolla_likely_next_action` output shape."
+            }
+          ],
+          "context": {
+            "archive_relpath": "ceo-remove-founding-cofounder/20260627T093131Z_59d153",
+            "case_id": "ceo-remove-founding-cofounder",
+            "prior_provisional_broad_read_available": true,
+            "prior_provisional_broad_read_use": "source context only; not a specialist answer and not truth",
+            "readiness_status": "ready_for_codex_provisional_review",
+            "safe_context_available": true
+          },
+          "contract_ref": {
+            "contract_schema_version": "lolla.product_delta_specialist_review_contracts.v0",
+            "doc_ref": "docs/evals/product-delta-specialist-review-contracts-v0.md#lolla-likely-next-action",
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/lolla_likely_next_action_read"
+          },
+          "expected_output_contract": {
+            "candidate_only": true,
+            "filled_by_packet_builder": false,
+            "must_be_filled_by_future_specialist": true,
+            "required_field_names": [
+              "read_status",
+              "likely_next_action",
+              "action_source_status",
+              "explicit_or_inferred",
+              "uncertainty_notes",
+              "source_refs",
+              "alternative_plausible_actions",
+              "what_would_make_this_wrong"
+            ],
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/lolla_likely_next_action_read"
+          },
+          "forbidden_outputs": [
+            "human-validation claim",
+            "ground-truth claim",
+            "judge-calibration claim",
+            "product-proof claim",
+            "answer-quality measurement",
+            "agent-action authorization",
+            "automatic label creation",
+            "runtime integration claim",
+            "filled specialist conclusion inside the packet"
+          ],
+          "known_limits": [
+            "checked-in packet excludes raw transcript, raw revised answer, raw memo, provider text, and private reasoning",
+            "packet builder does not infer likely actions, deltas, friction, lost value, interpretation adequacy, or net read",
+            "weakening:evaluation_overall_warn",
+            "weakening:caller_readiness_inspect_first",
+            "weakening:artifact_sufficiency_caveat"
+          ],
+          "mode": "checked_in_safe_mode",
+          "required_non_claims": [
+            "not human review",
+            "not ground truth",
+            "not judge calibration data",
+            "not product proof",
+            "not agent approval",
+            "not answer-quality scoring",
+            "not automatic labeling",
+            "not runtime integration"
+          ],
+          "review_questions": [
+            "What action would the Lolla revised answer likely lead the user toward?",
+            "Which parts are explicit, inferred, unclear, contradicted, or not supplied?",
+            "What alternative plausible actions remain after the revised answer?"
+          ],
+          "source_refs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/0",
+              "content_policy": "case identity and review-safe source metadata",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/0",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/0",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions",
+              "source_status": "explicit"
+            }
+          ],
+          "specialist_role": "lolla_likely_next_action"
+        },
+        "structural_delta": {
+          "allowed_inputs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/0",
+              "content_policy": "case identity and review-safe source metadata"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/0",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/0",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json",
+              "content_policy": "May be inspected as prior broad provisional context only; do not copy its conclusions as the specialist read."
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "Use only the PR80 contract for `structural_delta` output shape."
+            }
+          ],
+          "context": {
+            "archive_relpath": "ceo-remove-founding-cofounder/20260627T093131Z_59d153",
+            "case_id": "ceo-remove-founding-cofounder",
+            "prior_provisional_broad_read_available": true,
+            "prior_provisional_broad_read_use": "source context only; not a specialist answer and not truth",
+            "readiness_status": "ready_for_codex_provisional_review",
+            "safe_context_available": true
+          },
+          "contract_ref": {
+            "contract_schema_version": "lolla.product_delta_specialist_review_contracts.v0",
+            "doc_ref": "docs/evals/product-delta-specialist-review-contracts-v0.md#structural-delta",
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/structural_delta_read"
+          },
+          "expected_output_contract": {
+            "candidate_only": true,
+            "filled_by_packet_builder": false,
+            "must_be_filled_by_future_specialist": true,
+            "required_field_names": [
+              "read_status",
+              "action_changed",
+              "threshold_changed",
+              "sequence_changed",
+              "evidence_gate_added_or_changed",
+              "stop_rule_added_or_changed",
+              "scope_changed",
+              "stakeholder_treatment_changed",
+              "user_answerable_question_added",
+              "overclaim_retracted",
+              "reversibility_or_bounding_changed"
+            ],
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/structural_delta_read"
+          },
+          "forbidden_outputs": [
+            "human-validation claim",
+            "ground-truth claim",
+            "judge-calibration claim",
+            "product-proof claim",
+            "answer-quality measurement",
+            "agent-action authorization",
+            "automatic label creation",
+            "runtime integration claim",
+            "filled specialist conclusion inside the packet"
+          ],
+          "known_limits": [
+            "checked-in packet excludes raw transcript, raw revised answer, raw memo, provider text, and private reasoning",
+            "packet builder does not infer likely actions, deltas, friction, lost value, interpretation adequacy, or net read",
+            "weakening:evaluation_overall_warn",
+            "weakening:caller_readiness_inspect_first",
+            "weakening:artifact_sufficiency_caveat"
+          ],
+          "mode": "checked_in_safe_mode",
+          "required_non_claims": [
+            "not human review",
+            "not ground truth",
+            "not judge calibration data",
+            "not product proof",
+            "not agent approval",
+            "not answer-quality scoring",
+            "not automatic labeling",
+            "not runtime integration"
+          ],
+          "review_questions": [
+            "Did the future specialist find a change in action, threshold, sequence, evidence gate, stop rule, scope, stakeholder treatment, user-answerable question, overclaim handling, or reversibility?",
+            "Which source refs support or weaken each candidate change?",
+            "What uncertainty should be carried forward?"
+          ],
+          "source_refs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/0",
+              "content_policy": "case identity and review-safe source metadata",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/0",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/0",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions",
+              "source_status": "explicit"
+            }
+          ],
+          "specialist_role": "structural_delta"
+        },
+        "vanilla_likely_next_action": {
+          "allowed_inputs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/0",
+              "content_policy": "case identity and review-safe source metadata"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/0",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/0",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json",
+              "content_policy": "May be inspected as prior broad provisional context only; do not copy its conclusions as the specialist read."
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "Use only the PR80 contract for `vanilla_likely_next_action` output shape."
+            }
+          ],
+          "context": {
+            "archive_relpath": "ceo-remove-founding-cofounder/20260627T093131Z_59d153",
+            "case_id": "ceo-remove-founding-cofounder",
+            "prior_provisional_broad_read_available": true,
+            "prior_provisional_broad_read_use": "source context only; not a specialist answer and not truth",
+            "readiness_status": "ready_for_codex_provisional_review",
+            "safe_context_available": true
+          },
+          "contract_ref": {
+            "contract_schema_version": "lolla.product_delta_specialist_review_contracts.v0",
+            "doc_ref": "docs/evals/product-delta-specialist-review-contracts-v0.md#vanilla-likely-next-action",
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/vanilla_likely_next_action_read"
+          },
+          "expected_output_contract": {
+            "candidate_only": true,
+            "filled_by_packet_builder": false,
+            "must_be_filled_by_future_specialist": true,
+            "required_field_names": [
+              "read_status",
+              "likely_next_action",
+              "action_source_status",
+              "explicit_or_inferred",
+              "uncertainty_notes",
+              "source_refs",
+              "alternative_plausible_actions",
+              "what_would_make_this_wrong"
+            ],
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/vanilla_likely_next_action_read"
+          },
+          "forbidden_outputs": [
+            "human-validation claim",
+            "ground-truth claim",
+            "judge-calibration claim",
+            "product-proof claim",
+            "answer-quality measurement",
+            "agent-action authorization",
+            "automatic label creation",
+            "runtime integration claim",
+            "filled specialist conclusion inside the packet"
+          ],
+          "known_limits": [
+            "checked-in packet excludes raw transcript, raw revised answer, raw memo, provider text, and private reasoning",
+            "packet builder does not infer likely actions, deltas, friction, lost value, interpretation adequacy, or net read",
+            "weakening:evaluation_overall_warn",
+            "weakening:caller_readiness_inspect_first",
+            "weakening:artifact_sufficiency_caveat"
+          ],
+          "mode": "checked_in_safe_mode",
+          "required_non_claims": [
+            "not human review",
+            "not ground truth",
+            "not judge calibration data",
+            "not product proof",
+            "not agent approval",
+            "not answer-quality scoring",
+            "not automatic labeling",
+            "not runtime integration"
+          ],
+          "review_questions": [
+            "What action would the vanilla conversation or final answer likely have led the user toward?",
+            "Which parts are explicit, inferred, unclear, contradicted, or not supplied?",
+            "What alternative plausible actions remain?"
+          ],
+          "source_refs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/0",
+              "content_policy": "case identity and review-safe source metadata",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/0",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/0",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions",
+              "source_status": "explicit"
+            }
+          ],
+          "specialist_role": "vanilla_likely_next_action"
+        }
+      },
+      "readiness_status": "ready_for_codex_provisional_review",
+      "run_id": "20260627T093131Z_59d153",
+      "source_refs": [
+        {
+          "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/0",
+          "content_policy": "case identity and review-safe source metadata",
+          "source_status": "explicit"
+        },
+        {
+          "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/0",
+          "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only",
+          "source_status": "explicit"
+        },
+        {
+          "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/0",
+          "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer",
+          "source_status": "explicit"
+        },
+        {
+          "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+          "content_policy": "PR80 output contract definitions",
+          "source_status": "explicit"
+        }
+      ]
+    },
+    {
+      "archive_relpath": "accept-operations-role-startup/20260627T132700Z_bae7f3",
+      "available_context": {
+        "artifact_presence_summary": [
+          {
+            "artifact": "conversation.txt",
+            "raw_content_read": false,
+            "schema_version": null,
+            "status": "present"
+          },
+          {
+            "artifact": "revised.txt",
+            "raw_content_read": false,
+            "schema_version": null,
+            "status": "present"
+          },
+          {
+            "artifact": "memo.md",
+            "raw_content_read": false,
+            "schema_version": null,
+            "status": "present"
+          },
+          {
+            "artifact": "evaluation.json",
+            "raw_content_read": false,
+            "schema_version": "lolla.evaluation.v0",
+            "status": "present"
+          },
+          {
+            "artifact": "agent_result.json",
+            "raw_content_read": false,
+            "schema_version": "lolla_agent_result.v1",
+            "status": "present"
+          },
+          {
+            "artifact": "reasoning_trace.json",
+            "raw_content_read": false,
+            "schema_version": "lolla.reasoning_trace.v0.2",
+            "status": "present"
+          },
+          {
+            "artifact": "extraction_adequacy_report.json",
+            "raw_content_read": false,
+            "schema_version": "lolla.extraction_adequacy_report.v0",
+            "status": "present"
+          }
+        ],
+        "prior_provisional_broad_read_context": {
+          "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/1",
+          "authority": "prior_codex_assisted_broad_read_only",
+          "available": true,
+          "semantic_values_copied_into_packets": false,
+          "use_policy": "A future specialist may inspect the source artifact, but PR81 does not treat prior broad reads as truth or fill specialist answers from them."
+        },
+        "readiness_status": "ready_for_codex_provisional_review",
+        "ready_for_codex_provisional_review": true,
+        "review_safe_context": {
+          "actionable_delta_label_count": 5,
+          "artifact_sufficiency": "sufficient_with_caveat",
+          "prior_review_authority": "historical_context_only",
+          "prior_review_record_found": true,
+          "review_readiness_tier": "full_modern_reviewable",
+          "review_safe_sources": [
+            "docs/evals/human-review-corpus-batch-v0.md",
+            "reviews/human/corpus-batch-v0/review.json"
+          ],
+          "review_safe_summary_available": true,
+          "review_status": "pass"
+        },
+        "review_safe_sources": [
+          "docs/evals/human-review-corpus-batch-v0.md",
+          "reviews/human/corpus-batch-v0/review.json"
+        ],
+        "review_safe_summary_status": "available",
+        "structured_signals": {
+          "agent_caller_action": "use_revised_answer",
+          "caller_readiness": "inspect_first",
+          "evaluation_overall": "warn",
+          "extraction_adequacy_status": null,
+          "reasoning_trace_schema_version": "lolla.reasoning_trace.v0.2"
+        },
+        "vanilla_baseline_status": "actual_strong_model_conversation_in_archive"
+      },
+      "case_id": "accept-operations-role-startup",
+      "missing_or_thin_context": [
+        "weakening:evaluation_overall_warn",
+        "weakening:caller_readiness_inspect_first",
+        "weakening:artifact_sufficiency_caveat"
+      ],
+      "packetization_notes": [
+        "PR81 prepared input packets only.",
+        "Specialist reads remain unfilled until a later provisional review slice."
+      ],
+      "packets": {
+        "advisory_overclaim": {
+          "allowed_inputs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/1",
+              "content_policy": "case identity and review-safe source metadata"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/1",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/1",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json",
+              "content_policy": "May be inspected as prior broad provisional context only; do not copy its conclusions as the specialist read."
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "Use only the PR80 contract for `advisory_overclaim` output shape."
+            }
+          ],
+          "context": {
+            "archive_relpath": "accept-operations-role-startup/20260627T132700Z_bae7f3",
+            "case_id": "accept-operations-role-startup",
+            "prior_provisional_broad_read_available": true,
+            "prior_provisional_broad_read_use": "source context only; not a specialist answer and not truth",
+            "readiness_status": "ready_for_codex_provisional_review",
+            "safe_context_available": true
+          },
+          "contract_ref": {
+            "contract_schema_version": "lolla.product_delta_specialist_review_contracts.v0",
+            "doc_ref": "docs/evals/product-delta-specialist-review-contracts-v0.md#advisory-overclaim",
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/advisory_overclaim_read"
+          },
+          "expected_output_contract": {
+            "candidate_only": true,
+            "filled_by_packet_builder": false,
+            "must_be_filled_by_future_specialist": true,
+            "required_field_names": [
+              "read_status",
+              "overclaim_risks",
+              "language_to_soften",
+              "missing_non_claims",
+              "advisory_only",
+              "requires_pr78_lint"
+            ],
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/advisory_overclaim_read"
+          },
+          "forbidden_outputs": [
+            "human-validation claim",
+            "ground-truth claim",
+            "judge-calibration claim",
+            "product-proof claim",
+            "answer-quality measurement",
+            "agent-action authorization",
+            "automatic label creation",
+            "runtime integration claim",
+            "filled specialist conclusion inside the packet"
+          ],
+          "known_limits": [
+            "checked-in packet excludes raw transcript, raw revised answer, raw memo, provider text, and private reasoning",
+            "packet builder does not infer likely actions, deltas, friction, lost value, interpretation adequacy, or net read",
+            "weakening:evaluation_overall_warn",
+            "weakening:caller_readiness_inspect_first",
+            "weakening:artifact_sufficiency_caveat"
+          ],
+          "mode": "checked_in_safe_mode",
+          "required_non_claims": [
+            "not human review",
+            "not ground truth",
+            "not judge calibration data",
+            "not product proof",
+            "not agent approval",
+            "not answer-quality scoring",
+            "not automatic labeling",
+            "not runtime integration"
+          ],
+          "review_questions": [
+            "Does any artifact language sound more certain than the metadata supports?",
+            "Which non-claims should be made clearer before a future review packet is trusted?",
+            "What should PR78 lint enforce deterministically instead of leaving to advisory prose?"
+          ],
+          "source_refs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/1",
+              "content_policy": "case identity and review-safe source metadata",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/1",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/1",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions",
+              "source_status": "explicit"
+            }
+          ],
+          "specialist_role": "advisory_overclaim"
+        },
+        "conservative_fan_in": {
+          "allowed_inputs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/1",
+              "content_policy": "case identity and review-safe source metadata"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/1",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/1",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json",
+              "content_policy": "May be inspected as prior broad provisional context only; do not copy its conclusions as the specialist read."
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "Use only the PR80 contract for `conservative_fan_in` output shape."
+            }
+          ],
+          "context": {
+            "archive_relpath": "accept-operations-role-startup/20260627T132700Z_bae7f3",
+            "case_id": "accept-operations-role-startup",
+            "prior_provisional_broad_read_available": true,
+            "prior_provisional_broad_read_use": "source context only; not a specialist answer and not truth",
+            "readiness_status": "ready_for_codex_provisional_review",
+            "safe_context_available": true
+          },
+          "contract_ref": {
+            "contract_schema_version": "lolla.product_delta_specialist_review_contracts.v0",
+            "doc_ref": "docs/evals/product-delta-specialist-review-contracts-v0.md#conservative-fan-in",
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/conservative_fan_in_read"
+          },
+          "expected_output_contract": {
+            "candidate_only": true,
+            "filled_by_packet_builder": false,
+            "must_be_filled_by_future_specialist": true,
+            "required_field_names": [
+              "read_status",
+              "specialist_agreements",
+              "specialist_disagreements",
+              "downgraded_fields",
+              "high_uncertainty_fields",
+              "human_review_priorities",
+              "net_decision_read_candidate",
+              "why_not_stronger",
+              "what_would_change_this_read",
+              "non_claims"
+            ],
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/conservative_fan_in_read"
+          },
+          "forbidden_outputs": [
+            "human-validation claim",
+            "ground-truth claim",
+            "judge-calibration claim",
+            "product-proof claim",
+            "answer-quality measurement",
+            "agent-action authorization",
+            "automatic label creation",
+            "runtime integration claim",
+            "filled specialist conclusion inside the packet"
+          ],
+          "known_limits": [
+            "checked-in packet excludes raw transcript, raw revised answer, raw memo, provider text, and private reasoning",
+            "packet builder does not infer likely actions, deltas, friction, lost value, interpretation adequacy, or net read",
+            "weakening:evaluation_overall_warn",
+            "weakening:caller_readiness_inspect_first",
+            "weakening:artifact_sufficiency_caveat"
+          ],
+          "mode": "checked_in_safe_mode",
+          "required_non_claims": [
+            "not human review",
+            "not ground truth",
+            "not judge calibration data",
+            "not product proof",
+            "not agent approval",
+            "not answer-quality scoring",
+            "not automatic labeling",
+            "not runtime integration"
+          ],
+          "review_questions": [
+            "What can be synthesized while preserving specialist disagreement, uncertainty, missingness, and non-claims?",
+            "Which fields should be downgraded or sent to human review first?",
+            "What would change the candidate read?"
+          ],
+          "source_refs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/1",
+              "content_policy": "case identity and review-safe source metadata",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/1",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/1",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions",
+              "source_status": "explicit"
+            }
+          ],
+          "specialist_role": "conservative_fan_in"
+        },
+        "conversation_interpretation": {
+          "allowed_inputs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/1",
+              "content_policy": "case identity and review-safe source metadata"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/1",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/1",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json",
+              "content_policy": "May be inspected as prior broad provisional context only; do not copy its conclusions as the specialist read."
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "Use only the PR80 contract for `conversation_interpretation` output shape."
+            }
+          ],
+          "context": {
+            "archive_relpath": "accept-operations-role-startup/20260627T132700Z_bae7f3",
+            "case_id": "accept-operations-role-startup",
+            "prior_provisional_broad_read_available": true,
+            "prior_provisional_broad_read_use": "source context only; not a specialist answer and not truth",
+            "readiness_status": "ready_for_codex_provisional_review",
+            "safe_context_available": true
+          },
+          "contract_ref": {
+            "contract_schema_version": "lolla.product_delta_specialist_review_contracts.v0",
+            "doc_ref": "docs/evals/product-delta-specialist-review-contracts-v0.md#conversation-interpretation",
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/conversation_interpretation_read"
+          },
+          "expected_output_contract": {
+            "candidate_only": true,
+            "filled_by_packet_builder": false,
+            "must_be_filled_by_future_specialist": true,
+            "required_field_names": [
+              "read_status",
+              "decision_question",
+              "live_options",
+              "option_status",
+              "constraints",
+              "stakeholders",
+              "values_or_priorities",
+              "assistant_influence",
+              "dropped_threads",
+              "unresolved_questions",
+              "uncertainty_notes",
+              "source_refs",
+              "field_status",
+              "what_would_make_this_wrong"
+            ],
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/conversation_interpretation_read"
+          },
+          "forbidden_outputs": [
+            "human-validation claim",
+            "ground-truth claim",
+            "judge-calibration claim",
+            "product-proof claim",
+            "answer-quality measurement",
+            "agent-action authorization",
+            "automatic label creation",
+            "runtime integration claim",
+            "filled specialist conclusion inside the packet"
+          ],
+          "known_limits": [
+            "checked-in packet excludes raw transcript, raw revised answer, raw memo, provider text, and private reasoning",
+            "packet builder does not infer likely actions, deltas, friction, lost value, interpretation adequacy, or net read",
+            "weakening:evaluation_overall_warn",
+            "weakening:caller_readiness_inspect_first",
+            "weakening:artifact_sufficiency_caveat"
+          ],
+          "mode": "checked_in_safe_mode",
+          "required_non_claims": [
+            "not human review",
+            "not ground truth",
+            "not judge calibration data",
+            "not product proof",
+            "not agent approval",
+            "not answer-quality scoring",
+            "not automatic labeling",
+            "not runtime integration"
+          ],
+          "review_questions": [
+            "What is the decision question visible from review-safe sources?",
+            "What options, constraints, stakeholders, values, assistant influence, and dropped threads should a future reviewer check?",
+            "What would make this interpretation wrong?"
+          ],
+          "source_refs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/1",
+              "content_policy": "case identity and review-safe source metadata",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/1",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/1",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions",
+              "source_status": "explicit"
+            }
+          ],
+          "specialist_role": "conversation_interpretation"
+        },
+        "friction_lost_value": {
+          "allowed_inputs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/1",
+              "content_policy": "case identity and review-safe source metadata"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/1",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/1",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json",
+              "content_policy": "May be inspected as prior broad provisional context only; do not copy its conclusions as the specialist read."
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "Use only the PR80 contract for `friction_lost_value` output shape."
+            }
+          ],
+          "context": {
+            "archive_relpath": "accept-operations-role-startup/20260627T132700Z_bae7f3",
+            "case_id": "accept-operations-role-startup",
+            "prior_provisional_broad_read_available": true,
+            "prior_provisional_broad_read_use": "source context only; not a specialist answer and not truth",
+            "readiness_status": "ready_for_codex_provisional_review",
+            "safe_context_available": true
+          },
+          "contract_ref": {
+            "contract_schema_version": "lolla.product_delta_specialist_review_contracts.v0",
+            "doc_ref": "docs/evals/product-delta-specialist-review-contracts-v0.md#usefulnoisy-friction-and-lost-value",
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/friction_lost_value_read"
+          },
+          "expected_output_contract": {
+            "candidate_only": true,
+            "filled_by_packet_builder": false,
+            "must_be_filled_by_future_specialist": true,
+            "required_field_names": [
+              "read_status",
+              "useful_friction",
+              "noisy_friction",
+              "lost_value",
+              "overcorrection_risk",
+              "momentum_or_simplicity_loss",
+              "generic_prudence_substitution",
+              "decision_burden_added",
+              "uncertainty_notes",
+              "source_refs",
+              "what_would_make_this_wrong"
+            ],
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/friction_lost_value_read"
+          },
+          "forbidden_outputs": [
+            "human-validation claim",
+            "ground-truth claim",
+            "judge-calibration claim",
+            "product-proof claim",
+            "answer-quality measurement",
+            "agent-action authorization",
+            "automatic label creation",
+            "runtime integration claim",
+            "filled specialist conclusion inside the packet"
+          ],
+          "known_limits": [
+            "checked-in packet excludes raw transcript, raw revised answer, raw memo, provider text, and private reasoning",
+            "packet builder does not infer likely actions, deltas, friction, lost value, interpretation adequacy, or net read",
+            "weakening:evaluation_overall_warn",
+            "weakening:caller_readiness_inspect_first",
+            "weakening:artifact_sufficiency_caveat"
+          ],
+          "mode": "checked_in_safe_mode",
+          "required_non_claims": [
+            "not human review",
+            "not ground truth",
+            "not judge calibration data",
+            "not product proof",
+            "not agent approval",
+            "not answer-quality scoring",
+            "not automatic labeling",
+            "not runtime integration"
+          ],
+          "review_questions": [
+            "Was any added friction grounded, actionable, and proportionate?",
+            "Where might the revised answer add process, caution, or hesitation without decision leverage?",
+            "What useful original value, momentum, clarity, simplicity, courage, or user-specific ambition might be weaker?"
+          ],
+          "source_refs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/1",
+              "content_policy": "case identity and review-safe source metadata",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/1",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/1",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions",
+              "source_status": "explicit"
+            }
+          ],
+          "specialist_role": "friction_lost_value"
+        },
+        "interpretation_adequacy": {
+          "allowed_inputs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/1",
+              "content_policy": "case identity and review-safe source metadata"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/1",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/1",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json",
+              "content_policy": "May be inspected as prior broad provisional context only; do not copy its conclusions as the specialist read."
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "Use only the PR80 contract for `interpretation_adequacy` output shape."
+            }
+          ],
+          "context": {
+            "archive_relpath": "accept-operations-role-startup/20260627T132700Z_bae7f3",
+            "case_id": "accept-operations-role-startup",
+            "prior_provisional_broad_read_available": true,
+            "prior_provisional_broad_read_use": "source context only; not a specialist answer and not truth",
+            "readiness_status": "ready_for_codex_provisional_review",
+            "safe_context_available": true
+          },
+          "contract_ref": {
+            "contract_schema_version": "lolla.product_delta_specialist_review_contracts.v0",
+            "doc_ref": "docs/evals/product-delta-specialist-review-contracts-v0.md#interpretation-adequacy",
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/interpretation_adequacy_read"
+          },
+          "expected_output_contract": {
+            "candidate_only": true,
+            "filled_by_packet_builder": false,
+            "must_be_filled_by_future_specialist": true,
+            "required_field_names": [
+              "read_status",
+              "decision_question_drift",
+              "option_loss",
+              "constraint_flattening",
+              "stakeholder_erasure",
+              "value_overwrite",
+              "transient_emotion_hardening",
+              "assistant_influence_blindness",
+              "false_consensus",
+              "dropped_thread_blindness",
+              "quote_or_grounding_misread",
+              "uncertainty_collapse",
+              "risk_mode_mismatch",
+              "overall_interpretation_adequacy"
+            ],
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/interpretation_adequacy_read"
+          },
+          "forbidden_outputs": [
+            "human-validation claim",
+            "ground-truth claim",
+            "judge-calibration claim",
+            "product-proof claim",
+            "answer-quality measurement",
+            "agent-action authorization",
+            "automatic label creation",
+            "runtime integration claim",
+            "filled specialist conclusion inside the packet"
+          ],
+          "known_limits": [
+            "checked-in packet excludes raw transcript, raw revised answer, raw memo, provider text, and private reasoning",
+            "packet builder does not infer likely actions, deltas, friction, lost value, interpretation adequacy, or net read",
+            "weakening:evaluation_overall_warn",
+            "weakening:caller_readiness_inspect_first",
+            "weakening:artifact_sufficiency_caveat"
+          ],
+          "mode": "checked_in_safe_mode",
+          "required_non_claims": [
+            "not human review",
+            "not ground truth",
+            "not judge calibration data",
+            "not product proof",
+            "not agent approval",
+            "not answer-quality scoring",
+            "not automatic labeling",
+            "not runtime integration"
+          ],
+          "review_questions": [
+            "Did Lolla appear to preserve the decision question, options, constraints, stakeholders, values, assistant influence, dropped threads, grounding, uncertainty, and risk mode?",
+            "Which interpretation failure modes should a future reviewer inspect?",
+            "Would better interpretation plausibly change the later answer?"
+          ],
+          "source_refs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/1",
+              "content_policy": "case identity and review-safe source metadata",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/1",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/1",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions",
+              "source_status": "explicit"
+            }
+          ],
+          "specialist_role": "interpretation_adequacy"
+        },
+        "lolla_likely_next_action": {
+          "allowed_inputs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/1",
+              "content_policy": "case identity and review-safe source metadata"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/1",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/1",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json",
+              "content_policy": "May be inspected as prior broad provisional context only; do not copy its conclusions as the specialist read."
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "Use only the PR80 contract for `lolla_likely_next_action` output shape."
+            }
+          ],
+          "context": {
+            "archive_relpath": "accept-operations-role-startup/20260627T132700Z_bae7f3",
+            "case_id": "accept-operations-role-startup",
+            "prior_provisional_broad_read_available": true,
+            "prior_provisional_broad_read_use": "source context only; not a specialist answer and not truth",
+            "readiness_status": "ready_for_codex_provisional_review",
+            "safe_context_available": true
+          },
+          "contract_ref": {
+            "contract_schema_version": "lolla.product_delta_specialist_review_contracts.v0",
+            "doc_ref": "docs/evals/product-delta-specialist-review-contracts-v0.md#lolla-likely-next-action",
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/lolla_likely_next_action_read"
+          },
+          "expected_output_contract": {
+            "candidate_only": true,
+            "filled_by_packet_builder": false,
+            "must_be_filled_by_future_specialist": true,
+            "required_field_names": [
+              "read_status",
+              "likely_next_action",
+              "action_source_status",
+              "explicit_or_inferred",
+              "uncertainty_notes",
+              "source_refs",
+              "alternative_plausible_actions",
+              "what_would_make_this_wrong"
+            ],
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/lolla_likely_next_action_read"
+          },
+          "forbidden_outputs": [
+            "human-validation claim",
+            "ground-truth claim",
+            "judge-calibration claim",
+            "product-proof claim",
+            "answer-quality measurement",
+            "agent-action authorization",
+            "automatic label creation",
+            "runtime integration claim",
+            "filled specialist conclusion inside the packet"
+          ],
+          "known_limits": [
+            "checked-in packet excludes raw transcript, raw revised answer, raw memo, provider text, and private reasoning",
+            "packet builder does not infer likely actions, deltas, friction, lost value, interpretation adequacy, or net read",
+            "weakening:evaluation_overall_warn",
+            "weakening:caller_readiness_inspect_first",
+            "weakening:artifact_sufficiency_caveat"
+          ],
+          "mode": "checked_in_safe_mode",
+          "required_non_claims": [
+            "not human review",
+            "not ground truth",
+            "not judge calibration data",
+            "not product proof",
+            "not agent approval",
+            "not answer-quality scoring",
+            "not automatic labeling",
+            "not runtime integration"
+          ],
+          "review_questions": [
+            "What action would the Lolla revised answer likely lead the user toward?",
+            "Which parts are explicit, inferred, unclear, contradicted, or not supplied?",
+            "What alternative plausible actions remain after the revised answer?"
+          ],
+          "source_refs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/1",
+              "content_policy": "case identity and review-safe source metadata",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/1",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/1",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions",
+              "source_status": "explicit"
+            }
+          ],
+          "specialist_role": "lolla_likely_next_action"
+        },
+        "structural_delta": {
+          "allowed_inputs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/1",
+              "content_policy": "case identity and review-safe source metadata"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/1",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/1",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json",
+              "content_policy": "May be inspected as prior broad provisional context only; do not copy its conclusions as the specialist read."
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "Use only the PR80 contract for `structural_delta` output shape."
+            }
+          ],
+          "context": {
+            "archive_relpath": "accept-operations-role-startup/20260627T132700Z_bae7f3",
+            "case_id": "accept-operations-role-startup",
+            "prior_provisional_broad_read_available": true,
+            "prior_provisional_broad_read_use": "source context only; not a specialist answer and not truth",
+            "readiness_status": "ready_for_codex_provisional_review",
+            "safe_context_available": true
+          },
+          "contract_ref": {
+            "contract_schema_version": "lolla.product_delta_specialist_review_contracts.v0",
+            "doc_ref": "docs/evals/product-delta-specialist-review-contracts-v0.md#structural-delta",
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/structural_delta_read"
+          },
+          "expected_output_contract": {
+            "candidate_only": true,
+            "filled_by_packet_builder": false,
+            "must_be_filled_by_future_specialist": true,
+            "required_field_names": [
+              "read_status",
+              "action_changed",
+              "threshold_changed",
+              "sequence_changed",
+              "evidence_gate_added_or_changed",
+              "stop_rule_added_or_changed",
+              "scope_changed",
+              "stakeholder_treatment_changed",
+              "user_answerable_question_added",
+              "overclaim_retracted",
+              "reversibility_or_bounding_changed"
+            ],
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/structural_delta_read"
+          },
+          "forbidden_outputs": [
+            "human-validation claim",
+            "ground-truth claim",
+            "judge-calibration claim",
+            "product-proof claim",
+            "answer-quality measurement",
+            "agent-action authorization",
+            "automatic label creation",
+            "runtime integration claim",
+            "filled specialist conclusion inside the packet"
+          ],
+          "known_limits": [
+            "checked-in packet excludes raw transcript, raw revised answer, raw memo, provider text, and private reasoning",
+            "packet builder does not infer likely actions, deltas, friction, lost value, interpretation adequacy, or net read",
+            "weakening:evaluation_overall_warn",
+            "weakening:caller_readiness_inspect_first",
+            "weakening:artifact_sufficiency_caveat"
+          ],
+          "mode": "checked_in_safe_mode",
+          "required_non_claims": [
+            "not human review",
+            "not ground truth",
+            "not judge calibration data",
+            "not product proof",
+            "not agent approval",
+            "not answer-quality scoring",
+            "not automatic labeling",
+            "not runtime integration"
+          ],
+          "review_questions": [
+            "Did the future specialist find a change in action, threshold, sequence, evidence gate, stop rule, scope, stakeholder treatment, user-answerable question, overclaim handling, or reversibility?",
+            "Which source refs support or weaken each candidate change?",
+            "What uncertainty should be carried forward?"
+          ],
+          "source_refs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/1",
+              "content_policy": "case identity and review-safe source metadata",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/1",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/1",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions",
+              "source_status": "explicit"
+            }
+          ],
+          "specialist_role": "structural_delta"
+        },
+        "vanilla_likely_next_action": {
+          "allowed_inputs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/1",
+              "content_policy": "case identity and review-safe source metadata"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/1",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/1",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json",
+              "content_policy": "May be inspected as prior broad provisional context only; do not copy its conclusions as the specialist read."
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "Use only the PR80 contract for `vanilla_likely_next_action` output shape."
+            }
+          ],
+          "context": {
+            "archive_relpath": "accept-operations-role-startup/20260627T132700Z_bae7f3",
+            "case_id": "accept-operations-role-startup",
+            "prior_provisional_broad_read_available": true,
+            "prior_provisional_broad_read_use": "source context only; not a specialist answer and not truth",
+            "readiness_status": "ready_for_codex_provisional_review",
+            "safe_context_available": true
+          },
+          "contract_ref": {
+            "contract_schema_version": "lolla.product_delta_specialist_review_contracts.v0",
+            "doc_ref": "docs/evals/product-delta-specialist-review-contracts-v0.md#vanilla-likely-next-action",
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/vanilla_likely_next_action_read"
+          },
+          "expected_output_contract": {
+            "candidate_only": true,
+            "filled_by_packet_builder": false,
+            "must_be_filled_by_future_specialist": true,
+            "required_field_names": [
+              "read_status",
+              "likely_next_action",
+              "action_source_status",
+              "explicit_or_inferred",
+              "uncertainty_notes",
+              "source_refs",
+              "alternative_plausible_actions",
+              "what_would_make_this_wrong"
+            ],
+            "schema_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json#/$defs/vanilla_likely_next_action_read"
+          },
+          "forbidden_outputs": [
+            "human-validation claim",
+            "ground-truth claim",
+            "judge-calibration claim",
+            "product-proof claim",
+            "answer-quality measurement",
+            "agent-action authorization",
+            "automatic label creation",
+            "runtime integration claim",
+            "filled specialist conclusion inside the packet"
+          ],
+          "known_limits": [
+            "checked-in packet excludes raw transcript, raw revised answer, raw memo, provider text, and private reasoning",
+            "packet builder does not infer likely actions, deltas, friction, lost value, interpretation adequacy, or net read",
+            "weakening:evaluation_overall_warn",
+            "weakening:caller_readiness_inspect_first",
+            "weakening:artifact_sufficiency_caveat"
+          ],
+          "mode": "checked_in_safe_mode",
+          "required_non_claims": [
+            "not human review",
+            "not ground truth",
+            "not judge calibration data",
+            "not product proof",
+            "not agent approval",
+            "not answer-quality scoring",
+            "not automatic labeling",
+            "not runtime integration"
+          ],
+          "review_questions": [
+            "What action would the vanilla conversation or final answer likely have led the user toward?",
+            "Which parts are explicit, inferred, unclear, contradicted, or not supplied?",
+            "What alternative plausible actions remain?"
+          ],
+          "source_refs": [
+            {
+              "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/1",
+              "content_policy": "case identity and review-safe source metadata",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/1",
+              "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/1",
+              "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer",
+              "source_status": "explicit"
+            },
+            {
+              "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+              "content_policy": "PR80 output contract definitions",
+              "source_status": "explicit"
+            }
+          ],
+          "specialist_role": "vanilla_likely_next_action"
+        }
+      },
+      "readiness_status": "ready_for_codex_provisional_review",
+      "run_id": "20260627T132700Z_bae7f3",
+      "source_refs": [
+        {
+          "artifact_ref": "docs/evals/product-delta-seed-cases-v0.json#/cases/1",
+          "content_policy": "case identity and review-safe source metadata",
+          "source_status": "explicit"
+        },
+        {
+          "artifact_ref": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json#/cases/1",
+          "content_policy": "readiness status, artifact presence metadata, structured signals, and review-safe context only",
+          "source_status": "explicit"
+        },
+        {
+          "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/1",
+          "content_policy": "prior broad provisional context only; not ground truth and not a specialist answer",
+          "source_status": "explicit"
+        },
+        {
+          "artifact_ref": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+          "content_policy": "PR80 output contract definitions",
+          "source_status": "explicit"
+        }
+      ]
+    }
+  ],
+  "generated_by": "product_delta_specialist_packets",
+  "input_refs": {
+    "case_list": "docs/evals/product-delta-seed-cases-v0.json",
+    "codex_batch": "reviews/codex-assisted/product-delta-batch-v0/review.json",
+    "contract_doc": "docs/evals/product-delta-specialist-review-contracts-v0.md",
+    "contract_schema": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+    "provisional_review": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json"
+  },
+  "mode": "checked_in_safe_mode",
+  "non_claims": [
+    "not human review",
+    "not ground truth",
+    "not judge calibration data",
+    "not product proof",
+    "not agent approval",
+    "not answer-quality scoring",
+    "not automatic labeling",
+    "not runtime integration"
+  ],
+  "packet_policy": {
+    "checked_in_safe_mode_only": true,
+    "local_absolute_paths_included": false,
+    "packet_type": "input_scaffold_only",
+    "prior_broad_read_policy": "Prior PR76 broad reads may be referenced as source context, but PR81 does not copy their semantic conclusions into packet answers or treat them as truth.",
+    "provider_private_text_included": false,
+    "raw_memos_included": false,
+    "raw_revised_answers_included": false,
+    "raw_transcripts_included": false,
+    "specialist_reads_filled": false
+  },
+  "schema_version": "lolla.product_delta_specialist_packets.v0"
+}

@@ -67,10 +67,11 @@ conversation or agent run
 Current handoff state:
 
 ```text
-PR70 Audit / Accountability Machinery Closure Gate v0 is the
-latest completed accountability slice recorded in this file. PR48 remains the
-high-stakes evidence gate. PR54 remains the paused v0 values/priorities
-worksheet gate. Use git log for the exact current commit hash.
+PR85 Product Delta PR71-PR84 Packaging Gate v0 is the latest product-evidence
+eval-lane slice recorded in this working tree. PR70 remains the
+audit/accountability machinery closure gate. PR48 remains the high-stakes
+evidence gate. PR54 remains the paused v0 values/priorities worksheet gate.
+Use git log for the exact current commit hash.
 ```
 
 Current product state:
@@ -151,6 +152,67 @@ Current product state:
 > It does not add archive integration or new machinery. The next phase is
 > Product Delta Evidence: prove whether Lolla materially improves actual
 > strong-model conversations before action.
+> PR71-PR74 add the lower-claim Codex-assisted provisional scaffold for that
+> phase: thesis, protocol/schema, eight-case dry run, and provisional failure
+> taxonomy. These are not human review, ground truth, judge calibration data,
+> product proof, or agent approval.
+> PR75 turns that scaffold into a runnable read-only eval lane over existing
+> cases. It finds 12 ready cases, one private-content-only partial case, and
+> one degraded-run block, and emits PR72-shaped shells without semantic product
+> judgment.
+> PR76 fills the 12 ready shells with Codex-assisted provisional semantic
+> reads. The distribution is intentionally mixed: 6 material improvement
+> candidates, 4 partial improvement candidates, 1 no-material-change candidate,
+> and 1 inconclusive case. These are not human labels, ground truth, judge
+> calibration data, product proof, or agent approval.
+> PR77 summarizes PR75 and PR76 as one provisional state-of-evidence report:
+> readiness, candidate distribution, recurring structural deltas, lost-value
+> risks, interpretation-adequacy concerns, human-review priorities, and
+> falsification tests. It is still not human validation, product proof, judge
+> calibration data, scoring, automatic labels, runtime integration, or agent
+> approval.
+> PR78 adds deterministic Product Delta evidence-boundary lint. It blocks
+> unsafe lower-claim metadata, authority/scoring fields, taxonomy score drift,
+> missing PR72 review-case boundary fields, and privacy markers in supplied
+> artifacts. It is still not semantic judgment, a judge, a score, human
+> validation, product proof, runtime integration, archive mutation, or agent
+> approval.
+> PR79 defines the context-engineered provisional specialist-review
+> architecture. It rejects a broad judge, decomposes future LLM-assisted review
+> into bounded specialist reads, requires deterministic packetization,
+> typed outputs, PR78 lint, disagreement-preserving fan-in, and later human
+> validation. It is docs/design only: no schemas, packet builder, model calls,
+> review run, runtime integration, archive mutation, scoring, automatic labels,
+> or agent approval.
+> PR80 defines the typed specialist-review contracts for that architecture.
+> It adds a combined JSON schema and guide for conversation interpretation,
+> vanilla likely action, Lolla likely action, structural delta, useful/noisy
+> friction and lost value, interpretation adequacy, advisory overclaim, and
+> conservative fan-in reads. It is docs/schema/tests only: no packet builder,
+> generated review output, model calls, review batch, fan-in execution, runtime
+> integration, archive mutation, scoring, automatic labels, or agent approval.
+> PR81 implements the deterministic packetization stage for those contracts.
+> It adds a read-only module/CLI that builds checked-in-safe per-specialist
+> input packets from existing Product Delta artifacts, plus a compact two-case
+> packet fixture. It does not fill specialist answers, call models, mutate
+> archives, change runtime, score advice, create labels, or authorize agent
+> action.
+> PR82 adds a small provisional reviewer trap set before any real specialist
+> batch. The ten paraphrase-only traps test whether future specialist-review
+> setup resists thin context, length bias, caution without leverage, repeated
+> vanilla gates, lost options, buried ambition, assistant-influence blindness,
+> disagreement smoothing, clean-artifact authority leakage, and hardened
+> provisional language. It is contract expectation material, not human labels,
+> product proof, judge calibration data, scoring, automatic labels, runtime
+> integration, or agent approval.
+> PR83 runs the first Codex-assisted specialist-review batch against the PR82
+> traps and the two-case PR81 packet fixture. It records eight of ten trap
+> behaviors as met and two as partly met, fills eight specialist reads for each
+> real case, preserves lost-value and interpretation-adequacy concerns in both
+> cases, and downgrades `accept-operations-role-startup` from PR76's material
+> candidate to a partial candidate. It is review-discipline evidence, not
+> human validation, product proof, judge calibration data, scoring, automatic
+> labels, runtime integration, or agent approval.
 
 What this means in plain terms:
 
@@ -242,6 +304,37 @@ Primary evidence notes to read first in a fresh session:
 - `docs/evals/complex-baseline-human-review-v0.md`
 - `docs/evals/evaluation-flywheel-action-plan-v0.md`
 - `docs/evals/current-system-capabilities-v0.md`
+- `docs/evals/product-delta-evidence-and-interpretation-adequacy-v0.md`
+- `docs/evals/product-delta-evidence-thesis-v0.md`
+- `docs/evals/vanilla-vs-lolla-provisional-review-protocol-v0.md`
+- `docs/evals/vanilla-vs-lolla-provisional-review-v0.json`
+- `docs/evals/codex-assisted-paired-review-dry-run-v0.md`
+- `reviews/codex-assisted/paired-review-dry-run-v0/review.json`
+- `docs/evals/provisional-product-delta-failure-taxonomy-v0.md`
+- `docs/evals/provisional-product-delta-failure-taxonomy-v0.json`
+- `docs/evals/product-delta-seed-cases-v0.json`
+- `docs/evals/product-delta-eval-readiness-and-provisional-run-v0.md`
+- `reviews/codex-assisted/product-delta-provisional-run-v0/review.json`
+- `docs/evals/codex-assisted-product-delta-batch-v0.md`
+- `reviews/codex-assisted/product-delta-batch-v0/review.json`
+- `docs/evals/product-delta-provisional-report-v0.md`
+- `docs/evals/product-delta-evidence-boundary-lint-v0.md`
+- `docs/evals/context-engineered-provisional-review-architecture-v0.md`
+- `docs/evals/product-delta-specialist-review-contracts-v0.md`
+- `docs/evals/product-delta-specialist-review-contracts-v0.json`
+- `docs/evals/product-delta-specialist-packet-builder-v0.md`
+- `reviews/codex-assisted/product-delta-specialist-packets-v0/packets.json`
+- `engine/system_b/product_delta_boundary_lint.py`
+- `scripts/evals/lint_product_delta_evidence.py`
+- `tests/test_product_delta_boundary_lint.py`
+- `tests/test_product_delta_specialist_contracts.py`
+- `engine/system_b/product_delta_specialist_packets.py`
+- `scripts/evals/build_product_delta_specialist_packets.py`
+- `tests/test_product_delta_specialist_packets.py`
+- `tests/test_product_delta_batch_fixture.py`
+- `engine/system_b/product_delta_readiness.py`
+- `scripts/evals/build_product_delta_provisional_review.py`
+- `tests/test_product_delta_readiness.py`
 - `docs/evals/current-state-anti-drift-handoff-v0.md`
 - `docs/evals/high-stakes-evidence-seed-plan-v0.md`
 - `docs/evals/high-stakes-evidence-fixtures-v0.md`
@@ -298,22 +391,32 @@ Current stop rule:
 Latest completed slice:
 
 ```text
-PR70 Audit / Accountability Machinery Closure Gate v0
+PR85 Product Delta PR71-PR84 Packaging Gate v0
 ```
 
 Result:
 
-- lands `docs/evals/audit-accountability-machinery-closure-gate-v0.md`;
-- declares the audit/accountability machinery lane done enough for now;
-- records that the next phase is Product Delta Evidence, not more
-  accountability artifacts;
-- defines the Product Delta Evidence north star, first baseline, first wedge,
-  improvement definition, `decision_leverage`, `lost_value`, and
-  `net_decision_read`;
-- recommends PR71 through PR77 as a product-eval sequence;
-- preserves no production code changes, no runtime integration, no archive
-  integration, no automatic generation, no labels, no scoring, no judge, and
-  no PR31 prose inference.
+- lands `docs/evals/product-delta-pr71-pr84-packaging-gate-v0.md`;
+- lands `docs/evals/product-delta-pr71-pr84-package-manifest-v0.json`;
+- lands `tests/test_product_delta_pr71_pr84_package_gate.py`;
+- adds a static package manifest for the PR71-PR84 Product Delta Evidence
+  surface, grouped by docs, JSON artifacts, review fixtures, read-only code,
+  scripts, and tests;
+- verifies that PR71 through PR84 are represented exactly and that obvious
+  unrelated untracked docs, plans, and synthetic-review folders are excluded;
+- records the strongest useful signal: `accept-operations-role-startup`
+  downgraded from `material_improvement_candidate` to
+  `partial_improvement_candidate`;
+- records the strongest unresolved risk: PR83/PR84 cover only two
+  prior-positive real cases, with no human validation and no real-case
+  no-change/noise/worse/inconclusive outcome;
+- adds tests for conservative boundary metadata, PR84 static-report constraints,
+  PR83 actual shape paths, PR78 lint coverage, privacy hygiene, and
+  source-reference path/JSON-pointer resolution;
+- preserves no `$lolla` run, no Lolla skill invocation, no model calls, no
+  archive mutation, no runtime integration, no prompt change, no `SKILL.md`
+  change, no labels, no scoring, no judge, no automatic verdict, no
+  agent approval, and no product-proof claim.
 
 Stop point:
 
@@ -322,13 +425,14 @@ Do not start real high-stakes run work without explicit maintainer approval.
 PR48 remains the high-stakes evidence gate.
 The separate user-values/priorities lane is now paused at PR54 unless a later
 implementation gate is explicitly approved.
-PR70 only closes the audit/accountability machinery phase. Do not start PR71
-automatically. Do not implement runtime integration, archive mutation,
-automatic generation, batch export, provenance export, conflict-register
-export, case-graph export, graph DB, embeddings, memory, GraphRAG, entity
-resolution, conflict resolution, severity automation, policy enforcement,
-labels, scoring, judging, or any other accountability primitive from PR70
-alone.
+PR85 is a packaging gate over the PR71-PR84 Product Delta Evidence phase. It
+authorizes package coherence checks, not human labels, judge calibration data,
+product proof, product approval, runtime integration, archive mutation,
+automatic generation inside archives, graph DB, embeddings, memory, GraphRAG,
+automatic labels, or agent approval. PR78 lint remains the evidence-boundary
+seatbelt for Product Delta artifacts. The next recommended move is to stop and
+decide whether to stage/package PR71-PR85 explicitly, or pause until human
+review capacity returns.
 ```
 
 The broader action map for this next phase is:
@@ -346,6 +450,7 @@ Non-goals for the next slice:
 - no `SKILL.md` change;
 - no quote-validation repair;
 - no specialist runtime/archive integration;
+- no review batch or fan-in report unless explicitly scoped in a later PR;
 - no `conversation_understanding_ir.v0`;
 - no graph DB, embeddings, chunking, or memory layer.
 - no Semantica-style policy engine, compliance platform, generic agent safety
@@ -490,14 +595,13 @@ Non-goals for the next slice:
    marks the v0 worksheet surface complete for human-owned review, and pauses
    before any populated extraction, automatic label, runtime integration,
    memory, or judge.
-3. **PR71 Product Delta Evidence Thesis v0, only after maintainer review.**
-   PR70 closes the audit/accountability machinery lane. The next conservative
-   step is to define the product-eval claim: whether Lolla changes actual
-   strong-model conversations in decision-useful ways. Any PR71 must not add
-   archive integration, automatic generation, labels, answer-quality scores,
-   `safe_for_agent_use`, domain approval, runtime integration, graph DB,
-   memory, GraphRAG, judges, automatic labels, or Semantica-style platform
-   work.
+3. **PR85 packaging gate is done.** PR85 records the PR71-PR84 Product Delta
+   surface in a package manifest, checks source references and boundary
+   metadata, preserves the `accept-operations-role-startup` downgrade as the
+   strongest useful signal, and keeps the two-case prior-positive thinness as
+   the strongest unresolved risk. The next conservative move is explicit
+   packaging/staging or a pause for human-review capacity, not more automatic
+   evidence expansion.
 4. **Live-output hygiene implementation.** PR35 keeps `not_checked` honest and
    defines a trusted-transcript path; later work can implement only when needed.
 5. **Span-grounded semantic enrichment.** Existing specialists help with live

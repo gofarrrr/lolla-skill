@@ -1,0 +1,935 @@
+{
+  "schema_version": "lolla.codex_assisted_paired_review_dry_run.v0",
+  "case_review_schema_version": "lolla.vanilla_vs_lolla_provisional_review.v0",
+  "review_mode": "codex_assisted_provisional",
+  "human_validated": false,
+  "ground_truth": false,
+  "judge_calibration_eligible": false,
+  "reviewer_type": "codex",
+  "case_id": "paired-review-dry-run-v0",
+  "case_relpath": "reviews/codex-assisted/paired-review-dry-run-v0/review.json",
+  "reviewed_artifacts": [
+    "docs/evals/current-system-capabilities-v0.md",
+    "docs/evals/complex-baseline-human-review-v0.md",
+    "docs/evals/human-review-corpus-batch-v0.md",
+    "docs/evals/actionable-delta-rubric-v0.md",
+    "docs/evals/product-delta-evidence-thesis-v0.md",
+    "docs/evals/vanilla-vs-lolla-provisional-review-protocol-v0.md"
+  ],
+  "raw_private_content_included": false,
+  "model_calls": 0,
+  "archive_mutated": false,
+  "methodology": {
+    "summary": "Codex filled the PR72 provisional pair-review shape from review-safe summaries only. Likely-action fields are explicitly reviewer-inferred where the safe sources summarize prior reviews rather than reproducing the underlying conversation or revised answer.",
+    "cases_requested": "6-10 if safe",
+    "cases_reviewed": 8,
+    "safe_case_limitations": [
+      "The checked-in sources are paraphrased review notes and review JSON, not full raw vanilla and Lolla answer text.",
+      "Codex did not inspect or copy raw transcripts, raw memo text, raw revised-answer text, provider text, private reasoning, or local absolute paths.",
+      "The historical human-review labels remain historical context only; the fields in this packet are new Codex-assisted provisional reads."
+    ]
+  },
+  "aggregate_provisional_summary": {
+    "material_improvement_candidate": 5,
+    "partial_improvement_candidate": 2,
+    "no_material_change_candidate": 0,
+    "lolla_added_noise_candidate": 0,
+    "lolla_worse_candidate": 0,
+    "inconclusive": 1,
+    "interpretation_adequacy_concerns_present": true,
+    "lost_value_concerns_present": true,
+    "schema_usability": "usable_but_heavy"
+  },
+  "cases": [
+    {
+      "schema_version": "lolla.vanilla_vs_lolla_provisional_review.v0",
+      "review_mode": "codex_assisted_provisional",
+      "human_validated": false,
+      "ground_truth": false,
+      "judge_calibration_eligible": false,
+      "reviewer_type": "codex",
+      "case_id": "ceo-remove-founding-cofounder",
+      "archive_relpath": "ceo-remove-founding-cofounder/20260627T093131Z_59d153",
+      "reviewed_artifacts": [
+        "docs/evals/current-system-capabilities-v0.md",
+        "docs/evals/complex-baseline-human-review-v0.md",
+        "docs/evals/human-review-corpus-batch-v0.md"
+      ],
+      "raw_private_content_included": false,
+      "model_calls": 0,
+      "archive_mutated": false,
+      "vanilla_likely_next_action": {
+        "status": "provisional_inferred",
+        "summary": "Continue testing cooperation through a gated reset while leaving real authority transfer less settled.",
+        "basis": [
+          "The PR30 review-safe summary says the Lolla revision moved from a gated reset to immediate authority transfer with constrained transition terms and stop-loss rules."
+        ],
+        "uncertainty": "medium",
+        "reviewer_inferred": true
+      },
+      "lolla_likely_next_action": {
+        "status": "provisional_supported",
+        "summary": "Move authority first, bound any transition role, and apply explicit stop-loss rules and stakeholder boundaries.",
+        "basis": [
+          "Complex Baseline Human Review v0 describes the action-changing delta as authority moving before cooperation is tested, with conditional transition and boundaries."
+        ],
+        "uncertainty": "low",
+        "reviewer_inferred": true
+      },
+      "material_difference": {
+        "status": "provisional_supported",
+        "summary": "The likely next action changes from testing relational reset to transferring authority with operational boundaries.",
+        "changed": true,
+        "uncertainty": "medium"
+      },
+      "structural_delta": {
+        "action_changed": true,
+        "threshold_changed": false,
+        "sequence_changed": true,
+        "evidence_gate_added_or_changed": false,
+        "stop_rule_added_or_changed": true,
+        "written_term_added_or_changed": false,
+        "scope_changed": true,
+        "overclaim_retracted": false,
+        "user_answerable_question_added": false,
+        "notes": "The main structural move is authority transfer before cooperation testing, with the transition narrowed and stoppable."
+      },
+      "decision_leverage": {
+        "label": "high",
+        "rationale": "Authority ambiguity is the central operating risk in the safe summary, so changing sequence and control rights would likely change behavior.",
+        "uncertainty": "medium"
+      },
+      "friction_read": {
+        "useful_friction": "present",
+        "noisy_friction": "absent",
+        "missing_friction": "unclear",
+        "grounded": true,
+        "actionable": true,
+        "proportionate": true,
+        "rationale": "The friction is tied to authority, stop conditions, and stakeholder boundaries rather than generic caution."
+      },
+      "lost_value": {
+        "present": true,
+        "categories": [
+          "simplicity",
+          "momentum"
+        ],
+        "rationale": "The revised path may make the relationship harder and less simple, even if that difficulty is decision-relevant."
+      },
+      "interpretation_adequacy": {
+        "label": "adequate",
+        "failure_modes": [],
+        "rationale": "The safe summaries consistently describe the same central issue: founder loyalty language masking authority ambiguity.",
+        "would_better_interpretation_change_answer": "unclear"
+      },
+      "first_upstream_failure": {
+        "surface": "none_observed",
+        "summary": "No upstream failure is visible from the review-safe summaries, but this is not a human-validated read."
+      },
+      "net_decision_read_provisional": {
+        "label": "material_improvement_candidate",
+        "rationale": "The candidate delta appears materially action-changing because it moves decision rights instead of merely improving the conversation."
+      },
+      "codex_uncertainty_notes": [
+        "The actual vanilla final answer is not copied into this packet, so the vanilla likely action remains inferred.",
+        "A human should confirm whether the original answer would truly have left authority ambiguous."
+      ],
+      "human_followup_questions": [
+        "Did the vanilla answer actually recommend a reset before authority transfer?",
+        "Did the revised answer preserve enough trust and continuity while changing decision rights?",
+        "Would the user have acted differently after reading the Lolla revision?"
+      ],
+      "non_claims": [
+        "not human review",
+        "not ground truth",
+        "not judge calibration data",
+        "not product proof",
+        "not agent approval",
+        "not answer-quality scoring",
+        "not automatic labeling"
+      ]
+    },
+    {
+      "schema_version": "lolla.vanilla_vs_lolla_provisional_review.v0",
+      "review_mode": "codex_assisted_provisional",
+      "human_validated": false,
+      "ground_truth": false,
+      "judge_calibration_eligible": false,
+      "reviewer_type": "codex",
+      "case_id": "launch-public-enterprise-beta",
+      "archive_relpath": "launch-public-enterprise-beta/20260627T104146Z_7bfe79",
+      "reviewed_artifacts": [
+        "docs/evals/current-system-capabilities-v0.md",
+        "docs/evals/complex-baseline-human-review-v0.md",
+        "docs/evals/human-review-corpus-batch-v0.md"
+      ],
+      "raw_private_content_included": false,
+      "model_calls": 0,
+      "archive_mutated": false,
+      "vanilla_likely_next_action": {
+        "status": "provisional_inferred",
+        "summary": "Treat the marquee buyer as stronger launch evidence and lean toward a public enterprise beta posture.",
+        "basis": [
+          "Review-safe summaries describe the original pressure as logo or marquee-customer aura and public enterprise posture."
+        ],
+        "uncertainty": "medium",
+        "reviewer_inferred": true
+      },
+      "lolla_likely_next_action": {
+        "status": "provisional_supported",
+        "summary": "Give both prospects the same paid-pilot shape and let payment, procurement clarity, scope tolerance, and support load decide priority.",
+        "basis": [
+          "PR30 and PR33 summaries describe same-shape paid-pilot proof, buyer-behavior scoring, and owner-threshold-stop tripwires."
+        ],
+        "uncertainty": "low",
+        "reviewer_inferred": true
+      },
+      "material_difference": {
+        "status": "provisional_supported",
+        "summary": "The delta changes prospect selection from prestige to evidence and constrains the launch shape.",
+        "changed": true,
+        "uncertainty": "medium"
+      },
+      "structural_delta": {
+        "action_changed": true,
+        "threshold_changed": true,
+        "sequence_changed": false,
+        "evidence_gate_added_or_changed": true,
+        "stop_rule_added_or_changed": false,
+        "written_term_added_or_changed": true,
+        "scope_changed": true,
+        "overclaim_retracted": true,
+        "user_answerable_question_added": false,
+        "notes": "The strongest delta is a written paid-pilot proof gate that prevents logo prestige from deciding buyer priority."
+      },
+      "decision_leverage": {
+        "label": "high",
+        "rationale": "Buyer priority, launch posture, and proof requirements all change in the safe summaries.",
+        "uncertainty": "medium"
+      },
+      "friction_read": {
+        "useful_friction": "present",
+        "noisy_friction": "absent",
+        "missing_friction": "unclear",
+        "grounded": true,
+        "actionable": true,
+        "proportionate": true,
+        "rationale": "The friction changes payment, procurement, support-load, and scope evidence rather than adding generic caution."
+      },
+      "lost_value": {
+        "present": true,
+        "categories": [
+          "momentum",
+          "user_specific_ambition",
+          "simplicity"
+        ],
+        "rationale": "The revised path may slow an exciting enterprise launch and reduce the motivational value of pursuing the marquee buyer."
+      },
+      "interpretation_adequacy": {
+        "label": "adequate",
+        "failure_modes": [],
+        "rationale": "The safe summaries show a coherent interpretation: Lolla challenged prestige as proof while preserving ambition through paid pilots.",
+        "would_better_interpretation_change_answer": "unclear"
+      },
+      "first_upstream_failure": {
+        "surface": "none_observed",
+        "summary": "No upstream failure is visible from the review-safe summaries."
+      },
+      "net_decision_read_provisional": {
+        "label": "material_improvement_candidate",
+        "rationale": "The candidate delta appears materially useful because it changes the proof basis for launch and buyer priority."
+      },
+      "codex_uncertainty_notes": [
+        "The full vanilla final answer is not present in the review packet, so the degree of public-launch bias is inferred.",
+        "The cost of lost launch momentum needs human product judgment."
+      ],
+      "human_followup_questions": [
+        "Would the user have launched publicly or prioritized the marquee buyer after the vanilla answer?",
+        "Were the same-shape pilot gates realistic for both prospects?",
+        "Did the revision preserve enough ambition while challenging prestige?"
+      ],
+      "non_claims": [
+        "not human review",
+        "not ground truth",
+        "not judge calibration data",
+        "not product proof",
+        "not agent approval",
+        "not answer-quality scoring",
+        "not automatic labeling"
+      ]
+    },
+    {
+      "schema_version": "lolla.vanilla_vs_lolla_provisional_review.v0",
+      "review_mode": "codex_assisted_provisional",
+      "human_validated": false,
+      "ground_truth": false,
+      "judge_calibration_eligible": false,
+      "reviewer_type": "codex",
+      "case_id": "deploy-assisted-intake-routing",
+      "archive_relpath": "deploy-assisted-intake-routing/20260627T130339Z_4cd3cb",
+      "reviewed_artifacts": [
+        "docs/evals/current-system-capabilities-v0.md",
+        "docs/evals/complex-baseline-human-review-v0.md",
+        "docs/evals/human-review-corpus-batch-v0.md"
+      ],
+      "raw_private_content_included": false,
+      "model_calls": 0,
+      "archive_mutated": false,
+      "vanilla_likely_next_action": {
+        "status": "provisional_inferred",
+        "summary": "Proceed through a broad checklist-style deployment plan for assisted intake routing.",
+        "basis": [
+          "PR30 describes the original shape as nine gates and checklist theater."
+        ],
+        "uncertainty": "medium",
+        "reviewer_inferred": true
+      },
+      "lolla_likely_next_action": {
+        "status": "provisional_supported",
+        "summary": "Narrow the pilot to must-pass operating controls, run a backlog diagnosis, and define stop conditions before broader claims.",
+        "basis": [
+          "PR30 and PR33 summarize the revision as four controls, a 48-hour backlog diagnosis, stop conditions, and narrowed pilot proof."
+        ],
+        "uncertainty": "low",
+        "reviewer_inferred": true
+      },
+      "material_difference": {
+        "status": "provisional_supported",
+        "summary": "The delta changes safety from checklist breadth to operable controls and stop conditions.",
+        "changed": true,
+        "uncertainty": "medium"
+      },
+      "structural_delta": {
+        "action_changed": true,
+        "threshold_changed": true,
+        "sequence_changed": true,
+        "evidence_gate_added_or_changed": true,
+        "stop_rule_added_or_changed": true,
+        "written_term_added_or_changed": false,
+        "scope_changed": true,
+        "overclaim_retracted": false,
+        "user_answerable_question_added": true,
+        "notes": "The revision narrows the pilot and changes the proof unit from checklist completion to controls that can stop the rollout."
+      },
+      "decision_leverage": {
+        "label": "high",
+        "rationale": "The safe summaries suggest the revised answer changes what must be proven before deployment expands.",
+        "uncertainty": "medium"
+      },
+      "friction_read": {
+        "useful_friction": "present",
+        "noisy_friction": "partial",
+        "missing_friction": "unclear",
+        "grounded": true,
+        "actionable": true,
+        "proportionate": true,
+        "rationale": "The controls are actionable, but the safe surface is compressed enough that a human should check whether any healthcare-adjacent risk was under- or over-specified."
+      },
+      "lost_value": {
+        "present": true,
+        "categories": [
+          "simplicity",
+          "momentum"
+        ],
+        "rationale": "The revision may slow an operational deployment and replace checklist completeness with a tighter but more demanding control set."
+      },
+      "interpretation_adequacy": {
+        "label": "partly_adequate",
+        "failure_modes": [
+          "risk_mode_mismatch",
+          "stakeholder_erasure"
+        ],
+        "rationale": "The safe summaries support the operational-control delta, but they do not let Codex verify whether patient, staff, or escalation stakeholders were fully represented.",
+        "would_better_interpretation_change_answer": "unclear"
+      },
+      "first_upstream_failure": {
+        "surface": "review_surface",
+        "summary": "The review-safe surface is not rich enough to settle all stakeholder and risk-mode questions."
+      },
+      "net_decision_read_provisional": {
+        "label": "material_improvement_candidate",
+        "rationale": "The candidate delta appears materially useful, but interpretation adequacy should be checked by a human before product claims."
+      },
+      "codex_uncertainty_notes": [
+        "The case is healthcare-adjacent, and the safe summaries do not fully expose stakeholder detail.",
+        "Codex cannot validate whether the stop conditions were operationally sufficient."
+      ],
+      "human_followup_questions": [
+        "Did the revised answer identify the right must-pass controls?",
+        "Were patient, staff, and escalation stakeholders represented accurately?",
+        "Did the narrower pilot reduce risk or merely make the plan look more controlled?"
+      ],
+      "non_claims": [
+        "not human review",
+        "not ground truth",
+        "not judge calibration data",
+        "not product proof",
+        "not agent approval",
+        "not answer-quality scoring",
+        "not automatic labeling"
+      ]
+    },
+    {
+      "schema_version": "lolla.vanilla_vs_lolla_provisional_review.v0",
+      "review_mode": "codex_assisted_provisional",
+      "human_validated": false,
+      "ground_truth": false,
+      "judge_calibration_eligible": false,
+      "reviewer_type": "codex",
+      "case_id": "implement-price-increase-three",
+      "archive_relpath": "implement-price-increase-three/20260627T083231Z_52724d",
+      "reviewed_artifacts": [
+        "docs/evals/current-system-capabilities-v0.md",
+        "docs/evals/human-review-corpus-batch-v0.md"
+      ],
+      "raw_private_content_included": false,
+      "model_calls": 0,
+      "archive_mutated": false,
+      "vanilla_likely_next_action": {
+        "status": "provisional_inferred",
+        "summary": "Implement a broad renewal price increase with less explicit account-level support economics.",
+        "basis": [
+          "PR33 describes the Lolla delta as changing a broad price increase into account-level support economics and enforceable support rules."
+        ],
+        "uncertainty": "medium",
+        "reviewer_inferred": true
+      },
+      "lolla_likely_next_action": {
+        "status": "provisional_supported",
+        "summary": "Segment renewals by support load, economics, and enforceable support boundaries before increasing prices.",
+        "basis": [
+          "Current System Capabilities and PR33 both describe account-level support economics and support boundaries as the revised action shape."
+        ],
+        "uncertainty": "low",
+        "reviewer_inferred": true
+      },
+      "material_difference": {
+        "status": "provisional_supported",
+        "summary": "The delta changes the pricing action from broad increase to account-level economics and written support constraints.",
+        "changed": true,
+        "uncertainty": "medium"
+      },
+      "structural_delta": {
+        "action_changed": true,
+        "threshold_changed": true,
+        "sequence_changed": false,
+        "evidence_gate_added_or_changed": true,
+        "stop_rule_added_or_changed": false,
+        "written_term_added_or_changed": true,
+        "scope_changed": true,
+        "overclaim_retracted": false,
+        "user_answerable_question_added": false,
+        "notes": "The structural delta makes price movement depend on support economics and enforceable terms."
+      },
+      "decision_leverage": {
+        "label": "high",
+        "rationale": "The user would likely price and communicate differently if account-level support economics become the gate.",
+        "uncertainty": "medium"
+      },
+      "friction_read": {
+        "useful_friction": "present",
+        "noisy_friction": "absent",
+        "missing_friction": "unclear",
+        "grounded": true,
+        "actionable": true,
+        "proportionate": true,
+        "rationale": "The friction changes pricing basis and support terms rather than adding vague diligence."
+      },
+      "lost_value": {
+        "present": true,
+        "categories": [
+          "simplicity",
+          "momentum",
+          "clarity"
+        ],
+        "rationale": "The revised path may be harder to communicate than a simple across-the-board increase."
+      },
+      "interpretation_adequacy": {
+        "label": "adequate",
+        "failure_modes": [],
+        "rationale": "The safe summaries consistently identify support-load economics as the load-bearing issue.",
+        "would_better_interpretation_change_answer": "unclear"
+      },
+      "first_upstream_failure": {
+        "surface": "none_observed",
+        "summary": "No upstream failure is visible from review-safe summaries."
+      },
+      "net_decision_read_provisional": {
+        "label": "material_improvement_candidate",
+        "rationale": "The candidate delta appears materially useful because it changes the unit of pricing judgment."
+      },
+      "codex_uncertainty_notes": [
+        "Codex cannot see the exact vanilla pricing recommendation in this checked-in packet.",
+        "A human should check whether account-level segmentation was practical for the business."
+      ],
+      "human_followup_questions": [
+        "Did the original answer already include enough support-economics segmentation?",
+        "Would the revised support boundaries change customer communication?",
+        "Was the added complexity proportionate to the pricing risk?"
+      ],
+      "non_claims": [
+        "not human review",
+        "not ground truth",
+        "not judge calibration data",
+        "not product proof",
+        "not agent approval",
+        "not answer-quality scoring",
+        "not automatic labeling"
+      ]
+    },
+    {
+      "schema_version": "lolla.vanilla_vs_lolla_provisional_review.v0",
+      "review_mode": "codex_assisted_provisional",
+      "human_validated": false,
+      "ground_truth": false,
+      "judge_calibration_eligible": false,
+      "reviewer_type": "codex",
+      "case_id": "accept-founding-engineer-role",
+      "archive_relpath": "accept-founding-engineer-role/20260627T073034Z_a7c221",
+      "reviewed_artifacts": [
+        "docs/evals/human-review-corpus-batch-v0.md"
+      ],
+      "raw_private_content_included": false,
+      "model_calls": 0,
+      "archive_mutated": false,
+      "vanilla_likely_next_action": {
+        "status": "provisional_inferred",
+        "summary": "Treat personal readiness or attraction to the role as closer to sufficient for accepting the offer.",
+        "basis": [
+          "PR33 summarizes the delta as making a personal yes necessary but not sufficient; the offer must pass proof, role, and family gates."
+        ],
+        "uncertainty": "high",
+        "reviewer_inferred": true
+      },
+      "lolla_likely_next_action": {
+        "status": "provisional_supported",
+        "summary": "Require proof, role clarity, family capacity, written terms, and stop conditions before accepting.",
+        "basis": [
+          "PR33 lists threshold, sequence, evidence gate, stop rule, and written term labels for the case."
+        ],
+        "uncertainty": "medium",
+        "reviewer_inferred": true
+      },
+      "material_difference": {
+        "status": "provisional_inferred",
+        "summary": "The delta appears to convert attraction or readiness into a conditional acceptance test, but the vanilla likely action is over-inferred from summary text.",
+        "changed": true,
+        "uncertainty": "high"
+      },
+      "structural_delta": {
+        "action_changed": false,
+        "threshold_changed": true,
+        "sequence_changed": true,
+        "evidence_gate_added_or_changed": true,
+        "stop_rule_added_or_changed": true,
+        "written_term_added_or_changed": true,
+        "scope_changed": false,
+        "overclaim_retracted": false,
+        "user_answerable_question_added": false,
+        "notes": "The structural delta is mostly pre-commitment gates rather than a clean action reversal."
+      },
+      "decision_leverage": {
+        "label": "medium",
+        "rationale": "Written terms and family capacity gates could materially change timing or acceptance, but safe sources do not show the full vanilla answer.",
+        "uncertainty": "high"
+      },
+      "friction_read": {
+        "useful_friction": "partial",
+        "noisy_friction": "unclear",
+        "missing_friction": "unclear",
+        "grounded": true,
+        "actionable": true,
+        "proportionate": null,
+        "rationale": "The gates are actionable, but a human should check whether they protect values or bury the user's ambition under process."
+      },
+      "lost_value": {
+        "present": true,
+        "categories": [
+          "momentum",
+          "courage",
+          "user_specific_ambition"
+        ],
+        "rationale": "Career cases can lose useful ambition if evidence gates become an excuse not to choose."
+      },
+      "interpretation_adequacy": {
+        "label": "partly_adequate",
+        "failure_modes": [
+          "value_overwrite",
+          "constraint_flattening"
+        ],
+        "rationale": "The safe summary names proof and family gates, but Codex cannot verify whether the user's values, ambition, and household constraints were balanced correctly.",
+        "would_better_interpretation_change_answer": "unclear"
+      },
+      "first_upstream_failure": {
+        "surface": "review_surface",
+        "summary": "The checked-in summary is too compressed to validate the likely vanilla action and value tradeoff."
+      },
+      "net_decision_read_provisional": {
+        "label": "partial_improvement_candidate",
+        "rationale": "The candidate delta appears useful as a conditional acceptance frame, but it needs human review for lost ambition and value-fit risk."
+      },
+      "codex_uncertainty_notes": [
+        "This case is included as the career/founding-engineer wedge, but the safe source is a compact PR33 row.",
+        "The likely vanilla action is more inferred here than in PR30 anchor cases."
+      ],
+      "human_followup_questions": [
+        "Did the vanilla answer already protect family capacity and role clarity?",
+        "Did the revision preserve the user's ambition and appetite for the role?",
+        "Were the proposed gates necessary, or did they turn a values decision into process?"
+      ],
+      "non_claims": [
+        "not human review",
+        "not ground truth",
+        "not judge calibration data",
+        "not product proof",
+        "not agent approval",
+        "not answer-quality scoring",
+        "not automatic labeling"
+      ]
+    },
+    {
+      "schema_version": "lolla.vanilla_vs_lolla_provisional_review.v0",
+      "review_mode": "codex_assisted_provisional",
+      "human_validated": false,
+      "ground_truth": false,
+      "judge_calibration_eligible": false,
+      "reviewer_type": "codex",
+      "case_id": "pivot-company-product-strategy",
+      "archive_relpath": "pivot-company-product-strategy/20260627T110450Z_5d2da7",
+      "reviewed_artifacts": [
+        "docs/evals/current-system-capabilities-v0.md",
+        "docs/evals/complex-baseline-human-review-v0.md",
+        "docs/evals/human-review-corpus-batch-v0.md"
+      ],
+      "raw_private_content_included": false,
+      "model_calls": 0,
+      "archive_mutated": false,
+      "vanilla_likely_next_action": {
+        "status": "provisional_inferred",
+        "summary": "Pursue market proof or the higher-upside product direction before testing capacity and existing obligations.",
+        "basis": [
+          "PR30 describes the delta as changing sequence from market proof first to a capacity and obligation gate before a market gate."
+        ],
+        "uncertainty": "medium",
+        "reviewer_inferred": true
+      },
+      "lolla_likely_next_action": {
+        "status": "provisional_supported",
+        "summary": "Run a capacity and obligation gate before allowing the higher-upside market path to consume the company.",
+        "basis": [
+          "Current System Capabilities and PR30 describe a 14-day capacity and obligation gate before a 60-day market gate."
+        ],
+        "uncertainty": "low",
+        "reviewer_inferred": true
+      },
+      "material_difference": {
+        "status": "provisional_supported",
+        "summary": "The delta changes sequence: current obligations and team capacity come before market validation.",
+        "changed": true,
+        "uncertainty": "medium"
+      },
+      "structural_delta": {
+        "action_changed": false,
+        "threshold_changed": true,
+        "sequence_changed": true,
+        "evidence_gate_added_or_changed": true,
+        "stop_rule_added_or_changed": false,
+        "written_term_added_or_changed": true,
+        "scope_changed": false,
+        "overclaim_retracted": false,
+        "user_answerable_question_added": false,
+        "notes": "The revised answer changes the order of proof rather than simply saying no to the pivot."
+      },
+      "decision_leverage": {
+        "label": "high",
+        "rationale": "If capacity and obligations come first, the company may delay, reshape, or reject the market path.",
+        "uncertainty": "medium"
+      },
+      "friction_read": {
+        "useful_friction": "present",
+        "noisy_friction": "absent",
+        "missing_friction": "unclear",
+        "grounded": true,
+        "actionable": true,
+        "proportionate": true,
+        "rationale": "The friction adds an action-changing sequence gate tied to capacity and obligations, not generic risk aversion."
+      },
+      "lost_value": {
+        "present": true,
+        "categories": [
+          "momentum",
+          "user_specific_ambition"
+        ],
+        "rationale": "The revised sequence may dampen market excitement and delay learning from the higher-upside path."
+      },
+      "interpretation_adequacy": {
+        "label": "adequate",
+        "failure_modes": [],
+        "rationale": "The safe summaries repeatedly identify capacity and existing obligations as load-bearing constraints.",
+        "would_better_interpretation_change_answer": "unclear"
+      },
+      "first_upstream_failure": {
+        "surface": "none_observed",
+        "summary": "No upstream failure is visible from review-safe summaries."
+      },
+      "net_decision_read_provisional": {
+        "label": "material_improvement_candidate",
+        "rationale": "The candidate delta appears materially useful because it changes proof order before the company commits capacity."
+      },
+      "codex_uncertainty_notes": [
+        "A human should inspect whether the capacity gate was the right length and whether the market path would lose timing advantage."
+      ],
+      "human_followup_questions": [
+        "Would the vanilla answer have pushed market proof before obligations?",
+        "Was the capacity gate proportionate to the upside of the market path?",
+        "Did the revision preserve enough commercial urgency?"
+      ],
+      "non_claims": [
+        "not human review",
+        "not ground truth",
+        "not judge calibration data",
+        "not product proof",
+        "not agent approval",
+        "not answer-quality scoring",
+        "not automatic labeling"
+      ]
+    },
+    {
+      "schema_version": "lolla.vanilla_vs_lolla_provisional_review.v0",
+      "review_mode": "codex_assisted_provisional",
+      "human_validated": false,
+      "ground_truth": false,
+      "judge_calibration_eligible": false,
+      "reviewer_type": "codex",
+      "case_id": "pre-sell-undefined-consulting",
+      "archive_relpath": "pre-sell-undefined-consulting/20260627T133637Z_cad396",
+      "reviewed_artifacts": [
+        "docs/evals/current-system-capabilities-v0.md",
+        "docs/evals/complex-baseline-human-review-v0.md",
+        "docs/evals/human-review-corpus-batch-v0.md"
+      ],
+      "raw_private_content_included": false,
+      "model_calls": 0,
+      "archive_mutated": false,
+      "vanilla_likely_next_action": {
+        "status": "provisional_inferred",
+        "summary": "Keep a paid pilot but risk letting polish, agency shape, or status interpretation expand the offer.",
+        "basis": [
+          "PR30 says the revision kept one paid pilot while correcting an overread of polish as pure status and bounding agency polish."
+        ],
+        "uncertainty": "medium",
+        "reviewer_inferred": true
+      },
+      "lolla_likely_next_action": {
+        "status": "provisional_supported",
+        "summary": "Offer one client-ready scoped paid pilot, keep any agency polish tiny, and require harder customer acceptance.",
+        "basis": [
+          "Current System Capabilities and PR30 describe preserving one paid pilot while separating client-ready polish from premature scope expansion."
+        ],
+        "uncertainty": "low",
+        "reviewer_inferred": true
+      },
+      "material_difference": {
+        "status": "provisional_supported",
+        "summary": "The delta appears real but subtle: it preserves the core pilot while narrowing polish and acceptance criteria.",
+        "changed": true,
+        "uncertainty": "medium"
+      },
+      "structural_delta": {
+        "action_changed": true,
+        "threshold_changed": false,
+        "sequence_changed": false,
+        "evidence_gate_added_or_changed": true,
+        "stop_rule_added_or_changed": false,
+        "written_term_added_or_changed": true,
+        "scope_changed": true,
+        "overclaim_retracted": true,
+        "user_answerable_question_added": false,
+        "notes": "The action is not reversed; the useful delta is tighter scope and retracted overconfidence about polish."
+      },
+      "decision_leverage": {
+        "label": "medium",
+        "rationale": "The revision may change what is sold and how acceptance is tested, but the core paid-pilot move remains.",
+        "uncertainty": "medium"
+      },
+      "friction_read": {
+        "useful_friction": "present",
+        "noisy_friction": "partial",
+        "missing_friction": "unclear",
+        "grounded": true,
+        "actionable": true,
+        "proportionate": true,
+        "rationale": "This case shows useful friction can retract an overread rather than add more skepticism; the noisy risk is whether bounded polish is still over-managed."
+      },
+      "lost_value": {
+        "present": true,
+        "categories": [
+          "momentum",
+          "simplicity",
+          "actionability"
+        ],
+        "rationale": "More conditions around scope and polish could make a simple presale harder to execute."
+      },
+      "interpretation_adequacy": {
+        "label": "partly_adequate",
+        "failure_modes": [
+          "uncertainty_collapse"
+        ],
+        "rationale": "The revision appears to correct an overconfident status read, but a human should verify that the resulting scope still matches customer expectations.",
+        "would_better_interpretation_change_answer": "unclear"
+      },
+      "first_upstream_failure": {
+        "surface": "audit_pressure",
+        "summary": "The safe summary itself highlights an overread that the revision corrected, so the first observed issue is audit-pressure interpretation rather than custody."
+      },
+      "net_decision_read_provisional": {
+        "label": "partial_improvement_candidate",
+        "rationale": "The candidate delta is valuable but subtle, and it may cost simplicity or sales momentum."
+      },
+      "codex_uncertainty_notes": [
+        "Codex cannot see whether the user needed more polish for credibility or less polish for focus.",
+        "The distinction between useful commercial readiness and status spending requires human taste."
+      ],
+      "human_followup_questions": [
+        "Did the vanilla answer already keep the pilot narrow?",
+        "Was polish a legitimate credibility requirement for this buyer?",
+        "Did the Lolla revision make the offer easier or harder to sell?"
+      ],
+      "non_claims": [
+        "not human review",
+        "not ground truth",
+        "not judge calibration data",
+        "not product proof",
+        "not agent approval",
+        "not answer-quality scoring",
+        "not automatic labeling"
+      ]
+    },
+    {
+      "schema_version": "lolla.vanilla_vs_lolla_provisional_review.v0",
+      "review_mode": "codex_assisted_provisional",
+      "human_validated": false,
+      "ground_truth": false,
+      "judge_calibration_eligible": false,
+      "reviewer_type": "codex",
+      "case_id": "initiate-pre-sale-coffee-1",
+      "archive_relpath": "initiate-pre-sale-coffee-1/20260627T080708Z_1e8b85",
+      "reviewed_artifacts": [
+        "docs/evals/current-system-capabilities-v0.md",
+        "docs/evals/human-review-corpus-batch-v0.md"
+      ],
+      "raw_private_content_included": false,
+      "model_calls": 0,
+      "archive_mutated": false,
+      "vanilla_likely_next_action": {
+        "status": "insufficient_safe_context",
+        "summary": "Possibly remain brand-safe and cautious, or possibly make a broader pre-sale push; the safe summary is not enough to choose confidently.",
+        "basis": [
+          "PR33 says the revision changed brand-safe caution into a smaller cash-and-demand test, but the exact vanilla likely action is too compressed in the safe source."
+        ],
+        "uncertainty": "high",
+        "reviewer_inferred": true
+      },
+      "lolla_likely_next_action": {
+        "status": "provisional_supported",
+        "summary": "Run smaller cash-and-demand tests with partner trust gates and runway stop-losses.",
+        "basis": [
+          "Current System Capabilities and PR33 summarize the revised action as a smaller demand test with explicit stop-losses."
+        ],
+        "uncertainty": "medium",
+        "reviewer_inferred": true
+      },
+      "material_difference": {
+        "status": "insufficient_safe_context",
+        "summary": "A material difference is plausible, but the vanilla likely action is over-inferred from compressed review-safe summaries.",
+        "changed": true,
+        "uncertainty": "high"
+      },
+      "structural_delta": {
+        "action_changed": true,
+        "threshold_changed": true,
+        "sequence_changed": false,
+        "evidence_gate_added_or_changed": true,
+        "stop_rule_added_or_changed": true,
+        "written_term_added_or_changed": false,
+        "scope_changed": true,
+        "overclaim_retracted": false,
+        "user_answerable_question_added": false,
+        "notes": "The structural labels are plausible from PR33, but this dry run should not treat them as a settled product delta."
+      },
+      "decision_leverage": {
+        "label": "unclear",
+        "rationale": "The revised action looks concrete, but the safe packet does not give enough vanilla baseline detail to judge the delta.",
+        "uncertainty": "high"
+      },
+      "friction_read": {
+        "useful_friction": "partial",
+        "noisy_friction": "unclear",
+        "missing_friction": "unclear",
+        "grounded": true,
+        "actionable": true,
+        "proportionate": null,
+        "rationale": "The stop-loss and demand-test shape looks actionable, but Codex cannot tell whether it added useful pressure or merely restated what the user was already likely to do."
+      },
+      "lost_value": {
+        "present": true,
+        "categories": [
+          "momentum",
+          "simplicity"
+        ],
+        "rationale": "A smaller test may protect runway but could bury useful selling momentum."
+      },
+      "interpretation_adequacy": {
+        "label": "unclear",
+        "failure_modes": [
+          "decision_question_drift"
+        ],
+        "rationale": "The review-safe surface is too compressed to know whether the decision was about brand safety, pre-sale proof, partner trust, or runway risk.",
+        "would_better_interpretation_change_answer": "unclear"
+      },
+      "first_upstream_failure": {
+        "surface": "review_surface",
+        "summary": "The first failure is insufficient safe context for the vanilla likely action."
+      },
+      "net_decision_read_provisional": {
+        "label": "inconclusive",
+        "rationale": "This case is intentionally left inconclusive because the protocol should be able to refuse a product-delta read when safe context is too thin."
+      },
+      "codex_uncertainty_notes": [
+        "This is not a contradiction of prior human review; it is a narrower claim about this Codex-assisted pair packet.",
+        "A future human reviewer should inspect the actual vanilla final answer and revised answer locally."
+      ],
+      "human_followup_questions": [
+        "What exact next action did the vanilla answer recommend?",
+        "Did the Lolla answer materially change the user's next step or only sharpen it?",
+        "Was the smaller test useful discipline or unnecessary caution?"
+      ],
+      "non_claims": [
+        "not human review",
+        "not ground truth",
+        "not judge calibration data",
+        "not product proof",
+        "not agent approval",
+        "not answer-quality scoring",
+        "not automatic labeling"
+      ]
+    }
+  ],
+  "what_future_human_reviewer_should_check": [
+    "Validate each inferred vanilla likely next action against the actual vanilla conversation or final answer.",
+    "Validate whether the Lolla revised answer would change behavior rather than only read better.",
+    "Correct lost-value categories where Codex overstates or understates the cost of friction.",
+    "Identify interpretation failures that would change the answer.",
+    "Decide whether each case belongs in product evidence, failure evidence, no-change evidence, or excluded evidence."
+  ],
+  "non_claims": [
+    "Codex-assisted review is not human review.",
+    "This packet is not ground truth.",
+    "This packet is not judge calibration data.",
+    "This packet is not product proof.",
+    "This packet is not agent approval.",
+    "This packet is not answer-quality scoring.",
+    "This packet is not automatic labeling.",
+    "Clean artifacts are not proof of good advice."
+  ]
+}

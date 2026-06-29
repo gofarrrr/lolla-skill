@@ -1,0 +1,534 @@
+{
+  "schema_version": "lolla.product_delta_pr71_pr84_package_manifest.v0",
+  "phase": "product_delta_evidence_pr71_pr84",
+  "status": "packaging_gate",
+  "created_date": "2026-06-29",
+  "boundary": {
+    "human_validated": false,
+    "ground_truth": false,
+    "judge_calibration_eligible": false,
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "model_calls": 0,
+    "archive_mutated": false,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "raw_private_content_included": false,
+    "automatic_labels_created": false
+  },
+  "included_prs": [
+    {
+      "pr_number": 71,
+      "title": "Product Delta Evidence Thesis v0",
+      "kind": [
+        "docs/design"
+      ],
+      "primary_files": [
+        "docs/evals/product-delta-evidence-and-interpretation-adequacy-v0.md",
+        "docs/evals/product-delta-evidence-thesis-v0.md"
+      ],
+      "what_it_added": [
+        "Defined the Product Delta Evidence phase after PR70.",
+        "Established the lower-claim provisional-review doctrine.",
+        "Separated decision-useful product delta from product proof."
+      ],
+      "what_it_did_not_do": [
+        "Did not run Lolla or invoke runtime.",
+        "Did not create human labels, judge calibration data, scores, or agent permissions.",
+        "Did not change prompts, SKILL.md, archives, provider policy, or runtime behavior."
+      ]
+    },
+    {
+      "pr_number": 72,
+      "title": "Vanilla-vs-Lolla Provisional Review Protocol v0",
+      "kind": [
+        "docs/design",
+        "schema"
+      ],
+      "primary_files": [
+        "docs/evals/vanilla-vs-lolla-provisional-review-protocol-v0.md",
+        "docs/evals/vanilla-vs-lolla-provisional-review-v0.json"
+      ],
+      "what_it_added": [
+        "Defined the provisional case-review shape for comparing vanilla likely action with Lolla likely action.",
+        "Required lower-claim metadata, uncertainty, lost-value, interpretation-adequacy, and non-claim fields."
+      ],
+      "what_it_did_not_do": [
+        "Did not populate real review findings.",
+        "Did not create automatic labels or answer-quality scoring.",
+        "Did not treat Codex-assisted review as human review."
+      ]
+    },
+    {
+      "pr_number": 73,
+      "title": "Codex-Assisted Paired Review Dry Run v0",
+      "kind": [
+        "review fixture",
+        "report"
+      ],
+      "primary_files": [
+        "docs/evals/codex-assisted-paired-review-dry-run-v0.md",
+        "reviews/codex-assisted/paired-review-dry-run-v0/review.json"
+      ],
+      "what_it_added": [
+        "Dry-ran the PR72 shape on safe checked-in context.",
+        "Recorded provisional candidate reads, uncertainty, lost value, and human follow-up questions."
+      ],
+      "what_it_did_not_do": [
+        "Did not read raw private content.",
+        "Did not validate product claims.",
+        "Did not create judge-ready labels."
+      ]
+    },
+    {
+      "pr_number": 74,
+      "title": "Provisional Product Delta Failure Taxonomy v0",
+      "kind": [
+        "docs/design",
+        "schema"
+      ],
+      "primary_files": [
+        "docs/evals/provisional-product-delta-failure-taxonomy-v0.md",
+        "docs/evals/provisional-product-delta-failure-taxonomy-v0.json"
+      ],
+      "what_it_added": [
+        "Defined provisional product-delta, interpretation, and review-process failure families.",
+        "Made taxonomy entries inspectable without converting them into labels."
+      ],
+      "what_it_did_not_do": [
+        "Did not create automatic labels.",
+        "Did not score severity or answer quality.",
+        "Did not make the taxonomy human-validated or judge-ready."
+      ]
+    },
+    {
+      "pr_number": 75,
+      "title": "Product Delta Eval Readiness And Provisional Run v0",
+      "kind": [
+        "read-only code",
+        "report",
+        "tests"
+      ],
+      "primary_files": [
+        "docs/evals/product-delta-seed-cases-v0.json",
+        "docs/evals/product-delta-eval-readiness-and-provisional-run-v0.md",
+        "reviews/codex-assisted/product-delta-provisional-run-v0/review.json",
+        "engine/system_b/product_delta_readiness.py",
+        "scripts/evals/build_product_delta_provisional_review.py",
+        "tests/test_product_delta_readiness.py"
+      ],
+      "what_it_added": [
+        "Built a read-only readiness analyzer over existing safe case metadata.",
+        "Emitted PR72-shaped shells for 14 cases, including 12 ready cases.",
+        "Separated reviewability from semantic judgment."
+      ],
+      "what_it_did_not_do": [
+        "Did not fill semantic Product Delta fields.",
+        "Did not read raw private archive payloads.",
+        "Did not call models or mutate archives."
+      ]
+    },
+    {
+      "pr_number": 76,
+      "title": "Codex-Assisted Product Delta Batch v0",
+      "kind": [
+        "review fixture",
+        "tests"
+      ],
+      "primary_files": [
+        "docs/evals/codex-assisted-product-delta-batch-v0.md",
+        "reviews/codex-assisted/product-delta-batch-v0/review.json",
+        "tests/test_product_delta_batch_fixture.py"
+      ],
+      "what_it_added": [
+        "Filled the 12 PR75-ready shells with broad Codex-assisted provisional semantic reads.",
+        "Recorded candidate distribution, lost-value concerns, interpretation adequacy, and human follow-up questions."
+      ],
+      "what_it_did_not_do": [
+        "Did not create human labels.",
+        "Did not prove Lolla improves decisions.",
+        "Did not add answer-quality scoring, automatic labels, or agent-use authorization."
+      ]
+    },
+    {
+      "pr_number": 77,
+      "title": "Product Delta Provisional Report v0",
+      "kind": [
+        "report"
+      ],
+      "primary_files": [
+        "docs/evals/product-delta-provisional-report-v0.md"
+      ],
+      "what_it_added": [
+        "Summarized PR75 readiness and PR76 provisional reads as one state-of-evidence package.",
+        "Made candidate distribution, lost-value risks, interpretation concerns, and non-claims readable."
+      ],
+      "what_it_did_not_do": [
+        "Did not treat PR76 candidates as correct.",
+        "Did not create product proof, human validation, or judge calibration data.",
+        "Did not add runtime behavior."
+      ]
+    },
+    {
+      "pr_number": 78,
+      "title": "Product Delta Evidence Boundary Lint v0",
+      "kind": [
+        "read-only code",
+        "tests"
+      ],
+      "primary_files": [
+        "engine/system_b/product_delta_boundary_lint.py",
+        "scripts/evals/lint_product_delta_evidence.py",
+        "tests/test_product_delta_boundary_lint.py",
+        "docs/evals/product-delta-evidence-boundary-lint-v0.md"
+      ],
+      "what_it_added": [
+        "Added deterministic local lint for Product Delta evidence-boundary metadata, forbidden authority fields, privacy markers, and targeted overclaim language.",
+        "Made boundary hygiene testable before broader specialist review."
+      ],
+      "what_it_did_not_do": [
+        "Did not judge answer quality.",
+        "Did not validate semantic correctness.",
+        "Did not call models, mutate archives, or change runtime."
+      ]
+    },
+    {
+      "pr_number": 79,
+      "title": "Context-Engineered Provisional Review Architecture v0",
+      "kind": [
+        "docs/design"
+      ],
+      "primary_files": [
+        "docs/evals/context-engineered-provisional-review-architecture-v0.md"
+      ],
+      "what_it_added": [
+        "Rejected a broad LLM judge for Product Delta review.",
+        "Defined bounded specialist reads, deterministic packetization, PR78 lint, and disagreement-preserving fan-in as the approved architecture."
+      ],
+      "what_it_did_not_do": [
+        "Did not implement specialist schemas, packet builders, review batches, fan-in reports, or runtime integration.",
+        "Did not add scoring, automatic labels, or agent authority."
+      ]
+    },
+    {
+      "pr_number": 80,
+      "title": "Product Delta Specialist Review Contracts v0",
+      "kind": [
+        "schema",
+        "tests"
+      ],
+      "primary_files": [
+        "docs/evals/product-delta-specialist-review-contracts-v0.md",
+        "docs/evals/product-delta-specialist-review-contracts-v0.json",
+        "tests/test_product_delta_specialist_contracts.py"
+      ],
+      "what_it_added": [
+        "Defined typed contracts for eight narrow specialist reads.",
+        "Required source status, source refs, uncertainty, what-would-make-this-wrong material, and non-claims."
+      ],
+      "what_it_did_not_do": [
+        "Did not create packets or fill specialist answers.",
+        "Did not run fan-in.",
+        "Did not add scoring, judging, or runtime integration."
+      ]
+    },
+    {
+      "pr_number": 81,
+      "title": "Specialist Review Packet Builder v0",
+      "kind": [
+        "read-only code",
+        "review fixture",
+        "tests"
+      ],
+      "primary_files": [
+        "engine/system_b/product_delta_specialist_packets.py",
+        "scripts/evals/build_product_delta_specialist_packets.py",
+        "tests/test_product_delta_specialist_packets.py",
+        "docs/evals/product-delta-specialist-packet-builder-v0.md",
+        "reviews/codex-assisted/product-delta-specialist-packets-v0/packets.json"
+      ],
+      "what_it_added": [
+        "Built checked-in-safe per-specialist input packets from existing Product Delta artifacts.",
+        "Created a compact two-case packet fixture for PR83.",
+        "Preserved source refs and known limits without filling specialist reads."
+      ],
+      "what_it_did_not_do": [
+        "Did not create specialist answers.",
+        "Did not call models or mutate archives.",
+        "Did not treat packets as review results."
+      ]
+    },
+    {
+      "pr_number": 82,
+      "title": "Provisional Reviewer Trap Set v0",
+      "kind": [
+        "schema",
+        "review fixture",
+        "tests"
+      ],
+      "primary_files": [
+        "docs/evals/provisional-reviewer-trap-set-v0.md",
+        "docs/evals/provisional-reviewer-trap-set-v0.json",
+        "tests/test_provisional_reviewer_trap_set.py"
+      ],
+      "what_it_added": [
+        "Added ten checked-in-safe trap families for obvious specialist-review failure modes.",
+        "Defined expected provisional behavior before real specialist role-passes."
+      ],
+      "what_it_did_not_do": [
+        "Did not fill specialist answers.",
+        "Did not treat trap behavior as accuracy.",
+        "Did not create human labels, scores, or runtime behavior."
+      ]
+    },
+    {
+      "pr_number": 83,
+      "title": "Codex-Assisted Specialist Review Batch v0",
+      "kind": [
+        "review fixture",
+        "tests"
+      ],
+      "primary_files": [
+        "docs/evals/codex-assisted-specialist-review-batch-v0.md",
+        "reviews/codex-assisted/specialist-review-batch-v0/review.json",
+        "tests/test_codex_assisted_specialist_review_batch.py"
+      ],
+      "what_it_added": [
+        "Ran a trap discipline pass over all ten PR82 trap families.",
+        "Filled eight PR80-style specialist reads for the two PR81 packet-fixture cases.",
+        "Preserved lost-value and interpretation-adequacy concerns in both real cases.",
+        "Downgraded one PR76 material candidate to a PR83 partial candidate."
+      ],
+      "what_it_did_not_do": [
+        "Did not create human labels or product proof.",
+        "Did not treat specialist agreement as correctness.",
+        "Did not add majority voting, aggregate confidence, scoring, or runtime fan-in."
+      ]
+    },
+    {
+      "pr_number": 84,
+      "title": "Fan-In / Disagreement Report v0",
+      "kind": [
+        "report",
+        "tests"
+      ],
+      "primary_files": [
+        "docs/evals/product-delta-fan-in-disagreement-report-v0.md",
+        "reviews/codex-assisted/fan-in-disagreement-report-v0/report.json",
+        "tests/test_product_delta_fan_in_disagreement_report.py"
+      ],
+      "what_it_added": [
+        "Reported over existing PR76 and PR83 artifacts without creating new semantic reads.",
+        "Preserved the accept-operations-role-startup downgrade from material to partial.",
+        "Made both lost-value and interpretation-adequacy concern surfaces and the two-case selection risk visible."
+      ],
+      "what_it_did_not_do": [
+        "Did not decide whether PR76 or PR83 is right.",
+        "Did not create new specialist reads.",
+        "Did not add scoring, judging, automatic labels, runtime behavior, or product proof."
+      ]
+    }
+  ],
+  "included_files": {
+    "docs": [
+      "docs/evals/product-delta-evidence-and-interpretation-adequacy-v0.md",
+      "docs/evals/product-delta-evidence-thesis-v0.md",
+      "docs/evals/vanilla-vs-lolla-provisional-review-protocol-v0.md",
+      "docs/evals/codex-assisted-paired-review-dry-run-v0.md",
+      "docs/evals/provisional-product-delta-failure-taxonomy-v0.md",
+      "docs/evals/product-delta-eval-readiness-and-provisional-run-v0.md",
+      "docs/evals/codex-assisted-product-delta-batch-v0.md",
+      "docs/evals/product-delta-provisional-report-v0.md",
+      "docs/evals/product-delta-evidence-boundary-lint-v0.md",
+      "docs/evals/context-engineered-provisional-review-architecture-v0.md",
+      "docs/evals/product-delta-specialist-review-contracts-v0.md",
+      "docs/evals/product-delta-specialist-packet-builder-v0.md",
+      "docs/evals/provisional-reviewer-trap-set-v0.md",
+      "docs/evals/codex-assisted-specialist-review-batch-v0.md",
+      "docs/evals/product-delta-fan-in-disagreement-report-v0.md"
+    ],
+    "json_artifacts": [
+      "docs/evals/vanilla-vs-lolla-provisional-review-v0.json",
+      "docs/evals/provisional-product-delta-failure-taxonomy-v0.json",
+      "docs/evals/product-delta-seed-cases-v0.json",
+      "docs/evals/product-delta-specialist-review-contracts-v0.json",
+      "docs/evals/provisional-reviewer-trap-set-v0.json"
+    ],
+    "review_fixtures": [
+      "reviews/codex-assisted/paired-review-dry-run-v0/review.json",
+      "reviews/codex-assisted/product-delta-provisional-run-v0/review.json",
+      "reviews/codex-assisted/product-delta-batch-v0/review.json",
+      "reviews/codex-assisted/product-delta-specialist-packets-v0/packets.json",
+      "reviews/codex-assisted/specialist-review-batch-v0/review.json",
+      "reviews/codex-assisted/fan-in-disagreement-report-v0/report.json"
+    ],
+    "production_eval_code": [
+      "engine/system_b/product_delta_readiness.py",
+      "engine/system_b/product_delta_boundary_lint.py",
+      "engine/system_b/product_delta_specialist_packets.py"
+    ],
+    "scripts": [
+      "scripts/evals/build_product_delta_provisional_review.py",
+      "scripts/evals/lint_product_delta_evidence.py",
+      "scripts/evals/build_product_delta_specialist_packets.py"
+    ],
+    "tests": [
+      "tests/test_product_delta_readiness.py",
+      "tests/test_product_delta_batch_fixture.py",
+      "tests/test_product_delta_boundary_lint.py",
+      "tests/test_product_delta_specialist_contracts.py",
+      "tests/test_product_delta_specialist_packets.py",
+      "tests/test_provisional_reviewer_trap_set.py",
+      "tests/test_codex_assisted_specialist_review_batch.py",
+      "tests/test_product_delta_fan_in_disagreement_report.py"
+    ]
+  },
+  "packaging_gate_files": [
+    "docs/evals/product-delta-pr71-pr84-packaging-gate-v0.md",
+    "docs/evals/product-delta-pr71-pr84-package-manifest-v0.json",
+    "tests/test_product_delta_pr71_pr84_package_gate.py"
+  ],
+  "validation_policy": {
+    "purpose": "Show that the PR71-PR84 Product Delta package is internally coherent, lower-claim, reference-resolvable, and ready for explicit packaging later.",
+    "commands": [
+      {
+        "name": "focused_pytest",
+        "command": "python3 -m pytest -q tests/test_product_delta_pr71_pr84_package_gate.py tests/test_product_delta_fan_in_disagreement_report.py tests/test_codex_assisted_specialist_review_batch.py tests/test_provisional_reviewer_trap_set.py tests/test_product_delta_specialist_packets.py tests/test_product_delta_specialist_contracts.py tests/test_product_delta_boundary_lint.py tests/test_product_delta_batch_fixture.py tests/test_product_delta_readiness.py"
+      },
+      {
+        "name": "manifest_json_parse",
+        "command": "jq . docs/evals/product-delta-pr71-pr84-package-manifest-v0.json"
+      },
+      {
+        "name": "all_package_json_parse",
+        "command": "jq . over all JSON artifacts listed in included_files plus the PR85 package manifest"
+      },
+      {
+        "name": "product_delta_boundary_lint",
+        "command": "python3 scripts/evals/lint_product_delta_evidence.py --paths over all PR71-PR84 Product Delta docs/JSON/review artifacts plus PR85 docs/JSON"
+      },
+      {
+        "name": "diff_whitespace_check",
+        "command": "git diff --check"
+      },
+      {
+        "name": "markdown_local_link_check",
+        "command": "Run a local Markdown link check over touched Markdown files."
+      },
+      {
+        "name": "trailing_whitespace_scan",
+        "command": "rg -n \"[ \\\\t]+$\" over touched files"
+      },
+      {
+        "name": "privacy_marker_scan",
+        "command": "Run the configured privacy/content marker scan over touched docs/JSON without embedding the marker literals in package artifacts."
+      },
+      {
+        "name": "source_reference_resolution",
+        "command": "Resolve important source-ref paths and JSON pointers across PR81, PR83, and PR84 artifacts."
+      }
+    ]
+  },
+  "source_reference_policy": {
+    "path_policy": [
+      "All manifest files use relative paths only.",
+      "Source references should resolve to checked-in safe artifacts where the reference names a repository path.",
+      "Archive-relative identifiers are preserved as case identity only and are not treated as local archive-read permission."
+    ],
+    "important_refs_to_check": [
+      "PR84 references to PR76 and PR83 artifacts.",
+      "PR83 references to PR81 packets, PR76 batch, and PR33 historical review context.",
+      "PR81 packet references to PR75 shells, PR76 broad reads, seed cases, and PR80 schemas.",
+      "PR75 and PR76 reviewed_artifacts and source_artifacts where present."
+    ],
+    "actual_shape_paths": {
+      "pr83_traps": "trap_discipline_pass.results",
+      "pr83_pr76_comparison": "real_case_specialist_pass.cases[*].case_summary.pr76_comparison",
+      "pr83_net_read": "real_case_specialist_pass.cases[*].case_summary.pr83_net_decision_read_candidate",
+      "pr83_specialist_reads": "real_case_specialist_pass.cases[*].specialist_reads",
+      "pr84_new_specialist_reads_created": "method.new_specialist_reads_created",
+      "pr84_new_codex_review_created": "method.new_codex_review_created",
+      "pr84_semantic_read_source": "method.semantic_read_source"
+    }
+  },
+  "phase_summary": {
+    "strongest_useful_signal": {
+      "case_id": "accept-operations-role-startup",
+      "from_candidate": "material_improvement_candidate",
+      "to_candidate": "partial_improvement_candidate",
+      "meaning": "PR83 and PR84 preserved one downgrade from a broad positive PR76 read, making the evidence less impressive but more inspectable.",
+      "source_refs": [
+        "reviews/codex-assisted/specialist-review-batch-v0/review.json#/real_case_specialist_pass/cases/1/case_summary/pr76_comparison",
+        "reviews/codex-assisted/fan-in-disagreement-report-v0/report.json#/cross_case_observations/concrete_downgrade"
+      ]
+    },
+    "strongest_unresolved_risk": {
+      "real_case_count": 2,
+      "prior_positive_fixture_cases": true,
+      "no_real_case_no_change_noise_worse_or_inconclusive": true,
+      "positive_distribution_risk_acknowledged": true,
+      "human_validation_available": false,
+      "no_raw_private_content_read": true,
+      "meaning": "The PR83/PR84 real-case comparison is too thin and prior-positive to support product claims."
+    }
+  },
+  "non_claims": [
+    "The PR71-PR84 package does not prove Lolla improves decisions.",
+    "Codex-assisted reads are not human labels.",
+    "Specialist decomposition is not calibrated by this package.",
+    "PR83 and PR84 are not product proof.",
+    "Clean artifacts do not imply good advice.",
+    "Agents may not act on these outputs.",
+    "The package does not decide PR76 or PR83 is right.",
+    "The Product Delta eval lane is not part of runtime.",
+    "The package does not add judge calibration data, answer-quality scoring, automatic labels, or agent-use authorization."
+  ],
+  "known_limits": {
+    "human_review_available": false,
+    "real_case_count": 2,
+    "prior_positive_fixture_cases": true,
+    "no_real_case_no_change_noise_worse_or_inconclusive": true,
+    "positive_distribution_risk_acknowledged": true,
+    "safe_checked_in_mode_uses_compressed_context": true,
+    "no_raw_private_content_read": true,
+    "pr33_historical_review_safe_context_only": true,
+    "future_local_private_mode_may_be_needed": true,
+    "notes": [
+      "PR83 and PR84 real-case comparison only covers two cases.",
+      "Both cases came from prior-positive PR81/PR76 context.",
+      "No real-case no-change, added-noise, worse, or inconclusive outcome appears in the PR83/PR84 pair.",
+      "Checked-in safe mode uses compressed context and cannot fully test interpretation adequacy.",
+      "No raw transcript, raw revised answer, raw memo, or private archive content was read.",
+      "PR33 is used only as historical review-safe context, not fresh validation.",
+      "Future local-private mode may be needed to test interpretation adequacy more seriously."
+    ]
+  },
+  "next_decision_options": [
+    {
+      "option": "stop_and_package_pr71_pr85",
+      "recommendation": "default",
+      "reason": "The Product Delta Evidence phase now has enough scaffolding, boundary checks, package manifesting, and internal validation for explicit packaging."
+    },
+    {
+      "option": "prepare_human_review_intake_later",
+      "recommendation": "defer_until_capacity_returns",
+      "reason": "Human review is the next meaningful source of stronger evidence, but it should be scheduled intentionally."
+    },
+    {
+      "option": "build_local_private_packet_mode_later",
+      "recommendation": "only_if_interpretation_adequacy_requires_raw_context",
+      "reason": "Raw context may be needed for serious interpretation adequacy testing, but it should stay local-private and outside checked-in artifacts."
+    },
+    {
+      "option": "expand_trap_cases_before_more_real_specialist_review",
+      "recommendation": "conditional",
+      "reason": "Trap expansion may reduce optimistic review drift before a larger real-case batch."
+    },
+    {
+      "option": "run_larger_specialist_batch",
+      "recommendation": "not_default",
+      "reason": "A larger batch should wait until maintainers decide how to handle positive-selection risk and human-review routing."
+    }
+  ]
+}

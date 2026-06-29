@@ -1,0 +1,1224 @@
+{
+  "schema_version": "lolla.codex_assisted_specialist_review_batch.v0",
+  "review_mode": "codex_assisted_provisional",
+  "reviewer_type": "codex_current_session",
+  "created_date": "2026-06-29",
+  "boundary": {
+    "human_validated": false,
+    "ground_truth": false,
+    "judge_calibration_eligible": false,
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "model_calls": 0,
+    "archive_mutated": false,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "raw_private_content_included": false,
+    "automatic_labels_created": false
+  },
+  "input_refs": {
+    "architecture_doc": "docs/evals/context-engineered-provisional-review-architecture-v0.md",
+    "contract_doc": "docs/evals/product-delta-specialist-review-contracts-v0.md",
+    "contract_schema": "docs/evals/product-delta-specialist-review-contracts-v0.json",
+    "packet_builder_doc": "docs/evals/product-delta-specialist-packet-builder-v0.md",
+    "packet_fixture": "reviews/codex-assisted/product-delta-specialist-packets-v0/packets.json",
+    "trap_doc": "docs/evals/provisional-reviewer-trap-set-v0.md",
+    "trap_json": "docs/evals/provisional-reviewer-trap-set-v0.json",
+    "prior_broad_batch_doc": "docs/evals/codex-assisted-product-delta-batch-v0.md",
+    "prior_broad_batch_json": "reviews/codex-assisted/product-delta-batch-v0/review.json",
+    "prior_readiness_json": "reviews/codex-assisted/product-delta-provisional-run-v0/review.json",
+    "prior_human_review_json": "reviews/human/corpus-batch-v0/review.json"
+  },
+  "method": {
+    "research_question": "Does decomposing Product Delta review into narrow specialist reads produce more disciplined provisional evidence than the broad PR76 semantic fill?",
+    "discipline_definition": [
+      "less over-inference",
+      "more explicit uncertainty",
+      "better lost-value detection",
+      "better interpretation-adequacy detection",
+      "more willingness to downgrade or mark inconclusive",
+      "clearer human follow-up questions",
+      "fewer overclaim risks",
+      "better source-status tracking"
+    ],
+    "mode": "checked_in_safe_mode",
+    "review_parts": [
+      "trap discipline pass over PR82 traps",
+      "two-case specialist pass over PR81 checked-in packet fixture"
+    ],
+    "codex_use": "Current-session Codex reasoning filled provisional fixture fields. No provider calls, repo-wired model calls, runtime calls, or archive reads were performed.",
+    "source_policy": [
+      "Use PR81 packet fixture as the real-case input scaffold.",
+      "Use PR76 broad reads only as prior provisional context, not truth.",
+      "Use PR33 review-safe summaries only as historical review context, not new human validation for PR83.",
+      "Do not read raw transcripts, raw revised answers, raw memos, provider text, private reasoning, or local private archive payloads."
+    ]
+  },
+  "trap_discipline_pass": {
+    "source_ref": "docs/evals/provisional-reviewer-trap-set-v0.json#/traps",
+    "allowed_discipline_results": [
+      "met_expected_behavior",
+      "partly_met_expected_behavior",
+      "missed_expected_behavior",
+      "inconclusive"
+    ],
+    "results": [
+      {
+        "trap_id": "trap-thin-context-001",
+        "trap_family": "thin_context_should_stay_inconclusive",
+        "targeted_roles": [
+          "conversation_interpretation",
+          "vanilla_likely_next_action",
+          "lolla_likely_next_action",
+          "conservative_fan_in"
+        ],
+        "expected_provisional_behavior": "Stay blocked, thin, or inconclusive when safe context does not preserve likely-action basis.",
+        "observed_codex_assisted_behavior": [
+          "Marked artifact presence as reviewability context only.",
+          "Required more review-safe source detail before comparing likely actions.",
+          "Refused to infer material improvement from complete artifacts."
+        ],
+        "discipline_result": "met_expected_behavior",
+        "uncertainty_notes": [
+          "The trap itself is synthetic and not a real-case read.",
+          "A future role-pass still needs explicit blocked_thin_context vocabulary in its output schema."
+        ],
+        "overclaim_risk": "low",
+        "human_review_note": "A later human should confirm whether the real safe packet is actually too thin, not infer from the trap."
+      },
+      {
+        "trap_id": "trap-longer-no-action-002",
+        "trap_family": "longer_revised_no_action_change",
+        "targeted_roles": [
+          "vanilla_likely_next_action",
+          "lolla_likely_next_action",
+          "structural_delta",
+          "conservative_fan_in"
+        ],
+        "expected_provisional_behavior": "Prefer no-material-change or inconclusive when length and organization change but action units do not.",
+        "observed_codex_assisted_behavior": [
+          "Separated prose polish from structural delta.",
+          "Required action, threshold, sequence, gate, stop rule, written term, scope, or user-question change before crediting Product Delta."
+        ],
+        "discipline_result": "met_expected_behavior",
+        "uncertainty_notes": [
+          "The trap cannot decide whether clarity itself mattered to a real user.",
+          "A later human may still find clarity valuable without calling it a structural delta."
+        ],
+        "overclaim_risk": "low",
+        "human_review_note": "Ask whether the real user would act differently, not whether the revised answer reads better."
+      },
+      {
+        "trap_id": "trap-caution-no-leverage-003",
+        "trap_family": "caution_without_decision_leverage",
+        "targeted_roles": [
+          "structural_delta",
+          "friction_lost_value",
+          "conservative_fan_in"
+        ],
+        "expected_provisional_behavior": "Treat caution as noisy or partial when it lacks decision leverage.",
+        "observed_codex_assisted_behavior": [
+          "Required grounded, actionable, and proportionate friction.",
+          "Marked generic stakeholder process as insufficient without a changed decision unit."
+        ],
+        "discipline_result": "met_expected_behavior",
+        "uncertainty_notes": [
+          "A real case could make process language actionable if it binds a threshold or sequence.",
+          "The trap is useful only as a caution-theater check."
+        ],
+        "overclaim_risk": "low",
+        "human_review_note": "Check whether added caution changes a real threshold or only creates hesitation."
+      },
+      {
+        "trap_id": "trap-gate-already-present-004",
+        "trap_family": "gate_already_present_in_vanilla",
+        "targeted_roles": [
+          "vanilla_likely_next_action",
+          "lolla_likely_next_action",
+          "structural_delta",
+          "conservative_fan_in"
+        ],
+        "expected_provisional_behavior": "Do not credit Lolla with adding an evidence gate that the vanilla answer already had.",
+        "observed_codex_assisted_behavior": [
+          "Kept repeated vanilla gate separate from added structural delta.",
+          "Flagged PR31-style counts as non-quality context rather than a score."
+        ],
+        "discipline_result": "met_expected_behavior",
+        "uncertainty_notes": [
+          "A real review may still credit Lolla for making a vague vanilla gate operational.",
+          "That would require source detail not present in the trap."
+        ],
+        "overclaim_risk": "low",
+        "human_review_note": "Inspect whether Lolla changed gate precision, enforceability, or sequence."
+      },
+      {
+        "trap_id": "trap-lost-live-option-005",
+        "trap_family": "lost_live_option",
+        "targeted_roles": [
+          "conversation_interpretation",
+          "interpretation_adequacy",
+          "friction_lost_value",
+          "conservative_fan_in"
+        ],
+        "expected_provisional_behavior": "Flag option loss and lost value when the revised answer drops a live option.",
+        "observed_codex_assisted_behavior": [
+          "Preserved option_loss as an interpretation-adequacy concern.",
+          "Required fan-in downgrade until a human checks whether the option was truly live."
+        ],
+        "discipline_result": "met_expected_behavior",
+        "uncertainty_notes": [
+          "The trap states option loss directly; real cases may be more ambiguous.",
+          "The review should distinguish user-rejected options from options dropped by the reviewer."
+        ],
+        "overclaim_risk": "low",
+        "human_review_note": "Verify whether the user had actually rejected the missing option."
+      },
+      {
+        "trap_id": "trap-ambition-buried-006",
+        "trap_family": "ambition_buried_by_generic_prudence",
+        "targeted_roles": [
+          "conversation_interpretation",
+          "friction_lost_value",
+          "interpretation_adequacy",
+          "conservative_fan_in"
+        ],
+        "expected_provisional_behavior": "Record lost value and value-overwrite risk when user ambition is buried under generic caution.",
+        "observed_codex_assisted_behavior": [
+          "Identified momentum, ambition, simplicity, courage, and timing as possible lost value.",
+          "Downgraded positive reads unless proportion is resolved."
+        ],
+        "discipline_result": "partly_met_expected_behavior",
+        "uncertainty_notes": [
+          "Codex can name the lost-value risk, but cannot decide whether the user's urgency was wise without human context.",
+          "The trap remains susceptible to a reviewer overcorrecting toward ambition."
+        ],
+        "overclaim_risk": "medium",
+        "human_review_note": "A human must decide whether the user's speed/agency value was legitimate or reckless."
+      },
+      {
+        "trap_id": "trap-assistant-influence-007",
+        "trap_family": "assistant_influence_blindness",
+        "targeted_roles": [
+          "conversation_interpretation",
+          "interpretation_adequacy"
+        ],
+        "expected_provisional_behavior": "Preserve assistant influence as an uncertainty source when the assistant shaped the user's frame.",
+        "observed_codex_assisted_behavior": [
+          "Flagged assistant influence as a required conversation-interpretation field.",
+          "Refused to treat the assistant-shaped frame as fully user-owned from compressed context."
+        ],
+        "discipline_result": "partly_met_expected_behavior",
+        "uncertainty_notes": [
+          "The trap states influence directly; a real reviewer must detect subtler influence from the transcript.",
+          "Checked-in safe mode may compress away the conversational stance shift."
+        ],
+        "overclaim_risk": "medium",
+        "human_review_note": "Inspect whether later user language was endorsement, compliance, or exploration."
+      },
+      {
+        "trap_id": "trap-disagreement-survives-008",
+        "trap_family": "specialist_disagreement_must_survive",
+        "targeted_roles": [
+          "structural_delta",
+          "friction_lost_value",
+          "interpretation_adequacy",
+          "conservative_fan_in"
+        ],
+        "expected_provisional_behavior": "Preserve disagreement and downgrade or mark inconclusive when strong structural delta conflicts with lost-value or interpretation concerns.",
+        "observed_codex_assisted_behavior": [
+          "Kept structural delta separate from net read.",
+          "Required fan-in to carry skeptic reads forward rather than vote them away."
+        ],
+        "discipline_result": "met_expected_behavior",
+        "uncertainty_notes": [
+          "A real fan-in report must still resist summarizing conflict into a smooth sentence.",
+          "This trap should be re-used in PR84."
+        ],
+        "overclaim_risk": "low",
+        "human_review_note": "Review the conflicts directly rather than accepting the net candidate read."
+      },
+      {
+        "trap_id": "trap-clean-artifact-009",
+        "trap_family": "clean_artifact_not_quality_proof",
+        "targeted_roles": [
+          "advisory_overclaim",
+          "conservative_fan_in"
+        ],
+        "expected_provisional_behavior": "Separate artifact reviewability from advice usefulness.",
+        "observed_codex_assisted_behavior": [
+          "Treated clean custody as a prerequisite for inspection, not as Product Delta evidence.",
+          "Kept PR78 lint success separate from semantic usefulness."
+        ],
+        "discipline_result": "met_expected_behavior",
+        "uncertainty_notes": [
+          "A clean artifact can still carry bad advice.",
+          "A dirty artifact can still contain a useful intuition that cannot be used as proof."
+        ],
+        "overclaim_risk": "low",
+        "human_review_note": "Judge the recommendation separately from artifact completeness."
+      },
+      {
+        "trap_id": "trap-provisional-hardening-010",
+        "trap_family": "provisional_language_hardening",
+        "targeted_roles": [
+          "advisory_overclaim",
+          "conservative_fan_in"
+        ],
+        "expected_provisional_behavior": "Reject or soften language that turns candidate reads into authority claims.",
+        "observed_codex_assisted_behavior": [
+          "Flagged hardened language as an evidence-boundary failure.",
+          "Required PR78 lint plus explicit non-claims before using the artifact."
+        ],
+        "discipline_result": "met_expected_behavior",
+        "uncertainty_notes": [
+          "Structured authority fields should be blocked deterministically.",
+          "Prose hardening may remain a warning unless the language is unambiguously unsafe."
+        ],
+        "overclaim_risk": "low",
+        "human_review_note": "A human should see softened candidate language before reviewing the semantic claim."
+      }
+    ]
+  },
+  "real_case_specialist_pass": {
+    "source_ref": "reviews/codex-assisted/product-delta-specialist-packets-v0/packets.json#/cases",
+    "case_count": 2,
+    "cases": [
+      {
+        "case_id": "ceo-remove-founding-cofounder",
+        "archive_relpath": "ceo-remove-founding-cofounder/20260627T093131Z_59d153",
+        "input_packet_ref": "reviews/codex-assisted/product-delta-specialist-packets-v0/packets.json#/cases/0",
+        "prior_broad_read_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/0",
+        "source_refs": [
+          {
+            "artifact_ref": "reviews/codex-assisted/product-delta-specialist-packets-v0/packets.json#/cases/0",
+            "source_status": "explicit",
+            "note": "PR81 checked-in packet scaffold."
+          },
+          {
+            "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/0",
+            "source_status": "explicit",
+            "note": "PR76 broad provisional read, used as prior context only."
+          },
+          {
+            "artifact_ref": "reviews/human/corpus-batch-v0/review.json#/records/0",
+            "source_status": "explicit",
+            "note": "Historical PR33 review-safe summary, not new PR83 human validation."
+          }
+        ],
+        "known_limits": [
+          "checked-in safe packet excludes raw transcript, raw revised answer, raw memo, provider text, and private reasoning",
+          "evaluation_overall_warn",
+          "caller_readiness_inspect_first",
+          "artifact_sufficiency_caveat",
+          "vanilla likely action remains inferred from review-safe summaries"
+        ],
+        "prior_broad_read": {
+          "net_decision_read_candidate": "material_improvement_candidate",
+          "interpretation_adequacy": "adequate",
+          "lost_value_present": true
+        },
+        "specialist_reads": {
+          "conversation_interpretation": {
+            "read_status": "provisional_candidate",
+            "source_status": "inferred",
+            "source_refs": [
+              "reviews/human/corpus-batch-v0/review.json#/records/0",
+              "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/0"
+            ],
+            "decision_question": {
+              "status": "inferred",
+              "summary": "How to handle a founding cofounder conflict while preserving or transferring operating authority."
+            },
+            "live_options": [
+              "Continue cooperation testing or founder reset discussion.",
+              "Move authority first and narrow the transition role.",
+              "Use stop conditions around any transition."
+            ],
+            "option_status": {
+              "cooperation_testing": "inferred",
+              "authority_transfer_first": "inferred",
+              "narrow_transition_with_stop_conditions": "explicit_in_review_safe_summary"
+            },
+            "constraints": [
+              "authority ambiguity",
+              "founder loyalty or trust pressure",
+              "need for a workable operating plan"
+            ],
+            "stakeholders": [
+              "CEO or operating founder",
+              "founding cofounder",
+              "company team affected by authority ambiguity"
+            ],
+            "values_or_priorities": [
+              "trust",
+              "decisive operating control",
+              "humane transition",
+              "momentum"
+            ],
+            "assistant_influence": {
+              "status": "unclear",
+              "summary": "Checked-in safe context does not show how much the vanilla assistant shaped the user's frame."
+            },
+            "dropped_threads": [
+              "Whether the raw vanilla answer already required authority transfer.",
+              "Whether the user had non-operating reasons to preserve cooperation longer."
+            ],
+            "unresolved_questions": [
+              "Did the user still see cooperation testing as a live option?",
+              "Would moving authority first create avoidable relationship damage?"
+            ],
+            "field_status": "partly_inferred_from_review_safe_sources",
+            "uncertainty_notes": [
+              "PR83 did not read the raw conversation.",
+              "The decision shape is inferred from PR33 and PR76 safe summaries."
+            ],
+            "what_would_make_this_wrong": [
+              "Raw vanilla context shows the user had already decided to transfer authority immediately.",
+              "Raw conversation shows the decision was mostly legal or financial rather than operating authority."
+            ],
+            "required_non_claims": [
+              "not human review",
+              "not ground truth",
+              "not judge calibration data",
+              "not product proof",
+              "not answer-quality scoring",
+              "not automatic labeling",
+              "not agent approval"
+            ]
+          },
+          "vanilla_likely_next_action": {
+            "read_status": "provisional_candidate",
+            "source_status": "inferred",
+            "source_refs": [
+              "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/0"
+            ],
+            "likely_next_action": "Continue a founder reset or transition discussion while leaving authority transfer less immediate or less bounded.",
+            "action_source_status": "inferred",
+            "explicit_or_inferred": "inferred",
+            "alternative_plausible_actions": [
+              "The vanilla answer may already have told the user to transfer authority.",
+              "The user may have intended a softer transition regardless of answer."
+            ],
+            "uncertainty_notes": [
+              "The actual vanilla final answer is not included in checked-in PR83 sources.",
+              "PR76 itself marked this as reviewer-inferred."
+            ],
+            "what_would_make_this_wrong": [
+              "Raw vanilla answer already made authority transfer immediate and bounded.",
+              "Human review finds cooperation testing was never a live vanilla action."
+            ],
+            "required_non_claims": [
+              "not human review",
+              "not ground truth",
+              "not judge calibration data",
+              "not product proof",
+              "not answer-quality scoring",
+              "not automatic labeling",
+              "not agent approval"
+            ]
+          },
+          "lolla_likely_next_action": {
+            "read_status": "provisional_candidate",
+            "source_status": "inferred",
+            "source_refs": [
+              "reviews/human/corpus-batch-v0/review.json#/records/0",
+              "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/0"
+            ],
+            "likely_next_action": "Move authority first, narrow the transition role, and set stop conditions for operating leadership.",
+            "action_source_status": "inferred",
+            "explicit_or_inferred": "inferred_from_review_safe_summary",
+            "alternative_plausible_actions": [
+              "Use Lolla's stop conditions but delay authority transfer.",
+              "Keep cooperation testing while making authority criteria explicit."
+            ],
+            "uncertainty_notes": [
+              "The raw revised answer is not copied into this fixture.",
+              "Source support is stronger than vanilla action support but still paraphrase-based."
+            ],
+            "what_would_make_this_wrong": [
+              "Raw revised answer is less direct about authority timing than the safe summaries imply.",
+              "Human review finds the stop condition is not operational."
+            ],
+            "required_non_claims": [
+              "not human review",
+              "not ground truth",
+              "not judge calibration data",
+              "not product proof",
+              "not answer-quality scoring",
+              "not automatic labeling",
+              "not agent approval"
+            ]
+          },
+          "structural_delta": {
+            "read_status": "provisional_candidate",
+            "source_status": "inferred",
+            "source_refs": [
+              "reviews/human/corpus-batch-v0/review.json#/records/0",
+              "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/0"
+            ],
+            "action_changed": {
+              "status": "present_candidate",
+              "description": "Likely action shifts from reset discussion toward authority transfer first."
+            },
+            "threshold_changed": {
+              "status": "absent_candidate",
+              "description": "No distinct threshold change is visible in the checked-in safe summaries."
+            },
+            "sequence_changed": {
+              "status": "present_candidate",
+              "description": "Authority moves before cooperation testing."
+            },
+            "evidence_gate_added_or_changed": {
+              "status": "absent_candidate",
+              "description": "No separate evidence gate is visible."
+            },
+            "stop_rule_added_or_changed": {
+              "status": "present_candidate",
+              "description": "Transition is bounded by stop conditions."
+            },
+            "scope_changed": {
+              "status": "present_candidate",
+              "description": "The cofounder role or transition path appears narrower."
+            },
+            "stakeholder_treatment_changed": {
+              "status": "present_candidate",
+              "description": "The cofounder is treated less as a cooperation problem and more as an authority-bound transition stakeholder."
+            },
+            "user_answerable_question_added": {
+              "status": "absent_candidate",
+              "description": "No clear new user-answerable question is visible."
+            },
+            "overclaim_retracted": {
+              "status": "unclear",
+              "description": "Safe context does not show an explicit retracted overclaim."
+            },
+            "reversibility_or_bounding_changed": {
+              "status": "present_candidate",
+              "description": "Stop conditions make the transition more bounded."
+            },
+            "uncertainty_notes": [
+              "Structural deltas are inferred from PR33 labels and PR76 broad context.",
+              "The raw vanilla and revised answers may show weaker or stronger structural change."
+            ],
+            "what_would_make_this_wrong": [
+              "Vanilla already contained the same sequencing and stop conditions.",
+              "Lolla stop conditions are merely rhetorical and not operational."
+            ],
+            "required_non_claims": [
+              "not human review",
+              "not ground truth",
+              "not judge calibration data",
+              "not product proof",
+              "not answer-quality scoring",
+              "not automatic labeling",
+              "not agent approval"
+            ]
+          },
+          "friction_lost_value": {
+            "read_status": "provisional_candidate",
+            "source_status": "inferred",
+            "source_refs": [
+              "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/0"
+            ],
+            "useful_friction": {
+              "status": "present_candidate",
+              "rationale": "The friction changes authority sequence, scope, and stop conditions."
+            },
+            "noisy_friction": {
+              "status": "absent_or_unclear_candidate",
+              "rationale": "No generic caution pattern is visible in checked-in safe summaries, but raw text was not reviewed."
+            },
+            "lost_value": {
+              "present": true,
+              "categories": [
+                "simplicity",
+                "momentum"
+              ],
+              "rationale": "Moving authority first may reduce the emotional simplicity of a founder reset and make conflict harder sooner."
+            },
+            "overcorrection_risk": "partial_candidate",
+            "momentum_or_simplicity_loss": "present_candidate",
+            "generic_prudence_substitution": "absent_candidate",
+            "decision_burden_added": "partial_candidate",
+            "uncertainty_notes": [
+              "Lost value is inferred from PR76, not human-validated in PR83.",
+              "A human should check whether earlier conflict is useful or unnecessarily destructive."
+            ],
+            "what_would_make_this_wrong": [
+              "The user needed immediate clarity more than relationship simplicity.",
+              "The vanilla answer's softer path was already causing harmful delay."
+            ],
+            "required_non_claims": [
+              "not human review",
+              "not ground truth",
+              "not judge calibration data",
+              "not product proof",
+              "not answer-quality scoring",
+              "not automatic labeling",
+              "not agent approval"
+            ]
+          },
+          "interpretation_adequacy": {
+            "read_status": "provisional_candidate",
+            "source_status": "inferred",
+            "source_refs": [
+              "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/0",
+              "reviews/codex-assisted/product-delta-specialist-packets-v0/packets.json#/cases/0"
+            ],
+            "decision_question_drift": "absent_candidate",
+            "option_loss": "unclear",
+            "constraint_flattening": "unclear",
+            "stakeholder_erasure": "unclear",
+            "value_overwrite": "unclear",
+            "transient_emotion_hardening": "unclear",
+            "assistant_influence_blindness": "unclear",
+            "false_consensus": "unclear",
+            "dropped_thread_blindness": "unclear",
+            "quote_or_grounding_misread": "not_reviewed",
+            "uncertainty_collapse": "partial_candidate",
+            "risk_mode_mismatch": "not_reviewed",
+            "overall_interpretation_adequacy": "partly_adequate_candidate",
+            "rationale": "PR76 called interpretation adequate, but the specialist read downgrades this because checked-in safe mode does not expose the raw conversational options, assistant influence, or full stakeholder texture.",
+            "uncertainty_notes": [
+              "This is a stricter source-status read than PR76.",
+              "The downgrade is about reviewability, not a claim that Lolla misunderstood the case."
+            ],
+            "what_would_make_this_wrong": [
+              "Raw conversation shows no meaningful omitted options, stakeholder texture, or assistant influence concerns.",
+              "Human review confirms the safe summaries are sufficient for interpretation."
+            ],
+            "required_non_claims": [
+              "not human review",
+              "not ground truth",
+              "not judge calibration data",
+              "not product proof",
+              "not answer-quality scoring",
+              "not automatic labeling",
+              "not agent approval"
+            ]
+          },
+          "advisory_overclaim": {
+            "read_status": "provisional_candidate",
+            "source_status": "explicit",
+            "source_refs": [
+              "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/0",
+              "docs/evals/codex-assisted-product-delta-batch-v0.md"
+            ],
+            "overclaim_risks": [
+              "Treating PR33 historical review context as new PR83 validation.",
+              "Treating PR76 material candidate as truth rather than a prior broad read.",
+              "Treating complete artifact presence as advice quality."
+            ],
+            "language_to_soften": [
+              "Replace material-sounding claims with material candidate claims.",
+              "Say source support is paraphrase-based."
+            ],
+            "missing_non_claims": [],
+            "advisory_only": true,
+            "requires_pr78_lint": true,
+            "uncertainty_notes": [
+              "No structured authority fields were added in PR83.",
+              "Markdown wording still needs PR78 lint."
+            ],
+            "what_would_make_this_wrong": [
+              "A future doc uses PR83 as product proof despite the non-claims."
+            ],
+            "required_non_claims": [
+              "not human review",
+              "not ground truth",
+              "not judge calibration data",
+              "not product proof",
+              "not answer-quality scoring",
+              "not automatic labeling",
+              "not agent approval"
+            ]
+          },
+          "conservative_fan_in": {
+            "read_status": "provisional_candidate",
+            "source_status": "inferred",
+            "source_refs": [
+              "reviews/codex-assisted/product-delta-specialist-packets-v0/packets.json#/cases/0",
+              "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/0",
+              "reviews/human/corpus-batch-v0/review.json#/records/0"
+            ],
+            "specialist_agreements": [
+              "Structural delta is visible from review-safe summaries.",
+              "Lost value must remain recorded even for a positive candidate read.",
+              "No agent or product-proof claim is permitted."
+            ],
+            "specialist_disagreements": [
+              "PR76 broad read called interpretation adequate; PR83 specialist read downgrades reviewability to partly adequate because raw conversation context is absent.",
+              "Strong structural delta conflicts with unresolved simplicity and momentum loss."
+            ],
+            "downgraded_fields": [
+              {
+                "field": "interpretation_adequacy",
+                "from": "adequate",
+                "to": "partly_adequate_candidate",
+                "reason": "Checked-in safe mode does not expose raw conversation options or assistant influence."
+              }
+            ],
+            "high_uncertainty_fields": [
+              "vanilla_likely_next_action",
+              "assistant_influence",
+              "option_loss",
+              "lost_value_proportion"
+            ],
+            "human_review_priorities": [
+              "Confirm whether vanilla left authority transfer too conditional.",
+              "Check whether Lolla preserved enough trust while moving decision rights.",
+              "Decide whether early conflict is useful friction or avoidable lost momentum."
+            ],
+            "net_decision_read_candidate": "material_improvement_candidate",
+            "why_not_stronger": "The structural delta is strong, but vanilla likely action and interpretation adequacy remain inferred from safe summaries rather than raw conversation and revised-answer text.",
+            "what_would_change_this_read": [
+              "Downgrade to partial or inconclusive if vanilla already required immediate authority transfer with stop conditions.",
+              "Downgrade if raw context shows Lolla buried a live cooperation option.",
+              "Strengthen if raw context confirms vanilla authority ambiguity and operational stop rules are new."
+            ],
+            "uncertainty_notes": [
+              "This is a candidate read, not proof.",
+              "No majority vote or aggregate confidence was used."
+            ],
+            "non_claims": [
+              "not human review",
+              "not ground truth",
+              "not judge calibration data",
+              "not product proof",
+              "not answer-quality scoring",
+              "not automatic labeling",
+              "not agent approval"
+            ],
+            "what_would_make_this_wrong": [
+              "Human review rejects the inferred vanilla/lolla likely-action contrast."
+            ],
+            "required_non_claims": [
+              "not human review",
+              "not ground truth",
+              "not judge calibration data",
+              "not product proof",
+              "not answer-quality scoring",
+              "not automatic labeling",
+              "not agent approval"
+            ]
+          }
+        },
+        "case_summary": {
+          "pr83_net_decision_read_candidate": "material_improvement_candidate",
+          "pr76_comparison": {
+            "pr76_net_decision_read_candidate": "material_improvement_candidate",
+            "net_candidate_changed_from_pr76": false,
+            "discipline_delta": "same net candidate, stricter interpretation adequacy and clearer lost-value caveat"
+          },
+          "lost_value_concern": true,
+          "interpretation_adequacy_concern": true
+        }
+      },
+      {
+        "case_id": "accept-operations-role-startup",
+        "archive_relpath": "accept-operations-role-startup/20260627T132700Z_bae7f3",
+        "input_packet_ref": "reviews/codex-assisted/product-delta-specialist-packets-v0/packets.json#/cases/1",
+        "prior_broad_read_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/1",
+        "source_refs": [
+          {
+            "artifact_ref": "reviews/codex-assisted/product-delta-specialist-packets-v0/packets.json#/cases/1",
+            "source_status": "explicit",
+            "note": "PR81 checked-in packet scaffold."
+          },
+          {
+            "artifact_ref": "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/1",
+            "source_status": "explicit",
+            "note": "PR76 broad provisional read, used as prior context only."
+          },
+          {
+            "artifact_ref": "reviews/human/corpus-batch-v0/review.json#/records/1",
+            "source_status": "explicit",
+            "note": "Historical PR33 review-safe summary, not new PR83 human validation."
+          }
+        ],
+        "known_limits": [
+          "checked-in safe packet excludes raw transcript, raw revised answer, raw memo, provider text, and private reasoning",
+          "evaluation_overall_warn",
+          "caller_readiness_inspect_first",
+          "artifact_sufficiency_caveat",
+          "household capacity and ambition balance are compressed in checked-in safe context"
+        ],
+        "prior_broad_read": {
+          "net_decision_read_candidate": "material_improvement_candidate",
+          "interpretation_adequacy": "partly_adequate",
+          "lost_value_present": true
+        },
+        "specialist_reads": {
+          "conversation_interpretation": {
+            "read_status": "provisional_candidate",
+            "source_status": "inferred",
+            "source_refs": [
+              "reviews/human/corpus-batch-v0/review.json#/records/1",
+              "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/1"
+            ],
+            "decision_question": {
+              "status": "inferred",
+              "summary": "Whether to accept or choose between a current operations role and a startup path."
+            },
+            "live_options": [
+              "Choose the current role.",
+              "Choose the startup path.",
+              "Require both paths to produce written terms and capacity evidence before choosing."
+            ],
+            "option_status": {
+              "current_role": "active_or_unclear",
+              "startup_path": "active_or_unclear",
+              "defer_until_written_terms": "explicit_in_review_safe_summary"
+            },
+            "constraints": [
+              "written operating terms",
+              "deadline pressure",
+              "household capacity",
+              "career ambition",
+              "perceived authority"
+            ],
+            "stakeholders": [
+              "user",
+              "startup or current-company leadership",
+              "household or family affected by capacity cost"
+            ],
+            "values_or_priorities": [
+              "ambition",
+              "safety",
+              "authority",
+              "capacity protection",
+              "momentum"
+            ],
+            "assistant_influence": {
+              "status": "unclear",
+              "summary": "Checked-in safe context does not show whether status, safety, or ambition framing came from the user or vanilla assistant."
+            },
+            "dropped_threads": [
+              "Whether ambition was user-owned enough to tolerate less process.",
+              "Whether the original answer already required written terms."
+            ],
+            "unresolved_questions": [
+              "Were the deadlines proportionate?",
+              "Could written gates cool a useful career move?"
+            ],
+            "field_status": "partly_inferred_from_review_safe_sources",
+            "uncertainty_notes": [
+              "The raw conversation is not included.",
+              "Values and household constraints are especially compressed."
+            ],
+            "what_would_make_this_wrong": [
+              "Raw vanilla answer already made written terms and household capacity decisive.",
+              "Raw conversation shows the user did not value ambition or speed in this choice."
+            ],
+            "required_non_claims": [
+              "not human review",
+              "not ground truth",
+              "not judge calibration data",
+              "not product proof",
+              "not answer-quality scoring",
+              "not automatic labeling",
+              "not agent approval"
+            ]
+          },
+          "vanilla_likely_next_action": {
+            "read_status": "provisional_candidate",
+            "source_status": "inferred",
+            "source_refs": [
+              "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/1"
+            ],
+            "likely_next_action": "Choose between the current role and startup path based on resonance, safety, and perceived authority.",
+            "action_source_status": "inferred",
+            "explicit_or_inferred": "inferred",
+            "alternative_plausible_actions": [
+              "The vanilla answer may already have required written operating terms.",
+              "The user may have been leaning toward one path regardless of assistant framing."
+            ],
+            "uncertainty_notes": [
+              "PR76 marked the vanilla likely action as inferred.",
+              "Checked-in safe context does not preserve the vanilla answer text."
+            ],
+            "what_would_make_this_wrong": [
+              "Raw vanilla answer already imposed written-term gates.",
+              "Human review finds the user was not close to choosing and was already in evidence-gathering mode."
+            ],
+            "required_non_claims": [
+              "not human review",
+              "not ground truth",
+              "not judge calibration data",
+              "not product proof",
+              "not answer-quality scoring",
+              "not automatic labeling",
+              "not agent approval"
+            ]
+          },
+          "lolla_likely_next_action": {
+            "read_status": "provisional_candidate",
+            "source_status": "inferred",
+            "source_refs": [
+              "reviews/human/corpus-batch-v0/review.json#/records/1",
+              "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/1"
+            ],
+            "likely_next_action": "Require both paths to produce written operating terms and capacity evidence before choosing.",
+            "action_source_status": "inferred",
+            "explicit_or_inferred": "inferred_from_review_safe_summary",
+            "alternative_plausible_actions": [
+              "Use written terms as one input but still choose quickly.",
+              "Reject one path if it cannot produce terms by the deadline."
+            ],
+            "uncertainty_notes": [
+              "The raw revised answer is not copied into this fixture.",
+              "The proportionality of the written gates is not knowable from PR81 packets alone."
+            ],
+            "what_would_make_this_wrong": [
+              "Raw revised answer is less strict about terms than the safe summaries imply.",
+              "Human review finds written terms are impractical before the actual decision deadline."
+            ],
+            "required_non_claims": [
+              "not human review",
+              "not ground truth",
+              "not judge calibration data",
+              "not product proof",
+              "not answer-quality scoring",
+              "not automatic labeling",
+              "not agent approval"
+            ]
+          },
+          "structural_delta": {
+            "read_status": "provisional_candidate",
+            "source_status": "inferred",
+            "source_refs": [
+              "reviews/human/corpus-batch-v0/review.json#/records/1",
+              "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/1"
+            ],
+            "action_changed": {
+              "status": "partial_candidate",
+              "description": "The user may still choose between the same paths, but the immediate action changes toward requiring proof first."
+            },
+            "threshold_changed": {
+              "status": "present_candidate",
+              "description": "Both paths must pass written operating and capacity tests."
+            },
+            "sequence_changed": {
+              "status": "unclear",
+              "description": "The sequence may change from choose-then-negotiate to terms-before-commitment, but source detail is compressed."
+            },
+            "evidence_gate_added_or_changed": {
+              "status": "present_candidate",
+              "description": "Capacity and operating evidence become gates."
+            },
+            "stop_rule_added_or_changed": {
+              "status": "absent_candidate",
+              "description": "No stop rule is visible in the checked-in summaries."
+            },
+            "scope_changed": {
+              "status": "unclear",
+              "description": "Scope of the role may be bounded by written terms, but this is not directly visible."
+            },
+            "stakeholder_treatment_changed": {
+              "status": "present_candidate",
+              "description": "Household capacity becomes part of the decision surface."
+            },
+            "user_answerable_question_added": {
+              "status": "present_candidate",
+              "description": "The user must answer whether terms and capacity are sufficient before choosing."
+            },
+            "overclaim_retracted": {
+              "status": "present_candidate",
+              "description": "The broad resonance of the career choice becomes necessary but insufficient."
+            },
+            "reversibility_or_bounding_changed": {
+              "status": "partial_candidate",
+              "description": "Written terms bound commitment but may not create a true reversal path."
+            },
+            "uncertainty_notes": [
+              "The structural fields are strongly suggested by PR33/PR76, but raw wording is absent.",
+              "Action changed is weaker than threshold/written-term changes."
+            ],
+            "what_would_make_this_wrong": [
+              "Vanilla already required the same written gates.",
+              "The revised written gates are advisory only and not action-changing."
+            ],
+            "required_non_claims": [
+              "not human review",
+              "not ground truth",
+              "not judge calibration data",
+              "not product proof",
+              "not answer-quality scoring",
+              "not automatic labeling",
+              "not agent approval"
+            ]
+          },
+          "friction_lost_value": {
+            "read_status": "provisional_candidate",
+            "source_status": "inferred",
+            "source_refs": [
+              "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/1"
+            ],
+            "useful_friction": {
+              "status": "present_candidate",
+              "rationale": "Written terms and capacity evidence are actionable gates."
+            },
+            "noisy_friction": {
+              "status": "partial_candidate",
+              "rationale": "The same gates may become over-process if they cool useful ambition or cannot be obtained before the decision."
+            },
+            "lost_value": {
+              "present": true,
+              "categories": [
+                "momentum",
+                "courage",
+                "user_specific_ambition"
+              ],
+              "rationale": "The revised gates may protect the user but could dilute a meaningful career appetite."
+            },
+            "overcorrection_risk": "present_candidate",
+            "momentum_or_simplicity_loss": "present_candidate",
+            "generic_prudence_substitution": "partial_candidate",
+            "decision_burden_added": "present_candidate",
+            "uncertainty_notes": [
+              "The specialist split raises lost value more forcefully than the net PR76 label.",
+              "A human should decide whether the gates are proportionate."
+            ],
+            "what_would_make_this_wrong": [
+              "The user explicitly wanted slow written gates more than speed or ambition.",
+              "The opportunity was unsafe without the gates."
+            ],
+            "required_non_claims": [
+              "not human review",
+              "not ground truth",
+              "not judge calibration data",
+              "not product proof",
+              "not answer-quality scoring",
+              "not automatic labeling",
+              "not agent approval"
+            ]
+          },
+          "interpretation_adequacy": {
+            "read_status": "provisional_candidate",
+            "source_status": "inferred",
+            "source_refs": [
+              "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/1",
+              "reviews/codex-assisted/product-delta-specialist-packets-v0/packets.json#/cases/1"
+            ],
+            "decision_question_drift": "unclear",
+            "option_loss": "unclear",
+            "constraint_flattening": "present_candidate",
+            "stakeholder_erasure": "unclear",
+            "value_overwrite": "present_candidate",
+            "transient_emotion_hardening": "unclear",
+            "assistant_influence_blindness": "unclear",
+            "false_consensus": "unclear",
+            "dropped_thread_blindness": "unclear",
+            "quote_or_grounding_misread": "not_reviewed",
+            "uncertainty_collapse": "partial_candidate",
+            "risk_mode_mismatch": "not_reviewed",
+            "overall_interpretation_adequacy": "partly_adequate_candidate",
+            "rationale": "The safe summaries support the written-gate read but do not preserve enough values and household context to decide whether ambition was protected or overwritten.",
+            "uncertainty_notes": [
+              "This aligns with PR76 partly adequate interpretation but gives the concern more weight in fan-in.",
+              "Assistant influence and user-owned ambition are not visible enough in checked-in safe mode."
+            ],
+            "what_would_make_this_wrong": [
+              "Raw conversation shows the user explicitly prioritized household capacity over ambition.",
+              "Raw vanilla and revised answers show no value overwrite or constraint flattening."
+            ],
+            "required_non_claims": [
+              "not human review",
+              "not ground truth",
+              "not judge calibration data",
+              "not product proof",
+              "not answer-quality scoring",
+              "not automatic labeling",
+              "not agent approval"
+            ]
+          },
+          "advisory_overclaim": {
+            "read_status": "provisional_candidate",
+            "source_status": "explicit",
+            "source_refs": [
+              "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/1",
+              "docs/evals/codex-assisted-product-delta-batch-v0.md"
+            ],
+            "overclaim_risks": [
+              "Treating written-term gates as automatically material without checking ambition and proportion.",
+              "Treating historical PR33 pass status as new PR83 validation.",
+              "Reading material candidate as improvement proof."
+            ],
+            "language_to_soften": [
+              "Say partial improvement candidate when lost value and value overwrite remain live.",
+              "Describe written gates as candidate leverage, not validated improvement."
+            ],
+            "missing_non_claims": [],
+            "advisory_only": true,
+            "requires_pr78_lint": true,
+            "uncertainty_notes": [
+              "The PR83 downgrade reduces overclaim risk.",
+              "The doc should still call out the tiny two-case positive fixture risk."
+            ],
+            "what_would_make_this_wrong": [
+              "Future report presents the downgrade as a validated negative label rather than a provisional caution."
+            ],
+            "required_non_claims": [
+              "not human review",
+              "not ground truth",
+              "not judge calibration data",
+              "not product proof",
+              "not answer-quality scoring",
+              "not automatic labeling",
+              "not agent approval"
+            ]
+          },
+          "conservative_fan_in": {
+            "read_status": "provisional_candidate",
+            "source_status": "inferred",
+            "source_refs": [
+              "reviews/codex-assisted/product-delta-specialist-packets-v0/packets.json#/cases/1",
+              "reviews/codex-assisted/product-delta-batch-v0/review.json#/cases/1",
+              "reviews/human/corpus-batch-v0/review.json#/records/1"
+            ],
+            "specialist_agreements": [
+              "Written-term, threshold, and evidence-gate deltas are visible from review-safe summaries.",
+              "Lost value is present and material to the review.",
+              "Interpretation adequacy is only partly adequate from checked-in safe context."
+            ],
+            "specialist_disagreements": [
+              "Structural delta reads strong, while friction/lost-value and interpretation reads warn against a material net claim.",
+              "PR76 called the net read material; PR83 fan-in downgrades to partial because decision leverage depends on proportion and values."
+            ],
+            "downgraded_fields": [
+              {
+                "field": "net_decision_read_candidate",
+                "from": "material_improvement_candidate",
+                "to": "partial_improvement_candidate",
+                "reason": "Lost value, value-overwrite risk, and gate proportion remain unresolved."
+              }
+            ],
+            "high_uncertainty_fields": [
+              "vanilla_likely_next_action",
+              "value_overwrite",
+              "assistant_influence",
+              "written_gate_proportion"
+            ],
+            "human_review_priorities": [
+              "Check whether vanilla already required written operating terms.",
+              "Decide whether the revised gates protected or diluted the user's ambition.",
+              "Check whether deadlines and household-capacity tests were proportionate."
+            ],
+            "net_decision_read_candidate": "partial_improvement_candidate",
+            "why_not_stronger": "The structural delta is real, but the specialist split exposes unresolved lost value and values/constraint interpretation concerns that make material improvement too strong without human review.",
+            "what_would_change_this_read": [
+              "Upgrade if raw context shows vanilla lacked any comparable gates and the user valued capacity protection over speed.",
+              "Downgrade to no material change if vanilla already required written terms.",
+              "Downgrade toward added noise if the written gates are impractical or mainly bury ambition."
+            ],
+            "uncertainty_notes": [
+              "This is the clearest PR83 downgrade from the broad PR76 read.",
+              "No majority vote or aggregate confidence was used."
+            ],
+            "non_claims": [
+              "not human review",
+              "not ground truth",
+              "not judge calibration data",
+              "not product proof",
+              "not answer-quality scoring",
+              "not automatic labeling",
+              "not agent approval"
+            ],
+            "what_would_make_this_wrong": [
+              "Human review confirms the written gates were decisive, new, and proportionate."
+            ],
+            "required_non_claims": [
+              "not human review",
+              "not ground truth",
+              "not judge calibration data",
+              "not product proof",
+              "not answer-quality scoring",
+              "not automatic labeling",
+              "not agent approval"
+            ]
+          }
+        },
+        "case_summary": {
+          "pr83_net_decision_read_candidate": "partial_improvement_candidate",
+          "pr76_comparison": {
+            "pr76_net_decision_read_candidate": "material_improvement_candidate",
+            "net_candidate_changed_from_pr76": true,
+            "discipline_delta": "downgraded from material to partial because specialist decomposition preserves lost value and value/constraint concerns"
+          },
+          "lost_value_concern": true,
+          "interpretation_adequacy_concern": true
+        }
+      }
+    ]
+  },
+  "summary": {
+    "trap_behavior_counts": {
+      "met_expected_behavior": 8,
+      "partly_met_expected_behavior": 2,
+      "missed_expected_behavior": 0,
+      "inconclusive": 0
+    },
+    "real_case_count": 2,
+    "real_case_net_decision_candidate_counts": {
+      "material_improvement_candidate": 1,
+      "partial_improvement_candidate": 1,
+      "no_material_change_candidate": 0,
+      "lolla_added_noise_candidate": 0,
+      "lolla_worse_candidate": 0,
+      "inconclusive": 0,
+      "not_reviewed": 0
+    },
+    "lost_value_concern_count": 2,
+    "interpretation_adequacy_concern_count": 2,
+    "pr76_broad_read_downgrade_count": 1,
+    "cases_downgraded_from_pr76": [
+      "accept-operations-role-startup"
+    ],
+    "no_change_noise_worse_or_inconclusive_real_case_count": 0,
+    "positive_distribution_risk_acknowledged": true,
+    "discipline_caution_signals": {
+      "trap_partly_met_count": 2,
+      "real_case_downgraded_pr76_broad_reads": 1,
+      "real_cases_with_lost_value": 2,
+      "real_cases_with_interpretation_concerns": 2
+    },
+    "pr78_lint_result": {
+      "status": "passed",
+      "blocking_error_count": 0,
+      "warning_count": 0,
+      "info_count": 0,
+      "checked_artifacts": [
+        "docs/evals/codex-assisted-specialist-review-batch-v0.md",
+        "reviews/codex-assisted/specialist-review-batch-v0/review.json"
+      ],
+      "meaning": "Evidence-boundary lint passed for PR83 artifacts; this is boundary hygiene, not semantic validation or product proof."
+    }
+  },
+  "non_claims": [
+    "not human review",
+    "not ground truth",
+    "not judge calibration data",
+    "not product proof",
+    "not answer-quality scoring",
+    "not automatic labeling",
+    "not runtime integration",
+    "not agent approval",
+    "not evidence that Lolla improves decisions"
+  ],
+  "limitations": [
+    "Only two real cases were reviewed because PR83 uses the compact PR81 checked-in packet fixture.",
+    "Both real cases came from prior positive review-safe context, so absence of noisy, worse, no-change, or inconclusive real-case reads is a selection risk.",
+    "PR83 did not read raw transcripts, raw revised answers, raw memos, provider text, private reasoning, or archive payloads.",
+    "Trap behavior is synthetic contract expectation checking, not human-labeled eval performance.",
+    "PR76 broad reads were used as prior context only and may bias PR83 toward agreement.",
+    "Human review is still required to validate, correct, or reject every semantic read."
+  ],
+  "next_human_review_priorities": [
+    "Inspect whether CEO/cofounder vanilla guidance already contained authority transfer and stop conditions.",
+    "Inspect whether operations-role vanilla guidance already required written operating terms.",
+    "Check whether PR83's downgrade of accept-operations-role-startup is too cautious or appropriately disciplined.",
+    "Review whether specialist decomposition catches assistant influence and value overwrite better than PR76.",
+    "Confirm whether future PR84 fan-in preserves disagreements instead of smoothing them into a net candidate."
+  ]
+}

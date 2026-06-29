@@ -130,6 +130,22 @@ The detailed docs are split so agents and humans do not have to load one giant f
 | [Evaluation Methodology](docs/lolla-evaluation-methodology.md) | Lolla-specific eval doctrine: error analysis first, deterministic gates before judges, calibrated binary judges, and how to avoid rewarding smoothness over useful friction. |
 | [Evaluation Flywheel Action Plan](docs/evals/evaluation-flywheel-action-plan-v0.md) | The current action map for turning real traces into human labels, fixtures, deterministic checks, and later calibrated binary judges without drifting into generic scoring. |
 | [Current System Capabilities](docs/evals/current-system-capabilities-v0.md) | A plain-language map of what the current system can do, which recorded cases show it, how the layers work together, and how it helps us avoid brittle evaluation. |
+| [Product Delta Evidence And Interpretation Adequacy](docs/evals/product-delta-evidence-and-interpretation-adequacy-v0.md) | The post-PR70 product-readiness bridge: prove decision-useful deltas against actual vanilla strong-model conversations, and treat conversation interpretation quality as load-bearing. |
+| [Product Delta Evidence Thesis](docs/evals/product-delta-evidence-thesis-v0.md) | PR71's docs-only thesis for the lower-claim Product Delta Evidence phase: Codex-assisted provisional review scaffolding, not human validation, product proof, scoring, judging, or agent approval. |
+| [Vanilla-vs-Lolla Provisional Review Protocol](docs/evals/vanilla-vs-lolla-provisional-review-protocol-v0.md) | PR72's protocol and schema for comparing actual vanilla strong-model advice with Lolla revised answers while keeping all subjective findings provisional. |
+| [Codex-Assisted Paired Review Dry Run](docs/evals/codex-assisted-paired-review-dry-run-v0.md) | PR73's eight-case paraphrase-only dry run of the provisional protocol over existing safe artifacts, including an inconclusive case and human follow-up questions. |
+| [Provisional Product Delta Failure Taxonomy](docs/evals/provisional-product-delta-failure-taxonomy-v0.md) | PR74's provisional taxonomy for product-delta, interpretation, and review-process failures, explicitly not automatic labels, judge calibration data, scoring, or product proof. |
+| [Product Delta Eval Readiness And Provisional Run](docs/evals/product-delta-eval-readiness-and-provisional-run-v0.md) | PR75's read-only generated report over 14 existing cases: 12 ready for Codex provisional review, one private-content-only partial, and one degraded-run block, with PR72-shaped shells and no semantic judgment. |
+| [Codex-Assisted Product Delta Batch](docs/evals/codex-assisted-product-delta-batch-v0.md) | PR76's Codex-assisted provisional semantic fill over the 12 PR75-ready shells, with mixed candidate reads, lost-value notes, interpretation-adequacy caveats, and no human-validation claim. |
+| [Product Delta Provisional Report](docs/evals/product-delta-provisional-report-v0.md) | PR77's state-of-evidence report over PR75 and PR76: 14 readiness cases, 12 provisional semantic reads, recurring structural deltas, lost-value risks, interpretation concerns, and explicit non-proof boundaries. |
+| [Product Delta Evidence Boundary Lint](docs/evals/product-delta-evidence-boundary-lint-v0.md) | PR78's deterministic read-only lint for Product Delta artifacts: blocks metadata, field, taxonomy, privacy, and non-claim drift without judging answer quality or touching runtime. |
+| [Context-Engineered Provisional Review Architecture](docs/evals/context-engineered-provisional-review-architecture-v0.md) | PR79's docs-only architecture for future bounded specialist reads: decompose LLM-assisted interpretation, preserve disagreement, pass PR78 lint, and avoid judges, scores, runtime integration, and agent approval. |
+| [Product Delta Specialist Review Contracts](docs/evals/product-delta-specialist-review-contracts-v0.md) | PR80's docs/schema contracts for the bounded specialist reads named in PR79, with typed lower-claim outputs and no packet builder, review batch, fan-in execution, scoring, judging, or runtime integration. |
+| [Product Delta Specialist Packet Builder](docs/evals/product-delta-specialist-packet-builder-v0.md) | PR81's read-only packet builder for creating checked-in-safe per-specialist input packets from existing Product Delta artifacts, with no specialist answers, model calls, archive mutation, scoring, judging, or runtime integration. |
+| [Provisional Reviewer Trap Set](docs/evals/provisional-reviewer-trap-set-v0.md) | PR82's checked-in-safe trap fixtures for testing whether future specialist review resists thin context, length bias, caution theater, lost value, disagreement smoothing, and overclaim hardening before real specialist batches. |
+| [Codex-Assisted Specialist Review Batch](docs/evals/codex-assisted-specialist-review-batch-v0.md) | PR83's first provisional specialist-review batch: trap discipline plus two checked-in-safe real cases, including one downgrade from PR76 material to partial, with no human-validation or product-proof claim. |
+| [Product Delta Fan-In / Disagreement Report](docs/evals/product-delta-fan-in-disagreement-report-v0.md) | PR84's static provisional report over PR76 and PR83: preserves the one PR83 downgrade, both lost-value and interpretation-adequacy concern surfaces, trap behavior counts, and thinness limits without adding new semantic reads. |
+| [Product Delta PR71-PR84 Packaging Gate](docs/evals/product-delta-pr71-pr84-packaging-gate-v0.md) | PR85's packaging gate for the Product Delta Evidence phase: manifest PR71-PR84 files, verify boundary metadata/source refs/lint coverage, and make the downgrade plus two-case thinness easy to inspect before explicit packaging. |
 | [Current State Anti-Drift Handoff](docs/evals/current-state-anti-drift-handoff-v0.md) | PR45's compact fresh-session map, updated by PR70, of the PR30-PR70 eval/accountability chain, current corpus evidence, non-goals, and the next approval gates. |
 | [Semantica-Inspired Accountability PRD](docs/conversation-understanding/semantica-inspired-accountability-prd-v0.md) | PR55's docs-only plan for borrowing accountability primitives such as decision records, provenance maps, conflict registers, doctor/preflight, and case graph views without building graph DB, embeddings, memory, policy, compliance, judge, or scoring products. |
 | [Lolla Doctor / Preflight Plan](docs/evals/lolla-doctor-preflight-plan-v0.md) | PR56's docs-only plan for a future read-only doctor command that checks local runtime wiring, archive paths, helper scripts, provider/cost readiness, review manifests, high-stakes evidence visibility, output-path safety, and privacy without running `$lolla`, calling models, or mutating archives. |
@@ -287,3 +303,59 @@ The detailed docs are split so agents and humans do not have to load one giant f
   to Product Delta Evidence: testing whether Lolla changes actual strong-model
   conversations in decision-useful ways without confusing caution, structure,
   or artifact cleanliness for truth.
+- PR71-PR74 add the Codex-assisted provisional scaffold for that phase:
+  thesis, protocol/schema, dry-run packet, and provisional failure taxonomy.
+  These are scaffolding for later human review, not human validation, product
+  proof, judge calibration data, scoring, automatic labels, or agent approval.
+- PR75 turns the scaffold into a runnable read-only eval lane. It checks 14
+  existing cases for Product Delta Evidence readiness and emits PR72-shaped
+  shells without reading raw transcript/memo/revised-answer content, calling
+  models, mutating archives, or making semantic product judgments.
+- PR76 fills the 12 ready shells with Codex-assisted provisional semantic
+  reads. The batch is intentionally mixed: material, partial, no-material, and
+  inconclusive candidate reads all remain non-human, non-ground-truth, and
+  non-product-proof.
+- PR77 summarizes PR75 and PR76 as one provisional state-of-evidence package:
+  the eval lane can run and carry candidate reads, but the package is still not
+  human validation, product proof, judge calibration data, scoring, runtime
+  integration, or agent approval.
+- PR78 adds deterministic Product Delta boundary lint. It checks supplied
+  Product Delta JSON/Markdown artifacts for overclaim drift, unsafe metadata,
+  forbidden authority fields, taxonomy score drift, and privacy markers without
+  running `$lolla`, calling models, mutating archives, or judging answer
+  quality.
+- PR79 defines the context-engineered provisional review architecture for the
+  next eval-lane phase. It rejects a broad LLM judge, keeps future specialist
+  reads downstream/offline, requires PR78 lint, and preserves disagreement,
+  uncertainty, missingness, and non-claims without adding schemas, packet
+  builders, model calls, runtime integration, or scoring.
+- PR80 adds typed Product Delta specialist review contracts as docs/schema
+  only. It defines the future conversation-interpretation, likely-action,
+  structural-delta, friction/lost-value, interpretation-adequacy, overclaim,
+  and conservative fan-in output shapes without creating packets, calling
+  models, running review, mutating archives, or changing runtime.
+- PR81 adds a read-only Product Delta specialist packet builder. It creates
+  checked-in-safe per-specialist input packets for two fixture cases and a CLI
+  for generating more from existing eval artifacts; it does not fill specialist
+  answers, call models, mutate archives, change runtime, score advice, create
+  labels, or authorize agent action.
+- PR82 adds a checked-in-safe provisional reviewer trap set before any real
+  specialist batch. The traps test whether future specialist review resists
+  thin context, length bias, caution without leverage, repeated vanilla gates,
+  lost live options, generic prudence over user ambition, assistant-influence
+  blindness, disagreement smoothing, clean-artifact authority leakage, and
+  hardened provisional language.
+- PR83 runs the first Codex-assisted specialist-review batch. It checks all
+  PR82 trap families, fills specialist reads for the two PR81 packet-fixture
+  cases, downgrades one PR76 material candidate to partial, and keeps the
+  output provisional, checked-in safe, linted, non-human, non-scoring,
+  non-runtime, and non-authoritative.
+- PR84 adds the Fan-In / Disagreement Report v0 as a static checked-in report
+  over PR76 and PR83. It does not create new specialist reads; it preserves
+  the one PR83 downgrade, both lost-value and interpretation-adequacy concern
+  surfaces, and the remaining positive-distribution risk for later human
+  review.
+- PR85 adds the Product Delta PR71-PR84 Packaging Gate v0. It creates a
+  package manifest and tests that the Product Delta phase is internally
+  coherent, source-reference resolvable, PR78-linted, and still lower-claim.
+  It does not expand evidence or add runtime behavior.

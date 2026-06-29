@@ -1,0 +1,294 @@
+{
+  "schema_version": "lolla.product_delta_fan_in_disagreement_report.v0",
+  "report_mode": "codex_assisted_provisional_report",
+  "slice": "PR84 Fan-In / Disagreement Report v0",
+  "created_date": "2026-06-29",
+  "boundary": {
+    "human_validated": false,
+    "ground_truth": false,
+    "judge_calibration_eligible": false,
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "model_calls": 0,
+    "archive_mutated": false,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "raw_private_content_included": false,
+    "automatic_labels_created": false
+  },
+  "input_refs": {
+    "pr76_broad_batch_json": "reviews/codex-assisted/product-delta-batch-v0/review.json",
+    "pr76_broad_batch_doc": "docs/evals/codex-assisted-product-delta-batch-v0.md",
+    "pr83_specialist_batch_json": "reviews/codex-assisted/specialist-review-batch-v0/review.json",
+    "pr83_specialist_batch_doc": "docs/evals/codex-assisted-specialist-review-batch-v0.md",
+    "pr82_trap_json": "docs/evals/provisional-reviewer-trap-set-v0.json",
+    "pr82_trap_doc": "docs/evals/provisional-reviewer-trap-set-v0.md",
+    "pr78_boundary_lint_doc": "docs/evals/product-delta-evidence-boundary-lint-v0.md"
+  },
+  "method": {
+    "central_question": "What did specialist decomposition make more visible compared with the broad PR76 semantic fill?",
+    "report_type": "deterministic static report over existing checked-in PR76 and PR83 artifacts",
+    "new_specialist_reads_created": false,
+    "new_codex_review_created": false,
+    "semantic_read_source": "pr83_existing_review_only",
+    "comparison_policy": [
+      "Use PR83's recorded comparison to PR76 rather than creating new semantic reads.",
+      "Preserve specialist disagreement, uncertainty, lost value, and interpretation-adequacy caveats.",
+      "Treat PR76 broad reads as source context, not truth.",
+      "Do not turn the comparison into a benchmark, verdict, scorecard, product proof, or automatic label."
+    ]
+  },
+  "comparison_scope": {
+    "pr76_source_artifact": "reviews/codex-assisted/product-delta-batch-v0/review.json",
+    "pr83_source_artifact": "reviews/codex-assisted/specialist-review-batch-v0/review.json",
+    "pr83_shape_paths_used": {
+      "trap_records": "trap_discipline_pass.results",
+      "pr76_comparison": "real_case_specialist_pass.cases[*].case_summary.pr76_comparison",
+      "pr83_net_read": "real_case_specialist_pass.cases[*].case_summary.pr83_net_decision_read_candidate",
+      "specialist_reads": "real_case_specialist_pass.cases[*].specialist_reads",
+      "conservative_fan_in": "real_case_specialist_pass.cases[*].specialist_reads.conservative_fan_in",
+      "lost_value": "real_case_specialist_pass.cases[*].specialist_reads.friction_lost_value.lost_value",
+      "interpretation_adequacy": "real_case_specialist_pass.cases[*].specialist_reads.interpretation_adequacy.overall_interpretation_adequacy"
+    },
+    "real_case_count": 2,
+    "real_cases_compared": [
+      "ceo-remove-founding-cofounder",
+      "accept-operations-role-startup"
+    ],
+    "trap_family_count": 10,
+    "trap_families_summarized": [
+      "thin_context_should_stay_inconclusive",
+      "longer_revised_no_action_change",
+      "caution_without_decision_leverage",
+      "gate_already_present_in_vanilla",
+      "lost_live_option",
+      "ambition_buried_by_generic_prudence",
+      "assistant_influence_blindness",
+      "specialist_disagreement_must_survive",
+      "clean_artifact_not_quality_proof",
+      "provisional_language_hardening"
+    ],
+    "scope_limits": [
+      "Only the two PR83 real cases are compared.",
+      "Trap behavior is summarized from PR83; PR84 does not re-review traps.",
+      "No raw transcript, raw revised answer, raw memo, archive-private content, or runtime output is read."
+    ]
+  },
+  "trap_discipline_summary": {
+    "source_path": "trap_discipline_pass.results",
+    "summary_name": "contract_expectation_behavior",
+    "trap_behavior_counts": {
+      "met_expected_behavior": 8,
+      "partly_met_expected_behavior": 2,
+      "missed_expected_behavior": 0,
+      "inconclusive": 0
+    },
+    "partial_trap_families": [
+      "ambition_buried_by_generic_prudence",
+      "assistant_influence_blindness"
+    ],
+    "interpretation": "These are trap behavior counts from PR83. They are not accuracy, a benchmark result, a product claim, or evidence that specialist agreement is correctness."
+  },
+  "case_comparisons": [
+    {
+      "case_id": "ceo-remove-founding-cofounder",
+      "pr76_net_decision_read_candidate": "material_improvement_candidate",
+      "pr83_net_decision_read_candidate": "material_improvement_candidate",
+      "net_candidate_changed_from_pr76": false,
+      "discipline_delta": "same net candidate, stricter interpretation adequacy and clearer lost-value caveat",
+      "specialist_disagreements": [
+        "PR76 broad read called interpretation adequate; PR83 specialist read downgrades reviewability to partly adequate because raw conversation context is absent.",
+        "Strong structural delta conflicts with unresolved simplicity and momentum loss."
+      ],
+      "downgraded_fields": [
+        {
+          "field": "interpretation_adequacy",
+          "from": "adequate",
+          "to": "partly_adequate_candidate",
+          "reason": "Checked-in safe mode does not expose raw conversation options or assistant influence."
+        }
+      ],
+      "high_uncertainty_fields": [
+        "vanilla_likely_next_action",
+        "assistant_influence",
+        "option_loss",
+        "lost_value_proportion"
+      ],
+      "lost_value_concern": true,
+      "lost_value_material": {
+        "present": true,
+        "categories": [
+          "simplicity",
+          "momentum"
+        ],
+        "rationale": "Moving authority first may reduce the emotional simplicity of a founder reset and make conflict harder sooner."
+      },
+      "interpretation_adequacy_concern": true,
+      "interpretation_adequacy_material": {
+        "overall_interpretation_adequacy": "partly_adequate_candidate",
+        "meaning_for_report": "The PR83 net candidate stays material, but PR84 preserves that the interpretation surface is thinner than PR76 made visible."
+      },
+      "human_review_priorities": [
+        "Confirm whether vanilla left authority transfer too conditional.",
+        "Check whether Lolla preserved enough trust while moving decision rights.",
+        "Decide whether early conflict is useful friction or avoidable lost momentum."
+      ],
+      "why_not_stronger": "The structural delta is strong, but vanilla likely action and interpretation adequacy remain inferred from safe summaries rather than raw conversation and revised-answer text.",
+      "what_would_change_this_read": [
+        "Downgrade to partial or inconclusive if vanilla already required immediate authority transfer with stop conditions.",
+        "Downgrade if raw context shows Lolla buried a live cooperation option.",
+        "Strengthen if raw context confirms vanilla authority ambiguity and operational stop rules are new."
+      ],
+      "source_refs": [
+        "reviews/codex-assisted/specialist-review-batch-v0/review.json#/real_case_specialist_pass/cases/0/case_summary/pr76_comparison",
+        "reviews/codex-assisted/specialist-review-batch-v0/review.json#/real_case_specialist_pass/cases/0/case_summary/pr83_net_decision_read_candidate",
+        "reviews/codex-assisted/specialist-review-batch-v0/review.json#/real_case_specialist_pass/cases/0/specialist_reads/conservative_fan_in",
+        "reviews/codex-assisted/specialist-review-batch-v0/review.json#/real_case_specialist_pass/cases/0/specialist_reads/friction_lost_value/lost_value",
+        "reviews/codex-assisted/specialist-review-batch-v0/review.json#/real_case_specialist_pass/cases/0/specialist_reads/interpretation_adequacy/overall_interpretation_adequacy"
+      ]
+    },
+    {
+      "case_id": "accept-operations-role-startup",
+      "pr76_net_decision_read_candidate": "material_improvement_candidate",
+      "pr83_net_decision_read_candidate": "partial_improvement_candidate",
+      "net_candidate_changed_from_pr76": true,
+      "discipline_delta": "downgraded from material to partial because specialist decomposition preserves lost value and value/constraint concerns",
+      "specialist_disagreements": [
+        "Structural delta reads strong, while friction/lost-value and interpretation reads warn against a material net claim.",
+        "PR76 called the net read material; PR83 fan-in downgrades to partial because decision leverage depends on proportion and values."
+      ],
+      "downgraded_fields": [
+        {
+          "field": "net_decision_read_candidate",
+          "from": "material_improvement_candidate",
+          "to": "partial_improvement_candidate",
+          "reason": "Lost value, value-overwrite risk, and gate proportion remain unresolved."
+        }
+      ],
+      "high_uncertainty_fields": [
+        "vanilla_likely_next_action",
+        "value_overwrite",
+        "assistant_influence",
+        "written_gate_proportion"
+      ],
+      "lost_value_concern": true,
+      "lost_value_material": {
+        "present": true,
+        "categories": [
+          "momentum",
+          "courage",
+          "user_specific_ambition"
+        ],
+        "rationale": "The revised gates may protect the user but could dilute a meaningful career appetite."
+      },
+      "interpretation_adequacy_concern": true,
+      "interpretation_adequacy_material": {
+        "overall_interpretation_adequacy": "partly_adequate_candidate",
+        "meaning_for_report": "The PR83 specialist split makes values, household constraints, and written-gate proportion load-bearing rather than background caveats."
+      },
+      "human_review_priorities": [
+        "Check whether vanilla already required written operating terms.",
+        "Decide whether the revised gates protected or diluted the user's ambition.",
+        "Check whether deadlines and household-capacity tests were proportionate."
+      ],
+      "why_not_stronger": "The structural delta is real, but the specialist split exposes unresolved lost value and values/constraint interpretation concerns that make material improvement too strong without human review.",
+      "what_would_change_this_read": [
+        "Upgrade if raw context shows vanilla lacked any comparable gates and the user valued capacity protection over speed.",
+        "Downgrade to no material change if vanilla already required written terms.",
+        "Downgrade toward added noise if the written gates are impractical or mainly bury ambition."
+      ],
+      "source_refs": [
+        "reviews/codex-assisted/specialist-review-batch-v0/review.json#/real_case_specialist_pass/cases/1/case_summary/pr76_comparison",
+        "reviews/codex-assisted/specialist-review-batch-v0/review.json#/real_case_specialist_pass/cases/1/case_summary/pr83_net_decision_read_candidate",
+        "reviews/codex-assisted/specialist-review-batch-v0/review.json#/real_case_specialist_pass/cases/1/specialist_reads/conservative_fan_in",
+        "reviews/codex-assisted/specialist-review-batch-v0/review.json#/real_case_specialist_pass/cases/1/specialist_reads/friction_lost_value/lost_value",
+        "reviews/codex-assisted/specialist-review-batch-v0/review.json#/real_case_specialist_pass/cases/1/specialist_reads/interpretation_adequacy/overall_interpretation_adequacy"
+      ]
+    }
+  ],
+  "cross_case_observations": {
+    "concrete_downgrade": {
+      "case_id": "accept-operations-role-startup",
+      "from": "material_improvement_candidate",
+      "to": "partial_improvement_candidate",
+      "meaning": "PR83 made the evidence more conservative in one real case."
+    },
+    "same_net_candidate_with_stricter_caveats": {
+      "case_id": "ceo-remove-founding-cofounder",
+      "candidate": "material_improvement_candidate",
+      "meaning": "The net candidate stayed the same, but PR83 made interpretation adequacy and lost-value uncertainty more explicit."
+    },
+    "lost_value_concern_cases": [
+      "ceo-remove-founding-cofounder",
+      "accept-operations-role-startup"
+    ],
+    "interpretation_adequacy_concern_cases": [
+      "ceo-remove-founding-cofounder",
+      "accept-operations-role-startup"
+    ],
+    "no_real_case_no_change_noise_worse_or_inconclusive": true,
+    "positive_distribution_risk_remains": true,
+    "pr76_broad_reads_used_as_source_context_not_truth": true,
+    "what_specialist_decomposition_made_more_visible": [
+      "One PR76 material-improvement candidate became a PR83 partial-improvement candidate.",
+      "Both real cases retained lost-value material inside the comparison rather than leaving it as prose texture.",
+      "Both real cases retained interpretation-adequacy concerns as first-class review material.",
+      "Human-review priorities became more concrete and more tied to what would change the read.",
+      "The absence of no-change, noise, worse, or inconclusive real-case outcomes remained visible as a selection risk."
+    ]
+  },
+  "thinness_and_selection_limits": {
+    "real_case_count": 2,
+    "fixture_source": "PR81 compact packet fixture",
+    "prior_positive_fixture_cases": true,
+    "no_real_case_no_change_noise_worse_or_inconclusive": true,
+    "positive_distribution_risk_acknowledged": true,
+    "pr33_historical_review_safe_context_only": true,
+    "no_raw_private_content_read": true,
+    "human_validation_available": false,
+    "limitations": [
+      "Two real cases are enough to inspect report shape, not enough to characterize product behavior.",
+      "Both cases had prior positive PR76 context, which may bias the comparison toward positive candidates.",
+      "PR84 does not decide whether PR76 or PR83 is right.",
+      "PR84 does not add new specialist evidence, new human validation, or new runtime evidence.",
+      "The real-case distribution still lacks no-material-change, added-noise, worse, and inconclusive outcomes."
+    ]
+  },
+  "human_review_priorities": [
+    {
+      "case_id": "ceo-remove-founding-cofounder",
+      "priorities": [
+        "Confirm whether vanilla left authority transfer too conditional.",
+        "Check whether Lolla preserved enough trust while moving decision rights.",
+        "Decide whether early conflict is useful friction or avoidable lost momentum."
+      ]
+    },
+    {
+      "case_id": "accept-operations-role-startup",
+      "priorities": [
+        "Check whether vanilla already required written operating terms.",
+        "Decide whether the revised gates protected or diluted the user's ambition.",
+        "Check whether deadlines and household-capacity tests were proportionate."
+      ]
+    }
+  ],
+  "non_claims": [
+    "PR84 is not human review.",
+    "PR84 is not ground truth.",
+    "PR84 is not judge calibration data.",
+    "PR84 is not product proof.",
+    "PR84 does not score answer quality.",
+    "PR84 does not decide that PR83 is correct.",
+    "PR84 does not decide that PR76 is wrong.",
+    "PR84 does not authorize agent action.",
+    "PR84 does not create automatic labels.",
+    "PR84 does not create new specialist reads.",
+    "PR84 does not invoke runtime, the Lolla skill, provider APIs, or archives."
+  ],
+  "next_step_recommendation": {
+    "recommended_action": "stop_and_package_pr71_pr84",
+    "rationale": "PR84 has made the existing PR76-to-PR83 tension easier to inspect without expanding the evidence surface. The next conservative step is packaging and cleanup rather than another evidence-expansion slice.",
+    "if_continuing": "PR85 should be a cleanup and packaging gate for PR71-PR84, with source-reference checks and documentation alignment, not a larger semantic-evidence batch."
+  }
+}

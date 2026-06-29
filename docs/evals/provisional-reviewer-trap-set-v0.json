@@ -1,0 +1,479 @@
+{
+  "schema_version": "lolla.provisional_reviewer_trap_set.v0",
+  "purpose": "Adversarial contract fixtures for testing Product Delta provisional specialist-review discipline before any real specialist review batch is run.",
+  "boundary": {
+    "human_validated": false,
+    "ground_truth": false,
+    "judge_calibration_eligible": false,
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "model_calls": 0,
+    "archive_mutated": false,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "raw_private_content_included": false,
+    "automatic_labels_created": false
+  },
+  "trap_policy": {
+    "review_capacity_mode": "codex_assisted_provisional",
+    "fixture_type": "contract_expectation",
+    "human_label_status": "unvalidated",
+    "content_mode": "checked_in_safe_mode",
+    "source_content_policy": "synthetic_or_paraphrase_only",
+    "raw_transcripts_included": false,
+    "raw_revised_answers_included": false,
+    "raw_memos_included": false,
+    "private_reasoning_included": false,
+    "local_absolute_paths_included": false,
+    "specialist_reads_filled": false,
+    "product_claims_allowed": false,
+    "intended_use": "Run or inspect these traps before applying specialist role-passes to real Product Delta cases.",
+    "expected_failure_response": "Repair the contract, packet shape, reviewer instruction, or fan-in design before treating real-case specialist outputs as useful provisional evidence."
+  },
+  "traps": [
+    {
+      "trap_id": "trap-thin-context-001",
+      "trap_name": "Thin Safe Context Should Stay Inconclusive",
+      "trap_family": "thin_context_should_stay_inconclusive",
+      "case_shape": "A founder is considering a beta launch, but the safe packet only says the original and revised answers existed and that the revised answer added conditions.",
+      "safe_context": {
+        "vanilla_surface": "Compressed paraphrase: launch question present; next action not preserved.",
+        "lolla_surface": "Compressed paraphrase: revised answer mentions conditions, but no condition detail is review-safe.",
+        "available_evidence": [
+          "case id",
+          "artifact presence",
+          "run health summary"
+        ],
+        "missing_evidence": [
+          "decision question detail",
+          "vanilla likely action basis",
+          "revised action detail",
+          "source-specific evidence gate text"
+        ]
+      },
+      "specialist_roles_targeted": [
+        "conversation_interpretation",
+        "vanilla_likely_next_action",
+        "lolla_likely_next_action",
+        "conservative_fan_in"
+      ],
+      "expected_provisional_behavior": {
+        "expected_candidate_behavior": [
+          "Mark the read blocked_thin_context, inconclusive, or needs_human_review.",
+          "Ask for more review-safe source context before comparing likely actions.",
+          "Preserve uncertainty rather than inferring material difference from artifact presence."
+        ],
+        "expected_packet_behavior": [
+          "Record missing context explicitly.",
+          "Do not populate specialist conclusions inside packet scaffolding."
+        ]
+      },
+      "forbidden_behavior": [
+        "Claiming material_improvement_candidate from artifact presence alone.",
+        "Inferring a useful evidence gate when the gate content is unavailable.",
+        "Treating complete run health as advice quality."
+      ],
+      "why_this_matters": "Safe summaries can be too compressed for Product Delta review. The disciplined response is to stop or downgrade, not to make the case look reviewable.",
+      "required_non_claims": [
+        "not human review",
+        "not ground truth",
+        "not judge calibration data",
+        "not product proof",
+        "not answer-quality scoring",
+        "not automatic labeling",
+        "not agent approval"
+      ],
+      "human_review_note": "A future human should inspect the raw conversation and revised answer before deciding whether any delta exists."
+    },
+    {
+      "trap_id": "trap-longer-no-action-002",
+      "trap_name": "Longer Revised Answer With No Action Change",
+      "trap_family": "longer_revised_no_action_change",
+      "case_shape": "The revised answer is longer and better organized, but the recommended next action, threshold, sequence, gate, and stop rule match the vanilla answer.",
+      "safe_context": {
+        "vanilla_surface": "Paraphrase: start the same two-week pilot next Monday after confirming one sponsor.",
+        "lolla_surface": "Paraphrase: start the same two-week pilot next Monday after confirming one sponsor, with more headings and caveats.",
+        "shared_elements": [
+          "same action",
+          "same start time",
+          "same sponsor condition",
+          "same two-week duration"
+        ],
+        "new_elements": [
+          "more structure",
+          "more explanatory prose"
+        ]
+      },
+      "specialist_roles_targeted": [
+        "vanilla_likely_next_action",
+        "lolla_likely_next_action",
+        "structural_delta",
+        "conservative_fan_in"
+      ],
+      "expected_provisional_behavior": {
+        "expected_candidate_behavior": [
+          "Prefer no_material_change_candidate or inconclusive unless a concrete changed unit is identified.",
+          "Record that length and organization are not structural delta by themselves.",
+          "Ask whether any threshold, sequence, scope, stop rule, or written term actually changed."
+        ]
+      },
+      "forbidden_behavior": [
+        "Crediting length, polish, or structure as material Product Delta evidence.",
+        "Treating a better-organized answer as decision leverage without action change."
+      ],
+      "why_this_matters": "A broad reviewer may over-credit fluent structure. Product Delta review cares about decision leverage, not prettier prose.",
+      "required_non_claims": [
+        "not human review",
+        "not ground truth",
+        "not judge calibration data",
+        "not product proof",
+        "not answer-quality scoring",
+        "not automatic labeling",
+        "not agent approval"
+      ],
+      "human_review_note": "A human should decide whether clarity alone mattered in the real context; the trap expects the provisional system not to assume that."
+    },
+    {
+      "trap_id": "trap-caution-no-leverage-003",
+      "trap_name": "Caution Without Decision Leverage",
+      "trap_family": "caution_without_decision_leverage",
+      "case_shape": "The revised answer adds caution, stakeholder process, and risk reminders, but no usable action, threshold, sequence, evidence gate, stop rule, or user-answerable question.",
+      "safe_context": {
+        "vanilla_surface": "Paraphrase: choose a small launch path and contact three named buyers this week.",
+        "lolla_surface": "Paraphrase: be careful, align stakeholders, consider downsides, and avoid moving too quickly.",
+        "missing_elements": [
+          "concrete threshold",
+          "operational evidence gate",
+          "stop rule",
+          "specific next sequence",
+          "user-answerable decision question"
+        ]
+      },
+      "specialist_roles_targeted": [
+        "structural_delta",
+        "friction_lost_value",
+        "conservative_fan_in"
+      ],
+      "expected_provisional_behavior": {
+        "expected_candidate_behavior": [
+          "Mark noisy_friction or partial improvement at most.",
+          "Record missing decision leverage.",
+          "Check for decision burden added without useful protection."
+        ]
+      },
+      "forbidden_behavior": [
+        "Treating caution or process language as useful friction without actionability.",
+        "Calling generic prudence a material improvement candidate."
+      ],
+      "why_this_matters": "Useful friction must be grounded, actionable, and proportionate. Caution without leverage can make an answer look responsible while making action harder.",
+      "required_non_claims": [
+        "not human review",
+        "not ground truth",
+        "not judge calibration data",
+        "not product proof",
+        "not answer-quality scoring",
+        "not automatic labeling",
+        "not agent approval"
+      ],
+      "human_review_note": "A future reviewer should ask whether the added caution changed a decision or merely raised ambient hesitation."
+    },
+    {
+      "trap_id": "trap-gate-already-present-004",
+      "trap_name": "Evidence Gate Already Present In Vanilla",
+      "trap_family": "gate_already_present_in_vanilla",
+      "case_shape": "The original answer already included the same evidence gate that the revised answer repeats.",
+      "safe_context": {
+        "vanilla_surface": "Paraphrase: do not build the feature until three paying prospects commit to a pilot.",
+        "lolla_surface": "Paraphrase: require three paying prospect commitments before building the feature.",
+        "shared_elements": [
+          "same evidence gate",
+          "same prospect count",
+          "same build condition"
+        ]
+      },
+      "specialist_roles_targeted": [
+        "vanilla_likely_next_action",
+        "lolla_likely_next_action",
+        "structural_delta",
+        "conservative_fan_in"
+      ],
+      "expected_provisional_behavior": {
+        "expected_candidate_behavior": [
+          "Do not credit Lolla with adding the gate.",
+          "Mark the evidence-gate delta absent, unclear, or unchanged.",
+          "Consider no_material_change_candidate if no other changed unit is present."
+        ]
+      },
+      "forbidden_behavior": [
+        "Counting repeated vanilla guidance as a Lolla-added structural delta.",
+        "Using a PR31-style actionable-delta count as a quality signal."
+      ],
+      "why_this_matters": "Product Delta review must compare against the actual vanilla baseline. Repetition is not an added gate.",
+      "required_non_claims": [
+        "not human review",
+        "not ground truth",
+        "not judge calibration data",
+        "not product proof",
+        "not answer-quality scoring",
+        "not automatic labeling",
+        "not agent approval"
+      ],
+      "human_review_note": "A human should verify whether Lolla changed the gate's precision or salience enough to matter, rather than assuming addition."
+    },
+    {
+      "trap_id": "trap-lost-live-option-005",
+      "trap_name": "Lost Live Option",
+      "trap_family": "lost_live_option",
+      "case_shape": "The user still cares about two live options, but the revised answer treats only one option as live and narrows the decision prematurely.",
+      "safe_context": {
+        "conversation_surface": "Paraphrase: the user is deciding between an enterprise pilot and a self-serve waitlist, and has not rejected either option.",
+        "lolla_surface": "Paraphrase: revised answer assumes the enterprise pilot is the only serious path.",
+        "preserved_uncertainty": [
+          "option status is still active or unclear",
+          "decision question may be narrower in revised answer than in conversation"
+        ]
+      },
+      "specialist_roles_targeted": [
+        "conversation_interpretation",
+        "interpretation_adequacy",
+        "friction_lost_value",
+        "conservative_fan_in"
+      ],
+      "expected_provisional_behavior": {
+        "expected_candidate_behavior": [
+          "Flag option_loss or decision_question_drift risk.",
+          "Record lost_value for discarded optionality.",
+          "Downgrade any positive net read until a human checks the live option."
+        ]
+      },
+      "forbidden_behavior": [
+        "Calling interpretation adequate while a live option disappears.",
+        "Treating focus as improvement without checking whether the user actually rejected the option."
+      ],
+      "why_this_matters": "Lolla can look sharper by narrowing. If narrowing drops a live option, the revised answer may be worse despite seeming decisive.",
+      "required_non_claims": [
+        "not human review",
+        "not ground truth",
+        "not judge calibration data",
+        "not product proof",
+        "not answer-quality scoring",
+        "not automatic labeling",
+        "not agent approval"
+      ],
+      "human_review_note": "A future reviewer should inspect whether the user had actually abandoned the missing option."
+    },
+    {
+      "trap_id": "trap-ambition-buried-006",
+      "trap_name": "Ambition Buried By Generic Prudence",
+      "trap_family": "ambition_buried_by_generic_prudence",
+      "case_shape": "The user's central value is speed, agency, or ambition in a narrow window, and the revised answer buries that value under generic caution.",
+      "safe_context": {
+        "conversation_surface": "Paraphrase: the user values a fast, agency-preserving move because a window may close soon.",
+        "vanilla_surface": "Paraphrase: act this week with a reversible test.",
+        "lolla_surface": "Paraphrase: wait for more alignment and defer action until risk is reduced in general terms.",
+        "possible_lost_value": [
+          "momentum",
+          "user-specific ambition",
+          "simplicity",
+          "courage",
+          "timing"
+        ]
+      },
+      "specialist_roles_targeted": [
+        "conversation_interpretation",
+        "friction_lost_value",
+        "interpretation_adequacy",
+        "conservative_fan_in"
+      ],
+      "expected_provisional_behavior": {
+        "expected_candidate_behavior": [
+          "Record lost_value and possible value_overwrite.",
+          "Ask whether the caution is proportionate to the user's stated priority.",
+          "Downgrade positive candidate reads if momentum loss is unresolved."
+        ]
+      },
+      "forbidden_behavior": [
+        "Treating generic prudence as inherently better than user-specific ambition.",
+        "Omitting lost value from a positive candidate read."
+      ],
+      "why_this_matters": "Lolla should not convert every risky but values-aligned action into bland risk avoidance. Product Delta review must notice courage and momentum as possible value.",
+      "required_non_claims": [
+        "not human review",
+        "not ground truth",
+        "not judge calibration data",
+        "not product proof",
+        "not answer-quality scoring",
+        "not automatic labeling",
+        "not agent approval"
+      ],
+      "human_review_note": "A human should decide whether the user's urgency was reckless or a legitimate value the revised answer weakened."
+    },
+    {
+      "trap_id": "trap-assistant-influence-007",
+      "trap_name": "Assistant Influence Blindness",
+      "trap_family": "assistant_influence_blindness",
+      "case_shape": "The vanilla assistant strongly shaped the user's frame, and the user tentatively adopted it, but a reviewer treats that frame as fully user-originated.",
+      "safe_context": {
+        "conversation_surface": "Paraphrase: the user begins with a customer-choice question; the assistant reframes it as avoiding enterprise risk; the user then asks follow-up questions in that reframed vocabulary.",
+        "review_risk": "The provisional reviewer may miss that the assistant influenced the live decision frame."
+      },
+      "specialist_roles_targeted": [
+        "conversation_interpretation",
+        "interpretation_adequacy"
+      ],
+      "expected_provisional_behavior": {
+        "expected_candidate_behavior": [
+          "Record assistant influence as explicit, inferred, or unclear.",
+          "Flag assistant_influence_blindness if the frame is treated as settled user preference without basis.",
+          "Preserve uncertainty around whether the user truly endorsed the assistant's frame."
+        ]
+      },
+      "forbidden_behavior": [
+        "Treating assistant-shaped framing as user-settled without a caveat.",
+        "Ignoring assistant influence when evaluating interpretation adequacy."
+      ],
+      "why_this_matters": "Product Delta review can misread the baseline if it cannot distinguish the user's values from the assistant's framing pressure.",
+      "required_non_claims": [
+        "not human review",
+        "not ground truth",
+        "not judge calibration data",
+        "not product proof",
+        "not answer-quality scoring",
+        "not automatic labeling",
+        "not agent approval"
+      ],
+      "human_review_note": "A future reviewer should inspect whether the user's later framing was endorsement, compliance, or temporary exploration."
+    },
+    {
+      "trap_id": "trap-disagreement-survives-008",
+      "trap_name": "Specialist Disagreement Must Survive",
+      "trap_family": "specialist_disagreement_must_survive",
+      "case_shape": "The structural delta looks strong because the revised answer adds a stop rule, but the lost-value and interpretation-adequacy reads are weak.",
+      "safe_context": {
+        "structural_signal": "Paraphrase: revised answer adds a clear stop rule.",
+        "lost_value_signal": "Paraphrase: revised answer drops a motivating customer commitment that made the original plan actionable.",
+        "interpretation_signal": "Paraphrase: revised answer treats a stakeholder concern as settled even though it was unresolved."
+      },
+      "specialist_roles_targeted": [
+        "structural_delta",
+        "friction_lost_value",
+        "interpretation_adequacy",
+        "conservative_fan_in"
+      ],
+      "expected_provisional_behavior": {
+        "expected_candidate_behavior": [
+          "Preserve the disagreement explicitly.",
+          "Downgrade the net read or mark it inconclusive until lost value and interpretation adequacy are resolved.",
+          "Avoid majority-rule synthesis."
+        ]
+      },
+      "forbidden_behavior": [
+        "Collapsing a strong structural read into material improvement while dropping disagreement.",
+        "Treating specialist agreement counts as correctness.",
+        "Smoothing away the skeptic read."
+      ],
+      "why_this_matters": "The fan-in stage exists to preserve conflict, not to average it into a confident-sounding answer.",
+      "required_non_claims": [
+        "not human review",
+        "not ground truth",
+        "not judge calibration data",
+        "not product proof",
+        "not answer-quality scoring",
+        "not automatic labeling",
+        "not agent approval"
+      ],
+      "human_review_note": "A future reviewer should inspect the conflict directly rather than reading a collapsed net candidate as truth."
+    },
+    {
+      "trap_id": "trap-clean-artifact-009",
+      "trap_name": "Clean Artifact Is Not Quality Proof",
+      "trap_family": "clean_artifact_not_quality_proof",
+      "case_shape": "The run and eval artifacts are complete and lint-clean, but the revised recommendation is generic and may not change the user's decision.",
+      "safe_context": {
+        "custody_surface": "Paraphrase: required artifacts exist, schema checks pass, metadata is conservative, and no privacy marker is present.",
+        "advice_surface": "Paraphrase: revised recommendation stays generic and does not appear to add a concrete changed action.",
+        "separation_needed": [
+          "artifact health",
+          "reviewability",
+          "decision usefulness"
+        ]
+      },
+      "specialist_roles_targeted": [
+        "advisory_overclaim",
+        "conservative_fan_in"
+      ],
+      "expected_provisional_behavior": {
+        "expected_candidate_behavior": [
+          "State that clean artifacts only support reviewability.",
+          "Avoid inferring answer usefulness from custody health.",
+          "Use no_material_change_candidate or inconclusive if no changed unit is visible."
+        ],
+        "expected_lint_behavior": [
+          "PR78 should allow clean metadata while not treating it as product evidence."
+        ]
+      },
+      "forbidden_behavior": [
+        "Claiming good advice because artifacts are complete.",
+        "Treating lint success as product proof.",
+        "Using custody cleanliness as a substitute for Product Delta review."
+      ],
+      "why_this_matters": "Lolla's deterministic custody is necessary for inspection, but clean artifacts do not make a recommendation wise.",
+      "required_non_claims": [
+        "not human review",
+        "not ground truth",
+        "not judge calibration data",
+        "not product proof",
+        "not answer-quality scoring",
+        "not automatic labeling",
+        "not agent approval"
+      ],
+      "human_review_note": "A human should judge the advice separately from the artifact envelope."
+    },
+    {
+      "trap_id": "trap-provisional-hardening-010",
+      "trap_name": "Provisional Language Hardening",
+      "trap_family": "provisional_language_hardening",
+      "case_shape": "A provisional artifact uses authority language that makes a Codex-assisted candidate read sound validated, proved, approved, or ready for agent use.",
+      "safe_context": {
+        "artifact_surface": "Paraphrase: the artifact is otherwise structured, but its prose hardens provisional conclusions into authority claims.",
+        "risk_terms": [
+          "validated",
+          "proved",
+          "approved",
+          "ready for agent use"
+        ]
+      },
+      "specialist_roles_targeted": [
+        "advisory_overclaim",
+        "conservative_fan_in"
+      ],
+      "expected_provisional_behavior": {
+        "expected_candidate_behavior": [
+          "Reject or soften the hardened claim before the artifact is used.",
+          "Record missing non-claims.",
+          "Keep any semantic read provisional until human review."
+        ],
+        "expected_lint_behavior": [
+          "PR78 should block unsafe structured authority fields and warn on unsafe Markdown proof language where applicable."
+        ]
+      },
+      "forbidden_behavior": [
+        "Passing through human-validation language as if metadata made it safe.",
+        "Turning a candidate read into product proof.",
+        "Treating agent-use authority as implied by a provisional review artifact."
+      ],
+      "why_this_matters": "The largest PR76-PR82 risk is social hardening: provisional reads can become treated as truth if artifacts sound too authoritative.",
+      "required_non_claims": [
+        "not human review",
+        "not ground truth",
+        "not judge calibration data",
+        "not product proof",
+        "not answer-quality scoring",
+        "not automatic labeling",
+        "not agent approval"
+      ],
+      "human_review_note": "A future human should see softened candidate language and explicit non-claims before reviewing the semantic substance."
+    }
+  ]
+}
