@@ -981,6 +981,41 @@ Record Schema/Exporter Refinement v0 only after maintainer review, focused on
 clarifying PR31 bucket and semantic-field population policy before deeper
 integration.
 
+### PR68: Audit Decision Record Schema / Exporter Refinement v0
+
+Type: code/tests/docs
+
+Status after PR68: completed as the field-population refinement:
+`docs/evals/audit-decision-record-schema-exporter-refinement-v0.md`,
+`engine/system_b/audit_decision_record.py`, and
+`tests/test_audit_decision_record.py`.
+
+Goal:
+
+Clarify the PR66 exporter output after PR67 found empty PR31 buckets only
+partly clear as non-claims.
+
+Result:
+
+- keeps schema version `lolla.audit_decision_record.v0`;
+- adds `actionable_deltas.population_policy`;
+- adds per-label `actionable_deltas.bucket_status`;
+- nests PR31 arrays under `actionable_deltas.buckets`;
+- defaults empty PR31 buckets to `not_supplied` unless a safe explicit
+  structured source supplies labels;
+- adds status and empty-meaning metadata for semantic arrays such as
+  `conflicts_or_unresolved_tensions` and `unresolved_questions`;
+- preserves read-only behavior, no model calls, no archive mutation, no raw
+  transcript/memo/revised-answer/provider/private content, no runtime
+  integration, no answer-quality scoring, no judge, and no PR31 prose
+  inference.
+
+Stop rule:
+
+Do not continue into PR69 automatically. PR68 recommends PR69 Audit Decision
+Record Export Review Re-Run v0 only after maintainer review, focused on testing
+whether the refined output makes empty PR31 buckets read as clear non-claims.
+
 ## Coder Operating Rules
 
 For every PR in this queue:
@@ -1135,10 +1170,16 @@ docs/evals/audit-decision-record-export-smoke-review-v0.md
 reviews/human/audit-decision-record-export-smoke-review-v0/review.json
 ```
 
-PR66 remains the only approved code-bearing accountability implementation from
-this lane so far. PR67 is review/data only. Neither slice adds runtime
-integration, archive mutation, automatic generation, batch export,
+PR68 has now refined the exporter field-population semantics:
+
+```text
+docs/evals/audit-decision-record-schema-exporter-refinement-v0.md
+```
+
+PR66 and PR68 are the only approved code-bearing accountability implementation
+slices from this lane so far. PR67 is review/data only. None of these slices
+adds runtime integration, archive mutation, automatic generation, batch export,
 provenance-map export, conflict-register export, case-graph export, graph DB,
 embeddings, memory, entity resolution, GraphRAG, answer-quality scoring,
-automatic labels, or Semantica-style platform work. Stop after PR67 unless a
-new maintainer-approved slice explicitly starts PR68.
+automatic labels, or Semantica-style platform work. Stop after PR68 unless a
+new maintainer-approved slice explicitly starts PR69.

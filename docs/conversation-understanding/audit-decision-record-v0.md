@@ -1,6 +1,6 @@
 # Audit Decision Record v0
 
-Status: PR58 docs/JSON design; PR66 read-only exporter implemented; PR67 smoke-reviewed
+Status: PR58 docs/JSON design; PR66 read-only exporter implemented; PR67 smoke-reviewed; PR68 refined
 Date: 2026-06-28
 Owner: Lolla maintainers
 
@@ -12,6 +12,9 @@ PR66 implements a narrow read-only exporter for this schema:
 
 PR67 reviews smoke exports from that exporter:
 [Audit Decision Record Export Smoke Review v0](../evals/audit-decision-record-export-smoke-review-v0.md).
+
+PR68 refines field-population semantics after the PR67 review:
+[Audit Decision Record Schema / Exporter Refinement v0](../evals/audit-decision-record-schema-exporter-refinement-v0.md).
 
 The record is meant to help reviewers see what decision a run audited and what
 changed between the original and revised recommendation. It is not a new
@@ -82,9 +85,9 @@ High-level fields:
 | `decision_question` | Paraphrased decision the run appears to audit. |
 | `original_recommendation_summary` | Paraphrased read of what the original answer appeared to favor. |
 | `revised_recommendation_summary` | Paraphrased read of what the revised answer changed. |
-| `actionable_deltas` | PR31 label buckets with compact paraphrase-only evidence. |
-| `values_or_stakeholder_conflicts` | Conflicts preserved for human review, not resolved by the record. |
-| `unresolved_questions` | Questions still requiring the user, stakeholder, or reviewer. |
+| `actionable_deltas` | PR31 label buckets plus population policy and per-bucket status. |
+| `conflicts_or_unresolved_tensions` | Conflicts preserved for human review, not resolved by the record. |
+| `unresolved_questions` | Questions still requiring the user, stakeholder, or reviewer, with status and empty-meaning metadata. |
 | `source_artifacts` | Local artifact references and what they support, without copying raw content. |
 | `review_refs` | Pointers to human-owned review records or docs. |
 | `custody_flags` | Booleans proving excluded raw/private content stayed excluded. |
@@ -92,15 +95,23 @@ High-level fields:
 
 ## Status And Grounding Vocabularies
 
-Decision and recommendation summaries use these `status` values:
+Generated decision and recommendation summaries use these population-oriented
+`status` values:
 
-- `present`: enough artifact or review context exists to summarize the field.
-- `partial`: the field is inferable but incomplete or caveated.
-- `missing`: the field cannot be responsibly summarized.
+- `populated_from_structured_artifact`: a safe structured artifact supplied the
+  field.
+- `not_supplied`: the relevant structured artifact exists, but did not supply
+  the field.
 - `not_measured`: the field was intentionally not measured in this record.
+- `unavailable_missing_artifact`: the field could not be populated because the
+  relevant structured artifact is missing.
+- `unavailable_malformed_artifact`: the field could not be populated because
+  the relevant structured artifact is malformed.
 
-The `decision_question` field does not use `not_measured`; if it cannot be
-summarized, it should be `missing` or `partial`.
+Design examples and human-filled fixtures may still use `present`, `partial`,
+or `populated_from_review` wording where they are explicitly paraphrase-only
+review artifacts. Generated PR68 records use the population-oriented statuses
+above.
 
 Grounding values:
 
@@ -120,6 +131,10 @@ any code wrote records. PR66 now implements only a conservative read-only
 exporter; it does not add span extraction, raw transcript reading, runtime
 integration, labels, scoring, or judge behavior.
 
+PR68 generated fields also include `source_refs` when safe and
+`exporter_inferred_from_prose: false` so readers can see that the exporter is
+not deriving semantic claims from raw answer prose.
+
 ## Actionable Delta Mapping
 
 The `actionable_deltas` object uses the PR31 labels from
@@ -136,9 +151,42 @@ The `actionable_deltas` object uses the PR31 labels from
 - `overclaim_retracted`
 - `no_op_prose_change`
 
+PR68 wraps those label arrays with explicit population metadata:
+
+```json
+{
+  "population_policy": {
+    "owner": "human_review",
+    "exporter_infers_from_prose": false,
+    "empty_bucket_meaning": "not_supplied_or_not_measured",
+    "label_source_required": true
+  },
+  "bucket_status": {
+    "action_changed": "not_supplied"
+  },
+  "buckets": {
+    "action_changed": []
+  }
+}
+```
+
 Each populated label should explain the action, gate, sequence, written term,
 question, scope change, or overclaim retraction in paraphrase. Empty arrays are
-meaningful: they say the label was not observed or not claimed for that record.
+non-claims unless `bucket_status` says `measured_empty`.
+
+Allowed bucket statuses:
+
+- `not_supplied`
+- `not_measured`
+- `measured_empty`
+- `populated_from_review`
+- `populated_from_structured_artifact`
+- `unavailable_missing_artifact`
+- `unavailable_malformed_artifact`
+
+The PR66/PR68 exporter defaults every bucket to `not_supplied` unless an
+approved safe structured source explicitly supplies label data. It does not
+infer PR31 labels from revised-answer prose.
 
 `no_op_prose_change` is included so reviewers can explicitly preserve the
 negative case where a revision sounds better but changes no decision-relevant
@@ -167,9 +215,10 @@ The record's custody flags must remain false for:
 - `private_reasoning_included`
 - `local_absolute_paths_included`
 
-If the PR66 exporter cannot explain a field without copying excluded content,
-it marks the field `not_measured`, `not_included`, or empty instead of
-weakening custody.
+If the exporter cannot explain a field without copying excluded content, it
+marks the field `not_measured`, `not_supplied`,
+`unavailable_missing_artifact`, `unavailable_malformed_artifact`, or an empty
+items object instead of weakening custody.
 
 ## Example Read
 
@@ -292,7 +341,9 @@ read or copy `conversation.txt`, `memo.md`, `revised.txt`,
 `live_transcript.txt`, provider/model text, or private reasoning artifacts.
 
 The exporter emits every PR31 actionable-delta bucket as a stable key but does
-not infer labels from prose. Empty arrays are non-claims.
+not infer labels from prose. PR68 nests those arrays under
+`actionable_deltas.buckets` and adds `population_policy` plus `bucket_status`
+so empty arrays are legible non-claims.
 
 PR66 remains outside runtime behavior. It does not run `$lolla`, call models,
 mutate archives, change prompts, change `SKILL.md`, change `caller_action`,
@@ -318,11 +369,37 @@ real archive exports. A reader can mistake empty arrays for "no meaningful
 delta" unless they notice the limitation that labels were not supplied or
 inferred.
 
+PR68 now addresses that finding by adding explicit population policy and
+per-bucket status metadata while keeping the same schema version and read-only
+custody boundary.
+
+## PR68 Field-Population Refinement
+
+PR68 completed the narrow schema/exporter refinement recommended by PR67:
+
+- [Audit Decision Record Schema / Exporter Refinement v0](../evals/audit-decision-record-schema-exporter-refinement-v0.md)
+
+The schema version remains `lolla.audit_decision_record.v0`.
+
+The generated `actionable_deltas` object now contains:
+
+- `population_policy`
+- `bucket_status`
+- `buckets`
+
+Generated semantic array fields now use object shapes with `status`, `items`,
+`empty_meaning`, `owner`, and `exporter_inferred_from_prose`.
+
+The refinement does not add archive integration, automatic generation,
+answer-quality scoring, automatic labels, a judge, graph DB, memory, or
+Semantica-style platform work.
+
 Recommended next slice:
 
 ```text
-PR68 Audit Decision Record Schema/Exporter Refinement v0
+PR69 Audit Decision Record Export Review Re-Run v0
 ```
 
-PR68 should be approved separately and should clarify PR31 bucket population
-policy before archive integration, batch export, or automatic generation.
+PR69 should re-run the PR67 smoke/review against the refined output and verify
+that empty PR31 buckets read as clear non-claims before archive integration,
+batch export, or automatic generation is considered.

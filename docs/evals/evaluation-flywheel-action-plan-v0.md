@@ -1860,6 +1860,44 @@ Stop point:
 - Recommended PR68 is Audit Decision Record Schema/Exporter Refinement v0, only
   after maintainer review.
 
+PR68 later landed as a separate schema/exporter refinement slice.
+
+### PR68: Audit Decision Record Schema / Exporter Refinement v0
+
+Maps to: R6/R9 exporter reviewability and deterministic custody.
+
+Status: completed as a narrow code/tests/docs slice.
+
+Output:
+
+- [Audit Decision Record Schema / Exporter Refinement v0](audit-decision-record-schema-exporter-refinement-v0.md).
+- `engine/system_b/audit_decision_record.py`
+- `tests/test_audit_decision_record.py`
+
+Current result:
+
+- keeps schema version `lolla.audit_decision_record.v0`;
+- changes `actionable_deltas` to carry `population_policy`,
+  `bucket_status`, and `buckets`;
+- defaults PR31 bucket statuses to `not_supplied` when no safe structured label
+  source is supplied;
+- makes empty buckets explicit non-claims rather than negative findings;
+- wraps semantic arrays such as `conflicts_or_unresolved_tensions` and
+  `unresolved_questions` with status and empty-meaning metadata;
+- preserves read-only exporter behavior, no model calls, no archive mutation,
+  no raw-content reads, no runtime integration, no scoring, no judge, and no
+  PR31 prose inference.
+
+Stop point:
+
+- Stop after PR68.
+- Do not start PR69 automatically.
+- Do not add archive integration, automatic generation, batch export, runtime
+  behavior, labels, answer-quality scoring, judges, graph DB, memory, GraphRAG,
+  or Semantica-style platform work from PR68 alone.
+- Recommended PR69 is Audit Decision Record Export Review Re-Run v0, only
+  after maintainer review.
+
 ## What Not To Build Yet
 
 - broad answer-quality score;
@@ -1917,11 +1955,12 @@ Before building judges or runtime semantic enrichment, Lolla should have:
 That is the smallest flywheel that can improve Lolla run by run without turning
 it into a vague critic or overbuilt memory system.
 
-The latest conservative accountability step is PR67 Audit Decision Record
-Export Smoke / Review v0. It reviews the PR66 exporter output without making
-the machine stronger and recommends PR68 schema/exporter refinement for clearer
-empty PR31 bucket semantics. Any future PR68 should require maintainer review
-first and should not add archive integration, automatic generation, graph DB,
-embeddings, memory, entity resolution, GraphRAG, conflict automation,
-answer-quality scoring, judges, automatic labels, provider-boundary policy
-changes, prompt changes, `SKILL.md` changes, or Semantica-style platform work.
+The latest conservative accountability step is PR68 Audit Decision Record
+Schema / Exporter Refinement v0. It clarifies empty PR31 bucket and semantic
+field population semantics without making the machine semantically stronger.
+Any future PR69 should require maintainer review first and should re-run the
+PR67 smoke/review against the refined output before archive integration,
+automatic generation, graph DB, embeddings, memory, entity resolution,
+GraphRAG, conflict automation, answer-quality scoring, judges, automatic
+labels, provider-boundary policy changes, prompt changes, `SKILL.md` changes,
+or Semantica-style platform work.

@@ -1,6 +1,6 @@
 # Audit Decision Record Export Smoke Review v0
 
-Status: PR67 docs/review/data slice
+Status: PR67 docs/review/data slice; followed by PR68 refinement
 Date: 2026-06-29
 Owner: Lolla maintainers
 
@@ -216,3 +216,20 @@ the decision record should make empty PR31 buckets and semantic-field
 population policy clearer. The likely refinement is small: add or design an
 explicit population-policy/status cue so empty arrays cannot be mistaken for a
 substantive no-delta judgment.
+
+## PR68 Follow-Up
+
+PR68 has now implemented that narrow refinement:
+
+- [Audit Decision Record Schema / Exporter Refinement v0](audit-decision-record-schema-exporter-refinement-v0.md)
+
+The schema version remains `lolla.audit_decision_record.v0`. Generated records
+now include `actionable_deltas.population_policy`,
+`actionable_deltas.bucket_status`, and `actionable_deltas.buckets`, with empty
+bucket defaults marked `not_supplied`. Semantic arrays now include `status`,
+`items`, `empty_meaning`, `owner`, and `exporter_inferred_from_prose`.
+
+Recommended PR69 is a re-run of this smoke/review against the refined output to
+verify that empty PR31 bucket clarity improves to `clear_non_claim` before any
+archive integration, batch export, automatic generation, scoring, labels,
+judges, or runtime behavior is considered.

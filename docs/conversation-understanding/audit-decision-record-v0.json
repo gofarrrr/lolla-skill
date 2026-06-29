@@ -4,84 +4,150 @@
   "run_id": "20260627T093131Z_59d153",
   "archive_relpath": "ceo-remove-founding-cofounder/20260627T093131Z_59d153",
   "decision_question": {
-    "status": "present",
+    "status": "populated_from_review",
     "summary": "Whether and how to remove a founding cofounder from operating authority while preserving a workable relationship.",
-    "grounding": "derivation"
+    "grounding": "derivation",
+    "source_refs": [
+      {
+        "artifact": "reviews/human/complex-baseline-v0/review.json",
+        "field": "review_summary"
+      }
+    ],
+    "exporter_inferred_from_prose": false
   },
   "original_recommendation_summary": {
-    "status": "partial",
+    "status": "populated_from_review",
     "summary": "A cooperation-reset pattern that prioritized repair and staged discussion while leaving real authority movement ambiguous.",
-    "grounding": "derivation"
+    "grounding": "derivation",
+    "source_refs": [
+      {
+        "artifact": "reviews/human/complex-baseline-v0/review.json",
+        "field": "review_summary"
+      }
+    ],
+    "exporter_inferred_from_prose": false
   },
   "revised_recommendation_summary": {
-    "status": "present",
+    "status": "populated_from_review",
     "summary": "A bounded authority-transfer pattern that moves decision rights first, allows only a conditional transition role, and adds stop-loss rules.",
-    "grounding": "derivation"
+    "grounding": "derivation",
+    "source_refs": [
+      {
+        "artifact": "reviews/human/complex-baseline-v0/review.json",
+        "field": "review_summary"
+      }
+    ],
+    "exporter_inferred_from_prose": false
   },
   "actionable_deltas": {
-    "action_changed": [
-      {
-        "summary": "The recommended action changes from testing cooperation first to moving operating authority before cooperation is evaluated.",
-        "grounding": "derivation",
-        "review_note": "Paraphrased from existing human-review summaries."
-      }
-    ],
-    "threshold_changed": [],
-    "sequence_changed": [
-      {
-        "summary": "Authority transfer comes before any reset conversation or transition role is allowed to continue.",
-        "grounding": "derivation",
-        "review_note": "Captures the order-of-operations change without copying source text."
-      }
-    ],
-    "evidence_gate_added": [],
-    "stop_rule_added": [
-      {
-        "summary": "The revised recommendation adds conditions under which the transition role should stop rather than drift into shadow authority.",
-        "grounding": "derivation",
-        "review_note": "Preserves the stop-loss idea as a reviewable delta."
-      }
-    ],
-    "written_term_added": [],
-    "user_question_added": [],
-    "scope_narrowed": [
-      {
-        "summary": "The cofounder's future role is narrowed to bounded transition support instead of broad continuing authority.",
-        "grounding": "derivation",
-        "review_note": "Records the scope reduction for reviewer inspection."
-      }
-    ],
-    "overclaim_retracted": [],
-    "no_op_prose_change": []
+    "population_policy": {
+      "owner": "human_review",
+      "exporter_infers_from_prose": false,
+      "empty_bucket_meaning": "not_supplied_or_not_measured",
+      "label_source_required": true,
+      "status_vocabulary": [
+        "not_supplied",
+        "not_measured",
+        "measured_empty",
+        "populated_from_review",
+        "populated_from_structured_artifact",
+        "unavailable_missing_artifact",
+        "unavailable_malformed_artifact"
+      ],
+      "notes": [
+        "The exporter does not infer PR31 labels from revised-answer prose.",
+        "Empty arrays are non-claims unless bucket_status says measured_empty."
+      ]
+    },
+    "bucket_status": {
+      "action_changed": "populated_from_review",
+      "threshold_changed": "not_supplied",
+      "sequence_changed": "populated_from_review",
+      "evidence_gate_added": "not_supplied",
+      "stop_rule_added": "populated_from_review",
+      "written_term_added": "not_supplied",
+      "user_question_added": "not_supplied",
+      "scope_narrowed": "populated_from_review",
+      "overclaim_retracted": "not_supplied",
+      "no_op_prose_change": "not_supplied"
+    },
+    "buckets": {
+      "action_changed": [
+        {
+          "summary": "The recommended action changes from testing cooperation first to moving operating authority before cooperation is evaluated.",
+          "grounding": "derivation",
+          "source": "human_review_summary"
+        }
+      ],
+      "threshold_changed": [],
+      "sequence_changed": [
+        {
+          "summary": "Authority transfer comes before any reset conversation or transition role is allowed to continue.",
+          "grounding": "derivation",
+          "source": "human_review_summary"
+        }
+      ],
+      "evidence_gate_added": [],
+      "stop_rule_added": [
+        {
+          "summary": "The revised recommendation adds conditions under which the transition role should stop rather than drift into shadow authority.",
+          "grounding": "derivation",
+          "source": "human_review_summary"
+        }
+      ],
+      "written_term_added": [],
+      "user_question_added": [],
+      "scope_narrowed": [
+        {
+          "summary": "The cofounder's future role is narrowed to bounded transition support instead of broad continuing authority.",
+          "grounding": "derivation",
+          "source": "human_review_summary"
+        }
+      ],
+      "overclaim_retracted": [],
+      "no_op_prose_change": []
+    }
   },
-  "values_or_stakeholder_conflicts": [
-    {
-      "conflict_id": "conflict_001",
-      "summary": "Relationship preservation and fairness remain in tension with explicit authority transfer.",
-      "status": "preserved_for_human_review",
-      "grounding": "derivation"
-    },
-    {
-      "conflict_id": "conflict_002",
-      "summary": "Investor pressure, team clarity, and cofounder dignity create competing obligations that the record does not resolve.",
-      "status": "preserved_for_human_review",
-      "grounding": "derivation"
-    }
-  ],
-  "unresolved_questions": [
-    {
-      "question_id": "question_001",
-      "summary": "What transition role, if any, can be tolerated without preserving shadow authority?",
-      "owner": "user_or_human_reviewer",
-      "grounding": "derivation"
-    },
-    {
-      "question_id": "question_002",
-      "summary": "Which stakeholder needs direct communication before authority changes are visible to the team?",
-      "owner": "user_or_human_reviewer",
-      "grounding": "derivation"
-    }
-  ],
+  "conflicts_or_unresolved_tensions": {
+    "status": "populated_from_review",
+    "items": [
+      {
+        "conflict_id": "conflict_001",
+        "summary": "Relationship preservation and fairness remain in tension with explicit authority transfer.",
+        "status": "preserved_for_human_review",
+        "grounding": "derivation"
+      },
+      {
+        "conflict_id": "conflict_002",
+        "summary": "Investor pressure, team clarity, and cofounder dignity create competing obligations that the record does not resolve.",
+        "status": "preserved_for_human_review",
+        "grounding": "derivation"
+      }
+    ],
+    "empty_meaning": "not applicable; items were supplied from human review summaries",
+    "owner": "human_review",
+    "exporter_inferred_from_prose": false
+  },
+  "unresolved_questions": {
+    "status": "populated_from_review",
+    "items": [
+      {
+        "question_id": "question_001",
+        "summary": "What transition role, if any, can be tolerated without preserving shadow authority?",
+        "owner": "user_or_human_reviewer",
+        "grounding": "derivation"
+      },
+      {
+        "question_id": "question_002",
+        "summary": "Which stakeholder needs direct communication before authority changes are visible to the team?",
+        "owner": "user_or_human_reviewer",
+        "grounding": "derivation"
+      }
+    ],
+    "empty_meaning": "not applicable; items were supplied from human review summaries",
+    "owner": "human_review",
+    "exporter_inferred_from_prose": false
+  },
   "source_artifacts": [
     {
       "artifact": "agent_result.json",
@@ -126,10 +192,14 @@
     "raw_revised_answer_included": false,
     "provider_text_included": false,
     "private_reasoning_included": false,
-    "local_absolute_paths_included": false
+    "local_absolute_paths_included": false,
+    "secrets_included": false,
+    "model_calls": 0,
+    "archive_mutated": false
   },
   "limitations": [
-    "Paraphrase-only schema example for PR58 design; not generated by an exporter.",
+    "Paraphrase-only schema example for PR58/PR68 design; not generated by an exporter.",
+    "Empty PR31 buckets and empty semantic arrays are non-claims unless their status says measured_empty or populated.",
     "Does not decide answer quality, domain approval, or autonomous reliance.",
     "Does not replace human review or inspect raw archive payloads in this PR.",
     "Does not represent a complete conversation-understanding IR."

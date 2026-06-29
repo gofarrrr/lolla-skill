@@ -1,6 +1,6 @@
 # Audit Decision Record Read-Only Exporter v0
 
-Status: PR66 code/tests/docs slice
+Status: PR66 code/tests/docs slice; refined by PR68
 Date: 2026-06-29
 Owner: Lolla maintainers
 
@@ -64,9 +64,13 @@ High-level output fields:
 - `custody_flags`
 - `limitations`
 
-Semantic fields use conservative states such as `not_measured`, `not_included`,
-`artifact_present_only`, `unknown`, or empty arrays when no safe structured
-source exists. Empty fields are intentional non-claims, not missing code paths.
+Semantic fields use conservative states such as `not_measured`,
+`not_supplied`, `populated_from_structured_artifact`,
+`unavailable_missing_artifact`, or `unavailable_malformed_artifact` when no
+safe structured source exists. PR68 wraps semantic arrays in objects with
+`status`, `items`, `empty_meaning`, `owner`, and
+`exporter_inferred_from_prose` so empty fields are intentional non-claims, not
+missing code paths.
 
 ## Input Artifacts
 
@@ -114,7 +118,8 @@ marks that field as `not_measured`, `not_included`, or empty.
 
 ## Actionable Deltas
 
-The exporter emits every PR31 actionable-delta bucket as a stable key:
+The exporter emits every PR31 actionable-delta bucket as a stable key under
+`actionable_deltas.buckets`:
 
 - `action_changed`
 - `threshold_changed`
@@ -127,8 +132,31 @@ The exporter emits every PR31 actionable-delta bucket as a stable key:
 - `overclaim_retracted`
 - `no_op_prose_change`
 
-PR66 does not infer PR31 labels from prose. Buckets remain empty unless a later
-approved safe structured source explicitly supplies them.
+PR68 adds `actionable_deltas.population_policy` and
+`actionable_deltas.bucket_status` so empty arrays are not mistaken for
+substantive no-delta findings.
+
+Default minimal exports mark every bucket:
+
+```text
+not_supplied
+```
+
+That means no safe structured label source was supplied to the exporter. It
+does not mean the audited answer had no meaningful delta.
+
+Bucket status vocabulary:
+
+- `not_supplied`
+- `not_measured`
+- `measured_empty`
+- `populated_from_review`
+- `populated_from_structured_artifact`
+- `unavailable_missing_artifact`
+- `unavailable_malformed_artifact`
+
+The exporter does not infer PR31 labels from prose. Buckets remain empty unless
+an approved safe structured source explicitly supplies them.
 
 ## Review References
 
@@ -143,7 +171,9 @@ metadata:
 - `raw_content_included: false`.
 
 It does not copy review notes, create labels, decide `safe_for_agent_use`, or
-score answer quality.
+score answer quality. After PR68, if a review JSON explicitly supplies safe
+`actionable_deltas.buckets` data, matching PR31 buckets can be marked
+`populated_from_review`; the exporter still does not infer labels from prose.
 
 ## Custody Flags
 
@@ -183,6 +213,8 @@ Every generated record states that:
 - it does not decide `safe_for_agent_use`;
 - it does not provide domain approval;
 - it may contain empty semantic fields when no safe structured source exists;
+- empty PR31 buckets and empty semantic arrays are non-claims unless their
+  status says they were measured or populated;
 - human review remains responsible for judging improvement;
 - the exporter does not infer PR31 actionable-delta labels from prose;
 - raw transcript, memo, revised answer, provider text, and private reasoning
@@ -225,9 +257,11 @@ PYTHONPATH=. pytest -q tests/test_audit_decision_record.py
 ```
 
 The tests cover stable schema shape, output-path refusal inside/equal to the
-run directory, PR31 bucket stability, raw file non-reading, malformed optional
+run directory, PR31 bucket stability and status defaults, population policy,
+semantic-field non-claim metadata, raw file non-reading, malformed optional
 JSON, missing optional artifacts, custody flags, absence of local absolute
-archive paths, safe review references, and external-only CLI writes.
+archive paths, safe review references, explicit review-supplied labels without
+prose inference, and external-only CLI writes.
 
 ## Next Gate
 
@@ -242,4 +276,16 @@ The specific issue is empty PR31 bucket clarity: empty arrays are correct
 because labels were not supplied or inferred, but the record should make that
 population policy harder to miss.
 
-Stop after PR67. Do not start PR68 automatically.
+PR68 has now landed the recommended schema/exporter refinement:
+
+- [Audit Decision Record Schema / Exporter Refinement v0](audit-decision-record-schema-exporter-refinement-v0.md)
+
+Recommended next slice:
+
+```text
+PR69 Audit Decision Record Export Review Re-Run v0
+```
+
+PR69 should re-run the PR67 smoke/review against the refined output before any
+archive integration, automatic generation, batch export, labels, scoring,
+judges, or runtime behavior.

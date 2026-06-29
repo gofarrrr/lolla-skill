@@ -67,7 +67,7 @@ conversation or agent run
 Current handoff state:
 
 ```text
-PR67 Audit Decision Record Export Smoke / Review v0 is the
+PR68 Audit Decision Record Schema / Exporter Refinement v0 is the
 latest completed accountability slice recorded in this file. PR48 remains the
 high-stakes evidence gate. PR54 remains the paused v0 values/priorities
 worksheet gate. Use git log for the exact current commit hash.
@@ -135,7 +135,12 @@ Current product state:
 > It finds the records useful, custody-safe, and clear about limitations, while
 > recommending PR68 schema/exporter refinement before archive integration or
 > automatic generation because empty PR31 buckets are only partly clear as
-> "not supplied / not inferred" non-claims.
+> "not supplied / not inferred" non-claims. PR68 refines the same
+> `lolla.audit_decision_record.v0` schema and exporter output with
+> `actionable_deltas.population_policy`, per-bucket status, nested buckets, and
+> semantic-field status/empty-meaning metadata. It keeps the exporter
+> deterministic, read-only, model-call-free, archive-mutation-free, and outside
+> runtime integration, scoring, judging, automatic labels, and prose inference.
 
 What this means in plain terms:
 
@@ -283,23 +288,22 @@ Current stop rule:
 Latest completed slice:
 
 ```text
-PR67 Audit Decision Record Export Smoke / Review v0
+PR68 Audit Decision Record Schema / Exporter Refinement v0
 ```
 
 Result:
 
-- lands `docs/evals/audit-decision-record-export-smoke-review-v0.md`;
-- lands `reviews/human/audit-decision-record-export-smoke-review-v0/review.json`;
-- reviews six `lolla.audit_decision_record.v0` smoke exports: four from
-  existing reviewed archives and two from fixture-backed temp runs;
-- confirms records are understandable, artifact statuses are useful, custody
-  flags and limitations are clear, raw/private/path safety holds, and no answer
-  scoring or approval is implied;
-- finds empty PR31 buckets are safe but only partly clear in real archive
-  exports because they may look like "no meaningful delta" rather than "labels
-  were not supplied or inferred";
-- recommends PR68 Audit Decision Record Schema/Exporter Refinement v0 before
-  archive integration, batch export, or automatic generation.
+- lands `docs/evals/audit-decision-record-schema-exporter-refinement-v0.md`;
+- keeps schema version `lolla.audit_decision_record.v0`;
+- refines the read-only exporter so `actionable_deltas` now contains
+  `population_policy`, `bucket_status`, and `buckets`;
+- defaults every PR31 bucket status to `not_supplied` unless a safe explicit
+  structured source supplies labels;
+- adds semantic-field status, source-policy, and empty-meaning metadata so
+  empty conflicts/questions are visible non-claims;
+- preserves no model calls, no archive mutation, no raw content reads, no
+  runtime integration, no answer-quality scoring, no automatic labels, and no
+  PR31 prose inference.
 
 Stop point:
 
@@ -308,12 +312,13 @@ Do not start real high-stakes run work without explicit maintainer approval.
 PR48 remains the high-stakes evidence gate.
 The separate user-values/priorities lane is now paused at PR54 unless a later
 implementation gate is explicitly approved.
-PR67 only reviews PR66 exporter outputs. Do not start PR68 automatically. Do
-not implement runtime integration, archive mutation, automatic generation,
-batch export, provenance export, conflict-register export, case-graph export,
-graph DB, embeddings, memory, GraphRAG, entity resolution, conflict resolution,
-severity automation, policy enforcement, labels, scoring, judging, or any other
-accountability primitive from PR67 alone.
+PR68 only clarifies the audit decision record exporter output shape. Do not
+start PR69 automatically. Do not implement runtime integration, archive
+mutation, automatic generation, batch export, provenance export,
+conflict-register export, case-graph export, graph DB, embeddings, memory,
+GraphRAG, entity resolution, conflict resolution, severity automation, policy
+enforcement, labels, scoring, judging, or any other accountability primitive
+from PR68 alone.
 ```
 
 The broader action map for this next phase is:
@@ -401,6 +406,7 @@ Non-goals for the next slice:
 - [x] PR65 Accountability Implementation Decision Gate.
 - [x] PR66 Audit Decision Record Read-Only Exporter.
 - [x] PR67 Audit Decision Record Export Smoke / Review.
+- [x] PR68 Audit Decision Record Schema / Exporter Refinement.
 - [x] Current system capabilities explainer, grounded in recorded cases.
 - [x] Public pitch/docs refreshed around Lolla as a reasoning-audit harness.
 
@@ -445,7 +451,8 @@ Non-goals for the next slice:
   decision-record exporter-design gate; PR65 only chooses that future
   decision-record exporter as a recommendation; PR66 implements only that
   read-only decision-record exporter; PR67 only reviews exporter smoke output
-  and recommends a small schema/exporter refinement. No archive integration,
+  and recommends a small schema/exporter refinement; PR68 only implements that
+  field-population clarity refinement. No archive integration,
   batch export, automatic generation, provenance exporter, conflict-register
   exporter, case-graph exporter, graph DB, memory, GraphRAG, labels, scoring,
   judges, or runtime integration is implemented.
@@ -469,13 +476,15 @@ Non-goals for the next slice:
    marks the v0 worksheet surface complete for human-owned review, and pauses
    before any populated extraction, automatic label, runtime integration,
    memory, or judge.
-3. **PR68 Audit Decision Record Schema/Exporter Refinement v0, only after
-   maintainer review.** PR67 recommends a small refinement so empty PR31 buckets
-   and semantic population policy are harder to misread. Any PR68 must remain
-   explicitly approved and must not add archive integration, automatic
-   generation, labels, answer-quality scores, `safe_for_agent_use`, domain
-   approval, runtime integration, graph DB, memory, GraphRAG, judges, automatic
-   labels, or Semantica-style platform work.
+3. **PR69 Audit Decision Record Export Review Re-Run v0, only after
+   maintainer review.** PR68 clarifies empty PR31 buckets and semantic
+   population policy. The next conservative step is to re-run the PR67
+   smoke/review against the refined output and check whether empty bucket
+   clarity improves to `clear_non_claim`. Any PR69 must not add archive
+   integration, automatic generation, labels, answer-quality scores,
+   `safe_for_agent_use`, domain approval, runtime integration, graph DB,
+   memory, GraphRAG, judges, automatic labels, or Semantica-style platform
+   work.
 4. **Live-output hygiene implementation.** PR35 keeps `not_checked` honest and
    defines a trusted-transcript path; later work can implement only when needed.
 5. **Span-grounded semantic enrichment.** Existing specialists help with live
@@ -551,9 +560,9 @@ boundary change.
 | R3: Trigger Policy For Agents | Deferred | Not urgent for current manual workflow. Keep for later external agent-builder docs. |
 | R4: Control-Plane Integration Contract | Done | `lolla_control_input.v1` and `lolla_control_result.v1` now exist as optional local sidecars. External trace/action/approval metadata can be preserved and summarized without changing ordinary `$lolla` runs or making Lolla an approval/sandbox/policy system. |
 | R5: Capture Adequacy Upgrade | Done | `capture_adequacy` / `lolla.capture_adequacy.v0` now makes capture shape, omitted windows, and critical capture problems visible across extraction, run health, agent result, reasoning trace, and evaluation. It does not reconstruct omitted turns or change capture strategy. Real `$lolla` smoke passed with full capture. |
-| R6: Evaluation Methodology And Failure Taxonomy | Human-review v0 done; PR30-PR67 eval/design/test/docs seeds done | `docs/lolla-evaluation-methodology.md`, `docs/evals/lolla-human-review-v0.json`, `docs/evals/lolla-failure-taxonomy.md`, and `docs/evals/human-review-workflow.md` exist. PR14 added the human-owned label contract. PR15 added a synthetic-review boundary so subagents can help without becoming ground truth. PR16 added a validator and prompt so synthetic candidate outputs must match the human-review schema without becoming human labels. PR30 added the first human/product review seed over the six complex baseline runs. PR31 added the human-owned actionable-delta rubric. PR32 added seed adversarial pair fixtures. PR33 added a 14-record broader human-review corpus batch with 12 counted positives, one partial boundary record, and one degraded exclusion. PR34 designed the first-class user-values/priorities signal without implementing extraction. PR35 documented live-output hygiene policy without runtime changes. PR36 documented risk-mode behavior policy without runtime changes. PR37 added risk-mode fixture examples without runtime changes. PR38 reviewed those fixtures and added the high-stakes values-conflict fixture without runtime changes. PR39 planned the high-stakes reliance/readiness implementation path without runtime changes. PR40 added contract-lock tests without runtime changes. PR41 added deterministic evaluation-artifact clarity without runtime enforcement. PR42 added review-corpus surface integration without runtime enforcement. PR43 and PR44 verified reviewer interpretation and manifest visibility without runtime enforcement. PR45 records the current state and decision gates. PR46 plans future approved high-stakes evidence without running cases. PR47 adds paraphrase-only high-stakes evidence fixtures. PR48 adds a read-only manifest analyzer for high-stakes evidence readiness. PR49 plans a human-owned values/priorities worksheet without extraction, exports, runtime behavior, or judging. PR50 adds paraphrase-only worksheet fixtures without extraction, export code, runtime behavior, automatic labels, or judging. PR51 reviews those fixtures without code, extraction, automatic labels, runtime behavior, or judging. PR52 adds blank worksheet export structure without reading archives, extracting values, populating labels, changing runtime behavior, or judging. PR53 pilots human-filled worksheets on existing reviewed summaries without raw content, extraction, automatic labels, runtime behavior, or judging. PR54 reviews the pilot, marks the v0 worksheet lane complete for human-owned review, and pauses before extraction, memory, runtime integration, automatic labels, or judging. PR55 lands a Semantica-inspired accountability plan without implementing doctor/preflight, decision records, provenance maps, conflict registers, case graph exports, graph DBs, embeddings, memory, policy engines, automatic labels, answer-quality scoring, or judges. PR56 plans a future read-only doctor/preflight command without implementing the CLI, running `$lolla`, calling models, mutating archives, changing prompts, changing `SKILL.md`, or changing runtime behavior. PR57 implements the smallest read-only doctor CLI without running `$lolla`, calling models, mutating archives, changing prompts, changing `SKILL.md`, changing provider-boundary policy, approving high-stakes use, or judging answer quality. PR58 designs `lolla.audit_decision_record.v0` as a paraphrase-only local accountability projection without implementing an exporter, runtime integration, automatic labels, answer-quality scoring, or judges. PR59 reviews six paraphrase-only decision-record fixtures and marks the shape ready for a future read-only exporter design prototype with caveats, without implementing that exporter. PR60 designs `lolla.provenance_map.v0` as a local artifact-lineage shape without implementing a provenance exporter, archive reading, runtime integration, graph DB, memory, compliance claims, scoring, or judges. PR61 designs `lolla.review_conflict_register.v0` as a human-review-owned conflict surface without implementing an exporter, resolving conflicts, automating severity, enforcing policy, scoring, labeling, or judging. PR62 designs `lolla.case_graph.v0` as a future run-local case graph export/view shape without implementing an exporter, archive reading, runtime integration, graph DB, memory, GraphRAG, entity resolution, scoring, labeling, or judging. PR63 creates three paraphrase-only accountability-view fixture bundles without implementing exporters, reading archives, changing runtime behavior, scoring, labeling, or judging. PR64 reviews all three bundles, marks them pass, recommends only `audit_decision_record` for a later exporter-design decision, and still implements no exporter, runtime behavior, scoring, labeling, or judging. PR65 chooses that direction as a docs-only decision and recommends future PR66 without implementing it. PR66 implements the read-only audit decision record exporter without raw content, labels, scoring, judges, graph DB, memory, or runtime integration. PR67 reviews six smoke exports and recommends schema/exporter refinement for clearer empty PR31 bucket semantics before archive integration or automatic generation. |
+| R6: Evaluation Methodology And Failure Taxonomy | Human-review v0 done; PR30-PR68 eval/design/test/docs seeds done | `docs/lolla-evaluation-methodology.md`, `docs/evals/lolla-human-review-v0.json`, `docs/evals/lolla-failure-taxonomy.md`, and `docs/evals/human-review-workflow.md` exist. PR14 added the human-owned label contract. PR15 added a synthetic-review boundary so subagents can help without becoming ground truth. PR16 added a validator and prompt so synthetic candidate outputs must match the human-review schema without becoming human labels. PR30 added the first human/product review seed over the six complex baseline runs. PR31 added the human-owned actionable-delta rubric. PR32 added seed adversarial pair fixtures. PR33 added a 14-record broader human-review corpus batch with 12 counted positives, one partial boundary record, and one degraded exclusion. PR34 designed the first-class user-values/priorities signal without implementing extraction. PR35 documented live-output hygiene policy without runtime changes. PR36 documented risk-mode behavior policy without runtime changes. PR37 added risk-mode fixture examples without runtime changes. PR38 reviewed those fixtures and added the high-stakes values-conflict fixture without runtime changes. PR39 planned the high-stakes reliance/readiness implementation path without runtime changes. PR40 added contract-lock tests without runtime changes. PR41 added deterministic evaluation-artifact clarity without runtime enforcement. PR42 added review-corpus surface integration without runtime enforcement. PR43 and PR44 verified reviewer interpretation and manifest visibility without runtime enforcement. PR45 records the current state and decision gates. PR46 plans future approved high-stakes evidence without running cases. PR47 adds paraphrase-only high-stakes evidence fixtures. PR48 adds a read-only manifest analyzer for high-stakes evidence readiness. PR49 plans a human-owned values/priorities worksheet without extraction, exports, runtime behavior, or judging. PR50 adds paraphrase-only worksheet fixtures without extraction, export code, runtime behavior, automatic labels, or judging. PR51 reviews those fixtures without code, extraction, automatic labels, runtime behavior, or judging. PR52 adds blank worksheet export structure without reading archives, extracting values, populating labels, changing runtime behavior, or judging. PR53 pilots human-filled worksheets on existing reviewed summaries without raw content, extraction, automatic labels, runtime behavior, or judging. PR54 reviews the pilot, marks the v0 worksheet lane complete for human-owned review, and pauses before extraction, memory, runtime integration, automatic labels, or judging. PR55 lands a Semantica-inspired accountability plan without implementing doctor/preflight, decision records, provenance maps, conflict registers, case graph exports, graph DBs, embeddings, memory, policy engines, automatic labels, answer-quality scoring, or judges. PR56 plans a future read-only doctor/preflight command without implementing the CLI, running `$lolla`, calling models, mutating archives, changing prompts, changing `SKILL.md`, or changing runtime behavior. PR57 implements the smallest read-only doctor CLI without running `$lolla`, calling models, mutating archives, changing prompts, changing `SKILL.md`, changing provider-boundary policy, approving high-stakes use, or judging answer quality. PR58 designs `lolla.audit_decision_record.v0` as a paraphrase-only local accountability projection without implementing an exporter, runtime integration, automatic labels, answer-quality scoring, or judges. PR59 reviews six paraphrase-only decision-record fixtures and marks the shape ready for a future read-only exporter design prototype with caveats, without implementing that exporter. PR60 designs `lolla.provenance_map.v0` as a local artifact-lineage shape without implementing a provenance exporter, archive reading, runtime integration, graph DB, memory, compliance claims, scoring, or judges. PR61 designs `lolla.review_conflict_register.v0` as a human-review-owned conflict surface without implementing an exporter, resolving conflicts, automating severity, enforcing policy, scoring, labeling, or judging. PR62 designs `lolla.case_graph.v0` as a future run-local case graph export/view shape without implementing an exporter, archive reading, runtime integration, graph DB, memory, GraphRAG, entity resolution, scoring, labeling, or judging. PR63 creates three paraphrase-only accountability-view fixture bundles without implementing exporters, reading archives, changing runtime behavior, scoring, labeling, or judging. PR64 reviews all three bundles, marks them pass, recommends only `audit_decision_record` for a later exporter-design decision, and still implements no exporter, runtime behavior, scoring, labeling, or judging. PR65 chooses that direction as a docs-only decision and recommends future PR66 without implementing it. PR66 implements the read-only audit decision record exporter without raw content, labels, scoring, judges, graph DB, memory, or runtime integration. PR67 reviews six smoke exports and recommends schema/exporter refinement for clearer empty PR31 bucket semantics before archive integration or automatic generation. PR68 implements that narrow refinement with population policy, per-bucket statuses, nested buckets, and semantic-field empty-meaning metadata without adding scoring, labels, judges, archive integration, or runtime behavior. |
 | R7: Deterministic Evaluation Artifact v0 | Done | `evaluation.json` / `lolla.evaluation.v0` is generated, copied to `/tmp`, indexed in `reasoning_trace.json`, and exposed through Observatory custody. It checks artifacts, schemas, custody, health, hygiene, and caller-policy consistency without judging advice quality. |
-| R8: Calibrated Subjective Judges | Not started | Correctly deferred. Generic LLM judges may punish useful friction. PR30 supplies a six-run human-reviewed seed, PR31 defines actionable delta, PR32 supplies seed adversarial fixtures, PR33 broadens the human-reviewed corpus batch, PR34 designs values/priorities review context, PR35 keeps live-output hygiene honest, PR36 defines risk-mode reliance policy, PR37 adds risk-mode fixtures, PR38 reviews those fixtures, PR39 plans contract-first high-stakes reliance tightening, PR40 locks the current contract in tests, PR41 clarifies high-stakes evaluation artifacts, PR42 exposes the caveat to review-corpus records, PR43 validates reviewer interpretation with fixtures, PR44 makes aggregate absence/presence visible, PR45 records the anti-drift handoff, PR46 plans future high-stakes evidence creation without running it, PR47 adds paraphrase-only high-stakes fixtures, PR48 adds deterministic evidence-readiness analysis, PR49 makes values/priorities reviewable by humans before extraction, PR50 tests that worksheet with paraphrase-only fixtures, PR51 reviews fixture quality, PR52 adds blank deterministic worksheet structure, PR53 pilots human-filled worksheets, PR54 closes the worksheet lane at human-owned v0, PR55 records accountability primitives as inspectability aids rather than judge/scoring surfaces, PR56 plans a deterministic doctor/preflight readiness report, PR57 implements that report as a read-only CLI, PR58 designs a decision-delta record, PR59 reviews six paraphrase-only fixtures, PR60 designs a provenance map, PR61 designs a review conflict register, PR62 designs a case graph export/view shape, PR63 creates combined accountability-view fixtures, PR64 reviews those fixtures without creating a judge, labeler, score, exporter, graph DB, or runtime feature, PR65 recommends only a future decision-record exporter without starting it, PR66 implements that exporter without labels, scoring, judges, graph DB, memory, or runtime integration, and PR67 reviews smoke outputs without adding a judge or score. Judge automation remains deferred. |
+| R8: Calibrated Subjective Judges | Not started | Correctly deferred. Generic LLM judges may punish useful friction. PR30 supplies a six-run human-reviewed seed, PR31 defines actionable delta, PR32 supplies seed adversarial fixtures, PR33 broadens the human-reviewed corpus batch, PR34 designs values/priorities review context, PR35 keeps live-output hygiene honest, PR36 defines risk-mode reliance policy, PR37 adds risk-mode fixtures, PR38 reviews those fixtures, PR39 plans contract-first high-stakes reliance tightening, PR40 locks the current contract in tests, PR41 clarifies high-stakes evaluation artifacts, PR42 exposes the caveat to review-corpus records, PR43 validates reviewer interpretation with fixtures, PR44 makes aggregate absence/presence visible, PR45 records the anti-drift handoff, PR46 plans future high-stakes evidence creation without running it, PR47 adds paraphrase-only high-stakes fixtures, PR48 adds deterministic evidence-readiness analysis, PR49 makes values/priorities reviewable by humans before extraction, PR50 tests that worksheet with paraphrase-only fixtures, PR51 reviews fixture quality, PR52 adds blank deterministic worksheet structure, PR53 pilots human-filled worksheets, PR54 closes the worksheet lane at human-owned v0, PR55 records accountability primitives as inspectability aids rather than judge/scoring surfaces, PR56 plans a deterministic doctor/preflight readiness report, PR57 implements that report as a read-only CLI, PR58 designs a decision-delta record, PR59 reviews six paraphrase-only fixtures, PR60 designs a provenance map, PR61 designs a review conflict register, PR62 designs a case graph export/view shape, PR63 creates combined accountability-view fixtures, PR64 reviews those fixtures without creating a judge, labeler, score, exporter, graph DB, or runtime feature, PR65 recommends only a future decision-record exporter without starting it, PR66 implements that exporter without labels, scoring, judges, graph DB, memory, or runtime integration, PR67 reviews smoke outputs without adding a judge or score, and PR68 clarifies field population without adding a judge, score, or labeler. Judge automation remains deferred. |
 | R9: Archive Corpus And Stability Workflow | Corpus/readiness/extraction/semantic surveys done | PR13 adds deterministic JSONL corpus + manifest export around `agent_result.json`, `evaluation.json`, capture adequacy, run health, provider-boundary status, usage/model metadata, artifact availability, and optional control-plane summaries. PR15 adds deterministic review-readiness tiers and batch recommendations. Later work added extraction adequacy corpus export, semantic coverage corpus export, and local findings analyzers. |
 | R10: Observatory Parity | Done for current custody loop | Archive parity audit, selected archived sidecar APIs, selected-run custody UI, active-run custody sidecar parity, and evaluation custody parity are landed. Remaining known gap: selected archived dashboard render/readback can still hang after the full case payload resolves. |
 | R11: Human Capability Surface | Not started | Later: optional "what to learn from this audit" surface. |

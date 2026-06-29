@@ -254,13 +254,14 @@ Since the first harness PRD pass, the shipped harness layer has also added:
 - semantic coverage reports and corpus survey;
 - offline specialist extractor probe harnesses and evidence notes;
 - a six-case complex conversation baseline with full modern artifacts;
-- the PR30-PR67 evaluation/accountability handoff chain from human review seed
+- the PR30-PR68 evaluation/accountability handoff chain from human review seed
   through risk-mode reliance visibility, current-state anti-drift docs,
   human-owned values/priorities review, and the Semantica-inspired
   accountability plan through decision-record fixtures, provenance map, review
   conflict register, case graph export/view design, and combined
-  accountability-view fixtures, fixture review, and implementation decision
-  gate.
+  accountability-view fixtures, fixture review, implementation decision gate,
+  read-only decision-record exporter, smoke review, and schema/exporter
+  refinement.
 
 The current complex baseline is recorded in:
 
@@ -570,6 +571,15 @@ accountability shells, and artifact status, custody, and limitation clarity are
 strong. The review recommends PR68 schema/exporter refinement before archive
 integration or automatic generation because empty PR31 buckets are only partly
 clear as "not supplied / not inferred" non-claims.
+
+PR68 now lands that Audit Decision Record Schema / Exporter Refinement:
+
+`docs/evals/audit-decision-record-schema-exporter-refinement-v0.md`
+
+It keeps `lolla.audit_decision_record.v0` and adds PR31 population policy,
+per-bucket status, nested buckets, and semantic-field empty-meaning metadata so
+empty fields read as non-claims. It does not add label inference, scoring,
+judges, archive integration, automatic generation, or runtime behavior.
 
 This roadmap should build on that. It should not restart the architecture.
 
@@ -973,6 +983,10 @@ Current v0 slice:
   PR67 smoke review of PR66 exporter outputs and recommends a small
   schema/exporter refinement before archive integration, automatic generation,
   batch export, labels, scoring, judges, or runtime behavior.
+- `docs/evals/audit-decision-record-schema-exporter-refinement-v0.md`
+  documents the PR68 refinement that makes empty PR31 buckets and semantic
+  arrays explicit non-claims without adding labels, scoring, judges, archive
+  integration, automatic generation, or runtime behavior.
 
 Acceptance criteria:
 

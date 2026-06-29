@@ -1790,6 +1790,16 @@ exporter does not infer labels, but they are only partly clear as non-claims in
 real archive exports. PR67 recommends a small schema/exporter refinement before
 archive integration, batch export, or automatic generation.
 
+Implemented next as PR68:
+
+- [audit-decision-record-schema-exporter-refinement-v0.md](../evals/audit-decision-record-schema-exporter-refinement-v0.md)
+
+PR68 keeps `lolla.audit_decision_record.v0` and refines the exporter output so
+empty PR31 buckets and semantic arrays carry explicit population policy,
+per-bucket status, nested buckets, and empty-meaning metadata. It does not add
+semantic inference, automatic labels, scoring, archive integration, batch
+export, runtime behavior, graph DB, memory, or a judge.
+
 ### Later: Decision-Aware Capture And Runtime Integration
 
 Goal: only after offline evidence, use the IR to improve capture or audit input.
@@ -1847,8 +1857,9 @@ decision record design, PR59's audit decision record fixture review, PR60's
 provenance map design, PR61's review conflict register design, PR62's case
 graph export/view design, PR63's accountability-view fixture pack, PR64's
 fixture review, PR65's implementation decision gate, PR66's read-only audit
-decision record exporter, and PR67's exporter smoke review now exist. Stop
-after PR67 unless maintainers approve a separate PR68. Other lanes still
+decision record exporter, PR67's exporter smoke review, and PR68's audit
+decision record schema/exporter refinement now exist. Stop after PR68 unless
+maintainers approve a separate PR69. Other lanes still
 require their own gates: future
 high-stakes evidence under PR46/PR48, reopening the values lane after PR54, or
 any populated extraction, memory, runtime integration, automatic labels, or

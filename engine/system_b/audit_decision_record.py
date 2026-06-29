@@ -28,6 +28,16 @@ ACTIONABLE_DELTA_LABELS = (
     "no_op_prose_change",
 )
 
+ACTIONABLE_DELTA_BUCKET_STATUSES = (
+    "not_supplied",
+    "not_measured",
+    "measured_empty",
+    "populated_from_review",
+    "populated_from_structured_artifact",
+    "unavailable_missing_artifact",
+    "unavailable_malformed_artifact",
+)
+
 STRUCTURED_ARTIFACTS = (
     ("evaluation.json", "deterministic_run_readiness", True),
     ("agent_result.json", "agent_handoff", True),
@@ -88,10 +98,16 @@ def build_audit_decision_record(
         if payload is not None:
             structured_payloads[artifact_name] = payload
 
+    artifact_statuses = {
+        record["artifact"]: record["status"]
+        for record in artifact_records
+    }
+
     review_refs: list[dict[str, Any]] = []
+    review_payload: Mapping[str, Any] | None = None
     review_artifact_record: dict[str, Any] | None = None
     if review_json is not None:
-        review_artifact_record, review_ref = _review_reference_record(review_json)
+        review_artifact_record, review_ref, review_payload = _review_reference_record(review_json)
         artifact_records.append(review_artifact_record)
         review_refs.append(review_ref)
         if review_artifact_record["status"] == "malformed":
@@ -104,16 +120,28 @@ def build_audit_decision_record(
         "case_id": case_id,
         "run_id": run_id,
         "archive_relpath": _archive_relpath(case_id=case_id, run_id=run_id, run_dir=run_path),
-        "decision_question": _decision_question(structured_payloads),
+        "decision_question": _decision_question(
+            payloads=structured_payloads,
+            artifact_statuses=artifact_statuses,
+        ),
         "original_recommendation_summary": _not_measured_field(
             "No safe structured original-recommendation summary source was supplied."
         ),
         "revised_recommendation_summary": _revised_recommendation_summary(
-            structured_payloads
+            payloads=structured_payloads,
+            artifact_statuses=artifact_statuses,
         ),
-        "actionable_deltas": {label: [] for label in ACTIONABLE_DELTA_LABELS},
-        "conflicts_or_unresolved_tensions": [],
-        "unresolved_questions": _unresolved_questions(structured_payloads),
+        "actionable_deltas": _actionable_deltas(review_payload),
+        "conflicts_or_unresolved_tensions": _empty_semantic_items_field(
+            empty_meaning=(
+                "not supplied to exporter; not evidence that no conflicts or "
+                "unresolved tensions exist"
+            ),
+        ),
+        "unresolved_questions": _unresolved_questions(
+            payloads=structured_payloads,
+            artifact_statuses=artifact_statuses,
+        ),
         "source_artifacts": artifact_records,
         "review_refs": review_refs,
         "custody_flags": {
@@ -241,7 +269,7 @@ def _structured_artifact_record(
 
 def _review_reference_record(
     review_json: Path | str,
-) -> tuple[dict[str, Any], dict[str, Any]]:
+) -> tuple[dict[str, Any], dict[str, Any], Mapping[str, Any] | None]:
     path = Path(review_json).expanduser()
     base_artifact = {
         "artifact": "review_json",
@@ -263,9 +291,17 @@ def _review_reference_record(
         "raw_content_included": False,
     }
     if not path.exists():
-        return {**base_artifact, "status": "missing"}, {**base_ref, "status": "missing"}
+        return (
+            {**base_artifact, "status": "missing"},
+            {**base_ref, "status": "missing"},
+            None,
+        )
     if not path.is_file():
-        return {**base_artifact, "status": "unknown"}, {**base_ref, "status": "unknown"}
+        return (
+            {**base_artifact, "status": "unknown"},
+            {**base_ref, "status": "unknown"},
+            None,
+        )
     stat = path.stat()
     try:
         text = path.read_text(encoding="utf-8")
@@ -280,6 +316,7 @@ def _review_reference_record(
                 "error": "invalid_json",
             },
             {**base_ref, "status": "malformed"},
+            None,
         )
     if not isinstance(payload, dict):
         return (
@@ -291,6 +328,7 @@ def _review_reference_record(
                 "error": "json_root_not_object",
             },
             {**base_ref, "status": "malformed"},
+            None,
         )
     schema_version = _text(payload.get("schema_version")) or None
     reviews = payload.get("reviews")
@@ -308,69 +346,239 @@ def _review_reference_record(
         "schema_version": schema_version,
         "review_count": review_count,
     }
-    return artifact, ref
+    return artifact, ref, payload
 
 
-def _decision_question(payloads: Mapping[str, Mapping[str, Any]]) -> dict[str, Any]:
+def _decision_question(
+    *,
+    payloads: Mapping[str, Mapping[str, Any]],
+    artifact_statuses: Mapping[str, str],
+) -> dict[str, Any]:
     trace = _mapping(payloads.get("reasoning_trace.json"))
     case = _mapping(trace.get("case"))
     decision_situation = _text(case.get("decision_situation"))
     if decision_situation:
         return {
-            "status": "present",
+            "status": "populated_from_structured_artifact",
             "summary": decision_situation,
             "grounding": "artifact_present_only",
-            "source": "reasoning_trace.json:case.decision_situation",
+            "source_refs": [
+                {
+                    "artifact": "reasoning_trace.json",
+                    "field": "case.decision_situation",
+                }
+            ],
+            "exporter_inferred_from_prose": False,
         }
-    return _not_measured_field(
-        "No safe structured decision-question source was available."
+    status = _semantic_status_for_artifact(
+        artifact_statuses.get("reasoning_trace.json")
+    )
+    if status in {"unavailable_missing_artifact", "unavailable_malformed_artifact"}:
+        return _semantic_field(
+            status=status,
+            summary="not_included",
+            reason="No safe structured decision-question source was available.",
+        )
+    return _semantic_field(
+        status="not_supplied",
+        summary="not_included",
+        reason="reasoning_trace.json did not supply case.decision_situation.",
     )
 
 
 def _revised_recommendation_summary(
-    payloads: Mapping[str, Mapping[str, Any]]
+    *,
+    payloads: Mapping[str, Mapping[str, Any]],
+    artifact_statuses: Mapping[str, str],
 ) -> dict[str, Any]:
     agent_result = _mapping(payloads.get("agent_result.json"))
     changed = _string_list(agent_result.get("changed_advice_summary"))
     take_backs = _string_list(agent_result.get("take_backs"))
     if changed or take_backs:
         return {
-            "status": "partial",
+            "status": "populated_from_structured_artifact",
             "summary": "Structured changed-advice metadata is available in agent_result.json; exporter does not score or expand it.",
             "grounding": "artifact_present_only",
+            "source_refs": [
+                {
+                    "artifact": "agent_result.json",
+                    "field": "changed_advice_summary|take_backs",
+                }
+            ],
+            "exporter_inferred_from_prose": False,
             "structured_items": {
                 "changed_advice_summary": changed,
                 "take_backs": take_backs,
             },
         }
-    return _not_measured_field(
-        "No safe structured revised-recommendation summary source was available."
+    status = _semantic_status_for_artifact(
+        artifact_statuses.get("agent_result.json")
+    )
+    if status in {"unavailable_missing_artifact", "unavailable_malformed_artifact"}:
+        return _semantic_field(
+            status=status,
+            summary="not_included",
+            reason="No safe structured revised-recommendation summary source was available.",
+        )
+    return _semantic_field(
+        status="not_supplied",
+        summary="not_included",
+        reason="agent_result.json did not supply changed_advice_summary or take_backs.",
     )
 
 
-def _unresolved_questions(payloads: Mapping[str, Mapping[str, Any]]) -> list[dict[str, Any]]:
+def _actionable_deltas(review_payload: Mapping[str, Any] | None) -> dict[str, Any]:
+    review_deltas = _review_actionable_delta_buckets(review_payload)
+    bucket_status: dict[str, str] = {}
+    buckets: dict[str, list[dict[str, str]]] = {}
+    for label in ACTIONABLE_DELTA_LABELS:
+        items = review_deltas.get(label, [])
+        buckets[label] = items
+        bucket_status[label] = "populated_from_review" if items else "not_supplied"
+    return {
+        "population_policy": {
+            "owner": "human_review",
+            "exporter_infers_from_prose": False,
+            "empty_bucket_meaning": "not_supplied_or_not_measured",
+            "label_source_required": True,
+            "status_vocabulary": list(ACTIONABLE_DELTA_BUCKET_STATUSES),
+            "notes": [
+                "The exporter does not infer PR31 labels from revised-answer prose.",
+                "Empty arrays are non-claims unless bucket_status says measured_empty.",
+            ],
+        },
+        "bucket_status": bucket_status,
+        "buckets": buckets,
+    }
+
+
+def _review_actionable_delta_buckets(
+    review_payload: Mapping[str, Any] | None,
+) -> dict[str, list[dict[str, str]]]:
+    if not review_payload:
+        return {}
+    raw_deltas = _mapping(review_payload.get("actionable_deltas"))
+    raw_buckets = _mapping(raw_deltas.get("buckets")) if raw_deltas else {}
+    if not raw_buckets and raw_deltas:
+        raw_buckets = raw_deltas
+
+    result: dict[str, list[dict[str, str]]] = {}
+    for label in ACTIONABLE_DELTA_LABELS:
+        raw_items = raw_buckets.get(label)
+        if not isinstance(raw_items, list):
+            continue
+        safe_items = []
+        for item in raw_items:
+            safe_item = _safe_review_delta_item(item, label)
+            if safe_item:
+                safe_items.append(safe_item)
+        if safe_items:
+            result[label] = safe_items
+    return result
+
+
+def _safe_review_delta_item(item: Any, label: str) -> dict[str, str] | None:
+    if not isinstance(item, Mapping):
+        return None
+    summary = _text(item.get("summary"))
+    if not summary:
+        return None
+    return {
+        "summary": summary,
+        "grounding": _text(item.get("grounding")) or "review_supplied",
+        "source": f"review_json:actionable_deltas.{label}",
+    }
+
+
+def _unresolved_questions(
+    *,
+    payloads: Mapping[str, Mapping[str, Any]],
+    artifact_statuses: Mapping[str, str],
+) -> dict[str, Any]:
     agent_result = _mapping(payloads.get("agent_result.json"))
     questions = _string_list(agent_result.get("human_questions"))
-    return [
-        {
-            "question_id": f"agent_result_human_question_{index + 1}",
-            "status": "present",
-            "summary": question,
-            "owner": "human_reviewer",
-            "grounding": "artifact_present_only",
-            "source": "agent_result.json:human_questions",
+    if questions:
+        return {
+            "status": "populated_from_structured_artifact",
+            "items": [
+                {
+                    "question_id": f"agent_result_human_question_{index + 1}",
+                    "status": "populated_from_structured_artifact",
+                    "summary": question,
+                    "owner": "human_reviewer",
+                    "grounding": "artifact_present_only",
+                    "source_refs": [
+                        {
+                            "artifact": "agent_result.json",
+                            "field": "human_questions",
+                        }
+                    ],
+                    "exporter_inferred_from_prose": False,
+                }
+                for index, question in enumerate(questions)
+            ],
+            "empty_meaning": "not applicable; items were supplied from structured metadata",
+            "owner": "human_review",
+            "exporter_inferred_from_prose": False,
         }
-        for index, question in enumerate(questions)
-    ]
+    status = _semantic_status_for_artifact(
+        artifact_statuses.get("agent_result.json")
+    )
+    if status not in {"unavailable_missing_artifact", "unavailable_malformed_artifact"}:
+        status = "not_supplied"
+    return _empty_semantic_items_field(
+        status=status,
+        empty_meaning=(
+            "not supplied to exporter; not evidence that no unresolved "
+            "questions exist"
+        ),
+    )
+
+
+def _empty_semantic_items_field(
+    *,
+    status: str = "not_supplied",
+    empty_meaning: str,
+) -> dict[str, Any]:
+    return {
+        "status": status,
+        "items": [],
+        "empty_meaning": empty_meaning,
+        "owner": "human_review",
+        "exporter_inferred_from_prose": False,
+    }
 
 
 def _not_measured_field(reason: str) -> dict[str, Any]:
+    return _semantic_field(
+        status="not_measured",
+        summary="not_included",
+        reason=reason,
+    )
+
+
+def _semantic_field(
+    *,
+    status: str,
+    summary: str,
+    reason: str,
+) -> dict[str, Any]:
     return {
-        "status": "not_measured",
-        "summary": "not_included",
+        "status": status,
+        "summary": summary,
         "grounding": "none",
+        "source_refs": [],
+        "exporter_inferred_from_prose": False,
         "reason": reason,
     }
+
+
+def _semantic_status_for_artifact(status: str | None) -> str:
+    if status == "missing":
+        return "unavailable_missing_artifact"
+    if status == "malformed":
+        return "unavailable_malformed_artifact"
+    return "not_supplied"
 
 
 def _case_id(payloads: Mapping[str, Mapping[str, Any]], run_path: Path) -> str:
@@ -417,6 +625,7 @@ def _limitations(
         "It does not decide safe_for_agent_use.",
         "It does not provide domain approval.",
         "It may contain empty semantic fields when no safe structured source exists.",
+        "Empty PR31 buckets and empty semantic arrays mean the exporter did not receive a safe structured source for those fields. They do not mean the audited answer had no actionable deltas, no conflicts, or no unresolved questions.",
         "Human review remains responsible for judging improvement.",
         "The exporter does not infer PR31 actionable-delta labels from prose.",
         "Raw transcript, raw memo, raw revised-answer, provider text, and private reasoning artifacts were intentionally not read.",

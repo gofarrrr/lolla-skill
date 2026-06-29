@@ -9,6 +9,7 @@ from unittest.mock import patch
 import pytest
 
 from engine.system_b.audit_decision_record import (
+    ACTIONABLE_DELTA_BUCKET_STATUSES,
     ACTIONABLE_DELTA_LABELS,
     AUDIT_DECISION_RECORD_SCHEMA_VERSION,
     AuditDecisionRecordInputError,
@@ -87,9 +88,13 @@ def test_builds_valid_record_from_minimal_structured_run_dir(tmp_path: Path) -> 
     assert record["case_id"] == "sample-case"
     assert record["run_id"] == "20260629T000000Z_test"
     assert record["archive_relpath"] == "sample-case/20260629T000000Z_test"
-    assert record["decision_question"]["status"] == "present"
-    assert record["revised_recommendation_summary"]["status"] == "partial"
-    assert record["unresolved_questions"][0]["source"] == "agent_result.json:human_questions"
+    assert record["decision_question"]["status"] == "populated_from_structured_artifact"
+    assert record["revised_recommendation_summary"]["status"] == "populated_from_structured_artifact"
+    unresolved = record["unresolved_questions"]
+    assert unresolved["status"] == "populated_from_structured_artifact"
+    assert unresolved["items"][0]["source_refs"] == [
+        {"artifact": "agent_result.json", "field": "human_questions"}
+    ]
     assert record["review_refs"] == []
     assert record["custody_flags"]["model_calls"] == 0
     assert record["custody_flags"]["archive_mutated"] is False
@@ -103,9 +108,45 @@ def test_output_schema_version_is_stable(tmp_path: Path) -> None:
 
 def test_includes_every_pr31_actionable_delta_bucket(tmp_path: Path) -> None:
     record = build_audit_decision_record(run_dir=_minimal_run_dir(tmp_path))
+    deltas = record["actionable_deltas"]
 
-    assert list(record["actionable_deltas"]) == list(ACTIONABLE_DELTA_LABELS)
-    assert all(value == [] for value in record["actionable_deltas"].values())
+    assert list(deltas["bucket_status"]) == list(ACTIONABLE_DELTA_LABELS)
+    assert list(deltas["buckets"]) == list(ACTIONABLE_DELTA_LABELS)
+    assert all(
+        status == "not_supplied"
+        for status in deltas["bucket_status"].values()
+    )
+    assert all(value == [] for value in deltas["buckets"].values())
+
+
+def test_pr31_population_policy_makes_empty_buckets_non_claims(tmp_path: Path) -> None:
+    record = build_audit_decision_record(run_dir=_minimal_run_dir(tmp_path))
+    policy = record["actionable_deltas"]["population_policy"]
+
+    assert policy["owner"] == "human_review"
+    assert policy["exporter_infers_from_prose"] is False
+    assert policy["empty_bucket_meaning"] == "not_supplied_or_not_measured"
+    assert policy["label_source_required"] is True
+    assert policy["status_vocabulary"] == list(ACTIONABLE_DELTA_BUCKET_STATUSES)
+    assert "Empty arrays are non-claims" in policy["notes"][1]
+
+
+def test_semantic_fields_include_status_and_non_claim_metadata(tmp_path: Path) -> None:
+    record = build_audit_decision_record(run_dir=_minimal_run_dir(tmp_path))
+
+    assert record["decision_question"]["exporter_inferred_from_prose"] is False
+    assert record["decision_question"]["source_refs"] == [
+        {"artifact": "reasoning_trace.json", "field": "case.decision_situation"}
+    ]
+    assert record["original_recommendation_summary"]["status"] == "not_measured"
+    assert record["original_recommendation_summary"]["source_refs"] == []
+    conflicts = record["conflicts_or_unresolved_tensions"]
+    assert conflicts["status"] == "not_supplied"
+    assert conflicts["items"] == []
+    assert "not evidence" in conflicts["empty_meaning"]
+    unresolved = record["unresolved_questions"]
+    assert unresolved["items"]
+    assert unresolved["exporter_inferred_from_prose"] is False
 
 
 def test_output_path_inside_run_dir_is_rejected(tmp_path: Path) -> None:
@@ -128,6 +169,7 @@ def test_raw_files_are_not_read_or_copied(tmp_path: Path) -> None:
         "conversation.txt": "RAW CONVERSATION DO NOT COPY",
         "memo.md": "RAW MEMO DO NOT COPY",
         "revised.txt": "RAW REVISED ANSWER DO NOT COPY",
+        "live_transcript.txt": "RAW LIVE TRANSCRIPT DO NOT COPY",
     }
     for name, marker in raw_markers.items():
         (run_dir / name).write_text(marker, encoding="utf-8")
@@ -166,6 +208,9 @@ def test_missing_optional_artifacts_are_conservative_not_crashes(tmp_path: Path)
     assert statuses["evaluation.json"] == "missing"
     assert statuses["reasoning_trace.json"] == "missing"
     assert statuses["extraction_adequacy_report.json"] == "missing"
+    assert record["decision_question"]["status"] == "unavailable_missing_artifact"
+    assert record["revised_recommendation_summary"]["status"] == "not_supplied"
+    assert record["unresolved_questions"]["status"] == "not_supplied"
     assert "Missing structured artifacts were recorded as missing rather than guessed." in record["limitations"]
 
 
@@ -179,6 +224,15 @@ def test_malformed_optional_json_is_handled_deterministically(tmp_path: Path) ->
     assert evaluation["status"] == "malformed"
     assert evaluation["error"] == "invalid_json"
     assert "Malformed structured artifacts were recorded as malformed rather than guessed." in record["limitations"]
+
+
+def test_malformed_semantic_source_sets_unavailable_status(tmp_path: Path) -> None:
+    run_dir = _minimal_run_dir(tmp_path)
+    (run_dir / "reasoning_trace.json").write_text("{not-json", encoding="utf-8")
+
+    record = build_audit_decision_record(run_dir=run_dir)
+
+    assert record["decision_question"]["status"] == "unavailable_malformed_artifact"
 
 
 def test_custody_flags_remain_false_for_excluded_content(tmp_path: Path) -> None:
@@ -239,8 +293,52 @@ def test_optional_review_json_adds_safe_review_reference_without_labels_or_scori
             "raw_content_included": False,
         }
     ]
-    assert all(value == [] for value in record["actionable_deltas"].values())
+    deltas = record["actionable_deltas"]
+    assert all(value == [] for value in deltas["buckets"].values())
+    assert all(
+        status == "not_supplied"
+        for status in deltas["bucket_status"].values()
+    )
     assert "Safe paraphrase-only review note." not in render_audit_decision_record_json(record)
+
+
+def test_review_json_can_supply_explicit_pr31_labels_without_prose_inference(tmp_path: Path) -> None:
+    run_dir = _minimal_run_dir(tmp_path)
+    review_json = tmp_path / "review-labels.json"
+    _write_json(
+        review_json,
+        {
+            "schema_version": "lolla.safe_review_labels.v0",
+            "actionable_deltas": {
+                "buckets": {
+                    "action_changed": [
+                        {
+                            "summary": "Reviewer supplied an explicit action-change label.",
+                            "grounding": "review_supplied",
+                            "review_note": "This note should not be copied.",
+                        }
+                    ],
+                    "threshold_changed": [],
+                }
+            },
+        },
+    )
+
+    record = build_audit_decision_record(run_dir=run_dir, review_json=review_json)
+    deltas = record["actionable_deltas"]
+
+    assert deltas["population_policy"]["exporter_infers_from_prose"] is False
+    assert deltas["bucket_status"]["action_changed"] == "populated_from_review"
+    assert deltas["bucket_status"]["threshold_changed"] == "not_supplied"
+    assert deltas["buckets"]["action_changed"] == [
+        {
+            "summary": "Reviewer supplied an explicit action-change label.",
+            "grounding": "review_supplied",
+            "source": "review_json:actionable_deltas.action_changed",
+        }
+    ]
+    rendered = render_audit_decision_record_json(record, pretty=True)
+    assert "This note should not be copied." not in rendered
 
 
 def test_cli_writes_only_requested_external_output_file(tmp_path: Path) -> None:

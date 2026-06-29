@@ -193,6 +193,13 @@ reviewability issue: empty PR31 buckets are safe but only partly clear as
 "labels were not supplied or inferred." That means the next conservative move
 is schema/exporter refinement, not archive integration or scoring.
 
+PR68 implements that refinement by adding PR31 population policy, per-bucket
+statuses, nested buckets, and semantic-field empty-meaning metadata to the same
+`lolla.audit_decision_record.v0` output. This does not make the exporter infer
+labels, judge answer quality, approve recommendations, mutate archives, call
+models, or integrate with runtime behavior. It makes absence readable before
+the next review pass.
+
 These checks should gate releases before any subjective judge runs.
 
 ### 4. Binary Failure-Mode Judges Only
