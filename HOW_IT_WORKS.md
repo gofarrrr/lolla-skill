@@ -128,6 +128,7 @@ The detailed docs are split so agents and humans do not have to load one giant f
 | [Reasoning-Audit Harness PRD](docs/lolla-reasoning-audit-harness-prd.md) | The actionable roadmap for turning Lolla into an agent-callable reasoning-audit harness with risk modes, an agent result contract, evaluation artifacts, and archive-corpus workflows. |
 | [Agent Control Layers And Lolla Integration](docs/agent-control-layers-and-lolla-integration.md) | How Lolla can fit beside CrabTrap-style proxies, guardrails, approvals, sandboxes, identity scopes, and observability/eval systems without pretending to replace them. |
 | [Evaluation Methodology](docs/lolla-evaluation-methodology.md) | Lolla-specific eval doctrine: error analysis first, deterministic gates before judges, calibrated binary judges, and how to avoid rewarding smoothness over useful friction. |
+| [Product Delta / Eval Docs Index](docs/evals/README.md) | GitHub-facing map of the offline Product Delta eval lane: what it evaluates, how to run the safe tools, what to inspect, and what not to infer. |
 | [Evaluation Flywheel Action Plan](docs/evals/evaluation-flywheel-action-plan-v0.md) | The current action map for turning real traces into human labels, fixtures, deterministic checks, and later calibrated binary judges without drifting into generic scoring. |
 | [Current System Capabilities](docs/evals/current-system-capabilities-v0.md) | A plain-language map of what the current system can do, which recorded cases show it, how the layers work together, and how it helps us avoid brittle evaluation. |
 | [Product Delta Evidence And Interpretation Adequacy](docs/evals/product-delta-evidence-and-interpretation-adequacy-v0.md) | The post-PR70 product-readiness bridge: prove decision-useful deltas against actual vanilla strong-model conversations, and treat conversation interpretation quality as load-bearing. |
@@ -359,3 +360,7 @@ The detailed docs are split so agents and humans do not have to load one giant f
   package manifest and tests that the Product Delta phase is internally
   coherent, source-reference resolvable, PR78-linted, and still lower-claim.
   It does not expand evidence or add runtime behavior.
+- The GitHub-facing eval index at `docs/evals/README.md` explains the
+  runtime/eval split, Product Delta safe commands, what to inspect, what not
+  to infer, and the current stop line without adding new evidence or runtime
+  behavior.

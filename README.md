@@ -155,6 +155,68 @@ usage/model metadata, and optional control-plane references with blank
 human-review fields. It does not copy raw transcript/memo text, does not score
 advice quality, and does not use an LLM judge.
 
+## Offline Product Delta Evidence Lane
+
+The live skill and the eval lane are separate.
+
+```text
+Lolla runtime:
+  current conversation -> audit pressure -> revised answer -> archived artifacts
+
+Product Delta eval lane:
+  existing safe artifacts -> readiness -> provisional review packets -> lint -> disagreement report
+```
+
+The runtime creates the object of study. The Product Delta lane studies it
+later. It does not run `$lolla`, invoke the skill, call providers, mutate
+archives, change prompts, judge answer quality, or approve agent action.
+
+Use this lane when you want to understand what changed between the original
+strong-model conversation and the Lolla revised answer. The review questions
+are deliberately concrete:
+
+- Did the likely next action, threshold, sequence, evidence gate, stop rule, or
+  scope change?
+- Did Lolla add useful friction, or only caution and process?
+- Did it lose something valuable from the original answer?
+- Did it understand the conversation well enough for the review to be useful?
+- Are empty fields, missing artifacts, and provisional reads clearly marked as
+  non-claims?
+
+Safe local commands include:
+
+```bash
+python3 scripts/evals/build_product_delta_provisional_review.py \
+  --case-list docs/evals/product-delta-seed-cases-v0.json \
+  --out /tmp/product_delta_readiness.md \
+  --json-out /tmp/product_delta_readiness.json
+```
+
+```bash
+python3 scripts/evals/build_product_delta_specialist_packets.py \
+  --case-list docs/evals/product-delta-seed-cases-v0.json \
+  --provisional-review reviews/codex-assisted/product-delta-provisional-run-v0/review.json \
+  --codex-batch reviews/codex-assisted/product-delta-batch-v0/review.json \
+  --limit 2 \
+  --out /tmp/product_delta_specialist_packets.json
+```
+
+```bash
+python3 scripts/evals/lint_product_delta_evidence.py --paths \
+  docs/evals/product-delta-provisional-report-v0.md \
+  reviews/codex-assisted/product-delta-batch-v0/review.json \
+  reviews/codex-assisted/specialist-review-batch-v0/review.json \
+  reviews/codex-assisted/fan-in-disagreement-report-v0/report.json
+```
+
+The current packaged Product Delta phase is PR71-PR85. It is useful internal
+evidence scaffolding, not product proof. Its healthiest signal is a downgrade:
+`accept-operations-role-startup` moved from `material_improvement_candidate`
+to `partial_improvement_candidate` after specialist review preserved lost
+value and interpretation concerns.
+
+Start here: **[Product Delta / Eval Docs Index](docs/evals/README.md)**.
+
 **Trigger phrases** (the skill also activates on these):
 - "audit this", "check my reasoning", "find blind spots"
 - "stress test", "what am I missing", "challenge this"
@@ -183,7 +245,9 @@ lolla-skill/
 │   ├── archive_run.py      # Local archive + agent_result.json + evaluation.json + reasoning_trace.json custody manifest
 │   ├── export_reasoning_trace_dataset.py # Local JSONL corpus + summary from archived traces
 │   ├── export_review_corpus.py # Local JSONL run-envelope corpus + human-review template
+│   ├── evals/               # Read-only Product Delta eval helpers and boundary lint
 │   └── stability_check.py  # Diagnostic harness (Mode A aggregate / Mode B pipeline-variance / Mode C extraction-drift)
+├── docs/evals/            # Evaluation doctrine, Product Delta evidence docs, manifests, and review protocols
 ├── observatory/          # Local web UI — four cards, revised answer, reasoning graph, run health, pipeline inspector
 ├── references/           # Tendency catalog, calibration, guardrails (loaded on demand)
 └── tests/                # Unit tests (trigger sources, frame validation, fuzzy matching, BI context, memo rendering)
@@ -204,6 +268,9 @@ For the June 2026 roadmap toward an agent-callable reasoning-audit harness, see 
 For how Lolla can fit beside CrabTrap-style proxies, guardrails, approval systems, sandboxes, identity scopes, and trace stores, see **[Agent Control Layers And Lolla Integration](docs/agent-control-layers-and-lolla-integration.md)**.
 
 For the eval doctrine behind that roadmap, see **[Lolla Evaluation Methodology](docs/lolla-evaluation-methodology.md)**.
+
+For the offline Product Delta evidence lane, including what to run, what to
+inspect, and what not to infer, see **[Product Delta / Eval Docs Index](docs/evals/README.md)**.
 
 ## Cost
 

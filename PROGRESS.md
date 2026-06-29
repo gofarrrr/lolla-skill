@@ -74,6 +74,17 @@ evidence gate. PR54 remains the paused v0 values/priorities worksheet gate.
 Use git log for the exact current commit hash.
 ```
 
+Documentation alignment note:
+
+```text
+The GitHub front door now separates normal Lolla runtime use from the offline
+Product Delta eval lane. README.md points to docs/evals/README.md, which maps
+what the eval lane studies, how to run the safe read-only tools, what to
+inspect, and what not to infer. This is documentation alignment only: it adds
+no new evidence, runtime behavior, model calls, archive mutation, scoring,
+automatic labels, or agent approval.
+```
+
 Current product state:
 
 > Lolla now has the local reasoning-audit harness skeleton, deterministic run
@@ -301,6 +312,7 @@ What this means in plain terms:
 Primary evidence notes to read first in a fresh session:
 
 - `docs/conversation-understanding/complex-conversation-baseline-v0.md`
+- `docs/evals/README.md`
 - `docs/evals/complex-baseline-human-review-v0.md`
 - `docs/evals/evaluation-flywheel-action-plan-v0.md`
 - `docs/evals/current-system-capabilities-v0.md`
