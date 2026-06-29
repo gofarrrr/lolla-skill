@@ -2,10 +2,10 @@
 
 Status: current-state handoff
 Date: 2026-06-29
-Slice: PR45, updated by PR69
+Slice: PR45, updated by PR70
 
 This note is the compact first-read handoff for a fresh Lolla eval session. It
-summarizes what the harness is, what PR30-PR69 built, what evidence exists now,
+summarizes what the harness is, what PR30-PR70 built, what evidence exists now,
 and what must not be built until the next explicit approval gates.
 
 PR45 is docs-only. It does not run Lolla, call models, mutate archives, change
@@ -37,7 +37,7 @@ The product boundary is still sharp:
 - `risk_mode` is reliance and review context, not answer-quality scoring,
   domain approval, or automatic safety.
 
-## PR30-PR69 Chain
+## PR30-PR70 Chain
 
 - PR30 created the six-run human/product review seed over the clean complex
   conversation baseline.
@@ -151,9 +151,12 @@ The product boundary is still sharp:
   records pass: four existing reviewed archive exports, two fixture-backed
   temp-run exports, and one optional review-json-supplied fixture. Empty PR31
   bucket clarity improves to seven `clear_non_claim`, semantic empty fields
-  are seven `clear_non_claim`, raw content safety remains safe, and the
-  recommended next slice is a PR70 archive-integration decision gate, not
-  archive integration implementation.
+  are seven `clear_non_claim`, and raw content safety remains safe.
+- PR70 closes the audit/accountability machinery lane as done enough for now.
+  It does not add archive integration, automatic generation, runtime behavior,
+  labels, scoring, judges, graph DB, memory, or Semantica-style platform work.
+  It redirects the next phase to Product Delta Evidence: proving whether Lolla
+  changes actual strong-model conversations in decision-useful ways.
 
 ## Current Corpus Evidence
 
@@ -266,14 +269,15 @@ The later safe lanes are separate:
    paraphrase-only decision-record fixtures. PR60 designs only the provenance
    map shape. PR61 designs only the review conflict register shape. Do not
    implement provenance export, conflict-register export, case graph export,
-   graph DB, memory, platform work, or runtime behavior from PR55 through PR69
+   graph DB, memory, platform work, or runtime behavior from PR55 through PR70
    alone. PR62 designs only the case graph export/view shape. PR63 creates only
    paraphrase-only accountability-view fixture bundles. PR64 only reviews those
    fixtures and stops before implementation. PR65 only recommends a future
    decision-record exporter. PR66 implements only that read-only decision-record
    exporter. PR67 only reviews smoke outputs. PR68 only clarifies field
    population semantics and stops before PR69. PR69 only reviews refined
-   exporter output and stops before PR70.
+   exporter output and stops before PR70. PR70 closes the machinery lane and
+   stops before PR71.
 3. A later live-output hygiene lane can plan and lock current behavior, then
    stop for an implementation decision.
 
@@ -391,6 +395,12 @@ reviews/human/audit-decision-record-export-review-rerun-v0/review.json
 reviews/human/audit-decision-record-export-review-rerun-v0/exported-records-summary.json
 ```
 
+For the PR70 audit/accountability machinery closure gate, read:
+
+```text
+docs/evals/audit-accountability-machinery-closure-gate-v0.md
+```
+
 ## Decision Gates
 
 - Now: decide whether to create approved real high-stakes evidence.
@@ -410,11 +420,14 @@ reviews/human/audit-decision-record-export-review-rerun-v0/exported-records-summ
   implements only the read-only audit decision record exporter and stops before
   PR67. PR67 reviews only exporter smoke output and recommends PR68
   schema/exporter refinement. PR68 implements only that refinement and stops
-  before PR69. PR69 reviews only refined exporter output and recommends PR70
-  as an archive-integration decision gate. PR70 must not start automatically
-  and must not add archive integration, automatic generation, batch export,
-  labels, scoring, judges, or runtime behavior until maintainers approve a new
-  slice.
+  before PR69. PR69 reviews only refined exporter output. PR70 closes the
+  audit/accountability machinery phase. PR71 must not start automatically and
+  must not add archive integration, automatic generation, batch export, labels,
+  scoring, judges, or runtime behavior until maintainers approve a new Product
+  Delta Evidence slice.
+- Product Delta Evidence lane: next approved work should test whether Lolla
+  materially improves actual strong-model conversations before action. The
+  first recommended slice is PR71 Product Delta Evidence Thesis v0.
 - After a live-output hygiene planning/review lane: decide whether to implement
   trusted live-output transcript hygiene.
 

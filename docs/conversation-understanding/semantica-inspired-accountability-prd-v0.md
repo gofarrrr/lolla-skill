@@ -15,10 +15,10 @@ approve PR56 through PR65 as code work.
 
 PR66 has now landed as a separate approved implementation slice for only the
 audit decision record exporter. PR67 reviewed exporter smoke output, PR68
-clarified field-population semantics, and PR69 re-ran the review against that
-refined output without integrating it into runtime. That does not broaden the
-PR55 plan into archive integration, automatic generation, graph/memory/platform
-work, scoring, or judge behavior.
+clarified field-population semantics, PR69 re-ran the review against that
+refined output, and PR70 closed the machinery lane without integrating it into
+runtime. That does not broaden the PR55 plan into archive integration,
+automatic generation, graph/memory/platform work, scoring, or judge behavior.
 
 This note is not a runtime approval. It does not approve graph databases,
 embeddings, memory, automatic value extraction, policy enforcement, high-stakes
@@ -1049,9 +1049,46 @@ Result:
 
 Stop rule:
 
-Do not continue into PR70 automatically. PR69 recommends PR70 Audit Decision
-Record Archive Integration Decision Gate v0 only after maintainer review. PR70
-should be a decision gate, not archive integration implementation.
+Do not continue into PR70 automatically. PR69 originally recommended a PR70
+archive-integration decision gate, but PR70 later landed as a broader
+machinery closure gate instead.
+
+### PR70: Audit / Accountability Machinery Closure Gate v0
+
+Type: docs-only decision gate and phase closure
+
+Status after PR70: completed as the machinery closure gate:
+`docs/evals/audit-accountability-machinery-closure-gate-v0.md`.
+
+Goal:
+
+Close the audit/accountability machinery lane as done enough for now and shift
+the next approved direction to Product Delta Evidence.
+
+Result:
+
+- declares the machinery lane sufficient as support structure for the next
+  product-eval phase;
+- records that clean artifacts, doctor status, audit decision records, and
+  PR31 buckets are not answer-quality claims;
+- defers provenance-map exporter, conflict-register exporter/helper, case graph
+  exporter/view, automatic audit decision record generation, Observatory UI,
+  archive integration, graph DB, embeddings, memory, GraphRAG, and
+  Semantica-style platform work;
+- defines the next phase as Product Delta Evidence;
+- names the north-star question: did Lolla change what a serious person would
+  do next in a human-explainable way without confusing caution, structure, or
+  artifact cleanliness for truth;
+- recommends PR71 through PR77 as product-eval slices;
+- preserves no production code changes, no runtime behavior, no model calls, no
+  archive mutation, no automatic generation, no labels, no scoring, and no
+  judge.
+
+Stop rule:
+
+Do not continue into PR71 automatically. PR70 recommends PR71 Product Delta
+Evidence Thesis v0 only after maintainer review. PR71 should define the
+product-eval claim, not add new accountability machinery.
 
 ## Coder Operating Rules
 
@@ -1221,10 +1258,17 @@ reviews/human/audit-decision-record-export-review-rerun-v0/review.json
 reviews/human/audit-decision-record-export-review-rerun-v0/exported-records-summary.json
 ```
 
+PR70 has now closed the machinery lane:
+
+```text
+docs/evals/audit-accountability-machinery-closure-gate-v0.md
+```
+
 PR66 and PR68 are the only approved code-bearing accountability implementation
 slices from this lane so far. PR67 and PR69 are review/data only. None of these
 slices adds runtime integration, archive mutation, automatic generation, batch
 export, provenance-map export, conflict-register export, case-graph export,
 graph DB, embeddings, memory, entity resolution, GraphRAG, answer-quality
-scoring, automatic labels, or Semantica-style platform work. Stop after PR69
-unless a new maintainer-approved slice explicitly starts PR70.
+scoring, automatic labels, or Semantica-style platform work. PR70 is docs-only
+phase closure. Stop after PR70 unless a new maintainer-approved slice
+explicitly starts PR71 Product Delta Evidence.

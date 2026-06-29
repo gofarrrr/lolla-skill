@@ -204,8 +204,14 @@ PR69 re-runs that review pass against refined PR68 output. Seven reviewed
 records pass, including one optional review-json-supplied fixture; empty PR31
 bucket clarity and semantic empty-field clarity are both seven
 `clear_non_claim`, and no reviewer needed docs to avoid the basic non-claim
-misread. The recommended next step is an archive-integration decision gate, not
-integration implementation.
+misread.
+
+PR70 closes the audit/accountability machinery lane as done enough for now.
+The next eval phase is Product Delta Evidence: compare actual vanilla
+strong-model answers with Lolla revised answers and ask whether the difference
+is decision-useful. That phase should review `decision_leverage`, `lost_value`,
+and `net_decision_read` before any judge, score, automatic label, or new
+machinery is added.
 
 These checks should gate releases before any subjective judge runs.
 

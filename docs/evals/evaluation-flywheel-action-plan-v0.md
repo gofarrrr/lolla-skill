@@ -1937,8 +1937,44 @@ Stop point:
 - Do not add archive integration, automatic generation, batch export, runtime
   behavior, labels, answer-quality scoring, judges, graph DB, memory, GraphRAG,
   or Semantica-style platform work from PR69 alone.
-- Recommended PR70 is Audit Decision Record Archive Integration Decision Gate
-  v0, only after maintainer review.
+- PR69 originally recommended a PR70 archive-integration decision gate, but
+  PR70 landed as a broader machinery closure gate instead.
+
+### PR70: Audit / Accountability Machinery Closure Gate v0
+
+Maps to: R6/R9 phase closure and product-evidence handoff.
+
+Status: completed as a docs-only decision gate.
+
+Output:
+
+- [Audit / Accountability Machinery Closure Gate v0](audit-accountability-machinery-closure-gate-v0.md).
+
+Current result:
+
+- closes the audit/accountability machinery lane as done enough for now;
+- records that the next phase is Product Delta Evidence;
+- keeps archive integration, automatic generation, batch export, runtime
+  behavior, labels, scoring, judges, graph DB, memory, GraphRAG, and
+  Semantica-style platform work out of PR70;
+- defines the next north-star question: whether Lolla changes what a serious
+  person would do next in a human-explainable way without confusing caution,
+  structure, or artifact cleanliness for truth;
+- defines the first baseline as the real vanilla strong-model conversation;
+- defines the first wedge as founder/operator strategic decisions;
+- introduces `decision_leverage`, `lost_value`, and `net_decision_read` as the
+  next eval concepts;
+- recommends PR71 through PR77 as a Product Delta Evidence sequence.
+
+Stop point:
+
+- Stop after PR70.
+- Do not start PR71 automatically.
+- Do not add archive integration, automatic generation, batch export, runtime
+  behavior, labels, answer-quality scoring, judges, graph DB, memory, GraphRAG,
+  or Semantica-style platform work from PR70 alone.
+- Recommended PR71 is Product Delta Evidence Thesis v0, only after maintainer
+  review.
 
 ## What Not To Build Yet
 
@@ -1997,12 +2033,11 @@ Before building judges or runtime semantic enrichment, Lolla should have:
 That is the smallest flywheel that can improve Lolla run by run without turning
 it into a vague critic or overbuilt memory system.
 
-The latest conservative accountability step is PR69 Audit Decision Record
-Export Review Re-Run v0. It confirms that PR68's refined output makes empty
-PR31 buckets and semantic empty fields legible as non-claims in seven reviewed
-records. Any future PR70 should require maintainer review first and should be
-an archive-integration decision gate, not archive integration implementation.
-Do not add automatic generation, graph DB, embeddings, memory, entity
-resolution, GraphRAG, conflict automation, answer-quality scoring, judges,
-automatic labels, provider-boundary policy changes, prompt changes,
-`SKILL.md` changes, or Semantica-style platform work from PR69 alone.
+The latest conservative accountability step is PR70 Audit / Accountability
+Machinery Closure Gate v0. It declares the machinery lane done enough for now
+and redirects the next phase to Product Delta Evidence. Any future PR71 should
+require maintainer review first and should define the product-eval thesis, not
+add archive integration, automatic generation, graph DB, embeddings, memory,
+entity resolution, GraphRAG, conflict automation, answer-quality scoring,
+judges, automatic labels, provider-boundary policy changes, prompt changes,
+`SKILL.md` changes, or Semantica-style platform work from PR70 alone.
