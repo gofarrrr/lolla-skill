@@ -109,30 +109,31 @@ Implement at most one read-only exporter next, and make it the audit decision
 record exporter if PR65 approves implementation at all.
 ```
 
-## Recommended PR65 Framing
+## PR65 Decision Result
 
-PR65 should be an implementation decision gate, not implementation.
+PR65 has now landed as an implementation decision gate, not implementation:
 
-The review supports outcome A from the PR65 option set:
+- [Accountability Implementation Decision Gate v0](accountability-implementation-decision-gate-v0.md)
+
+The review supported outcome A from the PR65 option set:
 
 ```text
 A. Implement audit_decision_record exporter next.
 ```
 
-That recommendation is conditional. PR65 should still reject or defer graph DB,
-memory, case graph exporter work, provenance exporter work, conflict-register
-helper/exporter work, answer-quality scoring, automatic labels, judges,
-high-stakes evidence creation, runtime integration, and Semantica-style platform
-work.
+PR65 chose outcome A and recommends future PR66 Audit Decision Record Read-Only
+Exporter v0. It still rejects or defers graph DB, memory, case graph exporter
+work, provenance exporter work, conflict-register helper/exporter work,
+answer-quality scoring, automatic labels, judges, high-stakes evidence creation,
+runtime integration, and Semantica-style platform work.
 
-If PR65 recommends a next implementation slice, it should name it only as a
-future PR:
+PR65 names the next implementation slice only as a future PR:
 
 ```text
 PR66 Audit Decision Record Read-Only Exporter v0
 ```
 
-PR64 does not start PR65 implementation, and it does not start PR66.
+PR64 did not start PR65 implementation, and PR65 does not start PR66.
 
 ## Anti-Drift Sentence
 
@@ -180,10 +181,10 @@ PR64 does not add or approve:
 
 ## Stop Point
 
-Stop after PR64 and move only to the docs-only decision gate:
+PR64 moved only to the docs-only decision gate:
 
 ```text
 PR65 Accountability Implementation Decision Gate v0
 ```
 
-PR65 may recommend a future PR66, but it must not implement it.
+PR65 now recommends a future PR66, but it does not implement it.

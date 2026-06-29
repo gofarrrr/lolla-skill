@@ -1753,8 +1753,36 @@ Stop point:
   prompts, change `SKILL.md`, add graph DB, add embeddings, add memory, add
   GraphRAG, add entity resolution, score answer quality, create labels, add
   judges, or begin Semantica-style platform work from this slice.
-- The next slice is PR65 Accountability Implementation Decision Gate v0,
+- Implemented next as PR65 Accountability Implementation Decision Gate v0,
   docs-only.
+
+### PR65: Accountability Implementation Decision Gate v0
+
+Maps to: R6/R9 accountability implementation gate.
+
+Status: completed as a docs-only decision.
+
+Output:
+
+- [Accountability Implementation Decision Gate v0](accountability-implementation-decision-gate-v0.md).
+
+Current result:
+
+- chooses outcome A: implement `audit_decision_record` exporter next;
+- recommends future PR66 Audit Decision Record Read-Only Exporter v0;
+- rejects or defers provenance exporter, conflict-register helper/exporter, and
+  case-graph exporter work;
+- does not implement PR66, add exporter code, read archives, run `$lolla`, call
+  models, mutate archives, change prompts, change `SKILL.md`, add graph DB, add
+  memory, score answer quality, add judges, create labels, or begin
+  Semantica-style platform work.
+
+Stop point:
+
+- Stop after PR65.
+- Do not start PR66 from this sequence.
+- Any future PR66 must remain read-only, local, deterministic,
+  model-call-free, archive-safe, and raw-content-safe.
 
 ## What Not To Build Yet
 
@@ -1813,12 +1841,9 @@ Before building judges or runtime semantic enrichment, Lolla should have:
 That is the smallest flywheel that can improve Lolla run by run without turning
 it into a vague critic or overbuilt memory system.
 
-The next conservative accountability step is PR65 Accountability Implementation
-Decision Gate v0. It should make one docs-only decision about what, if anything,
-deserves a future implementation slice. It should not implement an exporter, add
-tests, add schemas under `engine/`, add CLI support, read archives, run
-`$lolla`, call models, mutate archives, change prompts, change `SKILL.md`,
-change provider-boundary policy, add graph DB, add embeddings, add memory, add
-entity resolution, add GraphRAG, resolve conflicts automatically, score answer
-quality, add judges, add automatic labels, or start any Semantica-style
-platform work.
+The next conservative accountability step is future PR66 Audit Decision Record
+Read-Only Exporter v0, only after maintainer review. PR65 recommends it but
+does not start it. Any future PR66 should not add graph DB, embeddings, memory,
+entity resolution, GraphRAG, conflict automation, answer-quality scoring,
+judges, automatic labels, provider-boundary policy changes, prompt changes,
+`SKILL.md` changes, or Semantica-style platform work.

@@ -2,10 +2,10 @@
 
 Status: current-state handoff
 Date: 2026-06-29
-Slice: PR45, updated by PR64
+Slice: PR45, updated by PR65
 
 This note is the compact first-read handoff for a fresh Lolla eval session. It
-summarizes what the harness is, what PR30-PR64 built, what evidence exists now,
+summarizes what the harness is, what PR30-PR65 built, what evidence exists now,
 and what must not be built until the next explicit approval gates.
 
 PR45 is docs-only. It does not run Lolla, call models, mutate archives, change
@@ -37,7 +37,7 @@ The product boundary is still sharp:
 - `risk_mode` is reliance and review context, not answer-quality scoring,
   domain approval, or automatic safety.
 
-## PR30-PR64 Chain
+## PR30-PR65 Chain
 
 - PR30 created the six-run human/product review seed over the clean complex
   conversation baseline.
@@ -125,6 +125,11 @@ The product boundary is still sharp:
   only `audit_decision_record` is ready for a later exporter-design decision;
   `provenance_map` and `review_conflict_register` need more fixtures; and
   `case_graph` should hold before implementation.
+- PR65 chooses outcome A as a docs-only implementation decision gate: recommend
+  a future PR66 Audit Decision Record Read-Only Exporter v0. It does not
+  implement PR66, add an exporter, read archives, call models, mutate archives,
+  change runtime behavior, create labels, score answer quality, or start a graph
+  or memory lane.
 
 ## Current Corpus Evidence
 
@@ -180,10 +185,11 @@ only aggregate keys and counts.
   `lolla.review_conflict_register.v0`; PR62 only designs `lolla.case_graph.v0`;
   PR63 only creates paraphrase-only accountability-view fixtures; PR64 only
   reviews those fixtures and recommends a later decision-record exporter-design
-  gate; no
+  gate; PR65 only chooses that future decision-record exporter as a
+  recommendation; no
   decision-record exporter, provenance exporter, conflict-register exporter,
   case-graph exporter, graph DB, memory, GraphRAG, or runtime integration exists
-  from PR55 through PR64;
+  from PR55 through PR65;
 - no domain, crisis, legal, medical, financial, or safety protocol.
 
 ## Explicit Non-Goals
@@ -237,10 +243,11 @@ The later safe lanes are separate:
    map shape. PR61 designs only the review conflict register shape. Do not
    implement decision-record export, provenance export, conflict-register
    export, case graph export, graph DB, memory, platform work, or runtime
-   behavior from PR55 through PR64 alone. PR62 designs only the case graph
+   behavior from PR55 through PR65 alone. PR62 designs only the case graph
    export/view shape. PR63 creates only paraphrase-only accountability-view
    fixture bundles. PR64 only reviews those fixtures and stops before
-   implementation.
+   implementation. PR65 only recommends a future decision-record exporter and
+   stops before PR66.
 3. A later live-output hygiene lane can plan and lock current behavior, then
    stop for an implementation decision.
 
@@ -320,6 +327,12 @@ docs/evals/accountability-view-fixture-review-v0.md
 reviews/human/accountability-view-fixture-review-v0/review.json
 ```
 
+For the PR65 accountability implementation decision gate, read:
+
+```text
+docs/evals/accountability-implementation-decision-gate-v0.md
+```
+
 ## Decision Gates
 
 - Now: decide whether to create approved real high-stakes evidence.
@@ -334,11 +347,10 @@ reviews/human/accountability-view-fixture-review-v0/review.json
   `lolla.case_graph.v0` as a future export/view shape without implying an
   exporter exists. PR63 creates only paraphrase-only accountability-view
   fixtures across the four views. PR64 reviews those fixtures and recommends
-  only `audit_decision_record` for a later exporter-design decision. PR65 may
-  decide the next accountability implementation slice, but must remain docs-only
-  and must not add exporter implementation, runtime integration, archive-reading
-  behavior, graph DB, embeddings, memory, entity resolution, GraphRAG, scoring,
-  or automatic labels.
+  only `audit_decision_record` for a later exporter-design decision. PR65 chooses
+  that direction as a docs-only recommendation for future PR66. PR66 must not
+  start automatically and must not add implementation until maintainers approve
+  a new slice.
 - After a live-output hygiene planning/review lane: decide whether to implement
   trusted live-output transcript hygiene.
 

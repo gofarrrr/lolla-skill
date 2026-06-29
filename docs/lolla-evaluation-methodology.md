@@ -173,6 +173,11 @@ recommends only `audit_decision_record` as ready for a later exporter-design
 decision, keeps provenance and conflict-register views in more-fixture status,
 and holds case graph before implementation.
 
+The PR65 decision gate accepts that narrow signal. It recommends a future
+read-only `audit_decision_record` exporter and leaves provenance, conflict
+register, and case graph implementation deferred. PR65 itself remains docs-only
+and does not implement exporters, labels, scores, judges, graph DB, or memory.
+
 These checks should gate releases before any subjective judge runs.
 
 ### 4. Binary Failure-Mode Judges Only

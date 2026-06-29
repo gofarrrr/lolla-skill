@@ -254,12 +254,13 @@ Since the first harness PRD pass, the shipped harness layer has also added:
 - semantic coverage reports and corpus survey;
 - offline specialist extractor probe harnesses and evidence notes;
 - a six-case complex conversation baseline with full modern artifacts;
-- the PR30-PR64 evaluation/accountability handoff chain from human review seed
+- the PR30-PR65 evaluation/accountability handoff chain from human review seed
   through risk-mode reliance visibility, current-state anti-drift docs,
   human-owned values/priorities review, and the Semantica-inspired
   accountability plan through decision-record fixtures, provenance map, review
   conflict register, case graph export/view design, and combined
-  accountability-view fixtures and fixture review.
+  accountability-view fixtures, fixture review, and implementation decision
+  gate.
 
 The current complex baseline is recorded in:
 
@@ -531,6 +532,16 @@ but the implementation-readiness signal is narrow: only
 `audit_decision_record` is ready for a later exporter-design decision;
 `provenance_map` and `review_conflict_register` need more fixtures; `case_graph`
 should hold before implementation. PR64 does not implement exporters, read
+archives, run `$lolla`, call models, mutate archives, change prompts, change
+`SKILL.md`, add graph DB, add memory, score answer quality, create labels, or
+judge advice.
+
+PR65 now lands the Accountability Implementation Decision Gate:
+
+`docs/evals/accountability-implementation-decision-gate-v0.md`
+
+It chooses outcome A and recommends a future PR66 Audit Decision Record
+Read-Only Exporter v0. It does not implement that exporter, start PR66, read
 archives, run `$lolla`, call models, mutate archives, change prompts, change
 `SKILL.md`, add graph DB, add memory, score answer quality, create labels, or
 judge advice.

@@ -861,6 +861,10 @@ Result:
 
 Type: docs-only decision
 
+Status after PR65: completed as the accountability implementation decision
+gate:
+`docs/evals/accountability-implementation-decision-gate-v0.md`.
+
 Goal:
 
 Choose which primitive, if any, should move from design/fixtures to code.
@@ -876,11 +880,21 @@ Candidate outcomes:
 
 Acceptance criteria:
 
-- [ ] Uses evidence from PR55-PR64.
-- [ ] Names exactly one future code-bearing next slice, or explicitly chooses no
+- [x] Uses evidence from PR55-PR64.
+- [x] Names exactly one future code-bearing next slice, or explicitly chooses no
       implementation.
-- [ ] Keeps all other lanes blocked.
-- [ ] Preserves no graph DB / no memory / no judge boundary.
+- [x] Keeps all other lanes blocked.
+- [x] Preserves no graph DB / no memory / no judge boundary.
+
+Result:
+
+- chooses outcome A: implement `audit_decision_record` exporter next;
+- recommends future PR66 Audit Decision Record Read-Only Exporter v0;
+- keeps provenance map, review conflict register, and case graph out of
+  implementation for now;
+- does not implement PR66, add exporter code, add runtime integration, read
+  archives, call models, mutate archives, score answers, create labels, add
+  graph DB, or add memory.
 
 ## Coder Operating Rules
 
@@ -1014,8 +1028,14 @@ docs/evals/accountability-view-fixture-review-v0.md
 reviews/human/accountability-view-fixture-review-v0/review.json
 ```
 
-The next slice is PR65 Accountability Implementation Decision Gate v0. PR65
-should remain docs-only and should not add code, tests, exporters, schemas under
-`engine/`, CLI support, runtime integration, archive-reading behavior, graph DB,
-embeddings, memory, entity resolution, GraphRAG, answer-quality scoring,
-automatic labels, or Semantica-style platform work.
+PR65 has now made the accountability implementation decision:
+
+```text
+docs/evals/accountability-implementation-decision-gate-v0.md
+```
+
+PR65 recommends future PR66 Audit Decision Record Read-Only Exporter v0, but
+PR66 must not start automatically. PR65 does not add code, tests, exporters,
+schemas under `engine/`, CLI support, runtime integration, archive-reading
+behavior, graph DB, embeddings, memory, entity resolution, GraphRAG,
+answer-quality scoring, automatic labels, or Semantica-style platform work.

@@ -1754,6 +1754,15 @@ PR64 reviewed all three bundles, marked all three pass, and recommended only
 conflict-register views need more fixtures, and case graph should hold before
 implementation.
 
+Implemented next as PR65:
+
+- [accountability-implementation-decision-gate-v0.md](../evals/accountability-implementation-decision-gate-v0.md)
+
+PR65 chooses outcome A and recommends a future PR66 Audit Decision Record
+Read-Only Exporter v0. It remains docs-only and does not start PR66, implement
+an exporter, read archives, change runtime behavior, add labels, score answers,
+add graph DB, or add memory.
+
 ### Later: Decision-Aware Capture And Runtime Integration
 
 Goal: only after offline evidence, use the IR to improve capture or audit input.
@@ -1809,11 +1818,10 @@ pilot review / v0 decision, PR55's Semantica-inspired accountability PRD,
 PR56's Lolla Doctor / Preflight plan, PR57's read-only doctor CLI, PR58's audit
 decision record design, PR59's audit decision record fixture review, PR60's
 provenance map design, PR61's review conflict register design, PR62's case
-graph export/view design, PR63's accountability-view fixture pack, and PR64's
-fixture review now exist. The next step is still a docs-only implementation
-decision gate, not automatic runtime work. The recommended next accountability
-slice is PR65 Accountability Implementation Decision Gate v0. Other lanes still
-require their own gates: future
+graph export/view design, PR63's accountability-view fixture pack, PR64's
+fixture review, and PR65's implementation decision gate now exist. The next
+accountability step is a future PR66 only after maintainer review, not automatic
+runtime work. Other lanes still require their own gates: future
 high-stakes evidence under PR46/PR48, reopening the values lane after PR54, or
 any populated extraction, memory, runtime integration, automatic labels, or
 judging.
