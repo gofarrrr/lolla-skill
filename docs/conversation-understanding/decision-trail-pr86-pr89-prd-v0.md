@@ -313,7 +313,7 @@ They must not:
 | `reasoning_trace.json` | Local custody index of run artifacts | Built | Decision Trail should reuse source refs and artifact pointers. |
 | Audit decision record | Accountability shell | Built as read-only exporter | Decision Trail should borrow field-status and non-claim patterns, not duplicate the ADR. |
 | Product Delta eval | Offline evidence about vanilla-vs-Lolla delta | Built internally | Decision Trail should not claim Product Delta proof; it may later point to Product Delta reviews when present. |
-| Decision Trail report | Customer-facing answer-plus-process report | Schema, read-only exporter, and safe fixture review built; interpretation-gap decision not done | Target of PR86-PR89. |
+| Decision Trail report | Customer-facing answer-plus-process report | Schema, read-only exporter, safe fixture review, and interpretation-gap decision built | Target of PR86-PR89. |
 
 ## PR86: Decision Trail Report PRD And Schema v0
 
@@ -788,6 +788,13 @@ PR88 is done when maintainers can see whether the Decision Trail report is usefu
 
 ## PR89: Conversation Interpretation Gap Decision v0
 
+Completion note: PR89 is implemented by
+[`decision-trail-interpretation-gap-decision-v0.md`](decision-trail-interpretation-gap-decision-v0.md).
+
+PR89 selects Outcome B: add narrow offline LLM specialist enrichment. It keeps
+the PR87 custody shell, rejects runtime integration and broad IR expansion for
+now, and recommends PR90 Decision Trail Interpretation Specialist Contracts v0.
+
 ### Type
 
 Docs-only decision gate.
@@ -995,13 +1002,13 @@ This prevents implementation momentum from hiding the evidence that should decid
 
 ## Final Recommendation
 
-PR88 is complete. Proceed with PR89 next.
+PR89 is complete.
 
 PR88 found that the PR87 sparse shell is useful as a custody and missingness
 surface, but too thin for the full Decision Trail product without later bounded
-interpretation. The right next move is PR89: decide whether to pursue narrow
-offline LLM specialist enrichment, local-private review, simplification, or a
-pause.
+interpretation. PR89 selects the next move: narrow offline LLM specialist
+contracts for Decision Trail interpretation, not runtime integration, broad IR
+work, judging, scoring, or automatic labels.
 
 The most important design constraint is:
 

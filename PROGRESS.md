@@ -67,7 +67,7 @@ conversation or agent run
 Current handoff state:
 
 ```text
-PR88 Decision Trail Fixture Review v0 is the latest Decision Trail slice
+PR89 Conversation Interpretation Gap Decision v0 is the latest Decision Trail slice
 recorded in this working tree. PR85 remains the latest packaged
 product-evidence eval-lane slice. PR70 remains the audit/accountability
 machinery closure gate. PR48 remains the high-stakes evidence gate. PR54
@@ -153,6 +153,12 @@ PR88's safe-fixture-only review. The review found the PR87 report useful as a
 custody and missingness shell, but too sparse for the full Decision Trail
 product without later bounded interpretation. No local-private shadow review
 was run, so PR89 must treat this as safe-fixture-only evidence.
+
+docs/conversation-understanding/decision-trail-interpretation-gap-decision-v0.md
+now records PR89's decision gate. PR89 selects narrow offline LLM specialist
+enrichment as the next path. It keeps the deterministic Decision Trail shell,
+rejects runtime integration and broad IR work for now, and recommends PR90
+Decision Trail Interpretation Specialist Contracts v0.
 ```
 
 Current product state:
@@ -479,10 +485,27 @@ Current stop rule:
 Latest completed slice:
 
 ```text
-PR88 Decision Trail Fixture Review v0
+PR89 Conversation Interpretation Gap Decision v0
 ```
 
 Result:
+
+- lands `docs/conversation-understanding/decision-trail-interpretation-gap-decision-v0.md`;
+- selects Outcome B from the PR86-PR89 PRD: add narrow offline LLM specialist
+  enrichment;
+- keeps PR87/PR88 as the custody and missingness shell;
+- confirms the shell is useful but not enough for the full Decision Trail
+  product surface;
+- names the missing product-load-bearing fields: likely next actions, live
+  options and option status, stakeholders, values/priorities, assistant
+  influence, useful/noisy friction, and lost value;
+- rejects runtime integration, broad `conversation_understanding_ir.v0`,
+  extraction expansion, stopping/simplification, judging, scoring, automatic
+  labels, and graph/memory work for now;
+- recommends PR90 Decision Trail Interpretation Specialist Contracts v0 as a
+  docs/schema-only next slice.
+
+Previous Decision Trail fixture-review slice:
 
 - lands `docs/conversation-understanding/decision-trail-export-fixture-review-v0.md`;
 - lands `reviews/codex-assisted/decision-trail-fixture-review-v0/review.json`;
@@ -785,13 +808,17 @@ Non-goals for the next slice:
    interpretation. The next conservative move is PR89: decide whether to pursue
    narrow offline LLM specialist enrichment, local-private review,
    simplification, or a pause.
-7. **Live-output hygiene implementation.** PR35 keeps `not_checked` honest and
+7. **PR89 Decision Trail interpretation gap decision is done.** PR89 selects
+   narrow offline LLM specialist contracts as the next path. The next
+   conservative move is PR90 docs/schema-only contracts for conversation shape,
+   likely actions, friction/lost value, and conservative fan-in.
+8. **Live-output hygiene implementation.** PR35 keeps `not_checked` honest and
    defines a trusted-transcript path; later work can implement only when needed.
-8. **Span-grounded semantic enrichment.** Existing specialists help with live
+9. **Span-grounded semantic enrichment.** Existing specialists help with live
    constraints, dropped threads, and stance lineage, but integration remains
    blocked until a clean 15-20 full-modern sample and provider-boundary behavior
    are settled.
-9. **Human capability surface.** Later, add a compact memo/Observatory section
+10. **Human capability surface.** Later, add a compact memo/Observatory section
    that teaches the user what reasoning pattern the audit caught.
 
 ## Current Pause: Specialist Integration Track

@@ -235,9 +235,11 @@ PR88's completed review is
 [Decision Trail Export Fixture Review](docs/conversation-understanding/decision-trail-export-fixture-review-v0.md):
 the report is useful as a custody and missingness shell, but checked-in-safe
 evidence remains too thin for the full Decision Trail product without later
-bounded interpretation. The next Decision Trail slice is PR89: decide whether
-to pursue narrow offline LLM specialist enrichment, local-private review,
-simplification, or a pause.
+bounded interpretation. PR89's
+[Decision Trail Interpretation Gap Decision](docs/conversation-understanding/decision-trail-interpretation-gap-decision-v0.md)
+selects narrow offline LLM specialist contracts as the next move, while keeping
+runtime integration, broad IR work, judging, scoring, and automatic labels
+deferred.
 
 Start here: **[Product Delta / Eval Docs Index](docs/evals/README.md)**.
 
