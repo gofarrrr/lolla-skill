@@ -1597,8 +1597,47 @@ Outcome:
 Stop:
 
 ```text
-Stop after PR59. Do not start PR60 without maintainer review.
+PR59 does not approve exporter or runtime work.
 ```
+
+Implemented next:
+
+```text
+PR60 Provenance Map Design v0
+```
+
+PR60 designs only `lolla.provenance_map.v0` before any exporter or runtime
+integration exists.
+
+### PR60: Provenance Map Design v0
+
+Status: completed as
+[provenance-map-v0.md](provenance-map-v0.md) and
+[provenance-map-v0.json](provenance-map-v0.json).
+
+Goal: define a local artifact-lineage map for how Lolla run and review
+artifacts come into existence and depend on each other.
+
+Outcome:
+
+- defines `lolla.provenance_map.v0`;
+- uses entity, activity, agent, and relationship vocabulary in a Lolla-shaped
+  way;
+- maps current artifacts without changing runtime behavior;
+- avoids raw content, local absolute paths, and real archive hashes in the
+  checked-in design example;
+- states why the map is not RDF, PROV-O/W3C compliance, graph DB, memory, a
+  source quote dump, answer-quality scoring, or domain approval.
+
+Next:
+
+```text
+PR61 Review Conflict Register Design v0
+```
+
+PR61 should design only `lolla.review_conflict_register.v0` as a
+human-review-owned conflict surface before any exporter or runtime integration
+exists.
 
 ### Later: Decision-Aware Capture And Runtime Integration
 
@@ -1653,13 +1692,13 @@ PR50's paraphrase-only worksheet fixtures, PR51's worksheet fixture review,
 PR52's blank worksheet export, PR53's human-filled worksheet pilot, PR54's
 pilot review / v0 decision, PR55's Semantica-inspired accountability PRD,
 PR56's Lolla Doctor / Preflight plan, PR57's read-only doctor CLI, PR58's audit
-decision record design, and PR59's audit decision record fixture review now
-exist. The next step is still explicit approval, not automatic runtime work.
-The recommended next accountability slice is PR60 Provenance Map Design v0 only
-after maintainer review of PR57 through PR59. Other lanes still require their
-own gates: future high-stakes evidence under PR46/PR48, reopening the values
-lane after PR54, or any populated extraction, memory, runtime integration,
-automatic labels, or judging.
+decision record design, PR59's audit decision record fixture review, and PR60's
+provenance map design now exist. The next step is still explicit approval, not
+automatic runtime work. The recommended next accountability slice is PR61
+Review Conflict Register Design v0. Other lanes still require their own gates:
+future high-stakes evidence under PR46/PR48, reopening the values lane after
+PR54, or any populated extraction, memory, runtime integration, automatic
+labels, or judging.
 
 ## Sources
 

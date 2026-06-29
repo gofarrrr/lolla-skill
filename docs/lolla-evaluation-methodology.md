@@ -146,6 +146,11 @@ existing reviewed cases. It confirms the shape is useful for reviewer
 orientation, but it still does not implement an exporter, populate labels, or
 score advice.
 
+`lolla.provenance_map.v0` can make artifact lineage easier to inspect across a
+run or review surface. It can show that one artifact used, generated, derived
+from, validated, or reviewed another artifact, but it does not prove advice
+quality, domain approval, or W3C-grade provenance.
+
 These checks should gate releases before any subjective judge runs.
 
 ### 4. Binary Failure-Mode Judges Only

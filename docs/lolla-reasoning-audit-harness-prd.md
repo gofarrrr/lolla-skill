@@ -27,6 +27,8 @@ Primary inputs:
   `docs/evals/lolla-doctor-readonly-cli-v0.md`.
 - Audit decision record design:
   `docs/conversation-understanding/audit-decision-record-v0.md`.
+- Provenance map design:
+  `docs/conversation-understanding/provenance-map-v0.md`.
 
 ## Executive Summary
 
@@ -252,7 +254,7 @@ Since the first harness PRD pass, the shipped harness layer has also added:
 - semantic coverage reports and corpus survey;
 - offline specialist extractor probe harnesses and evidence notes;
 - a six-case complex conversation baseline with full modern artifacts;
-- the PR30-PR59 evaluation/accountability handoff chain from human review seed
+- the PR30-PR60 evaluation/accountability handoff chain from human review seed
   through risk-mode reliance visibility, current-state anti-drift docs,
   human-owned values/priorities review, and the Semantica-inspired
   accountability plan through the audit decision record fixture review.
@@ -464,7 +466,20 @@ reviewers can use all six without raw content. The review marks the shape ready
 for a future read-only exporter design prototype with caveats. It does not
 implement an exporter, run `$lolla`, call models, mutate archives, change
 prompts, change `SKILL.md`, approve high-stakes use, judge answer quality, or
-create automatic labels. Stop after PR59.
+create automatic labels.
+
+PR60 now lands the Provenance Map design:
+
+`docs/conversation-understanding/provenance-map-v0.md`
+
+It defines `lolla.provenance_map.v0` as a local artifact-lineage map for how
+run and review artifacts depend on each other. It uses Lolla-shaped entity,
+activity, agent, and relationship vocabulary, but it does not claim RDF,
+PROV-O, W3C, OWL, or SHACL compliance. It does not implement an exporter, read
+archives, run `$lolla`, call models, mutate archives, change prompts, change
+`SKILL.md`, add graph DB, add memory, approve high-stakes use, judge answer
+quality, or create automatic labels. Its recommended next slice is PR61 Review
+Conflict Register Design v0, docs/JSON design only.
 
 This roadmap should build on that. It should not restart the architecture.
 
@@ -845,6 +860,9 @@ Current v0 slice:
   `reviews/human/audit-decision-record-fixture-review-v0/review.json` review
   six PR59 paraphrase-only decision-record fixtures before any exporter,
   runtime integration, labels, scoring, or judge.
+- `docs/conversation-understanding/provenance-map-v0.md` defines the PR60
+  `lolla.provenance_map.v0` artifact-lineage shape before any exporter,
+  runtime integration, graph DB, memory, or compliance claim.
 
 Acceptance criteria:
 

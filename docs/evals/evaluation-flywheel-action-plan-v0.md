@@ -1376,7 +1376,7 @@ Stop point:
 - PR56 has now landed as the docs-only doctor/preflight plan, PR57 has now
   implemented the smallest read-only doctor CLI, PR58 has now designed the
   audit decision record shape, and PR59 has now reviewed six paraphrase-only
-  decision-record fixtures. Stop after PR59.
+  decision-record fixtures. PR60 has now designed the provenance map shape.
 
 ### PR56: Lolla Doctor / Preflight Plan v0
 
@@ -1510,8 +1510,8 @@ Stop point:
   change prompts, change `SKILL.md`, change provider-boundary policy, approve
   high-stakes runs, add judges, add scoring, add automatic labels, or begin
   Semantica-style platform work from this slice.
-- PR59 has now reviewed audit decision record fixtures. Stop after PR59 before
-  any PR60 work.
+- PR59 has now reviewed audit decision record fixtures. PR60 has now designed
+  the provenance map shape.
 
 ### PR59: Audit Decision Record Fixture Review v0
 
@@ -1549,8 +1549,47 @@ Stop point:
   change prompts, change `SKILL.md`, change provider-boundary policy, approve
   high-stakes runs, add judges, add scoring, add automatic labels, or begin
   Semantica-style platform work from this slice.
-- Stop after PR59. PR60 Provenance Map Design v0 should start only after
-  maintainer review of PR57 through PR59.
+- PR60 has now designed the provenance map shape. Do not infer exporter or
+  runtime work from PR59 or PR60.
+
+### PR60: Provenance Map Design v0
+
+Maps to: R6/R9 local artifact-lineage inspectability.
+
+Status: completed as a docs/JSON design slice.
+
+Goal:
+
+Define `lolla.provenance_map.v0` as a local artifact-lineage map before any
+exporter or runtime integration exists.
+
+Output:
+
+- [Provenance Map v0](../conversation-understanding/provenance-map-v0.md).
+- [provenance-map-v0.json](../conversation-understanding/provenance-map-v0.json).
+
+Current result:
+
+- defines entities, activities, agents, and relationships for Lolla artifact
+  lineage;
+- maps current artifact roles such as captured conversation, extraction, audit
+  result, revised answer, memo, agent result, evaluation, reasoning trace, and
+  human review;
+- keeps the checked-in example raw-content-safe, relative-path-only, and free
+  of real archive hashes;
+- differentiates artifact lineage from answer quality;
+- rejects RDF requirements, PROV-O/W3C compliance claims, graph DB, memory,
+  source quote dumps, domain approval, and runtime integration.
+
+Stop point:
+
+- PR60 only designs the provenance map and example.
+- Do not implement an exporter, add tests, add schemas under `engine/`, add CLI
+  support, read archives, run `$lolla`, call models, mutate archives, change
+  prompts, change `SKILL.md`, add graph DB, add memory, score answer quality,
+  or begin Semantica-style platform work from this slice.
+- The next possible slice is PR61 Review Conflict Register Design v0,
+  docs/JSON design only.
 
 ## What Not To Build Yet
 
@@ -1609,9 +1648,10 @@ Before building judges or runtime semantic enrichment, Lolla should have:
 That is the smallest flywheel that can improve Lolla run by run without turning
 it into a vague critic or overbuilt memory system.
 
-Stop after PR59. The next recommended accountability slice is PR60 Provenance
-Map Design v0 only after maintainer review of PR57 through PR59. It should not
-start automatically from this plan, and if approved it should remain docs/JSON
-design only before any exporter, runtime integration, model calls, archive
-mutation, prompts, `SKILL.md` changes, automatic labels, answer-quality
-scoring, or platform work.
+The next conservative accountability slice is PR61 Review Conflict Register
+Design v0. It should design only `lolla.review_conflict_register.v0` as a
+human-review-owned conflict surface and should not implement an exporter, run
+`$lolla`, call models, mutate archives, change prompts, change `SKILL.md`,
+change provider-boundary policy, resolve conflicts automatically, score
+severity into actions, add judges, add automatic labels, or start any
+Semantica-style platform work.

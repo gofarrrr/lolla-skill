@@ -643,6 +643,10 @@ Do not add exporter or runtime integration.
 
 Type: docs/JSON design
 
+Status after PR60: completed as the provenance map design:
+`docs/conversation-understanding/provenance-map-v0.md` and
+`docs/conversation-understanding/provenance-map-v0.json`.
+
 Goal:
 
 Design a local provenance map for Lolla artifacts, inspired by PROV-O but not
@@ -670,11 +674,11 @@ Candidate concepts:
 
 Acceptance criteria:
 
-- [ ] Maps current artifacts without changing runtime.
-- [ ] Avoids raw content and absolute checked-in paths.
-- [ ] Differentiates artifact existence from answer quality.
-- [ ] Can represent missing/degraded artifacts.
-- [ ] Does not require RDF, OWL, SHACL, or graph DB.
+- [x] Maps current artifacts without changing runtime.
+- [x] Avoids raw content and absolute checked-in paths.
+- [x] Differentiates artifact existence from answer quality.
+- [x] Can represent missing/degraded artifacts.
+- [x] Does not require RDF, OWL, SHACL, or graph DB.
 
 Stop rule:
 
@@ -932,7 +936,22 @@ docs/evals/audit-decision-record-fixtures-v0.json
 reviews/human/audit-decision-record-fixture-review-v0/review.json
 ```
 
-Stop after PR59. The next recommended slice is PR60 Provenance Map Design v0
-only after maintainer review of PR57 through PR59. PR60 should not start
-automatically from this PRD update, and it should remain docs/JSON design only
-if approved.
+PR60 has now designed the local provenance map shape:
+
+```text
+docs/conversation-understanding/provenance-map-v0.md
+docs/conversation-understanding/provenance-map-v0.json
+```
+
+The next possible slice after PR60 is:
+
+```text
+PR61 Review Conflict Register Design v0
+```
+
+PR61 should remain docs/JSON design only. It should not implement an exporter,
+run `$lolla`, call models, mutate archives, add archive-reading behavior,
+change prompts, change `SKILL.md`, change provider-boundary policy, approve
+high-stakes runs, resolve conflicts automatically, score severity into actions,
+judge answer quality, add automatic labels, or begin Semantica-style platform
+work.

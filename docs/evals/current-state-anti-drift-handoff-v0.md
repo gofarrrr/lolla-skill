@@ -2,10 +2,10 @@
 
 Status: current-state handoff
 Date: 2026-06-29
-Slice: PR45, updated by PR59
+Slice: PR45, updated by PR60
 
 This note is the compact first-read handoff for a fresh Lolla eval session. It
-summarizes what the harness is, what PR30-PR59 built, what evidence exists now,
+summarizes what the harness is, what PR30-PR60 built, what evidence exists now,
 and what must not be built until the next explicit approval gates.
 
 PR45 is docs-only. It does not run Lolla, call models, mutate archives, change
@@ -37,7 +37,7 @@ The product boundary is still sharp:
 - `risk_mode` is reliance and review context, not answer-quality scoring,
   domain approval, or automatic safety.
 
-## PR30-PR59 Chain
+## PR30-PR60 Chain
 
 - PR30 created the six-run human/product review seed over the clean complex
   conversation baseline.
@@ -104,6 +104,9 @@ The product boundary is still sharp:
   reviewed cases. All six pass, PR31 mapping is useful in all six, and
   reviewer use without raw content is `yes` in all six. It does not implement
   an exporter or runtime integration.
+- PR60 designs `lolla.provenance_map.v0` as a local artifact-lineage map. It
+  borrows entity/activity/agent vocabulary without claiming RDF, PROV-O, W3C,
+  OWL, or SHACL compliance and without implementing an exporter.
 
 ## Current Corpus Evidence
 
@@ -154,10 +157,11 @@ only aggregate keys and counts.
 - no trusted live-output transcript implementation;
 - no implemented Semantica-inspired accountability primitive beyond the
   read-only `lolla doctor` preflight CLI. PR58 only designs
-  `lolla.audit_decision_record.v0` and PR59 only reviews fixtures; no
-  decision-record exporter, `lolla.provenance_map.v0`,
+  `lolla.audit_decision_record.v0`, PR59 only reviews fixtures, and PR60 only
+  designs `lolla.provenance_map.v0`; no decision-record exporter, provenance
+  exporter,
   `lolla.review_conflict_register.v0`, or `lolla.case_graph.v0` exists from
-  PR55 through PR59;
+  PR55 through PR60;
 - no domain, crisis, legal, medical, financial, or safety protocol.
 
 ## Explicit Non-Goals
@@ -207,9 +211,10 @@ The later safe lanes are separate:
 2. PR55 records a Semantica-inspired accountability plan. PR56 records the
    doctor/preflight plan. PR57 implements only the read-only doctor CLI. PR58
    designs only the audit decision record shape. PR59 reviews only
-   paraphrase-only decision-record fixtures. Stop after PR59. Do not implement
-   decision-record export, provenance maps, conflict registers, case graph
-   exports, platform work, or runtime behavior from PR55 through PR59 alone.
+   paraphrase-only decision-record fixtures. PR60 designs only the provenance
+   map shape. Do not implement decision-record export, provenance export,
+   conflict registers, case graph views, platform work, or runtime behavior
+   from PR55 through PR60 alone.
 3. A later live-output hygiene lane can plan and lock current behavior, then
    stop for an implementation decision.
 
@@ -254,6 +259,13 @@ docs/evals/audit-decision-record-fixtures-v0.json
 reviews/human/audit-decision-record-fixture-review-v0/review.json
 ```
 
+For the PR60 provenance map design, read:
+
+```text
+docs/conversation-understanding/provenance-map-v0.md
+docs/conversation-understanding/provenance-map-v0.json
+```
+
 ## Decision Gates
 
 - Now: decide whether to create approved real high-stakes evidence.
@@ -262,9 +274,11 @@ reviews/human/audit-decision-record-fixture-review-v0/review.json
 - Accountability lane: PR55 approves only the Semantica-inspired roadmap, PR56
   approves only the doctor/preflight design, and PR57 implements only the
   read-only doctor CLI. PR58 designs only `lolla.audit_decision_record.v0`.
-  PR59 reviews only paraphrase-only decision-record fixtures. Stop after PR59.
-  PR60 Provenance Map Design v0 should start only after maintainer review of
-  PR57 through PR59, and should remain docs/JSON design if approved.
+  PR59 reviews only paraphrase-only decision-record fixtures. PR60 designs only
+  `lolla.provenance_map.v0`. PR61 may design a review conflict register next,
+  but only as docs/JSON design without an exporter, runtime integration,
+  conflict resolution, severity automation, policy enforcement, scoring, or
+  automatic labels.
 - After a live-output hygiene planning/review lane: decide whether to implement
   trusted live-output transcript hygiene.
 
