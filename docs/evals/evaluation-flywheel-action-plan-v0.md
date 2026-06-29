@@ -1374,9 +1374,9 @@ Stop point:
   enforcement, automatic labels, answer-quality scoring, or judges from this
   slice.
 - PR56 has now landed as the docs-only doctor/preflight plan, PR57 has now
-  implemented the smallest read-only doctor CLI, and PR58 has now designed the
-  audit decision record shape. The next possible slice is PR59 Audit Decision
-  Record Fixture Review v0, still docs/eval-only.
+  implemented the smallest read-only doctor CLI, PR58 has now designed the
+  audit decision record shape, and PR59 has now reviewed six paraphrase-only
+  decision-record fixtures. Stop after PR59.
 
 ### PR56: Lolla Doctor / Preflight Plan v0
 
@@ -1510,8 +1510,47 @@ Stop point:
   change prompts, change `SKILL.md`, change provider-boundary policy, approve
   high-stakes runs, add judges, add scoring, add automatic labels, or begin
   Semantica-style platform work from this slice.
-- The next possible slice is PR59 Audit Decision Record Fixture Review v0,
-  docs/eval-only.
+- PR59 has now reviewed audit decision record fixtures. Stop after PR59 before
+  any PR60 work.
+
+### PR59: Audit Decision Record Fixture Review v0
+
+Maps to: R6/R9 accountable review projections.
+
+Status: completed as a docs/eval-only fixture review.
+
+Goal:
+
+Test whether the PR58 decision record shape is understandable and useful on
+existing reviewed cases before any exporter is built.
+
+Output:
+
+- [Audit Decision Record Fixtures v0](audit-decision-record-fixtures-v0.md).
+- [audit-decision-record-fixtures-v0.json](audit-decision-record-fixtures-v0.json).
+- [review.json](../../reviews/human/audit-decision-record-fixture-review-v0/review.json).
+
+Current result:
+
+- creates six paraphrase-only fixtures from existing reviewed cases;
+- reviews all six as `pass`;
+- confirms decision delta clarity is `clear` in five fixtures and
+  `mostly_clear` in one;
+- confirms PR31 mapping is useful in all six;
+- confirms reviewers can use all six without raw content;
+- marks the shape ready for a future read-only exporter design prototype with
+  caveats about relative paths, custody flags, no labels, no scoring, and no
+  approval claims.
+
+Stop point:
+
+- PR59 only reviews fixtures.
+- Do not implement an exporter, run `$lolla`, call models, mutate archives,
+  change prompts, change `SKILL.md`, change provider-boundary policy, approve
+  high-stakes runs, add judges, add scoring, add automatic labels, or begin
+  Semantica-style platform work from this slice.
+- Stop after PR59. PR60 Provenance Map Design v0 should start only after
+  maintainer review of PR57 through PR59.
 
 ## What Not To Build Yet
 
@@ -1570,10 +1609,9 @@ Before building judges or runtime semantic enrichment, Lolla should have:
 That is the smallest flywheel that can improve Lolla run by run without turning
 it into a vague critic or overbuilt memory system.
 
-The next conservative accountability slice is PR59 Audit Decision Record
-Fixture Review v0. It should create and review only 3-6 paraphrase-only
-decision-record fixtures from existing reviewed cases and should not implement
-an exporter, run `$lolla`, call models, mutate archives, change prompts, change
-`SKILL.md`, change provider-boundary policy, approve high-stakes runs, add
-judges, add scoring, add automatic labels, or start any Semantica-style
-platform work.
+Stop after PR59. The next recommended accountability slice is PR60 Provenance
+Map Design v0 only after maintainer review of PR57 through PR59. It should not
+start automatically from this plan, and if approved it should remain docs/JSON
+design only before any exporter, runtime integration, model calls, archive
+mutation, prompts, `SKILL.md` changes, automatic labels, answer-quality
+scoring, or platform work.

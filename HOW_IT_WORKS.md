@@ -130,11 +130,12 @@ The detailed docs are split so agents and humans do not have to load one giant f
 | [Evaluation Methodology](docs/lolla-evaluation-methodology.md) | Lolla-specific eval doctrine: error analysis first, deterministic gates before judges, calibrated binary judges, and how to avoid rewarding smoothness over useful friction. |
 | [Evaluation Flywheel Action Plan](docs/evals/evaluation-flywheel-action-plan-v0.md) | The current action map for turning real traces into human labels, fixtures, deterministic checks, and later calibrated binary judges without drifting into generic scoring. |
 | [Current System Capabilities](docs/evals/current-system-capabilities-v0.md) | A plain-language map of what the current system can do, which recorded cases show it, how the layers work together, and how it helps us avoid brittle evaluation. |
-| [Current State Anti-Drift Handoff](docs/evals/current-state-anti-drift-handoff-v0.md) | PR45's compact fresh-session map, updated by PR58, of the PR30-PR58 eval/accountability chain, current corpus evidence, non-goals, and the next approval gates. |
+| [Current State Anti-Drift Handoff](docs/evals/current-state-anti-drift-handoff-v0.md) | PR45's compact fresh-session map, updated by PR59, of the PR30-PR59 eval/accountability chain, current corpus evidence, non-goals, and the next approval gates. |
 | [Semantica-Inspired Accountability PRD](docs/conversation-understanding/semantica-inspired-accountability-prd-v0.md) | PR55's docs-only plan for borrowing accountability primitives such as decision records, provenance maps, conflict registers, doctor/preflight, and case graph views without building graph DB, embeddings, memory, policy, compliance, judge, or scoring products. |
 | [Lolla Doctor / Preflight Plan](docs/evals/lolla-doctor-preflight-plan-v0.md) | PR56's docs-only plan for a future read-only doctor command that checks local runtime wiring, archive paths, helper scripts, provider/cost readiness, review manifests, high-stakes evidence visibility, output-path safety, and privacy without running `$lolla`, calling models, or mutating archives. |
 | [Lolla Doctor Read-Only CLI](docs/evals/lolla-doctor-readonly-cli-v0.md) | PR57's implementation note for `python3 scripts/lolla_doctor.py`, a local deterministic preflight command that emits `lolla.doctor_report.v0` without running `$lolla`, calling models, reading archive payloads, mutating archives, or judging answer quality. |
 | [Audit Decision Record Design](docs/conversation-understanding/audit-decision-record-v0.md) | PR58's docs/JSON design for `lolla.audit_decision_record.v0`, a paraphrase-only accountability projection over existing artifacts that maps decision deltas to PR31 labels without becoming an exporter, judge, score, memory layer, or conversation-understanding IR. |
+| [Audit Decision Record Fixtures](docs/evals/audit-decision-record-fixtures-v0.md) | PR59's docs/eval-only fixture review of six paraphrase-only audit decision records, confirming the shape is useful before any exporter, runtime integration, labels, scores, or judge. |
 | [Complex Baseline Human Review](docs/evals/complex-baseline-human-review-v0.md) | PR30's six-run human/product review seed: useful friction, action-changing deltas, conservative reliance labels, and the PR31 rubric handoff. |
 | [Actionable Delta Rubric](docs/evals/actionable-delta-rubric-v0.md) | PR31's human-owned rubric for distinguishing real Lolla improvement from smoother no-op prose before adversarial fixtures or judges. |
 | [Adversarial Pair Fixtures](docs/evals/adversarial-pair-fixtures-v0.md) | PR32's seed fixtures for testing smoothness, status, checklist, balance, warmth, market-excitement, and authority-loyalty traps before any judge exists. |
@@ -221,3 +222,9 @@ The detailed docs are split so agents and humans do not have to load one giant f
   an exporter, run `$lolla`, call models, mutate archives, change prompts,
   change `SKILL.md`, approve high-stakes use, score answer quality, or create a
   conversation-understanding IR.
+- PR59 lands audit decision record fixtures and a human-owned fixture review.
+  Six paraphrase-only records pass review as understandable and PR31-mappable,
+  with caveats about preserving conflict detail before any future exporter.
+  PR59 does not implement an exporter, runtime integration, labels, scoring,
+  judging, model calls, archive mutation, or platform work. Stop after PR59;
+  PR60 should start only after maintainer review.

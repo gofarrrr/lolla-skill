@@ -229,19 +229,20 @@ Human reviewers still own:
 - whether `safe_for_agent_use` is `yes`, `no`, or `with_human_review`;
 - whether a future judge has enough calibrated evidence to exist.
 
-## PR59 Gate
+## PR59 Fixture Review
 
-The next possible slice is:
+PR59 completed the first fixture review for this shape:
 
-```text
-PR59 Audit Decision Record Fixture Review v0
-```
+- [Audit Decision Record Fixtures v0](../evals/audit-decision-record-fixtures-v0.md)
+- [audit-decision-record-fixtures-v0.json](../evals/audit-decision-record-fixtures-v0.json)
+- [review.json](../../reviews/human/audit-decision-record-fixture-review-v0/review.json)
 
-PR59 should create 3-6 paraphrase-only fixture records from existing reviewed
-cases and a human-owned fixture review. It should decide whether the record
-shape is understandable and useful before any exporter is built.
+The review covers six paraphrase-only fixture records from existing reviewed
+cases. All six pass, PR31 mapping is useful in all six, and reviewers can use
+the records without raw content in all six. The review marks the shape ready for
+a future read-only exporter design prototype with caveats.
 
-PR59 should remain docs/eval-only: no exporter, no runtime integration, no
-model calls, no archive mutation, no prompt changes, no `SKILL.md` changes, no
-automatic labels, no answer-quality scoring, and no Semantica-style platform
-work.
+This does not approve an exporter. The next recommended slice is PR60
+Provenance Map Design v0 only after maintainer review of PR57 through PR59.
+Any future exporter still needs a separate gate and must remain raw-content
+safe, local, deterministic, and human-review-owned.

@@ -252,10 +252,10 @@ Since the first harness PRD pass, the shipped harness layer has also added:
 - semantic coverage reports and corpus survey;
 - offline specialist extractor probe harnesses and evidence notes;
 - a six-case complex conversation baseline with full modern artifacts;
-- the PR30-PR58 evaluation/accountability handoff chain from human review seed
+- the PR30-PR59 evaluation/accountability handoff chain from human review seed
   through risk-mode reliance visibility, current-state anti-drift docs,
   human-owned values/priorities review, and the Semantica-inspired
-  accountability plan through the read-only doctor/preflight CLI.
+  accountability plan through the audit decision record fixture review.
 
 The current complex baseline is recorded in:
 
@@ -451,8 +451,20 @@ unresolved conflicts/questions, source artifacts, review refs, custody flags,
 and limitations. It does not implement an exporter, run `$lolla`, call models,
 mutate archives, change prompts, change `SKILL.md`, approve high-stakes use,
 judge answer quality, create automatic labels, or create
-`conversation_understanding_ir.v0`. Its recommended next slice is PR59 Audit
+`conversation_understanding_ir.v0`. Its planned next slice was PR59 Audit
 Decision Record Fixture Review v0, docs/eval-only.
+
+PR59 now lands the Audit Decision Record fixture review:
+
+`docs/evals/audit-decision-record-fixtures-v0.md`
+
+It creates six paraphrase-only decision-record fixtures from existing reviewed
+cases and reviews all six as `pass`. PR31 mapping is useful in all six, and
+reviewers can use all six without raw content. The review marks the shape ready
+for a future read-only exporter design prototype with caveats. It does not
+implement an exporter, run `$lolla`, call models, mutate archives, change
+prompts, change `SKILL.md`, approve high-stakes use, judge answer quality, or
+create automatic labels. Stop after PR59.
 
 This roadmap should build on that. It should not restart the architecture.
 
@@ -829,6 +841,10 @@ Current v0 slice:
   PR58 `lolla.audit_decision_record.v0` shape as a paraphrase-only review
   projection over existing artifacts and PR31 labels, before any exporter or
   runtime integration.
+- `docs/evals/audit-decision-record-fixtures-v0.md` and
+  `reviews/human/audit-decision-record-fixture-review-v0/review.json` review
+  six PR59 paraphrase-only decision-record fixtures before any exporter,
+  runtime integration, labels, scoring, or judge.
 
 Acceptance criteria:
 

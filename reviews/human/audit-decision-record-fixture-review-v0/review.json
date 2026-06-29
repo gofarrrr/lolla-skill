@@ -1,0 +1,155 @@
+{
+  "schema_version": "lolla.audit_decision_record_fixture_review.v0",
+  "status": "complete",
+  "date": "2026-06-29",
+  "fixture_source": "docs/evals/audit-decision-record-fixtures-v0.json",
+  "source_record_schema": "lolla.audit_decision_record.v0",
+  "review_scope": {
+    "fixture_count": 6,
+    "paraphrase_only": true,
+    "raw_archive_transcripts_inspected": false,
+    "model_calls": 0,
+    "archive_mutation": false,
+    "exporter_implemented": false,
+    "runtime_changes": false,
+    "answer_quality_scoring": false,
+    "automatic_labels": false
+  },
+  "aggregate_counts": {
+    "review_status": {
+      "pass": 6,
+      "revise": 0,
+      "exclude": 0
+    },
+    "decision_delta_clarity": {
+      "clear": 5,
+      "mostly_clear": 1,
+      "unclear": 0
+    },
+    "pr31_mapping_useful": {
+      "yes": 6,
+      "partly": 0,
+      "no": 0
+    },
+    "conflict_preservation": {
+      "preserved": 4,
+      "partly_preserved": 2,
+      "flattened": 0,
+      "unclear": 0
+    },
+    "overclaim_control": {
+      "yes": 6,
+      "partly": 0,
+      "no": 0
+    },
+    "false_certainty_risk": {
+      "none": 2,
+      "low": 4,
+      "medium": 0,
+      "high": 0
+    },
+    "reviewer_can_use_without_raw_content": {
+      "yes": 6,
+      "partly": 0,
+      "no": 0
+    },
+    "primary_issue": {
+      "none": 6,
+      "schema_confusing": 0,
+      "delta_unclear": 0,
+      "conflict_flattened": 0,
+      "overclaims_truth": 0,
+      "raw_content_risk": 0,
+      "other": 0
+    }
+  },
+  "future_exporter_readiness": {
+    "status": "ready_for_design_prototype_with_caveats",
+    "summary": "The fixture review says the record shape is understandable enough for a future read-only exporter design, provided the exporter keeps paraphrase/custody boundaries and does not create labels or scores.",
+    "recommended_before_pr60": [
+      "Maintainer review of PR57 through PR59.",
+      "Keep future exporter output relative-path-only and raw-content-safe.",
+      "Treat record fields as review projections, not truth or approval."
+    ]
+  },
+  "reviews": [
+    {
+      "fixture_id": "adr_fixture_v0_001_cofounder_authority_transfer",
+      "source_case_id": "ceo-remove-founding-cofounder",
+      "review_status": "pass",
+      "decision_delta_clarity": "clear",
+      "pr31_mapping_useful": "yes",
+      "conflict_preservation": "preserved",
+      "overclaim_control": "yes",
+      "false_certainty_risk": "low",
+      "reviewer_can_use_without_raw_content": "yes",
+      "primary_issue": "none",
+      "notes": "The record makes the authority-transfer delta visible while preserving the relationship and fairness conflict."
+    },
+    {
+      "fixture_id": "adr_fixture_v0_002_career_written_terms",
+      "source_case_id": "accept-operations-role-startup",
+      "review_status": "pass",
+      "decision_delta_clarity": "clear",
+      "pr31_mapping_useful": "yes",
+      "conflict_preservation": "preserved",
+      "overclaim_control": "yes",
+      "false_certainty_risk": "low",
+      "reviewer_can_use_without_raw_content": "yes",
+      "primary_issue": "none",
+      "notes": "The written-terms and household-capacity deltas are understandable without raw content, and the record avoids choosing for the user."
+    },
+    {
+      "fixture_id": "adr_fixture_v0_003_enterprise_buyer_proof",
+      "source_case_id": "launch-public-enterprise-beta",
+      "review_status": "pass",
+      "decision_delta_clarity": "clear",
+      "pr31_mapping_useful": "yes",
+      "conflict_preservation": "preserved",
+      "overclaim_control": "yes",
+      "false_certainty_risk": "none",
+      "reviewer_can_use_without_raw_content": "yes",
+      "primary_issue": "none",
+      "notes": "The same-shape buyer-proof gate is legible, and the fixture controls logo-aura overclaim risk."
+    },
+    {
+      "fixture_id": "adr_fixture_v0_004_pivot_capacity_gate",
+      "source_case_id": "pivot-company-product-strategy",
+      "review_status": "pass",
+      "decision_delta_clarity": "mostly_clear",
+      "pr31_mapping_useful": "yes",
+      "conflict_preservation": "partly_preserved",
+      "overclaim_control": "yes",
+      "false_certainty_risk": "low",
+      "reviewer_can_use_without_raw_content": "yes",
+      "primary_issue": "none",
+      "notes": "The sequence change is useful, though future exporter work should preserve more detail around customer and team obligations."
+    },
+    {
+      "fixture_id": "adr_fixture_v0_005_clinic_operable_controls",
+      "source_case_id": "deploy-assisted-intake-routing",
+      "review_status": "pass",
+      "decision_delta_clarity": "clear",
+      "pr31_mapping_useful": "yes",
+      "conflict_preservation": "partly_preserved",
+      "overclaim_control": "yes",
+      "false_certainty_risk": "low",
+      "reviewer_can_use_without_raw_content": "yes",
+      "primary_issue": "none",
+      "notes": "The record captures the move from checklist breadth to operable controls while correctly avoiding deployment approval."
+    },
+    {
+      "fixture_id": "adr_fixture_v0_006_price_support_boundaries",
+      "source_case_id": "implement-price-increase-three",
+      "review_status": "pass",
+      "decision_delta_clarity": "clear",
+      "pr31_mapping_useful": "yes",
+      "conflict_preservation": "preserved",
+      "overclaim_control": "yes",
+      "false_certainty_risk": "none",
+      "reviewer_can_use_without_raw_content": "yes",
+      "primary_issue": "none",
+      "notes": "The support-economics framing is understandable from documented summaries and does not require raw archive content."
+    }
+  ]
+}

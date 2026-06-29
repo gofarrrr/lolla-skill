@@ -604,6 +604,11 @@ Do not implement an exporter yet.
 
 Type: docs/eval-only
 
+Status after PR59: completed as the fixture/review gate:
+`docs/evals/audit-decision-record-fixtures-v0.md`,
+`docs/evals/audit-decision-record-fixtures-v0.json`, and
+`reviews/human/audit-decision-record-fixture-review-v0/review.json`.
+
 Goal:
 
 Test whether the proposed decision record shape is useful on existing reviewed
@@ -624,11 +629,11 @@ Scope:
 
 Acceptance criteria:
 
-- [ ] Reviewers can see what changed in the recommendation.
-- [ ] Reviewers can map changes to PR31 labels.
-- [ ] Reviewers can see unresolved conflicts/questions.
-- [ ] Reviewers do not mistake the record for approval or truth.
-- [ ] Any confusing fields are revised before implementation.
+- [x] Reviewers can see what changed in the recommendation.
+- [x] Reviewers can map changes to PR31 labels.
+- [x] Reviewers can see unresolved conflicts/questions.
+- [x] Reviewers do not mistake the record for approval or truth.
+- [x] Any confusing fields are revised before implementation.
 
 Stop rule:
 
@@ -919,14 +924,15 @@ docs/conversation-understanding/audit-decision-record-v0.md
 docs/conversation-understanding/audit-decision-record-v0.json
 ```
 
-The next possible slice after PR58 is:
+PR59 has now reviewed six paraphrase-only decision-record fixtures:
 
 ```text
-PR59 Audit Decision Record Fixture Review v0
+docs/evals/audit-decision-record-fixtures-v0.md
+docs/evals/audit-decision-record-fixtures-v0.json
+reviews/human/audit-decision-record-fixture-review-v0/review.json
 ```
 
-PR59 should remain docs/eval-only. It should create and review paraphrase-only
-fixtures from existing reviewed cases before any exporter exists. It should not
-run `$lolla`, call models, mutate archives, change prompts, change `SKILL.md`,
-change provider-boundary policy, approve high-stakes runs, judge answer
-quality, add automatic labels, or begin Semantica-style platform work.
+Stop after PR59. The next recommended slice is PR60 Provenance Map Design v0
+only after maintainer review of PR57 through PR59. PR60 should not start
+automatically from this PRD update, and it should remain docs/JSON design only
+if approved.

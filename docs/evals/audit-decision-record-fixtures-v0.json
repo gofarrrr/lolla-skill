@@ -1,0 +1,609 @@
+{
+  "schema_version": "lolla.audit_decision_record_fixtures.v0",
+  "status": "pr59_fixture_review_source",
+  "date": "2026-06-29",
+  "source_schema_version": "lolla.audit_decision_record.v0",
+  "fixture_count": 6,
+  "scope": {
+    "docs_eval_only": true,
+    "paraphrase_only": true,
+    "raw_archive_transcripts_inspected": false,
+    "model_calls": 0,
+    "archive_mutation": false,
+    "runtime_changes": false,
+    "exporter_implemented": false,
+    "answer_quality_scoring": false,
+    "automatic_labels": false
+  },
+  "known_pr31_labels": [
+    "action_changed",
+    "threshold_changed",
+    "sequence_changed",
+    "evidence_gate_added",
+    "stop_rule_added",
+    "written_term_added",
+    "user_question_added",
+    "scope_narrowed",
+    "overclaim_retracted",
+    "no_op_prose_change"
+  ],
+  "fixtures": [
+    {
+      "fixture_id": "adr_fixture_v0_001_cofounder_authority_transfer",
+      "source_case_id": "ceo-remove-founding-cofounder",
+      "source_run_id": "20260627T093131Z_59d153",
+      "archive_relpath": "ceo-remove-founding-cofounder/20260627T093131Z_59d153",
+      "decision_question": {
+        "status": "present",
+        "summary": "Whether to remove a founding cofounder from operating authority while preserving a workable relationship.",
+        "grounding": "derivation"
+      },
+      "original_recommendation_summary": {
+        "status": "partial",
+        "summary": "A relationship-reset pattern that kept cooperation testing ahead of authority movement.",
+        "grounding": "derivation"
+      },
+      "revised_recommendation_summary": {
+        "status": "present",
+        "summary": "An authority-transfer plan with bounded transition terms and stop conditions.",
+        "grounding": "derivation"
+      },
+      "actionable_deltas": {
+        "action_changed": [
+          {
+            "summary": "Move operating authority instead of first trying to repair cooperation.",
+            "grounding": "derivation"
+          }
+        ],
+        "threshold_changed": [],
+        "sequence_changed": [
+          {
+            "summary": "Authority transfer precedes any ongoing transition role.",
+            "grounding": "derivation"
+          }
+        ],
+        "evidence_gate_added": [],
+        "stop_rule_added": [
+          {
+            "summary": "The transition role must stop if it preserves shadow authority.",
+            "grounding": "derivation"
+          }
+        ],
+        "written_term_added": [],
+        "user_question_added": [],
+        "scope_narrowed": [
+          {
+            "summary": "The cofounder role narrows to bounded transition support.",
+            "grounding": "derivation"
+          }
+        ],
+        "overclaim_retracted": [],
+        "no_op_prose_change": []
+      },
+      "values_or_stakeholder_conflicts": [
+        {
+          "summary": "Founder loyalty and fairness remain in tension with team clarity and explicit authority transfer.",
+          "status": "preserved_for_human_review",
+          "grounding": "derivation"
+        }
+      ],
+      "unresolved_questions": [
+        {
+          "summary": "Which transition terms prevent shadow authority while preserving dignity?",
+          "owner": "user_or_human_reviewer",
+          "grounding": "derivation"
+        }
+      ],
+      "source_artifact_refs": [
+        {
+          "ref": "docs/evals/complex-baseline-human-review-v0.md",
+          "kind": "human_review_summary",
+          "raw_content_included": false
+        },
+        {
+          "ref": "docs/evals/human-review-corpus-batch-v0.md",
+          "kind": "human_review_summary",
+          "raw_content_included": false
+        }
+      ],
+      "custody_flags": {
+        "raw_transcript_included": false,
+        "raw_memo_included": false,
+        "raw_revised_answer_included": false,
+        "provider_text_included": false,
+        "private_reasoning_included": false,
+        "local_absolute_paths_included": false
+      },
+      "expected_review_read": "Reviewer should understand that the useful delta is authority movement plus bounded transition rules, not warmer cofounder language.",
+      "limitations": [
+        "Paraphrase-only fixture from checked-in review summaries.",
+        "Does not decide the advice is safe without human review."
+      ]
+    },
+    {
+      "fixture_id": "adr_fixture_v0_002_career_written_terms",
+      "source_case_id": "accept-operations-role-startup",
+      "source_run_id": "20260627T132700Z_bae7f3",
+      "archive_relpath": "accept-operations-role-startup/20260627T132700Z_bae7f3",
+      "decision_question": {
+        "status": "present",
+        "summary": "Whether to accept a startup operations role or stay in the current role under family and authority constraints.",
+        "grounding": "derivation"
+      },
+      "original_recommendation_summary": {
+        "status": "partial",
+        "summary": "A resonant career-choice framing that risked letting status, identity, or perceived safety decide too much.",
+        "grounding": "derivation"
+      },
+      "revised_recommendation_summary": {
+        "status": "present",
+        "summary": "Both paths become written operating-term tests with explicit household-capacity evidence.",
+        "grounding": "derivation"
+      },
+      "actionable_deltas": {
+        "action_changed": [],
+        "threshold_changed": [
+          {
+            "summary": "Both roles must satisfy concrete operating terms before the decision is made.",
+            "grounding": "derivation"
+          }
+        ],
+        "sequence_changed": [],
+        "evidence_gate_added": [
+          {
+            "summary": "Spouse consent and role authority become evidence rather than background preference.",
+            "grounding": "derivation"
+          }
+        ],
+        "stop_rule_added": [],
+        "written_term_added": [
+          {
+            "summary": "The revised path requires written terms for authority, role scope, and time burden.",
+            "grounding": "derivation"
+          }
+        ],
+        "user_question_added": [
+          {
+            "summary": "The decision still depends on user and household answers about tolerable load.",
+            "grounding": "derivation"
+          }
+        ],
+        "scope_narrowed": [],
+        "overclaim_retracted": [
+          {
+            "summary": "Neither the current role's apparent safety nor the startup title is treated as enough evidence.",
+            "grounding": "derivation"
+          }
+        ],
+        "no_op_prose_change": []
+      },
+      "values_or_stakeholder_conflicts": [
+        {
+          "summary": "Ambition and autonomy remain in tension with spouse impact, household capacity, and written authority.",
+          "status": "preserved_for_human_review",
+          "grounding": "derivation"
+        }
+      ],
+      "unresolved_questions": [
+        {
+          "summary": "Which written role terms would make either path acceptable to the household?",
+          "owner": "user_or_human_reviewer",
+          "grounding": "derivation"
+        }
+      ],
+      "source_artifact_refs": [
+        {
+          "ref": "docs/evals/complex-baseline-human-review-v0.md",
+          "kind": "human_review_summary",
+          "raw_content_included": false
+        },
+        {
+          "ref": "docs/evals/human-review-corpus-batch-v0.md",
+          "kind": "human_review_summary",
+          "raw_content_included": false
+        }
+      ],
+      "custody_flags": {
+        "raw_transcript_included": false,
+        "raw_memo_included": false,
+        "raw_revised_answer_included": false,
+        "provider_text_included": false,
+        "private_reasoning_included": false,
+        "local_absolute_paths_included": false
+      },
+      "expected_review_read": "Reviewer should see that the delta is written operating evidence and household capacity, not a preference between prestige narratives.",
+      "limitations": [
+        "Paraphrase-only fixture from checked-in review summaries.",
+        "Does not create a user-values extraction or reliance label."
+      ]
+    },
+    {
+      "fixture_id": "adr_fixture_v0_003_enterprise_buyer_proof",
+      "source_case_id": "launch-public-enterprise-beta",
+      "source_run_id": "20260627T104146Z_7bfe79",
+      "archive_relpath": "launch-public-enterprise-beta/20260627T104146Z_7bfe79",
+      "decision_question": {
+        "status": "present",
+        "summary": "Whether to prioritize a public enterprise beta around a marquee prospect or require buyer-behavior proof first.",
+        "grounding": "derivation"
+      },
+      "original_recommendation_summary": {
+        "status": "partial",
+        "summary": "A launch posture that risked overweighting the larger prospect's aura.",
+        "grounding": "derivation"
+      },
+      "revised_recommendation_summary": {
+        "status": "present",
+        "summary": "Both prospects receive the same paid-pilot proof shape, and priority is earned by buyer behavior.",
+        "grounding": "derivation"
+      },
+      "actionable_deltas": {
+        "action_changed": [
+          {
+            "summary": "Do not default to the marquee buyer; require the same paid-pilot test from both prospects.",
+            "grounding": "derivation"
+          }
+        ],
+        "threshold_changed": [
+          {
+            "summary": "Payment, procurement clarity, support tolerance, and diligence behavior become decision thresholds.",
+            "grounding": "derivation"
+          }
+        ],
+        "sequence_changed": [],
+        "evidence_gate_added": [
+          {
+            "summary": "Public launch posture is gated by concrete buyer behavior.",
+            "grounding": "derivation"
+          }
+        ],
+        "stop_rule_added": [],
+        "written_term_added": [
+          {
+            "summary": "Pilot terms need to be written in the same shape for both prospects.",
+            "grounding": "derivation"
+          }
+        ],
+        "user_question_added": [],
+        "scope_narrowed": [
+          {
+            "summary": "The beta narrows from enterprise aura to private proof of tolerable scope.",
+            "grounding": "derivation"
+          }
+        ],
+        "overclaim_retracted": [
+          {
+            "summary": "The larger logo is not treated as proof that the opportunity should dominate.",
+            "grounding": "derivation"
+          }
+        ],
+        "no_op_prose_change": []
+      },
+      "values_or_stakeholder_conflicts": [
+        {
+          "summary": "Ambition and credibility remain in tension with support burden, customer trust, and proof quality.",
+          "status": "preserved_for_human_review",
+          "grounding": "derivation"
+        }
+      ],
+      "unresolved_questions": [
+        {
+          "summary": "Which prospect will accept a paid pilot with constraints that reveal real buying behavior?",
+          "owner": "user_or_human_reviewer",
+          "grounding": "derivation"
+        }
+      ],
+      "source_artifact_refs": [
+        {
+          "ref": "docs/evals/complex-baseline-human-review-v0.md",
+          "kind": "human_review_summary",
+          "raw_content_included": false
+        },
+        {
+          "ref": "docs/evals/human-review-corpus-batch-v0.md",
+          "kind": "human_review_summary",
+          "raw_content_included": false
+        }
+      ],
+      "custody_flags": {
+        "raw_transcript_included": false,
+        "raw_memo_included": false,
+        "raw_revised_answer_included": false,
+        "provider_text_included": false,
+        "private_reasoning_included": false,
+        "local_absolute_paths_included": false
+      },
+      "expected_review_read": "Reviewer should see the move from logo-driven priority to same-shape proof gates.",
+      "limitations": [
+        "Paraphrase-only fixture from checked-in review summaries.",
+        "Does not verify buyer facts beyond the reviewed summaries."
+      ]
+    },
+    {
+      "fixture_id": "adr_fixture_v0_004_pivot_capacity_gate",
+      "source_case_id": "pivot-company-product-strategy",
+      "source_run_id": "20260627T110450Z_5d2da7",
+      "archive_relpath": "pivot-company-product-strategy/20260627T110450Z_5d2da7",
+      "decision_question": {
+        "status": "present",
+        "summary": "Whether to pivot toward a higher-ACV market before proving current capacity and obligations can hold.",
+        "grounding": "derivation"
+      },
+      "original_recommendation_summary": {
+        "status": "partial",
+        "summary": "A market-upside path that risked letting validation consume team capacity before current obligations were bounded.",
+        "grounding": "derivation"
+      },
+      "revised_recommendation_summary": {
+        "status": "present",
+        "summary": "A capacity-and-obligation gate precedes the market validation gate.",
+        "grounding": "derivation"
+      },
+      "actionable_deltas": {
+        "action_changed": [],
+        "threshold_changed": [
+          {
+            "summary": "Capacity and current commitments must pass before a market gate can proceed.",
+            "grounding": "derivation"
+          }
+        ],
+        "sequence_changed": [
+          {
+            "summary": "A near-term operating-capacity check comes before the longer market test.",
+            "grounding": "derivation"
+          }
+        ],
+        "evidence_gate_added": [
+          {
+            "summary": "The company must prove it can staff and protect current obligations before pursuing the pivot.",
+            "grounding": "derivation"
+          }
+        ],
+        "stop_rule_added": [],
+        "written_term_added": [
+          {
+            "summary": "The current customer promise becomes staffed and date-bounded instead of informal.",
+            "grounding": "derivation"
+          }
+        ],
+        "user_question_added": [],
+        "scope_narrowed": [],
+        "overclaim_retracted": [],
+        "no_op_prose_change": []
+      },
+      "values_or_stakeholder_conflicts": [
+        {
+          "summary": "Growth ambition remains in tension with existing customer obligations and team capacity.",
+          "status": "preserved_for_human_review",
+          "grounding": "derivation"
+        }
+      ],
+      "unresolved_questions": [
+        {
+          "summary": "What staffing and support promise is credible before the market gate begins?",
+          "owner": "user_or_human_reviewer",
+          "grounding": "derivation"
+        }
+      ],
+      "source_artifact_refs": [
+        {
+          "ref": "docs/evals/complex-baseline-human-review-v0.md",
+          "kind": "human_review_summary",
+          "raw_content_included": false
+        },
+        {
+          "ref": "docs/evals/human-review-corpus-batch-v0.md",
+          "kind": "human_review_summary",
+          "raw_content_included": false
+        }
+      ],
+      "custody_flags": {
+        "raw_transcript_included": false,
+        "raw_memo_included": false,
+        "raw_revised_answer_included": false,
+        "provider_text_included": false,
+        "private_reasoning_included": false,
+        "local_absolute_paths_included": false
+      },
+      "expected_review_read": "Reviewer should see that sequencing is the key delta: capacity and obligations first, market proof second.",
+      "limitations": [
+        "Paraphrase-only fixture from checked-in review summaries.",
+        "Conflict preservation is partial because the compact record cannot represent every customer/team tradeoff."
+      ]
+    },
+    {
+      "fixture_id": "adr_fixture_v0_005_clinic_operable_controls",
+      "source_case_id": "deploy-assisted-intake-routing",
+      "source_run_id": "20260627T130339Z_4cd3cb",
+      "archive_relpath": "deploy-assisted-intake-routing/20260627T130339Z_4cd3cb",
+      "decision_question": {
+        "status": "present",
+        "summary": "Whether to deploy assisted intake routing with enough controls to operate safely under pressure.",
+        "grounding": "derivation"
+      },
+      "original_recommendation_summary": {
+        "status": "partial",
+        "summary": "A long checklist posture that could look safe while remaining hard to operate.",
+        "grounding": "derivation"
+      },
+      "revised_recommendation_summary": {
+        "status": "present",
+        "summary": "A narrower pilot with must-pass controls, backlog diagnosis, stop conditions, and limited proof claims.",
+        "grounding": "derivation"
+      },
+      "actionable_deltas": {
+        "action_changed": [
+          {
+            "summary": "Run a narrower control-focused pilot rather than a broad checklist-driven launch.",
+            "grounding": "derivation"
+          }
+        ],
+        "threshold_changed": [
+          {
+            "summary": "Controls must be operable under load before the pilot can be trusted.",
+            "grounding": "derivation"
+          }
+        ],
+        "sequence_changed": [],
+        "evidence_gate_added": [
+          {
+            "summary": "Backlog diagnosis and operational proof gate any expansion.",
+            "grounding": "derivation"
+          }
+        ],
+        "stop_rule_added": [
+          {
+            "summary": "The pilot needs explicit pause or rollback triggers.",
+            "grounding": "derivation"
+          }
+        ],
+        "written_term_added": [],
+        "user_question_added": [
+          {
+            "summary": "The clinic must answer who owns control failures and escalation decisions.",
+            "grounding": "derivation"
+          }
+        ],
+        "scope_narrowed": [
+          {
+            "summary": "The pilot can prove only operating control readiness, not broad deployment safety.",
+            "grounding": "derivation"
+          }
+        ],
+        "overclaim_retracted": [],
+        "no_op_prose_change": []
+      },
+      "values_or_stakeholder_conflicts": [
+        {
+          "summary": "Patient-facing risk, operator burden, compliance expectations, and learning speed remain in tension.",
+          "status": "preserved_for_human_review",
+          "grounding": "derivation"
+        }
+      ],
+      "unresolved_questions": [
+        {
+          "summary": "Who has authority to pause the pilot when controls fail under pressure?",
+          "owner": "user_or_human_reviewer",
+          "grounding": "derivation"
+        }
+      ],
+      "source_artifact_refs": [
+        {
+          "ref": "docs/evals/complex-baseline-human-review-v0.md",
+          "kind": "human_review_summary",
+          "raw_content_included": false
+        },
+        {
+          "ref": "docs/evals/human-review-corpus-batch-v0.md",
+          "kind": "human_review_summary",
+          "raw_content_included": false
+        }
+      ],
+      "custody_flags": {
+        "raw_transcript_included": false,
+        "raw_memo_included": false,
+        "raw_revised_answer_included": false,
+        "provider_text_included": false,
+        "private_reasoning_included": false,
+        "local_absolute_paths_included": false
+      },
+      "expected_review_read": "Reviewer should see the delta from checklist theater to fewer controls that can actually stop the rollout.",
+      "limitations": [
+        "Paraphrase-only fixture from checked-in review summaries.",
+        "Does not approve healthcare-adjacent deployment or replace domain review."
+      ]
+    },
+    {
+      "fixture_id": "adr_fixture_v0_006_price_support_boundaries",
+      "source_case_id": "implement-price-increase-three",
+      "source_run_id": "20260627T083231Z_52724d",
+      "archive_relpath": "implement-price-increase-three/20260627T083231Z_52724d",
+      "decision_question": {
+        "status": "present",
+        "summary": "How to implement a price increase without confusing pricing, support load, and customer-success obligations.",
+        "grounding": "derivation"
+      },
+      "original_recommendation_summary": {
+        "status": "partial",
+        "summary": "A broad price-increase plan that risked treating support economics as a generic pricing issue.",
+        "grounding": "derivation"
+      },
+      "revised_recommendation_summary": {
+        "status": "present",
+        "summary": "An account-level support-economics plan with enforceable support boundaries.",
+        "grounding": "derivation"
+      },
+      "actionable_deltas": {
+        "action_changed": [
+          {
+            "summary": "Move from a broad price change to account-level support economics and boundaries.",
+            "grounding": "derivation"
+          }
+        ],
+        "threshold_changed": [
+          {
+            "summary": "Support load and economics become thresholds for account handling.",
+            "grounding": "derivation"
+          }
+        ],
+        "sequence_changed": [],
+        "evidence_gate_added": [
+          {
+            "summary": "Account behavior and support economics must be understood before applying the increase broadly.",
+            "grounding": "derivation"
+          }
+        ],
+        "stop_rule_added": [],
+        "written_term_added": [
+          {
+            "summary": "Support boundaries need to be explicit rather than handled ad hoc.",
+            "grounding": "derivation"
+          }
+        ],
+        "user_question_added": [],
+        "scope_narrowed": [
+          {
+            "summary": "The recommendation narrows from all-account pricing posture to account-level support decisions.",
+            "grounding": "derivation"
+          }
+        ],
+        "overclaim_retracted": [],
+        "no_op_prose_change": []
+      },
+      "values_or_stakeholder_conflicts": [
+        {
+          "summary": "Revenue goals remain in tension with customer trust, support capacity, and fair boundaries.",
+          "status": "preserved_for_human_review",
+          "grounding": "derivation"
+        }
+      ],
+      "unresolved_questions": [
+        {
+          "summary": "Which accounts are actually support-economics problems rather than simple pricing candidates?",
+          "owner": "user_or_human_reviewer",
+          "grounding": "derivation"
+        }
+      ],
+      "source_artifact_refs": [
+        {
+          "ref": "docs/evals/human-review-corpus-batch-v0.md",
+          "kind": "human_review_summary",
+          "raw_content_included": false
+        }
+      ],
+      "custody_flags": {
+        "raw_transcript_included": false,
+        "raw_memo_included": false,
+        "raw_revised_answer_included": false,
+        "provider_text_included": false,
+        "private_reasoning_included": false,
+        "local_absolute_paths_included": false
+      },
+      "expected_review_read": "Reviewer should see that the delta separates pricing from support operations and makes boundaries enforceable.",
+      "limitations": [
+        "Paraphrase-only fixture from checked-in review summaries.",
+        "Does not inspect the underlying archive or decide customer policy."
+      ]
+    }
+  ]
+}

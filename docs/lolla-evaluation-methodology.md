@@ -141,6 +141,11 @@ The audit decision record is a review projection only. It can map a paraphrased
 change to PR31 actionable-delta labels, but it does not create a human-review
 label, agent approval, or answer-quality score.
 
+The PR59 fixture review tests whether that projection is readable on six
+existing reviewed cases. It confirms the shape is useful for reviewer
+orientation, but it still does not implement an exporter, populate labels, or
+score advice.
+
 These checks should gate releases before any subjective judge runs.
 
 ### 4. Binary Failure-Mode Judges Only

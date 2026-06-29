@@ -1564,14 +1564,41 @@ Outcome:
 - keeps answer-quality judgment, `safe_for_agent_use`, automatic labels, and
   any future exporter outside the PR58 slice.
 
-Next:
+Implemented next:
 
 ```text
 PR59 Audit Decision Record Fixture Review v0
 ```
 
-PR59 should create and review 3-6 paraphrase-only fixture records from existing
+PR59 creates and reviews six paraphrase-only fixture records from existing
 reviewed cases before any exporter or runtime integration exists.
+
+### PR59: Audit Decision Record Fixture Review v0
+
+Status: completed as
+[audit-decision-record-fixtures-v0.md](../evals/audit-decision-record-fixtures-v0.md),
+[audit-decision-record-fixtures-v0.json](../evals/audit-decision-record-fixtures-v0.json),
+and [review.json](../../reviews/human/audit-decision-record-fixture-review-v0/review.json).
+
+Goal: test whether the PR58 decision record shape is understandable and useful
+on existing reviewed cases before any exporter is built.
+
+Outcome:
+
+- creates six paraphrase-only fixture records from existing reviewed cases;
+- reviews all six as `pass`;
+- confirms PR31 mapping is useful in all six;
+- confirms reviewers can use all six without raw content;
+- marks the shape ready for a future read-only exporter design prototype with
+  caveats;
+- keeps exporter implementation, runtime integration, answer-quality scoring,
+  automatic labels, model calls, and archive mutation outside the PR59 slice.
+
+Stop:
+
+```text
+Stop after PR59. Do not start PR60 without maintainer review.
+```
 
 ### Later: Decision-Aware Capture And Runtime Integration
 
@@ -1625,13 +1652,14 @@ PR48's evidence-readiness analyzer, PR49's values/priorities worksheet plan,
 PR50's paraphrase-only worksheet fixtures, PR51's worksheet fixture review,
 PR52's blank worksheet export, PR53's human-filled worksheet pilot, PR54's
 pilot review / v0 decision, PR55's Semantica-inspired accountability PRD,
-PR56's Lolla Doctor / Preflight plan, and PR57's read-only doctor CLI now
+PR56's Lolla Doctor / Preflight plan, PR57's read-only doctor CLI, PR58's audit
+decision record design, and PR59's audit decision record fixture review now
 exist. The next step is still explicit approval, not automatic runtime work.
-The recommended accountability slice is PR58 Audit Decision Record Design v0,
-docs/JSON design only. Other lanes still require their own gates: future
-high-stakes evidence under PR46/PR48, reopening the values lane after PR54, or
-any populated extraction, memory, runtime integration, automatic labels, or
-judging.
+The recommended next accountability slice is PR60 Provenance Map Design v0 only
+after maintainer review of PR57 through PR59. Other lanes still require their
+own gates: future high-stakes evidence under PR46/PR48, reopening the values
+lane after PR54, or any populated extraction, memory, runtime integration,
+automatic labels, or judging.
 
 ## Sources
 

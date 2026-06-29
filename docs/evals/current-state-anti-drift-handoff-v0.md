@@ -1,11 +1,11 @@
 # Current State Anti-Drift Handoff v0
 
 Status: current-state handoff
-Date: 2026-06-28
-Slice: PR45, updated by PR58
+Date: 2026-06-29
+Slice: PR45, updated by PR59
 
 This note is the compact first-read handoff for a fresh Lolla eval session. It
-summarizes what the harness is, what PR30-PR58 built, what evidence exists now,
+summarizes what the harness is, what PR30-PR59 built, what evidence exists now,
 and what must not be built until the next explicit approval gates.
 
 PR45 is docs-only. It does not run Lolla, call models, mutate archives, change
@@ -37,7 +37,7 @@ The product boundary is still sharp:
 - `risk_mode` is reliance and review context, not answer-quality scoring,
   domain approval, or automatic safety.
 
-## PR30-PR58 Chain
+## PR30-PR59 Chain
 
 - PR30 created the six-run human/product review seed over the clean complex
   conversation baseline.
@@ -100,6 +100,10 @@ The product boundary is still sharp:
   accountability projection over existing artifacts and PR31 labels. It does
   not implement an exporter, runtime integration, answer-quality scoring,
   automatic labels, memory, graph DB, or platform work.
+- PR59 reviews six paraphrase-only audit decision record fixtures from existing
+  reviewed cases. All six pass, PR31 mapping is useful in all six, and
+  reviewer use without raw content is `yes` in all six. It does not implement
+  an exporter or runtime integration.
 
 ## Current Corpus Evidence
 
@@ -150,9 +154,10 @@ only aggregate keys and counts.
 - no trusted live-output transcript implementation;
 - no implemented Semantica-inspired accountability primitive beyond the
   read-only `lolla doctor` preflight CLI. PR58 only designs
-  `lolla.audit_decision_record.v0`; no decision-record exporter,
-  `lolla.provenance_map.v0`, `lolla.review_conflict_register.v0`, or
-  `lolla.case_graph.v0` exists from PR55 through PR58;
+  `lolla.audit_decision_record.v0` and PR59 only reviews fixtures; no
+  decision-record exporter, `lolla.provenance_map.v0`,
+  `lolla.review_conflict_register.v0`, or `lolla.case_graph.v0` exists from
+  PR55 through PR59;
 - no domain, crisis, legal, medical, financial, or safety protocol.
 
 ## Explicit Non-Goals
@@ -201,11 +206,10 @@ The later safe lanes are separate:
    a new explicit gate.
 2. PR55 records a Semantica-inspired accountability plan. PR56 records the
    doctor/preflight plan. PR57 implements only the read-only doctor CLI. PR58
-   designs only the audit decision record shape. The next possible slice from
-   that lane is PR59 Audit Decision Record Fixture Review v0, and it should
-   remain docs/eval-only. Do not implement decision-record export, provenance
-   maps, conflict registers, case graph exports, platform work, or runtime
-   behavior from PR55 through PR58 alone.
+   designs only the audit decision record shape. PR59 reviews only
+   paraphrase-only decision-record fixtures. Stop after PR59. Do not implement
+   decision-record export, provenance maps, conflict registers, case graph
+   exports, platform work, or runtime behavior from PR55 through PR59 alone.
 3. A later live-output hygiene lane can plan and lock current behavior, then
    stop for an implementation decision.
 
@@ -242,6 +246,14 @@ docs/conversation-understanding/audit-decision-record-v0.md
 docs/conversation-understanding/audit-decision-record-v0.json
 ```
 
+For the PR59 audit decision record fixture review, read:
+
+```text
+docs/evals/audit-decision-record-fixtures-v0.md
+docs/evals/audit-decision-record-fixtures-v0.json
+reviews/human/audit-decision-record-fixture-review-v0/review.json
+```
+
 ## Decision Gates
 
 - Now: decide whether to create approved real high-stakes evidence.
@@ -250,11 +262,9 @@ docs/conversation-understanding/audit-decision-record-v0.json
 - Accountability lane: PR55 approves only the Semantica-inspired roadmap, PR56
   approves only the doctor/preflight design, and PR57 implements only the
   read-only doctor CLI. PR58 designs only `lolla.audit_decision_record.v0`.
-  PR59 may review paraphrase-only decision-record fixtures next, but only as
-  docs/eval work without an exporter, runtime integration, model calls,
-  `$lolla` runs, archive mutation, prompt changes, `SKILL.md` changes,
-  provider-boundary policy changes, high-stakes approval behavior, scoring, or
-  automatic labels.
+  PR59 reviews only paraphrase-only decision-record fixtures. Stop after PR59.
+  PR60 Provenance Map Design v0 should start only after maintainer review of
+  PR57 through PR59, and should remain docs/JSON design if approved.
 - After a live-output hygiene planning/review lane: decide whether to implement
   trusted live-output transcript hygiene.
 
