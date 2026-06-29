@@ -2,10 +2,10 @@
 
 Status: current-state handoff
 Date: 2026-06-29
-Slice: PR45, updated by PR68
+Slice: PR45, updated by PR69
 
 This note is the compact first-read handoff for a fresh Lolla eval session. It
-summarizes what the harness is, what PR30-PR68 built, what evidence exists now,
+summarizes what the harness is, what PR30-PR69 built, what evidence exists now,
 and what must not be built until the next explicit approval gates.
 
 PR45 is docs-only. It does not run Lolla, call models, mutate archives, change
@@ -37,7 +37,7 @@ The product boundary is still sharp:
 - `risk_mode` is reliance and review context, not answer-quality scoring,
   domain approval, or automatic safety.
 
-## PR30-PR68 Chain
+## PR30-PR69 Chain
 
 - PR30 created the six-run human/product review seed over the clean complex
   conversation baseline.
@@ -147,6 +147,13 @@ The product boundary is still sharp:
   metadata so empty fields read as non-claims. It does not infer labels from
   prose, score answers, call models, mutate archives, add runtime integration,
   or start PR69.
+- PR69 re-runs the PR67 export smoke review against refined PR68 output. Seven
+  records pass: four existing reviewed archive exports, two fixture-backed
+  temp-run exports, and one optional review-json-supplied fixture. Empty PR31
+  bucket clarity improves to seven `clear_non_claim`, semantic empty fields
+  are seven `clear_non_claim`, raw content safety remains safe, and the
+  recommended next slice is a PR70 archive-integration decision gate, not
+  archive integration implementation.
 
 ## Current Corpus Evidence
 
@@ -259,13 +266,14 @@ The later safe lanes are separate:
    paraphrase-only decision-record fixtures. PR60 designs only the provenance
    map shape. PR61 designs only the review conflict register shape. Do not
    implement provenance export, conflict-register export, case graph export,
-   graph DB, memory, platform work, or runtime behavior from PR55 through PR68
+   graph DB, memory, platform work, or runtime behavior from PR55 through PR69
    alone. PR62 designs only the case graph export/view shape. PR63 creates only
    paraphrase-only accountability-view fixture bundles. PR64 only reviews those
    fixtures and stops before implementation. PR65 only recommends a future
    decision-record exporter. PR66 implements only that read-only decision-record
    exporter. PR67 only reviews smoke outputs. PR68 only clarifies field
-   population semantics and stops before PR69.
+   population semantics and stops before PR69. PR69 only reviews refined
+   exporter output and stops before PR70.
 3. A later live-output hygiene lane can plan and lock current behavior, then
    stop for an implementation decision.
 
@@ -375,6 +383,14 @@ engine/system_b/audit_decision_record.py
 tests/test_audit_decision_record.py
 ```
 
+For the PR69 audit decision record export review re-run, read:
+
+```text
+docs/evals/audit-decision-record-export-review-rerun-v0.md
+reviews/human/audit-decision-record-export-review-rerun-v0/review.json
+reviews/human/audit-decision-record-export-review-rerun-v0/exported-records-summary.json
+```
+
 ## Decision Gates
 
 - Now: decide whether to create approved real high-stakes evidence.
@@ -394,9 +410,11 @@ tests/test_audit_decision_record.py
   implements only the read-only audit decision record exporter and stops before
   PR67. PR67 reviews only exporter smoke output and recommends PR68
   schema/exporter refinement. PR68 implements only that refinement and stops
-  before PR69. PR69 must not start automatically and must not add archive
-  integration, automatic generation, batch export, labels, scoring, judges, or
-  runtime behavior until maintainers approve a new slice.
+  before PR69. PR69 reviews only refined exporter output and recommends PR70
+  as an archive-integration decision gate. PR70 must not start automatically
+  and must not add archive integration, automatic generation, batch export,
+  labels, scoring, judges, or runtime behavior until maintainers approve a new
+  slice.
 - After a live-output hygiene planning/review lane: decide whether to implement
   trusted live-output transcript hygiene.
 

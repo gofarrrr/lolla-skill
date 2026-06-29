@@ -1,6 +1,6 @@
 # Audit Decision Record v0
 
-Status: PR58 docs/JSON design; PR66 read-only exporter implemented; PR67 smoke-reviewed; PR68 refined
+Status: PR58 docs/JSON design; PR66 read-only exporter implemented; PR67 smoke-reviewed; PR68 refined; PR69 review re-run completed
 Date: 2026-06-28
 Owner: Lolla maintainers
 
@@ -15,6 +15,9 @@ PR67 reviews smoke exports from that exporter:
 
 PR68 refines field-population semantics after the PR67 review:
 [Audit Decision Record Schema / Exporter Refinement v0](../evals/audit-decision-record-schema-exporter-refinement-v0.md).
+
+PR69 re-runs the export review against refined PR68 output:
+[Audit Decision Record Export Review Re-Run v0](../evals/audit-decision-record-export-review-rerun-v0.md).
 
 The record is meant to help reviewers see what decision a run audited and what
 changed between the original and revised recommendation. It is not a new
@@ -394,12 +397,32 @@ The refinement does not add archive integration, automatic generation,
 answer-quality scoring, automatic labels, a judge, graph DB, memory, or
 Semantica-style platform work.
 
+## PR69 Export Review Re-Run
+
+PR69 completed the review pass recommended by PR68:
+
+- [Audit Decision Record Export Review Re-Run v0](../evals/audit-decision-record-export-review-rerun-v0.md)
+- [review.json](../../reviews/human/audit-decision-record-export-review-rerun-v0/review.json)
+- [exported-records-summary.json](../../reviews/human/audit-decision-record-export-review-rerun-v0/exported-records-summary.json)
+
+The review covers seven records: four existing reviewed archive exports, two
+fixture-backed temp-run exports, and one optional fixture-backed export with
+safe review-json-supplied PR31 buckets. All seven pass.
+
+Compared with PR67, empty PR31 bucket clarity improves from 2
+`clear_non_claim` / 4 `partly_clear` to 7 `clear_non_claim`. Semantic empty
+fields are also 7 `clear_non_claim`, raw content safety remains 7 safe, and no
+reviewer needed explanatory docs to avoid the basic non-claim misread.
+
+PR69 does not change the exporter or runtime behavior. It recommends a future
+decision gate before any archive integration is implemented.
+
 Recommended next slice:
 
 ```text
-PR69 Audit Decision Record Export Review Re-Run v0
+PR70 Audit Decision Record Archive Integration Decision Gate v0
 ```
 
-PR69 should re-run the PR67 smoke/review against the refined output and verify
-that empty PR31 buckets read as clear non-claims before archive integration,
-batch export, or automatic generation is considered.
+PR70 should decide whether archive integration should be planned at all. It
+should not itself implement automatic generation, runtime behavior, labels,
+scoring, judging, or `safe_for_agent_use`.

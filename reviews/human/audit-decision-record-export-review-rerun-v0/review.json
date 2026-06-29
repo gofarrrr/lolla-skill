@@ -1,0 +1,547 @@
+{
+  "schema_version": "lolla.audit_decision_record_export_review_rerun.v0",
+  "review_scope": "human_product_review",
+  "date": "2026-06-29",
+  "source": {
+    "exporter_schema_version": "lolla.audit_decision_record.v0",
+    "exporter_commit": "c99c3558f5f8bcdc48d2b5d25c0bcffba20c1587",
+    "pr68_refinement_present": true,
+    "model_calls": 0,
+    "lolla_runs_performed": 0,
+    "archives_mutated": false,
+    "raw_content_reviewed": false,
+    "exported_records_checked_in": false,
+    "exported_records_summary_checked_in": true,
+    "exported_records_reviewed_from_tmp": true,
+    "exported_records_generated": 7,
+    "records_reviewed": 7,
+    "source_type_counts": {
+      "existing_reviewed_archive": 4,
+      "fixture_backed_temp_run": 2,
+      "fixture_backed_temp_run_review_json_supplied": 1
+    }
+  },
+  "clear_non_claim_definition": "The reviewer can tell from the exported record itself that the empty field is not a substantive finding about the audited decision.",
+  "records_reviewed": [
+    {
+      "case_id": "ceo-remove-founding-cofounder",
+      "run_id": "20260627T093131Z_59d153",
+      "archive_relpath": "ceo-remove-founding-cofounder/20260627T093131Z_59d153",
+      "source_type": "existing_reviewed_archive",
+      "export_status": "pass",
+      "record_understandability": "clear",
+      "empty_delta_bucket_clarity": "clear_non_claim",
+      "semantic_empty_field_clarity": "clear_non_claim",
+      "bucket_status_usefulness": "useful",
+      "population_policy_usefulness": "useful",
+      "artifact_status_usefulness": "useful",
+      "custody_clarity": "clear",
+      "limitation_clarity": "clear",
+      "cognitive_load": "acceptable",
+      "false_certainty_risk": "low",
+      "raw_content_safety": "safe",
+      "reviewer_can_use_without_raw_content": "yes",
+      "reviewer_needed_docs_to_avoid_misread": "no",
+      "implementation_readiness": "ready_for_integration_plan",
+      "primary_issue": "none",
+      "record_only_interpretation": {
+        "empty_action_changed_bucket_meaning": "not_supplied; not evidence that no action change exists",
+        "claims_no_conflicts_exist": false,
+        "pr31_labels_inferred_from_revised_answer_prose": false,
+        "structured_source_fields": [
+          "decision_question",
+          "revised_recommendation_summary",
+          "source_artifacts"
+        ],
+        "not_supplied_or_not_measured_fields": [
+          "actionable_deltas",
+          "conflicts_or_unresolved_tensions",
+          "unresolved_questions",
+          "original_recommendation_summary"
+        ],
+        "claims_advice_is_good": false,
+        "safe_for_agent_quality_label": false
+      },
+      "docs_assisted_interpretation": {
+        "docs_changed_interpretation": false,
+        "docs_helped": "Docs confirmed the record-only read that empty PR31 buckets are non-claims."
+      },
+      "notes": [
+        "The PR31 buckets now carry their own status, so the empty arrays no longer need limitation text to avoid a no-delta misread.",
+        "The conflict field says not supplied and explicitly says this is not evidence that no conflicts exist."
+      ]
+    },
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "run_id": "20260627T104146Z_7bfe79",
+      "archive_relpath": "launch-public-enterprise-beta/20260627T104146Z_7bfe79",
+      "source_type": "existing_reviewed_archive",
+      "export_status": "pass",
+      "record_understandability": "clear",
+      "empty_delta_bucket_clarity": "clear_non_claim",
+      "semantic_empty_field_clarity": "clear_non_claim",
+      "bucket_status_usefulness": "useful",
+      "population_policy_usefulness": "useful",
+      "artifact_status_usefulness": "useful",
+      "custody_clarity": "clear",
+      "limitation_clarity": "clear",
+      "cognitive_load": "acceptable",
+      "false_certainty_risk": "low",
+      "raw_content_safety": "safe",
+      "reviewer_can_use_without_raw_content": "yes",
+      "reviewer_needed_docs_to_avoid_misread": "no",
+      "implementation_readiness": "ready_for_integration_plan",
+      "primary_issue": "none",
+      "record_only_interpretation": {
+        "empty_action_changed_bucket_meaning": "not_supplied; not evidence that no action change exists",
+        "claims_no_conflicts_exist": false,
+        "pr31_labels_inferred_from_revised_answer_prose": false,
+        "structured_source_fields": [
+          "decision_question",
+          "revised_recommendation_summary",
+          "source_artifacts"
+        ],
+        "not_supplied_or_not_measured_fields": [
+          "actionable_deltas",
+          "conflicts_or_unresolved_tensions",
+          "unresolved_questions",
+          "original_recommendation_summary"
+        ],
+        "claims_advice_is_good": false,
+        "safe_for_agent_quality_label": false
+      },
+      "docs_assisted_interpretation": {
+        "docs_changed_interpretation": false,
+        "docs_helped": "Docs were useful background but were not needed to avoid the empty-bucket misread."
+      },
+      "notes": [
+        "The record-only read separates structured artifact presence from semantic label absence.",
+        "The limitation and custody flags still prevent recommendation-approval drift."
+      ]
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "run_id": "20260627T130339Z_4cd3cb",
+      "archive_relpath": "deploy-assisted-intake-routing/20260627T130339Z_4cd3cb",
+      "source_type": "existing_reviewed_archive",
+      "export_status": "pass",
+      "record_understandability": "clear",
+      "empty_delta_bucket_clarity": "clear_non_claim",
+      "semantic_empty_field_clarity": "clear_non_claim",
+      "bucket_status_usefulness": "useful",
+      "population_policy_usefulness": "useful",
+      "artifact_status_usefulness": "useful",
+      "custody_clarity": "clear",
+      "limitation_clarity": "clear",
+      "cognitive_load": "acceptable",
+      "false_certainty_risk": "low",
+      "raw_content_safety": "safe",
+      "reviewer_can_use_without_raw_content": "yes",
+      "reviewer_needed_docs_to_avoid_misread": "no",
+      "implementation_readiness": "ready_for_integration_plan",
+      "primary_issue": "none",
+      "record_only_interpretation": {
+        "empty_action_changed_bucket_meaning": "not_supplied; not evidence that no action change exists",
+        "claims_no_conflicts_exist": false,
+        "pr31_labels_inferred_from_revised_answer_prose": false,
+        "structured_source_fields": [
+          "decision_question",
+          "revised_recommendation_summary",
+          "source_artifacts"
+        ],
+        "not_supplied_or_not_measured_fields": [
+          "actionable_deltas",
+          "conflicts_or_unresolved_tensions",
+          "unresolved_questions",
+          "original_recommendation_summary"
+        ],
+        "claims_advice_is_good": false,
+        "safe_for_agent_quality_label": false
+      },
+      "docs_assisted_interpretation": {
+        "docs_changed_interpretation": false,
+        "docs_helped": "Docs confirmed that the exporter remains custody-only and label-free."
+      },
+      "notes": [
+        "The record is clear that deployment-quality or domain approval is not being asserted.",
+        "The not-supplied PR31 statuses make the previous empty-field confusion materially less likely."
+      ]
+    },
+    {
+      "case_id": "implement-price-increase-three",
+      "run_id": "20260627T083231Z_52724d",
+      "archive_relpath": "implement-price-increase-three/20260627T083231Z_52724d",
+      "source_type": "existing_reviewed_archive",
+      "export_status": "pass",
+      "record_understandability": "clear",
+      "empty_delta_bucket_clarity": "clear_non_claim",
+      "semantic_empty_field_clarity": "clear_non_claim",
+      "bucket_status_usefulness": "useful",
+      "population_policy_usefulness": "useful",
+      "artifact_status_usefulness": "useful",
+      "custody_clarity": "clear",
+      "limitation_clarity": "clear",
+      "cognitive_load": "acceptable",
+      "false_certainty_risk": "low",
+      "raw_content_safety": "safe",
+      "reviewer_can_use_without_raw_content": "yes",
+      "reviewer_needed_docs_to_avoid_misread": "no",
+      "implementation_readiness": "ready_for_integration_plan",
+      "primary_issue": "none",
+      "record_only_interpretation": {
+        "empty_action_changed_bucket_meaning": "not_supplied; not evidence that no action change exists",
+        "claims_no_conflicts_exist": false,
+        "pr31_labels_inferred_from_revised_answer_prose": false,
+        "structured_source_fields": [
+          "decision_question",
+          "revised_recommendation_summary",
+          "source_artifacts"
+        ],
+        "not_supplied_or_not_measured_fields": [
+          "actionable_deltas",
+          "conflicts_or_unresolved_tensions",
+          "unresolved_questions",
+          "original_recommendation_summary"
+        ],
+        "claims_advice_is_good": false,
+        "safe_for_agent_quality_label": false
+      },
+      "docs_assisted_interpretation": {
+        "docs_changed_interpretation": false,
+        "docs_helped": "Docs added context but the record itself carried the key non-claim cues."
+      },
+      "notes": [
+        "The record does not imply pricing advice approval or answer-quality scoring.",
+        "The empty PR31 arrays are clearly controlled by bucket_status rather than by implicit reviewer judgment."
+      ]
+    },
+    {
+      "case_id": "pr69-fixture-missing-artifacts",
+      "run_id": "20260629T000000Z_missing",
+      "archive_relpath": "pr69-fixture-missing-artifacts/20260629T000000Z_missing",
+      "source_type": "fixture_backed_temp_run",
+      "export_status": "pass",
+      "record_understandability": "clear",
+      "empty_delta_bucket_clarity": "clear_non_claim",
+      "semantic_empty_field_clarity": "clear_non_claim",
+      "bucket_status_usefulness": "useful",
+      "population_policy_usefulness": "useful",
+      "artifact_status_usefulness": "useful",
+      "custody_clarity": "clear",
+      "limitation_clarity": "clear",
+      "cognitive_load": "acceptable",
+      "false_certainty_risk": "none",
+      "raw_content_safety": "safe",
+      "reviewer_can_use_without_raw_content": "yes",
+      "reviewer_needed_docs_to_avoid_misread": "no",
+      "implementation_readiness": "ready_for_integration_plan",
+      "primary_issue": "none",
+      "record_only_interpretation": {
+        "empty_action_changed_bucket_meaning": "not_supplied; not evidence that no action change exists",
+        "claims_no_conflicts_exist": false,
+        "pr31_labels_inferred_from_revised_answer_prose": false,
+        "structured_source_fields": [
+          "source_artifacts"
+        ],
+        "not_supplied_or_not_measured_fields": [
+          "actionable_deltas",
+          "conflicts_or_unresolved_tensions",
+          "unresolved_questions",
+          "revised_recommendation_summary"
+        ],
+        "artifact_issue_fields": [
+          "decision_question"
+        ],
+        "claims_advice_is_good": false,
+        "safe_for_agent_quality_label": false
+      },
+      "docs_assisted_interpretation": {
+        "docs_changed_interpretation": false,
+        "docs_helped": "Docs confirmed but were not needed to see missing-artifact status."
+      },
+      "notes": [
+        "Missing artifacts are visibly different from not-supplied labels and semantic arrays.",
+        "The raw trap file did not appear in the record."
+      ]
+    },
+    {
+      "case_id": "pr69-fixture-malformed-evaluation",
+      "run_id": "20260629T000000Z_malformed",
+      "archive_relpath": "pr69-fixture-malformed-evaluation/20260629T000000Z_malformed",
+      "source_type": "fixture_backed_temp_run",
+      "export_status": "pass",
+      "record_understandability": "clear",
+      "empty_delta_bucket_clarity": "clear_non_claim",
+      "semantic_empty_field_clarity": "clear_non_claim",
+      "bucket_status_usefulness": "useful",
+      "population_policy_usefulness": "useful",
+      "artifact_status_usefulness": "useful",
+      "custody_clarity": "clear",
+      "limitation_clarity": "clear",
+      "cognitive_load": "acceptable",
+      "false_certainty_risk": "none",
+      "raw_content_safety": "safe",
+      "reviewer_can_use_without_raw_content": "yes",
+      "reviewer_needed_docs_to_avoid_misread": "no",
+      "implementation_readiness": "ready_for_integration_plan",
+      "primary_issue": "none",
+      "record_only_interpretation": {
+        "empty_action_changed_bucket_meaning": "not_supplied; not evidence that no action change exists",
+        "claims_no_conflicts_exist": false,
+        "pr31_labels_inferred_from_revised_answer_prose": false,
+        "structured_source_fields": [
+          "decision_question",
+          "revised_recommendation_summary",
+          "unresolved_questions",
+          "source_artifacts"
+        ],
+        "not_supplied_or_not_measured_fields": [
+          "actionable_deltas",
+          "conflicts_or_unresolved_tensions",
+          "original_recommendation_summary"
+        ],
+        "artifact_issue_fields": [
+          "evaluation.json"
+        ],
+        "claims_advice_is_good": false,
+        "safe_for_agent_quality_label": false
+      },
+      "docs_assisted_interpretation": {
+        "docs_changed_interpretation": false,
+        "docs_helped": "Docs confirmed the malformed artifact is custody evidence, not answer-quality evidence."
+      },
+      "notes": [
+        "Malformed JSON is visibly represented as an artifact status, not confused with empty semantic fields.",
+        "Raw trap memo and revised-answer files did not appear in the record."
+      ]
+    },
+    {
+      "case_id": "pr69-fixture-review-labels",
+      "run_id": "20260629T000000Z_review_labels",
+      "archive_relpath": "pr69-fixture-review-labels/20260629T000000Z_review_labels",
+      "source_type": "fixture_backed_temp_run_review_json_supplied",
+      "export_status": "pass",
+      "record_understandability": "clear",
+      "empty_delta_bucket_clarity": "clear_non_claim",
+      "semantic_empty_field_clarity": "clear_non_claim",
+      "bucket_status_usefulness": "useful",
+      "population_policy_usefulness": "useful",
+      "artifact_status_usefulness": "useful",
+      "custody_clarity": "clear",
+      "limitation_clarity": "clear",
+      "cognitive_load": "heavy_but_usable",
+      "false_certainty_risk": "low",
+      "raw_content_safety": "safe",
+      "reviewer_can_use_without_raw_content": "yes",
+      "reviewer_needed_docs_to_avoid_misread": "no",
+      "implementation_readiness": "ready_for_integration_plan",
+      "primary_issue": "none",
+      "record_only_interpretation": {
+        "empty_action_changed_bucket_meaning": "not applicable; action_changed is populated_from_review",
+        "empty_unpopulated_bucket_meaning": "not_supplied; not evidence that the corresponding delta does not exist",
+        "claims_no_conflicts_exist": false,
+        "pr31_labels_inferred_from_revised_answer_prose": false,
+        "structured_source_fields": [
+          "decision_question",
+          "revised_recommendation_summary",
+          "unresolved_questions",
+          "source_artifacts"
+        ],
+        "review_supplied_fields": [
+          "actionable_deltas.action_changed",
+          "actionable_deltas.evidence_gate_added"
+        ],
+        "not_supplied_or_not_measured_fields": [
+          "conflicts_or_unresolved_tensions",
+          "original_recommendation_summary"
+        ],
+        "claims_advice_is_good": false,
+        "safe_for_agent_quality_label": false
+      },
+      "docs_assisted_interpretation": {
+        "docs_changed_interpretation": false,
+        "docs_helped": "Docs confirmed that populated_from_review means explicit supplied review data, not exporter inference."
+      },
+      "notes": [
+        "This fixture proves the refined shape distinguishes populated_from_review from empty not_supplied buckets without code changes.",
+        "The copied review payload excludes the review_note field, so review comments are not silently copied into the record."
+      ]
+    }
+  ],
+  "aggregate_counts": {
+    "export_status": {
+      "pass": 7,
+      "revise": 0,
+      "fail": 0,
+      "exclude": 0
+    },
+    "record_understandability": {
+      "clear": 7,
+      "mostly_clear": 0,
+      "unclear": 0
+    },
+    "empty_delta_bucket_clarity": {
+      "clear_non_claim": 7,
+      "mostly_clear": 0,
+      "partly_clear": 0,
+      "misleading": 0,
+      "overbearing": 0
+    },
+    "semantic_empty_field_clarity": {
+      "clear_non_claim": 7,
+      "mostly_clear": 0,
+      "partly_clear": 0,
+      "misleading": 0,
+      "overbearing": 0
+    },
+    "bucket_status_usefulness": {
+      "useful": 7,
+      "partly_useful": 0,
+      "not_useful": 0
+    },
+    "population_policy_usefulness": {
+      "useful": 7,
+      "partly_useful": 0,
+      "not_useful": 0
+    },
+    "artifact_status_usefulness": {
+      "useful": 7,
+      "partly_useful": 0,
+      "not_useful": 0
+    },
+    "custody_clarity": {
+      "clear": 7,
+      "partly_clear": 0,
+      "unclear": 0
+    },
+    "limitation_clarity": {
+      "clear": 7,
+      "partly_clear": 0,
+      "unclear": 0
+    },
+    "cognitive_load": {
+      "acceptable": 6,
+      "heavy_but_usable": 1,
+      "too_heavy": 0
+    },
+    "false_certainty_risk": {
+      "none": 2,
+      "low": 5,
+      "medium": 0,
+      "high": 0
+    },
+    "raw_content_safety": {
+      "safe": 7,
+      "unsafe": 0,
+      "unclear": 0
+    },
+    "reviewer_can_use_without_raw_content": {
+      "yes": 7,
+      "partly": 0,
+      "no": 0
+    },
+    "reviewer_needed_docs_to_avoid_misread": {
+      "no": 7,
+      "partly": 0,
+      "yes": 0
+    },
+    "implementation_readiness": {
+      "ready_for_integration_plan": 7,
+      "needs_schema_adjustment": 0,
+      "needs_exporter_adjustment": 0,
+      "hold": 0
+    },
+    "primary_issue": {
+      "none": 7,
+      "empty_fields_confusing": 0,
+      "status_policy_confusing": 0,
+      "too_much_caveat_weight": 0,
+      "artifact_status_confusing": 0,
+      "custody_unclear": 0,
+      "limitations_unclear": 0,
+      "false_certainty": 0,
+      "privacy_risk": 0,
+      "exporter_bug": 0,
+      "other": 0
+    }
+  },
+  "comparison_to_pr67": {
+    "empty_delta_bucket_clarity": {
+      "pr67": {
+        "clear_non_claim": 2,
+        "partly_clear": 4,
+        "misleading": 0
+      },
+      "pr69": {
+        "clear_non_claim": 7,
+        "mostly_clear": 0,
+        "partly_clear": 0,
+        "misleading": 0,
+        "overbearing": 0
+      },
+      "material_improvement": true
+    },
+    "implementation_readiness": {
+      "pr67": {
+        "ready_for_next_review": 2,
+        "needs_schema_adjustment": 4,
+        "needs_exporter_adjustment": 0,
+        "hold": 0
+      },
+      "pr69": {
+        "ready_for_integration_plan": 7,
+        "needs_schema_adjustment": 0,
+        "needs_exporter_adjustment": 0,
+        "hold": 0
+      }
+    },
+    "primary_issue": {
+      "pr67": {
+        "none": 2,
+        "empty_fields_confusing": 4,
+        "artifact_status_confusing": 0,
+        "custody_unclear": 0,
+        "limitations_unclear": 0,
+        "false_certainty": 0,
+        "privacy_risk": 0,
+        "exporter_bug": 0,
+        "other": 0
+      },
+      "pr69": {
+        "none": 7,
+        "empty_fields_confusing": 0,
+        "status_policy_confusing": 0,
+        "too_much_caveat_weight": 0,
+        "artifact_status_confusing": 0,
+        "custody_unclear": 0,
+        "limitations_unclear": 0,
+        "false_certainty": 0,
+        "privacy_risk": 0,
+        "exporter_bug": 0,
+        "other": 0
+      }
+    }
+  },
+  "review_questions": {
+    "empty_bucket_means_not_supplied_not_inferred": "yes",
+    "missing_artifact_vs_semantic_absence_distinguishable": "yes",
+    "empty_semantic_array_is_non_claim": "yes",
+    "populated_field_source_visible": "yes",
+    "human_review_owns_quality_judgment": "yes",
+    "record_itself_enough_for_basic_non_claim_read": "yes"
+  },
+  "decision": {
+    "summary": "The PR68 refinement fixed the PR67 empty-field confusion for this review set. Empty PR31 buckets now read as explicit not_supplied non-claims, semantic empty arrays say they are not evidence that no conflicts or questions exist, and review-supplied buckets are distinguishable from exporter-inferred labels. False-certainty risk remains none or low, raw-content safety remains safe, and no reviewer needed docs to avoid the basic non-claim misread.",
+    "recommended_next_slice": "PR70 Audit Decision Record Archive Integration Decision Gate v0",
+    "recommended_next_slice_reason": "Clarity improved cleanly, so the next conservative step should decide whether and how archive integration should be planned. It should be a decision gate, not implementation of automatic generation."
+  },
+  "custody_flags": {
+    "raw_transcript_included": false,
+    "raw_memo_included": false,
+    "raw_revised_answer_included": false,
+    "provider_text_included": false,
+    "private_reasoning_included": false,
+    "local_absolute_paths_included": false,
+    "secrets_included": false
+  }
+}

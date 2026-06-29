@@ -1800,6 +1800,20 @@ per-bucket status, nested buckets, and empty-meaning metadata. It does not add
 semantic inference, automatic labels, scoring, archive integration, batch
 export, runtime behavior, graph DB, memory, or a judge.
 
+Implemented next as PR69:
+
+- [audit-decision-record-export-review-rerun-v0.md](../evals/audit-decision-record-export-review-rerun-v0.md)
+- [review.json](../../reviews/human/audit-decision-record-export-review-rerun-v0/review.json)
+- [exported-records-summary.json](../../reviews/human/audit-decision-record-export-review-rerun-v0/exported-records-summary.json)
+
+PR69 re-runs the PR67 smoke review against refined PR68 output. Seven records
+pass: four existing reviewed archive exports, two fixture-backed temp-run
+exports, and one optional review-json-supplied fixture. Empty PR31 bucket
+clarity improves to seven `clear_non_claim`; semantic empty-field clarity is
+also seven `clear_non_claim`; raw content safety remains safe; and no reviewer
+needed docs to avoid the basic non-claim misread. PR69 recommends a future
+archive-integration decision gate, not archive integration implementation.
+
 ### Later: Decision-Aware Capture And Runtime Integration
 
 Goal: only after offline evidence, use the IR to improve capture or audit input.
@@ -1857,9 +1871,10 @@ decision record design, PR59's audit decision record fixture review, PR60's
 provenance map design, PR61's review conflict register design, PR62's case
 graph export/view design, PR63's accountability-view fixture pack, PR64's
 fixture review, PR65's implementation decision gate, PR66's read-only audit
-decision record exporter, PR67's exporter smoke review, and PR68's audit
-decision record schema/exporter refinement now exist. Stop after PR68 unless
-maintainers approve a separate PR69. Other lanes still
+decision record exporter, PR67's exporter smoke review, PR68's audit decision
+record schema/exporter refinement, and PR69's refined exporter review re-run
+now exist. Stop after PR69 unless maintainers approve a separate PR70 decision
+gate. Other lanes still
 require their own gates: future
 high-stakes evidence under PR46/PR48, reopening the values lane after PR54, or
 any populated extraction, memory, runtime integration, automatic labels, or

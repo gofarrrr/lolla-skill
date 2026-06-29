@@ -200,6 +200,13 @@ labels, judge answer quality, approve recommendations, mutate archives, call
 models, or integrate with runtime behavior. It makes absence readable before
 the next review pass.
 
+PR69 re-runs that review pass against refined PR68 output. Seven reviewed
+records pass, including one optional review-json-supplied fixture; empty PR31
+bucket clarity and semantic empty-field clarity are both seven
+`clear_non_claim`, and no reviewer needed docs to avoid the basic non-claim
+misread. The recommended next step is an archive-integration decision gate, not
+integration implementation.
+
 These checks should gate releases before any subjective judge runs.
 
 ### 4. Binary Failure-Mode Judges Only

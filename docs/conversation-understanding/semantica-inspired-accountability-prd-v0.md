@@ -14,10 +14,11 @@ only. It does not implement any primitive described below, and it does not
 approve PR56 through PR65 as code work.
 
 PR66 has now landed as a separate approved implementation slice for only the
-audit decision record exporter, and PR67 has now reviewed exporter smoke output
-without integrating it into runtime. That does not broaden the PR55 plan into
-archive integration, automatic generation, graph/memory/platform work, scoring,
-or judge behavior.
+audit decision record exporter. PR67 reviewed exporter smoke output, PR68
+clarified field-population semantics, and PR69 re-ran the review against that
+refined output without integrating it into runtime. That does not broaden the
+PR55 plan into archive integration, automatic generation, graph/memory/platform
+work, scoring, or judge behavior.
 
 This note is not a runtime approval. It does not approve graph databases,
 embeddings, memory, automatic value extraction, policy enforcement, high-stakes
@@ -1016,6 +1017,42 @@ Do not continue into PR69 automatically. PR68 recommends PR69 Audit Decision
 Record Export Review Re-Run v0 only after maintainer review, focused on testing
 whether the refined output makes empty PR31 buckets read as clear non-claims.
 
+### PR69: Audit Decision Record Export Review Re-Run v0
+
+Type: docs/review/data
+
+Status after PR69: completed as the refined exporter review:
+`docs/evals/audit-decision-record-export-review-rerun-v0.md`,
+`reviews/human/audit-decision-record-export-review-rerun-v0/review.json`, and
+`reviews/human/audit-decision-record-export-review-rerun-v0/exported-records-summary.json`.
+
+Goal:
+
+Re-run the PR67 smoke review against PR68-refined output and decide whether
+empty PR31 buckets and semantic empty fields now read as non-claims from the
+record itself.
+
+Result:
+
+- reviews seven refined exports;
+- finds empty PR31 bucket clarity 7 `clear_non_claim`;
+- finds semantic empty-field clarity 7 `clear_non_claim`;
+- keeps raw content safety 7 safe;
+- records no reviewer needed explanatory docs to avoid the basic non-claim
+  misread;
+- includes one optional review-json-supplied fixture to show
+  `populated_from_review` without label inference;
+- preserves no exporter changes, no production code changes, no model calls,
+  no archive mutation, no runtime integration, no automatic generation, no
+  archive integration, no answer-quality scoring, no judge, and no PR31 prose
+  inference.
+
+Stop rule:
+
+Do not continue into PR70 automatically. PR69 recommends PR70 Audit Decision
+Record Archive Integration Decision Gate v0 only after maintainer review. PR70
+should be a decision gate, not archive integration implementation.
+
 ## Coder Operating Rules
 
 For every PR in this queue:
@@ -1176,10 +1213,18 @@ PR68 has now refined the exporter field-population semantics:
 docs/evals/audit-decision-record-schema-exporter-refinement-v0.md
 ```
 
+PR69 has now re-run the exporter review against refined output:
+
+```text
+docs/evals/audit-decision-record-export-review-rerun-v0.md
+reviews/human/audit-decision-record-export-review-rerun-v0/review.json
+reviews/human/audit-decision-record-export-review-rerun-v0/exported-records-summary.json
+```
+
 PR66 and PR68 are the only approved code-bearing accountability implementation
-slices from this lane so far. PR67 is review/data only. None of these slices
-adds runtime integration, archive mutation, automatic generation, batch export,
-provenance-map export, conflict-register export, case-graph export, graph DB,
-embeddings, memory, entity resolution, GraphRAG, answer-quality scoring,
-automatic labels, or Semantica-style platform work. Stop after PR68 unless a
-new maintainer-approved slice explicitly starts PR69.
+slices from this lane so far. PR67 and PR69 are review/data only. None of these
+slices adds runtime integration, archive mutation, automatic generation, batch
+export, provenance-map export, conflict-register export, case-graph export,
+graph DB, embeddings, memory, entity resolution, GraphRAG, answer-quality
+scoring, automatic labels, or Semantica-style platform work. Stop after PR69
+unless a new maintainer-approved slice explicitly starts PR70.

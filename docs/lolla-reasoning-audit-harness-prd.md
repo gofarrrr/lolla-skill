@@ -254,14 +254,14 @@ Since the first harness PRD pass, the shipped harness layer has also added:
 - semantic coverage reports and corpus survey;
 - offline specialist extractor probe harnesses and evidence notes;
 - a six-case complex conversation baseline with full modern artifacts;
-- the PR30-PR68 evaluation/accountability handoff chain from human review seed
+- the PR30-PR69 evaluation/accountability handoff chain from human review seed
   through risk-mode reliance visibility, current-state anti-drift docs,
   human-owned values/priorities review, and the Semantica-inspired
   accountability plan through decision-record fixtures, provenance map, review
   conflict register, case graph export/view design, and combined
   accountability-view fixtures, fixture review, implementation decision gate,
-  read-only decision-record exporter, smoke review, and schema/exporter
-  refinement.
+  read-only decision-record exporter, smoke review, schema/exporter
+  refinement, and refined export review re-run.
 
 The current complex baseline is recorded in:
 
@@ -580,6 +580,17 @@ It keeps `lolla.audit_decision_record.v0` and adds PR31 population policy,
 per-bucket status, nested buckets, and semantic-field empty-meaning metadata so
 empty fields read as non-claims. It does not add label inference, scoring,
 judges, archive integration, automatic generation, or runtime behavior.
+
+PR69 now lands the Audit Decision Record Export Review Re-Run:
+
+`docs/evals/audit-decision-record-export-review-rerun-v0.md`
+
+It reviews seven refined PR68 exporter outputs and confirms the original PR67
+empty-field confusion is fixed: empty PR31 bucket clarity is seven
+`clear_non_claim`, semantic empty-field clarity is seven `clear_non_claim`, raw
+content safety remains safe, and no reviewer needs docs to avoid the basic
+non-claim misread. It recommends a future PR70 archive-integration decision
+gate, not archive integration implementation.
 
 This roadmap should build on that. It should not restart the architecture.
 
@@ -987,6 +998,10 @@ Current v0 slice:
   documents the PR68 refinement that makes empty PR31 buckets and semantic
   arrays explicit non-claims without adding labels, scoring, judges, archive
   integration, automatic generation, or runtime behavior.
+- `docs/evals/audit-decision-record-export-review-rerun-v0.md` documents the
+  PR69 review re-run showing the refined PR68 output is clear enough for a
+  future archive-integration decision gate, while still adding no integration,
+  labels, scoring, judges, automatic generation, or runtime behavior.
 
 Acceptance criteria:
 

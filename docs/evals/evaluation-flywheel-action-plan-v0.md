@@ -1898,6 +1898,48 @@ Stop point:
 - Recommended PR69 is Audit Decision Record Export Review Re-Run v0, only
   after maintainer review.
 
+PR69 later landed as a separate review/data slice.
+
+### PR69: Audit Decision Record Export Review Re-Run v0
+
+Maps to: R6/R9 exporter reviewability and deterministic custody.
+
+Status: completed as a docs/review/data slice.
+
+Output:
+
+- [Audit Decision Record Export Review Re-Run v0](audit-decision-record-export-review-rerun-v0.md).
+- [review.json](../../reviews/human/audit-decision-record-export-review-rerun-v0/review.json).
+- [exported-records-summary.json](../../reviews/human/audit-decision-record-export-review-rerun-v0/exported-records-summary.json).
+
+Current result:
+
+- reviews seven refined exports: four existing reviewed archive exports, two
+  fixture-backed temp-run exports, and one optional review-json-supplied
+  fixture;
+- improves empty PR31 bucket clarity from PR67's 2 `clear_non_claim` / 4
+  `partly_clear` to 7 `clear_non_claim`;
+- finds semantic empty-field clarity 7 `clear_non_claim`;
+- finds bucket status, population policy, artifact status, custody, and
+  limitations useful or clear in all seven records;
+- keeps raw content safety safe in all seven records;
+- records false-certainty risk as none or low;
+- finds no reviewer needed explanatory docs to avoid the basic non-claim
+  misread;
+- preserves no exporter changes, no production code changes, no runtime
+  behavior, no model calls, no archive mutation, no labels, no scoring, no
+  judge, no archive integration, and no automatic generation.
+
+Stop point:
+
+- Stop after PR69.
+- Do not start PR70 automatically.
+- Do not add archive integration, automatic generation, batch export, runtime
+  behavior, labels, answer-quality scoring, judges, graph DB, memory, GraphRAG,
+  or Semantica-style platform work from PR69 alone.
+- Recommended PR70 is Audit Decision Record Archive Integration Decision Gate
+  v0, only after maintainer review.
+
 ## What Not To Build Yet
 
 - broad answer-quality score;
@@ -1955,12 +1997,12 @@ Before building judges or runtime semantic enrichment, Lolla should have:
 That is the smallest flywheel that can improve Lolla run by run without turning
 it into a vague critic or overbuilt memory system.
 
-The latest conservative accountability step is PR68 Audit Decision Record
-Schema / Exporter Refinement v0. It clarifies empty PR31 bucket and semantic
-field population semantics without making the machine semantically stronger.
-Any future PR69 should require maintainer review first and should re-run the
-PR67 smoke/review against the refined output before archive integration,
-automatic generation, graph DB, embeddings, memory, entity resolution,
-GraphRAG, conflict automation, answer-quality scoring, judges, automatic
-labels, provider-boundary policy changes, prompt changes, `SKILL.md` changes,
-or Semantica-style platform work.
+The latest conservative accountability step is PR69 Audit Decision Record
+Export Review Re-Run v0. It confirms that PR68's refined output makes empty
+PR31 buckets and semantic empty fields legible as non-claims in seven reviewed
+records. Any future PR70 should require maintainer review first and should be
+an archive-integration decision gate, not archive integration implementation.
+Do not add automatic generation, graph DB, embeddings, memory, entity
+resolution, GraphRAG, conflict automation, answer-quality scoring, judges,
+automatic labels, provider-boundary policy changes, prompt changes,
+`SKILL.md` changes, or Semantica-style platform work from PR69 alone.
