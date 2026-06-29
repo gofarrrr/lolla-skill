@@ -23,6 +23,13 @@ PR66 Audit Decision Record Read-Only Exporter v0
 PR66 is only a recommendation from this decision gate. PR65 does not start,
 implement, scaffold, test, or partially approve PR66.
 
+PR66 has now landed separately as:
+
+- [Audit Decision Record Read-Only Exporter v0](audit-decision-record-readonly-exporter-v0.md)
+
+That follow-through does not change what PR65 was: a docs-only gate. PR66 is
+the narrow read-only implementation slice that PR65 recommended.
+
 ## Evidence Considered
 
 PR65 considers the landed PR57 through PR64 accountability sequence:
@@ -106,13 +113,13 @@ requiring platform scope.
 
 ## Future PR66 Boundary
 
-If maintainers approve PR66, it should be:
+Maintainers later approved PR66 as:
 
 ```text
 PR66 Audit Decision Record Read-Only Exporter v0
 ```
 
-Boundary for that future slice:
+Boundary for that slice:
 
 - read existing local archive artifacts only;
 - prefer explicit external output by default;
@@ -136,6 +143,12 @@ Boundary for that future slice:
   text, or private reasoning into checked-in examples or default output;
 - treat every populated semantic field as a review projection, not truth,
   approval, or autonomous reliance.
+
+PR66 follows this boundary by adding a local exporter that emits
+`lolla.audit_decision_record.v0` to an explicit external output path, refuses
+output inside the run directory, keeps `model_calls: 0` and
+`archive_mutated: false`, and does not read raw transcript, memo,
+revised-answer, provider/model, or private reasoning content.
 
 ## Non-Goals
 
@@ -176,10 +189,16 @@ PR65 does not add or approve:
 
 Stop after PR65.
 
-Do not start PR66 in this sequence. Before any future PR66 begins, maintainers
-should review PR57 through PR65 and confirm that the implementation remains
-read-only, local, deterministic, model-call-free, archive-safe, and
-raw-content-safe.
+At PR65 time, the stop condition was: do not start PR66 in that sequence.
+Maintainers later approved PR66 as a separate slice, now documented in
+[Audit Decision Record Read-Only Exporter v0](audit-decision-record-readonly-exporter-v0.md).
+
+The current stop condition after PR66 is: do not start PR67 automatically.
+Before any future implementation slice begins, maintainers should review PR66
+output and confirm that the next work remains read-only where appropriate,
+local, deterministic, model-call-free, archive-safe, raw-content-safe, and
+outside labels, scoring, judges, graph DB, memory, and runtime integration
+unless explicitly approved.
 
 Current anti-drift sentence:
 

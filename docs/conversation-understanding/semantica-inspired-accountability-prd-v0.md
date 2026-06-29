@@ -13,6 +13,10 @@ This is the PR55 source artifact. PR55 lands this plan and light handoff links
 only. It does not implement any primitive described below, and it does not
 approve PR56 through PR65 as code work.
 
+PR66 has now landed as a separate approved implementation slice for only the
+audit decision record exporter. That does not broaden the PR55 plan into
+runtime integration, graph/memory/platform work, scoring, or judge behavior.
+
 This note is not a runtime approval. It does not approve graph databases,
 embeddings, memory, automatic value extraction, policy enforcement, high-stakes
 use, LLM judges, answer-quality scoring, or broad platform work.
@@ -896,6 +900,48 @@ Result:
   archives, call models, mutate archives, score answers, create labels, add
   graph DB, or add memory.
 
+### PR66: Audit Decision Record Read-Only Exporter v0
+
+Type: code/tests/docs
+
+Status after PR66: completed as the read-only exporter:
+`docs/evals/audit-decision-record-readonly-exporter-v0.md`,
+`engine/system_b/audit_decision_record.py`,
+`scripts/build_audit_decision_record.py`, and
+`tests/test_audit_decision_record.py`.
+
+Goal:
+
+Implement the narrow local exporter that PR65 selected: build a safe
+`lolla.audit_decision_record.v0` JSON artifact from an existing run directory
+without running `$lolla`, calling models, mutating archives, or judging answer
+quality.
+
+Result:
+
+- reads structured/custody-safe JSON surfaces only:
+  `evaluation.json`, `agent_result.json`, `reasoning_trace.json`,
+  `extraction_adequacy_report.json`, and optional `--review-json`;
+- stats but does not semantically read `extraction.json` and `result.json`;
+- does not read or copy `conversation.txt`, `memo.md`, `revised.txt`,
+  `live_transcript.txt`, provider/model text, private reasoning artifacts, or
+  private ledgers;
+- emits all PR31 actionable-delta buckets as stable keys but does not infer
+  labels from prose;
+- records safe source-artifact metadata with relative paths only;
+- refuses output paths equal to or inside the run directory;
+- keeps `model_calls: 0`, `archive_mutated: false`, and all raw/private
+  inclusion flags false;
+- does not implement provenance-map, conflict-register, or case-graph
+  exporters.
+
+Stop rule:
+
+Do not continue into PR67 automatically. Any next slice must be approved after
+maintainer review of PR66 output and must not treat exported records as labels,
+answer-quality scores, `safe_for_agent_use`, domain approval, memory, graph DB,
+or runtime integration.
+
 ## Coder Operating Rules
 
 For every PR in this queue:
@@ -1034,8 +1080,18 @@ PR65 has now made the accountability implementation decision:
 docs/evals/accountability-implementation-decision-gate-v0.md
 ```
 
-PR65 recommends future PR66 Audit Decision Record Read-Only Exporter v0, but
-PR66 must not start automatically. PR65 does not add code, tests, exporters,
-schemas under `engine/`, CLI support, runtime integration, archive-reading
-behavior, graph DB, embeddings, memory, entity resolution, GraphRAG,
-answer-quality scoring, automatic labels, or Semantica-style platform work.
+PR66 has now implemented the read-only audit decision record exporter:
+
+```text
+docs/evals/audit-decision-record-readonly-exporter-v0.md
+engine/system_b/audit_decision_record.py
+scripts/build_audit_decision_record.py
+tests/test_audit_decision_record.py
+```
+
+PR66 remains the only approved code-bearing accountability implementation from
+this lane so far. It does not add runtime integration, archive mutation,
+provenance-map export, conflict-register export, case-graph export, graph DB,
+embeddings, memory, entity resolution, GraphRAG, answer-quality scoring,
+automatic labels, or Semantica-style platform work. Stop after PR66 unless a
+new maintainer-approved slice explicitly starts PR67.

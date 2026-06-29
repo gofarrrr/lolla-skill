@@ -2,10 +2,10 @@
 
 Status: current-state handoff
 Date: 2026-06-29
-Slice: PR45, updated by PR65
+Slice: PR45, updated by PR66
 
 This note is the compact first-read handoff for a fresh Lolla eval session. It
-summarizes what the harness is, what PR30-PR65 built, what evidence exists now,
+summarizes what the harness is, what PR30-PR66 built, what evidence exists now,
 and what must not be built until the next explicit approval gates.
 
 PR45 is docs-only. It does not run Lolla, call models, mutate archives, change
@@ -37,7 +37,7 @@ The product boundary is still sharp:
 - `risk_mode` is reliance and review context, not answer-quality scoring,
   domain approval, or automatic safety.
 
-## PR30-PR65 Chain
+## PR30-PR66 Chain
 
 - PR30 created the six-run human/product review seed over the clean complex
   conversation baseline.
@@ -130,6 +130,12 @@ The product boundary is still sharp:
   implement PR66, add an exporter, read archives, call models, mutate archives,
   change runtime behavior, create labels, score answer quality, or start a graph
   or memory lane.
+- PR66 implements that audit decision record exporter as a read-only local CLI
+  and helper. It emits `lolla.audit_decision_record.v0` from structured,
+  custody-safe run artifacts, refuses output inside the run directory, keeps
+  raw transcript/memo/revised-answer/provider/private content out, and preserves
+  `model_calls: 0`, `archive_mutated: false`, no labels, no scoring, no judge,
+  and no runtime integration.
 
 ## Current Corpus Evidence
 
@@ -179,17 +185,14 @@ only aggregate keys and counts.
   reviews the pilot and pauses the lane at human-owned v0;
 - no trusted live-output transcript implementation;
 - no implemented Semantica-inspired accountability primitive beyond the
-  read-only `lolla doctor` preflight CLI. PR58 only designs
-  `lolla.audit_decision_record.v0`, PR59 only reviews fixtures, PR60 only
-  designs `lolla.provenance_map.v0`, and PR61 only designs
-  `lolla.review_conflict_register.v0`; PR62 only designs `lolla.case_graph.v0`;
-  PR63 only creates paraphrase-only accountability-view fixtures; PR64 only
-  reviews those fixtures and recommends a later decision-record exporter-design
-  gate; PR65 only chooses that future decision-record exporter as a
-  recommendation; no
-  decision-record exporter, provenance exporter, conflict-register exporter,
-  case-graph exporter, graph DB, memory, GraphRAG, or runtime integration exists
-  from PR55 through PR65;
+  read-only `lolla doctor` preflight CLI and the PR66 read-only audit decision
+  record exporter. PR60 only designs `lolla.provenance_map.v0`, PR61 only
+  designs `lolla.review_conflict_register.v0`, PR62 only designs
+  `lolla.case_graph.v0`, PR63 only creates paraphrase-only
+  accountability-view fixtures, and PR64 only reviews those fixtures.
+  Provenance exporter, conflict-register exporter, case-graph exporter, graph
+  DB, memory, GraphRAG, labels, scoring, judges, and runtime integration still
+  do not exist from this accountability lane;
 - no domain, crisis, legal, medical, financial, or safety protocol.
 
 ## Explicit Non-Goals
@@ -241,13 +244,13 @@ The later safe lanes are separate:
    designs only the audit decision record shape. PR59 reviews only
    paraphrase-only decision-record fixtures. PR60 designs only the provenance
    map shape. PR61 designs only the review conflict register shape. Do not
-   implement decision-record export, provenance export, conflict-register
-   export, case graph export, graph DB, memory, platform work, or runtime
-   behavior from PR55 through PR65 alone. PR62 designs only the case graph
-   export/view shape. PR63 creates only paraphrase-only accountability-view
-   fixture bundles. PR64 only reviews those fixtures and stops before
-   implementation. PR65 only recommends a future decision-record exporter and
-   stops before PR66.
+   implement provenance export, conflict-register export, case graph export,
+   graph DB, memory, platform work, or runtime behavior from PR55 through PR66
+   alone. PR62 designs only the case graph export/view shape. PR63 creates only
+   paraphrase-only accountability-view fixture bundles. PR64 only reviews those
+   fixtures and stops before implementation. PR65 only recommends a future
+   decision-record exporter. PR66 implements only that read-only decision-record
+   exporter and stops before PR67.
 3. A later live-output hygiene lane can plan and lock current behavior, then
    stop for an implementation decision.
 
@@ -258,7 +261,7 @@ cases demonstrate it, read:
 docs/evals/current-system-capabilities-v0.md
 ```
 
-For the Semantica-inspired accountability boundary and proposed PR55-PR65 queue,
+For the Semantica-inspired accountability boundary and PR55-PR66 queue,
 read:
 
 ```text
@@ -333,6 +336,15 @@ For the PR65 accountability implementation decision gate, read:
 docs/evals/accountability-implementation-decision-gate-v0.md
 ```
 
+For the PR66 audit decision record read-only exporter, read:
+
+```text
+docs/evals/audit-decision-record-readonly-exporter-v0.md
+engine/system_b/audit_decision_record.py
+scripts/build_audit_decision_record.py
+tests/test_audit_decision_record.py
+```
+
 ## Decision Gates
 
 - Now: decide whether to create approved real high-stakes evidence.
@@ -347,10 +359,11 @@ docs/evals/accountability-implementation-decision-gate-v0.md
   `lolla.case_graph.v0` as a future export/view shape without implying an
   exporter exists. PR63 creates only paraphrase-only accountability-view
   fixtures across the four views. PR64 reviews those fixtures and recommends
-  only `audit_decision_record` for a later exporter-design decision. PR65 chooses
-  that direction as a docs-only recommendation for future PR66. PR66 must not
-  start automatically and must not add implementation until maintainers approve
-  a new slice.
+  only `audit_decision_record` for a later exporter-design decision. PR65
+  chooses that direction as a docs-only recommendation for future PR66. PR66
+  implements only the read-only audit decision record exporter and stops before
+  PR67. PR67 must not start automatically and must not add implementation until
+  maintainers approve a new slice.
 - After a live-output hygiene planning/review lane: decide whether to implement
   trusted live-output transcript hygiene.
 

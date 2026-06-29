@@ -178,6 +178,14 @@ read-only `audit_decision_record` exporter and leaves provenance, conflict
 register, and case graph implementation deferred. PR65 itself remains docs-only
 and does not implement exporters, labels, scores, judges, graph DB, or memory.
 
+PR66 implements that decision-record exporter as a read-only local helper. It
+can produce `lolla.audit_decision_record.v0` from structured/custody-safe run
+artifacts and an explicit external output path, but it still does not read raw
+transcript, memo, revised-answer, provider/model, or private reasoning content.
+It does not infer PR31 labels, decide `safe_for_agent_use`, approve the
+recommendation, score answer quality, run `$lolla`, call models, mutate
+archives, or integrate with runtime behavior.
+
 These checks should gate releases before any subjective judge runs.
 
 ### 4. Binary Failure-Mode Judges Only

@@ -1,16 +1,18 @@
 # Audit Decision Record v0
 
-Status: PR58 docs/JSON design
+Status: PR58 docs/JSON design; PR66 read-only exporter implemented
 Date: 2026-06-28
 Owner: Lolla maintainers
 
 PR58 designs `lolla.audit_decision_record.v0` as a local accountability
 projection over existing Lolla artifacts.
 
+PR66 implements a narrow read-only exporter for this schema:
+[Audit Decision Record Read-Only Exporter v0](../evals/audit-decision-record-readonly-exporter-v0.md).
+
 The record is meant to help reviewers see what decision a run audited and what
 changed between the original and revised recommendation. It is not a new
-runtime behavior, exporter, judge, score, memory layer, or conversation
-understanding IR.
+runtime behavior, judge, score, memory layer, or conversation understanding IR.
 
 ## Problem
 
@@ -109,9 +111,11 @@ Grounding values:
   artifacts or human-review summaries.
 - `none`: no grounding is available.
 
-PR58 does not implement span extraction or an exporter. The vocabulary exists
-so PR59 fixture review can test whether the shape is understandable before any
-code writes records.
+PR58 did not implement span extraction or an exporter. The vocabulary existed
+so PR59 fixture review could test whether the shape was understandable before
+any code wrote records. PR66 now implements only a conservative read-only
+exporter; it does not add span extraction, raw transcript reading, runtime
+integration, labels, scoring, or judge behavior.
 
 ## Actionable Delta Mapping
 
@@ -160,8 +164,9 @@ The record's custody flags must remain false for:
 - `private_reasoning_included`
 - `local_absolute_paths_included`
 
-If a future exporter cannot explain a field without copying excluded content,
-it should mark the field `missing` or `partial` instead of weakening custody.
+If the PR66 exporter cannot explain a field without copying excluded content,
+it marks the field `not_measured`, `not_included`, or empty instead of
+weakening custody.
 
 ## Example Read
 
@@ -242,10 +247,10 @@ cases. All six pass, PR31 mapping is useful in all six, and reviewers can use
 the records without raw content in all six. The review marks the shape ready for
 a future read-only exporter design prototype with caveats.
 
-This does not approve an exporter. The next recommended slice is PR60
-Provenance Map Design v0 only after maintainer review of PR57 through PR59.
-Any future exporter still needs a separate gate and must remain raw-content
-safe, local, deterministic, and human-review-owned.
+This did not approve an exporter by itself. PR65 later chose the decision
+record as the safest first implementation candidate, and PR66 now implements
+that exporter as a local read-only tool. It remains raw-content-safe, local,
+deterministic, and human-review-owned.
 
 ## PR63 Accountability View Fixtures
 
@@ -259,3 +264,35 @@ Those fixtures use the decision record as one view beside provenance map,
 review conflict register, and case graph views. They remain paraphrase-only
 fixture evidence and do not implement an exporter, runtime artifact, labeler,
 score, judge, graph DB, or memory layer.
+
+## PR66 Read-Only Exporter
+
+PR66 implements the first code-bearing audit decision record slice:
+
+- [Audit Decision Record Read-Only Exporter v0](../evals/audit-decision-record-readonly-exporter-v0.md)
+- [audit_decision_record.py](../../engine/system_b/audit_decision_record.py)
+- [build_audit_decision_record.py](../../scripts/build_audit_decision_record.py)
+- [test_audit_decision_record.py](../../tests/test_audit_decision_record.py)
+
+The CLI shape is:
+
+```bash
+python3 scripts/build_audit_decision_record.py \
+  --run-dir <run-dir> \
+  --out /tmp/lolla_audit_decision_record.json
+```
+
+PR66 reads structured/custody-safe JSON surfaces only:
+`evaluation.json`, `agent_result.json`, `reasoning_trace.json`,
+`extraction_adequacy_report.json`, and optional `--review-json`. It does not
+read or copy `conversation.txt`, `memo.md`, `revised.txt`,
+`live_transcript.txt`, provider/model text, or private reasoning artifacts.
+
+The exporter emits every PR31 actionable-delta bucket as a stable key but does
+not infer labels from prose. Empty arrays are non-claims.
+
+PR66 remains outside runtime behavior. It does not run `$lolla`, call models,
+mutate archives, change prompts, change `SKILL.md`, change `caller_action`,
+decide `safe_for_agent_use`, approve a domain recommendation, score answer
+quality, add a judge, add memory, add graph DB, or implement the provenance,
+conflict-register, or case-graph lanes.

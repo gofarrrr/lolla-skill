@@ -121,19 +121,24 @@ The review supported outcome A from the PR65 option set:
 A. Implement audit_decision_record exporter next.
 ```
 
-PR65 chose outcome A and recommends future PR66 Audit Decision Record Read-Only
-Exporter v0. It still rejects or defers graph DB, memory, case graph exporter
-work, provenance exporter work, conflict-register helper/exporter work,
-answer-quality scoring, automatic labels, judges, high-stakes evidence creation,
-runtime integration, and Semantica-style platform work.
+PR65 chose outcome A and recommended future PR66 Audit Decision Record
+Read-Only Exporter v0. PR66 has now landed separately as:
 
-PR65 names the next implementation slice only as a future PR:
+- [Audit Decision Record Read-Only Exporter v0](audit-decision-record-readonly-exporter-v0.md)
+
+That follow-up still rejects or defers graph DB, memory, case graph exporter
+work, provenance exporter work, conflict-register helper/exporter work,
+answer-quality scoring, automatic labels, judges, high-stakes evidence
+creation, runtime integration, and Semantica-style platform work.
+
+PR65 named the next implementation slice only as a future PR:
 
 ```text
 PR66 Audit Decision Record Read-Only Exporter v0
 ```
 
-PR64 did not start PR65 implementation, and PR65 does not start PR66.
+PR64 did not start PR65 implementation, and PR65 did not start PR66. PR66 is
+the later, separate, read-only exporter slice.
 
 ## Anti-Drift Sentence
 
@@ -187,4 +192,5 @@ PR64 moved only to the docs-only decision gate:
 PR65 Accountability Implementation Decision Gate v0
 ```
 
-PR65 now recommends a future PR66, but it does not implement it.
+PR65 recommended a future PR66, but did not implement it. PR66 has now landed
+separately and should stop before any PR67 work.

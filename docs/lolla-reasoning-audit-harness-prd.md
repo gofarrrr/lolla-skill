@@ -254,7 +254,7 @@ Since the first harness PRD pass, the shipped harness layer has also added:
 - semantic coverage reports and corpus survey;
 - offline specialist extractor probe harnesses and evidence notes;
 - a six-case complex conversation baseline with full modern artifacts;
-- the PR30-PR65 evaluation/accountability handoff chain from human review seed
+- the PR30-PR66 evaluation/accountability handoff chain from human review seed
   through risk-mode reliance visibility, current-state anti-drift docs,
   human-owned values/priorities review, and the Semantica-inspired
   accountability plan through decision-record fixtures, provenance map, review
@@ -545,6 +545,20 @@ Read-Only Exporter v0. It does not implement that exporter, start PR66, read
 archives, run `$lolla`, call models, mutate archives, change prompts, change
 `SKILL.md`, add graph DB, add memory, score answer quality, create labels, or
 judge advice.
+
+PR66 now lands the Audit Decision Record Read-Only Exporter:
+
+`docs/evals/audit-decision-record-readonly-exporter-v0.md`
+
+It implements `lolla.audit_decision_record.v0` as a local deterministic export
+from structured/custody-safe run artifacts. It reads `evaluation.json`,
+`agent_result.json`, `reasoning_trace.json`,
+`extraction_adequacy_report.json`, and optional `--review-json`; it does not
+read raw transcript, memo, revised-answer, provider/model text, or private
+reasoning artifacts. It refuses output inside the run directory, keeps
+`model_calls: 0` and `archive_mutated: false`, does not infer PR31 labels, and
+does not score answer quality, approve recommendations, decide
+`safe_for_agent_use`, or integrate with runtime behavior.
 
 This roadmap should build on that. It should not restart the architecture.
 
@@ -939,6 +953,11 @@ Current v0 slice:
 - `docs/evals/accountability-view-fixtures-v0.md` defines the PR63 combined
   accountability-view fixture pack before any exporter, archive reading,
   runtime integration, graph DB, memory, GraphRAG, scoring, labels, or judge.
+- `docs/evals/audit-decision-record-readonly-exporter-v0.md` documents the
+  PR66 read-only `lolla.audit_decision_record.v0` exporter, which reads only
+  structured/custody-safe artifacts, writes only an explicit external output
+  file, and remains outside raw content, model calls, archive mutation, labels,
+  scoring, judges, graph DB, memory, and runtime integration.
 
 Acceptance criteria:
 

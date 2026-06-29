@@ -1779,10 +1779,47 @@ Current result:
 
 Stop point:
 
-- Stop after PR65.
-- Do not start PR66 from this sequence.
-- Any future PR66 must remain read-only, local, deterministic,
-  model-call-free, archive-safe, and raw-content-safe.
+- At PR65 time, stop after PR65 and do not start PR66 from that sequence.
+- PR66 later landed as a separate read-only implementation slice.
+- Any later implementation must remain explicitly approved, local,
+  deterministic, model-call-free, archive-safe, and raw-content-safe unless a
+  new gate says otherwise.
+
+### PR66: Audit Decision Record Read-Only Exporter v0
+
+Maps to: R6/R9 accountable review projection export.
+
+Status: completed as a narrow code/tests/docs slice.
+
+Output:
+
+- [Audit Decision Record Read-Only Exporter v0](audit-decision-record-readonly-exporter-v0.md).
+- `engine/system_b/audit_decision_record.py`
+- `scripts/build_audit_decision_record.py`
+- `tests/test_audit_decision_record.py`
+
+Current result:
+
+- emits `lolla.audit_decision_record.v0`;
+- reads only structured/custody-safe JSON surfaces:
+  `evaluation.json`, `agent_result.json`, `reasoning_trace.json`,
+  `extraction_adequacy_report.json`, and optional `--review-json`;
+- stats but does not semantically read `extraction.json` or `result.json`;
+- does not read raw transcript, memo, revised answer, provider/model text, or
+  private reasoning artifacts;
+- emits every PR31 actionable-delta bucket as a stable key but does not infer
+  labels from prose;
+- refuses output paths equal to or inside the run directory;
+- keeps `model_calls: 0`, `archive_mutated: false`, all raw/private inclusion
+  flags false, and local absolute archive paths out of generated JSON.
+
+Stop point:
+
+- Stop after PR66.
+- Do not start PR67 automatically.
+- Do not use PR66 output as answer-quality scoring, domain approval,
+  `safe_for_agent_use`, automatic labels, runtime integration, archive
+  mutation, graph DB, memory, GraphRAG, or Semantica-style platform work.
 
 ## What Not To Build Yet
 
@@ -1841,9 +1878,10 @@ Before building judges or runtime semantic enrichment, Lolla should have:
 That is the smallest flywheel that can improve Lolla run by run without turning
 it into a vague critic or overbuilt memory system.
 
-The next conservative accountability step is future PR66 Audit Decision Record
-Read-Only Exporter v0, only after maintainer review. PR65 recommends it but
-does not start it. Any future PR66 should not add graph DB, embeddings, memory,
-entity resolution, GraphRAG, conflict automation, answer-quality scoring,
-judges, automatic labels, provider-boundary policy changes, prompt changes,
-`SKILL.md` changes, or Semantica-style platform work.
+The latest conservative accountability step is PR66 Audit Decision Record
+Read-Only Exporter v0. It implements only the decision-record exporter selected
+by PR65 and stops before PR67. Any future PR67 should require maintainer review
+first and should not add graph DB, embeddings, memory, entity resolution,
+GraphRAG, conflict automation, answer-quality scoring, judges, automatic
+labels, provider-boundary policy changes, prompt changes, `SKILL.md` changes,
+or Semantica-style platform work.
