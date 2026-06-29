@@ -550,6 +550,10 @@ mutation.
 
 Type: docs/JSON fixture design
 
+Status after PR58: completed as the audit decision record design:
+`docs/conversation-understanding/audit-decision-record-v0.md` and
+`docs/conversation-understanding/audit-decision-record-v0.json`.
+
 Goal:
 
 Define `lolla.audit_decision_record.v0` as a local projection over existing
@@ -586,11 +590,11 @@ Candidate fields:
 
 Acceptance criteria:
 
-- [ ] The schema is compact and local-review safe.
-- [ ] It does not copy raw transcript, memo, or revised-answer text.
-- [ ] It does not claim answer quality.
-- [ ] It maps cleanly to PR31 actionable-delta labels.
-- [ ] It states why this is not `conversation_understanding_ir.v0`.
+- [x] The schema is compact and local-review safe.
+- [x] It does not copy raw transcript, memo, or revised-answer text.
+- [x] It does not claim answer quality.
+- [x] It maps cleanly to PR31 actionable-delta labels.
+- [x] It states why this is not `conversation_understanding_ir.v0`.
 
 Stop rule:
 
@@ -908,13 +912,21 @@ PR57 has now implemented the smallest local read-only doctor CLI:
 docs/evals/lolla-doctor-readonly-cli-v0.md
 ```
 
-The next possible slice after PR57 is:
+PR58 has now designed the audit decision record shape:
 
 ```text
-PR58 Audit Decision Record Design v0
+docs/conversation-understanding/audit-decision-record-v0.md
+docs/conversation-understanding/audit-decision-record-v0.json
 ```
 
-PR58 should remain docs/JSON design only. It should not implement an exporter,
+The next possible slice after PR58 is:
+
+```text
+PR59 Audit Decision Record Fixture Review v0
+```
+
+PR59 should remain docs/eval-only. It should create and review paraphrase-only
+fixtures from existing reviewed cases before any exporter exists. It should not
 run `$lolla`, call models, mutate archives, change prompts, change `SKILL.md`,
-change provider-boundary policy, approve high-stakes runs, judge answer quality,
-or begin Semantica-style platform work.
+change provider-boundary policy, approve high-stakes runs, judge answer
+quality, add automatic labels, or begin Semantica-style platform work.

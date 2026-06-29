@@ -1,0 +1,137 @@
+{
+  "schema_version": "lolla.audit_decision_record.v0",
+  "case_id": "ceo-remove-founding-cofounder",
+  "run_id": "20260627T093131Z_59d153",
+  "archive_relpath": "ceo-remove-founding-cofounder/20260627T093131Z_59d153",
+  "decision_question": {
+    "status": "present",
+    "summary": "Whether and how to remove a founding cofounder from operating authority while preserving a workable relationship.",
+    "grounding": "derivation"
+  },
+  "original_recommendation_summary": {
+    "status": "partial",
+    "summary": "A cooperation-reset pattern that prioritized repair and staged discussion while leaving real authority movement ambiguous.",
+    "grounding": "derivation"
+  },
+  "revised_recommendation_summary": {
+    "status": "present",
+    "summary": "A bounded authority-transfer pattern that moves decision rights first, allows only a conditional transition role, and adds stop-loss rules.",
+    "grounding": "derivation"
+  },
+  "actionable_deltas": {
+    "action_changed": [
+      {
+        "summary": "The recommended action changes from testing cooperation first to moving operating authority before cooperation is evaluated.",
+        "grounding": "derivation",
+        "review_note": "Paraphrased from existing human-review summaries."
+      }
+    ],
+    "threshold_changed": [],
+    "sequence_changed": [
+      {
+        "summary": "Authority transfer comes before any reset conversation or transition role is allowed to continue.",
+        "grounding": "derivation",
+        "review_note": "Captures the order-of-operations change without copying source text."
+      }
+    ],
+    "evidence_gate_added": [],
+    "stop_rule_added": [
+      {
+        "summary": "The revised recommendation adds conditions under which the transition role should stop rather than drift into shadow authority.",
+        "grounding": "derivation",
+        "review_note": "Preserves the stop-loss idea as a reviewable delta."
+      }
+    ],
+    "written_term_added": [],
+    "user_question_added": [],
+    "scope_narrowed": [
+      {
+        "summary": "The cofounder's future role is narrowed to bounded transition support instead of broad continuing authority.",
+        "grounding": "derivation",
+        "review_note": "Records the scope reduction for reviewer inspection."
+      }
+    ],
+    "overclaim_retracted": [],
+    "no_op_prose_change": []
+  },
+  "values_or_stakeholder_conflicts": [
+    {
+      "conflict_id": "conflict_001",
+      "summary": "Relationship preservation and fairness remain in tension with explicit authority transfer.",
+      "status": "preserved_for_human_review",
+      "grounding": "derivation"
+    },
+    {
+      "conflict_id": "conflict_002",
+      "summary": "Investor pressure, team clarity, and cofounder dignity create competing obligations that the record does not resolve.",
+      "status": "preserved_for_human_review",
+      "grounding": "derivation"
+    }
+  ],
+  "unresolved_questions": [
+    {
+      "question_id": "question_001",
+      "summary": "What transition role, if any, can be tolerated without preserving shadow authority?",
+      "owner": "user_or_human_reviewer",
+      "grounding": "derivation"
+    },
+    {
+      "question_id": "question_002",
+      "summary": "Which stakeholder needs direct communication before authority changes are visible to the team?",
+      "owner": "user_or_human_reviewer",
+      "grounding": "derivation"
+    }
+  ],
+  "source_artifacts": [
+    {
+      "artifact": "agent_result.json",
+      "status": "available",
+      "use": "Run-envelope summary and artifact pointer context.",
+      "raw_content_included": false
+    },
+    {
+      "artifact": "evaluation.json",
+      "status": "available",
+      "use": "Deterministic run-readiness caveats only.",
+      "raw_content_included": false
+    },
+    {
+      "artifact": "reasoning_trace.json",
+      "status": "available",
+      "use": "Artifact index and custody context.",
+      "raw_content_included": false
+    },
+    {
+      "artifact": "reviews/human/complex-baseline-v0/review.json",
+      "status": "available",
+      "use": "Human-owned review reference.",
+      "raw_content_included": false
+    }
+  ],
+  "review_refs": [
+    {
+      "ref_id": "complex_baseline_human_review_v0",
+      "summary": "Human/product review marked the case pass and improved with human review still required for reliance.",
+      "label_values_copied": false
+    },
+    {
+      "ref_id": "human_review_corpus_batch_v0",
+      "summary": "Broader corpus batch maps this case to PR31 action, sequence, stop-rule, and scope deltas.",
+      "label_values_copied": false
+    }
+  ],
+  "custody_flags": {
+    "raw_transcript_included": false,
+    "raw_memo_included": false,
+    "raw_revised_answer_included": false,
+    "provider_text_included": false,
+    "private_reasoning_included": false,
+    "local_absolute_paths_included": false
+  },
+  "limitations": [
+    "Paraphrase-only schema example for PR58 design; not generated by an exporter.",
+    "Does not decide answer quality, domain approval, or autonomous reliance.",
+    "Does not replace human review or inspect raw archive payloads in this PR.",
+    "Does not represent a complete conversation-understanding IR."
+  ]
+}

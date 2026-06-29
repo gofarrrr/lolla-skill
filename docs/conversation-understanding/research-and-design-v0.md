@@ -1536,14 +1536,42 @@ Outcome:
 - remains preflight only, not a conversation-understanding IR, exporter,
   high-stakes approval surface, judge, score, memory layer, or platform.
 
-Next:
+Implemented next:
 
 ```text
 PR58 Audit Decision Record Design v0
 ```
 
-PR58 should design only `lolla.audit_decision_record.v0` before any exporter
-exists.
+PR58 designs only `lolla.audit_decision_record.v0` before any exporter exists.
+
+### PR58: Audit Decision Record Design v0
+
+Status: completed as
+[audit-decision-record-v0.md](audit-decision-record-v0.md) and
+[audit-decision-record-v0.json](audit-decision-record-v0.json).
+
+Goal: define a local accountability projection that summarizes the audited
+decision, original/revised recommendation shape, PR31 actionable deltas,
+unresolved conflicts/questions, source artifact refs, review refs, custody
+flags, and limitations.
+
+Outcome:
+
+- defines `lolla.audit_decision_record.v0`;
+- maps recommendation changes to the PR31 actionable-delta labels;
+- keeps examples paraphrase-only and safe for checked-in review surfaces;
+- states why the record is not `conversation_understanding_ir.v0`;
+- keeps answer-quality judgment, `safe_for_agent_use`, automatic labels, and
+  any future exporter outside the PR58 slice.
+
+Next:
+
+```text
+PR59 Audit Decision Record Fixture Review v0
+```
+
+PR59 should create and review 3-6 paraphrase-only fixture records from existing
+reviewed cases before any exporter or runtime integration exists.
 
 ### Later: Decision-Aware Capture And Runtime Integration
 

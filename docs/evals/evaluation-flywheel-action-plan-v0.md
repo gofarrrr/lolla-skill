@@ -1373,9 +1373,10 @@ Stop point:
   archive mutation, prompts, `SKILL.md`, graph DB, embeddings, memory, policy
   enforcement, automatic labels, answer-quality scoring, or judges from this
   slice.
-- PR56 has now landed as the docs-only doctor/preflight plan, and PR57 has now
-  implemented the smallest read-only doctor CLI. The next possible slice is
-  PR58 Audit Decision Record Design v0, still docs/JSON design only.
+- PR56 has now landed as the docs-only doctor/preflight plan, PR57 has now
+  implemented the smallest read-only doctor CLI, and PR58 has now designed the
+  audit decision record shape. The next possible slice is PR59 Audit Decision
+  Record Fixture Review v0, still docs/eval-only.
 
 ### PR56: Lolla Doctor / Preflight Plan v0
 
@@ -1419,9 +1420,9 @@ Stop point:
   prompts, change `SKILL.md`, change provider-boundary policy, change
   `caller_action`, approve high-stakes runs, add judges, add scoring, add
   automatic labels, or begin Semantica-style platform work from this slice.
-- PR57 has now implemented the smallest local read-only doctor CLI. The next
-  possible slice is PR58 Audit Decision Record Design v0, still docs/JSON design
-  only.
+- PR57 has now implemented the smallest local read-only doctor CLI. PR58 has
+  now designed `lolla.audit_decision_record.v0`. The next possible slice is
+  PR59 Audit Decision Record Fixture Review v0, still docs/eval-only.
 
 ### PR57: Lolla Doctor Read-Only CLI v0
 
@@ -1468,8 +1469,49 @@ Stop point:
   provider-boundary policy changes, caller-action changes, graph DB, embeddings,
   chunking, memory, policy engines, automatic labels, answer-quality scoring,
   or judges from this slice.
-- The next possible slice is PR58 Audit Decision Record Design v0, docs/JSON
-  design only.
+- PR58 has now designed `lolla.audit_decision_record.v0`. The next possible
+  slice is PR59 Audit Decision Record Fixture Review v0, docs/eval-only.
+
+### PR58: Audit Decision Record Design v0
+
+Maps to: R6/R9 accountable review projections.
+
+Status: completed as a docs/JSON design slice.
+
+Goal:
+
+Define `lolla.audit_decision_record.v0` as a compact local accountability
+projection over existing Lolla artifacts before any exporter exists.
+
+Output:
+
+- [Audit Decision Record v0](../conversation-understanding/audit-decision-record-v0.md).
+- [audit-decision-record-v0.json](../conversation-understanding/audit-decision-record-v0.json).
+
+Current result:
+
+- defines a paraphrase-only record for the audited decision, original
+  recommendation summary, revised recommendation summary, PR31
+  actionable-delta buckets, values/stakeholder conflicts, unresolved
+  questions, source artifacts, review refs, custody flags, and limitations;
+- maps the shape to PR31 labels such as `action_changed`,
+  `threshold_changed`, `sequence_changed`, `evidence_gate_added`,
+  `stop_rule_added`, `written_term_added`, `user_question_added`,
+  `scope_narrowed`, `overclaim_retracted`, and `no_op_prose_change`;
+- explains why the record is not `conversation_understanding_ir.v0`, answer
+  scoring, a judge, automatic labels, or `safe_for_agent_use` automation;
+- includes one checked-in paraphrase-only JSON example from an already reviewed
+  case.
+
+Stop point:
+
+- PR58 only designs the record and example.
+- Do not implement an exporter, run `$lolla`, call models, mutate archives,
+  change prompts, change `SKILL.md`, change provider-boundary policy, approve
+  high-stakes runs, add judges, add scoring, add automatic labels, or begin
+  Semantica-style platform work from this slice.
+- The next possible slice is PR59 Audit Decision Record Fixture Review v0,
+  docs/eval-only.
 
 ## What Not To Build Yet
 
@@ -1528,10 +1570,10 @@ Before building judges or runtime semantic enrichment, Lolla should have:
 That is the smallest flywheel that can improve Lolla run by run without turning
 it into a vague critic or overbuilt memory system.
 
-The next conservative accountability slice is PR58 Audit Decision Record Design
-v0. It should design only `lolla.audit_decision_record.v0` as a local
-accountability projection over existing artifacts and should not implement an
-exporter, run `$lolla`, call models, mutate archives, change prompts, change
+The next conservative accountability slice is PR59 Audit Decision Record
+Fixture Review v0. It should create and review only 3-6 paraphrase-only
+decision-record fixtures from existing reviewed cases and should not implement
+an exporter, run `$lolla`, call models, mutate archives, change prompts, change
 `SKILL.md`, change provider-boundary policy, approve high-stakes runs, add
 judges, add scoring, add automatic labels, or start any Semantica-style
 platform work.

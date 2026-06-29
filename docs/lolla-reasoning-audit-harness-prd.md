@@ -25,6 +25,8 @@ Primary inputs:
   `docs/evals/lolla-doctor-preflight-plan-v0.md`.
 - Lolla doctor read-only CLI:
   `docs/evals/lolla-doctor-readonly-cli-v0.md`.
+- Audit decision record design:
+  `docs/conversation-understanding/audit-decision-record-v0.md`.
 
 ## Executive Summary
 
@@ -250,7 +252,7 @@ Since the first harness PRD pass, the shipped harness layer has also added:
 - semantic coverage reports and corpus survey;
 - offline specialist extractor probe harnesses and evidence notes;
 - a six-case complex conversation baseline with full modern artifacts;
-- the PR30-PR57 evaluation/accountability handoff chain from human review seed
+- the PR30-PR58 evaluation/accountability handoff chain from human review seed
   through risk-mode reliance visibility, current-state anti-drift docs,
   human-owned values/priorities review, and the Semantica-inspired
   accountability plan through the read-only doctor/preflight CLI.
@@ -435,8 +437,22 @@ counts, high-stakes evidence visibility, output-path safety, repo/runtime
 boundary state, and privacy flags. It does not run `$lolla`, call models, read
 archive payloads, mutate archives, change prompts, change `SKILL.md`, change
 provider-boundary policy, approve high-stakes use, judge answer quality, or
-populate labels. Its recommended next slice is PR58 Audit Decision Record
-Design v0, docs/JSON design only.
+populate labels. Its planned next slice was PR58 Audit Decision Record Design
+v0, docs/JSON design only.
+
+PR58 now lands the Audit Decision Record design:
+
+`docs/conversation-understanding/audit-decision-record-v0.md`
+
+It defines `lolla.audit_decision_record.v0` as a paraphrase-only local
+accountability projection over existing artifacts. It summarizes the audited
+decision, original/revised recommendation shape, PR31 actionable-delta buckets,
+unresolved conflicts/questions, source artifacts, review refs, custody flags,
+and limitations. It does not implement an exporter, run `$lolla`, call models,
+mutate archives, change prompts, change `SKILL.md`, approve high-stakes use,
+judge answer quality, create automatic labels, or create
+`conversation_understanding_ir.v0`. Its recommended next slice is PR59 Audit
+Decision Record Fixture Review v0, docs/eval-only.
 
 This roadmap should build on that. It should not restart the architecture.
 
@@ -809,6 +825,10 @@ Current v0 slice:
   which implements `lolla.doctor_report.v0` without running `$lolla`, calling
   models, reading archive payloads, mutating archives, or judging answer
   quality.
+- `docs/conversation-understanding/audit-decision-record-v0.md` defines the
+  PR58 `lolla.audit_decision_record.v0` shape as a paraphrase-only review
+  projection over existing artifacts and PR31 labels, before any exporter or
+  runtime integration.
 
 Acceptance criteria:
 

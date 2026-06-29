@@ -130,10 +130,16 @@ Deterministic evals should cover:
 - cost telemetry is present or honestly marked partial/unknown.
 - `lolla.doctor_report.v0` can report local wiring readiness before a run
   without calling models or mutating archives.
+- `lolla.audit_decision_record.v0` can make a reviewed decision delta easier to
+  inspect without copying raw content or judging answer quality.
 
 The doctor report is preflight only. It can warn that the local environment is
 miswired or that high-stakes evidence is absent from a supplied manifest, but it
 does not decide whether advice is good, safe, or approved for agent use.
+
+The audit decision record is a review projection only. It can map a paraphrased
+change to PR31 actionable-delta labels, but it does not create a human-review
+label, agent approval, or answer-quality score.
 
 These checks should gate releases before any subjective judge runs.
 
