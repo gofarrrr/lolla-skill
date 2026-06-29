@@ -67,10 +67,11 @@ conversation or agent run
 Current handoff state:
 
 ```text
-PR85 Product Delta PR71-PR84 Packaging Gate v0 is the latest product-evidence
-eval-lane slice recorded in this working tree. PR70 remains the
-audit/accountability machinery closure gate. PR48 remains the high-stakes
-evidence gate. PR54 remains the paused v0 values/priorities worksheet gate.
+PR88 Decision Trail Fixture Review v0 is the latest Decision Trail slice
+recorded in this working tree. PR85 remains the latest packaged
+product-evidence eval-lane slice. PR70 remains the audit/accountability
+machinery closure gate. PR48 remains the high-stakes evidence gate. PR54
+remains the paused v0 values/priorities worksheet gate.
 Use git log for the exact current commit hash.
 ```
 
@@ -83,6 +84,75 @@ what the eval lane studies, how to run the safe read-only tools, what to
 inspect, and what not to infer. This is documentation alignment only: it adds
 no new evidence, runtime behavior, model calls, archive mutation, scoring,
 automatic labels, or agent approval.
+```
+
+Decision Trail framing note:
+
+```text
+docs/lolla-decision-trail-web-page-v0.md gives a customer-facing draft for the
+answer-plus-process value proposition. It explains that serious AI advice needs
+the revised answer plus the process trail: what conversation produced it, what
+was challenged, what changed, what remains missing, and what must not be
+overclaimed.
+
+docs/conversation-understanding/decision-trail-readiness-audit-v0.md is the
+internal counterweight. It says the direction is right, but the first-class
+Decision Trail report is not live yet. Current Lolla captures and preserves
+important primitives, while live extraction is still too compact for the full
+decision-story surface. The recommended next product-shaped move is a
+docs/schema-only Decision Trail report PRD before exporter work or runtime
+integration.
+
+docs/conversation-understanding/decision-trail-pr86-pr89-prd-v0.md turns that
+audit into a staged PR86-PR89 sequence: report schema, read-only exporter,
+fixture review, and interpretation-gap decision. Its core implementation rule
+is that LLMs handle messy conversation interpretation while deterministic code
+preserves custody, source refs, field status, missingness, validation, and
+non-claims.
+
+docs/conversation-understanding/decision-trail-pr86-goal-prompt-v0.md is a
+ready-to-paste `/goal` handoff for a fresh coder session to implement PR86
+only. It deliberately stops before exporter code, runtime integration, model
+calls, archive mutation, or specialist enrichment.
+
+docs/conversation-understanding/decision-trail-report-prd-v0.md and
+docs/conversation-understanding/decision-trail-report-v0.json now define PR86's
+`lolla.decision_trail_report.v0` contract. The report is designed as an offline
+reader/reporting surface over completed artifacts. It preserves source refs,
+custody, status, redaction/missingness distinctions, field ownership, optional
+future trace compatibility, and non-claims without implementing the PR87
+exporter or changing runtime behavior.
+
+docs/conversation-understanding/decision-trail-pr87-goal-prompt-v0.md is the
+ready-to-paste `/goal` handoff that scoped PR87 Decision Trail Read-Only
+Exporter v0. That handoff kept the exporter read-only and deterministic, with
+no `$lolla`, skill invocation, provider calls, archive mutation, runtime
+changes, or semantic inference from messy prose.
+
+engine/system_b/decision_trail_report.py and
+scripts/evals/build_decision_trail_report.py now implement PR87's checked-in
+safe exporter. The exporter reads only structured JSON artifacts by default,
+records redaction/private-availability for raw/private artifacts without
+reading them, emits sparse `lolla.decision_trail_report.v0` JSON to an
+explicit output path outside the run directory, and preserves messy semantic
+fields as missing or requiring interpretation instead of guessing.
+
+docs/conversation-understanding/decision-trail-readonly-exporter-v0.md records
+the implementation and points the next slice to PR88 fixture review.
+
+docs/conversation-understanding/decision-trail-pr88-goal-prompt-v0.md is the
+ready-to-paste `/goal` handoff for PR88 Decision Trail Fixture Review v0. It
+keeps PR88 as an offline review of generated reports for usefulness,
+missingness, readability, and overtrust risk, with no runtime invocation,
+provider calls, archive mutation, exporter rewrite, scoring, or automatic
+labels.
+
+docs/conversation-understanding/decision-trail-export-fixture-review-v0.md and
+reviews/codex-assisted/decision-trail-fixture-review-v0/review.json now record
+PR88's safe-fixture-only review. The review found the PR87 report useful as a
+custody and missingness shell, but too sparse for the full Decision Trail
+product without later bounded interpretation. No local-private shadow review
+was run, so PR89 must treat this as safe-fixture-only evidence.
 ```
 
 Current product state:
@@ -388,6 +458,12 @@ Primary evidence notes to read first in a fresh session:
 - `docs/conversation-understanding/broader-specialist-evidence-gate-v0.md`
 - `docs/conversation-understanding/specialist-runtime-design-without-integration-v0.md`
 - `docs/conversation-understanding/research-and-design-v0.md`
+- `docs/conversation-understanding/decision-trail-report-prd-v0.md`
+- `docs/conversation-understanding/decision-trail-report-v0.json`
+- `docs/conversation-understanding/decision-trail-readonly-exporter-v0.md`
+- `engine/system_b/decision_trail_report.py`
+- `scripts/evals/build_decision_trail_report.py`
+- `tests/test_decision_trail_report.py`
 - `docs/lolla-evaluation-methodology.md`
 - `docs/lolla-reasoning-audit-harness-prd.md`
 - `docs/evals/risk-mode-implementation-plan-v0.md`
@@ -401,6 +477,86 @@ Current stop rule:
 > to pause and turn toward evaluation.
 
 Latest completed slice:
+
+```text
+PR88 Decision Trail Fixture Review v0
+```
+
+Result:
+
+- lands `docs/conversation-understanding/decision-trail-export-fixture-review-v0.md`;
+- lands `reviews/codex-assisted/decision-trail-fixture-review-v0/review.json`;
+- lands `tests/test_decision_trail_fixture_review.py`;
+- reviews PR87 generated report behavior in checked-in-safe fixture mode;
+- confirms no local-private shadow review was run;
+- treats PR89 evidence as safe-fixture-only;
+- finds the report useful for custody, source refs, missingness, redaction, and
+  non-claims;
+- finds the report too sparse for the full Decision Trail product because live
+  options, likely next actions, stakeholders, values/priorities, assistant
+  influence, useful/noisy friction, and lost value still require interpretation;
+- preserves the main overtrust risk: a populated `structural_delta` can look
+  more semantically complete than the report really is.
+
+Previous Decision Trail exporter slice:
+
+- lands `engine/system_b/decision_trail_report.py`;
+- lands `scripts/evals/build_decision_trail_report.py`;
+- lands `tests/test_decision_trail_report.py`;
+- lands `docs/conversation-understanding/decision-trail-readonly-exporter-v0.md`;
+- implements a deterministic read-only exporter for
+  `lolla.decision_trail_report.v0`;
+- accepts an archived run directory and explicit output path outside that run
+  directory;
+- supports `checked_in_safe_mode` only, with local private mode deferred;
+- reads structured JSON artifacts only by default: `evaluation.json`,
+  `agent_result.json`, `reasoning_trace.json`,
+  `extraction_adequacy_report.json`, `extraction.json`, and `result.json`;
+- records raw/private artifacts as redacted/private-available or missing
+  without reading `conversation.txt`, `memo.md`, `revised.txt`,
+  `live_transcript.txt`, `operator.log`, private tables, or private ledgers;
+- populates deterministic artifact health, custody flags, report metadata,
+  decision question, conversation-understanding summary, constraints, audit
+  pressure summary, structural delta, unresolved questions, and trace context
+  only when safe structured sources exist;
+- preserves vanilla likely next action, revised likely next action, option map,
+  stakeholders, values/priorities, assistant influence, useful/noisy friction,
+  and lost value as `requires_llm_interpretation` unless a later safe review
+  artifact supplies them;
+- preserves no `$lolla` run, no Lolla skill invocation, no model calls, no
+  archive mutation, no runtime integration, no prompt change, no `SKILL.md`
+  change, no `scripts/skill/*` change, no labels, no scoring, no judge, no
+  automatic verdict, no agent action authorization, no fixture review, and no
+  product-proof claim.
+
+Previous completed slice:
+
+```text
+PR86 Decision Trail Report PRD And Schema v0
+```
+
+Result:
+
+- lands `docs/conversation-understanding/decision-trail-report-prd-v0.md`;
+- lands `docs/conversation-understanding/decision-trail-report-v0.json`;
+- lands `tests/test_decision_trail_report_schema.py`;
+- defines `lolla.decision_trail_report.v0` as an offline report contract over
+  completed Lolla artifacts;
+- defines shared semantic section metadata: `status`, `source_status`,
+  `source_refs`, `value` or `items`, `empty_meaning`, `owner`,
+  `requires_llm_interpretation`, and `exporter_inferred_from_prose`;
+- distinguishes checked-in safe mode, local private mode, and a reserved future
+  runtime mode that is not implemented;
+- preserves redaction versus missingness distinctions and optional
+  future-compatible trace fields without adding trace dependencies;
+- records that deterministic code may preserve custody/status/source refs and
+  must not infer messy semantic fields from prose;
+- preserves no `$lolla` run, no Lolla skill invocation, no model calls, no
+  archive mutation, no exporter code, no runtime integration, no prompt change,
+  no `SKILL.md` change, no labels, no scoring, no judge, no automatic verdict,
+  no agent action authorization, and no product-proof claim.
+
+Previous completed slice:
 
 ```text
 PR85 Product Delta PR71-PR84 Packaging Gate v0
@@ -614,13 +770,28 @@ Non-goals for the next slice:
    the strongest unresolved risk. The next conservative move is explicit
    packaging/staging or a pause for human-review capacity, not more automatic
    evidence expansion.
-4. **Live-output hygiene implementation.** PR35 keeps `not_checked` honest and
+4. **PR86 Decision Trail report contract is done.** PR86 defines the
+   `lolla.decision_trail_report.v0` PRD/schema and confirms the next move is a
+   deterministic read-only exporter, not runtime integration or new
+   interpretation machinery.
+5. **PR87 Decision Trail read-only exporter is done.** PR87 generates a sparse
+   checked-in-safe report from structured artifacts only. The next conservative
+   move is PR88 fixture review to test whether the report is understandable,
+   too thin, confusing, or overclaim-prone before adding interpretation
+   machinery.
+6. **PR88 Decision Trail fixture review is done.** PR88 says the report is
+   useful as a custody and missingness shell, but checked-in-safe evidence is
+   too thin for the full answer-plus-process product without later bounded
+   interpretation. The next conservative move is PR89: decide whether to pursue
+   narrow offline LLM specialist enrichment, local-private review,
+   simplification, or a pause.
+7. **Live-output hygiene implementation.** PR35 keeps `not_checked` honest and
    defines a trusted-transcript path; later work can implement only when needed.
-5. **Span-grounded semantic enrichment.** Existing specialists help with live
+8. **Span-grounded semantic enrichment.** Existing specialists help with live
    constraints, dropped threads, and stance lineage, but integration remains
    blocked until a clean 15-20 full-modern sample and provider-boundary behavior
    are settled.
-6. **Human capability surface.** Later, add a compact memo/Observatory section
+9. **Human capability surface.** Later, add a compact memo/Observatory section
    that teaches the user what reasoning pattern the audit caught.
 
 ## Current Pause: Specialist Integration Track
@@ -1722,7 +1893,7 @@ Boundary and privacy posture:
 - No LLM judge.
 - No advice-quality score.
 - No approval decision.
-- No automatic `safe_for_agent_use`.
+- No automatic agent-readiness label.
 - No capture/chunking redesign.
 - No human-exception / omitted-hinge implementation.
 - No runtime `$lolla` behavior change.
@@ -1884,7 +2055,7 @@ Boundary preserved:
 - no model calls,
 - no LLM judge,
 - no automatic `human_review`,
-- no automatic `safe_for_agent_use`,
+- no automatic agent-readiness label,
 - no capture/chunking work,
 - no Observatory work.
 
@@ -1904,8 +2075,8 @@ PM read:
 - Pilot 3 showed the docs-only surface clarification was enough for the old
   Records 13/15 dispute.
 - Do not add `surface_findings` yet.
-- The next remaining policy issue is narrower: when should
-  `safe_for_agent_use` be `no` versus `with_human_review` for high-stakes,
+- The next remaining policy issue is narrower: when should the
+  agent-readiness label be `no` versus `with_human_review` for high-stakes,
   degraded, or custody-limited runs?
 
 ### Pilot 3: Disputed Surface Rehearsal After PR17
@@ -1951,7 +2122,7 @@ unsupported_new_claim; agent=no
 
 Remaining disagreement:
 
-- Record 7 still split on `safe_for_agent_use`:
+- Record 7 still split on the agent-readiness label:
   - one reviewer chose `no`,
   - two reviewers chose `with_human_review`.
 
@@ -1984,8 +2155,8 @@ merged to origin/main
 
 What changed:
 
-- `docs/evals/human-review-workflow.md` clarifies
-  `safe_for_agent_use: yes | with_human_review | no | unclear`.
+- `docs/evals/human-review-workflow.md` clarifies the agent-readiness values
+  `yes | with_human_review | no | unclear`.
 - `docs/evals/synthetic-review-prompt-template.md` mirrors the same
   agent-readiness policy.
 - `docs/evals/pr17-disputed-surface-pilot-findings.md` records the Pilot 3
@@ -1999,7 +2170,7 @@ Boundary preserved:
 - no model calls,
 - no LLM judge,
 - no automatic `human_review`,
-- no automatic `safe_for_agent_use`,
+- no automatic agent-readiness label,
 - no capture/chunking work,
 - no Observatory work.
 

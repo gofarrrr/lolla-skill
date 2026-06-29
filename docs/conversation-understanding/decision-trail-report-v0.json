@@ -1,0 +1,783 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lolla.decision_trail_report.v0",
+  "title": "Lolla Decision Trail Report v0",
+  "description": "Schema contract for a read-only Decision Trail report over completed Lolla artifacts. PR86 defines the contract only; exporter behavior is left to a later PR.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "report_metadata",
+    "source_artifacts",
+    "custody_flags",
+    "trace_context",
+    "report_mode",
+    "conversation_understanding_summary",
+    "decision_question",
+    "vanilla_likely_next_action",
+    "revised_likely_next_action",
+    "option_map",
+    "constraints",
+    "stakeholders",
+    "values_or_priorities",
+    "assistant_influence",
+    "audit_pressure_summary",
+    "structural_delta",
+    "useful_noisy_friction",
+    "lost_value",
+    "unresolved_questions",
+    "artifact_health",
+    "field_population_policy",
+    "limitations",
+    "non_claims"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "lolla.decision_trail_report.v0"
+    },
+    "report_metadata": {
+      "$ref": "#/$defs/report_metadata"
+    },
+    "source_artifacts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/source_artifact"
+      }
+    },
+    "custody_flags": {
+      "$ref": "#/$defs/custody_flags"
+    },
+    "trace_context": {
+      "$ref": "#/$defs/trace_context"
+    },
+    "report_mode": {
+      "$ref": "#/$defs/report_mode"
+    },
+    "conversation_understanding_summary": {
+      "$ref": "#/$defs/semantic_section"
+    },
+    "decision_question": {
+      "$ref": "#/$defs/semantic_section"
+    },
+    "vanilla_likely_next_action": {
+      "$ref": "#/$defs/semantic_section"
+    },
+    "revised_likely_next_action": {
+      "$ref": "#/$defs/semantic_section"
+    },
+    "option_map": {
+      "$ref": "#/$defs/semantic_section"
+    },
+    "constraints": {
+      "$ref": "#/$defs/semantic_section"
+    },
+    "stakeholders": {
+      "$ref": "#/$defs/semantic_section"
+    },
+    "values_or_priorities": {
+      "$ref": "#/$defs/semantic_section"
+    },
+    "assistant_influence": {
+      "$ref": "#/$defs/semantic_section"
+    },
+    "audit_pressure_summary": {
+      "$ref": "#/$defs/semantic_section"
+    },
+    "structural_delta": {
+      "$ref": "#/$defs/semantic_section"
+    },
+    "useful_noisy_friction": {
+      "$ref": "#/$defs/semantic_section"
+    },
+    "lost_value": {
+      "$ref": "#/$defs/semantic_section"
+    },
+    "unresolved_questions": {
+      "$ref": "#/$defs/semantic_section"
+    },
+    "artifact_health": {
+      "$ref": "#/$defs/artifact_health"
+    },
+    "field_population_policy": {
+      "$ref": "#/$defs/field_population_policy"
+    },
+    "limitations": {
+      "$ref": "#/$defs/limitations"
+    },
+    "non_claims": {
+      "$ref": "#/$defs/non_claims"
+    }
+  },
+  "$defs": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "not_supplied",
+        "not_measured",
+        "not_applicable",
+        "available_from_structured_artifact",
+        "available_from_review_artifact",
+        "available_but_redacted_in_safe_mode",
+        "available_in_private_artifact_not_exported",
+        "requires_llm_interpretation",
+        "unavailable_missing_artifact",
+        "unavailable_malformed_artifact",
+        "unclear"
+      ]
+    },
+    "report_mode": {
+      "type": "string",
+      "enum": [
+        "checked_in_safe_mode",
+        "local_private_mode",
+        "future_runtime_mode_not_implemented"
+      ]
+    },
+    "trace_status": {
+      "type": "string",
+      "enum": [
+        "not_used",
+        "future_compatible",
+        "experimental_mapping"
+      ]
+    },
+    "owner": {
+      "type": "string",
+      "enum": [
+        "deterministic_exporter",
+        "existing_llm_runtime_artifact",
+        "product_delta_review_artifact",
+        "future_llm_specialist",
+        "future_human_review",
+        "mixed_sources",
+        "not_supplied"
+      ]
+    },
+    "source_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact",
+        "field",
+        "source_status",
+        "content_included"
+      ],
+      "properties": {
+        "artifact": {
+          "type": "string",
+          "minLength": 1
+        },
+        "field": {
+          "type": "string",
+          "minLength": 1
+        },
+        "json_pointer": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_status": {
+          "$ref": "#/$defs/status"
+        },
+        "content_included": {
+          "type": "boolean",
+          "description": "Whether the referenced content itself is copied into this report. Checked-in safe reports should keep this false for raw/private sources."
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "semantic_item": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "item_id",
+        "status",
+        "source_refs",
+        "owner",
+        "requires_llm_interpretation",
+        "exporter_inferred_from_prose"
+      ],
+      "properties": {
+        "item_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "summary": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source_ref"
+          }
+        },
+        "owner": {
+          "$ref": "#/$defs/owner"
+        },
+        "requires_llm_interpretation": {
+          "type": "boolean"
+        },
+        "exporter_inferred_from_prose": {
+          "const": false
+        }
+      }
+    },
+    "semantic_section": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "source_status",
+        "source_refs",
+        "empty_meaning",
+        "owner",
+        "requires_llm_interpretation",
+        "exporter_inferred_from_prose"
+      ],
+      "anyOf": [
+        {
+          "required": [
+            "value"
+          ]
+        },
+        {
+          "required": [
+            "items"
+          ]
+        }
+      ],
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "source_status": {
+          "$ref": "#/$defs/status"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source_ref"
+          }
+        },
+        "value": {
+          "type": [
+            "string",
+            "object",
+            "array",
+            "null"
+          ]
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/semantic_item"
+          }
+        },
+        "empty_meaning": {
+          "type": "string",
+          "minLength": 1
+        },
+        "owner": {
+          "$ref": "#/$defs/owner"
+        },
+        "requires_llm_interpretation": {
+          "type": "boolean"
+        },
+        "exporter_inferred_from_prose": {
+          "const": false
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "report_metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "report_id",
+        "created_at",
+        "case_id",
+        "run_id",
+        "archive_relpath",
+        "report_mode",
+        "generated_by",
+        "schema_version"
+      ],
+      "properties": {
+        "report_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "case_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "run_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "archive_relpath": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "report_mode": {
+          "$ref": "#/$defs/report_mode"
+        },
+        "generated_by": {
+          "type": "string",
+          "enum": [
+            "decision_trail_exporter",
+            "future_decision_trail_exporter",
+            "manual_schema_fixture",
+            "not_implemented"
+          ]
+        },
+        "schema_version": {
+          "const": "lolla.decision_trail_report.v0"
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "source_artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact",
+        "role",
+        "relative_path",
+        "status",
+        "source_status",
+        "schema_version",
+        "sha256",
+        "byte_count",
+        "raw_content_read",
+        "content_included",
+        "activity_kind",
+        "generated_by",
+        "used_by"
+      ],
+      "properties": {
+        "artifact": {
+          "type": "string",
+          "minLength": 1
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "runtime_source",
+            "structured_runtime_artifact",
+            "audit_artifact",
+            "evaluation_artifact",
+            "review_artifact",
+            "report_output",
+            "not_read"
+          ]
+        },
+        "relative_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "source_status": {
+          "$ref": "#/$defs/status"
+        },
+        "schema_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sha256": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "byte_count": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "raw_content_read": {
+          "type": "boolean"
+        },
+        "content_included": {
+          "type": "boolean"
+        },
+        "activity_kind": {
+          "type": "string",
+          "enum": [
+            "conversation_capture",
+            "extraction",
+            "audit_pipeline",
+            "revised_answer_persistence",
+            "memo_rendering",
+            "archive_finalization",
+            "agent_handoff",
+            "deterministic_evaluation",
+            "reasoning_trace",
+            "extraction_adequacy",
+            "product_delta_review",
+            "human_review",
+            "future_decision_trail_export",
+            "unknown"
+          ]
+        },
+        "generated_by": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "used_by": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "custody_flags": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "raw_transcript_included",
+        "raw_memo_included",
+        "raw_revised_answer_included",
+        "provider_text_included",
+        "private_reasoning_included",
+        "local_absolute_paths_included",
+        "secrets_included",
+        "raw_private_content_included",
+        "model_calls",
+        "archive_mutated",
+        "runtime_invoked",
+        "skill_invoked",
+        "human_validated",
+        "ground_truth",
+        "judge_calibration_eligible",
+        "product_proof",
+        "answer_quality_scored",
+        "llm_judge_used",
+        "automatic_labels_created",
+        "agent_action_authorized"
+      ],
+      "properties": {
+        "raw_transcript_included": {
+          "const": false
+        },
+        "raw_memo_included": {
+          "const": false
+        },
+        "raw_revised_answer_included": {
+          "const": false
+        },
+        "provider_text_included": {
+          "const": false
+        },
+        "private_reasoning_included": {
+          "const": false
+        },
+        "local_absolute_paths_included": {
+          "const": false
+        },
+        "secrets_included": {
+          "const": false
+        },
+        "raw_private_content_included": {
+          "const": false
+        },
+        "model_calls": {
+          "const": 0
+        },
+        "archive_mutated": {
+          "const": false
+        },
+        "runtime_invoked": {
+          "const": false
+        },
+        "skill_invoked": {
+          "const": false
+        },
+        "human_validated": {
+          "const": false
+        },
+        "ground_truth": {
+          "const": false
+        },
+        "judge_calibration_eligible": {
+          "const": false
+        },
+        "product_proof": {
+          "const": false
+        },
+        "answer_quality_scored": {
+          "const": false
+        },
+        "llm_judge_used": {
+          "const": false
+        },
+        "automatic_labels_created": {
+          "const": false
+        },
+        "agent_action_authorized": {
+          "const": false
+        }
+      }
+    },
+    "trace_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "source_refs",
+        "external_trace_id",
+        "otel_genai_semconv_status",
+        "external_trace_dependency_added"
+      ],
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/trace_status"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source_ref"
+          }
+        },
+        "external_trace_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "otel_genai_semconv_status": {
+          "$ref": "#/$defs/trace_status"
+        },
+        "external_trace_dependency_added": {
+          "const": false
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "artifact_health": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "source_status",
+        "source_refs",
+        "items",
+        "empty_meaning",
+        "owner",
+        "requires_llm_interpretation",
+        "exporter_inferred_from_prose"
+      ],
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "source_status": {
+          "$ref": "#/$defs/status"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source_ref"
+          }
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/semantic_item"
+          }
+        },
+        "empty_meaning": {
+          "type": "string",
+          "minLength": 1
+        },
+        "owner": {
+          "$ref": "#/$defs/owner"
+        },
+        "requires_llm_interpretation": {
+          "const": false
+        },
+        "exporter_inferred_from_prose": {
+          "const": false
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "field_population_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status_vocabulary",
+        "owner_vocabulary",
+        "deterministic_exporter_may",
+        "deterministic_exporter_must_not",
+        "redaction_policy",
+        "missingness_policy",
+        "messy_interpretation_policy"
+      ],
+      "properties": {
+        "status_vocabulary": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/status"
+          }
+        },
+        "owner_vocabulary": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/owner"
+          }
+        },
+        "deterministic_exporter_may": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "deterministic_exporter_must_not": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "redaction_policy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "missingness_policy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "messy_interpretation_policy": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "limitations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "items",
+        "empty_meaning"
+      ],
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "empty_meaning": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "non_claims": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "items",
+        "human_validated",
+        "ground_truth",
+        "judge_calibration_eligible",
+        "product_proof",
+        "answer_quality_scored",
+        "llm_judge_used",
+        "automatic_labels_created",
+        "agent_action_authorized"
+      ],
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "human_validated": {
+          "const": false
+        },
+        "ground_truth": {
+          "const": false
+        },
+        "judge_calibration_eligible": {
+          "const": false
+        },
+        "product_proof": {
+          "const": false
+        },
+        "answer_quality_scored": {
+          "const": false
+        },
+        "llm_judge_used": {
+          "const": false
+        },
+        "automatic_labels_created": {
+          "const": false
+        },
+        "agent_action_authorized": {
+          "const": false
+        }
+      }
+    }
+  }
+}

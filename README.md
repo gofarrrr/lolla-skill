@@ -215,6 +215,30 @@ evidence scaffolding, not product proof. Its healthiest signal is a downgrade:
 to `partial_improvement_candidate` after specialist review preserved lost
 value and interpretation concerns.
 
+The emerging customer-facing product surface is the Decision Trail: the revised
+answer plus a compact process report explaining what conversation produced it,
+what changed, what was challenged, what remains missing, and what should not be
+overclaimed. See
+[Lolla Decision Trail Web Page Draft](docs/lolla-decision-trail-web-page-v0.md)
+for the simple customer explanation and
+[Decision Trail Readiness Audit](docs/conversation-understanding/decision-trail-readiness-audit-v0.md)
+for the current gap between that vision and the information Lolla captures
+today. The staged PR86-PR89 implementation bridge is
+[Decision Trail PR86-PR89 PRD](docs/conversation-understanding/decision-trail-pr86-pr89-prd-v0.md).
+PR86 now defines the report contract in
+[Decision Trail Report PRD](docs/conversation-understanding/decision-trail-report-prd-v0.md)
+and the machine-readable
+[Decision Trail Report Schema](docs/conversation-understanding/decision-trail-report-v0.json).
+PR87 implements the conservative read-only exporter described in
+[Decision Trail Read-Only Exporter](docs/conversation-understanding/decision-trail-readonly-exporter-v0.md).
+PR88's completed review is
+[Decision Trail Export Fixture Review](docs/conversation-understanding/decision-trail-export-fixture-review-v0.md):
+the report is useful as a custody and missingness shell, but checked-in-safe
+evidence remains too thin for the full Decision Trail product without later
+bounded interpretation. The next Decision Trail slice is PR89: decide whether
+to pursue narrow offline LLM specialist enrichment, local-private review,
+simplification, or a pause.
+
 Start here: **[Product Delta / Eval Docs Index](docs/evals/README.md)**.
 
 **Trigger phrases** (the skill also activates on these):
