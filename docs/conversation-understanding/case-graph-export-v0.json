@@ -1,0 +1,386 @@
+{
+  "schema_version": "lolla.case_graph.v0",
+  "case_id": "deploy-assisted-intake-routing",
+  "run_id": "20260627T130339Z_4cd3cb",
+  "archive_relpath": "deploy-assisted-intake-routing/20260627T130339Z_4cd3cb",
+  "status": "design_example_only",
+  "scope": {
+    "graph_kind": "run_local_review_view",
+    "future_export_shape_only": true,
+    "exporter_implemented": false,
+    "graph_database_required": false,
+    "global_memory": false,
+    "runtime_integration": false,
+    "archive_reads_in_design": false,
+    "model_calls": 0,
+    "archives_mutated": false
+  },
+  "source_refs": [
+    {
+      "ref_id": "audit_decision_record_design",
+      "ref": "docs/conversation-understanding/audit-decision-record-v0.md",
+      "kind": "design_doc",
+      "raw_content_included": false
+    },
+    {
+      "ref_id": "provenance_map_design",
+      "ref": "docs/conversation-understanding/provenance-map-v0.md",
+      "kind": "design_doc",
+      "raw_content_included": false
+    },
+    {
+      "ref_id": "review_conflict_register_design",
+      "ref": "docs/evals/review-conflict-register-v0.md",
+      "kind": "design_doc",
+      "raw_content_included": false
+    },
+    {
+      "ref_id": "audit_decision_record_fixtures",
+      "ref": "docs/evals/audit-decision-record-fixtures-v0.md",
+      "kind": "fixture_summary",
+      "raw_content_included": false
+    },
+    {
+      "ref_id": "human_review_summary",
+      "ref": "docs/evals/complex-baseline-human-review-v0.md",
+      "kind": "human_review_summary",
+      "raw_content_included": false
+    }
+  ],
+  "vocabulary": {
+    "node_types": [
+      "decision",
+      "original_recommendation",
+      "revised_recommendation",
+      "actionable_delta",
+      "evidence_gate",
+      "threshold",
+      "sequence",
+      "stop_rule",
+      "written_term",
+      "user_question",
+      "value_or_priority",
+      "stakeholder",
+      "unresolved_conflict",
+      "artifact",
+      "provenance_activity",
+      "review_record",
+      "doctor_check",
+      "limitation"
+    ],
+    "edge_types": [
+      "summarizes",
+      "changed_by",
+      "adds_gate",
+      "adds_threshold",
+      "changes_sequence",
+      "adds_stop_rule",
+      "adds_written_term",
+      "raises_question",
+      "has_conflict",
+      "preserves_conflict",
+      "supported_by_artifact",
+      "reviewed_by",
+      "derived_from",
+      "used_by",
+      "generated_by",
+      "has_limitation",
+      "not_applicable"
+    ]
+  },
+  "nodes": [
+    {
+      "node_id": "decision.assisted_intake_pilot",
+      "node_type": "decision",
+      "label": "Bounded assisted intake routing pilot",
+      "summary": "The reviewed decision concerns whether and how to run an assisted intake routing pilot without overstating readiness.",
+      "source_ref_ids": [
+        "audit_decision_record_fixtures",
+        "human_review_summary"
+      ],
+      "safe_to_print": true
+    },
+    {
+      "node_id": "recommendation.original",
+      "node_type": "original_recommendation",
+      "label": "Original recommendation shape",
+      "summary": "The original answer is represented as broader and more checklist-like than the later review-safe action path.",
+      "source_ref_ids": [
+        "audit_decision_record_fixtures"
+      ],
+      "safe_to_print": true
+    },
+    {
+      "node_id": "recommendation.revised",
+      "node_type": "revised_recommendation",
+      "label": "Revised recommendation shape",
+      "summary": "The revised answer is represented as a narrower pilot with explicit proof, escalation, and rollback expectations.",
+      "source_ref_ids": [
+        "audit_decision_record_fixtures",
+        "human_review_summary"
+      ],
+      "safe_to_print": true
+    },
+    {
+      "node_id": "delta.evidence_gate_added",
+      "node_type": "evidence_gate",
+      "label": "Evidence gate added",
+      "summary": "The review projection treats proof of safe operation as a gate before broader reliance on the pilot.",
+      "source_ref_ids": [
+        "audit_decision_record_fixtures"
+      ],
+      "pr31_label": "evidence_gate_added",
+      "safe_to_print": true
+    },
+    {
+      "node_id": "delta.stop_rule_added",
+      "node_type": "stop_rule",
+      "label": "Stop rule added",
+      "summary": "The review projection keeps a rollback or pause condition visible instead of treating launch as one-way.",
+      "source_ref_ids": [
+        "audit_decision_record_fixtures"
+      ],
+      "pr31_label": "stop_rule_added",
+      "safe_to_print": true
+    },
+    {
+      "node_id": "question.pause_authority",
+      "node_type": "user_question",
+      "label": "Pause authority question",
+      "summary": "A remaining user-answerable question asks who can pause or roll back the pilot when controls fail.",
+      "source_ref_ids": [
+        "review_conflict_register_design"
+      ],
+      "pr31_label": "user_question_added",
+      "safe_to_print": true
+    },
+    {
+      "node_id": "conflict.patient_safety_vs_learning",
+      "node_type": "unresolved_conflict",
+      "label": "Patient safety versus operational learning",
+      "summary": "Patient-facing risk, operator workload, and clinic learning goals remain in tension during any assisted routing pilot.",
+      "source_ref_ids": [
+        "review_conflict_register_design"
+      ],
+      "safe_to_print": true
+    },
+    {
+      "node_id": "artifact.agent_result",
+      "node_type": "artifact",
+      "label": "agent_result.json",
+      "summary": "Relative artifact pointer for the compact run handoff; no payload is copied into this design example.",
+      "source_ref_ids": [
+        "provenance_map_design"
+      ],
+      "artifact_ref": "agent_result.json",
+      "checksum": "not_included_in_design_fixture",
+      "safe_to_print": true
+    },
+    {
+      "node_id": "artifact.evaluation",
+      "node_type": "artifact",
+      "label": "evaluation.json",
+      "summary": "Relative artifact pointer for deterministic run-readiness context; no payload is copied into this design example.",
+      "source_ref_ids": [
+        "provenance_map_design"
+      ],
+      "artifact_ref": "evaluation.json",
+      "checksum": "not_included_in_design_fixture",
+      "safe_to_print": true
+    },
+    {
+      "node_id": "activity.review_projection",
+      "node_type": "provenance_activity",
+      "label": "Review projection activity",
+      "summary": "Design-only activity representing how review-safe summaries can be projected into a case graph view.",
+      "source_ref_ids": [
+        "provenance_map_design"
+      ],
+      "safe_to_print": true
+    },
+    {
+      "node_id": "review.complex_baseline",
+      "node_type": "review_record",
+      "label": "Complex baseline human review",
+      "summary": "Human/product review summary used as safe review context for the case graph design example.",
+      "source_ref_ids": [
+        "human_review_summary"
+      ],
+      "safe_to_print": true
+    },
+    {
+      "node_id": "doctor.not_applicable",
+      "node_type": "doctor_check",
+      "label": "Doctor report not included",
+      "summary": "No doctor report is included in this design fixture; a future case graph view may include one only when a safe report already exists.",
+      "source_ref_ids": [],
+      "safe_to_print": true
+    },
+    {
+      "node_id": "limitation.not_source_of_truth",
+      "node_type": "limitation",
+      "label": "View is not source of truth",
+      "summary": "The graph is a review orientation view; source artifacts and human review remain authoritative.",
+      "source_ref_ids": [
+        "audit_decision_record_design",
+        "provenance_map_design",
+        "review_conflict_register_design"
+      ],
+      "safe_to_print": true
+    }
+  ],
+  "edges": [
+    {
+      "edge_id": "edge.original_changed_by_revised",
+      "edge_type": "changed_by",
+      "from_node_id": "recommendation.original",
+      "to_node_id": "recommendation.revised",
+      "summary": "The revised recommendation is represented as changing the action path from broad readiness to a bounded pilot.",
+      "source_ref_ids": [
+        "audit_decision_record_fixtures"
+      ],
+      "safe_to_print": true
+    },
+    {
+      "edge_id": "edge.revised_adds_evidence_gate",
+      "edge_type": "adds_gate",
+      "from_node_id": "recommendation.revised",
+      "to_node_id": "delta.evidence_gate_added",
+      "summary": "The revised path adds proof before broader commitment.",
+      "source_ref_ids": [
+        "audit_decision_record_fixtures"
+      ],
+      "safe_to_print": true
+    },
+    {
+      "edge_id": "edge.revised_adds_stop_rule",
+      "edge_type": "adds_stop_rule",
+      "from_node_id": "recommendation.revised",
+      "to_node_id": "delta.stop_rule_added",
+      "summary": "The revised path keeps rollback or pause conditions visible.",
+      "source_ref_ids": [
+        "audit_decision_record_fixtures"
+      ],
+      "safe_to_print": true
+    },
+    {
+      "edge_id": "edge.revised_raises_pause_question",
+      "edge_type": "raises_question",
+      "from_node_id": "recommendation.revised",
+      "to_node_id": "question.pause_authority",
+      "summary": "The revised path leaves pause authority as a user-answerable question.",
+      "source_ref_ids": [
+        "review_conflict_register_design"
+      ],
+      "safe_to_print": true
+    },
+    {
+      "edge_id": "edge.decision_has_conflict",
+      "edge_type": "has_conflict",
+      "from_node_id": "decision.assisted_intake_pilot",
+      "to_node_id": "conflict.patient_safety_vs_learning",
+      "summary": "The decision remains entangled with patient safety, operator workload, and operational learning tensions.",
+      "source_ref_ids": [
+        "review_conflict_register_design"
+      ],
+      "safe_to_print": true
+    },
+    {
+      "edge_id": "edge.evidence_gate_preserves_conflict",
+      "edge_type": "preserves_conflict",
+      "from_node_id": "delta.evidence_gate_added",
+      "to_node_id": "conflict.patient_safety_vs_learning",
+      "summary": "The evidence gate preserves the conflict instead of pretending the graph resolves it.",
+      "source_ref_ids": [
+        "review_conflict_register_design"
+      ],
+      "safe_to_print": true
+    },
+    {
+      "edge_id": "edge.decision_supported_by_agent_result",
+      "edge_type": "supported_by_artifact",
+      "from_node_id": "decision.assisted_intake_pilot",
+      "to_node_id": "artifact.agent_result",
+      "summary": "The decision node points to a relative artifact reference for review context.",
+      "source_ref_ids": [
+        "provenance_map_design"
+      ],
+      "safe_to_print": true
+    },
+    {
+      "edge_id": "edge.decision_supported_by_evaluation",
+      "edge_type": "supported_by_artifact",
+      "from_node_id": "decision.assisted_intake_pilot",
+      "to_node_id": "artifact.evaluation",
+      "summary": "The decision node points to run-readiness context without treating readiness as answer quality.",
+      "source_ref_ids": [
+        "provenance_map_design"
+      ],
+      "safe_to_print": true
+    },
+    {
+      "edge_id": "edge.activity_used_review",
+      "edge_type": "used_by",
+      "from_node_id": "review.complex_baseline",
+      "to_node_id": "activity.review_projection",
+      "summary": "The design activity uses checked-in review summaries, not raw archive payloads.",
+      "source_ref_ids": [
+        "human_review_summary",
+        "provenance_map_design"
+      ],
+      "safe_to_print": true
+    },
+    {
+      "edge_id": "edge.decision_reviewed_by_human",
+      "edge_type": "reviewed_by",
+      "from_node_id": "decision.assisted_intake_pilot",
+      "to_node_id": "review.complex_baseline",
+      "summary": "The decision node points to human/product review context rather than an automatic judge.",
+      "source_ref_ids": [
+        "human_review_summary"
+      ],
+      "safe_to_print": true
+    },
+    {
+      "edge_id": "edge.doctor_not_applicable",
+      "edge_type": "not_applicable",
+      "from_node_id": "doctor.not_applicable",
+      "to_node_id": "decision.assisted_intake_pilot",
+      "summary": "No doctor report is attached to this design example.",
+      "source_ref_ids": [],
+      "safe_to_print": true
+    },
+    {
+      "edge_id": "edge.graph_has_limitation",
+      "edge_type": "has_limitation",
+      "from_node_id": "decision.assisted_intake_pilot",
+      "to_node_id": "limitation.not_source_of_truth",
+      "summary": "The case graph view is only an orientation layer over source artifacts and reviews.",
+      "source_ref_ids": [
+        "audit_decision_record_design"
+      ],
+      "safe_to_print": true
+    }
+  ],
+  "custody_flags": {
+    "raw_transcript_included": false,
+    "raw_memo_included": false,
+    "raw_revised_answer_included": false,
+    "provider_text_included": false,
+    "private_reasoning_included": false,
+    "local_absolute_paths_included": false,
+    "real_archive_hashes_included": false,
+    "archive_payload_read_in_design": false,
+    "model_calls": 0,
+    "archives_mutated": false,
+    "exporter_implemented": false
+  },
+  "limitations": [
+    "Design fixture only; not generated by an exporter.",
+    "Run-local review view only; not a graph database or memory layer.",
+    "Paraphrase-only example from checked-in review summaries and design docs.",
+    "Relative artifact names only; no local absolute paths or real archive hashes.",
+    "Missing graph nodes or edges do not prove absence in the underlying conversation.",
+    "Does not judge answer quality, approve domain use, resolve conflicts, create labels, or automate safe-for-agent-use decisions."
+  ]
+}

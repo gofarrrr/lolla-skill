@@ -737,6 +737,10 @@ stop and report. PR61 is only a design artifact and safe example JSON.
 
 Type: docs/fixture design
 
+Status after PR62: completed as the case graph export/view design:
+`docs/conversation-understanding/case-graph-export-v0.md` and
+`docs/conversation-understanding/case-graph-export-v0.json`.
+
 Goal:
 
 Design a run-local graph-shaped view over existing artifacts.
@@ -758,16 +762,21 @@ Required constraints:
 
 Acceptance criteria:
 
-- [ ] Defines node types.
-- [ ] Defines edge types.
-- [ ] Includes custody flags.
-- [ ] Shows how decision record, provenance map, conflict register, values
+- [x] Defines node types.
+- [x] Defines edge types.
+- [x] Includes custody flags.
+- [x] Shows how decision record, provenance map, conflict register, values
       worksheet, and human review can appear as nodes/edges.
-- [ ] States clearly that this is a view, not the source of truth.
+- [x] States clearly that this is a view, not the source of truth.
 
 Stop rule:
 
 Do not implement exporter.
+
+If a future PR62 continuation feels tempted to add code, tests, exporters,
+schemas under `engine/`, CLI support, runtime integration, or archive-reading
+behavior, stop and report. PR62 is only a design artifact and safe example
+JSON.
 
 ### PR63: Case Graph Fixture Pack v0
 
@@ -960,15 +969,16 @@ docs/evals/review-conflict-register-v0.md
 docs/evals/review-conflict-register-v0.json
 ```
 
-The next possible slice after PR61 is:
+PR62 has now designed the local case graph export/view shape:
 
 ```text
-PR62 Case Graph Export Design v0
+docs/conversation-understanding/case-graph-export-v0.md
+docs/conversation-understanding/case-graph-export-v0.json
 ```
 
-PR62 should remain docs/JSON design only. It should describe a future
-case-graph export/view shape without implying that an exporter exists. It
-should not add code, tests, exporters, schemas under `engine/`, CLI support,
-runtime integration, archive-reading behavior, graph DB, embeddings, memory,
-entity resolution, GraphRAG, answer-quality scoring, automatic labels, or
-Semantica-style platform work.
+Stop after PR62. A later PR63 Case Graph Fixture Pack v0 should be started
+only after maintainer review of PR60 through PR62. PR63 must remain
+paraphrase-only and must not add code, tests, exporters, schemas under
+`engine/`, CLI support, runtime integration, archive-reading behavior, graph
+DB, embeddings, memory, entity resolution, GraphRAG, answer-quality scoring,
+automatic labels, or Semantica-style platform work.

@@ -2,10 +2,10 @@
 
 Status: current-state handoff
 Date: 2026-06-29
-Slice: PR45, updated by PR61
+Slice: PR45, updated by PR62
 
 This note is the compact first-read handoff for a fresh Lolla eval session. It
-summarizes what the harness is, what PR30-PR61 built, what evidence exists now,
+summarizes what the harness is, what PR30-PR62 built, what evidence exists now,
 and what must not be built until the next explicit approval gates.
 
 PR45 is docs-only. It does not run Lolla, call models, mutate archives, change
@@ -37,7 +37,7 @@ The product boundary is still sharp:
 - `risk_mode` is reliance and review context, not answer-quality scoring,
   domain approval, or automatic safety.
 
-## PR30-PR61 Chain
+## PR30-PR62 Chain
 
 - PR30 created the six-run human/product review seed over the clean complex
   conversation baseline.
@@ -111,6 +111,10 @@ The product boundary is still sharp:
   surface for unresolved tensions. It does not resolve conflicts, automate
   severity, enforce policy, create labels, score answer quality, or implement
   an exporter.
+- PR62 designs `lolla.case_graph.v0` as a future run-local case graph
+  export/view shape. It does not implement an exporter, read archives, add
+  graph DB, add memory, add GraphRAG, add entity resolution, create labels,
+  score answer quality, or implement runtime behavior.
 
 ## Current Corpus Evidence
 
@@ -163,9 +167,10 @@ only aggregate keys and counts.
   read-only `lolla doctor` preflight CLI. PR58 only designs
   `lolla.audit_decision_record.v0`, PR59 only reviews fixtures, PR60 only
   designs `lolla.provenance_map.v0`, and PR61 only designs
-  `lolla.review_conflict_register.v0`; no decision-record exporter,
-  provenance exporter, conflict-register exporter, or `lolla.case_graph.v0`
-  exists from PR55 through PR61;
+  `lolla.review_conflict_register.v0`; PR62 only designs `lolla.case_graph.v0`;
+  no decision-record exporter, provenance exporter, conflict-register exporter,
+  case-graph exporter, graph DB, memory, GraphRAG, or runtime integration exists
+  from PR55 through PR62;
 - no domain, crisis, legal, medical, financial, or safety protocol.
 
 ## Explicit Non-Goals
@@ -218,8 +223,9 @@ The later safe lanes are separate:
    paraphrase-only decision-record fixtures. PR60 designs only the provenance
    map shape. PR61 designs only the review conflict register shape. Do not
    implement decision-record export, provenance export, conflict-register
-   export, case graph views, platform work, or runtime behavior from PR55
-   through PR61 alone.
+   export, case graph export, graph DB, memory, platform work, or runtime
+   behavior from PR55 through PR62 alone. PR62 designs only the case graph
+   export/view shape and stops before PR63.
 3. A later live-output hygiene lane can plan and lock current behavior, then
    stop for an implementation decision.
 
@@ -278,6 +284,13 @@ docs/evals/review-conflict-register-v0.md
 docs/evals/review-conflict-register-v0.json
 ```
 
+For the PR62 case graph export/view design, read:
+
+```text
+docs/conversation-understanding/case-graph-export-v0.md
+docs/conversation-understanding/case-graph-export-v0.json
+```
+
 ## Decision Gates
 
 - Now: decide whether to create approved real high-stakes evidence.
@@ -288,11 +301,12 @@ docs/evals/review-conflict-register-v0.json
   read-only doctor CLI. PR58 designs only `lolla.audit_decision_record.v0`.
   PR59 reviews only paraphrase-only decision-record fixtures. PR60 designs only
   `lolla.provenance_map.v0`. PR61 designs only
-  `lolla.review_conflict_register.v0`. PR62 may design a case graph
-  export/view shape next, but only as docs/JSON design without implying an
-  exporter exists and without an exporter implementation, runtime integration,
-  archive-reading behavior, graph DB, embeddings, memory, entity resolution,
-  GraphRAG, scoring, or automatic labels.
+  `lolla.review_conflict_register.v0`. PR62 designs only
+  `lolla.case_graph.v0` as a future export/view shape without implying an
+  exporter exists. Stop before PR63; a fixture pack requires maintainer review
+  of PR60 through PR62 and must not add exporter implementation, runtime
+  integration, archive-reading behavior, graph DB, embeddings, memory, entity
+  resolution, GraphRAG, scoring, or automatic labels.
 - After a live-output hygiene planning/review lane: decide whether to implement
   trusted live-output transcript hygiene.
 

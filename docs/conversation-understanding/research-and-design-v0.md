@@ -1671,6 +1671,41 @@ schemas under `engine/`, CLI support, runtime integration, archive-reading
 behavior, graph DB, embeddings, memory, entity resolution, GraphRAG, scoring,
 automatic labels, or judge behavior.
 
+### PR62: Case Graph Export Design v0
+
+Status: completed as
+[case-graph-export-v0.md](case-graph-export-v0.md) and
+[case-graph-export-v0.json](case-graph-export-v0.json).
+
+Goal: define `lolla.case_graph.v0` as a future run-local case graph
+export/view shape over existing review-safe artifacts.
+
+Outcome:
+
+- defines a graph-shaped review view with decision, recommendation,
+  actionable-delta, evidence-gate, stop-rule, user-question, conflict,
+  artifact, provenance-activity, review-record, doctor-check, and limitation
+  nodes;
+- defines review-safe edge types such as `changed_by`, `adds_gate`,
+  `adds_stop_rule`, `raises_question`, `has_conflict`,
+  `supported_by_artifact`, `reviewed_by`, and `has_limitation`;
+- shows how audit decision records, provenance maps, review conflict registers,
+  values/priorities worksheets, human review, doctor reports where relevant,
+  and source artifacts can appear as graph nodes or edges;
+- keeps the checked-in example paraphrase-only, relative-reference-only, and
+  free of real archive hashes;
+- states that the graph is a view, not source of truth, memory, graph DB,
+  GraphRAG, entity resolution, answer-quality scoring, or domain approval.
+
+Stop:
+
+```text
+Do not start PR63 automatically.
+```
+
+Any PR63 case graph fixture pack should wait for maintainer review of PR60
+through PR62 and must remain docs/JSON-only and paraphrase-only.
+
 ### Later: Decision-Aware Capture And Runtime Integration
 
 Goal: only after offline evidence, use the IR to improve capture or audit input.
@@ -1725,12 +1760,12 @@ PR52's blank worksheet export, PR53's human-filled worksheet pilot, PR54's
 pilot review / v0 decision, PR55's Semantica-inspired accountability PRD,
 PR56's Lolla Doctor / Preflight plan, PR57's read-only doctor CLI, PR58's audit
 decision record design, PR59's audit decision record fixture review, PR60's
-provenance map design, and PR61's review conflict register design now exist.
-The next step is still explicit approval, not automatic runtime work. The
-recommended next accountability slice is PR62 Case Graph Export Design v0,
-docs/JSON design only. Other lanes still require their own gates: future
-high-stakes evidence under PR46/PR48, reopening the values lane after PR54, or
-any populated extraction, memory, runtime integration, automatic labels, or
+provenance map design, PR61's review conflict register design, and PR62's case
+graph export/view design now exist. The next step is still explicit approval,
+not automatic runtime work. Do not start PR63 without maintainer review of PR60
+through PR62. Other lanes still require their own gates: future high-stakes
+evidence under PR46/PR48, reopening the values lane after PR54, or any
+populated extraction, memory, runtime integration, automatic labels, or
 judging.
 
 ## Sources

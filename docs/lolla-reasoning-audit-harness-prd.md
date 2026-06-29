@@ -254,10 +254,11 @@ Since the first harness PRD pass, the shipped harness layer has also added:
 - semantic coverage reports and corpus survey;
 - offline specialist extractor probe harnesses and evidence notes;
 - a six-case complex conversation baseline with full modern artifacts;
-- the PR30-PR61 evaluation/accountability handoff chain from human review seed
+- the PR30-PR62 evaluation/accountability handoff chain from human review seed
   through risk-mode reliance visibility, current-state anti-drift docs,
   human-owned values/priorities review, and the Semantica-inspired
-  accountability plan through the audit decision record fixture review.
+  accountability plan through decision-record fixtures, provenance map, review
+  conflict register, and case graph export/view designs.
 
 The current complex baseline is recorded in:
 
@@ -492,8 +493,21 @@ health, provider boundaries, unresolved questions, review disagreement,
 provenance gaps, and decision-record flattening risk. It does not resolve
 conflicts, automate severity, enforce policy, implement an exporter, run
 `$lolla`, call models, read or mutate archives, add labels, score answer
-quality, or judge advice. Its recommended next slice is PR62 Case Graph Export
-Design v0, docs/JSON design only.
+quality, or judge advice. PR62 followed it as a docs/JSON design slice.
+
+PR62 now lands the Case Graph Export design:
+
+`docs/conversation-understanding/case-graph-export-v0.md`
+
+It defines `lolla.case_graph.v0` as a future run-local case graph export/view
+shape over existing review-safe artifacts. It shows how decision, original and
+revised recommendation, PR31 delta, evidence gate, stop rule, user question,
+unresolved conflict, artifact, provenance activity, review record, doctor
+check, and limitation nodes can relate. It does not implement an exporter, read
+archives, run `$lolla`, call models, mutate archives, change prompts, change
+`SKILL.md`, add graph DB, add memory, add GraphRAG, add entity resolution,
+approve high-stakes use, judge answer quality, or create automatic labels. It
+stops before PR63 pending maintainer review.
 
 This roadmap should build on that. It should not restart the architecture.
 
@@ -881,6 +895,10 @@ Current v0 slice:
   `lolla.review_conflict_register.v0` human-review-owned conflict surface
   before any exporter, conflict resolution, severity automation, policy
   enforcement, scoring, labels, or judge.
+- `docs/conversation-understanding/case-graph-export-v0.md` defines the PR62
+  `lolla.case_graph.v0` future run-local case graph export/view shape before
+  any exporter, archive reading, runtime integration, graph DB, memory,
+  GraphRAG, entity resolution, scoring, labels, or judge.
 
 Acceptance criteria:
 

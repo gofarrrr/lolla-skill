@@ -1631,9 +1631,55 @@ Stop point:
   prompts, change `SKILL.md`, resolve conflicts, automate severity, enforce
   policy, create labels, score answer quality, or begin Semantica-style
   platform work from this slice.
-- The next possible slice is PR62 Case Graph Export Design v0, docs/JSON design
-  only. It should describe a future export/view shape without implying an
-  exporter exists.
+- Implemented next as PR62 Case Graph Export Design v0, docs/JSON design only.
+  It describes a future export/view shape without implying an exporter exists.
+
+### PR62: Case Graph Export Design v0
+
+Maps to: R6/R9 run-local review orientation.
+
+Status: completed as a docs/JSON design slice.
+
+Goal:
+
+Define `lolla.case_graph.v0` as a future run-local case graph export/view shape
+over existing review-safe artifacts.
+
+Output:
+
+- [Case Graph Export Design v0](../conversation-understanding/case-graph-export-v0.md).
+- [case-graph-export-v0.json](../conversation-understanding/case-graph-export-v0.json).
+
+Current result:
+
+- defines node types for decisions, original/revised recommendation shape,
+  actionable deltas, evidence gates, thresholds, sequence changes, stop rules,
+  written terms, user questions, values/priorities, stakeholders, unresolved
+  conflicts, artifacts, provenance activities, review records, doctor checks,
+  and limitations;
+- defines edge types for review-safe relationships such as changed-by,
+  adds-gate, raises-question, has-conflict, preserves-conflict,
+  supported-by-artifact, reviewed-by, derived-from, used-by, generated-by, and
+  has-limitation;
+- shows how audit decision record, provenance map, review conflict register,
+  values/priorities worksheet, human review, doctor reports where relevant, and
+  artifacts can appear as nodes or edges;
+- keeps the checked-in example paraphrase-only, relative-reference-only, and
+  free of real archive hashes;
+- states that the graph is a view, not source of truth, graph DB, memory,
+  GraphRAG, entity resolution, answer-quality scoring, automatic labels, or
+  domain approval.
+
+Stop point:
+
+- PR62 only designs the case graph export/view shape and example.
+- Do not implement an exporter, add tests, add schemas under `engine/`, add CLI
+  support, read archives, run `$lolla`, call models, mutate archives, change
+  prompts, change `SKILL.md`, add graph DB, add embeddings, add memory, add
+  GraphRAG, add entity resolution, score answer quality, create labels, or
+  begin Semantica-style platform work from this slice.
+- Do not start PR63 automatically. Any case graph fixture pack should wait for
+  maintainer review of PR60 through PR62.
 
 ## What Not To Build Yet
 
@@ -1692,11 +1738,12 @@ Before building judges or runtime semantic enrichment, Lolla should have:
 That is the smallest flywheel that can improve Lolla run by run without turning
 it into a vague critic or overbuilt memory system.
 
-The next conservative accountability slice is PR62 Case Graph Export Design v0.
-It should design only `lolla.case_graph.v0` as a run-local case graph
-export/view shape and should not implement an exporter, add tests, add schemas
-under `engine/`, add CLI support, read archives, run `$lolla`, call models,
-mutate archives, change prompts, change `SKILL.md`, change provider-boundary
-policy, add graph DB, add embeddings, add memory, add entity resolution, add
-GraphRAG, resolve conflicts automatically, score answer quality, add judges,
-add automatic labels, or start any Semantica-style platform work.
+The next conservative accountability step is maintainer review of PR60 through
+PR62. Do not start PR63 automatically. If a PR63 case graph fixture pack is
+approved later, it should remain docs/JSON-only, paraphrase-only, and should not
+implement an exporter, add tests, add schemas under `engine/`, add CLI support,
+read archives, run `$lolla`, call models, mutate archives, change prompts,
+change `SKILL.md`, change provider-boundary policy, add graph DB, add
+embeddings, add memory, add entity resolution, add GraphRAG, resolve conflicts
+automatically, score answer quality, add judges, add automatic labels, or start
+any Semantica-style platform work.

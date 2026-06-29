@@ -157,6 +157,12 @@ recommendation conflicts, artifact-health caveats, and provenance gaps, but it
 does not resolve those conflicts, score severity into action, enforce policy,
 create labels, or judge answer quality.
 
+`lolla.case_graph.v0` can orient reviewers by showing review-safe relationships
+between decision, delta, artifact, provenance, conflict, doctor, and review
+nodes. It is a view over existing artifacts, not a graph DB, memory layer,
+GraphRAG system, source of truth, exporter implementation, or answer-quality
+judge.
+
 These checks should gate releases before any subjective judge runs.
 
 ### 4. Binary Failure-Mode Judges Only
