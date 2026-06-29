@@ -219,13 +219,25 @@ real archive hashes.
 
 ## PR61 Gate
 
-The next possible slice is:
+Implemented next as:
 
 ```text
 PR61 Review Conflict Register Design v0
 ```
 
-PR61 should remain docs/JSON design only. It should design a human-review-owned
+PR61 remained docs/JSON design only. It designed a human-review-owned
 conflict register without resolving conflicts, scoring severity into actions,
 adding policy enforcement, implementing an exporter, reading archives, changing
 runtime behavior, or beginning Semantica-style platform work.
+
+## PR63 Accountability View Fixtures
+
+PR63 now tests provenance maps inside combined accountability-view bundles:
+
+- [Accountability View Fixtures v0](../evals/accountability-view-fixtures-v0.md)
+- [accountability-view-fixtures-v0.json](../evals/accountability-view-fixtures-v0.json)
+
+Those fixtures use provenance only to make relative artifact lineage easier to
+inspect. They use placeholder hashes, do not repeat real archive hashes, and do
+not treat lineage as advice quality, domain approval, runtime output, graph DB,
+or memory.

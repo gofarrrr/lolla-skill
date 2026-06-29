@@ -246,3 +246,16 @@ This does not approve an exporter. The next recommended slice is PR60
 Provenance Map Design v0 only after maintainer review of PR57 through PR59.
 Any future exporter still needs a separate gate and must remain raw-content
 safe, local, deterministic, and human-review-owned.
+
+## PR63 Accountability View Fixtures
+
+PR63 now tests the audit decision record inside combined accountability-view
+bundles:
+
+- [Accountability View Fixtures v0](../evals/accountability-view-fixtures-v0.md)
+- [accountability-view-fixtures-v0.json](../evals/accountability-view-fixtures-v0.json)
+
+Those fixtures use the decision record as one view beside provenance map,
+review conflict register, and case graph views. They remain paraphrase-only
+fixture evidence and do not implement an exporter, runtime artifact, labeler,
+score, judge, graph DB, or memory layer.

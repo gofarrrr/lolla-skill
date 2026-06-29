@@ -130,7 +130,7 @@ The detailed docs are split so agents and humans do not have to load one giant f
 | [Evaluation Methodology](docs/lolla-evaluation-methodology.md) | Lolla-specific eval doctrine: error analysis first, deterministic gates before judges, calibrated binary judges, and how to avoid rewarding smoothness over useful friction. |
 | [Evaluation Flywheel Action Plan](docs/evals/evaluation-flywheel-action-plan-v0.md) | The current action map for turning real traces into human labels, fixtures, deterministic checks, and later calibrated binary judges without drifting into generic scoring. |
 | [Current System Capabilities](docs/evals/current-system-capabilities-v0.md) | A plain-language map of what the current system can do, which recorded cases show it, how the layers work together, and how it helps us avoid brittle evaluation. |
-| [Current State Anti-Drift Handoff](docs/evals/current-state-anti-drift-handoff-v0.md) | PR45's compact fresh-session map, updated by PR62, of the PR30-PR62 eval/accountability chain, current corpus evidence, non-goals, and the next approval gates. |
+| [Current State Anti-Drift Handoff](docs/evals/current-state-anti-drift-handoff-v0.md) | PR45's compact fresh-session map, updated by PR63, of the PR30-PR63 eval/accountability chain, current corpus evidence, non-goals, and the next approval gates. |
 | [Semantica-Inspired Accountability PRD](docs/conversation-understanding/semantica-inspired-accountability-prd-v0.md) | PR55's docs-only plan for borrowing accountability primitives such as decision records, provenance maps, conflict registers, doctor/preflight, and case graph views without building graph DB, embeddings, memory, policy, compliance, judge, or scoring products. |
 | [Lolla Doctor / Preflight Plan](docs/evals/lolla-doctor-preflight-plan-v0.md) | PR56's docs-only plan for a future read-only doctor command that checks local runtime wiring, archive paths, helper scripts, provider/cost readiness, review manifests, high-stakes evidence visibility, output-path safety, and privacy without running `$lolla`, calling models, or mutating archives. |
 | [Lolla Doctor Read-Only CLI](docs/evals/lolla-doctor-readonly-cli-v0.md) | PR57's implementation note for `python3 scripts/lolla_doctor.py`, a local deterministic preflight command that emits `lolla.doctor_report.v0` without running `$lolla`, calling models, reading archive payloads, mutating archives, or judging answer quality. |
@@ -139,6 +139,7 @@ The detailed docs are split so agents and humans do not have to load one giant f
 | [Provenance Map Design](docs/conversation-understanding/provenance-map-v0.md) | PR60's docs/JSON design for `lolla.provenance_map.v0`, a local artifact-lineage map that borrows entity/activity/agent vocabulary without RDF, W3C compliance claims, graph DB, memory, runtime integration, or answer-quality scoring. |
 | [Review Conflict Register Design](docs/evals/review-conflict-register-v0.md) | PR61's docs/JSON design for `lolla.review_conflict_register.v0`, a human-review-owned register of unresolved tensions that does not resolve conflicts, score severity into actions, enforce policy, or judge answer quality. |
 | [Case Graph Export Design](docs/conversation-understanding/case-graph-export-v0.md) | PR62's docs/JSON design for `lolla.case_graph.v0`, a future run-local case graph export/view shape that does not implement an exporter, graph DB, memory, GraphRAG, entity resolution, runtime integration, or answer-quality scoring. |
+| [Accountability View Fixtures](docs/evals/accountability-view-fixtures-v0.md) | PR63's paraphrase-only fixture pack showing audit decision record, provenance map, review conflict register, and case graph views together on three reviewed cases before any exporter or runtime feature exists. |
 | [Complex Baseline Human Review](docs/evals/complex-baseline-human-review-v0.md) | PR30's six-run human/product review seed: useful friction, action-changing deltas, conservative reliance labels, and the PR31 rubric handoff. |
 | [Actionable Delta Rubric](docs/evals/actionable-delta-rubric-v0.md) | PR31's human-owned rubric for distinguishing real Lolla improvement from smoother no-op prose before adversarial fixtures or judges. |
 | [Adversarial Pair Fixtures](docs/evals/adversarial-pair-fixtures-v0.md) | PR32's seed fixtures for testing smoothness, status, checklist, balance, warmth, market-excitement, and authority-loyalty traps before any judge exists. |
@@ -243,3 +244,8 @@ The detailed docs are split so agents and humans do not have to load one giant f
   a future run-local graph-shaped review view, but it does not implement an
   exporter, read archives, change runtime behavior, add graph DB, add memory,
   add GraphRAG, add entity resolution, create labels, or score answer quality.
+- PR63 lands the accountability view fixture pack. It bundles audit decision
+  record, provenance map, review conflict register, and case graph views for
+  three checked-in reviewed cases, but it remains paraphrase-only docs/JSON and
+  does not implement exporters, read archives, change runtime behavior, add
+  labels, or score answer quality.

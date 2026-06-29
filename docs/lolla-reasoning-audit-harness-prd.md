@@ -254,11 +254,12 @@ Since the first harness PRD pass, the shipped harness layer has also added:
 - semantic coverage reports and corpus survey;
 - offline specialist extractor probe harnesses and evidence notes;
 - a six-case complex conversation baseline with full modern artifacts;
-- the PR30-PR62 evaluation/accountability handoff chain from human review seed
+- the PR30-PR63 evaluation/accountability handoff chain from human review seed
   through risk-mode reliance visibility, current-state anti-drift docs,
   human-owned values/priorities review, and the Semantica-inspired
   accountability plan through decision-record fixtures, provenance map, review
-  conflict register, and case graph export/view designs.
+  conflict register, case graph export/view design, and combined
+  accountability-view fixtures.
 
 The current complex baseline is recorded in:
 
@@ -507,7 +508,19 @@ check, and limitation nodes can relate. It does not implement an exporter, read
 archives, run `$lolla`, call models, mutate archives, change prompts, change
 `SKILL.md`, add graph DB, add memory, add GraphRAG, add entity resolution,
 approve high-stakes use, judge answer quality, or create automatic labels. It
-stops before PR63 pending maintainer review.
+stopped before the later fixture evidence gate.
+
+PR63 now lands the Accountability View fixture pack:
+
+`docs/evals/accountability-view-fixtures-v0.md`
+
+It creates three paraphrase-only fixture bundles that show audit decision
+record, provenance map, review conflict register, and case graph views together
+for existing reviewed cases. It does not implement exporters, read archives,
+run `$lolla`, call models, mutate archives, change prompts, change `SKILL.md`,
+add graph DB, add memory, add GraphRAG, add entity resolution, score answer
+quality, create labels, or judge advice. Its recommended next slice is PR64
+Accountability View Fixture Review v0, docs/eval-only.
 
 This roadmap should build on that. It should not restart the architecture.
 
@@ -899,6 +912,9 @@ Current v0 slice:
   `lolla.case_graph.v0` future run-local case graph export/view shape before
   any exporter, archive reading, runtime integration, graph DB, memory,
   GraphRAG, entity resolution, scoring, labels, or judge.
+- `docs/evals/accountability-view-fixtures-v0.md` defines the PR63 combined
+  accountability-view fixture pack before any exporter, archive reading,
+  runtime integration, graph DB, memory, GraphRAG, scoring, labels, or judge.
 
 Acceptance criteria:
 

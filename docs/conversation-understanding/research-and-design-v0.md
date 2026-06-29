@@ -1700,11 +1700,49 @@ Outcome:
 Stop:
 
 ```text
-Do not start PR63 automatically.
+PR63 was implemented next as docs/JSON-only accountability-view fixtures.
 ```
 
-Any PR63 case graph fixture pack should wait for maintainer review of PR60
-through PR62 and must remain docs/JSON-only and paraphrase-only.
+The PR63 fixture pack remained docs/JSON-only, paraphrase-only, and separate
+from runtime implementation, exporters, archive reading, graph DB, memory,
+scoring, labels, judges, and Semantica-style platform work.
+
+Implemented next as the broader accountability-view fixture pack.
+
+### PR63: Accountability View Fixture Pack v0
+
+Status: completed as
+[accountability-view-fixtures-v0.md](../evals/accountability-view-fixtures-v0.md)
+and
+[accountability-view-fixtures-v0.json](../evals/accountability-view-fixtures-v0.json).
+
+Goal: test whether audit decision record, provenance map, review conflict
+register, and case graph views help when shown together before any exporter
+exists.
+
+Outcome:
+
+- creates three paraphrase-only fixture bundles from checked-in reviewed
+  summaries;
+- covers `launch-public-enterprise-beta`,
+  `deploy-assisted-intake-routing`, and `ceo-remove-founding-cofounder`;
+- includes all four accountability views per fixture;
+- uses relative artifact refs and placeholder hashes only;
+- keeps raw transcript, raw memo, raw revised-answer, provider/model text,
+  private reasoning, local absolute paths, and real archive hashes out of the
+  checked-in examples;
+- keeps the bundle as fixture evidence, not a runtime feature, exporter,
+  graph DB, memory, GraphRAG, score, labeler, or judge.
+
+Next:
+
+```text
+PR64 Accountability View Fixture Review v0
+```
+
+PR64 should review whether the bundles help human/product inspection and which
+view, if any, is ready for a later implementation decision. It must remain
+docs/eval-only and must not implement exporters or runtime behavior.
 
 ### Later: Decision-Aware Capture And Runtime Integration
 
@@ -1760,12 +1798,13 @@ PR52's blank worksheet export, PR53's human-filled worksheet pilot, PR54's
 pilot review / v0 decision, PR55's Semantica-inspired accountability PRD,
 PR56's Lolla Doctor / Preflight plan, PR57's read-only doctor CLI, PR58's audit
 decision record design, PR59's audit decision record fixture review, PR60's
-provenance map design, PR61's review conflict register design, and PR62's case
-graph export/view design now exist. The next step is still explicit approval,
-not automatic runtime work. Do not start PR63 without maintainer review of PR60
-through PR62. Other lanes still require their own gates: future high-stakes
-evidence under PR46/PR48, reopening the values lane after PR54, or any
-populated extraction, memory, runtime integration, automatic labels, or
+provenance map design, PR61's review conflict register design, PR62's case
+graph export/view design, and PR63's accountability-view fixture pack now
+exist. The next step is still explicit review, not automatic runtime work. The
+recommended next accountability slice is PR64 Accountability View Fixture
+Review v0, docs/eval-only. Other lanes still require their own gates: future
+high-stakes evidence under PR46/PR48, reopening the values lane after PR54, or
+any populated extraction, memory, runtime integration, automatic labels, or
 judging.
 
 ## Sources

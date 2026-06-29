@@ -163,6 +163,11 @@ nodes. It is a view over existing artifacts, not a graph DB, memory layer,
 GraphRAG system, source of truth, exporter implementation, or answer-quality
 judge.
 
+The PR63 accountability-view fixture bundles test those views together before
+any exporter is built. A clean bundle can make inspection faster, but it still
+does not turn fixture structure into truth, approval, labels, memory, or answer
+quality.
+
 These checks should gate releases before any subjective judge runs.
 
 ### 4. Binary Failure-Mode Judges Only

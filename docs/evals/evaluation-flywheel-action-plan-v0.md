@@ -1678,8 +1678,49 @@ Stop point:
   prompts, change `SKILL.md`, add graph DB, add embeddings, add memory, add
   GraphRAG, add entity resolution, score answer quality, create labels, or
   begin Semantica-style platform work from this slice.
-- Do not start PR63 automatically. Any case graph fixture pack should wait for
-  maintainer review of PR60 through PR62.
+- PR63 was not runtime work; it was implemented next as a docs/JSON-only
+  accountability-view fixture pack after PR60 through PR62 existed.
+
+Implemented next as the broader PR63 Accountability View Fixture Pack v0.
+
+### PR63: Accountability View Fixture Pack v0
+
+Maps to: R6/R9 combined accountability-view evidence.
+
+Status: completed as a docs/JSON fixture slice.
+
+Goal:
+
+Create paraphrase-only fixture bundles that show audit decision record,
+provenance map, review conflict register, and case graph views together before
+any exporter exists.
+
+Output:
+
+- [Accountability View Fixtures v0](accountability-view-fixtures-v0.md).
+- [accountability-view-fixtures-v0.json](accountability-view-fixtures-v0.json).
+
+Current result:
+
+- creates three fixture bundles for `launch-public-enterprise-beta`,
+  `deploy-assisted-intake-routing`, and `ceo-remove-founding-cofounder`;
+- includes all four accountability views in each fixture bundle;
+- keeps the examples paraphrase-only and based on checked-in review summaries;
+- uses relative artifact references and placeholder hashes only;
+- keeps every raw/private/local-path custody flag safe;
+- tests whether a reviewer can see the decision delta, artifact lineage,
+  unresolved conflict, and graph-shaped relationship view together without
+  mistaking clean structure for advice quality.
+
+Stop point:
+
+- PR63 only creates fixture bundles.
+- Do not implement an exporter, add tests, add schemas under `engine/`, add CLI
+  support, read archives, run `$lolla`, call models, mutate archives, change
+  prompts, change `SKILL.md`, add graph DB, add embeddings, add memory, add
+  GraphRAG, add entity resolution, score answer quality, create labels, or
+  begin Semantica-style platform work from this slice.
+- The next slice is PR64 Accountability View Fixture Review v0, docs/eval-only.
 
 ## What Not To Build Yet
 
@@ -1738,12 +1779,12 @@ Before building judges or runtime semantic enrichment, Lolla should have:
 That is the smallest flywheel that can improve Lolla run by run without turning
 it into a vague critic or overbuilt memory system.
 
-The next conservative accountability step is maintainer review of PR60 through
-PR62. Do not start PR63 automatically. If a PR63 case graph fixture pack is
-approved later, it should remain docs/JSON-only, paraphrase-only, and should not
-implement an exporter, add tests, add schemas under `engine/`, add CLI support,
-read archives, run `$lolla`, call models, mutate archives, change prompts,
-change `SKILL.md`, change provider-boundary policy, add graph DB, add
-embeddings, add memory, add entity resolution, add GraphRAG, resolve conflicts
-automatically, score answer quality, add judges, add automatic labels, or start
-any Semantica-style platform work.
+The next conservative accountability step is PR64 Accountability View Fixture
+Review v0. It should review the PR63 bundles and produce a human/product
+readiness read before any implementation decision. It should remain
+docs/eval-only and should not implement an exporter, add tests, add schemas
+under `engine/`, add CLI support, read archives, run `$lolla`, call models,
+mutate archives, change prompts, change `SKILL.md`, change provider-boundary
+policy, add graph DB, add embeddings, add memory, add entity resolution, add
+GraphRAG, resolve conflicts automatically, score answer quality, add judges,
+add automatic labels, or start any Semantica-style platform work.

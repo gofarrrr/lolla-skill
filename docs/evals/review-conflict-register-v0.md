@@ -175,12 +175,25 @@ or approve deployment.
 
 ## PR62 Gate
 
-The next possible slice is:
+Implemented next as:
 
 ```text
 PR62 Case Graph Export Design v0
 ```
 
-PR62 should remain docs/JSON design only. It should design a run-local
+PR62 remained docs/JSON design only. It designed a run-local
 case-graph view shape without implementing an exporter, graph DB, embeddings,
 memory, entity resolution, runtime integration, judge, or scoring layer.
+
+## PR63 Accountability View Fixtures
+
+PR63 now tests review conflict registers inside combined accountability-view
+bundles:
+
+- [Accountability View Fixtures v0](accountability-view-fixtures-v0.md)
+- [accountability-view-fixtures-v0.json](accountability-view-fixtures-v0.json)
+
+Those fixtures use the conflict register to preserve unresolved tensions beside
+decision, provenance, and case graph views. They do not resolve conflicts,
+automate severity, enforce policy, create labels, score advice, or replace
+human review.

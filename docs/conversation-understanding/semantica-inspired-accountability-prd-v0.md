@@ -778,60 +778,72 @@ schemas under `engine/`, CLI support, runtime integration, or archive-reading
 behavior, stop and report. PR62 is only a design artifact and safe example
 JSON.
 
-### PR63: Case Graph Fixture Pack v0
+### PR63: Accountability View Fixture Pack v0
 
 Type: docs/JSON fixture
 
+Status after PR63: completed as the accountability view fixture pack:
+`docs/evals/accountability-view-fixtures-v0.md` and
+`docs/evals/accountability-view-fixtures-v0.json`.
+
 Goal:
 
-Create paraphrase-only case graph examples from existing reviewed cases.
+Create paraphrase-only fixture bundles from existing reviewed cases that show
+how audit decision record, provenance map, review conflict register, and case
+graph views work together before any exporter exists.
 
 Likely files:
 
-- `docs/evals/case-graph-fixtures-v0.md`
-- `docs/evals/case-graph-fixtures-v0.json`
+- `docs/evals/accountability-view-fixtures-v0.md`
+- `docs/evals/accountability-view-fixtures-v0.json`
 - handoff docs as needed
 
 Acceptance criteria:
 
-- [ ] 3-6 fixtures.
-- [ ] Every fixture has nodes, edges, custody flags, and limitations.
-- [ ] Reviewers can trace from decision to changed action and unresolved
+- [x] 3 fixtures.
+- [x] Every fixture has all four accountability views, custody flags, and
+      limitations.
+- [x] Reviewers can trace from decision to changed action and unresolved
       conflict.
-- [ ] No raw content copied.
-- [ ] No graph DB or exporter.
+- [x] No raw content copied.
+- [x] No graph DB or exporter.
 
 Stop rule:
 
 Do not build code until fixture review passes.
 
-### PR64: Case Graph Fixture Review v0
+### PR64: Accountability View Fixture Review v0
 
 Type: docs/eval-only review
 
 Goal:
 
-Have human/product review decide whether the case graph view is actually useful
-or merely pretty structure.
+Have human/product review decide whether the combined accountability-view
+fixtures are useful, whether any view creates false certainty, and which view,
+if any, should move toward a later implementation decision.
 
 Likely files:
 
-- `docs/evals/case-graph-fixture-review-v0.md`
-- `reviews/human/case-graph-fixture-review-v0/review.json`
+- `docs/evals/accountability-view-fixture-review-v0.md`
+- `reviews/human/accountability-view-fixture-review-v0/review.json`
 - roadmap/handoff docs as needed
 
 Review questions:
 
-- Does the graph view make the decision delta easier to inspect?
-- Does it preserve conflicts and uncertainties?
-- Does it create false certainty?
-- Does it duplicate existing artifacts without adding clarity?
-- Should an exporter be built later?
+- Does the bundle make the Lolla run easier to inspect?
+- Does the decision record clarify what changed?
+- Does the provenance map clarify artifact lineage?
+- Does the conflict register preserve unresolved tensions?
+- Does the case graph clarify relationships, or does it create decorative
+  structure?
+- Does any view create false certainty?
+- Which view seems most implementation-ready?
+- Which view should remain design-only?
 
 Acceptance criteria:
 
 - [ ] Review records pass/revise/exclude for each fixture.
-- [ ] Explicit decision: continue, revise, or stop the case graph lane.
+- [ ] Explicit implementation-readiness read for each view.
 - [ ] No exporter unless future PR is approved.
 
 ### PR65: Implementation Decision Gate v0
@@ -976,9 +988,15 @@ docs/conversation-understanding/case-graph-export-v0.md
 docs/conversation-understanding/case-graph-export-v0.json
 ```
 
-Stop after PR62. A later PR63 Case Graph Fixture Pack v0 should be started
-only after maintainer review of PR60 through PR62. PR63 must remain
-paraphrase-only and must not add code, tests, exporters, schemas under
+PR63 has now created the local accountability-view fixture pack:
+
+```text
+docs/evals/accountability-view-fixtures-v0.md
+docs/evals/accountability-view-fixtures-v0.json
+```
+
+The next slice is PR64 Accountability View Fixture Review v0. PR64 should
+remain docs/eval-only and should not add code, tests, exporters, schemas under
 `engine/`, CLI support, runtime integration, archive-reading behavior, graph
 DB, embeddings, memory, entity resolution, GraphRAG, answer-quality scoring,
 automatic labels, or Semantica-style platform work.

@@ -2,10 +2,10 @@
 
 Status: current-state handoff
 Date: 2026-06-29
-Slice: PR45, updated by PR62
+Slice: PR45, updated by PR63
 
 This note is the compact first-read handoff for a fresh Lolla eval session. It
-summarizes what the harness is, what PR30-PR62 built, what evidence exists now,
+summarizes what the harness is, what PR30-PR63 built, what evidence exists now,
 and what must not be built until the next explicit approval gates.
 
 PR45 is docs-only. It does not run Lolla, call models, mutate archives, change
@@ -37,7 +37,7 @@ The product boundary is still sharp:
 - `risk_mode` is reliance and review context, not answer-quality scoring,
   domain approval, or automatic safety.
 
-## PR30-PR62 Chain
+## PR30-PR63 Chain
 
 - PR30 created the six-run human/product review seed over the clean complex
   conversation baseline.
@@ -115,6 +115,11 @@ The product boundary is still sharp:
   export/view shape. It does not implement an exporter, read archives, add
   graph DB, add memory, add GraphRAG, add entity resolution, create labels,
   score answer quality, or implement runtime behavior.
+- PR63 creates three paraphrase-only accountability-view fixture bundles that
+  combine audit decision record, provenance map, review conflict register, and
+  case graph views. It does not implement exporters, read archives, add runtime
+  behavior, create labels, score answer quality, or implement a graph/memory
+  system.
 
 ## Current Corpus Evidence
 
@@ -168,9 +173,10 @@ only aggregate keys and counts.
   `lolla.audit_decision_record.v0`, PR59 only reviews fixtures, PR60 only
   designs `lolla.provenance_map.v0`, and PR61 only designs
   `lolla.review_conflict_register.v0`; PR62 only designs `lolla.case_graph.v0`;
-  no decision-record exporter, provenance exporter, conflict-register exporter,
+  PR63 only creates paraphrase-only accountability-view fixtures; no
+  decision-record exporter, provenance exporter, conflict-register exporter,
   case-graph exporter, graph DB, memory, GraphRAG, or runtime integration exists
-  from PR55 through PR62;
+  from PR55 through PR63;
 - no domain, crisis, legal, medical, financial, or safety protocol.
 
 ## Explicit Non-Goals
@@ -224,8 +230,9 @@ The later safe lanes are separate:
    map shape. PR61 designs only the review conflict register shape. Do not
    implement decision-record export, provenance export, conflict-register
    export, case graph export, graph DB, memory, platform work, or runtime
-   behavior from PR55 through PR62 alone. PR62 designs only the case graph
-   export/view shape and stops before PR63.
+   behavior from PR55 through PR63 alone. PR62 designs only the case graph
+   export/view shape. PR63 creates only paraphrase-only accountability-view
+   fixture bundles and stops before implementation.
 3. A later live-output hygiene lane can plan and lock current behavior, then
    stop for an implementation decision.
 
@@ -291,6 +298,13 @@ docs/conversation-understanding/case-graph-export-v0.md
 docs/conversation-understanding/case-graph-export-v0.json
 ```
 
+For the PR63 accountability-view fixture pack, read:
+
+```text
+docs/evals/accountability-view-fixtures-v0.md
+docs/evals/accountability-view-fixtures-v0.json
+```
+
 ## Decision Gates
 
 - Now: decide whether to create approved real high-stakes evidence.
@@ -303,8 +317,9 @@ docs/conversation-understanding/case-graph-export-v0.json
   `lolla.provenance_map.v0`. PR61 designs only
   `lolla.review_conflict_register.v0`. PR62 designs only
   `lolla.case_graph.v0` as a future export/view shape without implying an
-  exporter exists. Stop before PR63; a fixture pack requires maintainer review
-  of PR60 through PR62 and must not add exporter implementation, runtime
+  exporter exists. PR63 creates only paraphrase-only accountability-view
+  fixtures across the four views. PR64 may review those fixtures next, but must
+  remain docs/eval-only and must not add exporter implementation, runtime
   integration, archive-reading behavior, graph DB, embeddings, memory, entity
   resolution, GraphRAG, scoring, or automatic labels.
 - After a live-output hygiene planning/review lane: decide whether to implement

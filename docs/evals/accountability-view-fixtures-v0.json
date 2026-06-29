@@ -1,0 +1,1004 @@
+{
+  "schema_version": "lolla.accountability_view_fixtures.v0",
+  "fixture_count": 3,
+  "source_basis": "checked_in_review_summaries_only",
+  "fixtures": [
+    {
+      "fixture_id": "avf_v0_001_launch_public_enterprise_beta",
+      "case_id": "launch-public-enterprise-beta",
+      "run_id": "20260627T104146Z_7bfe79",
+      "source_basis": "checked_in_review_summary",
+      "views": {
+        "audit_decision_record": {
+          "schema_version": "lolla.audit_decision_record.v0",
+          "decision_question": {
+            "status": "present",
+            "summary": "Whether to prioritize a public enterprise beta around a marquee prospect or require buyer-behavior proof first.",
+            "grounding": "derivation"
+          },
+          "original_recommendation_summary": {
+            "status": "partial",
+            "summary": "The original recommendation is represented as more exposed to marquee-logo priority and public beta momentum.",
+            "grounding": "derivation"
+          },
+          "revised_recommendation_summary": {
+            "status": "present",
+            "summary": "The revised recommendation requires the same paid-pilot shape, procurement clarity, support tolerance, and concrete buyer behavior before public posture.",
+            "grounding": "derivation"
+          },
+          "actionable_deltas": {
+            "action_changed": [
+              {
+                "summary": "Do not default to the marquee buyer; compare both prospects through the same paid-pilot test.",
+                "grounding": "derivation"
+              }
+            ],
+            "threshold_changed": [
+              {
+                "summary": "Payment, procurement clarity, support tolerance, and diligence behavior become decision thresholds.",
+                "grounding": "derivation"
+              }
+            ],
+            "sequence_changed": [],
+            "evidence_gate_added": [
+              {
+                "summary": "Public beta posture is gated by concrete buyer behavior.",
+                "grounding": "derivation"
+              }
+            ],
+            "stop_rule_added": [],
+            "written_term_added": [
+              {
+                "summary": "Both prospects need the same written paid-pilot terms.",
+                "grounding": "derivation"
+              }
+            ],
+            "user_question_added": [],
+            "scope_narrowed": [
+              {
+                "summary": "The beta narrows from enterprise aura to private proof of tolerable scope.",
+                "grounding": "derivation"
+              }
+            ],
+            "overclaim_retracted": [
+              {
+                "summary": "A larger logo is not treated as proof that the opportunity should dominate.",
+                "grounding": "derivation"
+              }
+            ],
+            "no_op_prose_change": []
+          },
+          "unresolved_conflicts_or_questions": [
+            {
+              "summary": "Ambition and credibility remain in tension with support burden, customer trust, and proof quality.",
+              "owner": "human_reviewer",
+              "grounding": "derivation"
+            },
+            {
+              "summary": "Which prospect will accept the same constrained paid pilot with behavior that actually proves buying intent?",
+              "owner": "user",
+              "grounding": "derivation"
+            }
+          ],
+          "source_artifact_refs": [
+            "agent_result.json",
+            "evaluation.json",
+            "reasoning_trace.json",
+            "docs/evals/audit-decision-record-fixtures-v0.json",
+            "docs/evals/complex-baseline-human-review-v0.md"
+          ],
+          "custody_flags": {
+            "raw_transcript_included": false,
+            "raw_memo_included": false,
+            "raw_revised_answer_included": false,
+            "provider_text_included": false,
+            "private_reasoning_included": false,
+            "local_absolute_paths_included": false
+          }
+        },
+        "provenance_map": {
+          "schema_version": "lolla.provenance_map.v0",
+          "entities": [
+            {
+              "entity_id": "entity.agent_result",
+              "artifact": "agent_result.json",
+              "artifact_role": "agent_handoff",
+              "status": "present_in_reviewed_run",
+              "hash": {
+                "algorithm": "sha256",
+                "value": "not_included_in_design_fixture"
+              },
+              "custody_flags": {
+                "raw_content_included": false,
+                "local_absolute_path_included": false
+              }
+            },
+            {
+              "entity_id": "entity.evaluation",
+              "artifact": "evaluation.json",
+              "artifact_role": "run_readiness_receipt",
+              "status": "present_in_reviewed_run",
+              "hash": {
+                "algorithm": "sha256",
+                "value": "not_included_in_design_fixture"
+              },
+              "custody_flags": {
+                "raw_content_included": false,
+                "local_absolute_path_included": false
+              }
+            },
+            {
+              "entity_id": "entity.human_review_summary",
+              "artifact": "docs/evals/complex-baseline-human-review-v0.md",
+              "artifact_role": "human_review_summary",
+              "status": "checked_in_summary",
+              "hash": {
+                "algorithm": "sha256",
+                "value": "not_included_in_design_fixture"
+              },
+              "custody_flags": {
+                "raw_content_included": false,
+                "local_absolute_path_included": false
+              }
+            }
+          ],
+          "activities": [
+            {
+              "activity_id": "activity.review_projection",
+              "activity_type": "fixture_projection",
+              "summary": "Paraphrase checked-in review findings into four accountability views."
+            }
+          ],
+          "agents": [
+            {
+              "agent_id": "agent.human_reviewer",
+              "agent_type": "human_review",
+              "summary": "Human-owned review source for answer-level interpretation."
+            },
+            {
+              "agent_id": "agent.deterministic_fixture_author",
+              "agent_type": "docs_fixture",
+              "summary": "PR63 fixture authoring role; not a runtime agent."
+            }
+          ],
+          "relationships": [
+            {
+              "relationship_type": "used",
+              "from": "activity.review_projection",
+              "to": "entity.human_review_summary"
+            },
+            {
+              "relationship_type": "summarized_by",
+              "from": "entity.agent_result",
+              "to": "activity.review_projection"
+            },
+            {
+              "relationship_type": "reviewed_by",
+              "from": "entity.agent_result",
+              "to": "agent.human_reviewer"
+            }
+          ],
+          "custody_flags": {
+            "raw_transcript_included": false,
+            "raw_memo_included": false,
+            "raw_revised_answer_included": false,
+            "provider_text_included": false,
+            "private_reasoning_included": false,
+            "local_absolute_paths_included": false,
+            "real_archive_hashes_included": false
+          }
+        },
+        "review_conflict_register": {
+          "schema_version": "lolla.review_conflict_register.v0",
+          "conflicts": [
+            {
+              "conflict_id": "conflict.enterprise_ambition_vs_support_burden",
+              "category": "stakeholder_obligation_conflict",
+              "status": "open",
+              "summary": "Enterprise ambition and credibility remain in tension with support burden and customer trust.",
+              "sides": [
+                {
+                  "side_id": "side_market_signal",
+                  "summary": "A marquee enterprise prospect can create credibility and momentum.",
+                  "stakeholder_refs": [
+                    "company",
+                    "future_customers"
+                  ]
+                },
+                {
+                  "side_id": "side_operational_truth",
+                  "summary": "Support tolerance, procurement behavior, and customer trust need proof before public posture.",
+                  "stakeholder_refs": [
+                    "customers",
+                    "support_team"
+                  ]
+                }
+              ],
+              "review_owner": "human_reviewer",
+              "decision_impact": "changes_threshold",
+              "related_pr31_labels": [
+                "threshold_changed",
+                "evidence_gate_added",
+                "written_term_added",
+                "scope_narrowed",
+                "overclaim_retracted"
+              ],
+              "human_review_owned": true,
+              "raw_content_included": false
+            }
+          ],
+          "custody_flags": {
+            "raw_transcript_included": false,
+            "raw_memo_included": false,
+            "raw_revised_answer_included": false,
+            "provider_text_included": false,
+            "private_reasoning_included": false,
+            "local_absolute_paths_included": false
+          }
+        },
+        "case_graph": {
+          "schema_version": "lolla.case_graph.v0",
+          "scope": {
+            "graph_kind": "run_local_review_view",
+            "future_export_shape_only": true,
+            "exporter_implemented": false,
+            "graph_database_required": false,
+            "global_memory": false,
+            "answer_quality_score": false
+          },
+          "nodes": [
+            {
+              "node_id": "decision.enterprise_beta_priority",
+              "node_type": "decision",
+              "summary": "Whether public beta priority should follow logo status or same-shape buyer proof."
+            },
+            {
+              "node_id": "recommendation.revised",
+              "node_type": "revised_recommendation",
+              "summary": "Use constrained paid-pilot proof before public enterprise posture."
+            },
+            {
+              "node_id": "delta.same_shape_buyer_proof",
+              "node_type": "evidence_gate",
+              "summary": "Require comparable pilot behavior from both prospects."
+            },
+            {
+              "node_id": "conflict.ambition_support_burden",
+              "node_type": "unresolved_conflict",
+              "summary": "Credibility ambition remains in tension with support burden and trust."
+            },
+            {
+              "node_id": "artifact.review_summary",
+              "node_type": "artifact",
+              "summary": "Checked-in human review summary, not raw archive content."
+            }
+          ],
+          "edges": [
+            {
+              "edge_id": "edge.revised_adds_gate",
+              "edge_type": "adds_gate",
+              "from_node_id": "recommendation.revised",
+              "to_node_id": "delta.same_shape_buyer_proof"
+            },
+            {
+              "edge_id": "edge.decision_has_conflict",
+              "edge_type": "has_conflict",
+              "from_node_id": "decision.enterprise_beta_priority",
+              "to_node_id": "conflict.ambition_support_burden"
+            },
+            {
+              "edge_id": "edge.decision_supported_by_review",
+              "edge_type": "supported_by_artifact",
+              "from_node_id": "decision.enterprise_beta_priority",
+              "to_node_id": "artifact.review_summary"
+            }
+          ],
+          "custody_flags": {
+            "raw_transcript_included": false,
+            "raw_memo_included": false,
+            "raw_revised_answer_included": false,
+            "provider_text_included": false,
+            "private_reasoning_included": false,
+            "local_absolute_paths_included": false,
+            "real_archive_hashes_included": false
+          }
+        }
+      },
+      "expected_reviewer_read": {
+        "main_decision_delta": "Priority shifts from marquee-logo pull to same-shape buyer proof.",
+        "main_remaining_conflict": "Credibility and ambition still need to be balanced against support burden and customer trust.",
+        "why_bundle_should_help": "The decision record names the delta, provenance names the review-safe support, the conflict register preserves the unresolved tension, and the case graph connects them without claiming the advice is proven."
+      },
+      "custody_flags": {
+        "raw_transcript_included": false,
+        "raw_memo_included": false,
+        "raw_revised_answer_included": false,
+        "provider_text_included": false,
+        "private_reasoning_included": false,
+        "local_absolute_paths_included": false,
+        "real_archive_hashes_included": false
+      },
+      "limitations": [
+        "Fixture bundle only; not generated by an exporter.",
+        "Paraphrase-only summary from checked-in review docs.",
+        "Does not prove enterprise beta advice quality or approval."
+      ]
+    },
+    {
+      "fixture_id": "avf_v0_002_deploy_assisted_intake_routing",
+      "case_id": "deploy-assisted-intake-routing",
+      "run_id": "20260627T130339Z_4cd3cb",
+      "source_basis": "checked_in_review_summary",
+      "views": {
+        "audit_decision_record": {
+          "schema_version": "lolla.audit_decision_record.v0",
+          "decision_question": {
+            "status": "present",
+            "summary": "Whether to deploy assisted intake routing with enough controls to operate safely under pressure.",
+            "grounding": "derivation"
+          },
+          "original_recommendation_summary": {
+            "status": "partial",
+            "summary": "The original recommendation is represented as broader and more checklist-driven than the later control-focused path.",
+            "grounding": "derivation"
+          },
+          "revised_recommendation_summary": {
+            "status": "present",
+            "summary": "The revised recommendation narrows to operable controls, backlog diagnosis, escalation ownership, and pause or rollback triggers.",
+            "grounding": "derivation"
+          },
+          "actionable_deltas": {
+            "action_changed": [
+              {
+                "summary": "Run a narrower control-focused pilot rather than a broad checklist-driven launch.",
+                "grounding": "derivation"
+              }
+            ],
+            "threshold_changed": [
+              {
+                "summary": "Controls must be operable under load before the pilot can be trusted.",
+                "grounding": "derivation"
+              }
+            ],
+            "sequence_changed": [],
+            "evidence_gate_added": [
+              {
+                "summary": "Backlog diagnosis and operational proof gate any expansion.",
+                "grounding": "derivation"
+              }
+            ],
+            "stop_rule_added": [
+              {
+                "summary": "The pilot needs explicit pause or rollback triggers.",
+                "grounding": "derivation"
+              }
+            ],
+            "written_term_added": [],
+            "user_question_added": [
+              {
+                "summary": "The clinic must answer who owns control failures and escalation decisions.",
+                "grounding": "derivation"
+              }
+            ],
+            "scope_narrowed": [
+              {
+                "summary": "The pilot can prove operating control readiness, not broad deployment safety.",
+                "grounding": "derivation"
+              }
+            ],
+            "overclaim_retracted": [],
+            "no_op_prose_change": []
+          },
+          "unresolved_conflicts_or_questions": [
+            {
+              "summary": "Patient-facing risk, operator burden, compliance expectations, and learning speed remain in tension.",
+              "owner": "domain_reviewer",
+              "grounding": "derivation"
+            },
+            {
+              "summary": "Who has authority to pause the pilot when controls fail under pressure?",
+              "owner": "user",
+              "grounding": "derivation"
+            }
+          ],
+          "source_artifact_refs": [
+            "agent_result.json",
+            "evaluation.json",
+            "reasoning_trace.json",
+            "docs/evals/audit-decision-record-fixtures-v0.json",
+            "docs/evals/review-conflict-register-v0.json"
+          ],
+          "custody_flags": {
+            "raw_transcript_included": false,
+            "raw_memo_included": false,
+            "raw_revised_answer_included": false,
+            "provider_text_included": false,
+            "private_reasoning_included": false,
+            "local_absolute_paths_included": false
+          }
+        },
+        "provenance_map": {
+          "schema_version": "lolla.provenance_map.v0",
+          "entities": [
+            {
+              "entity_id": "entity.agent_result",
+              "artifact": "agent_result.json",
+              "artifact_role": "agent_handoff",
+              "status": "present_in_reviewed_run",
+              "hash": {
+                "algorithm": "sha256",
+                "value": "not_included_in_design_fixture"
+              },
+              "custody_flags": {
+                "raw_content_included": false,
+                "local_absolute_path_included": false
+              }
+            },
+            {
+              "entity_id": "entity.reasoning_trace",
+              "artifact": "reasoning_trace.json",
+              "artifact_role": "artifact_index",
+              "status": "present_in_reviewed_run",
+              "hash": {
+                "algorithm": "sha256",
+                "value": "not_included_in_design_fixture"
+              },
+              "custody_flags": {
+                "raw_content_included": false,
+                "local_absolute_path_included": false
+              }
+            },
+            {
+              "entity_id": "entity.conflict_register_design",
+              "artifact": "docs/evals/review-conflict-register-v0.json",
+              "artifact_role": "design_fixture_source",
+              "status": "checked_in_summary",
+              "hash": {
+                "algorithm": "sha256",
+                "value": "not_included_in_design_fixture"
+              },
+              "custody_flags": {
+                "raw_content_included": false,
+                "local_absolute_path_included": false
+              }
+            }
+          ],
+          "activities": [
+            {
+              "activity_id": "activity.bundle_projection",
+              "activity_type": "fixture_projection",
+              "summary": "Project checked-in summaries into an accountability-view bundle."
+            }
+          ],
+          "agents": [
+            {
+              "agent_id": "agent.human_reviewer",
+              "agent_type": "human_review",
+              "summary": "Human-owned review source for the clinic case."
+            },
+            {
+              "agent_id": "agent.deterministic_fixture_author",
+              "agent_type": "docs_fixture",
+              "summary": "PR63 fixture authoring role; not a runtime agent."
+            }
+          ],
+          "relationships": [
+            {
+              "relationship_type": "used",
+              "from": "activity.bundle_projection",
+              "to": "entity.conflict_register_design"
+            },
+            {
+              "relationship_type": "derived_from",
+              "from": "entity.agent_result",
+              "to": "activity.bundle_projection"
+            },
+            {
+              "relationship_type": "validated_by",
+              "from": "entity.agent_result",
+              "to": "entity.reasoning_trace"
+            }
+          ],
+          "custody_flags": {
+            "raw_transcript_included": false,
+            "raw_memo_included": false,
+            "raw_revised_answer_included": false,
+            "provider_text_included": false,
+            "private_reasoning_included": false,
+            "local_absolute_paths_included": false,
+            "real_archive_hashes_included": false
+          }
+        },
+        "review_conflict_register": {
+          "schema_version": "lolla.review_conflict_register.v0",
+          "conflicts": [
+            {
+              "conflict_id": "conflict.patient_safety_vs_operational_learning",
+              "category": "stakeholder_obligation_conflict",
+              "status": "open",
+              "summary": "Patient-facing risk, operator workload, and clinic learning goals remain in tension during any assisted routing pilot.",
+              "sides": [
+                {
+                  "side_id": "side_patient_safety",
+                  "summary": "The pilot must protect patients from routing failures and escalation gaps.",
+                  "stakeholder_refs": [
+                    "patients",
+                    "clinic_staff"
+                  ]
+                },
+                {
+                  "side_id": "side_operational_learning",
+                  "summary": "The clinic still needs a bounded way to learn whether assisted routing can work under load.",
+                  "stakeholder_refs": [
+                    "clinic_leadership",
+                    "operators"
+                  ]
+                }
+              ],
+              "review_owner": "domain_reviewer",
+              "decision_impact": "changes_threshold",
+              "related_pr31_labels": [
+                "threshold_changed",
+                "evidence_gate_added",
+                "stop_rule_added"
+              ],
+              "human_review_owned": true,
+              "raw_content_included": false
+            },
+            {
+              "conflict_id": "conflict.pause_authority_unknown",
+              "category": "unresolved_user_question_conflict",
+              "status": "open",
+              "summary": "The checked-in summaries do not establish who can pause or roll back the pilot when controls fail.",
+              "sides": [
+                {
+                  "side_id": "side_named_pause_owner",
+                  "summary": "A named owner must be able to stop the pilot under pressure.",
+                  "stakeholder_refs": [
+                    "clinic_operator",
+                    "maintainer_or_reviewer"
+                  ]
+                },
+                {
+                  "side_id": "side_authority_not_established",
+                  "summary": "The safe summaries do not say who already has that authority.",
+                  "stakeholder_refs": [
+                    "user",
+                    "clinic_leadership"
+                  ]
+                }
+              ],
+              "review_owner": "user",
+              "decision_impact": "requires_question",
+              "related_pr31_labels": [
+                "user_question_added",
+                "stop_rule_added"
+              ],
+              "human_review_owned": true,
+              "raw_content_included": false
+            }
+          ],
+          "custody_flags": {
+            "raw_transcript_included": false,
+            "raw_memo_included": false,
+            "raw_revised_answer_included": false,
+            "provider_text_included": false,
+            "private_reasoning_included": false,
+            "local_absolute_paths_included": false
+          }
+        },
+        "case_graph": {
+          "schema_version": "lolla.case_graph.v0",
+          "scope": {
+            "graph_kind": "run_local_review_view",
+            "future_export_shape_only": true,
+            "exporter_implemented": false,
+            "graph_database_required": false,
+            "global_memory": false,
+            "answer_quality_score": false
+          },
+          "nodes": [
+            {
+              "node_id": "decision.assisted_intake_pilot",
+              "node_type": "decision",
+              "summary": "Whether to run assisted intake routing under bounded controls."
+            },
+            {
+              "node_id": "recommendation.revised",
+              "node_type": "revised_recommendation",
+              "summary": "Use operable controls, diagnosis, escalation ownership, and stop triggers."
+            },
+            {
+              "node_id": "delta.operable_controls",
+              "node_type": "evidence_gate",
+              "summary": "Backlog diagnosis and control proof gate any expansion."
+            },
+            {
+              "node_id": "conflict.patient_safety_learning",
+              "node_type": "unresolved_conflict",
+              "summary": "Patient safety and operational learning remain in tension."
+            },
+            {
+              "node_id": "artifact.conflict_register",
+              "node_type": "artifact",
+              "summary": "Checked-in conflict-register design example, not runtime output."
+            }
+          ],
+          "edges": [
+            {
+              "edge_id": "edge.revised_adds_control_gate",
+              "edge_type": "adds_gate",
+              "from_node_id": "recommendation.revised",
+              "to_node_id": "delta.operable_controls"
+            },
+            {
+              "edge_id": "edge.decision_has_safety_conflict",
+              "edge_type": "has_conflict",
+              "from_node_id": "decision.assisted_intake_pilot",
+              "to_node_id": "conflict.patient_safety_learning"
+            },
+            {
+              "edge_id": "edge.conflict_supported_by_register",
+              "edge_type": "supported_by_artifact",
+              "from_node_id": "conflict.patient_safety_learning",
+              "to_node_id": "artifact.conflict_register"
+            }
+          ],
+          "custody_flags": {
+            "raw_transcript_included": false,
+            "raw_memo_included": false,
+            "raw_revised_answer_included": false,
+            "provider_text_included": false,
+            "private_reasoning_included": false,
+            "local_absolute_paths_included": false,
+            "real_archive_hashes_included": false
+          }
+        }
+      },
+      "expected_reviewer_read": {
+        "main_decision_delta": "The advice moves from checklist-like launch breadth to operable controls with explicit gates and stop conditions.",
+        "main_remaining_conflict": "Patient-facing risk and operator burden remain in tension with the desire to learn from a bounded pilot.",
+        "why_bundle_should_help": "The four views together let the reviewer see the control-focused delta, lineage pointers, unresolved authority questions, and graph relationships without implying healthcare deployment approval."
+      },
+      "custody_flags": {
+        "raw_transcript_included": false,
+        "raw_memo_included": false,
+        "raw_revised_answer_included": false,
+        "provider_text_included": false,
+        "private_reasoning_included": false,
+        "local_absolute_paths_included": false,
+        "real_archive_hashes_included": false
+      },
+      "limitations": [
+        "Fixture bundle only; not generated by an exporter.",
+        "Paraphrase-only summary from checked-in review docs.",
+        "Does not approve deployment, replace domain review, or create high-stakes evidence."
+      ]
+    },
+    {
+      "fixture_id": "avf_v0_003_ceo_remove_founding_cofounder",
+      "case_id": "ceo-remove-founding-cofounder",
+      "run_id": "20260627T093131Z_59d153",
+      "source_basis": "checked_in_review_summary",
+      "views": {
+        "audit_decision_record": {
+          "schema_version": "lolla.audit_decision_record.v0",
+          "decision_question": {
+            "status": "present",
+            "summary": "Whether to remove a founding cofounder from operating authority while preserving a workable relationship.",
+            "grounding": "derivation"
+          },
+          "original_recommendation_summary": {
+            "status": "partial",
+            "summary": "The original recommendation is represented as more oriented toward repair or reset before authority movement.",
+            "grounding": "derivation"
+          },
+          "revised_recommendation_summary": {
+            "status": "present",
+            "summary": "The revised recommendation moves authority first, then allows only bounded transition support under stop-loss rules.",
+            "grounding": "derivation"
+          },
+          "actionable_deltas": {
+            "action_changed": [
+              {
+                "summary": "Move operating authority instead of first trying to repair cooperation.",
+                "grounding": "derivation"
+              }
+            ],
+            "threshold_changed": [],
+            "sequence_changed": [
+              {
+                "summary": "Authority transfer precedes any ongoing transition role.",
+                "grounding": "derivation"
+              }
+            ],
+            "evidence_gate_added": [],
+            "stop_rule_added": [
+              {
+                "summary": "The transition role must stop if it preserves shadow authority.",
+                "grounding": "derivation"
+              }
+            ],
+            "written_term_added": [],
+            "user_question_added": [],
+            "scope_narrowed": [
+              {
+                "summary": "The cofounder role narrows to bounded transition support.",
+                "grounding": "derivation"
+              }
+            ],
+            "overclaim_retracted": [],
+            "no_op_prose_change": []
+          },
+          "unresolved_conflicts_or_questions": [
+            {
+              "summary": "Founder loyalty and fairness remain in tension with team clarity and explicit authority transfer.",
+              "owner": "human_reviewer",
+              "grounding": "derivation"
+            },
+            {
+              "summary": "Which transition terms prevent shadow authority while preserving dignity?",
+              "owner": "user",
+              "grounding": "derivation"
+            }
+          ],
+          "source_artifact_refs": [
+            "agent_result.json",
+            "evaluation.json",
+            "reasoning_trace.json",
+            "docs/evals/audit-decision-record-fixtures-v0.json",
+            "docs/evals/complex-baseline-human-review-v0.md"
+          ],
+          "custody_flags": {
+            "raw_transcript_included": false,
+            "raw_memo_included": false,
+            "raw_revised_answer_included": false,
+            "provider_text_included": false,
+            "private_reasoning_included": false,
+            "local_absolute_paths_included": false
+          }
+        },
+        "provenance_map": {
+          "schema_version": "lolla.provenance_map.v0",
+          "entities": [
+            {
+              "entity_id": "entity.agent_result",
+              "artifact": "agent_result.json",
+              "artifact_role": "agent_handoff",
+              "status": "present_in_reviewed_run",
+              "hash": {
+                "algorithm": "sha256",
+                "value": "not_included_in_design_fixture"
+              },
+              "custody_flags": {
+                "raw_content_included": false,
+                "local_absolute_path_included": false
+              }
+            },
+            {
+              "entity_id": "entity.evaluation",
+              "artifact": "evaluation.json",
+              "artifact_role": "run_readiness_receipt",
+              "status": "present_in_reviewed_run",
+              "hash": {
+                "algorithm": "sha256",
+                "value": "not_included_in_design_fixture"
+              },
+              "custody_flags": {
+                "raw_content_included": false,
+                "local_absolute_path_included": false
+              }
+            },
+            {
+              "entity_id": "entity.audit_decision_record_fixture",
+              "artifact": "docs/evals/audit-decision-record-fixtures-v0.json",
+              "artifact_role": "fixture_source",
+              "status": "checked_in_summary",
+              "hash": {
+                "algorithm": "sha256",
+                "value": "not_included_in_design_fixture"
+              },
+              "custody_flags": {
+                "raw_content_included": false,
+                "local_absolute_path_included": false
+              }
+            }
+          ],
+          "activities": [
+            {
+              "activity_id": "activity.bundle_projection",
+              "activity_type": "fixture_projection",
+              "summary": "Project checked-in cofounder review summary into the accountability-view bundle."
+            }
+          ],
+          "agents": [
+            {
+              "agent_id": "agent.human_reviewer",
+              "agent_type": "human_review",
+              "summary": "Human-owned review source for authority-transfer interpretation."
+            },
+            {
+              "agent_id": "agent.deterministic_fixture_author",
+              "agent_type": "docs_fixture",
+              "summary": "PR63 fixture authoring role; not a runtime agent."
+            }
+          ],
+          "relationships": [
+            {
+              "relationship_type": "used",
+              "from": "activity.bundle_projection",
+              "to": "entity.audit_decision_record_fixture"
+            },
+            {
+              "relationship_type": "derived_from",
+              "from": "entity.agent_result",
+              "to": "activity.bundle_projection"
+            },
+            {
+              "relationship_type": "validated_by",
+              "from": "entity.agent_result",
+              "to": "entity.evaluation"
+            }
+          ],
+          "custody_flags": {
+            "raw_transcript_included": false,
+            "raw_memo_included": false,
+            "raw_revised_answer_included": false,
+            "provider_text_included": false,
+            "private_reasoning_included": false,
+            "local_absolute_paths_included": false,
+            "real_archive_hashes_included": false
+          }
+        },
+        "review_conflict_register": {
+          "schema_version": "lolla.review_conflict_register.v0",
+          "conflicts": [
+            {
+              "conflict_id": "conflict.loyalty_vs_authority_clarity",
+              "category": "stakeholder_obligation_conflict",
+              "status": "open",
+              "summary": "Founder loyalty and fairness remain in tension with team clarity and explicit authority transfer.",
+              "sides": [
+                {
+                  "side_id": "side_relationship_preservation",
+                  "summary": "The transition should preserve dignity and avoid unnecessary personal damage.",
+                  "stakeholder_refs": [
+                    "founding_cofounder",
+                    "user"
+                  ]
+                },
+                {
+                  "side_id": "side_operating_authority",
+                  "summary": "The team needs clear authority rather than shadow control.",
+                  "stakeholder_refs": [
+                    "team",
+                    "company"
+                  ]
+                }
+              ],
+              "review_owner": "human_reviewer",
+              "decision_impact": "changes_sequence",
+              "related_pr31_labels": [
+                "action_changed",
+                "sequence_changed",
+                "stop_rule_added",
+                "scope_narrowed"
+              ],
+              "human_review_owned": true,
+              "raw_content_included": false
+            }
+          ],
+          "custody_flags": {
+            "raw_transcript_included": false,
+            "raw_memo_included": false,
+            "raw_revised_answer_included": false,
+            "provider_text_included": false,
+            "private_reasoning_included": false,
+            "local_absolute_paths_included": false
+          }
+        },
+        "case_graph": {
+          "schema_version": "lolla.case_graph.v0",
+          "scope": {
+            "graph_kind": "run_local_review_view",
+            "future_export_shape_only": true,
+            "exporter_implemented": false,
+            "graph_database_required": false,
+            "global_memory": false,
+            "answer_quality_score": false
+          },
+          "nodes": [
+            {
+              "node_id": "decision.cofounder_authority_transfer",
+              "node_type": "decision",
+              "summary": "Whether to remove operating authority while preserving a workable relationship."
+            },
+            {
+              "node_id": "recommendation.revised",
+              "node_type": "revised_recommendation",
+              "summary": "Move authority first; allow bounded transition support only under stop rules."
+            },
+            {
+              "node_id": "delta.authority_first",
+              "node_type": "actionable_delta",
+              "summary": "Authority transfer becomes the action-changing delta."
+            },
+            {
+              "node_id": "conflict.loyalty_authority",
+              "node_type": "unresolved_conflict",
+              "summary": "Founder fairness remains in tension with team clarity."
+            },
+            {
+              "node_id": "artifact.adr_fixture",
+              "node_type": "artifact",
+              "summary": "Checked-in audit decision record fixture, not runtime output."
+            }
+          ],
+          "edges": [
+            {
+              "edge_id": "edge.revised_changes_action",
+              "edge_type": "changed_by",
+              "from_node_id": "decision.cofounder_authority_transfer",
+              "to_node_id": "delta.authority_first"
+            },
+            {
+              "edge_id": "edge.delta_preserves_conflict",
+              "edge_type": "preserves_conflict",
+              "from_node_id": "delta.authority_first",
+              "to_node_id": "conflict.loyalty_authority"
+            },
+            {
+              "edge_id": "edge.decision_supported_by_fixture",
+              "edge_type": "supported_by_artifact",
+              "from_node_id": "decision.cofounder_authority_transfer",
+              "to_node_id": "artifact.adr_fixture"
+            }
+          ],
+          "custody_flags": {
+            "raw_transcript_included": false,
+            "raw_memo_included": false,
+            "raw_revised_answer_included": false,
+            "provider_text_included": false,
+            "private_reasoning_included": false,
+            "local_absolute_paths_included": false,
+            "real_archive_hashes_included": false
+          }
+        }
+      },
+      "expected_reviewer_read": {
+        "main_decision_delta": "The revision moves operating authority before any bounded transition support.",
+        "main_remaining_conflict": "Relationship preservation and fairness remain in tension with explicit authority transfer and team clarity.",
+        "why_bundle_should_help": "The bundle makes the authority-first delta inspectable while keeping provenance, conflict, and graph structure subordinate to human review."
+      },
+      "custody_flags": {
+        "raw_transcript_included": false,
+        "raw_memo_included": false,
+        "raw_revised_answer_included": false,
+        "provider_text_included": false,
+        "private_reasoning_included": false,
+        "local_absolute_paths_included": false,
+        "real_archive_hashes_included": false
+      },
+      "limitations": [
+        "Fixture bundle only; not generated by an exporter.",
+        "Paraphrase-only summary from checked-in review docs.",
+        "Does not decide the interpersonal or legal correctness of the authority transfer."
+      ]
+    }
+  ],
+  "custody_flags": {
+    "raw_transcript_included": false,
+    "raw_memo_included": false,
+    "raw_revised_answer_included": false,
+    "provider_text_included": false,
+    "private_reasoning_included": false,
+    "local_absolute_paths_included": false,
+    "real_archive_hashes_included": false
+  },
+  "limitations": [
+    "Fixture pack only; not generated by an exporter.",
+    "Paraphrase-only summaries from checked-in review docs.",
+    "Relative artifact names and placeholder hashes only.",
+    "Does not ship runtime artifacts or approve future exporter implementation."
+  ]
+}

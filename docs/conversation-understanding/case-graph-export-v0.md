@@ -246,8 +246,19 @@ JSON.
 
 ## PR63 Gate
 
-Stop after PR62.
+PR63 has now created the broader accountability-view fixture pack. It uses the
+case graph as one view beside audit decision record, provenance map, and review
+conflict register views. It remains paraphrase-only docs/JSON and does not
+implement an exporter.
 
-A later PR63 could create paraphrase-only case graph fixtures, but only after
-maintainer review of PR60 through PR62. PR63 must not be started from PR62
-automatically.
+## PR63 Accountability View Fixtures
+
+PR63 now tests the case graph view inside combined accountability-view bundles:
+
+- [Accountability View Fixtures v0](../evals/accountability-view-fixtures-v0.md)
+- [accountability-view-fixtures-v0.json](../evals/accountability-view-fixtures-v0.json)
+
+Those fixtures use the graph only as a compact relationship view over
+review-safe summaries. They do not implement a graph exporter, graph DB,
+GraphRAG, memory, entity resolution, runtime integration, score, label, or
+judge.
