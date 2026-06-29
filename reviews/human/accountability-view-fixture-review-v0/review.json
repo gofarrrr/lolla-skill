@@ -1,0 +1,179 @@
+{
+  "schema_version": "lolla.accountability_view_fixture_review.v0",
+  "status": "complete",
+  "date": "2026-06-29",
+  "fixture_source": "docs/evals/accountability-view-fixtures-v0.json",
+  "review_scope": {
+    "fixture_count": 3,
+    "paraphrase_only": true,
+    "raw_archive_transcripts_inspected": false,
+    "model_calls": 0,
+    "archive_mutation": false,
+    "exporter_implemented": false,
+    "runtime_changes": false,
+    "answer_quality_scoring": false,
+    "automatic_labels": false,
+    "graph_database": false,
+    "memory": false
+  },
+  "aggregate_counts": {
+    "review_status": {
+      "pass": 3,
+      "revise": 0,
+      "exclude": 0
+    },
+    "bundle_inspection_value": {
+      "high": 2,
+      "medium": 1,
+      "low": 0,
+      "none": 0
+    },
+    "decision_record_value": {
+      "high": 3,
+      "medium": 0,
+      "low": 0,
+      "none": 0
+    },
+    "provenance_map_value": {
+      "high": 0,
+      "medium": 3,
+      "low": 0,
+      "none": 0
+    },
+    "conflict_register_value": {
+      "high": 3,
+      "medium": 0,
+      "low": 0,
+      "none": 0
+    },
+    "case_graph_value": {
+      "high": 0,
+      "medium": 2,
+      "low": 1,
+      "none": 0
+    },
+    "false_certainty_risk": {
+      "none": 0,
+      "low": 3,
+      "medium": 0,
+      "high": 0
+    },
+    "raw_content_safety": {
+      "safe": 3,
+      "needs_revision": 0,
+      "unsafe": 0
+    },
+    "implementation_readiness": {
+      "audit_decision_record": {
+        "ready_for_exporter_design": 3,
+        "needs_more_fixtures": 0,
+        "hold": 0
+      },
+      "provenance_map": {
+        "ready_for_exporter_design": 0,
+        "needs_more_fixtures": 3,
+        "hold": 0
+      },
+      "review_conflict_register": {
+        "ready_for_exporter_design": 0,
+        "needs_more_fixtures": 3,
+        "hold": 0
+      },
+      "case_graph": {
+        "ready_for_exporter_design": 0,
+        "needs_more_fixtures": 0,
+        "hold": 3
+      }
+    },
+    "recommended_next": {
+      "implement_one_exporter": 3,
+      "more_fixtures": 0,
+      "revise_shapes": 0,
+      "stop_lane": 0
+    }
+  },
+  "summary": {
+    "fixture_ids_match_source": true,
+    "review_result": "The combined bundle is useful for inspection, but only audit_decision_record is ready for a later exporter design decision.",
+    "recommended_pr65_outcome": "Prefer outcome A if PR65 chooses implementation: implement audit_decision_record exporter next.",
+    "views_to_hold": [
+      "case_graph"
+    ],
+    "views_needing_more_fixtures": [
+      "provenance_map",
+      "review_conflict_register"
+    ],
+    "non_goals_preserved": [
+      "no_exporter",
+      "no_runtime_code",
+      "no_model_calls",
+      "no_archive_mutation",
+      "no_answer_quality_scoring",
+      "no_automatic_labels",
+      "no_graph_database",
+      "no_memory"
+    ]
+  },
+  "reviews": [
+    {
+      "fixture_id": "avf_v0_001_launch_public_enterprise_beta",
+      "source_case_id": "launch-public-enterprise-beta",
+      "review_status": "pass",
+      "bundle_inspection_value": "high",
+      "decision_record_value": "high",
+      "provenance_map_value": "medium",
+      "conflict_register_value": "high",
+      "case_graph_value": "medium",
+      "false_certainty_risk": "low",
+      "raw_content_safety": "safe",
+      "implementation_readiness": {
+        "audit_decision_record": "ready_for_exporter_design",
+        "provenance_map": "needs_more_fixtures",
+        "review_conflict_register": "needs_more_fixtures",
+        "case_graph": "hold"
+      },
+      "recommended_next": "implement_one_exporter",
+      "notes": "The bundle makes the same-shape buyer-proof delta easy to inspect. The decision record is the clearest implementation candidate; the case graph helps orient the reader but should not become source-of-truth structure."
+    },
+    {
+      "fixture_id": "avf_v0_002_deploy_assisted_intake_routing",
+      "source_case_id": "deploy-assisted-intake-routing",
+      "review_status": "pass",
+      "bundle_inspection_value": "high",
+      "decision_record_value": "high",
+      "provenance_map_value": "medium",
+      "conflict_register_value": "high",
+      "case_graph_value": "medium",
+      "false_certainty_risk": "low",
+      "raw_content_safety": "safe",
+      "implementation_readiness": {
+        "audit_decision_record": "ready_for_exporter_design",
+        "provenance_map": "needs_more_fixtures",
+        "review_conflict_register": "needs_more_fixtures",
+        "case_graph": "hold"
+      },
+      "recommended_next": "implement_one_exporter",
+      "notes": "The bundle preserves the move from checklist breadth to operable controls and stop conditions without implying deployment approval. The conflict register is valuable, but helper work should wait because conflict wording still needs human review discipline."
+    },
+    {
+      "fixture_id": "avf_v0_003_ceo_remove_founding_cofounder",
+      "source_case_id": "ceo-remove-founding-cofounder",
+      "review_status": "pass",
+      "bundle_inspection_value": "medium",
+      "decision_record_value": "high",
+      "provenance_map_value": "medium",
+      "conflict_register_value": "high",
+      "case_graph_value": "low",
+      "false_certainty_risk": "low",
+      "raw_content_safety": "safe",
+      "implementation_readiness": {
+        "audit_decision_record": "ready_for_exporter_design",
+        "provenance_map": "needs_more_fixtures",
+        "review_conflict_register": "needs_more_fixtures",
+        "case_graph": "hold"
+      },
+      "recommended_next": "implement_one_exporter",
+      "notes": "The authority-transfer delta is clear in the decision record, and the conflict register preserves the relationship tension. The case graph adds little beyond restating the same relationship and should remain design-only."
+    }
+  ]
+}

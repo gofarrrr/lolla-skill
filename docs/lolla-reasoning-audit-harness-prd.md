@@ -254,12 +254,12 @@ Since the first harness PRD pass, the shipped harness layer has also added:
 - semantic coverage reports and corpus survey;
 - offline specialist extractor probe harnesses and evidence notes;
 - a six-case complex conversation baseline with full modern artifacts;
-- the PR30-PR63 evaluation/accountability handoff chain from human review seed
+- the PR30-PR64 evaluation/accountability handoff chain from human review seed
   through risk-mode reliance visibility, current-state anti-drift docs,
   human-owned values/priorities review, and the Semantica-inspired
   accountability plan through decision-record fixtures, provenance map, review
   conflict register, case graph export/view design, and combined
-  accountability-view fixtures.
+  accountability-view fixtures and fixture review.
 
 The current complex baseline is recorded in:
 
@@ -519,8 +519,21 @@ record, provenance map, review conflict register, and case graph views together
 for existing reviewed cases. It does not implement exporters, read archives,
 run `$lolla`, call models, mutate archives, change prompts, change `SKILL.md`,
 add graph DB, add memory, add GraphRAG, add entity resolution, score answer
-quality, create labels, or judge advice. Its recommended next slice is PR64
-Accountability View Fixture Review v0, docs/eval-only.
+quality, create labels, or judge advice. PR64 followed it as docs/eval-only
+fixture review.
+
+PR64 now lands the Accountability View fixture review:
+
+`docs/evals/accountability-view-fixture-review-v0.md`
+
+It reviews all three PR63 bundles. All three pass as useful inspection evidence,
+but the implementation-readiness signal is narrow: only
+`audit_decision_record` is ready for a later exporter-design decision;
+`provenance_map` and `review_conflict_register` need more fixtures; `case_graph`
+should hold before implementation. PR64 does not implement exporters, read
+archives, run `$lolla`, call models, mutate archives, change prompts, change
+`SKILL.md`, add graph DB, add memory, score answer quality, create labels, or
+judge advice.
 
 This roadmap should build on that. It should not restart the architecture.
 

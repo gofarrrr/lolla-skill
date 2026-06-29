@@ -1720,7 +1720,41 @@ Stop point:
   prompts, change `SKILL.md`, add graph DB, add embeddings, add memory, add
   GraphRAG, add entity resolution, score answer quality, create labels, or
   begin Semantica-style platform work from this slice.
-- The next slice is PR64 Accountability View Fixture Review v0, docs/eval-only.
+- Implemented next as PR64 Accountability View Fixture Review v0, docs/eval-only.
+
+### PR64: Accountability View Fixture Review v0
+
+Maps to: R6/R9 combined accountability-view evidence gate.
+
+Status: completed as docs/eval-only fixture review.
+
+Output:
+
+- [Accountability View Fixture Review v0](accountability-view-fixture-review-v0.md).
+- [review.json](../../reviews/human/accountability-view-fixture-review-v0/review.json).
+
+Current result:
+
+- reviews all three PR63 fixture bundles;
+- marks 3 pass, 0 revise, 0 exclude;
+- finds `audit_decision_record` high value on all three fixtures and ready for a
+  later exporter-design decision;
+- finds `provenance_map` medium value and needing more fixtures;
+- finds `review_conflict_register` high value but needing more fixtures before
+  helper/exporter design;
+- holds `case_graph` before implementation because graph-shaped views carry
+  decorative-structure, memory, graph DB, and source-of-truth drift risk.
+
+Stop point:
+
+- PR64 only reviews fixture bundles.
+- Do not implement exporters, add tests, add schemas under `engine/`, add CLI
+  support, read archives, run `$lolla`, call models, mutate archives, change
+  prompts, change `SKILL.md`, add graph DB, add embeddings, add memory, add
+  GraphRAG, add entity resolution, score answer quality, create labels, add
+  judges, or begin Semantica-style platform work from this slice.
+- The next slice is PR65 Accountability Implementation Decision Gate v0,
+  docs-only.
 
 ## What Not To Build Yet
 
@@ -1779,12 +1813,12 @@ Before building judges or runtime semantic enrichment, Lolla should have:
 That is the smallest flywheel that can improve Lolla run by run without turning
 it into a vague critic or overbuilt memory system.
 
-The next conservative accountability step is PR64 Accountability View Fixture
-Review v0. It should review the PR63 bundles and produce a human/product
-readiness read before any implementation decision. It should remain
-docs/eval-only and should not implement an exporter, add tests, add schemas
-under `engine/`, add CLI support, read archives, run `$lolla`, call models,
-mutate archives, change prompts, change `SKILL.md`, change provider-boundary
-policy, add graph DB, add embeddings, add memory, add entity resolution, add
-GraphRAG, resolve conflicts automatically, score answer quality, add judges,
-add automatic labels, or start any Semantica-style platform work.
+The next conservative accountability step is PR65 Accountability Implementation
+Decision Gate v0. It should make one docs-only decision about what, if anything,
+deserves a future implementation slice. It should not implement an exporter, add
+tests, add schemas under `engine/`, add CLI support, read archives, run
+`$lolla`, call models, mutate archives, change prompts, change `SKILL.md`,
+change provider-boundary policy, add graph DB, add embeddings, add memory, add
+entity resolution, add GraphRAG, resolve conflicts automatically, score answer
+quality, add judges, add automatic labels, or start any Semantica-style
+platform work.

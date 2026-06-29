@@ -816,6 +816,10 @@ Do not build code until fixture review passes.
 
 Type: docs/eval-only review
 
+Status after PR64: completed as the accountability view fixture review:
+`docs/evals/accountability-view-fixture-review-v0.md` and
+`reviews/human/accountability-view-fixture-review-v0/review.json`.
+
 Goal:
 
 Have human/product review decide whether the combined accountability-view
@@ -842,9 +846,16 @@ Review questions:
 
 Acceptance criteria:
 
-- [ ] Review records pass/revise/exclude for each fixture.
-- [ ] Explicit implementation-readiness read for each view.
-- [ ] No exporter unless future PR is approved.
+- [x] Review records pass/revise/exclude for each fixture.
+- [x] Explicit implementation-readiness read for each view.
+- [x] No exporter unless future PR is approved.
+
+Result:
+
+- 3 pass, 0 revise, 0 exclude;
+- `audit_decision_record` is ready for a later exporter-design decision;
+- `provenance_map` and `review_conflict_register` need more fixtures;
+- `case_graph` should hold before implementation.
 
 ### PR65: Implementation Decision Gate v0
 
@@ -856,17 +867,18 @@ Choose which primitive, if any, should move from design/fixtures to code.
 
 Candidate outcomes:
 
-- A: implement `lolla_doctor` only;
-- B: implement `audit_decision_record` exporter;
-- C: implement `provenance_map` exporter;
-- D: implement `review_conflict_register` local helper;
-- E: implement `case_graph` exporter;
-- F: stop, because fixtures did not prove enough value.
+- A: implement `audit_decision_record` exporter next;
+- B: implement `provenance_map` exporter next;
+- C: implement `review_conflict_register` helper/exporter next;
+- D: implement `case_graph` exporter next;
+- E: do more fixtures/review before implementation;
+- F: stop the accountability-view lane for now.
 
 Acceptance criteria:
 
 - [ ] Uses evidence from PR55-PR64.
-- [ ] Names exactly one code-bearing next slice.
+- [ ] Names exactly one future code-bearing next slice, or explicitly chooses no
+      implementation.
 - [ ] Keeps all other lanes blocked.
 - [ ] Preserves no graph DB / no memory / no judge boundary.
 
@@ -995,8 +1007,15 @@ docs/evals/accountability-view-fixtures-v0.md
 docs/evals/accountability-view-fixtures-v0.json
 ```
 
-The next slice is PR64 Accountability View Fixture Review v0. PR64 should
-remain docs/eval-only and should not add code, tests, exporters, schemas under
-`engine/`, CLI support, runtime integration, archive-reading behavior, graph
-DB, embeddings, memory, entity resolution, GraphRAG, answer-quality scoring,
+PR64 has now reviewed those fixtures:
+
+```text
+docs/evals/accountability-view-fixture-review-v0.md
+reviews/human/accountability-view-fixture-review-v0/review.json
+```
+
+The next slice is PR65 Accountability Implementation Decision Gate v0. PR65
+should remain docs-only and should not add code, tests, exporters, schemas under
+`engine/`, CLI support, runtime integration, archive-reading behavior, graph DB,
+embeddings, memory, entity resolution, GraphRAG, answer-quality scoring,
 automatic labels, or Semantica-style platform work.

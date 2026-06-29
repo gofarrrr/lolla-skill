@@ -2,10 +2,10 @@
 
 Status: current-state handoff
 Date: 2026-06-29
-Slice: PR45, updated by PR63
+Slice: PR45, updated by PR64
 
 This note is the compact first-read handoff for a fresh Lolla eval session. It
-summarizes what the harness is, what PR30-PR63 built, what evidence exists now,
+summarizes what the harness is, what PR30-PR64 built, what evidence exists now,
 and what must not be built until the next explicit approval gates.
 
 PR45 is docs-only. It does not run Lolla, call models, mutate archives, change
@@ -37,7 +37,7 @@ The product boundary is still sharp:
 - `risk_mode` is reliance and review context, not answer-quality scoring,
   domain approval, or automatic safety.
 
-## PR30-PR63 Chain
+## PR30-PR64 Chain
 
 - PR30 created the six-run human/product review seed over the clean complex
   conversation baseline.
@@ -120,6 +120,11 @@ The product boundary is still sharp:
   case graph views. It does not implement exporters, read archives, add runtime
   behavior, create labels, score answer quality, or implement a graph/memory
   system.
+- PR64 reviews those three accountability-view fixture bundles. All three pass
+  as useful inspection evidence. The implementation-readiness read is narrow:
+  only `audit_decision_record` is ready for a later exporter-design decision;
+  `provenance_map` and `review_conflict_register` need more fixtures; and
+  `case_graph` should hold before implementation.
 
 ## Current Corpus Evidence
 
@@ -173,10 +178,12 @@ only aggregate keys and counts.
   `lolla.audit_decision_record.v0`, PR59 only reviews fixtures, PR60 only
   designs `lolla.provenance_map.v0`, and PR61 only designs
   `lolla.review_conflict_register.v0`; PR62 only designs `lolla.case_graph.v0`;
-  PR63 only creates paraphrase-only accountability-view fixtures; no
+  PR63 only creates paraphrase-only accountability-view fixtures; PR64 only
+  reviews those fixtures and recommends a later decision-record exporter-design
+  gate; no
   decision-record exporter, provenance exporter, conflict-register exporter,
   case-graph exporter, graph DB, memory, GraphRAG, or runtime integration exists
-  from PR55 through PR63;
+  from PR55 through PR64;
 - no domain, crisis, legal, medical, financial, or safety protocol.
 
 ## Explicit Non-Goals
@@ -230,9 +237,10 @@ The later safe lanes are separate:
    map shape. PR61 designs only the review conflict register shape. Do not
    implement decision-record export, provenance export, conflict-register
    export, case graph export, graph DB, memory, platform work, or runtime
-   behavior from PR55 through PR63 alone. PR62 designs only the case graph
+   behavior from PR55 through PR64 alone. PR62 designs only the case graph
    export/view shape. PR63 creates only paraphrase-only accountability-view
-   fixture bundles and stops before implementation.
+   fixture bundles. PR64 only reviews those fixtures and stops before
+   implementation.
 3. A later live-output hygiene lane can plan and lock current behavior, then
    stop for an implementation decision.
 
@@ -305,6 +313,13 @@ docs/evals/accountability-view-fixtures-v0.md
 docs/evals/accountability-view-fixtures-v0.json
 ```
 
+For the PR64 accountability-view fixture review, read:
+
+```text
+docs/evals/accountability-view-fixture-review-v0.md
+reviews/human/accountability-view-fixture-review-v0/review.json
+```
+
 ## Decision Gates
 
 - Now: decide whether to create approved real high-stakes evidence.
@@ -318,10 +333,12 @@ docs/evals/accountability-view-fixtures-v0.json
   `lolla.review_conflict_register.v0`. PR62 designs only
   `lolla.case_graph.v0` as a future export/view shape without implying an
   exporter exists. PR63 creates only paraphrase-only accountability-view
-  fixtures across the four views. PR64 may review those fixtures next, but must
-  remain docs/eval-only and must not add exporter implementation, runtime
-  integration, archive-reading behavior, graph DB, embeddings, memory, entity
-  resolution, GraphRAG, scoring, or automatic labels.
+  fixtures across the four views. PR64 reviews those fixtures and recommends
+  only `audit_decision_record` for a later exporter-design decision. PR65 may
+  decide the next accountability implementation slice, but must remain docs-only
+  and must not add exporter implementation, runtime integration, archive-reading
+  behavior, graph DB, embeddings, memory, entity resolution, GraphRAG, scoring,
+  or automatic labels.
 - After a live-output hygiene planning/review lane: decide whether to implement
   trusted live-output transcript hygiene.
 

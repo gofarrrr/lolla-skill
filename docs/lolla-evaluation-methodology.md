@@ -168,6 +168,11 @@ any exporter is built. A clean bundle can make inspection faster, but it still
 does not turn fixture structure into truth, approval, labels, memory, or answer
 quality.
 
+The PR64 fixture review marks all three bundles pass as inspection evidence. It
+recommends only `audit_decision_record` as ready for a later exporter-design
+decision, keeps provenance and conflict-register views in more-fixture status,
+and holds case graph before implementation.
+
 These checks should gate releases before any subjective judge runs.
 
 ### 4. Binary Failure-Mode Judges Only

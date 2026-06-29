@@ -151,14 +151,28 @@ PR63 does not add or approve:
 - policy enforcement;
 - Semantica-style platform work.
 
-## PR64 Gate
+## PR64 Review Result
 
-The next slice is:
+Implemented next as:
 
 ```text
 PR64 Accountability View Fixture Review v0
 ```
 
-PR64 should review whether the bundle actually helps human/product review and
-which view, if any, is ready for a later implementation decision. It must remain
-docs/eval-only and must not implement exporters or runtime behavior.
+Review artifacts:
+
+- [Accountability View Fixture Review v0](accountability-view-fixture-review-v0.md)
+- [review.json](../../reviews/human/accountability-view-fixture-review-v0/review.json)
+
+PR64 reviewed all three bundles and found:
+
+- 3 pass, 0 revise, 0 exclude;
+- `audit_decision_record` has high value on all three fixtures and is ready for
+  a later exporter-design decision;
+- `provenance_map` and `review_conflict_register` are useful but need more
+  fixtures before implementation;
+- `case_graph` should hold before implementation because its graph-shaped view
+  can become decorative structure or memory drift.
+
+The next slice is PR65 Accountability Implementation Decision Gate v0. PR65 must
+remain docs-only and must not implement exporters or runtime behavior.
