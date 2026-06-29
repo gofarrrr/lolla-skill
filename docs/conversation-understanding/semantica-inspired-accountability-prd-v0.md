@@ -688,6 +688,10 @@ No exporter implementation.
 
 Type: docs/eval-only design
 
+Status after PR61: completed as the review conflict register design:
+`docs/evals/review-conflict-register-v0.md` and
+`docs/evals/review-conflict-register-v0.json`.
+
 Goal:
 
 Define how Lolla should record unresolved conflicts for human review.
@@ -703,25 +707,31 @@ Candidate conflict categories:
 - user_values_conflict;
 - stakeholder_obligation_conflict;
 - live_constraint_conflict;
-- recommendation_change_conflict;
+- recommendation_action_conflict;
+- risk_mode_reliance_conflict;
 - artifact_health_conflict;
 - provider_boundary_conflict;
-- risk_mode_reliance_conflict;
-- review_label_disagreement;
-- unanswered_user_question.
+- unresolved_user_question_conflict;
+- human_review_disagreement;
+- provenance_gap_conflict;
+- decision_record_flattening_risk.
 
 Acceptance criteria:
 
-- [ ] Conflicts remain human-owned.
-- [ ] No automatic severity-to-action behavior.
-- [ ] No automatic resolution.
-- [ ] Supports values/priorities worksheet findings.
-- [ ] Supports high-stakes reliance caveat interpretation.
-- [ ] Supports later review-corpus export if approved.
+- [x] Conflicts remain human-owned.
+- [x] No automatic severity-to-action behavior.
+- [x] No automatic resolution.
+- [x] Supports values/priorities worksheet findings.
+- [x] Supports high-stakes reliance caveat interpretation.
+- [x] Supports later review-corpus export if approved.
 
 Stop rule:
 
 Do not integrate into runtime or review-corpus exporter.
+
+If a future continuation feels tempted to add code, tests, exporters, schemas
+under `engine/`, CLI support, runtime integration, or archive-reading behavior,
+stop and report. PR61 is only a design artifact and safe example JSON.
 
 ### PR62: Case Graph Export Design v0
 
@@ -943,15 +953,22 @@ docs/conversation-understanding/provenance-map-v0.md
 docs/conversation-understanding/provenance-map-v0.json
 ```
 
-The next possible slice after PR60 is:
+PR61 has now designed the local review conflict register shape:
 
 ```text
-PR61 Review Conflict Register Design v0
+docs/evals/review-conflict-register-v0.md
+docs/evals/review-conflict-register-v0.json
 ```
 
-PR61 should remain docs/JSON design only. It should not implement an exporter,
-run `$lolla`, call models, mutate archives, add archive-reading behavior,
-change prompts, change `SKILL.md`, change provider-boundary policy, approve
-high-stakes runs, resolve conflicts automatically, score severity into actions,
-judge answer quality, add automatic labels, or begin Semantica-style platform
-work.
+The next possible slice after PR61 is:
+
+```text
+PR62 Case Graph Export Design v0
+```
+
+PR62 should remain docs/JSON design only. It should describe a future
+case-graph export/view shape without implying that an exporter exists. It
+should not add code, tests, exporters, schemas under `engine/`, CLI support,
+runtime integration, archive-reading behavior, graph DB, embeddings, memory,
+entity resolution, GraphRAG, answer-quality scoring, automatic labels, or
+Semantica-style platform work.

@@ -254,7 +254,7 @@ Since the first harness PRD pass, the shipped harness layer has also added:
 - semantic coverage reports and corpus survey;
 - offline specialist extractor probe harnesses and evidence notes;
 - a six-case complex conversation baseline with full modern artifacts;
-- the PR30-PR60 evaluation/accountability handoff chain from human review seed
+- the PR30-PR61 evaluation/accountability handoff chain from human review seed
   through risk-mode reliance visibility, current-state anti-drift docs,
   human-owned values/priorities review, and the Semantica-inspired
   accountability plan through the audit decision record fixture review.
@@ -478,8 +478,22 @@ activity, agent, and relationship vocabulary, but it does not claim RDF,
 PROV-O, W3C, OWL, or SHACL compliance. It does not implement an exporter, read
 archives, run `$lolla`, call models, mutate archives, change prompts, change
 `SKILL.md`, add graph DB, add memory, approve high-stakes use, judge answer
-quality, or create automatic labels. Its recommended next slice is PR61 Review
-Conflict Register Design v0, docs/JSON design only.
+quality, or create automatic labels. PR61 followed it as a docs/JSON design
+slice.
+
+PR61 now lands the Review Conflict Register design:
+
+`docs/evals/review-conflict-register-v0.md`
+
+It defines `lolla.review_conflict_register.v0` as a human-review-owned surface
+for unresolved tensions across values, stakeholder obligations, live
+constraints, recommendation/action changes, risk-mode reliance, artifact
+health, provider boundaries, unresolved questions, review disagreement,
+provenance gaps, and decision-record flattening risk. It does not resolve
+conflicts, automate severity, enforce policy, implement an exporter, run
+`$lolla`, call models, read or mutate archives, add labels, score answer
+quality, or judge advice. Its recommended next slice is PR62 Case Graph Export
+Design v0, docs/JSON design only.
 
 This roadmap should build on that. It should not restart the architecture.
 
@@ -863,6 +877,10 @@ Current v0 slice:
 - `docs/conversation-understanding/provenance-map-v0.md` defines the PR60
   `lolla.provenance_map.v0` artifact-lineage shape before any exporter,
   runtime integration, graph DB, memory, or compliance claim.
+- `docs/evals/review-conflict-register-v0.md` defines the PR61
+  `lolla.review_conflict_register.v0` human-review-owned conflict surface
+  before any exporter, conflict resolution, severity automation, policy
+  enforcement, scoring, labels, or judge.
 
 Acceptance criteria:
 

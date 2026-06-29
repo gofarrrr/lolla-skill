@@ -2,10 +2,10 @@
 
 Status: current-state handoff
 Date: 2026-06-29
-Slice: PR45, updated by PR60
+Slice: PR45, updated by PR61
 
 This note is the compact first-read handoff for a fresh Lolla eval session. It
-summarizes what the harness is, what PR30-PR60 built, what evidence exists now,
+summarizes what the harness is, what PR30-PR61 built, what evidence exists now,
 and what must not be built until the next explicit approval gates.
 
 PR45 is docs-only. It does not run Lolla, call models, mutate archives, change
@@ -37,7 +37,7 @@ The product boundary is still sharp:
 - `risk_mode` is reliance and review context, not answer-quality scoring,
   domain approval, or automatic safety.
 
-## PR30-PR60 Chain
+## PR30-PR61 Chain
 
 - PR30 created the six-run human/product review seed over the clean complex
   conversation baseline.
@@ -107,6 +107,10 @@ The product boundary is still sharp:
 - PR60 designs `lolla.provenance_map.v0` as a local artifact-lineage map. It
   borrows entity/activity/agent vocabulary without claiming RDF, PROV-O, W3C,
   OWL, or SHACL compliance and without implementing an exporter.
+- PR61 designs `lolla.review_conflict_register.v0` as a human-review-owned
+  surface for unresolved tensions. It does not resolve conflicts, automate
+  severity, enforce policy, create labels, score answer quality, or implement
+  an exporter.
 
 ## Current Corpus Evidence
 
@@ -157,11 +161,11 @@ only aggregate keys and counts.
 - no trusted live-output transcript implementation;
 - no implemented Semantica-inspired accountability primitive beyond the
   read-only `lolla doctor` preflight CLI. PR58 only designs
-  `lolla.audit_decision_record.v0`, PR59 only reviews fixtures, and PR60 only
-  designs `lolla.provenance_map.v0`; no decision-record exporter, provenance
-  exporter,
-  `lolla.review_conflict_register.v0`, or `lolla.case_graph.v0` exists from
-  PR55 through PR60;
+  `lolla.audit_decision_record.v0`, PR59 only reviews fixtures, PR60 only
+  designs `lolla.provenance_map.v0`, and PR61 only designs
+  `lolla.review_conflict_register.v0`; no decision-record exporter,
+  provenance exporter, conflict-register exporter, or `lolla.case_graph.v0`
+  exists from PR55 through PR61;
 - no domain, crisis, legal, medical, financial, or safety protocol.
 
 ## Explicit Non-Goals
@@ -212,9 +216,10 @@ The later safe lanes are separate:
    doctor/preflight plan. PR57 implements only the read-only doctor CLI. PR58
    designs only the audit decision record shape. PR59 reviews only
    paraphrase-only decision-record fixtures. PR60 designs only the provenance
-   map shape. Do not implement decision-record export, provenance export,
-   conflict registers, case graph views, platform work, or runtime behavior
-   from PR55 through PR60 alone.
+   map shape. PR61 designs only the review conflict register shape. Do not
+   implement decision-record export, provenance export, conflict-register
+   export, case graph views, platform work, or runtime behavior from PR55
+   through PR61 alone.
 3. A later live-output hygiene lane can plan and lock current behavior, then
    stop for an implementation decision.
 
@@ -266,6 +271,13 @@ docs/conversation-understanding/provenance-map-v0.md
 docs/conversation-understanding/provenance-map-v0.json
 ```
 
+For the PR61 review conflict register design, read:
+
+```text
+docs/evals/review-conflict-register-v0.md
+docs/evals/review-conflict-register-v0.json
+```
+
 ## Decision Gates
 
 - Now: decide whether to create approved real high-stakes evidence.
@@ -275,10 +287,12 @@ docs/conversation-understanding/provenance-map-v0.json
   approves only the doctor/preflight design, and PR57 implements only the
   read-only doctor CLI. PR58 designs only `lolla.audit_decision_record.v0`.
   PR59 reviews only paraphrase-only decision-record fixtures. PR60 designs only
-  `lolla.provenance_map.v0`. PR61 may design a review conflict register next,
-  but only as docs/JSON design without an exporter, runtime integration,
-  conflict resolution, severity automation, policy enforcement, scoring, or
-  automatic labels.
+  `lolla.provenance_map.v0`. PR61 designs only
+  `lolla.review_conflict_register.v0`. PR62 may design a case graph
+  export/view shape next, but only as docs/JSON design without implying an
+  exporter exists and without an exporter implementation, runtime integration,
+  archive-reading behavior, graph DB, embeddings, memory, entity resolution,
+  GraphRAG, scoring, or automatic labels.
 - After a live-output hygiene planning/review lane: decide whether to implement
   trusted live-output transcript hygiene.
 

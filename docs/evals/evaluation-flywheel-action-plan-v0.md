@@ -1588,8 +1588,52 @@ Stop point:
   support, read archives, run `$lolla`, call models, mutate archives, change
   prompts, change `SKILL.md`, add graph DB, add memory, score answer quality,
   or begin Semantica-style platform work from this slice.
-- The next possible slice is PR61 Review Conflict Register Design v0,
-  docs/JSON design only.
+- Implemented next as PR61 Review Conflict Register Design v0, docs/JSON
+  design only.
+
+### PR61: Review Conflict Register Design v0
+
+Maps to: R6/R9 human-review-owned conflict preservation.
+
+Status: completed as a docs/JSON design slice.
+
+Goal:
+
+Define `lolla.review_conflict_register.v0` as a local register of unresolved
+conflicts visible in a Lolla run or review projection.
+
+Output:
+
+- [Review Conflict Register v0](review-conflict-register-v0.md).
+- [review-conflict-register-v0.json](review-conflict-register-v0.json).
+
+Current result:
+
+- defines human-owned conflict rows with category, status, paraphrase-only
+  summary, sides, review owner, decision impact, related PR31 labels, and raw
+  content exclusion;
+- covers user-values, stakeholder-obligation, live-constraint,
+  recommendation-action, risk-mode reliance, artifact-health,
+  provider-boundary, unresolved-question, human-review disagreement,
+  provenance-gap, and decision-record-flattening conflicts;
+- keeps categories descriptive rather than executable;
+- preserves conflict detail as review context rather than resolution,
+  severity automation, policy enforcement, answer-quality scoring, labels, or
+  judge output;
+- uses a checked-in example that is paraphrase-only and relative-reference
+  safe.
+
+Stop point:
+
+- PR61 only designs the review conflict register and example.
+- Do not implement an exporter, add tests, add schemas under `engine/`, add CLI
+  support, read archives, run `$lolla`, call models, mutate archives, change
+  prompts, change `SKILL.md`, resolve conflicts, automate severity, enforce
+  policy, create labels, score answer quality, or begin Semantica-style
+  platform work from this slice.
+- The next possible slice is PR62 Case Graph Export Design v0, docs/JSON design
+  only. It should describe a future export/view shape without implying an
+  exporter exists.
 
 ## What Not To Build Yet
 
@@ -1648,10 +1692,11 @@ Before building judges or runtime semantic enrichment, Lolla should have:
 That is the smallest flywheel that can improve Lolla run by run without turning
 it into a vague critic or overbuilt memory system.
 
-The next conservative accountability slice is PR61 Review Conflict Register
-Design v0. It should design only `lolla.review_conflict_register.v0` as a
-human-review-owned conflict surface and should not implement an exporter, run
-`$lolla`, call models, mutate archives, change prompts, change `SKILL.md`,
-change provider-boundary policy, resolve conflicts automatically, score
-severity into actions, add judges, add automatic labels, or start any
-Semantica-style platform work.
+The next conservative accountability slice is PR62 Case Graph Export Design v0.
+It should design only `lolla.case_graph.v0` as a run-local case graph
+export/view shape and should not implement an exporter, add tests, add schemas
+under `engine/`, add CLI support, read archives, run `$lolla`, call models,
+mutate archives, change prompts, change `SKILL.md`, change provider-boundary
+policy, add graph DB, add embeddings, add memory, add entity resolution, add
+GraphRAG, resolve conflicts automatically, score answer quality, add judges,
+add automatic labels, or start any Semantica-style platform work.

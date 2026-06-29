@@ -1635,9 +1635,41 @@ Next:
 PR61 Review Conflict Register Design v0
 ```
 
-PR61 should design only `lolla.review_conflict_register.v0` as a
-human-review-owned conflict surface before any exporter or runtime integration
-exists.
+Implemented next as a docs/JSON design artifact.
+
+### PR61: Review Conflict Register Design v0
+
+Status: completed as
+[review-conflict-register-v0.md](../evals/review-conflict-register-v0.md) and
+[review-conflict-register-v0.json](../evals/review-conflict-register-v0.json).
+
+Goal: define a human-review-owned register for unresolved conflicts visible in
+a Lolla run or review projection.
+
+Outcome:
+
+- defines `lolla.review_conflict_register.v0`;
+- records user-values, stakeholder-obligation, live-constraint,
+  recommendation-action, risk-mode reliance, artifact-health,
+  provider-boundary, unresolved-question, human-review disagreement,
+  provenance-gap, and decision-record-flattening conflict categories;
+- keeps conflict rows descriptive rather than executable;
+- uses a paraphrase-only checked-in example from documented review summaries;
+- rejects conflict resolution, severity automation, policy enforcement,
+  answer-quality scoring, automatic labels, runtime integration, archive
+  reading, and exporter work.
+
+Next:
+
+```text
+PR62 Case Graph Export Design v0
+```
+
+PR62 should design only a future run-local case graph export/view shape. It
+should not imply an implemented exporter exists and should not add code, tests,
+schemas under `engine/`, CLI support, runtime integration, archive-reading
+behavior, graph DB, embeddings, memory, entity resolution, GraphRAG, scoring,
+automatic labels, or judge behavior.
 
 ### Later: Decision-Aware Capture And Runtime Integration
 
@@ -1692,13 +1724,14 @@ PR50's paraphrase-only worksheet fixtures, PR51's worksheet fixture review,
 PR52's blank worksheet export, PR53's human-filled worksheet pilot, PR54's
 pilot review / v0 decision, PR55's Semantica-inspired accountability PRD,
 PR56's Lolla Doctor / Preflight plan, PR57's read-only doctor CLI, PR58's audit
-decision record design, PR59's audit decision record fixture review, and PR60's
-provenance map design now exist. The next step is still explicit approval, not
-automatic runtime work. The recommended next accountability slice is PR61
-Review Conflict Register Design v0. Other lanes still require their own gates:
-future high-stakes evidence under PR46/PR48, reopening the values lane after
-PR54, or any populated extraction, memory, runtime integration, automatic
-labels, or judging.
+decision record design, PR59's audit decision record fixture review, PR60's
+provenance map design, and PR61's review conflict register design now exist.
+The next step is still explicit approval, not automatic runtime work. The
+recommended next accountability slice is PR62 Case Graph Export Design v0,
+docs/JSON design only. Other lanes still require their own gates: future
+high-stakes evidence under PR46/PR48, reopening the values lane after PR54, or
+any populated extraction, memory, runtime integration, automatic labels, or
+judging.
 
 ## Sources
 

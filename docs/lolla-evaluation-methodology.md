@@ -151,6 +151,12 @@ run or review surface. It can show that one artifact used, generated, derived
 from, validated, or reviewed another artifact, but it does not prove advice
 quality, domain approval, or W3C-grade provenance.
 
+`lolla.review_conflict_register.v0` can preserve unresolved tensions for human
+review. It can name values, stakeholder obligations, live constraints,
+recommendation conflicts, artifact-health caveats, and provenance gaps, but it
+does not resolve those conflicts, score severity into action, enforce policy,
+create labels, or judge answer quality.
+
 These checks should gate releases before any subjective judge runs.
 
 ### 4. Binary Failure-Mode Judges Only

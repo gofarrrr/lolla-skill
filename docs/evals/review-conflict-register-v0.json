@@ -1,0 +1,167 @@
+{
+  "schema_version": "lolla.review_conflict_register.v0",
+  "case_id": "deploy-assisted-intake-routing",
+  "run_id": "20260627T130339Z_4cd3cb",
+  "archive_relpath": "deploy-assisted-intake-routing/20260627T130339Z_4cd3cb",
+  "source_refs": [
+    {
+      "ref": "docs/evals/complex-baseline-human-review-v0.md",
+      "kind": "human_review_summary",
+      "raw_content_included": false
+    },
+    {
+      "ref": "docs/evals/human-review-corpus-batch-v0.md",
+      "kind": "human_review_summary",
+      "raw_content_included": false
+    },
+    {
+      "ref": "docs/evals/audit-decision-record-fixtures-v0.md",
+      "kind": "fixture_review_summary",
+      "raw_content_included": false
+    }
+  ],
+  "conflicts": [
+    {
+      "conflict_id": "conflict_001",
+      "category": "stakeholder_obligation_conflict",
+      "status": "open",
+      "summary": "Patient-facing risk, operator workload, and clinic leadership goals remain in tension during any assisted routing pilot.",
+      "sides": [
+        {
+          "side_id": "side_patient_safety",
+          "summary": "The pilot must protect patients from routing failures and escalation gaps.",
+          "stakeholder_refs": [
+            "patients",
+            "clinic_staff"
+          ],
+          "grounding": "review_summary"
+        },
+        {
+          "side_id": "side_operational_learning",
+          "summary": "The clinic still needs a bounded way to learn whether assisted routing can work under load.",
+          "stakeholder_refs": [
+            "clinic_leadership",
+            "operators"
+          ],
+          "grounding": "review_summary"
+        }
+      ],
+      "review_owner": "domain_reviewer",
+      "decision_impact": "changes_threshold",
+      "related_pr31_labels": [
+        "threshold_changed",
+        "evidence_gate_added",
+        "stop_rule_added"
+      ],
+      "raw_content_included": false
+    },
+    {
+      "conflict_id": "conflict_002",
+      "category": "unresolved_user_question_conflict",
+      "status": "open",
+      "summary": "The fixture preserves a question about who can pause or roll back the pilot when controls fail.",
+      "sides": [
+        {
+          "side_id": "side_clear_pause_authority",
+          "summary": "A named owner must be able to stop the pilot when controls fail under pressure.",
+          "stakeholder_refs": [
+            "clinic_operator",
+            "maintainer_or_reviewer"
+          ],
+          "grounding": "derivation"
+        },
+        {
+          "side_id": "side_uncertain_authority",
+          "summary": "The checked-in summaries do not establish who already has that authority.",
+          "stakeholder_refs": [
+            "user",
+            "clinic_leadership"
+          ],
+          "grounding": "derivation"
+        }
+      ],
+      "review_owner": "user",
+      "decision_impact": "requires_question",
+      "related_pr31_labels": [
+        "user_question_added",
+        "stop_rule_added"
+      ],
+      "raw_content_included": false
+    },
+    {
+      "conflict_id": "conflict_003",
+      "category": "decision_record_flattening_risk",
+      "status": "open",
+      "summary": "A compact decision record can make the pilot look cleaner than the underlying operational and domain-review tensions really are.",
+      "sides": [
+        {
+          "side_id": "side_compact_review_projection",
+          "summary": "The audit decision record helps reviewers see the move from checklist breadth to operable controls.",
+          "stakeholder_refs": [
+            "human_reviewer"
+          ],
+          "grounding": "derivation"
+        },
+        {
+          "side_id": "side_conflict_detail",
+          "summary": "The same compactness can understate the remaining patient, operator, compliance, and escalation tensions.",
+          "stakeholder_refs": [
+            "human_reviewer",
+            "domain_reviewer"
+          ],
+          "grounding": "derivation"
+        }
+      ],
+      "review_owner": "human_reviewer",
+      "decision_impact": "review_context_only",
+      "related_pr31_labels": [
+        "scope_narrowed",
+        "evidence_gate_added"
+      ],
+      "raw_content_included": false
+    },
+    {
+      "conflict_id": "conflict_004",
+      "category": "artifact_health_conflict",
+      "status": "open",
+      "summary": "Run-readiness artifacts can make custody inspectable while live-output health caveats still prevent treating the run as fully clean.",
+      "sides": [
+        {
+          "side_id": "side_reviewable_artifacts",
+          "summary": "The checked-in reviews say artifacts were sufficient to understand the action delta.",
+          "stakeholder_refs": [
+            "human_reviewer"
+          ],
+          "grounding": "review_summary"
+        },
+        {
+          "side_id": "side_live_hygiene_caveat",
+          "summary": "Live-output health remains a custody caveat rather than an answer-quality failure by default.",
+          "stakeholder_refs": [
+            "maintainer"
+          ],
+          "grounding": "review_summary"
+        }
+      ],
+      "review_owner": "maintainer",
+      "decision_impact": "review_context_only",
+      "related_pr31_labels": [],
+      "raw_content_included": false
+    }
+  ],
+  "custody_flags": {
+    "raw_transcript_included": false,
+    "raw_memo_included": false,
+    "raw_revised_answer_included": false,
+    "provider_text_included": false,
+    "private_reasoning_included": false,
+    "local_absolute_paths_included": false
+  },
+  "limitations": [
+    "Design fixture only; not generated by an exporter.",
+    "Paraphrase-only example from checked-in review summaries.",
+    "Does not resolve conflicts or score severity into actions.",
+    "Does not approve healthcare-adjacent deployment or replace domain review.",
+    "Does not create human-review labels or safe-for-agent-use decisions."
+  ]
+}
