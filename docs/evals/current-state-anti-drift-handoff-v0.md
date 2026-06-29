@@ -2,10 +2,10 @@
 
 Status: current-state handoff
 Date: 2026-06-29
-Slice: PR45, updated by PR66
+Slice: PR45, updated by PR67
 
 This note is the compact first-read handoff for a fresh Lolla eval session. It
-summarizes what the harness is, what PR30-PR66 built, what evidence exists now,
+summarizes what the harness is, what PR30-PR67 built, what evidence exists now,
 and what must not be built until the next explicit approval gates.
 
 PR45 is docs-only. It does not run Lolla, call models, mutate archives, change
@@ -37,7 +37,7 @@ The product boundary is still sharp:
 - `risk_mode` is reliance and review context, not answer-quality scoring,
   domain approval, or automatic safety.
 
-## PR30-PR66 Chain
+## PR30-PR67 Chain
 
 - PR30 created the six-run human/product review seed over the clean complex
   conversation baseline.
@@ -136,6 +136,11 @@ The product boundary is still sharp:
   raw transcript/memo/revised-answer/provider/private content out, and preserves
   `model_calls: 0`, `archive_mutated: false`, no labels, no scoring, no judge,
   and no runtime integration.
+- PR67 reviews six PR66 exporter smoke outputs from four existing reviewed
+  archives and two fixture-backed temp runs. The review finds the records useful
+  and raw-content-safe, but recommends PR68 schema/exporter refinement before
+  archive integration or automatic generation because empty PR31 buckets are
+  only partly clear as "not supplied / not inferred" non-claims.
 
 ## Current Corpus Evidence
 
@@ -189,10 +194,12 @@ only aggregate keys and counts.
   record exporter. PR60 only designs `lolla.provenance_map.v0`, PR61 only
   designs `lolla.review_conflict_register.v0`, PR62 only designs
   `lolla.case_graph.v0`, PR63 only creates paraphrase-only
-  accountability-view fixtures, and PR64 only reviews those fixtures.
-  Provenance exporter, conflict-register exporter, case-graph exporter, graph
-  DB, memory, GraphRAG, labels, scoring, judges, and runtime integration still
-  do not exist from this accountability lane;
+  accountability-view fixtures, PR64 only reviews those fixtures, and PR67 only
+  reviews audit-decision-record exporter smoke output. Archive integration,
+  automatic generation, batch export, provenance exporter, conflict-register
+  exporter, case-graph exporter, graph DB, memory, GraphRAG, labels, scoring,
+  judges, and runtime integration still do not exist from this accountability
+  lane;
 - no domain, crisis, legal, medical, financial, or safety protocol.
 
 ## Explicit Non-Goals
@@ -245,12 +252,12 @@ The later safe lanes are separate:
    paraphrase-only decision-record fixtures. PR60 designs only the provenance
    map shape. PR61 designs only the review conflict register shape. Do not
    implement provenance export, conflict-register export, case graph export,
-   graph DB, memory, platform work, or runtime behavior from PR55 through PR66
+   graph DB, memory, platform work, or runtime behavior from PR55 through PR67
    alone. PR62 designs only the case graph export/view shape. PR63 creates only
    paraphrase-only accountability-view fixture bundles. PR64 only reviews those
    fixtures and stops before implementation. PR65 only recommends a future
    decision-record exporter. PR66 implements only that read-only decision-record
-   exporter and stops before PR67.
+   exporter. PR67 only reviews smoke outputs and stops before PR68.
 3. A later live-output hygiene lane can plan and lock current behavior, then
    stop for an implementation decision.
 
@@ -261,7 +268,7 @@ cases demonstrate it, read:
 docs/evals/current-system-capabilities-v0.md
 ```
 
-For the Semantica-inspired accountability boundary and PR55-PR66 queue,
+For the Semantica-inspired accountability boundary and PR55-PR67 queue,
 read:
 
 ```text
@@ -345,6 +352,13 @@ scripts/build_audit_decision_record.py
 tests/test_audit_decision_record.py
 ```
 
+For the PR67 audit decision record export smoke review, read:
+
+```text
+docs/evals/audit-decision-record-export-smoke-review-v0.md
+reviews/human/audit-decision-record-export-smoke-review-v0/review.json
+```
+
 ## Decision Gates
 
 - Now: decide whether to create approved real high-stakes evidence.
@@ -362,8 +376,9 @@ tests/test_audit_decision_record.py
   only `audit_decision_record` for a later exporter-design decision. PR65
   chooses that direction as a docs-only recommendation for future PR66. PR66
   implements only the read-only audit decision record exporter and stops before
-  PR67. PR67 must not start automatically and must not add implementation until
-  maintainers approve a new slice.
+  PR67. PR67 reviews only exporter smoke output and recommends PR68
+  schema/exporter refinement. PR68 must not start automatically and must not add
+  implementation until maintainers approve a new slice.
 - After a live-output hygiene planning/review lane: decide whether to implement
   trusted live-output transcript hygiene.
 

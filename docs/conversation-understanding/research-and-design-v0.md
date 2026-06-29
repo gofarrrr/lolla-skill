@@ -1777,6 +1777,19 @@ memo, revised-answer, provider/model text, private reasoning, model calls,
 archive mutation, automatic labels, answer-quality scoring, graph DB, memory,
 and runtime integration outside the slice.
 
+Implemented next as PR67:
+
+- [audit-decision-record-export-smoke-review-v0.md](../evals/audit-decision-record-export-smoke-review-v0.md)
+- [review.json](../../reviews/human/audit-decision-record-export-smoke-review-v0/review.json)
+
+PR67 reviews six PR66 exporter smoke outputs: four existing reviewed archives
+and two fixture-backed temp runs. It finds the records useful and
+raw-content-safe, with clear artifact statuses, custody flags, and limitations.
+The main caveat is empty PR31 bucket clarity: empty arrays are safe because the
+exporter does not infer labels, but they are only partly clear as non-claims in
+real archive exports. PR67 recommends a small schema/exporter refinement before
+archive integration, batch export, or automatic generation.
+
 ### Later: Decision-Aware Capture And Runtime Integration
 
 Goal: only after offline evidence, use the IR to improve capture or audit input.
@@ -1833,9 +1846,10 @@ PR56's Lolla Doctor / Preflight plan, PR57's read-only doctor CLI, PR58's audit
 decision record design, PR59's audit decision record fixture review, PR60's
 provenance map design, PR61's review conflict register design, PR62's case
 graph export/view design, PR63's accountability-view fixture pack, PR64's
-fixture review, PR65's implementation decision gate, and PR66's read-only audit
-decision record exporter now exist. Stop after PR66 unless maintainers approve
-a separate PR67. Other lanes still require their own gates: future
+fixture review, PR65's implementation decision gate, PR66's read-only audit
+decision record exporter, and PR67's exporter smoke review now exist. Stop
+after PR67 unless maintainers approve a separate PR68. Other lanes still
+require their own gates: future
 high-stakes evidence under PR46/PR48, reopening the values lane after PR54, or
 any populated extraction, memory, runtime integration, automatic labels, or
 judging.

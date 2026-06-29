@@ -193,12 +193,15 @@ At PR65 time, the stop condition was: do not start PR66 in that sequence.
 Maintainers later approved PR66 as a separate slice, now documented in
 [Audit Decision Record Read-Only Exporter v0](audit-decision-record-readonly-exporter-v0.md).
 
-The current stop condition after PR66 is: do not start PR67 automatically.
-Before any future implementation slice begins, maintainers should review PR66
-output and confirm that the next work remains read-only where appropriate,
-local, deterministic, model-call-free, archive-safe, raw-content-safe, and
-outside labels, scoring, judges, graph DB, memory, and runtime integration
-unless explicitly approved.
+PR67 has now landed separately as a smoke review of PR66 exporter output:
+[Audit Decision Record Export Smoke Review v0](audit-decision-record-export-smoke-review-v0.md).
+
+The current stop condition after PR67 is: do not start PR68 automatically.
+Before any future implementation slice begins, maintainers should review PR67
+and confirm that the next work remains read-only where appropriate, local,
+deterministic, model-call-free, archive-safe, raw-content-safe, and outside
+labels, scoring, judges, graph DB, memory, archive integration, automatic
+generation, and runtime integration unless explicitly approved.
 
 Current anti-drift sentence:
 

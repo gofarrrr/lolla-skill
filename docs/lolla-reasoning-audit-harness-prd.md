@@ -254,7 +254,7 @@ Since the first harness PRD pass, the shipped harness layer has also added:
 - semantic coverage reports and corpus survey;
 - offline specialist extractor probe harnesses and evidence notes;
 - a six-case complex conversation baseline with full modern artifacts;
-- the PR30-PR66 evaluation/accountability handoff chain from human review seed
+- the PR30-PR67 evaluation/accountability handoff chain from human review seed
   through risk-mode reliance visibility, current-state anti-drift docs,
   human-owned values/priorities review, and the Semantica-inspired
   accountability plan through decision-record fixtures, provenance map, review
@@ -559,6 +559,17 @@ reasoning artifacts. It refuses output inside the run directory, keeps
 `model_calls: 0` and `archive_mutated: false`, does not infer PR31 labels, and
 does not score answer quality, approve recommendations, decide
 `safe_for_agent_use`, or integrate with runtime behavior.
+
+PR67 now lands the Audit Decision Record Export Smoke Review:
+
+`docs/evals/audit-decision-record-export-smoke-review-v0.md`
+
+It reviews six PR66 exporter outputs from four existing reviewed archives and
+two fixture-backed temp runs. All six pass as useful, raw-content-safe
+accountability shells, and artifact status, custody, and limitation clarity are
+strong. The review recommends PR68 schema/exporter refinement before archive
+integration or automatic generation because empty PR31 buckets are only partly
+clear as "not supplied / not inferred" non-claims.
 
 This roadmap should build on that. It should not restart the architecture.
 
@@ -958,6 +969,10 @@ Current v0 slice:
   structured/custody-safe artifacts, writes only an explicit external output
   file, and remains outside raw content, model calls, archive mutation, labels,
   scoring, judges, graph DB, memory, and runtime integration.
+- `docs/evals/audit-decision-record-export-smoke-review-v0.md` documents the
+  PR67 smoke review of PR66 exporter outputs and recommends a small
+  schema/exporter refinement before archive integration, automatic generation,
+  batch export, labels, scoring, judges, or runtime behavior.
 
 Acceptance criteria:
 

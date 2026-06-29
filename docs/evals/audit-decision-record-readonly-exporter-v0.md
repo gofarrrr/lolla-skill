@@ -231,8 +231,15 @@ archive paths, safe review references, and external-only CLI writes.
 
 ## Next Gate
 
-Stop after PR66.
+PR67 has now reviewed exporter smoke outputs:
 
-A possible PR67 should happen only after maintainer review of the PR66 exporter
-output and should not be treated as automatic generation, runtime integration,
-label population, answer scoring, or archive mutation.
+- [Audit Decision Record Export Smoke Review v0](audit-decision-record-export-smoke-review-v0.md)
+- [review.json](../../reviews/human/audit-decision-record-export-smoke-review-v0/review.json)
+
+The review finds the exporter useful and raw-content-safe, but recommends PR68
+schema/exporter refinement before archive integration or automatic generation.
+The specific issue is empty PR31 bucket clarity: empty arrays are correct
+because labels were not supplied or inferred, but the record should make that
+population policy harder to miss.
+
+Stop after PR67. Do not start PR68 automatically.

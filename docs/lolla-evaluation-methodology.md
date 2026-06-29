@@ -186,6 +186,13 @@ It does not infer PR31 labels, decide `safe_for_agent_use`, approve the
 recommendation, score answer quality, run `$lolla`, call models, mutate
 archives, or integrate with runtime behavior.
 
+PR67 then reviews six exporter smoke outputs before any integration. It finds
+the record useful for human and agent inspection, with clear artifact status,
+custody, limitations, and raw-content safety. It also catches the right kind of
+reviewability issue: empty PR31 buckets are safe but only partly clear as
+"labels were not supplied or inferred." That means the next conservative move
+is schema/exporter refinement, not archive integration or scoring.
+
 These checks should gate releases before any subjective judge runs.
 
 ### 4. Binary Failure-Mode Judges Only

@@ -1813,13 +1813,52 @@ Current result:
 - keeps `model_calls: 0`, `archive_mutated: false`, all raw/private inclusion
   flags false, and local absolute archive paths out of generated JSON.
 
-Stop point:
+Stop point at PR66 time:
 
 - Stop after PR66.
-- Do not start PR67 automatically.
+- Do not start PR67 automatically from that sequence.
 - Do not use PR66 output as answer-quality scoring, domain approval,
   `safe_for_agent_use`, automatic labels, runtime integration, archive
   mutation, graph DB, memory, GraphRAG, or Semantica-style platform work.
+
+PR67 later landed as a separate smoke-review slice.
+
+### PR67: Audit Decision Record Export Smoke / Review v0
+
+Maps to: R6/R9 exporter reviewability evidence.
+
+Status: completed as a docs/review/data slice.
+
+Output:
+
+- [Audit Decision Record Export Smoke Review v0](audit-decision-record-export-smoke-review-v0.md).
+- [review.json](../../reviews/human/audit-decision-record-export-smoke-review-v0/review.json).
+
+Current result:
+
+- generated eight `/tmp` exporter smoke outputs and reviewed six records;
+- reviewed four existing reviewed archives selected from checked-in PR59
+  fixture relpaths;
+- reviewed two fixture-backed temp runs for missing and malformed structured
+  artifact clarity;
+- found 6 pass, 0 revise, 0 fail, 0 exclude;
+- found artifact statuses useful in all six;
+- found custody and limitations clear in all six;
+- found raw content safety safe in all six;
+- found false-certainty risk none or low in all six;
+- found empty PR31 buckets only partly clear in the four existing-archive
+  exports because empty arrays can look like no meaningful delta rather than no
+  labels supplied or inferred.
+
+Stop point:
+
+- Stop after PR67.
+- Do not start PR68 automatically.
+- Do not add archive integration, automatic generation, batch export, runtime
+  behavior, labels, answer-quality scoring, judges, graph DB, memory, GraphRAG,
+  or Semantica-style platform work from PR67 alone.
+- Recommended PR68 is Audit Decision Record Schema/Exporter Refinement v0, only
+  after maintainer review.
 
 ## What Not To Build Yet
 
@@ -1878,10 +1917,11 @@ Before building judges or runtime semantic enrichment, Lolla should have:
 That is the smallest flywheel that can improve Lolla run by run without turning
 it into a vague critic or overbuilt memory system.
 
-The latest conservative accountability step is PR66 Audit Decision Record
-Read-Only Exporter v0. It implements only the decision-record exporter selected
-by PR65 and stops before PR67. Any future PR67 should require maintainer review
-first and should not add graph DB, embeddings, memory, entity resolution,
-GraphRAG, conflict automation, answer-quality scoring, judges, automatic
-labels, provider-boundary policy changes, prompt changes, `SKILL.md` changes,
-or Semantica-style platform work.
+The latest conservative accountability step is PR67 Audit Decision Record
+Export Smoke / Review v0. It reviews the PR66 exporter output without making
+the machine stronger and recommends PR68 schema/exporter refinement for clearer
+empty PR31 bucket semantics. Any future PR68 should require maintainer review
+first and should not add archive integration, automatic generation, graph DB,
+embeddings, memory, entity resolution, GraphRAG, conflict automation,
+answer-quality scoring, judges, automatic labels, provider-boundary policy
+changes, prompt changes, `SKILL.md` changes, or Semantica-style platform work.

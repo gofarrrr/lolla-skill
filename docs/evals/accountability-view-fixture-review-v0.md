@@ -192,5 +192,6 @@ PR64 moved only to the docs-only decision gate:
 PR65 Accountability Implementation Decision Gate v0
 ```
 
-PR65 recommended a future PR66, but did not implement it. PR66 has now landed
-separately and should stop before any PR67 work.
+PR65 recommended a future PR66, but did not implement it. PR66 later landed
+separately, and PR67 has now reviewed its smoke output. Stop before any PR68
+work unless maintainers approve it.

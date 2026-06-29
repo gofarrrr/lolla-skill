@@ -1,0 +1,267 @@
+{
+  "schema_version": "lolla.audit_decision_record_export_smoke_review.v0",
+  "review_scope": "human_product_review",
+  "date": "2026-06-29",
+  "source": {
+    "exporter_schema_version": "lolla.audit_decision_record.v0",
+    "exporter_commit": "2dbbc95cf56086567f832ca379bc64c9901accbb",
+    "model_calls": 0,
+    "lolla_runs_performed": 0,
+    "archives_mutated": false,
+    "raw_content_reviewed": false,
+    "exported_records_checked_in": false,
+    "exported_records_reviewed_from_tmp": true,
+    "exported_records_generated": 8,
+    "records_reviewed": 6,
+    "source_type_counts": {
+      "existing_reviewed_archive": 4,
+      "fixture_backed_temp_run": 2
+    }
+  },
+  "records_reviewed": [
+    {
+      "case_id": "ceo-remove-founding-cofounder",
+      "run_id": "20260627T093131Z_59d153",
+      "archive_relpath": "ceo-remove-founding-cofounder/20260627T093131Z_59d153",
+      "source_type": "existing_reviewed_archive",
+      "export_status": "pass",
+      "record_understandability": "clear",
+      "artifact_status_usefulness": "useful",
+      "empty_delta_bucket_clarity": "partly_clear",
+      "custody_clarity": "clear",
+      "limitation_clarity": "clear",
+      "raw_content_safety": "safe",
+      "false_certainty_risk": "low",
+      "reviewer_can_use_without_raw_content": "yes",
+      "implementation_readiness": "needs_schema_adjustment",
+      "primary_issue": "empty_fields_confusing",
+      "artifact_status_summary": {
+        "present": 7,
+        "missing": 0,
+        "malformed": 0
+      },
+      "notes": [
+        "The record clearly identifies the run, safe artifact presence, custody flags, and limitations.",
+        "All PR31 buckets are empty because the exporter does not infer labels; this is correct but only partly obvious without reading the limitation text."
+      ]
+    },
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "run_id": "20260627T104146Z_7bfe79",
+      "archive_relpath": "launch-public-enterprise-beta/20260627T104146Z_7bfe79",
+      "source_type": "existing_reviewed_archive",
+      "export_status": "pass",
+      "record_understandability": "clear",
+      "artifact_status_usefulness": "useful",
+      "empty_delta_bucket_clarity": "partly_clear",
+      "custody_clarity": "clear",
+      "limitation_clarity": "clear",
+      "raw_content_safety": "safe",
+      "false_certainty_risk": "low",
+      "reviewer_can_use_without_raw_content": "yes",
+      "implementation_readiness": "needs_schema_adjustment",
+      "primary_issue": "empty_fields_confusing",
+      "artifact_status_summary": {
+        "present": 7,
+        "missing": 0,
+        "malformed": 0
+      },
+      "notes": [
+        "The record is useful as an accountability shell and keeps the buyer-proof decision context in structured, safe fields.",
+        "The empty PR31 buckets could be misread as no meaningful delta unless the reader understands that labels were not supplied to the exporter."
+      ]
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "run_id": "20260627T130339Z_4cd3cb",
+      "archive_relpath": "deploy-assisted-intake-routing/20260627T130339Z_4cd3cb",
+      "source_type": "existing_reviewed_archive",
+      "export_status": "pass",
+      "record_understandability": "clear",
+      "artifact_status_usefulness": "useful",
+      "empty_delta_bucket_clarity": "partly_clear",
+      "custody_clarity": "clear",
+      "limitation_clarity": "clear",
+      "raw_content_safety": "safe",
+      "false_certainty_risk": "low",
+      "reviewer_can_use_without_raw_content": "yes",
+      "implementation_readiness": "needs_schema_adjustment",
+      "primary_issue": "empty_fields_confusing",
+      "artifact_status_summary": {
+        "present": 7,
+        "missing": 0,
+        "malformed": 0
+      },
+      "notes": [
+        "The custody and limitation sections make it clear that the record is not deployment approval.",
+        "The record would be easier to scan if empty delta buckets carried an explicit population policy or status."
+      ]
+    },
+    {
+      "case_id": "implement-price-increase-three",
+      "run_id": "20260627T083231Z_52724d",
+      "archive_relpath": "implement-price-increase-three/20260627T083231Z_52724d",
+      "source_type": "existing_reviewed_archive",
+      "export_status": "pass",
+      "record_understandability": "clear",
+      "artifact_status_usefulness": "useful",
+      "empty_delta_bucket_clarity": "partly_clear",
+      "custody_clarity": "clear",
+      "limitation_clarity": "clear",
+      "raw_content_safety": "safe",
+      "false_certainty_risk": "low",
+      "reviewer_can_use_without_raw_content": "yes",
+      "implementation_readiness": "needs_schema_adjustment",
+      "primary_issue": "empty_fields_confusing",
+      "artifact_status_summary": {
+        "present": 7,
+        "missing": 0,
+        "malformed": 0
+      },
+      "notes": [
+        "The record is readable without raw content and does not imply pricing advice approval.",
+        "Empty PR31 buckets are safe but need clearer semantics before deeper integration."
+      ]
+    },
+    {
+      "case_id": "pr67-fixture-missing-artifacts",
+      "run_id": "20260629T000000Z_missing",
+      "archive_relpath": "pr67-fixture-missing-artifacts/20260629T000000Z_missing",
+      "source_type": "fixture_backed_temp_run",
+      "export_status": "pass",
+      "record_understandability": "mostly_clear",
+      "artifact_status_usefulness": "useful",
+      "empty_delta_bucket_clarity": "clear_non_claim",
+      "custody_clarity": "clear",
+      "limitation_clarity": "clear",
+      "raw_content_safety": "safe",
+      "false_certainty_risk": "none",
+      "reviewer_can_use_without_raw_content": "yes",
+      "implementation_readiness": "ready_for_next_review",
+      "primary_issue": "none",
+      "artifact_status_summary": {
+        "present": 1,
+        "missing": 5,
+        "malformed": 0
+      },
+      "notes": [
+        "Missing artifacts are visibly different from not-measured semantic fields.",
+        "The limitation text correctly says missing structured artifacts were recorded rather than guessed."
+      ]
+    },
+    {
+      "case_id": "pr67-fixture-malformed-evaluation",
+      "run_id": "20260629T000000Z_malformed",
+      "archive_relpath": "pr67-fixture-malformed-evaluation/20260629T000000Z_malformed",
+      "source_type": "fixture_backed_temp_run",
+      "export_status": "pass",
+      "record_understandability": "clear",
+      "artifact_status_usefulness": "useful",
+      "empty_delta_bucket_clarity": "clear_non_claim",
+      "custody_clarity": "clear",
+      "limitation_clarity": "clear",
+      "raw_content_safety": "safe",
+      "false_certainty_risk": "none",
+      "reviewer_can_use_without_raw_content": "yes",
+      "implementation_readiness": "ready_for_next_review",
+      "primary_issue": "none",
+      "artifact_status_summary": {
+        "present": 3,
+        "missing": 2,
+        "malformed": 1
+      },
+      "notes": [
+        "Malformed JSON is visibly different from missing artifacts and from not-measured semantic fields.",
+        "Raw trap files in the temp run did not appear in exported output."
+      ]
+    }
+  ],
+  "aggregate_counts": {
+    "export_status": {
+      "pass": 6,
+      "revise": 0,
+      "fail": 0,
+      "exclude": 0
+    },
+    "record_understandability": {
+      "clear": 5,
+      "mostly_clear": 1,
+      "unclear": 0
+    },
+    "artifact_status_usefulness": {
+      "useful": 6,
+      "partly_useful": 0,
+      "not_useful": 0
+    },
+    "empty_delta_bucket_clarity": {
+      "clear_non_claim": 2,
+      "partly_clear": 4,
+      "misleading": 0
+    },
+    "custody_clarity": {
+      "clear": 6,
+      "partly_clear": 0,
+      "unclear": 0
+    },
+    "limitation_clarity": {
+      "clear": 6,
+      "partly_clear": 0,
+      "unclear": 0
+    },
+    "raw_content_safety": {
+      "safe": 6,
+      "unsafe": 0,
+      "unclear": 0
+    },
+    "false_certainty_risk": {
+      "none": 2,
+      "low": 4,
+      "medium": 0,
+      "high": 0
+    },
+    "reviewer_can_use_without_raw_content": {
+      "yes": 6,
+      "partly": 0,
+      "no": 0
+    },
+    "implementation_readiness": {
+      "ready_for_next_review": 2,
+      "needs_schema_adjustment": 4,
+      "needs_exporter_adjustment": 0,
+      "hold": 0
+    },
+    "primary_issue": {
+      "none": 2,
+      "empty_fields_confusing": 4,
+      "artifact_status_confusing": 0,
+      "custody_unclear": 0,
+      "limitations_unclear": 0,
+      "false_certainty": 0,
+      "privacy_risk": 0,
+      "exporter_bug": 0,
+      "other": 0
+    }
+  },
+  "review_questions": {
+    "empty_pr31_buckets_understandable_as_not_supplied_not_inferred": "partly",
+    "missing_malformed_not_measured_and_empty_semantic_fields_distinguishable": "yes",
+    "answer_quality_scoring_absence_obvious": "yes",
+    "human_review_ownership_obvious": "yes",
+    "helps_agent_inspect_without_overclaiming": "yes_with_caveat",
+    "exported_records_checked_in": "no"
+  },
+  "decision": {
+    "summary": "The PR66 exporter is useful as a read-only accountability shell. It clearly reports run identity, safe artifact presence, malformed and missing artifact states, custody flags, and limitations without raw content or scoring. The main review finding is that empty PR31 buckets are safe but only partly clear in real archive exports because they can look like no deltas rather than no labels supplied to the exporter.",
+    "recommended_next_slice": "PR68 Audit Decision Record Schema/Exporter Refinement v0",
+    "recommended_next_slice_reason": "Before archive integration or batch review export, add or design a clearer population-policy/status cue for PR31 buckets and semantic fields so empty arrays cannot be mistaken for a substantive no-delta judgment."
+  },
+  "custody_flags": {
+    "raw_transcript_included": false,
+    "raw_memo_included": false,
+    "raw_revised_answer_included": false,
+    "provider_text_included": false,
+    "private_reasoning_included": false,
+    "local_absolute_paths_included": false,
+    "secrets_included": false
+  }
+}

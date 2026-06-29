@@ -1,6 +1,6 @@
 # Audit Decision Record v0
 
-Status: PR58 docs/JSON design; PR66 read-only exporter implemented
+Status: PR58 docs/JSON design; PR66 read-only exporter implemented; PR67 smoke-reviewed
 Date: 2026-06-28
 Owner: Lolla maintainers
 
@@ -9,6 +9,9 @@ projection over existing Lolla artifacts.
 
 PR66 implements a narrow read-only exporter for this schema:
 [Audit Decision Record Read-Only Exporter v0](../evals/audit-decision-record-readonly-exporter-v0.md).
+
+PR67 reviews smoke exports from that exporter:
+[Audit Decision Record Export Smoke Review v0](../evals/audit-decision-record-export-smoke-review-v0.md).
 
 The record is meant to help reviewers see what decision a run audited and what
 changed between the original and revised recommendation. It is not a new
@@ -296,3 +299,30 @@ mutate archives, change prompts, change `SKILL.md`, change `caller_action`,
 decide `safe_for_agent_use`, approve a domain recommendation, score answer
 quality, add a judge, add memory, add graph DB, or implement the provenance,
 conflict-register, or case-graph lanes.
+
+## PR67 Export Smoke Review
+
+PR67 reviews whether the PR66 exporter output is actually readable and humble:
+
+- [Audit Decision Record Export Smoke Review v0](../evals/audit-decision-record-export-smoke-review-v0.md)
+- [review.json](../../reviews/human/audit-decision-record-export-smoke-review-v0/review.json)
+
+The review covers six exported records: four existing reviewed archives and two
+fixture-backed temp runs. All six pass. Artifact statuses are useful in all
+six, custody and limitations are clear in all six, raw content safety is safe in
+all six, and false-certainty risk is none or low.
+
+The review finding is narrow but important: empty PR31 buckets are safe because
+the exporter does not infer labels from prose, but they are only partly clear in
+real archive exports. A reader can mistake empty arrays for "no meaningful
+delta" unless they notice the limitation that labels were not supplied or
+inferred.
+
+Recommended next slice:
+
+```text
+PR68 Audit Decision Record Schema/Exporter Refinement v0
+```
+
+PR68 should be approved separately and should clarify PR31 bucket population
+policy before archive integration, batch export, or automatic generation.

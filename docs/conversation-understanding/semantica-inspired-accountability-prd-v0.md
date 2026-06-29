@@ -14,8 +14,10 @@ only. It does not implement any primitive described below, and it does not
 approve PR56 through PR65 as code work.
 
 PR66 has now landed as a separate approved implementation slice for only the
-audit decision record exporter. That does not broaden the PR55 plan into
-runtime integration, graph/memory/platform work, scoring, or judge behavior.
+audit decision record exporter, and PR67 has now reviewed exporter smoke output
+without integrating it into runtime. That does not broaden the PR55 plan into
+archive integration, automatic generation, graph/memory/platform work, scoring,
+or judge behavior.
 
 This note is not a runtime approval. It does not approve graph databases,
 embeddings, memory, automatic value extraction, policy enforcement, high-stakes
@@ -942,6 +944,43 @@ maintainer review of PR66 output and must not treat exported records as labels,
 answer-quality scores, `safe_for_agent_use`, domain approval, memory, graph DB,
 or runtime integration.
 
+### PR67: Audit Decision Record Export Smoke / Review v0
+
+Type: docs/review/data
+
+Status after PR67: completed as the exporter smoke review:
+`docs/evals/audit-decision-record-export-smoke-review-v0.md` and
+`reviews/human/audit-decision-record-export-smoke-review-v0/review.json`.
+
+Goal:
+
+Review whether PR66 exporter output is understandable, useful, raw-content-safe,
+and properly caveated before any archive integration, automatic generation, or
+batch export is considered.
+
+Result:
+
+- reviews six exports: four existing reviewed archives and two fixture-backed
+  temp runs;
+- records 6 pass, 0 revise, 0 fail, 0 exclude;
+- confirms artifact statuses are useful in all six;
+- confirms custody and limitation clarity in all six;
+- confirms raw-content safety in all six;
+- keeps false-certainty risk none or low;
+- finds empty PR31 buckets only partly clear in real archive exports because
+  they can look like "no meaningful delta" instead of "labels were not supplied
+  or inferred";
+- does not change the exporter, production code, runtime behavior, archive
+  integration, labels, scoring, judges, graph DB, memory, or Semantica-style
+  platform work.
+
+Stop rule:
+
+Do not continue into PR68 automatically. PR67 recommends PR68 Audit Decision
+Record Schema/Exporter Refinement v0 only after maintainer review, focused on
+clarifying PR31 bucket and semantic-field population policy before deeper
+integration.
+
 ## Coder Operating Rules
 
 For every PR in this queue:
@@ -1089,9 +1128,17 @@ scripts/build_audit_decision_record.py
 tests/test_audit_decision_record.py
 ```
 
+PR67 has now reviewed the exporter smoke output:
+
+```text
+docs/evals/audit-decision-record-export-smoke-review-v0.md
+reviews/human/audit-decision-record-export-smoke-review-v0/review.json
+```
+
 PR66 remains the only approved code-bearing accountability implementation from
-this lane so far. It does not add runtime integration, archive mutation,
+this lane so far. PR67 is review/data only. Neither slice adds runtime
+integration, archive mutation, automatic generation, batch export,
 provenance-map export, conflict-register export, case-graph export, graph DB,
 embeddings, memory, entity resolution, GraphRAG, answer-quality scoring,
-automatic labels, or Semantica-style platform work. Stop after PR66 unless a
-new maintainer-approved slice explicitly starts PR67.
+automatic labels, or Semantica-style platform work. Stop after PR67 unless a
+new maintainer-approved slice explicitly starts PR68.
