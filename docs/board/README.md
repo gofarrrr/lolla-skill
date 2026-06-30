@@ -77,6 +77,21 @@ Follow-up implementation planning:
   let Decision Trail/Product Delta artifacts supply semantic interpretation
   when that work is justified.
 
+- [Decision Work Receipt Debug Summary](../conversation-understanding/decision-work-receipt-debug-summary-v0.md)
+
+  An internal Markdown renderer that turns a Decision Work Receipt and optional
+  Decision Trail report into a maintainer-readable debug packet. It is useful
+  for checking artifact status and missingness, but it is not the customer
+  proof-of-work story.
+
+- [Decision Work Brief PRD](../conversation-understanding/decision-work-brief-prd-v0.md)
+
+  The product-facing target for the missing layer: a plain-language brief that
+  explains what decision was being made, what Lolla pressed on, what changed,
+  what remains unresolved, and what the audit must not claim. It also nests the
+  work into PR113-PR118 so the next steps stay grounded in the existing
+  receipt, Decision Trail, Product Delta, and lint machinery.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

@@ -156,6 +156,25 @@ now accept --decision-trail-report and --product-delta-report paths, record
 sanitized source metadata, and raise review readiness without copying report
 content, local paths, or semantic conclusions.
 
+The Decision Work Receipt Debug Summary renderer is an internal maintainer
+layer over those artifacts. It turns a receipt plus optional Decision Trail
+report into a Markdown packet for status, missingness, and custody inspection.
+The checked-in launch-public-enterprise-beta example shows the current debug
+shape: multi-turn process evidence, visible challenge surfaces, linked Decision
+Trail field status, private/missing distinctions, explicit non-claims, and a
+clear list of semantic fields still requiring LLM or human interpretation. It
+also preserves metadata awkwardness instead of smoothing it away, such as
+inconsistent turn count totals.
+
+This is not the customer-facing decision story. The user-facing target is now
+the Decision Work Brief: a plain-language artifact that explains what decision
+was being made, what Lolla pressed on, what changed, what remains unresolved,
+and what the audit must not claim. See
+docs/conversation-understanding/decision-work-brief-prd-v0.md. That PRD now
+nests the product claim into the existing codebase and lays out PR113-PR118:
+schema, local-private packet builder, Codex-assisted draft pilot, Markdown
+renderer, and usefulness gate.
+
 This remains offline/eval-side machinery. It does not run $lolla, invoke the
 skill, call providers, mutate archives, change prompts, touch SKILL.md, score
 answer quality, create automatic labels, or authorize agent action.

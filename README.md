@@ -244,7 +244,18 @@ parallel Work Receipt interpretation system yet. The follow-up
 [Decision Work Receipt External Report Attachments](docs/conversation-understanding/decision-work-receipt-external-report-attachments-v0.md)
 slice keeps that boundary while letting the receipt CLI link externally
 generated Decision Trail/Product Delta reports by safe metadata only, without
-copying report content or local paths. See
+copying report content or local paths. The
+[Decision Work Receipt Debug Summary](docs/conversation-understanding/decision-work-receipt-debug-summary-v0.md)
+renderer turns that JSON package into internal maintainer Markdown; the
+checked-in
+[launch-public-enterprise-beta receipt debug example](docs/conversation-understanding/decision-work-receipt-debug-summary-launch-public-enterprise-beta-v0.md)
+shows the current status/missingness shape. That is not the customer-facing
+story. The intended user-facing target is the
+[Decision Work Brief PRD](docs/conversation-understanding/decision-work-brief-prd-v0.md):
+a plain-language artifact explaining the decision, what Lolla pressed on, what
+changed, what remains unresolved, and what the audit must not claim. That PRD
+now includes the concrete PR113-PR118 delivery sequence for schema, local
+packets, provisional brief drafts, rendering, and usefulness review. See
 [Lolla Decision Trail Web Page Draft](docs/lolla-decision-trail-web-page-v0.md)
 for the simple customer explanation and
 [Decision Trail Readiness Audit](docs/conversation-understanding/decision-trail-readiness-audit-v0.md)
