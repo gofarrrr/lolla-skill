@@ -236,7 +236,11 @@ and the composed sparse receipt exporter in
 The first fixture review is
 [Decision Work Receipt Fixture Review](docs/conversation-understanding/decision-work-receipt-fixture-review-v0.md):
 the receipt is useful as a work-trail shell, but still too thin to explain the
-messy semantic story without later bounded interpretation. See
+messy semantic story without later bounded interpretation. The phase decision
+is
+[Decision Work Receipt Decision Gate](docs/conversation-understanding/decision-work-receipt-decision-gate-v0.md):
+keep the sparse receipt as an internal/workflow artifact and do not build a
+parallel Work Receipt interpretation system yet. See
 [Lolla Decision Trail Web Page Draft](docs/lolla-decision-trail-web-page-v0.md)
 for the simple customer explanation and
 [Decision Trail Readiness Audit](docs/conversation-understanding/decision-trail-readiness-audit-v0.md)

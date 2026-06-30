@@ -645,6 +645,8 @@ Implementation note:
 
 Type: docs-only decision gate.
 
+Status: implemented in PR111.
+
 Goal:
 
 Decide what kind of change is justified by PR105-PR110 evidence.
@@ -680,6 +682,10 @@ Possible outcomes:
    If the receipt feels like bureaucracy or creates overtrust.
 
 PR111 should decide one path and stop.
+
+Implementation note:
+
+- [Decision Work Receipt Decision Gate v0](decision-work-receipt-decision-gate-v0.md)
 
 ## How This Feeds Back Into Lolla
 
@@ -762,12 +768,13 @@ It fails if:
 
 ## Recommended Next Step
 
-Do PR111 next:
+Stop the Decision Work Receipt build lane here.
 
-> Decision Work Receipt Decision Gate v0.
+PR111 selects Outcome A:
 
-PR110 finds the sparse receipt useful as a work-trail shell, but still too thin
-to explain the messy semantic story users ultimately care about. PR111 should
-decide whether to keep the sparse receipt as an internal artifact, add bounded
-LLM interpretation later, simplify, or change runtime capture only if the
-review evidence justifies it.
+> Keep the sparse receipt as a useful internal/workflow artifact. Do not add a
+> separate Work Receipt interpretation system yet.
+
+Future semantic interpretation should come through the existing Decision Trail
+and Product Delta lanes when justified. The Work Receipt should wrap those
+artifacts, not become a parallel judge or semantic pipeline.

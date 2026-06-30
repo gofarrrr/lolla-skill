@@ -70,6 +70,13 @@ Follow-up implementation planning:
   useful as a work-trail shell, still too thin to explain the messy semantic
   story, and risky if readiness labels are read as approval.
 
+- [Decision Work Receipt Decision Gate](../conversation-understanding/decision-work-receipt-decision-gate-v0.md)
+
+  PR111's closure decision. Keep the sparse receipt as an internal/workflow
+  wrapper, do not build a parallel Work Receipt interpretation system yet, and
+  let Decision Trail/Product Delta artifacts supply semantic interpretation
+  when that work is justified.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

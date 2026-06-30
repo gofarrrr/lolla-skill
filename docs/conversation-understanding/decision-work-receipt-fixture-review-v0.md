@@ -134,18 +134,18 @@ They must stay next to visible non-claims:
 
 ## PR111 Implication
 
-PR110 should push PR111 toward a decision gate, not another automatic build
-step.
+PR110 pushed PR111 toward a decision gate, not another automatic build step.
 
-The likely decision is:
+PR111 now selects:
 
-> Keep the sparse receipt as useful internal evidence, and decide separately
-> whether bounded LLM interpretation is needed for a product-facing work-trail
-> story.
+> Keep the sparse receipt as useful internal evidence. Do not add a separate
+> Work Receipt interpretation system yet.
 
 The fixture review does not justify runtime integration, a broad
 conversation-understanding IR, judges, scores, approval labels, or agent action
 authorization.
+
+See [Decision Work Receipt Decision Gate v0](decision-work-receipt-decision-gate-v0.md).
 
 ## Non-Claims
 
