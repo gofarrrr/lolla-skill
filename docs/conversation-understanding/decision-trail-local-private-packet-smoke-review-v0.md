@@ -156,20 +156,23 @@ PR98 has now reviewed the PR97 pilot:
 
 - [Decision Trail Specialist Output Pilot Review v0](decision-trail-specialist-output-pilot-review-v0.md)
 
-The next slice should be PR99:
+PR99 has now applied the requested patch:
 
 ```text
 Decision Trail Specialist Contract And Packet Patch v0
 ```
 
-It should:
+See:
 
-- patch the PR90 contracts and PR95 packet metadata surfaced by PR98;
-- preserve the one-case limitation as a first-class result;
-- avoid broad product claims, fan-in-as-verdict, and runtime integration;
-- avoid running another specialist-output pilot until the patch is in place.
+- [Decision Trail Specialist Contract And Packet Patch v0](decision-trail-specialist-contract-and-packet-patch-v0.md)
 
-It must not:
+It patches the PR90 contracts and PR95 packet metadata surfaced by PR98,
+preserves the one-case limitation as a first-class result, and avoids broad
+product claims, fan-in-as-verdict, runtime integration, and another
+specialist-output pilot. The next conservative slice may be PR100: one more
+operator-selected one-case pilot using the patched shape.
+
+That future PR100-style slice must not:
 
 - run `$lolla`;
 - invoke the Lolla skill;

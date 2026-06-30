@@ -115,29 +115,36 @@ def test_specialist_roles_cover_pr89_missing_fields() -> None:
         "stakeholders",
         "values_or_priorities",
         "assistant_influence",
+        "assistant_influence_source_status",
         "dropped_threads",
         "unresolved_questions",
         "uncertainty",
+        "source_scope_and_truncation_impact",
     } <= set(roles["conversation_shape_reader"]["covered_fields"])
     assert {
         "vanilla_likely_next_action",
         "revised_likely_next_action",
+        "vanilla_overlap_read",
         "action_delta",
         "threshold_delta",
         "sequence_delta",
         "evidence_gate_delta",
         "stop_rule_delta",
         "uncertainty",
+        "source_scope_and_truncation_impact",
     } <= set(roles["likely_action_reader"]["covered_fields"])
     assert {
         "useful_friction",
         "noisy_friction",
         "missing_friction",
         "lost_value",
+        "lost_value_severity_read",
+        "severity_source_status",
         "value_overwrite_risk",
         "momentum_or_simplicity_loss",
         "overcaution_or_diligence_theater",
         "uncertainty",
+        "source_scope_and_truncation_impact",
     } <= set(roles["friction_lost_value_reader"]["covered_fields"])
 
 
@@ -203,6 +210,11 @@ def test_status_vocabulary_preserves_missingness_and_redaction() -> None:
 def test_conservative_fan_in_forbids_score_vote_winner_and_correctness_from_agreement() -> None:
     fan_in = _example()["specialist_roles"]["conservative_fan_in_reader"]
 
+    assert {
+        "downgrade_triggers",
+        "not_ready_reason",
+        "source_scope_and_truncation_impact",
+    } <= set(fan_in["covered_fields"])
     assert {
         "vote",
         "average",

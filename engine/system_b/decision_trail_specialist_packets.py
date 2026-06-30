@@ -127,9 +127,11 @@ ROLE_SPECS: dict[str, dict[str, Any]] = {
             "stakeholders",
             "values_or_priorities",
             "assistant_influence",
+            "assistant_influence_source_status",
             "dropped_threads",
             "unresolved_questions",
             "uncertainty",
+            "source_scope_and_truncation_impact",
         ),
         "review_questions": (
             "What conversation-shape fields are visible from the checked-in-safe Decision Trail shell?",
@@ -142,12 +144,14 @@ ROLE_SPECS: dict[str, dict[str, Any]] = {
         "expected_fields": (
             "vanilla_likely_next_action",
             "revised_likely_next_action",
+            "vanilla_overlap_read",
             "action_delta",
             "threshold_delta",
             "sequence_delta",
             "evidence_gate_delta",
             "stop_rule_delta",
             "uncertainty",
+            "source_scope_and_truncation_impact",
         ),
         "review_questions": (
             "Can a future specialist identify likely next actions from allowed inputs without pretending certainty?",
@@ -164,10 +168,13 @@ ROLE_SPECS: dict[str, dict[str, Any]] = {
             "noisy_friction",
             "missing_friction",
             "lost_value",
+            "lost_value_severity_read",
+            "severity_source_status",
             "value_overwrite_risk",
             "momentum_or_simplicity_loss",
             "overcaution_or_diligence_theater",
             "uncertainty",
+            "source_scope_and_truncation_impact",
         ),
         "review_questions": (
             "What would count as useful friction versus noisy friction if a future specialist had enough context?",
@@ -185,7 +192,10 @@ ROLE_SPECS: dict[str, dict[str, Any]] = {
             "fields_not_ready_for_report",
             "human_followup_questions",
             "overtrust_risks",
+            "downgrade_triggers",
+            "not_ready_reason",
             "next_review_priority",
+            "source_scope_and_truncation_impact",
         ),
         "review_questions": (
             "Which fields are ready for a Decision Trail report and which are not?",
@@ -326,6 +336,14 @@ def build_decision_trail_specialist_packets(
                 "did not check in generated Decision Trail reports, so packets "
                 "record source-report thinness instead of pretending full report "
                 "content is present."
+            ),
+            "source_scope_policy": {
+                "source_scope_summary_required": True,
+                "truncation_summary_required": True,
+                "local_private_retention_status_required_in_review": True,
+            },
+            "local_private_retention_policy": _local_private_retention_policy(
+                mode="checked_in_safe_mode"
             ),
         },
         "report_count": len(reports),
@@ -474,6 +492,14 @@ def _build_local_private_packets(
                 "not safe for commit by default and does not create specialist "
                 "answers."
             ),
+            "source_scope_policy": {
+                "source_scope_summary_required": True,
+                "truncation_summary_required": True,
+                "local_private_retention_status_required_in_review": True,
+            },
+            "local_private_retention_policy": _local_private_retention_policy(
+                mode="local_private_mode"
+            ),
         },
         "report_count": len(reports),
         "reports": reports,
@@ -507,6 +533,96 @@ def _local_private_artifact_records(
 ) -> list[Mapping[str, Any]]:
     context = _mapping(report.get("available_context"))
     return _items(context.get("local_private_artifacts_read"))
+
+
+def _local_private_retention_policy(*, mode: str) -> dict[str, Any]:
+    if mode == "local_private_mode":
+        return {
+            "local_include_text_output_retention_status": (
+                "operator_managed_not_tracked_by_builder"
+            ),
+            "checked_in_review_must_record": [
+                "deleted_after_review",
+                "retained_locally",
+                "never_created",
+            ],
+            "retention_status_source": "future_checked_in_review_summary",
+            "builder_deletes_local_output": False,
+        }
+    return {
+        "local_include_text_output_retention_status": (
+            "not_created_by_checked_in_safe_mode"
+        ),
+        "checked_in_review_must_record": [
+            "not_applicable_checked_in_safe_mode",
+        ],
+        "retention_status_source": "packet_policy",
+        "builder_deletes_local_output": False,
+    }
+
+
+def _local_private_source_scope_summary(
+    *,
+    artifact_records: Sequence[Mapping[str, Any]],
+    content_inclusion_mode: str,
+) -> dict[str, Any]:
+    scope_counts: dict[str, int] = {}
+    artifact_refs_by_scope: dict[str, list[str]] = {}
+    for record in artifact_records:
+        scope_status = _artifact_scope_status(record)
+        scope_counts[scope_status] = scope_counts.get(scope_status, 0) + 1
+        artifact_refs_by_scope.setdefault(scope_status, []).append(
+            _text(record.get("artifact_ref"))
+        )
+    return {
+        "scope_mode": "local_private_mode",
+        "content_inclusion_mode": content_inclusion_mode,
+        "artifact_scope_status_counts": dict(sorted(scope_counts.items())),
+        "artifact_refs_by_scope_status": {
+            key: value
+            for key, value in sorted(artifact_refs_by_scope.items())
+        },
+        "specialists_must_cite_scope_status": True,
+    }
+
+
+def _local_private_truncation_summary(
+    *,
+    artifact_records: Sequence[Mapping[str, Any]],
+    max_text_chars: int,
+) -> dict[str, Any]:
+    truncated_refs = [
+        _text(record.get("artifact_ref"))
+        for record in artifact_records
+        if bool(record.get("text_truncated"))
+    ]
+    return {
+        "max_text_chars_per_artifact": max_text_chars,
+        "artifact_records_truncated": len(truncated_refs),
+        "truncated_artifact_refs": truncated_refs,
+        "truncation_impact": (
+            "must_be_cited_by_specialists"
+            if truncated_refs
+            else "no_truncation_observed"
+        ),
+    }
+
+
+def _artifact_scope_status(record: Mapping[str, Any]) -> str:
+    status = _text(record.get("status"))
+    if status == "unavailable_missing_artifact":
+        return "absent"
+    if status == "unavailable_malformed_artifact":
+        return "malformed"
+    if bool(record.get("content_included")):
+        if bool(record.get("text_truncated")):
+            return "read_text_truncated"
+        return "read_text_complete"
+    if _safe_int(record.get("byte_count")) > 0:
+        return "read_metadata"
+    if status:
+        return "present_not_read"
+    return "present_not_read"
 
 
 def _build_local_private_report_packet_bundle(
@@ -784,6 +900,17 @@ def _local_private_available_context(
                 LOAD_BEARING_INTERPRETATION_SECTIONS
             ),
         },
+        "source_scope_summary": _local_private_source_scope_summary(
+            artifact_records=artifact_records,
+            content_inclusion_mode=content_inclusion_mode,
+        ),
+        "truncation_summary": _local_private_truncation_summary(
+            artifact_records=artifact_records,
+            max_text_chars=max_text_chars,
+        ),
+        "local_private_retention_policy": _local_private_retention_policy(
+            mode="local_private_mode"
+        ),
         "populated_sections": [],
         "interpretation_needed_sections": list(LOAD_BEARING_INTERPRETATION_SECTIONS),
         "redacted_or_private_refs": [
@@ -944,6 +1071,18 @@ def _build_specialist_packet(
         "overtrust_risk_sections": list(
             available_context.get("overtrust_risk_sections", [])
         ),
+        "source_scope_summary": _source_scope_summary_from_context(
+            available_context=available_context,
+            mode=mode,
+        ),
+        "truncation_summary": _truncation_summary_from_context(
+            available_context=available_context,
+            mode=mode,
+        ),
+        "local_private_retention_policy": _retention_policy_from_context(
+            available_context=available_context,
+            mode=mode,
+        ),
         "prior_fixture_review_use": (
             "source context only; not a specialist answer and not truth"
         ),
@@ -994,6 +1133,7 @@ def _build_specialist_packet(
         "expected_output_contract": {
             "schema_ref": schema_ref,
             "required_field_names": list(role_spec["expected_fields"]),
+            "pr99_patch_fields": _pr99_patch_fields_for_role(role),
             "filled_by_packet_builder": False,
             "must_be_filled_by_future_specialist": True,
             "candidate_only": True,
@@ -1028,6 +1168,69 @@ def _allowed_inputs(
         ]
     )
     return _dedupe_dicts(allowed)
+
+
+def _source_scope_summary_from_context(
+    *,
+    available_context: Mapping[str, Any],
+    mode: str,
+) -> dict[str, Any]:
+    summary = _mapping(available_context.get("source_scope_summary"))
+    if summary:
+        return dict(summary)
+    return {
+        "scope_mode": mode,
+        "content_inclusion_mode": "metadata_only",
+        "artifact_scope_status_counts": {
+            "checked_in_safe_summary_only": 1,
+        },
+        "artifact_refs_by_scope_status": {},
+        "specialists_must_cite_scope_status": True,
+    }
+
+
+def _truncation_summary_from_context(
+    *,
+    available_context: Mapping[str, Any],
+    mode: str,
+) -> dict[str, Any]:
+    summary = _mapping(available_context.get("truncation_summary"))
+    if summary:
+        return dict(summary)
+    return {
+        "max_text_chars_per_artifact": None,
+        "artifact_records_truncated": 0,
+        "truncated_artifact_refs": [],
+        "truncation_impact": (
+            "not_applicable_checked_in_safe_mode"
+            if mode == "checked_in_safe_mode"
+            else "not_supplied"
+        ),
+    }
+
+
+def _retention_policy_from_context(
+    *,
+    available_context: Mapping[str, Any],
+    mode: str,
+) -> dict[str, Any]:
+    policy = _mapping(available_context.get("local_private_retention_policy"))
+    if policy:
+        return dict(policy)
+    return _local_private_retention_policy(mode=mode)
+
+
+def _pr99_patch_fields_for_role(role: str) -> list[str]:
+    fields = ["source_scope_and_truncation_impact"]
+    if role == "conversation_shape_reader":
+        fields.append("assistant_influence_source_status")
+    elif role == "likely_action_reader":
+        fields.append("vanilla_overlap_read")
+    elif role == "friction_lost_value_reader":
+        fields.extend(["lost_value_severity_read", "severity_source_status"])
+    elif role == "conservative_fan_in_reader":
+        fields.extend(["downgrade_triggers", "not_ready_reason"])
+    return fields
 
 
 def _report_source_refs(
@@ -1094,6 +1297,24 @@ def _available_context(
         "source_report_available_in_repo": bool(source_report.get("checked_in")),
         "source_report_kind": _text(source_report.get("source_run_kind")),
         "field_population_summary": _mapping(review.get("field_population_summary")),
+        "source_scope_summary": {
+            "scope_mode": "checked_in_safe_mode",
+            "content_inclusion_mode": "metadata_only",
+            "artifact_scope_status_counts": {
+                "checked_in_safe_summary_only": 1,
+            },
+            "artifact_refs_by_scope_status": {},
+            "specialists_must_cite_scope_status": True,
+        },
+        "truncation_summary": {
+            "max_text_chars_per_artifact": None,
+            "artifact_records_truncated": 0,
+            "truncated_artifact_refs": [],
+            "truncation_impact": "not_applicable_checked_in_safe_mode",
+        },
+        "local_private_retention_policy": _local_private_retention_policy(
+            mode="checked_in_safe_mode"
+        ),
         "populated_sections": _section_names(review.get("populated_sections")),
         "interpretation_needed_sections": _section_names(
             review.get("interpretation_needed_sections")

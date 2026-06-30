@@ -312,7 +312,12 @@ PR98 is now complete:
 
 [`Decision Trail Specialist Output Pilot Review v0`](decision-trail-specialist-output-pilot-review-v0.md)
 
-PR98 recommends PR99 before another pilot. PR99 should patch packet metadata
-for source scope, truncation impact, and local-private retention/deletion
-status while preserving the existing output-path guards and non-claim
-boundary.
+PR99 has now applied that patch:
+
+[`Decision Trail Specialist Contract And Packet Patch v0`](decision-trail-specialist-contract-and-packet-patch-v0.md)
+
+The packet builder now exposes role-readable source-scope metadata, truncation
+impact metadata, local-private retention policy metadata, and per-role
+`pr99_patch_fields` while preserving the existing output-path guards and
+non-claim boundary. The next conservative slice may be PR100: a second
+one-case specialist-output pilot using the patched packets, not a broad batch.

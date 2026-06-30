@@ -40,6 +40,14 @@
     "fan_in_executed": false,
     "local_absolute_paths_included": false,
     "local_private_mode_enabled": false,
+    "local_private_retention_policy": {
+      "builder_deletes_local_output": false,
+      "checked_in_review_must_record": [
+        "not_applicable_checked_in_safe_mode"
+      ],
+      "local_include_text_output_retention_status": "not_created_by_checked_in_safe_mode",
+      "retention_status_source": "packet_policy"
+    },
     "packet_type": "input_scaffold_only",
     "provider_private_text_included": false,
     "raw_memos_included": false,
@@ -47,6 +55,11 @@
     "raw_transcripts_included": false,
     "requires_operator_review_before_share": false,
     "source_report_policy": "PR91 packetizes PR88 durable fixture-review findings. PR88 did not check in generated Decision Trail reports, so packets record source-report thinness instead of pretending full report content is present.",
+    "source_scope_policy": {
+      "local_private_retention_status_required_in_review": true,
+      "source_scope_summary_required": true,
+      "truncation_summary_required": true
+    },
     "specialist_reads_filled": false
   },
   "report_count": 2,
@@ -88,6 +101,14 @@
           "useful_noisy_friction",
           "lost_value"
         ],
+        "local_private_retention_policy": {
+          "builder_deletes_local_output": false,
+          "checked_in_review_must_record": [
+            "not_applicable_checked_in_safe_mode"
+          ],
+          "local_include_text_output_retention_status": "not_created_by_checked_in_safe_mode",
+          "retention_status_source": "packet_policy"
+        },
         "local_private_shadow_review_status": "not_run",
         "missing_or_malformed_artifacts": [],
         "overtrust_risk_sections": [
@@ -128,7 +149,22 @@
         "semantic_interpretation_adequacy_read": "incomplete_but_honest",
         "source_report_available_in_repo": false,
         "source_report_checked_in": false,
-        "source_report_kind": "safe_structured_fixture"
+        "source_report_kind": "safe_structured_fixture",
+        "source_scope_summary": {
+          "artifact_refs_by_scope_status": {},
+          "artifact_scope_status_counts": {
+            "checked_in_safe_summary_only": 1
+          },
+          "content_inclusion_mode": "metadata_only",
+          "scope_mode": "checked_in_safe_mode",
+          "specialists_must_cite_scope_status": true
+        },
+        "truncation_summary": {
+          "artifact_records_truncated": 0,
+          "max_text_chars_per_artifact": null,
+          "truncated_artifact_refs": [],
+          "truncation_impact": "not_applicable_checked_in_safe_mode"
+        }
       },
       "missing_or_thin_context": [
         "evidence_scope:safe_fixture_only",
@@ -177,6 +213,14 @@
               "useful_noisy_friction",
               "lost_value"
             ],
+            "local_private_retention_policy": {
+              "builder_deletes_local_output": false,
+              "checked_in_review_must_record": [
+                "not_applicable_checked_in_safe_mode"
+              ],
+              "local_include_text_output_retention_status": "not_created_by_checked_in_safe_mode",
+              "retention_status_source": "packet_policy"
+            },
             "local_private_shadow_review_status": "not_run",
             "overtrust_risk_sections": [
               "structural_delta"
@@ -192,7 +236,22 @@
             "prior_fixture_review_use": "source context only; not a specialist answer and not truth",
             "report_id": "structured_fixture_report",
             "source_report_available_in_repo": false,
-            "source_report_checked_in": false
+            "source_report_checked_in": false,
+            "source_scope_summary": {
+              "artifact_refs_by_scope_status": {},
+              "artifact_scope_status_counts": {
+                "checked_in_safe_summary_only": 1
+              },
+              "content_inclusion_mode": "metadata_only",
+              "scope_mode": "checked_in_safe_mode",
+              "specialists_must_cite_scope_status": true
+            },
+            "truncation_summary": {
+              "artifact_records_truncated": 0,
+              "max_text_chars_per_artifact": null,
+              "truncated_artifact_refs": [],
+              "truncation_impact": "not_applicable_checked_in_safe_mode"
+            }
           },
           "contract_ref": {
             "contract_schema_version": "lolla.decision_trail_specialist_contracts.v0",
@@ -203,6 +262,11 @@
             "candidate_only": true,
             "filled_by_packet_builder": false,
             "must_be_filled_by_future_specialist": true,
+            "pr99_patch_fields": [
+              "source_scope_and_truncation_impact",
+              "downgrade_triggers",
+              "not_ready_reason"
+            ],
             "required_field_names": [
               "areas_of_agreement",
               "disagreements_preserved",
@@ -211,7 +275,10 @@
               "fields_not_ready_for_report",
               "human_followup_questions",
               "overtrust_risks",
-              "next_review_priority"
+              "downgrade_triggers",
+              "not_ready_reason",
+              "next_review_priority",
+              "source_scope_and_truncation_impact"
             ],
             "schema_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json#/properties/specialist_roles/properties/conservative_fan_in_reader"
           },
@@ -309,6 +376,14 @@
               "useful_noisy_friction",
               "lost_value"
             ],
+            "local_private_retention_policy": {
+              "builder_deletes_local_output": false,
+              "checked_in_review_must_record": [
+                "not_applicable_checked_in_safe_mode"
+              ],
+              "local_include_text_output_retention_status": "not_created_by_checked_in_safe_mode",
+              "retention_status_source": "packet_policy"
+            },
             "local_private_shadow_review_status": "not_run",
             "overtrust_risk_sections": [
               "structural_delta"
@@ -324,7 +399,22 @@
             "prior_fixture_review_use": "source context only; not a specialist answer and not truth",
             "report_id": "structured_fixture_report",
             "source_report_available_in_repo": false,
-            "source_report_checked_in": false
+            "source_report_checked_in": false,
+            "source_scope_summary": {
+              "artifact_refs_by_scope_status": {},
+              "artifact_scope_status_counts": {
+                "checked_in_safe_summary_only": 1
+              },
+              "content_inclusion_mode": "metadata_only",
+              "scope_mode": "checked_in_safe_mode",
+              "specialists_must_cite_scope_status": true
+            },
+            "truncation_summary": {
+              "artifact_records_truncated": 0,
+              "max_text_chars_per_artifact": null,
+              "truncated_artifact_refs": [],
+              "truncation_impact": "not_applicable_checked_in_safe_mode"
+            }
           },
           "contract_ref": {
             "contract_schema_version": "lolla.decision_trail_specialist_contracts.v0",
@@ -335,6 +425,10 @@
             "candidate_only": true,
             "filled_by_packet_builder": false,
             "must_be_filled_by_future_specialist": true,
+            "pr99_patch_fields": [
+              "source_scope_and_truncation_impact",
+              "assistant_influence_source_status"
+            ],
             "required_field_names": [
               "decision_question",
               "live_options",
@@ -343,9 +437,11 @@
               "stakeholders",
               "values_or_priorities",
               "assistant_influence",
+              "assistant_influence_source_status",
               "dropped_threads",
               "unresolved_questions",
-              "uncertainty"
+              "uncertainty",
+              "source_scope_and_truncation_impact"
             ],
             "schema_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json#/properties/specialist_roles/properties/conversation_shape_reader"
           },
@@ -442,6 +538,14 @@
               "useful_noisy_friction",
               "lost_value"
             ],
+            "local_private_retention_policy": {
+              "builder_deletes_local_output": false,
+              "checked_in_review_must_record": [
+                "not_applicable_checked_in_safe_mode"
+              ],
+              "local_include_text_output_retention_status": "not_created_by_checked_in_safe_mode",
+              "retention_status_source": "packet_policy"
+            },
             "local_private_shadow_review_status": "not_run",
             "overtrust_risk_sections": [
               "structural_delta"
@@ -457,7 +561,22 @@
             "prior_fixture_review_use": "source context only; not a specialist answer and not truth",
             "report_id": "structured_fixture_report",
             "source_report_available_in_repo": false,
-            "source_report_checked_in": false
+            "source_report_checked_in": false,
+            "source_scope_summary": {
+              "artifact_refs_by_scope_status": {},
+              "artifact_scope_status_counts": {
+                "checked_in_safe_summary_only": 1
+              },
+              "content_inclusion_mode": "metadata_only",
+              "scope_mode": "checked_in_safe_mode",
+              "specialists_must_cite_scope_status": true
+            },
+            "truncation_summary": {
+              "artifact_records_truncated": 0,
+              "max_text_chars_per_artifact": null,
+              "truncated_artifact_refs": [],
+              "truncation_impact": "not_applicable_checked_in_safe_mode"
+            }
           },
           "contract_ref": {
             "contract_schema_version": "lolla.decision_trail_specialist_contracts.v0",
@@ -468,15 +587,23 @@
             "candidate_only": true,
             "filled_by_packet_builder": false,
             "must_be_filled_by_future_specialist": true,
+            "pr99_patch_fields": [
+              "source_scope_and_truncation_impact",
+              "lost_value_severity_read",
+              "severity_source_status"
+            ],
             "required_field_names": [
               "useful_friction",
               "noisy_friction",
               "missing_friction",
               "lost_value",
+              "lost_value_severity_read",
+              "severity_source_status",
               "value_overwrite_risk",
               "momentum_or_simplicity_loss",
               "overcaution_or_diligence_theater",
-              "uncertainty"
+              "uncertainty",
+              "source_scope_and_truncation_impact"
             ],
             "schema_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json#/properties/specialist_roles/properties/friction_lost_value_reader"
           },
@@ -574,6 +701,14 @@
               "useful_noisy_friction",
               "lost_value"
             ],
+            "local_private_retention_policy": {
+              "builder_deletes_local_output": false,
+              "checked_in_review_must_record": [
+                "not_applicable_checked_in_safe_mode"
+              ],
+              "local_include_text_output_retention_status": "not_created_by_checked_in_safe_mode",
+              "retention_status_source": "packet_policy"
+            },
             "local_private_shadow_review_status": "not_run",
             "overtrust_risk_sections": [
               "structural_delta"
@@ -589,7 +724,22 @@
             "prior_fixture_review_use": "source context only; not a specialist answer and not truth",
             "report_id": "structured_fixture_report",
             "source_report_available_in_repo": false,
-            "source_report_checked_in": false
+            "source_report_checked_in": false,
+            "source_scope_summary": {
+              "artifact_refs_by_scope_status": {},
+              "artifact_scope_status_counts": {
+                "checked_in_safe_summary_only": 1
+              },
+              "content_inclusion_mode": "metadata_only",
+              "scope_mode": "checked_in_safe_mode",
+              "specialists_must_cite_scope_status": true
+            },
+            "truncation_summary": {
+              "artifact_records_truncated": 0,
+              "max_text_chars_per_artifact": null,
+              "truncated_artifact_refs": [],
+              "truncation_impact": "not_applicable_checked_in_safe_mode"
+            }
           },
           "contract_ref": {
             "contract_schema_version": "lolla.decision_trail_specialist_contracts.v0",
@@ -600,15 +750,21 @@
             "candidate_only": true,
             "filled_by_packet_builder": false,
             "must_be_filled_by_future_specialist": true,
+            "pr99_patch_fields": [
+              "source_scope_and_truncation_impact",
+              "vanilla_overlap_read"
+            ],
             "required_field_names": [
               "vanilla_likely_next_action",
               "revised_likely_next_action",
+              "vanilla_overlap_read",
               "action_delta",
               "threshold_delta",
               "sequence_delta",
               "evidence_gate_delta",
               "stop_rule_delta",
-              "uncertainty"
+              "uncertainty",
+              "source_scope_and_truncation_impact"
             ],
             "schema_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json#/properties/specialist_roles/properties/likely_action_reader"
           },
@@ -730,6 +886,14 @@
           "useful_noisy_friction",
           "lost_value"
         ],
+        "local_private_retention_policy": {
+          "builder_deletes_local_output": false,
+          "checked_in_review_must_record": [
+            "not_applicable_checked_in_safe_mode"
+          ],
+          "local_include_text_output_retention_status": "not_created_by_checked_in_safe_mode",
+          "retention_status_source": "packet_policy"
+        },
         "local_private_shadow_review_status": "not_run",
         "missing_or_malformed_artifacts": [
           {
@@ -761,7 +925,22 @@
         "semantic_interpretation_adequacy_read": "not_available",
         "source_report_available_in_repo": false,
         "source_report_checked_in": false,
-        "source_report_kind": "safe_sparse_fixture"
+        "source_report_kind": "safe_sparse_fixture",
+        "source_scope_summary": {
+          "artifact_refs_by_scope_status": {},
+          "artifact_scope_status_counts": {
+            "checked_in_safe_summary_only": 1
+          },
+          "content_inclusion_mode": "metadata_only",
+          "scope_mode": "checked_in_safe_mode",
+          "specialists_must_cite_scope_status": true
+        },
+        "truncation_summary": {
+          "artifact_records_truncated": 0,
+          "max_text_chars_per_artifact": null,
+          "truncated_artifact_refs": [],
+          "truncation_impact": "not_applicable_checked_in_safe_mode"
+        }
       },
       "missing_or_thin_context": [
         "evidence_scope:safe_fixture_only",
@@ -810,13 +989,36 @@
               "useful_noisy_friction",
               "lost_value"
             ],
+            "local_private_retention_policy": {
+              "builder_deletes_local_output": false,
+              "checked_in_review_must_record": [
+                "not_applicable_checked_in_safe_mode"
+              ],
+              "local_include_text_output_retention_status": "not_created_by_checked_in_safe_mode",
+              "retention_status_source": "packet_policy"
+            },
             "local_private_shadow_review_status": "not_run",
             "overtrust_risk_sections": [],
             "populated_sections": [],
             "prior_fixture_review_use": "source context only; not a specialist answer and not truth",
             "report_id": "sparse_missing_fixture_report",
             "source_report_available_in_repo": false,
-            "source_report_checked_in": false
+            "source_report_checked_in": false,
+            "source_scope_summary": {
+              "artifact_refs_by_scope_status": {},
+              "artifact_scope_status_counts": {
+                "checked_in_safe_summary_only": 1
+              },
+              "content_inclusion_mode": "metadata_only",
+              "scope_mode": "checked_in_safe_mode",
+              "specialists_must_cite_scope_status": true
+            },
+            "truncation_summary": {
+              "artifact_records_truncated": 0,
+              "max_text_chars_per_artifact": null,
+              "truncated_artifact_refs": [],
+              "truncation_impact": "not_applicable_checked_in_safe_mode"
+            }
           },
           "contract_ref": {
             "contract_schema_version": "lolla.decision_trail_specialist_contracts.v0",
@@ -827,6 +1029,11 @@
             "candidate_only": true,
             "filled_by_packet_builder": false,
             "must_be_filled_by_future_specialist": true,
+            "pr99_patch_fields": [
+              "source_scope_and_truncation_impact",
+              "downgrade_triggers",
+              "not_ready_reason"
+            ],
             "required_field_names": [
               "areas_of_agreement",
               "disagreements_preserved",
@@ -835,7 +1042,10 @@
               "fields_not_ready_for_report",
               "human_followup_questions",
               "overtrust_risks",
-              "next_review_priority"
+              "downgrade_triggers",
+              "not_ready_reason",
+              "next_review_priority",
+              "source_scope_and_truncation_impact"
             ],
             "schema_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json#/properties/specialist_roles/properties/conservative_fan_in_reader"
           },
@@ -933,13 +1143,36 @@
               "useful_noisy_friction",
               "lost_value"
             ],
+            "local_private_retention_policy": {
+              "builder_deletes_local_output": false,
+              "checked_in_review_must_record": [
+                "not_applicable_checked_in_safe_mode"
+              ],
+              "local_include_text_output_retention_status": "not_created_by_checked_in_safe_mode",
+              "retention_status_source": "packet_policy"
+            },
             "local_private_shadow_review_status": "not_run",
             "overtrust_risk_sections": [],
             "populated_sections": [],
             "prior_fixture_review_use": "source context only; not a specialist answer and not truth",
             "report_id": "sparse_missing_fixture_report",
             "source_report_available_in_repo": false,
-            "source_report_checked_in": false
+            "source_report_checked_in": false,
+            "source_scope_summary": {
+              "artifact_refs_by_scope_status": {},
+              "artifact_scope_status_counts": {
+                "checked_in_safe_summary_only": 1
+              },
+              "content_inclusion_mode": "metadata_only",
+              "scope_mode": "checked_in_safe_mode",
+              "specialists_must_cite_scope_status": true
+            },
+            "truncation_summary": {
+              "artifact_records_truncated": 0,
+              "max_text_chars_per_artifact": null,
+              "truncated_artifact_refs": [],
+              "truncation_impact": "not_applicable_checked_in_safe_mode"
+            }
           },
           "contract_ref": {
             "contract_schema_version": "lolla.decision_trail_specialist_contracts.v0",
@@ -950,6 +1183,10 @@
             "candidate_only": true,
             "filled_by_packet_builder": false,
             "must_be_filled_by_future_specialist": true,
+            "pr99_patch_fields": [
+              "source_scope_and_truncation_impact",
+              "assistant_influence_source_status"
+            ],
             "required_field_names": [
               "decision_question",
               "live_options",
@@ -958,9 +1195,11 @@
               "stakeholders",
               "values_or_priorities",
               "assistant_influence",
+              "assistant_influence_source_status",
               "dropped_threads",
               "unresolved_questions",
-              "uncertainty"
+              "uncertainty",
+              "source_scope_and_truncation_impact"
             ],
             "schema_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json#/properties/specialist_roles/properties/conversation_shape_reader"
           },
@@ -1057,13 +1296,36 @@
               "useful_noisy_friction",
               "lost_value"
             ],
+            "local_private_retention_policy": {
+              "builder_deletes_local_output": false,
+              "checked_in_review_must_record": [
+                "not_applicable_checked_in_safe_mode"
+              ],
+              "local_include_text_output_retention_status": "not_created_by_checked_in_safe_mode",
+              "retention_status_source": "packet_policy"
+            },
             "local_private_shadow_review_status": "not_run",
             "overtrust_risk_sections": [],
             "populated_sections": [],
             "prior_fixture_review_use": "source context only; not a specialist answer and not truth",
             "report_id": "sparse_missing_fixture_report",
             "source_report_available_in_repo": false,
-            "source_report_checked_in": false
+            "source_report_checked_in": false,
+            "source_scope_summary": {
+              "artifact_refs_by_scope_status": {},
+              "artifact_scope_status_counts": {
+                "checked_in_safe_summary_only": 1
+              },
+              "content_inclusion_mode": "metadata_only",
+              "scope_mode": "checked_in_safe_mode",
+              "specialists_must_cite_scope_status": true
+            },
+            "truncation_summary": {
+              "artifact_records_truncated": 0,
+              "max_text_chars_per_artifact": null,
+              "truncated_artifact_refs": [],
+              "truncation_impact": "not_applicable_checked_in_safe_mode"
+            }
           },
           "contract_ref": {
             "contract_schema_version": "lolla.decision_trail_specialist_contracts.v0",
@@ -1074,15 +1336,23 @@
             "candidate_only": true,
             "filled_by_packet_builder": false,
             "must_be_filled_by_future_specialist": true,
+            "pr99_patch_fields": [
+              "source_scope_and_truncation_impact",
+              "lost_value_severity_read",
+              "severity_source_status"
+            ],
             "required_field_names": [
               "useful_friction",
               "noisy_friction",
               "missing_friction",
               "lost_value",
+              "lost_value_severity_read",
+              "severity_source_status",
               "value_overwrite_risk",
               "momentum_or_simplicity_loss",
               "overcaution_or_diligence_theater",
-              "uncertainty"
+              "uncertainty",
+              "source_scope_and_truncation_impact"
             ],
             "schema_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json#/properties/specialist_roles/properties/friction_lost_value_reader"
           },
@@ -1180,13 +1450,36 @@
               "useful_noisy_friction",
               "lost_value"
             ],
+            "local_private_retention_policy": {
+              "builder_deletes_local_output": false,
+              "checked_in_review_must_record": [
+                "not_applicable_checked_in_safe_mode"
+              ],
+              "local_include_text_output_retention_status": "not_created_by_checked_in_safe_mode",
+              "retention_status_source": "packet_policy"
+            },
             "local_private_shadow_review_status": "not_run",
             "overtrust_risk_sections": [],
             "populated_sections": [],
             "prior_fixture_review_use": "source context only; not a specialist answer and not truth",
             "report_id": "sparse_missing_fixture_report",
             "source_report_available_in_repo": false,
-            "source_report_checked_in": false
+            "source_report_checked_in": false,
+            "source_scope_summary": {
+              "artifact_refs_by_scope_status": {},
+              "artifact_scope_status_counts": {
+                "checked_in_safe_summary_only": 1
+              },
+              "content_inclusion_mode": "metadata_only",
+              "scope_mode": "checked_in_safe_mode",
+              "specialists_must_cite_scope_status": true
+            },
+            "truncation_summary": {
+              "artifact_records_truncated": 0,
+              "max_text_chars_per_artifact": null,
+              "truncated_artifact_refs": [],
+              "truncation_impact": "not_applicable_checked_in_safe_mode"
+            }
           },
           "contract_ref": {
             "contract_schema_version": "lolla.decision_trail_specialist_contracts.v0",
@@ -1197,15 +1490,21 @@
             "candidate_only": true,
             "filled_by_packet_builder": false,
             "must_be_filled_by_future_specialist": true,
+            "pr99_patch_fields": [
+              "source_scope_and_truncation_impact",
+              "vanilla_overlap_read"
+            ],
             "required_field_names": [
               "vanilla_likely_next_action",
               "revised_likely_next_action",
+              "vanilla_overlap_read",
               "action_delta",
               "threshold_delta",
               "sequence_delta",
               "evidence_gate_delta",
               "stop_rule_delta",
-              "uncertainty"
+              "uncertainty",
+              "source_scope_and_truncation_impact"
             ],
             "schema_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json#/properties/specialist_roles/properties/likely_action_reader"
           },

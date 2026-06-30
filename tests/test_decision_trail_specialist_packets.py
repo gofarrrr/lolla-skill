@@ -112,8 +112,56 @@ def test_each_report_gets_all_pr90_specialist_packets() -> None:
                 "must_be_filled_by_future_specialist"
             ] is True
             assert packet["expected_output_contract"]["candidate_only"] is True
+            assert packet["expected_output_contract"]["pr99_patch_fields"]
             assert "source_refs" in packet
             assert packet["known_limits"]
+            assert packet["context"]["source_scope_summary"][
+                "specialists_must_cite_scope_status"
+            ] is True
+            assert packet["context"]["truncation_summary"]["artifact_records_truncated"] == 0
+            assert packet["context"]["local_private_retention_policy"][
+                "local_include_text_output_retention_status"
+            ] == "not_created_by_checked_in_safe_mode"
+
+
+def test_pr99_patch_fields_are_role_specific() -> None:
+    packets = _build_packets(limit=1)
+    role_packets = packets["reports"][0]["packets"]
+
+    assert {
+        "assistant_influence_source_status",
+        "source_scope_and_truncation_impact",
+    } <= set(
+        role_packets["conversation_shape_reader"]["expected_output_contract"][
+            "pr99_patch_fields"
+        ]
+    )
+    assert {
+        "vanilla_overlap_read",
+        "source_scope_and_truncation_impact",
+    } <= set(
+        role_packets["likely_action_reader"]["expected_output_contract"][
+            "pr99_patch_fields"
+        ]
+    )
+    assert {
+        "lost_value_severity_read",
+        "severity_source_status",
+        "source_scope_and_truncation_impact",
+    } <= set(
+        role_packets["friction_lost_value_reader"]["expected_output_contract"][
+            "pr99_patch_fields"
+        ]
+    )
+    assert {
+        "downgrade_triggers",
+        "not_ready_reason",
+        "source_scope_and_truncation_impact",
+    } <= set(
+        role_packets["conservative_fan_in_reader"]["expected_output_contract"][
+            "pr99_patch_fields"
+        ]
+    )
 
 
 def test_packets_preserve_pr88_thinness_and_report_non_checkin_status() -> None:
@@ -251,7 +299,11 @@ def test_checked_in_fixture_is_small_and_safe() -> None:
     assert len(fixture["reports"]) == 2
     assert fixture["packet_policy"]["specialist_reads_filled"] is False
     assert fixture["packet_policy"]["fan_in_executed"] is False
+    assert fixture["packet_policy"]["source_scope_policy"][
+        "source_scope_summary_required"
+    ] is True
     assert set(fixture["reports"][0]["packets"]) == set(SPECIALIST_ROLES)
+    assert fixture["reports"][0]["available_context"]["source_scope_summary"]
     rendered = json.dumps(fixture, sort_keys=True)
     assert "/User" + "s/" not in rendered
     assert "raw_message_" + "content" not in rendered

@@ -131,6 +131,22 @@ def test_local_private_metadata_only_records_manifest_without_text(tmp_path: Pat
     assert context["private_context_policy"]["mode"] == "local_private_mode"
     assert context["private_context_policy"]["local_absolute_paths_included"] is False
     assert context["local_private_artifacts_read"]
+    assert context["source_scope_summary"]["content_inclusion_mode"] == "metadata_only"
+    assert context["source_scope_summary"]["artifact_scope_status_counts"][
+        "read_metadata"
+    ] >= 1
+    assert context["source_scope_summary"]["specialists_must_cite_scope_status"] is True
+    assert context["truncation_summary"]["artifact_records_truncated"] == 0
+    assert context["local_private_retention_policy"][
+        "local_include_text_output_retention_status"
+    ] == "operator_managed_not_tracked_by_builder"
+    for packet in report["packets"].values():
+        assert packet["context"]["source_scope_summary"]
+        assert packet["context"]["truncation_summary"]
+        assert packet["context"]["local_private_retention_policy"]
+        assert "source_scope_and_truncation_impact" in packet[
+            "expected_output_contract"
+        ]["pr99_patch_fields"]
 
     rendered = render_decision_trail_specialist_packets_json(packets)
     assert "Synthetic conversation" not in rendered
@@ -165,6 +181,18 @@ def test_local_private_include_text_marks_output_unsafe_and_includes_text(
     assert conversation["content_included"] is True
     assert conversation["text_truncated"] is True
     assert "Synthetic conversation" in conversation["content_text"]
+    assert packets["reports"][0]["available_context"]["source_scope_summary"][
+        "artifact_scope_status_counts"
+    ]["read_text_truncated"] >= 1
+    assert packets["reports"][0]["available_context"]["truncation_summary"][
+        "artifact_records_truncated"
+    ] >= 1
+    assert (
+        packets["reports"][0]["available_context"]["truncation_summary"][
+            "truncation_impact"
+        ]
+        == "must_be_cited_by_specialists"
+    )
 
     rendered = render_decision_trail_specialist_packets_json(packets)
     assert "Synthetic conversation" in rendered

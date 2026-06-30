@@ -123,14 +123,19 @@ PR98 has now reviewed this pilot:
 
 - [Decision Trail Specialist Output Pilot Review v0](decision-trail-specialist-output-pilot-review-v0.md)
 
-PR98 decided not to broaden yet. It recommends PR99:
+PR98 decided not to broaden yet and recommended PR99. PR99 has now applied
+that patch:
 
 ```text
 Decision Trail Specialist Contract And Packet Patch v0
 ```
 
-PR99 should patch the contracts and packet metadata before a second one-case
-pilot. The required patch areas are:
+See:
+
+- [Decision Trail Specialist Contract And Packet Patch v0](decision-trail-specialist-contract-and-packet-patch-v0.md)
+
+PR99 patches the contracts and packet metadata before a second one-case pilot.
+The patch areas are:
 
 - vanilla-overlap read;
 - lost-value severity read;
@@ -139,6 +144,7 @@ pilot. The required patch areas are:
 - fan-in downgrade triggers;
 - local-private packet retention/deletion status.
 
-PR99 must not run another specialist pilot, add runtime integration, measure
+PR99 did not run another specialist pilot, add runtime integration, measure
 answer quality, add automatic labels, authorize agent action, add graph/memory
-work, or use product-proof language.
+work, or use product-proof language. The next conservative slice may be PR100:
+a second one-case pilot using the patched shape, not a broad batch.

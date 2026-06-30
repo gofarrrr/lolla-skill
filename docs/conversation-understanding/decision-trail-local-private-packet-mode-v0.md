@@ -299,6 +299,11 @@ Completion note: PR98 has now performed that review:
 
 - [Decision Trail Specialist Output Pilot Review v0](decision-trail-specialist-output-pilot-review-v0.md)
 
-PR98 decided that packet shape should change before reuse. The next packet
-patch should add role-readable source-scope metadata, truncation impact, and
-local-private retention/deletion status before a second one-case pilot.
+PR98 decided that packet shape should change before reuse. PR99 has now
+applied that packet patch:
+
+- [Decision Trail Specialist Contract And Packet Patch v0](decision-trail-specialist-contract-and-packet-patch-v0.md)
+
+The patched packet shape adds role-readable source-scope metadata, truncation
+impact, and local-private retention policy metadata before any second one-case
+pilot. The next conservative slice may be PR100, not a broad batch.

@@ -97,7 +97,7 @@ PR97 also exposed five gaps that should be patched before more cases:
 
 ## Contract Revision Queue
 
-PR98 recommends a small PR99 contract and packet patch before any second pilot:
+PR98 recommended a small PR99 contract and packet patch before any second pilot:
 
 - add `vanilla_overlap_read` to the likely-action reader;
 - add `lost_value_severity_read` to the friction/lost-value reader;
@@ -107,9 +107,10 @@ PR98 recommends a small PR99 contract and packet patch before any second pilot:
 - add explicit local-private packet retention/deletion status to the checked-in
   review summary.
 
-The schema version does not need to change yet if the patch remains additive
-and conservative. If PR99 finds the current JSON schema too loose to test
-these fields, PR99 should update the schema and tests explicitly.
+PR99 has now applied this patch additively while keeping the schema family
+stable:
+
+- [Decision Trail Specialist Contract And Packet Patch v0](decision-trail-specialist-contract-and-packet-patch-v0.md)
 
 ## Packet Revision Queue
 
@@ -126,17 +127,17 @@ The packet path should also get tighter before broader use:
 
 ## Next Slice
 
-PR99 should be:
+PR99 is now complete:
 
 ```text
 Decision Trail Specialist Contract And Packet Patch v0
 ```
 
-It should patch contracts, packet metadata, tests, and docs only. It should not
-run another specialist pilot yet.
+It patched contracts, packet metadata, tests, and docs only. It did not run
+another specialist pilot.
 
 After PR99, the conservative path is a second one-case pilot, not a broad
-batch.
+batch. That future slice would be PR100.
 
 ## Non-Claims
 

@@ -515,9 +515,11 @@
             "stakeholders",
             "values_or_priorities",
             "assistant_influence",
+            "assistant_influence_source_status",
             "dropped_threads",
             "unresolved_questions",
-            "uncertainty"
+            "uncertainty",
+            "source_scope_and_truncation_impact"
           ],
           "shared_required_fields": [
             "specialist_role",
@@ -570,12 +572,14 @@
           "covered_fields": [
             "vanilla_likely_next_action",
             "revised_likely_next_action",
+            "vanilla_overlap_read",
             "action_delta",
             "threshold_delta",
             "sequence_delta",
             "evidence_gate_delta",
             "stop_rule_delta",
-            "uncertainty"
+            "uncertainty",
+            "source_scope_and_truncation_impact"
           ],
           "shared_required_fields": [
             "specialist_role",
@@ -630,10 +634,13 @@
             "noisy_friction",
             "missing_friction",
             "lost_value",
+            "lost_value_severity_read",
+            "severity_source_status",
             "value_overwrite_risk",
             "momentum_or_simplicity_loss",
             "overcaution_or_diligence_theater",
-            "uncertainty"
+            "uncertainty",
+            "source_scope_and_truncation_impact"
           ],
           "shared_required_fields": [
             "specialist_role",
@@ -692,7 +699,10 @@
             "fields_not_ready_for_report",
             "human_followup_questions",
             "overtrust_risks",
-            "next_review_priority"
+            "downgrade_triggers",
+            "not_ready_reason",
+            "next_review_priority",
+            "source_scope_and_truncation_impact"
           ],
           "shared_required_fields": [
             "specialist_role",

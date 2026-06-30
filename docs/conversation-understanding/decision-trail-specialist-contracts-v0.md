@@ -139,9 +139,11 @@ Covered fields:
 - stakeholders;
 - values or priorities;
 - assistant influence;
+- assistant influence source status;
 - dropped threads;
 - unresolved questions;
-- uncertainty.
+- uncertainty;
+- source scope and truncation impact.
 
 This role should preserve ambiguity. It must not collapse thin context into a
 confident interpretation.
@@ -157,12 +159,14 @@ Covered fields:
 
 - vanilla likely next action;
 - revised likely next action;
+- vanilla overlap read;
 - action delta;
 - threshold delta;
 - sequence delta;
 - evidence-gate delta;
 - stop-rule delta;
-- uncertainty.
+- uncertainty;
+- source scope and truncation impact.
 
 This role must be allowed to say `unclear`. It must not pretend to know what
 the user truly would have done.
@@ -179,10 +183,13 @@ Covered fields:
 - noisy friction;
 - missing friction;
 - lost value;
+- lost-value severity read;
+- severity source status;
 - value-overwrite risk;
 - momentum or simplicity loss;
 - overcaution or diligence theater;
-- uncertainty.
+- uncertainty;
+- source scope and truncation impact.
 
 This role exists because a more cautious revised answer is not automatically a
 better decision answer.
@@ -203,7 +210,10 @@ Covered fields:
 - fields not ready for report;
 - human follow-up questions;
 - overtrust risks;
-- next review priority.
+- downgrade triggers;
+- not-ready reason;
+- next review priority;
+- source scope and truncation impact.
 
 Fan-in must not become majority rule. It must not turn specialist agreement
 into correctness.
@@ -279,30 +289,26 @@ mutation, or product-proof claims.
 
 ## Next Step
 
-PR92, PR93, PR94, PR95, PR96, PR97, and PR98 have now exercised the contracts
-through traps, a dry run, local-private packet mode, packet smoke review, a
-one-case local-private specialist-output pilot, and a pilot review. The latest
-review is:
+PR92, PR93, PR94, PR95, PR96, PR97, PR98, and PR99 have now exercised and
+patched the contracts through traps, a dry run, local-private packet mode,
+packet smoke review, a one-case local-private specialist-output pilot, a pilot
+review, and this contract/packet patch. The latest patch is:
 
-[`Decision Trail Specialist Output Pilot Review v0`](decision-trail-specialist-output-pilot-review-v0.md)
+[`Decision Trail Specialist Contract And Packet Patch v0`](decision-trail-specialist-contract-and-packet-patch-v0.md)
 
 PR97 shows the four-role contract surface can be filled from one
 operator-selected local-private packet, but it does not prove the contracts are
 final or suitable for a broad batch. PR98 keeps the useful signal and requires
-contract changes before reuse.
+contract changes before reuse. PR99 adds those contract fields.
 
 The next recommended PR is:
 
-**PR99 Decision Trail Specialist Contract And Packet Patch v0**
+**PR100 Decision Trail Second One-Case Specialist Pilot v0**
 
-PR99 should add or clarify the contract fields surfaced by PR98:
+PR100 may run one more local-private specialist-output pilot using the patched
+contracts. It should still avoid broad batches, model/provider APIs outside the
+current Codex session, runtime integration, archive mutation, answer-quality
+measurement, automatic labels, and product-proof claims.
 
-- `vanilla_overlap_read`;
-- `lost_value_severity_read`;
-- `assistant_influence_source_status`;
-- `source_scope_and_truncation_impact`;
-- `downgrade_triggers`;
-- `not_ready_reason`.
-
-It should still avoid model calls, runtime integration, archive mutation,
-answer-quality measurement, automatic labels, and product-proof claims.
+If PR100 finds the same gaps again, pause the specialist-output lane rather
+than broadening it.
