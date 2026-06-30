@@ -67,11 +67,11 @@ conversation or agent run
 Current handoff state:
 
 ```text
-PR96 Decision Trail Local-Private Packet Smoke Review v0 is the latest
-Decision Trail slice recorded in this working tree. PR96 confirms PR95's
-local-private packet mode can prepare real completed-run metadata packets and
-mechanically handle include-text local packets, but it still does not run any
-interpretation specialists. PR85 remains the latest
+PR97 Decision Trail Local-Private Specialist Output Pilot v0 is the latest
+Decision Trail slice recorded in this working tree. PR97 confirms one
+operator-selected completed run can support all four PR90 specialist-output
+shapes from a local-private include-text packet, with checked-in summaries
+only and no private packet output committed. PR85 remains the latest
 packaged product-evidence eval-lane slice. PR70 remains the
 audit/accountability machinery closure gate. PR48 remains the high-stakes
 evidence gate. PR54 remains the paused v0 values/priorities worksheet gate.
@@ -86,21 +86,25 @@ The Decision Trail lane is an offline reader/packetizer over completed runs.
 PR86-PR89 built the sparse report shell, exporter, fixture review, and
 interpretation-gap decision. PR90-PR95 built narrow specialist contracts,
 checked-in-safe packets, traps, a discipline dry run, a path decision, and
-local-private packet mode. PR96 smoke-reviewed that packet mode locally.
+local-private packet mode. PR96 smoke-reviewed that packet mode locally. PR97
+filled a tiny one-case local-private specialist-output pilot.
 
 What works now: an operator can use a CLI to build checked-in-safe packet
 fixtures or local-private packets for completed run directories. PR96 shows
 metadata-only local-private packets work on two real completed runs without
 copying raw/private content, and include-text local packets work mechanically
-with unsafe-for-commit marking.
+with unsafe-for-commit marking. PR97 shows a local-private include-text packet
+can support bounded, contract-shaped specialist outputs for conversation
+shape, likely action, friction/lost value, and conservative fan-in.
 
-What does not work yet: no specialist pass fills likely actions, live options,
-stakeholders, values/priorities, assistant influence, useful/noisy friction,
-lost value, or conservative fan-in. Nothing is automatic in `$lolla`.
+What does not work yet: the specialist-output pilot is one case, local-private,
+Codex-assisted, unvalidated, and not automatic in `$lolla`. It does not prove
+that the contracts are final, that broader batches are safe, that Lolla
+improved the decision, or that agents may act.
 
-Next conservative gate: a PR97-style tiny local-private specialist-output
-pilot over one or two operator-selected completed runs, with all private packet
-outputs kept out of the repo and no broad product claim.
+Next conservative gate: PR98 should review the PR97 output and decide whether
+to revise the PR90 contracts or PR95 packet shape before any broader
+specialist-output batch.
 ```
 
 Documentation alignment note:
@@ -266,6 +270,16 @@ output was deleted after structural summary capture. The checked-in review
 records source availability, packet roles, guardrails, privacy posture, and
 thinness without raw/private content, specialist outputs, fan-in, model calls,
 runtime invocation, archive mutation, scoring, judging, or automatic labels.
+
+docs/conversation-understanding/decision-trail-local-private-specialist-output-pilot-v0.md
+and
+reviews/codex-assisted/decision-trail-local-private-specialist-output-pilot-v0/review.json
+now record PR97's tiny local-private specialist-output pilot. PR97 used one
+operator-selected completed run and a local-only include-text packet to fill
+the four PR90 specialist roles by checked-in summary only. It shows the
+Decision Trail can carry more concrete candidate interpretation when private
+source access is available, but it remains one-case, Codex-assisted,
+human-unvalidated, unsafe to broaden without review, and outside runtime.
 ```
 
 Current product state:
@@ -592,10 +606,32 @@ Current stop rule:
 Latest completed slice:
 
 ```text
-PR96 Decision Trail Local-Private Packet Smoke Review v0
+PR97 Decision Trail Local-Private Specialist Output Pilot v0
 ```
 
 Result:
+
+- lands `docs/conversation-understanding/decision-trail-local-private-specialist-output-pilot-v0.md`;
+- lands `reviews/codex-assisted/decision-trail-local-private-specialist-output-pilot-v0/review.json`;
+- lands `tests/test_decision_trail_local_private_specialist_output_pilot.py`;
+- uses a PR95 local-private include-text packet under `/tmp` only and checks in
+  summary-level specialist outputs, not raw/private packet content;
+- fills all four PR90 roles for
+  `ceo-remove-founding-cofounder/20260627T093131Z_59d153`:
+  conversation shape, likely action, friction/lost value, and conservative
+  fan-in;
+- finds the useful signal that private source access makes the decision shape,
+  likely-action delta, lost-value risk, and fan-in tension more concrete than
+  the sparse checked-in-safe shell;
+- records the main unresolved risk: one case only, private packet truncation,
+  candidate-only Codex-assisted reads, and no human validation;
+- recommends PR98 Decision Trail Specialist Output Pilot Review / Contract
+  Revision v0 before any broad specialist batch;
+- calls no providers or models, invokes no runtime, mutates no archives, scores
+  nothing, judges nothing, creates no automatic labels, and authorizes no
+  agent action.
+
+Previous Decision Trail local-private packet smoke-review slice:
 
 - lands `docs/conversation-understanding/decision-trail-local-private-packet-smoke-review-v0.md`;
 - lands `reviews/codex-assisted/decision-trail-local-private-packet-smoke-review-v0/review.json`;
@@ -1088,13 +1124,19 @@ Non-goals for the next slice:
    does not prove interpretation adequacy. The next conservative move is a
    tiny PR97 local-private specialist-output pilot over one or two runs, not a
    broad batch or runtime integration.
-15. **Live-output hygiene implementation.** PR35 keeps `not_checked` honest and
+15. **PR97 Decision Trail local-private specialist-output pilot is done.** PR97
+   fills all four PR90 specialist roles for one local-private completed run and
+   keeps private packet content out of the repo. It shows the shape can produce
+   more concrete candidate reads, but remains one-case, Codex-assisted,
+   unvalidated, and not automatic. The next conservative move is PR98:
+   review/revise the contracts and packet shape before any broader batch.
+16. **Live-output hygiene implementation.** PR35 keeps `not_checked` honest and
    defines a trusted-transcript path; later work can implement only when needed.
-16. **Span-grounded semantic enrichment.** Existing specialists help with live
+17. **Span-grounded semantic enrichment.** Existing specialists help with live
    constraints, dropped threads, and stance lineage, but integration remains
    blocked until a clean 15-20 full-modern sample and provider-boundary behavior
    are settled.
-17. **Human capability surface.** Later, add a compact memo/Observatory section
+18. **Human capability surface.** Later, add a compact memo/Observatory section
    that teaches the user what reasoning pattern the audit caught.
 
 ## Current Pause: Specialist Integration Track

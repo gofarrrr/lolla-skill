@@ -295,8 +295,16 @@ does not create specialist outputs or execute fan-in.
 
 ## Next Step
 
-The next recommended slice after PR96 is a tiny local-private specialist-output
-pilot over one or two operator-selected completed runs.
+The next recommended slice after PR96 was a tiny local-private
+specialist-output pilot over one or two operator-selected completed runs. PR97
+has now completed that one-case pilot:
 
-That review should still avoid runtime integration, archive mutation,
-provider/API calls, scoring, automatic labels, and product-proof claims.
+[`Decision Trail Local-Private Specialist Output Pilot v0`](decision-trail-local-private-specialist-output-pilot-v0.md)
+
+The pilot used PR95 local-private packet output and filled all four PR90
+specialist roles by checked-in summary only. It still avoids runtime
+integration, archive mutation, provider/API calls, scoring, automatic labels,
+and product-proof claims.
+
+The next recommended slice is PR98: review whether the PR97 output reveals
+contract or packet-shape revisions before any broader specialist-output batch.

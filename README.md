@@ -256,6 +256,8 @@ PR95 adds the explicit local-private packet mode:
 [Decision Trail Local-Private Packet Mode](docs/conversation-understanding/decision-trail-local-private-packet-mode-v0.md).
 PR96 smoke-reviews that mode:
 [Decision Trail Local-Private Packet Smoke Review](docs/conversation-understanding/decision-trail-local-private-packet-smoke-review-v0.md).
+PR97 runs the tiny local-private specialist-output pilot:
+[Decision Trail Local-Private Specialist Output Pilot](docs/conversation-understanding/decision-trail-local-private-specialist-output-pilot-v0.md).
 
 Current Decision Trail status: this is still offline evidence and packet
 machinery, not automatic skill behavior. A normal Lolla run does not trigger
@@ -263,13 +265,16 @@ the Product Delta eval lane, the Decision Trail exporter, or specialist
 interpretation. PR95 lets an operator explicitly build local-private packets
 from completed run directories for later review. PR96 shows that metadata-only
 packets work over real completed runs and that include-text packets work
-mechanically while marking themselves unsafe for commit. These packets still
-do not fill likely actions, live options, stakeholders, values/priorities,
-assistant influence, useful/noisy friction, lost value, or fan-in.
+mechanically while marking themselves unsafe for commit. PR97 shows one
+operator-selected local-private include-text packet can support all four PR90
+specialist-output shapes by checked-in summary only: conversation shape, likely
+action, friction/lost value, and conservative fan-in.
 
-The next conservative Decision Trail step is a tiny local-private
-specialist-output pilot over one or two runs, not a broad batch and not runtime
-integration.
+This is still one-case, Codex-assisted, unvalidated, and not product proof. It
+does not fill a first-class Decision Trail automatically, does not run inside
+`$lolla`, and does not authorize agents. The next conservative Decision Trail
+step is PR98: review the pilot output and revise contracts or packet shape
+before any broader specialist-output batch.
 
 Start here: **[Product Delta / Eval Docs Index](docs/evals/README.md)**.
 

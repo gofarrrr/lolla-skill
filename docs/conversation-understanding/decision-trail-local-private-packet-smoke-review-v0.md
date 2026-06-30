@@ -140,31 +140,31 @@ What PR96 did not prove:
 
 ## Main Product Read
 
-The packet lane is now ready for one tiny local-private specialist-output pilot,
-not a broad batch.
+The packet lane was ready for one tiny local-private specialist-output pilot,
+not a broad batch. PR97 has now run that pilot:
 
-The right next slice should use one or two operator-selected completed runs and
-produce bounded, non-human-validated specialist outputs from local-private
-packets. The pilot should preserve uncertainty and disagreement, and it should
-be allowed to conclude that packets are still too bulky, too thin, or too risky.
+- [Decision Trail Local-Private Specialist Output Pilot v0](decision-trail-local-private-specialist-output-pilot-v0.md)
+
+PR97 used one operator-selected completed run and produced bounded,
+non-human-validated specialist outputs from a local-private include-text packet.
+The checked-in review preserves only summary-level output, uncertainty, source
+refs, limitations, and non-claims. It did not check in private packet content.
 
 ## Recommended Next Slice
 
-PR97 should be:
+PR98 should be:
 
 ```text
-Decision Trail Local-Private Specialist Output Pilot v0
+Decision Trail Specialist Output Pilot Review / Contract Revision v0
 ```
 
 It should:
 
-- use one or two operator-selected completed runs;
-- keep outputs local-private or checked-in-safe by summary only;
-- fill contract-shaped specialist outputs only for the four PR90 roles;
-- preserve source refs, uncertainty, limitations, and non-claims;
-- avoid broad product claims;
-- avoid fan-in-as-verdict;
-- avoid runtime integration.
+- review whether the PR97 outputs are actually readable and useful;
+- decide whether the PR90 contracts need revision before wider use;
+- decide whether the PR95 packet shape is too bulky, too thin, or acceptable;
+- preserve the one-case limitation as a first-class result;
+- avoid broad product claims, fan-in-as-verdict, and runtime integration.
 
 It must not:
 

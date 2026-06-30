@@ -279,12 +279,22 @@ mutation, or product-proof claims.
 
 ## Next Step
 
+PR92, PR93, PR94, PR95, PR96, and PR97 have now exercised the contracts
+through traps, a dry run, local-private packet mode, packet smoke review, and a
+one-case local-private specialist-output pilot. The latest pilot is:
+
+[`Decision Trail Local-Private Specialist Output Pilot v0`](decision-trail-local-private-specialist-output-pilot-v0.md)
+
+PR97 shows the four-role contract surface can be filled from one
+operator-selected local-private packet, but it does not prove the contracts are
+final or suitable for a broad batch.
+
 The next recommended PR is:
 
-**PR92 Decision Trail Specialist Trap Set v0**
+**PR98 Decision Trail Specialist Output Pilot Review / Contract Revision v0**
 
-PR92 should create checked-in-safe trap fixtures before any specialist review
-batch. It should test whether future specialist passes resist over-inference,
-overtrust, lost-value blindness, and fan-in smoothing while still avoiding
-model calls, runtime integration, archive mutation, scoring, automatic labels,
-and product-proof claims.
+PR98 should review whether PR97's filled outputs expose missing fields,
+unclear vocabularies, overclaim risk, packet-bulk issues, source-ref problems,
+or contract changes needed before broader use. It should still avoid model
+calls, runtime integration, archive mutation, scoring, automatic labels, and
+product-proof claims.

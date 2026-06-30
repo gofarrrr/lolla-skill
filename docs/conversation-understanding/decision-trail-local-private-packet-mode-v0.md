@@ -268,10 +268,13 @@ judge, or a product-proof report.
 
 ## Next Step
 
-After PR96, the next conservative slice should be a tiny local-private
-specialist-output pilot over one or two operator-selected completed runs.
+After PR96, the next conservative slice was a tiny local-private
+specialist-output pilot over one or two operator-selected completed runs. PR97
+has now completed the one-case version of that pilot:
 
-That step should ask:
+- [Decision Trail Local-Private Specialist Output Pilot v0](decision-trail-local-private-specialist-output-pilot-v0.md)
+
+PR97 asked:
 
 - can the four PR90 specialist roles fill contract-shaped outputs from
   local-private packets without overclaiming;
@@ -281,5 +284,13 @@ That step should ask:
 - do source refs remain readable after specialist outputs are added;
 - should PR90 contracts or PR95 packet shape change before broader use?
 
+The pilot found that the local-private packet path is usable for one bounded
+specialist-output pass, but it also made the private-content/truncation and
+one-case limitations impossible to ignore.
+
 If local-private packets are too risky or too bulky, the lane should simplify
 before adding more interpretation machinery.
+
+The next conservative slice is PR98: review the PR97 specialist outputs and
+decide whether contracts or packet shape should change before any broader
+batch.
