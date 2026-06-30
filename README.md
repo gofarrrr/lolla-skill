@@ -219,6 +219,28 @@ The emerging customer-facing product surface is the Decision Trail: the revised
 answer plus a compact process report explaining what conversation produced it,
 what changed, what was challenged, what remains missing, and what should not be
 overclaimed. See
+[Board Product Briefs](docs/board/README.md) for a simple board/customer-facing
+reading packet,
+[Decision Work Receipt PRD](docs/conversation-understanding/decision-work-receipt-prd-v0.md)
+for the actionable implementation plan for the missing work-trail layer, its
+schema contract in
+[Decision Work Receipt Schema](docs/conversation-understanding/decision-work-receipt-v0.json),
+the first read-only source/context inventory exporter in
+[Decision Work Receipt Source Inventory](docs/conversation-understanding/decision-work-receipt-source-inventory-v0.md),
+the deterministic turn-count and one-shot/multi-turn process-shape slice in
+[Decision Work Receipt Conversation Process Map](docs/conversation-understanding/decision-work-receipt-conversation-process-map-v0.md),
+the challenge-surface and run-health-caveat slice in
+[Decision Work Receipt Challenge Coverage Map](docs/conversation-understanding/decision-work-receipt-challenge-coverage-map-v0.md),
+and the composed sparse receipt exporter in
+[Decision Work Receipt Exporter](docs/conversation-understanding/decision-work-receipt-exporter-v0.md).
+The first fixture review is
+[Decision Work Receipt Fixture Review](docs/conversation-understanding/decision-work-receipt-fixture-review-v0.md):
+the receipt is useful as a work-trail shell, but still too thin to explain the
+messy semantic story without later bounded interpretation. The phase decision
+is
+[Decision Work Receipt Decision Gate](docs/conversation-understanding/decision-work-receipt-decision-gate-v0.md):
+keep the sparse receipt as an internal/workflow artifact and do not build a
+parallel Work Receipt interpretation system yet. See
 [Lolla Decision Trail Web Page Draft](docs/lolla-decision-trail-web-page-v0.md)
 for the simple customer explanation and
 [Decision Trail Readiness Audit](docs/conversation-understanding/decision-trail-readiness-audit-v0.md)

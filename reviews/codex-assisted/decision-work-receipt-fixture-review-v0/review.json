@@ -1,0 +1,605 @@
+{
+  "schema_version": "lolla.decision_work_receipt_fixture_review.v0",
+  "review_mode": "checked_in_safe_fixture_review",
+  "slice": "PR110 Decision Work Receipt Fixture Review v0",
+  "created_date": "2026-06-30",
+  "boundary": {
+    "human_validated": false,
+    "ground_truth": false,
+    "judge_calibration_eligible": false,
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "model_calls": 0,
+    "archive_mutated": false,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "raw_private_content_included": false,
+    "automatic_labels_created": false
+  },
+  "evidence_scope": "safe_fixture_only",
+  "local_private_shadow_review_status": {
+    "status": "not_run",
+    "reason": "PR110 reviews checked-in-safe fixture behavior only. No local-private archive review was run.",
+    "pr111_implication": "PR111 must treat this as safe-fixture-only evidence. It can assess receipt shape, missingness, and overtrust risk, not full semantic adequacy over messy conversations."
+  },
+  "source_receipts": [
+    {
+      "receipt_id": "sparse_multiturn_fixture_receipt",
+      "receipt_ref": "temporary_pr109_cli_output_not_checked_in",
+      "checked_in": false,
+      "reason_not_checked_in": "The PR109 exporter tests pin generated receipt shape; PR110 checks in the durable review findings rather than bulky generated output.",
+      "source_run_ref": "tests/test_decision_work_receipt.py::_minimal_run_dir",
+      "source_run_kind": "safe_structured_fixture",
+      "receipt_mode": "checked_in_safe_mode",
+      "generated_by_cli": true,
+      "expected_process_evidence_readiness": "multi_turn_unreviewed_process"
+    },
+    {
+      "receipt_id": "challenged_fixture_receipt",
+      "receipt_ref": "temporary_pr109_cli_output_not_checked_in",
+      "checked_in": false,
+      "reason_not_checked_in": "The review records the stable behavior rather than checking in generated fixture output.",
+      "source_run_ref": "tests/test_decision_work_receipt.py::_minimal_run_dir plus _add_challenge_artifacts",
+      "source_run_kind": "safe_structured_fixture_with_challenge_surfaces",
+      "receipt_mode": "checked_in_safe_mode",
+      "generated_by_cli": true,
+      "expected_process_evidence_readiness": "challenged_and_revised_process"
+    },
+    {
+      "receipt_id": "review_ready_fixture_receipt",
+      "receipt_ref": "temporary_pr109_cli_output_not_checked_in",
+      "checked_in": false,
+      "reason_not_checked_in": "The review target is a safe fixture with optional Decision Trail/Product Delta references; full generated output is covered by tests.",
+      "source_run_ref": "tests/test_decision_work_receipt.py::_minimal_run_dir plus _add_challenge_artifacts plus _add_optional_review_artifacts",
+      "source_run_kind": "safe_structured_fixture_with_optional_review_refs",
+      "receipt_mode": "checked_in_safe_mode",
+      "generated_by_cli": true,
+      "expected_process_evidence_readiness": "decision_trail_review_ready"
+    },
+    {
+      "receipt_id": "malformed_optional_reference_fixture_receipt",
+      "receipt_ref": "temporary_pr109_cli_output_not_checked_in",
+      "checked_in": false,
+      "reason_not_checked_in": "The malformed optional-reference fixture is a shape test for error status, not a durable report artifact.",
+      "source_run_ref": "tests/test_decision_work_receipt.py::test_malformed_optional_review_artifact_is_status_not_crash",
+      "source_run_kind": "safe_structured_fixture_with_malformed_optional_reference",
+      "receipt_mode": "checked_in_safe_mode",
+      "generated_by_cli": true,
+      "expected_process_evidence_readiness": "multi_turn_unreviewed_process"
+    }
+  ],
+  "method": {
+    "central_question": "Is the PR109 Decision Work Receipt useful as a work-trail receipt without becoming too authoritative-looking?",
+    "receipt_type": "offline fixture review over PR109 generated outputs",
+    "semantic_correctness_review": false,
+    "new_interpretation_created": false,
+    "review_policy": [
+      "Review source visibility, process-shape visibility, challenge-surface visibility, optional review-reference behavior, missingness, readability, and overtrust risk.",
+      "Do not decide whether Lolla improved the decision.",
+      "Do not infer messy semantic process fields from report prose.",
+      "Treat checked-in safe mode as intentionally incomplete for full conversation interpretation."
+    ]
+  },
+  "receipt_reviews": [
+    {
+      "receipt_id": "sparse_multiturn_fixture_receipt",
+      "receipt_ref": "temporary_pr109_cli_output_not_checked_in",
+      "source_run_ref": "tests/test_decision_work_receipt.py::_minimal_run_dir",
+      "receipt_mode": "checked_in_safe_mode",
+      "process_evidence_readiness_label": "multi_turn_unreviewed_process",
+      "field_population_summary": {
+        "clear_and_populated": 4,
+        "clear_but_missing": 3,
+        "requires_llm_interpretation": 8,
+        "requires_human_review": 0,
+        "confusing": 0,
+        "overclaim_risk": 0,
+        "not_applicable": 0
+      },
+      "populated_sections": [
+        {
+          "section": "source_context_inventory",
+          "classification": "clear_and_populated",
+          "reason": "The receipt shows which structured artifacts were read and which raw/private artifacts were not read."
+        },
+        {
+          "section": "conversation_process_map",
+          "classification": "clear_and_populated",
+          "reason": "Turn count, user/assistant count, and multi-turn process depth are visible from structured metadata."
+        },
+        {
+          "section": "missingness_and_redaction",
+          "classification": "clear_and_populated",
+          "reason": "Missing, redacted, and private-not-exported source states are explicit."
+        },
+        {
+          "section": "non_claims_and_boundary",
+          "classification": "clear_and_populated",
+          "reason": "The receipt explicitly says no runtime invocation, model calls, archive mutation, scoring, or agent authorization occurred."
+        }
+      ],
+      "interpretation_needed_sections": [
+        {
+          "section": "conversation_process_map.semantic_process_fields",
+          "classification": "requires_llm_interpretation",
+          "reason": "New context, corrections, options explored, pushback, premortems, abandoned paths, and final divergence are not inferred deterministically."
+        },
+        {
+          "section": "challenge_coverage.challenge_quality",
+          "classification": "requires_llm_interpretation",
+          "reason": "Absent challenge surfaces do not prove no challenge occurred, and present surfaces would not prove challenge quality."
+        },
+        {
+          "section": "decision_trail_summary.semantic_interpretation",
+          "classification": "requires_llm_interpretation",
+          "reason": "No Decision Trail report reference is present in this fixture."
+        },
+        {
+          "section": "product_delta_summary.product_value",
+          "classification": "requires_llm_interpretation",
+          "reason": "No Product Delta review artifact is present in this fixture."
+        }
+      ],
+      "redacted_or_private_sections": [
+        {
+          "artifact": "conversation.txt",
+          "classification": "clear_but_missing",
+          "reason": "The fixture does not provide raw conversation text; a real checked-in-safe receipt would record it without reading content if present."
+        }
+      ],
+      "missing_or_malformed_artifacts": [],
+      "confusing_sections": [],
+      "overtrust_risk_sections": [],
+      "behavioral_usefulness": {
+        "inputs_visible": {
+          "answer": "yes_for_artifact_presence",
+          "rationale": "The receipt makes structured sources and raw/private source policy visible.",
+          "human_validation_caveat": "This usefulness read is not human validated."
+        },
+        "missing_vs_private_visible": {
+          "answer": "yes",
+          "rationale": "Missing, redacted, and private-not-exported states use separate statuses.",
+          "human_validation_caveat": "This clarity read is not human validated."
+        },
+        "process_shape_visible": {
+          "answer": "yes",
+          "rationale": "The fixture shows multi-turn evidence from safe structured turn metadata.",
+          "human_validation_caveat": "Turn shape is not evidence of good thinking."
+        },
+        "challenge_presence_visible": {
+          "answer": "yes_absence_is_visible",
+          "rationale": "The receipt shows no core challenge surfaces in the fixture.",
+          "human_validation_caveat": "Absent surfaces are not proof that no useful challenge happened elsewhere."
+        },
+        "review_readiness_visible": {
+          "answer": "yes_as_multi_turn_unreviewed",
+          "rationale": "The readiness label correctly stays below challenged/review-ready.",
+          "human_validation_caveat": "Readiness is an artifact-state label, not a judgment."
+        },
+        "what_changed_answerable": {
+          "answer": "no",
+          "rationale": "No challenge or Product Delta reference exists, so the receipt cannot say what changed.",
+          "human_validation_caveat": "No human reviewer validated this no-change-read."
+        },
+        "evidence_support_answerable": {
+          "answer": "yes_for_source_refs_only",
+          "rationale": "The receipt shows source refs for available structured metadata.",
+          "human_validation_caveat": "Source refs are custody evidence, not proof of advice quality."
+        },
+        "non_claims_answerable": {
+          "answer": "yes",
+          "rationale": "Boundary and non-claim fields are direct and conservative.",
+          "human_validation_caveat": "Readers still have to respect the non-claims."
+        },
+        "more_careful_or_more_impressed": {
+          "answer": "more_careful",
+          "rationale": "The receipt reveals that multi-turn shape is visible but challenge and delta evidence are not supplied.",
+          "human_validation_caveat": "This is a fixture-review read, not human validation."
+        }
+      },
+      "receipt_readability": "readable_with_status_fields",
+      "artifact_custody_read": "useful",
+      "semantic_interpretation_adequacy_read": "not_performed",
+      "product_delta_usefulness_read": "not_reviewed",
+      "human_validation_read": "not_human_validated",
+      "blockers": [],
+      "human_followup_questions": [
+        "Would a real reviewer understand that multi-turn evidence is not work quality?",
+        "Should the receipt visually separate missing challenge surfaces from missing optional review artifacts?"
+      ]
+    },
+    {
+      "receipt_id": "challenged_fixture_receipt",
+      "receipt_ref": "temporary_pr109_cli_output_not_checked_in",
+      "source_run_ref": "tests/test_decision_work_receipt.py::_minimal_run_dir plus _add_challenge_artifacts",
+      "receipt_mode": "checked_in_safe_mode",
+      "process_evidence_readiness_label": "challenged_and_revised_process",
+      "field_population_summary": {
+        "clear_and_populated": 5,
+        "clear_but_missing": 2,
+        "requires_llm_interpretation": 8,
+        "requires_human_review": 0,
+        "confusing": 0,
+        "overclaim_risk": 1,
+        "not_applicable": 0
+      },
+      "populated_sections": [
+        {
+          "section": "source_context_inventory",
+          "classification": "clear_and_populated",
+          "reason": "The receipt keeps source custody legible."
+        },
+        {
+          "section": "conversation_process_map",
+          "classification": "clear_and_populated",
+          "reason": "Multi-turn process shape remains visible."
+        },
+        {
+          "section": "challenge_coverage",
+          "classification": "clear_and_populated",
+          "reason": "Core Lolla challenge surfaces and run-health caveats are mapped as artifact presence."
+        },
+        {
+          "section": "process_evidence_readiness",
+          "classification": "clear_and_populated",
+          "reason": "Readiness advances to challenged-and-revised because challenge surfaces are present."
+        },
+        {
+          "section": "missingness_and_redaction",
+          "classification": "clear_and_populated",
+          "reason": "Private/redacted source policy remains visible."
+        }
+      ],
+      "interpretation_needed_sections": [
+        {
+          "section": "challenge_coverage.challenge_quality",
+          "classification": "requires_llm_interpretation",
+          "reason": "Surface presence is visible, but whether the challenge was useful is not assessed."
+        },
+        {
+          "section": "conversation_process_map.semantic_process_fields",
+          "classification": "requires_llm_interpretation",
+          "reason": "The receipt still does not infer options, corrections, pushback, or abandoned paths."
+        }
+      ],
+      "redacted_or_private_sections": [
+        {
+          "artifact": "pre_step6_private_table.json",
+          "classification": "clear_and_populated",
+          "reason": "Private challenge context can be recorded as available privately without reading content."
+        }
+      ],
+      "missing_or_malformed_artifacts": [],
+      "confusing_sections": [],
+      "overtrust_risk_sections": [
+        {
+          "section": "process_evidence_readiness",
+          "classification": "overclaim_risk",
+          "reason": "The phrase challenged-and-revised can sound stronger than artifact-readiness unless the non-claim is kept close."
+        }
+      ],
+      "behavioral_usefulness": {
+        "inputs_visible": {
+          "answer": "yes_for_artifact_presence",
+          "rationale": "The receipt shows which structured and private artifact slots exist.",
+          "human_validation_caveat": "This usefulness read is not human validated."
+        },
+        "missing_vs_private_visible": {
+          "answer": "yes",
+          "rationale": "Private challenge surfaces and missing artifacts remain distinguishable.",
+          "human_validation_caveat": "This clarity read is not human validated."
+        },
+        "process_shape_visible": {
+          "answer": "yes",
+          "rationale": "The receipt preserves multi-turn evidence.",
+          "human_validation_caveat": "Process shape is not thought quality."
+        },
+        "challenge_presence_visible": {
+          "answer": "yes",
+          "rationale": "The receipt shows visible Lolla challenge surfaces and optional pressure-check state.",
+          "human_validation_caveat": "Challenge presence is not challenge quality."
+        },
+        "review_readiness_visible": {
+          "answer": "yes_as_challenged_and_revised",
+          "rationale": "The readiness label correctly advances only to challenged-and-revised without Decision Trail/Product Delta refs.",
+          "human_validation_caveat": "The label is not an approval or result-quality claim."
+        },
+        "what_changed_answerable": {
+          "answer": "partly",
+          "rationale": "Challenge surfaces are visible, but the receipt does not explain semantic deltas or Product Delta value.",
+          "human_validation_caveat": "No human reviewer validated this partial usefulness read."
+        },
+        "evidence_support_answerable": {
+          "answer": "yes_for_source_refs_only",
+          "rationale": "The receipt points to fields and artifacts that support presence claims.",
+          "human_validation_caveat": "Source refs are custody evidence, not advice validation."
+        },
+        "non_claims_answerable": {
+          "answer": "yes",
+          "rationale": "The receipt preserves answer-quality and product-proof non-claims.",
+          "human_validation_caveat": "Readers must not turn the readiness label into a score."
+        },
+        "more_careful_or_more_impressed": {
+          "answer": "more_careful_with_overtrust_risk",
+          "rationale": "The receipt shows challenge presence while warning that challenge quality is not assessed.",
+          "human_validation_caveat": "This is a fixture-review read, not human validation."
+        }
+      },
+      "receipt_readability": "readable_but_label_needs_care",
+      "artifact_custody_read": "useful",
+      "semantic_interpretation_adequacy_read": "incomplete_but_honest",
+      "product_delta_usefulness_read": "not_reviewed",
+      "human_validation_read": "not_human_validated",
+      "blockers": [],
+      "human_followup_questions": [
+        "Should challenged-and-revised be renamed or paired with a visible non-claim in any future UI?",
+        "Which challenge surfaces matter most to a reviewer reading a real output?"
+      ]
+    },
+    {
+      "receipt_id": "review_ready_fixture_receipt",
+      "receipt_ref": "temporary_pr109_cli_output_not_checked_in",
+      "source_run_ref": "tests/test_decision_work_receipt.py::_minimal_run_dir plus _add_challenge_artifacts plus _add_optional_review_artifacts",
+      "receipt_mode": "checked_in_safe_mode",
+      "process_evidence_readiness_label": "decision_trail_review_ready",
+      "field_population_summary": {
+        "clear_and_populated": 7,
+        "clear_but_missing": 0,
+        "requires_llm_interpretation": 8,
+        "requires_human_review": 0,
+        "confusing": 0,
+        "overclaim_risk": 2,
+        "not_applicable": 0
+      },
+      "populated_sections": [
+        {
+          "section": "decision_trail_summary",
+          "classification": "clear_and_populated",
+          "reason": "A checked-in-safe Decision Trail reference can be linked without copying report conclusions."
+        },
+        {
+          "section": "product_delta_summary",
+          "classification": "clear_and_populated",
+          "reason": "A checked-in-safe Product Delta reference can be linked without treating candidate reads as product proof."
+        },
+        {
+          "section": "process_evidence_readiness",
+          "classification": "clear_and_populated",
+          "reason": "Readiness advances to review-ready because downstream report/review refs exist."
+        }
+      ],
+      "interpretation_needed_sections": [
+        {
+          "section": "decision_trail_summary.semantic_interpretation",
+          "classification": "requires_llm_interpretation",
+          "reason": "A linked Decision Trail report reference is not itself an interpretation-quality finding."
+        },
+        {
+          "section": "product_delta_summary.product_value",
+          "classification": "requires_llm_interpretation",
+          "reason": "A Product Delta reference is not product proof or human validation."
+        }
+      ],
+      "redacted_or_private_sections": [],
+      "missing_or_malformed_artifacts": [],
+      "confusing_sections": [],
+      "overtrust_risk_sections": [
+        {
+          "section": "decision_trail_summary",
+          "classification": "overclaim_risk",
+          "reason": "A linked Decision Trail report can make the receipt feel more complete than the semantic evidence supports."
+        },
+        {
+          "section": "product_delta_summary",
+          "classification": "overclaim_risk",
+          "reason": "A Product Delta reference can be mistaken for proof of improvement unless non-claims remain visible."
+        }
+      ],
+      "behavioral_usefulness": {
+        "inputs_visible": {
+          "answer": "yes_for_artifact_presence",
+          "rationale": "The receipt can show inputs plus downstream review/report references.",
+          "human_validation_caveat": "This usefulness read is not human validated."
+        },
+        "missing_vs_private_visible": {
+          "answer": "yes",
+          "rationale": "Optional report refs are separated from missing sources.",
+          "human_validation_caveat": "This clarity read is not human validated."
+        },
+        "process_shape_visible": {
+          "answer": "yes",
+          "rationale": "The receipt preserves process shape while adding review refs.",
+          "human_validation_caveat": "Process shape remains non-evaluative."
+        },
+        "challenge_presence_visible": {
+          "answer": "yes",
+          "rationale": "Challenge coverage remains visible alongside downstream references.",
+          "human_validation_caveat": "Presence is not quality."
+        },
+        "review_readiness_visible": {
+          "answer": "yes_as_review_ready",
+          "rationale": "The receipt makes the presence of Decision Trail/Product Delta references obvious.",
+          "human_validation_caveat": "Review-ready is not human reviewed."
+        },
+        "what_changed_answerable": {
+          "answer": "partly_with_linked_refs",
+          "rationale": "The receipt can point to linked reports, but does not copy or validate their semantic conclusions.",
+          "human_validation_caveat": "No human reviewer validated the linked-report usefulness."
+        },
+        "evidence_support_answerable": {
+          "answer": "yes_for_source_refs_only",
+          "rationale": "The receipt has source refs for the optional downstream artifacts.",
+          "human_validation_caveat": "Source refs are not product proof."
+        },
+        "non_claims_answerable": {
+          "answer": "yes_but_must_stay_prominent",
+          "rationale": "Non-claims are present, but the more complete receipt increases the need to keep them visible.",
+          "human_validation_caveat": "This is not human validation."
+        },
+        "more_careful_or_more_impressed": {
+          "answer": "both_possible",
+          "rationale": "The receipt makes the work trail more inspectable but could impress readers if linked refs are read as validation.",
+          "human_validation_caveat": "This risk read is not human validated."
+        }
+      },
+      "receipt_readability": "readable_with_heightened_overtrust_risk",
+      "artifact_custody_read": "useful",
+      "semantic_interpretation_adequacy_read": "not_performed",
+      "product_delta_usefulness_read": "not_reviewed",
+      "human_validation_read": "not_human_validated",
+      "blockers": [],
+      "human_followup_questions": [
+        "Does decision_trail_review_ready sound too close to approval?",
+        "Should future UI show not human reviewed directly beside this label?",
+        "Should Product Delta refs be summarized or only linked?"
+      ]
+    },
+    {
+      "receipt_id": "malformed_optional_reference_fixture_receipt",
+      "receipt_ref": "temporary_pr109_cli_output_not_checked_in",
+      "source_run_ref": "tests/test_decision_work_receipt.py::test_malformed_optional_review_artifact_is_status_not_crash",
+      "receipt_mode": "checked_in_safe_mode",
+      "process_evidence_readiness_label": "multi_turn_unreviewed_process",
+      "field_population_summary": {
+        "clear_and_populated": 4,
+        "clear_but_missing": 2,
+        "requires_llm_interpretation": 8,
+        "requires_human_review": 0,
+        "confusing": 0,
+        "overclaim_risk": 0,
+        "not_applicable": 0
+      },
+      "populated_sections": [
+        {
+          "section": "source_context_inventory",
+          "classification": "clear_and_populated",
+          "reason": "The malformed optional artifact is recorded as an artifact status, not as a crash."
+        }
+      ],
+      "interpretation_needed_sections": [
+        {
+          "section": "decision_trail_summary.semantic_interpretation",
+          "classification": "requires_llm_interpretation",
+          "reason": "Malformed optional references do not create semantic findings."
+        }
+      ],
+      "redacted_or_private_sections": [],
+      "missing_or_malformed_artifacts": [
+        {
+          "artifact": "decision_trail_report.json",
+          "classification": "clear_but_missing",
+          "reason": "The artifact is present but malformed, so the receipt records status rather than treating it as review-ready."
+        }
+      ],
+      "confusing_sections": [],
+      "overtrust_risk_sections": [],
+      "behavioral_usefulness": {
+        "inputs_visible": {
+          "answer": "yes_for_artifact_status",
+          "rationale": "The receipt exposes that an optional reference exists but is malformed.",
+          "human_validation_caveat": "This usefulness read is not human validated."
+        },
+        "missing_vs_private_visible": {
+          "answer": "yes",
+          "rationale": "Malformed optional reference is distinct from missing and private states.",
+          "human_validation_caveat": "This clarity read is not human validated."
+        },
+        "process_shape_visible": {
+          "answer": "yes",
+          "rationale": "Malformed optional references do not erase process-shape evidence.",
+          "human_validation_caveat": "Process shape is not quality."
+        },
+        "challenge_presence_visible": {
+          "answer": "yes_absence_is_visible",
+          "rationale": "The fixture still lacks challenge surfaces.",
+          "human_validation_caveat": "Absence is not semantic proof."
+        },
+        "review_readiness_visible": {
+          "answer": "yes_as_not_ready",
+          "rationale": "The malformed optional reference does not upgrade readiness.",
+          "human_validation_caveat": "Readiness remains an artifact-state label."
+        },
+        "what_changed_answerable": {
+          "answer": "no",
+          "rationale": "The malformed optional reference cannot support a change read.",
+          "human_validation_caveat": "No human reviewer validated this read."
+        },
+        "evidence_support_answerable": {
+          "answer": "yes_for_status_only",
+          "rationale": "The receipt supports only the malformed-status claim.",
+          "human_validation_caveat": "Status evidence is not product proof."
+        },
+        "non_claims_answerable": {
+          "answer": "yes",
+          "rationale": "Malformed optional references do not override non-claims.",
+          "human_validation_caveat": "This is not human validation."
+        },
+        "more_careful_or_more_impressed": {
+          "answer": "more_careful",
+          "rationale": "The receipt prevents malformed downstream artifacts from looking usable.",
+          "human_validation_caveat": "This is a fixture-review read."
+        }
+      },
+      "receipt_readability": "readable",
+      "artifact_custody_read": "useful",
+      "semantic_interpretation_adequacy_read": "not_performed",
+      "product_delta_usefulness_read": "not_reviewed",
+      "human_validation_read": "not_human_validated",
+      "blockers": [],
+      "human_followup_questions": [
+        "Should malformed optional report references block any future product-facing receipt rendering?",
+        "Should malformed optional references appear above or below the main process-readiness label?"
+      ]
+    }
+  ],
+  "aggregate_observations": {
+    "strongest_usefulness_signal": "The receipt makes the work trail legible as a state machine: multi-turn unreviewed, challenged-and-revised, or review-ready depending on visible artifacts.",
+    "strongest_thinness_risk": "The receipt still cannot explain the messy semantic story: what changed, whether friction was useful, what was lost, or whether the final answer improved.",
+    "strongest_overtrust_risk": "The more complete the receipt looks, especially with challenge surfaces and downstream refs, the easier it is to mistake artifact readiness for good work.",
+    "positive_usefulness_notes": [
+      {
+        "note": "Source inventory and redaction/private statuses are easy to inspect.",
+        "human_validation_caveat": "This has not been human validated."
+      },
+      {
+        "note": "Process readiness labels are useful as long as they remain artifact-state labels.",
+        "human_validation_caveat": "This has not been human validated."
+      },
+      {
+        "note": "Malformed optional references stay visible without upgrading readiness.",
+        "human_validation_caveat": "This has not been human validated."
+      }
+    ],
+    "overtrust_risk_notes": [
+      "challenged_and_revised_process may sound like qualitative success unless paired with non-claims.",
+      "decision_trail_review_ready may sound like approval unless paired with not-human-reviewed language.",
+      "A clean receipt can make a weak underlying conversation look more governed than it was."
+    ],
+    "safe_fixture_only_limits": [
+      "No raw conversation text was read.",
+      "No local-private archive review was run.",
+      "No human reviewer checked whether the receipt matched a real messy conversation.",
+      "No semantic Product Delta conclusion was validated."
+    ]
+  },
+  "pr111_recommendation": {
+    "recommended_decision": "Proceed to PR111 decision gate before adding new machinery.",
+    "likely_outcome": "Keep the sparse receipt as useful internal evidence, and decide separately whether bounded LLM interpretation is needed for a product-facing work-trail story.",
+    "must_not_do_next": [
+      "Do not integrate the receipt into runtime yet.",
+      "Do not add broad conversation-understanding IR.",
+      "Do not add judges, scores, approval labels, or agent authorization.",
+      "Do not treat safe-fixture review as human validation."
+    ]
+  },
+  "non_claims": {
+    "not_human_validated": true,
+    "not_ground_truth": true,
+    "not_product_proof": true,
+    "not_answer_quality_scoring": true,
+    "not_llm_judge": true,
+    "not_agent_action_authorization": true,
+    "clean_receipt_does_not_imply_good_advice": true
+  }
+}
