@@ -152,6 +152,7 @@ The detailed docs are split so agents and humans do not have to load one giant f
 | [Decision Trail Specialist Output Pilot Review](docs/conversation-understanding/decision-trail-specialist-output-pilot-review-v0.md) | PR98's review/decision gate over PR97, blocking broader specialist batches until contracts and packet metadata are patched. |
 | [Decision Trail Specialist Contract And Packet Patch](docs/conversation-understanding/decision-trail-specialist-contract-and-packet-patch-v0.md) | PR99's additive patch to the specialist contracts and packet metadata, adding source-scope, truncation, vanilla-overlap, severity, assistant-influence, downgrade-trigger, and retention-policy fields before any second one-case pilot. |
 | [Decision Trail Second One-Case Specialist Pilot](docs/conversation-understanding/decision-trail-second-one-case-specialist-pilot-v0.md) | PR100's second local-private specialist-output pilot using the PR99 fields, finding partial usefulness because material vanilla overlap should downgrade the read before any broad batch. |
+| [Decision Trail Specialist Pilot Comparison Gate](docs/conversation-understanding/decision-trail-specialist-pilot-comparison-gate-v0.md) | PR101's checked-in-summary comparison of PR97 and PR100, deciding broad batches are not ready and allowing at most one diversity-targeted third pilot. |
 | [Evaluation Flywheel Action Plan](docs/evals/evaluation-flywheel-action-plan-v0.md) | The current action map for turning real traces into human labels, fixtures, deterministic checks, and later calibrated binary judges without drifting into generic scoring. |
 | [Current System Capabilities](docs/evals/current-system-capabilities-v0.md) | A plain-language map of what the current system can do, which recorded cases show it, how the layers work together, and how it helps us avoid brittle evaluation. |
 | [Product Delta Evidence And Interpretation Adequacy](docs/evals/product-delta-evidence-and-interpretation-adequacy-v0.md) | The post-PR70 product-readiness bridge: prove decision-useful deltas against actual vanilla strong-model conversations, and treat conversation interpretation quality as load-bearing. |
@@ -218,15 +219,16 @@ The detailed docs are split so agents and humans do not have to load one giant f
 ## Current Notes
 
 - Checked against `SKILL.md` and runtime entry points on 2026-06-25.
-- Current Decision Trail state as of PR100: the runtime produces completed run
+- Current Decision Trail state as of PR101: the runtime produces completed run
   artifacts; the offline Decision Trail lane can export sparse reports and
   build checked-in-safe or explicit local-private specialist packets; PR97
   shows one local-private include-text packet can support all four narrow
   specialist-output shapes by checked-in summary only; PR98 blocked broader use
   until contracts and packet metadata were patched; PR99 applies that patch;
   PR100 uses the patched shape on one additional case and records a
-  partial-usefulness read. No Product Delta eval, Decision Trail report,
-  specialist output, or fan-in is triggered automatically by `$lolla`.
+  partial-usefulness read; PR101 compares PR97 and PR100 and keeps broad
+  specialist-output batches blocked. No Product Delta eval, Decision Trail
+  report, specialist output, or fan-in is triggered automatically by `$lolla`.
 - PR95 local-private packets are a source-access step, not a product verdict.
   `metadata_only` records availability, `include_text` copies capped private
   text into an unsafe-for-commit local output, and both modes still stop before
@@ -248,9 +250,12 @@ The detailed docs are split so agents and humans do not have to load one giant f
   metadata.
 - PR100 used that patched shape on the `accept-founding-engineer-role` case.
   The strongest signal is discipline rather than positivity: `vanilla_overlap_read`
-  is `material_overlap_candidate`, so the net read is partial usefulness. The
-  next conservative slice should be PR101: compare PR97 and PR100 before any
-  third pilot or broad batch.
+  is `material_overlap_candidate`, so the net read is partial usefulness.
+  PR101 then compared PR97 and PR100 before any third pilot or broad batch.
+- PR101 compared PR97 and PR100 using checked-in summaries only. It decides
+  broad specialist-output batches are not ready and allows at most one
+  diversity-targeted third one-case pilot before stopping, simplifying, or
+  preparing human-review intake.
 - Pressure-check agents are rested by default. If explicitly enabled, they start only after the updated position is persisted and the V60 ledger validates.
 - The pre-Step-6 shadow portfolio hook is default-off and shadow-only; it records evidence but never changes visible output.
 - The archive currently copies the core/optional artifact set, including live transcript, operator log, run-event log, private ledgers, memo fields, optional usefulness/outcome reviews, and optional `control_input.json` when present. It also generates `agent_result.json`, the compact agent-facing handoff; optional `control_result.json`, the control-plane wrapper; `extraction_adequacy_report.json`, the deterministic report for current extraction/provenance preservation across `conversation.txt -> extraction.json -> ConversationContext -> ConversationIR`; `evaluation.json`, the deterministic run-readiness receipt; and `reasoning_trace.json`, a local-only manifest that indexes artifacts by path/hash and adds capture-adequacy, optional control-plane references, reasoning-lens, model-call, private-custody, and trace-adequacy metadata.

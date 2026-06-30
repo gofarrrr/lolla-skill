@@ -166,15 +166,23 @@ automatic pilot:
 PR101 Decision Trail Specialist Pilot Comparison Gate v0
 ```
 
-PR101 should compare PR97 and PR100 and decide whether to:
+PR101 has now compared PR97 and PR100:
+
+- [Decision Trail Specialist Pilot Comparison Gate v0](decision-trail-specialist-pilot-comparison-gate-v0.md)
+
+PR101 decided not to broaden. It allows at most one diversity-targeted third
+one-case pilot and only if a safe completed run from a different decision
+family exists.
+
+That future PR102-style slice would need to decide whether to:
 
 - run one third one-case pilot in a non-career/operator case;
 - pause and simplify;
 - patch contracts again;
 - or prepare a very small multi-case review.
 
-It should not broaden by default. PR100's partial-usefulness result is a reason
-to think before scaling.
+It should not broaden by default. PR100's partial-usefulness result remains a
+reason to think before scaling.
 
 ## Files
 

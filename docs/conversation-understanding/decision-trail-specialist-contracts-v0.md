@@ -307,15 +307,16 @@ patched fields on a second one-case pilot:
 PR100 records partial usefulness because material vanilla overlap blocks a
 clean positive read. That is a useful discipline signal, not product proof.
 
-The next recommended PR is:
+PR101 has now compared PR97 and PR100:
 
-**PR101 Decision Trail Specialist Pilot Comparison Gate v0**
+[`Decision Trail Specialist Pilot Comparison Gate v0`](decision-trail-specialist-pilot-comparison-gate-v0.md)
 
-PR101 should compare PR97 and PR100 before deciding whether to run a third
-one-case pilot, pause, simplify, or prepare any small multi-case review. It
-should still avoid broad batches, model/provider APIs outside the current Codex
-session, runtime integration, archive mutation, answer-quality measurement,
-automatic labels, and product-proof claims.
+PR101 decides that broad specialist-output batches are not ready. It allows at
+most one diversity-targeted third one-case pilot before stopping, simplifying,
+or preparing human-review intake. Any continuation should still avoid broad
+batches, model/provider APIs outside the current Codex session, runtime
+integration, archive mutation, answer-quality measurement, automatic labels,
+and product-proof claims.
 
-If PR101 cannot justify further specialist-output work, pause or simplify
-rather than broadening it.
+If a safe diverse third case does not exist, pause or simplify rather than
+forcing evidence.

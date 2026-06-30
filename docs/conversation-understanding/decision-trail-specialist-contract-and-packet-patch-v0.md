@@ -130,11 +130,10 @@ operator-selected completed run only. It did not broaden the batch.
 The PR100 result is useful but conservative: the patched fields made material
 vanilla overlap visible and downgraded the net read to partial usefulness.
 
-The next conservative slice should be:
+PR101 has now compared PR97 and PR100:
 
-```text
-PR101 Decision Trail Specialist Pilot Comparison Gate v0
-```
+- [Decision Trail Specialist Pilot Comparison Gate v0](decision-trail-specialist-pilot-comparison-gate-v0.md)
 
-PR101 should compare PR97 and PR100 before deciding whether to run a third
-one-case pilot, pause, simplify, or prepare any small multi-case review.
+It decides broad specialist-output batches are not ready. It allows at most one
+diversity-targeted third one-case pilot in a different decision family before
+stopping, simplifying, or preparing human-review intake.

@@ -67,10 +67,10 @@ conversation or agent run
 Current handoff state:
 
 ```text
-PR100 Decision Trail Second One-Case Specialist Pilot v0 is the latest
-Decision Trail slice recorded in this working tree. PR100 uses the PR99
-patched contracts on one additional local-private case and recommends a
-comparison gate before broadening. PR85 remains
+PR101 Decision Trail Specialist Pilot Comparison Gate v0 is the latest
+Decision Trail slice recorded in this working tree. PR101 compares PR97 and
+PR100 and decides that broad specialist-output batches are still not ready.
+It allows at most one diversity-targeted third one-case pilot. PR85 remains
 the latest packaged product-evidence eval-lane slice. PR70 remains the
 audit/accountability machinery closure gate. PR48 remains the high-stakes
 evidence gate. PR54 remains the paused v0 values/priorities worksheet gate.
@@ -89,6 +89,7 @@ local-private packet mode. PR96 smoke-reviewed that packet mode locally. PR97
 filled a tiny one-case local-private specialist-output pilot. PR98 reviewed
 that pilot and blocked broadening until a contract/packet patch. PR99 applies
 that patch. PR100 uses the patched shape for one more local-private pilot.
+PR101 compares PR97 and PR100 before any broadening.
 
 What works now: an operator can use a CLI to build checked-in-safe packet
 fixtures or local-private packets for completed run directories. PR96 shows
@@ -106,15 +107,15 @@ The strongest useful signal is that `vanilla_overlap_read` downgrades the net
 read to partial usefulness because the vanilla conversation already contained
 much of the visible action sequence.
 
-What does not work yet: the specialist-output pilot is one case, local-private,
+What does not work yet: the specialist-output lane is local-private,
 Codex-assisted, unvalidated, and not automatic in `$lolla`. PR100 brings the
-specialist-output pilot count to two one-case pilots, but it still does not
-prove that the contracts are final, that broader batches are safe, that Lolla
-improved the decision, or that agents may act.
+specialist-output pilot count to two one-case pilots. PR101 says that still
+does not prove that the contracts are final, that broader batches are safe,
+that Lolla improved the decision, or that agents may act.
 
-Next conservative gate: PR101 should compare PR97 and PR100 before deciding
-whether to run a third one-case pilot, pause, simplify, or prepare any small
-multi-case review.
+Next conservative step, if continuing: PR102 should run at most one
+diversity-targeted third one-case pilot in a different decision family. If no
+safe diverse completed run exists, pause instead of forcing evidence.
 ```
 
 Documentation alignment note:
@@ -625,10 +626,26 @@ Current stop rule:
 Latest completed slice:
 
 ```text
-PR100 Decision Trail Second One-Case Specialist Pilot v0
+PR101 Decision Trail Specialist Pilot Comparison Gate v0
 ```
 
 Result:
+
+- lands `docs/conversation-understanding/decision-trail-specialist-pilot-comparison-gate-v0.md`;
+- lands `reviews/codex-assisted/decision-trail-specialist-pilot-comparison-gate-v0/report.json`;
+- lands `tests/test_decision_trail_specialist_pilot_comparison_gate.py`;
+- compares PR97 and PR100 using checked-in summary artifacts only;
+- records no new local-private packets and no new specialist outputs;
+- keeps the strongest useful signal from PR100: the patched shape downgraded
+  the read when vanilla overlap was material;
+- decides broad specialist-output batches are not ready;
+- allows at most one diversity-targeted third one-case pilot before stopping,
+  simplifying, or preparing human-review intake;
+- calls no providers or external model APIs, invokes no runtime, mutates no
+  archives, measures no answer quality, creates no automatic labels, and
+  authorizes no agent action.
+
+Previous Decision Trail second one-case specialist pilot:
 
 - lands `docs/conversation-understanding/decision-trail-second-one-case-specialist-pilot-v0.md`;
 - lands `reviews/codex-assisted/decision-trail-second-one-case-specialist-pilot-v0/review.json`;
@@ -1222,15 +1239,21 @@ Non-goals for the next slice:
    `accept-founding-engineer-role/20260627T073034Z_a7c221`. It records a
    partial-usefulness read because vanilla overlap is material: the revised
    answer sharpened thresholds, evidence gates, and stop rules, but much of
-   the visible action sequence was already present. The next conservative move
-   is PR101: compare PR97 and PR100 before any third pilot or broad batch.
-19. **Live-output hygiene implementation.** PR35 keeps `not_checked` honest and
+   the visible action sequence was already present. PR101 has now compared
+   PR97 and PR100 before any third pilot or broad batch.
+19. **PR101 Decision Trail specialist pilot comparison gate is done.** PR101
+   compares PR97 and PR100 using checked-in summaries only. It keeps the
+   useful signal that PR99 fields forced downgrade pressure in PR100, but says
+   broad specialist-output batches are still not ready. The only allowed
+   continuation is at most one diversity-targeted third one-case pilot in a
+   different decision family; otherwise pause or simplify.
+20. **Live-output hygiene implementation.** PR35 keeps `not_checked` honest and
    defines a trusted-transcript path; later work can implement only when needed.
-20. **Span-grounded semantic enrichment.** Existing specialists help with live
+21. **Span-grounded semantic enrichment.** Existing specialists help with live
    constraints, dropped threads, and stance lineage, but integration remains
    blocked until a clean 15-20 full-modern sample and provider-boundary behavior
    are settled.
-21. **Human capability surface.** Later, add a compact memo/Observatory section
+22. **Human capability surface.** Later, add a compact memo/Observatory section
    that teaches the user what reasoning pattern the audit caught.
 
 ## Current Pause: Specialist Integration Track

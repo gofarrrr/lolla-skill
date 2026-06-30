@@ -176,9 +176,13 @@ pilot:
 
 - [Decision Trail Second One-Case Specialist Pilot v0](decision-trail-second-one-case-specialist-pilot-v0.md)
 
-The next conservative slice should be PR101: compare PR97 and PR100 before
-deciding whether another pilot, simplification, or a small review batch is
-justified. That next slice must not:
+PR101 has now compared PR97 and PR100:
+
+- [Decision Trail Specialist Pilot Comparison Gate v0](decision-trail-specialist-pilot-comparison-gate-v0.md)
+
+It decides broad specialist-output batches are not ready and allows at most one
+diversity-targeted third one-case pilot before stopping or simplifying. Any
+future PR102-style slice must not:
 
 - run `$lolla`;
 - invoke the Lolla skill;

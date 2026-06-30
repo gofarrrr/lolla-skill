@@ -1,0 +1,178 @@
+{
+  "schema_version": "lolla.decision_trail_specialist_pilot_comparison_gate.v0",
+  "review_mode": "codex_assisted_pr101_specialist_pilot_comparison_gate",
+  "boundary": {
+    "human_validated": false,
+    "ground_truth": false,
+    "judge_calibration_eligible": false,
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "model_calls": 0,
+    "archive_mutated": false,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "automatic_labels_created": false,
+    "raw_private_content_included": false,
+    "new_specialist_outputs_created": false,
+    "local_private_packet_content_read": false,
+    "fan_in_executed_as_verdict": false
+  },
+  "comparison_scope": {
+    "source_mode": "checked_in_summary_only",
+    "pilot_count": 2,
+    "local_private_shadow_review_status": "not_run",
+    "new_local_private_packets_generated": false,
+    "new_specialist_outputs_generated": false,
+    "purpose": "Compare PR97 and PR100 before deciding whether to run a third one-case pilot, pause, simplify, or broaden.",
+    "evidence_limit": "Two Codex-assisted one-case pilots are enough to make a gate decision, not enough to prove product value or contract reliability."
+  },
+  "source_artifacts": [
+    {
+      "ref": "docs/conversation-understanding/decision-trail-local-private-specialist-output-pilot-v0.md",
+      "source_role": "pr97_pilot_doc",
+      "raw_private_content_included": false
+    },
+    {
+      "ref": "reviews/codex-assisted/decision-trail-local-private-specialist-output-pilot-v0/review.json",
+      "source_role": "pr97_pilot_review",
+      "raw_private_content_included": false
+    },
+    {
+      "ref": "docs/conversation-understanding/decision-trail-specialist-output-pilot-review-v0.md",
+      "source_role": "pr98_gate_doc",
+      "raw_private_content_included": false
+    },
+    {
+      "ref": "reviews/codex-assisted/decision-trail-specialist-output-pilot-review-v0/review.json",
+      "source_role": "pr98_gate_review",
+      "raw_private_content_included": false
+    },
+    {
+      "ref": "docs/conversation-understanding/decision-trail-specialist-contract-and-packet-patch-v0.md",
+      "source_role": "pr99_patch_doc",
+      "raw_private_content_included": false
+    },
+    {
+      "ref": "docs/conversation-understanding/decision-trail-second-one-case-specialist-pilot-v0.md",
+      "source_role": "pr100_pilot_doc",
+      "raw_private_content_included": false
+    },
+    {
+      "ref": "reviews/codex-assisted/decision-trail-second-one-case-specialist-pilot-v0/review.json",
+      "source_role": "pr100_pilot_review",
+      "raw_private_content_included": false
+    }
+  ],
+  "compared_pilots": [
+    {
+      "slice": "PR97",
+      "case_ref": "ceo-remove-founding-cofounder/20260627T093131Z_59d153",
+      "contract_shape": "pre_pr99_specialist_contracts",
+      "source_review_ref": "reviews/codex-assisted/decision-trail-local-private-specialist-output-pilot-v0/review.json",
+      "net_read_candidate": "local_private_specialist_read_useful_but_unvalidated",
+      "strongest_useful_signal": "Local-private specialist reads made authority transfer, transition boundaries, stop conditions, and relationship-cost tension more concrete than the sparse Decision Trail shell.",
+      "strongest_limit": "The pre-PR99 shape did not make vanilla overlap, lost-value severity, assistant-influence source status, truncation impact, or fan-in downgrade triggers first-class enough.",
+      "vanilla_overlap_handling": "not_first_class",
+      "lost_value_severity_handling": "present_but_uncalibrated",
+      "assistant_influence_handling": "partly_visible_but_source_status_weak",
+      "fan_in_discipline_read": "useful_but_too_smooth_for_broadening",
+      "broadening_implication": "Do not broaden from PR97 directly; patch contracts first."
+    },
+    {
+      "slice": "PR100",
+      "case_ref": "accept-founding-engineer-role/20260627T073034Z_a7c221",
+      "contract_shape": "post_pr99_specialist_contracts",
+      "source_review_ref": "reviews/codex-assisted/decision-trail-second-one-case-specialist-pilot-v0/review.json",
+      "net_read_candidate": "local_private_specialist_read_partly_useful",
+      "strongest_useful_signal": "The PR99 fields forced a downgrade because vanilla_overlap_read was material_overlap_candidate.",
+      "strongest_limit": "The post-PR99 shape has only been exercised on one additional case, with no human validation and no diverse failure case.",
+      "vanilla_overlap_handling": "first_class_and_downgrading",
+      "lost_value_severity_handling": "moderate_candidate_source_limited",
+      "assistant_influence_handling": "visible_but_not_causal",
+      "fan_in_discipline_read": "more_conservative_than_pr97",
+      "broadening_implication": "Do not broaden yet; run at most one diversity-targeted third one-case pilot."
+    }
+  ],
+  "comparison_findings": [
+    {
+      "finding_id": "local_private_access_adds_decision_trail_content",
+      "read": "Both pilots suggest local-private packet access can make conversation shape, likely action, friction, and fan-in more concrete than sparse checked-in-safe reports.",
+      "limit": "This remains Codex-assisted and unvalidated; it does not prove the reads are right."
+    },
+    {
+      "finding_id": "pr99_fields_improved_downgrade_pressure",
+      "read": "PR100 is less positive than PR97 in a useful way because vanilla overlap became explicit and fan-in preserved the downgrade.",
+      "limit": "One post-patch case is not enough to treat the patched contract as stable."
+    },
+    {
+      "finding_id": "vanilla_overlap_is_load_bearing",
+      "read": "PR100 shows that likely-action comparison must ask what was already present in the vanilla conversation before crediting Lolla with a delta.",
+      "limit": "Vanilla overlap still depends on messy interpretation and cannot be deterministically inferred from raw prose."
+    },
+    {
+      "finding_id": "lost_value_still_needs_calibration",
+      "read": "Both pilots surface lost value, but neither can calibrate severity without human or stronger contextual review.",
+      "limit": "Lost-value fields should stay candidate-only and source-limited."
+    },
+    {
+      "finding_id": "two_pilots_are_not_broad_batch_evidence",
+      "read": "The two pilots justify a comparison gate and possibly one contrastive third pilot, not a broad specialist-output batch.",
+      "limit": "There is still no real no-change, noisy, worse, or clearly inconclusive local-private specialist-output case."
+    }
+  ],
+  "gate_decision": {
+    "broad_batch_status": "not_ready",
+    "third_one_case_pilot_status": "allowed_if_diversity_targeted",
+    "contract_patch_status": "no_immediate_patch_required_before_one_more_pilot",
+    "runtime_status": "not_allowed",
+    "human_review_status": "still_required_for_product_claim",
+    "recommended_next_slice": "PR102 Decision Trail Third One-Case Diversity Pilot v0",
+    "decision_rationale": [
+      "PR97 showed specialist-output usefulness but exposed contract gaps.",
+      "PR99 patched those gaps.",
+      "PR100 showed the patch can make a read more conservative through material vanilla overlap.",
+      "The evidence is still only two one-case pilots and does not include a diverse failure shape."
+    ],
+    "stop_or_simplify_conditions": [
+      "If no safe completed run from a different decision family exists, pause instead of forcing PR102.",
+      "If PR102 only adds another positive or partial read without exposing a new failure shape, stop and prepare human-review intake or simplify.",
+      "If PR102 reveals that the contracts are too heavy for review, simplify before any further pilot.",
+      "If local-private packet review cannot be kept out of checked-in artifacts, stop the lane."
+    ]
+  },
+  "pr102_recommendation": {
+    "recommended_slice": "PR102 Decision Trail Third One-Case Diversity Pilot v0",
+    "purpose": "Run at most one more local-private specialist-output pilot using the PR99/PR100 shape on a different decision family.",
+    "preferred_case_shape": "deployment_controls_or_enterprise_beta_or_pricing_or_another_non_cofounder_non_career_completed_run",
+    "selection_rule": "Pre-register why the selected run is a contrast to PR97 and PR100 before reading local-private packet content.",
+    "must_not_do": [
+      "run_lolla",
+      "invoke_lolla_skill",
+      "call_provider_apis",
+      "mutate_archives",
+      "change_runtime_behavior",
+      "score_answer_quality",
+      "create_automatic_labels",
+      "authorize_agent_action",
+      "treat_clean_specialist_outputs_as_product_proof",
+      "turn_pr102_into_a_broad_batch"
+    ]
+  },
+  "non_claims": [
+    "PR101 is not human review.",
+    "PR101 is not ground truth.",
+    "PR101 is not judge calibration.",
+    "PR101 is not product proof.",
+    "PR101 is not answer-quality measurement.",
+    "PR101 is not an automatic label.",
+    "PR101 is not agent action authorization.",
+    "PR101 does not show that either revised answer was good advice."
+  ],
+  "what_would_change_this_decision": [
+    "A human reviewer may decide the pilots are too thin or too cumbersome and pause the lane.",
+    "A future third pilot may show that the patched fields are still too positive or too heavy.",
+    "A future third pilot may reveal a no-change, noisy, worse, or inconclusive case and force another contract patch.",
+    "A lack of safe local-private access to a diverse completed run should stop PR102 rather than produce artificial evidence."
+  ]
+}
