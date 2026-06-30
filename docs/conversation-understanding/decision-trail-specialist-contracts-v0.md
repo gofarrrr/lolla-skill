@@ -318,7 +318,13 @@ used the one diversity-targeted third one-case pilot:
 
 PR102 records partial usefulness again, but with a different useful signal:
 noise reduction and operating-load friction in a deployment-controls case. The
-next step should be a closure gate before any fourth pilot or broad batch. Any
-continuation should still avoid broad batches, model/provider APIs outside the
-current Codex session, runtime integration, archive mutation, answer-quality
-measurement, automatic labels, and product-proof claims.
+pilot phase is now closed by PR103:
+
+[`Decision Trail Specialist Pilot Phase Closure Gate v0`](decision-trail-specialist-pilot-phase-closure-gate-v0.md)
+
+PR103 compares PR97, PR100, and PR102 by checked-in summaries only, blocks a
+fourth one-case pilot and broad specialist-output batch, and recommends human
+review intake or pause. Any continuation should still avoid broad batches,
+model/provider APIs outside the current Codex session, runtime integration,
+archive mutation, answer-quality measurement, automatic labels, and
+product-proof claims.

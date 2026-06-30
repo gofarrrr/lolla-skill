@@ -154,8 +154,12 @@ See:
 
 PR102 selected a deployment-controls case, preserved material vanilla overlap,
 and surfaced a new useful signal: reducing noisy gate bloat while keeping
-operational stop conditions. The next step should be a closure gate, not a
-fourth one-case pilot.
+operational stop conditions. PR103 has now closed the pilot phase:
+
+- [Decision Trail Specialist Pilot Phase Closure Gate v0](decision-trail-specialist-pilot-phase-closure-gate-v0.md)
+
+PR103 blocks a fourth one-case pilot and broad specialist-output batch, and
+recommends human-review intake or pause.
 
 ## Files
 

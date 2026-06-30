@@ -67,11 +67,11 @@ conversation or agent run
 Current handoff state:
 
 ```text
-PR102 Decision Trail Third One-Case Diversity Pilot v0 is the latest Decision
-Trail slice recorded in this working tree. PR102 uses the one diversity-targeted
-third pilot allowed by PR101 and recommends a closure gate instead of a fourth
-pilot. PR85 remains
-the latest packaged product-evidence eval-lane slice. PR70 remains the
+PR103 Decision Trail Specialist Pilot Phase Closure Gate v0 is the latest
+Decision Trail slice recorded in this working tree. PR103 closes the PR97,
+PR100, and PR102 one-case specialist-output pilot phase and blocks a fourth
+pilot or broad batch. PR85 remains the latest packaged product-evidence
+eval-lane slice. PR70 remains the
 audit/accountability machinery closure gate. PR48 remains the high-stakes
 evidence gate. PR54 remains the paused v0 values/priorities worksheet gate.
 Use git log for the exact current commit hash.
@@ -106,7 +106,9 @@ downgrade triggers, and local-private retention policy metadata.
 PR100 then exercises those fields on the `accept-founding-engineer-role` case.
 The strongest useful signal is that `vanilla_overlap_read` downgrades the net
 read to partial usefulness because the vanilla conversation already contained
-much of the visible action sequence.
+much of the visible action sequence. PR102 adds a different deployment-controls
+case and shows useful friction can also mean reducing noisy gate bloat while
+preserving operating stop conditions.
 
 What does not work yet: the specialist-output lane is local-private,
 Codex-assisted, unvalidated, and not automatic in `$lolla`. PR102 brings the
@@ -114,10 +116,12 @@ specialist-output pilot count to three one-case pilots. It still does not prove
 that the contracts are final, that broader batches are safe, that Lolla
 improved the decision, or that agents may act.
 
-Next conservative step: PR103 should close the specialist-pilot phase by
-comparing PR97, PR100, and PR102. It should decide whether to pause for human
-review, prepare human-review intake, simplify contracts, or define a tiny
-multi-case review. It should not run a fourth one-case pilot by momentum.
+PR103 now closes the one-case pilot phase. The next conservative step is PR104
+Decision Trail Human Review Intake Packet v0, or a pause if human review
+capacity is unavailable. PR104 should package PR97, PR100, and PR102 for later
+human correction without new specialist outputs, new local-private packet
+reads, runtime integration, model calls, archive mutation, scoring, automatic
+labels, or agent authorization.
 ```
 
 Documentation alignment note:
@@ -628,10 +632,26 @@ Current stop rule:
 Latest completed slice:
 
 ```text
-PR102 Decision Trail Third One-Case Diversity Pilot v0
+PR103 Decision Trail Specialist Pilot Phase Closure Gate v0
 ```
 
 Result:
+
+- lands `docs/conversation-understanding/decision-trail-specialist-pilot-phase-closure-gate-v0.md`;
+- lands `reviews/codex-assisted/decision-trail-specialist-pilot-phase-closure-gate-v0/report.json`;
+- lands `tests/test_decision_trail_specialist_pilot_phase_closure_gate.py`;
+- compares PR97, PR100, and PR102 by checked-in summaries only;
+- records no new local-private packet reads and no new specialist outputs;
+- closes the one-case local-private specialist-output pilot phase after three
+  pilots;
+- blocks a fourth one-case pilot and broad specialist-output batch;
+- recommends PR104 Decision Trail Human Review Intake Packet v0, or pause if
+  human review capacity is unavailable;
+- calls no providers or external model APIs, invokes no runtime, mutates no
+  archives, measures no answer quality, creates no automatic labels, and
+  authorizes no agent action.
+
+Previous Decision Trail diversity pilot:
 
 - lands `docs/conversation-understanding/decision-trail-third-one-case-diversity-pilot-v0.md`;
 - lands `reviews/codex-assisted/decision-trail-third-one-case-diversity-pilot-v0/review.json`;
@@ -646,11 +666,7 @@ Result:
 - preserves material vanilla overlap while surfacing a different useful signal:
   the revised answer reduces noisy gate bloat and treats admin operating load
   as part of safety;
-- recommends PR103 Decision Trail Specialist Pilot Phase Closure Gate v0 rather
-  than a fourth one-case pilot or broad batch;
-- calls no providers or external model APIs, invokes no runtime, mutates no
-  archives, measures no answer quality, creates no automatic labels, and
-  authorizes no agent action.
+- recommends closure rather than a fourth one-case pilot or broad batch.
 
 Previous Decision Trail specialist pilot comparison gate:
 
@@ -1278,13 +1294,19 @@ Non-goals for the next slice:
    while the core narrow-launch action already overlapped materially with the
    vanilla conversation. The next move is PR103: close the one-case pilot phase
    before any fourth pilot or broad batch.
-21. **Live-output hygiene implementation.** PR35 keeps `not_checked` honest and
+21. **PR103 Decision Trail specialist pilot phase closure gate is done.**
+   PR103 compares PR97, PR100, and PR102 using checked-in summaries only. It
+   closes the local-only one-case specialist-output pilot phase, blocks a
+   fourth pilot and broad specialist-output batch, and recommends PR104 Human
+   Review Intake Packet v0 or a pause if human review capacity is unavailable.
+   This is a stop line, not product proof.
+22. **Live-output hygiene implementation.** PR35 keeps `not_checked` honest and
    defines a trusted-transcript path; later work can implement only when needed.
-22. **Span-grounded semantic enrichment.** Existing specialists help with live
+23. **Span-grounded semantic enrichment.** Existing specialists help with live
    constraints, dropped threads, and stance lineage, but integration remains
    blocked until a clean 15-20 full-modern sample and provider-boundary behavior
    are settled.
-23. **Human capability surface.** Later, add a compact memo/Observatory section
+24. **Human capability surface.** Later, add a compact memo/Observatory section
    that teaches the user what reasoning pattern the audit caught.
 
 ## Current Pause: Specialist Integration Track

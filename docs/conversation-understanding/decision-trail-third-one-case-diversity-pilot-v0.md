@@ -134,23 +134,21 @@ PR102 did not:
 
 ## Next Slice
 
-PR102 should be the last one-case specialist-output pilot in this local-only
-phase.
+PR102 is the last one-case specialist-output pilot in this local-only phase.
 
-The next conservative slice should be:
+PR103 has now closed that phase:
 
 ```text
 PR103 Decision Trail Specialist Pilot Phase Closure Gate v0
 ```
 
-PR103 should compare PR97, PR100, and PR102 and decide whether to:
+See:
 
-- pause until human review capacity returns;
-- prepare a human-review intake packet;
-- simplify the specialist contracts;
-- or define one tiny multi-case review only if the three pilots justify it.
+- [Decision Trail Specialist Pilot Phase Closure Gate v0](decision-trail-specialist-pilot-phase-closure-gate-v0.md)
 
-It should not run a fourth one-case pilot by momentum.
+PR103 compares PR97, PR100, and PR102 by checked-in summaries only. It blocks a
+fourth one-case pilot and broad specialist-output batch, and recommends PR104
+Human Review Intake Packet v0 or pause if human review capacity is unavailable.
 
 ## Files
 
