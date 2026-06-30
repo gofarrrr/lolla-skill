@@ -311,12 +311,14 @@ PR101 has now compared PR97 and PR100:
 
 [`Decision Trail Specialist Pilot Comparison Gate v0`](decision-trail-specialist-pilot-comparison-gate-v0.md)
 
-PR101 decides that broad specialist-output batches are not ready. It allows at
-most one diversity-targeted third one-case pilot before stopping, simplifying,
-or preparing human-review intake. Any continuation should still avoid broad
-batches, model/provider APIs outside the current Codex session, runtime
-integration, archive mutation, answer-quality measurement, automatic labels,
-and product-proof claims.
+PR101 decides that broad specialist-output batches are not ready. PR102 has now
+used the one diversity-targeted third one-case pilot:
 
-If a safe diverse third case does not exist, pause or simplify rather than
-forcing evidence.
+[`Decision Trail Third One-Case Diversity Pilot v0`](decision-trail-third-one-case-diversity-pilot-v0.md)
+
+PR102 records partial usefulness again, but with a different useful signal:
+noise reduction and operating-load friction in a deployment-controls case. The
+next step should be a closure gate before any fourth pilot or broad batch. Any
+continuation should still avoid broad batches, model/provider APIs outside the
+current Codex session, runtime integration, archive mutation, answer-quality
+measurement, automatic labels, and product-proof claims.

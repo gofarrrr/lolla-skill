@@ -1,0 +1,476 @@
+{
+  "schema_version": "lolla.decision_trail_third_one_case_diversity_pilot.v0",
+  "review_mode": "codex_assisted_pr102_third_one_case_diversity_pilot",
+  "boundary": {
+    "human_validated": false,
+    "ground_truth": false,
+    "judge_calibration_eligible": false,
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "model_calls": 0,
+    "archive_mutated": false,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "automatic_labels_created": false,
+    "raw_private_content_included": false,
+    "fan_in_executed_as_verdict": false
+  },
+  "case_selection": {
+    "selected_before_local_private_content_read": true,
+    "pilot_case_ref": "deploy-assisted-intake-routing/20260627T130339Z_4cd3cb",
+    "decision_family": "deployment_controls",
+    "contrast_to_prior_pilots": [
+      "PR97 used a cofounder authority and operating-control case.",
+      "PR100 used a career/family/startup role-choice case.",
+      "PR102 uses an outpatient-clinic workflow deployment-controls case."
+    ],
+    "selection_rationale": "PR101 allowed at most one diversity-targeted third one-case pilot. This case tests useful and noisy friction in an operational rollout context rather than a founder, cofounder, or career identity context.",
+    "not_selected_to_find_positive_case": true
+  },
+  "source_packet_summary": {
+    "pilot_case_count": 1,
+    "pilot_case_ref": "deploy-assisted-intake-routing/20260627T130339Z_4cd3cb",
+    "prior_pilot_case_refs": [
+      "ceo-remove-founding-cofounder/20260627T093131Z_59d153",
+      "accept-founding-engineer-role/20260627T073034Z_a7c221"
+    ],
+    "metadata_packet_generated": true,
+    "metadata_packet_checked_in": false,
+    "metadata_packet_deleted_after_review": true,
+    "metadata_packet_ref": "local_temp_output_not_checked_in:pr102_metadata_packets.json",
+    "include_text_packet_generated": true,
+    "include_text_packet_checked_in": false,
+    "include_text_packet_deleted_after_review": true,
+    "include_text_packet_ref": "local_temp_output_not_checked_in:pr102_include_text_packets.json",
+    "include_text_max_chars_per_artifact": 20000,
+    "private_content_in_checked_in_review": false,
+    "local_absolute_paths_in_checked_in_review": false,
+    "source_scope_summary": {
+      "content_inclusion_mode": "include_text",
+      "artifact_records_read": 16,
+      "read_text_complete": 12,
+      "read_text_truncated": 4,
+      "main_conversation_revised_answer_and_memo_complete": true,
+      "specialists_cited_scope_status": true
+    },
+    "truncation_summary": {
+      "artifact_records_truncated": 4,
+      "truncation_impact": "main_conversation_revised_answer_and_memo_complete_but_large_structured_trace_artifacts_partly_truncated",
+      "specialists_cited_truncation_impact": true
+    },
+    "local_private_retention_policy_observed": {
+      "builder_deletes_local_output": false,
+      "checked_in_review_records_retention": true,
+      "include_text_output_retention_status": "deleted_after_review",
+      "metadata_output_retention_status": "deleted_after_review"
+    }
+  },
+  "aggregate_observations": {
+    "main_result": "PR102 is partly useful, not materially positive. The revised answer improves the operating shape by reducing gate bloat and adding a backlog-diagnosis precondition, but the core narrow-launch action was already present in the vanilla conversation.",
+    "new_failure_or_usefulness_shape": "noise_reduction_and_operating_load",
+    "strongest_usefulness_signal": "The specialist reads show useful friction can mean removing noisy controls while preserving must-pass stop conditions.",
+    "strongest_overtrust_risk": "A cleaner four-gate revised answer can look more correct than the nine-gate vanilla answer even though the core launch recommendation overlaps materially.",
+    "why_this_does_not_justify_broad_batch": "The third pilot adds diversity, but it is still Codex-assisted, local-private, unvalidated, and summary-only in checked-in form."
+  },
+  "pilot_cases": [
+    {
+      "case_ref": "deploy-assisted-intake-routing/20260627T130339Z_4cd3cb",
+      "input_packet_mode": "local_private_mode",
+      "content_policy_observed": "include_text_summary_only_checked_in",
+      "source_packet_summary": {
+        "local_packet_private_content_state": "included_in_local_temp_output_only",
+        "local_packet_checked_in": false,
+        "local_absolute_paths_in_checked_in_review": false,
+        "artifact_records_included_in_local_packet": 16,
+        "artifact_records_read_text_complete": 12,
+        "artifact_records_read_text_truncated": 4,
+        "pr99_patch_fields_present": [
+          "assistant_influence_source_status",
+          "vanilla_overlap_read",
+          "lost_value_severity_read",
+          "severity_source_status",
+          "source_scope_and_truncation_impact",
+          "downgrade_triggers",
+          "not_ready_reason"
+        ]
+      },
+      "specialist_outputs": {
+        "conversation_shape_reader": {
+          "specialist_role": "conversation_shape_reader",
+          "contract_version": "lolla.decision_trail_specialist_contracts.v0",
+          "input_mode": "local_private_mode",
+          "read_status": "provisional_candidate",
+          "source_refs": [
+            "local_private_run:20260627t130339z-4cd3cb-1/conversation.txt",
+            "local_private_run:20260627t130339z-4cd3cb-1/revised.txt",
+            "local_private_run:20260627t130339z-4cd3cb-1/memo.md",
+            "local_private_run:20260627t130339z-4cd3cb-1/agent_result.json"
+          ],
+          "source_status": "explicit_in_local_private_packet",
+          "uncertainty": [
+            "The conversation and revised answer were complete in the local packet.",
+            "Large structured trace artifacts were partly truncated.",
+            "Assistant influence is visible as conversation shaping, not causal proof."
+          ],
+          "evidence_strength": "moderate_candidate",
+          "fields": {
+            "decision_question": "Whether to deploy AI-assisted intake routing in outpatient clinics next month, especially under pressure from one urgent pilot clinic.",
+            "live_options": [
+              "broad next-month deployment",
+              "limited one-clinic gated pilot",
+              "delay until compliance and validation are complete",
+              "split by queue risk with lower-risk auto-routing and higher-risk suggestion or human approval"
+            ],
+            "option_status": {
+              "broad_next_month_deployment": "rejected_candidate",
+              "limited_one_clinic_gated_pilot": "live_candidate",
+              "full_delay": "fallback_if_gates_fail",
+              "split_by_queue_risk": "central_operating_structure"
+            },
+            "constraints": [
+              "patient messages needing clinician attention must not be silently delayed",
+              "clinics vary in queue usage",
+              "pilot clinic backlog is urgent",
+              "admins are exhausted",
+              "compliance needs auditability, patient language, and claim discipline",
+              "sales pressure and competitor demos are present"
+            ],
+            "stakeholders": [
+              "doctors",
+              "nurses",
+              "front desk admins",
+              "billing staff",
+              "compliance officer",
+              "clinic executives",
+              "patients",
+              "sales",
+              "customer success",
+              "support"
+            ],
+            "values_or_priorities": [
+              "patient trust and no silent clinical-review delay",
+              "operational backlog relief",
+              "admin usability under real workload",
+              "truthful sales positioning",
+              "compliance and auditability",
+              "reversible deployment"
+            ],
+            "assistant_influence": "visible_candidate",
+            "assistant_influence_source_status": "visible_in_local_private_packet",
+            "dropped_threads": [
+              "whether routing uncertainty is the true backlog cause",
+              "whether non-AI fixes would relieve the urgent clinic faster",
+              "whether a simpler gate set drops stakeholder-specific details"
+            ],
+            "unresolved_questions": [
+              "Would admins operate even the simplified controls under pressure?",
+              "Would compliance accept the narrowed release package?",
+              "Would the urgent clinic's backlog actually respond to routing changes?",
+              "Would doctors and patients experience the release as safe enough?"
+            ],
+            "source_scope_and_truncation_impact": "Conversation, revised answer, and memo were complete; large structured trace artifacts were partly truncated, so trace-level corroboration is source-limited."
+          },
+          "limitations": [
+            "No human reviewer validated the decision shape.",
+            "No clinic stakeholder confirmed the operating constraints.",
+            "No outcome evidence is available."
+          ],
+          "non_claims": [
+            "not human review",
+            "not ground truth",
+            "not product proof",
+            "not agent action authorization"
+          ],
+          "boundary_metadata": {
+            "human_validated": false,
+            "ground_truth": false,
+            "judge_calibration_eligible": false,
+            "product_proof": false,
+            "answer_quality_scored": false,
+            "agent_action_authorized": false,
+            "model_calls": 0,
+            "archive_mutated": false,
+            "runtime_invoked": false,
+            "skill_invoked": false,
+            "automatic_labels_created": false,
+            "raw_private_content_included": false
+          }
+        },
+        "likely_action_reader": {
+          "specialist_role": "likely_action_reader",
+          "contract_version": "lolla.decision_trail_specialist_contracts.v0",
+          "input_mode": "local_private_mode",
+          "read_status": "provisional_candidate",
+          "source_refs": [
+            "local_private_run:20260627t130339z-4cd3cb-1/conversation.txt",
+            "local_private_run:20260627t130339z-4cd3cb-1/revised.txt",
+            "local_private_run:20260627t130339z-4cd3cb-1/memo.md",
+            "local_private_run:20260627t130339z-4cd3cb-1/agent_result.json"
+          ],
+          "source_status": "explicit_in_local_private_packet",
+          "uncertainty": [
+            "The core narrow-launch action overlaps materially with the vanilla conversation.",
+            "The revised operating-shape delta is visible but not human-validated.",
+            "It remains unclear whether the 48-hour backlog diagnosis would materially change launch timing."
+          ],
+          "evidence_strength": "moderate_candidate",
+          "fields": {
+            "vanilla_likely_next_action": "Recommend no broad deployment; allow a limited one-clinic launch with scheduling and billing auto-routing, higher-risk queues constrained, compliance/audit controls, stakeholder gates, monitoring, and rollback.",
+            "revised_likely_next_action": "Proceed only with a narrower operating test if four must-pass controls are usable under real load, add a short backlog-cause diagnosis before go-live, and treat pause/rollback triggers as operational stop conditions.",
+            "vanilla_overlap_read": "material_overlap_candidate",
+            "action_delta": "core launch action mostly overlaps; the delta is operating-shape refinement rather than a new recommendation",
+            "threshold_delta": "threshold shifts from many stakeholder gates to fewer must-pass controls focused on enforceable scope, admin usability, compliance readiness, and live rollback",
+            "sequence_delta": "adds backlog-cause diagnosis before treating AI routing as the urgent clinic's solution",
+            "evidence_gate_delta": "adds evidence that routing uncertainty is actually driving the backlog, not staffing, forms, queue ownership, handoffs, or downstream capacity",
+            "stop_rule_delta": "makes pause and rollback triggers more central, including credible clinician-review routing risk and inability to operate controls under admin load",
+            "source_scope_and_truncation_impact": "Conversation, revised answer, and memo were complete; large structured trace artifacts were partly truncated, so trace-level corroboration remains limited."
+          },
+          "limitations": [
+            "No human reviewed whether the vanilla and revised action reads are fair.",
+            "No actual clinic outcome or admin usability evidence is available.",
+            "The likely-action field remains candidate-only."
+          ],
+          "non_claims": [
+            "not human review",
+            "not ground truth",
+            "not product proof",
+            "not answer-quality scoring"
+          ],
+          "boundary_metadata": {
+            "human_validated": false,
+            "ground_truth": false,
+            "judge_calibration_eligible": false,
+            "product_proof": false,
+            "answer_quality_scored": false,
+            "agent_action_authorized": false,
+            "model_calls": 0,
+            "archive_mutated": false,
+            "runtime_invoked": false,
+            "skill_invoked": false,
+            "automatic_labels_created": false,
+            "raw_private_content_included": false
+          }
+        },
+        "friction_lost_value_reader": {
+          "specialist_role": "friction_lost_value_reader",
+          "contract_version": "lolla.decision_trail_specialist_contracts.v0",
+          "input_mode": "local_private_mode",
+          "read_status": "provisional_candidate",
+          "source_refs": [
+            "local_private_run:20260627t130339z-4cd3cb-1/conversation.txt",
+            "local_private_run:20260627t130339z-4cd3cb-1/revised.txt",
+            "local_private_run:20260627t130339z-4cd3cb-1/memo.md",
+            "local_private_run:20260627t130339z-4cd3cb-1/agent_result.json"
+          ],
+          "source_status": "explicit_in_local_private_packet",
+          "uncertainty": [
+            "The revised answer appears to reduce noisy friction, but no admin or compliance stakeholder validated that read.",
+            "Compression may lose stakeholder-specific detail from the vanilla gate list.",
+            "Lost-value severity is source-limited without clinic review."
+          ],
+          "evidence_strength": "moderate_candidate",
+          "fields": {
+            "useful_friction": [
+              "keeps scope limits around scheduling, billing, and clinician-review protection",
+              "adds backlog-cause diagnosis before go-live",
+              "turns monitoring into explicit pause and rollback triggers",
+              "treats admin usability as part of safety rather than implementation polish"
+            ],
+            "noisy_friction": [
+              "the vanilla nine-gate format may create control burden for exhausted admins",
+              "too many gates can make a theoretically safe launch unworkable in practice"
+            ],
+            "missing_friction": [
+              "direct admin usability stress test",
+              "actual compliance approval of narrowed wording and logs",
+              "evidence that routing uncertainty is the backlog driver",
+              "clinic-specific outcome data after launch"
+            ],
+            "lost_value": [
+              "the revised compression may make doctors, patients, sales, support, and compliance less explicitly represented than the vanilla gate list",
+              "a shorter operating test may under-specify stakeholder communication work"
+            ],
+            "lost_value_severity_read": "low_to_moderate_candidate",
+            "severity_source_status": "source_limited_no_admin_compliance_or_clinic_validation",
+            "value_overwrite_risk": "operational simplicity may overwrite stakeholder-specific governance detail if treated as complete",
+            "momentum_or_simplicity_loss": "simplicity_gain_with_possible_detail_loss",
+            "overcaution_or_diligence_theater": "vanilla_gate_bloat_candidate_reduced_by_revision",
+            "source_scope_and_truncation_impact": "Conversation, revised answer, and memo were complete; large structured trace artifacts were partly truncated, so fine-grained trace corroboration remains limited."
+          },
+          "limitations": [
+            "No admin, doctor, compliance, patient, support, or sales stakeholder reviewed this read.",
+            "No evidence shows whether four gates are actually easier to operate than nine.",
+            "The lost-value read is candidate-only."
+          ],
+          "non_claims": [
+            "not human review",
+            "not ground truth",
+            "not product proof",
+            "not automatic label"
+          ],
+          "boundary_metadata": {
+            "human_validated": false,
+            "ground_truth": false,
+            "judge_calibration_eligible": false,
+            "product_proof": false,
+            "answer_quality_scored": false,
+            "agent_action_authorized": false,
+            "model_calls": 0,
+            "archive_mutated": false,
+            "runtime_invoked": false,
+            "skill_invoked": false,
+            "automatic_labels_created": false,
+            "raw_private_content_included": false
+          }
+        },
+        "conservative_fan_in_reader": {
+          "specialist_role": "conservative_fan_in_reader",
+          "contract_version": "lolla.decision_trail_specialist_contracts.v0",
+          "input_mode": "local_private_mode",
+          "read_status": "provisional_candidate",
+          "source_refs": [
+            "local_private_run:20260627t130339z-4cd3cb-1/conversation.txt",
+            "local_private_run:20260627t130339z-4cd3cb-1/revised.txt",
+            "local_private_run:20260627t130339z-4cd3cb-1/memo.md",
+            "local_private_run:20260627t130339z-4cd3cb-1/agent_result.json"
+          ],
+          "source_status": "explicit_in_local_private_packet",
+          "uncertainty": [
+            "The third pilot is deliberately diverse but still one case.",
+            "The revised answer may be cleaner because it is better, or because it is shorter and easier to like.",
+            "No human stakeholder validated the usefulness or lost-value reads."
+          ],
+          "evidence_strength": "moderate_candidate",
+          "fields": {
+            "areas_of_agreement": [
+              "The core action is a limited one-clinic deployment, not broad rollout.",
+              "The revised answer is mainly an operating-shape refinement.",
+              "The strongest new signal is noise reduction rather than added caution."
+            ],
+            "disagreements_preserved": [
+              "Compression may help exhausted admins while losing stakeholder-specific detail.",
+              "The 48-hour backlog diagnosis may be useful discipline or an extra delay under urgency.",
+              "The revised answer looks cleaner, but clean prose is not proof of better advice."
+            ],
+            "high_uncertainty_fields": [
+              "actual backlog cause",
+              "admin usability under pressure",
+              "compliance acceptance",
+              "stakeholder-specific lost value",
+              "whether human reviewers would prefer compression or explicit gates"
+            ],
+            "fields_ready_for_report": [
+              "case selection rationale",
+              "source-scope and truncation status",
+              "conversation-shape candidate",
+              "material vanilla overlap candidate",
+              "noise-reduction useful-friction candidate"
+            ],
+            "fields_not_ready_for_report": [
+              "human-validated net improvement",
+              "answer-quality verdict",
+              "agent-consumable approval",
+              "outcome evidence",
+              "calibrated lost-value severity"
+            ],
+            "human_followup_questions": [
+              "Would admins find the four-gate version easier to operate than the nine-gate version?",
+              "Would compliance accept the compressed release package?",
+              "Would doctors and patients lose important assurance if stakeholder-specific gates are compressed?",
+              "Was routing uncertainty actually the urgent clinic's main backlog driver?"
+            ],
+            "overtrust_risks": [
+              "The revised answer is cleaner and therefore easier to over-credit.",
+              "The core action overlaps materially with the vanilla answer.",
+              "The checked-in review is summary-only and not human validated."
+            ],
+            "downgrade_triggers": [
+              "vanilla_overlap_read is material_overlap_candidate",
+              "lost_value_severity_read is source-limited",
+              "no admin, compliance, doctor, patient, support, or sales stakeholder validation exists",
+              "large structured trace artifacts were partly truncated",
+              "cleaner structure could be mistaken for better advice"
+            ],
+            "not_ready_reason": "The read is useful as a third pilot because it reveals noise-reduction as a new specialist signal, but it is not ready for broad batching or product claims.",
+            "next_review_priority": "Close the one-case pilot phase and compare PR97, PR100, and PR102 before any further specialist-output expansion.",
+            "net_read_candidate": "local_private_specialist_read_partly_useful",
+            "source_scope_and_truncation_impact": "Conversation, revised answer, and memo were complete; large structured trace artifacts were partly truncated, so fan-in should remain source-limited."
+          },
+          "limitations": [
+            "No human review validates the fan-in read.",
+            "No broad batch should be inferred from one diverse case.",
+            "No agent should treat this as authorization to act."
+          ],
+          "non_claims": [
+            "not human review",
+            "not ground truth",
+            "not product proof",
+            "not agent action authorization"
+          ],
+          "boundary_metadata": {
+            "human_validated": false,
+            "ground_truth": false,
+            "judge_calibration_eligible": false,
+            "product_proof": false,
+            "answer_quality_scored": false,
+            "agent_action_authorized": false,
+            "model_calls": 0,
+            "archive_mutated": false,
+            "runtime_invoked": false,
+            "skill_invoked": false,
+            "automatic_labels_created": false,
+            "raw_private_content_included": false
+          }
+        }
+      }
+    }
+  ],
+  "comparison_to_prior_pilots": {
+    "PR97": {
+      "case_family": "cofounder_authority",
+      "net_read": "local_private_specialist_read_useful_but_unvalidated",
+      "main_signal": "authority-transfer and stop-condition concreteness",
+      "main_limit": "pre-PR99 shape did not make vanilla overlap and downgrade triggers first-class enough"
+    },
+    "PR100": {
+      "case_family": "career_family_startup_choice",
+      "net_read": "local_private_specialist_read_partly_useful",
+      "main_signal": "material vanilla overlap forced downgrade pressure",
+      "main_limit": "still prior-positive and not a different decision family"
+    },
+    "PR102": {
+      "case_family": "deployment_controls",
+      "net_read": "local_private_specialist_read_partly_useful",
+      "main_signal": "noise-reduction and operating-load friction became visible",
+      "main_limit": "core action overlapped materially with the vanilla answer and no stakeholders validated the read"
+    }
+  },
+  "next_recommended_slice": {
+    "recommended_slice": "PR103 Decision Trail Specialist Pilot Phase Closure Gate v0",
+    "purpose": "Compare PR97, PR100, and PR102 and decide whether to pause for human review, prepare human-review intake, simplify contracts, or define a tiny multi-case review.",
+    "why_not_fourth_pilot": "PR102 used the one diversity-targeted third pilot allowed by PR101. More one-case pilots would become evidence drift without human validation.",
+    "must_not_do": [
+      "run_lolla",
+      "invoke_lolla_skill",
+      "call_provider_apis",
+      "mutate_archives",
+      "change_runtime_behavior",
+      "score_answer_quality",
+      "create_automatic_labels",
+      "authorize_agent_action",
+      "treat_clean_specialist_outputs_as_product_proof",
+      "run_a_fourth_one_case_pilot_by_momentum"
+    ]
+  },
+  "non_claims": [
+    "PR102 is not human review.",
+    "PR102 is not ground truth.",
+    "PR102 is not judge calibration.",
+    "PR102 is not product proof.",
+    "PR102 is not answer-quality measurement.",
+    "PR102 is not an automatic label.",
+    "PR102 is not agent action authorization.",
+    "PR102 does not show that the revised answer was good advice."
+  ]
+}

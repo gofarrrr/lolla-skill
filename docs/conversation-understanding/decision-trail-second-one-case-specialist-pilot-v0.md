@@ -170,13 +170,15 @@ PR101 has now compared PR97 and PR100:
 
 - [Decision Trail Specialist Pilot Comparison Gate v0](decision-trail-specialist-pilot-comparison-gate-v0.md)
 
-PR101 decided not to broaden. It allows at most one diversity-targeted third
-one-case pilot and only if a safe completed run from a different decision
-family exists.
+PR101 decided not to broaden. PR102 has now used the one diversity-targeted
+third one-case pilot it allowed:
 
-That future PR102-style slice would need to decide whether to:
+- [Decision Trail Third One-Case Diversity Pilot v0](decision-trail-third-one-case-diversity-pilot-v0.md)
 
-- run one third one-case pilot in a non-career/operator case;
+PR102 selected a deployment-controls case and recommends closing the pilot
+phase before any fourth one-case pilot. A closure gate should decide whether
+to:
+
 - pause and simplify;
 - patch contracts again;
 - or prepare a very small multi-case review.

@@ -67,10 +67,10 @@ conversation or agent run
 Current handoff state:
 
 ```text
-PR101 Decision Trail Specialist Pilot Comparison Gate v0 is the latest
-Decision Trail slice recorded in this working tree. PR101 compares PR97 and
-PR100 and decides that broad specialist-output batches are still not ready.
-It allows at most one diversity-targeted third one-case pilot. PR85 remains
+PR102 Decision Trail Third One-Case Diversity Pilot v0 is the latest Decision
+Trail slice recorded in this working tree. PR102 uses the one diversity-targeted
+third pilot allowed by PR101 and recommends a closure gate instead of a fourth
+pilot. PR85 remains
 the latest packaged product-evidence eval-lane slice. PR70 remains the
 audit/accountability machinery closure gate. PR48 remains the high-stakes
 evidence gate. PR54 remains the paused v0 values/priorities worksheet gate.
@@ -89,7 +89,8 @@ local-private packet mode. PR96 smoke-reviewed that packet mode locally. PR97
 filled a tiny one-case local-private specialist-output pilot. PR98 reviewed
 that pilot and blocked broadening until a contract/packet patch. PR99 applies
 that patch. PR100 uses the patched shape for one more local-private pilot.
-PR101 compares PR97 and PR100 before any broadening.
+PR101 compares PR97 and PR100 before any broadening. PR102 uses one
+deployment-controls contrast case and stops the pilot-expansion momentum.
 
 What works now: an operator can use a CLI to build checked-in-safe packet
 fixtures or local-private packets for completed run directories. PR96 shows
@@ -108,14 +109,15 @@ read to partial usefulness because the vanilla conversation already contained
 much of the visible action sequence.
 
 What does not work yet: the specialist-output lane is local-private,
-Codex-assisted, unvalidated, and not automatic in `$lolla`. PR100 brings the
-specialist-output pilot count to two one-case pilots. PR101 says that still
-does not prove that the contracts are final, that broader batches are safe,
-that Lolla improved the decision, or that agents may act.
+Codex-assisted, unvalidated, and not automatic in `$lolla`. PR102 brings the
+specialist-output pilot count to three one-case pilots. It still does not prove
+that the contracts are final, that broader batches are safe, that Lolla
+improved the decision, or that agents may act.
 
-Next conservative step, if continuing: PR102 should run at most one
-diversity-targeted third one-case pilot in a different decision family. If no
-safe diverse completed run exists, pause instead of forcing evidence.
+Next conservative step: PR103 should close the specialist-pilot phase by
+comparing PR97, PR100, and PR102. It should decide whether to pause for human
+review, prepare human-review intake, simplify contracts, or define a tiny
+multi-case review. It should not run a fourth one-case pilot by momentum.
 ```
 
 Documentation alignment note:
@@ -626,10 +628,31 @@ Current stop rule:
 Latest completed slice:
 
 ```text
-PR101 Decision Trail Specialist Pilot Comparison Gate v0
+PR102 Decision Trail Third One-Case Diversity Pilot v0
 ```
 
 Result:
+
+- lands `docs/conversation-understanding/decision-trail-third-one-case-diversity-pilot-v0.md`;
+- lands `reviews/codex-assisted/decision-trail-third-one-case-diversity-pilot-v0/review.json`;
+- lands `tests/test_decision_trail_third_one_case_diversity_pilot.py`;
+- runs the diversity-targeted one-case local-private specialist-output pilot
+  allowed by PR101, by checked-in summary only;
+- selects `deploy-assisted-intake-routing/20260627T130339Z_4cd3cb` before
+  reading local-private packet content because it is a deployment-controls
+  contrast to PR97 and PR100;
+- records local temp packet deletion and keeps private packet content out of
+  the repo;
+- preserves material vanilla overlap while surfacing a different useful signal:
+  the revised answer reduces noisy gate bloat and treats admin operating load
+  as part of safety;
+- recommends PR103 Decision Trail Specialist Pilot Phase Closure Gate v0 rather
+  than a fourth one-case pilot or broad batch;
+- calls no providers or external model APIs, invokes no runtime, mutates no
+  archives, measures no answer quality, creates no automatic labels, and
+  authorizes no agent action.
+
+Previous Decision Trail specialist pilot comparison gate:
 
 - lands `docs/conversation-understanding/decision-trail-specialist-pilot-comparison-gate-v0.md`;
 - lands `reviews/codex-assisted/decision-trail-specialist-pilot-comparison-gate-v0/report.json`;
@@ -1247,13 +1270,21 @@ Non-goals for the next slice:
    broad specialist-output batches are still not ready. The only allowed
    continuation is at most one diversity-targeted third one-case pilot in a
    different decision family; otherwise pause or simplify.
-20. **Live-output hygiene implementation.** PR35 keeps `not_checked` honest and
+20. **PR102 Decision Trail third one-case diversity pilot is done.** PR102 uses
+   `deploy-assisted-intake-routing/20260627T130339Z_4cd3cb` as the
+   deployment-controls contrast case allowed by PR101. It records another
+   partial-usefulness read, but with a different useful signal: Lolla reduced
+   noisy gate bloat and added an operating-load/backlog-diagnosis precondition
+   while the core narrow-launch action already overlapped materially with the
+   vanilla conversation. The next move is PR103: close the one-case pilot phase
+   before any fourth pilot or broad batch.
+21. **Live-output hygiene implementation.** PR35 keeps `not_checked` honest and
    defines a trusted-transcript path; later work can implement only when needed.
-21. **Span-grounded semantic enrichment.** Existing specialists help with live
+22. **Span-grounded semantic enrichment.** Existing specialists help with live
    constraints, dropped threads, and stance lineage, but integration remains
    blocked until a clean 15-20 full-modern sample and provider-boundary behavior
    are settled.
-22. **Human capability surface.** Later, add a compact memo/Observatory section
+23. **Human capability surface.** Later, add a compact memo/Observatory section
    that teaches the user what reasoning pattern the audit caught.
 
 ## Current Pause: Specialist Integration Track

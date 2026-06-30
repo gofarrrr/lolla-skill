@@ -266,6 +266,8 @@ PR100 uses the patched shape for one more one-case pilot:
 [Decision Trail Second One-Case Specialist Pilot](docs/conversation-understanding/decision-trail-second-one-case-specialist-pilot-v0.md).
 PR101 compares PR97 and PR100 before any broader specialist-output work:
 [Decision Trail Specialist Pilot Comparison Gate](docs/conversation-understanding/decision-trail-specialist-pilot-comparison-gate-v0.md).
+PR102 uses the one allowed diversity-targeted pilot:
+[Decision Trail Third One-Case Diversity Pilot](docs/conversation-understanding/decision-trail-third-one-case-diversity-pilot-v0.md).
 
 Current Decision Trail status: this is still offline evidence and packet
 machinery, not automatic skill behavior. A normal Lolla run does not trigger
@@ -289,7 +291,9 @@ the vanilla conversation already contained much of the visible action sequence.
 PR101 compares PR97 and PR100 and decides broad specialist-output batches are
 still not ready. The only allowed continuation is at most one
 diversity-targeted third one-case pilot in a different decision family; if no
-safe diverse run exists, pause instead of forcing evidence.
+safe diverse run exists, pause instead of forcing evidence. PR102 uses that
+one diversity-targeted pilot on the `deploy-assisted-intake-routing` case and
+recommends a closure gate before any fourth pilot or broad batch.
 
 Start here: **[Product Delta / Eval Docs Index](docs/evals/README.md)**.
 

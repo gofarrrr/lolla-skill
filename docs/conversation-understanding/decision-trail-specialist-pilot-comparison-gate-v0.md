@@ -142,20 +142,20 @@ PR101 did not:
 
 ## Next Slice
 
-The next conservative slice, if we continue, should be:
+PR102 has now used the one diversity-targeted pilot allowed by this gate:
 
 ```text
 PR102 Decision Trail Third One-Case Diversity Pilot v0
 ```
 
-PR102 should run at most one more local-private specialist-output pilot using
-the PR99/PR100 shape. It should select a different decision family and should
-pre-register why that case is a useful contrast.
+See:
 
-If PR102 cannot find a safe, diverse completed run, stop. If PR102 produces
-another positive or partial read without revealing a new failure shape, stop
-and prepare human-review intake or simplify. Do not turn PR102 into a broad
-batch by momentum.
+- [Decision Trail Third One-Case Diversity Pilot v0](decision-trail-third-one-case-diversity-pilot-v0.md)
+
+PR102 selected a deployment-controls case, preserved material vanilla overlap,
+and surfaced a new useful signal: reducing noisy gate bloat while keeping
+operational stop conditions. The next step should be a closure gate, not a
+fourth one-case pilot.
 
 ## Files
 

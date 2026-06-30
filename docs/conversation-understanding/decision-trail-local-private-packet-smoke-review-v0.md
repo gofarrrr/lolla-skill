@@ -180,9 +180,13 @@ PR101 has now compared PR97 and PR100:
 
 - [Decision Trail Specialist Pilot Comparison Gate v0](decision-trail-specialist-pilot-comparison-gate-v0.md)
 
-It decides broad specialist-output batches are not ready and allows at most one
-diversity-targeted third one-case pilot before stopping or simplifying. Any
-future PR102-style slice must not:
+It decided broad specialist-output batches were not ready and allowed at most
+one diversity-targeted third one-case pilot. PR102 has now used that one
+diversity pilot:
+
+- [Decision Trail Third One-Case Diversity Pilot v0](decision-trail-third-one-case-diversity-pilot-v0.md)
+
+Any future closure or intake slice must not:
 
 - run `$lolla`;
 - invoke the Lolla skill;
