@@ -294,8 +294,56 @@ uncertainty, disagreement preservation, and non-claims. It should not build a
 packet builder, run specialists, call models, change runtime, or mutate
 archives.
 
-After PR90, a later packet-builder slice can decide how to create safe
-per-specialist packets from existing artifacts.
+Completion note: PR90 is implemented by
+[`decision-trail-specialist-contracts-v0.md`](decision-trail-specialist-contracts-v0.md),
+[`decision-trail-specialist-contracts-v0.json`](decision-trail-specialist-contracts-v0.json),
+and focused tests in
+[`test_decision_trail_specialist_contracts.py`](../../tests/test_decision_trail_specialist_contracts.py).
+
+PR91 is implemented by
+[`decision-trail-specialist-packet-builder-v0.md`](decision-trail-specialist-packet-builder-v0.md),
+[`decision_trail_specialist_packets.py`](../../engine/system_b/decision_trail_specialist_packets.py),
+[`build_decision_trail_specialist_packets.py`](../../scripts/evals/build_decision_trail_specialist_packets.py),
+and focused tests in
+[`test_decision_trail_specialist_packets.py`](../../tests/test_decision_trail_specialist_packets.py).
+
+PR92 is implemented by
+[`decision-trail-specialist-trap-set-v0.md`](decision-trail-specialist-trap-set-v0.md),
+[`decision-trail-specialist-trap-set-v0.json`](decision-trail-specialist-trap-set-v0.json),
+and focused tests in
+[`test_decision_trail_specialist_trap_set.py`](../../tests/test_decision_trail_specialist_trap_set.py).
+
+PR93 is implemented by
+[`decision-trail-specialist-dry-run-v0.md`](decision-trail-specialist-dry-run-v0.md),
+[`review.json`](../../reviews/codex-assisted/decision-trail-specialist-dry-run-v0/review.json),
+and focused tests in
+[`test_decision_trail_specialist_dry_run.py`](../../tests/test_decision_trail_specialist_dry_run.py).
+
+PR94 is implemented by
+[`decision-trail-specialist-path-decision-v0.md`](decision-trail-specialist-path-decision-v0.md)
+and focused tests in
+[`test_decision_trail_specialist_path_decision.py`](../../tests/test_decision_trail_specialist_path_decision.py).
+
+PR94 selects PR95 Decision Trail Local-Private Packet Mode v0 as the next
+recommended slice. It rejects a broader checked-in-safe specialist batch for
+now because PR88, PR91, and PR93 already show the safe fixtures are too thin
+for the product-load-bearing interpretation fields.
+
+PR95 is implemented by
+[`decision-trail-local-private-packet-mode-v0.md`](decision-trail-local-private-packet-mode-v0.md),
+the local-private mode extension in
+[`decision_trail_specialist_packets.py`](../../engine/system_b/decision_trail_specialist_packets.py),
+the CLI update in
+[`build_decision_trail_specialist_packets.py`](../../scripts/evals/build_decision_trail_specialist_packets.py),
+and focused tests in
+[`test_decision_trail_local_private_packets.py`](../../tests/test_decision_trail_local_private_packets.py).
+It keeps the work offline and explicit: local-private packets require an
+operator-selected run directory and a non-repo output path, record whether
+private text was included, and still stop before specialist outputs or fan-in.
+Post-review alignment clarifies the local-private source boundary: PR88
+fixture review is lineage-only, selected run artifacts and the PR90 schema
+define packet content, raw-content inclusion flags reflect actual included
+artifacts, and repo-local fixture/schema inputs avoid local absolute path leaks.
 
 ## Final Read
 
@@ -310,3 +358,12 @@ The next product question is:
 > Can bounded LLM interpretation fill the missing decision-story fields while
 > deterministic custody keeps the output humble, inspectable, and unable to
 > masquerade as proof?
+
+After PR95, the immediate next question is narrower:
+
+> Do local-private packets provide enough usable context, without unacceptable
+> privacy or overclaim risk, to justify the first bounded specialist-output
+> batch?
+
+That should be answered by a local-private packet smoke/review before any
+specialist outputs are generated.

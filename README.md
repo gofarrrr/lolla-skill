@@ -240,6 +240,34 @@ bounded interpretation. PR89's
 selects narrow offline LLM specialist contracts as the next move, while keeping
 runtime integration, broad IR work, judging, scoring, and automatic labels
 deferred.
+The PR90 implementation handoff is preserved as
+[PR90 Decision Trail Goal Prompt](docs/conversation-understanding/decision-trail-pr90-goal-prompt-v0.md).
+PR90's completed local contract surface is
+[Decision Trail Specialist Contracts](docs/conversation-understanding/decision-trail-specialist-contracts-v0.md).
+PR91 adds the local read-only packetization surface:
+[Decision Trail Specialist Packet Builder](docs/conversation-understanding/decision-trail-specialist-packet-builder-v0.md).
+PR92 adds the local trap-fixture checkpoint:
+[Decision Trail Specialist Trap Set](docs/conversation-understanding/decision-trail-specialist-trap-set-v0.md).
+PR93 adds the local discipline dry run:
+[Decision Trail Specialist Dry Run](docs/conversation-understanding/decision-trail-specialist-dry-run-v0.md).
+PR94 adds the local path decision:
+[Decision Trail Specialist Path Decision](docs/conversation-understanding/decision-trail-specialist-path-decision-v0.md).
+PR95 adds the explicit local-private packet mode:
+[Decision Trail Local-Private Packet Mode](docs/conversation-understanding/decision-trail-local-private-packet-mode-v0.md).
+
+Current Decision Trail status: this is still offline evidence and packet
+machinery, not automatic skill behavior. A normal Lolla run does not trigger
+the Product Delta eval lane, the Decision Trail exporter, or specialist
+interpretation. PR95 lets an operator explicitly build local-private packets
+from completed run directories for later review. Those packets can expose
+enough source material for a future bounded LLM specialist pass, but they do
+not yet fill likely actions, live options, stakeholders, values/priorities,
+assistant influence, useful/noisy friction, lost value, or fan-in.
+Local-private include-text outputs are unsafe for commit by default.
+
+The next conservative Decision Trail step is a local-private packet
+smoke/review: inspect whether the packets are usable and safe enough before
+any specialist-output batch is attempted.
 
 Start here: **[Product Delta / Eval Docs Index](docs/evals/README.md)**.
 
@@ -359,7 +387,7 @@ The system works — but more data from real runs will let us tune the determini
 - **More mental models.** Domain-specific model packs — legal reasoning, medical decision-making, engineering tradeoffs — each following the same curation methodology, would make the system sharper in specialized contexts.
 - **New lanes.** The four-lane architecture is extensible. Temporal reasoning, stakeholder mapping, assumption dependency chains — each would follow the same pattern: probabilistic detection at the edges, deterministic routing in the middle.
 - **Better detection calibration.** More runs against more cases means better understanding of where each tendency's detection boundary should sit.
-- **Deeper conversation extraction.** There's more signal in conversational dynamics — how positions shift across turns, where the human pushed back and the LLM folded, where concerns were raised and then quietly dropped.
+- **Deeper conversation interpretation.** There's more signal in conversational dynamics — how positions shift across turns, where the human pushed back and the LLM folded, where concerns were raised and then quietly dropped. The current Decision Trail lane is approaching this carefully: deterministic code prepares custody-safe packets, while messy interpretation remains future bounded LLM specialist work rather than deterministic guessing.
 - **Beyond the skill.** The curated knowledge substrate and the audit architecture are not limited to a Claude Code skill. The same engine could power API-level reasoning checks, editorial review workflows, decision journaling tools, or structured training environments where people practice spotting reasoning weaknesses. We see directions we haven't built yet — and probably directions we haven't thought of.
 
 If you see an application we're missing or have ideas about where this kind of system would be valuable, open an issue. The most interesting next steps often come from people with different problems than ours.

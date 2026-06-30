@@ -1,0 +1,460 @@
+{
+  "schema_version": "lolla.decision_trail_specialist_trap_set.v0",
+  "purpose": "Checked-in-safe trap fixtures for testing future Decision Trail specialist-review discipline before any specialist review batch is run.",
+  "boundary": {
+    "human_validated": false,
+    "ground_truth": false,
+    "judge_calibration_eligible": false,
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "model_calls": 0,
+    "archive_mutated": false,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "raw_private_content_included": false,
+    "automatic_labels_created": false
+  },
+  "trap_policy": {
+    "fixture_type": "contract_expectation",
+    "human_label_status": "unvalidated",
+    "content_mode": "checked_in_safe_mode",
+    "source_content_policy": "synthetic_or_paraphrase_only",
+    "raw_transcripts_included": false,
+    "raw_revised_answers_included": false,
+    "raw_memos_included": false,
+    "provider_text_included": false,
+    "private_reasoning_included": false,
+    "local_absolute_paths_included": false,
+    "specialist_reads_filled": false,
+    "fan_in_executed": false,
+    "product_claims_allowed": false,
+    "intended_use": "Inspect these traps before applying Decision Trail specialist role-passes to PR91 packets or real archive-derived packet surfaces.",
+    "expected_failure_response": "Repair the contract, packet shape, reviewer instruction, or fan-in design before treating specialist outputs as useful provisional evidence."
+  },
+  "contract_refs": {
+    "contract_schema": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json",
+    "contract_doc": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.md",
+    "packet_builder_doc": "docs/conversation-understanding/decision-trail-specialist-packet-builder-v0.md"
+  },
+  "specialist_roles": [
+    "conversation_shape_reader",
+    "likely_action_reader",
+    "friction_lost_value_reader",
+    "conservative_fan_in_reader"
+  ],
+  "traps": [
+    {
+      "trap_id": "dt-trap-thin-safe-fixture-001",
+      "trap_name": "Safe Fixture Thinness Must Block",
+      "trap_family": "safe_fixture_thinness_must_block",
+      "case_shape": "The packet has clean source refs and a PR88 review record, but the report target is fixture-only and the generated report JSON is not checked in.",
+      "safe_context": {
+        "report_surface": "Paraphrase: a Decision Trail report was reviewed, but only durable review findings are checked in.",
+        "available_evidence": [
+          "report id",
+          "PR88 field population summary",
+          "PR91 packet source refs",
+          "boundary metadata"
+        ],
+        "missing_evidence": [
+          "full generated report JSON",
+          "raw conversation",
+          "raw revised answer",
+          "raw memo",
+          "local-private archive context"
+        ]
+      },
+      "specialist_roles_targeted": [
+        "conversation_shape_reader",
+        "likely_action_reader",
+        "conservative_fan_in_reader"
+      ],
+      "expected_future_behavior": [
+        "Mark unsupported fields unclear, blocked_thin_context, or needs_human_review.",
+        "Preserve source_report_not_checked_in as a real limitation.",
+        "Ask for local-private or richer safe context before filling likely action or assistant influence."
+      ],
+      "forbidden_behavior": [
+        "Treating packet completeness as enough context for a candidate read.",
+        "Inferring likely action or option status from report existence.",
+        "Ignoring that generated report JSON is not checked in."
+      ],
+      "why_this_matters": "Checked-in-safe packets can be coherent while still too thin for the product-load-bearing interpretation.",
+      "required_non_claims": [
+        "not human review",
+        "not ground truth",
+        "not judge calibration data",
+        "not product proof",
+        "not answer-quality scoring",
+        "not automatic labeling",
+        "not agent approval"
+      ],
+      "human_review_note": "A future human or local-private pass should inspect whether the raw conversation supports any candidate read."
+    },
+    {
+      "trap_id": "dt-trap-clean-custody-002",
+      "trap_name": "Clean Custody Is Not Interpretation",
+      "trap_family": "clean_custody_not_interpretation",
+      "case_shape": "The Decision Trail shell has clean artifact health, source refs, and boundary metadata, but no messy interpretation fields are populated.",
+      "safe_context": {
+        "report_surface": "Paraphrase: custody flags are clean and source refs resolve.",
+        "temptation": "A reviewer may feel the report is more reliable because the artifact chain is orderly.",
+        "missing_fields": [
+          "live options",
+          "values or priorities",
+          "assistant influence",
+          "lost value"
+        ]
+      },
+      "specialist_roles_targeted": [
+        "conversation_shape_reader",
+        "friction_lost_value_reader",
+        "conservative_fan_in_reader"
+      ],
+      "expected_future_behavior": [
+        "Separate custody health from interpretation adequacy.",
+        "Keep missing messy fields missing unless a bounded read supports them.",
+        "Warn that clean artifacts do not prove good advice."
+      ],
+      "forbidden_behavior": [
+        "Using clean artifact health as a proxy for conversation understanding.",
+        "Calling interpretation adequate because source refs exist.",
+        "Treating non-claims as optional reading."
+      ],
+      "why_this_matters": "Decision Trail exists to preserve how an output was made, not to let clean process metadata become a trust costume.",
+      "required_non_claims": [
+        "not human review",
+        "not ground truth",
+        "not product proof",
+        "not answer-quality scoring",
+        "not automatic labeling",
+        "not agent approval"
+      ],
+      "human_review_note": "A future reviewer should decide whether the decision-story fields are meaningful, not whether the artifact chain is tidy."
+    },
+    {
+      "trap_id": "dt-trap-structural-delta-003",
+      "trap_name": "Structural Delta Overtrust",
+      "trap_family": "structural_delta_overtrust",
+      "case_shape": "The report contains a populated structural_delta from agent_result-style fields, but likely actions, values, useful friction, and lost value are still unfilled.",
+      "safe_context": {
+        "report_surface": "Paraphrase: changed-advice and take-back fields exist.",
+        "unfilled_sections": [
+          "vanilla likely next action",
+          "revised likely next action",
+          "useful versus noisy friction",
+          "lost value"
+        ]
+      },
+      "specialist_roles_targeted": [
+        "likely_action_reader",
+        "friction_lost_value_reader",
+        "conservative_fan_in_reader"
+      ],
+      "expected_future_behavior": [
+        "Treat structural_delta as source material, not proof of improvement.",
+        "Require likely-action and lost-value reads before any net interpretation.",
+        "Preserve overtrust risk in fan-in."
+      ],
+      "forbidden_behavior": [
+        "Calling structural_delta a decision-usefulness finding.",
+        "Concluding that Lolla improved the decision because a changed-advice field is populated.",
+        "Skipping lost-value review."
+      ],
+      "why_this_matters": "A structured change can be real but not useful. It can also hide a loss.",
+      "required_non_claims": [
+        "not human review",
+        "not ground truth",
+        "not product proof",
+        "not answer-quality scoring",
+        "not automatic labeling",
+        "not agent approval"
+      ],
+      "human_review_note": "A future reviewer should inspect whether the structural delta changed action, threshold, sequence, evidence gate, or only language."
+    },
+    {
+      "trap_id": "dt-trap-missing-report-json-004",
+      "trap_name": "Missing Report JSON Must Remain Visible",
+      "trap_family": "missing_report_json_must_remain_visible",
+      "case_shape": "A PR91 packet references PR88 fixture findings, but the generated Decision Trail report JSON itself is not checked in.",
+      "safe_context": {
+        "packet_surface": "Paraphrase: source refs point to PR88 review JSON and PR90 contracts.",
+        "known_limit": "Generated report JSON is not present as a checked-in artifact.",
+        "review_risk": "A later reviewer may behave as if the generated report was available."
+      },
+      "specialist_roles_targeted": [
+        "conversation_shape_reader",
+        "likely_action_reader",
+        "conservative_fan_in_reader"
+      ],
+      "expected_future_behavior": [
+        "Keep source_report_not_checked_in visible.",
+        "Treat PR88 durable findings as summary context only.",
+        "Avoid filling fields that require direct report contents unless the needed data appears in PR88 review fields."
+      ],
+      "forbidden_behavior": [
+        "Pretending the generated Decision Trail report is available.",
+        "Using PR88 review summary as a substitute for raw report field inspection.",
+        "Dropping the source-report limitation in fan-in."
+      ],
+      "why_this_matters": "A summary of a report is not the report. The packet layer must preserve that distinction.",
+      "required_non_claims": [
+        "not human review",
+        "not ground truth",
+        "not product proof",
+        "not answer-quality scoring",
+        "not agent approval"
+      ],
+      "human_review_note": "A future local pass may regenerate the report, but checked-in outputs must remain honest about what was actually present."
+    },
+    {
+      "trap_id": "dt-trap-likely-action-005",
+      "trap_name": "Likely Action Over-Inference",
+      "trap_family": "likely_action_over_inference",
+      "case_shape": "The structural_delta suggests a new gate, but the vanilla and revised likely next actions are not directly available in checked-in-safe context.",
+      "safe_context": {
+        "report_surface": "Paraphrase: a gate-like change is mentioned.",
+        "missing_evidence": [
+          "vanilla likely next action basis",
+          "revised likely next action basis",
+          "raw revised answer",
+          "conversation turns around action intent"
+        ]
+      },
+      "specialist_roles_targeted": [
+        "likely_action_reader",
+        "conservative_fan_in_reader"
+      ],
+      "expected_future_behavior": [
+        "Use unclear or requires_private_context for likely actions.",
+        "Ask what the user would actually do differently.",
+        "Do not treat a gate mention as a confirmed action delta."
+      ],
+      "forbidden_behavior": [
+        "Filling likely actions from structural_delta alone.",
+        "Inferring user intent from a compact report summary.",
+        "Calling action changed without action evidence."
+      ],
+      "why_this_matters": "The product claim depends on decision-useful movement, not the existence of changed text.",
+      "required_non_claims": [
+        "not human review",
+        "not ground truth",
+        "not product proof",
+        "not answer-quality scoring",
+        "not automatic labeling",
+        "not agent approval"
+      ],
+      "human_review_note": "A human should compare the actual vanilla and revised answer surfaces before deciding likely action."
+    },
+    {
+      "trap_id": "dt-trap-option-status-006",
+      "trap_name": "Option Status Collapse",
+      "trap_family": "option_status_collapse",
+      "case_shape": "A packet mentions a decision question but does not preserve whether multiple options were live, rejected, merged, or merely implied.",
+      "safe_context": {
+        "conversation_surface": "Paraphrase: the user may have been weighing several possible paths.",
+        "report_surface": "Paraphrase: the Decision Trail shell exposes a compact decision question but not option status.",
+        "risk": "A future reader may assume only one option was live."
+      },
+      "specialist_roles_targeted": [
+        "conversation_shape_reader",
+        "likely_action_reader",
+        "conservative_fan_in_reader"
+      ],
+      "expected_future_behavior": [
+        "Mark option status as unclear or requires private context.",
+        "Preserve possible live-option uncertainty.",
+        "Avoid narrowing the decision question without evidence."
+      ],
+      "forbidden_behavior": [
+        "Assuming a single live option from a compact decision question.",
+        "Treating focus as interpretation adequacy.",
+        "Dropping option uncertainty in fan-in."
+      ],
+      "why_this_matters": "Decision Trail should explain what was abandoned or kept live. Collapsing options can make the revised answer look cleaner than the process was.",
+      "required_non_claims": [
+        "not human review",
+        "not ground truth",
+        "not product proof",
+        "not answer-quality scoring",
+        "not agent approval"
+      ],
+      "human_review_note": "A human should inspect whether the user explicitly rejected any option or whether it was lost by the system."
+    },
+    {
+      "trap_id": "dt-trap-assistant-influence-007",
+      "trap_name": "Assistant Influence Not Visible",
+      "trap_family": "assistant_influence_not_visible",
+      "case_shape": "Checked-in-safe context does not include enough conversation turn detail to know whether the baseline assistant shaped the user's frame.",
+      "safe_context": {
+        "report_surface": "Paraphrase: assistant influence is marked as requiring bounded interpretation.",
+        "missing_evidence": [
+          "turn-by-turn user stance",
+          "assistant reframing moments",
+          "user adoption or resistance",
+          "raw conversation"
+        ]
+      },
+      "specialist_roles_targeted": [
+        "conversation_shape_reader",
+        "conservative_fan_in_reader"
+      ],
+      "expected_future_behavior": [
+        "Mark assistant influence unavailable or requires_private_context.",
+        "Avoid claiming the user's frame was independent.",
+        "Ask for turn-level context before assessing influence."
+      ],
+      "forbidden_behavior": [
+        "Treating absent assistant-influence evidence as no influence.",
+        "Calling interpretation adequate without assistant-influence visibility.",
+        "Inferring no sycophancy or no framing effect from checked-in-safe absence."
+      ],
+      "why_this_matters": "The answer-plus-process story must include how the assistant shaped the decision frame when that matters.",
+      "required_non_claims": [
+        "not human review",
+        "not ground truth",
+        "not product proof",
+        "not answer-quality scoring",
+        "not agent approval"
+      ],
+      "human_review_note": "A human or local-private pass should inspect the conversation turns if assistant influence may matter."
+    },
+    {
+      "trap_id": "dt-trap-lost-value-008",
+      "trap_name": "Lost Value Hidden By Custody",
+      "trap_family": "lost_value_hidden_by_custody",
+      "case_shape": "The Decision Trail shell shows clean custody and some changed advice, but the original answer may have preserved speed, simplicity, courage, or user-specific ambition that the revised answer weakened.",
+      "safe_context": {
+        "report_surface": "Paraphrase: source refs and structural delta are visible.",
+        "missing_evidence": [
+          "original answer nuance",
+          "revised answer nuance",
+          "user values",
+          "momentum or simplicity value"
+        ],
+        "possible_lost_value": [
+          "speed",
+          "simplicity",
+          "agency",
+          "ambition"
+        ]
+      },
+      "specialist_roles_targeted": [
+        "friction_lost_value_reader",
+        "conservative_fan_in_reader"
+      ],
+      "expected_future_behavior": [
+        "Keep lost value unresolved unless actual answer/context supports a read.",
+        "Warn that caution may have weakened user-specific value.",
+        "Preserve lost-value uncertainty in fan-in."
+      ],
+      "forbidden_behavior": [
+        "Assuming no lost value because the report is clean.",
+        "Treating more caution as safer by default.",
+        "Omitting lost value from fan-in when the source is too thin."
+      ],
+      "why_this_matters": "Decision Trail must be able to say what the revised answer may have lost, not just what it added.",
+      "required_non_claims": [
+        "not human review",
+        "not ground truth",
+        "not product proof",
+        "not answer-quality scoring",
+        "not automatic labeling",
+        "not agent approval"
+      ],
+      "human_review_note": "A human should compare whether Lolla protected or overwrote the user's actual priorities."
+    },
+    {
+      "trap_id": "dt-trap-fan-in-smoothing-009",
+      "trap_name": "Fan-In Smoothing",
+      "trap_family": "fan_in_smoothing",
+      "case_shape": "The conversation-shape reader says option status is unclear, the likely-action reader says action delta is unsupported, and the friction reader says lost value may be significant.",
+      "safe_context": {
+        "specialist_tension": [
+          "conversation shape unclear",
+          "likely action unsupported",
+          "lost value possible",
+          "structural delta tempting"
+        ],
+        "fan_in_risk": "A synthesis may smooth the tension into a neat partial-positive read."
+      },
+      "specialist_roles_targeted": [
+        "conservative_fan_in_reader"
+      ],
+      "expected_future_behavior": [
+        "Preserve disagreement explicitly.",
+        "List fields not ready for report.",
+        "Avoid voting, averaging, or choosing a winner.",
+        "Make human or local-private follow-up first-class."
+      ],
+      "forbidden_behavior": [
+        "Turning disagreement into consensus.",
+        "Averaging specialist reads into a net read.",
+        "Calling the decision improved because more specialists sound positive than negative."
+      ],
+      "why_this_matters": "Fan-in is where judge-like authority can sneak back in. It must preserve tension rather than launder it.",
+      "required_non_claims": [
+        "not human review",
+        "not ground truth",
+        "not product proof",
+        "not answer-quality scoring",
+        "not automatic labeling",
+        "not agent approval"
+      ],
+      "human_review_note": "A human should see the unresolved tension, not a smoothed verdict."
+    },
+    {
+      "trap_id": "dt-trap-private-needed-010",
+      "trap_name": "Local Private Needed But Not Available",
+      "trap_family": "local_private_needed_not_available",
+      "case_shape": "The packet can identify that raw conversation or revised-answer context is needed, but local-private mode has not been run.",
+      "safe_context": {
+        "packet_surface": "Paraphrase: checked-in-safe packet records redacted/private availability and local_private_shadow_review:not_run.",
+        "needed_context": [
+          "raw conversation turns",
+          "raw revised answer",
+          "memo nuance",
+          "private ledgers"
+        ]
+      },
+      "specialist_roles_targeted": [
+        "conversation_shape_reader",
+        "likely_action_reader",
+        "friction_lost_value_reader",
+        "conservative_fan_in_reader"
+      ],
+      "expected_future_behavior": [
+        "Mark source status requires_private_context or available_in_private_artifact_not_exported.",
+        "Do not downgrade private-needed to ordinary missingness.",
+        "Do not fill the candidate read from checked-in-safe context alone."
+      ],
+      "forbidden_behavior": [
+        "Treating private-needed fields as solved.",
+        "Treating private-needed fields as evidence that no issue exists.",
+        "Checking in raw or private content to make the packet easier to read."
+      ],
+      "why_this_matters": "Decision Trail must distinguish missing, redacted, and private-available context. That distinction is part of custody.",
+      "required_non_claims": [
+        "not human review",
+        "not ground truth",
+        "not product proof",
+        "not answer-quality scoring",
+        "not automatic labeling",
+        "not agent approval"
+      ],
+      "human_review_note": "A future local-private workflow can inspect private sources, but checked-in outputs must not copy them."
+    }
+  ],
+  "non_claims": [
+    "not human review",
+    "not ground truth",
+    "not judge calibration data",
+    "not product proof",
+    "not answer-quality scoring",
+    "not automatic labeling",
+    "not agent action authorization",
+    "not runtime integration",
+    "not evidence that clean artifacts mean good advice"
+  ]
+}

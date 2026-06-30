@@ -1,0 +1,1296 @@
+{
+  "boundary": {
+    "agent_action_authorized": false,
+    "answer_quality_scored": false,
+    "archive_mutated": false,
+    "automatic_labels_created": false,
+    "ground_truth": false,
+    "human_validated": false,
+    "judge_calibration_eligible": false,
+    "model_calls": 0,
+    "product_proof": false,
+    "raw_private_content_included": false,
+    "runtime_invoked": false,
+    "skill_invoked": false
+  },
+  "generated_by": "decision_trail_specialist_packets",
+  "input_refs": {
+    "contract_doc": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.md",
+    "contract_schema": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json",
+    "decision_trail_exporter_doc": "docs/conversation-understanding/decision-trail-readonly-exporter-v0.md",
+    "decision_trail_fixture_review_doc": "docs/conversation-understanding/decision-trail-export-fixture-review-v0.md",
+    "fixture_review": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json"
+  },
+  "mode": "checked_in_safe_mode",
+  "non_claims": [
+    "not human review",
+    "not ground truth",
+    "not judge calibration data",
+    "not product proof",
+    "not agent approval",
+    "not answer-quality scoring",
+    "not automatic labeling",
+    "not runtime integration",
+    "not evidence that clean artifacts mean good advice"
+  ],
+  "packet_policy": {
+    "checked_in_safe_mode_only": true,
+    "commit_safety": "safe_for_checked_in_fixture_if_lint_passes",
+    "content_inclusion_mode": "metadata_only",
+    "fan_in_executed": false,
+    "local_absolute_paths_included": false,
+    "local_private_mode_enabled": false,
+    "packet_type": "input_scaffold_only",
+    "provider_private_text_included": false,
+    "raw_memos_included": false,
+    "raw_revised_answers_included": false,
+    "raw_transcripts_included": false,
+    "requires_operator_review_before_share": false,
+    "source_report_policy": "PR91 packetizes PR88 durable fixture-review findings. PR88 did not check in generated Decision Trail reports, so packets record source-report thinness instead of pretending full report content is present.",
+    "specialist_reads_filled": false
+  },
+  "report_count": 2,
+  "reports": [
+    {
+      "available_context": {
+        "artifact_custody_read": "useful",
+        "behavioral_usefulness_summary": {
+          "evidence_support_answerable": "yes_for_source_refs_only",
+          "missingness_answerable": "yes",
+          "more_careful_or_more_impressed": "more_careful_if_status_fields_are_read",
+          "non_claims_answerable": "yes",
+          "what_changed_answerable": "partly"
+        },
+        "evidence_scope": "safe_fixture_only",
+        "field_population_summary": {
+          "clear_and_populated": 6,
+          "clear_but_missing": 0,
+          "confusing": 0,
+          "not_applicable": 0,
+          "overclaim_risk": 1,
+          "requires_human_review": 0,
+          "requires_llm_interpretation": 8,
+          "semantic_section_count": 14
+        },
+        "human_followup_questions": [
+          "Does a real archive report remain readable when more raw/private artifacts are merely referenced?",
+          "Can a human reviewer quickly tell whether structural_delta changed action or only changed language?",
+          "Which interpretation-needed fields should be filled first by bounded LLM specialists?"
+        ],
+        "human_validation_read": "not_human_validated",
+        "interpretation_needed_sections": [
+          "vanilla_likely_next_action",
+          "revised_likely_next_action",
+          "option_map",
+          "stakeholders",
+          "values_or_priorities",
+          "assistant_influence",
+          "useful_noisy_friction",
+          "lost_value"
+        ],
+        "local_private_shadow_review_status": "not_run",
+        "missing_or_malformed_artifacts": [],
+        "overtrust_risk_sections": [
+          "structural_delta"
+        ],
+        "populated_sections": [
+          "conversation_understanding_summary",
+          "decision_question",
+          "constraints",
+          "audit_pressure_summary",
+          "structural_delta",
+          "unresolved_questions"
+        ],
+        "product_delta_usefulness_read": "not_reviewed",
+        "redacted_or_private_refs": [
+          {
+            "classification": "clear_and_populated",
+            "ref": "conversation.txt",
+            "source_status": "available_but_redacted_in_safe_mode"
+          },
+          {
+            "classification": "clear_and_populated",
+            "ref": "memo.md",
+            "source_status": "available_but_redacted_in_safe_mode"
+          },
+          {
+            "classification": "clear_and_populated",
+            "ref": "revised.txt",
+            "source_status": "available_but_redacted_in_safe_mode"
+          },
+          {
+            "classification": "clear_and_populated",
+            "ref": "operator.log",
+            "source_status": "available_in_private_artifact_not_exported"
+          }
+        ],
+        "report_readability": "readable_with_status_fields",
+        "semantic_interpretation_adequacy_read": "incomplete_but_honest",
+        "source_report_available_in_repo": false,
+        "source_report_checked_in": false,
+        "source_report_kind": "safe_structured_fixture"
+      },
+      "missing_or_thin_context": [
+        "evidence_scope:safe_fixture_only",
+        "local_private_shadow_review:not_run",
+        "source_report_not_checked_in",
+        "requires_llm_interpretation_sections:8",
+        "overtrust_risk_present"
+      ],
+      "packetization_notes": [
+        "PR91 prepared input packets only.",
+        "Specialist reads remain unfilled until a later provisional review slice."
+      ],
+      "packets": {
+        "conservative_fan_in_reader": {
+          "allowed_inputs": [
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/report_reviews/0",
+              "content_policy": "PR88 report-review findings: field population, missingness, redaction, readability, and overtrust risk only"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/source_reports/0",
+              "content_policy": "PR88 source-report metadata only; generated report JSON may not be checked in"
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json",
+              "content_policy": "PR90 output contract definitions"
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json",
+              "content_policy": "Use only the PR90 contract for `conservative_fan_in_reader` output shape."
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.md",
+              "content_policy": "Human-readable PR90 contract explanation."
+            }
+          ],
+          "context": {
+            "evidence_scope": "safe_fixture_only",
+            "interpretation_needed_sections": [
+              "vanilla_likely_next_action",
+              "revised_likely_next_action",
+              "option_map",
+              "stakeholders",
+              "values_or_priorities",
+              "assistant_influence",
+              "useful_noisy_friction",
+              "lost_value"
+            ],
+            "local_private_shadow_review_status": "not_run",
+            "overtrust_risk_sections": [
+              "structural_delta"
+            ],
+            "populated_sections": [
+              "conversation_understanding_summary",
+              "decision_question",
+              "constraints",
+              "audit_pressure_summary",
+              "structural_delta",
+              "unresolved_questions"
+            ],
+            "prior_fixture_review_use": "source context only; not a specialist answer and not truth",
+            "report_id": "structured_fixture_report",
+            "source_report_available_in_repo": false,
+            "source_report_checked_in": false
+          },
+          "contract_ref": {
+            "contract_schema_version": "lolla.decision_trail_specialist_contracts.v0",
+            "doc_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.md#conservative-fan-in-reader",
+            "schema_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json#/properties/specialist_roles/properties/conservative_fan_in_reader"
+          },
+          "expected_output_contract": {
+            "candidate_only": true,
+            "filled_by_packet_builder": false,
+            "must_be_filled_by_future_specialist": true,
+            "required_field_names": [
+              "areas_of_agreement",
+              "disagreements_preserved",
+              "high_uncertainty_fields",
+              "fields_ready_for_report",
+              "fields_not_ready_for_report",
+              "human_followup_questions",
+              "overtrust_risks",
+              "next_review_priority"
+            ],
+            "schema_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json#/properties/specialist_roles/properties/conservative_fan_in_reader"
+          },
+          "forbidden_outputs": [
+            "human-validation claim",
+            "ground-truth claim",
+            "judge-calibration claim",
+            "product-proof claim",
+            "answer-quality measurement",
+            "agent-action authorization",
+            "automatic label creation",
+            "runtime integration claim",
+            "filled specialist conclusion inside the packet"
+          ],
+          "known_limits": [
+            "checked-in packet excludes raw transcript, raw revised answer, raw memo, provider text, private ledgers, and private local content",
+            "packet builder does not infer conversation shape, likely actions, friction, lost value, or fan-in conclusions",
+            "PR88 reviewed fixture outputs only; no local-private shadow review was run",
+            "evidence_scope:safe_fixture_only",
+            "local_private_shadow_review:not_run",
+            "source_report_not_checked_in",
+            "requires_llm_interpretation_sections:8",
+            "overtrust_risk_present",
+            "generated Decision Trail report JSON is not checked in for this review target",
+            "fan-in must preserve disagreement and cannot vote or score"
+          ],
+          "mode": "checked_in_safe_mode",
+          "required_non_claims": [
+            "not human review",
+            "not ground truth",
+            "not judge calibration data",
+            "not product proof",
+            "not agent approval",
+            "not answer-quality scoring",
+            "not automatic labeling",
+            "not runtime integration",
+            "not evidence that clean artifacts mean good advice"
+          ],
+          "review_questions": [
+            "Which fields are ready for a Decision Trail report and which are not?",
+            "Which disagreements, missing fields, or overtrust risks must survive fan-in?",
+            "What should a human reviewer or later local-private pass inspect first?"
+          ],
+          "source_refs": [
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/report_reviews/0",
+              "content_policy": "PR88 report-review findings: field population, missingness, redaction, readability, and overtrust risk only",
+              "source_status": "explicit_in_source"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/source_reports/0",
+              "content_policy": "PR88 source-report metadata only; generated report JSON may not be checked in",
+              "source_status": "explicit_in_source"
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json",
+              "content_policy": "PR90 output contract definitions",
+              "source_status": "explicit_in_source"
+            }
+          ],
+          "specialist_role": "conservative_fan_in_reader"
+        },
+        "conversation_shape_reader": {
+          "allowed_inputs": [
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/report_reviews/0",
+              "content_policy": "PR88 report-review findings: field population, missingness, redaction, readability, and overtrust risk only"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/source_reports/0",
+              "content_policy": "PR88 source-report metadata only; generated report JSON may not be checked in"
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json",
+              "content_policy": "PR90 output contract definitions"
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json",
+              "content_policy": "Use only the PR90 contract for `conversation_shape_reader` output shape."
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.md",
+              "content_policy": "Human-readable PR90 contract explanation."
+            }
+          ],
+          "context": {
+            "evidence_scope": "safe_fixture_only",
+            "interpretation_needed_sections": [
+              "vanilla_likely_next_action",
+              "revised_likely_next_action",
+              "option_map",
+              "stakeholders",
+              "values_or_priorities",
+              "assistant_influence",
+              "useful_noisy_friction",
+              "lost_value"
+            ],
+            "local_private_shadow_review_status": "not_run",
+            "overtrust_risk_sections": [
+              "structural_delta"
+            ],
+            "populated_sections": [
+              "conversation_understanding_summary",
+              "decision_question",
+              "constraints",
+              "audit_pressure_summary",
+              "structural_delta",
+              "unresolved_questions"
+            ],
+            "prior_fixture_review_use": "source context only; not a specialist answer and not truth",
+            "report_id": "structured_fixture_report",
+            "source_report_available_in_repo": false,
+            "source_report_checked_in": false
+          },
+          "contract_ref": {
+            "contract_schema_version": "lolla.decision_trail_specialist_contracts.v0",
+            "doc_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.md#conversation-shape-reader",
+            "schema_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json#/properties/specialist_roles/properties/conversation_shape_reader"
+          },
+          "expected_output_contract": {
+            "candidate_only": true,
+            "filled_by_packet_builder": false,
+            "must_be_filled_by_future_specialist": true,
+            "required_field_names": [
+              "decision_question",
+              "live_options",
+              "option_status",
+              "constraints",
+              "stakeholders",
+              "values_or_priorities",
+              "assistant_influence",
+              "dropped_threads",
+              "unresolved_questions",
+              "uncertainty"
+            ],
+            "schema_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json#/properties/specialist_roles/properties/conversation_shape_reader"
+          },
+          "forbidden_outputs": [
+            "human-validation claim",
+            "ground-truth claim",
+            "judge-calibration claim",
+            "product-proof claim",
+            "answer-quality measurement",
+            "agent-action authorization",
+            "automatic label creation",
+            "runtime integration claim",
+            "filled specialist conclusion inside the packet"
+          ],
+          "known_limits": [
+            "checked-in packet excludes raw transcript, raw revised answer, raw memo, provider text, private ledgers, and private local content",
+            "packet builder does not infer conversation shape, likely actions, friction, lost value, or fan-in conclusions",
+            "PR88 reviewed fixture outputs only; no local-private shadow review was run",
+            "evidence_scope:safe_fixture_only",
+            "local_private_shadow_review:not_run",
+            "source_report_not_checked_in",
+            "requires_llm_interpretation_sections:8",
+            "overtrust_risk_present",
+            "generated Decision Trail report JSON is not checked in for this review target"
+          ],
+          "mode": "checked_in_safe_mode",
+          "required_non_claims": [
+            "not human review",
+            "not ground truth",
+            "not judge calibration data",
+            "not product proof",
+            "not agent approval",
+            "not answer-quality scoring",
+            "not automatic labeling",
+            "not runtime integration",
+            "not evidence that clean artifacts mean good advice"
+          ],
+          "review_questions": [
+            "What conversation-shape fields are visible from the checked-in-safe Decision Trail shell?",
+            "Which live options, stakeholders, values, or assistant-influence fields are unavailable without bounded interpretation?",
+            "Where is checked-in-safe context too thin to make a candidate read?"
+          ],
+          "source_refs": [
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/report_reviews/0",
+              "content_policy": "PR88 report-review findings: field population, missingness, redaction, readability, and overtrust risk only",
+              "source_status": "explicit_in_source"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/source_reports/0",
+              "content_policy": "PR88 source-report metadata only; generated report JSON may not be checked in",
+              "source_status": "explicit_in_source"
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json",
+              "content_policy": "PR90 output contract definitions",
+              "source_status": "explicit_in_source"
+            }
+          ],
+          "specialist_role": "conversation_shape_reader"
+        },
+        "friction_lost_value_reader": {
+          "allowed_inputs": [
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/report_reviews/0",
+              "content_policy": "PR88 report-review findings: field population, missingness, redaction, readability, and overtrust risk only"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/source_reports/0",
+              "content_policy": "PR88 source-report metadata only; generated report JSON may not be checked in"
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json",
+              "content_policy": "PR90 output contract definitions"
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json",
+              "content_policy": "Use only the PR90 contract for `friction_lost_value_reader` output shape."
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.md",
+              "content_policy": "Human-readable PR90 contract explanation."
+            }
+          ],
+          "context": {
+            "evidence_scope": "safe_fixture_only",
+            "interpretation_needed_sections": [
+              "vanilla_likely_next_action",
+              "revised_likely_next_action",
+              "option_map",
+              "stakeholders",
+              "values_or_priorities",
+              "assistant_influence",
+              "useful_noisy_friction",
+              "lost_value"
+            ],
+            "local_private_shadow_review_status": "not_run",
+            "overtrust_risk_sections": [
+              "structural_delta"
+            ],
+            "populated_sections": [
+              "conversation_understanding_summary",
+              "decision_question",
+              "constraints",
+              "audit_pressure_summary",
+              "structural_delta",
+              "unresolved_questions"
+            ],
+            "prior_fixture_review_use": "source context only; not a specialist answer and not truth",
+            "report_id": "structured_fixture_report",
+            "source_report_available_in_repo": false,
+            "source_report_checked_in": false
+          },
+          "contract_ref": {
+            "contract_schema_version": "lolla.decision_trail_specialist_contracts.v0",
+            "doc_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.md#friction-and-lost-value-reader",
+            "schema_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json#/properties/specialist_roles/properties/friction_lost_value_reader"
+          },
+          "expected_output_contract": {
+            "candidate_only": true,
+            "filled_by_packet_builder": false,
+            "must_be_filled_by_future_specialist": true,
+            "required_field_names": [
+              "useful_friction",
+              "noisy_friction",
+              "missing_friction",
+              "lost_value",
+              "value_overwrite_risk",
+              "momentum_or_simplicity_loss",
+              "overcaution_or_diligence_theater",
+              "uncertainty"
+            ],
+            "schema_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json#/properties/specialist_roles/properties/friction_lost_value_reader"
+          },
+          "forbidden_outputs": [
+            "human-validation claim",
+            "ground-truth claim",
+            "judge-calibration claim",
+            "product-proof claim",
+            "answer-quality measurement",
+            "agent-action authorization",
+            "automatic label creation",
+            "runtime integration claim",
+            "filled specialist conclusion inside the packet"
+          ],
+          "known_limits": [
+            "checked-in packet excludes raw transcript, raw revised answer, raw memo, provider text, private ledgers, and private local content",
+            "packet builder does not infer conversation shape, likely actions, friction, lost value, or fan-in conclusions",
+            "PR88 reviewed fixture outputs only; no local-private shadow review was run",
+            "evidence_scope:safe_fixture_only",
+            "local_private_shadow_review:not_run",
+            "source_report_not_checked_in",
+            "requires_llm_interpretation_sections:8",
+            "overtrust_risk_present",
+            "generated Decision Trail report JSON is not checked in for this review target",
+            "role requires bounded interpretation before any candidate field can be filled"
+          ],
+          "mode": "checked_in_safe_mode",
+          "required_non_claims": [
+            "not human review",
+            "not ground truth",
+            "not judge calibration data",
+            "not product proof",
+            "not agent approval",
+            "not answer-quality scoring",
+            "not automatic labeling",
+            "not runtime integration",
+            "not evidence that clean artifacts mean good advice"
+          ],
+          "review_questions": [
+            "What would count as useful friction versus noisy friction if a future specialist had enough context?",
+            "Which lost-value risks are impossible to read from checked-in-safe fields alone?",
+            "Could a populated structural delta make caution look more useful than it is?"
+          ],
+          "source_refs": [
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/report_reviews/0",
+              "content_policy": "PR88 report-review findings: field population, missingness, redaction, readability, and overtrust risk only",
+              "source_status": "explicit_in_source"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/source_reports/0",
+              "content_policy": "PR88 source-report metadata only; generated report JSON may not be checked in",
+              "source_status": "explicit_in_source"
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json",
+              "content_policy": "PR90 output contract definitions",
+              "source_status": "explicit_in_source"
+            }
+          ],
+          "specialist_role": "friction_lost_value_reader"
+        },
+        "likely_action_reader": {
+          "allowed_inputs": [
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/report_reviews/0",
+              "content_policy": "PR88 report-review findings: field population, missingness, redaction, readability, and overtrust risk only"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/source_reports/0",
+              "content_policy": "PR88 source-report metadata only; generated report JSON may not be checked in"
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json",
+              "content_policy": "PR90 output contract definitions"
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json",
+              "content_policy": "Use only the PR90 contract for `likely_action_reader` output shape."
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.md",
+              "content_policy": "Human-readable PR90 contract explanation."
+            }
+          ],
+          "context": {
+            "evidence_scope": "safe_fixture_only",
+            "interpretation_needed_sections": [
+              "vanilla_likely_next_action",
+              "revised_likely_next_action",
+              "option_map",
+              "stakeholders",
+              "values_or_priorities",
+              "assistant_influence",
+              "useful_noisy_friction",
+              "lost_value"
+            ],
+            "local_private_shadow_review_status": "not_run",
+            "overtrust_risk_sections": [
+              "structural_delta"
+            ],
+            "populated_sections": [
+              "conversation_understanding_summary",
+              "decision_question",
+              "constraints",
+              "audit_pressure_summary",
+              "structural_delta",
+              "unresolved_questions"
+            ],
+            "prior_fixture_review_use": "source context only; not a specialist answer and not truth",
+            "report_id": "structured_fixture_report",
+            "source_report_available_in_repo": false,
+            "source_report_checked_in": false
+          },
+          "contract_ref": {
+            "contract_schema_version": "lolla.decision_trail_specialist_contracts.v0",
+            "doc_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.md#likely-action-reader",
+            "schema_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json#/properties/specialist_roles/properties/likely_action_reader"
+          },
+          "expected_output_contract": {
+            "candidate_only": true,
+            "filled_by_packet_builder": false,
+            "must_be_filled_by_future_specialist": true,
+            "required_field_names": [
+              "vanilla_likely_next_action",
+              "revised_likely_next_action",
+              "action_delta",
+              "threshold_delta",
+              "sequence_delta",
+              "evidence_gate_delta",
+              "stop_rule_delta",
+              "uncertainty"
+            ],
+            "schema_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json#/properties/specialist_roles/properties/likely_action_reader"
+          },
+          "forbidden_outputs": [
+            "human-validation claim",
+            "ground-truth claim",
+            "judge-calibration claim",
+            "product-proof claim",
+            "answer-quality measurement",
+            "agent-action authorization",
+            "automatic label creation",
+            "runtime integration claim",
+            "filled specialist conclusion inside the packet"
+          ],
+          "known_limits": [
+            "checked-in packet excludes raw transcript, raw revised answer, raw memo, provider text, private ledgers, and private local content",
+            "packet builder does not infer conversation shape, likely actions, friction, lost value, or fan-in conclusions",
+            "PR88 reviewed fixture outputs only; no local-private shadow review was run",
+            "evidence_scope:safe_fixture_only",
+            "local_private_shadow_review:not_run",
+            "source_report_not_checked_in",
+            "requires_llm_interpretation_sections:8",
+            "overtrust_risk_present",
+            "generated Decision Trail report JSON is not checked in for this review target",
+            "role requires bounded interpretation before any candidate field can be filled"
+          ],
+          "mode": "checked_in_safe_mode",
+          "required_non_claims": [
+            "not human review",
+            "not ground truth",
+            "not judge calibration data",
+            "not product proof",
+            "not agent approval",
+            "not answer-quality scoring",
+            "not automatic labeling",
+            "not runtime integration",
+            "not evidence that clean artifacts mean good advice"
+          ],
+          "review_questions": [
+            "Can a future specialist identify likely next actions from allowed inputs without pretending certainty?",
+            "Which action, threshold, sequence, evidence-gate, or stop-rule deltas remain unavailable?",
+            "Does the source surface support an unclear read instead of an over-inferred action read?"
+          ],
+          "source_refs": [
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/report_reviews/0",
+              "content_policy": "PR88 report-review findings: field population, missingness, redaction, readability, and overtrust risk only",
+              "source_status": "explicit_in_source"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/source_reports/0",
+              "content_policy": "PR88 source-report metadata only; generated report JSON may not be checked in",
+              "source_status": "explicit_in_source"
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json",
+              "content_policy": "PR90 output contract definitions",
+              "source_status": "explicit_in_source"
+            }
+          ],
+          "specialist_role": "likely_action_reader"
+        }
+      },
+      "report_id": "structured_fixture_report",
+      "report_mode": "checked_in_safe_mode",
+      "report_ref": "temporary_pr87_cli_output_not_checked_in",
+      "source_refs": [
+        {
+          "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/report_reviews/0",
+          "content_policy": "PR88 report-review findings: field population, missingness, redaction, readability, and overtrust risk only",
+          "source_status": "explicit_in_source"
+        },
+        {
+          "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/source_reports/0",
+          "content_policy": "PR88 source-report metadata only; generated report JSON may not be checked in",
+          "source_status": "explicit_in_source"
+        },
+        {
+          "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json",
+          "content_policy": "PR90 output contract definitions",
+          "source_status": "explicit_in_source"
+        }
+      ],
+      "source_run_ref": "tests/test_decision_trail_report.py::_minimal_run_dir"
+    },
+    {
+      "available_context": {
+        "artifact_custody_read": "useful_for_diagnostics",
+        "behavioral_usefulness_summary": {
+          "evidence_support_answerable": "yes_for_missingness_only",
+          "missingness_answerable": "yes",
+          "more_careful_or_more_impressed": "more_careful",
+          "non_claims_answerable": "yes",
+          "what_changed_answerable": "no"
+        },
+        "evidence_scope": "safe_fixture_only",
+        "field_population_summary": {
+          "clear_and_populated": 0,
+          "clear_but_missing": 6,
+          "confusing": 0,
+          "not_applicable": 0,
+          "overclaim_risk": 0,
+          "requires_human_review": 0,
+          "requires_llm_interpretation": 8,
+          "semantic_section_count": 14
+        },
+        "human_followup_questions": [
+          "Should sparse reports be hidden from customer-facing presentation until a minimum structured-artifact threshold exists?",
+          "Which missing artifacts should be treated as degraded-run blockers rather than merely sparse report fields?"
+        ],
+        "human_validation_read": "not_human_validated",
+        "interpretation_needed_sections": [
+          "vanilla_likely_next_action",
+          "revised_likely_next_action",
+          "option_map",
+          "stakeholders",
+          "values_or_priorities",
+          "assistant_influence",
+          "useful_noisy_friction",
+          "lost_value"
+        ],
+        "local_private_shadow_review_status": "not_run",
+        "missing_or_malformed_artifacts": [
+          {
+            "classification": "clear_but_missing",
+            "ref": "evaluation.json",
+            "source_status": "unavailable_missing_artifact"
+          },
+          {
+            "classification": "clear_but_missing",
+            "ref": "agent_result.json",
+            "source_status": "unavailable_missing_artifact"
+          },
+          {
+            "classification": "clear_but_missing",
+            "ref": "reasoning_trace.json",
+            "source_status": "unavailable_missing_artifact"
+          },
+          {
+            "classification": "clear_but_missing",
+            "ref": "extraction.json",
+            "source_status": "unavailable_missing_artifact"
+          }
+        ],
+        "overtrust_risk_sections": [],
+        "populated_sections": [],
+        "product_delta_usefulness_read": "not_reviewed",
+        "redacted_or_private_refs": [],
+        "report_readability": "readable_but_sparse",
+        "semantic_interpretation_adequacy_read": "not_available",
+        "source_report_available_in_repo": false,
+        "source_report_checked_in": false,
+        "source_report_kind": "safe_sparse_fixture"
+      },
+      "missing_or_thin_context": [
+        "evidence_scope:safe_fixture_only",
+        "local_private_shadow_review:not_run",
+        "source_report_not_checked_in",
+        "no_populated_semantic_sections_in_fixture_review",
+        "requires_llm_interpretation_sections:8"
+      ],
+      "packetization_notes": [
+        "PR91 prepared input packets only.",
+        "Specialist reads remain unfilled until a later provisional review slice."
+      ],
+      "packets": {
+        "conservative_fan_in_reader": {
+          "allowed_inputs": [
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/report_reviews/1",
+              "content_policy": "PR88 report-review findings: field population, missingness, redaction, readability, and overtrust risk only"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/source_reports/1",
+              "content_policy": "PR88 source-report metadata only; generated report JSON may not be checked in"
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json",
+              "content_policy": "PR90 output contract definitions"
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json",
+              "content_policy": "Use only the PR90 contract for `conservative_fan_in_reader` output shape."
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.md",
+              "content_policy": "Human-readable PR90 contract explanation."
+            }
+          ],
+          "context": {
+            "evidence_scope": "safe_fixture_only",
+            "interpretation_needed_sections": [
+              "vanilla_likely_next_action",
+              "revised_likely_next_action",
+              "option_map",
+              "stakeholders",
+              "values_or_priorities",
+              "assistant_influence",
+              "useful_noisy_friction",
+              "lost_value"
+            ],
+            "local_private_shadow_review_status": "not_run",
+            "overtrust_risk_sections": [],
+            "populated_sections": [],
+            "prior_fixture_review_use": "source context only; not a specialist answer and not truth",
+            "report_id": "sparse_missing_fixture_report",
+            "source_report_available_in_repo": false,
+            "source_report_checked_in": false
+          },
+          "contract_ref": {
+            "contract_schema_version": "lolla.decision_trail_specialist_contracts.v0",
+            "doc_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.md#conservative-fan-in-reader",
+            "schema_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json#/properties/specialist_roles/properties/conservative_fan_in_reader"
+          },
+          "expected_output_contract": {
+            "candidate_only": true,
+            "filled_by_packet_builder": false,
+            "must_be_filled_by_future_specialist": true,
+            "required_field_names": [
+              "areas_of_agreement",
+              "disagreements_preserved",
+              "high_uncertainty_fields",
+              "fields_ready_for_report",
+              "fields_not_ready_for_report",
+              "human_followup_questions",
+              "overtrust_risks",
+              "next_review_priority"
+            ],
+            "schema_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json#/properties/specialist_roles/properties/conservative_fan_in_reader"
+          },
+          "forbidden_outputs": [
+            "human-validation claim",
+            "ground-truth claim",
+            "judge-calibration claim",
+            "product-proof claim",
+            "answer-quality measurement",
+            "agent-action authorization",
+            "automatic label creation",
+            "runtime integration claim",
+            "filled specialist conclusion inside the packet"
+          ],
+          "known_limits": [
+            "checked-in packet excludes raw transcript, raw revised answer, raw memo, provider text, private ledgers, and private local content",
+            "packet builder does not infer conversation shape, likely actions, friction, lost value, or fan-in conclusions",
+            "PR88 reviewed fixture outputs only; no local-private shadow review was run",
+            "evidence_scope:safe_fixture_only",
+            "local_private_shadow_review:not_run",
+            "source_report_not_checked_in",
+            "no_populated_semantic_sections_in_fixture_review",
+            "requires_llm_interpretation_sections:8",
+            "generated Decision Trail report JSON is not checked in for this review target",
+            "fan-in must preserve disagreement and cannot vote or score"
+          ],
+          "mode": "checked_in_safe_mode",
+          "required_non_claims": [
+            "not human review",
+            "not ground truth",
+            "not judge calibration data",
+            "not product proof",
+            "not agent approval",
+            "not answer-quality scoring",
+            "not automatic labeling",
+            "not runtime integration",
+            "not evidence that clean artifacts mean good advice"
+          ],
+          "review_questions": [
+            "Which fields are ready for a Decision Trail report and which are not?",
+            "Which disagreements, missing fields, or overtrust risks must survive fan-in?",
+            "What should a human reviewer or later local-private pass inspect first?"
+          ],
+          "source_refs": [
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/report_reviews/1",
+              "content_policy": "PR88 report-review findings: field population, missingness, redaction, readability, and overtrust risk only",
+              "source_status": "explicit_in_source"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/source_reports/1",
+              "content_policy": "PR88 source-report metadata only; generated report JSON may not be checked in",
+              "source_status": "explicit_in_source"
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json",
+              "content_policy": "PR90 output contract definitions",
+              "source_status": "explicit_in_source"
+            }
+          ],
+          "specialist_role": "conservative_fan_in_reader"
+        },
+        "conversation_shape_reader": {
+          "allowed_inputs": [
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/report_reviews/1",
+              "content_policy": "PR88 report-review findings: field population, missingness, redaction, readability, and overtrust risk only"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/source_reports/1",
+              "content_policy": "PR88 source-report metadata only; generated report JSON may not be checked in"
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json",
+              "content_policy": "PR90 output contract definitions"
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json",
+              "content_policy": "Use only the PR90 contract for `conversation_shape_reader` output shape."
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.md",
+              "content_policy": "Human-readable PR90 contract explanation."
+            }
+          ],
+          "context": {
+            "evidence_scope": "safe_fixture_only",
+            "interpretation_needed_sections": [
+              "vanilla_likely_next_action",
+              "revised_likely_next_action",
+              "option_map",
+              "stakeholders",
+              "values_or_priorities",
+              "assistant_influence",
+              "useful_noisy_friction",
+              "lost_value"
+            ],
+            "local_private_shadow_review_status": "not_run",
+            "overtrust_risk_sections": [],
+            "populated_sections": [],
+            "prior_fixture_review_use": "source context only; not a specialist answer and not truth",
+            "report_id": "sparse_missing_fixture_report",
+            "source_report_available_in_repo": false,
+            "source_report_checked_in": false
+          },
+          "contract_ref": {
+            "contract_schema_version": "lolla.decision_trail_specialist_contracts.v0",
+            "doc_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.md#conversation-shape-reader",
+            "schema_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json#/properties/specialist_roles/properties/conversation_shape_reader"
+          },
+          "expected_output_contract": {
+            "candidate_only": true,
+            "filled_by_packet_builder": false,
+            "must_be_filled_by_future_specialist": true,
+            "required_field_names": [
+              "decision_question",
+              "live_options",
+              "option_status",
+              "constraints",
+              "stakeholders",
+              "values_or_priorities",
+              "assistant_influence",
+              "dropped_threads",
+              "unresolved_questions",
+              "uncertainty"
+            ],
+            "schema_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json#/properties/specialist_roles/properties/conversation_shape_reader"
+          },
+          "forbidden_outputs": [
+            "human-validation claim",
+            "ground-truth claim",
+            "judge-calibration claim",
+            "product-proof claim",
+            "answer-quality measurement",
+            "agent-action authorization",
+            "automatic label creation",
+            "runtime integration claim",
+            "filled specialist conclusion inside the packet"
+          ],
+          "known_limits": [
+            "checked-in packet excludes raw transcript, raw revised answer, raw memo, provider text, private ledgers, and private local content",
+            "packet builder does not infer conversation shape, likely actions, friction, lost value, or fan-in conclusions",
+            "PR88 reviewed fixture outputs only; no local-private shadow review was run",
+            "evidence_scope:safe_fixture_only",
+            "local_private_shadow_review:not_run",
+            "source_report_not_checked_in",
+            "no_populated_semantic_sections_in_fixture_review",
+            "requires_llm_interpretation_sections:8",
+            "generated Decision Trail report JSON is not checked in for this review target"
+          ],
+          "mode": "checked_in_safe_mode",
+          "required_non_claims": [
+            "not human review",
+            "not ground truth",
+            "not judge calibration data",
+            "not product proof",
+            "not agent approval",
+            "not answer-quality scoring",
+            "not automatic labeling",
+            "not runtime integration",
+            "not evidence that clean artifacts mean good advice"
+          ],
+          "review_questions": [
+            "What conversation-shape fields are visible from the checked-in-safe Decision Trail shell?",
+            "Which live options, stakeholders, values, or assistant-influence fields are unavailable without bounded interpretation?",
+            "Where is checked-in-safe context too thin to make a candidate read?"
+          ],
+          "source_refs": [
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/report_reviews/1",
+              "content_policy": "PR88 report-review findings: field population, missingness, redaction, readability, and overtrust risk only",
+              "source_status": "explicit_in_source"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/source_reports/1",
+              "content_policy": "PR88 source-report metadata only; generated report JSON may not be checked in",
+              "source_status": "explicit_in_source"
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json",
+              "content_policy": "PR90 output contract definitions",
+              "source_status": "explicit_in_source"
+            }
+          ],
+          "specialist_role": "conversation_shape_reader"
+        },
+        "friction_lost_value_reader": {
+          "allowed_inputs": [
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/report_reviews/1",
+              "content_policy": "PR88 report-review findings: field population, missingness, redaction, readability, and overtrust risk only"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/source_reports/1",
+              "content_policy": "PR88 source-report metadata only; generated report JSON may not be checked in"
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json",
+              "content_policy": "PR90 output contract definitions"
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json",
+              "content_policy": "Use only the PR90 contract for `friction_lost_value_reader` output shape."
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.md",
+              "content_policy": "Human-readable PR90 contract explanation."
+            }
+          ],
+          "context": {
+            "evidence_scope": "safe_fixture_only",
+            "interpretation_needed_sections": [
+              "vanilla_likely_next_action",
+              "revised_likely_next_action",
+              "option_map",
+              "stakeholders",
+              "values_or_priorities",
+              "assistant_influence",
+              "useful_noisy_friction",
+              "lost_value"
+            ],
+            "local_private_shadow_review_status": "not_run",
+            "overtrust_risk_sections": [],
+            "populated_sections": [],
+            "prior_fixture_review_use": "source context only; not a specialist answer and not truth",
+            "report_id": "sparse_missing_fixture_report",
+            "source_report_available_in_repo": false,
+            "source_report_checked_in": false
+          },
+          "contract_ref": {
+            "contract_schema_version": "lolla.decision_trail_specialist_contracts.v0",
+            "doc_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.md#friction-and-lost-value-reader",
+            "schema_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json#/properties/specialist_roles/properties/friction_lost_value_reader"
+          },
+          "expected_output_contract": {
+            "candidate_only": true,
+            "filled_by_packet_builder": false,
+            "must_be_filled_by_future_specialist": true,
+            "required_field_names": [
+              "useful_friction",
+              "noisy_friction",
+              "missing_friction",
+              "lost_value",
+              "value_overwrite_risk",
+              "momentum_or_simplicity_loss",
+              "overcaution_or_diligence_theater",
+              "uncertainty"
+            ],
+            "schema_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json#/properties/specialist_roles/properties/friction_lost_value_reader"
+          },
+          "forbidden_outputs": [
+            "human-validation claim",
+            "ground-truth claim",
+            "judge-calibration claim",
+            "product-proof claim",
+            "answer-quality measurement",
+            "agent-action authorization",
+            "automatic label creation",
+            "runtime integration claim",
+            "filled specialist conclusion inside the packet"
+          ],
+          "known_limits": [
+            "checked-in packet excludes raw transcript, raw revised answer, raw memo, provider text, private ledgers, and private local content",
+            "packet builder does not infer conversation shape, likely actions, friction, lost value, or fan-in conclusions",
+            "PR88 reviewed fixture outputs only; no local-private shadow review was run",
+            "evidence_scope:safe_fixture_only",
+            "local_private_shadow_review:not_run",
+            "source_report_not_checked_in",
+            "no_populated_semantic_sections_in_fixture_review",
+            "requires_llm_interpretation_sections:8",
+            "generated Decision Trail report JSON is not checked in for this review target",
+            "role requires bounded interpretation before any candidate field can be filled"
+          ],
+          "mode": "checked_in_safe_mode",
+          "required_non_claims": [
+            "not human review",
+            "not ground truth",
+            "not judge calibration data",
+            "not product proof",
+            "not agent approval",
+            "not answer-quality scoring",
+            "not automatic labeling",
+            "not runtime integration",
+            "not evidence that clean artifacts mean good advice"
+          ],
+          "review_questions": [
+            "What would count as useful friction versus noisy friction if a future specialist had enough context?",
+            "Which lost-value risks are impossible to read from checked-in-safe fields alone?",
+            "Could a populated structural delta make caution look more useful than it is?"
+          ],
+          "source_refs": [
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/report_reviews/1",
+              "content_policy": "PR88 report-review findings: field population, missingness, redaction, readability, and overtrust risk only",
+              "source_status": "explicit_in_source"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/source_reports/1",
+              "content_policy": "PR88 source-report metadata only; generated report JSON may not be checked in",
+              "source_status": "explicit_in_source"
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json",
+              "content_policy": "PR90 output contract definitions",
+              "source_status": "explicit_in_source"
+            }
+          ],
+          "specialist_role": "friction_lost_value_reader"
+        },
+        "likely_action_reader": {
+          "allowed_inputs": [
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/report_reviews/1",
+              "content_policy": "PR88 report-review findings: field population, missingness, redaction, readability, and overtrust risk only"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/source_reports/1",
+              "content_policy": "PR88 source-report metadata only; generated report JSON may not be checked in"
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json",
+              "content_policy": "PR90 output contract definitions"
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json",
+              "content_policy": "Use only the PR90 contract for `likely_action_reader` output shape."
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.md",
+              "content_policy": "Human-readable PR90 contract explanation."
+            }
+          ],
+          "context": {
+            "evidence_scope": "safe_fixture_only",
+            "interpretation_needed_sections": [
+              "vanilla_likely_next_action",
+              "revised_likely_next_action",
+              "option_map",
+              "stakeholders",
+              "values_or_priorities",
+              "assistant_influence",
+              "useful_noisy_friction",
+              "lost_value"
+            ],
+            "local_private_shadow_review_status": "not_run",
+            "overtrust_risk_sections": [],
+            "populated_sections": [],
+            "prior_fixture_review_use": "source context only; not a specialist answer and not truth",
+            "report_id": "sparse_missing_fixture_report",
+            "source_report_available_in_repo": false,
+            "source_report_checked_in": false
+          },
+          "contract_ref": {
+            "contract_schema_version": "lolla.decision_trail_specialist_contracts.v0",
+            "doc_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.md#likely-action-reader",
+            "schema_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json#/properties/specialist_roles/properties/likely_action_reader"
+          },
+          "expected_output_contract": {
+            "candidate_only": true,
+            "filled_by_packet_builder": false,
+            "must_be_filled_by_future_specialist": true,
+            "required_field_names": [
+              "vanilla_likely_next_action",
+              "revised_likely_next_action",
+              "action_delta",
+              "threshold_delta",
+              "sequence_delta",
+              "evidence_gate_delta",
+              "stop_rule_delta",
+              "uncertainty"
+            ],
+            "schema_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json#/properties/specialist_roles/properties/likely_action_reader"
+          },
+          "forbidden_outputs": [
+            "human-validation claim",
+            "ground-truth claim",
+            "judge-calibration claim",
+            "product-proof claim",
+            "answer-quality measurement",
+            "agent-action authorization",
+            "automatic label creation",
+            "runtime integration claim",
+            "filled specialist conclusion inside the packet"
+          ],
+          "known_limits": [
+            "checked-in packet excludes raw transcript, raw revised answer, raw memo, provider text, private ledgers, and private local content",
+            "packet builder does not infer conversation shape, likely actions, friction, lost value, or fan-in conclusions",
+            "PR88 reviewed fixture outputs only; no local-private shadow review was run",
+            "evidence_scope:safe_fixture_only",
+            "local_private_shadow_review:not_run",
+            "source_report_not_checked_in",
+            "no_populated_semantic_sections_in_fixture_review",
+            "requires_llm_interpretation_sections:8",
+            "generated Decision Trail report JSON is not checked in for this review target",
+            "role requires bounded interpretation before any candidate field can be filled"
+          ],
+          "mode": "checked_in_safe_mode",
+          "required_non_claims": [
+            "not human review",
+            "not ground truth",
+            "not judge calibration data",
+            "not product proof",
+            "not agent approval",
+            "not answer-quality scoring",
+            "not automatic labeling",
+            "not runtime integration",
+            "not evidence that clean artifacts mean good advice"
+          ],
+          "review_questions": [
+            "Can a future specialist identify likely next actions from allowed inputs without pretending certainty?",
+            "Which action, threshold, sequence, evidence-gate, or stop-rule deltas remain unavailable?",
+            "Does the source surface support an unclear read instead of an over-inferred action read?"
+          ],
+          "source_refs": [
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/report_reviews/1",
+              "content_policy": "PR88 report-review findings: field population, missingness, redaction, readability, and overtrust risk only",
+              "source_status": "explicit_in_source"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/source_reports/1",
+              "content_policy": "PR88 source-report metadata only; generated report JSON may not be checked in",
+              "source_status": "explicit_in_source"
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json",
+              "content_policy": "PR90 output contract definitions",
+              "source_status": "explicit_in_source"
+            }
+          ],
+          "specialist_role": "likely_action_reader"
+        }
+      },
+      "report_id": "sparse_missing_fixture_report",
+      "report_mode": "checked_in_safe_mode",
+      "report_ref": "temporary_pr87_cli_output_not_checked_in",
+      "source_refs": [
+        {
+          "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/report_reviews/1",
+          "content_policy": "PR88 report-review findings: field population, missingness, redaction, readability, and overtrust risk only",
+          "source_status": "explicit_in_source"
+        },
+        {
+          "artifact_ref": "reviews/codex-assisted/decision-trail-fixture-review-v0/review.json#/source_reports/1",
+          "content_policy": "PR88 source-report metadata only; generated report JSON may not be checked in",
+          "source_status": "explicit_in_source"
+        },
+        {
+          "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json",
+          "content_policy": "PR90 output contract definitions",
+          "source_status": "explicit_in_source"
+        }
+      ],
+      "source_run_ref": "temporary safe fixture with no structured artifacts"
+    }
+  ],
+  "schema_version": "lolla.decision_trail_specialist_packets.v0"
+}

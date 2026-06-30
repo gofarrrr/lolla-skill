@@ -140,6 +140,13 @@ The detailed docs are split so agents and humans do not have to load one giant f
 | [PR88 Decision Trail Goal Prompt](docs/conversation-understanding/decision-trail-pr88-goal-prompt-v0.md) | Ready-to-paste `/goal` handoff for a fresh coder session to implement PR88 only: fixture review of exported Decision Trail reports for usefulness, missingness, readability, and overtrust risk. |
 | [Decision Trail Export Fixture Review](docs/conversation-understanding/decision-trail-export-fixture-review-v0.md) | PR88's safe-fixture-only review of exported Decision Trail reports, finding the custody/missingness shell useful but too sparse for the full Decision Trail product without later interpretation. |
 | [Decision Trail Interpretation Gap Decision](docs/conversation-understanding/decision-trail-interpretation-gap-decision-v0.md) | PR89's docs-only decision gate: keep the custody shell, reject runtime/broad-IR expansion for now, and pursue narrow offline LLM specialist contracts next. |
+| [PR90 Decision Trail Goal Prompt](docs/conversation-understanding/decision-trail-pr90-goal-prompt-v0.md) | Ready-to-paste `/goal` handoff for a fresh coder session to implement PR90 only: docs/schema contracts for narrow offline Decision Trail interpretation specialists. |
+| [Decision Trail Specialist Contracts](docs/conversation-understanding/decision-trail-specialist-contracts-v0.md) | PR90's docs/schema contract for four narrow offline Decision Trail interpretation specialists: conversation shape, likely actions, friction/lost value, and conservative fan-in. |
+| [Decision Trail Specialist Packet Builder](docs/conversation-understanding/decision-trail-specialist-packet-builder-v0.md) | PR91's read-only packet builder for shaping PR88 fixture-review context into checked-in-safe input packets for the four PR90 specialist contracts. |
+| [Decision Trail Specialist Trap Set](docs/conversation-understanding/decision-trail-specialist-trap-set-v0.md) | PR92's checked-in-safe trap fixtures for testing whether future Decision Trail specialist passes resist over-inference, overtrust, lost-value blindness, and fan-in smoothing. |
+| [Decision Trail Specialist Dry Run](docs/conversation-understanding/decision-trail-specialist-dry-run-v0.md) | PR93's Codex-assisted provisional dry run over PR92 traps and the tiny PR91 packet surface, checking review discipline without creating specialist outputs or product proof. |
+| [Decision Trail Specialist Path Decision](docs/conversation-understanding/decision-trail-specialist-path-decision-v0.md) | PR94's docs-only decision gate selecting local-private Decision Trail packet mode as the next slice, while rejecting broader checked-in-safe batches, runtime integration, and broad IR work for now. |
+| [Decision Trail Local-Private Packet Mode](docs/conversation-understanding/decision-trail-local-private-packet-mode-v0.md) | PR95's explicit local-private packet mode for operator-selected completed run directories, with output-path guards, metadata-only/include-text policies, unsafe-for-commit marking, and no specialist-output generation. |
 | [Evaluation Flywheel Action Plan](docs/evals/evaluation-flywheel-action-plan-v0.md) | The current action map for turning real traces into human labels, fixtures, deterministic checks, and later calibrated binary judges without drifting into generic scoring. |
 | [Current System Capabilities](docs/evals/current-system-capabilities-v0.md) | A plain-language map of what the current system can do, which recorded cases show it, how the layers work together, and how it helps us avoid brittle evaluation. |
 | [Product Delta Evidence And Interpretation Adequacy](docs/evals/product-delta-evidence-and-interpretation-adequacy-v0.md) | The post-PR70 product-readiness bridge: prove decision-useful deltas against actual vanilla strong-model conversations, and treat conversation interpretation quality as load-bearing. |
@@ -206,6 +213,16 @@ The detailed docs are split so agents and humans do not have to load one giant f
 ## Current Notes
 
 - Checked against `SKILL.md` and runtime entry points on 2026-06-25.
+- Current Decision Trail state as of PR95: the runtime produces completed run
+  artifacts; the offline Decision Trail lane can export sparse reports and
+  build checked-in-safe or explicit local-private specialist packets; no
+  specialist interpretation, fan-in, Product Delta eval, or Decision Trail
+  report is triggered automatically by `$lolla`.
+- PR95 local-private packets are a source-access step, not a product verdict.
+  `metadata_only` records availability, `include_text` copies capped private
+  text into an unsafe-for-commit local output, and both modes still stop before
+  likely-action, option, stakeholder, value, assistant-influence,
+  useful/noisy-friction, lost-value, and fan-in conclusions.
 - Pressure-check agents are rested by default. If explicitly enabled, they start only after the updated position is persisted and the V60 ledger validates.
 - The pre-Step-6 shadow portfolio hook is default-off and shadow-only; it records evidence but never changes visible output.
 - The archive currently copies the core/optional artifact set, including live transcript, operator log, run-event log, private ledgers, memo fields, optional usefulness/outcome reviews, and optional `control_input.json` when present. It also generates `agent_result.json`, the compact agent-facing handoff; optional `control_result.json`, the control-plane wrapper; `extraction_adequacy_report.json`, the deterministic report for current extraction/provenance preservation across `conversation.txt -> extraction.json -> ConversationContext -> ConversationIR`; `evaluation.json`, the deterministic run-readiness receipt; and `reasoning_trace.json`, a local-only manifest that indexes artifacts by path/hash and adds capture-adequacy, optional control-plane references, reasoning-lens, model-call, private-custody, and trace-adequacy metadata.

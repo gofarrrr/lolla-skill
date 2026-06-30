@@ -1,7 +1,7 @@
 # Lolla Progress Report
 
 Status: Living PM report
-Last updated: 2026-06-29
+Last updated: 2026-06-30
 
 This file tracks where Lolla stands against the big-picture product direction in
 `docs/lolla-reasoning-audit-harness-prd.md`.
@@ -62,17 +62,41 @@ conversation or agent run
 -> optional control-plane integration
 ```
 
-## Fresh-Session Handoff: 2026-06-29
+## Fresh-Session Handoff: 2026-06-30
 
 Current handoff state:
 
 ```text
-PR89 Conversation Interpretation Gap Decision v0 is the latest Decision Trail slice
-recorded in this working tree. PR85 remains the latest packaged
-product-evidence eval-lane slice. PR70 remains the audit/accountability
-machinery closure gate. PR48 remains the high-stakes evidence gate. PR54
-remains the paused v0 values/priorities worksheet gate.
+PR95 Decision Trail Local-Private Packet Mode v0 is the latest Decision Trail
+slice recorded in this working tree. PR95 is not a runtime feature and does
+not run any interpretation specialists; it only prepares local-only packets
+from operator-selected completed run directories. PR85 remains the latest
+packaged product-evidence eval-lane slice. PR70 remains the
+audit/accountability machinery closure gate. PR48 remains the high-stakes
+evidence gate. PR54 remains the paused v0 values/priorities worksheet gate.
 Use git log for the exact current commit hash.
+```
+
+Current Decision Trail standing:
+
+```text
+The live Lolla skill still produces audited answers and archived artifacts.
+The Decision Trail lane is an offline reader/packetizer over completed runs.
+PR86-PR89 built the sparse report shell, exporter, fixture review, and
+interpretation-gap decision. PR90-PR95 built narrow specialist contracts,
+checked-in-safe packets, traps, a discipline dry run, a path decision, and
+local-private packet mode.
+
+What works now: an operator can use a CLI to build checked-in-safe packet
+fixtures or local-private packets for completed run directories.
+
+What does not work yet: no specialist pass fills likely actions, live options,
+stakeholders, values/priorities, assistant influence, useful/noisy friction,
+lost value, or conservative fan-in. Nothing is automatic in `$lolla`.
+
+Next conservative gate: a PR96-style local-private packet smoke/review over
+operator-selected completed runs, with all local-private outputs kept out of
+the repo, before any specialist-output batch is attempted.
 ```
 
 Documentation alignment note:
@@ -159,6 +183,74 @@ now records PR89's decision gate. PR89 selects narrow offline LLM specialist
 enrichment as the next path. It keeps the deterministic Decision Trail shell,
 rejects runtime integration and broad IR work for now, and recommends PR90
 Decision Trail Interpretation Specialist Contracts v0.
+
+docs/conversation-understanding/decision-trail-pr90-goal-prompt-v0.md is the
+ready-to-paste `/goal` handoff for PR90. It scopes the next slice to
+docs/schema contracts for four narrow offline Decision Trail interpretation
+specialists: conversation shape, likely actions, friction/lost value, and
+conservative fan-in. It explicitly forbids packet builders, model calls,
+specialist review outputs, runtime integration, scoring, judging, automatic
+labels, and archive mutation.
+
+docs/conversation-understanding/decision-trail-specialist-contracts-v0.md and
+docs/conversation-understanding/decision-trail-specialist-contracts-v0.json now
+define PR90's contract surface. PR90 adds docs/schema contracts and focused
+tests for four narrow offline Decision Trail specialist roles:
+conversation-shape, likely-action, friction/lost-value, and conservative
+fan-in. It prepares PR91 packet building without running specialists, calling
+models, integrating runtime, mutating archives, scoring, judging, or creating
+automatic labels.
+
+docs/conversation-understanding/decision-trail-specialist-packet-builder-v0.md
+and reviews/codex-assisted/decision-trail-specialist-packets-v0/packets.json
+now record PR91's read-only packetization surface. PR91 adds deterministic
+packet-building code, a CLI, and focused tests for shaping PR88 fixture-review
+context into checked-in-safe input packets for the four PR90 specialist
+contracts. It does not run specialists, call models, execute fan-in, integrate
+runtime, mutate archives, score, judge, or create automatic labels.
+
+docs/conversation-understanding/decision-trail-specialist-trap-set-v0.md and
+docs/conversation-understanding/decision-trail-specialist-trap-set-v0.json now
+record PR92's checked-in-safe trap fixture layer. PR92 adds ten trap families
+for testing whether future Decision Trail specialist passes resist
+over-inference, overtrust from clean custody, likely-action guessing, lost-value
+blindness, local-private context collapse, and fan-in smoothing. It does not
+run specialists, call models, execute fan-in, integrate runtime, mutate
+archives, score, judge, or create automatic labels.
+
+docs/conversation-understanding/decision-trail-specialist-dry-run-v0.md and
+reviews/codex-assisted/decision-trail-specialist-dry-run-v0/review.json now
+record PR93's Codex-assisted provisional dry run over PR92 traps and the tiny
+PR91 packet surface. PR93 checks whether the specialist setup resists obvious
+over-inference and overtrust before filling messy interpretation fields. It
+creates no contract-conforming specialist outputs, executes no fan-in, calls no
+models, integrates no runtime, mutates no archives, scores nothing, judges
+nothing, and creates no automatic labels.
+
+docs/conversation-understanding/decision-trail-specialist-path-decision-v0.md
+now records PR94's docs-only path decision. PR94 selects PR95 Decision Trail
+Local-Private Packet Mode v0 as the next slice. It rejects a broader
+checked-in-safe specialist batch for now because PR88, PR91, and PR93 already
+show that current safe fixtures are too thin. It also keeps runtime
+integration, broad conversation IR, scoring, judging, automatic labels, and
+agent authorization rejected.
+
+docs/conversation-understanding/decision-trail-local-private-packet-mode-v0.md,
+engine/system_b/decision_trail_specialist_packets.py, and
+scripts/evals/build_decision_trail_specialist_packets.py now implement PR95's
+explicit local-private packet mode. PR95 lets an operator build local-only
+Decision Trail specialist packets from selected completed run directories,
+with required `--mode local_private_mode`, required explicit output path,
+output rejection inside the repo or selected run directory, metadata-only and
+include-text policies, a local artifact read manifest, truthful private-content
+metadata, and unsafe-for-commit marking. Post-review alignment clarified that
+the PR88 fixture-review input is lineage-only in local-private mode, not a
+semantic source; raw transcript/revised/memo booleans now describe actual
+included artifacts; local-private fixture/schema inputs must be repo-local to
+avoid path leaks; and the builder docstring now reflects the real
+checked-in-safe versus local-private read behavior. PR95 still creates no
+specialist outputs, calls no models, invokes no runtime, mutates no archives,
+scores nothing, judges nothing, and creates no automatic labels.
 ```
 
 Current product state:
@@ -485,10 +577,118 @@ Current stop rule:
 Latest completed slice:
 
 ```text
-PR89 Conversation Interpretation Gap Decision v0
+PR95 Decision Trail Local-Private Packet Mode v0
 ```
 
 Result:
+
+- lands `docs/conversation-understanding/decision-trail-local-private-packet-mode-v0.md`;
+- extends `engine/system_b/decision_trail_specialist_packets.py`;
+- extends `scripts/evals/build_decision_trail_specialist_packets.py`;
+- lands `tests/test_decision_trail_local_private_packets.py`;
+- keeps checked-in-safe packet behavior as the default;
+- adds explicit `local_private_mode` for operator-selected run directories;
+- requires local-private output outside both the repo and the selected run
+  directory;
+- supports `metadata_only` and `include_text` content policies;
+- records local artifact read manifests, private-content inclusion metadata,
+  and unsafe-for-commit status;
+- treats the PR88 fixture-review input as lineage-only in `local_private_mode`
+  while selected run artifacts and the PR90 schema define packet content;
+- derives `raw_transcripts_included`, `raw_revised_answers_included`, and
+  `raw_memos_included` from actual included artifacts rather than from the
+  `include_text` mode alone;
+- requires local-private fixture-review and contract-schema inputs to be
+  repo-local so local absolute paths do not leak into packet references;
+- creates no specialist outputs, executes no fan-in, calls no providers or
+  models, invokes no runtime, mutates no archives, scores nothing, judges
+  nothing, and creates no automatic labels.
+
+Previous Decision Trail path-decision slice:
+
+- lands `docs/conversation-understanding/decision-trail-specialist-path-decision-v0.md`;
+- lands `tests/test_decision_trail_specialist_path_decision.py`;
+- selects **Outcome A: implement local-private Decision Trail packet mode next**;
+- recommends PR95 Decision Trail Local-Private Packet Mode v0;
+- rejects a tiny checked-in-safe specialist batch for now because it would
+  mostly repeat known blocked/thin evidence;
+- rejects simplification, pause, runtime integration, and broad conversation IR
+  for now;
+- preserves the core bottleneck: source access is now the limiting factor, not
+  contract shape;
+- keeps the next work offline, explicit, local-private, non-runtime,
+  non-judging, non-scoring, and non-claiming.
+
+Previous Decision Trail dry-run slice:
+
+- lands `docs/conversation-understanding/decision-trail-specialist-dry-run-v0.md`;
+- lands `reviews/codex-assisted/decision-trail-specialist-dry-run-v0/review.json`;
+- lands `tests/test_decision_trail_specialist_dry_run.py`;
+- runs a Codex-assisted provisional discipline dry run over all ten PR92 trap
+  families;
+- records trap behavior counts: seven met, three partly met, zero missed, zero
+  inconclusive;
+- inspects the two PR91 packet targets without filling PR90 specialist output
+  fields;
+- finds the structured fixture useful for gap preservation but not semantic
+  interpretation;
+- finds the sparse fixture diagnostic only;
+- preserves the main bottleneck: checked-in-safe fixture surfaces can test
+  discipline, but they cannot prove real conversation interpretation adequacy;
+- preserves no model calls, no specialist outputs, no fan-in execution, no
+  runtime integration, no archive mutation, no scoring, no judging, and no
+  automatic labels.
+
+Previous Decision Trail trap-set slice:
+
+- lands `docs/conversation-understanding/decision-trail-specialist-trap-set-v0.md`;
+- lands `docs/conversation-understanding/decision-trail-specialist-trap-set-v0.json`;
+- lands `tests/test_decision_trail_specialist_trap_set.py`;
+- creates ten checked-in-safe trap families for the four PR90 specialist roles;
+- tests future review discipline around thin safe fixtures, clean custody,
+  structural-delta overtrust, missing generated report JSON, likely-action
+  over-inference, option-status collapse, assistant-influence absence,
+  lost-value blindness, fan-in smoothing, and local-private context need;
+- preserves no model calls, no specialist reads, no fan-in execution, no
+  runtime integration, no archive mutation, no scoring, no judging, and no
+  automatic labels.
+
+Previous Decision Trail packet-builder slice:
+
+- lands `engine/system_b/decision_trail_specialist_packets.py`;
+- lands `scripts/evals/build_decision_trail_specialist_packets.py`;
+- lands `tests/test_decision_trail_specialist_packets.py`;
+- lands `docs/conversation-understanding/decision-trail-specialist-packet-builder-v0.md`;
+- lands `reviews/codex-assisted/decision-trail-specialist-packets-v0/packets.json`;
+- builds checked-in-safe input packets for the two PR88 report-review targets;
+- gives every report target the four PR90 specialist packet shells:
+  conversation-shape, likely-action, friction/lost-value, and conservative
+  fan-in;
+- records that PR88 generated reports were not checked in, so packet evidence
+  remains fixture-review-only and thin;
+- preserves no model calls, no specialist reads, no fan-in execution, no
+  runtime integration, no archive mutation, no scoring, no judging, and no
+  automatic labels.
+
+Previous Decision Trail contract slice:
+
+- lands `docs/conversation-understanding/decision-trail-specialist-contracts-v0.md`;
+- lands `docs/conversation-understanding/decision-trail-specialist-contracts-v0.json`;
+- lands `tests/test_decision_trail_specialist_contracts.py`;
+- defines the four narrow offline specialist roles selected by PR89:
+  conversation shape, likely actions, friction/lost value, and conservative
+  fan-in;
+- defines input-mode vocabulary for checked-in safe mode, local private mode,
+  and future runtime mode without implementing local private or runtime modes;
+- requires source refs, source status, uncertainty, evidence strength,
+  limitations, non-claims, and lower-claim boundary metadata;
+- forbids fan-in voting, averaging, scoring, certification, approval, winner
+  selection, correctness from agreement, and decision-quality claims;
+- preserves no packet builder, no model calls, no specialist outputs, no fan-in
+  execution, no runtime integration, no archive mutation, no scoring, no
+  judging, and no automatic labels.
+
+Previous Decision Trail decision-gate slice:
 
 - lands `docs/conversation-understanding/decision-trail-interpretation-gap-decision-v0.md`;
 - selects Outcome B from the PR86-PR89 PRD: add narrow offline LLM specialist
@@ -812,13 +1012,48 @@ Non-goals for the next slice:
    narrow offline LLM specialist contracts as the next path. The next
    conservative move is PR90 docs/schema-only contracts for conversation shape,
    likely actions, friction/lost value, and conservative fan-in.
-8. **Live-output hygiene implementation.** PR35 keeps `not_checked` honest and
+8. **PR90 Decision Trail specialist contracts are done.** PR90 defines the
+   four narrow offline contracts and stops before packets, model calls,
+   specialist outputs, fan-in execution, runtime integration, or archive
+   mutation. The next conservative move is PR91 Specialist Packet Builder v0.
+9. **PR91 Decision Trail specialist packets are done.** PR91 turns PR88
+   fixture-review context into checked-in-safe input scaffolds for the four
+   PR90 contracts. It still stops before specialist reads, model calls, fan-in
+   execution, runtime integration, or archive mutation. The next conservative
+   move is PR92 Decision Trail Specialist Trap Set v0.
+10. **PR92 Decision Trail specialist traps are done.** PR92 adds checked-in-safe
+   trap fixtures before any specialist review batch. The next conservative move
+   is PR93 Decision Trail Specialist Dry Run v0 over traps and a tiny PR91
+   packet surface, still without runtime integration or provider/API calls.
+11. **PR93 Decision Trail specialist dry run is done.** PR93 shows the setup can
+   mostly resist the trap surface and preserve packet thinness, but it also
+   confirms that checked-in-safe fixture surfaces cannot prove interpretation
+   adequacy. The next conservative move is PR94 Decision Trail Specialist Path
+   Decision v0: decide between local-private packets, a tiny blocked specialist
+   batch, simplification, or pausing for human review.
+12. **PR94 Decision Trail specialist path decision is done.** PR94 selects PR95
+   local-private packet mode as the next slice. The next implementation should
+   build explicit local-private packets using synthetic temp fixtures and local
+   outputs only, while keeping checked-in artifacts raw/private-free and
+   runtime untouched.
+13. **PR95 Decision Trail local-private packet mode is done.** PR95 adds
+   explicit local-private packet generation for operator-selected completed
+   run directories. It keeps checked-in-safe mode as the default, rejects
+   local-private output inside the repo or run directory, records read
+   manifests and private-content metadata, treats PR88 fixture review as
+   lineage-only in local-private mode, derives raw-content booleans from
+   actual included artifacts, requires repo-local schema/fixture refs, and
+   still stops before specialist outputs, fan-in, runtime integration,
+   provider/API calls, archive mutation, scoring, judging, or automatic labels.
+   The next conservative move is a local-private packet smoke/review, not a
+   specialist-output batch.
+14. **Live-output hygiene implementation.** PR35 keeps `not_checked` honest and
    defines a trusted-transcript path; later work can implement only when needed.
-9. **Span-grounded semantic enrichment.** Existing specialists help with live
+15. **Span-grounded semantic enrichment.** Existing specialists help with live
    constraints, dropped threads, and stance lineage, but integration remains
    blocked until a clean 15-20 full-modern sample and provider-boundary behavior
    are settled.
-10. **Human capability surface.** Later, add a compact memo/Observatory section
+16. **Human capability surface.** Later, add a compact memo/Observatory section
    that teaches the user what reasoning pattern the audit caught.
 
 ## Current Pause: Specialist Integration Track
