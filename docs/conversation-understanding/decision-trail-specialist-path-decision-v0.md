@@ -278,6 +278,13 @@ Current read after PR95: do not jump straight to specialist outputs. First run
 a local-private packet smoke/review that checks usability, source-ref clarity,
 privacy handling, overclaim risk, and whether the PR90 contracts need changes.
 
+Completion note: PR96 has now run that smoke/review:
+
+[`Decision Trail Local-Private Packet Smoke Review v0`](decision-trail-local-private-packet-smoke-review-v0.md)
+
+The review found the packet path mechanically usable and recommended only a
+tiny local-private specialist-output pilot next, not a broad batch.
+
 ## Recommended PR95 Validation
 
 PR95 should validate:

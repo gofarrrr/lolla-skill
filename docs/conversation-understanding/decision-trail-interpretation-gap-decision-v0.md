@@ -365,5 +365,11 @@ After PR95, the immediate next question is narrower:
 > privacy or overclaim risk, to justify the first bounded specialist-output
 > batch?
 
-That should be answered by a local-private packet smoke/review before any
-specialist outputs are generated.
+PR96 has now answered that with a narrow yes:
+
+- [`Decision Trail Local-Private Packet Smoke Review v0`](decision-trail-local-private-packet-smoke-review-v0.md)
+
+The packet path is mechanically usable enough for a tiny local-private
+specialist-output pilot. It is not evidence for a broad batch, runtime
+integration, product proof, scoring, judging, automatic labels, or agent
+authorization.

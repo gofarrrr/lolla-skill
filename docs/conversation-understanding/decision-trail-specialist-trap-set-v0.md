@@ -162,4 +162,13 @@ The next recommended slice was:
 
 PR95 now implements explicit local-private packet generation while keeping
 checked-in artifacts raw/private-free and runtime untouched. The next current
-step is a local-private packet smoke/review before any specialist-output batch.
+step was a local-private packet smoke/review before any specialist-output
+batch.
+
+Completion note: PR96 has now completed that smoke/review:
+
+[`Decision Trail Local-Private Packet Smoke Review v0`](decision-trail-local-private-packet-smoke-review-v0.md)
+
+The next current step is a tiny local-private specialist-output pilot, still
+without runtime integration, scoring, judging, automatic labels, or product
+proof.

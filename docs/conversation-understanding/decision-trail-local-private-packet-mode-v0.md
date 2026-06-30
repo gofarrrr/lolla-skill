@@ -53,6 +53,15 @@ The next conservative step is a local-private packet smoke/review over one or
 more operator-selected completed runs. That review should happen before any
 contract-conforming specialist-output batch.
 
+Completion note: PR96 has now performed that smoke/review:
+
+- [Decision Trail Local-Private Packet Smoke Review v0](decision-trail-local-private-packet-smoke-review-v0.md)
+
+PR96 found that metadata-only packets work over two real completed runs without
+copying raw/private content, and that include-text packets work mechanically
+with unsafe-for-commit marking. It still did not run specialists or prove
+interpretation adequacy.
+
 ## Runtime Boundary
 
 PR95 is offline and downstream from the Lolla runtime.
@@ -259,16 +268,18 @@ judge, or a product-proof report.
 
 ## Next Step
 
-The next conservative slice should be a local-private packet smoke/review step
-before any real specialist-output batch.
+After PR96, the next conservative slice should be a tiny local-private
+specialist-output pilot over one or two operator-selected completed runs.
 
 That step should ask:
 
-- does local-private packet mode provide enough usable context;
-- does it create too much private-content handling risk;
-- do source refs remain readable;
-- can future specialists consume the packet without overclaiming;
-- should PR90 contracts change before any specialist outputs are attempted?
+- can the four PR90 specialist roles fill contract-shaped outputs from
+  local-private packets without overclaiming;
+- do likely-action, conversation-shape, friction/lost-value, and conservative
+  fan-in reads preserve uncertainty and source refs;
+- do local-private packets create too much private-content handling risk;
+- do source refs remain readable after specialist outputs are added;
+- should PR90 contracts or PR95 packet shape change before broader use?
 
 If local-private packets are too risky or too bulky, the lane should simplify
 before adding more interpretation machinery.

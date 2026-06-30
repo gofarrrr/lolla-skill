@@ -75,9 +75,9 @@ repo-local so local absolute paths do not leak into packet references.
 Current standing after PR95: the builder can prepare checked-in-safe packets
 and explicit local-private packets, but it still does not run specialists,
 fill specialist output fields, execute fan-in, or decide whether a revised
-answer improved a decision. The next expected use is a local-private
-packet smoke/review that asks whether the packet has enough usable context for
-future bounded LLM interpretation.
+answer improved a decision. PR96 has now smoke-reviewed the local-private
+packet path and found it mechanically usable for source access, while still
+not proving interpretation adequacy.
 
 ## What It Outputs
 
@@ -281,12 +281,22 @@ PR95 implements the local-private path selected by PR94:
 It keeps checked-in-safe mode as the default while allowing local-only packets
 to carry private source context for a future specialist pass. PR95 does not
 prove that the context is sufficient; that is what the next local-private
-packet smoke/review should test.
+packet smoke/review needed to test.
+
+## Relationship To PR96
+
+PR96 reviews the local-private packet path:
+
+[`Decision Trail Local-Private Packet Smoke Review v0`](decision-trail-local-private-packet-smoke-review-v0.md)
+
+It confirms metadata-only packets work over two real completed runs, confirms
+the include-text path mechanically with unsafe-for-commit marking, and still
+does not create specialist outputs or execute fan-in.
 
 ## Next Step
 
-The next recommended slice after PR95 is a local-private packet smoke/review
-step before any contract-conforming specialist output batch.
+The next recommended slice after PR96 is a tiny local-private specialist-output
+pilot over one or two operator-selected completed runs.
 
 That review should still avoid runtime integration, archive mutation,
 provider/API calls, scoring, automatic labels, and product-proof claims.

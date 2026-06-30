@@ -1,0 +1,169 @@
+{
+  "aggregate_observations": {
+    "main_limit": "PR96 proves local-private packet mechanics and source availability, not specialist interpretation quality.",
+    "main_usefulness_signal": "Two real completed runs produced metadata-only local-private packets with all four PR90 role packets and 16 artifact records per run, without copying raw/private content.",
+    "overtrust_warning": "Packet completeness must not be read as evidence that the revised answer was good or that future specialist reads will be correct.",
+    "stage_read": "ready_for_tiny_local_private_specialist_output_pilot_not_broad_batch"
+  },
+  "boundary": {
+    "agent_action_authorized": false,
+    "answer_quality_scored": false,
+    "archive_mutated": false,
+    "automatic_labels_created": false,
+    "fan_in_executed": false,
+    "ground_truth": false,
+    "human_validated": false,
+    "judge_calibration_eligible": false,
+    "model_calls": 0,
+    "product_proof": false,
+    "raw_private_content_included": false,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "specialist_reads_filled": false
+  },
+  "guardrail_checks": [
+    {
+      "check": "reject_output_inside_repository",
+      "observed": "rejected_with_sanitized_error",
+      "review_read": "The CLI prevents local-private packet output from being written into the repository."
+    },
+    {
+      "check": "reject_output_inside_selected_run_directory",
+      "observed": "rejected_with_sanitized_error",
+      "review_read": "The CLI prevents local-private packet output from being written into the selected run directory."
+    }
+  ],
+  "next_recommended_slice": {
+    "must_not_do": [
+      "run_lolla",
+      "invoke_lolla_skill",
+      "call_provider_apis_outside_current_agent_session",
+      "mutate_archives",
+      "change_runtime_behavior",
+      "score_answer_quality",
+      "create_automatic_labels",
+      "authorize_agent_action",
+      "treat_clean_packets_as_product_proof"
+    ],
+    "purpose": "Fill a tiny set of contract-shaped PR90 specialist outputs from local-private packets to see whether bounded interpretation is useful and disciplined.",
+    "recommended_slice": "PR97 Decision Trail Local-Private Specialist Output Pilot v0",
+    "why_not_broad_batch": "PR96 has not shown that local-private packets are enough for broad specialist review; it only shows the packet path is mechanically usable."
+  },
+  "non_claims": [
+    "not human review",
+    "not ground truth",
+    "not judge calibration data",
+    "not product proof",
+    "not answer-quality scoring",
+    "not automatic labeling",
+    "not runtime integration",
+    "not evidence that clean packets mean good advice",
+    "not proof that future specialists will interpret conversations correctly"
+  ],
+  "review_mode": "local_private_packet_smoke_review",
+  "schema_version": "lolla.decision_trail_local_private_packet_smoke_review.v0",
+  "smoke_outputs": [
+    {
+      "artifact_counts": [
+        {
+          "artifact_records_read": 16,
+          "artifact_records_with_content_included": 0,
+          "report_id": "20260627t093131z-59d153-1",
+          "specialist_packet_roles": [
+            "conversation_shape_reader",
+            "likely_action_reader",
+            "friction_lost_value_reader",
+            "conservative_fan_in_reader"
+          ]
+        },
+        {
+          "artifact_records_read": 16,
+          "artifact_records_with_content_included": 0,
+          "report_id": "20260627t073034z-a7c221-2",
+          "specialist_packet_roles": [
+            "conversation_shape_reader",
+            "likely_action_reader",
+            "friction_lost_value_reader",
+            "conservative_fan_in_reader"
+          ]
+        }
+      ],
+      "content_inclusion_mode": "metadata_only",
+      "local_output_checked_in": false,
+      "local_output_retained_after_review": true,
+      "packet_policy_read": {
+        "commit_safety": "unsafe_for_commit_by_default",
+        "fan_in_executed": false,
+        "local_absolute_paths_included": false,
+        "raw_memos_included": false,
+        "local_packet_private_content_state": "not_included",
+        "raw_revised_answers_included": false,
+        "raw_transcripts_included": false,
+        "requires_operator_review_before_share": true,
+        "specialist_reads_filled": false
+      },
+      "report_count": 2,
+      "review_read": "Useful for confirming source availability, role packet coverage, custody flags, and missingness. Not enough for semantic specialist interpretation.",
+      "smoke_id": "real_metadata_only_two_runs",
+      "source_run_refs": [
+        "ceo-remove-founding-cofounder/20260627T093131Z_59d153",
+        "accept-founding-engineer-role/20260627T073034Z_a7c221"
+      ]
+    },
+    {
+      "artifact_counts": [
+        {
+          "artifact_records_read": 16,
+          "artifact_records_truncated": 16,
+          "artifact_records_with_content_included": 16,
+          "report_id": "20260627t093131z-59d153-1",
+          "specialist_packet_roles": [
+            "conversation_shape_reader",
+            "likely_action_reader",
+            "friction_lost_value_reader",
+            "conservative_fan_in_reader"
+          ]
+        }
+      ],
+      "content_inclusion_mode": "include_text",
+      "local_output_checked_in": false,
+      "local_output_retained_after_review": false,
+      "packet_policy_read": {
+        "commit_safety": "unsafe_for_commit_by_default",
+        "fan_in_executed": false,
+        "local_absolute_paths_included": false,
+        "raw_memos_included": true,
+        "local_packet_private_content_state": "included_in_deleted_local_output",
+        "raw_revised_answers_included": true,
+        "raw_transcripts_included": true,
+        "requires_operator_review_before_share": true,
+        "specialist_reads_filled": false
+      },
+      "report_count": 1,
+      "review_read": "Mechanically confirms the real include-text path, truncation, and unsafe-for-commit marking. The private output was deleted after structural summary capture.",
+      "smoke_id": "real_include_text_one_run",
+      "source_run_refs": [
+        "ceo-remove-founding-cofounder/20260627T093131Z_59d153"
+      ]
+    },
+    {
+      "content_inclusion_mode": "include_text",
+      "local_output_checked_in": false,
+      "local_output_retained_after_review": true,
+      "packet_policy_read": {
+        "commit_safety": "unsafe_for_commit_by_default",
+        "fan_in_executed": false,
+        "local_absolute_paths_included": false,
+        "raw_memos_included": true,
+        "local_packet_private_content_state": "included_in_synthetic_local_output",
+        "raw_revised_answers_included": true,
+        "raw_transcripts_included": true,
+        "requires_operator_review_before_share": true,
+        "specialist_reads_filled": false
+      },
+      "report_count": 1,
+      "review_read": "Synthetic include-text output remains useful for repeatable guardrail inspection without exposing real private content.",
+      "smoke_id": "synthetic_include_text_guardrail"
+    }
+  ]
+}

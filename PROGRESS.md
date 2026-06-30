@@ -67,10 +67,11 @@ conversation or agent run
 Current handoff state:
 
 ```text
-PR95 Decision Trail Local-Private Packet Mode v0 is the latest Decision Trail
-slice recorded in this working tree. PR95 is not a runtime feature and does
-not run any interpretation specialists; it only prepares local-only packets
-from operator-selected completed run directories. PR85 remains the latest
+PR96 Decision Trail Local-Private Packet Smoke Review v0 is the latest
+Decision Trail slice recorded in this working tree. PR96 confirms PR95's
+local-private packet mode can prepare real completed-run metadata packets and
+mechanically handle include-text local packets, but it still does not run any
+interpretation specialists. PR85 remains the latest
 packaged product-evidence eval-lane slice. PR70 remains the
 audit/accountability machinery closure gate. PR48 remains the high-stakes
 evidence gate. PR54 remains the paused v0 values/priorities worksheet gate.
@@ -85,18 +86,21 @@ The Decision Trail lane is an offline reader/packetizer over completed runs.
 PR86-PR89 built the sparse report shell, exporter, fixture review, and
 interpretation-gap decision. PR90-PR95 built narrow specialist contracts,
 checked-in-safe packets, traps, a discipline dry run, a path decision, and
-local-private packet mode.
+local-private packet mode. PR96 smoke-reviewed that packet mode locally.
 
 What works now: an operator can use a CLI to build checked-in-safe packet
-fixtures or local-private packets for completed run directories.
+fixtures or local-private packets for completed run directories. PR96 shows
+metadata-only local-private packets work on two real completed runs without
+copying raw/private content, and include-text local packets work mechanically
+with unsafe-for-commit marking.
 
 What does not work yet: no specialist pass fills likely actions, live options,
 stakeholders, values/priorities, assistant influence, useful/noisy friction,
 lost value, or conservative fan-in. Nothing is automatic in `$lolla`.
 
-Next conservative gate: a PR96-style local-private packet smoke/review over
-operator-selected completed runs, with all local-private outputs kept out of
-the repo, before any specialist-output batch is attempted.
+Next conservative gate: a PR97-style tiny local-private specialist-output
+pilot over one or two operator-selected completed runs, with all private packet
+outputs kept out of the repo and no broad product claim.
 ```
 
 Documentation alignment note:
@@ -251,6 +255,17 @@ avoid path leaks; and the builder docstring now reflects the real
 checked-in-safe versus local-private read behavior. PR95 still creates no
 specialist outputs, calls no models, invokes no runtime, mutates no archives,
 scores nothing, judges nothing, and creates no automatic labels.
+
+docs/conversation-understanding/decision-trail-local-private-packet-smoke-review-v0.md
+and
+reviews/codex-assisted/decision-trail-local-private-packet-smoke-review-v0/review.json
+now record PR96's local smoke/review. PR96 generated metadata-only packets for
+two real completed local runs and a local-only include-text packet for one real
+run, plus a synthetic include-text guardrail output. The real include-text
+output was deleted after structural summary capture. The checked-in review
+records source availability, packet roles, guardrails, privacy posture, and
+thinness without raw/private content, specialist outputs, fan-in, model calls,
+runtime invocation, archive mutation, scoring, judging, or automatic labels.
 ```
 
 Current product state:
@@ -577,10 +592,29 @@ Current stop rule:
 Latest completed slice:
 
 ```text
-PR95 Decision Trail Local-Private Packet Mode v0
+PR96 Decision Trail Local-Private Packet Smoke Review v0
 ```
 
 Result:
+
+- lands `docs/conversation-understanding/decision-trail-local-private-packet-smoke-review-v0.md`;
+- lands `reviews/codex-assisted/decision-trail-local-private-packet-smoke-review-v0/review.json`;
+- lands `tests/test_decision_trail_local_private_packet_smoke_review.py`;
+- uses PR95 CLI outputs under `/tmp` only;
+- metadata-only smoke over two real completed runs confirms four PR90 role
+  packets and 16 artifact records per run without raw/private content;
+- real include-text smoke over one completed run confirms private-content path,
+  truncation, unsafe-for-commit marking, and then deletes the private output;
+- synthetic include-text smoke preserves a repeatable safe guardrail surface;
+- confirms local-private output is rejected inside the repo and inside the
+  selected run directory;
+- recommends only a tiny PR97 local-private specialist-output pilot, not a
+  broad batch;
+- creates no specialist outputs, executes no fan-in, calls no providers or
+  models, invokes no runtime, mutates no archives, scores nothing, judges
+  nothing, and creates no automatic labels.
+
+Previous Decision Trail local-private packet-mode slice:
 
 - lands `docs/conversation-understanding/decision-trail-local-private-packet-mode-v0.md`;
 - extends `engine/system_b/decision_trail_specialist_packets.py`;
@@ -1047,13 +1081,20 @@ Non-goals for the next slice:
    provider/API calls, archive mutation, scoring, judging, or automatic labels.
    The next conservative move is a local-private packet smoke/review, not a
    specialist-output batch.
-14. **Live-output hygiene implementation.** PR35 keeps `not_checked` honest and
+14. **PR96 Decision Trail local-private packet smoke review is done.** PR96
+   confirms metadata-only local-private packets are usable for source
+   availability over two real completed runs and confirms the include-text path
+   mechanically on one real run without checking in private output. It still
+   does not prove interpretation adequacy. The next conservative move is a
+   tiny PR97 local-private specialist-output pilot over one or two runs, not a
+   broad batch or runtime integration.
+15. **Live-output hygiene implementation.** PR35 keeps `not_checked` honest and
    defines a trusted-transcript path; later work can implement only when needed.
-15. **Span-grounded semantic enrichment.** Existing specialists help with live
+16. **Span-grounded semantic enrichment.** Existing specialists help with live
    constraints, dropped threads, and stance lineage, but integration remains
    blocked until a clean 15-20 full-modern sample and provider-boundary behavior
    are settled.
-16. **Human capability surface.** Later, add a compact memo/Observatory section
+17. **Human capability surface.** Later, add a compact memo/Observatory section
    that teaches the user what reasoning pattern the audit caught.
 
 ## Current Pause: Specialist Integration Track

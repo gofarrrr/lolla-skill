@@ -168,10 +168,19 @@ PR95 implements the selected local-private packet mode:
 It keeps checked-in-safe packets as the default, but adds explicit local-only
 packets for operator-selected completed run directories.
 
+## Relationship To PR96
+
+PR96 smoke-reviews that local-private packet mode:
+
+[`Decision Trail Local-Private Packet Smoke Review v0`](decision-trail-local-private-packet-smoke-review-v0.md)
+
+It confirms local-private packet mechanics over real completed runs and keeps
+the next step narrow: a tiny specialist-output pilot, not a broad batch.
+
 ## Next Step
 
-The next conservative move is a local-private packet smoke/review step before
-any contract-conforming specialist output batch.
+The next conservative move after PR96 is a tiny local-private
+specialist-output pilot over one or two operator-selected completed runs.
 
 It should not jump straight to runtime integration, broad case expansion,
 scoring, judging, or product-proof claims.

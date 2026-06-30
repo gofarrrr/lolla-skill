@@ -254,20 +254,22 @@ PR94 adds the local path decision:
 [Decision Trail Specialist Path Decision](docs/conversation-understanding/decision-trail-specialist-path-decision-v0.md).
 PR95 adds the explicit local-private packet mode:
 [Decision Trail Local-Private Packet Mode](docs/conversation-understanding/decision-trail-local-private-packet-mode-v0.md).
+PR96 smoke-reviews that mode:
+[Decision Trail Local-Private Packet Smoke Review](docs/conversation-understanding/decision-trail-local-private-packet-smoke-review-v0.md).
 
 Current Decision Trail status: this is still offline evidence and packet
 machinery, not automatic skill behavior. A normal Lolla run does not trigger
 the Product Delta eval lane, the Decision Trail exporter, or specialist
 interpretation. PR95 lets an operator explicitly build local-private packets
-from completed run directories for later review. Those packets can expose
-enough source material for a future bounded LLM specialist pass, but they do
-not yet fill likely actions, live options, stakeholders, values/priorities,
+from completed run directories for later review. PR96 shows that metadata-only
+packets work over real completed runs and that include-text packets work
+mechanically while marking themselves unsafe for commit. These packets still
+do not fill likely actions, live options, stakeholders, values/priorities,
 assistant influence, useful/noisy friction, lost value, or fan-in.
-Local-private include-text outputs are unsafe for commit by default.
 
-The next conservative Decision Trail step is a local-private packet
-smoke/review: inspect whether the packets are usable and safe enough before
-any specialist-output batch is attempted.
+The next conservative Decision Trail step is a tiny local-private
+specialist-output pilot over one or two runs, not a broad batch and not runtime
+integration.
 
 Start here: **[Product Delta / Eval Docs Index](docs/evals/README.md)**.
 
