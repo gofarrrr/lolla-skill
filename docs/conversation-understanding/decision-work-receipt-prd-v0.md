@@ -605,6 +605,8 @@ Implementation note:
 
 Type: docs/review fixture/tests.
 
+Status: implemented in PR110.
+
 Goal:
 
 Review whether the sparse receipt is useful, too thin, too confusing, or too
@@ -634,6 +636,10 @@ Validation:
 - no score fields;
 - source refs resolve;
 - overclaim lint passes.
+
+Implementation note:
+
+- [Decision Work Receipt Fixture Review v0](decision-work-receipt-fixture-review-v0.md)
 
 ### PR111 Decision Work Receipt Decision Gate v0
 
@@ -756,11 +762,12 @@ It fails if:
 
 ## Recommended Next Step
 
-Do PR110 next:
+Do PR111 next:
 
-> Decision Work Receipt Fixture Review v0.
+> Decision Work Receipt Decision Gate v0.
 
-PR109 now composes the sparse receipt from source inventory, process metadata,
-challenge coverage, and optional Decision Trail/Product Delta references. The
-next question is whether that receipt is useful, too thin, too confusing, or too
-authoritative-looking before any new interpretation machinery is added.
+PR110 finds the sparse receipt useful as a work-trail shell, but still too thin
+to explain the messy semantic story users ultimately care about. PR111 should
+decide whether to keep the sparse receipt as an internal artifact, add bounded
+LLM interpretation later, simplify, or change runtime capture only if the
+review evidence justifies it.

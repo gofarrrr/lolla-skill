@@ -147,12 +147,23 @@ It does not mean:
 
 ## Next Slice
 
-The next planned slice is:
+The next slice is now implemented:
 
 ```text
 PR110 Decision Work Receipt Fixture Review v0
 ```
 
-That review should ask whether the PR109 receipt is useful, too thin, too
-confusing, or too authoritative-looking before any new interpretation machinery
-is added.
+- [Decision Work Receipt Fixture Review v0](decision-work-receipt-fixture-review-v0.md)
+
+That review asks whether the PR109 receipt is useful, too thin, too confusing,
+or too authoritative-looking before any new interpretation machinery is added.
+
+The next planned slice is:
+
+```text
+PR111 Decision Work Receipt Decision Gate v0
+```
+
+That decision gate should choose whether to keep the sparse receipt as an
+internal artifact, add bounded LLM interpretation later, simplify, or change
+runtime capture only if the evidence justifies it.

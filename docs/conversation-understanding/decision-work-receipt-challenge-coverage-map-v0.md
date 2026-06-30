@@ -177,12 +177,15 @@ Decision Trail references, optional Product Delta references, readiness labels,
 missingness, non-claims, and boundary flags into the first sparse work-trail
 receipt.
 
-The next planned slice is:
+The next slice is also implemented:
 
 ```text
 PR110 Decision Work Receipt Fixture Review v0
 ```
 
-That review should decide whether the PR109 receipt is useful, too sparse, too
-confusing, or too authoritative-looking before new interpretation machinery is
-added.
+- [Decision Work Receipt Fixture Review v0](decision-work-receipt-fixture-review-v0.md)
+
+That review finds the PR109 receipt useful as a work-trail shell, still too
+thin to explain the messy semantic story, and risky if readiness labels are
+read as approval. The next planned slice is PR111 Decision Work Receipt Decision
+Gate v0.

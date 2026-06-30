@@ -64,6 +64,12 @@ Follow-up implementation planning:
   readiness label, missingness, and non-claims into one sparse work-trail
   artifact.
 
+- [Decision Work Receipt Fixture Review](../conversation-understanding/decision-work-receipt-fixture-review-v0.md)
+
+  PR110's checked-in-safe review of that sparse receipt. It finds the receipt
+  useful as a work-trail shell, still too thin to explain the messy semantic
+  story, and risky if readiness labels are read as approval.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,
