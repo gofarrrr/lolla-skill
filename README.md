@@ -155,6 +155,156 @@ usage/model metadata, and optional control-plane references with blank
 human-review fields. It does not copy raw transcript/memo text, does not score
 advice quality, and does not use an LLM judge.
 
+## Offline Product Delta Evidence Lane
+
+The live skill and the eval lane are separate.
+
+```text
+Lolla runtime:
+  current conversation -> audit pressure -> revised answer -> archived artifacts
+
+Product Delta eval lane:
+  existing safe artifacts -> readiness -> provisional review packets -> lint -> disagreement report
+```
+
+The runtime creates the object of study. The Product Delta lane studies it
+later. It does not run `$lolla`, invoke the skill, call providers, mutate
+archives, change prompts, judge answer quality, or approve agent action.
+
+Use this lane when you want to understand what changed between the original
+strong-model conversation and the Lolla revised answer. The review questions
+are deliberately concrete:
+
+- Did the likely next action, threshold, sequence, evidence gate, stop rule, or
+  scope change?
+- Did Lolla add useful friction, or only caution and process?
+- Did it lose something valuable from the original answer?
+- Did it understand the conversation well enough for the review to be useful?
+- Are empty fields, missing artifacts, and provisional reads clearly marked as
+  non-claims?
+
+Safe local commands include:
+
+```bash
+python3 scripts/evals/build_product_delta_provisional_review.py \
+  --case-list docs/evals/product-delta-seed-cases-v0.json \
+  --out /tmp/product_delta_readiness.md \
+  --json-out /tmp/product_delta_readiness.json
+```
+
+```bash
+python3 scripts/evals/build_product_delta_specialist_packets.py \
+  --case-list docs/evals/product-delta-seed-cases-v0.json \
+  --provisional-review reviews/codex-assisted/product-delta-provisional-run-v0/review.json \
+  --codex-batch reviews/codex-assisted/product-delta-batch-v0/review.json \
+  --limit 2 \
+  --out /tmp/product_delta_specialist_packets.json
+```
+
+```bash
+python3 scripts/evals/lint_product_delta_evidence.py --paths \
+  docs/evals/product-delta-provisional-report-v0.md \
+  reviews/codex-assisted/product-delta-batch-v0/review.json \
+  reviews/codex-assisted/specialist-review-batch-v0/review.json \
+  reviews/codex-assisted/fan-in-disagreement-report-v0/report.json
+```
+
+The current packaged Product Delta phase is PR71-PR85. It is useful internal
+evidence scaffolding, not product proof. Its healthiest signal is a downgrade:
+`accept-operations-role-startup` moved from `material_improvement_candidate`
+to `partial_improvement_candidate` after specialist review preserved lost
+value and interpretation concerns.
+
+The emerging customer-facing product surface is the Decision Trail: the revised
+answer plus a compact process report explaining what conversation produced it,
+what changed, what was challenged, what remains missing, and what should not be
+overclaimed. See
+[Lolla Decision Trail Web Page Draft](docs/lolla-decision-trail-web-page-v0.md)
+for the simple customer explanation and
+[Decision Trail Readiness Audit](docs/conversation-understanding/decision-trail-readiness-audit-v0.md)
+for the current gap between that vision and the information Lolla captures
+today. The staged PR86-PR89 implementation bridge is
+[Decision Trail PR86-PR89 PRD](docs/conversation-understanding/decision-trail-pr86-pr89-prd-v0.md).
+PR86 now defines the report contract in
+[Decision Trail Report PRD](docs/conversation-understanding/decision-trail-report-prd-v0.md)
+and the machine-readable
+[Decision Trail Report Schema](docs/conversation-understanding/decision-trail-report-v0.json).
+PR87 implements the conservative read-only exporter described in
+[Decision Trail Read-Only Exporter](docs/conversation-understanding/decision-trail-readonly-exporter-v0.md).
+PR88's completed review is
+[Decision Trail Export Fixture Review](docs/conversation-understanding/decision-trail-export-fixture-review-v0.md):
+the report is useful as a custody and missingness shell, but checked-in-safe
+evidence remains too thin for the full Decision Trail product without later
+bounded interpretation. PR89's
+[Decision Trail Interpretation Gap Decision](docs/conversation-understanding/decision-trail-interpretation-gap-decision-v0.md)
+selects narrow offline LLM specialist contracts as the next move, while keeping
+runtime integration, broad IR work, judging, scoring, and automatic labels
+deferred.
+The PR90 implementation handoff is preserved as
+[PR90 Decision Trail Goal Prompt](docs/conversation-understanding/decision-trail-pr90-goal-prompt-v0.md).
+PR90's completed local contract surface is
+[Decision Trail Specialist Contracts](docs/conversation-understanding/decision-trail-specialist-contracts-v0.md).
+PR91 adds the local read-only packetization surface:
+[Decision Trail Specialist Packet Builder](docs/conversation-understanding/decision-trail-specialist-packet-builder-v0.md).
+PR92 adds the local trap-fixture checkpoint:
+[Decision Trail Specialist Trap Set](docs/conversation-understanding/decision-trail-specialist-trap-set-v0.md).
+PR93 adds the local discipline dry run:
+[Decision Trail Specialist Dry Run](docs/conversation-understanding/decision-trail-specialist-dry-run-v0.md).
+PR94 adds the local path decision:
+[Decision Trail Specialist Path Decision](docs/conversation-understanding/decision-trail-specialist-path-decision-v0.md).
+PR95 adds the explicit local-private packet mode:
+[Decision Trail Local-Private Packet Mode](docs/conversation-understanding/decision-trail-local-private-packet-mode-v0.md).
+PR96 smoke-reviews that mode:
+[Decision Trail Local-Private Packet Smoke Review](docs/conversation-understanding/decision-trail-local-private-packet-smoke-review-v0.md).
+PR97 runs the tiny local-private specialist-output pilot:
+[Decision Trail Local-Private Specialist Output Pilot](docs/conversation-understanding/decision-trail-local-private-specialist-output-pilot-v0.md).
+PR98 reviews that pilot and blocks broadening until a contract/packet patch:
+[Decision Trail Specialist Output Pilot Review](docs/conversation-understanding/decision-trail-specialist-output-pilot-review-v0.md).
+PR99 applies that patch:
+[Decision Trail Specialist Contract And Packet Patch](docs/conversation-understanding/decision-trail-specialist-contract-and-packet-patch-v0.md).
+PR100 uses the patched shape for one more one-case pilot:
+[Decision Trail Second One-Case Specialist Pilot](docs/conversation-understanding/decision-trail-second-one-case-specialist-pilot-v0.md).
+PR101 compares PR97 and PR100 before any broader specialist-output work:
+[Decision Trail Specialist Pilot Comparison Gate](docs/conversation-understanding/decision-trail-specialist-pilot-comparison-gate-v0.md).
+PR102 uses the one allowed diversity-targeted pilot:
+[Decision Trail Third One-Case Diversity Pilot](docs/conversation-understanding/decision-trail-third-one-case-diversity-pilot-v0.md).
+PR103 closes the one-case pilot phase:
+[Decision Trail Specialist Pilot Phase Closure Gate](docs/conversation-understanding/decision-trail-specialist-pilot-phase-closure-gate-v0.md).
+PR104 packages the closed pilot phase for later human correction:
+[Decision Trail Human Review Intake Packet](docs/conversation-understanding/decision-trail-human-review-intake-packet-v0.md).
+
+Current Decision Trail status: this is still offline evidence and packet
+machinery, not automatic skill behavior. A normal Lolla run does not trigger
+the Product Delta eval lane, the Decision Trail exporter, or specialist
+interpretation. PR95 lets an operator explicitly build local-private packets
+from completed run directories for later review. PR96 shows that metadata-only
+packets work over real completed runs and that include-text packets work
+mechanically while marking themselves unsafe for commit. PR97 shows one
+operator-selected local-private include-text packet can support all four PR90
+specialist-output shapes by checked-in summary only: conversation shape, likely
+action, friction/lost value, and conservative fan-in.
+
+This is still one-case, Codex-assisted, unvalidated, and not product proof. It
+does not fill a first-class Decision Trail automatically, does not run inside
+`$lolla`, and does not authorize agents. PR99 patches the specialist contracts
+and packet metadata with source-scope, truncation, vanilla-overlap, lost-value
+severity, assistant-influence source-status, fan-in downgrade-trigger, and
+local-private retention-policy fields. PR100 then uses the patched shape on one
+additional case and records a more conservative partial-usefulness read because
+the vanilla conversation already contained much of the visible action sequence.
+PR101 compares PR97 and PR100 and decides broad specialist-output batches are
+still not ready. The only allowed continuation is at most one
+diversity-targeted third one-case pilot in a different decision family; if no
+safe diverse run exists, pause instead of forcing evidence. PR102 uses that
+one diversity-targeted pilot on the `deploy-assisted-intake-routing` case and
+recommends a closure gate before any fourth pilot or broad batch. PR103 closes
+that phase: no fourth one-case pilot, no broad batch, and no runtime
+integration. PR104 packages the three pilots into a future-human-review intake
+packet with blank correction fields. The next responsible move is pause until
+human review capacity returns.
+
+Start here: **[Product Delta / Eval Docs Index](docs/evals/README.md)**.
+
 **Trigger phrases** (the skill also activates on these):
 - "audit this", "check my reasoning", "find blind spots"
 - "stress test", "what am I missing", "challenge this"
@@ -183,7 +333,9 @@ lolla-skill/
 │   ├── archive_run.py      # Local archive + agent_result.json + evaluation.json + reasoning_trace.json custody manifest
 │   ├── export_reasoning_trace_dataset.py # Local JSONL corpus + summary from archived traces
 │   ├── export_review_corpus.py # Local JSONL run-envelope corpus + human-review template
+│   ├── evals/               # Read-only Product Delta eval helpers and boundary lint
 │   └── stability_check.py  # Diagnostic harness (Mode A aggregate / Mode B pipeline-variance / Mode C extraction-drift)
+├── docs/evals/            # Evaluation doctrine, Product Delta evidence docs, manifests, and review protocols
 ├── observatory/          # Local web UI — four cards, revised answer, reasoning graph, run health, pipeline inspector
 ├── references/           # Tendency catalog, calibration, guardrails (loaded on demand)
 └── tests/                # Unit tests (trigger sources, frame validation, fuzzy matching, BI context, memo rendering)
@@ -204,6 +356,9 @@ For the June 2026 roadmap toward an agent-callable reasoning-audit harness, see 
 For how Lolla can fit beside CrabTrap-style proxies, guardrails, approval systems, sandboxes, identity scopes, and trace stores, see **[Agent Control Layers And Lolla Integration](docs/agent-control-layers-and-lolla-integration.md)**.
 
 For the eval doctrine behind that roadmap, see **[Lolla Evaluation Methodology](docs/lolla-evaluation-methodology.md)**.
+
+For the offline Product Delta evidence lane, including what to run, what to
+inspect, and what not to infer, see **[Product Delta / Eval Docs Index](docs/evals/README.md)**.
 
 ## Cost
 
@@ -266,7 +421,7 @@ The system works — but more data from real runs will let us tune the determini
 - **More mental models.** Domain-specific model packs — legal reasoning, medical decision-making, engineering tradeoffs — each following the same curation methodology, would make the system sharper in specialized contexts.
 - **New lanes.** The four-lane architecture is extensible. Temporal reasoning, stakeholder mapping, assumption dependency chains — each would follow the same pattern: probabilistic detection at the edges, deterministic routing in the middle.
 - **Better detection calibration.** More runs against more cases means better understanding of where each tendency's detection boundary should sit.
-- **Deeper conversation extraction.** There's more signal in conversational dynamics — how positions shift across turns, where the human pushed back and the LLM folded, where concerns were raised and then quietly dropped.
+- **Deeper conversation interpretation.** There's more signal in conversational dynamics — how positions shift across turns, where the human pushed back and the LLM folded, where concerns were raised and then quietly dropped. The current Decision Trail lane is approaching this carefully: deterministic code prepares custody-safe packets, while messy interpretation remains future bounded LLM specialist work rather than deterministic guessing.
 - **Beyond the skill.** The curated knowledge substrate and the audit architecture are not limited to a Claude Code skill. The same engine could power API-level reasoning checks, editorial review workflows, decision journaling tools, or structured training environments where people practice spotting reasoning weaknesses. We see directions we haven't built yet — and probably directions we haven't thought of.
 
 If you see an application we're missing or have ideas about where this kind of system would be valuable, open an issue. The most interesting next steps often come from people with different problems than ours.

@@ -1,0 +1,461 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lolla.vanilla_vs_lolla_provisional_review.v0",
+  "title": "Lolla Vanilla-vs-Lolla Provisional Review v0",
+  "description": "Review-safe schema for Codex-assisted provisional comparison of an actual vanilla strong-model conversation/final answer against the Lolla revised answer. All subjective conclusions are provisional and not human review, ground truth, judge calibration data, product proof, answer-quality scoring, or agent approval.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "review_mode",
+    "human_validated",
+    "ground_truth",
+    "judge_calibration_eligible",
+    "reviewer_type",
+    "case_id",
+    "reviewed_artifacts",
+    "raw_private_content_included",
+    "model_calls",
+    "archive_mutated",
+    "vanilla_likely_next_action",
+    "lolla_likely_next_action",
+    "material_difference",
+    "structural_delta",
+    "decision_leverage",
+    "friction_read",
+    "lost_value",
+    "interpretation_adequacy",
+    "first_upstream_failure",
+    "net_decision_read_provisional",
+    "codex_uncertainty_notes",
+    "human_followup_questions",
+    "non_claims"
+  ],
+  "oneOf": [
+    {
+      "required": [
+        "archive_relpath"
+      ]
+    },
+    {
+      "required": [
+        "case_relpath"
+      ]
+    }
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "lolla.vanilla_vs_lolla_provisional_review.v0"
+    },
+    "review_mode": {
+      "const": "codex_assisted_provisional"
+    },
+    "human_validated": {
+      "const": false
+    },
+    "ground_truth": {
+      "const": false
+    },
+    "judge_calibration_eligible": {
+      "const": false
+    },
+    "reviewer_type": {
+      "enum": [
+        "codex"
+      ]
+    },
+    "case_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "archive_relpath": {
+      "$ref": "#/$defs/relative_path"
+    },
+    "case_relpath": {
+      "$ref": "#/$defs/relative_path"
+    },
+    "reviewed_artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/relative_path"
+      }
+    },
+    "raw_private_content_included": {
+      "const": false
+    },
+    "model_calls": {
+      "const": 0
+    },
+    "archive_mutated": {
+      "const": false
+    },
+    "vanilla_likely_next_action": {
+      "$ref": "#/$defs/likely_action"
+    },
+    "lolla_likely_next_action": {
+      "$ref": "#/$defs/likely_action"
+    },
+    "material_difference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "summary",
+        "changed",
+        "uncertainty"
+      ],
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/review_status"
+        },
+        "summary": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "changed": {
+          "type": "boolean"
+        },
+        "uncertainty": {
+          "$ref": "#/$defs/uncertainty"
+        }
+      }
+    },
+    "structural_delta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "action_changed",
+        "threshold_changed",
+        "sequence_changed",
+        "evidence_gate_added_or_changed",
+        "stop_rule_added_or_changed",
+        "written_term_added_or_changed",
+        "scope_changed",
+        "overclaim_retracted",
+        "user_answerable_question_added",
+        "notes"
+      ],
+      "properties": {
+        "action_changed": {
+          "type": "boolean"
+        },
+        "threshold_changed": {
+          "type": "boolean"
+        },
+        "sequence_changed": {
+          "type": "boolean"
+        },
+        "evidence_gate_added_or_changed": {
+          "type": "boolean"
+        },
+        "stop_rule_added_or_changed": {
+          "type": "boolean"
+        },
+        "written_term_added_or_changed": {
+          "type": "boolean"
+        },
+        "scope_changed": {
+          "type": "boolean"
+        },
+        "overclaim_retracted": {
+          "type": "boolean"
+        },
+        "user_answerable_question_added": {
+          "type": "boolean"
+        },
+        "notes": {
+          "$ref": "#/$defs/non_empty_string"
+        }
+      }
+    },
+    "decision_leverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "label",
+        "rationale",
+        "uncertainty"
+      ],
+      "properties": {
+        "label": {
+          "enum": [
+            "none",
+            "low",
+            "medium",
+            "high",
+            "unclear"
+          ]
+        },
+        "rationale": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "uncertainty": {
+          "$ref": "#/$defs/uncertainty"
+        }
+      }
+    },
+    "friction_read": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "useful_friction",
+        "noisy_friction",
+        "missing_friction",
+        "grounded",
+        "actionable",
+        "proportionate",
+        "rationale"
+      ],
+      "properties": {
+        "useful_friction": {
+          "$ref": "#/$defs/friction_status"
+        },
+        "noisy_friction": {
+          "$ref": "#/$defs/friction_status"
+        },
+        "missing_friction": {
+          "$ref": "#/$defs/friction_status"
+        },
+        "grounded": {
+          "$ref": "#/$defs/provisional_boolean"
+        },
+        "actionable": {
+          "$ref": "#/$defs/provisional_boolean"
+        },
+        "proportionate": {
+          "$ref": "#/$defs/provisional_boolean"
+        },
+        "rationale": {
+          "$ref": "#/$defs/non_empty_string"
+        }
+      }
+    },
+    "lost_value": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "present",
+        "categories",
+        "rationale"
+      ],
+      "properties": {
+        "present": {
+          "$ref": "#/$defs/provisional_boolean"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "useful_original_advice",
+              "momentum",
+              "courage",
+              "clarity",
+              "user_specific_ambition",
+              "simplicity",
+              "actionability",
+              "other"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "rationale": {
+          "$ref": "#/$defs/non_empty_string"
+        }
+      }
+    },
+    "interpretation_adequacy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "label",
+        "failure_modes",
+        "rationale",
+        "would_better_interpretation_change_answer"
+      ],
+      "properties": {
+        "label": {
+          "enum": [
+            "adequate",
+            "partly_adequate",
+            "inadequate",
+            "unclear"
+          ]
+        },
+        "failure_modes": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "decision_question_drift",
+              "option_loss",
+              "constraint_flattening",
+              "stakeholder_erasure",
+              "value_overwrite",
+              "transient_emotion_hardening",
+              "assistant_influence_blindness",
+              "false_consensus",
+              "dropped_thread_blindness",
+              "quote_or_grounding_misread",
+              "uncertainty_collapse",
+              "risk_mode_mismatch"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "rationale": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "would_better_interpretation_change_answer": {
+          "enum": [
+            "yes",
+            "no",
+            "unclear",
+            "not_applicable"
+          ]
+        }
+      }
+    },
+    "first_upstream_failure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "surface",
+        "summary"
+      ],
+      "properties": {
+        "surface": {
+          "enum": [
+            "vanilla_answer",
+            "conversation_interpretation",
+            "audit_pressure",
+            "revised_answer",
+            "artifact_custody",
+            "review_surface",
+            "none_observed",
+            "unclear"
+          ]
+        },
+        "summary": {
+          "$ref": "#/$defs/non_empty_string"
+        }
+      }
+    },
+    "net_decision_read_provisional": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "label",
+        "rationale"
+      ],
+      "properties": {
+        "label": {
+          "enum": [
+            "material_improvement_candidate",
+            "partial_improvement_candidate",
+            "no_material_change_candidate",
+            "lolla_added_noise_candidate",
+            "lolla_worse_candidate",
+            "inconclusive"
+          ]
+        },
+        "rationale": {
+          "$ref": "#/$defs/non_empty_string"
+        }
+      }
+    },
+    "codex_uncertainty_notes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/non_empty_string"
+      }
+    },
+    "human_followup_questions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/non_empty_string"
+      }
+    },
+    "non_claims": {
+      "type": "array",
+      "minItems": 7,
+      "items": {
+        "$ref": "#/$defs/non_empty_string"
+      }
+    }
+  },
+  "$defs": {
+    "non_empty_string": {
+      "type": "string",
+      "minLength": 1
+    },
+    "relative_path": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*\\.\\.)(?!.*//).+$"
+    },
+    "review_status": {
+      "enum": [
+        "provisional_supported",
+        "provisional_inferred",
+        "insufficient_safe_context",
+        "unclear",
+        "not_reviewed"
+      ]
+    },
+    "uncertainty": {
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "unclear"
+      ]
+    },
+    "friction_status": {
+      "enum": [
+        "present",
+        "partial",
+        "absent",
+        "unclear",
+        "not_applicable"
+      ]
+    },
+    "provisional_boolean": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "description": "Boolean where true/false/null are provisional reads, not human-validated labels."
+    },
+    "likely_action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "summary",
+        "basis",
+        "uncertainty",
+        "reviewer_inferred"
+      ],
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/review_status"
+        },
+        "summary": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "basis": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/non_empty_string"
+          }
+        },
+        "uncertainty": {
+          "$ref": "#/$defs/uncertainty"
+        },
+        "reviewer_inferred": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

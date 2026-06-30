@@ -1,0 +1,404 @@
+{
+  "schema_version": "lolla.decision_trail_fixture_review.v0",
+  "review_mode": "checked_in_safe_fixture_review",
+  "slice": "PR88 Decision Trail Fixture Review v0",
+  "created_date": "2026-06-29",
+  "boundary": {
+    "human_validated": false,
+    "ground_truth": false,
+    "judge_calibration_eligible": false,
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "model_calls": 0,
+    "archive_mutated": false,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "raw_private_content_included": false,
+    "automatic_labels_created": false
+  },
+  "evidence_scope": "safe_fixture_only",
+  "local_private_shadow_review_status": {
+    "status": "not_run",
+    "reason": "PR88 did not run a local-private shadow review over real archives.",
+    "pr89_implication": "PR89 must treat this as safe-fixture-only evidence. It can assess report shape and missingness behavior, not full semantic adequacy over messy conversation content."
+  },
+  "source_reports": [
+    {
+      "report_id": "structured_fixture_report",
+      "report_ref": "temporary_pr87_cli_output_not_checked_in",
+      "checked_in": false,
+      "reason_not_checked_in": "The PR87 exporter tests pin the generated report shape; PR88 checks in the review findings rather than another bulky generated report.",
+      "source_run_ref": "tests/test_decision_trail_report.py::_minimal_run_dir",
+      "source_run_kind": "safe_structured_fixture",
+      "report_mode": "checked_in_safe_mode",
+      "generated_by_cli": true
+    },
+    {
+      "report_id": "sparse_missing_fixture_report",
+      "report_ref": "temporary_pr87_cli_output_not_checked_in",
+      "checked_in": false,
+      "reason_not_checked_in": "The sparse report is a PR88 review target used to inspect missingness behavior; the review captures the durable finding.",
+      "source_run_ref": "temporary safe fixture with no structured artifacts",
+      "source_run_kind": "safe_sparse_fixture",
+      "report_mode": "checked_in_safe_mode",
+      "generated_by_cli": true
+    }
+  ],
+  "method": {
+    "central_question": "Is the PR87 Decision Trail report readable and useful as a custody/missingness surface without becoming too authoritative-looking?",
+    "report_type": "offline fixture review over PR87 generated outputs",
+    "semantic_correctness_review": false,
+    "new_interpretation_created": false,
+    "review_policy": [
+      "Review field population, missingness, redaction clarity, readability, and overtrust risk.",
+      "Do not decide whether Lolla improved the decision.",
+      "Do not infer messy semantic fields from report prose.",
+      "Treat checked-in safe mode as intentionally incomplete for full conversation interpretation."
+    ]
+  },
+  "report_reviews": [
+    {
+      "report_id": "structured_fixture_report",
+      "report_ref": "temporary_pr87_cli_output_not_checked_in",
+      "source_run_ref": "tests/test_decision_trail_report.py::_minimal_run_dir",
+      "report_mode": "checked_in_safe_mode",
+      "field_population_summary": {
+        "semantic_section_count": 14,
+        "clear_and_populated": 6,
+        "clear_but_missing": 0,
+        "requires_llm_interpretation": 8,
+        "requires_human_review": 0,
+        "confusing": 0,
+        "overclaim_risk": 1,
+        "not_applicable": 0
+      },
+      "populated_sections": [
+        {
+          "section": "conversation_understanding_summary",
+          "classification": "clear_and_populated",
+          "source_status": "available_from_structured_artifact",
+          "reason": "The report copies presence/count metadata from structured extraction without reading raw conversation text."
+        },
+        {
+          "section": "decision_question",
+          "classification": "clear_and_populated",
+          "source_status": "available_from_structured_artifact",
+          "reason": "The decision question is copied from structured extraction or trace metadata with source refs."
+        },
+        {
+          "section": "constraints",
+          "classification": "clear_and_populated",
+          "source_status": "available_from_structured_artifact",
+          "reason": "Structured live constraints are copied with status and source refs."
+        },
+        {
+          "section": "audit_pressure_summary",
+          "classification": "clear_and_populated",
+          "source_status": "available_from_structured_artifact",
+          "reason": "The report can show the compact counter-pressure summary supplied by agent_result.json."
+        },
+        {
+          "section": "structural_delta",
+          "classification": "clear_and_populated",
+          "source_status": "available_from_structured_artifact",
+          "reason": "Changed-advice and take-back fields populate the section without deciding usefulness."
+        },
+        {
+          "section": "unresolved_questions",
+          "classification": "clear_and_populated",
+          "source_status": "available_from_structured_artifact",
+          "reason": "Human questions from agent_result.json are visible as follow-up material."
+        }
+      ],
+      "interpretation_needed_sections": [
+        {
+          "section": "vanilla_likely_next_action",
+          "classification": "requires_llm_interpretation",
+          "reason": "The exporter does not infer likely action from raw conversation or prose."
+        },
+        {
+          "section": "revised_likely_next_action",
+          "classification": "requires_llm_interpretation",
+          "reason": "The exporter does not read revised.txt or infer action from revised-answer prose."
+        },
+        {
+          "section": "option_map",
+          "classification": "requires_llm_interpretation",
+          "reason": "Live options and option status are not first-class structured runtime fields."
+        },
+        {
+          "section": "stakeholders",
+          "classification": "requires_llm_interpretation",
+          "reason": "Stakeholders and obligations require messy conversation interpretation."
+        },
+        {
+          "section": "values_or_priorities",
+          "classification": "requires_llm_interpretation",
+          "reason": "User values and priorities require LLM interpretation or later human review."
+        },
+        {
+          "section": "assistant_influence",
+          "classification": "requires_llm_interpretation",
+          "reason": "Assistant influence requires a bounded interpretive read across the conversation."
+        },
+        {
+          "section": "useful_noisy_friction",
+          "classification": "requires_llm_interpretation",
+          "reason": "Useful versus noisy friction is a qualitative product read."
+        },
+        {
+          "section": "lost_value",
+          "classification": "requires_llm_interpretation",
+          "reason": "Lost value cannot be inferred deterministically from artifact presence."
+        }
+      ],
+      "redacted_or_private_sections": [
+        {
+          "artifact": "conversation.txt",
+          "classification": "clear_and_populated",
+          "source_status": "available_but_redacted_in_safe_mode",
+          "reason": "The report can record presence without reading or copying raw conversation content."
+        },
+        {
+          "artifact": "memo.md",
+          "classification": "clear_and_populated",
+          "source_status": "available_but_redacted_in_safe_mode",
+          "reason": "The report can record presence without copying memo text."
+        },
+        {
+          "artifact": "revised.txt",
+          "classification": "clear_and_populated",
+          "source_status": "available_but_redacted_in_safe_mode",
+          "reason": "The report can record presence without copying revised-answer text."
+        },
+        {
+          "artifact": "operator.log",
+          "classification": "clear_and_populated",
+          "source_status": "available_in_private_artifact_not_exported",
+          "reason": "Operator-only material stays private and is not exported in checked-in safe mode."
+        }
+      ],
+      "missing_or_malformed_artifacts": [],
+      "confusing_sections": [],
+      "overtrust_risk_sections": [
+        {
+          "section": "structural_delta",
+          "classification": "overclaim_risk",
+          "reason": "A populated change section can look like evidence of improvement unless the reader keeps the non-claims in view."
+        }
+      ],
+      "behavioral_usefulness": {
+        "what_changed_answerable": {
+          "answer": "partly",
+          "rationale": "The structural_delta section shows what existing structured artifacts say changed, but it does not decide whether that change mattered.",
+          "human_validation_caveat": "No human reviewer validated this usefulness read."
+        },
+        "evidence_support_answerable": {
+          "answer": "yes_for_source_refs_only",
+          "rationale": "Source refs show which structured artifacts supplied fields.",
+          "human_validation_caveat": "Source refs are custody evidence, not proof that the advice is good."
+        },
+        "missingness_answerable": {
+          "answer": "yes",
+          "rationale": "Interpretation-needed sections and empty meanings make missingness visible.",
+          "human_validation_caveat": "Visible missingness does not establish semantic adequacy."
+        },
+        "non_claims_answerable": {
+          "answer": "yes",
+          "rationale": "Custody flags and non-claims prevent the report from becoming a reliance label.",
+          "human_validation_caveat": "Readers must still respect those non-claims."
+        },
+        "more_careful_or_more_impressed": {
+          "answer": "more_careful_if_status_fields_are_read",
+          "rationale": "The report slows the reader down by showing which attractive fields are still missing.",
+          "human_validation_caveat": "This is a fixture-review read, not human validation."
+        }
+      },
+      "report_readability": "readable_with_status_fields",
+      "artifact_custody_read": "useful",
+      "semantic_interpretation_adequacy_read": "incomplete_but_honest",
+      "product_delta_usefulness_read": "not_reviewed",
+      "human_validation_read": "not_human_validated",
+      "blockers": [],
+      "human_followup_questions": [
+        "Does a real archive report remain readable when more raw/private artifacts are merely referenced?",
+        "Can a human reviewer quickly tell whether structural_delta changed action or only changed language?",
+        "Which interpretation-needed fields should be filled first by bounded LLM specialists?"
+      ]
+    },
+    {
+      "report_id": "sparse_missing_fixture_report",
+      "report_ref": "temporary_pr87_cli_output_not_checked_in",
+      "source_run_ref": "temporary safe fixture with no structured artifacts",
+      "report_mode": "checked_in_safe_mode",
+      "field_population_summary": {
+        "semantic_section_count": 14,
+        "clear_and_populated": 0,
+        "clear_but_missing": 6,
+        "requires_llm_interpretation": 8,
+        "requires_human_review": 0,
+        "confusing": 0,
+        "overclaim_risk": 0,
+        "not_applicable": 0
+      },
+      "populated_sections": [],
+      "interpretation_needed_sections": [
+        {
+          "section": "vanilla_likely_next_action",
+          "classification": "requires_llm_interpretation",
+          "reason": "No safe structured source exists and deterministic code must not infer action."
+        },
+        {
+          "section": "revised_likely_next_action",
+          "classification": "requires_llm_interpretation",
+          "reason": "No safe structured source exists and revised-answer prose is not read."
+        },
+        {
+          "section": "option_map",
+          "classification": "requires_llm_interpretation",
+          "reason": "No live option map is supplied."
+        },
+        {
+          "section": "stakeholders",
+          "classification": "requires_llm_interpretation",
+          "reason": "Stakeholders require interpretation that PR88 does not perform."
+        },
+        {
+          "section": "values_or_priorities",
+          "classification": "requires_llm_interpretation",
+          "reason": "Values and priorities require interpretation that PR88 does not perform."
+        },
+        {
+          "section": "assistant_influence",
+          "classification": "requires_llm_interpretation",
+          "reason": "Assistant influence requires a bounded interpretive read."
+        },
+        {
+          "section": "useful_noisy_friction",
+          "classification": "requires_llm_interpretation",
+          "reason": "Friction quality is not a deterministic artifact-health field."
+        },
+        {
+          "section": "lost_value",
+          "classification": "requires_llm_interpretation",
+          "reason": "Lost value is not measurable from missing artifacts."
+        }
+      ],
+      "redacted_or_private_sections": [],
+      "missing_or_malformed_artifacts": [
+        {
+          "artifact": "evaluation.json",
+          "classification": "clear_but_missing",
+          "source_status": "unavailable_missing_artifact"
+        },
+        {
+          "artifact": "agent_result.json",
+          "classification": "clear_but_missing",
+          "source_status": "unavailable_missing_artifact"
+        },
+        {
+          "artifact": "reasoning_trace.json",
+          "classification": "clear_but_missing",
+          "source_status": "unavailable_missing_artifact"
+        },
+        {
+          "artifact": "extraction.json",
+          "classification": "clear_but_missing",
+          "source_status": "unavailable_missing_artifact"
+        }
+      ],
+      "confusing_sections": [],
+      "overtrust_risk_sections": [],
+      "behavioral_usefulness": {
+        "what_changed_answerable": {
+          "answer": "no",
+          "rationale": "The report has no structured change material.",
+          "human_validation_caveat": "No human reviewer validated this usefulness read."
+        },
+        "evidence_support_answerable": {
+          "answer": "yes_for_missingness_only",
+          "rationale": "The report explains which expected artifacts are missing.",
+          "human_validation_caveat": "Missingness evidence is not semantic review."
+        },
+        "missingness_answerable": {
+          "answer": "yes",
+          "rationale": "Missing structured artifacts are recorded directly.",
+          "human_validation_caveat": "This does not say what the conversation meant."
+        },
+        "non_claims_answerable": {
+          "answer": "yes",
+          "rationale": "The sparse report still carries non-claims and custody flags.",
+          "human_validation_caveat": "Non-claims do not make the report useful for product presentation by themselves."
+        },
+        "more_careful_or_more_impressed": {
+          "answer": "more_careful",
+          "rationale": "The sparse report prevents accidental confidence by showing that it cannot answer the decision-trail questions.",
+          "human_validation_caveat": "This is a fixture-review read, not human validation."
+        }
+      },
+      "report_readability": "readable_but_sparse",
+      "artifact_custody_read": "useful_for_diagnostics",
+      "semantic_interpretation_adequacy_read": "not_available",
+      "product_delta_usefulness_read": "not_reviewed",
+      "human_validation_read": "not_human_validated",
+      "blockers": [],
+      "human_followup_questions": [
+        "Should sparse reports be hidden from customer-facing presentation until a minimum structured-artifact threshold exists?",
+        "Which missing artifacts should be treated as degraded-run blockers rather than merely sparse report fields?"
+      ]
+    }
+  ],
+  "aggregate_observations": {
+    "field_population_read": "PR87 can populate custody, artifact health, decision question, extraction presence counts, structured constraints, audit pressure, structural delta, unresolved questions, and trace context when structured artifacts exist. It does not populate the messy product fields.",
+    "positive_usefulness_notes": [
+      {
+        "note": "The report makes missingness and redaction visible enough to prevent silent semantic guessing.",
+        "human_validation_caveat": "This is fixture-review evidence only and has not been human validated."
+      },
+      {
+        "note": "The report can make a reviewer more careful by showing which attractive fields still require interpretation.",
+        "human_validation_caveat": "This is not human validated and does not prove that any revised answer was better."
+      }
+    ],
+    "strongest_usefulness_signal": "The Decision Trail report is useful as a custody and missingness shell: it shows what exists, what is redacted/private, what is missing, and which messy fields require later interpretation.",
+    "strongest_overtrust_risk": "A populated structural_delta section can make the report feel more semantically complete than it is. The key user-facing fields around options, values, stakeholders, assistant influence, useful/noisy friction, and lost value remain unpopulated.",
+    "what_this_report_made_easier_to_see": [
+      "The source artifacts behind each populated field.",
+      "The difference between missing structured artifacts and raw/private artifacts not exported in checked-in safe mode.",
+      "The exact semantic fields that require bounded LLM interpretation."
+    ],
+    "what_this_report_failed_to_preserve": [
+      "The live option set.",
+      "How the assistant shaped the user's framing.",
+      "Which user values or priorities should govern the revised answer.",
+      "Whether friction was useful or noisy.",
+      "Whether the revised answer lost momentum, ambition, simplicity, or other value."
+    ],
+    "safe_mode_thinness": "Checked-in safe mode is suitable for repo fixtures and boundary review, but too compressed to decide whether a real messy conversation was interpreted adequately.",
+    "overtrust_control": "The report should be presented as a process/custody receipt until LLM-backed interpretation or later human review fills the semantic gaps."
+  },
+  "PR89_recommendation": {
+    "recommended_next_pr": "PR89 Conversation Interpretation Gap Decision v0",
+    "recommended_decision_pressure": "Bias toward a narrow offline LLM specialist enrichment decision if real reports remain sparse in the same fields.",
+    "do_not_jump_to": [
+      "runtime integration",
+      "broad conversation-understanding platform",
+      "graph or memory work",
+      "answer-quality judge",
+      "automatic labels"
+    ],
+    "decision_question": "Is the current artifact chain enough for a useful Decision Trail v0, or do we need bounded LLM-backed interpretation for the missing messy fields?"
+  },
+  "non_claims": [
+    "not human review",
+    "not ground truth",
+    "not judge calibration data",
+    "not product proof",
+    "not answer-quality scoring",
+    "not automatic labeling",
+    "not agent action authorization",
+    "not evidence that Lolla improved any decision",
+    "not evidence that clean artifacts imply good advice"
+  ]
+}

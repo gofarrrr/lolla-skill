@@ -1,0 +1,532 @@
+{
+  "schema_version": "lolla.decision_trail_second_one_case_specialist_pilot.v0",
+  "review_mode": "codex_assisted_pr100_second_one_case_specialist_pilot",
+  "boundary": {
+    "human_validated": false,
+    "ground_truth": false,
+    "judge_calibration_eligible": false,
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "model_calls": 0,
+    "archive_mutated": false,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "automatic_labels_created": false,
+    "raw_private_content_included": false,
+    "fan_in_executed_as_verdict": false
+  },
+  "source_packet_summary": {
+    "pilot_case_count": 1,
+    "pilot_case_ref": "accept-founding-engineer-role/20260627T073034Z_a7c221",
+    "prior_pilot_case_ref": "ceo-remove-founding-cofounder/20260627T093131Z_59d153",
+    "metadata_packet_generated": true,
+    "metadata_packet_checked_in": false,
+    "metadata_packet_deleted_after_review": true,
+    "metadata_packet_ref": "local_temp_output_not_checked_in:pr100_metadata_packets.json",
+    "include_text_packet_generated": true,
+    "include_text_packet_checked_in": false,
+    "include_text_packet_deleted_after_review": true,
+    "include_text_packet_ref": "local_temp_output_not_checked_in:pr100_include_text_packets.json",
+    "include_text_max_chars_per_artifact": 20000,
+    "private_content_in_checked_in_review": false,
+    "local_absolute_paths_in_checked_in_review": false,
+    "source_scope_summary": {
+      "content_inclusion_mode": "include_text",
+      "artifact_records_read": 16,
+      "read_text_complete": 12,
+      "read_text_truncated": 4,
+      "specialists_cited_scope_status": true
+    },
+    "truncation_summary": {
+      "artifact_records_truncated": 4,
+      "truncation_impact": "main_conversation_revised_answer_and_memo_complete_but_structured_trace_artifacts_partly_truncated",
+      "specialists_cited_truncation_impact": true
+    },
+    "local_private_retention_policy_observed": {
+      "builder_deletes_local_output": false,
+      "checked_in_review_records_retention": true,
+      "include_text_output_retention_status": "deleted_after_review",
+      "metadata_output_retention_status": "deleted_after_review"
+    }
+  },
+  "aggregate_observations": {
+    "main_limit": "This is a second one-case Codex-assisted local-private pilot. It tests whether the PR99 patch improves discipline, not whether Lolla improved the decision.",
+    "main_usefulness_signal": "The new vanilla_overlap_read field forced a downgrade pressure: the revised answer adds stronger thresholds, gates, and stop rules, but the vanilla conversation already contained spouse gating, diligence calls, extension request, and A-as-fallback logic.",
+    "overtrust_warning": "Clean PR99-shaped specialist outputs can still look more authoritative than the evidence deserves. The reads remain provisional, source-limited, and not action-authorizing.",
+    "stage_read": "patched_contracts_useful_for_one_more_case_not_ready_for_broad_batch"
+  },
+  "pilot_cases": [
+    {
+      "case_ref": "accept-founding-engineer-role/20260627T073034Z_a7c221",
+      "input_packet_mode": "local_private_mode",
+      "content_policy_observed": "include_text_summary_only_checked_in",
+      "selection_rationale": "This run was already covered by the PR96 metadata-only local-private smoke path and is different from the PR97 cofounder case.",
+      "source_packet_summary": {
+        "source_packet_ref": "local_private_run:20260627t073034z-a7c221-1",
+        "local_packet_checked_in": false,
+        "local_packet_private_content_state": "included_in_deleted_local_temp_output_only",
+        "artifact_records_included_in_local_packet": 16,
+        "artifact_records_read_text_complete": 12,
+        "artifact_records_truncated_in_local_packet": 4,
+        "local_absolute_paths_in_checked_in_review": false,
+        "packet_roles_present": [
+          "conversation_shape_reader",
+          "likely_action_reader",
+          "friction_lost_value_reader",
+          "conservative_fan_in_reader"
+        ],
+        "pr99_patch_fields_present": [
+          "assistant_influence_source_status",
+          "vanilla_overlap_read",
+          "lost_value_severity_read",
+          "severity_source_status",
+          "downgrade_triggers",
+          "not_ready_reason",
+          "source_scope_and_truncation_impact"
+        ]
+      },
+      "specialist_outputs": {
+        "conversation_shape_reader": {
+          "specialist_role": "conversation_shape_reader",
+          "contract_version": "lolla.decision_trail_specialist_contracts.v0",
+          "input_mode": "local_private_mode",
+          "read_status": "provisional_candidate",
+          "source_status": "local_private_packet_candidate",
+          "uncertainty": "medium",
+          "evidence_strength": "moderate_for_candidate_shape",
+          "allowed_input_refs": [
+            "local_private_run:20260627t073034z-a7c221-1/*",
+            "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json"
+          ],
+          "source_refs": [
+            {
+              "artifact_ref": "local_private_run:20260627t073034z-a7c221-1/conversation.txt",
+              "source_status": "read_text_complete"
+            },
+            {
+              "artifact_ref": "local_private_run:20260627t073034z-a7c221-1/revised.txt",
+              "source_status": "read_text_complete"
+            },
+            {
+              "artifact_ref": "local_private_run:20260627t073034z-a7c221-1/memo.md",
+              "source_status": "read_text_complete"
+            }
+          ],
+          "fields": {
+            "decision_question": "Whether to choose a different FAANG staff+ role, a Series B founding-engineer role, or stay where staff scope is structurally blocked.",
+            "live_options": [
+              "Take the new FAANG staff+ role as a lower-risk platform and diagnostic bridge.",
+              "Take the startup founding-engineer role only if family, company, role, equity, and boundary gates clear.",
+              "Stay only if the current employer can produce a written staff-scope path, which the packet does not show."
+            ],
+            "option_status": {
+              "new_faang_staff_plus_role": "fallback_or_diagnostic_bridge_candidate",
+              "series_b_founding_engineer_role": "conditional_candidate_if_gates_clear",
+              "current_role": "mostly_rejected_unless_written_staff_path_appears",
+              "extension_and_diligence": "selected_process_candidate_before_final_choice"
+            },
+            "constraints": [
+              "Short decision clock.",
+              "Large base-compensation cut for the startup role.",
+              "Spouse, children, household load, and family stability.",
+              "Current-company staff path appears structurally blocked.",
+              "Startup equity, runway, hours, and decision-making reality are unresolved."
+            ],
+            "stakeholders": [
+              "the user",
+              "the user's spouse",
+              "the user's children and household system",
+              "the startup CEO and team",
+              "the new FAANG team",
+              "the current employer"
+            ],
+            "values_or_priorities": [
+              "building something that feels personally owned",
+              "family stability",
+              "career growth and staff-scope work",
+              "financial survivability",
+              "reversibility before commitment"
+            ],
+            "assistant_influence": "visible_candidate",
+            "assistant_influence_source_status": "visible_in_local_private_packet",
+            "dropped_threads": [
+              "The startup equity expected-value thread was acknowledged, then reframed into career-shape value before the revised answer brought diligence gates back.",
+              "The current employer path remains largely closed unless a written staff-scope path appears."
+            ],
+            "unresolved_questions": [
+              "What did the spouse actually say after the conversation?",
+              "Would the startup accept boundary, extension, and diligence requests?",
+              "Are the equity and runway facts strong enough to make the risk bounded?",
+              "Would the FAANG staff+ role genuinely be a diagnostic bridge or just another delay?"
+            ],
+            "uncertainty": [
+              "The main conversation, revised answer, and memo were complete in the local packet.",
+              "Some structured trace artifacts were truncated.",
+              "No spouse, startup, lawyer, or current-employer evidence is present."
+            ],
+            "source_scope_and_truncation_impact": "Conversation, revised answer, and memo were read complete, so the candidate decision shape is reviewable. Structured trace artifacts were partly truncated, so source-health details should stay caveated."
+          },
+          "limitations": [
+            "One case only.",
+            "Codex-assisted interpretation, not human validation.",
+            "Private packet content is not checked in.",
+            "No external stakeholder evidence."
+          ],
+          "non_claims": [
+            "not human review",
+            "not ground truth",
+            "not product proof",
+            "not automatic labeling"
+          ],
+          "boundary_metadata": {
+            "human_validated": false,
+            "ground_truth": false,
+            "judge_calibration_eligible": false,
+            "product_proof": false,
+            "answer_quality_scored": false,
+            "agent_action_authorized": false,
+            "model_calls": 0,
+            "archive_mutated": false,
+            "runtime_invoked": false,
+            "skill_invoked": false,
+            "automatic_labels_created": false,
+            "raw_private_content_included": false
+          }
+        },
+        "likely_action_reader": {
+          "specialist_role": "likely_action_reader",
+          "contract_version": "lolla.decision_trail_specialist_contracts.v0",
+          "input_mode": "local_private_mode",
+          "read_status": "provisional_candidate",
+          "source_status": "local_private_packet_candidate",
+          "uncertainty": "medium",
+          "evidence_strength": "moderate_for_delta_shape_lower_for_incremental_materiality",
+          "allowed_input_refs": [
+            "local_private_run:20260627t073034z-a7c221-1/*",
+            "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json"
+          ],
+          "source_refs": [
+            {
+              "artifact_ref": "local_private_run:20260627t073034z-a7c221-1/conversation.txt",
+              "source_status": "read_text_complete"
+            },
+            {
+              "artifact_ref": "local_private_run:20260627t073034z-a7c221-1/revised.txt",
+              "source_status": "read_text_complete"
+            },
+            {
+              "artifact_ref": "local_private_run:20260627t073034z-a7c221-1/memo.md",
+              "source_status": "read_text_complete"
+            }
+          ],
+          "fields": {
+            "vanilla_likely_next_action": "Have the spouse conversation, ask for more time, do startup diligence, and if spouse support is real lean toward B; if not, take A deliberately rather than stay.",
+            "revised_likely_next_action": "Do not stay by default; take B only if spouse support plus company evidence, role reality, equity terms, family operating rules, and reversibility gates clear; otherwise take A as a designed diagnostic bridge.",
+            "vanilla_overlap_read": "material_overlap_candidate",
+            "action_delta": "The top-level path overlaps materially; the revised answer changes the threshold for B more than the visible next action.",
+            "threshold_delta": "A spouse yes becomes necessary but not sufficient; B must clear company, equity, role, boundary, and downside-buffer gates.",
+            "sequence_delta": "The revised sequence makes extension, diligence, operating-boundary negotiation, and family kill criteria explicit before signing.",
+            "evidence_gate_delta": "Startup runway, cap table, equity terms, employee calls, CEO dynamics, hours reality, and spouse operating agreement become explicit gates.",
+            "stop_rule_delta": "Family and role-overload kill criteria become explicit enough to revisit the job before resentment or overload becomes default.",
+            "uncertainty": [
+              "The vanilla conversation already contained several diligence and spouse-gate moves.",
+              "The incremental delta is threshold clarity, not a clean action reversal.",
+              "Human review should decide whether this is materially better or mostly stricter packaging."
+            ],
+            "source_scope_and_truncation_impact": "Main action sources were read complete. The material-overlap read is stronger because the conversation text was complete; structured trace truncation does not remove the need to keep the overlap caveat."
+          },
+          "limitations": [
+            "Likely action remains inferred from conversation and revised-answer text.",
+            "No human confirmation of what the user actually did.",
+            "Material overlap prevents a clean improvement claim."
+          ],
+          "non_claims": [
+            "not human review",
+            "not proof that revised action is better",
+            "not a recommendation",
+            "not automatic labeling"
+          ],
+          "boundary_metadata": {
+            "human_validated": false,
+            "ground_truth": false,
+            "judge_calibration_eligible": false,
+            "product_proof": false,
+            "answer_quality_scored": false,
+            "agent_action_authorized": false,
+            "model_calls": 0,
+            "archive_mutated": false,
+            "runtime_invoked": false,
+            "skill_invoked": false,
+            "automatic_labels_created": false,
+            "raw_private_content_included": false
+          }
+        },
+        "friction_lost_value_reader": {
+          "specialist_role": "friction_lost_value_reader",
+          "contract_version": "lolla.decision_trail_specialist_contracts.v0",
+          "input_mode": "local_private_mode",
+          "read_status": "provisional_candidate",
+          "source_status": "local_private_packet_candidate",
+          "uncertainty": "medium_high",
+          "evidence_strength": "moderate_for_useful_friction_low_for_lost_value_severity",
+          "allowed_input_refs": [
+            "local_private_run:20260627t073034z-a7c221-1/*",
+            "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json"
+          ],
+          "source_refs": [
+            {
+              "artifact_ref": "local_private_run:20260627t073034z-a7c221-1/conversation.txt",
+              "source_status": "read_text_complete"
+            },
+            {
+              "artifact_ref": "local_private_run:20260627t073034z-a7c221-1/revised.txt",
+              "source_status": "read_text_complete"
+            },
+            {
+              "artifact_ref": "local_private_run:20260627t073034z-a7c221-1/memo.md",
+              "source_status": "read_text_complete"
+            }
+          ],
+          "fields": {
+            "useful_friction": [
+              "Turns identity pull toward startup work into evidence gates rather than treating desire as proof.",
+              "Makes family consent operational through hours, travel, childcare, spending, check-ins, and kill criteria.",
+              "Treats the FAANG option as a designed bridge if B fails gates rather than as emotional surrender.",
+              "Reintroduces startup-quality and equity diligence after the conversation drifted toward career-shape value."
+            ],
+            "noisy_friction": [
+              "The gate list could become diligence theater if every unknown becomes a veto.",
+              "The revised answer may make the startup path feel harder to choose without proving A is better."
+            ],
+            "missing_friction": [
+              "No actual spouse answer is present.",
+              "No actual startup diligence evidence is present.",
+              "No equity lawyer or employee-call read is present.",
+              "No independent comparison of the new FAANG role's true staff scope is present."
+            ],
+            "lost_value": [
+              "Possible loss of momentum and courage around the user's desire to build.",
+              "Possible replacement of a personally meaningful leap with a procedural veto stack.",
+              "Possible underweighting of the fact that the user's family can financially survive the base cut."
+            ],
+            "lost_value_severity_read": "moderate_candidate",
+            "severity_source_status": "source_limited_no_human_or_spouse_calibration",
+            "value_overwrite_risk": "generic prudence could overwrite the user's specific desire to build if gates become default reasons to choose A",
+            "momentum_or_simplicity_loss": "present_candidate_moderate",
+            "overcaution_or_diligence_theater": "possible_but_not_primary_candidate",
+            "uncertainty": [
+              "Lost-value presence is visible, but severity depends on the user's and spouse's real priorities.",
+              "The revised answer preserves B as available if gates clear, which limits but does not remove value-overwrite risk."
+            ],
+            "source_scope_and_truncation_impact": "Conversation, revised answer, and memo were read complete, so useful-friction and lost-value candidates are reviewable. Severity still requires human or spouse calibration, not more deterministic parsing."
+          },
+          "limitations": [
+            "Lost-value severity is not human-calibrated.",
+            "No spouse or startup-side evidence is present.",
+            "This is a candidate read over one local-private packet."
+          ],
+          "non_claims": [
+            "not human review",
+            "not proof of better advice",
+            "not a risk score",
+            "not automatic labeling"
+          ],
+          "boundary_metadata": {
+            "human_validated": false,
+            "ground_truth": false,
+            "judge_calibration_eligible": false,
+            "product_proof": false,
+            "answer_quality_scored": false,
+            "agent_action_authorized": false,
+            "model_calls": 0,
+            "archive_mutated": false,
+            "runtime_invoked": false,
+            "skill_invoked": false,
+            "automatic_labels_created": false,
+            "raw_private_content_included": false
+          }
+        },
+        "conservative_fan_in_reader": {
+          "specialist_role": "conservative_fan_in_reader",
+          "contract_version": "lolla.decision_trail_specialist_contracts.v0",
+          "input_mode": "local_private_mode",
+          "read_status": "provisional_candidate",
+          "source_status": "local_private_packet_candidate",
+          "uncertainty": "medium_high",
+          "evidence_strength": "moderate_for_report_discipline_low_for_product_claim",
+          "allowed_input_refs": [
+            "local_private_run:20260627t073034z-a7c221-1/*",
+            "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json"
+          ],
+          "source_refs": [
+            {
+              "artifact_ref": "local_private_run:20260627t073034z-a7c221-1/conversation.txt",
+              "source_status": "read_text_complete"
+            },
+            {
+              "artifact_ref": "local_private_run:20260627t073034z-a7c221-1/revised.txt",
+              "source_status": "read_text_complete"
+            },
+            {
+              "artifact_ref": "local_private_run:20260627t073034z-a7c221-1/memo.md",
+              "source_status": "read_text_complete"
+            },
+            {
+              "artifact_ref": "docs/conversation-understanding/decision-trail-specialist-contract-and-packet-patch-v0.md",
+              "source_status": "contract_patch_context"
+            }
+          ],
+          "fields": {
+            "areas_of_agreement": [
+              "The current role is weak unless a written staff-scope path appears.",
+              "B remains available only if family and startup gates clear.",
+              "A remains a deliberate fallback or diagnostic bridge if B fails gates.",
+              "The revised answer's strongest change is threshold and gate discipline, not a clean top-level action reversal."
+            ],
+            "disagreements_preserved": [
+              "Useful evidence gating versus possible momentum loss.",
+              "Material vanilla overlap versus cleaner revised thresholds.",
+              "Assistant influence is visible, but whether it was harmful or helpful needs human review.",
+              "B may be a meaningful life experiment while still needing hard gates."
+            ],
+            "high_uncertainty_fields": [
+              "human-validated net decision usefulness",
+              "lost-value severity",
+              "spouse's actual support",
+              "startup-quality facts",
+              "whether A is a true diagnostic bridge"
+            ],
+            "fields_ready_for_report": [
+              "decision question candidate",
+              "live option map candidate",
+              "vanilla-overlap warning",
+              "threshold/evidence-gate delta candidate",
+              "source-scope and truncation caveat",
+              "human follow-up questions"
+            ],
+            "fields_not_ready_for_report": [
+              "product improvement claim",
+              "answer-quality judgment",
+              "agent action permission",
+              "lost-value severity as a firm label",
+              "assistant influence as a causal claim"
+            ],
+            "human_followup_questions": [
+              "Did the spouse give a hard yes, soft yes, or no?",
+              "Did the startup clear runway, equity, role, and hours diligence?",
+              "Would the user experience A as a real diagnostic bridge or as another delay?",
+              "Does the gate bundle protect the family or quietly bury the user's ambition?"
+            ],
+            "overtrust_risks": [
+              "The patched output is more complete and may look validated.",
+              "The material-overlap warning could be mistaken for a negative verdict.",
+              "One additional career case still does not make a broad specialist lane safe."
+            ],
+            "downgrade_triggers": [
+              "vanilla_overlap_read is material_overlap_candidate",
+              "lost_value_severity_read is only moderate_candidate and source-limited",
+              "assistant_influence is visible but not causal",
+              "no spouse or startup evidence exists",
+              "structured trace artifacts were partly truncated"
+            ],
+            "not_ready_reason": "The patched fields make the candidate read more disciplined, but one local-private case with material vanilla overlap and no human validation is not enough for a product claim or broad batch.",
+            "next_review_priority": "Run a review-only PR101 decision gate before broadening: compare PR97 and PR100 to decide whether a third one-case pilot, a pause, or simplification is warranted.",
+            "net_read_candidate": "local_private_specialist_read_partly_useful",
+            "source_scope_and_truncation_impact": "Main semantic artifacts were read complete, which makes the partial-usefulness read reviewable. Remaining structured truncation and absent external evidence require a downgrade rather than a material-improvement-style read."
+          },
+          "limitations": [
+            "One additional case only.",
+            "Codex-assisted and unvalidated.",
+            "Fan-in is a conservative synthesis, not a verdict.",
+            "No broad batch comparison."
+          ],
+          "non_claims": [
+            "not human review",
+            "not product proof",
+            "not a score",
+            "not agent authorization"
+          ],
+          "boundary_metadata": {
+            "human_validated": false,
+            "ground_truth": false,
+            "judge_calibration_eligible": false,
+            "product_proof": false,
+            "answer_quality_scored": false,
+            "agent_action_authorized": false,
+            "model_calls": 0,
+            "archive_mutated": false,
+            "runtime_invoked": false,
+            "skill_invoked": false,
+            "automatic_labels_created": false,
+            "raw_private_content_included": false
+          }
+        }
+      },
+      "disagreements_preserved": [
+        "The revised answer is stricter, but much of the visible action sequence was already present in the vanilla conversation.",
+        "Gates protect the family and downside, but may also slow or bury a personally meaningful leap.",
+        "Assistant influence is visible in the conversation, but the pilot cannot decide whether that influence was useful or distortive."
+      ],
+      "human_review_priorities": [
+        "Check whether the original final answer already contained enough of the revised gates to make the delta mostly packaging.",
+        "Check whether the revised family operating agreement would feel protective or controlling to the spouse.",
+        "Check whether A-as-diagnostic is a live honest plan or a rationalized fallback.",
+        "Check whether the startup evidence gates are realistically obtainable before the decision deadline."
+      ],
+      "overtrust_risks": [
+        "The new PR99 fields make the output look more complete.",
+        "The material-overlap warning could be overread as proof that Lolla added little.",
+        "The case is still a career/family case selected from prior reviewed evidence."
+      ],
+      "unresolved_questions": [
+        "Would a human reviewer call this material improvement, partial improvement, or disciplined restatement?",
+        "How much lost momentum is acceptable if the gates protect the family?",
+        "Should the next case be a non-career/operator case to avoid overfitting this lane to career decisions?"
+      ]
+    }
+  ],
+  "comparison_to_pr97": {
+    "useful_progress": [
+      "PR100 exercised all PR99 fields directly.",
+      "The likely-action reader could now record material vanilla overlap instead of over-crediting the revised answer.",
+      "Fan-in had explicit downgrade triggers and a not-ready reason.",
+      "Source scope and truncation impact were cited by every role."
+    ],
+    "same_or_remaining_limits": [
+      "The pilot is still one case.",
+      "It is still Codex-assisted and not human validated.",
+      "It still depends on local-private packet handling.",
+      "It still cannot authorize broad batches or runtime integration."
+    ],
+    "directional_read": "PR99 patch improved discipline, but PR100's partial-usefulness result argues for a decision gate before any broader specialist-output batch."
+  },
+  "next_recommended_slice": {
+    "recommended_slice": "PR101 Decision Trail Specialist Pilot Comparison Gate v0",
+    "purpose": "Compare PR97 and PR100 before deciding whether to run a third one-case pilot, pause, simplify contracts, or prepare a very small multi-case review.",
+    "why_not_broad_batch": "PR100 found material vanilla overlap and partial usefulness. Broadening now would scale unresolved interpretation and overtrust risks.",
+    "must_not_do": [
+      "run_lolla",
+      "invoke_lolla_skill",
+      "call_provider_apis",
+      "mutate_archives",
+      "change_runtime_behavior",
+      "score_answer_quality",
+      "create_automatic_labels",
+      "authorize_agent_action",
+      "treat_clean_specialist_outputs_as_product_proof"
+    ]
+  },
+  "non_claims": [
+    "not human review",
+    "not ground truth",
+    "not judge calibration data",
+    "not product proof",
+    "not answer-quality scoring",
+    "not automatic labeling",
+    "not runtime integration",
+    "not evidence that clean specialist outputs mean good advice",
+    "not proof that future specialists will interpret conversations correctly",
+    "not agent action authorization"
+  ]
+}

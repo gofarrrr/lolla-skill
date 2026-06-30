@@ -213,6 +213,94 @@ is decision-useful. That phase should review `decision_leverage`, `lost_value`,
 and `net_decision_read` before any judge, score, automatic label, or new
 machinery is added.
 
+PR71-PR74 add a lower-claim bridge for the period before new human-review
+capacity is available. The mode is `codex_assisted_provisional`: Codex may
+prepare candidate pair reads, likely-action summaries, failure-mode candidates,
+lost-value notes, and human follow-up questions from review-safe artifacts. It
+does not create human labels, ground truth, judge calibration data, product
+proof, answer-quality scoring, or agent approval. Subjective fields remain
+provisional until a principal human reviewer validates, corrects, or rejects
+them.
+
+PR75 makes that bridge executable without changing the claim level. A
+read-only deterministic script can check existing cases for artifact presence,
+structured JSON readiness signals, review-safe context, and non-claim metadata,
+then emit PR72-shaped shells whose semantic fields remain unjudged. This tests
+whether the eval lane can run over existing cases; it still does not test
+whether Lolla improved any decision.
+
+PR76 fills the 12 PR75-ready shells with Codex-assisted provisional semantic
+reads. It is a rehearsal of the semantic review surface, not human review. Its
+mixed labels are candidate reads that help future humans inspect likely action,
+structural delta, useful/noisy friction, lost value, and interpretation
+adequacy. They remain unsuitable for judge calibration, product proof,
+automatic labels, or agent approval.
+
+PR77 summarizes PR75 and PR76 as one provisional state-of-evidence report. It
+records readiness counts, candidate distribution, recurring structural deltas,
+lost-value risks, interpretation-adequacy concerns, human-review priorities, and
+falsification tests. It still does not prove that Lolla improves decisions.
+
+PR78 adds deterministic Product Delta evidence-boundary lint. It checks
+supplied Product Delta JSON/Markdown artifacts for unsafe metadata, authority
+fields, taxonomy score drift, missing PR72 review-case boundary fields, privacy
+markers, and targeted Markdown overclaim risks. It is not semantic judgment and
+does not prove answer quality. Future specialist-review architecture must pass
+this lint before provisional outputs are treated as review packets.
+
+PR79 defines that future specialist-review architecture without implementing
+it. The design rejects a broad LLM judge and decomposes Product Delta review
+into bounded provisional reads: conversation interpretation, vanilla likely
+next action, Lolla likely next action, structural delta, useful/noisy friction
+and lost value, interpretation adequacy, overclaim review, and conservative
+fan-in. Specialist reads are not votes, scores, labels, human validation, judge
+calibration data, product proof, or agent approval. Future contracts and
+packets must stay downstream/offline and pass PR78 lint.
+
+PR80 defines the typed contracts for those specialist reads. The schema records
+input custody, lower-claim boundary metadata, source/status vocabulary,
+specialist read shapes, candidate-only fan-in, and non-claims. It is still not
+a packet builder, review batch, model-call implementation, human validation,
+judge calibration data, product proof, answer-quality scoring, automatic
+labeling, runtime integration, or agent approval.
+
+PR81 implements deterministic packetization against those contracts. The
+builder creates checked-in-safe per-specialist input packets from existing
+Product Delta artifacts, records source refs and known limits, and emits a
+compact fixture without raw/private content. It still does not fill specialist
+answers, run review, call models, mutate archives, score answer quality,
+create labels, integrate with runtime, or authorize agent action.
+
+PR82 adds a provisional reviewer trap set before any real specialist batch. The
+traps are checked-in-safe contract expectations for obvious review failure
+modes: thin context, length bias, caution without leverage, repeated vanilla
+gates, lost live options, generic prudence burying user ambition, assistant
+influence blindness, disagreement smoothing, clean-artifact authority leakage,
+and hardened provisional language. The traps are not human labels, ground
+truth, judge calibration data, product proof, answer-quality scores, automatic
+labels, runtime integration, or agent approval.
+
+PR83 runs the first Codex-assisted specialist-review batch using those traps
+and the two-case PR81 packet fixture. The trap pass records 8 met expectations
+and 2 partial expectations; the real-case pass fills all eight PR80 specialist
+reads for each case, records lost value and interpretation adequacy concerns in
+both, and downgrades one PR76 material candidate to partial. This is evidence
+about review-discipline, not evidence that Lolla improves decisions.
+
+PR84 adds a static Fan-In / Disagreement Report over existing PR76 and PR83
+artifacts. It creates no new specialist reads and makes the PR76-to-PR83
+tension easier to inspect: one PR76 material candidate becomes a PR83 partial
+candidate, both real cases keep lost-value and interpretation-adequacy concern
+surfaces, and the two-case positive-distribution limit remains visible. This
+is reporting hygiene for the review harness, not product proof.
+
+PR85 adds the Product Delta PR71-PR84 Packaging Gate. It creates a manifest and
+tests for the current phase surface: included files, conservative boundary
+metadata, PR78 lint coverage, PR83/PR84 shape preservation, source-reference
+resolution, the `accept-operations-role-startup` downgrade, and the remaining
+two-case prior-positive thinness risk. This is package hygiene, not new
+evidence.
+
 These checks should gate releases before any subjective judge runs.
 
 ### 4. Binary Failure-Mode Judges Only
@@ -710,8 +798,14 @@ automatic labels, domain protocols, or a judge.
 Latest eval slice:
 
 ```text
-PR54 User Values / Priorities Pilot Review v0
+PR85 Product Delta PR71-PR84 Packaging Gate v0
 ```
+
+PR85 is packaging-gate work only. It records and checks the existing PR71-PR84
+Product Delta surface while staying outside runtime and before any provider/API
+call, judge, score, automatic label, or agent action authority. The
+user-values/priorities worksheet lane remains paused at PR54 unless a later
+implementation gate explicitly approves more work there.
 
 PR40 proves current high-stakes reliance behavior remains conservative in
 tests. PR41 adds the deterministic `risk_mode_reliance_policy` evaluation check

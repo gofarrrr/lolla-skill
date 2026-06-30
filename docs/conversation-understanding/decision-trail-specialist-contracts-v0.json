@@ -1,0 +1,785 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lolla.decision_trail_specialist_contracts.v0",
+  "title": "Lolla Decision Trail Specialist Contracts v0",
+  "description": "Contract catalog for future bounded offline Decision Trail interpretation specialists. This schema defines contracts only; it does not create packets, run specialists, call models, change runtime behavior, validate human judgment, score answer quality, create automatic labels, or authorize agent action.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_family",
+    "contract_status",
+    "input_modes",
+    "status_vocabulary",
+    "shared_contract_requirements",
+    "boundary_defaults",
+    "specialist_roles",
+    "non_claims"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "lolla.decision_trail_specialist_contracts.v0"
+    },
+    "contract_family": {
+      "const": "decision_trail_specialist_contracts"
+    },
+    "contract_status": {
+      "const": "docs_schema_only"
+    },
+    "input_modes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allowed",
+        "checked_in_safe_mode_excludes",
+        "local_private_mode_status",
+        "future_runtime_mode_status"
+      ],
+      "properties": {
+        "allowed": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/input_mode"
+          },
+          "const": [
+            "checked_in_safe_mode",
+            "local_private_mode",
+            "future_runtime_mode_not_implemented"
+          ]
+        },
+        "checked_in_safe_mode_excludes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "const": [
+            "raw_transcript",
+            "raw_memo",
+            "raw_revised_answer",
+            "provider_text",
+            "private_ledgers",
+            "local_absolute_paths",
+            "secrets",
+            "private_local_content"
+          ]
+        },
+        "local_private_mode_status": {
+          "const": "implemented_for_packet_builder_pr95"
+        },
+        "future_runtime_mode_status": {
+          "const": "reserved_not_implemented"
+        }
+      }
+    },
+    "status_vocabulary": {
+      "$ref": "#/$defs/status_vocabulary"
+    },
+    "shared_contract_requirements": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "const": [
+        "specialist_role",
+        "contract_version",
+        "input_mode",
+        "allowed_input_refs",
+        "read_status",
+        "source_refs",
+        "source_status",
+        "uncertainty",
+        "evidence_strength",
+        "fields",
+        "limitations",
+        "non_claims",
+        "boundary"
+      ]
+    },
+    "boundary_defaults": {
+      "$ref": "#/$defs/boundary_defaults"
+    },
+    "specialist_roles": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "conversation_shape_reader",
+        "likely_action_reader",
+        "friction_lost_value_reader",
+        "conservative_fan_in_reader"
+      ],
+      "properties": {
+        "conversation_shape_reader": {
+          "$ref": "#/$defs/specialist_contract"
+        },
+        "likely_action_reader": {
+          "$ref": "#/$defs/specialist_contract"
+        },
+        "friction_lost_value_reader": {
+          "$ref": "#/$defs/specialist_contract"
+        },
+        "conservative_fan_in_reader": {
+          "$ref": "#/$defs/fan_in_contract"
+        }
+      }
+    },
+    "non_claims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "const": [
+        "not_human_review",
+        "not_ground_truth",
+        "not_judge_calibration_data",
+        "not_product_proof",
+        "not_answer_quality_scoring",
+        "not_automatic_labeling",
+        "not_agent_action_authorization",
+        "not_runtime_integration",
+        "not_evidence_that_clean_artifacts_mean_good_advice"
+      ]
+    }
+  },
+  "$defs": {
+    "input_mode": {
+      "enum": [
+        "checked_in_safe_mode",
+        "local_private_mode",
+        "future_runtime_mode_not_implemented"
+      ]
+    },
+    "field_status": {
+      "enum": [
+        "not_supplied",
+        "explicit_in_source",
+        "inferred_from_source",
+        "unclear",
+        "contradicted",
+        "requires_private_context",
+        "available_but_redacted_in_safe_mode",
+        "available_in_private_artifact_not_exported",
+        "unavailable_missing_artifact",
+        "unavailable_malformed_artifact"
+      ]
+    },
+    "read_status": {
+      "enum": [
+        "not_run",
+        "ready_for_specialist_read",
+        "blocked_thin_context",
+        "blocked_missing_artifact",
+        "blocked_private_context_required",
+        "completed_candidate",
+        "inconclusive",
+        "needs_human_review"
+      ]
+    },
+    "uncertainty": {
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "unclear"
+      ]
+    },
+    "evidence_strength": {
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "unclear"
+      ]
+    },
+    "status_vocabulary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "field_status",
+        "read_status",
+        "uncertainty",
+        "evidence_strength"
+      ],
+      "properties": {
+        "field_status": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/field_status"
+          },
+          "const": [
+            "not_supplied",
+            "explicit_in_source",
+            "inferred_from_source",
+            "unclear",
+            "contradicted",
+            "requires_private_context",
+            "available_but_redacted_in_safe_mode",
+            "available_in_private_artifact_not_exported",
+            "unavailable_missing_artifact",
+            "unavailable_malformed_artifact"
+          ]
+        },
+        "read_status": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/read_status"
+          },
+          "const": [
+            "not_run",
+            "ready_for_specialist_read",
+            "blocked_thin_context",
+            "blocked_missing_artifact",
+            "blocked_private_context_required",
+            "completed_candidate",
+            "inconclusive",
+            "needs_human_review"
+          ]
+        },
+        "uncertainty": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/uncertainty"
+          },
+          "const": [
+            "low",
+            "medium",
+            "high",
+            "unclear"
+          ]
+        },
+        "evidence_strength": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence_strength"
+          },
+          "const": [
+            "low",
+            "medium",
+            "high",
+            "unclear"
+          ]
+        }
+      }
+    },
+    "boundary_defaults": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "human_validated",
+        "ground_truth",
+        "judge_calibration_eligible",
+        "product_proof",
+        "answer_quality_scored",
+        "agent_action_authorized",
+        "model_calls",
+        "archive_mutated",
+        "runtime_invoked",
+        "skill_invoked",
+        "automatic_labels_created",
+        "raw_private_content_included"
+      ],
+      "properties": {
+        "human_validated": {
+          "const": false
+        },
+        "ground_truth": {
+          "const": false
+        },
+        "judge_calibration_eligible": {
+          "const": false
+        },
+        "product_proof": {
+          "const": false
+        },
+        "answer_quality_scored": {
+          "const": false
+        },
+        "agent_action_authorized": {
+          "const": false
+        },
+        "model_calls": {
+          "const": 0
+        },
+        "archive_mutated": {
+          "const": false
+        },
+        "runtime_invoked": {
+          "const": false
+        },
+        "skill_invoked": {
+          "const": false
+        },
+        "automatic_labels_created": {
+          "const": false
+        },
+        "raw_private_content_included": {
+          "const": false
+        }
+      }
+    },
+    "specialist_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "specialist_role",
+        "purpose",
+        "covered_fields",
+        "shared_required_fields",
+        "allowed_input_modes",
+        "must_preserve",
+        "must_not_do",
+        "boundary"
+      ],
+      "properties": {
+        "specialist_role": {
+          "type": "string",
+          "minLength": 1
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "covered_fields": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "shared_required_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "allowed_input_modes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/input_mode"
+          }
+        },
+        "must_preserve": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "must_not_do": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "boundary": {
+          "$ref": "#/$defs/boundary_defaults"
+        }
+      }
+    },
+    "fan_in_contract": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/specialist_contract"
+        },
+        {
+          "type": "object",
+          "required": [
+            "fan_in_forbidden_actions",
+            "tensions_to_preserve"
+          ],
+          "properties": {
+            "fan_in_forbidden_actions": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "const": [
+                "vote",
+                "average",
+                "score",
+                "certify",
+                "approve",
+                "choose_winner",
+                "correctness_from_agreement",
+                "decision_quality_claim"
+              ]
+            },
+            "tensions_to_preserve": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "examples": [
+    {
+      "schema_version": "lolla.decision_trail_specialist_contracts.v0",
+      "contract_family": "decision_trail_specialist_contracts",
+      "contract_status": "docs_schema_only",
+      "input_modes": {
+        "allowed": [
+          "checked_in_safe_mode",
+          "local_private_mode",
+          "future_runtime_mode_not_implemented"
+        ],
+        "checked_in_safe_mode_excludes": [
+          "raw_transcript",
+          "raw_memo",
+          "raw_revised_answer",
+          "provider_text",
+          "private_ledgers",
+          "local_absolute_paths",
+          "secrets",
+          "private_local_content"
+        ],
+        "local_private_mode_status": "implemented_for_packet_builder_pr95",
+        "future_runtime_mode_status": "reserved_not_implemented"
+      },
+      "status_vocabulary": {
+        "field_status": [
+          "not_supplied",
+          "explicit_in_source",
+          "inferred_from_source",
+          "unclear",
+          "contradicted",
+          "requires_private_context",
+          "available_but_redacted_in_safe_mode",
+          "available_in_private_artifact_not_exported",
+          "unavailable_missing_artifact",
+          "unavailable_malformed_artifact"
+        ],
+        "read_status": [
+          "not_run",
+          "ready_for_specialist_read",
+          "blocked_thin_context",
+          "blocked_missing_artifact",
+          "blocked_private_context_required",
+          "completed_candidate",
+          "inconclusive",
+          "needs_human_review"
+        ],
+        "uncertainty": [
+          "low",
+          "medium",
+          "high",
+          "unclear"
+        ],
+        "evidence_strength": [
+          "low",
+          "medium",
+          "high",
+          "unclear"
+        ]
+      },
+      "shared_contract_requirements": [
+        "specialist_role",
+        "contract_version",
+        "input_mode",
+        "allowed_input_refs",
+        "read_status",
+        "source_refs",
+        "source_status",
+        "uncertainty",
+        "evidence_strength",
+        "fields",
+        "limitations",
+        "non_claims",
+        "boundary"
+      ],
+      "boundary_defaults": {
+        "human_validated": false,
+        "ground_truth": false,
+        "judge_calibration_eligible": false,
+        "product_proof": false,
+        "answer_quality_scored": false,
+        "agent_action_authorized": false,
+        "model_calls": 0,
+        "archive_mutated": false,
+        "runtime_invoked": false,
+        "skill_invoked": false,
+        "automatic_labels_created": false,
+        "raw_private_content_included": false
+      },
+      "specialist_roles": {
+        "conversation_shape_reader": {
+          "specialist_role": "conversation_shape_reader",
+          "purpose": "Identify the shape of the messy conversation for Decision Trail use.",
+          "covered_fields": [
+            "decision_question",
+            "live_options",
+            "option_status",
+            "constraints",
+            "stakeholders",
+            "values_or_priorities",
+            "assistant_influence",
+            "assistant_influence_source_status",
+            "dropped_threads",
+            "unresolved_questions",
+            "uncertainty",
+            "source_scope_and_truncation_impact"
+          ],
+          "shared_required_fields": [
+            "specialist_role",
+            "contract_version",
+            "input_mode",
+            "allowed_input_refs",
+            "read_status",
+            "source_refs",
+            "source_status",
+            "uncertainty",
+            "evidence_strength",
+            "fields",
+            "limitations",
+            "non_claims",
+            "boundary"
+          ],
+          "allowed_input_modes": [
+            "checked_in_safe_mode",
+            "local_private_mode"
+          ],
+          "must_preserve": [
+            "ambiguity",
+            "source_refs",
+            "missingness",
+            "assistant_influence_uncertainty"
+          ],
+          "must_not_do": [
+            "infer_answer_quality",
+            "authorize_action",
+            "claim_human_validation"
+          ],
+          "boundary": {
+            "human_validated": false,
+            "ground_truth": false,
+            "judge_calibration_eligible": false,
+            "product_proof": false,
+            "answer_quality_scored": false,
+            "agent_action_authorized": false,
+            "model_calls": 0,
+            "archive_mutated": false,
+            "runtime_invoked": false,
+            "skill_invoked": false,
+            "automatic_labels_created": false,
+            "raw_private_content_included": false
+          }
+        },
+        "likely_action_reader": {
+          "specialist_role": "likely_action_reader",
+          "purpose": "Identify likely next actions before and after Lolla without claiming those actions are good.",
+          "covered_fields": [
+            "vanilla_likely_next_action",
+            "revised_likely_next_action",
+            "vanilla_overlap_read",
+            "action_delta",
+            "threshold_delta",
+            "sequence_delta",
+            "evidence_gate_delta",
+            "stop_rule_delta",
+            "uncertainty",
+            "source_scope_and_truncation_impact"
+          ],
+          "shared_required_fields": [
+            "specialist_role",
+            "contract_version",
+            "input_mode",
+            "allowed_input_refs",
+            "read_status",
+            "source_refs",
+            "source_status",
+            "uncertainty",
+            "evidence_strength",
+            "fields",
+            "limitations",
+            "non_claims",
+            "boundary"
+          ],
+          "allowed_input_modes": [
+            "checked_in_safe_mode",
+            "local_private_mode"
+          ],
+          "must_preserve": [
+            "unclear_allowed",
+            "alternative_plausible_actions",
+            "source_refs",
+            "uncertainty"
+          ],
+          "must_not_do": [
+            "claim_action_is_good",
+            "authorize_action",
+            "score_answer_quality"
+          ],
+          "boundary": {
+            "human_validated": false,
+            "ground_truth": false,
+            "judge_calibration_eligible": false,
+            "product_proof": false,
+            "answer_quality_scored": false,
+            "agent_action_authorized": false,
+            "model_calls": 0,
+            "archive_mutated": false,
+            "runtime_invoked": false,
+            "skill_invoked": false,
+            "automatic_labels_created": false,
+            "raw_private_content_included": false
+          }
+        },
+        "friction_lost_value_reader": {
+          "specialist_role": "friction_lost_value_reader",
+          "purpose": "Separate useful friction from noisy friction and preserve lost value.",
+          "covered_fields": [
+            "useful_friction",
+            "noisy_friction",
+            "missing_friction",
+            "lost_value",
+            "lost_value_severity_read",
+            "severity_source_status",
+            "value_overwrite_risk",
+            "momentum_or_simplicity_loss",
+            "overcaution_or_diligence_theater",
+            "uncertainty",
+            "source_scope_and_truncation_impact"
+          ],
+          "shared_required_fields": [
+            "specialist_role",
+            "contract_version",
+            "input_mode",
+            "allowed_input_refs",
+            "read_status",
+            "source_refs",
+            "source_status",
+            "uncertainty",
+            "evidence_strength",
+            "fields",
+            "limitations",
+            "non_claims",
+            "boundary"
+          ],
+          "allowed_input_modes": [
+            "checked_in_safe_mode",
+            "local_private_mode"
+          ],
+          "must_preserve": [
+            "source_refs",
+            "lost_value",
+            "noise_risk",
+            "momentum_loss",
+            "uncertainty"
+          ],
+          "must_not_do": [
+            "treat_caution_as_improvement",
+            "score_answer_quality",
+            "claim_product_proof"
+          ],
+          "boundary": {
+            "human_validated": false,
+            "ground_truth": false,
+            "judge_calibration_eligible": false,
+            "product_proof": false,
+            "answer_quality_scored": false,
+            "agent_action_authorized": false,
+            "model_calls": 0,
+            "archive_mutated": false,
+            "runtime_invoked": false,
+            "skill_invoked": false,
+            "automatic_labels_created": false,
+            "raw_private_content_included": false
+          }
+        },
+        "conservative_fan_in_reader": {
+          "specialist_role": "conservative_fan_in_reader",
+          "purpose": "Preserve disagreement and produce a conservative Decision Trail interpretation summary without voting, scoring, or judging answer quality.",
+          "covered_fields": [
+            "areas_of_agreement",
+            "disagreements_preserved",
+            "high_uncertainty_fields",
+            "fields_ready_for_report",
+            "fields_not_ready_for_report",
+            "human_followup_questions",
+            "overtrust_risks",
+            "downgrade_triggers",
+            "not_ready_reason",
+            "next_review_priority",
+            "source_scope_and_truncation_impact"
+          ],
+          "shared_required_fields": [
+            "specialist_role",
+            "contract_version",
+            "input_mode",
+            "allowed_input_refs",
+            "read_status",
+            "source_refs",
+            "source_status",
+            "uncertainty",
+            "evidence_strength",
+            "fields",
+            "limitations",
+            "non_claims",
+            "boundary"
+          ],
+          "allowed_input_modes": [
+            "checked_in_safe_mode",
+            "local_private_mode"
+          ],
+          "must_preserve": [
+            "disagreement",
+            "high_uncertainty_fields",
+            "not_ready_fields",
+            "overtrust_risks"
+          ],
+          "must_not_do": [
+            "vote",
+            "score",
+            "certify",
+            "approve",
+            "choose_winner",
+            "claim_correctness_from_agreement"
+          ],
+          "fan_in_forbidden_actions": [
+            "vote",
+            "average",
+            "score",
+            "certify",
+            "approve",
+            "choose_winner",
+            "correctness_from_agreement",
+            "decision_quality_claim"
+          ],
+          "tensions_to_preserve": [
+            "structural_delta_strong_but_lost_value_unresolved",
+            "likely_action_changed_but_values_unclear",
+            "useful_friction_with_momentum_loss",
+            "checked_in_safe_context_too_thin_for_assistant_influence"
+          ],
+          "boundary": {
+            "human_validated": false,
+            "ground_truth": false,
+            "judge_calibration_eligible": false,
+            "product_proof": false,
+            "answer_quality_scored": false,
+            "agent_action_authorized": false,
+            "model_calls": 0,
+            "archive_mutated": false,
+            "runtime_invoked": false,
+            "skill_invoked": false,
+            "automatic_labels_created": false,
+            "raw_private_content_included": false
+          }
+        }
+      },
+      "non_claims": [
+        "not_human_review",
+        "not_ground_truth",
+        "not_judge_calibration_data",
+        "not_product_proof",
+        "not_answer_quality_scoring",
+        "not_automatic_labeling",
+        "not_agent_action_authorization",
+        "not_runtime_integration",
+        "not_evidence_that_clean_artifacts_mean_good_advice"
+      ]
+    }
+  ]
+}

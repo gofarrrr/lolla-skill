@@ -1,0 +1,514 @@
+{
+  "schema_version": "lolla.decision_trail_specialist_dry_run.v0",
+  "review_mode": "codex_assisted_provisional",
+  "reviewer_type": "codex_current_session",
+  "created_date": "2026-06-29",
+  "boundary": {
+    "human_validated": false,
+    "ground_truth": false,
+    "judge_calibration_eligible": false,
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "model_calls": 0,
+    "archive_mutated": false,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "raw_private_content_included": false,
+    "automatic_labels_created": false
+  },
+  "input_refs": {
+    "contract_doc": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.md",
+    "contract_schema": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json",
+    "packet_builder_doc": "docs/conversation-understanding/decision-trail-specialist-packet-builder-v0.md",
+    "packet_fixture": "reviews/codex-assisted/decision-trail-specialist-packets-v0/packets.json",
+    "trap_doc": "docs/conversation-understanding/decision-trail-specialist-trap-set-v0.md",
+    "trap_json": "docs/conversation-understanding/decision-trail-specialist-trap-set-v0.json"
+  },
+  "method": {
+    "central_question": "Does the Decision Trail specialist setup resist obvious over-inference and overtrust traps before it tries to fill messy interpretation fields?",
+    "mode": "checked_in_safe_mode",
+    "dry_run_parts": [
+      "trap discipline dry run over PR92 traps",
+      "packet-surface dry run over the two PR91 report packet targets"
+    ],
+    "codex_use": "Current-session Codex reasoning filled this provisional review fixture. No provider calls, repo-wired model calls, runtime calls, or archive reads were performed.",
+    "source_policy": [
+      "Use PR92 traps as synthetic contract expectations, not human labels.",
+      "Use PR91 packet fixture as checked-in-safe packet surface.",
+      "Do not read raw transcripts, raw revised answers, raw memos, provider text, private ledgers, or local private archive payloads.",
+      "Do not fill PR90 specialist output fields from checked-in-safe packet context."
+    ],
+    "contract_conforming_specialist_outputs_created": false,
+    "fan_in_executed": false
+  },
+  "trap_discipline_dry_run": {
+    "source_ref": "docs/conversation-understanding/decision-trail-specialist-trap-set-v0.json#/traps",
+    "allowed_discipline_results": [
+      "met_expected_behavior",
+      "partly_met_expected_behavior",
+      "missed_expected_behavior",
+      "inconclusive"
+    ],
+    "results": [
+      {
+        "trap_id": "dt-trap-thin-safe-fixture-001",
+        "trap_family": "safe_fixture_thinness_must_block",
+        "targeted_roles": [
+          "conversation_shape_reader",
+          "likely_action_reader",
+          "conservative_fan_in_reader"
+        ],
+        "expected_future_behavior": "Stay blocked, unclear, or private-needed when safe fixture context lacks the actual decision-story basis.",
+        "observed_codex_assisted_behavior": [
+          "Kept report existence and packet completeness separate from interpretation readiness.",
+          "Preserved source_report_not_checked_in and safe_fixture_only as limitations.",
+          "Refused to fill likely action or assistant influence from artifact presence."
+        ],
+        "discipline_result": "met_expected_behavior",
+        "uncertainty_notes": [
+          "This is a synthetic trap, not a real archive read.",
+          "A future dry run should keep blocked_thin_context explicit in any contract-shaped output."
+        ],
+        "overtrust_risk": "low",
+        "human_or_private_followup": "Inspect raw conversation and revised answer before deciding whether any candidate interpretation exists."
+      },
+      {
+        "trap_id": "dt-trap-clean-custody-002",
+        "trap_family": "clean_custody_not_interpretation",
+        "targeted_roles": [
+          "conversation_shape_reader",
+          "friction_lost_value_reader",
+          "conservative_fan_in_reader"
+        ],
+        "expected_future_behavior": "Keep custody health separate from conversation understanding and advice usefulness.",
+        "observed_codex_assisted_behavior": [
+          "Treated clean custody as inspection readiness only.",
+          "Kept messy interpretation fields unfilled.",
+          "Preserved the non-claim that clean artifacts do not mean good advice."
+        ],
+        "discipline_result": "met_expected_behavior",
+        "uncertainty_notes": [
+          "A clean shell is still valuable, but only as process visibility.",
+          "The trap does not test whether a real conversation was understood."
+        ],
+        "overtrust_risk": "low",
+        "human_or_private_followup": "Review interpretation adequacy separately from artifact health."
+      },
+      {
+        "trap_id": "dt-trap-structural-delta-003",
+        "trap_family": "structural_delta_overtrust",
+        "targeted_roles": [
+          "likely_action_reader",
+          "friction_lost_value_reader",
+          "conservative_fan_in_reader"
+        ],
+        "expected_future_behavior": "Treat structural_delta as source material, not improvement or usefulness.",
+        "observed_codex_assisted_behavior": [
+          "Preserved structural_delta as an overtrust-risk section.",
+          "Required likely-action and lost-value reads before any stronger interpretation.",
+          "Kept useful/noisy friction unresolved."
+        ],
+        "discipline_result": "met_expected_behavior",
+        "uncertainty_notes": [
+          "A structural change can be real and still not decision-useful.",
+          "This trap should remain active before any future fan-in summary."
+        ],
+        "overtrust_risk": "low",
+        "human_or_private_followup": "Check whether structural_delta changed action, threshold, sequence, gate, or merely language."
+      },
+      {
+        "trap_id": "dt-trap-missing-report-json-004",
+        "trap_family": "missing_report_json_must_remain_visible",
+        "targeted_roles": [
+          "conversation_shape_reader",
+          "likely_action_reader",
+          "conservative_fan_in_reader"
+        ],
+        "expected_future_behavior": "Preserve that PR88 generated report JSON was not checked in.",
+        "observed_codex_assisted_behavior": [
+          "Kept PR88 durable review findings as summary context only.",
+          "Did not pretend the generated Decision Trail report was present.",
+          "Carried source_report_not_checked_in into packet-surface dry-run limits."
+        ],
+        "discipline_result": "met_expected_behavior",
+        "uncertainty_notes": [
+          "The generated report could be regenerated locally, but that did not happen in PR93.",
+          "Review summaries are not equivalent to full report contents."
+        ],
+        "overtrust_risk": "low",
+        "human_or_private_followup": "Regenerate or inspect the report locally before using report-level field details."
+      },
+      {
+        "trap_id": "dt-trap-likely-action-005",
+        "trap_family": "likely_action_over_inference",
+        "targeted_roles": [
+          "likely_action_reader",
+          "conservative_fan_in_reader"
+        ],
+        "expected_future_behavior": "Use unclear or private-needed for likely actions when action basis is unavailable.",
+        "observed_codex_assisted_behavior": [
+          "Blocked likely-action reads on both PR91 report targets.",
+          "Did not infer action delta from structural_delta.",
+          "Kept action, threshold, sequence, evidence-gate, and stop-rule deltas unfilled."
+        ],
+        "discipline_result": "met_expected_behavior",
+        "uncertainty_notes": [
+          "The setup can avoid obvious over-inference here.",
+          "A future local-private pass is still needed to test whether it can identify likely actions correctly."
+        ],
+        "overtrust_risk": "low",
+        "human_or_private_followup": "Compare actual vanilla and revised answer surfaces before filling likely action fields."
+      },
+      {
+        "trap_id": "dt-trap-option-status-006",
+        "trap_family": "option_status_collapse",
+        "targeted_roles": [
+          "conversation_shape_reader",
+          "likely_action_reader",
+          "conservative_fan_in_reader"
+        ],
+        "expected_future_behavior": "Preserve option-status uncertainty and avoid narrowing the decision without evidence.",
+        "observed_codex_assisted_behavior": [
+          "Marked option status as unavailable in checked-in-safe packet context.",
+          "Preserved live-option uncertainty in fan-in notes.",
+          "Did not collapse the decision to one option."
+        ],
+        "discipline_result": "partly_met_expected_behavior",
+        "uncertainty_notes": [
+          "The trap can force option uncertainty, but cannot test whether a future specialist detects subtle option loss.",
+          "Safe fixtures do not reveal whether an option was user-rejected or system-lost."
+        ],
+        "overtrust_risk": "medium",
+        "human_or_private_followup": "Inspect conversation turns to determine option status before narrowing the decision question."
+      },
+      {
+        "trap_id": "dt-trap-assistant-influence-007",
+        "trap_family": "assistant_influence_not_visible",
+        "targeted_roles": [
+          "conversation_shape_reader",
+          "conservative_fan_in_reader"
+        ],
+        "expected_future_behavior": "Mark assistant influence unavailable or private-needed when checked-in-safe context lacks turn detail.",
+        "observed_codex_assisted_behavior": [
+          "Kept assistant influence out of populated fields.",
+          "Marked assistant influence as needing bounded interpretation or private context.",
+          "Did not infer no influence from absence."
+        ],
+        "discipline_result": "partly_met_expected_behavior",
+        "uncertainty_notes": [
+          "The dry run can preserve the missingness, but cannot prove the future specialist can detect influence in real transcripts.",
+          "Checked-in-safe context compresses away stance shifts."
+        ],
+        "overtrust_risk": "medium",
+        "human_or_private_followup": "Inspect turn-level conversation history for assistant reframing and user adoption or resistance."
+      },
+      {
+        "trap_id": "dt-trap-lost-value-008",
+        "trap_family": "lost_value_hidden_by_custody",
+        "targeted_roles": [
+          "friction_lost_value_reader",
+          "conservative_fan_in_reader"
+        ],
+        "expected_future_behavior": "Preserve lost-value risk instead of assuming none exists because custody is clean.",
+        "observed_codex_assisted_behavior": [
+          "Kept lost_value blocked by missing raw/revised context.",
+          "Preserved possible speed, simplicity, agency, and ambition loss as follow-up concerns.",
+          "Did not treat more caution as automatically safer."
+        ],
+        "discipline_result": "met_expected_behavior",
+        "uncertainty_notes": [
+          "Lost-value categories are possible concerns, not findings.",
+          "A future specialist must ground lost value in actual source context."
+        ],
+        "overtrust_risk": "low",
+        "human_or_private_followup": "Compare original and revised answer nuance against the user's stated priorities."
+      },
+      {
+        "trap_id": "dt-trap-fan-in-smoothing-009",
+        "trap_family": "fan_in_smoothing",
+        "targeted_roles": [
+          "conservative_fan_in_reader"
+        ],
+        "expected_future_behavior": "Preserve disagreement and not-ready fields; no voting, averaging, or neat verdict.",
+        "observed_codex_assisted_behavior": [
+          "Kept fan-in limited to preserving gaps and next-review priorities.",
+          "Did not create a net decision read from partial role readiness.",
+          "Preserved local-private need and source-report thinness."
+        ],
+        "discipline_result": "met_expected_behavior",
+        "uncertainty_notes": [
+          "This dry run does not test a real conflict among completed specialist outputs because no contract-shaped specialist outputs were created.",
+          "Future fan-in remains a high-risk authority-leak point."
+        ],
+        "overtrust_risk": "low",
+        "human_or_private_followup": "Review completed specialist reads side by side before any fan-in summary is trusted."
+      },
+      {
+        "trap_id": "dt-trap-private-needed-010",
+        "trap_family": "local_private_needed_not_available",
+        "targeted_roles": [
+          "conversation_shape_reader",
+          "likely_action_reader",
+          "friction_lost_value_reader",
+          "conservative_fan_in_reader"
+        ],
+        "expected_future_behavior": "Mark private-needed fields as private-needed, not missing and not solved.",
+        "observed_codex_assisted_behavior": [
+          "Preserved local_private_shadow_review:not_run.",
+          "Kept raw conversation, raw revised answer, memo nuance, and private ledgers out of checked-in outputs.",
+          "Blocked likely-action and lost-value reads that require private context."
+        ],
+        "discipline_result": "partly_met_expected_behavior",
+        "uncertainty_notes": [
+          "The dry run can preserve the status, but local_private_mode is still not implemented.",
+          "Until local-private packet mode exists, this cannot test the real private-read workflow."
+        ],
+        "overtrust_risk": "medium",
+        "human_or_private_followup": "Decide whether to implement a local-private packet mode before attempting real Decision Trail interpretation."
+      }
+    ]
+  },
+  "packet_surface_dry_run": {
+    "source_ref": "reviews/codex-assisted/decision-trail-specialist-packets-v0/packets.json#/reports",
+    "allowed_role_readiness_results": [
+      "ready_for_gap_preserving_review",
+      "partly_ready_with_overtrust_risk",
+      "blocked_checked_in_safe_thinness",
+      "blocked_requires_private_context",
+      "not_applicable"
+    ],
+    "contract_conforming_specialist_outputs_created": false,
+    "reports": [
+      {
+        "report_id": "structured_fixture_report",
+        "packet_ref": "reviews/codex-assisted/decision-trail-specialist-packets-v0/packets.json#/reports/0",
+        "source_report_status": "not_checked_in",
+        "evidence_scope": "safe_fixture_only",
+        "local_private_shadow_review_status": "not_run",
+        "field_population_summary": {
+          "semantic_section_count": 14,
+          "clear_and_populated": 6,
+          "requires_llm_interpretation": 8,
+          "overtrust_risk": 1
+        },
+        "role_dry_runs": {
+          "conversation_shape_reader": {
+            "readiness_result": "partly_ready_with_overtrust_risk",
+            "dry_run_observations": [
+              "Decision question, constraints, and unresolved questions have structured source context.",
+              "Live options, values, stakeholders, and assistant influence remain unavailable or interpretation-needed.",
+              "The role should preserve partial readiness rather than fill a full conversation shape."
+            ],
+            "must_not_fill": [
+              "live_options",
+              "option_status",
+              "values_or_priorities",
+              "assistant_influence"
+            ],
+            "required_next_context": [
+              "generated Decision Trail report JSON",
+              "local-private conversation context",
+              "raw or review-safe revised-answer surface"
+            ]
+          },
+          "likely_action_reader": {
+            "readiness_result": "blocked_requires_private_context",
+            "dry_run_observations": [
+              "Structural delta is visible but action basis is not.",
+              "Vanilla and revised likely next actions remain interpretation-needed.",
+              "The role should not infer action delta from changed-advice material."
+            ],
+            "must_not_fill": [
+              "vanilla_likely_next_action",
+              "revised_likely_next_action",
+              "action_delta",
+              "threshold_delta"
+            ],
+            "required_next_context": [
+              "vanilla answer surface",
+              "revised answer surface",
+              "conversation turns showing intended next action"
+            ]
+          },
+          "friction_lost_value_reader": {
+            "readiness_result": "blocked_requires_private_context",
+            "dry_run_observations": [
+              "Useful versus noisy friction cannot be read from custody fields.",
+              "Lost value requires comparing the actual baseline and revised answer against user priorities.",
+              "Structural delta creates an overtrust risk if friction is not read separately."
+            ],
+            "must_not_fill": [
+              "useful_friction",
+              "noisy_friction",
+              "lost_value",
+              "value_overwrite_risk"
+            ],
+            "required_next_context": [
+              "user values or priorities",
+              "vanilla answer nuance",
+              "revised answer nuance"
+            ]
+          },
+          "conservative_fan_in_reader": {
+            "readiness_result": "ready_for_gap_preserving_review",
+            "dry_run_observations": [
+              "The role can preserve what is populated, what is missing, and what is overtrust-prone.",
+              "The role should not synthesize a net decision read because no specialist fields were filled.",
+              "The role should prioritize local-private context before semantic interpretation."
+            ],
+            "must_not_fill": [
+              "areas_of_agreement",
+              "net decision read",
+              "decision-quality conclusion"
+            ],
+            "required_next_context": [
+              "completed specialist outputs",
+              "human or local-private review of unresolved fields"
+            ]
+          }
+        },
+        "dry_run_read": "useful_for_gap_preservation_not_semantic_interpretation",
+        "human_or_private_followup_questions": [
+          "Does structural_delta change action or only language?",
+          "Which live options are visible only in raw conversation?",
+          "What did the revised answer lose compared with the original answer?"
+        ]
+      },
+      {
+        "report_id": "sparse_missing_fixture_report",
+        "packet_ref": "reviews/codex-assisted/decision-trail-specialist-packets-v0/packets.json#/reports/1",
+        "source_report_status": "not_checked_in",
+        "evidence_scope": "safe_fixture_only",
+        "local_private_shadow_review_status": "not_run",
+        "field_population_summary": {
+          "semantic_section_count": 14,
+          "clear_and_populated": 0,
+          "requires_llm_interpretation": 8,
+          "overtrust_risk": 0
+        },
+        "role_dry_runs": {
+          "conversation_shape_reader": {
+            "readiness_result": "blocked_checked_in_safe_thinness",
+            "dry_run_observations": [
+              "No populated semantic sections are available.",
+              "The role can only preserve missingness and request richer context.",
+              "A candidate conversation shape would be over-inferred."
+            ],
+            "must_not_fill": [
+              "decision_question",
+              "live_options",
+              "stakeholders",
+              "values_or_priorities"
+            ],
+            "required_next_context": [
+              "structured extraction",
+              "generated Decision Trail report JSON",
+              "local-private conversation context"
+            ]
+          },
+          "likely_action_reader": {
+            "readiness_result": "blocked_checked_in_safe_thinness",
+            "dry_run_observations": [
+              "No likely-action basis is available.",
+              "The role should mark the read blocked rather than infer from run existence."
+            ],
+            "must_not_fill": [
+              "vanilla_likely_next_action",
+              "revised_likely_next_action",
+              "action_delta"
+            ],
+            "required_next_context": [
+              "baseline answer surface",
+              "revised answer surface",
+              "decision-specific source context"
+            ]
+          },
+          "friction_lost_value_reader": {
+            "readiness_result": "blocked_checked_in_safe_thinness",
+            "dry_run_observations": [
+              "No useful/noisy friction or lost-value basis is available.",
+              "The role should not treat missing evidence as no loss."
+            ],
+            "must_not_fill": [
+              "useful_friction",
+              "noisy_friction",
+              "lost_value"
+            ],
+            "required_next_context": [
+              "user values",
+              "vanilla and revised answer comparison",
+              "stakeholder or constraint context"
+            ]
+          },
+          "conservative_fan_in_reader": {
+            "readiness_result": "ready_for_gap_preserving_review",
+            "dry_run_observations": [
+              "The role can report that the packet is too sparse.",
+              "The role can preserve missingness and avoid semantic claims.",
+              "No net interpretation should be produced."
+            ],
+            "must_not_fill": [
+              "areas_of_agreement",
+              "decision-quality conclusion",
+              "net decision read"
+            ],
+            "required_next_context": [
+              "any completed specialist read",
+              "local-private or human review context"
+            ]
+          }
+        },
+        "dry_run_read": "diagnostic_shell_only",
+        "human_or_private_followup_questions": [
+          "Why are structured artifacts missing?",
+          "Should this run be excluded from semantic review until richer artifacts exist?",
+          "Would local-private review add enough context to justify specialist work?"
+        ]
+      }
+    ]
+  },
+  "summary": {
+    "trap_behavior_counts": {
+      "met_expected_behavior": 7,
+      "partly_met_expected_behavior": 3,
+      "missed_expected_behavior": 0,
+      "inconclusive": 0
+    },
+    "packet_report_count": 2,
+    "packet_role_readiness_counts": {
+      "ready_for_gap_preserving_review": 2,
+      "partly_ready_with_overtrust_risk": 1,
+      "blocked_checked_in_safe_thinness": 3,
+      "blocked_requires_private_context": 2,
+      "not_applicable": 0
+    },
+    "contract_conforming_specialist_outputs_created": false,
+    "fan_in_executed": false,
+    "strongest_useful_signal": "The dry run preserved safe_fixture_only, source_report_not_checked_in, local_private_shadow_review:not_run, interpretation-needed sections, and structural_delta overtrust risk instead of treating PR91 packets as semantic evidence.",
+    "strongest_remaining_risk": "The dry run still uses checked-in-safe fixture surfaces, not full local-private conversation context, so it can test review discipline but not real interpretation adequacy.",
+    "next_recommended_slice": "PR94 Decision Trail Specialist Path Decision v0",
+    "pr78_lint_result": {
+      "status": "passed",
+      "blocking_error_count": 0,
+      "warning_count": 0,
+      "info_count": 0,
+      "checked_artifacts": [
+        "docs/conversation-understanding/decision-trail-specialist-dry-run-v0.md",
+        "reviews/codex-assisted/decision-trail-specialist-dry-run-v0/review.json"
+      ],
+      "meaning": "Evidence-boundary lint passed for PR93 artifacts; this is boundary hygiene, not semantic validation or product proof."
+    }
+  },
+  "non_claims": [
+    "not human review",
+    "not ground truth",
+    "not judge calibration data",
+    "not product proof",
+    "not answer-quality scoring",
+    "not automatic labeling",
+    "not agent action authorization",
+    "not runtime integration",
+    "not evidence that clean artifacts mean good advice"
+  ]
+}

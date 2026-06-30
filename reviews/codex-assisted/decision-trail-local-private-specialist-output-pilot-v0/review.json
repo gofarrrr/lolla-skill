@@ -1,0 +1,478 @@
+{
+  "aggregate_observations": {
+    "main_limit": "This is a one-case Codex-assisted local-private pilot. It shows specialist-output feasibility, not product proof or human validation.",
+    "main_usefulness_signal": "The local-private packet supports concrete candidate reads for decision shape, likely action delta, useful friction, lost value, and conservative fan-in that were unavailable from the sparse Decision Trail shell alone.",
+    "overtrust_warning": "Clean specialist outputs may look more authoritative than the evidence deserves. The reads remain provisional, source-limited, and not action-authorizing.",
+    "stage_read": "useful_for_one_case_contract_review_not_ready_for_broad_batch"
+  },
+  "boundary": {
+    "agent_action_authorized": false,
+    "answer_quality_scored": false,
+    "archive_mutated": false,
+    "automatic_labels_created": false,
+    "fan_in_executed_as_verdict": false,
+    "ground_truth": false,
+    "human_validated": false,
+    "judge_calibration_eligible": false,
+    "model_calls": 0,
+    "product_proof": false,
+    "raw_private_content_included": false,
+    "runtime_invoked": false,
+    "skill_invoked": false
+  },
+  "next_recommended_slice": {
+    "must_not_do": [
+      "run_lolla",
+      "invoke_lolla_skill",
+      "call_provider_apis",
+      "mutate_archives",
+      "change_runtime_behavior",
+      "score_answer_quality",
+      "create_automatic_labels",
+      "authorize_agent_action",
+      "treat_clean_specialist_outputs_as_product_proof"
+    ],
+    "purpose": "Review the one-case specialist-output pilot and decide whether contracts, packet shape, or fan-in need revision before any second case or broader batch.",
+    "recommended_slice": "PR98 Decision Trail Specialist Output Pilot Review / Contract Revision v0",
+    "why_not_broad_batch": "PR97 used one local-private case. The packet was private, large, truncated, and source-limited. A broad batch would amplify uncertainty before the contracts are reviewed."
+  },
+  "non_claims": [
+    "not human review",
+    "not ground truth",
+    "not judge calibration data",
+    "not product proof",
+    "not answer-quality scoring",
+    "not automatic labeling",
+    "not runtime integration",
+    "not evidence that clean specialist outputs mean good advice",
+    "not proof that future specialists will interpret conversations correctly",
+    "not agent action authorization"
+  ],
+  "pilot_cases": [
+    {
+      "case_ref": "ceo-remove-founding-cofounder/20260627T093131Z_59d153",
+      "content_policy_observed": "include_text_summary_only_checked_in",
+      "contract_revision_suggestions": [
+        "Add a first-class field for whether vanilla already contained the same action sequence.",
+        "Add a clearer assistant-influence source-status distinction between visible-in-thread and not-visible-from-packet.",
+        "Make lost-value severity separate from lost-value presence."
+      ],
+      "disagreements_preserved": [
+        "Strong structural delta versus possible loss of relationship simplicity and trust.",
+        "Authority clarity as useful friction versus possibility of avoidable earlier conflict.",
+        "Candidate material delta versus unresolved question of whether vanilla already required authority transfer."
+      ],
+      "human_review_priorities": [
+        "Check whether the vanilla answer already made authority transfer immediate and bounded.",
+        "Check whether moving authority first preserved enough cofounder dignity and trust.",
+        "Check whether stop conditions were operational or mostly rhetorical.",
+        "Check whether legal, financial, or governance constraints were outside the packet scope."
+      ],
+      "input_packet_mode": "local_private_mode",
+      "overtrust_risks": [
+        "A structured specialist output can make candidate interpretation feel validated.",
+        "The include-text packet was truncated, so missing context can be mistaken for absent context.",
+        "The case was already a historically positive example, so selection bias remains."
+      ],
+      "packet_usability_read": {
+        "read": "usable_but_private_and_truncated",
+        "rationale": "The local-private packet exposed enough source context to fill candidate specialist fields for one case, but the packet remained private, large, and partly truncated."
+      },
+      "privacy_risks": [
+        "The local packet included private source text and must stay outside the repo.",
+        "Checked-in review must remain paraphrase-only.",
+        "Future pilots need explicit deletion or retention policy for local include-text outputs."
+      ],
+      "source_packet_summary": {
+        "artifact_records_included_in_local_packet": 16,
+        "artifact_records_truncated_in_local_packet": 15,
+        "local_absolute_paths_in_checked_in_review": false,
+        "local_packet_checked_in": false,
+        "local_packet_private_content_state": "included_in_local_temp_output_only",
+        "packet_roles_present": [
+          "conversation_shape_reader",
+          "likely_action_reader",
+          "friction_lost_value_reader",
+          "conservative_fan_in_reader"
+        ],
+        "source_packet_ref": "local_private_run:20260627t093131z-59d153-1"
+      },
+      "specialist_outputs": {
+        "conservative_fan_in_reader": {
+          "allowed_input_refs": [
+            "local_private_run:20260627t093131z-59d153-1/*",
+            "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json"
+          ],
+          "boundary_metadata": {
+            "agent_action_authorized": false,
+            "answer_quality_scored": false,
+            "archive_mutated": false,
+            "automatic_labels_created": false,
+            "ground_truth": false,
+            "human_validated": false,
+            "judge_calibration_eligible": false,
+            "model_calls": 0,
+            "product_proof": false,
+            "raw_private_content_included": false,
+            "runtime_invoked": false,
+            "skill_invoked": false
+          },
+          "contract_version": "lolla.decision_trail_specialist_contracts.v0",
+          "evidence_strength": "moderate_for_candidate_report_fields",
+          "fields": {
+            "areas_of_agreement": [
+              "The decision shape is about operating authority and cofounder transition boundaries.",
+              "The revised direction appears to move authority before further cooperation testing.",
+              "Stop conditions and narrowed transition scope are central to the revised decision story."
+            ],
+            "disagreements_preserved": [
+              "Authority clarity may be useful friction while also increasing relationship cost.",
+              "The revised action appears stronger, but vanilla action remains a source-limited candidate read.",
+              "Assistant influence remains insufficiently visible for a firm interpretation."
+            ],
+            "fields_not_ready_for_report": [
+              "assistant influence as a confident field",
+              "human-validated net improvement",
+              "lost-value severity",
+              "whether vanilla already contained the same operational sequence"
+            ],
+            "fields_ready_for_report": [
+              "decision question candidate",
+              "revised likely action candidate",
+              "authority-transfer structural delta candidate",
+              "stop-condition delta candidate",
+              "source availability and privacy caveats"
+            ],
+            "high_uncertainty_fields": [
+              "vanilla likely next action",
+              "assistant influence",
+              "lost value severity",
+              "legal or governance constraints outside the packet"
+            ],
+            "human_followup_questions": [
+              "Did the vanilla answer already make authority transfer immediate?",
+              "Did the user still regard cooperation testing as a live option?",
+              "Would the revised authority-first path damage trust in a way that matters more than speed?",
+              "Were legal or equity terms relevant but outside the review surface?"
+            ],
+            "net_read_candidate": "local_private_specialist_read_useful_but_unvalidated",
+            "next_review_priority": "Review whether the PR90 contracts need explicit vanilla-overlap and lost-value-severity fields before a second case.",
+            "overtrust_risks": [
+              "The output is more complete than prior shells but still candidate-only.",
+              "One historically positive case can make the method look stronger than it is."
+            ]
+          },
+          "input_mode": "local_private_mode",
+          "limitations": [
+            "One case only.",
+            "Local packet was private and truncated.",
+            "No human validation.",
+            "No broad batch comparison.",
+            "No runtime integration."
+          ],
+          "non_claims": [
+            "not human review",
+            "not product proof",
+            "not a score",
+            "not agent authorization"
+          ],
+          "read_status": "provisional_candidate",
+          "source_refs": [
+            {
+              "artifact_ref": "local_private_run:20260627t093131z-59d153-1/conversation.txt",
+              "source_status": "explicit_in_local_private_packet"
+            },
+            {
+              "artifact_ref": "local_private_run:20260627t093131z-59d153-1/revised.txt",
+              "source_status": "explicit_in_local_private_packet"
+            },
+            {
+              "artifact_ref": "local_private_run:20260627t093131z-59d153-1/memo.md",
+              "source_status": "explicit_in_local_private_packet"
+            },
+            {
+              "artifact_ref": "reviews/codex-assisted/decision-trail-local-private-packet-smoke-review-v0/review.json",
+              "source_status": "prior_boundary_context"
+            }
+          ],
+          "source_status": "local_private_packet_plus_prior_review_context",
+          "specialist_role": "conservative_fan_in_reader",
+          "uncertainty": "medium"
+        },
+        "conversation_shape_reader": {
+          "allowed_input_refs": [
+            "local_private_run:20260627t093131z-59d153-1/*",
+            "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json"
+          ],
+          "boundary_metadata": {
+            "agent_action_authorized": false,
+            "answer_quality_scored": false,
+            "archive_mutated": false,
+            "automatic_labels_created": false,
+            "ground_truth": false,
+            "human_validated": false,
+            "judge_calibration_eligible": false,
+            "model_calls": 0,
+            "product_proof": false,
+            "raw_private_content_included": false,
+            "runtime_invoked": false,
+            "skill_invoked": false
+          },
+          "contract_version": "lolla.decision_trail_specialist_contracts.v0",
+          "evidence_strength": "moderate_for_candidate_shape",
+          "fields": {
+            "assistant_influence_read": {
+              "read": "partly_visible_but_not_resolved",
+              "summary": "The packet supports a candidate concern that assistant framing may have kept cooperation/reset language alive, but it does not support a firm influence attribution."
+            },
+            "constraints_read": [
+              "authority ambiguity",
+              "cofounder relationship and dignity",
+              "team clarity",
+              "operating momentum",
+              "investor or governance pressure as context rather than resolved evidence"
+            ],
+            "decision_question_read": "Whether and how to remove a founding cofounder from operating authority while preserving a workable relationship and transition path.",
+            "dropped_threads_read": [
+              "Whether legal, equity, or governance terms should constrain the transition.",
+              "Whether the cofounder had a credible path back to authority.",
+              "Whether the product lead and COO boundaries were already accepted by stakeholders."
+            ],
+            "live_options_read": [
+              "Continue a reset/cooperation process before moving authority.",
+              "Move authority first and narrow the cofounder's transition role.",
+              "Use explicit stop conditions around any transition support."
+            ],
+            "option_status_read": {
+              "authority_transfer_first": "selected_candidate_in_revised_direction",
+              "bounded_transition_support": "selected_candidate_with_conditions",
+              "cooperation_reset_before_transfer": "prior_or_live_option_but_source_limited",
+              "open_ended_cofounder_authority": "appears_rejected_or_narrowed"
+            },
+            "stakeholders_read": [
+              "CEO or operating founder",
+              "founding cofounder",
+              "product lead",
+              "COO",
+              "team members affected by authority ambiguity",
+              "investors or board-like stakeholders as possible pressure context"
+            ],
+            "uncertainty_read": [
+              "The exact vanilla stance remains source-limited in checked-in output.",
+              "Assistant influence cannot be separated cleanly from the user's own concern without human review.",
+              "Some governance details may live outside the packet's current interpretive scope."
+            ],
+            "unresolved_questions_read": [
+              "Was cooperation testing still a real option for the user?",
+              "Did the user value cofounder dignity more than speed?",
+              "Were formal governance constraints material?"
+            ],
+            "values_or_priorities_read": [
+              "authority clarity",
+              "loyalty or fairness to a cofounder",
+              "operating momentum",
+              "humane transition",
+              "team confidence"
+            ]
+          },
+          "input_mode": "local_private_mode",
+          "limitations": [
+            "Candidate interpretation from one local-private packet.",
+            "Raw packet output is not checked in.",
+            "Packet text was truncated.",
+            "No human validation."
+          ],
+          "non_claims": [
+            "not human review",
+            "not ground truth",
+            "not product proof",
+            "not automatic labeling"
+          ],
+          "read_status": "provisional_candidate",
+          "source_refs": [
+            {
+              "artifact_ref": "local_private_run:20260627t093131z-59d153-1/conversation.txt",
+              "source_status": "explicit_in_local_private_packet"
+            },
+            {
+              "artifact_ref": "local_private_run:20260627t093131z-59d153-1/extraction.json",
+              "source_status": "explicit_in_local_private_packet"
+            },
+            {
+              "artifact_ref": "local_private_run:20260627t093131z-59d153-1/memo.md",
+              "source_status": "explicit_in_local_private_packet"
+            }
+          ],
+          "source_status": "local_private_packet_candidate",
+          "specialist_role": "conversation_shape_reader",
+          "uncertainty": "medium"
+        },
+        "friction_lost_value_reader": {
+          "allowed_input_refs": [
+            "local_private_run:20260627t093131z-59d153-1/*",
+            "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json"
+          ],
+          "boundary_metadata": {
+            "agent_action_authorized": false,
+            "answer_quality_scored": false,
+            "archive_mutated": false,
+            "automatic_labels_created": false,
+            "ground_truth": false,
+            "human_validated": false,
+            "judge_calibration_eligible": false,
+            "model_calls": 0,
+            "product_proof": false,
+            "raw_private_content_included": false,
+            "runtime_invoked": false,
+            "skill_invoked": false
+          },
+          "contract_version": "lolla.decision_trail_specialist_contracts.v0",
+          "evidence_strength": "moderate_for_useful_friction_low_for_lost_value_severity",
+          "fields": {
+            "lost_value_read": [
+              "Possible loss of relationship simplicity because authority transfer becomes explicit sooner.",
+              "Possible trust or dignity cost for the cofounder if the transition feels pre-decided.",
+              "Possible implementation burden from making product lead and COO boundaries explicit."
+            ],
+            "missing_friction_read": [
+              "Legal, equity, or governance diligence may need separate review.",
+              "The cofounder's own factual account is not independently represented in the checked-in review.",
+              "Communication plan details may need human-owned planning."
+            ],
+            "momentum_or_simplicity_loss_read": "present_candidate_but_severity_unclear",
+            "noisy_friction_read": [
+              "No strong generic caution pattern is visible in the candidate read.",
+              "There is still a risk that extra structure makes conflict feel more settled than it is."
+            ],
+            "overcaution_or_diligence_theater_read": "not_primary_candidate",
+            "uncertainty_read": [
+              "Lost value is visible, but severity is not calibrated.",
+              "A human should decide whether earlier conflict is useful discipline or avoidable damage."
+            ],
+            "useful_friction_read": [
+              "Forces authority ambiguity into explicit decision rights.",
+              "Narrows the transition role instead of leaving shadow authority alive.",
+              "Adds stop conditions so the transition can fail visibly rather than drift."
+            ],
+            "value_overwrite_risk_read": "operating clarity may override loyalty/fairness unless human review preserves both"
+          },
+          "input_mode": "local_private_mode",
+          "limitations": [
+            "No human review of lost-value severity.",
+            "No independent stakeholder interview.",
+            "Candidate read may understate relational or legal constraints."
+          ],
+          "non_claims": [
+            "not human review",
+            "not proof of better advice",
+            "not a risk score",
+            "not automatic labeling"
+          ],
+          "read_status": "provisional_candidate",
+          "source_refs": [
+            {
+              "artifact_ref": "local_private_run:20260627t093131z-59d153-1/revised.txt",
+              "source_status": "explicit_in_local_private_packet"
+            },
+            {
+              "artifact_ref": "local_private_run:20260627t093131z-59d153-1/memo.md",
+              "source_status": "explicit_in_local_private_packet"
+            },
+            {
+              "artifact_ref": "local_private_run:20260627t093131z-59d153-1/pre_step6_private_table.md",
+              "source_status": "explicit_in_local_private_packet"
+            }
+          ],
+          "source_status": "local_private_packet_candidate",
+          "specialist_role": "friction_lost_value_reader",
+          "uncertainty": "medium_high"
+        },
+        "likely_action_reader": {
+          "allowed_input_refs": [
+            "local_private_run:20260627t093131z-59d153-1/*",
+            "docs/conversation-understanding/decision-trail-specialist-contracts-v0.json"
+          ],
+          "boundary_metadata": {
+            "agent_action_authorized": false,
+            "answer_quality_scored": false,
+            "archive_mutated": false,
+            "automatic_labels_created": false,
+            "ground_truth": false,
+            "human_validated": false,
+            "judge_calibration_eligible": false,
+            "model_calls": 0,
+            "product_proof": false,
+            "raw_private_content_included": false,
+            "runtime_invoked": false,
+            "skill_invoked": false
+          },
+          "contract_version": "lolla.decision_trail_specialist_contracts.v0",
+          "evidence_strength": "moderate_for_revised_action_lower_for_vanilla_action",
+          "fields": {
+            "action_delta_read": "candidate shift from reset/cooperation process toward authority transfer first",
+            "evidence_gate_delta_read": "unclear; stop conditions are visible, but a separate evidence gate is not clearly established",
+            "revised_likely_next_action_read": "Move authority first, narrow the cofounder's transition support role, and use explicit stop conditions for any continued operating involvement.",
+            "sequence_delta_read": "authority appears to move before further cooperation testing",
+            "stop_rule_delta_read": "transition support becomes bounded by stop-loss conditions",
+            "threshold_delta_read": "partly visible through conditions for continued support, but not calibrated as a numeric or formal threshold",
+            "uncertainty_read": [
+              "Vanilla likely action remains the weakest field.",
+              "The raw packet supports stronger revised-action reading than vanilla-action reading.",
+              "Human review should check whether the original answer already contained the same sequence."
+            ],
+            "vanilla_likely_next_action_read": "Continue or attempt a founder reset/cooperation path with less immediate authority transfer; candidate only because overlap with the original answer remains unresolved."
+          },
+          "input_mode": "local_private_mode",
+          "limitations": [
+            "Vanilla action is candidate-only.",
+            "Truncated packet text may omit parts of the original answer.",
+            "No human validation of likely action."
+          ],
+          "non_claims": [
+            "not human review",
+            "not proof that the action is better",
+            "not a decision recommendation",
+            "not automatic labeling"
+          ],
+          "read_status": "provisional_candidate",
+          "source_refs": [
+            {
+              "artifact_ref": "local_private_run:20260627t093131z-59d153-1/conversation.txt",
+              "source_status": "explicit_in_local_private_packet"
+            },
+            {
+              "artifact_ref": "local_private_run:20260627t093131z-59d153-1/revised.txt",
+              "source_status": "explicit_in_local_private_packet"
+            },
+            {
+              "artifact_ref": "local_private_run:20260627t093131z-59d153-1/result.json",
+              "source_status": "explicit_in_local_private_packet"
+            }
+          ],
+          "source_status": "local_private_packet_candidate",
+          "specialist_role": "likely_action_reader",
+          "uncertainty": "medium_high"
+        }
+      },
+      "unresolved_questions": [
+        "Was the original answer already authority-first?",
+        "Was the cofounder's dignity preserved enough?",
+        "Were legal or equity obligations relevant to the decision but outside the pilot?",
+        "Would a human reviewer downgrade the candidate because relationship damage was underweighted?"
+      ]
+    }
+  ],
+  "review_mode": "codex_assisted_local_private_specialist_output_pilot",
+  "schema_version": "lolla.decision_trail_local_private_specialist_output_pilot.v0",
+  "source_packet_summary": {
+    "include_text_packet_generated": true,
+    "include_text_packet_checked_in": false,
+    "include_text_packet_deleted_after_review": true,
+    "include_text_packet_ref": "local_temp_output_not_checked_in:include_text_packets.json",
+    "metadata_packet_generated": true,
+    "metadata_packet_checked_in": false,
+    "metadata_packet_ref": "local_temp_output_not_checked_in:metadata_packets.json",
+    "pilot_case_count": 1,
+    "private_content_in_checked_in_review": false
+  }
+}

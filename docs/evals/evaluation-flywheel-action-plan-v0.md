@@ -1976,6 +1976,490 @@ Stop point:
 - Recommended PR71 is Product Delta Evidence Thesis v0, only after maintainer
   review.
 
+### PR71-PR74: Product Delta Evidence Codex-Assisted Provisional Scaffold v0
+
+Maps to: R6 product-evidence bridge before renewed human-review capacity.
+
+Status: completed as docs/schema/review-fixture scaffolding.
+
+Output:
+
+- [Product Delta Evidence Thesis v0](product-delta-evidence-thesis-v0.md).
+- [Vanilla-vs-Lolla Provisional Review Protocol v0](vanilla-vs-lolla-provisional-review-protocol-v0.md).
+- [Vanilla-vs-Lolla Provisional Review Schema v0](vanilla-vs-lolla-provisional-review-v0.json).
+- [Codex-Assisted Paired Review Dry Run v0](codex-assisted-paired-review-dry-run-v0.md).
+- [Codex-assisted dry-run review JSON](../../reviews/codex-assisted/paired-review-dry-run-v0/review.json).
+- [Provisional Product Delta Failure Taxonomy v0](provisional-product-delta-failure-taxonomy-v0.md).
+- [Provisional Product Delta Failure Taxonomy JSON v0](provisional-product-delta-failure-taxonomy-v0.json).
+
+Current result:
+
+- defines `codex_assisted_provisional` as a lower-claim review-capacity mode;
+- compares actual vanilla strong-model conversation/final-answer posture
+  against Lolla revised-answer posture using only review-safe checked-in
+  sources;
+- records `vanilla_likely_next_action`, `lolla_likely_next_action`,
+  `material_difference`, `structural_delta`, `decision_leverage`,
+  `useful_friction`, `noisy_friction`, `lost_value`,
+  `interpretation_adequacy`, `first_upstream_failure`, and
+  `net_decision_read_provisional`;
+- dry-runs eight safe cases and leaves one case intentionally inconclusive
+  because the safe surface is too thin for a confident vanilla likely-action
+  read;
+- creates a provisional failure taxonomy for product-delta, interpretation,
+  and review-process failures;
+- keeps every subjective read provisional and non-claiming.
+
+Stop point:
+
+- Do not treat Codex-assisted findings as human review.
+- Do not treat Codex-assisted findings as ground truth, judge calibration data,
+  product proof, or agent approval.
+- Do not add a judge, score, automatic labeler, `safe_for_agent_use`
+  automation, prompt change, runtime integration, archive mutation, graph DB,
+  embeddings, memory, GraphRAG, dashboard, or Semantica-style platform work.
+- PR75 was redirected to testability after maintainer review: run a
+  deterministic Product Delta readiness pass over existing cases before new
+  human-review capacity returns.
+
+### PR75: Product Delta Eval Readiness And Provisional Run v0
+
+Maps to: R6 deterministic eval-lane exercise before subjective judgment.
+
+Status: completed as read-only code, tests, seed cases, and generated safe
+report.
+
+Output:
+
+- [Product Delta Seed Cases v0](product-delta-seed-cases-v0.json).
+- [Product Delta Eval Readiness And Provisional Run v0](product-delta-eval-readiness-and-provisional-run-v0.md).
+- [Product Delta provisional run JSON](../../reviews/codex-assisted/product-delta-provisional-run-v0/review.json).
+- `engine/system_b/product_delta_readiness.py`.
+- `scripts/evals/build_product_delta_provisional_review.py`.
+- `tests/test_product_delta_readiness.py`.
+
+Current result:
+
+- runs a read-only Product Delta readiness analyzer over 14 existing PR33
+  cases;
+- finds 12 cases ready for Codex provisional review;
+- identifies one older partial case as `blocked_private_content_only` because
+  raw artifacts exist but modern structured `evaluation.json` and
+  `agent_result.json` are missing;
+- identifies one degraded case as `degraded_run_health`;
+- emits 14 PR72-shaped deterministic shells with semantic fields left
+  `not_reviewed`, `unclear`, or `inconclusive`;
+- proves the eval lane can execute without running `$lolla`, calling models,
+  mutating archives, reading raw transcript/memo/revised-answer content,
+  scoring answer quality, or creating labels.
+
+Stop point:
+
+- Do not treat the PR75 shells as Codex semantic review.
+- Do not treat readiness as product proof.
+- Do not infer Product Delta labels from artifact presence.
+- Recommended PR76 is Codex-Assisted Product Delta Batch v0: fill the ready
+  shells with Codex-assisted provisional semantic reads, still not human
+  validation, ground truth, judge calibration data, scoring, or agent approval.
+
+### PR76: Codex-Assisted Product Delta Batch v0
+
+Maps to: R6 provisional semantic review rehearsal before human validation.
+
+Status: completed as docs/review fixture and focused fixture validation.
+
+Output:
+
+- [Codex-Assisted Product Delta Batch v0](codex-assisted-product-delta-batch-v0.md).
+- [Codex-assisted Product Delta batch JSON](../../reviews/codex-assisted/product-delta-batch-v0/review.json).
+- `tests/test_product_delta_batch_fixture.py`.
+
+Current result:
+
+- fills the 12 PR75 `ready_for_codex_provisional_review` shells;
+- uses a three-pass Codex-assisted structure: delta reader, skeptical reader,
+  conservative consolidation;
+- produces mixed provisional candidate reads: 6 material improvement, 4
+  partial improvement, 1 no material change, and 1 inconclusive;
+- records lost value in every case;
+- records interpretation adequacy concerns or uncertainty in 6 cases;
+- preserves human follow-up questions for every case;
+- validates the fixture shape without adding a judge, score, automatic label,
+  runtime integration, archive mutation, raw/private content, or product-proof
+  claim.
+
+Stop point:
+
+- Do not treat PR76 candidate reads as human labels.
+- Do not use PR76 as judge calibration data.
+- Do not turn the mixed distribution into a product claim.
+- PR77 now summarizes PR75 and PR76 together, explicitly separating
+  reviewability, provisional semantic candidate reads, and future human
+  validation needs.
+
+### PR77: Product Delta Provisional Report v0
+
+Maps to: R6 state-of-evidence report before human validation.
+
+Status: completed as docs/report.
+
+Output:
+
+- [Product Delta Provisional Report v0](product-delta-provisional-report-v0.md).
+
+Current result:
+
+- summarizes PR75 and PR76 together as a provisional evidence package;
+- records 14 readiness cases, 12 ready for provisional review, one
+  `blocked_private_content_only` case, and one `degraded_run_health` case;
+- records the PR76 candidate distribution: 6 material improvement candidates, 4
+  partial improvement candidates, 1 no-material-change candidate, and 1
+  inconclusive case;
+- summarizes recurring structural deltas, especially evidence gates,
+  thresholds, scope changes, written terms, action changes, overclaim
+  retractions, user-answerable questions, sequence changes, and stop rules;
+- highlights lost-value risks around momentum, simplicity, ambition, courage,
+  actionability, and clarity;
+- highlights interpretation-adequacy concerns, review-surface limits, and the
+  risk that the zero noisy/worse count reflects Codex or corpus bias rather
+  than product truth;
+- names human-review priorities and falsification tests.
+
+Stop point:
+
+- Do not treat PR77 as proof that Lolla improves decisions.
+- Do not treat PR77 as human review, ground truth, judge calibration data,
+  answer-quality scoring, automatic labels, or agent approval.
+- Do not start runtime integration, archive mutation, dashboards, graph DB,
+  memory, GraphRAG, prompt changes, `SKILL.md` changes, or
+  `safe_for_agent_use` automation from PR77.
+- PR78 and PR79 continue only as boundary protection and architecture, not
+  product proof or human-review replacement.
+
+### PR78: Product Delta Evidence Boundary Lint v0
+
+Maps to: R6 deterministic evidence-boundary protection before more LLM-assisted
+interpretation.
+
+Status: completed as read-only code, CLI, tests, and docs.
+
+Output:
+
+- [Product Delta Evidence Boundary Lint v0](product-delta-evidence-boundary-lint-v0.md).
+- `engine/system_b/product_delta_boundary_lint.py`.
+- `scripts/evals/lint_product_delta_evidence.py`.
+- `tests/test_product_delta_boundary_lint.py`.
+
+Current result:
+
+- adds deterministic local lint for Product Delta JSON/Markdown artifacts;
+- blocks unsafe lower-claim metadata, authority/scoring fields, taxonomy score
+  drift, missing PR72 review-case boundary fields, and privacy markers;
+- warns on targeted Markdown overclaim risks without banning necessary
+  discussion of product hypotheses, rejected judges, or non-claims;
+- emits `lolla.product_delta_boundary_lint.v0` JSON reports when requested;
+- passes over the current PR72, PR73, PR74, PR75, PR76, and PR77 Product Delta
+  artifacts with zero blocking errors;
+- preserves no `$lolla` run, no skill invocation, no model calls, no archive
+  mutation, no runtime behavior change, no prompt change, no `SKILL.md` change,
+  no answer-quality score, no judge, no automatic labels, no
+  `safe_for_agent_use`, and no product-proof claim.
+
+Stop point:
+
+- Do not treat passing lint as proof that Lolla improves decisions.
+- Do not treat passing lint as human validation, ground truth, judge calibration
+  data, answer-quality scoring, automatic labels, or agent approval.
+- Future specialist-review architecture must stay downstream/offline and pass
+  this lint before its provisional outputs are treated as review packets.
+
+### PR79: Context-Engineered Provisional Review Architecture v0
+
+Maps to: R6 context-engineered provisional review before specialist contracts.
+
+Status: completed as docs/design only.
+
+Output:
+
+- [Context-Engineered Provisional Review Architecture v0](context-engineered-provisional-review-architecture-v0.md).
+
+Current result:
+
+- defines the approved architecture for future bounded Product Delta specialist
+  reads;
+- keeps the runtime/eval boundary explicit: runtime produces audited revised
+  answers and custody artifacts; Product Delta eval reads existing safe
+  artifacts later;
+- rejects broad judge prompts that ask one model to decide whether the revised
+  answer is better, scored, or approved;
+- imports context engineering as architectural inspiration: focused context,
+  typed specialist reads, deterministic validation, and disagreement-preserving
+  fan-in;
+- names future roles for PR80 without implementing schemas: conversation
+  interpretation, vanilla likely next action, Lolla likely next action,
+  structural delta, useful/noisy friction and lost value, interpretation
+  adequacy, advisory overclaim, and conservative fan-in;
+- defines `checked_in_safe_mode` and `local_private_mode` as future input
+  modes;
+- requires future Product Delta artifacts to pass PR78 lint before they are
+  treated as review packets;
+- preserves no `$lolla` run, no Lolla skill invocation, no model calls, no
+  archive mutation, no runtime behavior change, no prompt change, no
+  `SKILL.md` change, no schemas, no packet builder, no review batch, no
+  answer-quality score, no judge, no automatic labels, no `safe_for_agent_use`,
+  and no product-proof claim.
+
+Stop point:
+
+- Do not treat PR79 as implementation of specialist review.
+- Do not create packet builders, trap fixtures, review batches, fan-in reports,
+  runtime integration, archive mutation, model calls, judges, scores,
+  automatic labels, or agent approval from PR79.
+- PR79 handed off to PR80 Product Delta Specialist Review Contracts v0 for
+  docs and JSON schemas for the named specialist reads, still without a packet
+  builder or review run.
+
+### PR80: Product Delta Specialist Review Contracts v0
+
+Maps to: R6 typed contracts for context-engineered provisional review.
+
+Status: completed as docs, JSON schema, and focused structure tests.
+
+Output:
+
+- [Product Delta Specialist Review Contracts v0](product-delta-specialist-review-contracts-v0.md).
+- [Product Delta Specialist Review Contracts JSON v0](product-delta-specialist-review-contracts-v0.json).
+- `tests/test_product_delta_specialist_contracts.py`.
+
+Current result:
+
+- defines one combined contract schema,
+  `lolla.product_delta_specialist_review_contracts.v0`;
+- preserves lower-claim boundary metadata for no human validation, no ground
+  truth, no judge calibration, no product proof, no answer-quality scoring, no
+  agent action authority, no model calls, and no archive mutation;
+- defines shared source/status vocabulary for explicit, inferred, unclear,
+  not-supplied, contradicted, missing-artifact, malformed-artifact, and
+  not-reviewed fields;
+- defines typed contracts for conversation interpretation, vanilla likely next
+  action, Lolla likely next action, structural delta, useful/noisy friction and
+  lost value, interpretation adequacy, advisory overclaim, and conservative
+  fan-in;
+- keeps fan-in disagreement-preserving, candidate-only, and non-voting;
+- distinguishes `checked_in_safe_mode` from `local_private_mode`;
+- passes PR78 lint over the new Markdown and JSON artifacts;
+- preserves no `$lolla` run, no Lolla skill invocation, no model calls, no
+  archive mutation, no runtime behavior change, no prompt change, no
+  `SKILL.md` change, no packet builder, no generated review outputs, no review
+  batch, no fan-in execution, no answer-quality score, no judge, no automatic
+  labels, no `safe_for_agent_use`, and no product-proof claim.
+
+Stop point:
+
+- Do not treat PR80 as a filled review packet.
+- Do not create packet builders, trap fixtures, review batches, fan-in reports,
+  runtime integration, archive mutation, model calls, judges, scores,
+  automatic labels, or agent approval from PR80.
+- PR80 handed off to PR81 Specialist Review Packet Builder v0: read-only code
+  that creates safe per-specialist packets from existing cases, still without
+  model calls, generated semantic reads, fan-in execution, or archive mutation.
+
+### PR81: Specialist Review Packet Builder v0
+
+Maps to: R7 deterministic packetization for PR80 contracts.
+
+Status: completed as read-only code, CLI, docs, focused tests, and compact
+checked-in fixture.
+
+Output:
+
+- [Product Delta Specialist Packet Builder v0](product-delta-specialist-packet-builder-v0.md).
+- `engine/system_b/product_delta_specialist_packets.py`.
+- `scripts/evals/build_product_delta_specialist_packets.py`.
+- `tests/test_product_delta_specialist_packets.py`.
+- `reviews/codex-assisted/product-delta-specialist-packets-v0/packets.json`.
+
+Current result:
+
+- emits `lolla.product_delta_specialist_packets.v0`;
+- builds per-specialist input packets for conversation interpretation, vanilla
+  likely next action, Lolla likely next action, structural delta, useful/noisy
+  friction and lost value, interpretation adequacy, advisory overclaim, and
+  conservative fan-in;
+- reads existing checked-in Product Delta artifacts only;
+- preserves lower-claim boundary metadata, source refs, known limits, and PR80
+  contract refs;
+- keeps prior PR76 broad provisional reads as source references only, not
+  copied specialist answers or truth;
+- includes a compact two-case checked-in packet fixture;
+- passes PR78 lint over the new docs and packet outputs;
+- preserves no `$lolla` run, no Lolla skill invocation, no model calls, no
+  archive mutation, no runtime behavior change, no prompt change, no
+  `SKILL.md` change, no generated specialist answers, no review batch, no
+  fan-in execution, no answer-quality score, no judge, no automatic labels, no
+  `safe_for_agent_use`, and no product-proof claim.
+
+Stop point:
+
+- Do not treat PR81 packets as specialist reviews.
+- Do not start PR83-style real specialist role-passes from PR81 alone.
+- Do not create model calls, generated semantic reads, fan-in reports, runtime
+  integration, archive mutation, judges, scores, automatic labels, or agent
+  approval from PR81.
+- Recommended next slice is PR82 Provisional Reviewer Trap Set v0: small
+  adversarial fixtures to test whether the PR80 contracts and PR81 packet
+  shape resist obvious review failure modes before real specialist batches.
+
+### PR82: Provisional Reviewer Trap Set v0
+
+Maps to: R7 deterministic evaluation boundary protection and R8 fixture design.
+
+Status: completed as docs/JSON trap fixtures and focused tests.
+
+Output:
+
+- [Provisional Reviewer Trap Set v0](provisional-reviewer-trap-set-v0.md).
+- [Provisional Reviewer Trap Set JSON v0](provisional-reviewer-trap-set-v0.json).
+- `tests/test_provisional_reviewer_trap_set.py`.
+
+Current result:
+
+- emits `lolla.provisional_reviewer_trap_set.v0`;
+- defines ten checked-in-safe trap families before any real specialist batch;
+- covers thin context, longer revised answers with no action change, caution
+  without decision leverage, vanilla gates repeated by Lolla, lost live options,
+  generic prudence burying user ambition, assistant-influence blindness,
+  specialist disagreement smoothing, clean-artifact authority leakage, and
+  provisional language hardening;
+- targets PR80 specialist roles without filling specialist answers;
+- preserves expected behavior as contract expectation, not human label, ground
+  truth, judge calibration data, product proof, answer-quality score,
+  automatic label, runtime integration, or agent approval;
+- passes PR78 lint over the new trap Markdown and JSON artifacts.
+
+Stop point:
+
+- Do not treat PR82 traps as human labels.
+- Do not treat passing a trap as evidence that Lolla improves decisions.
+- Do not start broad judging, scoring, automatic labeling, runtime integration,
+  archive mutation, or agent approval from PR82.
+- Recommended next slice is PR83 Codex-Assisted Specialist Review Batch v0,
+  but only after confirming the PR82 traps are suitable and using them to check
+  reviewer discipline before real-case role-passes.
+
+### PR83: Codex-Assisted Specialist Review Batch v0
+
+Maps to: R7 specialist-review discipline and R8 provisional fixture learning.
+
+Status: completed as docs/review fixture and focused tests.
+
+Output:
+
+- [Codex-Assisted Specialist Review Batch v0](codex-assisted-specialist-review-batch-v0.md).
+- [Codex-assisted specialist review batch JSON](../../reviews/codex-assisted/specialist-review-batch-v0/review.json).
+- `tests/test_codex_assisted_specialist_review_batch.py`.
+
+Current result:
+
+- emits `lolla.codex_assisted_specialist_review_batch.v0`;
+- runs a PR82 trap discipline pass with 8 `met_expected_behavior`, 2
+  `partly_met_expected_behavior`, 0 missed, and 0 inconclusive;
+- fills PR80-style specialist reads for the two PR81 checked-in packet-fixture
+  cases;
+- records lost-value and interpretation-adequacy concerns in both real cases;
+- keeps `ceo-remove-founding-cofounder` as a material candidate while
+  downgrading interpretation adequacy from PR76's broad adequate read to a
+  stricter partly adequate candidate read;
+- downgrades `accept-operations-role-startup` from PR76's
+  material-improvement candidate to partial because value overwrite, lost
+  ambition/momentum, and written-gate proportion remain unresolved;
+- explicitly acknowledges selection risk because both real cases came from
+  prior positive review-safe context and the tiny slice contains no real-case
+  no-change, noisy, worse, or inconclusive reads;
+- passes PR78 lint over the PR83 Markdown and JSON artifacts.
+
+Stop point:
+
+- Do not treat PR83 as proof that specialist review is correct.
+- Do not treat PR83's downgrade as a human label.
+- Do not treat trap behavior as benchmark accuracy.
+- Do not create broad judges, scores, automatic labels, runtime integration,
+  archive mutation, or agent approval from PR83.
+- PR83 hands off to the PR84 Fan-In / Disagreement Report v0 as a reporting
+  slice over existing PR76 and PR83 artifacts.
+
+### PR84: Fan-In / Disagreement Report v0
+
+Maps to: R7 disagreement preservation and R8 provisional fixture learning.
+
+Status: completed as static report fixture and focused tests.
+
+Output:
+
+- [Product Delta Fan-In / Disagreement Report v0](product-delta-fan-in-disagreement-report-v0.md).
+- [Fan-in disagreement report JSON](../../reviews/codex-assisted/fan-in-disagreement-report-v0/report.json).
+- `tests/test_product_delta_fan_in_disagreement_report.py`.
+
+Current result:
+
+- emits `lolla.product_delta_fan_in_disagreement_report.v0`;
+- adds no builder, no new specialist reads, and no new Codex semantic review;
+- compares exactly the two PR83 real cases against their PR76 broad reads;
+- summarizes the PR83 trap behavior counts without calling them accuracy or a
+  product result;
+- records that `ceo-remove-founding-cofounder` kept the same material net
+  candidate while PR83 made interpretation adequacy and lost-value caveats
+  stricter;
+- records that `accept-operations-role-startup` moved from PR76 material to
+  PR83 partial;
+- keeps both lost-value and interpretation-adequacy concern surfaces visible;
+- records thinness limits as first-class: two real cases, prior positive PR76
+  context, no real-case no-change/noise/worse/inconclusive outcomes, no raw
+  private content, and no human validation.
+
+Stop point:
+
+- Do not treat PR84 as deciding PR76 or PR83 is right.
+- Do not treat the PR83 downgrade as a label or product result.
+- Do not expand into more semantic evidence by default.
+- PR84 hands off to PR85 as a cleanup/packaging gate with source-reference
+  checks and doc alignment.
+
+### PR85: Product Delta PR71-PR84 Packaging Gate v0
+
+Maps to: R7 boundary preservation and R8 package coherence.
+
+Status: completed as docs/manifest/tests.
+
+Output:
+
+- [Product Delta PR71-PR84 Packaging Gate v0](product-delta-pr71-pr84-packaging-gate-v0.md).
+- [Product Delta PR71-PR84 package manifest](product-delta-pr71-pr84-package-manifest-v0.json).
+- `tests/test_product_delta_pr71_pr84_package_gate.py`.
+
+Current result:
+
+- emits `lolla.product_delta_pr71_pr84_package_manifest.v0`;
+- adds no checker script, no new semantic review, no model calls, and no
+  runtime integration;
+- records the Product Delta PR71-PR84 package surface by PR and by file group;
+- excludes unrelated untracked docs, plans, and synthetic-review folders;
+- records the strongest useful signal:
+  `accept-operations-role-startup` moved from PR76 material to PR83 partial;
+- records the strongest unresolved risk: the PR83/PR84 comparison has only two
+  prior-positive real cases, no human validation, and no real-case
+  no-change/noise/worse/inconclusive outcome;
+- tests conservative boundary metadata, PR84 static-report constraints, PR83
+  actual shape paths, included-file existence, PR78 lint coverage, privacy
+  hygiene, and source-reference path/JSON-pointer resolution.
+
+Stop point:
+
+- Do not treat PR85 as new evidence.
+- Do not add another automatic evidence-expansion PR by default.
+- Stop and decide whether to stage/package PR71-PR85 explicitly, or pause
+  until human review capacity returns.
+
 ## What Not To Build Yet
 
 - broad answer-quality score;
@@ -1984,6 +2468,8 @@ Stop point:
 - automatic human-review population;
 - runtime specialist integration;
 - archive specialist artifacts;
+- additional review batches or fan-in reports unless explicitly scoped in
+  later PRs;
 - graph DB;
 - embeddings-first memory;
 - high-stakes archive evidence claims before approved high-stakes runs exist;
@@ -2033,11 +2519,13 @@ Before building judges or runtime semantic enrichment, Lolla should have:
 That is the smallest flywheel that can improve Lolla run by run without turning
 it into a vague critic or overbuilt memory system.
 
-The latest conservative accountability step is PR70 Audit / Accountability
-Machinery Closure Gate v0. It declares the machinery lane done enough for now
-and redirects the next phase to Product Delta Evidence. Any future PR71 should
-require maintainer review first and should define the product-eval thesis, not
-add archive integration, automatic generation, graph DB, embeddings, memory,
-entity resolution, GraphRAG, conflict automation, answer-quality scoring,
-judges, automatic labels, provider-boundary policy changes, prompt changes,
-`SKILL.md` changes, or Semantica-style platform work from PR70 alone.
+The latest conservative product-evidence step is PR85 Product Delta PR71-PR84
+Packaging Gate v0. It packages the current Product Delta surface so a fresh
+reviewer can see the PR71-PR84 files, boundary metadata, source references,
+PR78 lint coverage, strongest useful signal, and strongest unresolved risk
+without human validation, product proof, scoring, judging, automatic labels,
+raw transcript copying into checked-in artifacts, runtime integration, archive
+mutation, provider-boundary policy changes, prompt changes, `SKILL.md`
+changes, or Semantica-style platform work. The next recommended move is to
+stop and decide whether to stage/package PR71-PR85 explicitly, or pause until
+human review capacity returns.
