@@ -1,0 +1,240 @@
+{
+  "schema_version": "lolla.decision_trail_specialist_output_pilot_review.v0",
+  "review_mode": "codex_assisted_pr97_contract_revision_gate",
+  "boundary": {
+    "human_validated": false,
+    "ground_truth": false,
+    "judge_calibration_eligible": false,
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "model_calls": 0,
+    "archive_mutated": false,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "automatic_labels_created": false,
+    "raw_private_content_included": false,
+    "new_specialist_outputs_created": false,
+    "fan_in_executed_as_verdict": false
+  },
+  "source_artifacts": [
+    {
+      "ref": "docs/conversation-understanding/decision-trail-local-private-specialist-output-pilot-v0.md",
+      "status": "checked_in_safe_summary",
+      "raw_private_content_included": false
+    },
+    {
+      "ref": "reviews/codex-assisted/decision-trail-local-private-specialist-output-pilot-v0/review.json",
+      "status": "checked_in_safe_summary",
+      "raw_private_content_included": false
+    },
+    {
+      "ref": "docs/conversation-understanding/decision-trail-specialist-contracts-v0.md",
+      "status": "contract_context",
+      "raw_private_content_included": false
+    },
+    {
+      "ref": "docs/conversation-understanding/decision-trail-local-private-packet-mode-v0.md",
+      "status": "packet_context",
+      "raw_private_content_included": false
+    }
+  ],
+  "source_review_summary": {
+    "reviewed_slice": "PR97 Decision Trail Local-Private Specialist Output Pilot v0",
+    "pilot_case_count": 1,
+    "pilot_case_ref": "ceo-remove-founding-cofounder/20260627T093131Z_59d153",
+    "local_private_packet_checked_in": false,
+    "private_packet_deleted_after_review": true,
+    "review_uses_checked_in_summaries_only": true,
+    "selection_risk": "single historically positive case",
+    "private_context_risk": "include-text packet was private, large, and partly truncated"
+  },
+  "gate_decision": {
+    "broad_batch_status": "blocked_until_contract_and_packet_patch",
+    "second_one_case_pilot_status": "allowed_after_patch_only",
+    "runtime_status": "not_allowed",
+    "contract_patch_required": true,
+    "packet_patch_required": true,
+    "human_review_required_for_product_claim": true,
+    "rationale": "PR97 made the specialist lane useful enough to continue, but it also exposed missing contract fields and packet-scope metadata that should be patched before any broader batch."
+  },
+  "role_reviews": [
+    {
+      "role": "conversation_shape_reader",
+      "pr97_useful_signal": [
+        "Captured the authority-transfer versus reset-testing decision shape.",
+        "Preserved stakeholders and unresolved governance context as candidate fields."
+      ],
+      "main_gap": "assistant influence is only partly visible and needs clearer source status before reuse",
+      "revision_needed": true,
+      "revision_pressure": [
+        "Add assistant_influence_source_status.",
+        "Require source_scope_and_truncation_impact.",
+        "Keep option status candidate-only when vanilla overlap is unresolved."
+      ],
+      "do_not_infer": [
+        "do not infer the user's true motive",
+        "do not treat assistant influence as established without source status",
+        "do not collapse live options into the revised option"
+      ]
+    },
+    {
+      "role": "likely_action_reader",
+      "pr97_useful_signal": [
+        "Made the authority-first revised action concrete.",
+        "Named sequence and stop-condition deltas as candidate report fields."
+      ],
+      "main_gap": "vanilla overlap is not first-class, so the reader may credit Lolla for an action sequence the vanilla answer already contained",
+      "revision_needed": true,
+      "revision_pressure": [
+        "Add vanilla_overlap_read.",
+        "Separate revised-action strength from vanilla-action uncertainty.",
+        "Require an explicit uncertainty reason when vanilla action is source-limited."
+      ],
+      "do_not_infer": [
+        "do not claim Lolla changed the action when vanilla overlap is unresolved",
+        "do not infer what the user would have done",
+        "do not treat action clarity as action quality"
+      ]
+    },
+    {
+      "role": "friction_lost_value_reader",
+      "pr97_useful_signal": [
+        "Preserved relationship simplicity, trust, dignity, and momentum as possible lost values.",
+        "Separated useful authority clarity from possible relational cost."
+      ],
+      "main_gap": "lost-value presence is visible, but severity is not calibrated",
+      "revision_needed": true,
+      "revision_pressure": [
+        "Add lost_value_severity_read.",
+        "Add severity_source_status.",
+        "Require the reader to separate useful friction from avoidable damage."
+      ],
+      "do_not_infer": [
+        "do not treat every visible cost as equally important",
+        "do not treat caution or structure as automatically useful",
+        "do not overwrite user-specific ambition or loyalty with generic prudence"
+      ]
+    },
+    {
+      "role": "conservative_fan_in_reader",
+      "pr97_useful_signal": [
+        "Preserved disagreement between strong structural delta and unresolved lost-value risk.",
+        "Kept assistant influence, vanilla overlap, and lost-value severity out of ready fields."
+      ],
+      "main_gap": "fan-in needs explicit downgrade triggers so clean synthesis does not overstate readiness",
+      "revision_needed": true,
+      "revision_pressure": [
+        "Add downgrade_triggers.",
+        "Add not_ready_reason.",
+        "Require fan-in to cite high-uncertainty fields that block report readiness."
+      ],
+      "do_not_infer": [
+        "do not use agreement as correctness",
+        "do not smooth disagreement into a verdict",
+        "do not mark a field ready when its source scope is private, truncated, or unresolved"
+      ]
+    }
+  ],
+  "contract_revision_queue": [
+    {
+      "revision_id": "likely_action_vanilla_overlap_read",
+      "applies_to_role": "likely_action_reader",
+      "status": "required_before_second_pilot",
+      "suggested_change": "Add vanilla_overlap_read with values such as not_assessed, overlap_unresolved, no_material_overlap_candidate, material_overlap_candidate, and requires_human_review.",
+      "rationale": "PR97's weakest action field was whether vanilla already contained the same authority-transfer sequence."
+    },
+    {
+      "revision_id": "friction_lost_value_severity_read",
+      "applies_to_role": "friction_lost_value_reader",
+      "status": "required_before_second_pilot",
+      "suggested_change": "Add lost_value_severity_read plus severity_source_status so presence and severity do not collapse.",
+      "rationale": "PR97 showed lost value clearly, but not whether that cost should materially downgrade the read."
+    },
+    {
+      "revision_id": "conversation_shape_assistant_influence_source_status",
+      "applies_to_role": "conversation_shape_reader",
+      "status": "required_before_second_pilot",
+      "suggested_change": "Add assistant_influence_source_status with explicit values for visible, partly_visible, not_visible, contradicted, and requires_human_review.",
+      "rationale": "PR97 could flag possible assistant influence but could not establish it."
+    },
+    {
+      "revision_id": "all_roles_source_scope_and_truncation_impact",
+      "applies_to_role": "all_roles",
+      "status": "required_before_second_pilot",
+      "suggested_change": "Require source_scope_and_truncation_impact in every specialist output.",
+      "rationale": "The PR97 packet was partly truncated; every role should say how truncation affects its read."
+    },
+    {
+      "revision_id": "fan_in_downgrade_triggers",
+      "applies_to_role": "conservative_fan_in_reader",
+      "status": "required_before_second_pilot",
+      "suggested_change": "Add downgrade_triggers and not_ready_reason fields to prevent clean fan-in from implying readiness.",
+      "rationale": "PR97 fan-in was useful, but the shape needs explicit blocking conditions before broader use."
+    }
+  ],
+  "packet_revision_queue": [
+    {
+      "revision_id": "packet_artifact_scope_summary",
+      "status": "required_before_second_pilot",
+      "suggested_change": "Add role-readable source-scope summary that distinguishes absent, present-not-read, read-metadata, read-text-truncated, and read-text-complete."
+    },
+    {
+      "revision_id": "packet_truncation_summary",
+      "status": "required_before_second_pilot",
+      "suggested_change": "Expose per-run truncation totals and require specialists to cite truncation impact."
+    },
+    {
+      "revision_id": "local_private_retention_status",
+      "status": "required_before_second_pilot",
+      "suggested_change": "Require checked-in pilot reviews to state whether local include-text output was deleted, retained locally, or never created."
+    },
+    {
+      "revision_id": "source_ref_readability",
+      "status": "recommended_before_second_pilot",
+      "suggested_change": "Keep sanitized source refs short enough for review while preserving role, artifact kind, and source status."
+    }
+  ],
+  "overtrust_risks": [
+    "A contract-conforming specialist output can look like validation even when it is a candidate read.",
+    "The one-case pilot came from a historically positive case and may overstate lane usefulness.",
+    "Truncated local-private packet context can hide missing evidence behind clean field names.",
+    "Fan-in can sound decisive unless unresolved fields force visible downgrade pressure."
+  ],
+  "what_would_make_this_direction_wrong": [
+    "A second one-case pilot still cannot resolve vanilla overlap or lost-value severity.",
+    "Specialist outputs become longer without making source limits clearer.",
+    "The packet patch makes local-private handling too risky or too bulky for practical review.",
+    "Future reviewers read candidate fields as validated findings despite non-claims."
+  ],
+  "next_recommended_slice": {
+    "recommended_slice": "PR99 Decision Trail Specialist Contract And Packet Patch v0",
+    "purpose": "Patch PR90 contracts and PR95 packet metadata before running a second one-case specialist-output pilot.",
+    "why_not_second_pilot_now": "PR98 found required contract and packet-shape gaps. Running another pilot first would repeat known weaknesses.",
+    "must_not_do": [
+      "run_lolla",
+      "invoke_lolla_skill",
+      "call_provider_apis",
+      "mutate_archives",
+      "change_runtime_behavior",
+      "fill_new_specialist_outputs",
+      "execute_fan_in_as_verdict",
+      "measure_answer_quality",
+      "create_automatic_labels",
+      "authorize_agent_action",
+      "treat_clean_specialist_outputs_as_product_proof"
+    ]
+  },
+  "non_claims": [
+    "not human review",
+    "not ground truth",
+    "not judge calibration data",
+    "not product proof",
+    "not answer-quality measurement",
+    "not automatic labeling",
+    "not runtime integration",
+    "not evidence that clean specialist outputs mean good advice",
+    "not proof that future specialists will interpret conversations correctly",
+    "not agent action authorization"
+  ]
+}

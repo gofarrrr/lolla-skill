@@ -119,20 +119,26 @@ The right interpretation is:
 
 ## Recommended Next Slice
 
-PR98 should be:
+PR98 has now reviewed this pilot:
+
+- [Decision Trail Specialist Output Pilot Review v0](decision-trail-specialist-output-pilot-review-v0.md)
+
+PR98 decided not to broaden yet. It recommends PR99:
 
 ```text
-Decision Trail Specialist Output Pilot Review / Contract Revision v0
+Decision Trail Specialist Contract And Packet Patch v0
 ```
 
-It should not expand the batch yet. It should review PR97 and decide whether:
+PR99 should patch the contracts and packet metadata before a second one-case
+pilot. The required patch areas are:
 
-- the PR90 contracts need shape changes;
-- source refs are readable enough;
-- include-text packets are too bulky or too risky;
-- conservative fan-in needs a stricter disagreement shape;
-- a second one-case pilot is justified;
-- the lane should pause until human review capacity returns.
+- vanilla-overlap read;
+- lost-value severity read;
+- assistant-influence source status;
+- source-scope and truncation impact;
+- fan-in downgrade triggers;
+- local-private packet retention/deletion status.
 
-PR98 must not add runtime integration, scoring, judging, automatic labels,
-agent authorization, graph/memory work, or product-proof language.
+PR99 must not run another specialist pilot, add runtime integration, measure
+answer quality, add automatic labels, authorize agent action, add graph/memory
+work, or use product-proof language.

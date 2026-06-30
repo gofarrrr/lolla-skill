@@ -152,19 +152,22 @@ refs, limitations, and non-claims. It did not check in private packet content.
 
 ## Recommended Next Slice
 
-PR98 should be:
+PR98 has now reviewed the PR97 pilot:
+
+- [Decision Trail Specialist Output Pilot Review v0](decision-trail-specialist-output-pilot-review-v0.md)
+
+The next slice should be PR99:
 
 ```text
-Decision Trail Specialist Output Pilot Review / Contract Revision v0
+Decision Trail Specialist Contract And Packet Patch v0
 ```
 
 It should:
 
-- review whether the PR97 outputs are actually readable and useful;
-- decide whether the PR90 contracts need revision before wider use;
-- decide whether the PR95 packet shape is too bulky, too thin, or acceptable;
+- patch the PR90 contracts and PR95 packet metadata surfaced by PR98;
 - preserve the one-case limitation as a first-class result;
-- avoid broad product claims, fan-in-as-verdict, and runtime integration.
+- avoid broad product claims, fan-in-as-verdict, and runtime integration;
+- avoid running another specialist-output pilot until the patch is in place.
 
 It must not:
 

@@ -67,11 +67,10 @@ conversation or agent run
 Current handoff state:
 
 ```text
-PR97 Decision Trail Local-Private Specialist Output Pilot v0 is the latest
-Decision Trail slice recorded in this working tree. PR97 confirms one
-operator-selected completed run can support all four PR90 specialist-output
-shapes from a local-private include-text packet, with checked-in summaries
-only and no private packet output committed. PR85 remains the latest
+PR98 Decision Trail Specialist Output Pilot Review / Contract Revision v0 is
+the latest Decision Trail slice recorded in this working tree. PR98 reviews the
+one-case PR97 pilot and decides not to broaden yet: patch PR90 contracts and
+PR95 packet metadata first. PR85 remains the latest
 packaged product-evidence eval-lane slice. PR70 remains the
 audit/accountability machinery closure gate. PR48 remains the high-stakes
 evidence gate. PR54 remains the paused v0 values/priorities worksheet gate.
@@ -87,7 +86,8 @@ PR86-PR89 built the sparse report shell, exporter, fixture review, and
 interpretation-gap decision. PR90-PR95 built narrow specialist contracts,
 checked-in-safe packets, traps, a discipline dry run, a path decision, and
 local-private packet mode. PR96 smoke-reviewed that packet mode locally. PR97
-filled a tiny one-case local-private specialist-output pilot.
+filled a tiny one-case local-private specialist-output pilot. PR98 reviewed
+that pilot and blocked broadening until a contract/packet patch.
 
 What works now: an operator can use a CLI to build checked-in-safe packet
 fixtures or local-private packets for completed run directories. PR96 shows
@@ -95,16 +95,16 @@ metadata-only local-private packets work on two real completed runs without
 copying raw/private content, and include-text local packets work mechanically
 with unsafe-for-commit marking. PR97 shows a local-private include-text packet
 can support bounded, contract-shaped specialist outputs for conversation
-shape, likely action, friction/lost value, and conservative fan-in.
+shape, likely action, friction/lost value, and conservative fan-in. PR98 shows
+the useful path is real, but the contracts need a small patch before reuse.
 
 What does not work yet: the specialist-output pilot is one case, local-private,
 Codex-assisted, unvalidated, and not automatic in `$lolla`. It does not prove
 that the contracts are final, that broader batches are safe, that Lolla
 improved the decision, or that agents may act.
 
-Next conservative gate: PR98 should review the PR97 output and decide whether
-to revise the PR90 contracts or PR95 packet shape before any broader
-specialist-output batch.
+Next conservative gate: PR99 should patch the PR90 contracts and PR95 packet
+metadata before any second one-case pilot or broader specialist-output batch.
 ```
 
 Documentation alignment note:
@@ -280,6 +280,15 @@ the four PR90 specialist roles by checked-in summary only. It shows the
 Decision Trail can carry more concrete candidate interpretation when private
 source access is available, but it remains one-case, Codex-assisted,
 human-unvalidated, unsafe to broaden without review, and outside runtime.
+
+docs/conversation-understanding/decision-trail-specialist-output-pilot-review-v0.md
+and
+reviews/codex-assisted/decision-trail-specialist-output-pilot-review-v0/review.json
+now record PR98's review of that pilot. PR98 keeps the useful signal but blocks
+broader use until PR90 contracts and PR95 packet metadata are patched for
+vanilla overlap, lost-value severity, assistant-influence source status,
+truncation/source-scope impact, fan-in downgrade triggers, and local-private
+retention/deletion status.
 ```
 
 Current product state:
@@ -606,10 +615,29 @@ Current stop rule:
 Latest completed slice:
 
 ```text
-PR97 Decision Trail Local-Private Specialist Output Pilot v0
+PR98 Decision Trail Specialist Output Pilot Review / Contract Revision v0
 ```
 
 Result:
+
+- lands `docs/conversation-understanding/decision-trail-specialist-output-pilot-review-v0.md`;
+- lands `reviews/codex-assisted/decision-trail-specialist-output-pilot-review-v0/review.json`;
+- lands `tests/test_decision_trail_specialist_output_pilot_review.py`;
+- reviews PR97's one-case local-private specialist-output pilot without
+  creating new specialist outputs or reading local-private packet text;
+- keeps PR97 as useful enough to continue but blocks a broad batch;
+- requires contract patches for vanilla overlap, lost-value severity,
+  assistant-influence source status, source/truncation impact, and fan-in
+  downgrade triggers;
+- requires packet metadata patches for artifact source scope, truncation
+  summary, and local-private retention/deletion status;
+- recommends PR99 Decision Trail Specialist Contract And Packet Patch v0 before
+  a second one-case pilot;
+- calls no providers or models, invokes no runtime, mutates no archives,
+  measures no answer quality, creates no automatic labels, and authorizes no
+  agent action.
+
+Previous Decision Trail local-private specialist-output pilot:
 
 - lands `docs/conversation-understanding/decision-trail-local-private-specialist-output-pilot-v0.md`;
 - lands `reviews/codex-assisted/decision-trail-local-private-specialist-output-pilot-v0/review.json`;
@@ -1128,15 +1156,19 @@ Non-goals for the next slice:
    fills all four PR90 specialist roles for one local-private completed run and
    keeps private packet content out of the repo. It shows the shape can produce
    more concrete candidate reads, but remains one-case, Codex-assisted,
-   unvalidated, and not automatic. The next conservative move is PR98:
-   review/revise the contracts and packet shape before any broader batch.
-16. **Live-output hygiene implementation.** PR35 keeps `not_checked` honest and
+   unvalidated, and not automatic. The now-complete PR98 review/revision gate
+   checked the contracts and packet shape before any broader batch.
+16. **PR98 Decision Trail specialist-output pilot review is done.** PR98 keeps
+   PR97's useful signal but blocks broadening until the contracts and packet
+   metadata are patched. The next conservative move is PR99 Decision Trail
+   Specialist Contract And Packet Patch v0, not another specialist run.
+17. **Live-output hygiene implementation.** PR35 keeps `not_checked` honest and
    defines a trusted-transcript path; later work can implement only when needed.
-17. **Span-grounded semantic enrichment.** Existing specialists help with live
+18. **Span-grounded semantic enrichment.** Existing specialists help with live
    constraints, dropped threads, and stance lineage, but integration remains
    blocked until a clean 15-20 full-modern sample and provider-boundary behavior
    are settled.
-18. **Human capability surface.** Later, add a compact memo/Observatory section
+19. **Human capability surface.** Later, add a compact memo/Observatory section
    that teaches the user what reasoning pattern the audit caught.
 
 ## Current Pause: Specialist Integration Track

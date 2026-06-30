@@ -279,22 +279,30 @@ mutation, or product-proof claims.
 
 ## Next Step
 
-PR92, PR93, PR94, PR95, PR96, and PR97 have now exercised the contracts
-through traps, a dry run, local-private packet mode, packet smoke review, and a
-one-case local-private specialist-output pilot. The latest pilot is:
+PR92, PR93, PR94, PR95, PR96, PR97, and PR98 have now exercised the contracts
+through traps, a dry run, local-private packet mode, packet smoke review, a
+one-case local-private specialist-output pilot, and a pilot review. The latest
+review is:
 
-[`Decision Trail Local-Private Specialist Output Pilot v0`](decision-trail-local-private-specialist-output-pilot-v0.md)
+[`Decision Trail Specialist Output Pilot Review v0`](decision-trail-specialist-output-pilot-review-v0.md)
 
 PR97 shows the four-role contract surface can be filled from one
 operator-selected local-private packet, but it does not prove the contracts are
-final or suitable for a broad batch.
+final or suitable for a broad batch. PR98 keeps the useful signal and requires
+contract changes before reuse.
 
 The next recommended PR is:
 
-**PR98 Decision Trail Specialist Output Pilot Review / Contract Revision v0**
+**PR99 Decision Trail Specialist Contract And Packet Patch v0**
 
-PR98 should review whether PR97's filled outputs expose missing fields,
-unclear vocabularies, overclaim risk, packet-bulk issues, source-ref problems,
-or contract changes needed before broader use. It should still avoid model
-calls, runtime integration, archive mutation, scoring, automatic labels, and
-product-proof claims.
+PR99 should add or clarify the contract fields surfaced by PR98:
+
+- `vanilla_overlap_read`;
+- `lost_value_severity_read`;
+- `assistant_influence_source_status`;
+- `source_scope_and_truncation_impact`;
+- `downgrade_triggers`;
+- `not_ready_reason`.
+
+It should still avoid model calls, runtime integration, archive mutation,
+answer-quality measurement, automatic labels, and product-proof claims.

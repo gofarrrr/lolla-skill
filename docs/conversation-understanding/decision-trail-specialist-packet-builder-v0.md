@@ -306,5 +306,13 @@ specialist roles by checked-in summary only. It still avoids runtime
 integration, archive mutation, provider/API calls, scoring, automatic labels,
 and product-proof claims.
 
-The next recommended slice is PR98: review whether the PR97 output reveals
+The next recommended slice was PR98: review whether the PR97 output reveals
 contract or packet-shape revisions before any broader specialist-output batch.
+PR98 is now complete:
+
+[`Decision Trail Specialist Output Pilot Review v0`](decision-trail-specialist-output-pilot-review-v0.md)
+
+PR98 recommends PR99 before another pilot. PR99 should patch packet metadata
+for source scope, truncation impact, and local-private retention/deletion
+status while preserving the existing output-path guards and non-claim
+boundary.

@@ -291,6 +291,14 @@ one-case limitations impossible to ignore.
 If local-private packets are too risky or too bulky, the lane should simplify
 before adding more interpretation machinery.
 
-The next conservative slice is PR98: review the PR97 specialist outputs and
+The next conservative slice was PR98: review the PR97 specialist outputs and
 decide whether contracts or packet shape should change before any broader
 batch.
+
+Completion note: PR98 has now performed that review:
+
+- [Decision Trail Specialist Output Pilot Review v0](decision-trail-specialist-output-pilot-review-v0.md)
+
+PR98 decided that packet shape should change before reuse. The next packet
+patch should add role-readable source-scope metadata, truncation impact, and
+local-private retention/deletion status before a second one-case pilot.

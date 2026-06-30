@@ -258,6 +258,8 @@ PR96 smoke-reviews that mode:
 [Decision Trail Local-Private Packet Smoke Review](docs/conversation-understanding/decision-trail-local-private-packet-smoke-review-v0.md).
 PR97 runs the tiny local-private specialist-output pilot:
 [Decision Trail Local-Private Specialist Output Pilot](docs/conversation-understanding/decision-trail-local-private-specialist-output-pilot-v0.md).
+PR98 reviews that pilot and blocks broadening until a contract/packet patch:
+[Decision Trail Specialist Output Pilot Review](docs/conversation-understanding/decision-trail-specialist-output-pilot-review-v0.md).
 
 Current Decision Trail status: this is still offline evidence and packet
 machinery, not automatic skill behavior. A normal Lolla run does not trigger
@@ -272,9 +274,10 @@ action, friction/lost value, and conservative fan-in.
 
 This is still one-case, Codex-assisted, unvalidated, and not product proof. It
 does not fill a first-class Decision Trail automatically, does not run inside
-`$lolla`, and does not authorize agents. The next conservative Decision Trail
-step is PR98: review the pilot output and revise contracts or packet shape
-before any broader specialist-output batch.
+`$lolla`, and does not authorize agents. PR98 decides that the next
+conservative Decision Trail step is PR99: patch the specialist contracts and
+packet metadata before running a second one-case pilot or any broader
+specialist-output batch.
 
 Start here: **[Product Delta / Eval Docs Index](docs/evals/README.md)**.
 
