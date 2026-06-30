@@ -240,7 +240,11 @@ messy semantic story without later bounded interpretation. The phase decision
 is
 [Decision Work Receipt Decision Gate](docs/conversation-understanding/decision-work-receipt-decision-gate-v0.md):
 keep the sparse receipt as an internal/workflow artifact and do not build a
-parallel Work Receipt interpretation system yet. See
+parallel Work Receipt interpretation system yet. The follow-up
+[Decision Work Receipt External Report Attachments](docs/conversation-understanding/decision-work-receipt-external-report-attachments-v0.md)
+slice keeps that boundary while letting the receipt CLI link externally
+generated Decision Trail/Product Delta reports by safe metadata only, without
+copying report content or local paths. See
 [Lolla Decision Trail Web Page Draft](docs/lolla-decision-trail-web-page-v0.md)
 for the simple customer explanation and
 [Decision Trail Readiness Audit](docs/conversation-understanding/decision-trail-readiness-audit-v0.md)

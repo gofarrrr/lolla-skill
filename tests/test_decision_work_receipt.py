@@ -365,6 +365,100 @@ def test_optional_review_artifact_refs_make_receipt_review_ready_without_validat
     )
 
 
+def test_external_report_refs_make_receipt_review_ready_without_path_or_content_leak(
+    tmp_path: Path,
+) -> None:
+    run_dir = _minimal_run_dir(tmp_path)
+    _add_challenge_artifacts(run_dir)
+    reports_dir = tmp_path / "external-reports"
+    reports_dir.mkdir()
+    decision_trail_report = reports_dir / "decision-trail-local-private.json"
+    product_delta_report = reports_dir / "product-delta-review.json"
+    _write_json(
+        decision_trail_report,
+        {
+            "schema_version": "lolla.decision_trail_report.v0",
+            "report_metadata": {"report_id": "dt:sample-case"},
+            "private_marker": "DO_NOT_COPY_DECISION_TRAIL_CONTENT",
+        },
+    )
+    _write_json(
+        product_delta_report,
+        {
+            "schema_version": "lolla.product_delta_provisional_report.v0",
+            "review_metadata": {"review_id": "pd:sample-case"},
+            "private_marker": "DO_NOT_COPY_PRODUCT_DELTA_CONTENT",
+        },
+    )
+
+    receipt = build_decision_work_receipt(
+        run_dir=run_dir,
+        decision_trail_report_paths=[decision_trail_report],
+        product_delta_report_paths=[product_delta_report],
+    )
+    rendered = render_decision_work_receipt_json(receipt, pretty=True)
+    sources = {
+        item["artifact_or_reference"]: item
+        for item in receipt["source_context_inventory"]["sources"]
+    }
+    external_decision_sources = [
+        source for name, source in sources.items()
+        if name.startswith("external_decision_trail_report_")
+    ]
+    external_product_sources = [
+        source for name, source in sources.items()
+        if name.startswith("external_product_delta_report_")
+    ]
+
+    assert len(external_decision_sources) == 1
+    assert len(external_product_sources) == 1
+    assert external_decision_sources[0]["source_kind"] == "decision_trail_report"
+    assert external_product_sources[0]["source_kind"] == "product_delta_artifact"
+    assert external_decision_sources[0]["status"] == "available_from_structured_artifact"
+    assert external_product_sources[0]["status"] == "available_from_structured_artifact"
+    assert external_decision_sources[0]["content_included"] is False
+    assert external_product_sources[0]["content_included"] is False
+    assert external_decision_sources[0]["local_absolute_path_included"] is False
+    assert external_product_sources[0]["local_absolute_path_included"] is False
+    assert str(reports_dir) not in rendered
+    assert "DO_NOT_COPY_DECISION_TRAIL_CONTENT" not in rendered
+    assert "DO_NOT_COPY_PRODUCT_DELTA_CONTENT" not in rendered
+    assert receipt["decision_trail_summary"]["status"] == "available_from_structured_artifact"
+    assert receipt["product_delta_summary"]["status"] == "available_from_structured_artifact"
+    assert receipt["decision_trail_summary"]["content_included"] is False
+    assert receipt["product_delta_summary"]["content_included"] is False
+    assert receipt["decision_trail_summary"]["human_validated"] is False
+    assert receipt["product_delta_summary"]["human_validated"] is False
+    assert receipt["process_evidence_readiness"]["label"] == "decision_trail_review_ready"
+    assert receipt["process_evidence_readiness"]["answer_quality_scored"] is False
+    assert receipt["process_evidence_readiness"]["agent_action_authorized"] is False
+
+
+def test_missing_external_report_path_is_status_not_crash(tmp_path: Path) -> None:
+    missing_report = tmp_path / "missing-decision-trail-report.json"
+
+    receipt = build_decision_work_receipt(
+        run_dir=_minimal_run_dir(tmp_path),
+        decision_trail_report_paths=[missing_report],
+    )
+    sources = {
+        item["artifact_or_reference"]: item
+        for item in receipt["source_context_inventory"]["sources"]
+    }
+    external_sources = [
+        source for name, source in sources.items()
+        if name.startswith("external_decision_trail_report_")
+    ]
+
+    assert len(external_sources) == 1
+    assert external_sources[0]["status"] == "unavailable_missing_artifact"
+    assert external_sources[0]["read_status"] == "unavailable_missing_artifact"
+    assert external_sources[0]["local_absolute_path_included"] is False
+    assert receipt["decision_trail_summary"]["status"] == "unavailable_missing_artifact"
+    assert receipt["decision_trail_summary"]["summary"] is None
+    assert receipt["process_evidence_readiness"]["label"] == "multi_turn_unreviewed_process"
+
+
 def test_absent_optional_review_artifacts_are_not_listed_as_missing_sources(
     tmp_path: Path,
 ) -> None:
@@ -601,6 +695,45 @@ def test_cli_writes_json_and_rejects_output_inside_run_dir(tmp_path: Path) -> No
 
     assert bad.returncode == 2
     assert "outside run directory" in bad.stderr
+
+
+def test_cli_links_external_reports_without_copying_content(tmp_path: Path) -> None:
+    run_dir = _minimal_run_dir(tmp_path)
+    output_path = tmp_path / "receipt.json"
+    report_path = tmp_path / "decision-trail-report.json"
+    _write_json(
+        report_path,
+        {
+            "schema_version": "lolla.decision_trail_report.v0",
+            "private_marker": "DO_NOT_COPY_CLI_REPORT_CONTENT",
+        },
+    )
+
+    ok = subprocess.run(
+        [
+            sys.executable,
+            "scripts/evals/build_decision_work_receipt.py",
+            "--run-dir",
+            str(run_dir),
+            "--decision-trail-report",
+            str(report_path),
+            "--out",
+            str(output_path),
+            "--pretty",
+        ],
+        cwd=REPO_ROOT,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+
+    assert ok.returncode == 0, ok.stderr
+    rendered = output_path.read_text(encoding="utf-8")
+    receipt = json.loads(rendered)
+    assert receipt["decision_trail_summary"]["status"] == "available_from_structured_artifact"
+    assert receipt["process_evidence_readiness"]["label"] == "decision_trail_review_ready"
+    assert str(report_path.parent) not in rendered
+    assert "DO_NOT_COPY_CLI_REPORT_CONTENT" not in rendered
 
 
 def test_generated_receipt_passes_boundary_lint(tmp_path: Path) -> None:

@@ -1,6 +1,6 @@
 # Decision Work Receipt Exporter v0
 
-Status: PR109 read-only exporter slice
+Status: PR109 read-only exporter slice, updated by PR112 external report attachments
 Date: 2026-06-30
 Schema: `lolla.decision_work_receipt.v0`
 
@@ -49,6 +49,23 @@ The output path must be outside the run directory.
 PR109 still implements `checked_in_safe_mode` only. Local-private receipt mode
 and future runtime integration remain deferred.
 
+PR112 adds optional external report references:
+
+```bash
+python3 scripts/evals/build_decision_work_receipt.py \
+  --run-dir <archive-run-dir> \
+  --decision-trail-report /tmp/decision_trail_report.json \
+  --product-delta-report /tmp/product_delta_report.json \
+  --out /tmp/decision_work_receipt.json \
+  --pretty
+```
+
+These flags may be repeated. They are for already-generated checked-in-safe
+Decision Trail/Product Delta JSON reports that live outside the archive run
+folder. The receipt records safe structured metadata, hash, byte count, and
+sanitized artifact refs. It does not copy report content or local absolute
+paths.
+
 ## Optional Report References
 
 PR109 may notice these optional checked-in-safe JSON artifacts if they are
@@ -65,10 +82,19 @@ These are optional references. If they are absent, the receipt records
 broken. This matters because Decision Trail and Product Delta reports are
 usually generated outside archive run folders.
 
+PR112 covers that outside-folder reality. Operators can explicitly attach those
+external reports at receipt-build time using `--decision-trail-report` and
+`--product-delta-report`, without copying the reports into the archive and
+without mutating the archive.
+
 When optional references are present, the exporter records their existence and
 safe structured metadata. It does not copy full report content, review
 conclusions, raw transcript text, raw memo text, revised-answer text, provider
 text, private tables, private ledgers, or local absolute paths.
+
+If an explicitly supplied external report path is missing or malformed, the
+receipt records that as artifact status. It does not crash, infer a semantic
+finding, or treat absence as evidence that no review exists.
 
 ## Process Evidence Readiness
 
@@ -134,6 +160,8 @@ A clean PR109 receipt means:
   capture metadata supports it;
 - visible Lolla challenge surfaces are mapped;
 - optional Decision Trail/Product Delta references can be linked;
+- external Decision Trail/Product Delta reports can be linked by metadata
+  without local path or content leakage;
 - missingness and redaction/private availability are explicit;
 - the receipt says what still needs LLM or human interpretation.
 
@@ -167,3 +195,10 @@ PR111 Decision Work Receipt Decision Gate v0
 That decision gate should choose whether to keep the sparse receipt as an
 internal artifact, add bounded LLM interpretation later, simplify, or change
 runtime capture only if the evidence justifies it.
+
+The decision gate selected the sparse receipt, but a follow-up real-run smoke
+showed that offline Decision Trail/Product Delta reports are hard to locate
+from receipts when they are generated outside archive folders. PR112 implements
+only that linking bridge:
+
+- [Decision Work Receipt External Report Attachments v0](decision-work-receipt-external-report-attachments-v0.md)

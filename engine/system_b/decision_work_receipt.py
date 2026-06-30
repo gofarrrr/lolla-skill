@@ -13,6 +13,7 @@ from __future__ import annotations
 import datetime as _dt
 import hashlib
 import json
+import string
 from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
@@ -82,6 +83,8 @@ def build_decision_work_receipt(
     run_dir: Path | str,
     receipt_mode: str = "checked_in_safe_mode",
     created_at: str | None = None,
+    decision_trail_report_paths: list[Path | str] | None = None,
+    product_delta_report_paths: list[Path | str] | None = None,
 ) -> dict[str, Any]:
     """Build a sparse ``lolla.decision_work_receipt.v0`` receipt."""
 
@@ -136,6 +139,9 @@ def build_decision_work_receipt(
         if payload is not None:
             payloads[artifact_name] = payload
 
+    decision_trail_artifacts = list(DECISION_TRAIL_REPORT_ARTIFACTS)
+    product_delta_artifacts = list(PRODUCT_DELTA_REVIEW_ARTIFACTS)
+
     for artifact_name in DECISION_TRAIL_REPORT_ARTIFACTS:
         record, payload = _optional_structured_source_record(
             run_path=run_path,
@@ -147,6 +153,22 @@ def build_decision_work_receipt(
         if payload is not None:
             payloads[artifact_name] = payload
 
+    for index, report_path in enumerate(decision_trail_report_paths or (), start=1):
+        artifact_name = _external_report_artifact_name(
+            prefix="external_decision_trail_report",
+            path=report_path,
+            index=index,
+        )
+        decision_trail_artifacts.append(artifact_name)
+        record, payload = _external_structured_source_record(
+            report_path=report_path,
+            artifact_name=artifact_name,
+            source_kind="decision_trail_report",
+        )
+        sources.append(record)
+        if payload is not None:
+            payloads[artifact_name] = payload
+
     for artifact_name in PRODUCT_DELTA_REVIEW_ARTIFACTS:
         record, payload = _optional_structured_source_record(
             run_path=run_path,
@@ -155,6 +177,22 @@ def build_decision_work_receipt(
         )
         if record is not None:
             sources.append(record)
+        if payload is not None:
+            payloads[artifact_name] = payload
+
+    for index, report_path in enumerate(product_delta_report_paths or (), start=1):
+        artifact_name = _external_report_artifact_name(
+            prefix="external_product_delta_report",
+            path=report_path,
+            index=index,
+        )
+        product_delta_artifacts.append(artifact_name)
+        record, payload = _external_structured_source_record(
+            report_path=report_path,
+            artifact_name=artifact_name,
+            source_kind="product_delta_artifact",
+        )
+        sources.append(record)
         if payload is not None:
             payloads[artifact_name] = payload
 
@@ -173,10 +211,12 @@ def build_decision_work_receipt(
     decision_trail_summary = _decision_trail_summary(
         payloads=payloads,
         artifact_statuses=artifact_statuses,
+        artifact_names=tuple(decision_trail_artifacts),
     )
     product_delta_summary = _product_delta_summary(
         payloads=payloads,
         artifact_statuses=artifact_statuses,
+        artifact_names=tuple(product_delta_artifacts),
     )
 
     return {
@@ -191,7 +231,7 @@ def build_decision_work_receipt(
             "generated_by": "decision_work_receipt_exporter",
             "schema_version": DECISION_WORK_RECEIPT_SCHEMA_VERSION,
             "notes": [
-                "PR109 composes source inventory, deterministic process metadata, challenge coverage, and optional Decision Trail/Product Delta references; semantic work-trail fields remain sparse."
+                "PR112 composes source inventory, deterministic process metadata, challenge coverage, and optional run-local or external Decision Trail/Product Delta references; semantic work-trail fields remain sparse."
             ],
         },
         "source_context_inventory": _source_context_inventory(
@@ -365,6 +405,128 @@ def _optional_structured_source_record(
         artifact_name=artifact_name,
         source_kind=source_kind,
     )
+
+
+def _external_structured_source_record(
+    *,
+    report_path: Path | str,
+    artifact_name: str,
+    source_kind: str,
+) -> tuple[dict[str, Any], Mapping[str, Any] | None]:
+    path = Path(report_path).expanduser()
+    base = _source_record_base(
+        artifact_name=artifact_name,
+        source_kind=source_kind,
+        read_status="read_safe_structured_fields",
+    )
+
+    if not path.exists():
+        return {
+            **base,
+            "status": "unavailable_missing_artifact",
+            "read_status": "unavailable_missing_artifact",
+            "source_refs": [],
+            "notes": [
+                "External report path was provided but not found.",
+                "local_path_not_included:true",
+            ],
+        }, None
+    if not path.is_file():
+        return {
+            **base,
+            "status": "unclear",
+            "read_status": "not_read",
+            "source_refs": [],
+            "notes": [
+                "External report path exists but is not a file; no content was read.",
+                "local_path_not_included:true",
+            ],
+        }, None
+
+    try:
+        text = path.read_text(encoding="utf-8")
+        payload = json.loads(text)
+    except json.JSONDecodeError:
+        return {
+            **base,
+            "status": "unavailable_malformed_artifact",
+            "read_status": "unavailable_malformed_artifact",
+            "source_refs": [],
+            "notes": [
+                "External structured JSON report could not be parsed.",
+                "local_path_not_included:true",
+            ],
+        }, None
+    except UnicodeDecodeError:
+        return {
+            **base,
+            "status": "unavailable_malformed_artifact",
+            "read_status": "unavailable_malformed_artifact",
+            "source_refs": [],
+            "notes": [
+                "External structured JSON report was not valid UTF-8.",
+                "local_path_not_included:true",
+            ],
+        }, None
+    except OSError as exc:
+        return {
+            **base,
+            "status": "unclear",
+            "read_status": "unknown",
+            "source_refs": [],
+            "notes": [
+                f"External structured JSON report could not be read:{type(exc).__name__}",
+                "local_path_not_included:true",
+            ],
+        }, None
+
+    if not isinstance(payload, dict):
+        return {
+            **base,
+            "status": "unavailable_malformed_artifact",
+            "read_status": "unavailable_malformed_artifact",
+            "source_refs": [],
+            "notes": [
+                "External structured JSON report root was not an object.",
+                "local_path_not_included:true",
+            ],
+        }, None
+
+    status = "available_from_structured_artifact"
+    return {
+        **base,
+        "status": status,
+        "source_refs": [
+            _source_ref(
+                artifact=artifact_name,
+                field="external_report_metadata",
+                source_status=status,
+                content_included=False,
+            )
+        ],
+        "notes": [
+            "External report path was provided; local path was not included in the receipt.",
+            "Safe structured metadata was read; full report content was not copied into the receipt.",
+            f"sha256:{_sha256_text(text)}",
+            f"byte_count:{path.stat().st_size}",
+        ],
+    }, payload
+
+
+def _external_report_artifact_name(
+    *,
+    prefix: str,
+    path: Path | str,
+    index: int,
+) -> str:
+    name = Path(path).name or "report.json"
+    return f"{prefix}_{index}_{_safe_token(name)}"
+
+
+def _safe_token(value: str) -> str:
+    allowed = set(string.ascii_letters + string.digits + "._-")
+    cleaned = "".join(char if char in allowed else "_" for char in value.strip())
+    return cleaned.strip("._-") or "report.json"
 
 
 def _not_read_source_record(
@@ -1011,9 +1173,10 @@ def _decision_trail_summary(
     *,
     payloads: Mapping[str, Mapping[str, Any]],
     artifact_statuses: Mapping[str, str],
+    artifact_names: tuple[str, ...] = DECISION_TRAIL_REPORT_ARTIFACTS,
 ) -> dict[str, Any]:
     return _optional_report_summary(
-        artifact_names=DECISION_TRAIL_REPORT_ARTIFACTS,
+        artifact_names=artifact_names,
         payloads=payloads,
         artifact_statuses=artifact_statuses,
         field_name="decision_trail_report_reference",
@@ -1038,9 +1201,10 @@ def _product_delta_summary(
     *,
     payloads: Mapping[str, Mapping[str, Any]],
     artifact_statuses: Mapping[str, str],
+    artifact_names: tuple[str, ...] = PRODUCT_DELTA_REVIEW_ARTIFACTS,
 ) -> dict[str, Any]:
     return _optional_report_summary(
-        artifact_names=PRODUCT_DELTA_REVIEW_ARTIFACTS,
+        artifact_names=artifact_names,
         payloads=payloads,
         artifact_statuses=artifact_statuses,
         field_name="product_delta_review_reference",
@@ -1096,7 +1260,11 @@ def _optional_report_summary(
 
     for artifact_name in artifact_names:
         status = artifact_statuses.get(artifact_name)
-        if status in {"unavailable_malformed_artifact", "unclear"}:
+        if status in {
+            "unavailable_missing_artifact",
+            "unavailable_malformed_artifact",
+            "unclear",
+        }:
             source_refs = [
                 _source_ref(
                     artifact=artifact_name,
@@ -1111,7 +1279,7 @@ def _optional_report_summary(
                 summary=None,
                 source_refs=source_refs,
                 limitations=[
-                    "A candidate review/report artifact was present but could not be read as safe structured JSON.",
+                    "A candidate review/report artifact was provided or present but could not be read as safe structured JSON.",
                     "Malformed or unclear optional artifacts do not become semantic findings.",
                 ],
             )
