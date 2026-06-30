@@ -778,3 +778,33 @@ PR111 selects Outcome A:
 Future semantic interpretation should come through the existing Decision Trail
 and Product Delta lanes when justified. The Work Receipt should wrap those
 artifacts, not become a parallel judge or semantic pipeline.
+
+## Post-Gate Bridge
+
+PR112 implements one narrow bridge after the PR111 closure gate.
+
+The trigger was a real-run smoke over completed archives: the receipt could
+show challenged-and-revised process evidence, but Decision Trail and Product
+Delta summaries remained `not_supplied` because those reports are usually
+generated outside archive run folders.
+
+PR112 keeps Outcome A intact. It does not add Work Receipt-specific
+interpretation. It only lets the offline receipt CLI accept externally
+generated checked-in-safe Decision Trail and Product Delta report JSON files:
+
+```bash
+python3 scripts/evals/build_decision_work_receipt.py \
+  --run-dir <archive-run-dir> \
+  --decision-trail-report /tmp/decision_trail_report.json \
+  --product-delta-report /tmp/product_delta_report.json \
+  --out /tmp/decision_work_receipt.json \
+  --pretty
+```
+
+The receipt records only sanitized source metadata, hash/byte count, source
+refs, and availability status. It does not copy report content, local absolute
+paths, raw/private run content, or semantic conclusions into the receipt.
+
+Read more:
+
+- [Decision Work Receipt External Report Attachments v0](decision-work-receipt-external-report-attachments-v0.md)

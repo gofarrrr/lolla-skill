@@ -135,6 +135,32 @@ no new evidence, runtime behavior, model calls, archive mutation, scoring,
 automatic labels, or agent approval.
 ```
 
+Decision Work Receipt standing note:
+
+```text
+docs/conversation-understanding/decision-work-receipt-prd-v0.md defines the
+work-trail wrapper product direction: final AI outputs are cheap, but the
+process evidence behind them should be inspectable.
+
+PR105 through PR111 built and reviewed the sparse offline Decision Work
+Receipt: schema, source inventory, deterministic process map, challenge
+coverage, composed exporter, fixture review, and decision gate. The selected
+decision remains Outcome A: keep the Work Receipt as a sparse wrapper, not a
+parallel semantic interpretation system.
+
+PR112 reopens the lane only for a narrow concrete bridge found by real-run
+smoke testing. Completed archives can show good challenged-process evidence
+while Decision Trail/Product Delta summaries stay not_supplied because those
+reports are usually generated outside archive run folders. The receipt CLI can
+now accept --decision-trail-report and --product-delta-report paths, record
+sanitized source metadata, and raise review readiness without copying report
+content, local paths, or semantic conclusions.
+
+This remains offline/eval-side machinery. It does not run $lolla, invoke the
+skill, call providers, mutate archives, change prompts, touch SKILL.md, score
+answer quality, create automatic labels, or authorize agent action.
+```
+
 Decision Trail framing note:
 
 ```text

@@ -264,6 +264,30 @@ Operationally:
 5. Return to the Work Receipt lane only when a concrete review or product need
    appears.
 
+## Post-Gate Reopen Note
+
+After PR111, a real-run local smoke over completed archives found a narrow
+concrete need: Decision Trail and Product Delta reports are usually generated
+outside archive run folders, so the sparse receipt could identify challenged
+runs while leaving linked report summaries as `not_supplied`.
+
+That matches one of the explicit reopen conditions above:
+
+> downstream Decision Trail/Product Delta artifacts becoming hard to locate
+> without a receipt wrapper.
+
+PR112 is therefore allowed as a narrow bridge:
+
+- link already-generated external Decision Trail/Product Delta reports by safe
+  structured metadata;
+- do not copy report content;
+- do not include local absolute paths;
+- do not mutate archives;
+- do not add Work Receipt-specific interpretation.
+
+See
+[Decision Work Receipt External Report Attachments v0](decision-work-receipt-external-report-attachments-v0.md).
+
 ## Boundary
 
 PR111 is docs-only. It does not:

@@ -49,6 +49,26 @@ def main(argv: list[str] | None = None) -> int:
         help="Receipt mode. PR109 implements checked_in_safe_mode only.",
     )
     parser.add_argument(
+        "--decision-trail-report",
+        action="append",
+        default=[],
+        type=Path,
+        help=(
+            "Optional externally generated checked-in-safe Decision Trail report "
+            "JSON to link by metadata only. May be supplied more than once."
+        ),
+    )
+    parser.add_argument(
+        "--product-delta-report",
+        action="append",
+        default=[],
+        type=Path,
+        help=(
+            "Optional externally generated checked-in-safe Product Delta report "
+            "or review JSON to link by metadata only. May be supplied more than once."
+        ),
+    )
+    parser.add_argument(
         "--pretty",
         action="store_true",
         help="Pretty-print JSON output.",
@@ -60,6 +80,8 @@ def main(argv: list[str] | None = None) -> int:
         receipt = build_decision_work_receipt(
             run_dir=args.run_dir,
             receipt_mode=args.receipt_mode,
+            decision_trail_report_paths=args.decision_trail_report,
+            product_delta_report_paths=args.product_delta_report,
         )
         payload = render_decision_work_receipt_json(receipt, pretty=args.pretty)
         write_decision_work_receipt_output(output, payload)
