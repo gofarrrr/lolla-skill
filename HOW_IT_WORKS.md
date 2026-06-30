@@ -155,6 +155,7 @@ The detailed docs are split so agents and humans do not have to load one giant f
 | [Decision Trail Specialist Pilot Comparison Gate](docs/conversation-understanding/decision-trail-specialist-pilot-comparison-gate-v0.md) | PR101's checked-in-summary comparison of PR97 and PR100, deciding broad batches are not ready and allowing at most one diversity-targeted third pilot. |
 | [Decision Trail Third One-Case Diversity Pilot](docs/conversation-understanding/decision-trail-third-one-case-diversity-pilot-v0.md) | PR102's deployment-controls specialist-output pilot, preserving material vanilla overlap while surfacing noise-reduction and operating-load friction as the new useful signal. |
 | [Decision Trail Specialist Pilot Phase Closure Gate](docs/conversation-understanding/decision-trail-specialist-pilot-phase-closure-gate-v0.md) | PR103's checked-in-summary closure gate over PR97, PR100, and PR102: close one-case pilots, block a fourth pilot and broad batch, and recommend human-review intake or pause. |
+| [Decision Trail Human Review Intake Packet](docs/conversation-understanding/decision-trail-human-review-intake-packet-v0.md) | PR104's future-human-review intake packet over PR97, PR100, and PR102, with blank correction fields and an explicit pause until human review capacity returns. |
 | [Evaluation Flywheel Action Plan](docs/evals/evaluation-flywheel-action-plan-v0.md) | The current action map for turning real traces into human labels, fixtures, deterministic checks, and later calibrated binary judges without drifting into generic scoring. |
 | [Current System Capabilities](docs/evals/current-system-capabilities-v0.md) | A plain-language map of what the current system can do, which recorded cases show it, how the layers work together, and how it helps us avoid brittle evaluation. |
 | [Product Delta Evidence And Interpretation Adequacy](docs/evals/product-delta-evidence-and-interpretation-adequacy-v0.md) | The post-PR70 product-readiness bridge: prove decision-useful deltas against actual vanilla strong-model conversations, and treat conversation interpretation quality as load-bearing. |
@@ -221,7 +222,7 @@ The detailed docs are split so agents and humans do not have to load one giant f
 ## Current Notes
 
 - Checked against `SKILL.md` and runtime entry points on 2026-06-25.
-- Current Decision Trail state as of PR103: the runtime produces completed run
+- Current Decision Trail state as of PR104: the runtime produces completed run
   artifacts; the offline Decision Trail lane can export sparse reports and
   build checked-in-safe or explicit local-private specialist packets; PR97
   shows one local-private include-text packet can support all four narrow
@@ -231,9 +232,11 @@ The detailed docs are split so agents and humans do not have to load one giant f
   partial-usefulness read; PR101 compares PR97 and PR100 and keeps broad
   specialist-output batches blocked; PR102 uses the one allowed
   diversity-targeted deployment-controls pilot; PR103 closes the one-case
-  pilot phase and blocks a fourth pilot or broad batch. The next conservative
-  move is human-review intake or pause. No Product Delta eval, Decision Trail
-  report, specialist output, or fan-in is triggered automatically by `$lolla`.
+  pilot phase and blocks a fourth pilot or broad batch; PR104 packages the
+  three pilots into a future-human-review intake packet with blank correction
+  fields. The next conservative move is pause until human review capacity
+  returns. No Product Delta eval, Decision Trail report, specialist output, or
+  fan-in is triggered automatically by `$lolla`.
 - PR95 local-private packets are a source-access step, not a product verdict.
   `metadata_only` records availability, `include_text` copies capped private
   text into an unsafe-for-commit local output, and both modes still stop before
@@ -269,6 +272,10 @@ The detailed docs are split so agents and humans do not have to load one giant f
   by checked-in summaries only, blocks a fourth one-case pilot and broad batch,
   and recommends PR104 Human Review Intake Packet v0 or pause if human review
   capacity is unavailable.
+- PR104 packages PR97, PR100, and PR102 into a future-human-review intake
+  packet. It leaves all human correction fields blank, records
+  `human_fields_filled: false`, and makes pause the correct next state until a
+  reviewer can fill or reject the packet.
 - Pressure-check agents are rested by default. If explicitly enabled, they start only after the updated position is persisted and the V60 ledger validates.
 - The pre-Step-6 shadow portfolio hook is default-off and shadow-only; it records evidence but never changes visible output.
 - The archive currently copies the core/optional artifact set, including live transcript, operator log, run-event log, private ledgers, memo fields, optional usefulness/outcome reviews, and optional `control_input.json` when present. It also generates `agent_result.json`, the compact agent-facing handoff; optional `control_result.json`, the control-plane wrapper; `extraction_adequacy_report.json`, the deterministic report for current extraction/provenance preservation across `conversation.txt -> extraction.json -> ConversationContext -> ConversationIR`; `evaluation.json`, the deterministic run-readiness receipt; and `reasoning_trace.json`, a local-only manifest that indexes artifacts by path/hash and adds capture-adequacy, optional control-plane references, reasoning-lens, model-call, private-custody, and trace-adequacy metadata.

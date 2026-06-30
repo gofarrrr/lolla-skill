@@ -67,11 +67,12 @@ conversation or agent run
 Current handoff state:
 
 ```text
-PR103 Decision Trail Specialist Pilot Phase Closure Gate v0 is the latest
-Decision Trail slice recorded in this working tree. PR103 closes the PR97,
-PR100, and PR102 one-case specialist-output pilot phase and blocks a fourth
-pilot or broad batch. PR85 remains the latest packaged product-evidence
-eval-lane slice. PR70 remains the
+PR104 Decision Trail Human Review Intake Packet v0 is the latest Decision
+Trail slice recorded in this working tree. PR104 packages PR97, PR100, and
+PR102 for future human correction and leaves all human fields blank. PR103
+closed the one-case specialist-output pilot phase and blocked a fourth pilot
+or broad batch. PR85 remains the latest packaged product-evidence eval-lane
+slice. PR70 remains the
 audit/accountability machinery closure gate. PR48 remains the high-stakes
 evidence gate. PR54 remains the paused v0 values/priorities worksheet gate.
 Use git log for the exact current commit hash.
@@ -116,12 +117,11 @@ specialist-output pilot count to three one-case pilots. It still does not prove
 that the contracts are final, that broader batches are safe, that Lolla
 improved the decision, or that agents may act.
 
-PR103 now closes the one-case pilot phase. The next conservative step is PR104
-Decision Trail Human Review Intake Packet v0, or a pause if human review
-capacity is unavailable. PR104 should package PR97, PR100, and PR102 for later
-human correction without new specialist outputs, new local-private packet
-reads, runtime integration, model calls, archive mutation, scoring, automatic
-labels, or agent authorization.
+PR103 now closes the one-case pilot phase. PR104 packages PR97, PR100, and
+PR102 into a future-human-review intake packet with blank correction fields.
+It creates no new specialist outputs, reads no new local-private packet
+content, and leaves the correct next state as pause until human review capacity
+returns.
 ```
 
 Documentation alignment note:
@@ -632,10 +632,25 @@ Current stop rule:
 Latest completed slice:
 
 ```text
-PR103 Decision Trail Specialist Pilot Phase Closure Gate v0
+PR104 Decision Trail Human Review Intake Packet v0
 ```
 
 Result:
+
+- lands `docs/conversation-understanding/decision-trail-human-review-intake-packet-v0.md`;
+- lands `reviews/human/decision-trail-human-review-intake-packet-v0/intake.json`;
+- lands `tests/test_decision_trail_human_review_intake_packet.py`;
+- packages PR97, PR100, and PR102 into a compact future-human-review queue;
+- preserves candidate useful signals, limits, vanilla-overlap questions,
+  lost-value questions, and overtrust questions for each case;
+- leaves all human correction fields blank and `human_fields_filled: false`;
+- recommends pausing until human review capacity returns;
+- creates no new specialist outputs, reads no new local-private packet content,
+  creates no fourth pilot, creates no broad batch, invokes no runtime, calls no
+  providers, mutates no archives, measures no answer quality, creates no
+  automatic labels, and authorizes no agent action.
+
+Previous Decision Trail specialist pilot phase closure gate:
 
 - lands `docs/conversation-understanding/decision-trail-specialist-pilot-phase-closure-gate-v0.md`;
 - lands `reviews/codex-assisted/decision-trail-specialist-pilot-phase-closure-gate-v0/report.json`;
@@ -1300,13 +1315,18 @@ Non-goals for the next slice:
    fourth pilot and broad specialist-output batch, and recommends PR104 Human
    Review Intake Packet v0 or a pause if human review capacity is unavailable.
    This is a stop line, not product proof.
-22. **Live-output hygiene implementation.** PR35 keeps `not_checked` honest and
+22. **PR104 Decision Trail human review intake packet is done.** PR104 packages
+   PR97, PR100, and PR102 for future human correction. It keeps all human
+   fields blank, preserves candidate-useful-signal and lost-value questions,
+   and makes the next state pause until a human reviewer can fill or reject the
+   packet. It is not completed human review.
+23. **Live-output hygiene implementation.** PR35 keeps `not_checked` honest and
    defines a trusted-transcript path; later work can implement only when needed.
-23. **Span-grounded semantic enrichment.** Existing specialists help with live
+24. **Span-grounded semantic enrichment.** Existing specialists help with live
    constraints, dropped threads, and stance lineage, but integration remains
    blocked until a clean 15-20 full-modern sample and provider-boundary behavior
    are settled.
-24. **Human capability surface.** Later, add a compact memo/Observatory section
+25. **Human capability surface.** Later, add a compact memo/Observatory section
    that teaches the user what reasoning pattern the audit caught.
 
 ## Current Pause: Specialist Integration Track

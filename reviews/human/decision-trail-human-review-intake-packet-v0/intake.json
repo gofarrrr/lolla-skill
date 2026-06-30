@@ -1,0 +1,234 @@
+{
+  "schema_version": "lolla.decision_trail_human_review_intake_packet.v0",
+  "intake_mode": "future_human_review_queue_not_filled",
+  "boundary": {
+    "human_validated": false,
+    "ground_truth": false,
+    "judge_calibration_eligible": false,
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "model_calls": 0,
+    "archive_mutated": false,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "automatic_labels_created": false,
+    "raw_private_content_included": false,
+    "new_specialist_outputs_created": false,
+    "local_private_packet_content_read": false,
+    "fourth_pilot_created": false,
+    "broad_batch_created": false,
+    "fan_in_executed_as_verdict": false,
+    "human_fields_filled": false
+  },
+  "scope": {
+    "source_mode": "checked_in_summary_only",
+    "case_count": 3,
+    "human_review_state": "blank_intake_not_filled",
+    "purpose": "Prepare PR97, PR100, and PR102 for future principal human correction without producing new Codex specialist reads.",
+    "evidence_limit": "The packet organizes existing candidate reads; it does not validate them."
+  },
+  "source_artifacts": [
+    {
+      "ref": "docs/conversation-understanding/decision-trail-local-private-specialist-output-pilot-v0.md",
+      "source_role": "pr97_pilot_doc",
+      "raw_private_content_included": false
+    },
+    {
+      "ref": "reviews/codex-assisted/decision-trail-local-private-specialist-output-pilot-v0/review.json",
+      "source_role": "pr97_pilot_review",
+      "raw_private_content_included": false
+    },
+    {
+      "ref": "docs/conversation-understanding/decision-trail-second-one-case-specialist-pilot-v0.md",
+      "source_role": "pr100_pilot_doc",
+      "raw_private_content_included": false
+    },
+    {
+      "ref": "reviews/codex-assisted/decision-trail-second-one-case-specialist-pilot-v0/review.json",
+      "source_role": "pr100_pilot_review",
+      "raw_private_content_included": false
+    },
+    {
+      "ref": "docs/conversation-understanding/decision-trail-third-one-case-diversity-pilot-v0.md",
+      "source_role": "pr102_pilot_doc",
+      "raw_private_content_included": false
+    },
+    {
+      "ref": "reviews/codex-assisted/decision-trail-third-one-case-diversity-pilot-v0/review.json",
+      "source_role": "pr102_pilot_review",
+      "raw_private_content_included": false
+    },
+    {
+      "ref": "docs/conversation-understanding/decision-trail-specialist-pilot-phase-closure-gate-v0.md",
+      "source_role": "pr103_closure_doc",
+      "raw_private_content_included": false
+    },
+    {
+      "ref": "reviews/codex-assisted/decision-trail-specialist-pilot-phase-closure-gate-v0/report.json",
+      "source_role": "pr103_closure_report",
+      "raw_private_content_included": false
+    }
+  ],
+  "reviewer_instructions": [
+    "Treat every candidate read as unvalidated.",
+    "Correct the vanilla-overlap read before judging any product delta.",
+    "Record lost value even when the revised answer looks cleaner.",
+    "Prefer correction over agreement.",
+    "If the case cannot be judged from checked-in summaries, mark it as needing private-source review rather than guessing.",
+    "Do not convert clean custody into a claim that the advice was good."
+  ],
+  "case_intake": [
+    {
+      "slice": "PR97",
+      "case_ref": "ceo-remove-founding-cofounder/20260627T093131Z_59d153",
+      "decision_family": "cofounder_authority_and_operating_control",
+      "source_review_ref": "reviews/codex-assisted/decision-trail-local-private-specialist-output-pilot-v0/review.json",
+      "candidate_read_summary": {
+        "candidate_net_read": "local_private_specialist_read_useful_but_unvalidated",
+        "candidate_useful_signal": "Authority transfer, transition boundaries, stop conditions, and relationship-cost tension became more concrete than in the sparse Decision Trail shell.",
+        "candidate_limit": "The pre-PR99 shape did not make vanilla overlap, lost-value severity, assistant-influence source status, truncation impact, or downgrade triggers first-class enough.",
+        "vanilla_overlap_question": "Did the vanilla conversation already contain the same authority-transfer sequence or stop conditions?",
+        "lost_value_question": "Did the revised answer lose relationship simplicity, trust repair, momentum, or governance nuance?",
+        "overtrust_question": "Does the cleaner authority-transfer read make a conflict-heavy decision feel more settled than it really is?"
+      },
+      "future_human_correction_fields": {
+        "human_fields_filled": false,
+        "corrected_decision_question": "",
+        "corrected_vanilla_overlap_read": "",
+        "corrected_delta_read": "",
+        "corrected_lost_value_read": "",
+        "what_candidate_read_got_wrong": "",
+        "what_candidate_read_preserved_well": "",
+        "what_private_source_review_is_needed": "",
+        "contract_fields_to_simplify": "",
+        "human_net_read": ""
+      },
+      "minimum_human_questions": [
+        "Was moving authority first actually new, or already present?",
+        "Was relationship-cost tension represented fairly?",
+        "Would the revised answer change what the user would do next?"
+      ],
+      "non_claims": [
+        "not human review",
+        "not ground truth",
+        "not judge calibration",
+        "not product proof",
+        "not answer-quality measurement",
+        "not automatic label",
+        "not agent action authorization"
+      ]
+    },
+    {
+      "slice": "PR100",
+      "case_ref": "accept-founding-engineer-role/20260627T073034Z_a7c221",
+      "decision_family": "career_family_startup_role_choice",
+      "source_review_ref": "reviews/codex-assisted/decision-trail-second-one-case-specialist-pilot-v0/review.json",
+      "candidate_read_summary": {
+        "candidate_net_read": "local_private_specialist_read_partly_useful",
+        "candidate_useful_signal": "The PR99 fields forced a downgrade because vanilla_overlap_read was material_overlap_candidate.",
+        "candidate_limit": "The revised answer may be more gating discipline than material action change.",
+        "vanilla_overlap_question": "Did the vanilla conversation already include spouse conversation, extension request, diligence calls, equity review, CEO conversation, and fallback planning?",
+        "lost_value_question": "Did the revised answer bury user-specific ambition, courage, speed, or momentum under process?",
+        "overtrust_question": "Does the gate structure feel more responsible while adding little new decision leverage?"
+      },
+      "future_human_correction_fields": {
+        "human_fields_filled": false,
+        "corrected_decision_question": "",
+        "corrected_vanilla_overlap_read": "",
+        "corrected_delta_read": "",
+        "corrected_lost_value_read": "",
+        "what_candidate_read_got_wrong": "",
+        "what_candidate_read_preserved_well": "",
+        "what_private_source_review_is_needed": "",
+        "contract_fields_to_simplify": "",
+        "human_net_read": ""
+      },
+      "minimum_human_questions": [
+        "Was the partial-usefulness downgrade strong enough?",
+        "Did the revised answer protect family risk without overwriting ambition?",
+        "Which gates were truly action-changing?"
+      ],
+      "non_claims": [
+        "not human review",
+        "not ground truth",
+        "not judge calibration",
+        "not product proof",
+        "not answer-quality measurement",
+        "not automatic label",
+        "not agent action authorization"
+      ]
+    },
+    {
+      "slice": "PR102",
+      "case_ref": "deploy-assisted-intake-routing/20260627T130339Z_4cd3cb",
+      "decision_family": "deployment_controls",
+      "source_review_ref": "reviews/codex-assisted/decision-trail-third-one-case-diversity-pilot-v0/review.json",
+      "candidate_read_summary": {
+        "candidate_net_read": "local_private_specialist_read_partly_useful",
+        "candidate_useful_signal": "The revised answer reduced noisy gate bloat while preserving must-pass operating controls, admin-load safety, backlog-diagnosis preconditions, and rollback triggers.",
+        "candidate_limit": "The core narrow-launch action materially overlapped with the vanilla conversation, and a simpler revised answer may lose stakeholder-specific safety detail.",
+        "vanilla_overlap_question": "Did the vanilla conversation already contain the core narrow-launch recommendation and risk-tiered rollout plan?",
+        "lost_value_question": "Did reducing gates lose compliance, admin, patient, doctor, support, or sales-specific checklist detail?",
+        "overtrust_question": "Does the cleaner four-gate answer look more correct mainly because it is easier to read?"
+      },
+      "future_human_correction_fields": {
+        "human_fields_filled": false,
+        "corrected_decision_question": "",
+        "corrected_vanilla_overlap_read": "",
+        "corrected_delta_read": "",
+        "corrected_lost_value_read": "",
+        "what_candidate_read_got_wrong": "",
+        "what_candidate_read_preserved_well": "",
+        "what_private_source_review_is_needed": "",
+        "contract_fields_to_simplify": "",
+        "human_net_read": ""
+      },
+      "minimum_human_questions": [
+        "Was reducing gates useful discipline or dangerous compression?",
+        "Was admin operating load correctly treated as a safety issue?",
+        "Did backlog diagnosis actually change the launch sequence?"
+      ],
+      "non_claims": [
+        "not human review",
+        "not ground truth",
+        "not judge calibration",
+        "not product proof",
+        "not answer-quality measurement",
+        "not automatic label",
+        "not agent action authorization"
+      ]
+    }
+  ],
+  "cross_case_human_prompts": [
+    "Which candidate read is too favorable?",
+    "Which candidate read is too cautious?",
+    "Which field gave the most useful review leverage?",
+    "Which field should be removed or simplified before any multi-case review?",
+    "Where did checked-in summaries become too thin for a fair human call?",
+    "Which case, if any, should be re-read from local-private source context?"
+  ],
+  "next_state": {
+    "recommended_status": "pause_until_human_review_capacity_returns",
+    "next_numbered_slice_policy": "only_after_human_fields_are_filled_or_user_explicitly_requests_docs_only_pause_triage",
+    "do_not_start": [
+      "fourth_one_case_specialist_pilot",
+      "broad_specialist_output_batch",
+      "runtime_integration",
+      "automatic_decision_trail_generation",
+      "answer_quality_judge",
+      "agent_action_authorization"
+    ]
+  },
+  "non_claims": [
+    "PR104 is not completed human review.",
+    "PR104 is not ground truth.",
+    "PR104 is not judge calibration.",
+    "PR104 is not product proof.",
+    "PR104 is not answer-quality measurement.",
+    "PR104 is not an automatic label.",
+    "PR104 is not agent action authorization.",
+    "PR104 does not show that any revised answer was good advice.",
+    "PR104 does not validate local-private specialist outputs for runtime use."
+  ]
+}

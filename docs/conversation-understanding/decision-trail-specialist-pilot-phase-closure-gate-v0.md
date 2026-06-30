@@ -89,6 +89,13 @@ reviewer. It should not create new Codex specialist reads, call models, run
 the Lolla runtime, mutate archives, score advice, create labels, or authorize
 agents.
 
+PR104 now exists:
+
+- [Decision Trail Human Review Intake Packet v0](decision-trail-human-review-intake-packet-v0.md)
+
+It leaves all human correction fields blank and recommends pause until human
+review capacity returns.
+
 ## Why Stop Here
 
 More one-case pilots would likely create momentum evidence rather than better

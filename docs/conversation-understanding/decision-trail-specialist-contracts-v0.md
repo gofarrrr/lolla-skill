@@ -324,7 +324,12 @@ pilot phase is now closed by PR103:
 
 PR103 compares PR97, PR100, and PR102 by checked-in summaries only, blocks a
 fourth one-case pilot and broad specialist-output batch, and recommends human
-review intake or pause. Any continuation should still avoid broad batches,
-model/provider APIs outside the current Codex session, runtime integration,
-archive mutation, answer-quality measurement, automatic labels, and
-product-proof claims.
+review intake or pause. PR104 now packages those three pilots for later human
+correction:
+
+[`Decision Trail Human Review Intake Packet v0`](decision-trail-human-review-intake-packet-v0.md)
+
+PR104 leaves all human correction fields blank. Any continuation should still
+avoid broad batches, model/provider APIs outside the current Codex session,
+runtime integration, archive mutation, answer-quality measurement, automatic
+labels, and product-proof claims.
