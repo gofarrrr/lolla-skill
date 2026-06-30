@@ -146,5 +146,12 @@ The patch areas are:
 
 PR99 did not run another specialist pilot, add runtime integration, measure
 answer quality, add automatic labels, authorize agent action, add graph/memory
-work, or use product-proof language. The next conservative slice may be PR100:
-a second one-case pilot using the patched shape, not a broad batch.
+work, or use product-proof language.
+
+PR100 has now run the second one-case pilot using the patched shape:
+
+- [Decision Trail Second One-Case Specialist Pilot v0](decision-trail-second-one-case-specialist-pilot-v0.md)
+
+The next conservative slice should be PR101: compare PR97 and PR100 before
+deciding whether another pilot, simplification, or a small review batch is
+justified.

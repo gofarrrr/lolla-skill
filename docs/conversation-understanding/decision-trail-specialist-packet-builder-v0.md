@@ -319,5 +319,12 @@ PR99 has now applied that patch:
 The packet builder now exposes role-readable source-scope metadata, truncation
 impact metadata, local-private retention policy metadata, and per-role
 `pr99_patch_fields` while preserving the existing output-path guards and
-non-claim boundary. The next conservative slice may be PR100: a second
-one-case specialist-output pilot using the patched packets, not a broad batch.
+non-claim boundary.
+
+PR100 has now used those patched packets on a second one-case pilot:
+
+[`Decision Trail Second One-Case Specialist Pilot v0`](decision-trail-second-one-case-specialist-pilot-v0.md)
+
+The next conservative slice should be PR101: compare PR97 and PR100 before
+deciding whether another pilot, simplification, or a small review batch is
+justified.

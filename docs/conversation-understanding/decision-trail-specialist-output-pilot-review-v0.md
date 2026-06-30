@@ -136,8 +136,12 @@ Decision Trail Specialist Contract And Packet Patch v0
 It patched contracts, packet metadata, tests, and docs only. It did not run
 another specialist pilot.
 
-After PR99, the conservative path is a second one-case pilot, not a broad
-batch. That future slice would be PR100.
+PR100 has now run the second one-case pilot:
+
+- [Decision Trail Second One-Case Specialist Pilot v0](decision-trail-second-one-case-specialist-pilot-v0.md)
+
+The conservative path after PR100 is PR101: compare PR97 and PR100 before any
+third pilot or broad batch.
 
 ## Non-Claims
 

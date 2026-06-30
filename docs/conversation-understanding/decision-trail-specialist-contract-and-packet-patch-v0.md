@@ -114,15 +114,27 @@ Validation cannot show:
 
 ## Next Slice
 
-The next conservative slice may be:
+PR100 has now used the patched shape on one additional case:
 
 ```text
 PR100 Decision Trail Second One-Case Specialist Pilot v0
 ```
 
-That pilot should use the patched contracts and packet metadata on one
-operator-selected completed run only. It should not broaden the batch yet.
+See:
 
-If PR100 still cannot resolve vanilla overlap, lost-value severity, assistant
-influence source status, or truncation impact, the lane should pause or
-simplify rather than scale.
+- [Decision Trail Second One-Case Specialist Pilot v0](decision-trail-second-one-case-specialist-pilot-v0.md)
+
+That pilot used the patched contracts and packet metadata on one
+operator-selected completed run only. It did not broaden the batch.
+
+The PR100 result is useful but conservative: the patched fields made material
+vanilla overlap visible and downgraded the net read to partial usefulness.
+
+The next conservative slice should be:
+
+```text
+PR101 Decision Trail Specialist Pilot Comparison Gate v0
+```
+
+PR101 should compare PR97 and PR100 before deciding whether to run a third
+one-case pilot, pause, simplify, or prepare any small multi-case review.

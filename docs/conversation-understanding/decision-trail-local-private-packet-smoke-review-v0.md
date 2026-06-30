@@ -169,10 +169,16 @@ See:
 It patches the PR90 contracts and PR95 packet metadata surfaced by PR98,
 preserves the one-case limitation as a first-class result, and avoids broad
 product claims, fan-in-as-verdict, runtime integration, and another
-specialist-output pilot. The next conservative slice may be PR100: one more
-operator-selected one-case pilot using the patched shape.
+specialist-output pilot.
 
-That future PR100-style slice must not:
+PR100 has now used the patched shape on one more operator-selected one-case
+pilot:
+
+- [Decision Trail Second One-Case Specialist Pilot v0](decision-trail-second-one-case-specialist-pilot-v0.md)
+
+The next conservative slice should be PR101: compare PR97 and PR100 before
+deciding whether another pilot, simplification, or a small review batch is
+justified. That next slice must not:
 
 - run `$lolla`;
 - invoke the Lolla skill;

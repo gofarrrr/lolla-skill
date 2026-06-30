@@ -306,4 +306,12 @@ applied that packet patch:
 
 The patched packet shape adds role-readable source-scope metadata, truncation
 impact, and local-private retention policy metadata before any second one-case
-pilot. The next conservative slice may be PR100, not a broad batch.
+pilot.
+
+PR100 has now used that patched shape on one more one-case pilot:
+
+- [Decision Trail Second One-Case Specialist Pilot v0](decision-trail-second-one-case-specialist-pilot-v0.md)
+
+The next conservative slice should be PR101: compare PR97 and PR100 before
+deciding whether another pilot, simplification, or a small review batch is
+justified.

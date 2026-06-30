@@ -299,16 +299,23 @@ review, and this contract/packet patch. The latest patch is:
 PR97 shows the four-role contract surface can be filled from one
 operator-selected local-private packet, but it does not prove the contracts are
 final or suitable for a broad batch. PR98 keeps the useful signal and requires
-contract changes before reuse. PR99 adds those contract fields.
+contract changes before reuse. PR99 adds those contract fields. PR100 uses the
+patched fields on a second one-case pilot:
+
+[`Decision Trail Second One-Case Specialist Pilot v0`](decision-trail-second-one-case-specialist-pilot-v0.md)
+
+PR100 records partial usefulness because material vanilla overlap blocks a
+clean positive read. That is a useful discipline signal, not product proof.
 
 The next recommended PR is:
 
-**PR100 Decision Trail Second One-Case Specialist Pilot v0**
+**PR101 Decision Trail Specialist Pilot Comparison Gate v0**
 
-PR100 may run one more local-private specialist-output pilot using the patched
-contracts. It should still avoid broad batches, model/provider APIs outside the
-current Codex session, runtime integration, archive mutation, answer-quality
-measurement, automatic labels, and product-proof claims.
+PR101 should compare PR97 and PR100 before deciding whether to run a third
+one-case pilot, pause, simplify, or prepare any small multi-case review. It
+should still avoid broad batches, model/provider APIs outside the current Codex
+session, runtime integration, archive mutation, answer-quality measurement,
+automatic labels, and product-proof claims.
 
-If PR100 finds the same gaps again, pause the specialist-output lane rather
-than broadening it.
+If PR101 cannot justify further specialist-output work, pause or simplify
+rather than broadening it.

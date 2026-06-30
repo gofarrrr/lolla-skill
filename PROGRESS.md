@@ -67,9 +67,10 @@ conversation or agent run
 Current handoff state:
 
 ```text
-PR99 Decision Trail Specialist Contract And Packet Patch v0 is the latest
-Decision Trail slice recorded in this working tree. PR99 applies the PR98
-contract/packet patch before any second specialist-output pilot. PR85 remains
+PR100 Decision Trail Second One-Case Specialist Pilot v0 is the latest
+Decision Trail slice recorded in this working tree. PR100 uses the PR99
+patched contracts on one additional local-private case and recommends a
+comparison gate before broadening. PR85 remains
 the latest packaged product-evidence eval-lane slice. PR70 remains the
 audit/accountability machinery closure gate. PR48 remains the high-stakes
 evidence gate. PR54 remains the paused v0 values/priorities worksheet gate.
@@ -87,7 +88,7 @@ checked-in-safe packets, traps, a discipline dry run, a path decision, and
 local-private packet mode. PR96 smoke-reviewed that packet mode locally. PR97
 filled a tiny one-case local-private specialist-output pilot. PR98 reviewed
 that pilot and blocked broadening until a contract/packet patch. PR99 applies
-that patch.
+that patch. PR100 uses the patched shape for one more local-private pilot.
 
 What works now: an operator can use a CLI to build checked-in-safe packet
 fixtures or local-private packets for completed run directories. PR96 shows
@@ -100,15 +101,20 @@ the useful path is real, but the contracts need a small patch before reuse.
 PR99 adds that patch: vanilla-overlap read, lost-value severity read,
 assistant-influence source status, source-scope/truncation impact, fan-in
 downgrade triggers, and local-private retention policy metadata.
+PR100 then exercises those fields on the `accept-founding-engineer-role` case.
+The strongest useful signal is that `vanilla_overlap_read` downgrades the net
+read to partial usefulness because the vanilla conversation already contained
+much of the visible action sequence.
 
 What does not work yet: the specialist-output pilot is one case, local-private,
-Codex-assisted, unvalidated, and not automatic in `$lolla`. It does not prove
-that the contracts are final, that broader batches are safe, that Lolla
+Codex-assisted, unvalidated, and not automatic in `$lolla`. PR100 brings the
+specialist-output pilot count to two one-case pilots, but it still does not
+prove that the contracts are final, that broader batches are safe, that Lolla
 improved the decision, or that agents may act.
 
-Next conservative gate: PR100 may run a second one-case specialist-output pilot
-using the patched contracts and packet metadata. It should not broaden the
-batch yet.
+Next conservative gate: PR101 should compare PR97 and PR100 before deciding
+whether to run a third one-case pilot, pause, simplify, or prepare any small
+multi-case review.
 ```
 
 Documentation alignment note:
@@ -619,10 +625,32 @@ Current stop rule:
 Latest completed slice:
 
 ```text
-PR99 Decision Trail Specialist Contract And Packet Patch v0
+PR100 Decision Trail Second One-Case Specialist Pilot v0
 ```
 
 Result:
+
+- lands `docs/conversation-understanding/decision-trail-second-one-case-specialist-pilot-v0.md`;
+- lands `reviews/codex-assisted/decision-trail-second-one-case-specialist-pilot-v0/review.json`;
+- lands `tests/test_decision_trail_second_one_case_specialist_pilot.py`;
+- runs a second one-case local-private specialist-output pilot by checked-in
+  summary only over `accept-founding-engineer-role/20260627T073034Z_a7c221`;
+- records local temp packet deletion and keeps private packet content out of
+  the repo;
+- exercises all PR99 fields: assistant-influence source status,
+  vanilla-overlap read, lost-value severity read, severity source status,
+  source-scope/truncation impact, fan-in downgrade triggers, and not-ready
+  reason;
+- records the strongest useful signal: `vanilla_overlap_read` forces a
+  partial-usefulness net read because the vanilla conversation already
+  contained much of the visible action sequence;
+- recommends PR101 Decision Trail Specialist Pilot Comparison Gate v0 before
+  any third pilot or broad batch;
+- calls no providers or external model APIs, invokes no runtime, mutates no
+  archives, measures no answer quality, creates no automatic labels, and
+  authorizes no agent action.
+
+Previous Decision Trail specialist contract/packet patch:
 
 - lands `docs/conversation-understanding/decision-trail-specialist-contract-and-packet-patch-v0.md`;
 - patches `docs/conversation-understanding/decision-trail-specialist-contracts-v0.md`;
@@ -1187,16 +1215,22 @@ Non-goals for the next slice:
    the PR98-required contract fields and packet metadata for vanilla overlap,
    lost-value severity, assistant-influence source status,
    source-scope/truncation impact, fan-in downgrade triggers, and local-private
-   retention policy. The next conservative move is PR100: one more
-   local-private specialist-output pilot using the patched shape, not a broad
-   batch.
-18. **Live-output hygiene implementation.** PR35 keeps `not_checked` honest and
+   retention policy. PR100 has now used that patched shape on one more
+   local-private specialist-output pilot instead of broadening directly.
+18. **PR100 Decision Trail second one-case specialist pilot is done.** PR100
+   uses the patched PR99 shape on
+   `accept-founding-engineer-role/20260627T073034Z_a7c221`. It records a
+   partial-usefulness read because vanilla overlap is material: the revised
+   answer sharpened thresholds, evidence gates, and stop rules, but much of
+   the visible action sequence was already present. The next conservative move
+   is PR101: compare PR97 and PR100 before any third pilot or broad batch.
+19. **Live-output hygiene implementation.** PR35 keeps `not_checked` honest and
    defines a trusted-transcript path; later work can implement only when needed.
-19. **Span-grounded semantic enrichment.** Existing specialists help with live
+20. **Span-grounded semantic enrichment.** Existing specialists help with live
    constraints, dropped threads, and stance lineage, but integration remains
    blocked until a clean 15-20 full-modern sample and provider-boundary behavior
    are settled.
-20. **Human capability surface.** Later, add a compact memo/Observatory section
+21. **Human capability surface.** Later, add a compact memo/Observatory section
    that teaches the user what reasoning pattern the audit caught.
 
 ## Current Pause: Specialist Integration Track

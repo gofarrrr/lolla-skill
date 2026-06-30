@@ -262,6 +262,8 @@ PR98 reviews that pilot and blocks broadening until a contract/packet patch:
 [Decision Trail Specialist Output Pilot Review](docs/conversation-understanding/decision-trail-specialist-output-pilot-review-v0.md).
 PR99 applies that patch:
 [Decision Trail Specialist Contract And Packet Patch](docs/conversation-understanding/decision-trail-specialist-contract-and-packet-patch-v0.md).
+PR100 uses the patched shape for one more one-case pilot:
+[Decision Trail Second One-Case Specialist Pilot](docs/conversation-understanding/decision-trail-second-one-case-specialist-pilot-v0.md).
 
 Current Decision Trail status: this is still offline evidence and packet
 machinery, not automatic skill behavior. A normal Lolla run does not trigger
@@ -279,9 +281,11 @@ does not fill a first-class Decision Trail automatically, does not run inside
 `$lolla`, and does not authorize agents. PR99 patches the specialist contracts
 and packet metadata with source-scope, truncation, vanilla-overlap, lost-value
 severity, assistant-influence source-status, fan-in downgrade-trigger, and
-local-private retention-policy fields. The next conservative Decision Trail
-step may be PR100: one more operator-selected local-private specialist-output
-pilot using the patched shape, not a broad specialist-output batch.
+local-private retention-policy fields. PR100 then uses the patched shape on one
+additional case and records a more conservative partial-usefulness read because
+the vanilla conversation already contained much of the visible action sequence.
+The next conservative Decision Trail step should be PR101: compare PR97 and
+PR100 before any third pilot or broad specialist-output batch.
 
 Start here: **[Product Delta / Eval Docs Index](docs/evals/README.md)**.
 
