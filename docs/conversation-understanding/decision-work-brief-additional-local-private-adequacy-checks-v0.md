@@ -127,6 +127,12 @@ Recommended next PR:
 PR147 Decision Work Brief Third Builder Case v0
 ```
 
+Follow-up note: PR147 attempted this next slice and found a valid blocker. The
+cofounder rendered brief and PR146 source-depth support exist, but there is no
+builder-compatible PR133-shaped cofounder interpretation read. PR147 therefore
+chooses `create_third_interpretation_read_first` rather than creating an
+invalid builder output.
+
 ## Boundary
 
 PR146 does not:

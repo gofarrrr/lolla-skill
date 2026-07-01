@@ -1875,6 +1875,44 @@ Recommended next slice:
 PR147 Decision Work Brief Third Builder Case v0
 ```
 
+### PR147: Decision Work Brief Third Builder Case v0
+
+Status: implemented after PR146.
+
+Purpose:
+
+Try to run the deterministic enriched-brief builder on the third decision
+family, the CEO/cofounder governance case, without inventing a new
+interpretation source or forcing the builder to consume the wrong schema.
+
+Implemented in this PR:
+
+- `docs/conversation-understanding/decision-work-brief-third-builder-case-v0.md`
+- `reviews/codex-assisted/decision-work-brief-third-builder-case-v0/review.json`
+- `tests/test_decision_work_brief_third_builder_case.py`
+
+Current meaning:
+
+- the cofounder rendered brief exists;
+- the PR139 enrichment rules contract exists;
+- PR146 found the cofounder checked-in-safe brief adequate with private nuance;
+- no builder-compatible cofounder interpretation read exists;
+- the deterministic builder was not run;
+- no cofounder builder-enriched Markdown was created;
+- the next safe step is to create the missing PR133-shaped interpretation read.
+
+Decision gate:
+
+```text
+create_third_interpretation_read_first
+```
+
+Recommended next slice:
+
+```text
+PR147A Decision Work Conversation Interpretation Third Tiny Offline Read v0
+```
+
 ## Success Criteria
 
 The phase succeeds when a reader can quickly answer:

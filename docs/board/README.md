@@ -89,7 +89,7 @@ Follow-up implementation planning:
   The product-facing target for the missing layer: a plain-language brief that
   explains what decision was being made, what Lolla pressed on, what changed,
   what remains unresolved, and what the audit must not claim. It also nests the
-  work into PR113-PR146 so the next steps stay grounded in the existing
+  work into PR113-PR147 so the next steps stay grounded in the existing
   receipt, Decision Trail, Product Delta, lint, interpretation, and custody
   machinery.
 
@@ -340,6 +340,12 @@ Follow-up implementation planning:
   PR146 checks the cofounder and intake-routing cases against richer
   local-private completed-run context, records only safe conclusions, and
   recommends a third builder case before any runtime-attachment plan.
+
+- [Decision Work Brief Third Builder Case](../conversation-understanding/decision-work-brief-third-builder-case-v0.md)
+
+  PR147 tests whether the cofounder case is ready for deterministic
+  builder-enrichment. It blocks the output because the case lacks a
+  builder-compatible interpretation read, preserving the evidence boundary.
 
 The core board-level message is:
 

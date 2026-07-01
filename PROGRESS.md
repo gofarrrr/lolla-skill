@@ -67,7 +67,7 @@ conversation or agent run
 Current handoff state:
 
 ```text
-PR146 Decision Work Brief Additional Local-Private Adequacy Checks v0 is the
+PR147 Decision Work Brief Third Builder Case v0 is the
 latest Decision Work Brief-adjacent slice recorded in this working tree. PR113
 introduced the product-facing brief target and corrected the receipt debug
 summary back to an internal maintainer layer. PR114 added the machine-readable
@@ -167,8 +167,12 @@ proof, human validation, answer-quality scoring, or agent action
 authorization. PR146 performs two more read-only local-private adequacy checks
 on the cofounder and intake-routing cases, records only safe conclusions, finds
 the checked-in-safe briefs adequate with private nuance, and recommends
-`proceed_to_third_builder_case` before any runtime-attachment plan. PR104
-remains the latest
+`proceed_to_third_builder_case` before any runtime-attachment plan. PR147 then
+tests whether the cofounder case can become the third deterministic
+builder-enriched example, and blocks the output because there is no
+builder-compatible PR133-shaped cofounder interpretation read. It chooses
+`create_third_interpretation_read_first`, not a schema workaround, builder run,
+or runtime plan. PR104 remains the latest
 Decision Trail human-review intake slice; PR85 remains the latest packaged
 product-evidence eval-lane slice; PR70
 remains the audit/accountability machinery closure gate; PR48 remains the
@@ -287,7 +291,7 @@ and explicit non-claims. It remains a contract only: no generator, packet
 builder, renderer, runtime integration, model calls, archive mutation, or
 semantic inference.
 
-PR115 through PR146 keep the brief lane offline and downstream. Maintainers can
+PR115 through PR147 keep the brief lane offline and downstream. Maintainers can
 prepare metadata-only packets from completed runs, inspect provisional
 Codex-assisted checked-in-safe drafts, render existing brief JSON to Markdown,
 and now inspect three tiny cases: `ceo-remove-founding-cofounder`,
@@ -312,6 +316,10 @@ by checking the remaining two preferred package cases against local-private
 context in read-only mode. It records no private content and finds no major
 contradiction, but keeps starting-direction overlap, lost-value severity,
 stakeholder nuance, and legal or compliance constraints as human-review risks.
+PR147 tries to start the third builder case on the cofounder decision and stops
+cleanly when it finds the missing prerequisite: a builder-compatible cofounder
+interpretation read. The recommended next slice is a bounded PR147A third tiny
+offline interpretation read before any cofounder builder output.
 
 This remains offline/eval-side machinery. It does not run $lolla, invoke the
 skill, call providers, mutate archives, change prompts, touch SKILL.md, score

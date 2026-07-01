@@ -1,0 +1,168 @@
+{
+  "schema_version": "lolla.decision_work_brief_third_builder_case.v0",
+  "review_mode": "offline_builder_case_feasibility_review_blocked_missing_pr133_interpretation_read",
+  "human_validated": false,
+  "product_proof": false,
+  "model_calls": 0,
+  "answer_quality_scored": false,
+  "agent_action_authorized": false,
+  "archive_mutated": false,
+  "runtime_invoked": false,
+  "skill_invoked": false,
+  "case_id": "ceo-remove-founding-cofounder",
+  "decision_family": "founder_governance_or_authority_transition",
+  "source_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md",
+  "interpretation_source_ref": null,
+  "builder_output_ref": null,
+  "builder_output_created": false,
+  "builder_output_status": "blocked_missing_builder_compatible_interpretation_read",
+  "review_metadata": {
+    "review_id": "decision-work-brief-third-builder-case-v0",
+    "created_at": "2026-07-01T00:00:00Z",
+    "created_by": "codex_assisted_provisional_review",
+    "triggering_pr": "PR146 Decision Work Brief Additional Local-Private Adequacy Checks v0",
+    "triggering_gate": "proceed_to_third_builder_case",
+    "purpose": "Test whether the deterministic enriched-brief builder can be run on the third Decision Work Brief decision family without inventing a new interpretation source.",
+    "builder_output_path_considered": "docs/conversation-understanding/decision-work-brief-builder-enriched-ceo-remove-founding-cofounder-v0.md"
+  },
+  "custody_flags": {
+    "human_validated": false,
+    "product_proof": false,
+    "model_calls": 0,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "archive_mutated": false,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "raw_private_content_checked_in": false,
+    "provider_text_checked_in": false,
+    "local_absolute_paths_checked_in": false,
+    "new_lolla_run_created": false,
+    "new_interpretation_read_created": false,
+    "builder_invoked": false,
+    "builder_output_created": false
+  },
+  "source_availability_review": {
+    "source_brief_available": true,
+    "source_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md",
+    "rules_contract_available": true,
+    "rules_contract_ref": "docs/conversation-understanding/decision-work-brief-enrichment-rules-contract-v0.json",
+    "builder_requires_interpretation_read": true,
+    "required_interpretation_read_schemas": [
+      "lolla.decision_work_conversation_interpretation_tiny_offline_read.v0",
+      "lolla.decision_work_conversation_interpretation_second_tiny_offline_read.v0",
+      "lolla.decision_work_conversation_interpretation_read.v0"
+    ],
+    "builder_compatible_cofounder_interpretation_read_available": false,
+    "builder_compatible_existing_reads": [
+      {
+        "case_id": "launch-public-enterprise-beta",
+        "read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-tiny-offline-read-v0/read.json",
+        "used_for_pr147": false,
+        "reason_not_used": "Different case."
+      },
+      {
+        "case_id": "deploy-assisted-intake-routing",
+        "read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-second-tiny-offline-read-v0/read.json",
+        "used_for_pr147": false,
+        "reason_not_used": "Different case."
+      }
+    ]
+  },
+  "candidate_interpretation_sources_reviewed": [
+    {
+      "source_ref": "reviews/codex-assisted/decision-work-brief-draft-pilot-v0/review.json",
+      "source_schema_version": "lolla.decision_work_brief_draft_pilot.v0",
+      "contains_cofounder_read": true,
+      "builder_compatible": false,
+      "reason_not_used": "This is a draft-pilot review with embedded brief content, not a PR133-shaped interpretation read with interpreted_fields."
+    },
+    {
+      "source_ref": "reviews/codex-assisted/decision-work-brief-usefulness-review-v0/review.json",
+      "source_schema_version": "lolla.decision_work_brief_usefulness_review.v0",
+      "contains_cofounder_read": true,
+      "builder_compatible": false,
+      "reason_not_used": "This is a usefulness review, not an interpretation read accepted by the deterministic builder."
+    },
+    {
+      "source_ref": "reviews/codex-assisted/decision-work-brief-small-pattern-review-v0/review.json",
+      "source_schema_version": "lolla.decision_work_brief_small_pattern_review.v0",
+      "contains_cofounder_read": true,
+      "builder_compatible": false,
+      "reason_not_used": "This is a pattern review with action-consequence observations, not a fielded interpretation read."
+    },
+    {
+      "source_ref": "reviews/codex-assisted/decision-work-brief-three-case-pattern-review-v0/review.json",
+      "source_schema_version": "lolla.decision_work_brief_three_case_pattern_review.v0",
+      "contains_cofounder_read": true,
+      "builder_compatible": false,
+      "reason_not_used": "This is a three-case pattern review, not a builder input."
+    },
+    {
+      "source_ref": "reviews/codex-assisted/decision-work-brief-additional-local-private-adequacy-checks-v0/review.json",
+      "source_schema_version": "lolla.decision_work_brief_additional_local_private_adequacy_checks.v0",
+      "contains_cofounder_read": true,
+      "builder_compatible": false,
+      "reason_not_used": "This is a local-private adequacy check with safe conclusions only; it deliberately does not fill PR133 interpreted_fields."
+    }
+  ],
+  "blocker": {
+    "blocked": true,
+    "summary": "The cofounder case has a rendered brief and safe source-depth support, but it does not have a builder-compatible interpretation read. Running the deterministic builder would require a PR133-shaped read for this case or an explicitly reviewed schema adapter.",
+    "why_builder_was_not_run": "The builder validates interpretation read schema and interpreted_fields before rendering. Feeding it a draft-pilot, pattern-review, or local-private adequacy review would force the wrong schema into a user-facing enriched brief.",
+    "smallest_safe_next_step": "Create a bounded third tiny offline interpretation read for the cofounder case, using the PR133 interpretation-read schema and the existing PR130 packet/source-ref discipline."
+  },
+  "readability_read": {
+    "status": "not_evaluated_because_builder_output_not_created",
+    "safe_prior_signal": "The original cofounder rendered brief is readable as a plain-language Decision Work Brief, but PR147 cannot assess builder-enriched readability without a valid interpretation read."
+  },
+  "uncertainty_read": {
+    "status": "source_depth_risk_preserved",
+    "finding": "PR146 found the cofounder checked-in brief adequate with private nuance, especially around starting-direction overlap, relationship cost, customer trust, equity, legal, board, and governance constraints."
+  },
+  "overclaim_read": {
+    "status": "blocked_path_reduces_overclaim_risk",
+    "finding": "Not creating a builder output prevents the system from smoothing draft-pilot or local-private adequacy conclusions into a fielded interpretation layer they were not designed to provide."
+  },
+  "field_boundary_read": {
+    "status": "builder_boundary_preserved",
+    "finding": "The PR139 field boundary remains intact because no evidence-only or non-PR133 field source was promoted into the main enrichment body."
+  },
+  "comparison_to_prior_builder_cases": {
+    "launch_public_enterprise_beta": {
+      "builder_output_ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-launch-public-enterprise-beta-v0.md",
+      "interpretation_read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-tiny-offline-read-v0/read.json",
+      "builder_compatible_read_available": true
+    },
+    "deploy_assisted_intake_routing": {
+      "builder_output_ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-deploy-assisted-intake-routing-v0.md",
+      "interpretation_read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-second-tiny-offline-read-v0/read.json",
+      "builder_compatible_read_available": true
+    },
+    "ceo_remove_founding_cofounder": {
+      "builder_output_ref": null,
+      "interpretation_read_ref": null,
+      "builder_compatible_read_available": false
+    }
+  },
+  "source_depth_read": {
+    "pr146_safe_conclusion": "adequate_with_private_nuance",
+    "source_depth_risk": "The cofounder case is exactly the kind of relationship/governance decision where a builder-compatible read must preserve uncertainty before adding user-facing interpretation.",
+    "runtime_integration_recommended": false,
+    "human_review_still_required": true
+  },
+  "decision_gate": "create_third_interpretation_read_first",
+  "recommended_next_pr": "PR147A Decision Work Conversation Interpretation Third Tiny Offline Read v0",
+  "non_claims": [
+    "not_human_validated",
+    "not_product_proof",
+    "not_answer_quality_score",
+    "not_agent_action_authorization",
+    "not_runtime_integration",
+    "not_builder_output",
+    "not_correctness_proof",
+    "clean_artifacts_do_not_imply_good_advice",
+    "missing_builder_input_is_not_a_product_failure",
+    "future_human_review_required"
+  ]
+}
