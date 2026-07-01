@@ -2077,6 +2077,45 @@ Recommended next slice:
 PR151 Decision Work Brief Human Review Pilot v0
 ```
 
+### PR151: Decision Work Brief Human Review Pilot Scaffold v0
+
+Status: implemented after PR150.
+
+Purpose:
+
+Prepare the runnable human-review pilot materials without pretending that human
+review has happened.
+
+Implemented in this PR:
+
+- `docs/conversation-understanding/decision-work-brief-human-review-pilot-scaffold-v0.md`
+- `docs/conversation-understanding/decision-work-brief-human-review-response-template-v0.json`
+- `reviews/codex-assisted/decision-work-brief-human-review-pilot-scaffold-v0/review.json`
+- `tests/test_decision_work_brief_human_review_pilot_scaffold.py`
+
+Current meaning:
+
+- PR151 packages the three builder-generated enriched briefs into a human-review
+  pilot scope;
+- it gives reviewers plain-language instructions, case-specific source refs,
+  known risk prompts, stop conditions, and allowed answer values;
+- the response template remains blank: case answers are `not_reviewed`, `null`,
+  or empty arrays until a real reviewer fills them;
+- it does not claim human validation, product proof, answer-quality scoring,
+  agent authorization, or runtime readiness.
+
+Decision gate:
+
+```text
+ready_to_run_human_review
+```
+
+Recommended next slice:
+
+```text
+PR152 Decision Work Brief Human Review Pilot Run v0
+```
+
 ## Success Criteria
 
 The phase succeeds when a reader can quickly answer:

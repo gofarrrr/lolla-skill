@@ -254,7 +254,7 @@ story. The intended user-facing target is the
 [Decision Work Brief PRD](docs/conversation-understanding/decision-work-brief-prd-v0.md):
 a plain-language artifact explaining the decision, what Lolla pressed on, what
 changed, what remains unresolved, and what the audit must not claim. That PRD
-now includes the concrete PR113-PR150 delivery sequence for schema, local
+now includes the concrete PR113-PR151 delivery sequence for schema, local
 packets, provisional brief drafts, rendering, usefulness review, second tiny
 case pilot, small pattern review, third diversity case pilot, and three-case
 pattern review, plain-language renderer patch, rereview, local-private
@@ -459,6 +459,14 @@ questions, overtrust risk, runtime blockers, stop conditions, and allowed
 outcomes. It is not completed human validation and does not claim product
 proof, score answer quality, authorize agent action, or attach the brief to
 runtime.
+The
+[Decision Work Brief Human Review Pilot Scaffold](docs/conversation-understanding/decision-work-brief-human-review-pilot-scaffold-v0.md)
+and
+[blank response template](docs/conversation-understanding/decision-work-brief-human-review-response-template-v0.json)
+add PR151's runnable human-review pilot materials. They give a future human
+reviewer the three enriched briefs, instructions, stop conditions, allowed
+answers, and blank fields to fill, while keeping `human_review_completed` false
+until a real reviewer responds.
 There is still no production generator, runtime integration, model call in repo
 code, archive mutation, product proof, human validation, broad batch, customer
 marketing copy, or agent action authorization. See

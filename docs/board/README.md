@@ -89,7 +89,7 @@ Follow-up implementation planning:
   The product-facing target for the missing layer: a plain-language brief that
   explains what decision was being made, what Lolla pressed on, what changed,
   what remains unresolved, and what the audit must not claim. It also nests the
-  work into PR113-PR150 so the next steps stay grounded in the existing
+  work into PR113-PR151 so the next steps stay grounded in the existing
   receipt, Decision Trail, Product Delta, lint, interpretation, and custody
   machinery.
 
@@ -373,6 +373,13 @@ Follow-up implementation planning:
   consequence, uncertainty, source-depth, private-context, overtrust, and
   runtime-blocker questions reviewers must answer before the surface can claim
   anything stronger than useful-but-not-validated offline evidence.
+
+- [Decision Work Brief Human Review Pilot Scaffold](../conversation-understanding/decision-work-brief-human-review-pilot-scaffold-v0.md)
+
+  PR151 turns the intake plan into runnable but blank pilot materials. It
+  provides reviewer instructions and a response template for the three enriched
+  briefs, but keeps human-review answers unfilled until a real reviewer uses
+  the template.
 
 The core board-level message is:
 

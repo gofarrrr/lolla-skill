@@ -114,6 +114,13 @@ builder-generated enriched briefs using this intake plan.
 
 Runtime attachment is still premature.
 
+Follow-up status:
+
+PR151 now creates the runnable but blank pilot scaffold and response template
+for this intake plan. The response template keeps all human-review answer fields
+as `not_reviewed`, `null`, or empty arrays until a real human reviewer fills
+them.
+
 ## Boundary
 
 PR150 does not:

@@ -1,0 +1,141 @@
+{
+  "schema_version": "lolla.decision_work_brief_human_review_response_template.v0",
+  "template_metadata": {
+    "template_id": "decision-work-brief-human-review-response-template-v0",
+    "created_at": "2026-07-01T00:00:00Z",
+    "created_by": "codex_scaffold_only",
+    "source_scaffold_ref": "docs/conversation-understanding/decision-work-brief-human-review-pilot-scaffold-v0.md",
+    "intake_plan_ref": "docs/conversation-understanding/decision-work-brief-human-review-intake-plan-v0.md"
+  },
+  "reviewer_metadata": {
+    "reviewer_id": null,
+    "reviewer_role": null,
+    "review_started_at": null,
+    "review_completed_at": null,
+    "reviewer_conflict_notes": null
+  },
+  "review_status": "not_started",
+  "human_review_completed": false,
+  "allowed_answer_values": [
+    "yes",
+    "partly",
+    "no",
+    "unclear",
+    "not_reviewed"
+  ],
+  "allowed_final_recommendation_values": [
+    "useful_but_needs_source_depth",
+    "useful_but_too_overtrust_inducing",
+    "readable_but_not_actionable",
+    "too_internal_for_user_surface",
+    "ready_for_more_human_review",
+    "not_ready_for_runtime",
+    "needs_simplification",
+    "inconclusive",
+    "not_reviewed"
+  ],
+  "cases": [
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "decision_family": "gtm_or_enterprise_launch_timing",
+      "enriched_brief_ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-launch-public-enterprise-beta-v0.md",
+      "original_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md",
+      "interpretation_read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-tiny-offline-read-v0/read.json",
+      "source_review_ref": "reviews/codex-assisted/decision-work-brief-enrichment-builder-rule-patch-review-v0/review.json",
+      "known_highest_risk_uncertainty": "The paid private-pilot path may read more validated than the compressed checked-in sources can prove.",
+      "useful_to_decision_maker": "not_reviewed",
+      "action_consequence_clear": "not_reviewed",
+      "uncertainty_visible": "not_reviewed",
+      "source_limits_visible": "not_reviewed",
+      "overtrust_risk": "not_reviewed",
+      "too_operationally_decisive": "not_reviewed",
+      "missing_context_needed": [],
+      "what_helped": [],
+      "what_confused": [],
+      "what_should_change_before_user_surface": [],
+      "should_show_to_user": "not_reviewed",
+      "should_feed_agent_inspection": "not_reviewed",
+      "reviewer_notes": null
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "decision_family": "healthcare_operations_or_deployment_controls",
+      "enriched_brief_ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-deploy-assisted-intake-routing-v0.md",
+      "original_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md",
+      "interpretation_read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-second-tiny-offline-read-v0/read.json",
+      "source_review_ref": "reviews/codex-assisted/decision-work-brief-enrichment-builder-rule-patch-review-v0/review.json",
+      "known_highest_risk_uncertainty": "Deployment-control language may sound safe or validated unless patient-risk, compliance, and pause-trigger caveats remain visible.",
+      "useful_to_decision_maker": "not_reviewed",
+      "action_consequence_clear": "not_reviewed",
+      "uncertainty_visible": "not_reviewed",
+      "source_limits_visible": "not_reviewed",
+      "overtrust_risk": "not_reviewed",
+      "too_operationally_decisive": "not_reviewed",
+      "missing_context_needed": [],
+      "what_helped": [],
+      "what_confused": [],
+      "what_should_change_before_user_surface": [],
+      "should_show_to_user": "not_reviewed",
+      "should_feed_agent_inspection": "not_reviewed",
+      "reviewer_notes": null
+    },
+    {
+      "case_id": "ceo-remove-founding-cofounder",
+      "decision_family": "founder_governance_or_relationship_sensitive_authority_transition",
+      "enriched_brief_ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-ceo-remove-founding-cofounder-v0.md",
+      "original_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md",
+      "interpretation_read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-third-tiny-offline-read-v0/read.json",
+      "source_review_ref": "reviews/codex-assisted/decision-work-brief-third-builder-case-output-v0/review.json",
+      "known_highest_risk_uncertainty": "Authority-transfer language may sound like legal or operational advice unless governance, employment, board, equity, relationship, team, and customer-trust caveats remain close.",
+      "useful_to_decision_maker": "not_reviewed",
+      "action_consequence_clear": "not_reviewed",
+      "uncertainty_visible": "not_reviewed",
+      "source_limits_visible": "not_reviewed",
+      "overtrust_risk": "not_reviewed",
+      "too_operationally_decisive": "not_reviewed",
+      "missing_context_needed": [],
+      "what_helped": [],
+      "what_confused": [],
+      "what_should_change_before_user_surface": [],
+      "should_show_to_user": "not_reviewed",
+      "should_feed_agent_inspection": "not_reviewed",
+      "reviewer_notes": null
+    }
+  ],
+  "cross_case_assessment": {
+    "most_useful_case": null,
+    "highest_overtrust_risk_case": null,
+    "common_confusions": [],
+    "common_source_depth_questions": [],
+    "brief_surface_overall_useful": "not_reviewed",
+    "brief_surface_overall_too_overtrust_inducing": "not_reviewed",
+    "reviewer_notes": null
+  },
+  "stop_conditions": {
+    "reviewer_cannot_tell_what_changed_for_action": "not_reviewed",
+    "caveats_are_too_buried": "not_reviewed",
+    "source_limits_are_unclear": "not_reviewed",
+    "brief_sounds_like_proof_of_good_advice": "not_reviewed",
+    "cofounder_case_sounds_like_legal_or_operational_advice": "not_reviewed",
+    "reviewer_cannot_distinguish_evidence_from_interpretation": "not_reviewed",
+    "private_context_needed_to_judge_usefulness": "not_reviewed",
+    "response_template_forces_fake_certainty": "not_reviewed",
+    "stop_notes": []
+  },
+  "final_recommendation": {
+    "recommended_outcome": "not_reviewed",
+    "should_continue_to_more_human_review": "not_reviewed",
+    "should_revise_brief_surface": "not_reviewed",
+    "should_prepare_runtime_attachment_plan": "not_reviewed",
+    "reviewer_summary": null
+  },
+  "non_claims": [
+    "template_is_not_completed_human_review",
+    "template_is_not_human_validation",
+    "template_is_not_product_proof",
+    "template_is_not_answer_quality_scoring",
+    "template_is_not_agent_action_authorization",
+    "template_does_not_authorize_runtime_attachment",
+    "blank_fields_must_not_be_interpreted_as_approval"
+  ]
+}
