@@ -1,0 +1,163 @@
+{
+  "schema_version": "lolla.decision_work_brief_enrichment_builder_rule_patch_review.v0",
+  "review_metadata": {
+    "review_id": "decision_work_brief_enrichment_builder_rule_patch_review:v0",
+    "created_at": "2026-07-01T00:00:00Z",
+    "review_mode": "codex_assisted_offline_builder_patch_review",
+    "case_count": 2,
+    "source_patch_doc_ref": "docs/conversation-understanding/decision-work-brief-enrichment-builder-rule-patch-v0.md",
+    "source_prior_builder_review_ref": "reviews/codex-assisted/decision-work-brief-enriched-builder-output-review-v0/review.json",
+    "source_rules_contract_ref": "docs/conversation-understanding/decision-work-brief-enrichment-rules-contract-v0.json",
+    "notes": [
+      "This review compares PR142 patched builder outputs against the PR141 builder-output problem and the prior hand-built enriched examples.",
+      "The review is provisional and not human validation.",
+      "No runtime integration, Lolla invocation, archive mutation, or model call was performed."
+    ]
+  },
+  "custody_flags": {
+    "human_validated": false,
+    "product_proof": false,
+    "model_calls": 0,
+    "archive_mutated": false,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "raw_private_content_checked_in": false,
+    "provider_text_checked_in": false,
+    "local_absolute_paths_checked_in": false,
+    "runtime_integration_implemented": false,
+    "new_interpretation_read_created": false,
+    "new_lolla_run_created": false,
+    "hand_built_examples_modified": false,
+    "builder_patch_review_is_provisional": true
+  },
+  "source_artifacts": {
+    "pr141_review_ref": "reviews/codex-assisted/decision-work-brief-enriched-builder-output-review-v0/review.json",
+    "pr142_patch_doc_ref": "docs/conversation-understanding/decision-work-brief-enrichment-builder-rule-patch-v0.md",
+    "rules_contract_ref": "docs/conversation-understanding/decision-work-brief-enrichment-rules-contract-v0.json",
+    "builder_doc_ref": "docs/conversation-understanding/decision-work-brief-offline-enriched-builder-v0.md",
+    "builder_module_ref": "engine/system_b/decision_work_brief_enrichment.py"
+  },
+  "reviewed_examples": [
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "decision_family": "enterprise_launch_or_gtm",
+      "patched_builder_output_ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-launch-public-enterprise-beta-v0.md",
+      "hand_built_enriched_brief_ref": "docs/conversation-understanding/decision-work-brief-enriched-launch-public-enterprise-beta-v0.md",
+      "original_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md",
+      "interpretation_read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-tiny-offline-read-v0/read.json",
+      "patched_output_exists": true,
+      "hand_built_output_exists": true,
+      "original_left_untouched": true,
+      "action_consequence_visible": true,
+      "uncertainty_visible": true,
+      "non_claims_visible": true
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "decision_family": "healthcare_operations_or_deployment",
+      "patched_builder_output_ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-deploy-assisted-intake-routing-v0.md",
+      "hand_built_enriched_brief_ref": "docs/conversation-understanding/decision-work-brief-enriched-deploy-assisted-intake-routing-v0.md",
+      "original_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md",
+      "interpretation_read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-second-tiny-offline-read-v0/read.json",
+      "patched_output_exists": true,
+      "hand_built_output_exists": true,
+      "original_left_untouched": true,
+      "action_consequence_visible": true,
+      "uncertainty_visible": true,
+      "non_claims_visible": true
+    }
+  ],
+  "readability_findings": {
+    "does_patched_output_read_less_robotic": true,
+    "repeated_stock_phrase_reduced": true,
+    "duplicated_sentence_risk_reduced": true,
+    "action_consequence_easier_to_understand": true,
+    "still_less_humane_than_hand_built_examples": true,
+    "deterministic_template_shape_still_visible": true,
+    "preferred_offline_enrichment_path_for_existing_two_cases": true,
+    "readability_summary": "The patched output is still deterministic, but it no longer foregrounds repeated field-level source phrases in the main reading flow. The action consequence is clearer in both cases."
+  },
+  "uncertainty_findings": {
+    "starting_direction_uncertainty_visible": true,
+    "checked_in_safe_compression_visible": true,
+    "source_limits_visible": true,
+    "human_review_absence_visible": true,
+    "interpretation_marked_provisional": true,
+    "uncertainty_summary": "The patched section keeps the uncertainty in the prose instead of moving it only to the Evidence and limits section."
+  },
+  "overclaim_findings": {
+    "product_proof_claimed": false,
+    "human_validation_claimed": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "lolla_improvement_claimed_as_fact": false,
+    "clean_artifact_treated_as_good_advice": false,
+    "overclaim_summary": "The patch keeps the non-claim that enrichment does not prove Lolla improved the decision, and it does not authorize action or score answer quality."
+  },
+  "field_boundary_findings": {
+    "allowed_user_facing_fields_only": true,
+    "evidence_only_fields_excluded_from_main_body": true,
+    "forbidden_quality_or_authority_fields_excluded": true,
+    "source_and_uncertainty_metadata_preserved": true,
+    "rules_contract_unchanged": true,
+    "field_boundary_summary": "The builder continues to use only the PR139 user-facing enrichment fields and keeps live options, abandoned options, noisy friction, and lost value out of the main section."
+  },
+  "comparison_to_hand_built_examples": [
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "hand_built_intent_matched": "mostly",
+      "patched_strength": "The patched output keeps the launch-beta consequence centered on a paid scoped private pilot, buyer behavior, and not treating the larger logo or public page as proof.",
+      "remaining_gap": "The hand-built version is more compact and reads more like a human-edited conversation-story layer.",
+      "review_read": "Good enough for offline deterministic enrichment review, but not evidence of product readiness."
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "hand_built_intent_matched": "mostly",
+      "patched_strength": "The patched output keeps the deploy-intake consequence centered on a narrow pilot, 48-hour backlog diagnostic, compressed must-pass gates, pause triggers, and narrower sales meaning.",
+      "remaining_gap": "The hand-built version is smoother, while the patched output still exposes its deterministic structure.",
+      "review_read": "Good enough for offline deterministic enrichment review, with remaining product-language limits visible."
+    }
+  ],
+  "decision_gate": {
+    "outcome": "proceed_to_offline_system_closure_gate",
+    "allowed_outcomes": [
+      "proceed_to_offline_system_closure_gate",
+      "run_third_builder_case",
+      "patch_builder_rules_again",
+      "keep_hand_built_only",
+      "pause_until_human_review",
+      "stop_and_simplify"
+    ],
+    "rationale": "The PR142 patch resolves the PR141 blocker enough to make a system-level closure decision. The generated outputs remain deterministic but are less repetitive, preserve uncertainty, avoid evidence-only fields in the main body, and keep non-claims visible.",
+    "runtime_integration_recommended": false,
+    "product_readiness_claimed": false
+  },
+  "recommended_next_pr": {
+    "recommended_next_pr": "PR144 Decision Work Brief Offline System Closure Gate v0",
+    "recommended_action": "Decide whether the offline Decision Work Brief system from PR114 through PR143 is coherent enough to package, or whether it should gather more evidence, pause, or simplify first.",
+    "not_recommended": [
+      "runtime integration",
+      "product-readiness claim",
+      "third builder case before closure decision",
+      "agent-action authorization"
+    ]
+  },
+  "non_claims": [
+    "review_is_codex_assisted",
+    "review_is_provisional",
+    "not_human_validated",
+    "not_product_proof",
+    "not_answer_quality_score",
+    "not_agent_action_authorization",
+    "not_correctness_proof",
+    "not_runtime_integration",
+    "not_new_interpretation_read",
+    "not_new_lolla_run",
+    "builder_output_is_not_better_as_fact",
+    "rule_compliance_is_not_product_readiness",
+    "clean_outputs_do_not_imply_good_advice",
+    "future_human_review_required"
+  ]
+}

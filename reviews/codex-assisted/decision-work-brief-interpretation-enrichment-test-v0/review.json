@@ -1,0 +1,205 @@
+{
+  "schema_version": "lolla.decision_work_brief_interpretation_enrichment_test.v0",
+  "review_metadata": {
+    "review_id": "decision_work_brief_interpretation_enrichment_test:launch-public-enterprise-beta:pr135",
+    "created_at": "2026-07-01T00:00:00Z",
+    "review_mode": "codex_assisted_provisional_checked_in_safe_enrichment_test",
+    "case_count": 1,
+    "case_selection_rule": "Use exactly the launch-public-enterprise-beta brief and PR131 interpretation read selected by PR134.",
+    "notes": [
+      "PR135 creates a separate enriched example and does not modify the original rendered brief.",
+      "The enrichment uses only the PR134 feed-now field subset.",
+      "The enrichment is a checked-in-safe offline test, not a runtime feature or product proof."
+    ]
+  },
+  "custody_flags": {
+    "human_validated": false,
+    "product_proof": false,
+    "model_calls": 0,
+    "archive_mutated": false,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "raw_private_content_checked_in": false,
+    "provider_text_checked_in": false,
+    "local_absolute_paths_checked_in": false,
+    "broad_judge_used": false,
+    "automatic_labels_created": false,
+    "runtime_extraction_implemented": false,
+    "new_interpretation_read_created": false,
+    "original_brief_modified": false,
+    "enrichment_is_provisional": true
+  },
+  "source_brief": {
+    "case_id": "launch-public-enterprise-beta",
+    "run_id": "20260627T104146Z_7bfe79",
+    "brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md",
+    "brief_schema_version": "lolla.decision_work_brief.v0",
+    "source_mode": "checked_in_safe",
+    "original_left_untouched": true
+  },
+  "source_interpretation_read": {
+    "read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-tiny-offline-read-v0/read.json",
+    "read_schema_version": "lolla.decision_work_conversation_interpretation_tiny_offline_read.v0",
+    "read_case_id": "launch-public-enterprise-beta",
+    "read_is_provisional": true,
+    "human_validated": false,
+    "product_proof": false,
+    "model_calls": 0,
+    "source_packet_checked_in": false,
+    "raw_private_content_checked_in": false
+  },
+  "enrichment_scope": {
+    "scope": "Add one plain-language interpretation section to one existing rendered brief.",
+    "new_section_heading": "What the interpretation adds",
+    "original_brief_modified": false,
+    "new_interpretation_read_created": false,
+    "runtime_or_renderer_changed": false,
+    "allowed_fields_policy_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-read-comparison-v0/review.json",
+    "plain_language_requirement": "The enriched brief should explain what may already have been present, what appears to have been sharpened, and what remains uncertain without exposing field/status machinery."
+  },
+  "enriched_brief_ref": "docs/conversation-understanding/decision-work-brief-enriched-launch-public-enterprise-beta-v0.md",
+  "fields_used": [
+    {
+      "field_name": "decision_question",
+      "how_used": "Rephrased the decision as public enterprise beta versus constrained private enterprise proof.",
+      "source_status": "checked_in_safe_summary_only",
+      "uncertainty": "medium",
+      "human_review_required": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_name": "likely_starting_direction",
+      "how_used": "Included only as a visible uncertainty that the starting direction may already have leaned away from simple public launch.",
+      "source_status": "mixed_safe_and_private_status",
+      "uncertainty": "high",
+      "human_review_required": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_name": "revised_direction_or_action_consequence",
+      "how_used": "Used to clarify the action consequence: same paid scoped private-pilot offer for both prospects and buyer behavior as evidence.",
+      "source_status": "mixed_safe_and_private_status",
+      "uncertainty": "medium",
+      "human_review_required": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_name": "decision_thresholds",
+      "how_used": "Used as visible thresholds: paid commitment, scoped workflow, capped support, audit-log boundary, conversion trigger, reference terms, and tripwires.",
+      "source_status": "checked_in_safe_summary_only",
+      "uncertainty": "medium",
+      "human_review_required": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_name": "evidence_gates",
+      "how_used": "Used to show that buyer behavior, procurement clarity, scope tolerance, and named public-launch outcomes become the proof points.",
+      "source_status": "mixed_safe_and_private_status",
+      "uncertainty": "medium",
+      "human_review_required": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_name": "useful_friction",
+      "how_used": "Used only as a descriptive read: the process appears to have sharpened attention from logo optics toward proof-producing buyer behavior and stop rules.",
+      "source_status": "mixed_safe_and_private_status",
+      "uncertainty": "medium",
+      "human_review_required": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_name": "what_the_final_answer_does_not_prove",
+      "how_used": "Used to preserve the non-proof boundary in the enriched brief.",
+      "source_status": "checked_in_safe_summary_only",
+      "uncertainty": "low",
+      "human_review_required": false,
+      "must_not_be_used_as_quality_label": true
+    }
+  ],
+  "fields_excluded": [
+    {
+      "field_name": "live_options",
+      "reason": "Kept evidence-only because the checked-in-safe read cannot prove the complete option set."
+    },
+    {
+      "field_name": "abandoned_or_rejected_options",
+      "reason": "Excluded because the read cannot safely distinguish rejected, deferred, narrowed, or still-live paths."
+    },
+    {
+      "field_name": "noisy_friction",
+      "reason": "Excluded from the user-facing body because it could read as unsupported criticism of the revised answer."
+    },
+    {
+      "field_name": "lost_value",
+      "reason": "Excluded because PR131 and PR134 mark lost value as insufficient context."
+    },
+    {
+      "field_name": "user_values_or_priorities",
+      "reason": "Not selected for the tiny read and requires richer context or human review."
+    },
+    {
+      "field_name": "stakeholder_obligations",
+      "reason": "Not selected for the tiny read and only partially visible in checked-in-safe summaries."
+    },
+    {
+      "field_name": "assistant_influence_on_user_framing",
+      "reason": "Requires raw conversation interpretation and is out of scope."
+    }
+  ],
+  "expected_reader_value": {
+    "plain_language_read": "The enriched section should help a reader see the distinction between a direction that may already have been present and the narrower action consequence the audit appears to have sharpened.",
+    "decision_story_value": "It makes the value of the process more concrete: the decision is less about launch optics and more about proof-producing buyer behavior under explicit constraints.",
+    "why_not_a_field_dump": "The enriched Markdown uses one short story section rather than listing PR128 field names or statuses in the main body.",
+    "what_a_busy_reader_should_get": "A busy reader should understand why the private-pilot recommendation is not merely caution; it is tied to thresholds, evidence gates, and stop rules.",
+    "human_validation_required": true
+  },
+  "risks": {
+    "source_depth_risk": "The enrichment still relies on checked-in-safe summaries and one provisional interpretation read; raw conversation, revised answer, memo, provider text, and private ledgers are not checked in.",
+    "overclaim_risk": "The enriched prose could over-credit Lolla if it implies the audit caused every part of the private-pilot direction.",
+    "reader_confidence_risk": "Cleaner prose can make provisional interpretation feel more settled than it is.",
+    "field_leakage_risk": "If future enrichment exposes field names or source-status vocabulary in the main body, the brief will regress into machinery.",
+    "quality_label_risk": "Useful friction is included only as a descriptive read and must not become answer-quality scoring."
+  },
+  "decision_gate": {
+    "outcome": "proceed_to_original_vs_enriched_review",
+    "allowed_outcomes": [
+      "proceed_to_original_vs_enriched_review",
+      "patch_enrichment_rules",
+      "run_second_enriched_brief_test",
+      "pause_until_human_review",
+      "stop_and_simplify"
+    ],
+    "rationale": "The enriched brief is coherent enough to compare against the original. It adds one plain-language interpretation section, preserves uncertainty and non-claims, and does not modify runtime or the original brief.",
+    "runtime_integration_recommended": false,
+    "product_readiness_claimed": false
+  },
+  "next_recommendation": {
+    "recommended_next_pr": "PR136 Original vs Enriched Brief Review v0",
+    "recommended_action": "Compare the original and enriched launch-public-enterprise-beta briefs before deciding whether to enrich a second case.",
+    "do_not_do_next": [
+      "Do not enrich a second case before the original-vs-enriched review.",
+      "Do not formalize enrichment rules yet.",
+      "Do not attach enrichment to runtime.",
+      "Do not claim product proof."
+    ]
+  },
+  "non_claims": [
+    "enrichment_is_codex_assisted",
+    "enrichment_is_provisional",
+    "not_human_validated",
+    "not_product_proof",
+    "not_answer_quality_score",
+    "not_agent_action_authorization",
+    "not_correctness_proof",
+    "not_runtime_integration",
+    "not_runtime_extraction",
+    "not_lolla_runtime_change",
+    "not_new_interpretation_read",
+    "not_original_brief_replacement",
+    "clean_artifacts_do_not_imply_good_advice",
+    "enriched_brief_is_not_better_as_fact",
+    "future_human_review_required"
+  ]
+}

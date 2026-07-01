@@ -1,0 +1,660 @@
+{
+  "schema_version": "lolla.decision_work_brief_pr114_pr144_package_manifest.v0",
+  "phase": "decision_work_brief_offline_pr114_pr144",
+  "status": "packaging_gate",
+  "created_date": "2026-07-01",
+  "boundary": {
+    "human_validated": false,
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "model_calls": 0,
+    "archive_mutated": false,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "runtime_integration_implemented": false,
+    "new_lolla_run_created": false,
+    "new_interpretation_read_created": false,
+    "raw_private_content_included": false,
+    "provider_text_included": false,
+    "local_absolute_paths_included": false,
+    "automatic_labels_created": false
+  },
+  "included_prs": [
+    {
+      "pr_number": 114,
+      "title": "Decision Work Brief Schema Contract v0",
+      "kind": ["schema", "docs", "tests"],
+      "primary_files": [
+        "docs/conversation-understanding/decision-work-brief-v0.json",
+        "docs/conversation-understanding/decision-work-brief-schema-v0.md",
+        "tests/test_decision_work_brief_schema.py"
+      ],
+      "what_it_added": "Defined the lolla.decision_work_brief.v0 schema.",
+      "what_it_did_not_do": "Did not generate brief content or change runtime."
+    },
+    {
+      "pr_number": 115,
+      "title": "Decision Work Brief Packet Builder v0",
+      "kind": ["offline builder", "docs", "tests"],
+      "primary_files": [
+        "engine/system_b/decision_work_brief_packets.py",
+        "scripts/evals/build_decision_work_brief_packets.py",
+        "docs/conversation-understanding/decision-work-brief-packet-builder-v0.md",
+        "tests/test_decision_work_brief_packets.py"
+      ],
+      "what_it_added": "Added a metadata-only offline packet builder over completed runs.",
+      "what_it_did_not_do": "Did not run Lolla, mutate archives, call models, or interpret semantic content."
+    },
+    {
+      "pr_number": 116,
+      "title": "First Tiny Decision Work Brief Draft Pilot v0",
+      "kind": ["codex-assisted review fixture", "docs", "tests"],
+      "primary_files": [
+        "docs/conversation-understanding/decision-work-brief-draft-pilot-v0.md",
+        "reviews/codex-assisted/decision-work-brief-draft-pilot-v0/review.json",
+        "tests/test_decision_work_brief_draft_pilot.py"
+      ],
+      "what_it_added": "Added a checked-in-safe provisional brief draft for ceo-remove-founding-cofounder.",
+      "what_it_did_not_do": "Did not claim product proof or human validation."
+    },
+    {
+      "pr_number": 117,
+      "title": "Decision Work Brief Markdown Renderer v0",
+      "kind": ["renderer", "docs", "tests"],
+      "primary_files": [
+        "engine/system_b/decision_work_brief_renderer.py",
+        "scripts/evals/render_decision_work_brief.py",
+        "docs/conversation-understanding/decision-work-brief-renderer-v0.md",
+        "docs/conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md",
+        "tests/test_decision_work_brief_renderer.py"
+      ],
+      "what_it_added": "Added deterministic Markdown rendering for existing brief JSON.",
+      "what_it_did_not_do": "Did not infer missing content or change the schema."
+    },
+    {
+      "pr_number": 118,
+      "title": "Decision Work Brief Usefulness Review v0",
+      "kind": ["review", "docs", "tests"],
+      "primary_files": [
+        "docs/conversation-understanding/decision-work-brief-usefulness-review-v0.md",
+        "reviews/codex-assisted/decision-work-brief-usefulness-review-v0/review.json",
+        "tests/test_decision_work_brief_usefulness_review.py"
+      ],
+      "what_it_added": "Reviewed the first rendered brief and gated to a second tiny case.",
+      "what_it_did_not_do": "Did not declare product readiness."
+    },
+    {
+      "pr_number": 119,
+      "title": "Decision Work Brief Second Tiny Case Pilot v0",
+      "kind": ["codex-assisted review fixture", "rendered example", "tests"],
+      "primary_files": [
+        "docs/conversation-understanding/decision-work-brief-second-tiny-case-pilot-v0.md",
+        "reviews/codex-assisted/decision-work-brief-second-tiny-case-pilot-v0/review.json",
+        "docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md",
+        "tests/test_decision_work_brief_second_tiny_case_pilot.py"
+      ],
+      "what_it_added": "Added the launch-public-enterprise-beta second tiny case.",
+      "what_it_did_not_do": "Did not broaden to a batch or recommend runtime integration."
+    },
+    {
+      "pr_number": 120,
+      "title": "Decision Work Brief Small Pattern Review v0",
+      "kind": ["pattern review", "docs", "tests"],
+      "primary_files": [
+        "docs/conversation-understanding/decision-work-brief-small-pattern-review-v0.md",
+        "reviews/codex-assisted/decision-work-brief-small-pattern-review-v0/review.json",
+        "tests/test_decision_work_brief_small_pattern_review.py"
+      ],
+      "what_it_added": "Compared the first two tiny cases and gated to a third diversity case.",
+      "what_it_did_not_do": "Did not create a new brief or runtime integration."
+    },
+    {
+      "pr_number": 121,
+      "title": "Decision Work Brief Third Diversity Case Pilot v0",
+      "kind": ["codex-assisted review fixture", "rendered example", "tests"],
+      "primary_files": [
+        "docs/conversation-understanding/decision-work-brief-third-diversity-case-pilot-v0.md",
+        "reviews/codex-assisted/decision-work-brief-third-diversity-case-pilot-v0/review.json",
+        "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md",
+        "tests/test_decision_work_brief_third_diversity_case_pilot.py"
+      ],
+      "what_it_added": "Added the deploy-assisted-intake-routing third diversity case.",
+      "what_it_did_not_do": "Did not create a fourth case."
+    },
+    {
+      "pr_number": 122,
+      "title": "Decision Work Brief Three-Case Pattern Review v0",
+      "kind": ["pattern review", "docs", "tests"],
+      "primary_files": [
+        "docs/conversation-understanding/decision-work-brief-three-case-pattern-review-v0.md",
+        "reviews/codex-assisted/decision-work-brief-three-case-pattern-review-v0/review.json",
+        "tests/test_decision_work_brief_three_case_pattern_review.py"
+      ],
+      "what_it_added": "Reviewed action-consequence patterns across three decision families.",
+      "what_it_did_not_do": "Did not expand to five cases or change the renderer."
+    },
+    {
+      "pr_number": 123,
+      "title": "Decision Work Brief Plain-Language Renderer Patch v0",
+      "kind": ["renderer patch", "docs", "tests"],
+      "primary_files": [
+        "engine/system_b/decision_work_brief_renderer.py",
+        "docs/conversation-understanding/decision-work-brief-plain-language-renderer-patch-v0.md",
+        "tests/test_decision_work_brief_plain_language_renderer_patch.py"
+      ],
+      "what_it_added": "Moved the rendered brief toward a product-facing Markdown flow.",
+      "what_it_did_not_do": "Did not change the underlying brief schema."
+    },
+    {
+      "pr_number": 124,
+      "title": "Plain-Language Brief Re-Review v0",
+      "kind": ["review", "docs", "tests"],
+      "primary_files": [
+        "docs/conversation-understanding/decision-work-brief-plain-language-rereview-v0.md",
+        "reviews/codex-assisted/decision-work-brief-plain-language-rereview-v0/review.json",
+        "tests/test_decision_work_brief_plain_language_rereview.py"
+      ],
+      "what_it_added": "Checked whether the plain-language patch solved the readability problem.",
+      "what_it_did_not_do": "Did not run local-private review."
+    },
+    {
+      "pr_number": 125,
+      "title": "Decision Work Brief Local-Private Adequacy Check v0",
+      "kind": ["local-private adequacy review", "docs", "tests"],
+      "primary_files": [
+        "docs/conversation-understanding/decision-work-brief-local-private-adequacy-check-v0.md",
+        "reviews/codex-assisted/decision-work-brief-local-private-adequacy-check-v0/review.json",
+        "tests/test_decision_work_brief_local_private_adequacy_check.py"
+      ],
+      "what_it_added": "Compared one checked-in-safe brief against richer local-private context without checking in private text.",
+      "what_it_did_not_do": "Did not create human validation or product proof."
+    },
+    {
+      "pr_number": 126,
+      "title": "Decision Work Brief Expansion Runtime Decision Gate v0",
+      "kind": ["decision gate", "docs", "tests"],
+      "primary_files": [
+        "docs/conversation-understanding/decision-work-brief-expansion-runtime-decision-gate-v0.md",
+        "reviews/codex-assisted/decision-work-brief-expansion-runtime-decision-gate-v0/review.json",
+        "tests/test_decision_work_brief_expansion_runtime_decision_gate.py"
+      ],
+      "what_it_added": "Selected more local-private adequacy checks instead of runtime attachment.",
+      "what_it_did_not_do": "Did not implement runtime attachment."
+    },
+    {
+      "pr_number": 127,
+      "title": "Decision Work Brief Conversation Interpretation Gap Map v0",
+      "kind": ["gap map", "docs", "tests"],
+      "primary_files": [
+        "docs/conversation-understanding/decision-work-brief-conversation-interpretation-gap-map-v0.md",
+        "reviews/codex-assisted/decision-work-brief-conversation-interpretation-gap-map-v0/review.json",
+        "tests/test_decision_work_brief_conversation_interpretation_gap_map.py"
+      ],
+      "what_it_added": "Mapped desired conversation interpretation fields against current artifact coverage.",
+      "what_it_did_not_do": "Did not implement a new extractor."
+    },
+    {
+      "pr_number": 128,
+      "title": "Decision Work Conversation Interpretation Target Contract v0",
+      "kind": ["contract", "docs", "tests"],
+      "primary_files": [
+        "docs/conversation-understanding/decision-work-conversation-interpretation-contract-v0.md",
+        "docs/conversation-understanding/decision-work-conversation-interpretation-contract-v0.json",
+        "tests/test_decision_work_conversation_interpretation_contract.py"
+      ],
+      "what_it_added": "Defined the future-facing conversation interpretation contract.",
+      "what_it_did_not_do": "Did not implement runtime extraction or model calls."
+    },
+    {
+      "pr_number": 129,
+      "title": "Decision Work Conversation Interpretation Contract Packet Review v0",
+      "kind": ["packet review", "docs", "tests"],
+      "primary_files": [
+        "docs/conversation-understanding/decision-work-conversation-interpretation-contract-packet-review-v0.md",
+        "reviews/codex-assisted/decision-work-conversation-interpretation-contract-packet-review-v0/review.json",
+        "tests/test_decision_work_conversation_interpretation_contract_packet_review.py"
+      ],
+      "what_it_added": "Compared the interpretation contract with current packet and artifact support.",
+      "what_it_did_not_do": "Did not implement the contract."
+    },
+    {
+      "pr_number": 130,
+      "title": "Decision Work Conversation Interpretation Offline Packet v0",
+      "kind": ["offline packet builder", "docs", "tests"],
+      "primary_files": [
+        "engine/system_b/decision_work_conversation_interpretation_packets.py",
+        "scripts/evals/build_decision_work_conversation_interpretation_packets.py",
+        "docs/conversation-understanding/decision-work-conversation-interpretation-offline-packet-v0.md",
+        "tests/test_decision_work_conversation_interpretation_packets.py"
+      ],
+      "what_it_added": "Built a deterministic offline packet for future interpretation reads.",
+      "what_it_did_not_do": "Did not interpret conversation fields."
+    },
+    {
+      "pr_number": 131,
+      "title": "Decision Work Conversation Interpretation Tiny Offline Read v0",
+      "kind": ["codex-assisted interpretation read", "docs", "tests"],
+      "primary_files": [
+        "docs/conversation-understanding/decision-work-conversation-interpretation-tiny-offline-read-v0.md",
+        "reviews/codex-assisted/decision-work-conversation-interpretation-tiny-offline-read-v0/read.json",
+        "tests/test_decision_work_conversation_interpretation_tiny_offline_read.py"
+      ],
+      "what_it_added": "Added a tiny provisional interpretation read for launch-public-enterprise-beta.",
+      "what_it_did_not_do": "Did not call models or treat the read as a quality label."
+    },
+    {
+      "pr_number": 132,
+      "title": "Decision Work Conversation Interpretation Second Tiny Offline Read v0",
+      "kind": ["codex-assisted interpretation read", "docs", "tests"],
+      "primary_files": [
+        "docs/conversation-understanding/decision-work-conversation-interpretation-second-tiny-offline-read-v0.md",
+        "reviews/codex-assisted/decision-work-conversation-interpretation-second-tiny-offline-read-v0/read.json",
+        "tests/test_decision_work_conversation_interpretation_second_tiny_offline_read.py"
+      ],
+      "what_it_added": "Added a second tiny read for deploy-assisted-intake-routing.",
+      "what_it_did_not_do": "Did not broaden to a batch."
+    },
+    {
+      "pr_number": 133,
+      "title": "Decision Work Conversation Interpretation Read Schema v0",
+      "kind": ["schema", "docs", "tests"],
+      "primary_files": [
+        "docs/conversation-understanding/decision-work-conversation-interpretation-read-schema-v0.md",
+        "docs/conversation-understanding/decision-work-conversation-interpretation-read-v0.json",
+        "tests/test_decision_work_conversation_interpretation_read_schema.py"
+      ],
+      "what_it_added": "Formalized the shared schema for future offline interpretation reads.",
+      "what_it_did_not_do": "Did not create a third read or implement an interpreter."
+    },
+    {
+      "pr_number": 134,
+      "title": "Decision Work Conversation Interpretation Read Comparison v0",
+      "kind": ["comparison review", "docs", "tests"],
+      "primary_files": [
+        "docs/conversation-understanding/decision-work-conversation-interpretation-read-comparison-v0.md",
+        "reviews/codex-assisted/decision-work-conversation-interpretation-read-comparison-v0/review.json",
+        "tests/test_decision_work_conversation_interpretation_read_comparison.py"
+      ],
+      "what_it_added": "Compared two tiny interpretation reads and gated to brief enrichment.",
+      "what_it_did_not_do": "Did not enrich a brief."
+    },
+    {
+      "pr_number": 135,
+      "title": "Decision Work Brief Interpretation Enrichment Test v0",
+      "kind": ["enriched example", "review", "tests"],
+      "primary_files": [
+        "docs/conversation-understanding/decision-work-brief-enriched-launch-public-enterprise-beta-v0.md",
+        "docs/conversation-understanding/decision-work-brief-interpretation-enrichment-test-v0.md",
+        "reviews/codex-assisted/decision-work-brief-interpretation-enrichment-test-v0/review.json",
+        "tests/test_decision_work_brief_interpretation_enrichment_test.py"
+      ],
+      "what_it_added": "Created the first manually enriched brief from an existing interpretation read.",
+      "what_it_did_not_do": "Did not modify the original rendered brief."
+    },
+    {
+      "pr_number": 136,
+      "title": "Original vs Enriched Brief Review v0",
+      "kind": ["comparison review", "docs", "tests"],
+      "primary_files": [
+        "docs/conversation-understanding/decision-work-brief-original-vs-enriched-review-v0.md",
+        "reviews/codex-assisted/decision-work-brief-original-vs-enriched-review-v0/review.json",
+        "tests/test_decision_work_brief_original_vs_enriched_review.py"
+      ],
+      "what_it_added": "Compared the original launch-beta brief with the enriched version.",
+      "what_it_did_not_do": "Did not enrich another case."
+    },
+    {
+      "pr_number": 137,
+      "title": "Second Enriched Brief Test v0",
+      "kind": ["enriched example", "review", "tests"],
+      "primary_files": [
+        "docs/conversation-understanding/decision-work-brief-enriched-deploy-assisted-intake-routing-v0.md",
+        "docs/conversation-understanding/decision-work-brief-second-enrichment-test-v0.md",
+        "reviews/codex-assisted/decision-work-brief-second-enrichment-test-v0/review.json",
+        "tests/test_decision_work_brief_second_enrichment_test.py"
+      ],
+      "what_it_added": "Created the second manually enriched brief for deploy-assisted-intake-routing.",
+      "what_it_did_not_do": "Did not enrich the cofounder case."
+    },
+    {
+      "pr_number": 138,
+      "title": "Enriched Brief Pattern Review v0",
+      "kind": ["pattern review", "docs", "tests"],
+      "primary_files": [
+        "docs/conversation-understanding/decision-work-brief-enriched-pattern-review-v0.md",
+        "reviews/codex-assisted/decision-work-brief-enriched-pattern-review-v0/review.json",
+        "tests/test_decision_work_brief_enriched_pattern_review.py"
+      ],
+      "what_it_added": "Compared two enriched briefs and gated to enrichment rules.",
+      "what_it_did_not_do": "Did not implement the rules contract."
+    },
+    {
+      "pr_number": 139,
+      "title": "Decision Work Brief Enrichment Rules Contract v0",
+      "kind": ["contract", "docs", "tests"],
+      "primary_files": [
+        "docs/conversation-understanding/decision-work-brief-enrichment-rules-contract-v0.md",
+        "docs/conversation-understanding/decision-work-brief-enrichment-rules-contract-v0.json",
+        "tests/test_decision_work_brief_enrichment_rules_contract.py"
+      ],
+      "what_it_added": "Formalized which interpretation fields may enter the user-facing brief.",
+      "what_it_did_not_do": "Did not build the builder."
+    },
+    {
+      "pr_number": 140,
+      "title": "Offline Enriched Brief Builder v0",
+      "kind": ["offline builder", "docs", "tests"],
+      "primary_files": [
+        "engine/system_b/decision_work_brief_enrichment.py",
+        "scripts/evals/enrich_decision_work_brief.py",
+        "docs/conversation-understanding/decision-work-brief-offline-enriched-builder-v0.md",
+        "tests/test_decision_work_brief_enrichment.py"
+      ],
+      "what_it_added": "Built a deterministic offline enriched-brief builder.",
+      "what_it_did_not_do": "Did not call models, interpret new fields, or mutate original briefs."
+    },
+    {
+      "pr_number": 141,
+      "title": "Enriched Brief Builder Output Review v0",
+      "kind": ["builder output review", "docs", "tests"],
+      "primary_files": [
+        "docs/conversation-understanding/decision-work-brief-enriched-builder-output-review-v0.md",
+        "reviews/codex-assisted/decision-work-brief-enriched-builder-output-review-v0/review.json",
+        "tests/test_decision_work_brief_enriched_builder_output_review.py"
+      ],
+      "what_it_added": "Reviewed deterministic builder output and gated to a language patch.",
+      "what_it_did_not_do": "Did not create more enriched cases."
+    },
+    {
+      "pr_number": 142,
+      "title": "Decision Work Brief Enrichment Builder Rule Patch v0",
+      "kind": ["builder patch", "docs", "tests"],
+      "primary_files": [
+        "engine/system_b/decision_work_brief_enrichment.py",
+        "docs/conversation-understanding/decision-work-brief-enrichment-builder-rule-patch-v0.md",
+        "tests/test_decision_work_brief_enrichment_builder_rule_patch.py"
+      ],
+      "what_it_added": "Reduced repetitive deterministic enrichment wording while preserving rules and non-claims.",
+      "what_it_did_not_do": "Did not change the enrichment rules schema."
+    },
+    {
+      "pr_number": 143,
+      "title": "Decision Work Brief Builder Patch Review v0",
+      "kind": ["builder patch review", "docs", "tests"],
+      "primary_files": [
+        "docs/conversation-understanding/decision-work-brief-enrichment-builder-rule-patch-review-v0.md",
+        "reviews/codex-assisted/decision-work-brief-enrichment-builder-rule-patch-review-v0/review.json",
+        "tests/test_decision_work_brief_enrichment_builder_rule_patch_review.py"
+      ],
+      "what_it_added": "Reviewed patched builder output and gated to offline system closure.",
+      "what_it_did_not_do": "Did not recommend runtime integration."
+    },
+    {
+      "pr_number": 144,
+      "title": "Decision Work Brief Offline System Closure Gate v0",
+      "kind": ["closure gate", "docs", "tests"],
+      "primary_files": [
+        "docs/conversation-understanding/decision-work-brief-offline-system-closure-gate-v0.md",
+        "reviews/codex-assisted/decision-work-brief-offline-system-closure-gate-v0/review.json",
+        "tests/test_decision_work_brief_offline_system_closure_gate.py"
+      ],
+      "what_it_added": "Selected package_pr114_pr144 as the conservative next move.",
+      "what_it_did_not_do": "Did not package unrelated work or implement runtime integration."
+    }
+  ],
+  "included_files": {
+    "docs": [
+      "docs/conversation-understanding/decision-work-brief-prd-v0.md",
+      "docs/conversation-understanding/decision-work-brief-schema-v0.md",
+      "docs/conversation-understanding/decision-work-brief-packet-builder-v0.md",
+      "docs/conversation-understanding/decision-work-brief-draft-pilot-v0.md",
+      "docs/conversation-understanding/decision-work-brief-renderer-v0.md",
+      "docs/conversation-understanding/decision-work-brief-usefulness-review-v0.md",
+      "docs/conversation-understanding/decision-work-brief-second-tiny-case-pilot-v0.md",
+      "docs/conversation-understanding/decision-work-brief-small-pattern-review-v0.md",
+      "docs/conversation-understanding/decision-work-brief-third-diversity-case-pilot-v0.md",
+      "docs/conversation-understanding/decision-work-brief-three-case-pattern-review-v0.md",
+      "docs/conversation-understanding/decision-work-brief-plain-language-renderer-patch-v0.md",
+      "docs/conversation-understanding/decision-work-brief-plain-language-rereview-v0.md",
+      "docs/conversation-understanding/decision-work-brief-local-private-adequacy-check-v0.md",
+      "docs/conversation-understanding/decision-work-brief-expansion-runtime-decision-gate-v0.md",
+      "docs/conversation-understanding/decision-work-brief-conversation-interpretation-gap-map-v0.md",
+      "docs/conversation-understanding/decision-work-conversation-interpretation-contract-v0.md",
+      "docs/conversation-understanding/decision-work-conversation-interpretation-contract-packet-review-v0.md",
+      "docs/conversation-understanding/decision-work-conversation-interpretation-offline-packet-v0.md",
+      "docs/conversation-understanding/decision-work-conversation-interpretation-tiny-offline-read-v0.md",
+      "docs/conversation-understanding/decision-work-conversation-interpretation-second-tiny-offline-read-v0.md",
+      "docs/conversation-understanding/decision-work-conversation-interpretation-read-schema-v0.md",
+      "docs/conversation-understanding/decision-work-conversation-interpretation-read-comparison-v0.md",
+      "docs/conversation-understanding/decision-work-brief-interpretation-enrichment-test-v0.md",
+      "docs/conversation-understanding/decision-work-brief-original-vs-enriched-review-v0.md",
+      "docs/conversation-understanding/decision-work-brief-second-enrichment-test-v0.md",
+      "docs/conversation-understanding/decision-work-brief-enriched-pattern-review-v0.md",
+      "docs/conversation-understanding/decision-work-brief-enrichment-rules-contract-v0.md",
+      "docs/conversation-understanding/decision-work-brief-offline-enriched-builder-v0.md",
+      "docs/conversation-understanding/decision-work-brief-enriched-builder-output-review-v0.md",
+      "docs/conversation-understanding/decision-work-brief-enrichment-builder-rule-patch-v0.md",
+      "docs/conversation-understanding/decision-work-brief-enrichment-builder-rule-patch-review-v0.md",
+      "docs/conversation-understanding/decision-work-brief-offline-system-closure-gate-v0.md"
+    ],
+    "schemas_and_contracts": [
+      "docs/conversation-understanding/decision-work-brief-v0.json",
+      "docs/conversation-understanding/decision-work-conversation-interpretation-contract-v0.json",
+      "docs/conversation-understanding/decision-work-conversation-interpretation-read-v0.json",
+      "docs/conversation-understanding/decision-work-brief-enrichment-rules-contract-v0.json"
+    ],
+    "review_artifacts": [
+      "reviews/codex-assisted/decision-work-brief-draft-pilot-v0/review.json",
+      "reviews/codex-assisted/decision-work-brief-usefulness-review-v0/review.json",
+      "reviews/codex-assisted/decision-work-brief-second-tiny-case-pilot-v0/review.json",
+      "reviews/codex-assisted/decision-work-brief-small-pattern-review-v0/review.json",
+      "reviews/codex-assisted/decision-work-brief-third-diversity-case-pilot-v0/review.json",
+      "reviews/codex-assisted/decision-work-brief-three-case-pattern-review-v0/review.json",
+      "reviews/codex-assisted/decision-work-brief-plain-language-rereview-v0/review.json",
+      "reviews/codex-assisted/decision-work-brief-local-private-adequacy-check-v0/review.json",
+      "reviews/codex-assisted/decision-work-brief-expansion-runtime-decision-gate-v0/review.json",
+      "reviews/codex-assisted/decision-work-brief-conversation-interpretation-gap-map-v0/review.json",
+      "reviews/codex-assisted/decision-work-conversation-interpretation-contract-packet-review-v0/review.json",
+      "reviews/codex-assisted/decision-work-conversation-interpretation-tiny-offline-read-v0/read.json",
+      "reviews/codex-assisted/decision-work-conversation-interpretation-second-tiny-offline-read-v0/read.json",
+      "reviews/codex-assisted/decision-work-conversation-interpretation-read-comparison-v0/review.json",
+      "reviews/codex-assisted/decision-work-brief-interpretation-enrichment-test-v0/review.json",
+      "reviews/codex-assisted/decision-work-brief-original-vs-enriched-review-v0/review.json",
+      "reviews/codex-assisted/decision-work-brief-second-enrichment-test-v0/review.json",
+      "reviews/codex-assisted/decision-work-brief-enriched-pattern-review-v0/review.json",
+      "reviews/codex-assisted/decision-work-brief-enriched-builder-output-review-v0/review.json",
+      "reviews/codex-assisted/decision-work-brief-enrichment-builder-rule-patch-review-v0/review.json",
+      "reviews/codex-assisted/decision-work-brief-offline-system-closure-gate-v0/review.json"
+    ],
+    "rendered_and_enriched_examples": [
+      "docs/conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md",
+      "docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md",
+      "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md",
+      "docs/conversation-understanding/decision-work-brief-enriched-launch-public-enterprise-beta-v0.md",
+      "docs/conversation-understanding/decision-work-brief-enriched-deploy-assisted-intake-routing-v0.md",
+      "docs/conversation-understanding/decision-work-brief-builder-enriched-launch-public-enterprise-beta-v0.md",
+      "docs/conversation-understanding/decision-work-brief-builder-enriched-deploy-assisted-intake-routing-v0.md"
+    ],
+    "code_modules": [
+      "engine/system_b/decision_work_brief_packets.py",
+      "engine/system_b/decision_work_brief_renderer.py",
+      "engine/system_b/decision_work_conversation_interpretation_packets.py",
+      "engine/system_b/decision_work_brief_enrichment.py"
+    ],
+    "cli_scripts": [
+      "scripts/evals/build_decision_work_brief_packets.py",
+      "scripts/evals/render_decision_work_brief.py",
+      "scripts/evals/build_decision_work_conversation_interpretation_packets.py",
+      "scripts/evals/enrich_decision_work_brief.py"
+    ],
+    "tests": [
+      "tests/test_decision_work_brief_schema.py",
+      "tests/test_decision_work_brief_packets.py",
+      "tests/test_decision_work_brief_draft_pilot.py",
+      "tests/test_decision_work_brief_renderer.py",
+      "tests/test_decision_work_brief_usefulness_review.py",
+      "tests/test_decision_work_brief_second_tiny_case_pilot.py",
+      "tests/test_decision_work_brief_small_pattern_review.py",
+      "tests/test_decision_work_brief_third_diversity_case_pilot.py",
+      "tests/test_decision_work_brief_three_case_pattern_review.py",
+      "tests/test_decision_work_brief_plain_language_renderer_patch.py",
+      "tests/test_decision_work_brief_plain_language_rereview.py",
+      "tests/test_decision_work_brief_local_private_adequacy_check.py",
+      "tests/test_decision_work_brief_expansion_runtime_decision_gate.py",
+      "tests/test_decision_work_brief_conversation_interpretation_gap_map.py",
+      "tests/test_decision_work_conversation_interpretation_contract.py",
+      "tests/test_decision_work_conversation_interpretation_contract_packet_review.py",
+      "tests/test_decision_work_conversation_interpretation_packets.py",
+      "tests/test_decision_work_conversation_interpretation_tiny_offline_read.py",
+      "tests/test_decision_work_conversation_interpretation_second_tiny_offline_read.py",
+      "tests/test_decision_work_conversation_interpretation_read_schema.py",
+      "tests/test_decision_work_conversation_interpretation_read_comparison.py",
+      "tests/test_decision_work_brief_interpretation_enrichment_test.py",
+      "tests/test_decision_work_brief_original_vs_enriched_review.py",
+      "tests/test_decision_work_brief_second_enrichment_test.py",
+      "tests/test_decision_work_brief_enriched_pattern_review.py",
+      "tests/test_decision_work_brief_enrichment_rules_contract.py",
+      "tests/test_decision_work_brief_enrichment.py",
+      "tests/test_decision_work_brief_enriched_builder_output_review.py",
+      "tests/test_decision_work_brief_enrichment_builder_rule_patch.py",
+      "tests/test_decision_work_brief_enrichment_builder_rule_patch_review.py",
+      "tests/test_decision_work_brief_offline_system_closure_gate.py"
+    ]
+  },
+  "packaging_gate_files": [
+    "docs/conversation-understanding/decision-work-brief-pr114-pr144-packaging-gate-v0.md",
+    "docs/conversation-understanding/decision-work-brief-pr114-pr144-package-manifest-v0.json",
+    "tests/test_decision_work_brief_pr114_pr144_package_gate.py"
+  ],
+  "phase_summary": {
+    "strongest_useful_signal": {
+      "summary": "The offline chain now runs from completed-run source/status packets to plain-language briefs, bounded provisional interpretation reads, deterministic enrichment rules, and builder-generated enriched examples.",
+      "evidence_refs": [
+        "docs/conversation-understanding/decision-work-brief-builder-enriched-launch-public-enterprise-beta-v0.md",
+        "docs/conversation-understanding/decision-work-brief-builder-enriched-deploy-assisted-intake-routing-v0.md",
+        "reviews/codex-assisted/decision-work-brief-enrichment-builder-rule-patch-review-v0/review.json",
+        "reviews/codex-assisted/decision-work-brief-offline-system-closure-gate-v0/review.json"
+      ],
+      "why_it_matters": "The brief can make the decision-work action consequence easier to understand while keeping limits visible."
+    },
+    "strongest_unresolved_risk": {
+      "summary": "Checked-in-safe context is compressed and interpretation remains non-human, so source depth and private nuance can still change the read.",
+      "risk_refs": [
+        "reviews/codex-assisted/decision-work-brief-local-private-adequacy-check-v0/review.json",
+        "reviews/codex-assisted/decision-work-brief-offline-system-closure-gate-v0/review.json"
+      ],
+      "why_it_matters": "The package is coherent enough to inspect, not strong enough to claim product behavior."
+    }
+  },
+  "boundary_summary": {
+    "offline_downstream_only": true,
+    "runtime_integration_not_implemented": true,
+    "runtime_integration_not_recommended_from_package_alone": true,
+    "human_validation_absent": true,
+    "product_proof_absent": true,
+    "agent_action_not_authorized": true,
+    "answer_quality_not_scored": true,
+    "raw_private_content_not_checked_in": true,
+    "provider_text_not_checked_in": true
+  },
+  "validation_checklist": [
+    {
+      "name": "focused_pytest",
+      "command": "python3 -m pytest -q tests/test_decision_work_brief_pr114_pr144_package_gate.py plus focused Decision Work Brief tests"
+    },
+    {
+      "name": "json_parse",
+      "command": "jq . over all JSON artifacts listed in the manifest plus this manifest"
+    },
+    {
+      "name": "boundary_lint",
+      "command": "python3 scripts/evals/lint_product_delta_evidence.py --paths over package docs/json/reviews/rendered examples"
+    },
+    {
+      "name": "diff_check",
+      "command": "git diff --check"
+    },
+    {
+      "name": "markdown_links",
+      "command": "local Markdown link check over touched Markdown"
+    },
+    {
+      "name": "privacy_markers",
+      "command": "scan touched docs/json/tests/rendered examples for private markers and local absolute paths"
+    },
+    {
+      "name": "runtime_boundary",
+      "command": "git status --short -- SKILL.md scripts/skill"
+    }
+  ],
+  "explicit_staging_list": {
+    "stage_package_file_groups": [
+      "included_files.docs",
+      "included_files.schemas_and_contracts",
+      "included_files.review_artifacts",
+      "included_files.rendered_and_enriched_examples",
+      "included_files.code_modules",
+      "included_files.cli_scripts",
+      "included_files.tests",
+      "packaging_gate_files"
+    ],
+    "stage_discoverability_updates_if_present": [
+      "PROGRESS.md",
+      "HOW_IT_WORKS.md",
+      "README.md",
+      "docs/board/README.md"
+    ],
+    "do_not_stage": [
+      "SKILL.md",
+      "scripts/skill/*",
+      "plans/*",
+      "reviews/synthetic/*",
+      "docs/lolla-*",
+      "archive paths or local run directories",
+      "runtime temp state",
+      "raw/private transcripts, memos, revised answers, ledgers, provider text, or secrets"
+    ]
+  },
+  "suggested_commit_message": "Package Decision Work Brief offline evidence surface PR114-PR145",
+  "suggested_pr_description": {
+    "summary": "Packages the offline Decision Work Brief and Decision Work Conversation Interpretation evidence surface from PR114 through PR144, including schemas, packet builders, renderer, interpretation read scaffolding, enrichment rules, deterministic builder, examples, reviews, and tests.",
+    "strongest_signal": "The offline chain can create readable, lower-claim briefs and deterministic enriched examples that clarify action consequence while preserving uncertainty.",
+    "strongest_risk": "Source depth remains limited and interpretation is not human validated.",
+    "boundaries": [
+      "No runtime integration.",
+      "No Lolla invocation.",
+      "No model calls.",
+      "No archive mutation.",
+      "No product proof.",
+      "No human validation.",
+      "No answer-quality scoring.",
+      "No agent action authorization."
+    ],
+    "validation": "See manifest validation_checklist and test_decision_work_brief_pr114_pr144_package_gate.py."
+  },
+  "next_recommendation": {
+    "recommended_stop": "Stop after PR145 and decide whether to stage/package PR114-PR145 explicitly.",
+    "possible_future_prs_after_maintainer_review": [
+      "third_builder_case",
+      "more_local_private_adequacy_checks",
+      "human_review_intake",
+      "runtime_attachment_plan_only"
+    ],
+    "not_recommended_next": [
+      "runtime integration from package gate alone",
+      "product-readiness claim",
+      "agent-action authorization"
+    ]
+  },
+  "non_claims": [
+    "package_gate_is_not_product_proof",
+    "package_gate_is_not_human_validation",
+    "package_gate_is_not_runtime_integration",
+    "package_gate_is_not_answer_quality_scoring",
+    "package_gate_is_not_agent_action_authorization",
+    "clean_artifacts_do_not_imply_good_advice",
+    "one_offline_package_is_not_general_evidence",
+    "future_human_review_required"
+  ]
+}

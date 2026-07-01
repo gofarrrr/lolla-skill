@@ -1,0 +1,227 @@
+{
+  "schema_version": "lolla.decision_work_brief_usefulness_review.v0",
+  "review_metadata": {
+    "review_id": "decision_work_brief_usefulness_review:ceo-remove-founding-cofounder:20260627T093131Z_59d153:pr118",
+    "created_at": "2026-07-01T00:00:00Z",
+    "review_mode": "codex_assisted_provisional_checked_in_safe",
+    "case_ref": "ceo-remove-founding-cofounder/20260627T093131Z_59d153",
+    "review_question": "Does the rendered Decision Work Brief answer what this process made the decision-maker see or do differently?",
+    "review_scope": "One checked-in-safe provisional case only; no human review and no broad batch."
+  },
+  "input_refs": [
+    {
+      "artifact": "docs/conversation-understanding/decision-work-receipt-debug-summary-v0.md",
+      "role": "internal_receipt_debug_summary_contract",
+      "content_boundary": "reviewed as the existing internal maintainer/debug layer, not as a same-case customer brief",
+      "raw_private_content_included": false,
+      "provider_text_included": false
+    },
+    {
+      "artifact": "reviews/codex-assisted/decision-work-brief-draft-pilot-v0/review.json",
+      "role": "structured_pr116_brief_draft",
+      "content_boundary": "checked-in-safe provisional draft review with embedded lolla.decision_work_brief.v0 object",
+      "raw_private_content_included": false,
+      "provider_text_included": false
+    },
+    {
+      "artifact": "docs/conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md",
+      "role": "pr117_rendered_markdown_brief",
+      "content_boundary": "deterministic rendering of the embedded PR116 brief, without new semantic content",
+      "raw_private_content_included": false,
+      "provider_text_included": false
+    }
+  ],
+  "custody_flags": {
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "archive_mutated": false,
+    "model_calls": 0,
+    "human_validated": false,
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "broad_judge_used": false,
+    "automatic_labels_created": false,
+    "raw_private_content_included": false,
+    "provider_text_included": false,
+    "checked_in_safe": true,
+    "local_absolute_paths_included": false
+  },
+  "reviewed_artifacts": [
+    {
+      "artifact": "Decision Work Receipt Debug Summary",
+      "path": "docs/conversation-understanding/decision-work-receipt-debug-summary-v0.md",
+      "review_read": "Useful as internal artifact/custody status, but it names machinery more than decision consequence.",
+      "customer_facing_fit": "too_machinery_focused"
+    },
+    {
+      "artifact": "PR116 structured Decision Work Brief draft",
+      "path": "reviews/codex-assisted/decision-work-brief-draft-pilot-v0/review.json",
+      "review_read": "Contains the decision story and custody boundaries, but JSON shape is not a humane reading surface.",
+      "customer_facing_fit": "partly_clear"
+    },
+    {
+      "artifact": "PR117 rendered Markdown brief",
+      "path": "docs/conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md",
+      "review_read": "Makes the decision/action consequence easier to scan while preserving uncertainty, source status, custody flags, and non-claims.",
+      "customer_facing_fit": "partly_clear"
+    }
+  ],
+  "usefulness_questions": [
+    {
+      "question_id": "name_decision_under_30_seconds",
+      "question": "Can a reader name the decision in under 30 seconds?",
+      "answer_label": "clear",
+      "rationale": "The first section states the CEO/cofounder operating-leadership decision directly."
+    },
+    {
+      "question_id": "name_likely_starting_direction",
+      "question": "Can a reader name the likely starting direction?",
+      "answer_label": "partly_clear",
+      "rationale": "The rendered brief names a possible reset/cooperation-test starting path, but marks it high uncertainty because the raw baseline is absent."
+    },
+    {
+      "question_id": "name_what_lolla_pressed_on",
+      "question": "Can a reader name what Lolla pressed on?",
+      "answer_label": "clear",
+      "rationale": "Authority ambiguity, stop conditions, transition-role scope, and glossy role framing are visible."
+    },
+    {
+      "question_id": "name_what_changed",
+      "question": "Can a reader name what changed?",
+      "answer_label": "clear",
+      "rationale": "The rendered brief names authority-first movement, narrower transition support, and stop-loss conditions."
+    },
+    {
+      "question_id": "name_action_difference",
+      "question": "Can a reader name what action would be different now?",
+      "answer_label": "clear",
+      "rationale": "The action consequence says the CEO would align authority transfer and escalation triggers before the conversation."
+    },
+    {
+      "question_id": "name_what_still_might_be_wrong",
+      "question": "Can a reader name what still might be wrong?",
+      "answer_label": "clear",
+      "rationale": "Missing raw context, vanilla overlap, relationship risk, and legal/governance uncertainty are visible."
+    },
+    {
+      "question_id": "name_what_was_not_proven",
+      "question": "Can a reader name what was not proven?",
+      "answer_label": "clear",
+      "rationale": "The rendered brief has a dedicated not-proven section plus non-claims and custody flags."
+    },
+    {
+      "question_id": "distinguish_brief_from_receipt_appendix",
+      "question": "Can a reader distinguish the brief from the receipt appendix?",
+      "answer_label": "partly_clear",
+      "rationale": "The rendered brief starts with decision sections, but source refs and field-key labels still make it feel partly internal."
+    },
+    {
+      "question_id": "useful_or_merely_impressive",
+      "question": "Does the brief feel useful, or merely impressive?",
+      "answer_label": "partly_clear",
+      "rationale": "It is useful where it names action consequence, but still carries enough schema vocabulary to feel like a product-shape artifact."
+    },
+    {
+      "question_id": "overclaim_from_clean_receipt",
+      "question": "Does the brief overclaim because the receipt is clean?",
+      "answer_label": "overclaim_risk",
+      "rationale": "The rendered page is orderly enough that readers may overweight a one-case, non-human-validated draft."
+    },
+    {
+      "question_id": "hide_uncertainty",
+      "question": "Does the brief hide uncertainty?",
+      "answer_label": "clear",
+      "rationale": "High uncertainty and missingness are prominent in the starting-direction and remaining-risk sections."
+    },
+    {
+      "question_id": "preserve_source_missingness_without_drowning_story",
+      "question": "Does the brief preserve source/missingness status without drowning the story?",
+      "answer_label": "partly_clear",
+      "rationale": "The story comes first, but per-section source refs still add a lot of artifact language."
+    },
+    {
+      "question_id": "avoid_internal_machinery_labels",
+      "question": "Does the brief avoid internal machinery labels?",
+      "answer_label": "partly_clear",
+      "rationale": "Human-readable headings help, but field keys and artifact paths remain visible because PR117 is a conservative renderer."
+    },
+    {
+      "question_id": "evidence_too_thin_for_customer_example",
+      "question": "Is the evidence too thin for a customer-facing example?",
+      "answer_label": "requires_human_review",
+      "rationale": "A customer-facing example should wait for either human review or at least a second tiny case because this artifact uses one Codex-assisted draft only."
+    }
+  ],
+  "readability_findings": {
+    "strongest_useful_signal": "The rendered brief clearly answers the action-consequence question: move authority first, narrow transition support, and set stop conditions before the cofounder conversation.",
+    "main_readability_gain_over_receipt_debug_summary": "The receipt debug summary explains artifact health and missingness; the brief explains what changed in the decision story.",
+    "main_readability_limit": "Schema key names and source refs are still visible enough that the page reads like an internal product-shape artifact rather than final customer copy."
+  },
+  "overclaim_findings": {
+    "strongest_overclaim_risk": "The Markdown format makes the one-case Codex-assisted read feel more complete than the source boundary permits.",
+    "why_it_matters": "A reader could mistake clean custody and clear prose for proof that Lolla improved the decision.",
+    "mitigation_present": "The rendered brief shows human validation false, product proof false, answer-quality scoring false, agent action authorization false, high uncertainty, missingness, and explicit non-claims."
+  },
+  "evidence_support_findings": {
+    "support_strength": "partly_clear",
+    "support_read": "The rendered brief is grounded in checked-in-safe PR116 structured fields and PR117 deterministic rendering, but the underlying semantic read is still Codex-assisted and one-case only.",
+    "what_would_need_to_be_true_before_customer_facing": [
+      "At least one more diverse case should show the brief can name action consequence without overclaiming.",
+      "A human reviewer should check whether the starting direction and action delta are fair.",
+      "The renderer should reduce internal artifact language if the output is meant for customers.",
+      "The source boundary should remain visible enough that clean artifacts are not mistaken for good advice."
+    ]
+  },
+  "missingness_findings": {
+    "strongest_missingness_thinness_risk": "The review cannot know whether the starting direction, vanilla overlap, user intent, and lost-value severity are accurate because raw/private context is not checked in and no human review exists.",
+    "same_case_receipt_debug_summary_gap": "No same-case checked-in receipt debug summary was reviewed for the cofounder case; the comparison uses the receipt debug-summary contract and the PR117 rendered brief.",
+    "human_followup_needed": [
+      "Did the CEO already intend to move authority before the Lolla-shaped draft?",
+      "Would an authority-first action overcorrect against trust, dignity, or customer continuity?",
+      "Were legal, equity, board, or employment constraints material but outside the checked-in-safe packet?"
+    ]
+  },
+  "decision_gate": {
+    "outcome": "proceed_to_tiny_second_case",
+    "allowed_outcomes": [
+      "proceed_to_tiny_second_case",
+      "proceed_to_schema_or_renderer_patch",
+      "pause_until_human_review",
+      "stop_and_simplify",
+      "proceed_to_runtime_integration_plan_later"
+    ],
+    "rationale": "The rendered brief is useful enough to test once more, but one Codex-assisted checked-in-safe case is too thin for customer-facing example work or runtime planning.",
+    "blocked_outcomes": [
+      {
+        "outcome": "proceed_to_runtime_integration_plan_later",
+        "reason": "Not justified after one non-human-validated case."
+      },
+      {
+        "outcome": "stop_and_simplify",
+        "reason": "The brief does answer what changed, even if it still carries internal artifact language."
+      }
+    ]
+  },
+  "non_claims": [
+    "review_is_codex_assisted",
+    "not_human_validated",
+    "not_product_proof",
+    "not_answer_quality_score",
+    "not_agent_action_authorization",
+    "not_correctness_proof",
+    "clean_artifacts_do_not_imply_good_advice",
+    "one_case_is_not_general_evidence",
+    "future_human_review_required"
+  ],
+  "next_recommendation": {
+    "recommended_next_pr": "PR119 Decision Work Brief Second Tiny Case Pilot v0",
+    "recommended_action": "Repeat the PR115 to PR117 path on one additional diverse completed run, then compare whether the brief still names action consequence without hiding uncertainty.",
+    "do_not_do_next": [
+      "Do not create runtime integration.",
+      "Do not broaden to a batch.",
+      "Do not publish a customer-facing example.",
+      "Do not treat this one case as product proof."
+    ]
+  }
+}

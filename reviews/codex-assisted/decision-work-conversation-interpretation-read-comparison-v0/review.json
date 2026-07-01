@@ -1,0 +1,297 @@
+{
+  "schema_version": "lolla.decision_work_conversation_interpretation_read_comparison.v0",
+  "review_metadata": {
+    "review_id": "decision_work_conversation_interpretation_read_comparison:pr134",
+    "created_at": "2026-07-01T00:00:00Z",
+    "review_mode": "codex_assisted_provisional_checked_in_safe_comparison",
+    "read_count": 2,
+    "comparison_scope": "Compare PR131 and PR132 tiny offline reads through the PR133 read schema shape.",
+    "notes": [
+      "PR134 is a comparison/review slice only.",
+      "No third interpretation read is created.",
+      "No Decision Work Brief enrichment is implemented in this PR."
+    ]
+  },
+  "custody_flags": {
+    "human_validated": false,
+    "product_proof": false,
+    "model_calls": 0,
+    "archive_mutated": false,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "raw_private_content_checked_in": false,
+    "provider_text_checked_in": false,
+    "local_absolute_paths_checked_in": false,
+    "broad_judge_used": false,
+    "automatic_labels_created": false,
+    "runtime_extraction_implemented": false,
+    "brief_enrichment_implemented": false,
+    "comparison_is_provisional": true
+  },
+  "compared_reads": [
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "decision_family": "enterprise_launch_or_gtm",
+      "read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-tiny-offline-read-v0/read.json",
+      "rendered_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md",
+      "read_schema_version": "lolla.decision_work_conversation_interpretation_tiny_offline_read.v0",
+      "pr133_schema_compatibility": "pre_schema_read_with_matching_field_shape",
+      "custody_summary": {
+        "human_validated": false,
+        "product_proof": false,
+        "model_calls": 0,
+        "runtime_invoked": false,
+        "skill_invoked": false,
+        "archive_mutated": false,
+        "raw_private_content_checked_in": false,
+        "provider_text_checked_in": false
+      },
+      "interpreted_field_count": 11,
+      "unresolved_field_count": 7
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "decision_family": "healthcare_operations_or_deployment",
+      "read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-second-tiny-offline-read-v0/read.json",
+      "rendered_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md",
+      "read_schema_version": "lolla.decision_work_conversation_interpretation_second_tiny_offline_read.v0",
+      "pr133_schema_compatibility": "pre_schema_read_with_matching_field_shape",
+      "custody_summary": {
+        "human_validated": false,
+        "product_proof": false,
+        "model_calls": 0,
+        "runtime_invoked": false,
+        "skill_invoked": false,
+        "archive_mutated": false,
+        "raw_private_content_checked_in": false,
+        "provider_text_checked_in": false
+      },
+      "interpreted_field_count": 11,
+      "unresolved_field_count": 7
+    }
+  ],
+  "field_stability_comparison": [
+    {
+      "field_name": "decision_question",
+      "pr131_status": "interpreted_provisional",
+      "pr132_status": "interpreted_provisional",
+      "stable_pattern": "stable_useful",
+      "source_depth_pattern": "safe_summary_sufficient_for_tiny_read",
+      "could_feed_brief": true,
+      "should_feed_brief_now": true,
+      "requires_human_review_before_user_facing": true,
+      "risk_if_used_in_brief": "Low risk if framed as provisional decision description with source limits; it must not imply human validation or correctness."
+    },
+    {
+      "field_name": "likely_starting_direction",
+      "pr131_status": "partial_interpretation",
+      "pr132_status": "partial_interpretation",
+      "stable_pattern": "stable_partial",
+      "source_depth_pattern": "safe_summary_partial_private_context_needed",
+      "could_feed_brief": true,
+      "should_feed_brief_now": true,
+      "requires_human_review_before_user_facing": true,
+      "risk_if_used_in_brief": "Useful for saying what may already have been present, but high risk if the brief treats the starting direction as settled conversation truth."
+    },
+    {
+      "field_name": "revised_direction_or_action_consequence",
+      "pr131_status": "interpreted_provisional",
+      "pr132_status": "interpreted_provisional",
+      "stable_pattern": "stable_useful",
+      "source_depth_pattern": "safe_summary_sufficient_for_tiny_read",
+      "could_feed_brief": true,
+      "should_feed_brief_now": true,
+      "requires_human_review_before_user_facing": true,
+      "risk_if_used_in_brief": "The field is the strongest useful signal, but it can overclaim if phrased as proof that Lolla improved the decision."
+    },
+    {
+      "field_name": "live_options",
+      "pr131_status": "partial_interpretation",
+      "pr132_status": "partial_interpretation",
+      "stable_pattern": "stable_partial",
+      "source_depth_pattern": "safe_summary_partial_private_context_needed",
+      "could_feed_brief": true,
+      "should_feed_brief_now": false,
+      "requires_human_review_before_user_facing": true,
+      "risk_if_used_in_brief": "Visible options can help inspection, but the checked-in-safe reads cannot prove the complete live option set."
+    },
+    {
+      "field_name": "abandoned_or_rejected_options",
+      "pr131_status": "partial_interpretation",
+      "pr132_status": "partial_interpretation",
+      "stable_pattern": "stable_partial",
+      "source_depth_pattern": "local_private_or_human_review_needed",
+      "could_feed_brief": true,
+      "should_feed_brief_now": false,
+      "requires_human_review_before_user_facing": true,
+      "risk_if_used_in_brief": "High risk of falsely converting gated or deprioritized options into rejected options."
+    },
+    {
+      "field_name": "decision_thresholds",
+      "pr131_status": "partial_interpretation",
+      "pr132_status": "partial_interpretation",
+      "stable_pattern": "stable_useful",
+      "source_depth_pattern": "safe_summary_sufficient_for_tiny_read",
+      "could_feed_brief": true,
+      "should_feed_brief_now": true,
+      "requires_human_review_before_user_facing": true,
+      "risk_if_used_in_brief": "Useful when phrased as visible thresholds; risky if presented as complete operating criteria."
+    },
+    {
+      "field_name": "evidence_gates",
+      "pr131_status": "partial_interpretation",
+      "pr132_status": "partial_interpretation",
+      "stable_pattern": "stable_useful",
+      "source_depth_pattern": "safe_summary_sufficient_for_tiny_read",
+      "could_feed_brief": true,
+      "should_feed_brief_now": true,
+      "requires_human_review_before_user_facing": true,
+      "risk_if_used_in_brief": "Useful for making action consequence concrete; risky if the brief implies the listed gates are exhaustive or validated."
+    },
+    {
+      "field_name": "useful_friction",
+      "pr131_status": "partial_interpretation",
+      "pr132_status": "partial_interpretation",
+      "stable_pattern": "stable_useful",
+      "source_depth_pattern": "safe_summary_partial_private_context_needed",
+      "could_feed_brief": true,
+      "should_feed_brief_now": true,
+      "requires_human_review_before_user_facing": true,
+      "risk_if_used_in_brief": "Useful only as a provisional description of what the process appears to have sharpened; it must not become a score or quality label."
+    },
+    {
+      "field_name": "noisy_friction",
+      "pr131_status": "partial_interpretation",
+      "pr132_status": "partial_interpretation",
+      "stable_pattern": "stable_partial",
+      "source_depth_pattern": "safe_summary_partial_private_context_needed",
+      "could_feed_brief": true,
+      "should_feed_brief_now": false,
+      "requires_human_review_before_user_facing": true,
+      "risk_if_used_in_brief": "Useful as an internal caution, but too easy to turn into unsupported criticism of the revised answer."
+    },
+    {
+      "field_name": "lost_value",
+      "pr131_status": "insufficient_context",
+      "pr132_status": "insufficient_context",
+      "stable_pattern": "stable_insufficient_context",
+      "source_depth_pattern": "local_private_or_human_review_needed",
+      "could_feed_brief": true,
+      "should_feed_brief_now": false,
+      "requires_human_review_before_user_facing": true,
+      "risk_if_used_in_brief": "High risk. Lost value is visible as a question but not supportable as a brief claim from checked-in-safe summaries."
+    },
+    {
+      "field_name": "what_the_final_answer_does_not_prove",
+      "pr131_status": "interpreted_provisional",
+      "pr132_status": "interpreted_provisional",
+      "stable_pattern": "stable_useful",
+      "source_depth_pattern": "safe_summary_sufficient_for_tiny_read",
+      "could_feed_brief": true,
+      "should_feed_brief_now": true,
+      "requires_human_review_before_user_facing": false,
+      "risk_if_used_in_brief": "Low risk and important. The main risk is burying this boundary too far below the decision story."
+    }
+  ],
+  "shared_useful_signals": {
+    "fields_that_worked_in_both_reads": [
+      "decision_question",
+      "revised_direction_or_action_consequence",
+      "decision_thresholds",
+      "evidence_gates",
+      "useful_friction",
+      "what_the_final_answer_does_not_prove"
+    ],
+    "action_consequence_pattern": "Both reads convert the abstract value of the audit into a concrete action consequence. Launch beta shifts toward equal paid private-pilot offers and proof-producing buyer behavior. Intake routing shifts toward a narrow operating test, backlog diagnosis, four must-pass gates, hard pause triggers, and narrower sales meaning.",
+    "sharpened_vs_already_present_read": "Both reads help separate what may already have been present from what the process appears to have sharpened. That is important because the brief should not imply Lolla invented every cautious direction from nothing.",
+    "brief_relevance": "The useful signals are decision-story fields, not internal machinery fields. They can make the Decision Work Brief clearer if rendered in plain language with uncertainty nearby."
+  },
+  "shared_uncertainties": {
+    "fields_uncertain_in_both_reads": [
+      "likely_starting_direction",
+      "abandoned_or_rejected_options",
+      "lost_value"
+    ],
+    "why_lost_value_remains_hard": "Lost value depends on private context and human judgment about whether caution, gate compression, or narrowed scope removed something valuable.",
+    "why_starting_direction_remains_partial": "Both reads rely on checked-in-safe summaries rather than full raw conversation, original/revised answer context, and private memo detail.",
+    "why_abandoned_options_remain_source_limited": "The reads can see options being de-emphasized or gated, but cannot safely distinguish rejected, deferred, narrowed, or still-live paths.",
+    "why_values_stakeholders_assistant_influence_remain_outside_scope": "Those fields require raw conversation interpretation, local-private context, or human review and were intentionally outside the tiny read subset."
+  },
+  "brief_enrichment_assessment": {
+    "would_interpretation_reads_help_decision_work_brief": true,
+    "fields_that_could_safely_enrich_the_brief_now": [
+      "decision_question",
+      "likely_starting_direction",
+      "revised_direction_or_action_consequence",
+      "decision_thresholds",
+      "evidence_gates",
+      "useful_friction",
+      "what_the_final_answer_does_not_prove"
+    ],
+    "fields_that_should_stay_evidence_or_inspection_only": [
+      "live_options",
+      "abandoned_or_rejected_options",
+      "noisy_friction",
+      "lost_value"
+    ],
+    "fields_too_speculative_for_the_brief": [
+      "lost_value",
+      "abandoned_or_rejected_options",
+      "assistant_influence_on_user_framing",
+      "user_values_or_priorities",
+      "stakeholder_obligations"
+    ],
+    "would_enrichment_improve_user_value_or_add_machinery": "Likely improve user value if the enrichment is a small plain-language note about what was sharpened versus what may already have been present. It would add machinery if it exposes field names, statuses, or packet language in the main body.",
+    "smallest_safe_enrichment_test": "Enrich exactly one existing brief, preferably the launch-public-enterprise-beta rendered brief, with a compact plain-language conversation-story note sourced from PR131. Do not modify runtime, create a new read, or claim product proof."
+  },
+  "risks": {
+    "source_depth_risk": "Both reads depend on checked-in-safe summaries and omit raw conversation, raw revised answer, raw memo, provider text, and private ledgers.",
+    "overclaim_risk": "A stable two-read pattern can make provisional interpretation feel like validated conversation truth.",
+    "product_language_risk": "If enrichment surfaces field names or source-status vocabulary, it will make the brief feel like internal machinery again.",
+    "quality_label_risk": "Useful friction and noisy friction must stay descriptive; they must not become answer-quality labels or proof that Lolla improved advice.",
+    "runtime_integration_risk": "Two provisional reads are not enough to attach interpretation reads to live Lolla runs or agent workflows."
+  },
+  "decision_gate": {
+    "outcome": "proceed_to_brief_enrichment_test",
+    "allowed_outcomes": [
+      "proceed_to_brief_enrichment_test",
+      "run_third_tiny_offline_read",
+      "patch_interpretation_packet_builder",
+      "patch_interpretation_read_schema",
+      "pause_until_human_review",
+      "stop_and_simplify"
+    ],
+    "rationale": "Both reads show stable useful fields that could cautiously improve one Decision Work Brief without overclaiming. The read schema and packet builder did not show blocking shape problems. The next step should test whether interpretation improves the user-facing brief, not add another backend read first.",
+    "runtime_integration_recommended": false,
+    "product_readiness_claimed": false
+  },
+  "next_recommendation": {
+    "recommended_next_pr": "PR135 Decision Work Brief Interpretation Enrichment Test v0",
+    "recommended_action": "Use one existing interpretation read, preferably PR131 launch-public-enterprise-beta, to enrich exactly one existing rendered Decision Work Brief with a small plain-language conversation-story note.",
+    "do_not_do_next": [
+      "Do not add runtime integration.",
+      "Do not create a third read before testing brief value.",
+      "Do not enrich multiple briefs.",
+      "Do not claim product proof.",
+      "Do not use interpreted fields as quality labels."
+    ]
+  },
+  "non_claims": [
+    "comparison_is_codex_assisted",
+    "comparison_is_provisional",
+    "not_human_validated",
+    "not_product_proof",
+    "not_answer_quality_score",
+    "not_agent_action_authorization",
+    "not_correctness_proof",
+    "not_runtime_integration",
+    "not_runtime_extraction",
+    "not_lolla_runtime_change",
+    "two_reads_are_not_general_evidence",
+    "clean_artifacts_do_not_imply_good_advice",
+    "stable_field_shape_is_not_product_readiness",
+    "future_human_review_required"
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "schema_version": "lolla.decision_work_brief_enriched_builder_output_review.v0",
+  "review_metadata": {
+    "review_id": "decision_work_brief_enriched_builder_output_review:v0",
+    "created_at": "2026-07-01T00:00:00Z",
+    "review_mode": "codex_assisted_offline_builder_output_review",
+    "case_count": 2,
+    "source_builder_doc_ref": "docs/conversation-understanding/decision-work-brief-offline-enriched-builder-v0.md",
+    "source_rules_contract_ref": "docs/conversation-understanding/decision-work-brief-enrichment-rules-contract-v0.json",
+    "source_pattern_review_ref": "reviews/codex-assisted/decision-work-brief-enriched-pattern-review-v0/review.json",
+    "notes": [
+      "This review compares deterministic builder output against the prior hand-built enriched examples.",
+      "The review is provisional and not human validation.",
+      "No runtime integration or model call was performed."
+    ]
+  },
+  "custody_flags": {
+    "human_validated": false,
+    "product_proof": false,
+    "model_calls": 0,
+    "archive_mutated": false,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "raw_private_content_checked_in": false,
+    "provider_text_checked_in": false,
+    "local_absolute_paths_checked_in": false,
+    "runtime_integration_implemented": false,
+    "new_interpretation_read_created": false,
+    "new_lolla_run_created": false,
+    "hand_built_examples_modified": false
+  },
+  "reviewed_outputs": [
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "decision_family": "enterprise_launch_or_gtm",
+      "generated_enriched_brief_ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-launch-public-enterprise-beta-v0.md",
+      "hand_built_enriched_brief_ref": "docs/conversation-understanding/decision-work-brief-enriched-launch-public-enterprise-beta-v0.md",
+      "original_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md",
+      "interpretation_read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-tiny-offline-read-v0/read.json",
+      "generated_output_exists": true,
+      "hand_built_output_exists": true,
+      "original_left_untouched": true,
+      "builder_created_separate_output": true
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "decision_family": "healthcare_operations_or_deployment",
+      "generated_enriched_brief_ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-deploy-assisted-intake-routing-v0.md",
+      "hand_built_enriched_brief_ref": "docs/conversation-understanding/decision-work-brief-enriched-deploy-assisted-intake-routing-v0.md",
+      "original_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md",
+      "interpretation_read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-second-tiny-offline-read-v0/read.json",
+      "generated_output_exists": true,
+      "hand_built_output_exists": true,
+      "original_left_untouched": true,
+      "builder_created_separate_output": true
+    }
+  ],
+  "comparison_to_hand_built_examples": [
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "hand_built_intent_matched": "partly",
+      "useful_signal_preserved": true,
+      "uncertainty_preserved": true,
+      "non_claims_preserved": true,
+      "evidence_only_fields_kept_out_of_main_body": true,
+      "overclaim_avoided": true,
+      "readability_read": "partly_clear",
+      "generated_strength": "The generated brief preserves the key launch-beta signal: the interpretation separates an already-conditional starting direction from a sharpened action consequence around paid private pilots, buyer behavior, and named public-launch outcomes.",
+      "generated_weakness": "The generated section repeats template phrases and some interpreted values, so it feels less humane than the hand-built example.",
+      "comparison_read": "The builder output carries the hand-built intent but should be patched before testing another case."
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "hand_built_intent_matched": "partly",
+      "useful_signal_preserved": true,
+      "uncertainty_preserved": true,
+      "non_claims_preserved": true,
+      "evidence_only_fields_kept_out_of_main_body": true,
+      "overclaim_avoided": true,
+      "readability_read": "partly_clear",
+      "generated_strength": "The generated brief preserves the deployment signal: the interpretation distinguishes the earlier narrow-pilot posture from the sharpened consequence of a backlog diagnostic, fewer operating gates, and hard pause triggers.",
+      "generated_weakness": "The generated prose is more mechanical than the hand-built version and repeats phrases such as visible thresholds and visible evidence gates.",
+      "comparison_read": "The builder output is rule-compliant and useful, but the templates need a small language patch before a third builder case."
+    }
+  ],
+  "rule_compliance": {
+    "allowed_user_facing_fields_only": true,
+    "evidence_only_fields_excluded_from_main_body": true,
+    "uncertainty_visible": true,
+    "source_limits_visible": true,
+    "non_claims_visible": true,
+    "must_not_be_used_as_quality_label_preserved": true,
+    "original_briefs_preserved_unchanged": true,
+    "separate_outputs_created": true,
+    "no_model_calls": true,
+    "no_runtime_invocation": true,
+    "no_skill_invocation": true,
+    "no_archive_mutation": true,
+    "rule_compliance_summary": "The deterministic builder complied with PR139 rules, but rule compliance alone did not make the output as readable as the hand-built examples."
+  },
+  "readability_assessment": {
+    "overall_readability": "partly_clear",
+    "did_builder_preserve_useful_enrichment_signal": true,
+    "did_builder_preserve_uncertainty": true,
+    "did_builder_preserve_non_claims": true,
+    "did_builder_avoid_evidence_only_fields_in_main_body": true,
+    "did_builder_avoid_overclaiming": true,
+    "is_readable_for_busy_decision_maker": "partly",
+    "is_output_too_templated": true,
+    "good_enough_for_another_offline_case": false,
+    "good_enough_for_runtime_planning": false,
+    "readability_summary": "The generated outputs are safe and informative, but they read like deterministic scaffolding rather than polished product-facing briefs."
+  },
+  "risk_assessment": {
+    "source_depth_risk": "Source depth remains limited because the builder uses checked-in-safe interpretation reads and does not inspect raw/private conversation context.",
+    "overclaim_risk": "The builder avoids explicit proof language, but smoother generated prose could still make provisional interpretation feel more settled than it is.",
+    "product_language_risk": "The current templates repeat source-derived phrasing and can sound mechanical compared with the hand-built examples.",
+    "quality_label_risk": "Useful friction remains described as a non-scoring read, and evidence-only fields stay out of the main body.",
+    "runtime_integration_risk": "Runtime integration would be premature because the builder has not yet shown humane enough output or local-private adequacy across builder-generated cases.",
+    "strongest_risk": "The strongest risk is product-language drift: deterministic templates can be safe but still too stiff to serve a user-facing brief."
+  },
+  "decision_gate": {
+    "outcome": "proceed_to_builder_rule_patch",
+    "allowed_outcomes": [
+      "proceed_to_builder_rule_patch",
+      "proceed_to_third_builder_case",
+      "proceed_to_offline_system_closure_gate",
+      "keep_hand_built_only",
+      "pause_until_human_review",
+      "stop_and_simplify"
+    ],
+    "rationale": "The builder produced safe, rule-compliant enriched briefs for both existing cases, but the generated language is more repetitive and mechanical than the hand-built examples. A narrow rule/template patch should come before a third builder case.",
+    "runtime_integration_recommended": false,
+    "product_readiness_claimed": false
+  },
+  "next_recommendation": {
+    "recommended_next_pr": "PR142 Decision Work Brief Enrichment Builder Rule Patch v0",
+    "recommended_action": "Patch the enrichment templates so generated prose is less repetitive while preserving PR139 field limits, uncertainty, source refs, and non-claims.",
+    "not_recommended": [
+      "runtime integration",
+      "third builder case before template patch",
+      "product-readiness claim",
+      "agent-action authorization"
+    ]
+  },
+  "non_claims": [
+    "review_is_codex_assisted",
+    "not_human_validated",
+    "not_product_proof",
+    "not_answer_quality_score",
+    "not_agent_action_authorization",
+    "not_correctness_proof",
+    "not_runtime_integration",
+    "not_new_interpretation_read",
+    "not_new_lolla_run",
+    "builder_output_is_not_better_as_fact",
+    "rule_compliance_is_not_product_readiness",
+    "clean_outputs_do_not_imply_good_advice",
+    "future_human_review_required"
+  ]
+}

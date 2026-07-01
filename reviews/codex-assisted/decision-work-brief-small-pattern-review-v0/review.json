@@ -1,0 +1,237 @@
+{
+  "schema_version": "lolla.decision_work_brief_small_pattern_review.v0",
+  "review_metadata": {
+    "review_id": "decision_work_brief_small_pattern_review:v0:2026-07-01",
+    "created_at": "2026-07-01T00:00:00Z",
+    "review_mode": "codex_assisted_provisional_checked_in_safe",
+    "case_count": 2,
+    "cases_reviewed": [
+      "ceo-remove-founding-cofounder",
+      "launch-public-enterprise-beta"
+    ],
+    "purpose": "Compare the first two rendered Decision Work Brief pilots and decide the next narrow follow-on."
+  },
+  "custody_flags": {
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "archive_mutated": false,
+    "model_calls": 0,
+    "human_validated": false,
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "broad_judge_used": false,
+    "automatic_labels_created": false,
+    "raw_private_content_included": false,
+    "provider_text_included": false,
+    "checked_in_safe": true,
+    "local_absolute_paths_included": false
+  },
+  "reviewed_cases": [
+    {
+      "case_id": "ceo-remove-founding-cofounder",
+      "run_id": "20260627T093131Z_59d153",
+      "source_refs": [
+        {
+          "path": "reviews/codex-assisted/decision-work-brief-draft-pilot-v0/review.json",
+          "role": "structured_brief_draft",
+          "status": "checked_in_safe_review_artifact"
+        },
+        {
+          "path": "docs/conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md",
+          "role": "rendered_brief",
+          "status": "checked_in_safe_markdown"
+        },
+        {
+          "path": "docs/conversation-understanding/decision-work-brief-usefulness-review-v0.md",
+          "role": "first_case_usefulness_gate",
+          "status": "checked_in_safe_review_doc"
+        }
+      ],
+      "decision_type": "founder_governance_and_operating_authority",
+      "decision_read": "Whether the CEO should remove a founding cofounder from operating product leadership while preserving a workable transition, customer continuity, and team clarity.",
+      "starting_direction_read": "The likely starting path may have been another cooperation reset or hybrid transition before fully moving authority, but the safe artifact cannot verify the original baseline.",
+      "pressure_read": "The brief says Lolla pressed on authority ambiguity, stop conditions before the conversation, and whether polished role language would hide the missed-delivery problem.",
+      "action_consequence_read": "Before the cofounder conversation, the CEO would align on authority transfer, narrow what the cofounder may own, and precommit to escalation triggers instead of negotiating authority in the moment.",
+      "uncertainty_read": "High uncertainty remains around vanilla overlap, user intent, relationship and dignity costs, equity/legal/board constraints, and whether authority-first action would overcorrect.",
+      "non_claims_read": "The brief clearly says it is not correctness proof, not answer-quality measurement, not agent authorization, not human validated, and not proof that clean artifacts mean good advice.",
+      "evidence_receipt_read": "The Evidence Receipt section stays secondary and points to local metadata-only packet, Decision Work Receipt, Decision Trail, and checked-in specialist pilot summaries.",
+      "usefulness_read": "Useful because the rendered story makes the decision consequence visible: move authority first, narrow transition support, and set stop conditions.",
+      "readability_read": "Readable as a decision story, though field-key labels and source refs still feel internal.",
+      "overclaim_risk_read": "Clean Markdown and concrete action language could make the provisional starting-direction and action-delta read feel more validated than it is.",
+      "missingness_read": "The raw conversation, revised answer, memo, provider text, and private ledgers are absent from the checked-in artifact.",
+      "user_value_read": "A busy decision-maker can see what would change before the hard conversation, while also seeing that human review is still needed.",
+      "unresolved_questions": [
+        "Was the pre-Lolla starting path actually another cooperation test?",
+        "Would authority-first action damage trust, dignity, customer continuity, or legal/equity posture more than visible artifacts show?",
+        "Were governance constraints material but absent from the checked-in surface?"
+      ]
+    },
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "run_id": "20260627T104146Z_7bfe79",
+      "source_refs": [
+        {
+          "path": "reviews/codex-assisted/decision-work-brief-second-tiny-case-pilot-v0/review.json",
+          "role": "structured_second_case_brief",
+          "status": "checked_in_safe_review_artifact"
+        },
+        {
+          "path": "docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md",
+          "role": "rendered_brief",
+          "status": "checked_in_safe_markdown"
+        },
+        {
+          "path": "docs/conversation-understanding/decision-work-brief-second-tiny-case-pilot-v0.md",
+          "role": "second_case_gate_doc",
+          "status": "checked_in_safe_review_doc"
+        }
+      ],
+      "decision_type": "enterprise_go_to_market_launch_and_buyer_selection",
+      "decision_read": "Whether to launch a public enterprise beta next month to secure enterprise prospects and extend runway, or instead run a restricted private enterprise proof program.",
+      "starting_direction_read": "The likely starting direction already leaned away from public launch and toward private enterprise proof, with the larger prospect favored if strict gates held; the amount of actual change remains uncertain.",
+      "pressure_read": "The brief says Lolla pressed on whether public launch, logo size, and generic gates were being treated as evidence before buyer behavior, support load, audit-log limits, and stop rules were specified.",
+      "action_consequence_read": "Before the exec meeting or buyer call, the team would give both prospects the same paid and scoped private-pilot offer, define stop rules, and choose the buyer whose behavior creates usable proof.",
+      "uncertainty_read": "High uncertainty remains around buyer seriousness, board/investor/recruiting pressure, launch-risk tolerance, and whether a public page had value not visible from safe artifacts.",
+      "non_claims_read": "The brief says it does not prove the beta should launch, does not prove the private pilot is better advice, does not measure answer quality, does not authorize action, and is not human validated.",
+      "evidence_receipt_read": "The Evidence Receipt section points to local metadata-only packet, Decision Work Receipt, Decision Trail, and structured run metadata while listing raw/private sources withheld.",
+      "usefulness_read": "Useful because it changes the operational question from largest-logo or public-launch default to buyer behavior, paid scope, and tripwire gates.",
+      "readability_read": "Readable as a decision story, but the source/custody appendix and field labels still make the surface feel like an internal product-shape artifact.",
+      "overclaim_risk_read": "The crisp action story may make two clean checked-in-safe cases feel like product evidence even though buyer reality and starting-direction overlap are unverified.",
+      "missingness_read": "The raw conversation, revised answer, memo, provider text, private ledgers, and Product Delta report are not included in the checked-in artifact.",
+      "user_value_read": "A busy decision-maker can see what to do differently before buyer calls: equalize pilot offers, demand proof-producing behavior, and delay public launch until named external outcomes exist.",
+      "unresolved_questions": [
+        "Did the 900-person prospect actually accept payment, procurement clarity, and support/audit constraints?",
+        "Would private-only enterprise proof weaken fundraising or recruiting more than visible artifacts show?",
+        "Which buyer would accept the pilot shape without forcing mature-vendor promises?"
+      ]
+    }
+  ],
+  "comparison_questions": [
+    {
+      "question_id": "both_name_decision_clearly",
+      "question": "Did both briefs name the decision clearly?",
+      "answer": "yes",
+      "rationale": "Both rendered briefs open with a concrete decision: cofounder operating authority in one case and public enterprise beta versus private proof in the other."
+    },
+    {
+      "question_id": "both_name_action_consequence",
+      "question": "Did both briefs name a concrete action consequence?",
+      "answer": "yes",
+      "rationale": "The cofounder brief names authority transfer and stop conditions; the beta brief names equal paid/scoped pilot offers, buyer-behavior priority, and launch tripwires."
+    },
+    {
+      "question_id": "both_explain_lolla_pressure_in_user_language",
+      "question": "Did both briefs explain what Lolla pressed on in user-useful language?",
+      "answer": "partly_yes",
+      "rationale": "The pressure reads are understandable, but source/status labels and field names still make the surface feel internal."
+    },
+    {
+      "question_id": "both_preserve_uncertainty",
+      "question": "Did both briefs preserve uncertainty?",
+      "answer": "yes",
+      "rationale": "Both include high-uncertainty sections, missing private sources, human follow-up questions, and possible overcorrection notes."
+    },
+    {
+      "question_id": "both_show_not_proven",
+      "question": "Did both briefs show what was not proven?",
+      "answer": "yes",
+      "rationale": "Both render explicit non-claims near the bottom and include visible custody flags such as human_validated false and product_proof false."
+    },
+    {
+      "question_id": "either_too_machinery_flavored",
+      "question": "Did either brief feel too machinery-flavored?",
+      "answer": "partly_yes",
+      "rationale": "The body reads as a decision story, but backtick field labels, source-status lines, and source refs still feel maintainer-oriented."
+    },
+    {
+      "question_id": "either_clean_artifacts_feel_like_proof",
+      "question": "Did either brief make clean artifacts feel like proof?",
+      "answer": "overclaim_risk",
+      "rationale": "The current non-claims mitigate this, but clean Markdown plus concrete action language can still create false confidence before human validation."
+    },
+    {
+      "question_id": "enough_pattern_consistency_to_continue",
+      "question": "Did the two cases show enough pattern consistency to continue?",
+      "answer": "yes",
+      "rationale": "Two different decision types both produced a readable action consequence while preserving uncertainty, so one more diversity case is justified before copy repair or human review."
+    },
+    {
+      "question_id": "useful_for_decision_work_not_artifacts",
+      "question": "Is the format useful because it helps a user understand the decision work, not because it names internal artifacts?",
+      "answer": "yes_with_caveat",
+      "rationale": "The strongest value is the action consequence, not the evidence appendix; the caveat is that renderer copy still exposes internal labels."
+    },
+    {
+      "question_id": "busy_decision_maker_understands_artifact",
+      "question": "Would a busy decision-maker understand why this artifact exists?",
+      "answer": "partly_yes",
+      "rationale": "They would understand what changed, but may need a plainer renderer before this is a polished customer-facing surface."
+    }
+  ],
+  "cross_case_observations": {
+    "common_useful_pattern": "Both briefs turn process evidence into a decision consequence: what to do differently before the next high-stakes conversation or buyer call.",
+    "common_uncertainty_pattern": "Both briefs depend on checked-in-safe context that omits raw conversation, revised answer, memo, provider text, and private ledgers.",
+    "common_overclaim_pattern": "The clearer the Markdown story becomes, the easier it is to mistake provisional interpretation for product proof.",
+    "common_readability_pattern": "The main body is close to user-useful, while section metadata and source refs remain internal.",
+    "difference_between_cases": "The first case is founder governance and operating authority; the second is enterprise launch timing and buyer selection.",
+    "why_continue": "The format worked across two different decision families, and the renderer issue is not yet severe enough to stop learning from one more diverse case."
+  },
+  "pattern_read": {
+    "outcome": "strong_enough_for_third_case",
+    "allowed_outcomes": [
+      "strong_enough_for_third_case",
+      "useful_but_renderer_copy_needs_patch",
+      "useful_but_source_context_too_thin",
+      "too_machinery_flavored",
+      "too_overclaim_prone",
+      "inconclusive"
+    ],
+    "rationale": "The two-case pattern is not product evidence, but it is strong enough to justify one more diversity case because both briefs name action consequence and preserve uncertainty.",
+    "why_not_renderer_patch_yet": "The language is still internal, but it does not block understanding the two decision stories.",
+    "why_not_local_private_adequacy_yet": "Local-private adequacy remains important later, but the immediate question is whether the brief shape survives a third different decision type."
+  },
+  "risks": {
+    "strongest_useful_signal": "The brief clarifies action consequence in both cases.",
+    "strongest_missingness_thinness_risk": "Checked-in-safe artifacts cannot verify starting-direction overlap, private context, user intent, buyer reality, legal/governance constraints, or lost-value severity.",
+    "strongest_overclaim_risk": "Clean brief prose can create false confidence before human validation or local-private adequacy checks.",
+    "renderer_language_risk": "Field labels, source refs, and status vocabulary still read as internal machinery in places.",
+    "what_would_stop_expansion": "A third case that fails to name an action consequence, hides uncertainty, or makes the evidence appendix dominate the story should stop or redirect the lane."
+  },
+  "decision_gate": {
+    "outcome": "proceed_to_third_diversity_case",
+    "allowed_outcomes": [
+      "proceed_to_third_diversity_case",
+      "proceed_to_renderer_language_patch",
+      "proceed_to_local_private_adequacy_check",
+      "pause_until_human_review",
+      "stop_and_simplify"
+    ],
+    "rationale": "Both existing briefs name concrete action consequences and preserve uncertainty. The renderer is somewhat machinery-flavored, but not clearly technical enough to block one more diversity case.",
+    "pr121_path": "PR121A Decision Work Brief Third Diversity Case Pilot v0",
+    "runtime_integration_recommended": false
+  },
+  "next_recommendation": {
+    "recommended_next_pr": "PR121 Decision Work Brief Third Diversity Case Pilot v0",
+    "recommended_action": "Run exactly one more checked-in-safe tiny brief pilot on a third different decision type, preferably deploy-assisted-intake-routing.",
+    "do_not_do_next": [
+      "Do not implement renderer patch and third case in the same follow-on.",
+      "Do not broaden to a batch.",
+      "Do not create runtime integration.",
+      "Do not publish a customer-facing demo.",
+      "Do not treat three cases as product proof."
+    ]
+  },
+  "non_claims": [
+    "review_is_codex_assisted",
+    "not_human_validated",
+    "not_product_proof",
+    "not_answer_quality_score",
+    "not_agent_action_authorization",
+    "not_correctness_proof",
+    "clean_artifacts_do_not_imply_good_advice",
+    "two_cases_are_not_general_evidence",
+    "third_case_is_not_runtime_integration",
+    "future_human_review_required"
+  ]
+}
