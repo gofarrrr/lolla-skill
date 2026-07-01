@@ -82,6 +82,14 @@ the offline Decision Work Brief and enriched examples. Another deterministic
 builder case would add less information than asking what a human reviewer must
 check before any user-facing or runtime-adjacent use.
 
+Follow-up status:
+
+PR150 now defines that intake plan. It targets the three builder-generated
+enriched briefs, asks future reviewers to check usefulness, action consequence,
+uncertainty, source depth, private context, overtrust risk, and runtime
+blockers, and selects `run_human_review_pilot`. It is not completed human
+validation.
+
 ## Boundary
 
 PR149 does not:

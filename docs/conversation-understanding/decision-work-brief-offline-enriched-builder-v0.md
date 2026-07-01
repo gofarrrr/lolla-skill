@@ -115,7 +115,7 @@ checklist, staging list, and do-not-stage warnings. None of these steps add
 runtime integration, model calls, product proof, human validation, scoring, or
 agent action authorization.
 
-## PR146-PR149 Follow-Up
+## PR146-PR150 Follow-Up
 
 PR146 checks two more cases against local-private context and recommends a
 third builder case. PR147 tries that cofounder builder case and blocks it
@@ -146,3 +146,9 @@ recommend another deterministic builder case before human input. The next
 useful slice is a human-review intake plan, because the strongest remaining
 risk is whether humans find the enriched briefs useful, bounded, and
 appropriately caveated.
+
+PR150 creates that intake plan. It names the three builder-generated enriched
+briefs as review targets, defines reviewer questions and case forms, and sets
+stop conditions for overtrust, source-depth gaps, private-context gaps, and
+runtime attachment. It does not complete human review, claim product proof,
+score answer quality, authorize agent action, or change the offline builder.

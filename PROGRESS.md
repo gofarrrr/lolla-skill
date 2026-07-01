@@ -67,7 +67,7 @@ conversation or agent run
 Current handoff state:
 
 ```text
-PR149 Decision Work Brief Three Builder Case Pattern Review v0 is the
+PR150 Decision Work Brief Human Review Intake Plan v0 is the
 latest Decision Work Brief-adjacent slice recorded in this working tree. PR113
 introduced the product-facing brief target and corrected the receipt debug
 summary back to an internal maintainer layer. PR114 added the machine-readable
@@ -191,7 +191,10 @@ action-consequence signal while keeping uncertainty, source limits,
 evidence-only exclusions, and non-claims visible. Its decision gate is
 `proceed_to_human_review_intake_plan`, because the next meaningful risk is
 human usefulness and source-depth review rather than another deterministic
-builder case or runtime attachment. PR104 remains the latest
+builder case or runtime attachment. PR150 defines the human-review intake plan
+for those three builder outputs, including reviewer questions, stop
+conditions, allowed outcomes, and a `run_human_review_pilot` gate without
+claiming completed human review. PR104 remains the latest
 Decision Trail human-review intake slice; PR85 remains the latest packaged
 product-evidence eval-lane slice; PR70
 remains the audit/accountability machinery closure gate; PR48 remains the
@@ -310,7 +313,7 @@ and explicit non-claims. It remains a contract only: no generator, packet
 builder, renderer, runtime integration, model calls, archive mutation, or
 semantic inference.
 
-PR115 through PR149 keep the brief lane offline and downstream. Maintainers can
+PR115 through PR150 keep the brief lane offline and downstream. Maintainers can
 prepare metadata-only packets from completed runs, inspect provisional
 Codex-assisted checked-in-safe drafts, render existing brief JSON to Markdown,
 and now inspect three tiny cases: `ceo-remove-founding-cofounder`,
@@ -345,7 +348,14 @@ finds the action consequence readable but still source-depth-sensitive, and
 recommends PR149 Decision Work Brief Three Builder Case Pattern Review v0.
 PR149 compares the three builder-generated enriched briefs and recommends
 PR150 Decision Work Brief Human Review Intake Plan v0, not another builder
-case, builder patch, local-private check, or runtime plan.
+case, builder patch, local-private check, or runtime plan. PR150 turns that
+gate into a human-review intake plan over the three builder-generated enriched
+briefs. It defines reviewer questions, case review forms, source-depth checks,
+overtrust checks, private-context questions, stop conditions, and allowed
+future human-review outcomes, while preserving `human_validated: false`,
+`human_review_completed: false`, `product_proof: false`, `model_calls: 0`, and
+no runtime, skill, archive, scoring, or agent-action authority. PR150
+recommends PR151 Decision Work Brief Human Review Pilot v0.
 
 This remains offline/eval-side machinery. It does not run $lolla, invoke the
 skill, call providers, mutate archives, change prompts, touch SKILL.md, score

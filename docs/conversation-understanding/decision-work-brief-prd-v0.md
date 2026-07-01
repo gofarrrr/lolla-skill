@@ -2037,6 +2037,46 @@ Recommended next slice:
 PR150 Decision Work Brief Human Review Intake Plan v0
 ```
 
+### PR150: Decision Work Brief Human Review Intake Plan v0
+
+Status: implemented after PR149.
+
+Purpose:
+
+Create the intake plan that tells future human reviewers what to inspect before
+the Decision Work Brief and enriched-brief surface can be treated as useful,
+safe, user-facing, or runtime-adjacent.
+
+Implemented in this PR:
+
+- `docs/conversation-understanding/decision-work-brief-human-review-intake-plan-v0.md`
+- `reviews/codex-assisted/decision-work-brief-human-review-intake-plan-v0/review.json`
+- `tests/test_decision_work_brief_human_review_intake_plan.py`
+
+Current meaning:
+
+- PR150 targets exactly the three builder-generated enriched briefs for
+  launch-beta, intake-routing, and cofounder/governance;
+- it defines reviewer questions for usefulness, action consequence,
+  uncertainty, source depth, private context, overtrust, and runtime blockers;
+- it includes case review forms, cross-case review questions, stop conditions,
+  and allowed human-review outcomes;
+- it does not complete human review, claim human validation, claim product
+  proof, score answer quality, authorize agent action, or attach the surface to
+  runtime.
+
+Decision gate:
+
+```text
+run_human_review_pilot
+```
+
+Recommended next slice:
+
+```text
+PR151 Decision Work Brief Human Review Pilot v0
+```
+
 ## Success Criteria
 
 The phase succeeds when a reader can quickly answer:

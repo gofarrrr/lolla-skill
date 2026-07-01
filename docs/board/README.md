@@ -89,7 +89,7 @@ Follow-up implementation planning:
   The product-facing target for the missing layer: a plain-language brief that
   explains what decision was being made, what Lolla pressed on, what changed,
   what remains unresolved, and what the audit must not claim. It also nests the
-  work into PR113-PR148 so the next steps stay grounded in the existing
+  work into PR113-PR150 so the next steps stay grounded in the existing
   receipt, Decision Trail, Product Delta, lint, interpretation, and custody
   machinery.
 
@@ -365,6 +365,14 @@ Follow-up implementation planning:
   healthcare operations, and founder governance. It finds the builder stable
   enough for offline review and recommends a human-review intake plan before
   any runtime attachment.
+
+- [Decision Work Brief Human Review Intake Plan](../conversation-understanding/decision-work-brief-human-review-intake-plan-v0.md)
+
+  PR150 defines the future human-review intake plan for the three
+  builder-generated enriched briefs. It names the usefulness, action
+  consequence, uncertainty, source-depth, private-context, overtrust, and
+  runtime-blocker questions reviewers must answer before the surface can claim
+  anything stronger than useful-but-not-validated offline evidence.
 
 The core board-level message is:
 

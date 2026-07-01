@@ -1,0 +1,332 @@
+{
+  "schema_version": "lolla.decision_work_brief_human_review_intake_plan.v0",
+  "review_mode": "human_review_intake_plan_only",
+  "human_validated": false,
+  "human_review_completed": false,
+  "product_proof": false,
+  "model_calls": 0,
+  "runtime_invoked": false,
+  "skill_invoked": false,
+  "archive_mutated": false,
+  "answer_quality_scored": false,
+  "agent_action_authorized": false,
+  "custody_flags": {
+    "human_validated": false,
+    "human_review_completed": false,
+    "product_proof": false,
+    "model_calls": 0,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "archive_mutated": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "raw_private_content_checked_in": false,
+    "provider_text_checked_in": false,
+    "local_absolute_paths_checked_in": false,
+    "new_lolla_run_created": false,
+    "new_interpretation_read_created": false,
+    "new_builder_output_created": false,
+    "runtime_attachment_implemented": false
+  },
+  "review_metadata": {
+    "review_id": "decision-work-brief-human-review-intake-plan-v0",
+    "created_at": "2026-07-01T00:00:00Z",
+    "created_by": "codex_assisted_provisional_plan",
+    "triggering_pr": "PR149 Decision Work Brief Three Builder Case Pattern Review v0",
+    "triggering_gate": "proceed_to_human_review_intake_plan",
+    "purpose": "Define a bounded human-review intake plan for the three builder-generated enriched Decision Work Brief examples."
+  },
+  "source_artifacts": [
+    {
+      "artifact_id": "launch_public_enterprise_beta_builder_output",
+      "case_id": "launch-public-enterprise-beta",
+      "artifact_type": "builder_generated_enriched_brief",
+      "ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-launch-public-enterprise-beta-v0.md"
+    },
+    {
+      "artifact_id": "deploy_assisted_intake_routing_builder_output",
+      "case_id": "deploy-assisted-intake-routing",
+      "artifact_type": "builder_generated_enriched_brief",
+      "ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-deploy-assisted-intake-routing-v0.md"
+    },
+    {
+      "artifact_id": "ceo_remove_founding_cofounder_builder_output",
+      "case_id": "ceo-remove-founding-cofounder",
+      "artifact_type": "builder_generated_enriched_brief",
+      "ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-ceo-remove-founding-cofounder-v0.md"
+    },
+    {
+      "artifact_id": "launch_public_enterprise_beta_interpretation_read",
+      "case_id": "launch-public-enterprise-beta",
+      "artifact_type": "conversation_interpretation_read",
+      "ref": "reviews/codex-assisted/decision-work-conversation-interpretation-tiny-offline-read-v0/read.json"
+    },
+    {
+      "artifact_id": "deploy_assisted_intake_routing_interpretation_read",
+      "case_id": "deploy-assisted-intake-routing",
+      "artifact_type": "conversation_interpretation_read",
+      "ref": "reviews/codex-assisted/decision-work-conversation-interpretation-second-tiny-offline-read-v0/read.json"
+    },
+    {
+      "artifact_id": "ceo_remove_founding_cofounder_interpretation_read",
+      "case_id": "ceo-remove-founding-cofounder",
+      "artifact_type": "conversation_interpretation_read",
+      "ref": "reviews/codex-assisted/decision-work-conversation-interpretation-third-tiny-offline-read-v0/read.json"
+    },
+    {
+      "artifact_id": "three_builder_case_pattern_review",
+      "case_id": "cross_case",
+      "artifact_type": "pattern_review",
+      "ref": "reviews/codex-assisted/decision-work-brief-three-builder-case-pattern-review-v0/review.json"
+    },
+    {
+      "artifact_id": "enrichment_rules_contract",
+      "case_id": "cross_case",
+      "artifact_type": "rules_contract",
+      "ref": "docs/conversation-understanding/decision-work-brief-enrichment-rules-contract-v0.json"
+    }
+  ],
+  "review_scope": {
+    "scope_name": "three_builder_enriched_brief_human_intake",
+    "case_ids": [
+      "launch-public-enterprise-beta",
+      "deploy-assisted-intake-routing",
+      "ceo-remove-founding-cofounder"
+    ],
+    "builder_output_refs": [
+      "docs/conversation-understanding/decision-work-brief-builder-enriched-launch-public-enterprise-beta-v0.md",
+      "docs/conversation-understanding/decision-work-brief-builder-enriched-deploy-assisted-intake-routing-v0.md",
+      "docs/conversation-understanding/decision-work-brief-builder-enriched-ceo-remove-founding-cofounder-v0.md"
+    ],
+    "review_purpose": "Ask whether the enriched brief surface is useful, bounded, source-limited, and not overtrust-inducing before any user-facing or runtime-adjacent step.",
+    "out_of_scope": [
+      "answer quality scoring",
+      "product proof",
+      "human validation claim before review completes",
+      "runtime integration",
+      "agent action authorization"
+    ]
+  },
+  "reviewer_questions": [
+    {
+      "question_id": "usefulness_to_decision_maker",
+      "category": "usefulness",
+      "question": "Would this brief help a busy decision-maker understand the decision work faster than the raw final answer alone?",
+      "look_for": [
+        "decision question is visible",
+        "action consequence is scannable",
+        "reader can tell what remains unresolved"
+      ],
+      "must_not_do": "Do not score whether the advice is good."
+    },
+    {
+      "question_id": "action_consequence_clear",
+      "category": "action_consequence",
+      "question": "Is what changed for action clear without reading like a command or authorization?",
+      "look_for": [
+        "specific action consequence",
+        "sequence, gate, threshold, or stop rule",
+        "non-claim near operational language"
+      ],
+      "must_not_do": "Do not treat concrete action language as proof that the action should be taken."
+    },
+    {
+      "question_id": "uncertainty_visible",
+      "category": "uncertainty",
+      "question": "Are uncertainty, missingness, and what this does not prove visible enough for a busy reader?",
+      "look_for": [
+        "starting-direction uncertainty",
+        "What this does not prove section",
+        "Evidence and limits section"
+      ],
+      "must_not_do": "Do not accept clean prose if it hides source limits."
+    },
+    {
+      "question_id": "source_depth_adequate_for_intake",
+      "category": "source_depth",
+      "question": "What source-depth questions must be answered before trust increases?",
+      "look_for": [
+        "raw conversation not checked in",
+        "private nuance may change the read",
+        "human reviewer can name missing evidence"
+      ],
+      "must_not_do": "Do not infer private context from checked-in summaries."
+    },
+    {
+      "question_id": "overtrust_risk",
+      "category": "overtrust",
+      "question": "Does the enriched section help, or does it create false confidence?",
+      "look_for": [
+        "provisional interpretation stays provisional",
+        "clean output does not imply good advice",
+        "cofounder/governance operational language remains caveated"
+      ],
+      "must_not_do": "Do not convert readability into validation."
+    },
+    {
+      "question_id": "private_context_needed",
+      "category": "private_context",
+      "question": "Which private/source-depth facts would most likely change the brief?",
+      "look_for": [
+        "local-private context gaps",
+        "relationship or compliance nuance",
+        "stakeholder and legal constraints"
+      ],
+      "must_not_do": "Do not copy private text into the review artifact."
+    },
+    {
+      "question_id": "runtime_blockers",
+      "category": "runtime_blockers",
+      "question": "What should block runtime attachment or customer-facing presentation?",
+      "look_for": [
+        "overtrust-inducing language",
+        "buried source limits",
+        "missing human-review decision",
+        "evidence-only fields promoted into claims"
+      ],
+      "must_not_do": "Do not approve runtime attachment from this intake plan."
+    }
+  ],
+  "case_review_forms": [
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "decision_family": "gtm_or_enterprise_launch_timing",
+      "builder_output_ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-launch-public-enterprise-beta-v0.md",
+      "primary_review_focus": "Does the brief make the private-pilot proof path clear without treating buyer logo size, investor optics, or a public page as evidence by itself?",
+      "required_questions": [
+        "Is the public launch versus private proof distinction clear?",
+        "Does the brief preserve uncertainty about what was already present before Lolla-shaped pressure?",
+        "Does the brief avoid saying private pilots are better advice as fact?",
+        "What private commercial details would change the read?"
+      ],
+      "case_specific_stop_condition": "Block customer-facing presentation if the brief implies the private-pilot path is validated or that public launch is wrong."
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "decision_family": "healthcare_operations_or_deployment_controls",
+      "builder_output_ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-deploy-assisted-intake-routing-v0.md",
+      "primary_review_focus": "Does the brief keep deployment language bounded to a narrow operating test with backlog diagnosis, compliance readiness, and pause triggers?",
+      "required_questions": [
+        "Does the brief avoid implying the AI routing feature is safe or validated for broad deployment?",
+        "Are patient-risk and compliance caveats visible enough?",
+        "Does the brief overcompress the original gate list?",
+        "What private operational or compliance facts would change the read?"
+      ],
+      "case_specific_stop_condition": "Block runtime-adjacent use if the brief sounds like clinical deployment approval or hides patient/compliance uncertainty."
+    },
+    {
+      "case_id": "ceo-remove-founding-cofounder",
+      "decision_family": "founder_governance_or_relationship_sensitive_authority_transition",
+      "builder_output_ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-ceo-remove-founding-cofounder-v0.md",
+      "primary_review_focus": "Does the brief explain authority-transfer consequences without sounding like settled advice to remove a founder?",
+      "required_questions": [
+        "Does the enriched section sound too operationally decisive?",
+        "Are legal, equity, board, employment, relationship, customer-trust, and team-loyalty caveats close enough?",
+        "Does the brief make uncertainty about starting direction visible?",
+        "What private governance facts would change the read?"
+      ],
+      "case_specific_stop_condition": "Block customer-facing presentation if the brief sounds like action authorization or settled governance advice."
+    }
+  ],
+  "cross_case_review_questions": [
+    "Which brief is most useful to a decision-maker, and why?",
+    "Which brief creates the strongest false-confidence risk?",
+    "Are source limits visible enough across all three cases?",
+    "Does the enriched section help explain what changed, or mainly add text?",
+    "Do the three examples make the final AI answer feel less cheap and the decision work more inspectable?",
+    "What common reviewer confusion appears across cases?"
+  ],
+  "overtrust_checks": [
+    {
+      "check_id": "clean_prose_as_false_confidence",
+      "question": "Does smoother prose make the provisional read feel more certain than the sources support?",
+      "blocks_if": "Reviewer says the brief feels validated or customer-ready without human review."
+    },
+    {
+      "check_id": "action_language_as_authorization",
+      "question": "Does action-consequence language read like authorization?",
+      "blocks_if": "Reviewer cannot distinguish an evidence brief from a recommendation to act."
+    },
+    {
+      "check_id": "cofounder_operational_decisiveness",
+      "question": "Does the cofounder/governance brief sound too decisive?",
+      "blocks_if": "Reviewer finds legal, board, equity, employment, or relationship caveats too far away from the action language."
+    }
+  ],
+  "source_depth_checks": [
+    {
+      "check_id": "checked_in_safe_compression",
+      "question": "Does checked-in-safe compression make the decision story too thin?",
+      "required_reviewer_note": "Name the missing evidence class, not the private content."
+    },
+    {
+      "check_id": "starting_direction_overlap",
+      "question": "Could local-private context show that the starting direction already contained the revised action consequence?",
+      "required_reviewer_note": "Mark whether this changes usefulness, confidence, or both."
+    },
+    {
+      "check_id": "lost_value_and_stakeholders",
+      "question": "Are lost value, stakeholder obligations, or values important enough that evidence-only treatment is too thin?",
+      "required_reviewer_note": "Identify whether this blocks user-facing presentation."
+    }
+  ],
+  "private_context_checks": [
+    "Inspect private context only read-only and do not copy raw text into checked-in artifacts.",
+    "For launch-beta, check whether buyer seriousness, investor pressure, or runway detail changes the action consequence.",
+    "For intake-routing, check whether compliance, patient-risk, admin-capacity, or backlog-cause details change the action consequence.",
+    "For cofounder/governance, check whether legal, equity, board, employment, customer trust, team loyalty, or relationship facts change the action consequence.",
+    "Record only safe conclusions such as no material change, materially changes confidence, materially changes direction, too thin to assess, or requires human review."
+  ],
+  "stop_conditions": {
+    "runtime_attachment_blockers": [
+      "human review has not been completed",
+      "source-depth questions materially change direction",
+      "brief reads like action authorization",
+      "answer quality or product proof is implied",
+      "private context must be copied to make the brief understandable"
+    ],
+    "customer_facing_blockers": [
+      "brief is useful internally but too overtrust-inducing",
+      "source limits are too buried",
+      "cofounder/governance case sounds like settled operating advice",
+      "healthcare deployment case sounds clinically validated",
+      "reviewers cannot tell what is useful but not validated"
+    ],
+    "simplification_triggers": [
+      "reviewers find the enriched section mostly adds machinery",
+      "reviewers cannot explain the decision consequence after reading",
+      "reviewers mistake non-claims for legal or product disclaimers only"
+    ]
+  },
+  "allowed_outcomes": [
+    "useful_but_needs_source_depth",
+    "useful_but_too_overtrust_inducing",
+    "readable_but_not_actionable",
+    "too_internal_for_user_surface",
+    "ready_for_more_human_review",
+    "not_ready_for_runtime",
+    "needs_simplification",
+    "inconclusive"
+  ],
+  "decision_gate": "run_human_review_pilot",
+  "allowed_decision_gates": [
+    "package_pr146_pr150",
+    "run_human_review_pilot",
+    "revise_brief_surface_before_human_review",
+    "run_more_local_private_adequacy_checks",
+    "stop_and_simplify",
+    "runtime_attachment_plan_only"
+  ],
+  "recommended_next_pr": "PR151 Decision Work Brief Human Review Pilot v0",
+  "non_claims": [
+    "not_human_validated",
+    "human_review_not_completed",
+    "not_product_proof",
+    "not_answer_quality_score",
+    "not_agent_action_authorization",
+    "not_runtime_integration",
+    "not_correctness_proof",
+    "not_customer_readiness_claim",
+    "human_intake_plan_is_not_review_outcome"
+  ]
+}
