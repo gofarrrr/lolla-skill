@@ -122,6 +122,11 @@ integration.
 Recommended next PR: PR145 Decision Work Brief Offline Evidence Package Gate
 v0.
 
+Follow-up note: after PR145 packaged the offline evidence surface, PR146
+returned to the source-depth risk with two additional read-only local-private
+adequacy checks. It did not change the closure boundary: the system remains
+offline, source-limited, and not runtime-integrated.
+
 ## Boundary
 
 Runtime invoked: no. Skill invoked: no. Archive mutated: no. Model calls: 0.

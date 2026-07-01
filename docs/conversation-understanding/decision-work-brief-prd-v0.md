@@ -1832,6 +1832,49 @@ Recommended stop point:
 Stop after PR145 and decide whether to stage/package PR114-PR145 explicitly.
 ```
 
+### PR146: Decision Work Brief Additional Local-Private Adequacy Checks v0
+
+Status: implemented after the PR114-PR145 package was pushed.
+
+Purpose:
+
+Revisit the strongest unresolved package risk: checked-in-safe context is
+compressed, while local-private nuance may change the starting-direction,
+lost-value, stakeholder, relationship, legal, compliance, or user-intent read.
+
+Implemented in this PR:
+
+- `docs/conversation-understanding/decision-work-brief-additional-local-private-adequacy-checks-v0.md`
+- `reviews/codex-assisted/decision-work-brief-additional-local-private-adequacy-checks-v0/review.json`
+- `tests/test_decision_work_brief_additional_local_private_adequacy_checks.py`
+
+Cases checked:
+
+- `ceo-remove-founding-cofounder/20260627T093131Z_59d153`
+- `deploy-assisted-intake-routing/20260627T130339Z_4cd3cb`
+
+Current meaning:
+
+- both preferred cases were available for read-only local-private inspection;
+- the checked-in-safe briefs remained adequate with private nuance;
+- local-private context did not overturn the core action-consequence read;
+- private nuance still changes confidence, severity, and human follow-up
+  questions;
+- the next narrow offline slice is a third builder case, not runtime
+  integration.
+
+Decision gate:
+
+```text
+proceed_to_third_builder_case
+```
+
+Recommended next slice:
+
+```text
+PR147 Decision Work Brief Third Builder Case v0
+```
+
 ## Success Criteria
 
 The phase succeeds when a reader can quickly answer:

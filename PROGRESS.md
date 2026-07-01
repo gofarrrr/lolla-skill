@@ -67,7 +67,7 @@ conversation or agent run
 Current handoff state:
 
 ```text
-PR145 Decision Work Brief Offline Evidence Package Gate v0 is the
+PR146 Decision Work Brief Additional Local-Private Adequacy Checks v0 is the
 latest Decision Work Brief-adjacent slice recorded in this working tree. PR113
 introduced the product-facing brief target and corrected the receipt debug
 summary back to an internal maintainer layer. PR114 added the machine-readable
@@ -164,7 +164,11 @@ checklist, staging list, do-not-stage warnings, suggested commit message, and
 suggested PR description. The enrichment-system sequence still adds no runtime
 integration, model call, new interpretation read, archive mutation, product
 proof, human validation, answer-quality scoring, or agent action
-authorization. PR104 remains the latest
+authorization. PR146 performs two more read-only local-private adequacy checks
+on the cofounder and intake-routing cases, records only safe conclusions, finds
+the checked-in-safe briefs adequate with private nuance, and recommends
+`proceed_to_third_builder_case` before any runtime-attachment plan. PR104
+remains the latest
 Decision Trail human-review intake slice; PR85 remains the latest packaged
 product-evidence eval-lane slice; PR70
 remains the audit/accountability machinery closure gate; PR48 remains the
@@ -283,7 +287,7 @@ and explicit non-claims. It remains a contract only: no generator, packet
 builder, renderer, runtime integration, model calls, archive mutation, or
 semantic inference.
 
-PR115 through PR145 keep the brief lane offline and downstream. Maintainers can
+PR115 through PR146 keep the brief lane offline and downstream. Maintainers can
 prepare metadata-only packets from completed runs, inspect provisional
 Codex-assisted checked-in-safe drafts, render existing brief JSON to Markdown,
 and now inspect three tiny cases: `ceo-remove-founding-cofounder`,
@@ -301,6 +305,13 @@ that read on the deploy-assisted-intake-routing case, and PR133 formalizes the
 shared read schema before any additional reads or brief-enrichment work. PR134
 compares the two reads and decides the next useful test is not another backend
 read but one narrow Decision Work Brief enrichment test.
+
+PR135 through PR145 then test, review, formalize, build, patch, close, and
+package the offline enrichment surface. PR146 returns to the source-depth risk
+by checking the remaining two preferred package cases against local-private
+context in read-only mode. It records no private content and finds no major
+contradiction, but keeps starting-direction overlap, lost-value severity,
+stakeholder nuance, and legal or compliance constraints as human-review risks.
 
 This remains offline/eval-side machinery. It does not run $lolla, invoke the
 skill, call providers, mutate archives, change prompts, touch SKILL.md, score

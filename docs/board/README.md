@@ -89,7 +89,7 @@ Follow-up implementation planning:
   The product-facing target for the missing layer: a plain-language brief that
   explains what decision was being made, what Lolla pressed on, what changed,
   what remains unresolved, and what the audit must not claim. It also nests the
-  work into PR113-PR145 so the next steps stay grounded in the existing
+  work into PR113-PR146 so the next steps stay grounded in the existing
   receipt, Decision Trail, Product Delta, lint, interpretation, and custody
   machinery.
 
@@ -334,6 +334,12 @@ Follow-up implementation planning:
   PR145 packages the offline evidence surface with a manifest, file groups,
   staging list, do-not-stage warnings, validation checklist, useful signal, and
   unresolved risk.
+
+- [Decision Work Brief Additional Local-Private Adequacy Checks](../conversation-understanding/decision-work-brief-additional-local-private-adequacy-checks-v0.md)
+
+  PR146 checks the cofounder and intake-routing cases against richer
+  local-private completed-run context, records only safe conclusions, and
+  recommends a third builder case before any runtime-attachment plan.
 
 The core board-level message is:
 

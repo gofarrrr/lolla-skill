@@ -254,7 +254,7 @@ story. The intended user-facing target is the
 [Decision Work Brief PRD](docs/conversation-understanding/decision-work-brief-prd-v0.md):
 a plain-language artifact explaining the decision, what Lolla pressed on, what
 changed, what remains unresolved, and what the audit must not claim. That PRD
-now includes the concrete PR113-PR145 delivery sequence for schema, local
+now includes the concrete PR113-PR146 delivery sequence for schema, local
 packets, provisional brief drafts, rendering, usefulness review, second tiny
 case pilot, small pattern review, third diversity case pilot, and three-case
 pattern review, plain-language renderer patch, rereview, local-private
@@ -421,7 +421,12 @@ and
 [package manifest](docs/conversation-understanding/decision-work-brief-pr114-pr144-package-manifest-v0.json)
 add PR145's bounded package surface, staging list, do-not-stage warnings,
 validation checklist, useful signal, unresolved risk, and suggested package PR
-description.
+description. The
+[Decision Work Brief Additional Local-Private Adequacy Checks](docs/conversation-understanding/decision-work-brief-additional-local-private-adequacy-checks-v0.md)
+adds PR146's safe-conclusions-only source-depth check for the cofounder and
+intake-routing cases. It finds the checked-in-safe briefs still adequate with
+private nuance, and recommends a third builder case rather than runtime
+integration.
 There is still no production generator, runtime integration, model call in repo
 code, archive mutation, product proof, human validation, broad batch, customer
 marketing copy, or agent action authorization. See

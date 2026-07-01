@@ -146,6 +146,11 @@ PR126 should use PR124 and PR125 together to decide whether the next phase is
 more local-private adequacy checks, a checked-in-safe batch, a runtime
 attachment plan, another renderer patch, human review pause, or simplification.
 
+Follow-up note: PR146 later performs two additional read-only local-private
+adequacy checks on the cofounder and intake-routing cases. Those checks record
+safe conclusions only and find the checked-in-safe briefs adequate with private
+nuance, while keeping human review necessary for source-depth risks.
+
 ## Non-Claims
 
 PR125 is not:
