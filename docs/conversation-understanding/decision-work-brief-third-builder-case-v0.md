@@ -97,7 +97,8 @@ cofounder case before any third builder output is generated.
 
 Follow-up status: PR147A now creates that formal-schema cofounder read at
 `reviews/codex-assisted/decision-work-conversation-interpretation-third-tiny-offline-read-v0/read.json`.
-The builder output still belongs in a separate future PR.
+PR148 then uses that read to create the separate builder output at
+`docs/conversation-understanding/decision-work-brief-builder-enriched-ceo-remove-founding-cofounder-v0.md`.
 
 ## Boundary
 

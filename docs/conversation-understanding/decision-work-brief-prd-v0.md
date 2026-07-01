@@ -1954,6 +1954,48 @@ Recommended next slice:
 PR148 Decision Work Brief Third Builder Case Output v0
 ```
 
+### PR148: Decision Work Brief Third Builder Case Output v0
+
+Status: implemented after PR147A.
+
+Purpose:
+
+Run the deterministic offline enriched-brief builder on the CEO/cofounder case
+now that PR147A provides a builder-compatible interpretation read.
+
+Implemented in this PR:
+
+- `docs/conversation-understanding/decision-work-brief-builder-enriched-ceo-remove-founding-cofounder-v0.md`
+- `docs/conversation-understanding/decision-work-brief-third-builder-case-output-v0.md`
+- `reviews/codex-assisted/decision-work-brief-third-builder-case-output-v0/review.json`
+- `tests/test_decision_work_brief_third_builder_case_output.py`
+
+Current meaning:
+
+- the cofounder case now has a deterministic builder-generated enriched brief;
+- the output preserves exactly one `What the interpretation adds` section,
+  `What this does not prove`, and `Evidence and limits`;
+- the action consequence is readable: align with the COO, move product
+  execution authority first, narrow transition support, and define stop-loss
+  triggers before the conversation;
+- the output stays source-limited and does not claim product proof, human
+  validation, answer-quality scoring, or agent authorization;
+- the first enrichment paragraph still shows a mild deterministic-template
+  weakness, so the next review should compare all three builder outputs before
+  any further builder patch or human-review intake.
+
+Decision gate:
+
+```text
+proceed_to_three_builder_case_pattern_review
+```
+
+Recommended next slice:
+
+```text
+PR149 Decision Work Brief Three Builder Case Pattern Review v0
+```
+
 ## Success Criteria
 
 The phase succeeds when a reader can quickly answer:

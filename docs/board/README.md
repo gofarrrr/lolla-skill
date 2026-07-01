@@ -89,7 +89,7 @@ Follow-up implementation planning:
   The product-facing target for the missing layer: a plain-language brief that
   explains what decision was being made, what Lolla pressed on, what changed,
   what remains unresolved, and what the audit must not claim. It also nests the
-  work into PR113-PR147A so the next steps stay grounded in the existing
+  work into PR113-PR148 so the next steps stay grounded in the existing
   receipt, Decision Trail, Product Delta, lint, interpretation, and custody
   machinery.
 
@@ -351,6 +351,13 @@ Follow-up implementation planning:
 
   PR147A adds the missing formal-schema cofounder interpretation read so a
   later PR can run the deterministic builder without a schema workaround.
+
+- [Decision Work Brief Third Builder Case Output](../conversation-understanding/decision-work-brief-third-builder-case-output-v0.md)
+
+  PR148 runs the deterministic builder on the cofounder case using the PR147A
+  read and PR139 rules. It creates the third builder-enriched brief, keeps the
+  output source-limited and non-overclaiming, and recommends a three-builder
+  case pattern review.
 
 The core board-level message is:
 

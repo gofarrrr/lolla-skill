@@ -261,7 +261,7 @@ def test_unresolved_fields_source_limits_and_next_step_are_explicit() -> None:
     )
 
 
-def test_read_is_builder_compatible_without_writing_builder_output() -> None:
+def test_read_is_builder_compatible_without_claiming_builder_output() -> None:
     read = _read()
     rules = json.loads(RULES_PATH.read_text(encoding="utf-8"))
     brief = RENDERED_BRIEF_PATH.read_text(encoding="utf-8")
@@ -277,10 +277,11 @@ def test_read_is_builder_compatible_without_writing_builder_output() -> None:
     assert "## Evidence and limits" in enriched
     assert "move product execution authority first" in enriched
     assert "does not prove" in enriched.lower()
-    assert not (
-        REPO_ROOT
-        / "docs/conversation-understanding/decision-work-brief-builder-enriched-ceo-remove-founding-cofounder-v0.md"
-    ).exists()
+    assert read["source_packet"]["packet_checked_in"] is False
+    assert read["source_packet"]["packet_ref"] is None
+    assert read["recommended_next_step"]["outcome"] == (
+        "test_brief_enrichment_from_interpretation"
+    )
 
 
 def test_non_claims_and_comparison_to_prior_reads_are_present() -> None:

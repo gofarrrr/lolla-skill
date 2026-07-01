@@ -133,14 +133,19 @@ def test_decision_gate_is_allowed_and_blocks_builder_without_valid_read() -> Non
     assert review["blocker"]["why_builder_was_not_run"]
 
 
-def test_source_refs_resolve_and_builder_output_is_not_claimed() -> None:
-    refs = _collect_repo_refs(_review())
+def test_source_refs_resolve_and_pr147_builder_output_is_not_claimed() -> None:
+    review = _review()
+    refs = _collect_repo_refs(review)
 
     assert refs
     for ref in refs:
         assert (REPO_ROOT / ref).exists(), ref
 
-    assert not COFOUNDER_OUTPUT_PATH.exists()
+    assert review["builder_output_created"] is False
+    assert review["builder_output_ref"] is None
+    assert review["builder_output_status"] == (
+        "blocked_missing_builder_compatible_interpretation_read"
+    )
 
 
 def test_source_availability_records_existing_builder_reads_for_other_cases() -> None:

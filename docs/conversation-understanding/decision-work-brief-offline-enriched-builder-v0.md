@@ -115,7 +115,7 @@ checklist, staging list, and do-not-stage warnings. None of these steps add
 runtime integration, model calls, product proof, human validation, scoring, or
 agent action authorization.
 
-## PR146-PR147A Follow-Up
+## PR146-PR148 Follow-Up
 
 PR146 checks two more cases against local-private context and recommends a
 third builder case. PR147 tries that cofounder builder case and blocks it
@@ -128,3 +128,13 @@ PR147A then creates the missing formal-schema cofounder interpretation read.
 That read is builder-compatible, but PR147A still does not create the third
 builder-enriched Markdown output. Keeping the read and builder output separate
 preserves the review boundary.
+
+PR148 uses that read with the existing PR139 rules contract to create:
+
+- `docs/conversation-understanding/decision-work-brief-builder-enriched-ceo-remove-founding-cofounder-v0.md`
+
+The third builder output is readable enough for a pattern review and preserves
+the same source-limit and non-claim boundary as the first two builder outputs.
+It also exposes one remaining wording issue: the deterministic template can be
+slightly visible when the interpreted decision-question value already starts
+with decision-framing language.

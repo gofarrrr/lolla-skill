@@ -106,6 +106,9 @@ PR148 Decision Work Brief Third Builder Case Output v0
 That PR should run the deterministic builder on the cofounder rendered brief
 using this read and the PR139 enrichment rules contract.
 
+Follow-up status: PR148 now runs that deterministic builder and creates
+`docs/conversation-understanding/decision-work-brief-builder-enriched-ceo-remove-founding-cofounder-v0.md`.
+
 ## Boundary
 
 PR147A does not:
