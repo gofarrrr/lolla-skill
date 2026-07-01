@@ -115,7 +115,7 @@ checklist, staging list, and do-not-stage warnings. None of these steps add
 runtime integration, model calls, product proof, human validation, scoring, or
 agent action authorization.
 
-## PR146-PR147 Follow-Up
+## PR146-PR147A Follow-Up
 
 PR146 checks two more cases against local-private context and recommends a
 third builder case. PR147 tries that cofounder builder case and blocks it
@@ -123,3 +123,8 @@ because the cofounder case has no builder-compatible interpretation read. The
 builder should continue to reject unsupported schema shapes rather than convert
 draft-pilot, pattern-review, or local-private adequacy review material into a
 user-facing enrichment section.
+
+PR147A then creates the missing formal-schema cofounder interpretation read.
+That read is builder-compatible, but PR147A still does not create the third
+builder-enriched Markdown output. Keeping the read and builder output separate
+preserves the review boundary.

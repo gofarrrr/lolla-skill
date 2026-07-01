@@ -1,0 +1,510 @@
+{
+  "schema_version": "lolla.decision_work_conversation_interpretation_read.v0",
+  "read_metadata": {
+    "read_id": "decision_work_conversation_interpretation_read:ceo-remove-founding-cofounder:20260627T093131Z_59d153",
+    "created_at": "2026-07-01T00:00:00Z",
+    "read_mode": "codex_assisted_provisional_checked_in_safe_third_tiny_offline_read",
+    "case_count": 1,
+    "source_packet_fixture_checked_in": false,
+    "notes": [
+      "This read fills the missing builder-compatible interpretation input identified by PR147.",
+      "It uses the formal PR133 read schema rather than a third custom tiny-read schema.",
+      "The read uses checked-in-safe briefs, prior reviews, and PR146 safe local-private conclusions; no raw/private text is checked in.",
+      "Codex interpretation in this artifact is provisional and is not human validation."
+    ]
+  },
+  "custody_flags": {
+    "human_validated": false,
+    "product_proof": false,
+    "model_calls": 0,
+    "archive_mutated": false,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "raw_private_content_checked_in": false,
+    "provider_text_checked_in": false,
+    "local_absolute_paths_checked_in": false,
+    "broad_judge_used": false,
+    "automatic_labels_created": false,
+    "runtime_extraction_implemented": false,
+    "semantic_read_is_provisional": true
+  },
+  "source_packet": {
+    "packet_schema_version": "lolla.decision_work_conversation_interpretation_packets.v0",
+    "packet_generated_locally": false,
+    "packet_checked_in": false,
+    "packet_ref": null,
+    "packet_generation_mode": "checked_in_safe",
+    "source_contract_ref": "docs/conversation-understanding/decision-work-conversation-interpretation-contract-v0.json",
+    "source_contract_schema_version": "lolla.decision_work_conversation_interpretation_contract.v0",
+    "packet_content_checked_in": false,
+    "raw_private_content_in_packet": false,
+    "provider_text_in_packet": false
+  },
+  "selected_case": {
+    "case_id": "ceo-remove-founding-cofounder",
+    "run_id": "20260627T093131Z_59d153",
+    "run_ref": "ceo-remove-founding-cofounder/20260627T093131Z_59d153",
+    "decision_family": "founder_governance_or_authority_transition",
+    "rendered_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md",
+    "prior_review_refs": [
+      "reviews/codex-assisted/decision-work-brief-draft-pilot-v0/review.json",
+      "reviews/codex-assisted/decision-work-brief-usefulness-review-v0/review.json",
+      "reviews/codex-assisted/decision-work-brief-small-pattern-review-v0/review.json",
+      "reviews/codex-assisted/decision-work-brief-three-case-pattern-review-v0/review.json",
+      "reviews/codex-assisted/decision-work-brief-additional-local-private-adequacy-checks-v0/review.json",
+      "reviews/codex-assisted/decision-work-brief-third-builder-case-v0/review.json"
+    ]
+  },
+  "interpretation_scope": {
+    "scope_policy": "Tiny read over one case and the same small PR128 field subset used by the first two tiny reads.",
+    "fields_selected": [
+      "decision_question",
+      "likely_starting_direction",
+      "revised_direction_or_action_consequence",
+      "live_options",
+      "abandoned_or_rejected_options",
+      "decision_thresholds",
+      "evidence_gates",
+      "useful_friction",
+      "noisy_friction",
+      "lost_value",
+      "what_the_final_answer_does_not_prove"
+    ],
+    "fields_not_selected_policy": "All other PR128 fields remain not interpreted in this PR.",
+    "full_contract_interpreted": false,
+    "broad_batch_created": false
+  },
+  "interpreted_fields": [
+    {
+      "field_group": "decision_shape",
+      "field_name": "decision_question",
+      "status": "interpreted_provisional",
+      "value": "The decision appears to be whether the CEO should remove a founding cofounder from operating product leadership while preserving customer continuity, team clarity, and a workable transition.",
+      "uncertainty": "medium",
+      "source_refs": [
+        {
+          "ref_id": "rendered_cofounder_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md",
+          "locator": "The decision",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr146_cofounder_adequacy",
+          "artifact": "reviews/codex-assisted/decision-work-brief-additional-local-private-adequacy-checks-v0/review.json",
+          "locator": "cases[case_id=ceo-remove-founding-cofounder].material_change_summary",
+          "source_status": "local_private_context_not_checked_in"
+        }
+      ],
+      "source_status": "mixed_safe_and_private_status",
+      "interpretation_basis": "checked_in_brief_and_reviews",
+      "privacy_limit": "Raw conversation, raw revised answer, raw memo, provider text, and private ledgers are not checked in.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "decision_shape",
+      "field_name": "likely_starting_direction",
+      "status": "partial_interpretation",
+      "value": "The safe and local-private conclusions suggest the starting path may already have included a structured reset or cooperation test, with a more open or hybrid cofounder role still possible. The read cannot prove how much of that direction existed before the Lolla-shaped pressure.",
+      "uncertainty": "high",
+      "source_refs": [
+        {
+          "ref_id": "rendered_cofounder_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md",
+          "locator": "What changed / Starting point",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr146_cofounder_starting_direction",
+          "artifact": "reviews/codex-assisted/decision-work-brief-additional-local-private-adequacy-checks-v0/review.json",
+          "locator": "cases[case_id=ceo-remove-founding-cofounder].starting_direction_adequacy",
+          "source_status": "local_private_context_not_checked_in"
+        },
+        {
+          "ref_id": "pr116_draft_pilot",
+          "artifact": "reviews/codex-assisted/decision-work-brief-draft-pilot-v0/review.json",
+          "locator": "embedded cofounder brief / starting_direction",
+          "source_status": "checked_in_safe_summary_only"
+        }
+      ],
+      "source_status": "mixed_safe_and_private_status",
+      "interpretation_basis": "checked_in_brief_and_reviews",
+      "privacy_limit": "The original conversation and original answer are not checked in, so the starting direction remains partial.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "decision_shape",
+      "field_name": "revised_direction_or_action_consequence",
+      "status": "interpreted_provisional",
+      "value": "The action consequence is to align with the COO before the cofounder conversation, move product execution authority first, narrow the cofounder's transition role to customer and founder-context support, and precommit to escalation triggers instead of negotiating authority in the moment.",
+      "uncertainty": "medium",
+      "source_refs": [
+        {
+          "ref_id": "rendered_cofounder_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md",
+          "locator": "What this means for action",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr146_cofounder_action_consequence",
+          "artifact": "reviews/codex-assisted/decision-work-brief-additional-local-private-adequacy-checks-v0/review.json",
+          "locator": "cases[case_id=ceo-remove-founding-cofounder].action_consequence_adequacy",
+          "source_status": "local_private_context_not_checked_in"
+        },
+        {
+          "ref_id": "pr120_small_pattern",
+          "artifact": "reviews/codex-assisted/decision-work-brief-small-pattern-review-v0/review.json",
+          "locator": "case comparison / ceo-remove-founding-cofounder",
+          "source_status": "checked_in_safe_summary_only"
+        }
+      ],
+      "source_status": "mixed_safe_and_private_status",
+      "interpretation_basis": "checked_in_brief_and_reviews",
+      "privacy_limit": "Private governance, legal, equity, and relationship details may change how this action should be sequenced.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "options_and_paths",
+      "field_name": "live_options",
+      "status": "partial_interpretation",
+      "value": "Visible live paths appear to include a bounded reset or cooperation test, an authority-first transition, a narrowed customer/founder-context support role, faster removal from operating leadership after a breach, and a more formal legal or board-mediated path.",
+      "uncertainty": "medium",
+      "source_refs": [
+        {
+          "ref_id": "rendered_cofounder_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md",
+          "locator": "What changed / What this means for action / What still might be wrong",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr146_cofounder_option_paths",
+          "artifact": "reviews/codex-assisted/decision-work-brief-additional-local-private-adequacy-checks-v0/review.json",
+          "locator": "cases[case_id=ceo-remove-founding-cofounder].option_path_adequacy",
+          "source_status": "local_private_context_not_checked_in"
+        }
+      ],
+      "source_status": "mixed_safe_and_private_status",
+      "interpretation_basis": "inferred_from_safe_summary",
+      "privacy_limit": "Raw conversation context that would confirm live option status was not checked in.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "options_and_paths",
+      "field_name": "abandoned_or_rejected_options",
+      "status": "partial_interpretation",
+      "value": "The safe summaries suggest broad hybrid-role framing, continued product execution ownership, unilateral product changes, solo customer meetings, private override channels, and relitigation in the first week were de-emphasized or gated. The read cannot prove which paths were fully rejected rather than conditioned.",
+      "uncertainty": "high",
+      "source_refs": [
+        {
+          "ref_id": "rendered_cofounder_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md",
+          "locator": "What changed / What this means for action",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr147_blocking_review",
+          "artifact": "reviews/codex-assisted/decision-work-brief-third-builder-case-v0/review.json",
+          "locator": "source_depth_read",
+          "source_status": "checked_in_safe_summary_only"
+        }
+      ],
+      "source_status": "checked_in_safe_summary_only",
+      "interpretation_basis": "inferred_from_safe_summary",
+      "privacy_limit": "Distinguishing rejected, deferred, and gated options requires raw conversation or human review.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "options_and_paths",
+      "field_name": "decision_thresholds",
+      "status": "partial_interpretation",
+      "value": "Visible thresholds include COO alignment before the conversation, no onboarding commitments set by the cofounder, no engineer redirection, no solo customer meetings, no private override channels, and faster operating-leadership removal if relitigation or breach appears in the first week.",
+      "uncertainty": "medium",
+      "source_refs": [
+        {
+          "ref_id": "rendered_cofounder_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md",
+          "locator": "What changed / What this means for action",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr116_draft_pilot",
+          "artifact": "reviews/codex-assisted/decision-work-brief-draft-pilot-v0/review.json",
+          "locator": "embedded cofounder brief / action consequence",
+          "source_status": "checked_in_safe_summary_only"
+        }
+      ],
+      "source_status": "checked_in_safe_summary_only",
+      "interpretation_basis": "checked_in_brief_and_reviews",
+      "privacy_limit": "The thresholds are visible in safe summaries, but legal, equity, and board constraints are not verified.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "options_and_paths",
+      "field_name": "evidence_gates",
+      "status": "partial_interpretation",
+      "value": "Visible evidence gates include whether the COO and product leadership are aligned, whether customer continuity can survive the transition, whether the cofounder accepts a narrowed support role, whether team authority lines become clearer, and whether legal, equity, board, or employment constraints permit the authority transfer.",
+      "uncertainty": "medium",
+      "source_refs": [
+        {
+          "ref_id": "rendered_cofounder_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md",
+          "locator": "What this means for action / What still might be wrong",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr146_cofounder_followup",
+          "artifact": "reviews/codex-assisted/decision-work-brief-additional-local-private-adequacy-checks-v0/review.json",
+          "locator": "cases[case_id=ceo-remove-founding-cofounder].human_followup_questions",
+          "source_status": "local_private_context_not_checked_in"
+        }
+      ],
+      "source_status": "mixed_safe_and_private_status",
+      "interpretation_basis": "checked_in_brief_and_reviews",
+      "privacy_limit": "The read can name gates but cannot verify customer, legal, board, equity, or employment facts.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "losses_and_overcorrection",
+      "field_name": "useful_friction",
+      "status": "partial_interpretation",
+      "value": "The useful friction appears to be moving the decision from polished cooperation or hybrid-role language toward explicit authority transfer, stop-loss triggers, COO alignment, and limits on hidden override channels. This is a provisional description, not a quality score.",
+      "uncertainty": "medium",
+      "source_refs": [
+        {
+          "ref_id": "rendered_cofounder_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md",
+          "locator": "What Lolla pressed on / What changed",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr146_cofounder_pressure",
+          "artifact": "reviews/codex-assisted/decision-work-brief-additional-local-private-adequacy-checks-v0/review.json",
+          "locator": "cases[case_id=ceo-remove-founding-cofounder].pressure_or_change_adequacy",
+          "source_status": "local_private_context_not_checked_in"
+        }
+      ],
+      "source_status": "mixed_safe_and_private_status",
+      "interpretation_basis": "inferred_from_safe_summary",
+      "privacy_limit": "Private pressure ledgers are not checked in, so this cannot be treated as final friction classification.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "losses_and_overcorrection",
+      "field_name": "noisy_friction",
+      "status": "partial_interpretation",
+      "value": "A possible noisy-friction risk is that authority-first language could underweight founder dignity, relationship repair, team loyalty, customer trust, or the value of a short bounded reset. The safe summaries cannot decide whether that caution is noise or necessary control.",
+      "uncertainty": "high",
+      "source_refs": [
+        {
+          "ref_id": "rendered_cofounder_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md",
+          "locator": "What still might be wrong / Possible overcorrection",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr146_cofounder_overconfidence",
+          "artifact": "reviews/codex-assisted/decision-work-brief-additional-local-private-adequacy-checks-v0/review.json",
+          "locator": "cases[case_id=ceo-remove-founding-cofounder].overconfidence_risk",
+          "source_status": "local_private_context_not_checked_in"
+        }
+      ],
+      "source_status": "mixed_safe_and_private_status",
+      "interpretation_basis": "inferred_from_safe_summary",
+      "privacy_limit": "Relationship, dignity, legal, and governance context remains private or human-review dependent.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "losses_and_overcorrection",
+      "field_name": "lost_value",
+      "status": "insufficient_context",
+      "value": "Insufficient context. Possible lost value may include relationship repair, founder dignity, team loyalty, customer trust, continuity through founder knowledge, and legal or equity leverage. The checked-in packet cannot verify whether those losses are real or material.",
+      "uncertainty": "insufficient_context",
+      "source_refs": [
+        {
+          "ref_id": "rendered_cofounder_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md",
+          "locator": "What still might be wrong",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr146_cofounder_lost_value",
+          "artifact": "reviews/codex-assisted/decision-work-brief-additional-local-private-adequacy-checks-v0/review.json",
+          "locator": "cases[case_id=ceo-remove-founding-cofounder].lost_value_adequacy",
+          "source_status": "local_private_context_not_checked_in"
+        }
+      ],
+      "source_status": "local_private_context_not_checked_in",
+      "interpretation_basis": "insufficient_context",
+      "privacy_limit": "Lost value requires human review and local-private context; this read only records candidate risk.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "handoff_for_brief",
+      "field_name": "what_the_final_answer_does_not_prove",
+      "status": "interpreted_provisional",
+      "value": "The final answer and brief do not prove that removing the cofounder is correct, legally or governance-safe, better advice, caused by Lolla, human validated, answer-quality scored, or safe for an agent to act on.",
+      "uncertainty": "low",
+      "source_refs": [
+        {
+          "ref_id": "rendered_cofounder_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md",
+          "locator": "What this does not prove / Evidence and limits",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr147_blocking_review",
+          "artifact": "reviews/codex-assisted/decision-work-brief-third-builder-case-v0/review.json",
+          "locator": "non_claims",
+          "source_status": "checked_in_safe_summary_only"
+        }
+      ],
+      "source_status": "checked_in_safe_summary_only",
+      "interpretation_basis": "checked_in_brief_and_reviews",
+      "privacy_limit": "Non-claims are safe to record, but they do not validate the semantic read.",
+      "human_review_required": false,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    }
+  ],
+  "unresolved_fields": [
+    {
+      "field_name": "option_status",
+      "reason": "Not selected for this tiny read; distinguishing live, rejected, deferred, and gated cofounder paths needs raw conversation or human review."
+    },
+    {
+      "field_name": "assistant_influence_on_user_framing",
+      "reason": "Requires raw conversation interpretation and was intentionally out of scope."
+    },
+    {
+      "field_name": "user_values_or_priorities",
+      "reason": "Founder dignity, company control, customer continuity, loyalty, and speed are value tradeoffs that require human review before user-facing claims."
+    },
+    {
+      "field_name": "stakeholder_obligations",
+      "reason": "Board, equity, legal, employment, customer, team, COO, and cofounder obligations are only partially visible from safe summaries."
+    },
+    {
+      "field_name": "overcorrection_risk",
+      "reason": "Related risk is visible, but PR147A keeps it inside noisy_friction and lost_value notes instead of adding another interpreted field."
+    },
+    {
+      "field_name": "safe_to_show_user",
+      "reason": "Requires a future publication or human-review protocol; this read is not a customer-facing artifact."
+    },
+    {
+      "field_name": "safe_for_agent_inspection_only",
+      "reason": "Agent-inspection handoff was intentionally not interpreted and does not authorize action."
+    }
+  ],
+  "source_limitations": {
+    "checked_in_safe_context_is_compressed": "Checked-in-safe context is compressed into rendered briefs, review summaries, and source/status refs.",
+    "raw_conversation_was_not_checked_in": true,
+    "raw_revised_answer_was_not_checked_in": true,
+    "raw_memo_was_not_checked_in": true,
+    "provider_text_was_not_checked_in": true,
+    "private_ledgers_were_not_checked_in": true,
+    "human_validation_is_absent": true,
+    "private_nuance_may_change_the_read": true,
+    "local_private_packet_was_not_checked_in": true,
+    "source_depth_summary": "PR146 found no major contradiction but did find private nuance around starting direction, legal/equity/board/governance constraints, customer continuity, and relationship cost."
+  },
+  "brief_implications": {
+    "would_clarify_current_decision_work_brief": true,
+    "would_require_changing_current_brief_now": false,
+    "would_add_useful_conversation_story_layer": true,
+    "would_introduce_overclaim_risk": true,
+    "clarification_read": "The useful addition is separating a possible bounded-reset starting direction from the later action consequence: move authority first, narrow transition support, align with the COO, and define stop-loss triggers before the conversation.",
+    "builder_compatibility_read": "This read uses the formal PR133 schema accepted by the deterministic enrichment builder.",
+    "do_not_modify_rendered_brief_in_pr147a": true
+  },
+  "overclaim_risk": {
+    "strongest_risk": "Because the cofounder case is emotionally and legally loaded, a clean action-consequence read could sound like certification that authority removal is correct. It is not.",
+    "runtime_integration_recommended": false,
+    "product_readiness_claimed": false,
+    "answer_quality_claimed": false,
+    "agent_action_authorized": false,
+    "mitigation": "Keep the read provisional, require source refs, mark lost value as insufficient context, preserve human-review requirements, and use the read only as a future builder input."
+  },
+  "recommended_next_step": {
+    "outcome": "test_brief_enrichment_from_interpretation",
+    "allowed_outcomes": [
+      "run_another_tiny_offline_read",
+      "compare_interpretation_reads",
+      "patch_offline_packet_builder",
+      "patch_decision_work_brief_schema",
+      "test_brief_enrichment_from_interpretation",
+      "pause_until_human_review",
+      "stop_and_simplify"
+    ],
+    "rationale": "PR147A supplies the missing builder-compatible interpretation read for the cofounder case. The next safe step is to run the deterministic builder as a separate PR and review the output.",
+    "recommended_next_pr": "PR148 Decision Work Brief Third Builder Case Output v0",
+    "not_recommended": [
+      "runtime integration",
+      "broad batch",
+      "product-readiness claim",
+      "agent-action authorization"
+    ]
+  },
+  "comparison_to_prior_reads": {
+    "prior_read_refs": [
+      "reviews/codex-assisted/decision-work-conversation-interpretation-tiny-offline-read-v0/read.json",
+      "reviews/codex-assisted/decision-work-conversation-interpretation-second-tiny-offline-read-v0/read.json"
+    ],
+    "same_field_set_used": true,
+    "recurring_source_limited_fields": [
+      "likely_starting_direction",
+      "abandoned_or_rejected_options",
+      "lost_value"
+    ],
+    "shape_stability_read": "The same tiny field set remains usable on a third decision family, but the same source-depth problem repeats: starting direction, option status, and lost value stay partial without raw conversation and human review."
+  },
+  "non_claims": [
+    "read_is_codex_assisted",
+    "read_is_provisional",
+    "not_human_validated",
+    "not_product_proof",
+    "not_answer_quality_score",
+    "not_agent_action_authorization",
+    "not_correctness_proof",
+    "not_runtime_integration",
+    "not_runtime_extraction",
+    "not_lolla_runtime_change",
+    "not_live_lolla_schema_change",
+    "must_not_be_used_as_quality_label",
+    "checked_in_safe_context_is_not_full_conversation_context",
+    "clean_artifacts_do_not_imply_good_advice",
+    "future_human_review_required"
+  ]
+}

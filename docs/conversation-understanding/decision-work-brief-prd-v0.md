@@ -1913,6 +1913,47 @@ Recommended next slice:
 PR147A Decision Work Conversation Interpretation Third Tiny Offline Read v0
 ```
 
+### PR147A: Decision Work Conversation Interpretation Third Tiny Offline Read v0
+
+Status: implemented after PR147.
+
+Purpose:
+
+Create the missing builder-compatible interpretation read for the
+CEO/cofounder governance case, using the formal PR133 schema rather than a
+third custom tiny-read schema.
+
+Implemented in this PR:
+
+- `docs/conversation-understanding/decision-work-conversation-interpretation-third-tiny-offline-read-v0.md`
+- `reviews/codex-assisted/decision-work-conversation-interpretation-third-tiny-offline-read-v0/read.json`
+- `tests/test_decision_work_conversation_interpretation_third_tiny_offline_read.py`
+
+Current meaning:
+
+- the cofounder case now has a builder-compatible interpretation read;
+- the read uses the same tiny field subset as PR131 and PR132;
+- the action consequence is provisionally readable: align with the COO, move
+  product execution authority first, narrow transition support, and define
+  stop-loss triggers before the conversation;
+- starting direction, abandoned/rejected options, option status, and lost value
+  remain source-limited;
+- the read is Codex-assisted, provisional, non-human-validated, not product
+  proof, not answer-quality scoring, and not agent authorization;
+- no cofounder builder output is created in PR147A.
+
+Decision gate:
+
+```text
+test_brief_enrichment_from_interpretation
+```
+
+Recommended next slice:
+
+```text
+PR148 Decision Work Brief Third Builder Case Output v0
+```
+
 ## Success Criteria
 
 The phase succeeds when a reader can quickly answer:

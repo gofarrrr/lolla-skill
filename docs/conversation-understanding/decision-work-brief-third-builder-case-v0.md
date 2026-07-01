@@ -95,6 +95,10 @@ PR147A Decision Work Conversation Interpretation Third Tiny Offline Read v0
 That PR should create a small PR133-shaped interpretation read for the
 cofounder case before any third builder output is generated.
 
+Follow-up status: PR147A now creates that formal-schema cofounder read at
+`reviews/codex-assisted/decision-work-conversation-interpretation-third-tiny-offline-read-v0/read.json`.
+The builder output still belongs in a separate future PR.
+
 ## Boundary
 
 PR147 does not:

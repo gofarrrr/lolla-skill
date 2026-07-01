@@ -89,7 +89,7 @@ Follow-up implementation planning:
   The product-facing target for the missing layer: a plain-language brief that
   explains what decision was being made, what Lolla pressed on, what changed,
   what remains unresolved, and what the audit must not claim. It also nests the
-  work into PR113-PR147 so the next steps stay grounded in the existing
+  work into PR113-PR147A so the next steps stay grounded in the existing
   receipt, Decision Trail, Product Delta, lint, interpretation, and custody
   machinery.
 
@@ -346,6 +346,11 @@ Follow-up implementation planning:
   PR147 tests whether the cofounder case is ready for deterministic
   builder-enrichment. It blocks the output because the case lacks a
   builder-compatible interpretation read, preserving the evidence boundary.
+
+- [Decision Work Conversation Interpretation Third Tiny Offline Read](../conversation-understanding/decision-work-conversation-interpretation-third-tiny-offline-read-v0.md)
+
+  PR147A adds the missing formal-schema cofounder interpretation read so a
+  later PR can run the deterministic builder without a schema workaround.
 
 The core board-level message is:
 

@@ -67,7 +67,7 @@ conversation or agent run
 Current handoff state:
 
 ```text
-PR147 Decision Work Brief Third Builder Case v0 is the
+PR147A Decision Work Conversation Interpretation Third Tiny Offline Read v0 is the
 latest Decision Work Brief-adjacent slice recorded in this working tree. PR113
 introduced the product-facing brief target and corrected the receipt debug
 summary back to an internal maintainer layer. PR114 added the machine-readable
@@ -172,7 +172,12 @@ tests whether the cofounder case can become the third deterministic
 builder-enriched example, and blocks the output because there is no
 builder-compatible PR133-shaped cofounder interpretation read. It chooses
 `create_third_interpretation_read_first`, not a schema workaround, builder run,
-or runtime plan. PR104 remains the latest
+or runtime plan. PR147A creates that missing cofounder read using the formal
+`lolla.decision_work_conversation_interpretation_read.v0` schema, keeps the
+same tiny field subset as the first two reads, marks starting direction,
+abandoned/rejected options, and lost value as source-limited, and gates to
+`test_brief_enrichment_from_interpretation` for a future deterministic builder
+output PR. PR104 remains the latest
 Decision Trail human-review intake slice; PR85 remains the latest packaged
 product-evidence eval-lane slice; PR70
 remains the audit/accountability machinery closure gate; PR48 remains the
@@ -291,7 +296,7 @@ and explicit non-claims. It remains a contract only: no generator, packet
 builder, renderer, runtime integration, model calls, archive mutation, or
 semantic inference.
 
-PR115 through PR147 keep the brief lane offline and downstream. Maintainers can
+PR115 through PR147A keep the brief lane offline and downstream. Maintainers can
 prepare metadata-only packets from completed runs, inspect provisional
 Codex-assisted checked-in-safe drafts, render existing brief JSON to Markdown,
 and now inspect three tiny cases: `ceo-remove-founding-cofounder`,
@@ -319,7 +324,9 @@ stakeholder nuance, and legal or compliance constraints as human-review risks.
 PR147 tries to start the third builder case on the cofounder decision and stops
 cleanly when it finds the missing prerequisite: a builder-compatible cofounder
 interpretation read. The recommended next slice is a bounded PR147A third tiny
-offline interpretation read before any cofounder builder output.
+offline interpretation read before any cofounder builder output. PR147A adds
+that read, does not create a builder output, and recommends a separate PR148
+builder-output slice.
 
 This remains offline/eval-side machinery. It does not run $lolla, invoke the
 skill, call providers, mutate archives, change prompts, touch SKILL.md, score

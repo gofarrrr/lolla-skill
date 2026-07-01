@@ -216,3 +216,10 @@ Recommended next slice:
 ```text
 PR135 Decision Work Brief Interpretation Enrichment Test v0
 ```
+
+Later follow-up:
+
+PR147A reuses this formal schema for the cofounder case after PR147 blocks the
+third builder case on a missing interpretation-read input. That keeps the
+builder path schema-compatible without creating a runtime extractor or a new
+custom tiny-read schema.
