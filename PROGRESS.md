@@ -67,7 +67,7 @@ conversation or agent run
 Current handoff state:
 
 ```text
-PR148 Decision Work Brief Third Builder Case Output v0 is the
+PR149 Decision Work Brief Three Builder Case Pattern Review v0 is the
 latest Decision Work Brief-adjacent slice recorded in this working tree. PR113
 introduced the product-facing brief target and corrected the receipt debug
 summary back to an internal maintainer layer. PR114 added the machine-readable
@@ -184,7 +184,14 @@ uncertainty, source limits, field exclusions, and non-claims. It finds the
 output readable enough for pattern review, notes a mild deterministic-template
 weakness in the first enrichment paragraph, and chooses
 `proceed_to_three_builder_case_pattern_review`, not runtime integration,
-product proof, or human validation. PR104 remains the latest
+product proof, or human validation. PR149 compares all three builder-generated
+enriched briefs across launch timing, healthcare deployment controls, and
+founder governance. It finds the builder stable enough to preserve the useful
+action-consequence signal while keeping uncertainty, source limits,
+evidence-only exclusions, and non-claims visible. Its decision gate is
+`proceed_to_human_review_intake_plan`, because the next meaningful risk is
+human usefulness and source-depth review rather than another deterministic
+builder case or runtime attachment. PR104 remains the latest
 Decision Trail human-review intake slice; PR85 remains the latest packaged
 product-evidence eval-lane slice; PR70
 remains the audit/accountability machinery closure gate; PR48 remains the
@@ -303,7 +310,7 @@ and explicit non-claims. It remains a contract only: no generator, packet
 builder, renderer, runtime integration, model calls, archive mutation, or
 semantic inference.
 
-PR115 through PR148 keep the brief lane offline and downstream. Maintainers can
+PR115 through PR149 keep the brief lane offline and downstream. Maintainers can
 prepare metadata-only packets from completed runs, inspect provisional
 Codex-assisted checked-in-safe drafts, render existing brief JSON to Markdown,
 and now inspect three tiny cases: `ceo-remove-founding-cofounder`,
@@ -336,6 +343,9 @@ that read, does not create a builder output, and recommends a separate PR148
 builder-output slice. PR148 then creates the cofounder builder-enriched output,
 finds the action consequence readable but still source-depth-sensitive, and
 recommends PR149 Decision Work Brief Three Builder Case Pattern Review v0.
+PR149 compares the three builder-generated enriched briefs and recommends
+PR150 Decision Work Brief Human Review Intake Plan v0, not another builder
+case, builder patch, local-private check, or runtime plan.
 
 This remains offline/eval-side machinery. It does not run $lolla, invoke the
 skill, call providers, mutate archives, change prompts, touch SKILL.md, score

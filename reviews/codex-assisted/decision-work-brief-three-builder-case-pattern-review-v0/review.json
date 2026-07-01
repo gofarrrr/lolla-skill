@@ -1,0 +1,204 @@
+{
+  "schema_version": "lolla.decision_work_brief_three_builder_case_pattern_review.v0",
+  "review_mode": "offline_three_builder_case_pattern_review",
+  "human_validated": false,
+  "product_proof": false,
+  "model_calls": 0,
+  "runtime_invoked": false,
+  "skill_invoked": false,
+  "archive_mutated": false,
+  "answer_quality_scored": false,
+  "agent_action_authorized": false,
+  "custody_flags": {
+    "human_validated": false,
+    "product_proof": false,
+    "model_calls": 0,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "archive_mutated": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "raw_private_content_checked_in": false,
+    "provider_text_checked_in": false,
+    "local_absolute_paths_checked_in": false,
+    "new_lolla_run_created": false,
+    "new_interpretation_read_created": false,
+    "builder_patched": false,
+    "runtime_integration_implemented": false
+  },
+  "review_metadata": {
+    "review_id": "decision-work-brief-three-builder-case-pattern-review-v0",
+    "created_at": "2026-07-01T00:00:00Z",
+    "created_by": "codex_assisted_provisional_review",
+    "triggering_pr": "PR148 Decision Work Brief Third Builder Case Output v0",
+    "triggering_gate": "proceed_to_three_builder_case_pattern_review",
+    "purpose": "Compare the three deterministic builder-generated enriched Decision Work Brief examples and decide the next offline evidence step."
+  },
+  "source_builder_outputs": [
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "decision_family": "gtm_or_enterprise_launch_timing",
+      "builder_output_ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-launch-public-enterprise-beta-v0.md",
+      "interpretation_read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-tiny-offline-read-v0/read.json",
+      "source_review_ref": "reviews/codex-assisted/decision-work-brief-enrichment-builder-rule-patch-review-v0/review.json"
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "decision_family": "healthcare_operations_or_deployment_controls",
+      "builder_output_ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-deploy-assisted-intake-routing-v0.md",
+      "interpretation_read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-second-tiny-offline-read-v0/read.json",
+      "source_review_ref": "reviews/codex-assisted/decision-work-brief-enrichment-builder-rule-patch-review-v0/review.json"
+    },
+    {
+      "case_id": "ceo-remove-founding-cofounder",
+      "decision_family": "founder_governance_or_relationship_sensitive_authority_transition",
+      "builder_output_ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-ceo-remove-founding-cofounder-v0.md",
+      "interpretation_read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-third-tiny-offline-read-v0/read.json",
+      "source_review_ref": "reviews/codex-assisted/decision-work-brief-third-builder-case-output-v0/review.json"
+    }
+  ],
+  "source_reviews": [
+    {
+      "ref": "reviews/codex-assisted/decision-work-brief-enriched-builder-output-review-v0/review.json",
+      "role": "PR141 two-case builder output review before wording patch"
+    },
+    {
+      "ref": "reviews/codex-assisted/decision-work-brief-enrichment-builder-rule-patch-review-v0/review.json",
+      "role": "PR143 review of patched two-case builder outputs"
+    },
+    {
+      "ref": "reviews/codex-assisted/decision-work-brief-third-builder-case-output-v0/review.json",
+      "role": "PR148 review of the third cofounder builder output"
+    },
+    {
+      "ref": "docs/conversation-understanding/decision-work-brief-enrichment-rules-contract-v0.json",
+      "role": "PR139 rules contract used to constrain builder output"
+    }
+  ],
+  "case_reviews": [
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "builder_output_ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-launch-public-enterprise-beta-v0.md",
+      "interpretation_read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-tiny-offline-read-v0/read.json",
+      "source_review_ref": "reviews/codex-assisted/decision-work-brief-enrichment-builder-rule-patch-review-v0/review.json",
+      "decision_family": "gtm_or_enterprise_launch_timing",
+      "action_consequence_readability": "clear: the output centers the paid scoped private-pilot offer, buyer behavior, proof under constraints, and the warning not to treat the larger logo or public page as proof.",
+      "uncertainty_preservation": "preserved: the starting point remains uncertain and checked-in-safe compression is named.",
+      "source_limit_preservation": "preserved: Evidence and limits names missing raw conversation, revised answer, memo, live transcript, provider text, and private ledgers.",
+      "non_claim_preservation": "preserved: the brief says it does not prove the beta decision, better advice, answer quality, human validation, or agent authorization.",
+      "evidence_only_field_exclusion": "preserved: lost value, noisy friction, live options, abandoned options, values, stakeholders, and assistant influence stay out of the main enrichment body.",
+      "template_language_risk": "low_to_medium: deterministic structure is visible but not disruptive after the PR142 wording patch.",
+      "overclaim_risk": "bounded: launch language is commercially concrete, but the proof and public-launch caveats stay visible.",
+      "human_review_need": "required_before_user_facing_validation",
+      "notes": "Strongest example for proof-producing buyer behavior and launch-scope discipline."
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "builder_output_ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-deploy-assisted-intake-routing-v0.md",
+      "interpretation_read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-second-tiny-offline-read-v0/read.json",
+      "source_review_ref": "reviews/codex-assisted/decision-work-brief-enrichment-builder-rule-patch-review-v0/review.json",
+      "decision_family": "healthcare_operations_or_deployment_controls",
+      "action_consequence_readability": "clear: the output centers a narrow one-clinic pilot, a 48-hour backlog diagnostic, four must-pass operating gates, hard pause triggers, and narrower sales meaning.",
+      "uncertainty_preservation": "preserved: starting direction remains uncertain and the lost controls from the larger gate list are named as a possible overcorrection.",
+      "source_limit_preservation": "preserved: clinical backlog cause, admin capacity, compliance tolerance, and patient-risk boundaries are not treated as verified.",
+      "non_claim_preservation": "preserved: the brief says it does not prove deployment should happen, that the constrained pilot is better advice, or that an agent may act.",
+      "evidence_only_field_exclusion": "preserved: evidence-only interpretation fields stay in the limits section rather than the main enrichment section.",
+      "template_language_risk": "low_to_medium: the deterministic structure is visible but the operating consequence remains readable.",
+      "overclaim_risk": "bounded_but_clinical: the patient/compliance context makes caveats important, but the brief keeps pause triggers and source limits visible.",
+      "human_review_need": "required_before_user_facing_validation",
+      "notes": "Strongest example for operational controls, pause triggers, and avoiding sales overclaim."
+    },
+    {
+      "case_id": "ceo-remove-founding-cofounder",
+      "builder_output_ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-ceo-remove-founding-cofounder-v0.md",
+      "interpretation_read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-third-tiny-offline-read-v0/read.json",
+      "source_review_ref": "reviews/codex-assisted/decision-work-brief-third-builder-case-output-v0/review.json",
+      "decision_family": "founder_governance_or_relationship_sensitive_authority_transition",
+      "action_consequence_readability": "clear: the output centers COO alignment, moving product execution authority first, narrowing transition support, and precommitting escalation triggers before the conversation.",
+      "uncertainty_preservation": "preserved: the starting path, relationship costs, legal/governance constraints, and overlap between original and revised direction remain source-limited.",
+      "source_limit_preservation": "preserved: the brief names missing raw/private artifacts and keeps legal, equity, board, employment, customer trust, team loyalty, and founder-relationship implications as human-review issues.",
+      "non_claim_preservation": "preserved: the brief says it does not prove removing the cofounder is correct, legally safe, better advice, caused by Lolla, human validated, scored, or agent-action safe.",
+      "evidence_only_field_exclusion": "preserved: live options, abandoned/rejected options, noisy friction, and lost value stay out of the main enrichment body.",
+      "template_language_risk": "medium: the first enrichment sentence repeats decision-framing language and should be watched in future output.",
+      "overclaim_risk": "highest_of_three: authority-transfer language can sound like operating advice unless the caveats stay close.",
+      "human_review_need": "required_before_user_facing_validation",
+      "notes": "Most useful stress test because governance, relationship, and authority language is less naturally procedural than launch or deployment gates."
+    }
+  ],
+  "cross_case_pattern": {
+    "pattern_status": "stable_enough_for_human_review_intake_plan",
+    "summary": "Across GTM launch timing, healthcare deployment controls, and founder governance, the builder produces separate enriched briefs that clarify action consequence while preserving uncertainty, source limits, and non-claims.",
+    "repeated_strengths": [
+      "action consequence becomes easier to scan",
+      "starting direction uncertainty remains visible",
+      "Evidence and limits remains attached",
+      "evidence-only fields stay out of the main body",
+      "answer quality, product proof, human validation, and agent authorization are not claimed"
+    ],
+    "repeated_limits": [
+      "checked-in-safe context is compressed",
+      "raw/private conversation details are absent",
+      "interpretation reads are provisional and Codex-assisted",
+      "human review is still absent",
+      "deterministic template shape remains visible"
+    ]
+  },
+  "readability_pattern": {
+    "all_three_readable_enough": true,
+    "busy_reader_can_find_action_consequence": true,
+    "builder_output_is_human_polished": false,
+    "summary": "The outputs are readable enough for offline evidence review, but not polished enough to claim customer readiness. The cofounder opening sentence is the clearest remaining template artifact."
+  },
+  "action_consequence_pattern": {
+    "all_three_preserve_action_consequence": true,
+    "launch_beta": "paid scoped private pilots and buyer-behavior proof before public launch",
+    "deploy_intake": "single-clinic operating test, backlog diagnostic, four gates, and pause triggers",
+    "cofounder": "COO alignment, authority transfer first, narrowed transition support, and escalation triggers",
+    "summary": "This is the strongest useful signal: deterministic enrichment can make the practical decision delta clearer without adding new interpretation."
+  },
+  "uncertainty_and_source_limit_pattern": {
+    "uncertainty_visible_in_all_three": true,
+    "source_limits_visible_in_all_three": true,
+    "human_review_required_in_all_three": true,
+    "private_context_absent_from_checked_in_outputs": true,
+    "summary": "The builder keeps checked-in-safe compression, missing raw/private artifacts, and human-review absence visible across all three examples."
+  },
+  "overclaim_risk_pattern": {
+    "product_proof_claimed": false,
+    "human_validation_claimed": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "highest_risk_case": "ceo-remove-founding-cofounder",
+    "summary": "Overclaim risk is bounded in the artifacts but not gone. Smoother prose can create false confidence, and the cofounder output can sound operationally decisive."
+  },
+  "builder_rule_stability_read": {
+    "rules_stable_enough_for_next_step": true,
+    "patch_required_before_next_step": false,
+    "fourth_builder_case_recommended_now": false,
+    "human_review_intake_plan_recommended_now": true,
+    "summary": "The PR139 field rules and PR142 wording patch are stable enough for an intake plan. Another builder case would be less informative than defining what human reviewers must check."
+  },
+  "excluded_fields_check": {
+    "lost_value_kept_evidence_only": true,
+    "noisy_friction_kept_evidence_only": true,
+    "live_options_kept_out_of_main_body": true,
+    "abandoned_or_rejected_options_kept_out_of_main_body": true,
+    "values_stakeholders_assistant_influence_kept_out_of_main_body": true,
+    "summary": "The builder does not promote PR139 evidence-only fields into the main enrichment body across the three examples."
+  },
+  "strongest_useful_signal": "The deterministic builder can produce separate enriched briefs that make what changed for action easier to understand across three decision families while keeping the output provisional and source-limited.",
+  "strongest_unresolved_risk": "The outputs still rely on checked-in-safe compressed context and provisional Codex-assisted reads. Human review is needed before treating the brief as user-facing validation, especially for governance and healthcare decisions.",
+  "decision_gate": "proceed_to_human_review_intake_plan",
+  "recommended_next_pr": "PR150 Decision Work Brief Human Review Intake Plan v0",
+  "non_claims": [
+    "not_human_validated",
+    "not_product_proof",
+    "not_answer_quality_score",
+    "not_agent_action_authorization",
+    "not_runtime_integration",
+    "not_correctness_proof",
+    "not_customer_readiness_claim",
+    "clean_builder_outputs_do_not_imply_good_advice",
+    "future_human_review_required"
+  ]
+}

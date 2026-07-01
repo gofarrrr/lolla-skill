@@ -1996,6 +1996,47 @@ Recommended next slice:
 PR149 Decision Work Brief Three Builder Case Pattern Review v0
 ```
 
+### PR149: Decision Work Brief Three Builder Case Pattern Review v0
+
+Status: implemented after PR148.
+
+Purpose:
+
+Compare the three builder-generated enriched briefs and decide whether the
+offline builder evidence now points to another builder case, a rules patch,
+more source-depth work, packaging, human review, or simplification.
+
+Implemented in this PR:
+
+- `docs/conversation-understanding/decision-work-brief-three-builder-case-pattern-review-v0.md`
+- `reviews/codex-assisted/decision-work-brief-three-builder-case-pattern-review-v0/review.json`
+- `tests/test_decision_work_brief_three_builder_case_pattern_review.py`
+
+Current meaning:
+
+- the builder-generated launch-beta, intake-routing, and cofounder enriched
+  briefs all preserve the action-consequence signal;
+- uncertainty, source limits, non-claims, and Evidence and limits remain
+  visible across all three;
+- PR139 evidence-only fields remain out of the main enrichment body;
+- the builder is still visibly deterministic, and the cofounder output remains
+  the highest overclaim risk because authority-transfer language can sound
+  operationally decisive;
+- the next useful step is human-review intake planning, not another
+  deterministic builder case or runtime attachment.
+
+Decision gate:
+
+```text
+proceed_to_human_review_intake_plan
+```
+
+Recommended next slice:
+
+```text
+PR150 Decision Work Brief Human Review Intake Plan v0
+```
+
 ## Success Criteria
 
 The phase succeeds when a reader can quickly answer:

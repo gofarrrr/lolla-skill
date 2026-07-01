@@ -254,7 +254,7 @@ story. The intended user-facing target is the
 [Decision Work Brief PRD](docs/conversation-understanding/decision-work-brief-prd-v0.md):
 a plain-language artifact explaining the decision, what Lolla pressed on, what
 changed, what remains unresolved, and what the audit must not claim. That PRD
-now includes the concrete PR113-PR148 delivery sequence for schema, local
+now includes the concrete PR113-PR149 delivery sequence for schema, local
 packets, provisional brief drafts, rendering, usefulness review, second tiny
 case pilot, small pattern review, third diversity case pilot, and three-case
 pattern review, plain-language renderer patch, rereview, local-private
@@ -443,6 +443,13 @@ adds PR148's deterministic cofounder builder output:
 It finds the third builder-generated enriched brief readable enough for a
 three-case pattern review, while noting source-depth sensitivity and a mild
 template weakness.
+The
+[Decision Work Brief Three Builder Case Pattern Review](docs/conversation-understanding/decision-work-brief-three-builder-case-pattern-review-v0.md)
+adds PR149's comparison across the launch-beta, intake-routing, and cofounder
+builder outputs. It finds the builder stable enough to preserve action
+consequence, uncertainty, field exclusions, and non-claims across three
+decision families, and recommends a human-review intake plan rather than
+runtime integration or another deterministic builder case.
 There is still no production generator, runtime integration, model call in repo
 code, archive mutation, product proof, human validation, broad batch, customer
 marketing copy, or agent action authorization. See

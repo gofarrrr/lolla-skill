@@ -79,6 +79,9 @@ PR149 should compare the three builder-generated enriched briefs and decide
 whether the builder rules are stable enough, need a wording patch, should move
 to human-review intake, or should stop.
 
+Follow-up status: PR149 now compares all three builder outputs and selects
+`proceed_to_human_review_intake_plan`.
+
 ## Boundary
 
 PR148 does not:

@@ -359,6 +359,13 @@ Follow-up implementation planning:
   output source-limited and non-overclaiming, and recommends a three-builder
   case pattern review.
 
+- [Decision Work Brief Three Builder Case Pattern Review](../conversation-understanding/decision-work-brief-three-builder-case-pattern-review-v0.md)
+
+  PR149 compares the three builder-generated enriched briefs across launch,
+  healthcare operations, and founder governance. It finds the builder stable
+  enough for offline review and recommends a human-review intake plan before
+  any runtime attachment.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,
