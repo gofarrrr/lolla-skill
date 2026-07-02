@@ -26,6 +26,12 @@ Recommended reading order:
    with the revised answer without using a naive judge or score, what the current
    non-human evidence suggests, and what still requires human review.
 
+4. [Decision Work Brief Offline v1 Demo Narrative](decision-work-brief-offline-v1-demo-narrative.md)
+
+   A plain-language walkthrough of the Offline v1 evidence surface: how a
+   completed Lolla run becomes a readable Decision Work Brief, what bounded
+   interpretation and triage add, and what the system still refuses to claim.
+
 Follow-up implementation planning:
 
 - [Decision Work Receipt PRD](../conversation-understanding/decision-work-receipt-prd-v0.md)
