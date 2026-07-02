@@ -89,11 +89,18 @@ pause_until_human_review_capacity
 Recommended next PR:
 
 ```text
-PR154 Decision Work Brief Human Review Response Collection v0
+PR154 Decision Work Automatic Triage Contract v0
 ```
 
-That PR should only start when a real human response is available to collect or
-when the user explicitly provides one. Until then, the honest state is paused.
+That PR should not claim a completed human review. It should define the
+automatic routing contract that a future system can use while human review
+remains a calibration layer.
+
+Follow-up status:
+
+PR154 defines that automatic triage contract. It does not collect a human
+response, call models, score answer quality, authorize action, or attach the
+brief to runtime.
 
 ## Boundary
 

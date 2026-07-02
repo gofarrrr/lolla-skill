@@ -2192,7 +2192,49 @@ pause_until_human_review_capacity
 Recommended next slice:
 
 ```text
-PR154 Decision Work Brief Human Review Response Collection v0
+PR154 Decision Work Automatic Triage Contract v0
+```
+
+Follow-up note:
+
+PR154 does not collect a human response. Instead, it uses the PR153 pause state
+to define the automatic triage contract that should eventually route attention
+and escalation while treating human review as calibration.
+
+### PR154: Decision Work Automatic Triage Contract v0
+
+Status: implemented after PR153.
+
+Purpose:
+
+Define the future automatic triage layer between interpretation evidence,
+enriched Decision Work Briefs, agent-inspection handoffs, and any user-facing
+surface. The layer should route attention and escalation, not decide
+correctness.
+
+Implemented in this PR:
+
+- `docs/conversation-understanding/decision-work-automatic-triage-contract-v0.md`
+- `docs/conversation-understanding/decision-work-automatic-triage-contract-v0.json`
+- `tests/test_decision_work_automatic_triage_contract.py`
+
+Current meaning:
+
+- LLM interpretation owns messy semantic triage judgments;
+- deterministic code owns custody, source refs, missingness, schema validity,
+  privacy/redaction status, non-claims, and forbidden-authority checks;
+- triage may route to user surface, agent inspection, source-depth blocking,
+  private-context needs, human calibration, domain/legal/compliance review, or
+  runtime blocking;
+- triage is not a score, approval, certification, answer-quality grade,
+  product proof, human validation, or action authorization;
+- human review calibrates the automatic triage layer instead of being the
+  intended normal operating mode for every run.
+
+Recommended next slice:
+
+```text
+PR155 Decision Work Automatic Triage Packet Builder v0
 ```
 
 ## Success Criteria

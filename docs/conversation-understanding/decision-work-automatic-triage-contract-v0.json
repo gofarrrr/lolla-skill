@@ -1,0 +1,710 @@
+{
+  "schema_version": "lolla.decision_work_automatic_triage_contract.v0",
+  "triage_metadata": {
+    "contract_id": "decision_work_automatic_triage_contract:v0",
+    "created_at": "2026-07-02T00:00:00Z",
+    "contract_mode": "docs_schema_tests_only",
+    "source_gate_ref": "reviews/codex-assisted/decision-work-brief-human-review-awaiting-response-gate-v0/review.json",
+    "source_gate_outcome": "pause_until_human_review_capacity",
+    "purpose": "Define the future automatic routing and attention contract between interpretation evidence and Decision Work Brief or agent-inspection surfaces.",
+    "not_implemented_here": [
+      "triage_packet_builder",
+      "populated_triage_example",
+      "codex_assisted_triage_read",
+      "runtime_integration",
+      "prompt_changes",
+      "model_calls",
+      "human_review_result",
+      "score",
+      "pass_fail_label",
+      "approval_or_certification_field"
+    ]
+  },
+  "input_refs": {
+    "human_review_awaiting_response_gate_ref": "docs/conversation-understanding/decision-work-brief-human-review-awaiting-response-gate-v0.md",
+    "conversation_interpretation_read_schema_ref": "docs/conversation-understanding/decision-work-conversation-interpretation-read-schema-v0.md",
+    "enrichment_rules_contract_ref": "docs/conversation-understanding/decision-work-brief-enrichment-rules-contract-v0.md",
+    "enrichment_rules_contract_json_ref": "docs/conversation-understanding/decision-work-brief-enrichment-rules-contract-v0.json",
+    "human_review_response_template_ref": "docs/conversation-understanding/decision-work-brief-human-review-response-template-v0.json",
+    "future_triage_packet_ref": null
+  },
+  "custody_flags": {
+    "human_validated": false,
+    "human_review_completed": false,
+    "product_proof": false,
+    "model_calls": 0,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "archive_mutated": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false,
+    "raw_private_content_included": false,
+    "provider_text_included": false,
+    "local_absolute_paths_included": false,
+    "triage_contract_only": true
+  },
+  "triage_scope": {
+    "scope_name": "automatic_decision_work_triage_contract",
+    "scope_purpose": "Route attention and escalation for future Decision Work Brief and agent-inspection surfaces.",
+    "in_scope": [
+      "source_depth_routing",
+      "private_context_dependency_routing",
+      "overtrust_risk_routing",
+      "domain_or_legal_or_compliance_escalation",
+      "agent_inspection_handoff",
+      "user_surface_readiness_routing",
+      "runtime_attachment_blocking",
+      "human_calibration_need"
+    ],
+    "out_of_scope": [
+      "answer_correctness",
+      "answer_quality_scoring",
+      "approval",
+      "certification",
+      "product_proof",
+      "human_validation_without_human_response",
+      "agent_action_authorization",
+      "runtime_attachment_implementation"
+    ],
+    "human_review_role": "calibration_layer_not_normal_per_run_operating_mode"
+  },
+  "triage_categories": [
+    {
+      "category": "normal_brief_candidate",
+      "purpose": "Candidate for user-facing brief only with visible caveats and source limits.",
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "category": "agent_inspection_only",
+      "purpose": "Useful for downstream inspection but not ready for a user-facing brief.",
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "category": "source_depth_insufficient",
+      "purpose": "Checked-in-safe or available source depth is too thin for the requested surface.",
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "category": "private_context_required",
+      "purpose": "Private or local context is required before surfacing or relying on the read.",
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "category": "high_overtrust_risk",
+      "purpose": "The surface may create false confidence or smooth over source limits.",
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "category": "human_calibration_recommended",
+      "purpose": "Human review should calibrate whether the automatic routing is useful or overtrust-inducing.",
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "category": "domain_review_recommended",
+      "purpose": "Domain expertise is recommended before user-surface or runtime planning.",
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "category": "legal_or_compliance_review_recommended",
+      "purpose": "Legal, compliance, or policy review is recommended before any user-surface or operational use.",
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "category": "relationship_or_political_risk",
+      "purpose": "Relationship, governance, employment, board, customer-trust, or internal-political nuance may change the safe surface.",
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "category": "lost_value_risk",
+      "purpose": "The final answer or brief may have lost important option value, tradeoff value, or downside nuance.",
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "category": "missing_decision_context",
+      "purpose": "The decision question, constraints, or action context are too incomplete.",
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "category": "interpretation_conflict",
+      "purpose": "Interpretation reads, local-private checks, or brief evidence disagree enough to require escalation.",
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "category": "too_thin_to_summarize",
+      "purpose": "The system should not produce a smooth summary from the available evidence.",
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "category": "not_ready_for_user_surface",
+      "purpose": "The brief should not be exposed as a user-facing surface.",
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "category": "runtime_attachment_blocked",
+      "purpose": "The artifact is not ready for runtime attachment or automatic downstream use.",
+      "must_not_be_used_as_quality_label": true
+    }
+  ],
+  "status_vocabulary": [
+    "not_evaluated",
+    "clear",
+    "partial",
+    "unclear",
+    "insufficient_source",
+    "private_context_required",
+    "human_calibration_required",
+    "domain_review_required",
+    "blocked",
+    "not_applicable"
+  ],
+  "owner_vocabulary": [
+    "llm_interpretation",
+    "deterministic_validation",
+    "human_calibration",
+    "mixed"
+  ],
+  "route_value_vocabulary": [
+    "allowed_with_caveats",
+    "agent_only",
+    "requires_human_calibration",
+    "requires_domain_review",
+    "blocked_source_depth",
+    "blocked_overtrust_risk",
+    "blocked_runtime",
+    "not_ready",
+    "not_evaluated"
+  ],
+  "triage_fields": [
+    {
+      "field_group": "decision_surface_readiness",
+      "owner": "mixed",
+      "status_vocabulary": [
+        "not_evaluated",
+        "clear",
+        "partial",
+        "unclear",
+        "insufficient_source",
+        "private_context_required",
+        "human_calibration_required",
+        "domain_review_required",
+        "blocked",
+        "not_applicable"
+      ],
+      "allowed_values": [
+        "normal_brief_candidate",
+        "agent_inspection_only",
+        "not_ready_for_user_surface",
+        "too_thin_to_summarize",
+        "not_evaluated"
+      ],
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "privacy_handling": "preserve_redacted_private_availability_without_copying_private_text",
+      "can_feed_user_surface": true,
+      "can_feed_agent_inspection": true,
+      "blocks_runtime_attachment": true,
+      "requires_human_or_domain_review": false,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "evidence_depth",
+      "owner": "deterministic_validation",
+      "status_vocabulary": [
+        "not_evaluated",
+        "clear",
+        "partial",
+        "unclear",
+        "insufficient_source",
+        "private_context_required",
+        "human_calibration_required",
+        "domain_review_required",
+        "blocked",
+        "not_applicable"
+      ],
+      "allowed_values": [
+        "source_depth_sufficient_for_caveated_brief",
+        "source_depth_insufficient",
+        "private_context_required",
+        "too_thin_to_summarize",
+        "not_evaluated"
+      ],
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "privacy_handling": "track_missingness_and_private_context_status_without_content",
+      "can_feed_user_surface": true,
+      "can_feed_agent_inspection": true,
+      "blocks_runtime_attachment": true,
+      "requires_human_or_domain_review": false,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "source_status",
+      "owner": "deterministic_validation",
+      "status_vocabulary": [
+        "not_evaluated",
+        "clear",
+        "partial",
+        "unclear",
+        "insufficient_source",
+        "private_context_required",
+        "human_calibration_required",
+        "domain_review_required",
+        "blocked",
+        "not_applicable"
+      ],
+      "allowed_values": [
+        "checked_in_safe_summary_only",
+        "local_private_metadata_only",
+        "local_private_context_required",
+        "missing_source",
+        "not_evaluated"
+      ],
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "privacy_handling": "name_source_status_without_raw_or_provider_text",
+      "can_feed_user_surface": true,
+      "can_feed_agent_inspection": true,
+      "blocks_runtime_attachment": true,
+      "requires_human_or_domain_review": false,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "interpretation_status",
+      "owner": "llm_interpretation",
+      "status_vocabulary": [
+        "not_evaluated",
+        "clear",
+        "partial",
+        "unclear",
+        "insufficient_source",
+        "private_context_required",
+        "human_calibration_required",
+        "domain_review_required",
+        "blocked",
+        "not_applicable"
+      ],
+      "allowed_values": [
+        "interpretation_present_with_caveats",
+        "interpretation_partial",
+        "interpretation_conflict",
+        "missing_decision_context",
+        "not_evaluated"
+      ],
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "privacy_handling": "preserve_interpretation_basis_and_private_limits",
+      "can_feed_user_surface": true,
+      "can_feed_agent_inspection": true,
+      "blocks_runtime_attachment": true,
+      "requires_human_or_domain_review": false,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "uncertainty_visibility",
+      "owner": "mixed",
+      "status_vocabulary": [
+        "not_evaluated",
+        "clear",
+        "partial",
+        "unclear",
+        "insufficient_source",
+        "private_context_required",
+        "human_calibration_required",
+        "domain_review_required",
+        "blocked",
+        "not_applicable"
+      ],
+      "allowed_values": [
+        "uncertainty_visible",
+        "uncertainty_partly_visible",
+        "uncertainty_buried",
+        "uncertainty_missing",
+        "not_evaluated"
+      ],
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "privacy_handling": "uncertainty_must_survive_redaction",
+      "can_feed_user_surface": true,
+      "can_feed_agent_inspection": true,
+      "blocks_runtime_attachment": true,
+      "requires_human_or_domain_review": false,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "overtrust_risk",
+      "owner": "llm_interpretation",
+      "status_vocabulary": [
+        "not_evaluated",
+        "clear",
+        "partial",
+        "unclear",
+        "insufficient_source",
+        "private_context_required",
+        "human_calibration_required",
+        "domain_review_required",
+        "blocked",
+        "not_applicable"
+      ],
+      "allowed_values": [
+        "low_overtrust_risk_with_caveats",
+        "high_overtrust_risk",
+        "blocked_overtrust_risk",
+        "human_calibration_recommended",
+        "not_evaluated"
+      ],
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "privacy_handling": "do_not_hide_source_limits_in_smooth_summary",
+      "can_feed_user_surface": true,
+      "can_feed_agent_inspection": true,
+      "blocks_runtime_attachment": true,
+      "requires_human_or_domain_review": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "high_stakes_domain_risk",
+      "owner": "mixed",
+      "status_vocabulary": [
+        "not_evaluated",
+        "clear",
+        "partial",
+        "unclear",
+        "insufficient_source",
+        "private_context_required",
+        "human_calibration_required",
+        "domain_review_required",
+        "blocked",
+        "not_applicable"
+      ],
+      "allowed_values": [
+        "domain_review_recommended",
+        "legal_or_compliance_review_recommended",
+        "relationship_or_political_risk",
+        "not_applicable",
+        "not_evaluated"
+      ],
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "privacy_handling": "preserve_domain_or_sensitive_context_limits",
+      "can_feed_user_surface": false,
+      "can_feed_agent_inspection": true,
+      "blocks_runtime_attachment": true,
+      "requires_human_or_domain_review": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "lost_value_or_overcorrection_risk",
+      "owner": "llm_interpretation",
+      "status_vocabulary": [
+        "not_evaluated",
+        "clear",
+        "partial",
+        "unclear",
+        "insufficient_source",
+        "private_context_required",
+        "human_calibration_required",
+        "domain_review_required",
+        "blocked",
+        "not_applicable"
+      ],
+      "allowed_values": [
+        "lost_value_risk",
+        "lost_value_unclear",
+        "overcorrection_risk",
+        "insufficient_source",
+        "not_evaluated"
+      ],
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "privacy_handling": "do_not_infer_lost_value_severity_without_source_depth",
+      "can_feed_user_surface": false,
+      "can_feed_agent_inspection": true,
+      "blocks_runtime_attachment": true,
+      "requires_human_or_domain_review": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "private_context_dependency",
+      "owner": "deterministic_validation",
+      "status_vocabulary": [
+        "not_evaluated",
+        "clear",
+        "partial",
+        "unclear",
+        "insufficient_source",
+        "private_context_required",
+        "human_calibration_required",
+        "domain_review_required",
+        "blocked",
+        "not_applicable"
+      ],
+      "allowed_values": [
+        "private_context_not_required_for_caveated_summary",
+        "private_context_required",
+        "local_private_metadata_only",
+        "unsafe_to_summarize",
+        "not_evaluated"
+      ],
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "privacy_handling": "record_private_context_dependency_without_content",
+      "can_feed_user_surface": true,
+      "can_feed_agent_inspection": true,
+      "blocks_runtime_attachment": true,
+      "requires_human_or_domain_review": false,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "agent_inspection_readiness",
+      "owner": "mixed",
+      "status_vocabulary": [
+        "not_evaluated",
+        "clear",
+        "partial",
+        "unclear",
+        "insufficient_source",
+        "private_context_required",
+        "human_calibration_required",
+        "domain_review_required",
+        "blocked",
+        "not_applicable"
+      ],
+      "allowed_values": [
+        "agent_inspection_only",
+        "agent_inspection_with_caveats",
+        "agent_inspection_blocked_source_depth",
+        "agent_inspection_blocked_overtrust",
+        "not_evaluated"
+      ],
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "privacy_handling": "agent_inspection_receives_status_not_private_content_by_default",
+      "can_feed_user_surface": false,
+      "can_feed_agent_inspection": true,
+      "blocks_runtime_attachment": true,
+      "requires_human_or_domain_review": false,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "user_surface_readiness",
+      "owner": "mixed",
+      "status_vocabulary": [
+        "not_evaluated",
+        "clear",
+        "partial",
+        "unclear",
+        "insufficient_source",
+        "private_context_required",
+        "human_calibration_required",
+        "domain_review_required",
+        "blocked",
+        "not_applicable"
+      ],
+      "allowed_values": [
+        "allowed_with_caveats",
+        "not_ready_for_user_surface",
+        "blocked_source_depth",
+        "blocked_overtrust_risk",
+        "not_evaluated"
+      ],
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "privacy_handling": "user_surface_must_not_show_private_content_or_hide_limits",
+      "can_feed_user_surface": true,
+      "can_feed_agent_inspection": true,
+      "blocks_runtime_attachment": true,
+      "requires_human_or_domain_review": false,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "runtime_attachment_readiness",
+      "owner": "deterministic_validation",
+      "status_vocabulary": [
+        "not_evaluated",
+        "clear",
+        "partial",
+        "unclear",
+        "insufficient_source",
+        "private_context_required",
+        "human_calibration_required",
+        "domain_review_required",
+        "blocked",
+        "not_applicable"
+      ],
+      "allowed_values": [
+        "blocked_runtime",
+        "not_ready",
+        "requires_human_calibration",
+        "requires_domain_review",
+        "not_evaluated"
+      ],
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "privacy_handling": "runtime_attachment_cannot_use_private_content_or_unvalidated_routes",
+      "can_feed_user_surface": false,
+      "can_feed_agent_inspection": true,
+      "blocks_runtime_attachment": true,
+      "requires_human_or_domain_review": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "human_calibration_need",
+      "owner": "human_calibration",
+      "status_vocabulary": [
+        "not_evaluated",
+        "clear",
+        "partial",
+        "unclear",
+        "insufficient_source",
+        "private_context_required",
+        "human_calibration_required",
+        "domain_review_required",
+        "blocked",
+        "not_applicable"
+      ],
+      "allowed_values": [
+        "human_calibration_recommended",
+        "human_calibration_required",
+        "calibration_not_available",
+        "pause_until_human_review_capacity",
+        "not_evaluated"
+      ],
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "privacy_handling": "human_calibration_may_request_private_context_but_contract_does_not_copy_it",
+      "can_feed_user_surface": false,
+      "can_feed_agent_inspection": true,
+      "blocks_runtime_attachment": true,
+      "requires_human_or_domain_review": true,
+      "must_not_be_used_as_quality_label": true
+    }
+  ],
+  "routing_outputs": {
+    "user_surface_route": {
+      "allowed_route_values": [
+        "allowed_with_caveats",
+        "agent_only",
+        "requires_human_calibration",
+        "requires_domain_review",
+        "blocked_source_depth",
+        "blocked_overtrust_risk",
+        "blocked_runtime",
+        "not_ready",
+        "not_evaluated"
+      ],
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "must_not_authorize_action": true
+    },
+    "agent_inspection_route": {
+      "allowed_route_values": [
+        "allowed_with_caveats",
+        "agent_only",
+        "requires_human_calibration",
+        "requires_domain_review",
+        "blocked_source_depth",
+        "blocked_overtrust_risk",
+        "blocked_runtime",
+        "not_ready",
+        "not_evaluated"
+      ],
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "must_not_authorize_action": true
+    },
+    "human_calibration_route": {
+      "allowed_route_values": [
+        "allowed_with_caveats",
+        "agent_only",
+        "requires_human_calibration",
+        "requires_domain_review",
+        "blocked_source_depth",
+        "blocked_overtrust_risk",
+        "blocked_runtime",
+        "not_ready",
+        "not_evaluated"
+      ],
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "must_not_authorize_action": true
+    },
+    "domain_review_route": {
+      "allowed_route_values": [
+        "allowed_with_caveats",
+        "agent_only",
+        "requires_human_calibration",
+        "requires_domain_review",
+        "blocked_source_depth",
+        "blocked_overtrust_risk",
+        "blocked_runtime",
+        "not_ready",
+        "not_evaluated"
+      ],
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "must_not_authorize_action": true
+    },
+    "runtime_attachment_route": {
+      "allowed_route_values": [
+        "allowed_with_caveats",
+        "agent_only",
+        "requires_human_calibration",
+        "requires_domain_review",
+        "blocked_source_depth",
+        "blocked_overtrust_risk",
+        "blocked_runtime",
+        "not_ready",
+        "not_evaluated"
+      ],
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "must_not_authorize_action": true
+    }
+  },
+  "escalation_outputs": {
+    "may_recommend_human_calibration": true,
+    "may_recommend_domain_review": true,
+    "may_recommend_legal_or_compliance_review": true,
+    "may_recommend_source_depth_check": true,
+    "must_not_claim_escalation_completed": true,
+    "must_not_claim_review_approval": true
+  },
+  "agent_inspection_outputs": {
+    "may_identify_first_inspection_targets": true,
+    "may_include_source_refs": true,
+    "may_include_missingness": true,
+    "may_include_uncertainty": true,
+    "must_not_authorize_agent_action": true,
+    "must_not_hide_private_context_limits": true
+  },
+  "brief_surface_outputs": {
+    "may_feed_brief_with_caveats": true,
+    "must_preserve_evidence_and_limits": true,
+    "must_preserve_what_this_does_not_prove": true,
+    "must_not_emit_user_surface_when_route_is_blocked": true,
+    "must_not_smooth_uncertainty_into_confidence": true
+  },
+  "human_calibration_outputs": {
+    "calibration_role": "human_review_calibrates_automatic_triage_not_normal_per_run_operating_layer",
+    "may_compare_triage_against_human_response": true,
+    "may_tune_future_triage_prompts_or_rules_after_explicit_review": true,
+    "must_not_treat_absent_human_response_as_validation": true,
+    "must_not_turn_human_review_into_required_normal_path_for_every_run": true,
+    "must_preserve_human_review_as_calibration_not_label": true
+  },
+  "non_claims": [
+    "triage_is_not_a_score",
+    "triage_is_not_approval",
+    "triage_is_not_certification",
+    "triage_is_not_answer_quality_grading",
+    "triage_is_not_product_proof",
+    "triage_is_not_human_validation",
+    "triage_does_not_authorize_agent_action",
+    "triage_does_not_authorize_automatic_action",
+    "triage_does_not_prove_lolla_improved_the_decision",
+    "triage_does_not_implement_runtime_attachment",
+    "triage_contract_does_not_call_models",
+    "human_review_calibrates_triage_but_is_not_the_normal_operating_layer"
+  ]
+}

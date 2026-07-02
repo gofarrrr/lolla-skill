@@ -254,7 +254,7 @@ story. The intended user-facing target is the
 [Decision Work Brief PRD](docs/conversation-understanding/decision-work-brief-prd-v0.md):
 a plain-language artifact explaining the decision, what Lolla pressed on, what
 changed, what remains unresolved, and what the audit must not claim. That PRD
-now includes the concrete PR113-PR153 delivery sequence for schema, local
+now includes the concrete PR113-PR154 delivery sequence for schema, local
 packets, provisional brief drafts, rendering, usefulness review, second tiny
 case pilot, small pattern review, third diversity case pilot, and three-case
 pattern review, plain-language renderer patch, rereview, local-private
@@ -477,6 +477,15 @@ The
 adds PR153's pause boundary: no real human response exists yet, so the next
 unblocked evidence step is a real reviewer filling the PR151 response
 template, not Codex-filled review.
+The
+[Decision Work Automatic Triage Contract](docs/conversation-understanding/decision-work-automatic-triage-contract-v0.md)
+and
+[contract JSON](docs/conversation-understanding/decision-work-automatic-triage-contract-v0.json)
+add PR154's future automatic routing contract. The triage layer should route
+attention and escalation across user-surface, agent-inspection, source-depth,
+private-context, overtrust, domain-review, human-calibration, and runtime
+blocking states without becoming a score, approval, product proof, human
+validation claim, or action authorization.
 There is still no production generator, runtime integration, model call in repo
 code, archive mutation, product proof, human validation, broad batch, customer
 marketing copy, or agent action authorization. See

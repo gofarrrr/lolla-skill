@@ -89,7 +89,7 @@ Follow-up implementation planning:
   The product-facing target for the missing layer: a plain-language brief that
   explains what decision was being made, what Lolla pressed on, what changed,
   what remains unresolved, and what the audit must not claim. It also nests the
-  work into PR113-PR153 so the next steps stay grounded in the existing
+  work into PR113-PR154 so the next steps stay grounded in the existing
   receipt, Decision Trail, Product Delta, lint, interpretation, and custody
   machinery.
 
@@ -392,6 +392,13 @@ Follow-up implementation planning:
   PR153 records the honest pause state after PR152: no real human response
   exists yet, Codex must not fill the template, and runtime/customer-facing use
   remains blocked until a human reviewer responds.
+
+- [Decision Work Automatic Triage Contract](../conversation-understanding/decision-work-automatic-triage-contract-v0.md)
+
+  PR154 defines the future automatic triage contract for routing attention
+  between brief surface, agent inspection, source-depth blocking, escalation,
+  and runtime-blocking states. It treats human review as calibration, not as
+  the normal operating layer.
 
 The core board-level message is:
 

@@ -67,7 +67,7 @@ conversation or agent run
 Current handoff state:
 
 ```text
-PR153 Decision Work Brief Human Review Awaiting Response Gate v0 is the
+PR154 Decision Work Automatic Triage Contract v0 is the
 latest Decision Work Brief-adjacent slice recorded in this working tree. PR113
 introduced the product-facing brief target and corrected the receipt debug
 summary back to an internal maintainer layer. PR114 added the machine-readable
@@ -201,7 +201,13 @@ complete: no human response has been collected, no human validation has
 happened, runtime/customer-facing use remains blocked, and the next evidence
 step requires a real human reviewer. PR153 records that no real human response
 exists yet, so the lane is paused until human review capacity returns rather
-than substituting Codex-filled answers. PR104 remains the latest
+than substituting Codex-filled answers. PR154 reframes human review as a
+calibration layer, not the future normal operating model, and defines
+`lolla.decision_work_automatic_triage_contract.v0` for a future automatic
+routing layer that can route briefs toward user surface, agent inspection,
+source-depth blocking, private-context needs, domain/human calibration, or
+runtime blocking without scoring answer quality or authorizing action. PR104
+remains the latest
 Decision Trail human-review intake slice; PR85 remains the latest packaged
 product-evidence eval-lane slice; PR70
 remains the audit/accountability machinery closure gate; PR48 remains the
@@ -320,7 +326,7 @@ and explicit non-claims. It remains a contract only: no generator, packet
 builder, renderer, runtime integration, model calls, archive mutation, or
 semantic inference.
 
-PR115 through PR153 keep the brief lane offline and downstream. Maintainers can
+PR115 through PR154 keep the brief lane offline and downstream. Maintainers can
 prepare metadata-only packets from completed runs, inspect provisional
 Codex-assisted checked-in-safe drafts, render existing brief JSON to Markdown,
 and now inspect three tiny cases: `ceo-remove-founding-cofounder`,
@@ -374,7 +380,11 @@ template is still blank, and the correct next step is
 `collect_real_human_review_response`, not Codex-filled review or runtime use.
 PR153 records the awaiting-response state: no real human response exists yet,
 so the current gate is `pause_until_human_review_capacity` and the next
-unblocked evidence step is a real human-filled response template.
+unblocked evidence step is a real human-filled response template. PR154 then
+defines the automatic triage contract: LLM interpretation may own messy
+semantic routing judgments, deterministic code must preserve custody/source
+refs/missingness/privacy/non-claims, and human review calibrates the router
+rather than becoming the per-run operating layer.
 
 This remains offline/eval-side machinery. It does not run $lolla, invoke the
 skill, call providers, mutate archives, change prompts, touch SKILL.md, score
