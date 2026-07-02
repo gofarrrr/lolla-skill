@@ -143,12 +143,18 @@ ready_to_run_human_review
 Recommended next PR:
 
 ```text
-PR152 Decision Work Brief Human Review Pilot Run v0
+PR152 Decision Work Brief Human Review Pilot Readiness Gate v0
 ```
 
 The next step should be a real human-review pilot using the blank response
 template. If no human reviewer is available, pause or package the scaffold
 rather than filling human fields with Codex judgments.
+
+Follow-up status:
+
+PR152 records that this scaffold is ready to run but has not run. No human
+response has been collected, the response template remains blank, and the next
+evidence step requires a real human reviewer.
 
 ## Boundary
 

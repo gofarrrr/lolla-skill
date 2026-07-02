@@ -67,7 +67,7 @@ conversation or agent run
 Current handoff state:
 
 ```text
-PR151 Decision Work Brief Human Review Pilot Scaffold v0 is the
+PR152 Decision Work Brief Human Review Pilot Readiness Gate v0 is the
 latest Decision Work Brief-adjacent slice recorded in this working tree. PR113
 introduced the product-facing brief target and corrected the receipt debug
 summary back to an internal maintainer layer. PR114 added the machine-readable
@@ -196,7 +196,10 @@ for those three builder outputs, including reviewer questions, stop
 conditions, allowed outcomes, and a `run_human_review_pilot` gate without
 claiming completed human review. PR151 creates the blank human-review pilot
 scaffold and response template, making the pilot runnable without filling any
-human fields. PR104 remains the latest
+human fields. PR152 records that the pilot packet is ready to run but not
+complete: no human response has been collected, no human validation has
+happened, runtime/customer-facing use remains blocked, and the next evidence
+step requires a real human reviewer. PR104 remains the latest
 Decision Trail human-review intake slice; PR85 remains the latest packaged
 product-evidence eval-lane slice; PR70
 remains the audit/accountability machinery closure gate; PR48 remains the
@@ -315,7 +318,7 @@ and explicit non-claims. It remains a contract only: no generator, packet
 builder, renderer, runtime integration, model calls, archive mutation, or
 semantic inference.
 
-PR115 through PR151 keep the brief lane offline and downstream. Maintainers can
+PR115 through PR152 keep the brief lane offline and downstream. Maintainers can
 prepare metadata-only packets from completed runs, inspect provisional
 Codex-assisted checked-in-safe drafts, render existing brief JSON to Markdown,
 and now inspect three tiny cases: `ceo-remove-founding-cofounder`,
@@ -363,7 +366,10 @@ a blank response template, stop conditions, allowed pilot outcomes, and a
 `ready_to_run_human_review` gate. It does not fill any human-review answers,
 complete human validation, score answer quality, authorize agent action, or
 attach the brief to runtime. PR151 recommends PR152 Decision Work Brief Human
-Review Pilot Run v0.
+Review Pilot Readiness Gate v0. PR152 adds the readiness gate for that pilot:
+scaffold and template exist, exactly three enriched briefs are in scope, the
+template is still blank, and the correct next step is
+`collect_real_human_review_response`, not Codex-filled review or runtime use.
 
 This remains offline/eval-side machinery. It does not run $lolla, invoke the
 skill, call providers, mutate archives, change prompts, touch SKILL.md, score

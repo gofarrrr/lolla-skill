@@ -254,7 +254,7 @@ story. The intended user-facing target is the
 [Decision Work Brief PRD](docs/conversation-understanding/decision-work-brief-prd-v0.md):
 a plain-language artifact explaining the decision, what Lolla pressed on, what
 changed, what remains unresolved, and what the audit must not claim. That PRD
-now includes the concrete PR113-PR151 delivery sequence for schema, local
+now includes the concrete PR113-PR152 delivery sequence for schema, local
 packets, provisional brief drafts, rendering, usefulness review, second tiny
 case pilot, small pattern review, third diversity case pilot, and three-case
 pattern review, plain-language renderer patch, rereview, local-private
@@ -467,6 +467,11 @@ add PR151's runnable human-review pilot materials. They give a future human
 reviewer the three enriched briefs, instructions, stop conditions, allowed
 answers, and blank fields to fill, while keeping `human_review_completed` false
 until a real reviewer responds.
+The
+[Decision Work Brief Human Review Pilot Readiness Gate](docs/conversation-understanding/decision-work-brief-human-review-pilot-readiness-gate-v0.md)
+adds PR152's explicit readiness boundary: the pilot packet and blank template
+are ready, but no human response has been collected, no human validation has
+happened, and runtime or customer-facing use remains blocked.
 There is still no production generator, runtime integration, model call in repo
 code, archive mutation, product proof, human validation, broad batch, customer
 marketing copy, or agent action authorization. See

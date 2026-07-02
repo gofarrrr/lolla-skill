@@ -2113,7 +2113,43 @@ ready_to_run_human_review
 Recommended next slice:
 
 ```text
-PR152 Decision Work Brief Human Review Pilot Run v0
+PR152 Decision Work Brief Human Review Pilot Readiness Gate v0
+```
+
+### PR152: Decision Work Brief Human Review Pilot Readiness Gate v0
+
+Status: implemented after PR151.
+
+Purpose:
+
+Record that the human-review pilot packet is ready to run, while making clear
+that no human response has been collected and no human validation has happened.
+
+Implemented in this PR:
+
+- `docs/conversation-understanding/decision-work-brief-human-review-pilot-readiness-gate-v0.md`
+- `reviews/codex-assisted/decision-work-brief-human-review-pilot-readiness-gate-v0/review.json`
+- `tests/test_decision_work_brief_human_review_pilot_readiness_gate.py`
+
+Current meaning:
+
+- the PR151 scaffold exists;
+- the blank response template exists;
+- exactly three enriched briefs are in scope;
+- the response template is still blank;
+- runtime and customer-facing use remain blocked;
+- Codex must not substitute for the human reviewer.
+
+Decision gate:
+
+```text
+collect_real_human_review_response
+```
+
+Recommended next slice:
+
+```text
+PR153 Decision Work Brief Human Review Response Collection v0
 ```
 
 ## Success Criteria

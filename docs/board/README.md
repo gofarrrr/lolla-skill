@@ -89,7 +89,7 @@ Follow-up implementation planning:
   The product-facing target for the missing layer: a plain-language brief that
   explains what decision was being made, what Lolla pressed on, what changed,
   what remains unresolved, and what the audit must not claim. It also nests the
-  work into PR113-PR151 so the next steps stay grounded in the existing
+  work into PR113-PR152 so the next steps stay grounded in the existing
   receipt, Decision Trail, Product Delta, lint, interpretation, and custody
   machinery.
 
@@ -380,6 +380,12 @@ Follow-up implementation planning:
   provides reviewer instructions and a response template for the three enriched
   briefs, but keeps human-review answers unfilled until a real reviewer uses
   the template.
+
+- [Decision Work Brief Human Review Pilot Readiness Gate](../conversation-understanding/decision-work-brief-human-review-pilot-readiness-gate-v0.md)
+
+  PR152 records that the pilot packet is ready to run but has not run. It keeps
+  runtime and customer-facing use blocked until a real human reviewer fills the
+  PR151 response template.
 
 The core board-level message is:
 

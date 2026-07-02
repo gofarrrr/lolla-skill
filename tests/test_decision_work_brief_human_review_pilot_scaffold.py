@@ -268,7 +268,7 @@ def test_scaffold_doc_explains_no_completed_human_review() -> None:
     assert "clean artifacts prove good advice" in markdown
     assert "response template forces fake certainty" in markdown
     assert "ready_to_run_human_review" in markdown
-    assert "PR152 Decision Work Brief Human Review Pilot Run v0" in markdown
+    assert "PR152 Decision Work Brief Human Review Pilot Readiness Gate v0" in markdown
 
 
 def test_no_private_markers_or_authority_claims() -> None:

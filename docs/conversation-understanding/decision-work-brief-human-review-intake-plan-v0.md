@@ -121,6 +121,10 @@ for this intake plan. The response template keeps all human-review answer fields
 as `not_reviewed`, `null`, or empty arrays until a real human reviewer fills
 them.
 
+PR152 then records that the pilot packet is ready to run but has not run. No
+human response has been collected, and runtime or customer-facing use remains
+blocked.
+
 ## Boundary
 
 PR150 does not:
