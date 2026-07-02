@@ -333,6 +333,9 @@ No model calls yet.
 Prepare a bounded prompt/input packet for an operator or Codex session to fill
 the PR133 interpretation read schema.
 
+PR181 is implemented as
+[Decision Work Operator/Codex Interpretation Prompt Packet](decision-work-operator-codex-interpretation-prompt-packet-v0.md).
+
 This is the first bridge from deterministic queue to probabilistic
 interpretation, but it should still not call providers from repo code.
 

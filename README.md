@@ -609,6 +609,10 @@ The
 [offline interpretation queue builder](docs/conversation-understanding/decision-work-offline-interpretation-queue-builder-v0.md)
 adds the deterministic queue-item preparation layer: refs, status, missingness,
 requested fields, validation requirements, custody flags, and non-claims only.
+The
+[operator/Codex interpretation prompt packet](docs/conversation-understanding/decision-work-operator-codex-interpretation-prompt-packet-v0.md)
+defines the next bounded handoff to a future operator or Codex session, while
+stopping before generated-read intake or any repo-side provider call.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See

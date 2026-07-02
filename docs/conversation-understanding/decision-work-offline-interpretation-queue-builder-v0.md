@@ -119,3 +119,6 @@ The builder can now prepare a safe, non-interpretive queue item. The next safe
 slice is a prompt/input packet contract for an operator or Codex session to fill
 a bounded interpretation read later, without introducing repo-side provider
 calls or generated-read intake.
+
+PR181 is tracked in
+[Decision Work Operator/Codex Interpretation Prompt Packet](decision-work-operator-codex-interpretation-prompt-packet-v0.md).

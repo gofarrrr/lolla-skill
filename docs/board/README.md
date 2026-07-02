@@ -542,6 +542,12 @@ Follow-up implementation planning:
   filling interpretation fields, calling models, mutating archives, or updating
   runtime sidecars.
 
+- [Decision Work Operator/Codex Interpretation Prompt Packet](../conversation-understanding/decision-work-operator-codex-interpretation-prompt-packet-v0.md)
+
+  PR181's bounded handoff packet for a future operator or Codex session. It
+  explains what may be filled in a PR133 interpretation read and what must
+  remain forbidden, while stopping before generated-read intake.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

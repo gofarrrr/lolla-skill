@@ -94,6 +94,11 @@ The deterministic packet-builder slice is
 docs/conversation-understanding/decision-work-offline-interpretation-queue-builder-v0.md.
 It can prepare checked-in-safe queue items from completed run refs and optional
 PR130 packet refs while leaving semantic fields empty and preserving non-claims.
+
+The bounded operator/Codex handoff packet is
+docs/conversation-understanding/decision-work-operator-codex-interpretation-prompt-packet-v0.md.
+It defines the future prompt/input envelope for filling a PR133 interpretation
+read, then stops before generated-read intake.
 ```
 
 ```text
