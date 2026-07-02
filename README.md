@@ -254,7 +254,7 @@ story. The intended user-facing target is the
 [Decision Work Brief PRD](docs/conversation-understanding/decision-work-brief-prd-v0.md):
 a plain-language artifact explaining the decision, what Lolla pressed on, what
 changed, what remains unresolved, and what the audit must not claim. That PRD
-now includes the concrete PR113-PR154 delivery sequence for schema, local
+now includes the concrete PR113-PR158 delivery sequence for schema, local
 packets, provisional brief drafts, rendering, usefulness review, second tiny
 case pilot, small pattern review, third diversity case pilot, and three-case
 pattern review, plain-language renderer patch, rereview, local-private
@@ -486,6 +486,27 @@ attention and escalation across user-surface, agent-inspection, source-depth,
 private-context, overtrust, domain-review, human-calibration, and runtime
 blocking states without becoming a score, approval, product proof, human
 validation claim, or action authorization.
+The
+[Decision Work Automatic Triage Packet Builder](docs/conversation-understanding/decision-work-automatic-triage-packet-builder-v0.md)
+adds PR155's deterministic checked-in-safe packet builder over the three
+builder-enriched Decision Work Brief cases. It gathers refs, custody flags,
+triage field policy, future tasks, and known limits without filling semantic
+triage fields.
+The
+[Decision Work Automatic Triage Provisional Read](docs/conversation-understanding/decision-work-automatic-triage-provisional-read-v0.md)
+adds PR156's Codex-assisted provisional triage read over that packet shape,
+routing the launch, healthcare, and cofounder cases toward different
+source-depth, overtrust, domain, agent-inspection, and runtime-blocker
+concerns without scoring or approving advice.
+The
+[Decision Work Brief Offline v1 Closure Gate](docs/conversation-understanding/decision-work-brief-offline-v1-closure-gate-v0.md)
+records PR157's narrow `package_offline_v1` decision: functional offline v1
+means the system can preserve custody, render/enrich briefs, prepare triage
+packets, and run provisional triage reads with limitations visible.
+The
+[Decision Work Brief Offline v1 Package Gate](docs/conversation-understanding/decision-work-brief-offline-v1-package-gate-v0.md)
+adds PR158's package manifest for Offline v1, referencing the PR114-PR144 base
+package and explicitly adding PR145-PR157.
 There is still no production generator, runtime integration, model call in repo
 code, archive mutation, product proof, human validation, broad batch, customer
 marketing copy, or agent action authorization. See

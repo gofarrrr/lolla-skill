@@ -67,7 +67,7 @@ conversation or agent run
 Current handoff state:
 
 ```text
-PR154 Decision Work Automatic Triage Contract v0 is the
+PR158 Decision Work Brief Offline v1 Package Gate v0 is the
 latest Decision Work Brief-adjacent slice recorded in this working tree. PR113
 introduced the product-facing brief target and corrected the receipt debug
 summary back to an internal maintainer layer. PR114 added the machine-readable
@@ -206,7 +206,22 @@ calibration layer, not the future normal operating model, and defines
 `lolla.decision_work_automatic_triage_contract.v0` for a future automatic
 routing layer that can route briefs toward user surface, agent inspection,
 source-depth blocking, private-context needs, domain/human calibration, or
-runtime blocking without scoring answer quality or authorizing action. PR104
+runtime blocking without scoring answer quality or authorizing action. PR155
+adds the deterministic checked-in-safe automatic triage packet builder over the
+three existing builder-enriched cases, carrying refs, custody flags, triage
+field policy, future tasks, and known limits while filling no semantic triage
+fields. PR156 uses one PR155 packet shape to create a Codex-assisted
+provisional triage read that routes the three cases differently: launch-beta is
+the closest normal caveated brief candidate, deploy-intake requires
+domain/compliance caution, and the cofounder/governance case remains the
+highest overtrust and human/domain-calibration risk. PR157 closes the chain as
+functional offline v1 with explicit limitations: the system can preserve
+source/custody status, render and enrich briefs, prepare triage packets, and
+create provisional triage reads, but it is not runtime-integrated, customer
+ready, human validated, product proof, answer-quality scoring, or action
+authorization. PR158 packages Offline v1 by referencing the PR145 base package
+and listing PR145-PR157 additions, while keeping human calibration deferred and
+runtime/customer-facing use blocked. PR104
 remains the latest
 Decision Trail human-review intake slice; PR85 remains the latest packaged
 product-evidence eval-lane slice; PR70

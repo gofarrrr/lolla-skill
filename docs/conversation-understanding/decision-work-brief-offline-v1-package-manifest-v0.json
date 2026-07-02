@@ -1,0 +1,208 @@
+{
+  "schema_version": "lolla.decision_work_brief_offline_v1_package_manifest.v0",
+  "phase": "decision_work_brief_offline_v1",
+  "status": "package_gate",
+  "created_date": "2026-07-02",
+  "base_package": {
+    "base_manifest_ref": "docs/conversation-understanding/decision-work-brief-pr114-pr144-package-manifest-v0.json",
+    "base_manifest_schema_version": "lolla.decision_work_brief_pr114_pr144_package_manifest.v0",
+    "base_scope": "PR114-PR144 Decision Work Brief offline evidence package",
+    "included_by_reference": true
+  },
+  "included_prs": [
+    {
+      "pr_number": 145,
+      "title": "Decision Work Brief Offline Evidence Package Gate v0",
+      "what_it_added": "Packaged PR114-PR144 with a manifest and staging plan."
+    },
+    {
+      "pr_number": 146,
+      "title": "Decision Work Brief Additional Local-Private Adequacy Checks v0",
+      "what_it_added": "Added safe-conclusion local-private adequacy checks for cofounder and intake-routing cases."
+    },
+    {
+      "pr_number": 147,
+      "title": "Decision Work Brief Third Builder Case v0",
+      "what_it_added": "Blocked the third builder output until a builder-compatible cofounder interpretation read existed."
+    },
+    {
+      "pr_number": 147,
+      "suffix": "A",
+      "title": "Decision Work Conversation Interpretation Third Tiny Offline Read v0",
+      "what_it_added": "Added the formal-schema cofounder interpretation read."
+    },
+    {
+      "pr_number": 148,
+      "title": "Decision Work Brief Third Builder Case Output v0",
+      "what_it_added": "Created the cofounder builder-enriched brief and reviewed the output."
+    },
+    {
+      "pr_number": 149,
+      "title": "Decision Work Brief Three Builder Case Pattern Review v0",
+      "what_it_added": "Compared the three builder-enriched briefs and gated to human-review intake."
+    },
+    {
+      "pr_number": 150,
+      "title": "Decision Work Brief Human Review Intake Plan v0",
+      "what_it_added": "Defined what future human reviewers should inspect."
+    },
+    {
+      "pr_number": 151,
+      "title": "Decision Work Brief Human Review Pilot Scaffold v0",
+      "what_it_added": "Created blank human-review pilot materials and response template."
+    },
+    {
+      "pr_number": 152,
+      "title": "Decision Work Brief Human Review Pilot Readiness Gate v0",
+      "what_it_added": "Recorded that the pilot is ready to run but not completed."
+    },
+    {
+      "pr_number": 153,
+      "title": "Decision Work Brief Human Review Awaiting Response Gate v0",
+      "what_it_added": "Paused the evidence phase until a real human response exists."
+    },
+    {
+      "pr_number": 154,
+      "title": "Decision Work Automatic Triage Contract v0",
+      "what_it_added": "Defined the future automatic triage contract."
+    },
+    {
+      "pr_number": 155,
+      "title": "Decision Work Automatic Triage Packet Builder v0",
+      "what_it_added": "Added the deterministic checked-in-safe packet builder for future triage."
+    },
+    {
+      "pr_number": 156,
+      "title": "Codex-Assisted Provisional Triage Read v0",
+      "what_it_added": "Added a provisional triage read over the three builder cases."
+    },
+    {
+      "pr_number": 157,
+      "title": "Decision Work Brief Offline v1 Closure Gate v0",
+      "what_it_added": "Selected package_offline_v1 with explicit limitations."
+    },
+    {
+      "pr_number": 158,
+      "title": "Decision Work Brief Offline v1 Package Gate v0",
+      "what_it_added": "Packages the offline v1 phase by reference and explicit additions."
+    }
+  ],
+  "boundary": {
+    "offline_v1_functional": true,
+    "runtime_integrated": false,
+    "human_validated": false,
+    "human_review_completed": false,
+    "human_calibration_deferred": true,
+    "codex_assisted_provisional": true,
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false,
+    "model_calls": 0,
+    "archive_mutated": false,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "raw_private_content_included": false,
+    "provider_text_included": false,
+    "local_absolute_paths_included": false,
+    "automatic_labels_created": false
+  },
+  "strongest_useful_signal": "The offline system now forms a coherent checked-in-safe chain from completed artifacts to readable briefs, bounded enrichment, automatic triage packets, and a provisional triage read while preserving source limits and non-claims.",
+  "strongest_unresolved_risk": "The system still depends on compressed checked-in-safe artifacts and Codex-assisted provisional reads; private context, domain/legal calibration, and real human validation remain unresolved.",
+  "included_files": {
+    "pr145_package_gate": [
+      "docs/conversation-understanding/decision-work-brief-pr114-pr144-packaging-gate-v0.md",
+      "docs/conversation-understanding/decision-work-brief-pr114-pr144-package-manifest-v0.json",
+      "tests/test_decision_work_brief_pr114_pr144_package_gate.py"
+    ],
+    "pr146_pr153_human_review_and_third_case": [
+      "docs/conversation-understanding/decision-work-brief-additional-local-private-adequacy-checks-v0.md",
+      "reviews/codex-assisted/decision-work-brief-additional-local-private-adequacy-checks-v0/review.json",
+      "tests/test_decision_work_brief_additional_local_private_adequacy_checks.py",
+      "docs/conversation-understanding/decision-work-brief-third-builder-case-v0.md",
+      "reviews/codex-assisted/decision-work-brief-third-builder-case-v0/review.json",
+      "tests/test_decision_work_brief_third_builder_case.py",
+      "docs/conversation-understanding/decision-work-conversation-interpretation-third-tiny-offline-read-v0.md",
+      "reviews/codex-assisted/decision-work-conversation-interpretation-third-tiny-offline-read-v0/read.json",
+      "tests/test_decision_work_conversation_interpretation_third_tiny_offline_read.py",
+      "docs/conversation-understanding/decision-work-brief-builder-enriched-ceo-remove-founding-cofounder-v0.md",
+      "docs/conversation-understanding/decision-work-brief-third-builder-case-output-v0.md",
+      "reviews/codex-assisted/decision-work-brief-third-builder-case-output-v0/review.json",
+      "tests/test_decision_work_brief_third_builder_case_output.py",
+      "docs/conversation-understanding/decision-work-brief-three-builder-case-pattern-review-v0.md",
+      "reviews/codex-assisted/decision-work-brief-three-builder-case-pattern-review-v0/review.json",
+      "tests/test_decision_work_brief_three_builder_case_pattern_review.py",
+      "docs/conversation-understanding/decision-work-brief-human-review-intake-plan-v0.md",
+      "reviews/codex-assisted/decision-work-brief-human-review-intake-plan-v0/review.json",
+      "tests/test_decision_work_brief_human_review_intake_plan.py",
+      "docs/conversation-understanding/decision-work-brief-human-review-pilot-scaffold-v0.md",
+      "docs/conversation-understanding/decision-work-brief-human-review-response-template-v0.json",
+      "reviews/codex-assisted/decision-work-brief-human-review-pilot-scaffold-v0/review.json",
+      "tests/test_decision_work_brief_human_review_pilot_scaffold.py",
+      "docs/conversation-understanding/decision-work-brief-human-review-pilot-readiness-gate-v0.md",
+      "reviews/codex-assisted/decision-work-brief-human-review-pilot-readiness-gate-v0/review.json",
+      "tests/test_decision_work_brief_human_review_pilot_readiness_gate.py",
+      "docs/conversation-understanding/decision-work-brief-human-review-awaiting-response-gate-v0.md",
+      "reviews/codex-assisted/decision-work-brief-human-review-awaiting-response-gate-v0/review.json",
+      "tests/test_decision_work_brief_human_review_awaiting_response_gate.py"
+    ],
+    "pr154_pr157_automatic_triage_and_closure": [
+      "docs/conversation-understanding/decision-work-automatic-triage-contract-v0.md",
+      "docs/conversation-understanding/decision-work-automatic-triage-contract-v0.json",
+      "tests/test_decision_work_automatic_triage_contract.py",
+      "engine/system_b/decision_work_automatic_triage_packets.py",
+      "scripts/evals/build_decision_work_automatic_triage_packets.py",
+      "docs/conversation-understanding/decision-work-automatic-triage-packet-builder-v0.md",
+      "tests/test_decision_work_automatic_triage_packets.py",
+      "docs/conversation-understanding/decision-work-automatic-triage-provisional-read-v0.md",
+      "reviews/codex-assisted/decision-work-automatic-triage-provisional-read-v0/read.json",
+      "tests/test_decision_work_automatic_triage_provisional_read.py",
+      "docs/conversation-understanding/decision-work-brief-offline-v1-closure-gate-v0.md",
+      "reviews/codex-assisted/decision-work-brief-offline-v1-closure-gate-v0/review.json",
+      "tests/test_decision_work_brief_offline_v1_closure_gate.py"
+    ],
+    "pr158_package_gate": [
+      "docs/conversation-understanding/decision-work-brief-offline-v1-package-gate-v0.md",
+      "docs/conversation-understanding/decision-work-brief-offline-v1-package-manifest-v0.json",
+      "tests/test_decision_work_brief_offline_v1_package_gate.py"
+    ],
+    "discoverability_docs": [
+      "PROGRESS.md",
+      "HOW_IT_WORKS.md",
+      "README.md",
+      "docs/board/README.md",
+      "docs/conversation-understanding/decision-work-brief-prd-v0.md"
+    ]
+  },
+  "explicit_exclusions": [
+    "SKILL.md",
+    "scripts/skill/*",
+    "plans/*",
+    "reviews/synthetic/*",
+    "docs/lolla-*",
+    "archive paths",
+    "runtime temp state",
+    "raw/private content",
+    "provider text",
+    "local absolute paths"
+  ],
+  "validation_checklist": [
+    "python3 -m py_compile tests/test_decision_work_brief_offline_v1_package_gate.py",
+    "python3 -m pytest -q tests/test_decision_work_brief_offline_v1_package_gate.py tests/test_decision_work_brief_offline_v1_closure_gate.py tests/test_decision_work_automatic_triage_provisional_read.py tests/test_decision_work_automatic_triage_packets.py tests/test_decision_work_automatic_triage_contract.py tests/test_product_delta_boundary_lint.py",
+    "jq . docs/conversation-understanding/decision-work-brief-offline-v1-package-manifest-v0.json",
+    "jq over manifest-listed JSON artifacts",
+    "python3 scripts/evals/lint_product_delta_evidence.py --paths over manifest-listed Markdown and JSON artifacts",
+    "git diff --check",
+    "local Markdown link check over manifest-listed Markdown",
+    "trailing whitespace scan over manifest-listed files",
+    "privacy/content marker scan over manifest-listed files",
+    "git status --short -- SKILL.md scripts/skill"
+  ],
+  "explicit_staging_list": {
+    "stage_by_manifest_additions_only_after_validation": true,
+    "do_not_use_git_add_dot": true,
+    "do_not_stage_unrelated_untracked_files": true
+  },
+  "suggested_commit_message": "Package Decision Work Brief Offline v1",
+  "recommended_next_step": "After validation, stage and commit PR155-PR158 if the maintainer asks. After packaging, the next evidence step is a real human response to the PR151 template."
+}

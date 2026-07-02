@@ -2237,6 +2237,118 @@ Recommended next slice:
 PR155 Decision Work Automatic Triage Packet Builder v0
 ```
 
+### PR155: Decision Work Automatic Triage Packet Builder v0
+
+Status: implemented after PR154.
+
+Purpose:
+
+Build a deterministic offline packet builder that prepares checked-in-safe
+evidence for future automatic triage.
+
+Implemented in this PR:
+
+- `engine/system_b/decision_work_automatic_triage_packets.py`
+- `scripts/evals/build_decision_work_automatic_triage_packets.py`
+- `docs/conversation-understanding/decision-work-automatic-triage-packet-builder-v0.md`
+- `tests/test_decision_work_automatic_triage_packets.py`
+
+Current meaning:
+
+- the packet builder gathers refs, custody flags, field policy, future tasks,
+  and known limits for exactly the three builder-enriched cases;
+- it prepares triage input without filling semantic triage fields;
+- it does not run Lolla, call models, mutate archives, score advice, approve
+  anything, or authorize action.
+
+Recommended next slice:
+
+```text
+PR156 Codex-Assisted Provisional Triage Read v0
+```
+
+### PR156: Codex-Assisted Provisional Triage Read v0
+
+Status: implemented after PR155.
+
+Purpose:
+
+Use one PR155 packet shape to create a bounded Codex-assisted provisional
+triage read over the three existing builder-enriched cases.
+
+Implemented in this PR:
+
+- `docs/conversation-understanding/decision-work-automatic-triage-provisional-read-v0.md`
+- `reviews/codex-assisted/decision-work-automatic-triage-provisional-read-v0/read.json`
+- `tests/test_decision_work_automatic_triage_provisional_read.py`
+
+Current meaning:
+
+- launch-beta is the closest caveated normal brief candidate;
+- deploy-intake requires domain/compliance caution before user-facing
+  confidence;
+- the cofounder/governance case is the highest overtrust and human/domain
+  calibration risk;
+- all runtime attachment remains blocked.
+
+Decision gate:
+
+```text
+proceed_to_offline_v1_closure_gate
+```
+
+### PR157: Decision Work Brief Offline v1 Closure Gate v0
+
+Status: implemented after PR156.
+
+Purpose:
+
+Decide whether the Decision Work Brief, enrichment, and automatic triage chain
+is coherent enough to call functional offline v1 with limitations.
+
+Implemented in this PR:
+
+- `docs/conversation-understanding/decision-work-brief-offline-v1-closure-gate-v0.md`
+- `reviews/codex-assisted/decision-work-brief-offline-v1-closure-gate-v0/review.json`
+- `tests/test_decision_work_brief_offline_v1_closure_gate.py`
+
+Current meaning:
+
+- functional offline v1 is a narrow offline evidence-system claim;
+- the system can preserve custody/source status, render and enrich briefs,
+  prepare triage packets, and create provisional triage reads;
+- it remains not runtime-integrated, not customer-ready, not human validated,
+  not product proof, not answer-quality scoring, and not action authorization.
+
+Decision gate:
+
+```text
+package_offline_v1
+```
+
+### PR158: Decision Work Brief Offline v1 Package Gate v0
+
+Status: implemented after PR157.
+
+Purpose:
+
+Package Decision Work Brief Offline v1 by referencing the PR114-PR144 base
+package and explicitly adding PR145-PR157.
+
+Implemented in this PR:
+
+- `docs/conversation-understanding/decision-work-brief-offline-v1-package-gate-v0.md`
+- `docs/conversation-understanding/decision-work-brief-offline-v1-package-manifest-v0.json`
+- `tests/test_decision_work_brief_offline_v1_package_gate.py`
+
+Current meaning:
+
+- Offline v1 is packageable only with full limitation context;
+- human calibration is deferred;
+- runtime/customer-facing use remains blocked;
+- the next evidence step is a real human response to the PR151 template, not a
+  Codex-filled substitute.
+
 ## Success Criteria
 
 The phase succeeds when a reader can quickly answer:

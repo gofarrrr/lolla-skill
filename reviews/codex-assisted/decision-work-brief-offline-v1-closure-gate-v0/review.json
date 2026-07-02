@@ -1,0 +1,140 @@
+{
+  "schema_version": "lolla.decision_work_brief_offline_v1_closure_gate.v0",
+  "review_mode": "offline_v1_closure_readiness_review",
+  "human_validated": false,
+  "human_review_completed": false,
+  "human_calibration_deferred": true,
+  "codex_assisted_provisional": true,
+  "product_proof": false,
+  "model_calls": 0,
+  "runtime_invoked": false,
+  "skill_invoked": false,
+  "archive_mutated": false,
+  "answer_quality_scored": false,
+  "agent_action_authorized": false,
+  "automatic_action_authorized": false,
+  "source_artifacts": {
+    "package_pr114_pr144_manifest_ref": "docs/conversation-understanding/decision-work-brief-pr114-pr144-package-manifest-v0.json",
+    "human_review_pause_ref": "reviews/codex-assisted/decision-work-brief-human-review-awaiting-response-gate-v0/review.json",
+    "automatic_triage_contract_ref": "docs/conversation-understanding/decision-work-automatic-triage-contract-v0.json",
+    "automatic_triage_packet_builder_ref": "docs/conversation-understanding/decision-work-automatic-triage-packet-builder-v0.md",
+    "automatic_triage_provisional_read_ref": "reviews/codex-assisted/decision-work-automatic-triage-provisional-read-v0/read.json",
+    "automatic_triage_provisional_read_doc_ref": "docs/conversation-understanding/decision-work-automatic-triage-provisional-read-v0.md",
+    "builder_outputs": [
+      "docs/conversation-understanding/decision-work-brief-builder-enriched-launch-public-enterprise-beta-v0.md",
+      "docs/conversation-understanding/decision-work-brief-builder-enriched-deploy-assisted-intake-routing-v0.md",
+      "docs/conversation-understanding/decision-work-brief-builder-enriched-ceo-remove-founding-cofounder-v0.md"
+    ],
+    "interpretation_reads": [
+      "reviews/codex-assisted/decision-work-conversation-interpretation-tiny-offline-read-v0/read.json",
+      "reviews/codex-assisted/decision-work-conversation-interpretation-second-tiny-offline-read-v0/read.json",
+      "reviews/codex-assisted/decision-work-conversation-interpretation-third-tiny-offline-read-v0/read.json"
+    ]
+  },
+  "functional_v1_claim": {
+    "offline_v1_functional": true,
+    "claim_scope": "offline_evidence_system_only",
+    "can_preserve_source_and_custody_status": true,
+    "can_render_readable_decision_work_brief": true,
+    "can_enrich_with_bounded_provisional_interpretation": true,
+    "can_prepare_automatic_triage_packets": true,
+    "can_create_codex_assisted_provisional_triage_reads": true,
+    "can_route_attention_to_source_depth_overtrust_private_context_domain_agent_and_runtime_blockers": true,
+    "limitations_are_required_context": true,
+    "runtime_integrated": false,
+    "customer_ready": false,
+    "human_validated": false,
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false
+  },
+  "explicit_non_claims": [
+    "functional_offline_v1_is_not_runtime_integration",
+    "functional_offline_v1_is_not_customer_readiness",
+    "functional_offline_v1_is_not_human_validation",
+    "functional_offline_v1_is_not_product_proof",
+    "functional_offline_v1_does_not_score_answer_quality",
+    "functional_offline_v1_does_not_authorize_agent_action",
+    "functional_offline_v1_does_not_prove_lolla_improved_decisions",
+    "functional_offline_v1_does_not_replace_private_context_or_human_calibration"
+  ],
+  "end_to_end_chain_summary": {
+    "brief_layer": "The system can render checked-in-safe Decision Work Briefs from existing offline evidence artifacts.",
+    "interpretation_layer": "The system has bounded Codex-assisted provisional interpretation reads with source refs, uncertainty, and non-claims.",
+    "enrichment_layer": "The deterministic builder can add a constrained interpretation section to separate enriched Markdown outputs without mutating originals.",
+    "human_calibration_layer": "The system has a blank human-review scaffold and an awaiting-response gate, but no completed human review.",
+    "automatic_triage_layer": "The PR154 contract, PR155 packet builder, and PR156 provisional read can route attention without scoring, approving, or authorizing action.",
+    "runtime_layer": "No runtime integration exists."
+  },
+  "limitations": [
+    "Checked-in-safe artifacts are compressed and omit raw/private conversation details.",
+    "Interpretation reads and the automatic triage read are Codex-assisted and provisional.",
+    "Human calibration is deferred because no real human response exists.",
+    "Healthcare and cofounder/governance examples require domain, legal, compliance, or governance caution before user-facing confidence.",
+    "Cleaner enriched prose can create false confidence if source limits and non-claims are detached from the brief.",
+    "The system cannot prove advice correctness, decision improvement, or product value."
+  ],
+  "blocked_claims": [
+    "runtime_integrated",
+    "customer_ready",
+    "human_validated",
+    "product_proof",
+    "answer_quality_scored",
+    "agent_action_authorized",
+    "automatic_action_authorized",
+    "advice_correctness_proven",
+    "lolla_improved_decision_proven"
+  ],
+  "runtime_blockers": [
+    "no_runtime_attachment_contract",
+    "no_prompt_or_live_extraction_change",
+    "triage_read_is_provisional",
+    "human_calibration_deferred",
+    "private_source_depth_unresolved",
+    "domain_and_legal_review_not_completed"
+  ],
+  "customer_surface_blockers": [
+    "no_human_review_response",
+    "source_depth_still_compressed",
+    "private_context_not_checked_in",
+    "cofounder_governance_output_has_high_overtrust_risk",
+    "healthcare_output_needs_domain_compliance_calibration",
+    "brief_usefulness_not_validated_by_target_readers"
+  ],
+  "human_calibration_debt": {
+    "status": "deferred",
+    "source_ref": "reviews/codex-assisted/decision-work-brief-human-review-awaiting-response-gate-v0/review.json",
+    "required_next_input": "real human reviewer fills the PR151 response template",
+    "codex_must_not_substitute": true
+  },
+  "source_depth_debt": {
+    "status": "visible_but_unresolved",
+    "source_refs": [
+      "reviews/codex-assisted/decision-work-brief-additional-local-private-adequacy-checks-v0/review.json",
+      "reviews/codex-assisted/decision-work-automatic-triage-provisional-read-v0/read.json"
+    ],
+    "main_risk": "Safe compressed artifacts may miss private nuance that changes starting direction, lost value, stakeholder stakes, or overtrust risk."
+  },
+  "automatic_triage_status": {
+    "contract_exists": true,
+    "packet_builder_exists": true,
+    "local_packet_generated_successfully": true,
+    "provisional_read_exists": true,
+    "triage_decides_routing_not_correctness": true,
+    "runtime_attachment_blocked_for_all_cases": true
+  },
+  "decision_gate": "package_offline_v1",
+  "recommended_next_pr": "PR158 Decision Work Brief Offline v1 Package Gate v0",
+  "non_claims": [
+    "not_human_validation",
+    "not_completed_human_review",
+    "not_product_proof",
+    "not_answer_quality_scoring",
+    "not_agent_action_authorization",
+    "not_automatic_action_authorization",
+    "not_runtime_integration",
+    "not_customer_readiness_claim",
+    "not_proof_lolla_improved_decisions",
+    "offline_v1_claim_requires_limitations_context"
+  ]
+}

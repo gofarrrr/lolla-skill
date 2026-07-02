@@ -89,7 +89,7 @@ Follow-up implementation planning:
   The product-facing target for the missing layer: a plain-language brief that
   explains what decision was being made, what Lolla pressed on, what changed,
   what remains unresolved, and what the audit must not claim. It also nests the
-  work into PR113-PR154 so the next steps stay grounded in the existing
+  work into PR113-PR158 so the next steps stay grounded in the existing
   receipt, Decision Trail, Product Delta, lint, interpretation, and custody
   machinery.
 
@@ -399,6 +399,32 @@ Follow-up implementation planning:
   between brief surface, agent inspection, source-depth blocking, escalation,
   and runtime-blocking states. It treats human review as calibration, not as
   the normal operating layer.
+
+- [Decision Work Automatic Triage Packet Builder](../conversation-understanding/decision-work-automatic-triage-packet-builder-v0.md)
+
+  PR155 adds the deterministic checked-in-safe packet builder for future
+  automatic triage. It carries refs, custody flags, field policy, future tasks,
+  and known limits across the three builder-enriched cases without filling
+  semantic triage fields.
+
+- [Decision Work Automatic Triage Provisional Read](../conversation-understanding/decision-work-automatic-triage-provisional-read-v0.md)
+
+  PR156 adds a Codex-assisted provisional triage read over the three cases. It
+  routes attention differently for launch, healthcare operations, and founder
+  governance while preserving that the read is not scoring, approval, product
+  proof, human validation, or action authorization.
+
+- [Decision Work Brief Offline v1 Closure Gate](../conversation-understanding/decision-work-brief-offline-v1-closure-gate-v0.md)
+
+  PR157 selects `package_offline_v1`: the system is functional as an offline
+  evidence chain with limitations, not runtime-integrated, customer-ready,
+  human-validated, product-proof, answer-quality-scored, or action-authorizing.
+
+- [Decision Work Brief Offline v1 Package Gate](../conversation-understanding/decision-work-brief-offline-v1-package-gate-v0.md)
+
+  PR158 packages Offline v1 by referencing the PR114-PR144 base package and
+  explicitly adding PR145-PR157 human-calibration, third-case,
+  automatic-triage, closure, and package-gate artifacts.
 
 The core board-level message is:
 

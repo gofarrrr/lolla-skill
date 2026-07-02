@@ -1,0 +1,188 @@
+{
+  "schema_version": "lolla.decision_work_automatic_triage_provisional_read.v0",
+  "read_mode": "codex_assisted_provisional_triage",
+  "human_validated": false,
+  "human_review_completed": false,
+  "human_calibration_deferred": true,
+  "codex_assisted_provisional": true,
+  "product_proof": false,
+  "model_calls": 0,
+  "runtime_invoked": false,
+  "skill_invoked": false,
+  "archive_mutated": false,
+  "answer_quality_scored": false,
+  "agent_action_authorized": false,
+  "automatic_action_authorized": false,
+  "source_packet_summary": {
+    "packet_schema_version": "lolla.decision_work_automatic_triage_packets.v0",
+    "packet_builder_ref": "engine/system_b/decision_work_automatic_triage_packets.py",
+    "packet_cli_ref": "scripts/evals/build_decision_work_automatic_triage_packets.py",
+    "packet_generated_locally": true,
+    "packet_checked_in": false,
+    "packet_mode": "checked_in_safe",
+    "case_count": 3,
+    "semantic_triage_fields_filled_by_packet": false,
+    "triage_contract_ref": "docs/conversation-understanding/decision-work-automatic-triage-contract-v0.json",
+    "reason_packet_not_checked_in": "The generated packet is reproducible metadata only; the read records the checked-in refs and summary without adding another fixture."
+  },
+  "case_triage_reads": [
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "decision_family": "GTM / enterprise launch timing",
+      "triage_categories": [
+        "normal_brief_candidate",
+        "private_context_required",
+        "human_calibration_recommended",
+        "runtime_attachment_blocked"
+      ],
+      "user_surface_route": "allowed_with_caveats",
+      "agent_inspection_route": "allowed_with_caveats",
+      "human_calibration_route": "requires_human_calibration",
+      "domain_review_route": "not_evaluated",
+      "runtime_attachment_route": "blocked_runtime",
+      "overtrust_risk": "medium: the brief is readable and commercially concrete, so caveats must stay close to the private-pilot and buyer-proof language.",
+      "source_depth_read": "Checked-in-safe sources are adequate for a caveated offline brief, but buyer reality, investor or recruiting signal, and private context remain compressed.",
+      "private_context_dependency": "Private context could change confidence about public-launch upside, but the checked-in artifacts still preserve the decision and action-consequence shape.",
+      "high_stakes_domain_risk": "not_evaluated: the checked-in sources do not make this a legal, clinical, or safety-domain decision.",
+      "lost_value_or_overcorrection_risk": "medium: public-launch signal, fundraising, recruiting, and larger-buyer proof remain possible lost value rather than resolved findings.",
+      "what_downstream_agent_should_inspect_first": [
+        "whether private buyer context supports the paid scoped pilot gate",
+        "whether public-launch value was underweighted",
+        "whether the larger-logo prospect was treated as evidence or status signal"
+      ],
+      "uncertainty": "medium",
+      "source_refs": [
+        "docs/conversation-understanding/decision-work-brief-builder-enriched-launch-public-enterprise-beta-v0.md",
+        "docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md",
+        "reviews/codex-assisted/decision-work-conversation-interpretation-tiny-offline-read-v0/read.json",
+        "reviews/codex-assisted/decision-work-brief-three-builder-case-pattern-review-v0/review.json",
+        "reviews/codex-assisted/decision-work-brief-human-review-awaiting-response-gate-v0/review.json"
+      ],
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "decision_family": "healthcare operations / deployment controls",
+      "triage_categories": [
+        "normal_brief_candidate",
+        "private_context_required",
+        "domain_review_recommended",
+        "legal_or_compliance_review_recommended",
+        "human_calibration_recommended",
+        "runtime_attachment_blocked"
+      ],
+      "user_surface_route": "requires_domain_review",
+      "agent_inspection_route": "agent_only",
+      "human_calibration_route": "requires_human_calibration",
+      "domain_review_route": "requires_domain_review",
+      "runtime_attachment_route": "blocked_runtime",
+      "overtrust_risk": "medium_to_high: a clean operating-gate brief can sound deployment-ready unless clinical workflow, compliance, and patient-risk caveats remain visible.",
+      "source_depth_read": "The brief is adequate for offline inspection, but checked-in-safe context cannot verify backlog cause, admin capacity, compliance tolerance, or patient safety boundaries.",
+      "private_context_dependency": "Private and domain context may not change the narrow-pilot direction, but it could change whether any user-facing or operational summary is appropriate.",
+      "high_stakes_domain_risk": "domain_review_recommended: healthcare workflow and compliance stakes require domain/legal/compliance calibration before user-facing confidence.",
+      "lost_value_or_overcorrection_risk": "medium: compressing a larger gate list may lose patient-trust, consent, measurement, support, or auditability controls.",
+      "what_downstream_agent_should_inspect_first": [
+        "whether the 48-hour backlog diagnostic is supported by local evidence",
+        "whether the four must-pass gates preserve patient and compliance constraints",
+        "whether sales language stays limited to scheduling and billing routing"
+      ],
+      "uncertainty": "medium",
+      "source_refs": [
+        "docs/conversation-understanding/decision-work-brief-builder-enriched-deploy-assisted-intake-routing-v0.md",
+        "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md",
+        "reviews/codex-assisted/decision-work-conversation-interpretation-second-tiny-offline-read-v0/read.json",
+        "reviews/codex-assisted/decision-work-brief-three-builder-case-pattern-review-v0/review.json",
+        "reviews/codex-assisted/decision-work-brief-human-review-awaiting-response-gate-v0/review.json"
+      ],
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "case_id": "ceo-remove-founding-cofounder",
+      "decision_family": "founder governance / relationship-sensitive authority transition",
+      "triage_categories": [
+        "agent_inspection_only",
+        "private_context_required",
+        "high_overtrust_risk",
+        "human_calibration_recommended",
+        "domain_review_recommended",
+        "legal_or_compliance_review_recommended",
+        "relationship_or_political_risk",
+        "lost_value_risk",
+        "runtime_attachment_blocked"
+      ],
+      "user_surface_route": "not_ready",
+      "agent_inspection_route": "agent_only",
+      "human_calibration_route": "requires_human_calibration",
+      "domain_review_route": "requires_domain_review",
+      "runtime_attachment_route": "blocked_runtime",
+      "overtrust_risk": "high: authority-transfer language can sound like operating advice unless legal, governance, founder-relationship, and source-depth limits remain prominent.",
+      "source_depth_read": "The cofounder brief is useful for inspection but too sensitive for ordinary user-facing confidence from checked-in-safe artifacts alone.",
+      "private_context_dependency": "Private context may not overturn the action-consequence shape, but it could materially change relationship cost, legal posture, board/equity constraints, and timing.",
+      "high_stakes_domain_risk": "requires_domain_review: governance, legal, employment, equity, board, and customer-continuity implications are not resolved by the brief.",
+      "lost_value_or_overcorrection_risk": "high: founder dignity, relationship repair, team loyalty, customer trust, and continuity through founder knowledge remain unresolved possible losses.",
+      "what_downstream_agent_should_inspect_first": [
+        "whether the COO alignment and authority-transfer steps are legally and governance-safe",
+        "whether the transition role preserves customer continuity without hidden authority",
+        "whether relationship and founder-dignity costs are underweighted"
+      ],
+      "uncertainty": "high",
+      "source_refs": [
+        "docs/conversation-understanding/decision-work-brief-builder-enriched-ceo-remove-founding-cofounder-v0.md",
+        "docs/conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md",
+        "reviews/codex-assisted/decision-work-conversation-interpretation-third-tiny-offline-read-v0/read.json",
+        "reviews/codex-assisted/decision-work-brief-third-builder-case-output-v0/review.json",
+        "reviews/codex-assisted/decision-work-brief-three-builder-case-pattern-review-v0/review.json",
+        "reviews/codex-assisted/decision-work-brief-human-review-awaiting-response-gate-v0/review.json"
+      ],
+      "must_not_be_used_as_quality_label": true
+    }
+  ],
+  "cross_case_triage_pattern": {
+    "summary": "The provisional triage layer usefully separates ordinary caveated brief candidates from domain-review and high-overtrust cases without deciding correctness.",
+    "stable_signal": "All three cases preserve action-consequence clarity and non-claims, but they route differently based on source depth, domain stakes, and overtrust risk.",
+    "source_depth_pattern": "Checked-in-safe context is enough for offline inspection, not enough for runtime attachment or customer-facing confidence.",
+    "human_calibration_pattern": "Human calibration remains deferred and required before stronger user-surface or product claims.",
+    "runtime_pattern": "Runtime attachment remains blocked for all three cases."
+  },
+  "runtime_attachment_read": {
+    "route": "blocked_runtime",
+    "rationale": "The system has offline evidence, deterministic builders, and provisional triage, but no human calibration, no runtime contract, no prompt integration, and no proof that the advice is correct.",
+    "source_refs": [
+      "reviews/codex-assisted/decision-work-brief-human-review-awaiting-response-gate-v0/review.json",
+      "docs/conversation-understanding/decision-work-automatic-triage-contract-v0.json"
+    ]
+  },
+  "user_surface_read": {
+    "route": "not_ready",
+    "rationale": "Launch-beta may be a caveated brief candidate, deploy-intake needs domain/compliance review, and cofounder governance should remain not-ready for ordinary user-facing confidence.",
+    "source_refs": [
+      "reviews/codex-assisted/decision-work-brief-three-builder-case-pattern-review-v0/review.json",
+      "reviews/codex-assisted/decision-work-brief-human-review-awaiting-response-gate-v0/review.json"
+    ]
+  },
+  "agent_inspection_read": {
+    "route": "agent_only",
+    "rationale": "The reads can orient downstream inspection toward source depth, overtrust, domain review, and lost-value concerns, but they do not authorize action.",
+    "source_refs": [
+      "docs/conversation-understanding/decision-work-automatic-triage-contract-v0.json",
+      "reviews/codex-assisted/decision-work-automatic-triage-provisional-read-v0/read.json"
+    ]
+  },
+  "strongest_useful_signal": "Automatic triage can route the same enriched-brief surface differently across GTM, healthcare operations, and founder-governance cases while preserving source limits and non-claims.",
+  "strongest_unresolved_risk": "The triage read is Codex-assisted and checked-in-safe; raw/private context, domain/legal calibration, and real human review remain unresolved.",
+  "decision_gate": "proceed_to_offline_v1_closure_gate",
+  "recommended_next_pr": "PR157 Decision Work Brief Offline v1 Closure Gate v0",
+  "non_claims": [
+    "not_human_validation",
+    "not_completed_human_review",
+    "not_product_proof",
+    "not_answer_quality_scoring",
+    "not_agent_action_authorization",
+    "not_automatic_action_authorization",
+    "not_runtime_integration",
+    "not_customer_readiness_claim",
+    "not_proof_lolla_improved_decisions",
+    "not_safe_for_unreviewed_operational_use",
+    "codex_assisted_triage_must_not_substitute_for_human_calibration"
+  ]
+}
