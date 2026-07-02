@@ -1,7 +1,7 @@
 # Decision Work Brief PRD v0
 
-Status: product-facing target PRD, updated through Offline v1 runtime planning
-Date: 2026-07-02
+Status: product-facing target PRD, updated through Runtime-Attached Internal v1
+Date: 2026-07-03
 
 ## Purpose
 
@@ -98,15 +98,19 @@ Already built:
 - Decision Work Brief Offline v1 is packaged with explicit limits: it is not
   runtime integration, customer readiness, human validation, product proof,
   answer-quality scoring, advice correctness, or agent action authorization.
+- Decision Work Brief Runtime-Attached Internal v1 is merged as a default-off,
+  post-archive sidecar path. It can attach resolver-approved safe refs, write
+  attachment status, render a short receipt, preserve resolver status, and
+  produce an agent handoff packet without changing live answer generation.
 
 Not built:
 
-- a runtime attachment contract;
-- a production runtime hook;
-- a default user-facing receipt after live Lolla runs;
-- a production agent handoff contract for brief/triage artifacts;
+- automatic semantic supply for arbitrary new completed runs;
+- a durable offline interpretation queue;
+- a first-class generated interpretation read intake/validator flow;
+- automatic queue-to-brief-to-triage-to-sidecar supply for non-curated runs;
 - completed human calibration;
-- validated automatic triage at product scale;
+- validated automatic triage at product scale for arbitrary runs;
 - customer readiness.
 
 The current runtime-planning bridge is
@@ -115,6 +119,26 @@ It defines when a future brief should run, what the user should see, what
 another agent should see, what blocks generation, and why the first runtime-safe
 slice should be a flagged post-archive attachment path rather than full
 automation.
+
+The next planning bridge is
+[Decision Work Automatic Semantic Supply PRD](decision-work-automatic-semantic-supply-prd-v0.md).
+It defines the missing supply path for arbitrary completed runs:
+
+```text
+completed archive
+-> deterministic packet
+-> offline interpretation queue
+-> bounded LLM/Codex interpretation read
+-> deterministic validation
+-> brief render and enrichment
+-> bounded triage read
+-> resolver-approved refs
+-> runtime sidecar update or deferred/blocked state
+```
+
+That path should turn the current prepared-case workflow into a repeatable
+offline pipeline without letting the runtime hook interpret messy conversation
+text directly.
 
 PR160-PR167 implement that bridge as runtime-attached internal v1:
 
@@ -164,6 +188,14 @@ maintainer review as an internal, default-off, post-archive sidecar path when
 safe refs exist, while withholding customer readiness, human validation,
 product proof, answer-quality scoring, advice correctness, arbitrary-run
 semantic coverage, and action authorization.
+
+PR216 merged that runtime-attached internal v1 package. The current product
+truth is therefore:
+
+> Lolla can now attach Decision Work evidence safely after archive completion
+> when safe semantic refs already exist. The missing product step is automatic
+> semantic supply: creating those refs for new completed runs through an
+> offline, bounded, validated interpretation pipeline.
 
 ## Existing Codebase Anchors
 

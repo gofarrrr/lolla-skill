@@ -1,7 +1,7 @@
 # Lolla Progress Report
 
 Status: Living PM report
-Last updated: 2026-07-02
+Last updated: 2026-07-03
 
 This file tracks where Lolla stands against the big-picture product direction in
 `docs/lolla-reasoning-audit-harness-prd.md`.
@@ -65,6 +65,26 @@ conversation or agent run
 ## Fresh-Session Handoff: 2026-07-01
 
 Current handoff state:
+
+```text
+PR216 merged the Decision Work Brief Runtime-Attached Internal v1 package into
+main. The runtime-attached path is now functional as an internal, default-off,
+post-archive sidecar system when resolver-approved safe refs exist. It can
+defer, block, fail closed, render short receipts, and produce agent handoff
+packets without changing live answer generation.
+
+The key remaining product gap is automatic semantic supply for arbitrary new
+completed runs. Prepared safe refs and checked-in registry examples work, but a
+new run normally defers until the missing semantic artifacts exist. The next
+planning spine is
+docs/conversation-understanding/decision-work-automatic-semantic-supply-prd-v0.md.
+That PRD defines the path from completed archive to deterministic packet,
+offline interpretation queue, bounded LLM/Codex interpretation read,
+validation, brief/enriched brief, triage, resolver-approved refs, and sidecar
+update. It explicitly keeps direct runtime interpretation, default-on behavior,
+model calls from runtime, product proof, scoring, human-validation claims, and
+action authorization out of scope.
+```
 
 ```text
 PR177 Decision Work Brief Runtime-Attached Internal v1 Package Refresh v0 is

@@ -1,7 +1,7 @@
 # Decision Work Brief Runtime Attachment PRD v0
 
-Status: planning only
-Date: 2026-07-02
+Status: runtime-attached internal v1 merged; automatic supply remains future work
+Date: 2026-07-03
 
 ## Purpose
 
@@ -549,6 +549,26 @@ The package remains internal and default-off. It still does not add an
 interpretation queue, model calls, customer presentation, product proof, human
 validation, answer-quality scoring, advice correctness, or action
 authorization.
+
+PR216 merged the PR160-PR177 runtime-attached internal v1 package into `main`.
+That closes the first runtime attachment phase. The current runtime path is
+real but input-supply-limited:
+
+- prepared safe refs can be attached;
+- curated registry examples can exercise repeatable sidecar states;
+- new arbitrary completed runs normally defer until safe semantic refs exist.
+
+The next product phase is therefore not more sidecar plumbing. It is:
+
+> PR178 Decision Work Automatic Semantic Supply PRD v0
+
+See [Decision Work Automatic Semantic Supply PRD](decision-work-automatic-semantic-supply-prd-v0.md).
+That PRD should own the follow-on path from completed archive to offline
+interpretation queue, generated interpretation read, validation, brief
+rendering, triage, resolver-approved refs, and sidecar update.
+
+The runtime hook should remain default-off, post-archive, sidecar-only, and
+fail-closed while that automatic supply path is proven.
 
 ## Stop Line
 

@@ -595,6 +595,11 @@ default-off, post-archive sidecar path for maintainer review when safe refs are
 supplied manually or through registry fixtures, while explicitly withholding
 customer-readiness, validation, proof, scoring, advice-correctness, arbitrary
 run coverage, and action-authorization claims.
+The
+[automatic semantic supply PRD](docs/conversation-understanding/decision-work-automatic-semantic-supply-prd-v0.md)
+records the next product bridge after PR216 merged runtime-attached internal v1:
+turn the current prepared-case workflow into an offline, bounded, validated
+pipeline that can create safe Decision Work artifacts for new completed runs.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See
