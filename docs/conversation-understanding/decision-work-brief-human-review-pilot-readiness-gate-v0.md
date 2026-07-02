@@ -84,12 +84,18 @@ collect_real_human_review_response
 Recommended next PR:
 
 ```text
-PR153 Decision Work Brief Human Review Response Collection v0
+PR153 Decision Work Brief Human Review Awaiting Response Gate v0
 ```
 
 If no reviewer is available, the correct alternative is to pause or package the
 PR146-PR152 evidence slice. It is not acceptable to substitute Codex opinions
 for human-review answers.
+
+Follow-up status:
+
+PR153 records that no real human response exists yet, so the evidence lane is
+paused until human review capacity is available. The response template remains
+blank.
 
 ## Boundary
 

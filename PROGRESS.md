@@ -67,7 +67,7 @@ conversation or agent run
 Current handoff state:
 
 ```text
-PR152 Decision Work Brief Human Review Pilot Readiness Gate v0 is the
+PR153 Decision Work Brief Human Review Awaiting Response Gate v0 is the
 latest Decision Work Brief-adjacent slice recorded in this working tree. PR113
 introduced the product-facing brief target and corrected the receipt debug
 summary back to an internal maintainer layer. PR114 added the machine-readable
@@ -199,7 +199,9 @@ scaffold and response template, making the pilot runnable without filling any
 human fields. PR152 records that the pilot packet is ready to run but not
 complete: no human response has been collected, no human validation has
 happened, runtime/customer-facing use remains blocked, and the next evidence
-step requires a real human reviewer. PR104 remains the latest
+step requires a real human reviewer. PR153 records that no real human response
+exists yet, so the lane is paused until human review capacity returns rather
+than substituting Codex-filled answers. PR104 remains the latest
 Decision Trail human-review intake slice; PR85 remains the latest packaged
 product-evidence eval-lane slice; PR70
 remains the audit/accountability machinery closure gate; PR48 remains the
@@ -318,7 +320,7 @@ and explicit non-claims. It remains a contract only: no generator, packet
 builder, renderer, runtime integration, model calls, archive mutation, or
 semantic inference.
 
-PR115 through PR152 keep the brief lane offline and downstream. Maintainers can
+PR115 through PR153 keep the brief lane offline and downstream. Maintainers can
 prepare metadata-only packets from completed runs, inspect provisional
 Codex-assisted checked-in-safe drafts, render existing brief JSON to Markdown,
 and now inspect three tiny cases: `ceo-remove-founding-cofounder`,
@@ -370,6 +372,9 @@ Review Pilot Readiness Gate v0. PR152 adds the readiness gate for that pilot:
 scaffold and template exist, exactly three enriched briefs are in scope, the
 template is still blank, and the correct next step is
 `collect_real_human_review_response`, not Codex-filled review or runtime use.
+PR153 records the awaiting-response state: no real human response exists yet,
+so the current gate is `pause_until_human_review_capacity` and the next
+unblocked evidence step is a real human-filled response template.
 
 This remains offline/eval-side machinery. It does not run $lolla, invoke the
 skill, call providers, mutate archives, change prompts, touch SKILL.md, score

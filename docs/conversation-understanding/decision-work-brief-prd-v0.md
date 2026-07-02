@@ -2149,7 +2149,50 @@ collect_real_human_review_response
 Recommended next slice:
 
 ```text
-PR153 Decision Work Brief Human Review Response Collection v0
+PR153 Decision Work Brief Human Review Awaiting Response Gate v0
+```
+
+Follow-up note:
+
+PR153 is a pause gate, not response collection. No real human response exists
+yet, so the correct next state is to wait for human review capacity rather than
+fill the template with Codex answers.
+
+### PR153: Decision Work Brief Human Review Awaiting Response Gate v0
+
+Status: implemented after PR152.
+
+Purpose:
+
+Record that the next evidence step requires a real human response and that the
+human-review pilot cannot be counted as completed until a real reviewer fills
+the PR151 response template.
+
+Implemented in this PR:
+
+- `docs/conversation-understanding/decision-work-brief-human-review-awaiting-response-gate-v0.md`
+- `reviews/codex-assisted/decision-work-brief-human-review-awaiting-response-gate-v0/review.json`
+- `tests/test_decision_work_brief_human_review_awaiting_response_gate.py`
+
+Current meaning:
+
+- PR151 created the scaffold and blank response template;
+- PR152 confirmed that the packet is ready to run;
+- PR153 confirms that no real human response has been collected;
+- Codex must not substitute for the human reviewer;
+- runtime and customer-facing use remain blocked;
+- the next unblocked evidence step is collecting a real human response.
+
+Decision gate:
+
+```text
+pause_until_human_review_capacity
+```
+
+Recommended next slice:
+
+```text
+PR154 Decision Work Brief Human Review Response Collection v0
 ```
 
 ## Success Criteria

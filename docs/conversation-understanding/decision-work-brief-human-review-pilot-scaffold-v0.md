@@ -156,6 +156,10 @@ PR152 records that this scaffold is ready to run but has not run. No human
 response has been collected, the response template remains blank, and the next
 evidence step requires a real human reviewer.
 
+PR153 records the follow-up pause state: no real human response exists yet, so
+the correct gate is to wait for human review capacity rather than fill the
+template with Codex judgments.
+
 ## Boundary
 
 PR151 does not:
