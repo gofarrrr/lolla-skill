@@ -535,6 +535,13 @@ Follow-up implementation planning:
   non-claims without creating generated reads, queue workers, runtime behavior,
   model calls, or sidecar updates.
 
+- [Decision Work Offline Interpretation Queue Builder](../conversation-understanding/decision-work-offline-interpretation-queue-builder-v0.md)
+
+  PR180's deterministic queue-item preparation layer. It turns completed run
+  refs and optional PR130 packet refs into checked-in-safe queue status without
+  filling interpretation fields, calling models, mutating archives, or updating
+  runtime sidecars.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

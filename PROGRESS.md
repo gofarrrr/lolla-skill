@@ -89,6 +89,11 @@ The first contract slice after that PRD is
 docs/conversation-understanding/decision-work-offline-interpretation-queue-contract-v0.md.
 It defines offline queue item/result vocabulary only and gates to the next
 deterministic packet-builder slice.
+
+The deterministic packet-builder slice is
+docs/conversation-understanding/decision-work-offline-interpretation-queue-builder-v0.md.
+It can prepare checked-in-safe queue items from completed run refs and optional
+PR130 packet refs while leaving semantic fields empty and preserving non-claims.
 ```
 
 ```text

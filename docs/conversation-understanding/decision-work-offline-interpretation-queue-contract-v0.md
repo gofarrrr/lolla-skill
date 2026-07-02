@@ -271,3 +271,6 @@ Reason:
 The contract is narrow enough for the next deterministic slice: a queue packet
 builder that can emit checked-in-safe queue items from completed run refs and
 existing PR130 packet refs without filling semantic fields or calling models.
+
+PR180 is tracked in
+[Decision Work Offline Interpretation Queue Builder](decision-work-offline-interpretation-queue-builder-v0.md).

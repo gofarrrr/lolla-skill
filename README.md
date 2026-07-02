@@ -605,6 +605,10 @@ The
 defines the first queue item/result schema for that bridge without adding a
 queue runner, model calls, runtime hook changes, generated reads, or sidecar
 updates.
+The
+[offline interpretation queue builder](docs/conversation-understanding/decision-work-offline-interpretation-queue-builder-v0.md)
+adds the deterministic queue-item preparation layer: refs, status, missingness,
+requested fields, validation requirements, custody flags, and non-claims only.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See

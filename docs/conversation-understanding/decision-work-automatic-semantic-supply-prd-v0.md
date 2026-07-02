@@ -314,6 +314,9 @@ It defines the queue item/result vocabulary and selects
 
 Build the deterministic queue packet/preparation layer.
 
+PR180 is implemented as
+[Decision Work Offline Interpretation Queue Builder](decision-work-offline-interpretation-queue-builder-v0.md).
+
 It should:
 
 - read a completed run;
