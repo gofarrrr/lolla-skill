@@ -521,6 +521,13 @@ Follow-up implementation planning:
   are supplied manually or through registry fixtures, while keeping customer
   presentation and arbitrary-run semantic supply out of scope.
 
+- [Decision Work Automatic Semantic Supply PRD](../conversation-understanding/decision-work-automatic-semantic-supply-prd-v0.md)
+
+  PR178's product roadmap after runtime-attached internal v1. It defines the
+  missing bridge from a newly completed Lolla run to safe interpreted Decision
+  Work artifacts through an offline queue, validation, brief rendering, triage,
+  and resolver-approved sidecar update.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,
