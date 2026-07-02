@@ -1,7 +1,7 @@
 # Lolla Progress Report
 
 Status: Living PM report
-Last updated: 2026-07-01
+Last updated: 2026-07-02
 
 This file tracks where Lolla stands against the big-picture product direction in
 `docs/lolla-reasoning-audit-harness-prd.md`.
@@ -67,8 +67,75 @@ conversation or agent run
 Current handoff state:
 
 ```text
-PR158 Decision Work Brief Offline v1 Package Gate v0 is the
-latest Decision Work Brief-adjacent slice recorded in this working tree. PR113
+PR177 Decision Work Brief Runtime-Attached Internal v1 Package Refresh v0 is
+the latest Decision Work Brief runtime-attachment slice recorded in this
+working tree. It packages PR160-PR176 as an internal, default-off,
+post-archive sidecar path for completed runs when safe refs are supplied
+manually or through checked-in-safe registry fixtures. The refresh manifest
+includes the runtime attachment contracts, sidecar contract, manual bundle,
+eligibility gate, receipt renderer, agent handoff, default-off hook, safe
+supply resolver, checked-in-safe case registry, resolver and registry fixture
+reviews, runtime modules, CLIs, and tests. It preserves the limits that the
+hook is not default-on, production hook registry lookup is not first-class,
+arbitrary completed runs normally defer without safe semantic refs, and the
+package is not customer readiness, human validation, product proof,
+answer-quality scoring, advice correctness, or action authorization. PR176
+reviews temp hook fixtures where the PR175 checked-in-safe registry supplies
+launch-beta, deploy-intake, and cofounder refs through the PR171 resolver and
+PR172 resolver-aware bundle seam. The registry-backed fixtures produce
+generated sidecars, available receipts, and agent handoff packets without
+checked-in sidecar outputs, while still recording that the production hook has
+no first-class registry case-key input and arbitrary completed runs normally
+defer without safe semantic refs. PR176 selects
+`runtime_attached_v1_package_refresh`. PR175 adds a deterministic
+checked-in-safe case registry for the three known Decision Work Brief examples,
+plus a loader and CLI that validate relative safe refs before handing them to
+the PR171 resolver in `checked_in_safe_case_registry` mode. The resolver can
+now feed the PR172 bundle from registry refs without manual env refs, while the
+runtime hook remains unchanged and default-off. PR174 reviews the PR173 hook sidecar outputs
+across flag-off, deferred/no-safe-inputs, safe-ref generated, safe-brief-only
+agent-inspection, direct-runtime-interpretation-blocked, privacy-blocked, and
+failed-closed fixture states. It checks in only review conclusions and tests,
+not runtime sidecar fixtures, and selects `checked_in_safe_case_registry`
+because useful available states still depend on explicit safe refs. PR173 wires
+the existing default-off post-archive hook behind
+`LOLLA_DECISION_WORK_BRIEF_AFTER_ARCHIVE` to build PR171 resolver output, pass
+that output into the PR172 resolver-aware bundle, and write a concrete
+`decision_work/` sidecar state: available, agent-only/caveated, deferred,
+blocked, or failed-closed. The hook remains default-off, post-archive,
+non-blocking, fail-closed, model-call-free, and unable to interpret messy
+conversation meaning, score answer quality, claim product proof or human
+validation, or authorize action. PR172 teaches the
+manual PR162 runtime bundle generator to consume PR171 resolver output via
+`--resolver-output`, copy only resolver-approved safe refs, preserve resolver
+status in attachment status and agent handoff, and produce available,
+agent-only/caveated, deferred, queued, local-private-required, or blocked
+receipts. PR171 implements a deterministic
+resolver and CLI that read the PR170 contract, validate explicit safe refs,
+redact local paths in resolver output, exclude unsafe inputs, and emit
+resolved/deferred/blocked/feedability status without interpreting conversation
+meaning or changing the runtime hook. PR170 defined the resolver modes,
+statuses, input types, unsafe exclusions, output shape, custody flags, and
+non-claims needed before implementation. PR169
+classified the runtime-attached path's required inputs and selected
+`build_safe_brief_supply_resolver_contract` because PR160-PR168 show a safe
+default-off hook but no general safe run-specific brief/enriched/triage supply
+path. PR168 reviewed PR160-PR167 and chose `safe_brief_supply_planning`
+because the default-off post-archive hook is mechanically attached but still
+cannot supply run-specific safe brief, enriched brief, and triage inputs on its
+own. PR160-PR167 follow the merged Offline v1 package and PR159 runtime
+attachment PRD: they define the runtime attachment contract, sidecar shape,
+manual bundle generator, eligibility gate, short receipt renderer, agent
+handoff packet, and a default-off post-archive hook in `scripts/archive_run.py`
+behind `LOLLA_DECISION_WORK_BRIEF_AFTER_ARCHIVE`. The hook is sidecar-only,
+post-archive, non-blocking, fail-closed, and product-useful only when safe
+brief inputs are supplied. It does not touch `SKILL.md` or `scripts/skill/*`,
+does not call models, does not change prompts, does not make runtime
+attachment default-on, and does not claim product proof, human validation,
+answer-quality scoring, advice correctness, or action authorization. PR158
+Decision Work Brief Offline v1 Package Gate v0 is the
+latest packaged offline/evidence slice. PR159 recorded the planning bridge for
+the flagged post-archive path. PR113
 introduced the product-facing brief target and corrected the receipt debug
 summary back to an internal maintainer layer. PR114 added the machine-readable
 brief schema. PR115 added the read-only local packet builder. PR116 added the
@@ -221,7 +288,13 @@ create provisional triage reads, but it is not runtime-integrated, customer
 ready, human validated, product proof, answer-quality scoring, or action
 authorization. PR158 packages Offline v1 by referencing the PR145 base package
 and listing PR145-PR157 additions, while keeping human calibration deferred and
-runtime/customer-facing use blocked. PR104
+runtime/customer-facing use blocked. PR159 is the follow-on runtime attachment
+PRD: it recommends post-archive, non-blocking, flagged generation on completed
+clean runs only, with a short user receipt, full brief/evidence link, structured
+agent handoff by source refs and privacy boundaries, and blocked/deferred states
+for incomplete artifacts, failed hygiene, missing revised answer, source-depth
+thinness, overtrust risk, and domain/legal escalation. It does not implement the
+runtime hook. PR104
 remains the latest
 Decision Trail human-review intake slice; PR85 remains the latest packaged
 product-evidence eval-lane slice; PR70

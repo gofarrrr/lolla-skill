@@ -1,0 +1,108 @@
+{
+  "schema_version": "lolla.decision_work_brief_runtime_attached_v1_package_manifest.v0",
+  "package_metadata": {
+    "status": "PR167 runtime-attached internal v1 package manifest",
+    "date": "2026-07-02",
+    "package_scope": "Decision Work Brief runtime attachment sequence PR160-PR167",
+    "runtime_attached_internal_v1_functional": true,
+    "default_on_runtime_behavior": false,
+    "customer_ready": false,
+    "human_validated": false,
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false,
+    "model_calls": 0,
+    "human_calibration_deferred": true
+  },
+  "included_files": {
+    "planning_and_contract_docs": [
+      "docs/conversation-understanding/decision-work-brief-runtime-attachment-prd-v0.md",
+      "docs/conversation-understanding/decision-work-brief-runtime-attachment-contract-v0.md",
+      "docs/conversation-understanding/decision-work-brief-runtime-attachment-contract-v0.json",
+      "docs/conversation-understanding/decision-work-brief-runtime-sidecar-v0.md",
+      "docs/conversation-understanding/decision-work-brief-runtime-sidecar-v0.json",
+      "docs/conversation-understanding/decision-work-brief-runtime-bundle-generator-v0.md",
+      "docs/conversation-understanding/decision-work-brief-runtime-eligibility-gate-v0.md",
+      "docs/conversation-understanding/decision-work-brief-runtime-receipt-v0.md",
+      "docs/conversation-understanding/decision-work-brief-agent-handoff-v0.md",
+      "docs/conversation-understanding/decision-work-brief-agent-handoff-v0.json",
+      "docs/conversation-understanding/decision-work-brief-flagged-post-archive-runtime-hook-v0.md"
+    ],
+    "runtime_code": [
+      "engine/system_b/decision_work_brief_runtime_bundle.py",
+      "engine/system_b/decision_work_brief_runtime_eligibility.py",
+      "engine/system_b/decision_work_brief_runtime_receipt.py",
+      "engine/system_b/decision_work_brief_agent_handoff.py",
+      "engine/system_b/decision_work_brief_runtime_attachment.py",
+      "scripts/archive_run.py",
+      "scripts/evals/build_decision_work_brief_runtime_bundle.py",
+      "scripts/evals/render_decision_work_brief_runtime_receipt.py",
+      "scripts/evals/build_decision_work_brief_agent_handoff.py"
+    ],
+    "tests": [
+      "tests/test_decision_work_brief_runtime_attachment_contract.py",
+      "tests/test_decision_work_brief_runtime_sidecar.py",
+      "tests/test_decision_work_brief_runtime_bundle.py",
+      "tests/test_decision_work_brief_runtime_eligibility.py",
+      "tests/test_decision_work_brief_runtime_receipt.py",
+      "tests/test_decision_work_brief_agent_handoff.py",
+      "tests/test_decision_work_brief_runtime_attachment.py",
+      "tests/test_decision_work_brief_runtime_attached_v1_package_gate.py"
+    ],
+    "review_and_package": [
+      "docs/conversation-understanding/decision-work-brief-runtime-attachment-review-v0.md",
+      "reviews/codex-assisted/decision-work-brief-runtime-attachment-review-v0/review.json",
+      "docs/conversation-understanding/decision-work-brief-runtime-attached-v1-package-gate-v0.md",
+      "docs/conversation-understanding/decision-work-brief-runtime-attached-v1-package-manifest-v0.json"
+    ],
+    "discoverability_updates": [
+      "PROGRESS.md",
+      "HOW_IT_WORKS.md",
+      "README.md",
+      "docs/board/README.md",
+      "docs/conversation-understanding/decision-work-brief-prd-v0.md"
+    ]
+  },
+  "do_not_include": [
+    "SKILL.md",
+    "scripts/skill/*",
+    "plans/*",
+    "reviews/synthetic/*",
+    "docs/lolla-* unrelated notes",
+    "archive paths",
+    "runtime temp state",
+    "raw/private content",
+    "provider text",
+    "private ledgers",
+    "local absolute paths",
+    "secrets"
+  ],
+  "validation_summary": {
+    "py_compile": "required over new runtime attachment modules, CLIs, and tests",
+    "pytest": "focused Decision Work Brief runtime attachment tests plus Product Delta boundary lint tests",
+    "jq": "required over new JSON contract/review/manifest artifacts",
+    "product_delta_boundary_lint": "required over touched docs/json/review/manifest artifacts",
+    "git_diff_check": "required",
+    "markdown_links": "required over touched Markdown",
+    "trailing_whitespace_scan": "required",
+    "privacy_marker_scan": "required",
+    "skill_boundary_check": "git status --short -- SKILL.md scripts/skill must produce no output"
+  },
+  "strongest_useful_signal": "A default-off post-archive hook can create a Decision Work Brief sidecar with attachment status, receipt, and agent handoff without touching live answer generation.",
+  "strongest_unresolved_risk": "The runtime hook can defer safely but does not yet provide automatic semantically rich brief generation from live private context.",
+  "decision_gate": "runtime_attached_internal_v1_packaged",
+  "recommended_next_pr": "PR168 Decision Work Brief Runtime-Attached Internal v1 Follow-up Planning v0",
+  "non_claims": [
+    "not_customer_ready",
+    "not_default_on_runtime_behavior",
+    "not_human_validation",
+    "not_product_proof",
+    "not_answer_quality_scoring",
+    "not_advice_correctness",
+    "not_lolla_improvement_proof",
+    "not_agent_action_authorization",
+    "not_automatic_action_authorization",
+    "triage_is_routing_not_scoring"
+  ]
+}

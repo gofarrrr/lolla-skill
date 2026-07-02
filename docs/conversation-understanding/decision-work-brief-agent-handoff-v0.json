@@ -1,0 +1,82 @@
+{
+  "schema_version": "lolla.decision_work_brief_agent_handoff_contract.v0",
+  "contract_metadata": {
+    "status": "PR165 agent handoff packet contract",
+    "date": "2026-07-02",
+    "purpose": "Define the checked-in-safe packet another agent may inspect from a runtime-attached Decision Work Brief bundle."
+  },
+  "required_top_level_fields": [
+    "schema_version",
+    "handoff_metadata",
+    "source_run_ref",
+    "attachment_state",
+    "attachment_status_ref",
+    "brief_refs",
+    "enriched_brief_refs",
+    "triage_refs",
+    "source_status",
+    "privacy_redaction_status",
+    "missingness",
+    "uncertainty",
+    "route_outputs",
+    "blocked_or_deferred_state",
+    "agent_inspection_focus",
+    "custody_flags",
+    "non_claims"
+  ],
+  "custody_flags": {
+    "human_validated": false,
+    "human_review_completed": false,
+    "product_proof": false,
+    "model_calls": 0,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "archive_mutated": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false,
+    "raw_private_content_included": false,
+    "provider_text_included": false,
+    "local_absolute_paths_included": false
+  },
+  "privacy_policy": {
+    "raw_conversation_text_allowed": false,
+    "raw_revised_answer_text_allowed": false,
+    "raw_memo_text_allowed": false,
+    "provider_text_allowed": false,
+    "private_ledgers_allowed": false,
+    "local_absolute_paths_allowed": false,
+    "source_refs_only_by_default": true
+  },
+  "route_output_rules": {
+    "agent_action_authorized_must_be_false": true,
+    "automatic_action_authorized_must_be_false": true,
+    "must_not_be_used_as_quality_label": true,
+    "triage_is_routing_not_scoring": true
+  },
+  "forbidden_payloads": [
+    "raw conversation text",
+    "raw revised answer text",
+    "raw memo text",
+    "provider text",
+    "private ledgers",
+    "local absolute paths",
+    "secrets",
+    "hidden chain-of-thought style material",
+    "action authorization"
+  ],
+  "non_claims": [
+    "not_runtime_default",
+    "not_customer_readiness",
+    "not_human_validation",
+    "not_product_proof",
+    "not_answer_quality_scoring",
+    "not_advice_correctness",
+    "not_lolla_improvement_proof",
+    "not_agent_action_authorization",
+    "not_automatic_action_authorization",
+    "triage_is_routing_not_scoring",
+    "handoff_is_for_inspection_not_action"
+  ],
+  "decision_gate": "proceed_to_flagged_post_archive_runtime_hook"
+}

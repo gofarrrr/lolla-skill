@@ -1,0 +1,223 @@
+{
+  "schema_version": "lolla.decision_work_brief_runtime_attachment_contract.v0",
+  "contract_metadata": {
+    "contract_id": "decision_work_brief_runtime_attachment_contract:v0",
+    "status": "contract_only",
+    "created_at": "2026-07-02T00:00:00Z",
+    "source_prd_ref": "docs/conversation-understanding/decision-work-brief-runtime-attachment-prd-v0.md",
+    "decision_gate": "proceed_to_runtime_sidecar_contract",
+    "not_implemented_here": [
+      "bundle_generator",
+      "sidecar_writer",
+      "runtime_hook",
+      "model_calls",
+      "prompt_changes",
+      "archive_mutation",
+      "human_review_result"
+    ]
+  },
+  "run_eligibility_fields": [
+    {
+      "field": "archive_finalized",
+      "required_for_generation": true,
+      "owner": "deterministic_validation",
+      "blocked_state_when_false": "not_eligible"
+    },
+    {
+      "field": "revised_answer_present",
+      "required_for_generation": true,
+      "owner": "deterministic_validation",
+      "blocked_state_when_false": "blocked"
+    },
+    {
+      "field": "required_structured_artifacts_parseable",
+      "required_for_generation": true,
+      "owner": "deterministic_validation",
+      "blocked_state_when_false": "blocked"
+    },
+    {
+      "field": "hygiene_clean_or_caveated_safe",
+      "required_for_generation": true,
+      "owner": "deterministic_validation",
+      "blocked_state_when_false": "blocked"
+    },
+    {
+      "field": "output_path_safe",
+      "required_for_generation": true,
+      "owner": "deterministic_validation",
+      "blocked_state_when_false": "failed_closed"
+    },
+    {
+      "field": "source_refs_resolvable",
+      "required_for_generation": true,
+      "owner": "deterministic_validation",
+      "blocked_state_when_false": "blocked"
+    },
+    {
+      "field": "raw_private_export_absent",
+      "required_for_generation": true,
+      "owner": "deterministic_validation",
+      "blocked_state_when_false": "failed_closed"
+    }
+  ],
+  "attachment_modes": [
+    {
+      "mode": "disabled",
+      "default": true,
+      "description": "No Decision Work Brief runtime attachment is requested."
+    },
+    {
+      "mode": "manual_post_archive",
+      "default": false,
+      "description": "An operator runs a post-archive bundle command outside the live Lolla flow."
+    },
+    {
+      "mode": "flagged_post_archive",
+      "default": false,
+      "description": "A future explicit local flag may request post-archive attachment after the run is finalized."
+    },
+    {
+      "mode": "future_default_not_implemented",
+      "default": false,
+      "description": "Reserved to keep default-on runtime attachment explicitly out of scope."
+    }
+  ],
+  "attachment_states": [
+    "not_requested",
+    "not_eligible",
+    "blocked",
+    "deferred",
+    "generated",
+    "generated_agent_only",
+    "failed_closed"
+  ],
+  "user_receipt_shape": {
+    "required_fields": [
+      "status_line",
+      "what_changed_line",
+      "main_caveat",
+      "full_brief_ref",
+      "evidence_bundle_ref",
+      "blocked_or_deferred_reason"
+    ],
+    "must_be_short": true,
+    "must_include_non_claim": true,
+    "must_not_render_full_brief_by_default": true,
+    "must_not_include_quality_rating": true,
+    "must_not_authorize_action": true
+  },
+  "full_brief_evidence_link_refs": {
+    "decision_work_brief_json_ref": "optional",
+    "decision_work_brief_markdown_ref": "optional",
+    "decision_work_brief_enriched_ref": "optional",
+    "automatic_triage_packet_ref": "optional",
+    "automatic_triage_read_ref": "optional",
+    "agent_handoff_packet_ref": "optional",
+    "user_receipt_ref": "optional"
+  },
+  "agent_handoff_refs": {
+    "required_fields": [
+      "schema_version",
+      "source_run_ref",
+      "attachment_status_ref",
+      "brief_refs",
+      "triage_refs",
+      "source_refs",
+      "source_status",
+      "privacy_redaction_status",
+      "missingness",
+      "uncertainty",
+      "route_outputs",
+      "blocked_or_deferred_state",
+      "non_claims",
+      "agent_action_authorized"
+    ],
+    "agent_action_authorized_value": false
+  },
+  "hard_blocker_vocabulary": [
+    "incomplete_run_artifacts",
+    "archive_not_finalized",
+    "missing_revised_answer",
+    "missing_required_structured_artifacts",
+    "malformed_json",
+    "failed_hygiene",
+    "failed_boundary_lint",
+    "unsafe_output_path",
+    "source_refs_unresolved",
+    "privacy_marker_or_raw_private_export_risk",
+    "schema_validation_failure",
+    "attempted_model_or_provider_invocation",
+    "attempted_runtime_invocation_during_generation",
+    "attempted_action_authorization_or_scoring"
+  ],
+  "soft_triage_blocker_vocabulary": [
+    "source_depth_too_thin",
+    "high_overtrust_risk",
+    "private_context_required",
+    "domain_review_recommended",
+    "legal_or_compliance_review_recommended",
+    "medical_or_financial_review_recommended",
+    "governance_or_employment_review_recommended",
+    "safety_review_recommended",
+    "relationship_or_political_sensitivity",
+    "unresolved_lost_value_risk",
+    "agent_inspection_only"
+  ],
+  "custody_flags": {
+    "human_validated": false,
+    "human_review_completed": false,
+    "product_proof": false,
+    "model_calls": 0,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "archive_mutated": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false,
+    "raw_private_content_included": false,
+    "provider_text_included": false,
+    "local_absolute_paths_included": false,
+    "runtime_attachment_contract_only": true
+  },
+  "privacy_export_policy": {
+    "default_mode": "checked_in_safe_refs_only",
+    "raw_conversation_text_exported_by_default": false,
+    "raw_revised_answer_text_exported_by_default": false,
+    "raw_memo_text_exported_by_default": false,
+    "provider_text_exported_by_default": false,
+    "private_ledgers_exported_by_default": false,
+    "local_absolute_paths_exported_by_default": false,
+    "secrets_exported_by_default": false,
+    "private_material_may_be_referenced_as_availability_status_only": true
+  },
+  "default_off_requirement": {
+    "required": true,
+    "flagged_mode_must_default_off": true,
+    "future_default_not_implemented": true
+  },
+  "post_archive_only_requirement": {
+    "required": true,
+    "must_not_run_during_revised_answer_generation": true,
+    "must_not_block_revised_answer_return": true
+  },
+  "no_action_authorization_requirement": {
+    "required": true,
+    "triage_must_not_authorize_action": true,
+    "brief_must_not_authorize_action": true,
+    "agent_handoff_must_set_agent_action_authorized_false": true
+  },
+  "non_claims": [
+    "not_runtime_default",
+    "not_customer_readiness",
+    "not_human_validation",
+    "not_product_proof",
+    "not_answer_quality_scoring",
+    "not_advice_correctness",
+    "not_lolla_improvement_proof",
+    "not_agent_action_authorization",
+    "not_automatic_action_authorization",
+    "not_raw_private_export",
+    "triage_is_routing_not_scoring",
+    "clean_artifacts_do_not_imply_good_advice"
+  ]
+}

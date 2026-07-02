@@ -432,6 +432,95 @@ Follow-up implementation planning:
   explicitly adding PR145-PR157 human-calibration, third-case,
   automatic-triage, closure, and package-gate artifacts.
 
+- [Decision Work Brief Runtime Attachment PRD](../conversation-understanding/decision-work-brief-runtime-attachment-prd-v0.md)
+
+  Planning bridge after Offline v1. It decides from first principles when a
+  future brief should run, what the user sees, what another agent sees, what
+  blocks generation, and why the first runtime-safe slice should be a flagged
+  post-archive attachment path rather than full automation.
+
+- [Decision Work Brief Runtime-Attached Internal v1 Package Gate](../conversation-understanding/decision-work-brief-runtime-attached-v1-package-gate-v0.md)
+
+  PR167's internal runtime package gate. It explains the first default-off,
+  post-archive attachment path: completed run archives may get a
+  `decision_work/` sidecar with status, short receipt, and agent handoff when
+  `LOLLA_DECISION_WORK_BRIEF_AFTER_ARCHIVE` is explicitly enabled. It is not
+  customer readiness, human validation, product proof, advice correctness, or
+  action authorization.
+
+- [Decision Work Brief Runtime-Attached Internal v1 Follow-up Plan](../conversation-understanding/decision-work-brief-runtime-attached-v1-followup-plan-v0.md)
+
+  PR168's follow-up choice gate. It says the runtime hook is mechanically
+  attached, default-off, and fail-closed, but still input-supply-limited until
+  the repo plans how safe run-specific brief, enriched brief, and triage inputs
+  reach the hook without exposing private content.
+
+- [Decision Work Brief Runtime Safe Brief Supply Plan](../conversation-understanding/decision-work-brief-runtime-safe-brief-supply-plan-v0.md)
+
+  PR169's supply plan. It classifies which inputs can come from completed-run
+  artifacts, existing offline builders, checked-in-safe examples, manual refs,
+  local-private mode, or future interpretation, and recommends a safe resolver
+  contract before adding more runtime behavior.
+
+- [Decision Work Brief Runtime Safe Supply Resolver Contract](../conversation-understanding/decision-work-brief-runtime-safe-supply-resolver-contract-v0.md)
+
+  PR170's resolver contract. It defines the modes, statuses, input types,
+  unsafe exclusions, bundle feedability output, custody flags, and non-claims
+  for a future deterministic resolver, while keeping direct runtime
+  interpretation and default-on behavior out of scope.
+
+- [Decision Work Brief Runtime Safe Supply Resolver](../conversation-understanding/decision-work-brief-runtime-safe-supply-resolver-v0.md)
+
+  PR171's resolver implementation. It validates explicit safe refs, excludes
+  unsafe inputs, redacts local paths in output, and tells the manual runtime
+  bundle whether it has enough safe material to proceed, partially proceed,
+  defer, queue, or block. It is not interpretation and does not change the
+  runtime hook.
+
+- [Decision Work Brief Runtime Bundle Resolver Integration](../conversation-understanding/decision-work-brief-runtime-bundle-resolver-integration-v0.md)
+
+  PR172's manual bundle bridge. It lets the bundle generator consume
+  `--resolver-output`, carry resolver feedability through attachment status,
+  receipt, and agent handoff, and still keeps the default-off runtime hook
+  unchanged.
+
+- [Decision Work Brief Runtime Hook Resolver Wiring](../conversation-understanding/decision-work-brief-runtime-hook-resolver-wiring-v0.md)
+
+  PR173's default-off hook bridge. When
+  `LOLLA_DECISION_WORK_BRIEF_AFTER_ARCHIVE` is enabled, the post-archive hook
+  now calls the resolver-aware bundle chain and writes an available,
+  agent-only, deferred, blocked, or failed-closed sidecar while still making no
+  product-proof, human-validation, scoring, or action-authorization claim.
+
+- [Decision Work Brief Runtime Hook Resolver Fixture Review](../conversation-understanding/decision-work-brief-runtime-hook-resolver-fixture-review-v0.md)
+
+  PR174's review-only pass over the concrete hook sidecar states. It confirms
+  flag-off, deferred, available, agent-only, blocked, privacy-blocked, and
+  failed-closed behavior, then selects a checked-in-safe case registry so demos
+  and tests can use stable safe refs without implying arbitrary live runs are
+  automatically interpreted.
+
+- [Decision Work Brief Runtime Checked-In Safe Case Registry](../conversation-understanding/decision-work-brief-runtime-checked-in-safe-case-registry-v0.md)
+
+  PR175's deterministic registry for the three known Decision Work Brief
+  examples. It lets resolver mode `checked_in_safe_case_registry` feed the
+  manual bundle without manual env refs, but it is curated-example supply only,
+  not a general live-run interpretation path.
+
+- [Decision Work Brief Runtime Hook Registry Fixture Review](../conversation-understanding/decision-work-brief-runtime-hook-registry-fixture-review-v0.md)
+
+  PR176's review-only pass over registry-backed hook fixtures. It confirms the
+  launch, deploy-intake, and cofounder registry entries can generate temp
+  sidecars through the resolver-aware hook seam, while keeping arbitrary-run
+  semantic supply out of scope.
+
+- [Decision Work Brief Runtime-Attached Internal v1 Package Refresh](../conversation-understanding/decision-work-brief-runtime-attached-internal-v1-package-refresh-v0.md)
+
+  PR177's package refresh for PR160-PR176. It packages the internal,
+  default-off, post-archive sidecar path for maintainer review when safe refs
+  are supplied manually or through registry fixtures, while keeping customer
+  presentation and arbitrary-run semantic supply out of scope.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

@@ -1,0 +1,172 @@
+{
+  "schema_version": "lolla.decision_work_brief_runtime_sidecar.v0",
+  "sidecar_metadata": {
+    "sidecar_contract_id": "decision_work_brief_runtime_sidecar:v0",
+    "status": "contract_only",
+    "created_at": "2026-07-02T00:00:00Z",
+    "runtime_attachment_contract_ref": "docs/conversation-understanding/decision-work-brief-runtime-attachment-contract-v0.json",
+    "decision_gate": "proceed_to_manual_runtime_bundle_generator",
+    "not_implemented_here": [
+      "bundle_generator",
+      "runtime_hook",
+      "archive_sidecar_writer",
+      "model_calls",
+      "human_review_result"
+    ]
+  },
+  "sidecar_root": "decision_work",
+  "artifact_layout": [
+    {
+      "artifact_id": "attachment_status",
+      "relative_path": "decision_work/attachment_status.json",
+      "required": true,
+      "content_type": "application/json",
+      "description": "Attachment state, blockers, refs, custody flags, and non-claims."
+    },
+    {
+      "artifact_id": "decision_work_brief_json",
+      "relative_path": "decision_work/decision_work_brief.json",
+      "required": false,
+      "content_type": "application/json",
+      "description": "Structured Decision Work Brief when generation is available."
+    },
+    {
+      "artifact_id": "decision_work_brief_markdown",
+      "relative_path": "decision_work/decision_work_brief.md",
+      "required": false,
+      "content_type": "text/markdown",
+      "description": "Rendered brief when available."
+    },
+    {
+      "artifact_id": "decision_work_brief_enriched_markdown",
+      "relative_path": "decision_work/decision_work_brief_enriched.md",
+      "required": false,
+      "content_type": "text/markdown",
+      "description": "Enriched rendered brief when a bounded interpretation read is available."
+    },
+    {
+      "artifact_id": "automatic_triage_packet",
+      "relative_path": "decision_work/automatic_triage_packet.json",
+      "required": false,
+      "content_type": "application/json",
+      "description": "Checked-in-safe automatic triage packet refs/status."
+    },
+    {
+      "artifact_id": "automatic_triage_read",
+      "relative_path": "decision_work/automatic_triage_read.json",
+      "required": false,
+      "content_type": "application/json",
+      "description": "Provisional triage read when available."
+    },
+    {
+      "artifact_id": "agent_handoff_packet",
+      "relative_path": "decision_work/agent_handoff_packet.json",
+      "required": false,
+      "content_type": "application/json",
+      "description": "Agent-readable handoff refs, status, missingness, uncertainty, and non-claims."
+    },
+    {
+      "artifact_id": "user_receipt",
+      "relative_path": "decision_work/user_receipt.md",
+      "required": false,
+      "content_type": "text/markdown",
+      "description": "Short user-facing receipt or blocked/deferred note."
+    }
+  ],
+  "attachment_status_shape": {
+    "required_fields": [
+      "schema_version",
+      "source_run_ref",
+      "attachment_mode",
+      "attachment_state",
+      "generated_artifacts",
+      "missing_artifacts",
+      "blocked_reasons",
+      "deferred_reasons",
+      "failed_closed_reasons",
+      "custody_flags",
+      "privacy_export_policy",
+      "non_claims"
+    ],
+    "allowed_attachment_states": [
+      "not_requested",
+      "not_eligible",
+      "blocked",
+      "deferred",
+      "generated",
+      "generated_agent_only",
+      "failed_closed"
+    ]
+  },
+  "manual_output_policy": {
+    "default_output_location": "operator_selected_directory_outside_input_run",
+    "must_refuse_output_inside_input_run_by_default": true,
+    "may_write_sidecar_shape_outside_archive": true,
+    "may_write_archive_sidecar_only_in_future_flagged_runtime_hook": true
+  },
+  "runtime_sidecar_policy": {
+    "post_archive_only": true,
+    "default_off": true,
+    "explicit_local_flag_required": true,
+    "may_append_decision_work_sidecar_after_archive_completion": true,
+    "must_not_rewrite_source_artifacts": true,
+    "must_not_block_revised_answer": true,
+    "must_fail_closed": true
+  },
+  "output_path_safety": {
+    "checked_in_or_agent_facing_refs_must_be_relative": true,
+    "local_absolute_paths_must_not_be_exported": true,
+    "manual_output_must_not_equal_input_run_dir": true,
+    "manual_output_must_not_be_inside_input_run_dir_by_default": true,
+    "archive_sidecar_write_requires_future_flagged_hook": true
+  },
+  "privacy_export_policy": {
+    "raw_conversation_text_included": false,
+    "raw_revised_answer_text_included": false,
+    "raw_memo_text_included": false,
+    "provider_text_included": false,
+    "private_ledgers_included": false,
+    "local_absolute_paths_included": false,
+    "secrets_included": false,
+    "source_refs_only_by_default": true
+  },
+  "validation_expectations": [
+    "json_artifacts_parse",
+    "markdown_artifacts_link_by_relative_ref",
+    "no_raw_private_markers",
+    "no_local_absolute_paths",
+    "custody_flags_conservative",
+    "blocked_or_deferred_state_recorded_when_artifacts_missing",
+    "agent_action_authorized_false",
+    "answer_quality_scored_false",
+    "product_proof_false",
+    "human_validated_false"
+  ],
+  "custody_flags": {
+    "human_validated": false,
+    "human_review_completed": false,
+    "product_proof": false,
+    "model_calls": 0,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "archive_mutated": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false,
+    "raw_private_content_included": false,
+    "provider_text_included": false,
+    "local_absolute_paths_included": false,
+    "sidecar_contract_only": true
+  },
+  "non_claims": [
+    "not_runtime_behavior",
+    "not_archive_mutation",
+    "not_customer_readiness",
+    "not_human_validation",
+    "not_product_proof",
+    "not_answer_quality_scoring",
+    "not_action_authorization",
+    "not_raw_private_export",
+    "missing_artifacts_are_not_advice_quality_judgments"
+  ]
+}
