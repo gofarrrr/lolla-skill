@@ -1,0 +1,831 @@
+{
+  "schema_version": "lolla.decision_work_brief_conversation_interpretation_gap_map.v0",
+  "review_metadata": {
+    "review_id": "decision_work_brief_conversation_interpretation_gap_map:v0:2026-07-01",
+    "created_at": "2026-07-01T00:00:00Z",
+    "review_mode": "codex_assisted_provisional_checked_in_safe_gap_map",
+    "triggering_gate_ref": "reviews/codex-assisted/decision-work-brief-expansion-runtime-decision-gate-v0/review.json",
+    "triggering_gate_outcome": "run_more_local_private_adequacy_checks",
+    "case_count": 3,
+    "purpose": "Map what richer conversation interpretation fields the current Decision Work Brief lane can preserve, can infer only provisionally, can inspect only privately, or cannot currently capture."
+  },
+  "custody_flags": {
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "archive_mutated": false,
+    "model_calls": 0,
+    "human_validated": false,
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "broad_judge_used": false,
+    "automatic_labels_created": false,
+    "raw_private_content_checked_in": false,
+    "raw_private_content_included": false,
+    "provider_text_checked_in": false,
+    "provider_text_included": false,
+    "local_absolute_paths_included": false,
+    "checked_in_safe": true
+  },
+  "reviewed_cases": [
+    {
+      "case_id": "ceo-remove-founding-cofounder",
+      "run_ref": "ceo-remove-founding-cofounder/20260627T093131Z_59d153",
+      "rendered_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md",
+      "review_json_ref": "reviews/codex-assisted/decision-work-brief-draft-pilot-v0/review.json",
+      "local_private_review_status": "completed_read_only",
+      "local_private_sources_read_summary": [
+        "structured artifact presence",
+        "agent_result.json status fields",
+        "extraction.json key coverage",
+        "result.json structured keys and memo field presence"
+      ],
+      "field_coverage": {
+        "clear_or_partial_checked_in_safe": [
+          "decision_question",
+          "revised_direction_or_action_consequence",
+          "conversation_turn_depth",
+          "dropped_threads",
+          "source_refs",
+          "redacted_or_not_checked_in",
+          "what_the_final_answer_does_not_prove"
+        ],
+        "available_only_privately": [
+          "user_provided_context",
+          "pasted_documents_or_external_context",
+          "live_options",
+          "abandoned_or_rejected_options",
+          "user_values_or_priorities",
+          "relationship_or_political_constraints",
+          "lost_value"
+        ],
+        "needs_llm_or_human_interpretation": [
+          "likely_starting_direction",
+          "assistant_influence_on_user_framing",
+          "user_changed_mind_during_conversation",
+          "useful_friction",
+          "noisy_friction",
+          "overcorrection_risk",
+          "momentum_or_ambition_loss"
+        ]
+      },
+      "most_important_missing_fields": [
+        "whether the CEO's starting direction already included authority transfer",
+        "relationship, legal, equity, and governance constraints",
+        "lost value from reducing the cofounder's role",
+        "whether the conversation changed the user or mainly sharpened an existing decision"
+      ],
+      "fields_that_need_llm_interpretation": [
+        "likely_starting_direction",
+        "abandoned_or_rejected_options",
+        "assistant_influence_on_user_framing",
+        "useful_friction",
+        "noisy_friction",
+        "overcorrection_risk"
+      ],
+      "fields_that_need_human_review": [
+        "stakeholder_obligations",
+        "relationship_or_political_constraints",
+        "legal_compliance_or_safety_constraints",
+        "lost_value"
+      ],
+      "fields_available_only_privately": [
+        "raw conversation context",
+        "raw revised answer",
+        "raw memo text",
+        "private ledgers",
+        "operator transcript context"
+      ],
+      "checked_in_safe_limitations": "The checked-in brief names the action consequence, but it cannot verify the private relationship/governance context or whether the user had already reached the authority-first decision.",
+      "product_consequence": "A future brief contract needs explicit fields for starting-direction overlap, stakeholder obligations, lost value, and human follow-up before this case can read as more than a provisional decision story."
+    },
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "run_ref": "launch-public-enterprise-beta/20260627T104146Z_7bfe79",
+      "rendered_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md",
+      "review_json_ref": "reviews/codex-assisted/decision-work-brief-second-tiny-case-pilot-v0/review.json",
+      "local_private_review_status": "completed_read_only",
+      "local_private_sources_read_summary": [
+        "structured artifact presence",
+        "agent_result.json status fields",
+        "extraction.json key coverage",
+        "result.json structured keys and memo field presence",
+        "PR125 safe local-private adequacy conclusions"
+      ],
+      "field_coverage": {
+        "clear_or_partial_checked_in_safe": [
+          "decision_question",
+          "likely_starting_direction",
+          "revised_direction_or_action_consequence",
+          "decision_thresholds",
+          "stop_rules",
+          "evidence_gates",
+          "timing_or_runway_constraints",
+          "source_refs"
+        ],
+        "available_only_privately": [
+          "buyer seriousness context",
+          "public launch investor or recruiting value",
+          "board pressure",
+          "raw conversation",
+          "raw revised answer",
+          "private ledgers"
+        ],
+        "needs_llm_or_human_interpretation": [
+          "live_options",
+          "abandoned_or_rejected_options",
+          "assistant_influence_on_user_framing",
+          "lost_value",
+          "overcorrection_risk",
+          "momentum_or_ambition_loss"
+        ]
+      },
+      "most_important_missing_fields": [
+        "whether public launch had concrete fundraising or recruiting value",
+        "which buyer would actually accept the private-pilot constraints",
+        "how much of the action sequence was already in the original answer",
+        "whether Lolla changed the decision or sharpened a private-pilot path"
+      ],
+      "fields_that_need_llm_interpretation": [
+        "live_options",
+        "abandoned_or_rejected_options",
+        "option_status",
+        "useful_friction",
+        "noisy_friction",
+        "lost_value",
+        "false_precision_risk"
+      ],
+      "fields_that_need_human_review": [
+        "stakeholder_obligations",
+        "timing_or_runway_constraints",
+        "real_world_unknowns",
+        "unknown_unknowns_or_context_not_available_to_model"
+      ],
+      "fields_available_only_privately": [
+        "raw conversation context",
+        "raw revised answer",
+        "raw memo text",
+        "private ledgers",
+        "local structured archive context"
+      ],
+      "checked_in_safe_limitations": "The checked-in brief and PR125 support the buyer-behavior action consequence, but cannot verify buyer reality, public optics value, or private board/investor constraints.",
+      "product_consequence": "This case shows why the future contract needs separate fields for options, option status, lost value, and source-depth adequacy instead of only a polished action-consequence paragraph."
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "run_ref": "deploy-assisted-intake-routing/20260627T130339Z_4cd3cb",
+      "rendered_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md",
+      "review_json_ref": "reviews/codex-assisted/decision-work-brief-third-diversity-case-pilot-v0/review.json",
+      "local_private_review_status": "completed_read_only",
+      "local_private_sources_read_summary": [
+        "structured artifact presence",
+        "agent_result.json status fields",
+        "extraction.json key coverage",
+        "result.json structured keys and memo field presence"
+      ],
+      "field_coverage": {
+        "clear_or_partial_checked_in_safe": [
+          "decision_question",
+          "revised_direction_or_action_consequence",
+          "decision_thresholds",
+          "stop_rules",
+          "evidence_gates",
+          "operational_capacity_constraints",
+          "legal_compliance_or_safety_constraints",
+          "source_refs"
+        ],
+        "available_only_privately": [
+          "actual clinic capacity",
+          "compliance tolerance",
+          "patient-risk detail",
+          "raw conversation",
+          "raw revised answer",
+          "private ledgers"
+        ],
+        "needs_llm_or_human_interpretation": [
+          "likely_starting_direction",
+          "noisy_friction",
+          "lost_value",
+          "overcorrection_risk",
+          "generic_caution_risk",
+          "unknown_unknowns_or_context_not_available_to_model"
+        ]
+      },
+      "most_important_missing_fields": [
+        "whether the backlog cause was really routing uncertainty",
+        "whether compressed gates lost useful patient-safety or support controls",
+        "whether compliance's auditability concern should block even the narrowed pilot",
+        "whether exhausted staff could operate the proposed controls"
+      ],
+      "fields_that_need_llm_interpretation": [
+        "likely_starting_direction",
+        "alternative_frames_considered",
+        "useful_friction",
+        "noisy_friction",
+        "generic_caution_risk",
+        "overcorrection_risk"
+      ],
+      "fields_that_need_human_review": [
+        "operational_capacity_constraints",
+        "legal_compliance_or_safety_constraints",
+        "real_world_unknowns",
+        "unknown_unknowns_or_context_not_available_to_model"
+      ],
+      "fields_available_only_privately": [
+        "raw conversation context",
+        "raw revised answer",
+        "raw memo text",
+        "private ledgers",
+        "local structured archive context"
+      ],
+      "checked_in_safe_limitations": "The checked-in brief names the operational change, but it cannot verify clinic capacity, compliance acceptance, patient-risk context, or whether the control compression lost necessary safety coverage.",
+      "product_consequence": "The brief needs a future contract that can preserve operational constraints, safety/compliance limits, useful versus noisy friction, and overcorrection risk without turning them into deterministic labels."
+    }
+  ],
+  "target_field_inventory": [
+    {
+      "field_name": "decision_question",
+      "field_group": "core_decision",
+      "availability_classification": "partial_from_checked_in_safe_artifacts",
+      "desired_handling": "llm_interpretation_required",
+      "supporting_handling": [
+        "safe_checked_in_summary_allowed",
+        "source_refs_required"
+      ],
+      "why_it_matters": "The brief cannot be useful if the reader cannot name the decision."
+    },
+    {
+      "field_name": "likely_starting_direction",
+      "field_group": "core_decision",
+      "availability_classification": "inferable_only_by_llm",
+      "desired_handling": "llm_interpretation_required",
+      "supporting_handling": [
+        "local_private_read_required",
+        "human_review_required"
+      ],
+      "why_it_matters": "The user value depends on distinguishing what changed from what was already present."
+    },
+    {
+      "field_name": "revised_direction_or_action_consequence",
+      "field_group": "core_decision",
+      "availability_classification": "partial_from_checked_in_safe_artifacts",
+      "desired_handling": "llm_interpretation_required",
+      "supporting_handling": [
+        "safe_checked_in_summary_allowed"
+      ],
+      "why_it_matters": "This is the strongest current Decision Work Brief signal: what would be done differently."
+    },
+    {
+      "field_name": "live_options",
+      "field_group": "core_decision",
+      "availability_classification": "available_only_in_local_private_context",
+      "desired_handling": "local_private_read_required",
+      "supporting_handling": [
+        "llm_interpretation_required"
+      ],
+      "why_it_matters": "The brief needs to show the option space, not only the final recommendation."
+    },
+    {
+      "field_name": "abandoned_or_rejected_options",
+      "field_group": "core_decision",
+      "availability_classification": "inferable_only_by_llm",
+      "desired_handling": "llm_interpretation_required",
+      "supporting_handling": [
+        "local_private_read_required"
+      ],
+      "why_it_matters": "Abandoned paths explain what the process ruled out and what value may have been lost."
+    },
+    {
+      "field_name": "option_status",
+      "field_group": "core_decision",
+      "availability_classification": "not_currently_captured",
+      "desired_handling": "llm_interpretation_required",
+      "supporting_handling": [
+        "safe_checked_in_summary_allowed"
+      ],
+      "why_it_matters": "A future brief should separate live, rejected, deferred, and unsafe-to-claim options."
+    },
+    {
+      "field_name": "decision_thresholds",
+      "field_group": "core_decision",
+      "availability_classification": "partial_from_checked_in_safe_artifacts",
+      "desired_handling": "llm_interpretation_required",
+      "supporting_handling": [
+        "deterministic_metadata_only"
+      ],
+      "why_it_matters": "Thresholds turn vague caution into action conditions."
+    },
+    {
+      "field_name": "stop_rules",
+      "field_group": "core_decision",
+      "availability_classification": "partial_from_checked_in_safe_artifacts",
+      "desired_handling": "llm_interpretation_required",
+      "supporting_handling": [
+        "safe_checked_in_summary_allowed"
+      ],
+      "why_it_matters": "Stop rules show what would halt or reverse the action."
+    },
+    {
+      "field_name": "evidence_gates",
+      "field_group": "core_decision",
+      "availability_classification": "partial_from_checked_in_safe_artifacts",
+      "desired_handling": "llm_interpretation_required",
+      "supporting_handling": [
+        "deterministic_metadata_only"
+      ],
+      "why_it_matters": "Evidence gates show what proof the decision depends on."
+    },
+    {
+      "field_name": "conversation_turn_depth",
+      "field_group": "conversation_process",
+      "availability_classification": "clear_from_checked_in_safe_artifacts",
+      "desired_handling": "deterministic_metadata_only",
+      "supporting_handling": [
+        "safe_checked_in_summary_allowed"
+      ],
+      "why_it_matters": "Turn depth is process-shape metadata, not semantic proof."
+    },
+    {
+      "field_name": "user_provided_context",
+      "field_group": "conversation_process",
+      "availability_classification": "available_only_in_local_private_context",
+      "desired_handling": "local_private_read_required",
+      "supporting_handling": [
+        "llm_interpretation_required"
+      ],
+      "why_it_matters": "The brief needs to know which facts came from the user, without copying private content."
+    },
+    {
+      "field_name": "pasted_documents_or_external_context",
+      "field_group": "conversation_process",
+      "availability_classification": "available_only_in_local_private_context",
+      "desired_handling": "local_private_read_required",
+      "supporting_handling": [
+        "should_not_be_exported"
+      ],
+      "why_it_matters": "External context can be load-bearing and sensitive."
+    },
+    {
+      "field_name": "assistant_influence_on_user_framing",
+      "field_group": "conversation_process",
+      "availability_classification": "inferable_only_by_llm",
+      "desired_handling": "llm_interpretation_required",
+      "supporting_handling": [
+        "human_review_required"
+      ],
+      "why_it_matters": "The process story should not hide when the assistant shaped the user's frame."
+    },
+    {
+      "field_name": "user_changed_mind_during_conversation",
+      "field_group": "conversation_process",
+      "availability_classification": "not_currently_captured",
+      "desired_handling": "llm_interpretation_required",
+      "supporting_handling": [
+        "human_review_required"
+      ],
+      "why_it_matters": "A change in user stance is often the product value, but it is not currently a structured field."
+    },
+    {
+      "field_name": "assistant_sycophancy_or_over-accommodation_risk",
+      "field_group": "conversation_process",
+      "availability_classification": "inferable_only_by_llm",
+      "desired_handling": "llm_interpretation_required",
+      "supporting_handling": [
+        "human_review_required"
+      ],
+      "why_it_matters": "A useful brief should preserve whether the conversation overly mirrored the user."
+    },
+    {
+      "field_name": "unresolved_threads",
+      "field_group": "conversation_process",
+      "availability_classification": "partial_from_checked_in_safe_artifacts",
+      "desired_handling": "llm_interpretation_required",
+      "supporting_handling": [
+        "safe_checked_in_summary_allowed"
+      ],
+      "why_it_matters": "Unresolved threads keep uncertainty visible."
+    },
+    {
+      "field_name": "dropped_threads",
+      "field_group": "conversation_process",
+      "availability_classification": "partial_from_checked_in_safe_artifacts",
+      "desired_handling": "llm_interpretation_required",
+      "supporting_handling": [
+        "safe_checked_in_summary_allowed"
+      ],
+      "why_it_matters": "Dropped threads can explain what the answer ignored."
+    },
+    {
+      "field_name": "premortem_or_counterfactual_pressure",
+      "field_group": "conversation_process",
+      "availability_classification": "partial_from_checked_in_safe_artifacts",
+      "desired_handling": "llm_interpretation_required",
+      "supporting_handling": [
+        "deterministic_metadata_only"
+      ],
+      "why_it_matters": "The brief should preserve what pressure was applied without judging whether it was good."
+    },
+    {
+      "field_name": "alternative_frames_considered",
+      "field_group": "conversation_process",
+      "availability_classification": "partial_from_checked_in_safe_artifacts",
+      "desired_handling": "llm_interpretation_required",
+      "supporting_handling": [
+        "safe_checked_in_summary_allowed"
+      ],
+      "why_it_matters": "Alternative frames show how the question itself changed."
+    },
+    {
+      "field_name": "user_values_or_priorities",
+      "field_group": "human_context",
+      "availability_classification": "available_only_in_local_private_context",
+      "desired_handling": "human_review_required",
+      "supporting_handling": [
+        "llm_interpretation_required",
+        "local_private_read_required"
+      ],
+      "why_it_matters": "Values and priorities are easy to over-infer and should not be deterministically assigned."
+    },
+    {
+      "field_name": "stakeholder_obligations",
+      "field_group": "human_context",
+      "availability_classification": "inferable_only_by_llm",
+      "desired_handling": "human_review_required",
+      "supporting_handling": [
+        "local_private_read_required"
+      ],
+      "why_it_matters": "Stakeholder obligations affect action but require careful review."
+    },
+    {
+      "field_name": "relationship_or_political_constraints",
+      "field_group": "human_context",
+      "availability_classification": "available_only_in_local_private_context",
+      "desired_handling": "human_review_required",
+      "supporting_handling": [
+        "llm_interpretation_required"
+      ],
+      "why_it_matters": "Relationship and power constraints are often private and product-critical."
+    },
+    {
+      "field_name": "timing_or_runway_constraints",
+      "field_group": "human_context",
+      "availability_classification": "partial_from_checked_in_safe_artifacts",
+      "desired_handling": "llm_interpretation_required",
+      "supporting_handling": [
+        "human_review_required"
+      ],
+      "why_it_matters": "Timing pressure can change the meaning of a prudent decision."
+    },
+    {
+      "field_name": "operational_capacity_constraints",
+      "field_group": "human_context",
+      "availability_classification": "partial_from_checked_in_safe_artifacts",
+      "desired_handling": "llm_interpretation_required",
+      "supporting_handling": [
+        "human_review_required"
+      ],
+      "why_it_matters": "Capacity constraints decide whether a plan is operable."
+    },
+    {
+      "field_name": "legal_compliance_or_safety_constraints",
+      "field_group": "human_context",
+      "availability_classification": "partial_from_checked_in_safe_artifacts",
+      "desired_handling": "human_review_required",
+      "supporting_handling": [
+        "local_private_read_required"
+      ],
+      "why_it_matters": "Legal, compliance, and safety context should not be smoothed into confident prose."
+    },
+    {
+      "field_name": "real_world_unknowns",
+      "field_group": "human_context",
+      "availability_classification": "inferable_only_by_llm",
+      "desired_handling": "human_review_required",
+      "supporting_handling": [
+        "safe_checked_in_summary_allowed"
+      ],
+      "why_it_matters": "The brief should name what the model cannot know."
+    },
+    {
+      "field_name": "unknown_unknowns_or_context_not_available_to_model",
+      "field_group": "human_context",
+      "availability_classification": "not_currently_captured",
+      "desired_handling": "human_review_required",
+      "supporting_handling": [
+        "safe_checked_in_summary_allowed"
+      ],
+      "why_it_matters": "Some missingness is a non-claim, not a semantic finding."
+    },
+    {
+      "field_name": "useful_friction",
+      "field_group": "decision_quality_loss",
+      "availability_classification": "inferable_only_by_llm",
+      "desired_handling": "llm_interpretation_required",
+      "supporting_handling": [
+        "human_review_required"
+      ],
+      "why_it_matters": "The product wants useful pressure, but deterministic code must not decide usefulness."
+    },
+    {
+      "field_name": "noisy_friction",
+      "field_group": "decision_quality_loss",
+      "availability_classification": "inferable_only_by_llm",
+      "desired_handling": "llm_interpretation_required",
+      "supporting_handling": [
+        "human_review_required"
+      ],
+      "why_it_matters": "The system needs to distinguish helpful pressure from process drag without turning it into a score."
+    },
+    {
+      "field_name": "lost_value",
+      "field_group": "decision_quality_loss",
+      "availability_classification": "inferable_only_by_llm",
+      "desired_handling": "human_review_required",
+      "supporting_handling": [
+        "local_private_read_required"
+      ],
+      "why_it_matters": "A brief should show what may have been lost when the recommendation changed."
+    },
+    {
+      "field_name": "overcorrection_risk",
+      "field_group": "decision_quality_loss",
+      "availability_classification": "inferable_only_by_llm",
+      "desired_handling": "llm_interpretation_required",
+      "supporting_handling": [
+        "human_review_required"
+      ],
+      "why_it_matters": "Readable briefs can overstate a narrowed or more cautious path."
+    },
+    {
+      "field_name": "false_precision_risk",
+      "field_group": "decision_quality_loss",
+      "availability_classification": "inferable_only_by_llm",
+      "desired_handling": "llm_interpretation_required",
+      "supporting_handling": [
+        "safe_checked_in_summary_allowed"
+      ],
+      "why_it_matters": "The brief should not make provisional interpretation sound settled."
+    },
+    {
+      "field_name": "generic_caution_risk",
+      "field_group": "decision_quality_loss",
+      "availability_classification": "inferable_only_by_llm",
+      "desired_handling": "llm_interpretation_required",
+      "supporting_handling": [
+        "human_review_required"
+      ],
+      "why_it_matters": "The process may add caution that sounds responsible without improving action."
+    },
+    {
+      "field_name": "momentum_or_ambition_loss",
+      "field_group": "decision_quality_loss",
+      "availability_classification": "inferable_only_by_llm",
+      "desired_handling": "human_review_required",
+      "supporting_handling": [
+        "local_private_read_required"
+      ],
+      "why_it_matters": "A decision can become safer but less ambitious; the brief should not hide that."
+    },
+    {
+      "field_name": "what_the_final_answer_does_not_prove",
+      "field_group": "decision_quality_loss",
+      "availability_classification": "clear_from_checked_in_safe_artifacts",
+      "desired_handling": "deterministic_metadata_only",
+      "supporting_handling": [
+        "safe_checked_in_summary_allowed"
+      ],
+      "why_it_matters": "Non-claims prevent process evidence from becoming decision certification."
+    },
+    {
+      "field_name": "source_refs",
+      "field_group": "evidence_custody",
+      "availability_classification": "clear_from_checked_in_safe_artifacts",
+      "desired_handling": "deterministic_metadata_only",
+      "supporting_handling": [
+        "safe_checked_in_summary_allowed"
+      ],
+      "why_it_matters": "Source refs are the deterministic backbone of the brief."
+    },
+    {
+      "field_name": "private_context_available",
+      "field_group": "evidence_custody",
+      "availability_classification": "clear_from_checked_in_safe_artifacts",
+      "desired_handling": "deterministic_metadata_only",
+      "supporting_handling": [
+        "safe_checked_in_summary_allowed"
+      ],
+      "why_it_matters": "Readers need to know whether richer private context exists, even when it is not exported."
+    },
+    {
+      "field_name": "redacted_or_not_checked_in",
+      "field_group": "evidence_custody",
+      "availability_classification": "clear_from_checked_in_safe_artifacts",
+      "desired_handling": "deterministic_metadata_only",
+      "supporting_handling": [
+        "safe_checked_in_summary_allowed"
+      ],
+      "why_it_matters": "Redaction and missingness must be visible as custody facts."
+    },
+    {
+      "field_name": "local_private_only",
+      "field_group": "evidence_custody",
+      "availability_classification": "clear_from_checked_in_safe_artifacts",
+      "desired_handling": "deterministic_metadata_only",
+      "supporting_handling": [
+        "should_not_be_exported"
+      ],
+      "why_it_matters": "Local-private status prevents checked-in examples from leaking raw context."
+    },
+    {
+      "field_name": "safe_to_show_user",
+      "field_group": "evidence_custody",
+      "availability_classification": "unclear",
+      "desired_handling": "human_review_required",
+      "supporting_handling": [
+        "deterministic_metadata_only"
+      ],
+      "why_it_matters": "User-facing safety is not the same as checked-in safety and should not be asserted by deterministic code alone."
+    },
+    {
+      "field_name": "safe_for_agent_inspection_only",
+      "field_group": "evidence_custody",
+      "availability_classification": "unclear",
+      "desired_handling": "deterministic_metadata_only",
+      "supporting_handling": [
+        "human_review_required"
+      ],
+      "why_it_matters": "Agent inspection needs source limits without granting action authority."
+    },
+    {
+      "field_name": "requires_human_review",
+      "field_group": "evidence_custody",
+      "availability_classification": "clear_from_checked_in_safe_artifacts",
+      "desired_handling": "deterministic_metadata_only",
+      "supporting_handling": [
+        "safe_checked_in_summary_allowed"
+      ],
+      "why_it_matters": "The system must mark where interpretation is provisional."
+    },
+    {
+      "field_name": "requires_llm_interpretation",
+      "field_group": "evidence_custody",
+      "availability_classification": "clear_from_checked_in_safe_artifacts",
+      "desired_handling": "deterministic_metadata_only",
+      "supporting_handling": [
+        "safe_checked_in_summary_allowed"
+      ],
+      "why_it_matters": "Deterministic code can preserve this status without doing the interpretation."
+    },
+    {
+      "field_name": "deterministic_only_metadata",
+      "field_group": "evidence_custody",
+      "availability_classification": "clear_from_checked_in_safe_artifacts",
+      "desired_handling": "deterministic_metadata_only",
+      "supporting_handling": [
+        "safe_checked_in_summary_allowed"
+      ],
+      "why_it_matters": "Some fields should remain custody facts rather than semantic conclusions."
+    }
+  ],
+  "per_case_gap_map": {
+    "ceo-remove-founding-cofounder": {
+      "product_usefulness_gap": "The brief can name the authority-transfer action consequence, but not the private governance, relationship, legal, or lost-value context needed to know whether that story is adequate.",
+      "repeated_gap_families": [
+        "starting_direction_overlap",
+        "stakeholder_obligations",
+        "lost_value",
+        "private_context"
+      ]
+    },
+    "launch-public-enterprise-beta": {
+      "product_usefulness_gap": "The brief can name the buyer-behavior action consequence, but not the private buyer, board, fundraising, recruiting, or public-launch value context needed to know whether it overcorrects.",
+      "repeated_gap_families": [
+        "option_status",
+        "lost_value",
+        "real_world_unknowns",
+        "private_context"
+      ]
+    },
+    "deploy-assisted-intake-routing": {
+      "product_usefulness_gap": "The brief can name the operational-control action consequence, but not the clinic capacity, compliance, patient-risk, or control-loss context needed to know whether the compression is adequate.",
+      "repeated_gap_families": [
+        "constraints",
+        "noisy_vs_useful_friction",
+        "lost_value",
+        "private_context"
+      ]
+    }
+  },
+  "cross_case_gap_summary": {
+    "already_available_or_partial": [
+      "decision_question",
+      "revised_direction_or_action_consequence",
+      "conversation_turn_depth",
+      "dropped_threads",
+      "premortem_or_counterfactual_pressure",
+      "alternative_frames_considered",
+      "source_refs",
+      "redacted_or_not_checked_in",
+      "what_the_final_answer_does_not_prove"
+    ],
+    "repeated_missing_or_weak_fields": [
+      "likely_starting_direction",
+      "live_options",
+      "abandoned_or_rejected_options",
+      "option_status",
+      "assistant_influence_on_user_framing",
+      "user_changed_mind_during_conversation",
+      "user_values_or_priorities",
+      "stakeholder_obligations",
+      "lost_value",
+      "overcorrection_risk",
+      "safe_to_show_user",
+      "safe_for_agent_inspection_only"
+    ],
+    "local_private_only_fields": [
+      "user_provided_context",
+      "pasted_documents_or_external_context",
+      "raw conversation",
+      "raw revised answer",
+      "raw memo",
+      "private ledgers",
+      "operator context"
+    ],
+    "not_currently_captured_as_structured_fields": [
+      "option_status",
+      "user_changed_mind_during_conversation",
+      "unknown_unknowns_or_context_not_available_to_model",
+      "safe_to_show_user",
+      "safe_for_agent_inspection_only"
+    ],
+    "requires_llm_interpretation": [
+      "likely_starting_direction",
+      "live_options",
+      "abandoned_or_rejected_options",
+      "assistant_influence_on_user_framing",
+      "assistant_sycophancy_or_over-accommodation_risk",
+      "useful_friction",
+      "noisy_friction",
+      "false_precision_risk",
+      "generic_caution_risk"
+    ],
+    "requires_human_review": [
+      "user_values_or_priorities",
+      "stakeholder_obligations",
+      "relationship_or_political_constraints",
+      "legal_compliance_or_safety_constraints",
+      "lost_value",
+      "momentum_or_ambition_loss",
+      "safe_to_show_user"
+    ],
+    "deterministic_code_should_own": [
+      "source_refs",
+      "private_context_available",
+      "redacted_or_not_checked_in",
+      "local_private_only",
+      "requires_human_review",
+      "requires_llm_interpretation",
+      "deterministic_only_metadata",
+      "conversation_turn_depth",
+      "custody flags",
+      "non-claims"
+    ],
+    "repeated_contract_need": true
+  },
+  "product_impact_assessment": {
+    "strongest_product_usefulness_gap": "The current brief can explain a visible action consequence but cannot yet preserve the full conversation interpretation behind why that consequence emerged, what options were abandoned, and what value may have been lost.",
+    "strongest_privacy_source_depth_risk": "The most important context is often present only in local-private raw conversation, revised answer, memo, and ledgers; checked-in summaries must not copy that content.",
+    "strongest_overclaim_risk": "Readable briefs can make action-consequence interpretations look settled even when starting direction, option status, user values, and lost value remain provisional.",
+    "why_not_runtime": "The missing fields are contract and interpretation-shape gaps, not runtime integration work.",
+    "why_not_renderer_patch": "The renderer can already show the current brief shape; the blocker is missing interpretation targets and source-depth policy.",
+    "why_not_packet_patch_yet": "The packet builder records source availability, but PR127 first needs a field contract that says which conversation interpretation targets matter."
+  },
+  "recommended_next_step": {
+    "outcome": "define_interpretation_target_contract",
+    "allowed_outcomes": [
+      "define_interpretation_target_contract",
+      "run_more_local_private_gap_checks",
+      "patch_brief_schema",
+      "patch_packet_builder",
+      "patch_renderer_language",
+      "pause_until_human_review",
+      "stop_and_simplify"
+    ],
+    "rationale": "The same missing field families recur across all three cases: options, starting-direction overlap, user/stakeholder context, assistant influence, useful versus noisy friction, lost value, and safe handoff boundaries. They should become an explicit future contract before more extractor, packet, renderer, or runtime work.",
+    "runtime_integration_recommended": false
+  },
+  "non_claims": [
+    "review_is_codex_assisted",
+    "not_human_validated",
+    "not_product_proof",
+    "not_answer_quality_score",
+    "not_agent_action_authorization",
+    "not_correctness_proof",
+    "gap_map_is_not_runtime_extraction",
+    "gap_map_does_not_change_live_lolla_schema",
+    "clean_artifacts_do_not_imply_good_advice",
+    "missingness_is_not_negative_semantic_evidence",
+    "future_human_review_required",
+    "future_contract_required_before_runtime_planning"
+  ]
+}

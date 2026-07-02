@@ -1,0 +1,566 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lolla.decision_work_brief.v0",
+  "title": "Lolla Decision Work Brief v0",
+  "description": "Schema contract for a user-facing Decision Work Brief. The brief tells the decision story while preserving evidence custody, source status, missingness, uncertainty, redaction/private boundaries, and explicit non-claims. PR114 defines the contract only; it adds no generator, renderer, runtime integration, model calls, or semantic inference.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "brief_metadata",
+    "mode",
+    "source_refs",
+    "custody_flags",
+    "sections",
+    "non_claims"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "lolla.decision_work_brief.v0"
+    },
+    "brief_metadata": {
+      "$ref": "#/$defs/brief_metadata"
+    },
+    "mode": {
+      "$ref": "#/$defs/mode"
+    },
+    "source_refs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/source_ref"
+      }
+    },
+    "custody_flags": {
+      "$ref": "#/$defs/custody_flags"
+    },
+    "sections": {
+      "$ref": "#/$defs/sections"
+    },
+    "non_claims": {
+      "$ref": "#/$defs/non_claims"
+    }
+  },
+  "$defs": {
+    "mode": {
+      "type": "string",
+      "enum": [
+        "checked_in_safe_mode",
+        "local_private_mode",
+        "future_runtime_mode_not_implemented"
+      ]
+    },
+    "section_status": {
+      "type": "string",
+      "enum": [
+        "populated_from_llm_interpretation",
+        "populated_from_human_review",
+        "available_from_structured_artifact",
+        "not_supplied",
+        "requires_llm_interpretation",
+        "requires_human_review",
+        "available_in_private_artifact_not_exported",
+        "available_but_redacted_in_safe_mode",
+        "unclear"
+      ]
+    },
+    "source_status": {
+      "type": "string",
+      "enum": [
+        "checked_in_safe_structured_artifact",
+        "local_private_artifact",
+        "review_artifact",
+        "external_report_reference",
+        "not_supplied",
+        "redacted",
+        "missing",
+        "malformed",
+        "unclear"
+      ]
+    },
+    "interpreter": {
+      "type": "string",
+      "enum": [
+        "not_interpreted",
+        "deterministic_structured_artifact",
+        "llm_interpretation",
+        "human_review",
+        "review_artifact",
+        "mixed_sources"
+      ]
+    },
+    "uncertainty": {
+      "type": "string",
+      "enum": [
+        "not_assessed",
+        "low",
+        "medium",
+        "high",
+        "unclear",
+        "not_applicable"
+      ]
+    },
+    "source_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact",
+        "field",
+        "source_status",
+        "content_included",
+        "raw_private_content_included",
+        "provider_text_included"
+      ],
+      "properties": {
+        "artifact": {
+          "type": "string",
+          "minLength": 1
+        },
+        "field": {
+          "type": "string",
+          "minLength": 1
+        },
+        "json_pointer": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_status": {
+          "$ref": "#/$defs/source_status"
+        },
+        "content_included": {
+          "type": "boolean",
+          "description": "Whether the referenced content itself is copied into the brief. The brief should usually point to evidence rather than copy evidence."
+        },
+        "raw_private_content_included": {
+          "const": false
+        },
+        "provider_text_included": {
+          "const": false
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "brief_metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "brief_id",
+        "created_at",
+        "case_id",
+        "run_id",
+        "archive_relpath",
+        "generated_by",
+        "schema_version",
+        "notes"
+      ],
+      "properties": {
+        "brief_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "created_at": {
+          "type": "string",
+          "minLength": 1
+        },
+        "case_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "run_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "archive_relpath": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "generated_by": {
+          "type": "string",
+          "enum": [
+            "manual_schema_fixture",
+            "decision_work_brief_schema_only",
+            "future_decision_work_brief_generator",
+            "not_implemented"
+          ]
+        },
+        "schema_version": {
+          "const": "lolla.decision_work_brief.v0"
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "semantic_section": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "source_status",
+        "source_refs",
+        "interpreted_by",
+        "human_validated",
+        "uncertainty",
+        "value",
+        "empty_meaning"
+      ],
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/section_status"
+        },
+        "source_status": {
+          "$ref": "#/$defs/source_status"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source_ref"
+          }
+        },
+        "interpreted_by": {
+          "$ref": "#/$defs/interpreter"
+        },
+        "human_validated": {
+          "type": "boolean",
+          "default": false
+        },
+        "uncertainty": {
+          "$ref": "#/$defs/uncertainty"
+        },
+        "value": {
+          "type": [
+            "string",
+            "object",
+            "array",
+            "null"
+          ]
+        },
+        "empty_meaning": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "human_validated": {
+                "const": true
+              }
+            },
+            "required": [
+              "human_validated"
+            ]
+          },
+          "then": {
+            "properties": {
+              "status": {
+                "const": "populated_from_human_review"
+              },
+              "interpreted_by": {
+                "const": "human_review"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "populated_from_llm_interpretation"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "interpreted_by": {
+                "const": "llm_interpretation"
+              },
+              "human_validated": {
+                "const": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    "sections": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision",
+        "starting_direction",
+        "what_lolla_pressed_on",
+        "what_changed",
+        "what_this_means_for_action",
+        "what_still_might_be_wrong",
+        "what_was_not_proven",
+        "evidence_receipt"
+      ],
+      "properties": {
+        "decision": {
+          "$ref": "#/$defs/semantic_section"
+        },
+        "starting_direction": {
+          "$ref": "#/$defs/semantic_section"
+        },
+        "what_lolla_pressed_on": {
+          "$ref": "#/$defs/semantic_section"
+        },
+        "what_changed": {
+          "$ref": "#/$defs/semantic_section"
+        },
+        "what_this_means_for_action": {
+          "$ref": "#/$defs/semantic_section"
+        },
+        "what_still_might_be_wrong": {
+          "$ref": "#/$defs/semantic_section"
+        },
+        "what_was_not_proven": {
+          "$ref": "#/$defs/semantic_section"
+        },
+        "evidence_receipt": {
+          "$ref": "#/$defs/semantic_section"
+        }
+      }
+    },
+    "custody_flags": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "human_validated",
+        "human_validation_status",
+        "human_review_refs",
+        "product_proof",
+        "answer_quality_scored",
+        "agent_action_authorized",
+        "runtime_invoked",
+        "skill_invoked",
+        "archive_mutated",
+        "model_calls",
+        "raw_private_content_included",
+        "provider_text_included",
+        "raw_transcript_included",
+        "raw_revised_answer_included",
+        "raw_memo_included",
+        "private_reasoning_included",
+        "local_absolute_paths_included",
+        "secrets_included",
+        "llm_judge_used",
+        "automatic_labels_created"
+      ],
+      "properties": {
+        "human_validated": {
+          "type": "boolean",
+          "default": false
+        },
+        "human_validation_status": {
+          "type": "string",
+          "default": "not_human_validated",
+          "enum": [
+            "not_human_validated",
+            "human_validated_with_review_artifact"
+          ]
+        },
+        "human_review_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source_ref"
+          },
+          "default": []
+        },
+        "product_proof": {
+          "const": false
+        },
+        "answer_quality_scored": {
+          "const": false
+        },
+        "agent_action_authorized": {
+          "const": false
+        },
+        "runtime_invoked": {
+          "const": false
+        },
+        "skill_invoked": {
+          "const": false
+        },
+        "archive_mutated": {
+          "const": false
+        },
+        "model_calls": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 0
+        },
+        "raw_private_content_included": {
+          "const": false
+        },
+        "provider_text_included": {
+          "const": false
+        },
+        "raw_transcript_included": {
+          "const": false
+        },
+        "raw_revised_answer_included": {
+          "const": false
+        },
+        "raw_memo_included": {
+          "const": false
+        },
+        "private_reasoning_included": {
+          "const": false
+        },
+        "local_absolute_paths_included": {
+          "const": false
+        },
+        "secrets_included": {
+          "const": false
+        },
+        "llm_judge_used": {
+          "const": false
+        },
+        "automatic_labels_created": {
+          "const": false
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "human_validated": {
+                "const": true
+              }
+            },
+            "required": [
+              "human_validated"
+            ]
+          },
+          "then": {
+            "properties": {
+              "human_validation_status": {
+                "const": "human_validated_with_review_artifact"
+              },
+              "human_review_refs": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "human_validated": {
+                "const": false
+              }
+            },
+            "required": [
+              "human_validated"
+            ]
+          },
+          "then": {
+            "properties": {
+              "human_validation_status": {
+                "const": "not_human_validated"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "non_claim_key": {
+      "type": "string",
+      "enum": [
+        "not_correctness_proof",
+        "not_answer_quality_score",
+        "not_agent_action_authorization",
+        "not_human_validated_unless_marked",
+        "clean_artifacts_do_not_imply_good_advice",
+        "process_evidence_is_not_decision_certification",
+        "llm_interpretation_is_provisional_unless_human_reviewed"
+      ]
+    },
+    "non_claims": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "items",
+        "empty_meaning"
+      ],
+      "properties": {
+        "items": {
+          "type": "array",
+          "minItems": 7,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/non_claim_key"
+          },
+          "allOf": [
+            {
+              "contains": {
+                "const": "not_correctness_proof"
+              }
+            },
+            {
+              "contains": {
+                "const": "not_answer_quality_score"
+              }
+            },
+            {
+              "contains": {
+                "const": "not_agent_action_authorization"
+              }
+            },
+            {
+              "contains": {
+                "const": "not_human_validated_unless_marked"
+              }
+            },
+            {
+              "contains": {
+                "const": "clean_artifacts_do_not_imply_good_advice"
+              }
+            },
+            {
+              "contains": {
+                "const": "process_evidence_is_not_decision_certification"
+              }
+            },
+            {
+              "contains": {
+                "const": "llm_interpretation_is_provisional_unless_human_reviewed"
+              }
+            }
+          ]
+        },
+        "empty_meaning": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

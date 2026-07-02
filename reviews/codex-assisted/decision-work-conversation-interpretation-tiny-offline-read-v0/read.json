@@ -1,0 +1,512 @@
+{
+  "schema_version": "lolla.decision_work_conversation_interpretation_tiny_offline_read.v0",
+  "read_metadata": {
+    "read_id": "decision_work_conversation_interpretation_tiny_offline_read:launch-public-enterprise-beta:20260627T104146Z_7bfe79",
+    "created_at": "2026-07-01T00:00:00Z",
+    "read_mode": "codex_assisted_provisional_checked_in_safe_tiny_offline_read",
+    "case_count": 1,
+    "case_selection_rule": "Use exactly the launch-public-enterprise-beta case named by PR131.",
+    "source_packet_fixture_checked_in": false,
+    "notes": [
+      "This read uses a fresh PR130 checked-in-safe packet generated locally for source refs and source status.",
+      "The source packet is not checked in because the read can cite packet shape and repo-local source refs without carrying the full metadata packet.",
+      "Codex interpretation in this artifact is provisional and is not human validation."
+    ]
+  },
+  "custody_flags": {
+    "human_validated": false,
+    "product_proof": false,
+    "model_calls": 0,
+    "archive_mutated": false,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "raw_private_content_checked_in": false,
+    "provider_text_checked_in": false,
+    "local_absolute_paths_checked_in": false,
+    "semantic_read_is_provisional": true,
+    "broad_judge_used": false,
+    "automatic_labels_created": false,
+    "runtime_extraction_implemented": false
+  },
+  "source_packet": {
+    "packet_schema_version": "lolla.decision_work_conversation_interpretation_packets.v0",
+    "packet_generated_locally": true,
+    "packet_checked_in": false,
+    "packet_ref": null,
+    "packet_generation_mode": "checked_in_safe",
+    "packet_generation_command_shape": "scripts/evals/build_decision_work_conversation_interpretation_packets.py --mode checked_in_safe --rendered-decision-work-brief docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md",
+    "source_contract_ref": "docs/conversation-understanding/decision-work-conversation-interpretation-contract-v0.json",
+    "source_contract_schema_version": "lolla.decision_work_conversation_interpretation_contract.v0",
+    "packet_content_checked_in": false,
+    "raw_private_content_in_packet": false,
+    "provider_text_in_packet": false
+  },
+  "selected_case": {
+    "case_id": "launch-public-enterprise-beta",
+    "run_id": "20260627T104146Z_7bfe79",
+    "run_ref": "launch-public-enterprise-beta/20260627T104146Z_7bfe79",
+    "decision_family": "enterprise_launch_or_gtm",
+    "rendered_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md",
+    "prior_review_refs": [
+      "reviews/codex-assisted/decision-work-brief-second-tiny-case-pilot-v0/review.json",
+      "reviews/codex-assisted/decision-work-brief-local-private-adequacy-check-v0/review.json",
+      "reviews/codex-assisted/decision-work-conversation-interpretation-contract-packet-review-v0/review.json"
+    ]
+  },
+  "interpretation_scope": {
+    "scope_policy": "Tiny read over one case and a small PR128 field subset only.",
+    "fields_selected": [
+      "decision_question",
+      "likely_starting_direction",
+      "revised_direction_or_action_consequence",
+      "live_options",
+      "abandoned_or_rejected_options",
+      "decision_thresholds",
+      "evidence_gates",
+      "useful_friction",
+      "noisy_friction",
+      "lost_value",
+      "what_the_final_answer_does_not_prove"
+    ],
+    "fields_not_selected_policy": "All other PR128 fields remain not interpreted in this PR.",
+    "full_contract_interpreted": false,
+    "broad_batch_created": false
+  },
+  "interpreted_fields": [
+    {
+      "field_group": "decision_shape",
+      "field_name": "decision_question",
+      "status": "interpreted_provisional",
+      "value": "The decision appears to be whether to launch a public enterprise beta next month or instead run a constrained private enterprise proof first.",
+      "uncertainty": "medium",
+      "source_refs": [
+        {
+          "ref_id": "rendered_launch_beta_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md",
+          "locator": "The decision",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr130_packet_decision_question",
+          "artifact": "pr130_local_packet_field:decision_question",
+          "locator": "decision_shape.decision_question",
+          "source_status": "checked_in_safe_summary_only"
+        }
+      ],
+      "source_status": "checked_in_safe_summary_only",
+      "interpretation_basis": "checked_in_brief_and_reviews",
+      "privacy_limit": "Raw conversation and private run artifacts were not checked in or copied into this read.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "decision_shape",
+      "field_name": "likely_starting_direction",
+      "status": "partial_interpretation",
+      "value": "The safe artifacts suggest the starting direction was already conditional and leaned away from a simple public launch. The read cannot prove how much of that direction existed before Lolla pressure.",
+      "uncertainty": "high",
+      "source_refs": [
+        {
+          "ref_id": "rendered_launch_beta_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md",
+          "locator": "What changed / Starting point",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr125_local_private_adequacy",
+          "artifact": "reviews/codex-assisted/decision-work-brief-local-private-adequacy-check-v0/review.json",
+          "locator": "local_private_adequacy_read.what_became_clearer",
+          "source_status": "local_private_context_not_checked_in"
+        },
+        {
+          "ref_id": "pr130_packet_likely_starting_direction",
+          "artifact": "pr130_local_packet_field:likely_starting_direction",
+          "locator": "decision_shape.likely_starting_direction",
+          "source_status": "mixed_safe_and_private_status"
+        }
+      ],
+      "source_status": "mixed_safe_and_private_status",
+      "interpretation_basis": "checked_in_brief_and_reviews",
+      "privacy_limit": "The PR130 packet marks conversation text as redacted/private for this field, so this remains a partial read.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "decision_shape",
+      "field_name": "revised_direction_or_action_consequence",
+      "status": "interpreted_provisional",
+      "value": "The action consequence is to give both prospects the same paid, scoped private-pilot offer, choose based on proof-producing buyer behavior, and avoid treating the larger logo or public page as proof by itself.",
+      "uncertainty": "medium",
+      "source_refs": [
+        {
+          "ref_id": "rendered_launch_beta_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md",
+          "locator": "What this means for action",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr119_second_case_review",
+          "artifact": "reviews/codex-assisted/decision-work-brief-second-tiny-case-pilot-v0/review.json",
+          "locator": "aggregate_observations.strongest_useful_signal",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr130_packet_action_consequence",
+          "artifact": "pr130_local_packet_field:revised_direction_or_action_consequence",
+          "locator": "decision_shape.revised_direction_or_action_consequence",
+          "source_status": "mixed_safe_and_private_status"
+        }
+      ],
+      "source_status": "mixed_safe_and_private_status",
+      "interpretation_basis": "checked_in_brief_and_reviews",
+      "privacy_limit": "Raw revised answer and memo text were redacted from the PR130 packet and are not checked in.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "options_and_paths",
+      "field_name": "live_options",
+      "status": "partial_interpretation",
+      "value": "Visible live paths appear to include public beta launch, a restricted private enterprise pilot, giving the larger prospect the first slot, offering both prospects the same constrained pilot, and delaying public launch until private proof exists.",
+      "uncertainty": "medium",
+      "source_refs": [
+        {
+          "ref_id": "rendered_launch_beta_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md",
+          "locator": "What changed / What this means for action",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr130_packet_live_options",
+          "artifact": "pr130_local_packet_field:live_options",
+          "locator": "options_and_paths.live_options",
+          "source_status": "mixed_safe_and_private_status"
+        }
+      ],
+      "source_status": "mixed_safe_and_private_status",
+      "interpretation_basis": "checked_in_brief_and_reviews",
+      "privacy_limit": "Raw conversation context that would confirm live option status was not checked in.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "options_and_paths",
+      "field_name": "abandoned_or_rejected_options",
+      "status": "partial_interpretation",
+      "value": "The safe summaries suggest default priority for the larger-logo prospect and public launch as proof were de-emphasized. The read cannot prove those paths were fully rejected or only gated.",
+      "uncertainty": "high",
+      "source_refs": [
+        {
+          "ref_id": "rendered_launch_beta_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md",
+          "locator": "What changed",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr130_packet_abandoned_options",
+          "artifact": "pr130_local_packet_field:abandoned_or_rejected_options",
+          "locator": "options_and_paths.abandoned_or_rejected_options",
+          "source_status": "mixed_safe_and_private_status"
+        }
+      ],
+      "source_status": "mixed_safe_and_private_status",
+      "interpretation_basis": "inferred_from_safe_summary",
+      "privacy_limit": "Conversation and memo context needed to distinguish rejected, deferred, and gated options was not checked in.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "options_and_paths",
+      "field_name": "decision_thresholds",
+      "status": "partial_interpretation",
+      "value": "Visible thresholds include paid commitment, one scoped workflow, capped support, explicit audit-log boundaries, conversion trigger, reference terms, and tripwires with owner, threshold, and stop action.",
+      "uncertainty": "medium",
+      "source_refs": [
+        {
+          "ref_id": "rendered_launch_beta_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md",
+          "locator": "What changed / What this means for action",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr130_packet_decision_thresholds",
+          "artifact": "pr130_local_packet_field:decision_thresholds",
+          "locator": "options_and_paths.decision_thresholds",
+          "source_status": "checked_in_safe_summary_only"
+        }
+      ],
+      "source_status": "checked_in_safe_summary_only",
+      "interpretation_basis": "checked_in_brief_and_reviews",
+      "privacy_limit": "The read preserves threshold wording from safe summaries and does not verify operational feasibility.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "options_and_paths",
+      "field_name": "evidence_gates",
+      "status": "partial_interpretation",
+      "value": "The visible evidence gates are buyer behavior, payment/procurement clarity, tolerance for scope, proof under real operating constraints, and a named investor or recruiting outcome before treating public launch as useful.",
+      "uncertainty": "medium",
+      "source_refs": [
+        {
+          "ref_id": "rendered_launch_beta_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md",
+          "locator": "What changed / What this means for action",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr125_local_private_adequacy",
+          "artifact": "reviews/codex-assisted/decision-work-brief-local-private-adequacy-check-v0/review.json",
+          "locator": "checked_in_safe_vs_local_private_delta.missing_constraints_added",
+          "source_status": "local_private_context_not_checked_in"
+        },
+        {
+          "ref_id": "pr130_packet_evidence_gates",
+          "artifact": "pr130_local_packet_field:evidence_gates",
+          "locator": "options_and_paths.evidence_gates",
+          "source_status": "checked_in_safe_summary_only"
+        }
+      ],
+      "source_status": "mixed_safe_and_private_status",
+      "interpretation_basis": "checked_in_brief_and_reviews",
+      "privacy_limit": "The read does not verify buyer seriousness or board/investor context.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "losses_and_overcorrection",
+      "field_name": "useful_friction",
+      "status": "partial_interpretation",
+      "value": "The useful friction appears to be shifting attention from logo size and launch optics toward proof-producing buyer behavior, explicit constraints, and stop rules. This is a provisional description, not a quality score.",
+      "uncertainty": "medium",
+      "source_refs": [
+        {
+          "ref_id": "rendered_launch_beta_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md",
+          "locator": "What changed / What this means for action",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr129_contract_packet_review",
+          "artifact": "reviews/codex-assisted/decision-work-conversation-interpretation-contract-packet-review-v0/review.json",
+          "locator": "implementation_gap_summary.do_not_export_or_quality_label_fields",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr130_packet_useful_friction",
+          "artifact": "pr130_local_packet_field:useful_friction",
+          "locator": "losses_and_overcorrection.useful_friction",
+          "source_status": "mixed_safe_and_private_status"
+        }
+      ],
+      "source_status": "mixed_safe_and_private_status",
+      "interpretation_basis": "checked_in_brief_and_reviews",
+      "privacy_limit": "Private pressure ledgers were not checked in, so this cannot be treated as final friction classification.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "losses_and_overcorrection",
+      "field_name": "noisy_friction",
+      "status": "partial_interpretation",
+      "value": "A possible noisy-friction risk is that gates and private-pilot caution could underweight legitimate fundraising, recruiting, or market-signal value from public launch. The safe packet cannot decide whether that caution is noise.",
+      "uncertainty": "high",
+      "source_refs": [
+        {
+          "ref_id": "rendered_launch_beta_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md",
+          "locator": "What still might be wrong",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr125_local_private_adequacy",
+          "artifact": "reviews/codex-assisted/decision-work-brief-local-private-adequacy-check-v0/review.json",
+          "locator": "local_private_adequacy_read.what_remains_uncertain",
+          "source_status": "local_private_context_not_checked_in"
+        },
+        {
+          "ref_id": "pr130_packet_noisy_friction",
+          "artifact": "pr130_local_packet_field:noisy_friction",
+          "locator": "losses_and_overcorrection.noisy_friction",
+          "source_status": "mixed_safe_and_private_status"
+        }
+      ],
+      "source_status": "mixed_safe_and_private_status",
+      "interpretation_basis": "inferred_from_safe_summary",
+      "privacy_limit": "Private ledgers and stakeholder context were not checked in, so this is a risk note only.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "losses_and_overcorrection",
+      "field_name": "lost_value",
+      "status": "insufficient_context",
+      "value": "Insufficient context. Possible lost value may include public-launch optics, investor or recruiting signal, and larger-buyer proof, but the checked-in packet cannot verify whether those were real or material.",
+      "uncertainty": "insufficient_context",
+      "source_refs": [
+        {
+          "ref_id": "rendered_launch_beta_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md",
+          "locator": "What still might be wrong",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr125_local_private_adequacy",
+          "artifact": "reviews/codex-assisted/decision-work-brief-local-private-adequacy-check-v0/review.json",
+          "locator": "local_private_adequacy_read.lost_value_changed",
+          "source_status": "local_private_context_not_checked_in"
+        },
+        {
+          "ref_id": "pr130_packet_lost_value",
+          "artifact": "pr130_local_packet_field:lost_value",
+          "locator": "losses_and_overcorrection.lost_value",
+          "source_status": "local_private_metadata_only"
+        }
+      ],
+      "source_status": "local_private_context_not_checked_in",
+      "interpretation_basis": "insufficient_context",
+      "privacy_limit": "The PR130 packet marks all lost-value sources as redacted or local-private; no raw conversation, memo, revised answer, or private ledger content is checked in.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "handoff_for_brief",
+      "field_name": "what_the_final_answer_does_not_prove",
+      "status": "interpreted_provisional",
+      "value": "The final answer and brief do not prove that public launch is wrong, that private pilots are better advice, that Lolla improved the decision, that answer quality was measured, that a human validated the read, or that an agent may act.",
+      "uncertainty": "low",
+      "source_refs": [
+        {
+          "ref_id": "rendered_launch_beta_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md",
+          "locator": "What this does not prove / Evidence and limits",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr130_packet_non_proof",
+          "artifact": "pr130_local_packet_field:what_the_final_answer_does_not_prove",
+          "locator": "handoff_for_brief.what_the_final_answer_does_not_prove",
+          "source_status": "checked_in_safe_summary_only"
+        }
+      ],
+      "source_status": "checked_in_safe_summary_only",
+      "interpretation_basis": "checked_in_brief_and_reviews",
+      "privacy_limit": "Non-claims are safe to check in, but they do not validate the semantic read.",
+      "human_review_required": false,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    }
+  ],
+  "unresolved_fields": [
+    {
+      "field_name": "option_status",
+      "reason": "Not selected for this tiny read; distinguishing live, rejected, deferred, and gated options would need more private conversation context."
+    },
+    {
+      "field_name": "assistant_influence_on_user_framing",
+      "reason": "Requires raw conversation interpretation and was intentionally out of scope."
+    },
+    {
+      "field_name": "user_values_or_priorities",
+      "reason": "Requires human review or richer local-private context before a safe user-facing claim."
+    },
+    {
+      "field_name": "stakeholder_obligations",
+      "reason": "Board, investor, sales, customer, and support obligations are only partially visible from safe summaries."
+    },
+    {
+      "field_name": "overcorrection_risk",
+      "reason": "Related risk is visible, but PR131 keeps it inside noisy_friction and lost_value notes instead of adding another interpreted field."
+    },
+    {
+      "field_name": "safe_to_show_user",
+      "reason": "Requires a future publication/human-review protocol; this read is not a customer-facing artifact."
+    },
+    {
+      "field_name": "safe_for_agent_inspection_only",
+      "reason": "Agent-inspection handoff was intentionally not interpreted and does not authorize action."
+    }
+  ],
+  "source_limitations": {
+    "checked_in_safe_context_is_compressed": "Checked-in-safe context is compressed into rendered briefs, reviews, source refs, and metadata/status fields.",
+    "raw_conversation_was_not_checked_in": true,
+    "raw_revised_answer_was_not_checked_in": true,
+    "raw_memo_was_not_checked_in": true,
+    "provider_text_was_not_checked_in": true,
+    "private_ledgers_were_not_checked_in": true,
+    "human_validation_is_absent": true,
+    "private_nuance_may_change_the_read": true,
+    "source_depth_summary": "The read can test whether a bounded safe packet supports a few provisional fields; it cannot settle buyer reality, stakeholder obligations, lost value, or whether the action consequence was truly caused by Lolla."
+  },
+  "brief_implications": {
+    "would_clarify_current_decision_work_brief": true,
+    "would_require_changing_current_brief_now": false,
+    "would_add_useful_conversation_story_layer": true,
+    "would_introduce_overclaim_risk": true,
+    "clarification_read": "The useful addition is separating already-conditional starting direction from the revised action consequence. That helps the brief avoid implying the process invented the private-pilot direction from nothing.",
+    "do_not_modify_rendered_brief_in_pr131": true
+  },
+  "overclaim_risk": {
+    "strongest_risk": "A tidy interpreted read can make partial safe summaries look like settled conversation truth.",
+    "mitigation": "Keep field statuses provisional or insufficient-context, keep source refs visible, require human review for action-sensitive fields, and preserve the fact that raw/private artifacts were not checked in.",
+    "runtime_integration_recommended": false,
+    "product_readiness_claimed": false
+  },
+  "recommended_next_step": {
+    "outcome": "run_second_tiny_offline_read",
+    "allowed_outcomes": [
+      "run_second_tiny_offline_read",
+      "define_interpretation_read_schema",
+      "patch_offline_packet_builder",
+      "patch_decision_work_brief_schema",
+      "pause_until_human_review",
+      "stop_and_simplify"
+    ],
+    "rationale": "The first tiny read usefully fills a few fields and exposes source-depth risk without overclaiming. One more tiny read on a different case should test whether this remains useful before formalizing a read schema.",
+    "not_recommended": [
+      "runtime integration",
+      "broad batch",
+      "product-readiness claim",
+      "agent-action authorization"
+    ]
+  },
+  "non_claims": [
+    "read_is_codex_assisted",
+    "read_is_provisional",
+    "not_human_validated",
+    "not_product_proof",
+    "not_answer_quality_score",
+    "not_agent_action_authorization",
+    "not_correctness_proof",
+    "not_runtime_extraction",
+    "not_lolla_runtime_change",
+    "not_live_lolla_schema_change",
+    "one_case_is_not_general_evidence",
+    "clean_artifacts_do_not_imply_good_advice",
+    "checked_in_safe_context_is_not_full_conversation_context",
+    "future_human_review_required"
+  ]
+}

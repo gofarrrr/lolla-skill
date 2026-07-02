@@ -244,7 +244,272 @@ parallel Work Receipt interpretation system yet. The follow-up
 [Decision Work Receipt External Report Attachments](docs/conversation-understanding/decision-work-receipt-external-report-attachments-v0.md)
 slice keeps that boundary while letting the receipt CLI link externally
 generated Decision Trail/Product Delta reports by safe metadata only, without
-copying report content or local paths. See
+copying report content or local paths. The
+[Decision Work Receipt Debug Summary](docs/conversation-understanding/decision-work-receipt-debug-summary-v0.md)
+renderer turns that JSON package into internal maintainer Markdown; the
+checked-in
+[launch-public-enterprise-beta receipt debug example](docs/conversation-understanding/decision-work-receipt-debug-summary-launch-public-enterprise-beta-v0.md)
+shows the current status/missingness shape. That is not the customer-facing
+story. The intended user-facing target is the
+[Decision Work Brief PRD](docs/conversation-understanding/decision-work-brief-prd-v0.md):
+a plain-language artifact explaining the decision, what Lolla pressed on, what
+changed, what remains unresolved, and what the audit must not claim. That PRD
+now includes the concrete PR113-PR158 delivery sequence for schema, local
+packets, provisional brief drafts, rendering, usefulness review, second tiny
+case pilot, small pattern review, third diversity case pilot, and three-case
+pattern review, plain-language renderer patch, rereview, local-private
+adequacy check, expansion/runtime decision gate, conversation interpretation
+gap mapping, the future target contract, packet/artifact support review, and
+the offline interpretation packet builder, two tiny offline interpretation
+reads, the shared read schema, the first comparison gate over those reads, and
+the first two checked-in-safe enrichment tests plus their pattern review, rules
+contract, deterministic enriched-brief builder, builder patch, closure gate,
+and package manifest.
+The
+[Decision Work Brief Schema](docs/conversation-understanding/decision-work-brief-v0.json)
+and
+[Decision Work Brief Schema Guide](docs/conversation-understanding/decision-work-brief-schema-v0.md)
+define the PR114 contract. The
+[Decision Work Brief Packet Builder](docs/conversation-understanding/decision-work-brief-packet-builder-v0.md)
+adds the PR115 offline packet-preparation layer:
+`lolla.decision_work_brief_packets.v0` can be built from completed runs with
+metadata-only as the safe default and explicit local-private include-text
+marking when needed. The
+[Decision Work Brief Draft Pilot](docs/conversation-understanding/decision-work-brief-draft-pilot-v0.md)
+adds the PR116 one-case Codex-assisted provisional draft review:
+`lolla.decision_work_brief_draft_pilot.v0` embeds one checked-in-safe
+`lolla.decision_work_brief.v0` draft from a locally generated metadata-only
+packet, with uncertainty, follow-up questions, custody flags, and non-claims.
+The
+[Decision Work Brief Renderer](docs/conversation-understanding/decision-work-brief-renderer-v0.md)
+adds the PR117 deterministic Markdown layer, now patched by PR123 for
+plain-language headings, and the
+[rendered cofounder example](docs/conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md).
+The
+[Decision Work Brief Usefulness Review](docs/conversation-understanding/decision-work-brief-usefulness-review-v0.md)
+adds the PR118 delivery gate: proceed to one tiny second case, not product
+readiness. The
+[Decision Work Brief Second Tiny Case Pilot](docs/conversation-understanding/decision-work-brief-second-tiny-case-pilot-v0.md)
+adds the PR119 second checked-in-safe case on `launch-public-enterprise-beta`,
+with a
+[rendered launch-beta example](docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md)
+and a gate to `proceed_to_small_pattern_review`, not runtime integration. There
+is now also a
+[Decision Work Brief Small Pattern Review](docs/conversation-understanding/decision-work-brief-small-pattern-review-v0.md)
+that chooses `proceed_to_third_diversity_case`, followed by the
+[Decision Work Brief Third Diversity Case Pilot](docs/conversation-understanding/decision-work-brief-third-diversity-case-pilot-v0.md)
+on `deploy-assisted-intake-routing` and its
+[rendered intake-routing example](docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md).
+The
+[Decision Work Brief Three-Case Pattern Review](docs/conversation-understanding/decision-work-brief-three-case-pattern-review-v0.md)
+then reviews all three rendered briefs, finds a consistent action-consequence
+signal, and gates to `proceed_to_plain_language_renderer_patch` because the
+current Markdown still sounds too internal for a board/customer reader. The
+[Decision Work Brief Plain-Language Renderer Patch](docs/conversation-understanding/decision-work-brief-plain-language-renderer-patch-v0.md)
+implements that gate by regenerating all three examples with a plain-language
+main body and compact Evidence and limits section. The
+[Decision Work Brief Plain-Language Re-Review](docs/conversation-understanding/decision-work-brief-plain-language-rereview-v0.md)
+then finds the surface readable enough for source-depth comparison and gates to
+local-private adequacy. The
+[Decision Work Brief Local-Private Adequacy Check](docs/conversation-understanding/decision-work-brief-local-private-adequacy-check-v0.md)
+checks the launch-beta case in read-only local-private shadow mode and records
+`adequate_but_missing_private_nuance` without checking in private text. The
+[Decision Work Brief Expansion / Runtime Attachment Decision Gate](docs/conversation-understanding/decision-work-brief-expansion-runtime-decision-gate-v0.md)
+selects `run_more_local_private_adequacy_checks`, not runtime integration.
+The
+[Decision Work Brief Conversation Interpretation Gap Map](docs/conversation-understanding/decision-work-brief-conversation-interpretation-gap-map-v0.md)
+then maps the richer conversation fields that are clear, partial,
+local-private-only, LLM-interpretable, human-review-dependent, or not currently
+captured across the three cases. It gates to a target contract, not a new
+extractor. The
+[Decision Work Conversation Interpretation Contract](docs/conversation-understanding/decision-work-conversation-interpretation-contract-v0.md)
+and
+[contract JSON](docs/conversation-understanding/decision-work-conversation-interpretation-contract-v0.json)
+define `lolla.decision_work_conversation_interpretation_contract.v0`, a
+future-facing contract for field ownership, source status, privacy handling,
+missingness, custody, non-claims, and handoff shape.
+The
+[Decision Work Conversation Interpretation Contract Packet Review](docs/conversation-understanding/decision-work-conversation-interpretation-contract-packet-review-v0.md)
+then compares that contract against the current completed-run artifact and
+Decision Work Brief packet surface. It finds current packets can carry
+source/status metadata, but the next needed layer is a field-grouped offline
+interpretation packet, not runtime extraction.
+The
+[Decision Work Conversation Interpretation Offline Packet](docs/conversation-understanding/decision-work-conversation-interpretation-offline-packet-v0.md)
+adds that PR130 packet layer:
+`lolla.decision_work_conversation_interpretation_packets.v0` prepares a
+source/status dossier over completed-run artifacts and PR128 field groups for a
+future LLM or human interpretation read. It fills no semantic contract fields,
+copies no raw/private content, and still does not change runtime behavior.
+The
+[Decision Work Conversation Interpretation Tiny Offline Read](docs/conversation-understanding/decision-work-conversation-interpretation-tiny-offline-read-v0.md)
+adds PR131's first one-case provisional read over a generated PR130 packet for
+`launch-public-enterprise-beta`. It fills only a small PR128 field subset,
+keeps starting direction, abandoned options, and lost value uncertain, checks
+in no source packet or private text, and recommends a second tiny offline read
+before any schema formalization or runtime plan.
+The
+[Decision Work Conversation Interpretation Second Tiny Offline Read](docs/conversation-understanding/decision-work-conversation-interpretation-second-tiny-offline-read-v0.md)
+adds PR132's matching read on `deploy-assisted-intake-routing`, showing the
+same field set can carry a healthcare operations/deployment action consequence
+while keeping starting direction, abandoned options, and lost value
+source-limited. It gates to a reusable schema.
+The
+[Decision Work Conversation Interpretation Read Schema](docs/conversation-understanding/decision-work-conversation-interpretation-read-schema-v0.md)
+and
+[read JSON](docs/conversation-understanding/decision-work-conversation-interpretation-read-v0.json)
+define PR133's `lolla.decision_work_conversation_interpretation_read.v0`
+contract for future offline reads. It requires source refs, uncertainty,
+privacy limits, human-review flags, non-claims, and no quality-label use, and
+adds no interpreter or runtime extraction.
+The
+[Decision Work Conversation Interpretation Read Comparison](docs/conversation-understanding/decision-work-conversation-interpretation-read-comparison-v0.md)
+adds PR134's comparison gate over the PR131 and PR132 reads. It finds stable
+useful fields for decision question, action consequence, thresholds, evidence
+gates, useful friction, and non-proof boundaries, keeps lost value and source
+depth uncertain, and recommends one narrow brief-enrichment test next.
+The
+[Decision Work Brief Interpretation Enrichment Test](docs/conversation-understanding/decision-work-brief-interpretation-enrichment-test-v0.md)
+adds PR135's separate enriched launch-beta brief:
+[Decision Work Brief Enriched Launch Beta](docs/conversation-understanding/decision-work-brief-enriched-launch-public-enterprise-beta-v0.md).
+It uses only the PR134 feed-now fields and gates to an original-vs-enriched
+review. The
+[Decision Work Brief Original vs Enriched Review](docs/conversation-understanding/decision-work-brief-original-vs-enriched-review-v0.md)
+adds PR136's comparison gate and selects one second enrichment test. The
+[Decision Work Brief Second Enrichment Test](docs/conversation-understanding/decision-work-brief-second-enrichment-test-v0.md)
+adds PR137's separate enriched intake-routing brief:
+[Decision Work Brief Enriched Intake Routing](docs/conversation-understanding/decision-work-brief-enriched-deploy-assisted-intake-routing-v0.md).
+The
+[Decision Work Brief Enriched Pattern Review](docs/conversation-understanding/decision-work-brief-enriched-pattern-review-v0.md)
+adds PR138's two-enriched-brief pattern review. It recommends a future
+enrichment-rules contract but does not implement PR139, add runtime behavior,
+create new reads, or claim product proof.
+The
+[Decision Work Brief Enrichment Rules Contract](docs/conversation-understanding/decision-work-brief-enrichment-rules-contract-v0.md)
+and
+[contract JSON](docs/conversation-understanding/decision-work-brief-enrichment-rules-contract-v0.json)
+add PR139's conservative field rules: only a small stable interpretation field
+set may enter the user-facing brief, evidence-only fields stay out of the main
+body, forbidden score/approval/proof concepts are blocked, and any builder must
+preserve uncertainty, source refs, privacy limits, and non-claims.
+The
+[Decision Work Brief Offline Enriched Builder](docs/conversation-understanding/decision-work-brief-offline-enriched-builder-v0.md)
+adds PR140's deterministic CLI for creating separate enriched Markdown from an
+existing rendered brief, an interpretation read, and the PR139 rules contract.
+It generates the checked-in-safe
+[builder launch-beta output](docs/conversation-understanding/decision-work-brief-builder-enriched-launch-public-enterprise-beta-v0.md)
+and
+[builder intake-routing output](docs/conversation-understanding/decision-work-brief-builder-enriched-deploy-assisted-intake-routing-v0.md)
+without overwriting the original or hand-built enriched briefs. The
+[Decision Work Brief Enriched Builder Output Review](docs/conversation-understanding/decision-work-brief-enriched-builder-output-review-v0.md)
+adds PR141's comparison against the hand-built examples and selects
+`proceed_to_builder_rule_patch` because the generated output is safe and useful
+but still too templated for the next case.
+The
+[Decision Work Brief Enrichment Builder Rule Patch](docs/conversation-understanding/decision-work-brief-enrichment-builder-rule-patch-v0.md)
+adds PR142's deterministic wording patch and regenerates both builder-enriched
+examples with less repetitive prose while preserving uncertainty and
+non-claims. The
+[Decision Work Brief Builder Patch Review](docs/conversation-understanding/decision-work-brief-enrichment-builder-rule-patch-review-v0.md)
+adds PR143's review of those patched outputs and gates to offline-system
+closure. The
+[Decision Work Brief Offline System Closure Gate](docs/conversation-understanding/decision-work-brief-offline-system-closure-gate-v0.md)
+adds PR144's decision that the offline PR114-PR143 surface is coherent enough
+to package, not integrate. The
+[Decision Work Brief PR114-PR144 Packaging Gate](docs/conversation-understanding/decision-work-brief-pr114-pr144-packaging-gate-v0.md)
+and
+[package manifest](docs/conversation-understanding/decision-work-brief-pr114-pr144-package-manifest-v0.json)
+add PR145's bounded package surface, staging list, do-not-stage warnings,
+validation checklist, useful signal, unresolved risk, and suggested package PR
+description. The
+[Decision Work Brief Additional Local-Private Adequacy Checks](docs/conversation-understanding/decision-work-brief-additional-local-private-adequacy-checks-v0.md)
+adds PR146's safe-conclusions-only source-depth check for the cofounder and
+intake-routing cases. It finds the checked-in-safe briefs still adequate with
+private nuance, and recommends a third builder case rather than runtime
+integration. The
+[Decision Work Brief Third Builder Case](docs/conversation-understanding/decision-work-brief-third-builder-case-v0.md)
+adds PR147's feasibility gate for the cofounder builder case: the rendered
+brief and PR146 support exist, but no builder-compatible interpretation read
+exists yet, so it recommends creating that read before any third builder output.
+The
+[Decision Work Conversation Interpretation Third Tiny Offline Read](docs/conversation-understanding/decision-work-conversation-interpretation-third-tiny-offline-read-v0.md)
+adds PR147A's formal-schema cofounder read, filling the same small field subset
+used by the prior two reads while keeping lost value and starting direction
+source-limited.
+The
+[Decision Work Brief Third Builder Case Output](docs/conversation-understanding/decision-work-brief-third-builder-case-output-v0.md)
+adds PR148's deterministic cofounder builder output:
+[builder cofounder output](docs/conversation-understanding/decision-work-brief-builder-enriched-ceo-remove-founding-cofounder-v0.md).
+It finds the third builder-generated enriched brief readable enough for a
+three-case pattern review, while noting source-depth sensitivity and a mild
+template weakness.
+The
+[Decision Work Brief Three Builder Case Pattern Review](docs/conversation-understanding/decision-work-brief-three-builder-case-pattern-review-v0.md)
+adds PR149's comparison across the launch-beta, intake-routing, and cofounder
+builder outputs. It finds the builder stable enough to preserve action
+consequence, uncertainty, field exclusions, and non-claims across three
+decision families, and recommends a human-review intake plan rather than
+runtime integration or another deterministic builder case.
+The
+[Decision Work Brief Human Review Intake Plan](docs/conversation-understanding/decision-work-brief-human-review-intake-plan-v0.md)
+adds PR150's plan for that next gate. It defines what future human reviewers
+should check across the three builder-generated enriched briefs, including
+usefulness, action consequence, uncertainty, source depth, private-context
+questions, overtrust risk, runtime blockers, stop conditions, and allowed
+outcomes. It is not completed human validation and does not claim product
+proof, score answer quality, authorize agent action, or attach the brief to
+runtime.
+The
+[Decision Work Brief Human Review Pilot Scaffold](docs/conversation-understanding/decision-work-brief-human-review-pilot-scaffold-v0.md)
+and
+[blank response template](docs/conversation-understanding/decision-work-brief-human-review-response-template-v0.json)
+add PR151's runnable human-review pilot materials. They give a future human
+reviewer the three enriched briefs, instructions, stop conditions, allowed
+answers, and blank fields to fill, while keeping `human_review_completed` false
+until a real reviewer responds.
+The
+[Decision Work Brief Human Review Pilot Readiness Gate](docs/conversation-understanding/decision-work-brief-human-review-pilot-readiness-gate-v0.md)
+adds PR152's explicit readiness boundary: the pilot packet and blank template
+are ready, but no human response has been collected, no human validation has
+happened, and runtime or customer-facing use remains blocked.
+The
+[Decision Work Brief Human Review Awaiting Response Gate](docs/conversation-understanding/decision-work-brief-human-review-awaiting-response-gate-v0.md)
+adds PR153's pause boundary: no real human response exists yet, so the next
+unblocked evidence step is a real reviewer filling the PR151 response
+template, not Codex-filled review.
+The
+[Decision Work Automatic Triage Contract](docs/conversation-understanding/decision-work-automatic-triage-contract-v0.md)
+and
+[contract JSON](docs/conversation-understanding/decision-work-automatic-triage-contract-v0.json)
+add PR154's future automatic routing contract. The triage layer should route
+attention and escalation across user-surface, agent-inspection, source-depth,
+private-context, overtrust, domain-review, human-calibration, and runtime
+blocking states without becoming a score, approval, product proof, human
+validation claim, or action authorization.
+The
+[Decision Work Automatic Triage Packet Builder](docs/conversation-understanding/decision-work-automatic-triage-packet-builder-v0.md)
+adds PR155's deterministic checked-in-safe packet builder over the three
+builder-enriched Decision Work Brief cases. It gathers refs, custody flags,
+triage field policy, future tasks, and known limits without filling semantic
+triage fields.
+The
+[Decision Work Automatic Triage Provisional Read](docs/conversation-understanding/decision-work-automatic-triage-provisional-read-v0.md)
+adds PR156's Codex-assisted provisional triage read over that packet shape,
+routing the launch, healthcare, and cofounder cases toward different
+source-depth, overtrust, domain, agent-inspection, and runtime-blocker
+concerns without scoring or approving advice.
+The
+[Decision Work Brief Offline v1 Closure Gate](docs/conversation-understanding/decision-work-brief-offline-v1-closure-gate-v0.md)
+records PR157's narrow `package_offline_v1` decision: functional offline v1
+means the system can preserve custody, render/enrich briefs, prepare triage
+packets, and run provisional triage reads with limitations visible.
+The
+[Decision Work Brief Offline v1 Package Gate](docs/conversation-understanding/decision-work-brief-offline-v1-package-gate-v0.md)
+adds PR158's package manifest for Offline v1, referencing the PR114-PR144 base
+package and explicitly adding PR145-PR157.
+There is still no production generator, runtime integration, model call in repo
+code, archive mutation, product proof, human validation, broad batch, customer
+marketing copy, or agent action authorization. See
 [Lolla Decision Trail Web Page Draft](docs/lolla-decision-trail-web-page-v0.md)
 for the simple customer explanation and
 [Decision Trail Readiness Audit](docs/conversation-understanding/decision-trail-readiness-audit-v0.md)

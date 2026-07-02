@@ -1,0 +1,196 @@
+{
+  "schema_version": "lolla.decision_work_brief_plain_language_rereview.v0",
+  "review_metadata": {
+    "review_id": "decision_work_brief_plain_language_rereview:v0:2026-07-01",
+    "created_at": "2026-07-01T00:00:00Z",
+    "review_mode": "codex_assisted_provisional_checked_in_safe",
+    "triggering_pr": "PR123 Decision Work Brief Plain-Language Renderer Patch v0",
+    "case_count": 3,
+    "purpose": "Review whether the PR123 regenerated rendered briefs are readable enough to move the next blocker from product language to source depth."
+  },
+  "custody_flags": {
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "archive_mutated": false,
+    "model_calls": 0,
+    "human_validated": false,
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "broad_judge_used": false,
+    "automatic_labels_created": false,
+    "raw_private_content_included": false,
+    "provider_text_included": false,
+    "checked_in_safe": true,
+    "local_absolute_paths_included": false
+  },
+  "reviewed_rendered_briefs": [
+    {
+      "case_id": "ceo-remove-founding-cofounder",
+      "rendered_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md",
+      "decision_family": "founder_governance",
+      "two_minute_reader_read": "A busy reader can quickly understand that the brief is about moving product authority away from a founding cofounder before a high-stakes conversation, while narrowing transition support and setting stop conditions.",
+      "decision_clarity": "clear",
+      "action_consequence_clarity": "clear",
+      "uncertainty_clarity": "clear",
+      "non_claim_clarity": "clear",
+      "evidence_limits_clarity": "clear",
+      "remaining_machinery_language": "low_in_main_body_compact_in_evidence_section",
+      "overclaim_risk": "material_because_cleaner_prose_can_make_a_provisional_authority_read_feel_validated",
+      "source_depth_risk": "The checked-in-safe brief still cannot verify private relationship, governance, legal, or original/revised-overlap context.",
+      "product_usefulness_read": "Useful as a decision story because it shows what changes before the hard conversation, not because it inventories artifacts."
+    },
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "rendered_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md",
+      "decision_family": "enterprise_launch_or_gtm",
+      "two_minute_reader_read": "A busy reader can quickly see that the brief is about public enterprise beta versus private proof, and that the action consequence is equal paid private-pilot offers instead of defaulting to the larger logo.",
+      "decision_clarity": "clear",
+      "action_consequence_clarity": "clear",
+      "uncertainty_clarity": "clear",
+      "non_claim_clarity": "clear",
+      "evidence_limits_clarity": "clear",
+      "remaining_machinery_language": "low_in_main_body_compact_in_evidence_section",
+      "overclaim_risk": "material_because_the_buyer_behavior_story_is_crisp_even_though_buyer_reality_and_public_launch_value_remain_unverified",
+      "source_depth_risk": "The checked-in-safe brief cannot verify buyer seriousness, investor or recruiting value, public-launch upside, or how much the original answer already contained.",
+      "product_usefulness_read": "Useful because it turns the audit into a concrete buyer-call change: choose proof-producing behavior rather than logo size."
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "rendered_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md",
+      "decision_family": "healthcare_operations_or_deployment",
+      "two_minute_reader_read": "A busy reader can quickly see that the brief is about whether to deploy AI-assisted intake routing, and that the action consequence is a 48-hour backlog diagnostic, four operating gates, hard pause triggers, and narrower sales meaning.",
+      "decision_clarity": "clear",
+      "action_consequence_clarity": "clear",
+      "uncertainty_clarity": "clear",
+      "non_claim_clarity": "clear",
+      "evidence_limits_clarity": "clear",
+      "remaining_machinery_language": "low_in_main_body_compact_in_evidence_section",
+      "overclaim_risk": "material_because_the_clean_operating_plan_may_feel_more_settled_than_the_compliance_and_patient_risk_context_supports",
+      "source_depth_risk": "The checked-in-safe brief cannot verify clinic capacity, backlog cause, compliance acceptance, patient-risk detail, or whether compressed gates lost useful controls.",
+      "product_usefulness_read": "Useful because it explains how the work changes go-live behavior without pretending the deployment is certified."
+    }
+  ],
+  "readability_questions": [
+    {
+      "question_id": "busy_reader_understands_decision_quickly",
+      "question": "Can a busy reader understand the decision quickly?",
+      "answer": "yes",
+      "rationale": "All three briefs now start with the decision itself instead of source-status machinery."
+    },
+    {
+      "question_id": "busy_reader_understands_action_change",
+      "question": "Can a busy reader understand what changed for action?",
+      "answer": "yes",
+      "rationale": "Each brief names the practical consequence before the Evidence and limits section."
+    },
+    {
+      "question_id": "busy_reader_understands_uncertainty",
+      "question": "Can a busy reader understand what remains uncertain?",
+      "answer": "yes",
+      "rationale": "The main body has a dedicated uncertainty section and Evidence and limits repeats section-level uncertainty compactly."
+    },
+    {
+      "question_id": "busy_reader_understands_not_proven",
+      "question": "Can a busy reader understand what was not proven?",
+      "answer": "yes",
+      "rationale": "The rendered brief has a plain-language section named What this does not prove."
+    },
+    {
+      "question_id": "pr123_reduced_internal_machinery_enough",
+      "question": "Did PR123 reduce internal machinery language enough?",
+      "answer": "yes_for_next_gate",
+      "rationale": "Internal refs and status vocabulary are no longer interrupting each story section, although they remain visible in the appendix."
+    },
+    {
+      "question_id": "evidence_limits_move_helped",
+      "question": "Did moving source/custody details into Evidence and limits help?",
+      "answer": "yes",
+      "rationale": "The evidence details remain inspectable without dominating the decision story."
+    },
+    {
+      "question_id": "cleaner_prose_false_confidence",
+      "question": "Does the cleaner prose create false confidence?",
+      "answer": "overclaim_risk_managed_but_material",
+      "rationale": "Cleaner prose improves comprehension but can make provisional Codex-assisted reads feel more settled than they are."
+    },
+    {
+      "question_id": "source_depth_now_main_blocker",
+      "question": "Is the main remaining blocker now source depth rather than language?",
+      "answer": "yes",
+      "rationale": "The brief surface is readable enough to compare against local-private context; the unresolved question is whether richer source context changes the read."
+    },
+    {
+      "question_id": "another_renderer_patch_needed_first",
+      "question": "Is another renderer patch needed before any local-private adequacy check?",
+      "answer": "no",
+      "rationale": "The current surface is not customer-ready, but it is readable enough for adequacy comparison."
+    },
+    {
+      "question_id": "readable_enough_for_local_private_comparison",
+      "question": "Is the brief readable enough to compare against local-private context?",
+      "answer": "yes",
+      "rationale": "The main body exposes the decision, action consequence, uncertainty, and non-claims clearly enough to test whether private context changes them."
+    }
+  ],
+  "cross_case_readability_observations": {
+    "plain_language_flow": "The PR123 flow now reads as a decision brief first: decision, changed action, remaining uncertainty, not-proven boundary, then evidence.",
+    "machinery_reduction": "Status vocabulary, source refs, and custody flags moved out of the main reading path and into Evidence and limits.",
+    "common_remaining_blocker": "All three briefs still depend on checked-in-safe context that omits raw conversation, raw revised answer, memo, provider text, and private ledgers.",
+    "why_not_renderer_patch_round_2": "A second renderer patch would be premature before seeing whether richer local-private context changes or undermines the story.",
+    "why_not_runtime": "The surface is readable enough for review, not for runtime attachment or product-readiness claims."
+  },
+  "product_surface_read": {
+    "plain_language_surface_good_enough": true,
+    "language_good_enough_for_local_private_adequacy_check": true,
+    "main_remaining_blocker": "source_depth_and_private_context",
+    "strongest_useful_signal": "All three regenerated briefs make action consequence visible without forcing the reader through artifact inventory first.",
+    "strongest_readability_improvement": "The main body now uses reader-facing headings and leaves source/custody detail for Evidence and limits.",
+    "strongest_source_depth_risk": "Checked-in-safe context cannot verify whether the starting direction, lost value, private constraints, or original/revised overlap are represented accurately.",
+    "strongest_overclaim_risk": "The better the brief reads, the easier it is to mistake provisional checked-in-safe interpretation for validated product evidence.",
+    "why_runtime_integration_still_not_recommended": "The reviews are Codex-assisted, non-human-validated, source-limited, and have not been compared against local-private context."
+  },
+  "remaining_risks": {
+    "source_depth_risk": "The next material uncertainty is whether local-private artifacts change the decision story, starting-direction read, action consequence, or overclaim risk.",
+    "overclaim_risk": "Polished prose can imply confidence even when Evidence and limits states that human validation and product proof are absent.",
+    "human_review_risk": "No human reviewer has confirmed whether the rendered briefs match user intent or domain stakes.",
+    "customer_surface_risk": "The examples should stay under conversation-understanding until source-depth adequacy and human review are stronger."
+  },
+  "decision_gate": {
+    "outcome": "proceed_to_local_private_adequacy_check",
+    "allowed_outcomes": [
+      "proceed_to_local_private_adequacy_check",
+      "proceed_to_renderer_patch_round_2",
+      "pause_until_human_review",
+      "stop_and_simplify"
+    ],
+    "language_good_enough_for_local_private_adequacy_check": true,
+    "source_depth_is_main_blocker": true,
+    "runtime_integration_recommended": false,
+    "rationale": "The plain-language patch fixed enough of the machinery-language problem to make a local-private adequacy comparison the next responsible blocker."
+  },
+  "next_recommendation": {
+    "recommended_next_pr": "PR125 Decision Work Brief Local-Private Adequacy Check v0",
+    "recommended_scope": "Run exactly one read-only local-private shadow review against an existing rendered brief and check in only safe conclusions.",
+    "do_not_do_next": [
+      "runtime integration",
+      "five-case batch",
+      "new renderer patch before source-depth comparison",
+      "product-readiness claim"
+    ]
+  },
+  "non_claims": [
+    "review_is_codex_assisted",
+    "not_human_validated",
+    "not_product_proof",
+    "not_answer_quality_score",
+    "not_agent_action_authorization",
+    "not_correctness_proof",
+    "clean_briefs_do_not_imply_good_advice",
+    "readability_is_not_source_adequacy",
+    "three_rendered_examples_are_not_general_evidence",
+    "future_local_private_adequacy_check_required",
+    "future_human_review_required",
+    "no_runtime_integration_recommended"
+  ]
+}

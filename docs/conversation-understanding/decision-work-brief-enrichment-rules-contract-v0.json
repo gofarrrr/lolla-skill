@@ -1,0 +1,270 @@
+{
+  "schema_version": "lolla.decision_work_brief_enrichment_rules_contract.v0",
+  "contract_metadata": {
+    "contract_id": "decision_work_brief_enrichment_rules_contract:v0",
+    "created_at": "2026-07-01T00:00:00Z",
+    "contract_mode": "docs_schema_tests_only",
+    "source_gate_ref": "reviews/codex-assisted/decision-work-brief-enriched-pattern-review-v0/review.json",
+    "source_gate_outcome": "proceed_to_enrichment_rules_contract",
+    "purpose": "Define conservative offline rules for adding interpretation-read fields to a user-facing Decision Work Brief.",
+    "not_implemented_here": [
+      "builder",
+      "runtime_integration",
+      "model_calls",
+      "new_interpretation_reads",
+      "product_proof",
+      "human_validation",
+      "agent_action_authorization"
+    ]
+  },
+  "custody_policy": {
+    "human_validated": false,
+    "product_proof": false,
+    "model_calls": 0,
+    "archive_mutated": false,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "raw_private_content_checked_in": false,
+    "provider_text_checked_in": false,
+    "local_absolute_paths_checked_in": false,
+    "rules_are_provisional": true
+  },
+  "allowed_user_facing_fields": [
+    {
+      "field_name": "decision_question",
+      "may_feed_section": "The decision",
+      "source_refs_required": true,
+      "source_status_required": true,
+      "uncertainty_required": true,
+      "interpretation_basis_required": true,
+      "privacy_limit_required": true,
+      "human_review_required_flag_required": true,
+      "must_not_be_used_as_quality_label": true,
+      "field_specific_rule": "Phrase as a provisional decision read with source limits."
+    },
+    {
+      "field_name": "likely_starting_direction",
+      "may_feed_section": "What the interpretation adds",
+      "source_refs_required": true,
+      "source_status_required": true,
+      "uncertainty_required": true,
+      "interpretation_basis_required": true,
+      "privacy_limit_required": true,
+      "human_review_required_flag_required": true,
+      "must_not_be_used_as_quality_label": true,
+      "must_show_uncertainty": true,
+      "field_specific_rule": "May be included only with visible uncertainty and a warning that checked-in-safe context may not prove what was already present."
+    },
+    {
+      "field_name": "revised_direction_or_action_consequence",
+      "may_feed_section": "What the interpretation adds",
+      "source_refs_required": true,
+      "source_status_required": true,
+      "uncertainty_required": true,
+      "interpretation_basis_required": true,
+      "privacy_limit_required": true,
+      "human_review_required_flag_required": true,
+      "must_not_be_used_as_quality_label": true,
+      "field_specific_rule": "May be used as the core action-consequence signal, but must not say Lolla caused everything or proved improvement."
+    },
+    {
+      "field_name": "decision_thresholds",
+      "may_feed_section": "What the interpretation adds",
+      "source_refs_required": true,
+      "source_status_required": true,
+      "uncertainty_required": true,
+      "interpretation_basis_required": true,
+      "privacy_limit_required": true,
+      "human_review_required_flag_required": true,
+      "must_not_be_used_as_quality_label": true,
+      "field_specific_rule": "May be rendered as visible thresholds, not complete operating criteria."
+    },
+    {
+      "field_name": "evidence_gates",
+      "may_feed_section": "What the interpretation adds",
+      "source_refs_required": true,
+      "source_status_required": true,
+      "uncertainty_required": true,
+      "interpretation_basis_required": true,
+      "privacy_limit_required": true,
+      "human_review_required_flag_required": true,
+      "must_not_be_used_as_quality_label": true,
+      "field_specific_rule": "May be rendered as visible proof points, not validated evidence sufficiency."
+    },
+    {
+      "field_name": "useful_friction",
+      "may_feed_section": "What the interpretation adds",
+      "source_refs_required": true,
+      "source_status_required": true,
+      "uncertainty_required": true,
+      "interpretation_basis_required": true,
+      "privacy_limit_required": true,
+      "human_review_required_flag_required": true,
+      "must_not_be_used_as_quality_label": true,
+      "must_be_descriptive_not_scoring": true,
+      "field_specific_rule": "May describe what appears sharpened, never as answer-quality scoring or a proof of better advice."
+    },
+    {
+      "field_name": "what_the_final_answer_does_not_prove",
+      "may_feed_section": "What this does not prove",
+      "source_refs_required": true,
+      "source_status_required": true,
+      "uncertainty_required": true,
+      "interpretation_basis_required": true,
+      "privacy_limit_required": true,
+      "human_review_required_flag_required": true,
+      "must_not_be_used_as_quality_label": true,
+      "field_specific_rule": "Should feed the brief because it lowers overclaim risk."
+    }
+  ],
+  "evidence_only_fields": [
+    {
+      "field_name": "live_options",
+      "reason": "Checked-in-safe reads cannot prove the complete live option set."
+    },
+    {
+      "field_name": "abandoned_or_rejected_options",
+      "reason": "Too easy to convert gated, narrowed, or deferred options into rejected options."
+    },
+    {
+      "field_name": "noisy_friction",
+      "reason": "Useful as internal caution but too likely to read as unsupported criticism in the user-facing body."
+    },
+    {
+      "field_name": "lost_value",
+      "reason": "Both tiny reads mark lost value as insufficient context."
+    },
+    {
+      "field_name": "user_values_or_priorities",
+      "reason": "Requires richer local-private context or human review."
+    },
+    {
+      "field_name": "stakeholder_obligations",
+      "reason": "Only partially visible from checked-in-safe summaries."
+    },
+    {
+      "field_name": "assistant_influence_on_user_framing",
+      "reason": "Requires raw conversation interpretation and is outside the tiny read scope."
+    },
+    {
+      "field_name": "sycophancy_or_over_accommodation_risk",
+      "reason": "Requires a future explicit interpretation protocol and should not be inferred from safe summaries."
+    },
+    {
+      "field_name": "safe_to_show_user",
+      "reason": "Requires future publication policy or human review; a deterministic builder must not infer it."
+    },
+    {
+      "field_name": "safe_for_agent_inspection_only",
+      "reason": "Agent-inspection routing is not user-facing enrichment and must not authorize action."
+    }
+  ],
+  "forbidden_fields": [
+    {
+      "concept": "answer_quality_score",
+      "rule": "Must never appear as a user-facing enrichment field."
+    },
+    {
+      "concept": "improvement_score",
+      "rule": "Must never appear as a user-facing enrichment field."
+    },
+    {
+      "concept": "winner",
+      "rule": "Must not compare outputs as a winning answer."
+    },
+    {
+      "concept": "approval",
+      "rule": "Must not imply approval of advice or action."
+    },
+    {
+      "concept": "certification",
+      "rule": "Must not certify correctness or readiness."
+    },
+    {
+      "concept": "agent_action_authorization",
+      "rule": "Must not authorize agent action."
+    },
+    {
+      "concept": "product_proof",
+      "rule": "Must not claim product proof."
+    },
+    {
+      "concept": "human_validated_without_actual_human_review",
+      "rule": "Must not claim human validation unless an actual human review artifact exists."
+    }
+  ],
+  "enrichment_section_rules": {
+    "heading": "What the interpretation adds",
+    "purpose": "Clarify what the process appears to have sharpened, what may already have been present, and what remains uncertain.",
+    "max_paragraphs": 3,
+    "must_include_uncertainty": true,
+    "must_include_non_claim": true,
+    "must_not_include_field_dump": true,
+    "must_not_foreground_source_status_vocabulary": true,
+    "must_not_say_lolla_caused_everything": true,
+    "must_not_say_interpretation_is_more_correct": true
+  },
+  "source_and_uncertainty_rules": {
+    "source_refs_required": true,
+    "source_status_required": true,
+    "uncertainty_required": true,
+    "interpretation_basis_required": true,
+    "privacy_limit_required": true,
+    "human_review_required_required": true,
+    "must_not_be_used_as_quality_label_required": true,
+    "insufficient_context_fields_default_to_evidence_only": true,
+    "local_private_context_not_checked_in_must_be_named_as_limit": true
+  },
+  "non_claim_rules": {
+    "must_include": [
+      "not_human_validated",
+      "not_product_proof",
+      "not_answer_quality_score",
+      "not_agent_action_authorization",
+      "not_correctness_proof",
+      "not_runtime_integration",
+      "clean_artifacts_do_not_imply_good_advice",
+      "future_human_review_required"
+    ],
+    "must_keep_near_enrichment": [
+      "interpretation_is_provisional",
+      "enrichment_does_not_prove_lolla_improved_the_decision"
+    ],
+    "must_not_imply": [
+      "product_readiness",
+      "human_validation",
+      "answer_quality_scoring",
+      "agent_action_authorization",
+      "runtime_attachment"
+    ]
+  },
+  "builder_requirements": {
+    "must_accept_original_rendered_brief": true,
+    "must_accept_interpretation_read": true,
+    "must_accept_enrichment_rules_contract": true,
+    "must_output_separate_enriched_markdown": true,
+    "must_preserve_original_brief_unchanged": true,
+    "must_include_only_allowed_user_facing_fields": true,
+    "must_list_excluded_fields_in_evidence_and_limits_or_review": true,
+    "must_preserve_non_claims": true,
+    "must_preserve_source_privacy_limits": true,
+    "must_not_call_models": true,
+    "must_not_invoke_runtime": true,
+    "must_not_run_lolla": true,
+    "must_not_mutate_archives": true,
+    "must_reject_same_input_output_path": true,
+    "must_reject_non_conservative_interpretation_read": true,
+    "must_reject_rules_that_allow_forbidden_fields": true
+  },
+  "future_review_requirements": {
+    "must_compare_builder_output_to_hand_built_examples": true,
+    "must_check_readability": true,
+    "must_check_uncertainty_preservation": true,
+    "must_check_non_claim_preservation": true,
+    "must_check_evidence_only_fields_are_not_in_main_body": true,
+    "must_check_output_is_not_too_templated": true,
+    "must_not_recommend_runtime_integration_from_builder_output_alone": true
+  }
+}

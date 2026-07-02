@@ -1,0 +1,240 @@
+{
+  "schema_version": "lolla.decision_work_brief_offline_system_closure_gate.v0",
+  "review_metadata": {
+    "review_id": "decision_work_brief_offline_system_closure_gate:v0",
+    "created_at": "2026-07-01T00:00:00Z",
+    "review_mode": "codex_assisted_offline_system_closure_gate",
+    "phase": "decision_work_brief_offline_pr114_pr143",
+    "source_patch_review_ref": "reviews/codex-assisted/decision-work-brief-enrichment-builder-rule-patch-review-v0/review.json",
+    "notes": [
+      "This gate decides whether to package the offline Decision Work Brief evidence surface.",
+      "Packaging does not mean runtime integration, product proof, or human validation.",
+      "No new case, interpretation read, model call, Lolla invocation, or archive mutation was performed."
+    ]
+  },
+  "custody_flags": {
+    "human_validated": false,
+    "product_proof": false,
+    "model_calls": 0,
+    "archive_mutated": false,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "raw_private_content_checked_in": false,
+    "provider_text_checked_in": false,
+    "local_absolute_paths_checked_in": false,
+    "runtime_integration_implemented": false,
+    "new_lolla_run_created": false,
+    "new_interpretation_read_created": false,
+    "new_case_created": false,
+    "closure_gate_is_provisional": true
+  },
+  "source_phase_refs": {
+    "brief_schema_ref": "docs/conversation-understanding/decision-work-brief-v0.json",
+    "renderer_doc_ref": "docs/conversation-understanding/decision-work-brief-renderer-v0.md",
+    "plain_language_patch_ref": "docs/conversation-understanding/decision-work-brief-plain-language-renderer-patch-v0.md",
+    "conversation_contract_ref": "docs/conversation-understanding/decision-work-conversation-interpretation-contract-v0.json",
+    "interpretation_read_schema_ref": "docs/conversation-understanding/decision-work-conversation-interpretation-read-v0.json",
+    "enrichment_rules_ref": "docs/conversation-understanding/decision-work-brief-enrichment-rules-contract-v0.json",
+    "enrichment_builder_doc_ref": "docs/conversation-understanding/decision-work-brief-offline-enriched-builder-v0.md",
+    "builder_patch_review_ref": "reviews/codex-assisted/decision-work-brief-enrichment-builder-rule-patch-review-v0/review.json"
+  },
+  "capability_summary": {
+    "can_create_readable_brief_from_completed_run": "yes_for_checked_in_safe_pilots",
+    "can_render_plain_language_markdown": true,
+    "can_prepare_offline_packets_without_interpretation": true,
+    "can_carry_provisional_interpretation_reads": true,
+    "can_add_interpretation_without_claiming_proof": "yes_for_two_enriched_cases_with_pr139_rules",
+    "can_preserve_uncertainty_and_non_claims": true,
+    "can_package_offline_surface": true,
+    "cannot_claim_product_readiness": true,
+    "cannot_attach_to_runtime_from_this_gate": true
+  },
+  "deterministic_components": [
+    {
+      "component": "decision_work_brief_schema",
+      "source_refs": [
+        "docs/conversation-understanding/decision-work-brief-v0.json",
+        "tests/test_decision_work_brief_schema.py"
+      ],
+      "what_it_does": "Defines and tests the Decision Work Brief shape.",
+      "what_it_does_not_do": "Does not fill semantic content or validate advice quality."
+    },
+    {
+      "component": "decision_work_brief_packets",
+      "source_refs": [
+        "engine/system_b/decision_work_brief_packets.py",
+        "tests/test_decision_work_brief_packets.py"
+      ],
+      "what_it_does": "Builds metadata-only brief packets over completed runs.",
+      "what_it_does_not_do": "Does not run Lolla, call models, or interpret conversation meaning."
+    },
+    {
+      "component": "decision_work_brief_renderer",
+      "source_refs": [
+        "engine/system_b/decision_work_brief_renderer.py",
+        "tests/test_decision_work_brief_renderer.py"
+      ],
+      "what_it_does": "Renders existing brief JSON into plain-language Markdown.",
+      "what_it_does_not_do": "Does not infer missing brief sections."
+    },
+    {
+      "component": "conversation_interpretation_packets",
+      "source_refs": [
+        "engine/system_b/decision_work_conversation_interpretation_packets.py",
+        "tests/test_decision_work_conversation_interpretation_packets.py"
+      ],
+      "what_it_does": "Builds safe offline packets for future interpretation against the conversation contract.",
+      "what_it_does_not_do": "Does not semantically fill contract fields."
+    },
+    {
+      "component": "brief_enrichment_builder",
+      "source_refs": [
+        "engine/system_b/decision_work_brief_enrichment.py",
+        "tests/test_decision_work_brief_enrichment.py"
+      ],
+      "what_it_does": "Deterministically inserts allowed interpretation fields into a separate enriched brief.",
+      "what_it_does_not_do": "Does not create new interpretation, score quality, or mutate original briefs."
+    }
+  ],
+  "provisional_interpretation_components": [
+    {
+      "component": "brief_pilots_and_pattern_reviews",
+      "source_refs": [
+        "reviews/codex-assisted/decision-work-brief-draft-pilot-v0/review.json",
+        "reviews/codex-assisted/decision-work-brief-second-tiny-case-pilot-v0/review.json",
+        "reviews/codex-assisted/decision-work-brief-third-diversity-case-pilot-v0/review.json",
+        "reviews/codex-assisted/decision-work-brief-three-case-pattern-review-v0/review.json"
+      ],
+      "status": "codex_assisted_provisional",
+      "non_claim": "These reviews are not human validation or product proof."
+    },
+    {
+      "component": "conversation_interpretation_reads",
+      "source_refs": [
+        "reviews/codex-assisted/decision-work-conversation-interpretation-tiny-offline-read-v0/read.json",
+        "reviews/codex-assisted/decision-work-conversation-interpretation-second-tiny-offline-read-v0/read.json",
+        "reviews/codex-assisted/decision-work-conversation-interpretation-read-comparison-v0/review.json"
+      ],
+      "status": "codex_assisted_provisional",
+      "non_claim": "These reads are not answer-quality labels or agent action authorization."
+    },
+    {
+      "component": "enrichment_reviews",
+      "source_refs": [
+        "reviews/codex-assisted/decision-work-brief-interpretation-enrichment-test-v0/review.json",
+        "reviews/codex-assisted/decision-work-brief-second-enrichment-test-v0/review.json",
+        "reviews/codex-assisted/decision-work-brief-enriched-pattern-review-v0/review.json",
+        "reviews/codex-assisted/decision-work-brief-enrichment-builder-rule-patch-review-v0/review.json"
+      ],
+      "status": "codex_assisted_provisional",
+      "non_claim": "The enriched briefs are useful offline artifacts, not proof that the advice improved."
+    }
+  ],
+  "artifacts_produced": {
+    "plain_rendered_briefs": [
+      "docs/conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md",
+      "docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md",
+      "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md"
+    ],
+    "hand_built_enriched_briefs": [
+      "docs/conversation-understanding/decision-work-brief-enriched-launch-public-enterprise-beta-v0.md",
+      "docs/conversation-understanding/decision-work-brief-enriched-deploy-assisted-intake-routing-v0.md"
+    ],
+    "builder_enriched_briefs": [
+      "docs/conversation-understanding/decision-work-brief-builder-enriched-launch-public-enterprise-beta-v0.md",
+      "docs/conversation-understanding/decision-work-brief-builder-enriched-deploy-assisted-intake-routing-v0.md"
+    ],
+    "schemas_and_contracts": [
+      "docs/conversation-understanding/decision-work-brief-v0.json",
+      "docs/conversation-understanding/decision-work-conversation-interpretation-contract-v0.json",
+      "docs/conversation-understanding/decision-work-conversation-interpretation-read-v0.json",
+      "docs/conversation-understanding/decision-work-brief-enrichment-rules-contract-v0.json"
+    ],
+    "code_modules": [
+      "engine/system_b/decision_work_brief_packets.py",
+      "engine/system_b/decision_work_brief_renderer.py",
+      "engine/system_b/decision_work_conversation_interpretation_packets.py",
+      "engine/system_b/decision_work_brief_enrichment.py"
+    ]
+  },
+  "remaining_limits": {
+    "strongest_source_depth_risk": "Checked-in-safe artifacts are compressed, and most raw/private conversation context is not checked in.",
+    "strongest_overclaim_risk": "Clean enriched prose can make provisional interpretation feel more settled than it is if non-claims are not kept visible.",
+    "strongest_product_language_risk": "The deterministic builder is improved but still template-shaped compared with hand-built prose.",
+    "strongest_runtime_risk": "Runtime attachment would mix offline interpretation review with the live Lolla audit pipeline before the boundary is designed.",
+    "local_private_only_risk": "Private nuance may change starting-direction, lost-value, user-intent, and stakeholder reads.",
+    "human_review_gap": "No Decision Work Brief or enriched brief has been validated by a human reviewer."
+  },
+  "closure_questions": {
+    "can_create_readable_brief_from_completed_lolla_run": "yes_for_three_checked_in_safe_pilots",
+    "can_add_interpretation_without_pretending_proof": "yes_for_two_enriched_cases_with_rules",
+    "does_enriched_brief_help_explain_action_change": "yes_provisionally",
+    "are_uncertainties_still_visible": "yes",
+    "does_this_deserve_packaging_before_more_expansion": "yes",
+    "is_runtime_integration_recommended": "no",
+    "is_product_readiness_claimed": "no"
+  },
+  "packaging_assessment": {
+    "packageable": true,
+    "package_scope": "Decision Work Brief and Decision Work Conversation Interpretation offline evidence surface from PR114 through PR144.",
+    "why_package_now": "The system has a coherent offline chain from schema and packet builders through renderer, interpretation contract/read scaffolding, enrichment rules, deterministic builder, and builder patch review.",
+    "what_packaging_should_do": [
+      "name package files by group",
+      "record strongest useful signal and strongest unresolved risk",
+      "record boundary summary",
+      "record validation checklist",
+      "record explicit staging list",
+      "record do-not-stage warnings",
+      "avoid unrelated untracked files and runtime files"
+    ],
+    "what_packaging_must_not_do": [
+      "implement runtime integration",
+      "claim product proof",
+      "expand to new cases",
+      "create new interpretation reads",
+      "stage unrelated files"
+    ]
+  },
+  "decision_gate": {
+    "outcome": "package_pr114_pr144",
+    "allowed_outcomes": [
+      "package_pr114_pr144",
+      "run_third_builder_case",
+      "run_more_local_private_adequacy_checks",
+      "pause_until_human_review",
+      "simplify_brief_surface",
+      "do_not_continue_current_shape"
+    ],
+    "rationale": "The offline Decision Work Brief system is coherent enough to package for review. The package should remain lower-claim and explicitly separate offline evidence from runtime integration or product readiness.",
+    "runtime_integration_recommended": false,
+    "product_readiness_claimed": false
+  },
+  "next_recommendation": {
+    "recommended_next_pr": "PR145 Decision Work Brief Offline Evidence Package Gate v0",
+    "recommended_action": "Create a bounded package manifest and packaging gate for PR114 through PR144.",
+    "not_recommended": [
+      "runtime integration",
+      "new builder case before package manifest",
+      "product-readiness claim",
+      "human-validation claim",
+      "agent-action authorization"
+    ]
+  },
+  "non_claims": [
+    "closure_gate_is_codex_assisted",
+    "closure_gate_is_provisional",
+    "not_human_validated",
+    "not_product_proof",
+    "not_answer_quality_score",
+    "not_agent_action_authorization",
+    "not_correctness_proof",
+    "not_runtime_integration",
+    "not_new_lolla_run",
+    "not_new_interpretation_read",
+    "package_gate_does_not_mean_product_ready",
+    "clean_outputs_do_not_imply_good_advice",
+    "future_human_review_required"
+  ]
+}

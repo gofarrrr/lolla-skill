@@ -1,0 +1,646 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lolla.decision_work_conversation_interpretation_read.v0",
+  "title": "Lolla Decision Work Conversation Interpretation Read v0",
+  "description": "Schema contract for a provisional offline conversation interpretation read over a PR130 packet. It preserves source refs, uncertainty, privacy limits, human-review requirements, custody flags, and non-claims. It does not implement an interpreter, call models, change runtime extraction, score answer quality, authorize agent action, or claim product proof.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "read_metadata",
+    "custody_flags",
+    "source_packet",
+    "selected_case",
+    "interpretation_scope",
+    "interpreted_fields",
+    "unresolved_fields",
+    "source_limitations",
+    "brief_implications",
+    "overclaim_risk",
+    "recommended_next_step",
+    "non_claims"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "lolla.decision_work_conversation_interpretation_read.v0"
+    },
+    "read_metadata": {
+      "$ref": "#/$defs/read_metadata"
+    },
+    "custody_flags": {
+      "$ref": "#/$defs/custody_flags"
+    },
+    "source_packet": {
+      "$ref": "#/$defs/source_packet"
+    },
+    "selected_case": {
+      "$ref": "#/$defs/selected_case"
+    },
+    "interpretation_scope": {
+      "$ref": "#/$defs/interpretation_scope"
+    },
+    "interpreted_fields": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/interpreted_field"
+      },
+      "minItems": 1
+    },
+    "unresolved_fields": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/unresolved_field"
+      }
+    },
+    "source_limitations": {
+      "$ref": "#/$defs/source_limitations"
+    },
+    "brief_implications": {
+      "$ref": "#/$defs/brief_implications"
+    },
+    "overclaim_risk": {
+      "$ref": "#/$defs/overclaim_risk"
+    },
+    "recommended_next_step": {
+      "$ref": "#/$defs/recommended_next_step"
+    },
+    "non_claims": {
+      "$ref": "#/$defs/non_claims"
+    },
+    "comparison_to_prior_reads": {
+      "$ref": "#/$defs/comparison_to_prior_reads"
+    }
+  },
+  "$defs": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "interpreted_provisional",
+        "partial_interpretation",
+        "insufficient_context",
+        "not_interpreted",
+        "not_applicable"
+      ]
+    },
+    "uncertainty": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "insufficient_context"
+      ]
+    },
+    "source_status": {
+      "type": "string",
+      "enum": [
+        "checked_in_safe_summary_only",
+        "local_private_metadata_only",
+        "local_private_context_not_checked_in",
+        "mixed_safe_and_private_status",
+        "missing_source",
+        "unclear"
+      ]
+    },
+    "interpretation_basis": {
+      "type": "string",
+      "enum": [
+        "checked_in_brief_and_reviews",
+        "pr130_packet_source_refs",
+        "local_private_metadata_status",
+        "inferred_from_safe_summary",
+        "insufficient_context"
+      ]
+    },
+    "recommended_next_step_outcome": {
+      "type": "string",
+      "enum": [
+        "run_another_tiny_offline_read",
+        "compare_interpretation_reads",
+        "patch_offline_packet_builder",
+        "patch_decision_work_brief_schema",
+        "test_brief_enrichment_from_interpretation",
+        "pause_until_human_review",
+        "stop_and_simplify"
+      ]
+    },
+    "non_claim": {
+      "type": "string",
+      "enum": [
+        "read_is_codex_assisted",
+        "read_is_provisional",
+        "not_human_validated",
+        "not_product_proof",
+        "not_answer_quality_score",
+        "not_agent_action_authorization",
+        "not_correctness_proof",
+        "not_runtime_integration",
+        "not_runtime_extraction",
+        "not_lolla_runtime_change",
+        "not_live_lolla_schema_change",
+        "must_not_be_used_as_quality_label",
+        "checked_in_safe_context_is_not_full_conversation_context",
+        "clean_artifacts_do_not_imply_good_advice",
+        "future_human_review_required"
+      ]
+    },
+    "read_metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "read_id",
+        "created_at",
+        "read_mode",
+        "case_count",
+        "source_packet_fixture_checked_in",
+        "notes"
+      ],
+      "properties": {
+        "read_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "created_at": {
+          "type": "string",
+          "minLength": 1
+        },
+        "read_mode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "case_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "source_packet_fixture_checked_in": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "custody_flags": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "human_validated",
+        "product_proof",
+        "model_calls",
+        "archive_mutated",
+        "runtime_invoked",
+        "skill_invoked",
+        "answer_quality_scored",
+        "agent_action_authorized",
+        "raw_private_content_checked_in",
+        "provider_text_checked_in",
+        "semantic_read_is_provisional"
+      ],
+      "properties": {
+        "human_validated": {
+          "const": false
+        },
+        "product_proof": {
+          "const": false
+        },
+        "model_calls": {
+          "const": 0
+        },
+        "archive_mutated": {
+          "const": false
+        },
+        "runtime_invoked": {
+          "const": false
+        },
+        "skill_invoked": {
+          "const": false
+        },
+        "answer_quality_scored": {
+          "const": false
+        },
+        "agent_action_authorized": {
+          "const": false
+        },
+        "raw_private_content_checked_in": {
+          "const": false
+        },
+        "provider_text_checked_in": {
+          "const": false
+        },
+        "local_absolute_paths_checked_in": {
+          "const": false
+        },
+        "broad_judge_used": {
+          "const": false
+        },
+        "automatic_labels_created": {
+          "const": false
+        },
+        "runtime_extraction_implemented": {
+          "const": false
+        },
+        "semantic_read_is_provisional": {
+          "const": true
+        }
+      }
+    },
+    "source_packet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "packet_schema_version",
+        "packet_generated_locally",
+        "packet_checked_in",
+        "packet_generation_mode",
+        "source_contract_ref",
+        "source_contract_schema_version"
+      ],
+      "properties": {
+        "packet_schema_version": {
+          "const": "lolla.decision_work_conversation_interpretation_packets.v0"
+        },
+        "packet_generated_locally": {
+          "type": "boolean"
+        },
+        "packet_checked_in": {
+          "type": "boolean"
+        },
+        "packet_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "packet_generation_mode": {
+          "type": "string",
+          "enum": [
+            "checked_in_safe",
+            "local_private_metadata"
+          ]
+        },
+        "source_contract_ref": {
+          "const": "docs/conversation-understanding/decision-work-conversation-interpretation-contract-v0.json"
+        },
+        "source_contract_schema_version": {
+          "const": "lolla.decision_work_conversation_interpretation_contract.v0"
+        },
+        "packet_content_checked_in": {
+          "type": "boolean"
+        },
+        "raw_private_content_in_packet": {
+          "const": false
+        },
+        "provider_text_in_packet": {
+          "const": false
+        }
+      }
+    },
+    "selected_case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "case_id",
+        "run_id",
+        "run_ref",
+        "decision_family",
+        "rendered_brief_ref",
+        "prior_review_refs"
+      ],
+      "properties": {
+        "case_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "run_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "run_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decision_family": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rendered_brief_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "prior_review_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "interpretation_scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scope_policy",
+        "fields_selected",
+        "fields_not_selected_policy",
+        "full_contract_interpreted",
+        "broad_batch_created"
+      ],
+      "properties": {
+        "scope_policy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fields_selected": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "fields_not_selected_policy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "full_contract_interpreted": {
+          "const": false
+        },
+        "broad_batch_created": {
+          "const": false
+        }
+      }
+    },
+    "source_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ref_id",
+        "artifact",
+        "locator",
+        "source_status"
+      ],
+      "properties": {
+        "ref_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "artifact": {
+          "type": "string",
+          "minLength": 1
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_status": {
+          "$ref": "#/$defs/source_status"
+        }
+      }
+    },
+    "interpreted_field": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "field_group",
+        "field_name",
+        "status",
+        "value",
+        "uncertainty",
+        "source_refs",
+        "source_status",
+        "interpretation_basis",
+        "privacy_limit",
+        "human_review_required",
+        "could_feed_brief",
+        "could_feed_agent_inspection",
+        "must_not_be_used_as_quality_label"
+      ],
+      "properties": {
+        "field_group": {
+          "type": "string",
+          "minLength": 1
+        },
+        "field_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "value": {
+          "type": [
+            "string",
+            "object",
+            "array",
+            "null"
+          ]
+        },
+        "uncertainty": {
+          "$ref": "#/$defs/uncertainty"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source_ref"
+          },
+          "minItems": 1
+        },
+        "source_status": {
+          "$ref": "#/$defs/source_status"
+        },
+        "interpretation_basis": {
+          "$ref": "#/$defs/interpretation_basis"
+        },
+        "privacy_limit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "human_review_required": {
+          "type": "boolean"
+        },
+        "could_feed_brief": {
+          "type": "boolean"
+        },
+        "could_feed_agent_inspection": {
+          "type": "boolean"
+        },
+        "must_not_be_used_as_quality_label": {
+          "const": true
+        }
+      }
+    },
+    "unresolved_field": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "field_name",
+        "reason"
+      ],
+      "properties": {
+        "field_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "source_limitations": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "checked_in_safe_context_is_compressed",
+        "raw_conversation_was_not_checked_in",
+        "raw_revised_answer_was_not_checked_in",
+        "raw_memo_was_not_checked_in",
+        "provider_text_was_not_checked_in",
+        "private_ledgers_were_not_checked_in",
+        "human_validation_is_absent",
+        "private_nuance_may_change_the_read"
+      ],
+      "properties": {
+        "checked_in_safe_context_is_compressed": {
+          "type": "string",
+          "minLength": 1
+        },
+        "raw_conversation_was_not_checked_in": {
+          "const": true
+        },
+        "raw_revised_answer_was_not_checked_in": {
+          "const": true
+        },
+        "raw_memo_was_not_checked_in": {
+          "const": true
+        },
+        "provider_text_was_not_checked_in": {
+          "const": true
+        },
+        "private_ledgers_were_not_checked_in": {
+          "const": true
+        },
+        "human_validation_is_absent": {
+          "const": true
+        },
+        "private_nuance_may_change_the_read": {
+          "const": true
+        }
+      }
+    },
+    "brief_implications": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "would_clarify_current_decision_work_brief",
+        "would_require_changing_current_brief_now",
+        "would_add_useful_conversation_story_layer",
+        "would_introduce_overclaim_risk"
+      ],
+      "properties": {
+        "would_clarify_current_decision_work_brief": {
+          "type": "boolean"
+        },
+        "would_require_changing_current_brief_now": {
+          "type": "boolean"
+        },
+        "would_add_useful_conversation_story_layer": {
+          "type": "boolean"
+        },
+        "would_introduce_overclaim_risk": {
+          "type": "boolean"
+        }
+      }
+    },
+    "overclaim_risk": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "strongest_risk",
+        "runtime_integration_recommended",
+        "product_readiness_claimed"
+      ],
+      "properties": {
+        "strongest_risk": {
+          "type": "string",
+          "minLength": 1
+        },
+        "runtime_integration_recommended": {
+          "const": false
+        },
+        "product_readiness_claimed": {
+          "const": false
+        },
+        "answer_quality_claimed": {
+          "const": false
+        },
+        "agent_action_authorized": {
+          "const": false
+        }
+      }
+    },
+    "recommended_next_step": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "outcome",
+        "allowed_outcomes",
+        "rationale"
+      ],
+      "properties": {
+        "outcome": {
+          "$ref": "#/$defs/recommended_next_step_outcome"
+        },
+        "allowed_outcomes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/recommended_next_step_outcome"
+          }
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "not_recommended": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "non_claims": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/non_claim"
+      },
+      "minItems": 1
+    },
+    "comparison_to_prior_reads": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "prior_read_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "same_field_set_used": {
+          "type": "boolean"
+        },
+        "recurring_source_limited_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "shape_stability_read": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

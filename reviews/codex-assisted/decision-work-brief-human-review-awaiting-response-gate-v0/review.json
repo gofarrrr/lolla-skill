@@ -1,0 +1,122 @@
+{
+  "schema_version": "lolla.decision_work_brief_human_review_awaiting_response_gate.v0",
+  "review_mode": "awaiting_real_human_response_gate",
+  "human_validated": false,
+  "human_review_completed": false,
+  "human_response_collected": false,
+  "product_proof": false,
+  "model_calls": 0,
+  "runtime_invoked": false,
+  "skill_invoked": false,
+  "archive_mutated": false,
+  "answer_quality_scored": false,
+  "agent_action_authorized": false,
+  "custody_flags": {
+    "human_validated": false,
+    "human_review_completed": false,
+    "human_response_collected": false,
+    "product_proof": false,
+    "model_calls": 0,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "archive_mutated": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "raw_private_content_checked_in": false,
+    "provider_text_checked_in": false,
+    "local_absolute_paths_checked_in": false,
+    "new_lolla_run_created": false,
+    "new_interpretation_read_created": false,
+    "new_builder_output_created": false,
+    "human_answers_filled_by_codex": false,
+    "runtime_attachment_implemented": false,
+    "customer_surface_enabled": false
+  },
+  "review_metadata": {
+    "review_id": "decision-work-brief-human-review-awaiting-response-gate-v0",
+    "created_at": "2026-07-02T00:00:00Z",
+    "created_by": "codex_awaiting_response_gate_only",
+    "triggering_pr": "PR152 Decision Work Brief Human Review Pilot Readiness Gate v0",
+    "triggering_gate": "collect_real_human_review_response",
+    "purpose": "Record that no real human response exists yet and that the human-review evidence phase must pause rather than substituting Codex answers."
+  },
+  "readiness_gate_ref": "docs/conversation-understanding/decision-work-brief-human-review-pilot-readiness-gate-v0.md",
+  "pilot_scaffold_ref": "docs/conversation-understanding/decision-work-brief-human-review-pilot-scaffold-v0.md",
+  "response_template_ref": "docs/conversation-understanding/decision-work-brief-human-review-response-template-v0.json",
+  "current_status": {
+    "pilot_scaffold_exists": true,
+    "readiness_gate_exists": true,
+    "response_template_exists": true,
+    "response_template_review_status": "not_started",
+    "response_template_human_review_completed": false,
+    "response_template_case_answers_blank": true,
+    "human_response_collected": false,
+    "human_review_completed": false,
+    "human_validation_claimed": false,
+    "codex_substituted_for_human_reviewer": false,
+    "runtime_or_customer_surface_blocked": true
+  },
+  "blocked_reason": [
+    "no_real_human_response_exists",
+    "response_template_is_blank",
+    "case_answers_remain_not_reviewed",
+    "human_review_not_completed",
+    "codex_cannot_substitute_for_human_reviewer"
+  ],
+  "unblocked_by": [
+    "real_human_reviewer_fills_pr151_response_template",
+    "human_response_is_collected_as_a_new_artifact",
+    "followup_review_confirms_response_status_without_claiming_product_proof"
+  ],
+  "next_required_input": {
+    "input_type": "real_human_review_response",
+    "template_ref": "docs/conversation-understanding/decision-work-brief-human-review-response-template-v0.json",
+    "must_include": [
+      "reviewer_metadata",
+      "per_case_usefulness_answers",
+      "per_case_action_consequence_answers",
+      "per_case_uncertainty_answers",
+      "per_case_source_limit_answers",
+      "per_case_overtrust_answers",
+      "missing_context_notes",
+      "what_helped",
+      "what_confused",
+      "changes_before_user_surface",
+      "cross_case_assessment",
+      "stop_condition_assessment",
+      "final_recommendation"
+    ],
+    "must_not_be_filled_by_codex": true
+  },
+  "blocked_runtime_or_customer_surface": [
+    "runtime_attachment",
+    "customer_facing_presentation",
+    "human_validation_claim",
+    "product_proof_claim",
+    "answer_quality_scoring",
+    "agent_action_authorization",
+    "approval_or_certification_language"
+  ],
+  "allowed_next_steps": [
+    "collect_real_human_review_response",
+    "package_pr146_pr153",
+    "pause_until_human_review_capacity",
+    "revise_review_scaffold_if_reviewers_are_confused",
+    "stop_and_simplify"
+  ],
+  "decision_gate": "pause_until_human_review_capacity",
+  "recommended_next_pr": "PR154 Decision Work Brief Human Review Response Collection v0",
+  "non_claims": [
+    "not_completed_human_review",
+    "not_human_validated",
+    "human_response_not_collected",
+    "not_product_proof",
+    "not_answer_quality_score",
+    "not_agent_action_authorization",
+    "not_runtime_integration",
+    "not_customer_readiness_claim",
+    "codex_must_not_substitute_for_human_reviewer",
+    "blank_template_fields_do_not_imply_approval",
+    "pause_gate_does_not_resolve_source_depth_or_overtrust_risk"
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "schema_version": "lolla.decision_work_brief_original_vs_enriched_review.v0",
+  "review_metadata": {
+    "review_id": "decision_work_brief_original_vs_enriched_review:launch-public-enterprise-beta:pr136",
+    "created_at": "2026-07-01T00:00:00Z",
+    "review_mode": "codex_assisted_provisional_checked_in_safe_original_vs_enriched_review",
+    "case_count": 1,
+    "notes": [
+      "PR136 compares the original launch-beta rendered brief with the PR135 enriched version.",
+      "PR136 does not modify either brief and does not enrich a second case.",
+      "The comparison is provisional and not human validation."
+    ]
+  },
+  "custody_flags": {
+    "human_validated": false,
+    "product_proof": false,
+    "model_calls": 0,
+    "archive_mutated": false,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "raw_private_content_checked_in": false,
+    "provider_text_checked_in": false,
+    "local_absolute_paths_checked_in": false,
+    "broad_judge_used": false,
+    "automatic_labels_created": false,
+    "runtime_extraction_implemented": false,
+    "second_case_enriched": false,
+    "comparison_is_provisional": true
+  },
+  "original_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md",
+  "enriched_brief_ref": "docs/conversation-understanding/decision-work-brief-enriched-launch-public-enterprise-beta-v0.md",
+  "comparison_questions": [
+    {
+      "question": "Is the enriched brief clearer about what changed for action?",
+      "answer": "partly_clear",
+      "read": "The enriched version makes the private-pilot action consequence easier to connect to buyer behavior, thresholds, and evidence gates."
+    },
+    {
+      "question": "Does it better distinguish what Lolla sharpened from what may already have been present?",
+      "answer": "clear",
+      "read": "The added section explicitly says the starting direction may already have leaned away from a simple public launch and narrows the sharpened contribution to proof-producing buyer behavior and stop rules."
+    },
+    {
+      "question": "Does it preserve uncertainty?",
+      "answer": "clear",
+      "read": "The enriched version keeps high uncertainty on starting direction and source-depth limits near the added interpretation."
+    },
+    {
+      "question": "Does it preserve non-claims?",
+      "answer": "clear",
+      "read": "The enriched version repeats that it does not prove better advice, product value, answer quality, human validation, or agent authorization."
+    },
+    {
+      "question": "Does it add useful context or just more text?",
+      "answer": "partly_clear",
+      "read": "The added context is useful because it explains the role of interpretation, but it also adds length that should be watched in later cases."
+    },
+    {
+      "question": "Does it make the brief more overconfident?",
+      "answer": "overclaim_risk",
+      "read": "The added prose is careful, but any smoother conversation story can make provisional interpretation feel more settled than it is."
+    },
+    {
+      "question": "Does it remain readable for a busy decision-maker?",
+      "answer": "partly_clear",
+      "read": "The main body remains readable, though the new section should stay short in future examples."
+    },
+    {
+      "question": "Does it keep evidence/source limits visible?",
+      "answer": "clear",
+      "read": "The Evidence and limits section names source refs, checked-in-safe mode, private content absence, and excluded fields."
+    },
+    {
+      "question": "Should enrichment be tested on a second case?",
+      "answer": "clear",
+      "read": "One case is too thin for rules. A second case can show whether the same enrichment shape works outside enterprise GTM."
+    }
+  ],
+  "reader_value_assessment": {
+    "overall_read": "The enriched brief appears more useful as a user-facing artifact because it explains why the process matters for action rather than only restating the final action.",
+    "strongest_added_value": "It distinguishes a starting direction that may already have been present from the narrower action consequence the audit appears to have sharpened.",
+    "busy_reader_value": "A busy reader can see that the private-pilot recommendation is tied to proof-producing buyer behavior, thresholds, and evidence gates.",
+    "added_length_risk": "The extra section is acceptable in this example but should not grow into a second appendix."
+  },
+  "uncertainty_and_nonclaim_assessment": {
+    "uncertainty_preserved": true,
+    "non_claims_preserved": true,
+    "source_limits_preserved": true,
+    "human_review_required": true,
+    "notes": "The enriched version keeps checked-in-safe source limits and human-validation absence visible."
+  },
+  "overclaim_assessment": {
+    "overclaim_risk_level": "medium",
+    "strongest_overclaim_risk": "The phrase-level clarity of the enriched section can make provisional interpretation feel like settled conversation truth.",
+    "why_not_blocking": "The enriched brief explicitly says it does not prove Lolla improved the decision or that the private pilot is better advice.",
+    "required_next_guardrail": "A second enriched case should use the same exclusions and keep the interpretation section compact."
+  },
+  "decision_gate": {
+    "outcome": "proceed_to_second_enriched_brief_test",
+    "allowed_outcomes": [
+      "proceed_to_second_enriched_brief_test",
+      "patch_enrichment_rules",
+      "keep_interpretation_evidence_only",
+      "pause_until_human_review",
+      "stop_and_simplify"
+    ],
+    "rationale": "The enrichment appears to improve reader understanding without a major overclaim, but one case is not enough to formalize rules. A second enriched brief is the right next evidence slice.",
+    "runtime_integration_recommended": false,
+    "product_readiness_claimed": false
+  },
+  "next_recommendation": {
+    "recommended_next_pr": "PR137 Second Enriched Brief Test v0",
+    "recommended_action": "Apply the same conservative enrichment rules to the deploy-assisted-intake-routing rendered brief using the PR132 interpretation read.",
+    "do_not_do_next": [
+      "Do not formalize enrichment rules from one case.",
+      "Do not integrate enrichment into runtime.",
+      "Do not create a new interpretation read.",
+      "Do not treat the enriched brief as human validated."
+    ]
+  },
+  "non_claims": [
+    "review_is_codex_assisted",
+    "review_is_provisional",
+    "not_human_validated",
+    "not_product_proof",
+    "not_answer_quality_score",
+    "not_agent_action_authorization",
+    "not_correctness_proof",
+    "not_runtime_integration",
+    "not_runtime_extraction",
+    "not_lolla_runtime_change",
+    "not_enrichment_better_as_fact",
+    "one_case_is_not_general_evidence",
+    "clean_artifacts_do_not_imply_good_advice",
+    "future_human_review_required"
+  ]
+}

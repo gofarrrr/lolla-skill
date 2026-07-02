@@ -1,0 +1,153 @@
+{
+  "schema_version": "lolla.decision_work_brief_local_private_adequacy_check.v0",
+  "review_metadata": {
+    "review_id": "decision_work_brief_local_private_adequacy_check:launch-public-enterprise-beta:v0:2026-07-01",
+    "created_at": "2026-07-01T00:00:00Z",
+    "review_mode": "codex_assisted_provisional_local_private_shadow_read_checked_in_safe_conclusions",
+    "triggering_gate": "PR124 proceed_to_local_private_adequacy_check",
+    "case_count": 1,
+    "purpose": "Check whether one plain-language Decision Work Brief still holds when compared with richer completed-run context, while checking in only safe conclusions."
+  },
+  "custody_flags": {
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "archive_mutated": false,
+    "model_calls": 0,
+    "human_validated": false,
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "broad_judge_used": false,
+    "automatic_labels_created": false,
+    "checked_in_raw_private_content": false,
+    "raw_private_content_included": false,
+    "provider_text_checked_in": false,
+    "provider_text_included": false,
+    "local_absolute_paths_included": false,
+    "checked_in_safe": true
+  },
+  "selected_case": {
+    "case_id": "launch-public-enterprise-beta",
+    "run_id": "20260627T104146Z_7bfe79",
+    "archive_relpath": "launch-public-enterprise-beta/20260627T104146Z_7bfe79",
+    "selection_reason": "Preferred PR125 case was available locally as a completed run and had the safest structured source coverage among the three existing rendered examples.",
+    "selected_case_count": 1,
+    "existing_case_set": [
+      "ceo-remove-founding-cofounder",
+      "launch-public-enterprise-beta",
+      "deploy-assisted-intake-routing"
+    ]
+  },
+  "local_private_shadow_review_status": "local_private_shadow_review_completed",
+  "source_scope": {
+    "source_mode": "local_private_read_only_shadow_review",
+    "local_private_sources_read_summary": [
+      "completed run directory metadata",
+      "agent_result.json",
+      "evaluation.json",
+      "reasoning_trace.json",
+      "extraction.json",
+      "result.json",
+      "memo_note.json",
+      "graph_survival_report.json",
+      "artifact presence for raw/private text files"
+    ],
+    "raw_text_copied_to_repo": false,
+    "provider_text_checked_in": false,
+    "local_absolute_paths_checked_in": false,
+    "archive_mutated": false,
+    "private_text_checked_in": false,
+    "source_summary_policy": "The review records only safe conclusions about whether local context changed the brief read. It does not copy raw transcript, revised answer, memo text, provider text, private ledgers, or local paths."
+  },
+  "compared_brief": {
+    "case_id": "launch-public-enterprise-beta",
+    "rendered_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md",
+    "structured_brief_ref": "reviews/codex-assisted/decision-work-brief-second-tiny-case-pilot-v0/review.json",
+    "brief_schema_version": "lolla.decision_work_brief.v0",
+    "plain_language_patch_ref": "docs/conversation-understanding/decision-work-brief-plain-language-renderer-patch-v0.md",
+    "pr124_rereview_ref": "reviews/codex-assisted/decision-work-brief-plain-language-rereview-v0/review.json"
+  },
+  "local_private_adequacy_read": {
+    "raw_text_copied_to_repo": false,
+    "local_absolute_paths_checked_in": false,
+    "provider_text_checked_in": false,
+    "decision_read_changed": "no",
+    "starting_direction_read_changed": "no",
+    "action_consequence_read_changed": "no",
+    "uncertainty_changed": "yes",
+    "lost_value_changed": "unclear",
+    "overclaim_risk_changed": "yes",
+    "adequacy_result": "adequate_but_missing_private_nuance",
+    "adequacy_rationale": "The richer local structured context supports the same broad decision story and action consequence: public launch restraint, equal scoped private-pilot offers, and proof-producing buyer behavior. It reduces concern that the rendered brief invented the action consequence, but it does not remove private nuance, lost-value, or buyer-reality uncertainty.",
+    "what_became_clearer": [
+      "the local structured artifacts support the brief's public-launch-versus-private-proof framing",
+      "the action consequence around equal pilot offers and buyer-behavior proof is not merely an artifact of the renderer",
+      "the starting direction already leaned away from public launch, so the brief should keep distinguishing change from sharpening"
+    ],
+    "what_remains_uncertain": [
+      "whether the public page had fundraising, recruiting, or board-value that the brief underweights",
+      "whether either buyer would accept the scoped private-pilot constraints",
+      "how much of the final action sequence was already present before Lolla pressure",
+      "whether private stakeholder nuance changes the lost-value read"
+    ]
+  },
+  "checked_in_safe_vs_local_private_delta": {
+    "decision_read_delta": "No material change. The checked-in-safe brief names the same decision family visible in local structured context.",
+    "starting_direction_delta": "No material change, but local context reinforces that the starting point was already conditional-private rather than public-launch maximalism.",
+    "pressure_read_delta": "No material change. Local context supports pressure on logo priority, public optics, gates, support load, and buyer behavior.",
+    "action_consequence_delta": "No material change. The local structured context supports equalizing the private-pilot offer and choosing based on proof-producing buyer behavior.",
+    "missing_constraints_added": [
+      "public launch may still have investor or recruiting value if tied to a named outcome",
+      "buyer seriousness and tolerance for constraints still require human/customer evidence",
+      "runway pressure can make timing more load-bearing than the checked-in-safe brief can verify"
+    ],
+    "lost_value_delta": "Unclear. Local context preserves the possible lost value of public optics but does not settle whether that value was material.",
+    "overclaim_delta": "Overclaim risk is reduced for the action-consequence read but remains material for product-level claims."
+  },
+  "privacy_safety_notes": {
+    "checked_in_artifact_policy": "Only safe conclusions and relative artifact names are checked in.",
+    "raw_conversation_checked_in": false,
+    "raw_revised_answer_checked_in": false,
+    "raw_memo_checked_in": false,
+    "provider_text_checked_in": false,
+    "private_ledgers_checked_in": false,
+    "local_absolute_paths_checked_in": false,
+    "secrets_checked_in": false
+  },
+  "decision_gate": {
+    "outcome": "proceed_to_expansion_or_runtime_decision_gate",
+    "allowed_outcomes": [
+      "proceed_to_expansion_or_runtime_decision_gate",
+      "proceed_to_more_local_private_checks",
+      "proceed_to_renderer_patch_round_2",
+      "pause_until_human_review",
+      "stop_and_simplify"
+    ],
+    "rationale": "The one-case local-private shadow review completed and did not undermine the brief story, but it also shows source-depth risk remains material. That is enough to make a conservative next-phase decision, not enough to integrate runtime.",
+    "runtime_integration_recommended": false
+  },
+  "next_recommendation": {
+    "recommended_next_pr": "PR126 Decision Work Brief Expansion / Runtime Attachment Decision Gate v0",
+    "recommended_scope": "Use PR124 readability and PR125 source-depth evidence to decide whether to run more local-private checks, run a checked-in-safe batch, plan runtime attachment only, patch again, or pause.",
+    "not_recommended_next": [
+      "runtime implementation",
+      "customer-facing publication",
+      "product-readiness claim",
+      "agent-action authorization"
+    ]
+  },
+  "non_claims": [
+    "review_is_codex_assisted",
+    "not_human_validated",
+    "not_product_proof",
+    "not_answer_quality_score",
+    "not_agent_action_authorization",
+    "not_correctness_proof",
+    "local_private_shadow_review_is_not_human_review",
+    "adequacy_check_does_not_certify_customer_readiness",
+    "clean_artifacts_do_not_imply_good_advice",
+    "one_local_private_check_is_not_general_evidence",
+    "future_human_review_required",
+    "runtime_integration_not_implemented"
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "schema_version": "lolla.decision_work_brief_third_builder_case_output.v0",
+  "review_mode": "offline_deterministic_builder_output_review",
+  "human_validated": false,
+  "product_proof": false,
+  "model_calls": 0,
+  "answer_quality_scored": false,
+  "agent_action_authorized": false,
+  "archive_mutated": false,
+  "runtime_invoked": false,
+  "skill_invoked": false,
+  "case_id": "ceo-remove-founding-cofounder",
+  "decision_family": "founder_governance_or_authority_transition",
+  "source_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md",
+  "interpretation_read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-third-tiny-offline-read-v0/read.json",
+  "rules_contract_ref": "docs/conversation-understanding/decision-work-brief-enrichment-rules-contract-v0.json",
+  "builder_output_ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-ceo-remove-founding-cofounder-v0.md",
+  "builder_output_created": true,
+  "builder_output_status": "created_checked_in_safe_deterministic_builder_output",
+  "review_metadata": {
+    "review_id": "decision-work-brief-third-builder-case-output-v0",
+    "created_at": "2026-07-01T00:00:00Z",
+    "created_by": "codex_assisted_provisional_review",
+    "triggering_pr": "PR147A Decision Work Conversation Interpretation Third Tiny Offline Read v0",
+    "triggering_gate": "test_brief_enrichment_from_interpretation",
+    "purpose": "Review the deterministic builder-generated enriched cofounder Decision Work Brief against the PR139 enrichment rules, PR147A interpretation read, and prior builder examples."
+  },
+  "custody_flags": {
+    "human_validated": false,
+    "product_proof": false,
+    "model_calls": 0,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "archive_mutated": false,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "raw_private_content_checked_in": false,
+    "provider_text_checked_in": false,
+    "local_absolute_paths_checked_in": false,
+    "new_lolla_run_created": false,
+    "new_interpretation_read_created": false,
+    "builder_invoked": true,
+    "builder_output_created": true
+  },
+  "readability_read": {
+    "status": "readable_enough_for_pattern_review",
+    "finding": "The output adds a clear cofounder-specific interpretation section. It explains that action becomes clearer around COO alignment, moving product execution authority first, narrowing the cofounder transition role, and defining stop-loss triggers before the conversation.",
+    "template_weakness": "The first enrichment paragraph is slightly repetitive because the deterministic template says 'The decision is framed as' before a field value that also starts with 'The decision appears'. This is noticeable but not severe enough to block a three-case pattern review."
+  },
+  "uncertainty_read": {
+    "status": "uncertainty_preserved",
+    "finding": "The output keeps the starting point uncertain, names checked-in-safe source compression, preserves high uncertainty around relationship/governance costs, and adds interpretation enrichment limits under Evidence and limits."
+  },
+  "overclaim_read": {
+    "status": "non_claims_preserved",
+    "finding": "The output does not claim product proof, human validation, answer-quality scoring, or agent authorization. It explicitly says the enrichment does not prove Lolla improved the decision.",
+    "remaining_risk": "Because the action consequence is concrete, readers could still overread it as an operating recommendation unless the human-review and legal/governance caveats stay visible."
+  },
+  "field_boundary_read": {
+    "status": "rules_boundary_preserved",
+    "finding": "The main enrichment section uses only PR139 user-facing fields. Evidence-only fields such as live options, abandoned or rejected options, noisy friction, and lost value stay out of the main body and appear only in the limits section as excluded fields."
+  },
+  "comparison_to_prior_builder_cases": {
+    "launch_public_enterprise_beta": {
+      "builder_output_ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-launch-public-enterprise-beta-v0.md",
+      "readability_pattern": "Clear action consequence around paid scoped private pilots and buyer-behavior evidence.",
+      "relative_note": "The cofounder output is more relationship/governance-heavy and therefore more source-depth sensitive."
+    },
+    "deploy_assisted_intake_routing": {
+      "builder_output_ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-deploy-assisted-intake-routing-v0.md",
+      "readability_pattern": "Clear action consequence around backlog diagnosis, one-clinic scope, must-pass gates, and pause triggers.",
+      "relative_note": "The cofounder output has less operational gate clarity and more human/legal nuance, but the builder still preserves uncertainty."
+    },
+    "ceo_remove_founding_cofounder": {
+      "builder_output_ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-ceo-remove-founding-cofounder-v0.md",
+      "readability_pattern": "Clear action consequence around authority transfer, transition role narrowing, and stop-loss triggers.",
+      "relative_note": "This third case is useful because it tests the builder on governance, relationship, and authority-transition language rather than launch or workflow operations."
+    }
+  },
+  "source_depth_read": {
+    "status": "source_limited_but_usable_for_offline_pattern_review",
+    "finding": "The output is adequate as an offline builder example, but the cofounder case still requires human review for legal, equity, board, employment, customer trust, team loyalty, and founder-relationship implications.",
+    "runtime_integration_recommended": false,
+    "human_review_still_required": true
+  },
+  "decision_gate": "proceed_to_three_builder_case_pattern_review",
+  "recommended_next_pr": "PR149 Decision Work Brief Three Builder Case Pattern Review v0",
+  "non_claims": [
+    "not_human_validated",
+    "not_product_proof",
+    "not_answer_quality_score",
+    "not_agent_action_authorization",
+    "not_runtime_integration",
+    "not_correctness_proof",
+    "builder_output_is_not_customer_validation",
+    "clean_artifacts_do_not_imply_good_advice",
+    "future_human_review_required"
+  ]
+}

@@ -1,0 +1,202 @@
+{
+  "schema_version": "lolla.decision_work_brief_second_enrichment_test.v0",
+  "review_metadata": {
+    "review_id": "decision_work_brief_second_enrichment_test:deploy-assisted-intake-routing:pr137",
+    "created_at": "2026-07-01T00:00:00Z",
+    "review_mode": "codex_assisted_provisional_checked_in_safe_second_enrichment_test",
+    "case_count": 1,
+    "case_selection_rule": "Use exactly the deploy-assisted-intake-routing brief and PR132 interpretation read because PR136 gated to a second enriched brief test.",
+    "notes": [
+      "PR137 repeats the PR135 enrichment shape on a different decision family.",
+      "No new interpretation read is created.",
+      "The cofounder case is not enriched in PR137."
+    ]
+  },
+  "custody_flags": {
+    "human_validated": false,
+    "product_proof": false,
+    "model_calls": 0,
+    "archive_mutated": false,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "raw_private_content_checked_in": false,
+    "provider_text_checked_in": false,
+    "local_absolute_paths_checked_in": false,
+    "broad_judge_used": false,
+    "automatic_labels_created": false,
+    "runtime_extraction_implemented": false,
+    "new_interpretation_read_created": false,
+    "cofounder_case_enriched": false,
+    "enrichment_is_provisional": true
+  },
+  "source_brief": {
+    "case_id": "deploy-assisted-intake-routing",
+    "run_id": "20260627T130339Z_4cd3cb",
+    "brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md",
+    "brief_schema_version": "lolla.decision_work_brief.v0",
+    "source_mode": "checked_in_safe",
+    "original_left_untouched": true
+  },
+  "source_interpretation_read": {
+    "read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-second-tiny-offline-read-v0/read.json",
+    "read_schema_version": "lolla.decision_work_conversation_interpretation_second_tiny_offline_read.v0",
+    "read_case_id": "deploy-assisted-intake-routing",
+    "read_is_provisional": true,
+    "human_validated": false,
+    "product_proof": false,
+    "model_calls": 0,
+    "source_packet_checked_in": false,
+    "raw_private_content_checked_in": false
+  },
+  "enrichment_scope": {
+    "scope": "Add one plain-language interpretation section to the deploy-assisted-intake-routing rendered brief.",
+    "new_section_heading": "What the interpretation adds",
+    "rule_source": "PR135 enrichment rules, carried forward because PR136 did not require a patch.",
+    "original_brief_modified": false,
+    "new_interpretation_read_created": false,
+    "runtime_or_renderer_changed": false
+  },
+  "enriched_brief_ref": "docs/conversation-understanding/decision-work-brief-enriched-deploy-assisted-intake-routing-v0.md",
+  "fields_used": [
+    {
+      "field_name": "decision_question",
+      "how_used": "Rephrased the decision as deploy AI-assisted intake routing next month versus narrow it to a controlled operating test.",
+      "source_status": "checked_in_safe_summary_only",
+      "uncertainty": "medium",
+      "human_review_required": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_name": "likely_starting_direction",
+      "how_used": "Included only as visible uncertainty that the starting point was already a narrow single-clinic pilot with a possibly heavy gate structure.",
+      "source_status": "mixed_safe_and_private_status",
+      "uncertainty": "high",
+      "human_review_required": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_name": "revised_direction_or_action_consequence",
+      "how_used": "Used to clarify the action consequence: 48-hour backlog diagnostic, four must-pass gates, hard pause triggers, and narrower sales meaning.",
+      "source_status": "mixed_safe_and_private_status",
+      "uncertainty": "medium",
+      "human_review_required": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_name": "decision_thresholds",
+      "how_used": "Used as visible thresholds: bottleneck diagnostic, one-clinic scope, admin usability, compliance readiness, live-operating control, and pause after a credible misroute.",
+      "source_status": "checked_in_safe_summary_only",
+      "uncertainty": "medium",
+      "human_review_required": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_name": "evidence_gates",
+      "how_used": "Used to show what the pilot must prove before it can carry broader operational or sales meaning.",
+      "source_status": "mixed_safe_and_private_status",
+      "uncertainty": "medium",
+      "human_review_required": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_name": "useful_friction",
+      "how_used": "Used only as a descriptive read: the process appears to have sharpened the move from an exhaustive control list toward an operable test.",
+      "source_status": "mixed_safe_and_private_status",
+      "uncertainty": "medium",
+      "human_review_required": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_name": "what_the_final_answer_does_not_prove",
+      "how_used": "Used to preserve that the enriched brief does not prove deployment, better advice, human validation, or agent authorization.",
+      "source_status": "checked_in_safe_summary_only",
+      "uncertainty": "low",
+      "human_review_required": false,
+      "must_not_be_used_as_quality_label": true
+    }
+  ],
+  "fields_excluded": [
+    {
+      "field_name": "live_options",
+      "reason": "Kept evidence-only because the checked-in-safe read cannot prove the complete deployment option set."
+    },
+    {
+      "field_name": "abandoned_or_rejected_options",
+      "reason": "Excluded because the read cannot safely distinguish fully rejected deployment paths from narrowed or gated paths."
+    },
+    {
+      "field_name": "noisy_friction",
+      "reason": "Excluded from the main body because it could become unsupported criticism of the simplified four-gate plan."
+    },
+    {
+      "field_name": "lost_value",
+      "reason": "Excluded because PR132 marks lost value as insufficient context."
+    },
+    {
+      "field_name": "user_values_or_priorities",
+      "reason": "Not selected for the tiny read and requires richer context or human review."
+    },
+    {
+      "field_name": "stakeholder_obligations",
+      "reason": "Patient, clinician, admin, compliance, support, and buyer obligations are only partially visible from safe summaries."
+    },
+    {
+      "field_name": "assistant_influence_on_user_framing",
+      "reason": "Requires raw conversation interpretation and is out of scope."
+    }
+  ],
+  "expected_reader_value": {
+    "plain_language_read": "The enriched section should help a reader see that the value is not just four gates instead of nine; it is an operable test tied to backlog cause, admin usability, compliance readiness, and hard pause triggers.",
+    "decision_story_value": "It connects the action consequence to the conversation story without saying the simplified control surface is proven better.",
+    "what_a_busy_reader_should_get": "A busy reader should understand why the feature should not be treated as the backlog solution or sold as autonomous intake automation.",
+    "human_validation_required": true
+  },
+  "risks": {
+    "source_depth_risk": "The enrichment still relies on checked-in-safe summaries and one provisional interpretation read; private clinical and compliance context may change the read.",
+    "overclaim_risk": "The enriched prose could imply four gates are better than nine unless the lost-controls risk remains visible.",
+    "reader_confidence_risk": "The cleaner story can make a provisional operating interpretation sound more settled than it is.",
+    "quality_label_risk": "Useful friction is included only as a descriptive read and must not become answer-quality scoring."
+  },
+  "decision_gate": {
+    "outcome": "proceed_to_enriched_brief_pattern_review",
+    "allowed_outcomes": [
+      "proceed_to_enriched_brief_pattern_review",
+      "patch_enrichment_rules",
+      "keep_interpretation_evidence_only",
+      "pause_until_human_review",
+      "stop_and_simplify"
+    ],
+    "rationale": "The second enriched brief is coherent, preserves uncertainty and non-claims, and does not reveal a blocking rule problem. The next step should compare the two enriched examples before any rules contract.",
+    "runtime_integration_recommended": false,
+    "product_readiness_claimed": false
+  },
+  "next_recommendation": {
+    "recommended_next_pr": "PR138 Enriched Brief Pattern Review v0",
+    "recommended_action": "Compare the launch-beta and intake-routing enriched briefs and decide whether enrichment rules are stable enough to formalize, need patching, should remain evidence-only, or should pause.",
+    "do_not_do_next": [
+      "Do not implement a rules contract in PR137.",
+      "Do not enrich more cases in PR137.",
+      "Do not integrate enrichment into runtime.",
+      "Do not treat two enriched examples as product proof."
+    ]
+  },
+  "non_claims": [
+    "enrichment_is_codex_assisted",
+    "enrichment_is_provisional",
+    "not_human_validated",
+    "not_product_proof",
+    "not_answer_quality_score",
+    "not_agent_action_authorization",
+    "not_correctness_proof",
+    "not_runtime_integration",
+    "not_runtime_extraction",
+    "not_lolla_runtime_change",
+    "not_new_interpretation_read",
+    "not_cofounder_case_enrichment",
+    "clean_artifacts_do_not_imply_good_advice",
+    "two_enriched_examples_are_not_general_evidence",
+    "future_human_review_required"
+  ]
+}

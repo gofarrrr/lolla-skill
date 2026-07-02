@@ -1,0 +1,184 @@
+{
+  "schema_version": "lolla.decision_work_brief_human_review_pilot_scaffold.v0",
+  "review_mode": "human_review_pilot_scaffold_only",
+  "human_validated": false,
+  "human_review_completed": false,
+  "product_proof": false,
+  "model_calls": 0,
+  "runtime_invoked": false,
+  "skill_invoked": false,
+  "archive_mutated": false,
+  "answer_quality_scored": false,
+  "agent_action_authorized": false,
+  "custody_flags": {
+    "human_validated": false,
+    "human_review_completed": false,
+    "product_proof": false,
+    "model_calls": 0,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "archive_mutated": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "raw_private_content_checked_in": false,
+    "provider_text_checked_in": false,
+    "local_absolute_paths_checked_in": false,
+    "new_lolla_run_created": false,
+    "new_interpretation_read_created": false,
+    "new_builder_output_created": false,
+    "human_answers_filled_by_codex": false,
+    "runtime_attachment_implemented": false
+  },
+  "review_metadata": {
+    "review_id": "decision-work-brief-human-review-pilot-scaffold-v0",
+    "created_at": "2026-07-01T00:00:00Z",
+    "created_by": "codex_scaffold_only",
+    "triggering_pr": "PR150 Decision Work Brief Human Review Intake Plan v0",
+    "triggering_gate": "run_human_review_pilot",
+    "purpose": "Prepare runnable but blank human-review pilot materials for the three builder-generated enriched Decision Work Brief examples."
+  },
+  "source_artifacts": [
+    {
+      "artifact_id": "human_review_intake_plan",
+      "artifact_type": "intake_plan",
+      "ref": "docs/conversation-understanding/decision-work-brief-human-review-intake-plan-v0.md"
+    },
+    {
+      "artifact_id": "human_review_intake_plan_review",
+      "artifact_type": "intake_plan_review_json",
+      "ref": "reviews/codex-assisted/decision-work-brief-human-review-intake-plan-v0/review.json"
+    },
+    {
+      "artifact_id": "three_builder_case_pattern_review",
+      "artifact_type": "pattern_review",
+      "ref": "reviews/codex-assisted/decision-work-brief-three-builder-case-pattern-review-v0/review.json"
+    },
+    {
+      "artifact_id": "launch_public_enterprise_beta_builder_output",
+      "case_id": "launch-public-enterprise-beta",
+      "artifact_type": "builder_generated_enriched_brief",
+      "ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-launch-public-enterprise-beta-v0.md"
+    },
+    {
+      "artifact_id": "deploy_assisted_intake_routing_builder_output",
+      "case_id": "deploy-assisted-intake-routing",
+      "artifact_type": "builder_generated_enriched_brief",
+      "ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-deploy-assisted-intake-routing-v0.md"
+    },
+    {
+      "artifact_id": "ceo_remove_founding_cofounder_builder_output",
+      "case_id": "ceo-remove-founding-cofounder",
+      "artifact_type": "builder_generated_enriched_brief",
+      "ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-ceo-remove-founding-cofounder-v0.md"
+    },
+    {
+      "artifact_id": "response_template",
+      "artifact_type": "blank_human_review_response_template",
+      "ref": "docs/conversation-understanding/decision-work-brief-human-review-response-template-v0.json"
+    }
+  ],
+  "pilot_scope": {
+    "scope_name": "three_builder_enriched_brief_human_review_pilot",
+    "case_ids": [
+      "launch-public-enterprise-beta",
+      "deploy-assisted-intake-routing",
+      "ceo-remove-founding-cofounder"
+    ],
+    "target_artifacts": [
+      "docs/conversation-understanding/decision-work-brief-builder-enriched-launch-public-enterprise-beta-v0.md",
+      "docs/conversation-understanding/decision-work-brief-builder-enriched-deploy-assisted-intake-routing-v0.md",
+      "docs/conversation-understanding/decision-work-brief-builder-enriched-ceo-remove-founding-cofounder-v0.md"
+    ],
+    "review_purpose": "Ask a real human whether the enriched Decision Work Brief surface is useful, clear, caveated, source-limited, and not overtrust-inducing.",
+    "out_of_scope": [
+      "Codex-filled human answers",
+      "answer quality scoring",
+      "product proof",
+      "human validation claim before review completes",
+      "runtime integration",
+      "agent action authorization"
+    ]
+  },
+  "reviewer_instruction_summary": {
+    "what_to_review": "Read the three builder-generated enriched briefs and fill the blank response template.",
+    "what_to_judge": [
+      "usefulness to a decision-maker",
+      "action consequence clarity",
+      "uncertainty visibility",
+      "source-limit visibility",
+      "private-context gaps",
+      "overtrust risk",
+      "cofounder/governance caution",
+      "runtime and user-surface blockers"
+    ],
+    "what_not_to_infer": [
+      "clean artifacts prove good advice",
+      "Lolla improved the decision",
+      "a human has already validated the interpretation",
+      "the advice was scored",
+      "an agent may act",
+      "runtime attachment is approved"
+    ],
+    "reviewer_must_leave_blank_if_uncertain": true
+  },
+  "response_template_ref": "docs/conversation-understanding/decision-work-brief-human-review-response-template-v0.json",
+  "case_packet_summary": [
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "decision_family": "gtm_or_enterprise_launch_timing",
+      "enriched_brief_ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-launch-public-enterprise-beta-v0.md",
+      "original_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md",
+      "interpretation_read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-tiny-offline-read-v0/read.json",
+      "source_review_ref": "reviews/codex-assisted/decision-work-brief-enrichment-builder-rule-patch-review-v0/review.json",
+      "known_highest_risk_uncertainty": "The paid private-pilot path may read more validated than the compressed checked-in sources can prove."
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "decision_family": "healthcare_operations_or_deployment_controls",
+      "enriched_brief_ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-deploy-assisted-intake-routing-v0.md",
+      "original_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md",
+      "interpretation_read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-second-tiny-offline-read-v0/read.json",
+      "source_review_ref": "reviews/codex-assisted/decision-work-brief-enrichment-builder-rule-patch-review-v0/review.json",
+      "known_highest_risk_uncertainty": "Deployment-control language may sound safe or validated unless patient-risk, compliance, and pause-trigger caveats remain visible."
+    },
+    {
+      "case_id": "ceo-remove-founding-cofounder",
+      "decision_family": "founder_governance_or_relationship_sensitive_authority_transition",
+      "enriched_brief_ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-ceo-remove-founding-cofounder-v0.md",
+      "original_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md",
+      "interpretation_read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-third-tiny-offline-read-v0/read.json",
+      "source_review_ref": "reviews/codex-assisted/decision-work-brief-third-builder-case-output-v0/review.json",
+      "known_highest_risk_uncertainty": "Authority-transfer language may sound like legal or operational advice unless governance, employment, board, equity, relationship, team, and customer-trust caveats remain close."
+    }
+  ],
+  "stop_conditions": [
+    "reviewer_cannot_tell_what_changed_for_action",
+    "caveats_are_too_buried",
+    "source_limits_are_unclear",
+    "brief_sounds_like_proof_of_good_advice",
+    "cofounder_case_sounds_like_legal_or_operational_advice",
+    "reviewer_cannot_distinguish_evidence_from_interpretation",
+    "private_context_needed_to_judge_usefulness",
+    "response_template_forces_fake_certainty"
+  ],
+  "allowed_pilot_outcomes": [
+    "ready_to_run_human_review",
+    "revise_review_form_first",
+    "reduce_case_scope",
+    "add_source_depth_materials_first",
+    "stop_and_simplify"
+  ],
+  "decision_gate": "ready_to_run_human_review",
+  "recommended_next_pr": "PR152 Decision Work Brief Human Review Pilot Run v0",
+  "non_claims": [
+    "not_human_validated",
+    "human_review_not_completed",
+    "not_product_proof",
+    "not_answer_quality_score",
+    "not_agent_action_authorization",
+    "not_runtime_integration",
+    "not_customer_readiness_claim",
+    "no_human_answers_filled_by_codex",
+    "blank_template_fields_do_not_imply_approval"
+  ]
+}

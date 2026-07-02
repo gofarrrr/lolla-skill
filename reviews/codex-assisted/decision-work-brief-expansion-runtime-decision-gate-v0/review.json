@@ -1,0 +1,135 @@
+{
+  "schema_version": "lolla.decision_work_brief_expansion_runtime_decision_gate.v0",
+  "review_metadata": {
+    "review_id": "decision_work_brief_expansion_runtime_decision_gate:v0:2026-07-01",
+    "created_at": "2026-07-01T00:00:00Z",
+    "review_mode": "codex_assisted_provisional_checked_in_safe_decision_gate",
+    "triggering_gate": "PR125 proceed_to_expansion_or_runtime_decision_gate",
+    "purpose": "Use PR124 readability and PR125 local-private adequacy evidence to choose the next phase without implementing runtime integration."
+  },
+  "custody_flags": {
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "archive_mutated": false,
+    "model_calls": 0,
+    "human_validated": false,
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "broad_judge_used": false,
+    "automatic_labels_created": false,
+    "raw_private_content_included": false,
+    "provider_text_included": false,
+    "checked_in_safe": true,
+    "local_absolute_paths_included": false
+  },
+  "evidence_inputs": [
+    {
+      "artifact_ref": "docs/conversation-understanding/decision-work-brief-plain-language-rereview-v0.md",
+      "review_ref": "reviews/codex-assisted/decision-work-brief-plain-language-rereview-v0/review.json",
+      "role": "pr124_readability_gate",
+      "finding": "Plain-language surface is good enough for local-private adequacy comparison; source depth is now the main blocker."
+    },
+    {
+      "artifact_ref": "docs/conversation-understanding/decision-work-brief-local-private-adequacy-check-v0.md",
+      "review_ref": "reviews/codex-assisted/decision-work-brief-local-private-adequacy-check-v0/review.json",
+      "role": "pr125_source_depth_gate",
+      "finding": "One launch-beta local-private shadow review completed and did not undermine the brief story, but it remains adequate with missing private nuance."
+    },
+    {
+      "artifact_ref": "docs/conversation-understanding/decision-work-brief-three-case-pattern-review-v0.md",
+      "review_ref": "reviews/codex-assisted/decision-work-brief-three-case-pattern-review-v0/review.json",
+      "role": "three_case_action_consequence_pattern",
+      "finding": "Three checked-in-safe cases showed a consistent action-consequence signal across distinct decision families."
+    }
+  ],
+  "readiness_assessment": {
+    "readability_result": "good_enough_for_source_depth_review",
+    "local_private_adequacy_result": "one_case_adequate_but_missing_private_nuance",
+    "three_case_pattern_result": "consistent_action_consequence_signal",
+    "remaining_source_depth_risk": "material",
+    "remaining_overclaim_risk": "material",
+    "runtime_attachment_readiness": "premature",
+    "why_more_cases_help": "More checked-in-safe cases may test breadth, but they do not answer whether private context reliably preserves or changes the brief story.",
+    "why_more_local_private_checks_help": "A second or third local-private adequacy check can test whether the checked-in-safe brief consistently holds up against richer context before broadening or planning attachment."
+  },
+  "decision_options": [
+    {
+      "option": "run_five_case_checked_in_safe_batch",
+      "allowed": true,
+      "reason_not_selected": "Readability is good enough, but source-depth risk remains the load-bearing blocker after only one local-private check."
+    },
+    {
+      "option": "run_more_local_private_adequacy_checks",
+      "allowed": true,
+      "reason_selected": "This directly tests the remaining blocker without adding runtime integration or broader checked-in-safe volume."
+    },
+    {
+      "option": "plan_runtime_attachment_only",
+      "allowed": true,
+      "reason_not_selected": "Runtime attachment planning is premature until more than one local-private comparison shows the brief does not mislead."
+    },
+    {
+      "option": "patch_renderer_again",
+      "allowed": true,
+      "reason_not_selected": "PR124 found the plain-language surface good enough for the next adequacy gate."
+    },
+    {
+      "option": "pause_until_human_review",
+      "allowed": true,
+      "reason_not_selected": "Human review is still required later, but the source-depth question has a concrete next local-only check."
+    },
+    {
+      "option": "stop_and_simplify",
+      "allowed": true,
+      "reason_not_selected": "The launch-beta local-private check did not show the brief shape becoming misleading."
+    }
+  ],
+  "selected_next_step": {
+    "outcome": "run_more_local_private_adequacy_checks",
+    "allowed_outcomes": [
+      "run_five_case_checked_in_safe_batch",
+      "run_more_local_private_adequacy_checks",
+      "plan_runtime_attachment_only",
+      "patch_renderer_again",
+      "pause_until_human_review",
+      "stop_and_simplify"
+    ],
+    "runtime_integration_recommended": false,
+    "planning_only": true,
+    "rationale": "The brief is readable and one local-private comparison did not undermine it, but one case is not enough to bound source-depth and overclaim risk before expansion or runtime attachment planning."
+  },
+  "rationale": {
+    "strongest_useful_signal": "Across three rendered examples, the brief consistently names what action would change; in the launch-beta local-private check, that action consequence still held.",
+    "strongest_source_depth_risk": "Only one case has been compared against richer local-private context, and even that case still leaves buyer reality, public-launch value, and lost-value nuance unsettled.",
+    "strongest_overclaim_risk": "Readable prose plus one supporting local-private check can feel like product readiness even though there is no human validation or broad adequacy evidence.",
+    "why_runtime_integration_is_premature": "The lane remains offline, Codex-assisted, non-human-validated, and source-depth-limited. Runtime attachment would make the artifact look more official than the evidence supports.",
+    "recommended_next_pr": "PR127 Decision Work Brief Additional Local-Private Adequacy Checks v0"
+  },
+  "explicit_non_decisions": [
+    "runtime integration is not implemented",
+    "no lolla runtime changes were made",
+    "no SKILL.md changes were made",
+    "no scripts/skill changes were made",
+    "no provider or model calls were added",
+    "no product proof is claimed",
+    "no human validation is claimed",
+    "no answer-quality scoring is performed",
+    "no agent action is authorized",
+    "no five-case checked-in-safe batch is implemented",
+    "no renderer changes are implemented"
+  ],
+  "non_claims": [
+    "review_is_codex_assisted",
+    "not_human_validated",
+    "not_product_proof",
+    "not_answer_quality_score",
+    "not_agent_action_authorization",
+    "not_correctness_proof",
+    "runtime_integration_not_implemented",
+    "runtime_attachment_planning_not_selected",
+    "clean_artifacts_do_not_imply_good_advice",
+    "one_local_private_check_is_not_general_evidence",
+    "future_human_review_required"
+  ]
+}

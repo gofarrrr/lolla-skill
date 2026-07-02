@@ -1,0 +1,590 @@
+{
+  "schema_version": "lolla.decision_work_brief_third_diversity_case_pilot.v0",
+  "pilot_metadata": {
+    "pilot_id": "decision_work_brief_third_diversity_case_pilot:deploy-assisted-intake-routing:20260627T130339Z_4cd3cb",
+    "created_at": "2026-07-01T00:00:00Z",
+    "review_mode": "codex_assisted_provisional_checked_in_safe",
+    "case_count": 1,
+    "generated_by": "codex_assisted_pr121a_review",
+    "triggering_gate_ref": "reviews/codex-assisted/decision-work-brief-small-pattern-review-v0/review.json",
+    "triggering_gate_outcome": "proceed_to_third_diversity_case",
+    "purpose": "Run exactly one third diversity Decision Work Brief pilot after PR120 selected a third-case follow-on."
+  },
+  "selected_case": {
+    "case_id": "deploy-assisted-intake-routing",
+    "run_id": "20260627T130339Z_4cd3cb",
+    "archive_relpath": "deploy-assisted-intake-routing/20260627T130339Z_4cd3cb",
+    "selection_reason": "Preferred PR121A candidate was available as a completed run and differs from the first two cases; this one is a healthcare operations, compliance, and workflow deployment decision.",
+    "not_reused_cases": [
+      "ceo-remove-founding-cofounder",
+      "launch-public-enterprise-beta"
+    ],
+    "selected_case_count": 1
+  },
+  "input_scope": {
+    "pr115_packet_outputs_used": true,
+    "pr115_packet_generation": "metadata_only_local_temporary_output_not_checked_in",
+    "decision_trail_report_generation": "local_temporary_metadata_only_not_checked_in",
+    "decision_work_receipt_generation": "local_temporary_metadata_only_not_checked_in",
+    "local_private_text_used_for_pr121a": false,
+    "raw_private_content_checked_in": false,
+    "provider_text_checked_in": false,
+    "semantic_support_policy": "Codex-assisted interpretation used the PR115 metadata-only packet for source availability and custody, plus local metadata-only Decision Trail and Decision Work Receipt summaries. Private source text was not copied into this artifact.",
+    "pilot_size_reason": "Exactly one third completed run; PR121A is a third diversity case, not a batch."
+  },
+  "source_packets": [
+    {
+      "packet_schema_version": "lolla.decision_work_brief_packets.v0",
+      "packet_mode": "metadata_only",
+      "packet_ref": "decision_work_brief_packets:deploy-assisted-intake-routing:20260627T130339Z_4cd3cb",
+      "source_run_ref": "deploy-assisted-intake-routing/20260627T130339Z_4cd3cb",
+      "generated_locally_for_pr121a": true,
+      "checked_in": false,
+      "local_private_text_used": false,
+      "raw_private_content_included": false,
+      "provider_text_included": false,
+      "input_ref_count": 20,
+      "target_sections": [
+        "decision",
+        "starting_direction",
+        "what_lolla_pressed_on",
+        "what_changed",
+        "what_this_means_for_action",
+        "what_still_might_be_wrong",
+        "what_was_not_proven",
+        "evidence_receipt"
+      ],
+      "available_structured_refs": [
+        "agent_result.json",
+        "evaluation.json",
+        "reasoning_trace.json",
+        "extraction.json",
+        "result.json",
+        "memo_note.json",
+        "graph_survival_report.json"
+      ],
+      "redacted_or_private_refs": [
+        "conversation.txt",
+        "memo.md",
+        "revised.txt",
+        "live_transcript.txt",
+        "operator.log",
+        "pre_step6_private_table.json",
+        "pre_step6_private_table.md",
+        "pre_step6_private_table_ledger.json",
+        "v60_ledger.json",
+        "v60_ledger_skeleton.json"
+      ],
+      "external_report_refs": [
+        "decision_work_receipt:local_temporary_metadata_only",
+        "decision_trail_report:local_temporary_metadata_only"
+      ],
+      "not_supplied_refs": [
+        "product_delta_report"
+      ]
+    }
+  ],
+  "custody_flags": {
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "archive_mutated": false,
+    "model_calls": 0,
+    "semantic_interpretation_performed": true,
+    "codex_assisted": true,
+    "human_validated": false,
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "broad_judge_used": false,
+    "automatic_labels_created": false,
+    "raw_private_content_included": false,
+    "provider_text_included": false,
+    "checked_in_safe": true,
+    "local_absolute_paths_included": false,
+    "local_private_packet_checked_in": false
+  },
+  "third_case_brief": {
+    "draft_id": "decision_work_brief:deploy-assisted-intake-routing:20260627T130339Z_4cd3cb:pr121a-provisional",
+    "draft_status": "codex_assisted_provisional_checked_in_safe",
+    "case_ref": "deploy-assisted-intake-routing/20260627T130339Z_4cd3cb",
+    "source_packet_ref": "decision_work_brief_packets:deploy-assisted-intake-routing:20260627T130339Z_4cd3cb",
+    "codex_assisted": true,
+    "local_private_text_used": false,
+    "action_consequence_read": "Provisional read: the operator would keep the launch narrow but replace the nine-gate checklist with a 48-hour backlog diagnostic, four must-pass operating gates, hard pause triggers, and a sales boundary that validates scheduling and billing routing only.",
+    "missingness_or_uncertainty_read": "The checked-in-safe packet does not include raw conversation, raw revised answer, raw memo, provider text, or private ledgers, so actual clinic capacity, compliance tolerance, patient-risk details, and whether the original answer already had the key constraints remain uncertain.",
+    "lost_value_or_possible_noise_note": "The brief may overcorrect against thoroughness: some of the removed gates could contain useful patient-trust, support, or measurement controls that still matter if compressed into four gates too aggressively.",
+    "human_followup_questions": [
+      "Is routing uncertainty actually a major cause of the clinic backlog, or are staffing, queue ownership, payer friction, or downstream capacity the real bottleneck?",
+      "Can exhausted admin staff operate the four must-pass gates under real pressure?",
+      "Would compliance accept a three-week constrained pilot, or does the two-month auditability and consent concern block even the narrowed launch?"
+    ],
+    "custody_flags": {
+      "runtime_invoked": false,
+      "skill_invoked": false,
+      "archive_mutated": false,
+      "model_calls": 0,
+      "human_validated": false,
+      "product_proof": false,
+      "answer_quality_scored": false,
+      "agent_action_authorized": false,
+      "broad_judge_used": false,
+      "automatic_labels_created": false,
+      "raw_private_content_included": false,
+      "provider_text_included": false,
+      "checked_in_safe": true,
+      "local_absolute_paths_included": false
+    },
+    "brief": {
+      "schema_version": "lolla.decision_work_brief.v0",
+      "brief_metadata": {
+        "brief_id": "decision_work_brief:deploy-assisted-intake-routing:20260627T130339Z_4cd3cb:pr121a-provisional",
+        "created_at": "2026-07-01T00:00:00Z",
+        "case_id": "deploy-assisted-intake-routing",
+        "run_id": "20260627T130339Z_4cd3cb",
+        "archive_relpath": "deploy-assisted-intake-routing/20260627T130339Z_4cd3cb",
+        "generated_by": "manual_schema_fixture",
+        "schema_version": "lolla.decision_work_brief.v0",
+        "notes": [
+          "Codex-assisted provisional third diversity case draft for PR121A.",
+          "Checked-in safe summary only; no generator, runtime integration, human validation, product proof, or model-call code exists in this PR."
+        ]
+      },
+      "mode": "checked_in_safe_mode",
+      "source_refs": [
+        {
+          "artifact": "decision_work_brief_packets:metadata_only:not_checked_in",
+          "field": "packet_sections",
+          "source_status": "checked_in_safe_structured_artifact",
+          "content_included": false,
+          "raw_private_content_included": false,
+          "provider_text_included": false
+        },
+        {
+          "artifact": "decision_trail_report:local_temporary_metadata_only",
+          "field": "decision_question|structural_delta|constraints",
+          "source_status": "external_report_reference",
+          "content_included": false,
+          "raw_private_content_included": false,
+          "provider_text_included": false
+        },
+        {
+          "artifact": "decision_work_receipt:local_temporary_metadata_only",
+          "field": "decision_trail_summary|missingness_and_redaction",
+          "source_status": "external_report_reference",
+          "content_included": false,
+          "raw_private_content_included": false,
+          "provider_text_included": false
+        }
+      ],
+      "custody_flags": {
+        "human_validated": false,
+        "human_validation_status": "not_human_validated",
+        "human_review_refs": [],
+        "product_proof": false,
+        "answer_quality_scored": false,
+        "agent_action_authorized": false,
+        "runtime_invoked": false,
+        "skill_invoked": false,
+        "archive_mutated": false,
+        "model_calls": 0,
+        "raw_private_content_included": false,
+        "provider_text_included": false,
+        "raw_transcript_included": false,
+        "raw_revised_answer_included": false,
+        "raw_memo_included": false,
+        "private_reasoning_included": false,
+        "local_absolute_paths_included": false,
+        "secrets_included": false,
+        "llm_judge_used": false,
+        "automatic_labels_created": false
+      },
+      "sections": {
+        "decision": {
+          "status": "populated_from_llm_interpretation",
+          "source_status": "checked_in_safe_structured_artifact",
+          "source_refs": [
+            {
+              "artifact": "extraction.json",
+              "field": "extraction.decision_situation",
+              "source_status": "checked_in_safe_structured_artifact",
+              "content_included": false,
+              "raw_private_content_included": false,
+              "provider_text_included": false
+            },
+            {
+              "artifact": "decision_trail_report:local_temporary_metadata_only",
+              "field": "decision_question",
+              "source_status": "external_report_reference",
+              "content_included": false,
+              "raw_private_content_included": false,
+              "provider_text_included": false
+            }
+          ],
+          "interpreted_by": "llm_interpretation",
+          "human_validated": false,
+          "uncertainty": "medium",
+          "value": {
+            "decision_story_read": "The decision appears to be whether to deploy an AI-assisted intake routing feature in outpatient clinics next month despite operational, compliance, sales, and staff-capacity constraints.",
+            "why_medium_uncertainty": "The decision question is structured, but the checked-in-safe artifact omits raw conversation and private interpretation surfaces."
+          },
+          "empty_meaning": "If this section is empty, the pilot has not identified the decision being drafted."
+        },
+        "starting_direction": {
+          "status": "populated_from_llm_interpretation",
+          "source_status": "checked_in_safe_structured_artifact",
+          "source_refs": [
+            {
+              "artifact": "extraction.json",
+              "field": "extraction.synthesized_position",
+              "source_status": "checked_in_safe_structured_artifact",
+              "content_included": false,
+              "raw_private_content_included": false,
+              "provider_text_included": false
+            },
+            {
+              "artifact": "agent_result.json",
+              "field": "take_backs",
+              "source_status": "checked_in_safe_structured_artifact",
+              "content_included": false,
+              "raw_private_content_included": false,
+              "provider_text_included": false
+            }
+          ],
+          "interpreted_by": "llm_interpretation",
+          "human_validated": false,
+          "uncertainty": "high",
+          "value": {
+            "candidate_starting_direction": "The likely starting direction was already a narrow single-clinic pilot rather than a broad launch, but it relied on a large nine-gate control structure.",
+            "why_high_uncertainty": "The raw baseline and revised answer are not included, so the amount of actual change versus simplification remains uncertain."
+          },
+          "empty_meaning": "If empty, the pilot cannot state the likely starting direction without further review."
+        },
+        "what_lolla_pressed_on": {
+          "status": "populated_from_llm_interpretation",
+          "source_status": "checked_in_safe_structured_artifact",
+          "source_refs": [
+            {
+              "artifact": "agent_result.json",
+              "field": "main_counter_pressure|do_not_act_before",
+              "source_status": "checked_in_safe_structured_artifact",
+              "content_included": false,
+              "raw_private_content_included": false,
+              "provider_text_included": false
+            },
+            {
+              "artifact": "decision_trail_report:local_temporary_metadata_only",
+              "field": "constraints|audit_pressure_summary",
+              "source_status": "external_report_reference",
+              "content_included": false,
+              "raw_private_content_included": false,
+              "provider_text_included": false
+            }
+          ],
+          "interpreted_by": "llm_interpretation",
+          "human_validated": false,
+          "uncertainty": "medium",
+          "value": {
+            "pressure_read": "Lolla appears to have pressed on whether an exhaustive gate list was becoming a control burden too heavy for exhausted admin staff to operate.",
+            "pressed_dimensions": [
+              "whether routing uncertainty was actually causing the backlog",
+              "whether nine gates should be compressed into fewer must-pass operating controls",
+              "whether pause and rollback triggers were active controls rather than passive monitoring",
+              "whether sales language should be narrowed away from full intake automation"
+            ]
+          },
+          "empty_meaning": "If empty, the pilot cannot state what Lolla pressed on."
+        },
+        "what_changed": {
+          "status": "populated_from_llm_interpretation",
+          "source_status": "checked_in_safe_structured_artifact",
+          "source_refs": [
+            {
+              "artifact": "agent_result.json",
+              "field": "changed_advice_summary|take_backs",
+              "source_status": "checked_in_safe_structured_artifact",
+              "content_included": false,
+              "raw_private_content_included": false,
+              "provider_text_included": false
+            },
+            {
+              "artifact": "result.json",
+              "field": "memo_what_changed|memo_take_back_or_set_aside",
+              "source_status": "checked_in_safe_structured_artifact",
+              "content_included": false,
+              "raw_private_content_included": false,
+              "provider_text_included": false
+            }
+          ],
+          "interpreted_by": "llm_interpretation",
+          "human_validated": false,
+          "uncertainty": "medium",
+          "value": {
+            "change_read": "The plan changed from a narrow pilot wrapped in nine gates toward a smaller operating test with four must-pass gates, a 48-hour backlog diagnostic, hard pause triggers, and narrower sales meaning.",
+            "specific_changes": [
+              "Nine gates compress into scope enforcement, admin usability, compliance readiness, and live-operating control.",
+              "Before go-live, the team checks whether routing uncertainty is actually driving the backlog.",
+              "One credible clinician-attention misroute pauses auto-routing until the cause is understood.",
+              "The pilot validates scheduling and billing routing only, not broad intake automation."
+            ]
+          },
+          "empty_meaning": "If empty, the pilot has not identified an action, threshold, sequence, gate, stop rule, or scope change."
+        },
+        "what_this_means_for_action": {
+          "status": "populated_from_llm_interpretation",
+          "source_status": "checked_in_safe_structured_artifact",
+          "source_refs": [
+            {
+              "artifact": "agent_result.json",
+              "field": "do_not_act_before|changed_advice_summary",
+              "source_status": "checked_in_safe_structured_artifact",
+              "content_included": false,
+              "raw_private_content_included": false,
+              "provider_text_included": false
+            },
+            {
+              "artifact": "result.json",
+              "field": "memo_orientation_note|memo_what_changed",
+              "source_status": "checked_in_safe_structured_artifact",
+              "content_included": false,
+              "raw_private_content_included": false,
+              "provider_text_included": false
+            }
+          ],
+          "interpreted_by": "llm_interpretation",
+          "human_validated": false,
+          "uncertainty": "medium",
+          "value": {
+            "action_consequence": "Before go-live, the team would run a 48-hour bottleneck check, keep the pilot to one clinic and scheduling/billing routing, require four operating gates, and predefine pause triggers instead of treating the AI pilot as the backlog solution.",
+            "candidate_next_actions": [
+              "Do not ask exhausted admins to operate a nine-gate control system.",
+              "Diagnose whether staffing, forms, queue ownership, payer friction, handoffs, or downstream capacity are the real backlog causes.",
+              "Pause auto-routing after one credible clinician-attention misroute.",
+              "Keep sales language to staff-controlled intake organization, not autonomous intake automation."
+            ]
+          },
+          "empty_meaning": "If empty, the pilot cannot state what the decision-maker would do differently."
+        },
+        "what_still_might_be_wrong": {
+          "status": "populated_from_llm_interpretation",
+          "source_status": "checked_in_safe_structured_artifact",
+          "source_refs": [
+            {
+              "artifact": "decision_work_brief_packets:metadata_only:not_checked_in",
+              "field": "input_refs/redacted_or_private_refs",
+              "source_status": "checked_in_safe_structured_artifact",
+              "content_included": false,
+              "raw_private_content_included": false,
+              "provider_text_included": false
+            },
+            {
+              "artifact": "decision_trail_report:local_temporary_metadata_only",
+              "field": "lost_value|useful_noisy_friction|stakeholders|values_or_priorities",
+              "source_status": "external_report_reference",
+              "content_included": false,
+              "raw_private_content_included": false,
+              "provider_text_included": false
+            }
+          ],
+          "interpreted_by": "llm_interpretation",
+          "human_validated": false,
+          "uncertainty": "high",
+          "value": {
+            "missingness_and_uncertainty": [
+              "The raw conversation, revised answer, memo, live transcript, provider text, and private ledgers are absent from the checked-in artifact.",
+              "The safe report marks useful versus noisy friction, lost value, stakeholders, values, and assistant influence as requiring interpretation or not supplied.",
+              "The real backlog cause, admin ability to operate controls, compliance tolerance, and patient-risk boundary are not verified here.",
+              "The nine-gate format may have contained useful patient-trust, support, or measurement controls that should not be lost."
+            ],
+            "possible_overcorrection_or_noise": "The brief may overcorrect against thoroughness if compressing nine gates into four loses controls that matter for patient trust, support readiness, or measurement. It may also underweight compliance's two-month auditability and consent concern."
+          },
+          "empty_meaning": "If empty, the pilot is hiding uncertainty and should not be treated as complete."
+        },
+        "what_was_not_proven": {
+          "status": "available_from_structured_artifact",
+          "source_status": "checked_in_safe_structured_artifact",
+          "source_refs": [
+            {
+              "artifact": "docs/conversation-understanding/decision-work-brief-v0.json",
+              "field": "non_claims",
+              "source_status": "checked_in_safe_structured_artifact",
+              "content_included": false,
+              "raw_private_content_included": false,
+              "provider_text_included": false
+            },
+            {
+              "artifact": "decision_work_brief_packets:metadata_only:not_checked_in",
+              "field": "non_claims",
+              "source_status": "checked_in_safe_structured_artifact",
+              "content_included": false,
+              "raw_private_content_included": false,
+              "provider_text_included": false
+            }
+          ],
+          "interpreted_by": "not_interpreted",
+          "human_validated": false,
+          "uncertainty": "not_applicable",
+          "value": {
+            "not_proven": [
+              "The draft does not prove the AI routing feature should deploy.",
+              "The draft does not prove the constrained pilot is better advice.",
+              "The draft does not measure answer quality.",
+              "The draft does not authorize agent action.",
+              "The draft is not human validated.",
+              "Three clean cases do not create product readiness."
+            ]
+          },
+          "empty_meaning": "If empty, the brief is missing required non-claims."
+        },
+        "evidence_receipt": {
+          "status": "available_from_structured_artifact",
+          "source_status": "checked_in_safe_structured_artifact",
+          "source_refs": [
+            {
+              "artifact": "decision_work_brief_packets:metadata_only:not_checked_in",
+              "field": "source_packets/0",
+              "source_status": "checked_in_safe_structured_artifact",
+              "content_included": false,
+              "raw_private_content_included": false,
+              "provider_text_included": false
+            },
+            {
+              "artifact": "decision_work_receipt:local_temporary_metadata_only",
+              "field": "summary",
+              "source_status": "external_report_reference",
+              "content_included": false,
+              "raw_private_content_included": false,
+              "provider_text_included": false
+            },
+            {
+              "artifact": "decision_trail_report:local_temporary_metadata_only",
+              "field": "summary",
+              "source_status": "external_report_reference",
+              "content_included": false,
+              "raw_private_content_included": false,
+              "provider_text_included": false
+            }
+          ],
+          "interpreted_by": "deterministic_structured_artifact",
+          "human_validated": false,
+          "uncertainty": "not_applicable",
+          "value": {
+            "receipt_story": "The backing layer is the locally generated PR115 metadata-only packet plus local metadata-only Decision Work Receipt and Decision Trail reports. These were used as source/custody context and were not checked in.",
+            "available_evidence": [
+              "structured run metadata",
+              "Decision Trail decision question, constraints, audit pressure, and structural delta fields",
+              "Decision Work Receipt missingness and custody metadata",
+              "PR115 metadata-only source availability packet"
+            ],
+            "withheld_or_redacted": [
+              "raw conversation",
+              "raw revised answer",
+              "raw memo",
+              "live transcript",
+              "provider text",
+              "private ledgers"
+            ]
+          },
+          "empty_meaning": "If empty, the brief does not identify the backing evidence layer."
+        }
+      },
+      "non_claims": {
+        "items": [
+          "not_correctness_proof",
+          "not_answer_quality_score",
+          "not_agent_action_authorization",
+          "not_human_validated_unless_marked",
+          "clean_artifacts_do_not_imply_good_advice",
+          "process_evidence_is_not_decision_certification",
+          "llm_interpretation_is_provisional_unless_human_reviewed"
+        ],
+        "empty_meaning": "A missing non-claim means the brief is incomplete and may overstate what the audit can support."
+      }
+    }
+  },
+  "rendered_brief_ref": {
+    "path": "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md",
+    "renderer": "scripts/evals/render_decision_work_brief.py",
+    "rendered_from": "third_case_brief.brief",
+    "checked_in_safe": true,
+    "raw_private_content_included": false,
+    "provider_text_included": false
+  },
+  "comparison_to_prior_cases": {
+    "prior_case_refs": [
+      "ceo-remove-founding-cofounder",
+      "launch-public-enterprise-beta"
+    ],
+    "third_case_ref": "deploy-assisted-intake-routing",
+    "did_all_cases_produce_concrete_action_consequence": {
+      "answer": "yes",
+      "detail": "The first names authority transfer and stop conditions; the second names equal private-pilot offers and buyer-behavior priority; the third names backlog diagnosis, four operating gates, hard pause triggers, and narrowed sales meaning."
+    },
+    "did_all_cases_preserve_uncertainty_and_missingness": {
+      "answer": "yes",
+      "detail": "All three briefs keep raw/private artifacts out of checked-in outputs and explicitly mark source-boundary uncertainty."
+    },
+    "did_third_case_test_different_decision_type": {
+      "answer": "yes",
+      "detail": "The third case is healthcare workflow deployment under compliance, staff-capacity, sales, and patient-risk constraints."
+    },
+    "did_shape_work_outside_governance_and_enterprise_launch": {
+      "answer": "partly_yes",
+      "detail": "The brief still names decision, pressure, change, action consequence, uncertainty, non-claims, and evidence refs in an operations/compliance deployment decision."
+    },
+    "schema_or_renderer_gap": {
+      "answer": "renderer_language_still_internal",
+      "detail": "The rendered example is useful for internal review, but field-key labels and source refs still need plain-language treatment before customer-facing use."
+    }
+  },
+  "aggregate_observations": {
+    "strongest_useful_signal": "The brief shape again names a concrete action consequence: compress the control surface, diagnose the actual backlog cause, define hard pause triggers, and narrow what the pilot proves.",
+    "strongest_missingness_thinness_risk": "The checked-in-safe artifact cannot verify actual clinic capacity, compliance acceptance, patient-risk detail, or whether the starting answer already contained most of the action sequence.",
+    "strongest_overclaim_risk": "Three clean rendered briefs can look like a validated pattern even though all are Codex-assisted, non-human-validated, and source-limited.",
+    "brief_shape_read": "The shape now appears to work across governance, enterprise launch, and healthcare operations decisions, but only as a provisional product-shape signal.",
+    "renderer_read": "The renderer should probably be reviewed for plainer language after the three-case pattern review, because it still exposes too many internal field labels."
+  },
+  "decision_gate": {
+    "outcome": "proceed_to_three_case_pattern_review",
+    "allowed_outcomes": [
+      "proceed_to_three_case_pattern_review",
+      "proceed_to_renderer_language_patch",
+      "proceed_to_local_private_adequacy_check",
+      "pause_until_human_review",
+      "stop_and_simplify"
+    ],
+    "rationale": "The third diversity case again produced a concrete action-consequence read while preserving uncertainty. The next step should review the three-case pattern before any fourth case, renderer patch, local-private adequacy check, or human review pause.",
+    "runtime_integration_recommended": false,
+    "blocked_outcomes": [
+      {
+        "outcome": "proceed_to_runtime_integration",
+        "reason": "Not an allowed PR121A outcome and not justified from three Codex-assisted checked-in-safe cases."
+      },
+      {
+        "outcome": "proceed_to_renderer_language_patch",
+        "reason": "Likely needed soon, but the third case should first be compared with the first two in a three-case pattern review."
+      }
+    ]
+  },
+  "non_claims": [
+    "pilot_is_codex_assisted",
+    "not_human_validated",
+    "not_product_proof",
+    "not_answer_quality_score",
+    "not_agent_action_authorization",
+    "not_correctness_proof",
+    "clean_artifacts_do_not_imply_good_advice",
+    "three_cases_are_not_general_evidence",
+    "future_human_review_required",
+    "no_runtime_integration_recommended_from_this_pilot_alone"
+  ],
+  "next_recommendation": {
+    "recommended_next_pr": "PR122 Decision Work Brief Three-Case Pattern Review v0",
+    "recommended_action": "Review the three checked-in-safe rendered briefs together and decide whether the next move is a renderer language patch, local-private adequacy check, human review pause, or simplification.",
+    "do_not_do_next": [
+      "Do not create runtime integration.",
+      "Do not broaden to a batch.",
+      "Do not publish a customer-facing example.",
+      "Do not treat three cases as product proof."
+    ]
+  }
+}

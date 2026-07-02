@@ -1,0 +1,172 @@
+{
+  "schema_version": "lolla.decision_work_brief_enriched_pattern_review.v0",
+  "review_metadata": {
+    "review_id": "decision_work_brief_enriched_pattern_review:pr138",
+    "created_at": "2026-07-01T00:00:00Z",
+    "review_mode": "codex_assisted_provisional_checked_in_safe_enriched_pattern_review",
+    "enriched_brief_count": 2,
+    "notes": [
+      "PR138 compares the two enriched briefs created by PR135 and PR137.",
+      "PR138 does not create enrichment rules, enrich additional cases, or implement PR139.",
+      "The pattern review is provisional and not human validation."
+    ]
+  },
+  "custody_flags": {
+    "human_validated": false,
+    "product_proof": false,
+    "model_calls": 0,
+    "archive_mutated": false,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "raw_private_content_checked_in": false,
+    "provider_text_checked_in": false,
+    "local_absolute_paths_checked_in": false,
+    "broad_judge_used": false,
+    "automatic_labels_created": false,
+    "runtime_extraction_implemented": false,
+    "rules_contract_implemented": false,
+    "additional_cases_enriched": false,
+    "pattern_review_is_provisional": true
+  },
+  "enriched_briefs_compared": [
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "decision_family": "enterprise_launch_or_gtm",
+      "enriched_brief_ref": "docs/conversation-understanding/decision-work-brief-enriched-launch-public-enterprise-beta-v0.md",
+      "source_interpretation_read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-tiny-offline-read-v0/read.json",
+      "source_enrichment_review_ref": "reviews/codex-assisted/decision-work-brief-interpretation-enrichment-test-v0/review.json",
+      "action_consequence_added_value": "The enriched section clarifies that action should be tied to proof-producing buyer behavior, equal paid scoped offers, and named evidence gates rather than logo size or public-launch optics.",
+      "uncertainty_preserved": true,
+      "non_claims_preserved": true,
+      "strongest_overclaim_risk": "The private-pilot direction can look more settled than checked-in-safe source depth supports."
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "decision_family": "healthcare_operations_or_deployment",
+      "enriched_brief_ref": "docs/conversation-understanding/decision-work-brief-enriched-deploy-assisted-intake-routing-v0.md",
+      "source_interpretation_read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-second-tiny-offline-read-v0/read.json",
+      "source_enrichment_review_ref": "reviews/codex-assisted/decision-work-brief-second-enrichment-test-v0/review.json",
+      "action_consequence_added_value": "The enriched section clarifies that action should be tied to a 48-hour backlog diagnostic, four must-pass gates, hard pause triggers, and narrower sales meaning.",
+      "uncertainty_preserved": true,
+      "non_claims_preserved": true,
+      "strongest_overclaim_risk": "The four-gate simplification can look proven better than the nine-gate structure even though lost controls remain unresolved."
+    }
+  ],
+  "pattern_observations": {
+    "did_enrichment_help_in_both_cases": "yes_provisionally",
+    "did_it_make_action_consequence_clearer": "yes_provisionally",
+    "did_it_distinguish_sharpened_from_already_present": "yes_provisionally",
+    "did_it_preserve_uncertainty": "yes",
+    "did_it_create_overclaim_risk": "yes_manageable",
+    "did_it_add_machinery_to_main_body": "no",
+    "pattern_read": "The enrichment pattern is useful because it adds a small conversation-story layer while keeping source limits and non-claims nearby."
+  },
+  "stable_enrichment_fields": [
+    {
+      "field_name": "decision_question",
+      "future_rule": "May feed the brief when phrased as a provisional decision read with source limits."
+    },
+    {
+      "field_name": "likely_starting_direction",
+      "future_rule": "May feed the brief only with visible uncertainty and a warning that checked-in-safe context may not prove what was already present."
+    },
+    {
+      "field_name": "revised_direction_or_action_consequence",
+      "future_rule": "May feed the brief as the core action-consequence signal, but must not claim Lolla improved the decision."
+    },
+    {
+      "field_name": "decision_thresholds",
+      "future_rule": "May feed the brief as visible thresholds, not complete operating criteria."
+    },
+    {
+      "field_name": "evidence_gates",
+      "future_rule": "May feed the brief as visible proof points, not validated evidence sufficiency."
+    },
+    {
+      "field_name": "useful_friction",
+      "future_rule": "May feed the brief only as descriptive language about what appears sharpened, never as answer-quality scoring."
+    },
+    {
+      "field_name": "what_the_final_answer_does_not_prove",
+      "future_rule": "Should feed the brief because it lowers overclaim risk."
+    }
+  ],
+  "evidence_only_fields": [
+    {
+      "field_name": "live_options",
+      "reason": "The checked-in-safe reads cannot prove the full live option set."
+    },
+    {
+      "field_name": "abandoned_or_rejected_options",
+      "reason": "Too easy to convert gated or narrowed options into rejected options."
+    },
+    {
+      "field_name": "noisy_friction",
+      "reason": "Useful as internal caution but too likely to read as unsupported criticism in the user-facing body."
+    },
+    {
+      "field_name": "lost_value",
+      "reason": "Both reads mark lost value as insufficient context."
+    },
+    {
+      "field_name": "user_values_or_priorities",
+      "reason": "Requires richer local-private context or human review."
+    },
+    {
+      "field_name": "stakeholder_obligations",
+      "reason": "Only partially visible from checked-in-safe summaries."
+    },
+    {
+      "field_name": "assistant_influence_on_user_framing",
+      "reason": "Requires raw conversation interpretation and is outside the tiny read scope."
+    }
+  ],
+  "rule_risks": {
+    "source_depth_risk": "The enriched pattern still rests on checked-in-safe summaries and provisional Codex-assisted reads.",
+    "overclaim_risk": "Polished enrichment can make provisional interpretation feel like settled conversation truth.",
+    "product_language_risk": "A future rules contract must keep field names and source-status vocabulary out of the main body.",
+    "quality_label_risk": "Useful friction must never become answer-quality scoring or a claim that advice improved.",
+    "runtime_integration_risk": "Two enriched examples are not enough for live Lolla attachment or agent workflows."
+  },
+  "decision_gate": {
+    "outcome": "proceed_to_enrichment_rules_contract",
+    "allowed_outcomes": [
+      "proceed_to_enrichment_rules_contract",
+      "patch_enrichment_rules",
+      "keep_interpretation_evidence_only",
+      "pause_until_human_review",
+      "stop_and_simplify"
+    ],
+    "rationale": "Both enriched briefs appear more useful for action consequence while preserving uncertainty and non-claims. The next slice should define conservative enrichment rules before any more examples or runtime planning.",
+    "runtime_integration_recommended": false,
+    "product_readiness_claimed": false
+  },
+  "next_recommendation": {
+    "recommended_next_pr": "PR139 Decision Work Brief Enrichment Rules Contract v0",
+    "recommended_action": "Define a docs/schema/test contract for how interpretation reads may enrich Decision Work Briefs while preserving source limits, uncertainty, and non-claims.",
+    "do_not_do_next": [
+      "Do not implement PR139 in this session.",
+      "Do not integrate enrichment into runtime.",
+      "Do not enrich more cases before rules are written.",
+      "Do not treat two enriched examples as product proof."
+    ]
+  },
+  "non_claims": [
+    "pattern_review_is_codex_assisted",
+    "pattern_review_is_provisional",
+    "not_human_validated",
+    "not_product_proof",
+    "not_answer_quality_score",
+    "not_agent_action_authorization",
+    "not_correctness_proof",
+    "not_runtime_integration",
+    "not_runtime_extraction",
+    "not_lolla_runtime_change",
+    "not_pr139_implementation",
+    "two_enriched_examples_are_not_general_evidence",
+    "clean_artifacts_do_not_imply_good_advice",
+    "future_human_review_required"
+  ]
+}

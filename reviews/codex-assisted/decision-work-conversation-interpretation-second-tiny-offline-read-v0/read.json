@@ -1,0 +1,517 @@
+{
+  "schema_version": "lolla.decision_work_conversation_interpretation_second_tiny_offline_read.v0",
+  "read_metadata": {
+    "read_id": "decision_work_conversation_interpretation_second_tiny_offline_read:deploy-assisted-intake-routing:20260627T130339Z_4cd3cb",
+    "created_at": "2026-07-01T00:00:00Z",
+    "read_mode": "codex_assisted_provisional_checked_in_safe_second_tiny_offline_read",
+    "case_count": 1,
+    "case_selection_rule": "Use exactly the deploy-assisted-intake-routing case named by PR132.",
+    "source_packet_fixture_checked_in": false,
+    "notes": [
+      "This read uses a fresh PR130 checked-in-safe packet generated locally for source refs and source status.",
+      "The source packet is not checked in because the read can cite packet shape and repo-local source refs without carrying the full metadata packet.",
+      "Codex interpretation in this artifact is provisional and is not human validation."
+    ]
+  },
+  "custody_flags": {
+    "human_validated": false,
+    "product_proof": false,
+    "model_calls": 0,
+    "archive_mutated": false,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "raw_private_content_checked_in": false,
+    "provider_text_checked_in": false,
+    "local_absolute_paths_checked_in": false,
+    "broad_judge_used": false,
+    "automatic_labels_created": false,
+    "runtime_extraction_implemented": false,
+    "semantic_read_is_provisional": true
+  },
+  "source_packet": {
+    "packet_schema_version": "lolla.decision_work_conversation_interpretation_packets.v0",
+    "packet_generated_locally": true,
+    "packet_checked_in": false,
+    "packet_ref": null,
+    "packet_generation_mode": "checked_in_safe",
+    "packet_generation_command_shape": "scripts/evals/build_decision_work_conversation_interpretation_packets.py --mode checked_in_safe --rendered-decision-work-brief docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md",
+    "source_contract_ref": "docs/conversation-understanding/decision-work-conversation-interpretation-contract-v0.json",
+    "source_contract_schema_version": "lolla.decision_work_conversation_interpretation_contract.v0",
+    "packet_content_checked_in": false,
+    "raw_private_content_in_packet": false,
+    "provider_text_in_packet": false
+  },
+  "selected_case": {
+    "case_id": "deploy-assisted-intake-routing",
+    "run_id": "20260627T130339Z_4cd3cb",
+    "run_ref": "deploy-assisted-intake-routing/20260627T130339Z_4cd3cb",
+    "decision_family": "healthcare_operations_or_deployment",
+    "rendered_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md",
+    "prior_review_refs": [
+      "reviews/codex-assisted/decision-work-brief-third-diversity-case-pilot-v0/review.json",
+      "reviews/codex-assisted/decision-work-conversation-interpretation-tiny-offline-read-v0/read.json",
+      "reviews/codex-assisted/decision-work-conversation-interpretation-contract-packet-review-v0/review.json"
+    ]
+  },
+  "interpretation_scope": {
+    "scope_policy": "Tiny read over one case and the same small PR128 field subset used by PR131.",
+    "fields_selected": [
+      "decision_question",
+      "likely_starting_direction",
+      "revised_direction_or_action_consequence",
+      "live_options",
+      "abandoned_or_rejected_options",
+      "decision_thresholds",
+      "evidence_gates",
+      "useful_friction",
+      "noisy_friction",
+      "lost_value",
+      "what_the_final_answer_does_not_prove"
+    ],
+    "fields_not_selected_policy": "All other PR128 fields remain not interpreted in this PR.",
+    "full_contract_interpreted": false,
+    "broad_batch_created": false
+  },
+  "interpreted_fields": [
+    {
+      "field_group": "decision_shape",
+      "field_name": "decision_question",
+      "status": "interpreted_provisional",
+      "value": "The decision appears to be whether to deploy an AI-assisted intake routing feature in outpatient clinics next month, and if so whether deployment should be narrowed to a controlled operating test rather than treated as the backlog solution.",
+      "uncertainty": "medium",
+      "source_refs": [
+        {
+          "ref_id": "rendered_deploy_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md",
+          "locator": "The decision",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr130_packet_decision_question",
+          "artifact": "pr130_local_packet_field:decision_question",
+          "locator": "decision_shape.decision_question",
+          "source_status": "checked_in_safe_summary_only"
+        }
+      ],
+      "source_status": "checked_in_safe_summary_only",
+      "interpretation_basis": "checked_in_brief_and_reviews",
+      "privacy_limit": "Checked-in-safe summaries identify the decision, but raw conversation and private local context are not checked in.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "decision_shape",
+      "field_name": "likely_starting_direction",
+      "status": "partial_interpretation",
+      "value": "The safe artifacts suggest the starting direction was already a narrow single-clinic pilot rather than a broad launch, but it may have leaned on a large nine-gate control structure. The read cannot prove how much of that structure preceded Lolla pressure.",
+      "uncertainty": "high",
+      "source_refs": [
+        {
+          "ref_id": "rendered_deploy_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md",
+          "locator": "What changed / Starting point",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr121a_third_case_review",
+          "artifact": "reviews/codex-assisted/decision-work-brief-third-diversity-case-pilot-v0/review.json",
+          "locator": "third_case_brief.action_consequence_read",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr130_packet_likely_starting_direction",
+          "artifact": "pr130_local_packet_field:likely_starting_direction",
+          "locator": "decision_shape.likely_starting_direction",
+          "source_status": "mixed_safe_and_private_status"
+        }
+      ],
+      "source_status": "mixed_safe_and_private_status",
+      "interpretation_basis": "inferred_from_safe_summary",
+      "privacy_limit": "The original answer, raw conversation, and memo are not checked in, so the starting direction stays partial.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "decision_shape",
+      "field_name": "revised_direction_or_action_consequence",
+      "status": "interpreted_provisional",
+      "value": "The action consequence is to keep the pilot narrow, run a 48-hour backlog diagnostic before go-live, compress the control surface into four must-pass operating gates, define hard pause triggers, and limit sales meaning to scheduling and billing routing rather than autonomous intake automation.",
+      "uncertainty": "medium",
+      "source_refs": [
+        {
+          "ref_id": "rendered_deploy_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md",
+          "locator": "What this means for action",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr121a_third_case_review",
+          "artifact": "reviews/codex-assisted/decision-work-brief-third-diversity-case-pilot-v0/review.json",
+          "locator": "aggregate_observations.strongest_useful_signal",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr130_packet_action_consequence",
+          "artifact": "pr130_local_packet_field:revised_direction_or_action_consequence",
+          "locator": "decision_shape.revised_direction_or_action_consequence",
+          "source_status": "mixed_safe_and_private_status"
+        }
+      ],
+      "source_status": "mixed_safe_and_private_status",
+      "interpretation_basis": "checked_in_brief_and_reviews",
+      "privacy_limit": "The consequence is visible in safe summaries, but private clinical and operational nuance may change which gates matter most.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "options_and_paths",
+      "field_name": "live_options",
+      "status": "partial_interpretation",
+      "value": "Visible live paths appear to include launching the narrow pilot next month, delaying go-live until the backlog cause is diagnosed, running a smaller operating test with four gates, keeping manual or staff-controlled routing in place, and limiting the commercial claim to scheduling and billing routing.",
+      "uncertainty": "medium",
+      "source_refs": [
+        {
+          "ref_id": "rendered_deploy_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md",
+          "locator": "What changed / What this means for action",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr130_packet_live_options",
+          "artifact": "pr130_local_packet_field:live_options",
+          "locator": "options_and_paths.live_options",
+          "source_status": "mixed_safe_and_private_status"
+        }
+      ],
+      "source_status": "mixed_safe_and_private_status",
+      "interpretation_basis": "inferred_from_safe_summary",
+      "privacy_limit": "Raw conversation is not checked in, so this is a visible option read, not a complete option inventory.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "options_and_paths",
+      "field_name": "abandoned_or_rejected_options",
+      "status": "partial_interpretation",
+      "value": "The safe summaries suggest that broad intake automation, treating the AI feature as the backlog solution, and asking exhausted admins to operate a nine-gate control system were de-emphasized or gated. The read cannot prove those paths were fully rejected rather than narrowed.",
+      "uncertainty": "high",
+      "source_refs": [
+        {
+          "ref_id": "rendered_deploy_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md",
+          "locator": "What changed / What still might be wrong",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr130_packet_abandoned_options",
+          "artifact": "pr130_local_packet_field:abandoned_or_rejected_options",
+          "locator": "options_and_paths.abandoned_or_rejected_options",
+          "source_status": "mixed_safe_and_private_status"
+        }
+      ],
+      "source_status": "mixed_safe_and_private_status",
+      "interpretation_basis": "inferred_from_safe_summary",
+      "privacy_limit": "Determining rejected versus gated options requires raw conversation or human review.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "options_and_paths",
+      "field_name": "decision_thresholds",
+      "status": "partial_interpretation",
+      "value": "Visible thresholds include a 48-hour bottleneck diagnostic, one-clinic scope enforcement, admin usability, compliance readiness, live-operating control, and a pause after one credible clinician-attention misroute.",
+      "uncertainty": "medium",
+      "source_refs": [
+        {
+          "ref_id": "rendered_deploy_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md",
+          "locator": "What changed / Specific changes",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr130_packet_decision_thresholds",
+          "artifact": "pr130_local_packet_field:decision_thresholds",
+          "locator": "options_and_paths.decision_thresholds",
+          "source_status": "checked_in_safe_summary_only"
+        }
+      ],
+      "source_status": "checked_in_safe_summary_only",
+      "interpretation_basis": "checked_in_brief_and_reviews",
+      "privacy_limit": "Threshold names are visible, but exact clinic-specific thresholds are not verified in checked-in-safe context.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "options_and_paths",
+      "field_name": "evidence_gates",
+      "status": "partial_interpretation",
+      "value": "Visible evidence gates include whether routing uncertainty is actually causing the backlog, whether admins can operate the controls, whether compliance accepts the narrowed pilot, whether misroute triggers are active controls, and whether the pilot proves scheduling and billing routing only.",
+      "uncertainty": "medium",
+      "source_refs": [
+        {
+          "ref_id": "rendered_deploy_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md",
+          "locator": "What changed / What still might be wrong",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr121a_third_case_review",
+          "artifact": "reviews/codex-assisted/decision-work-brief-third-diversity-case-pilot-v0/review.json",
+          "locator": "third_case_brief.human_followup_questions",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr130_packet_evidence_gates",
+          "artifact": "pr130_local_packet_field:evidence_gates",
+          "locator": "options_and_paths.evidence_gates",
+          "source_status": "mixed_safe_and_private_status"
+        }
+      ],
+      "source_status": "mixed_safe_and_private_status",
+      "interpretation_basis": "checked_in_brief_and_reviews",
+      "privacy_limit": "Evidence gate labels are visible, but patient-risk detail, compliance tolerance, and operating capacity remain source-limited.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "losses_and_overcorrection",
+      "field_name": "useful_friction",
+      "status": "partial_interpretation",
+      "value": "The useful friction appears to be moving the decision away from an exhaustive but heavy gate list and toward a smaller operating test that checks the real backlog cause, admin usability, compliance readiness, and hard pause triggers. This is a provisional description, not a quality score.",
+      "uncertainty": "medium",
+      "source_refs": [
+        {
+          "ref_id": "rendered_deploy_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md",
+          "locator": "What changed / What this means for action",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr130_packet_useful_friction",
+          "artifact": "pr130_local_packet_field:useful_friction",
+          "locator": "losses_and_overcorrection.useful_friction",
+          "source_status": "mixed_safe_and_private_status"
+        }
+      ],
+      "source_status": "mixed_safe_and_private_status",
+      "interpretation_basis": "inferred_from_safe_summary",
+      "privacy_limit": "Useful friction cannot be validated without private context and human review.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "losses_and_overcorrection",
+      "field_name": "noisy_friction",
+      "status": "partial_interpretation",
+      "value": "A possible noisy-friction risk is that compressing nine gates into four may discard patient-trust, support, measurement, consent, or auditability controls that still matter. The safe packet cannot decide whether this compression is better or worse.",
+      "uncertainty": "high",
+      "source_refs": [
+        {
+          "ref_id": "rendered_deploy_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md",
+          "locator": "What still might be wrong / Possible overcorrection or noise",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr121a_third_case_review",
+          "artifact": "reviews/codex-assisted/decision-work-brief-third-diversity-case-pilot-v0/review.json",
+          "locator": "third_case_brief.lost_value_or_possible_noise_note",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr130_packet_noisy_friction",
+          "artifact": "pr130_local_packet_field:noisy_friction",
+          "locator": "losses_and_overcorrection.noisy_friction",
+          "source_status": "mixed_safe_and_private_status"
+        }
+      ],
+      "source_status": "mixed_safe_and_private_status",
+      "interpretation_basis": "inferred_from_safe_summary",
+      "privacy_limit": "Noisy friction cannot be distinguished from useful safety pressure without richer private review.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "losses_and_overcorrection",
+      "field_name": "lost_value",
+      "status": "insufficient_context",
+      "value": "Insufficient context. Possible lost value may include delaying backlog relief, reducing commercial momentum, or losing controls that patients, compliance, support, or measurement actually needed. The checked-in packet cannot verify whether any of those losses are real or material.",
+      "uncertainty": "insufficient_context",
+      "source_refs": [
+        {
+          "ref_id": "rendered_deploy_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md",
+          "locator": "What still might be wrong",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr130_packet_lost_value",
+          "artifact": "pr130_local_packet_field:lost_value",
+          "locator": "losses_and_overcorrection.lost_value",
+          "source_status": "local_private_context_not_checked_in"
+        }
+      ],
+      "source_status": "local_private_context_not_checked_in",
+      "interpretation_basis": "insufficient_context",
+      "privacy_limit": "Lost value requires local-private context or human review and is not safely settled by checked-in summaries.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "handoff_for_brief",
+      "field_name": "what_the_final_answer_does_not_prove",
+      "status": "interpreted_provisional",
+      "value": "The final answer and brief do not prove that the routing feature should deploy, that the four-gate test is better advice, that Lolla improved the decision, that answer quality was measured, that a human validated the read, or that an agent may act.",
+      "uncertainty": "low",
+      "source_refs": [
+        {
+          "ref_id": "rendered_deploy_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md",
+          "locator": "What this does not prove / Evidence and limits",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "pr130_packet_non_proof",
+          "artifact": "pr130_local_packet_field:what_the_final_answer_does_not_prove",
+          "locator": "handoff_for_brief.what_the_final_answer_does_not_prove",
+          "source_status": "checked_in_safe_summary_only"
+        }
+      ],
+      "source_status": "checked_in_safe_summary_only",
+      "interpretation_basis": "checked_in_brief_and_reviews",
+      "privacy_limit": "Non-claims are safe to record; they do not validate the decision story.",
+      "human_review_required": false,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    }
+  ],
+  "unresolved_fields": [
+    {
+      "field_name": "option_status",
+      "reason": "Not selected for this tiny read; distinguishing live, rejected, deferred, and gated deployment paths would need more private conversation context."
+    },
+    {
+      "field_name": "assistant_influence_on_user_framing",
+      "reason": "Requires raw conversation interpretation and was intentionally out of scope."
+    },
+    {
+      "field_name": "user_values_or_priorities",
+      "reason": "Requires human review or richer local-private context before a safe user-facing claim."
+    },
+    {
+      "field_name": "stakeholder_obligations",
+      "reason": "Patient, clinician, admin, compliance, sales, support, and buyer obligations are only partially visible from safe summaries."
+    },
+    {
+      "field_name": "overcorrection_risk",
+      "reason": "Related risk is visible, but PR132 keeps it inside noisy_friction and lost_value notes instead of adding another interpreted field."
+    },
+    {
+      "field_name": "safe_to_show_user",
+      "reason": "Requires a future publication/human-review protocol; this read is not a customer-facing artifact."
+    },
+    {
+      "field_name": "safe_for_agent_inspection_only",
+      "reason": "Agent-inspection handoff was intentionally not interpreted and does not authorize action."
+    }
+  ],
+  "source_limitations": {
+    "checked_in_safe_context_is_compressed": "Checked-in-safe context is compressed into rendered briefs, review summaries, and source/status packet refs.",
+    "raw_conversation_was_not_checked_in": true,
+    "raw_revised_answer_was_not_checked_in": true,
+    "raw_memo_was_not_checked_in": true,
+    "provider_text_was_not_checked_in": true,
+    "private_ledgers_were_not_checked_in": true,
+    "human_validation_is_absent": true,
+    "private_nuance_may_change_the_read": true,
+    "local_private_packet_was_not_checked_in": true
+  },
+  "brief_implications": {
+    "would_clarify_current_decision_work_brief": true,
+    "would_require_changing_current_brief_now": false,
+    "would_add_useful_conversation_story_layer": true,
+    "would_introduce_overclaim_risk": true,
+    "clarification_read": "The useful addition is separating the original narrow-pilot direction from the later action consequence: compress the operating controls, diagnose the backlog first, and make pause triggers active. That helps the brief avoid claiming that the process invented all caution from nothing.",
+    "do_not_modify_rendered_brief_in_pr132": true
+  },
+  "comparison_to_first_tiny_read": {
+    "first_read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-tiny-offline-read-v0/read.json",
+    "first_case_id": "launch-public-enterprise-beta",
+    "second_case_id": "deploy-assisted-intake-routing",
+    "same_tiny_field_set_worked_on_different_decision_family": true,
+    "same_fields_interpretable": "Mostly yes. Decision question, action consequence, thresholds, evidence gates, useful friction, noisy friction, and non-proof boundaries were interpretable at provisional or partial status in both cases.",
+    "fields_source_limited_in_both_cases": [
+      "likely_starting_direction",
+      "abandoned_or_rejected_options",
+      "lost_value"
+    ],
+    "schema_or_read_shape_problems": "No blocking shape problem appeared. The recurring issue is not field shape but source depth: the same fields need raw conversation, private memo/revised answer context, or human review before confidence rises.",
+    "supports_formalizing_shared_schema": true,
+    "why_formalization_is_now_useful": "Two different decision families used the same tiny field set, vocabularies, source-ref pattern, non-claim policy, and unresolved-field handling without needing a bespoke schema."
+  },
+  "overclaim_risk": {
+    "strongest_risk": "A plausible action-consequence read can make the interpretation look more settled than it is; private clinic constraints, compliance concerns, patient-risk details, and actual backlog causes may change the read.",
+    "runtime_integration_recommended": false,
+    "product_readiness_claimed": false,
+    "answer_quality_claimed": false,
+    "agent_action_authorized": false,
+    "mitigation": "Keep the read provisional, require source refs, mark lost value as insufficient context, and formalize the schema before further reads."
+  },
+  "recommended_next_step": {
+    "outcome": "define_interpretation_read_schema",
+    "allowed_outcomes": [
+      "define_interpretation_read_schema",
+      "run_third_tiny_offline_read",
+      "patch_offline_packet_builder",
+      "patch_decision_work_brief_schema",
+      "pause_until_human_review",
+      "stop_and_simplify"
+    ],
+    "rationale": "The second tiny read usefully fills a few fields in a healthcare operations decision without overclaiming, and the shape stayed stable against PR131. Formalizing the shared offline read schema should come before more reads or any attempt to enrich the Decision Work Brief.",
+    "not_recommended": [
+      "runtime integration",
+      "broad batch",
+      "product-readiness claim",
+      "agent-action authorization"
+    ]
+  },
+  "non_claims": [
+    "read_is_codex_assisted",
+    "read_is_provisional",
+    "not_human_validated",
+    "not_product_proof",
+    "not_answer_quality_score",
+    "not_agent_action_authorization",
+    "not_correctness_proof",
+    "not_runtime_extraction",
+    "not_lolla_runtime_change",
+    "not_live_lolla_schema_change",
+    "two_cases_are_not_general_evidence",
+    "clean_artifacts_do_not_imply_good_advice",
+    "checked_in_safe_context_is_not_full_conversation_context",
+    "future_human_review_required"
+  ]
+}

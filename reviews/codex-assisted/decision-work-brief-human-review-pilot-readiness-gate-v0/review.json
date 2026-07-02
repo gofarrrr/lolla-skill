@@ -1,0 +1,123 @@
+{
+  "schema_version": "lolla.decision_work_brief_human_review_pilot_readiness_gate.v0",
+  "review_mode": "human_review_pilot_readiness_gate_only",
+  "human_validated": false,
+  "human_review_completed": false,
+  "human_response_collected": false,
+  "product_proof": false,
+  "model_calls": 0,
+  "runtime_invoked": false,
+  "skill_invoked": false,
+  "archive_mutated": false,
+  "answer_quality_scored": false,
+  "agent_action_authorized": false,
+  "custody_flags": {
+    "human_validated": false,
+    "human_review_completed": false,
+    "human_response_collected": false,
+    "product_proof": false,
+    "model_calls": 0,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "archive_mutated": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "raw_private_content_checked_in": false,
+    "provider_text_checked_in": false,
+    "local_absolute_paths_checked_in": false,
+    "new_lolla_run_created": false,
+    "new_interpretation_read_created": false,
+    "new_builder_output_created": false,
+    "human_answers_filled_by_codex": false,
+    "runtime_attachment_implemented": false,
+    "customer_surface_enabled": false
+  },
+  "review_metadata": {
+    "review_id": "decision-work-brief-human-review-pilot-readiness-gate-v0",
+    "created_at": "2026-07-02T00:00:00Z",
+    "created_by": "codex_readiness_gate_only",
+    "triggering_pr": "PR151 Decision Work Brief Human Review Pilot Scaffold v0",
+    "triggering_gate": "ready_to_run_human_review",
+    "purpose": "Record that the human-review pilot packet is ready to run, while preserving that no real human response has been collected."
+  },
+  "pilot_scaffold_ref": "docs/conversation-understanding/decision-work-brief-human-review-pilot-scaffold-v0.md",
+  "response_template_ref": "docs/conversation-understanding/decision-work-brief-human-review-response-template-v0.json",
+  "target_cases": [
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "decision_family": "gtm_or_enterprise_launch_timing",
+      "enriched_brief_ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-launch-public-enterprise-beta-v0.md",
+      "known_highest_risk_uncertainty": "The paid private-pilot path may read more validated than the compressed checked-in sources can prove."
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "decision_family": "healthcare_operations_or_deployment_controls",
+      "enriched_brief_ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-deploy-assisted-intake-routing-v0.md",
+      "known_highest_risk_uncertainty": "Deployment-control language may sound safe or validated unless patient-risk, compliance, and pause-trigger caveats remain visible."
+    },
+    {
+      "case_id": "ceo-remove-founding-cofounder",
+      "decision_family": "founder_governance_or_relationship_sensitive_authority_transition",
+      "enriched_brief_ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-ceo-remove-founding-cofounder-v0.md",
+      "known_highest_risk_uncertainty": "Authority-transfer language may sound like legal or operational advice unless governance, employment, board, equity, relationship, team, and customer-trust caveats remain close."
+    }
+  ],
+  "readiness_checks": {
+    "pilot_scaffold_exists": true,
+    "response_template_exists": true,
+    "response_template_is_blank": true,
+    "exactly_three_cases_in_scope": true,
+    "all_enriched_brief_refs_resolve": true,
+    "all_case_answers_are_not_reviewed": true,
+    "human_review_completed": false,
+    "human_response_collected": false,
+    "codex_did_not_fill_human_answers": true,
+    "runtime_customer_surface_blocked": true,
+    "ready_for_real_human_review": true
+  },
+  "blockers_to_runtime_or_customer_surface": [
+    "no_real_human_response_collected",
+    "human_review_not_completed",
+    "human_validation_not_claimed",
+    "source_depth_risk_not_resolved",
+    "overtrust_risk_not_resolved",
+    "cofounder_governance_operational_caution_not_human_reviewed",
+    "template_answers_are_blank",
+    "runtime_attachment_not_implemented"
+  ],
+  "required_human_inputs": [
+    "reviewer_metadata",
+    "case_usefulness_answers",
+    "case_action_consequence_answers",
+    "case_uncertainty_answers",
+    "case_source_limit_answers",
+    "case_overtrust_answers",
+    "case_missing_context_notes",
+    "case_user_surface_answers",
+    "case_agent_inspection_answers",
+    "cross_case_assessment",
+    "stop_condition_assessment",
+    "final_recommendation"
+  ],
+  "allowed_next_steps": [
+    "collect_real_human_review_response",
+    "package_pr146_pr152",
+    "pause_until_human_review_capacity",
+    "revise_review_form_first",
+    "stop_and_simplify"
+  ],
+  "decision_gate": "collect_real_human_review_response",
+  "recommended_next_pr": "PR153 Decision Work Brief Human Review Response Collection v0",
+  "non_claims": [
+    "not_human_validated",
+    "human_review_not_completed",
+    "human_response_not_collected",
+    "not_product_proof",
+    "not_answer_quality_score",
+    "not_agent_action_authorization",
+    "not_runtime_integration",
+    "not_customer_readiness_claim",
+    "codex_must_not_substitute_for_human_reviewer",
+    "ready_to_run_does_not_mean_review_completed"
+  ]
+}

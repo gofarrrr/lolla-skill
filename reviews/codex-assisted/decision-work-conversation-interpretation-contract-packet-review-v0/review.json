@@ -1,0 +1,955 @@
+{
+  "schema_version": "lolla.decision_work_conversation_interpretation_contract_packet_review.v0",
+  "review_metadata": {
+    "review_id": "decision_work_conversation_interpretation_contract_packet_review:v0:2026-07-01",
+    "created_at": "2026-07-01T00:00:00Z",
+    "review_mode": "codex_assisted_provisional_checked_in_safe_contract_packet_review",
+    "triggering_contract_ref": "docs/conversation-understanding/decision-work-conversation-interpretation-contract-v0.json",
+    "case_count": 3,
+    "temporary_metadata_only_packets_built": true,
+    "temporary_packets_checked_in": false,
+    "purpose": "Compare the PR128 conversation interpretation target contract against the current Decision Work Brief packet and completed-run artifact surface."
+  },
+  "custody_flags": {
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "archive_mutated": false,
+    "model_calls": 0,
+    "human_validated": false,
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "broad_judge_used": false,
+    "automatic_labels_created": false,
+    "raw_private_content_checked_in": false,
+    "raw_private_content_included": false,
+    "provider_text_checked_in": false,
+    "provider_text_included": false,
+    "local_absolute_paths_checked_in": false,
+    "checked_in_safe": true
+  },
+  "source_contract": {
+    "contract_ref": "docs/conversation-understanding/decision-work-conversation-interpretation-contract-v0.json",
+    "schema_version": "lolla.decision_work_conversation_interpretation_contract.v0",
+    "contract_doc_ref": "docs/conversation-understanding/decision-work-conversation-interpretation-contract-v0.md"
+  },
+  "reviewed_cases": [
+    {
+      "case_id": "ceo-remove-founding-cofounder",
+      "rendered_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md",
+      "existing_review_refs": [
+        "reviews/codex-assisted/decision-work-brief-draft-pilot-v0/review.json",
+        "reviews/codex-assisted/decision-work-brief-three-case-pattern-review-v0/review.json",
+        "reviews/codex-assisted/decision-work-brief-conversation-interpretation-gap-map-v0/review.json"
+      ],
+      "packet_or_artifact_refs_reviewed": [
+        "engine/system_b/decision_work_brief_packets.py",
+        "scripts/evals/build_decision_work_brief_packets.py",
+        "docs/conversation-understanding/decision-work-brief-packet-builder-v0.md",
+        "temporary metadata-only PR115 packet output, not checked in",
+        "completed-run structured artifact metadata, read-only"
+      ],
+      "local_private_review_status": "completed_read_only_structured_context",
+      "safe_checked_in_limitations": "The current surface can carry artifact availability and a provisional action story, but not the private governance, equity, relationship, legal, or lost-value interpretation needed by the contract."
+    },
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "rendered_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md",
+      "existing_review_refs": [
+        "reviews/codex-assisted/decision-work-brief-second-tiny-case-pilot-v0/review.json",
+        "reviews/codex-assisted/decision-work-brief-local-private-adequacy-check-v0/review.json",
+        "reviews/codex-assisted/decision-work-brief-conversation-interpretation-gap-map-v0/review.json"
+      ],
+      "packet_or_artifact_refs_reviewed": [
+        "engine/system_b/decision_work_brief_packets.py",
+        "scripts/evals/build_decision_work_brief_packets.py",
+        "docs/conversation-understanding/decision-work-brief-packet-builder-v0.md",
+        "temporary metadata-only PR115 packet output, not checked in",
+        "completed-run structured artifact metadata, read-only"
+      ],
+      "local_private_review_status": "completed_read_only_structured_context",
+      "safe_checked_in_limitations": "PR125 found the brief adequate but missing private nuance; current packets still cannot preserve buyer reality, public-launch value, or board/investor pressure as contract fields."
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "rendered_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md",
+      "existing_review_refs": [
+        "reviews/codex-assisted/decision-work-brief-third-diversity-case-pilot-v0/review.json",
+        "reviews/codex-assisted/decision-work-brief-three-case-pattern-review-v0/review.json",
+        "reviews/codex-assisted/decision-work-brief-conversation-interpretation-gap-map-v0/review.json"
+      ],
+      "packet_or_artifact_refs_reviewed": [
+        "engine/system_b/decision_work_brief_packets.py",
+        "scripts/evals/build_decision_work_brief_packets.py",
+        "docs/conversation-understanding/decision-work-brief-packet-builder-v0.md",
+        "temporary metadata-only PR115 packet output, not checked in",
+        "completed-run structured artifact metadata, read-only"
+      ],
+      "local_private_review_status": "completed_read_only_structured_context",
+      "safe_checked_in_limitations": "The current surface can preserve operating-gate and source-status metadata, but not clinic capacity, compliance acceptance, patient-risk nuance, or whether compressed controls lost useful safeguards."
+    }
+  ],
+  "contract_field_support_matrix": [
+    {
+      "field_group": "decision_shape",
+      "field_name": "decision_question",
+      "current_support": "partial_from_checked_in_safe_artifacts",
+      "support_source": "mixed",
+      "required_next_capability": "offline_interpretation_packet",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": false,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "decision_shape",
+      "field_name": "likely_starting_direction",
+      "current_support": "requires_future_llm_interpretation",
+      "support_source": "future_llm_interpretation",
+      "required_next_capability": "offline_interpretation_packet",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": true,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "decision_shape",
+      "field_name": "revised_direction_or_action_consequence",
+      "current_support": "partial_from_checked_in_safe_artifacts",
+      "support_source": "decision_work_brief",
+      "required_next_capability": "offline_interpretation_packet",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": false,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "options_and_paths",
+      "field_name": "live_options",
+      "current_support": "partial_from_local_private_artifacts",
+      "support_source": "local_private_raw_or_private_artifact_not_checked_in",
+      "required_next_capability": "offline_interpretation_packet",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": true,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "options_and_paths",
+      "field_name": "abandoned_or_rejected_options",
+      "current_support": "requires_future_llm_interpretation",
+      "support_source": "future_llm_interpretation",
+      "required_next_capability": "offline_interpretation_packet",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": true,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "options_and_paths",
+      "field_name": "option_status",
+      "current_support": "not_currently_captured",
+      "support_source": "future_llm_interpretation",
+      "required_next_capability": "offline_interpretation_packet",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": false,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "options_and_paths",
+      "field_name": "decision_thresholds",
+      "current_support": "partial_from_checked_in_safe_artifacts",
+      "support_source": "mixed",
+      "required_next_capability": "offline_interpretation_packet",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": false,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "options_and_paths",
+      "field_name": "stop_rules",
+      "current_support": "partial_from_checked_in_safe_artifacts",
+      "support_source": "mixed",
+      "required_next_capability": "offline_interpretation_packet",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": false,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "options_and_paths",
+      "field_name": "evidence_gates",
+      "current_support": "partial_from_checked_in_safe_artifacts",
+      "support_source": "mixed",
+      "required_next_capability": "offline_interpretation_packet",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": false,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "conversation_process",
+      "field_name": "conversation_turn_depth",
+      "current_support": "supported_from_checked_in_safe_artifacts",
+      "support_source": "completed_run_archive_metadata",
+      "required_next_capability": "packet_builder_status_ref_patch",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": false,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": false,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "conversation_process",
+      "field_name": "assistant_influence_on_user_framing",
+      "current_support": "requires_future_llm_interpretation",
+      "support_source": "future_llm_interpretation",
+      "required_next_capability": "offline_interpretation_packet",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": true,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "conversation_process",
+      "field_name": "user_changed_mind_during_conversation",
+      "current_support": "not_currently_captured",
+      "support_source": "future_llm_interpretation",
+      "required_next_capability": "offline_interpretation_packet",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": true,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "conversation_process",
+      "field_name": "assistant_sycophancy_or_over-accommodation_risk",
+      "current_support": "requires_future_llm_interpretation",
+      "support_source": "future_llm_interpretation",
+      "required_next_capability": "offline_llm_specialist_read",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": false,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": true,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "conversation_process",
+      "field_name": "unresolved_threads",
+      "current_support": "partial_from_checked_in_safe_artifacts",
+      "support_source": "mixed",
+      "required_next_capability": "offline_interpretation_packet",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": false,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "conversation_process",
+      "field_name": "dropped_threads",
+      "current_support": "partial_from_checked_in_safe_artifacts",
+      "support_source": "mixed",
+      "required_next_capability": "offline_interpretation_packet",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": false,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "conversation_process",
+      "field_name": "premortem_or_counterfactual_pressure",
+      "current_support": "partial_from_checked_in_safe_artifacts",
+      "support_source": "mixed",
+      "required_next_capability": "offline_interpretation_packet",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": false,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "conversation_process",
+      "field_name": "alternative_frames_considered",
+      "current_support": "partial_from_checked_in_safe_artifacts",
+      "support_source": "mixed",
+      "required_next_capability": "offline_interpretation_packet",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": false,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "provided_context_and_evidence",
+      "field_name": "user_provided_context",
+      "current_support": "supported_from_local_private_artifacts",
+      "support_source": "local_private_raw_or_private_artifact_not_checked_in",
+      "required_next_capability": "offline_interpretation_packet",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": true,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "provided_context_and_evidence",
+      "field_name": "pasted_documents_or_external_context",
+      "current_support": "supported_from_local_private_artifacts",
+      "support_source": "local_private_raw_or_private_artifact_not_checked_in",
+      "required_next_capability": "offline_interpretation_packet",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": false,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": true,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "stakeholders_and_values",
+      "field_name": "user_values_or_priorities",
+      "current_support": "requires_human_review",
+      "support_source": "future_human_review",
+      "required_next_capability": "human_review_protocol",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": true,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "stakeholders_and_values",
+      "field_name": "stakeholder_obligations",
+      "current_support": "requires_human_review",
+      "support_source": "future_human_review",
+      "required_next_capability": "human_review_protocol",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": true,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "stakeholders_and_values",
+      "field_name": "relationship_or_political_constraints",
+      "current_support": "requires_human_review",
+      "support_source": "future_human_review",
+      "required_next_capability": "human_review_protocol",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": true,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "constraints_and_unknowns",
+      "field_name": "timing_or_runway_constraints",
+      "current_support": "partial_from_checked_in_safe_artifacts",
+      "support_source": "mixed",
+      "required_next_capability": "offline_interpretation_packet",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": false,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "constraints_and_unknowns",
+      "field_name": "operational_capacity_constraints",
+      "current_support": "partial_from_checked_in_safe_artifacts",
+      "support_source": "mixed",
+      "required_next_capability": "offline_interpretation_packet",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": false,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "constraints_and_unknowns",
+      "field_name": "legal_compliance_or_safety_constraints",
+      "current_support": "requires_human_review",
+      "support_source": "future_human_review",
+      "required_next_capability": "human_review_protocol",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": true,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "constraints_and_unknowns",
+      "field_name": "real_world_unknowns",
+      "current_support": "requires_human_review",
+      "support_source": "future_human_review",
+      "required_next_capability": "human_review_protocol",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": true,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "constraints_and_unknowns",
+      "field_name": "unknown_unknowns_or_context_not_available_to_model",
+      "current_support": "not_currently_captured",
+      "support_source": "future_human_review",
+      "required_next_capability": "human_review_protocol",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": true,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "audit_pressure_and_change",
+      "field_name": "what_lolla_pressed_on",
+      "current_support": "partial_from_checked_in_safe_artifacts",
+      "support_source": "decision_work_brief",
+      "required_next_capability": "offline_interpretation_packet",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": false,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "audit_pressure_and_change",
+      "field_name": "what_changed",
+      "current_support": "partial_from_checked_in_safe_artifacts",
+      "support_source": "decision_work_brief",
+      "required_next_capability": "offline_interpretation_packet",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": false,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "losses_and_overcorrection",
+      "field_name": "useful_friction",
+      "current_support": "requires_future_llm_interpretation",
+      "support_source": "future_llm_interpretation",
+      "required_next_capability": "offline_llm_specialist_read",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": false,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": true,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "losses_and_overcorrection",
+      "field_name": "noisy_friction",
+      "current_support": "requires_future_llm_interpretation",
+      "support_source": "future_llm_interpretation",
+      "required_next_capability": "offline_llm_specialist_read",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": false,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": true,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "losses_and_overcorrection",
+      "field_name": "lost_value",
+      "current_support": "requires_human_review",
+      "support_source": "future_human_review",
+      "required_next_capability": "human_review_protocol",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": true,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "losses_and_overcorrection",
+      "field_name": "overcorrection_risk",
+      "current_support": "requires_future_llm_interpretation",
+      "support_source": "future_llm_interpretation",
+      "required_next_capability": "offline_llm_specialist_read",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": false,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "losses_and_overcorrection",
+      "field_name": "false_precision_risk",
+      "current_support": "requires_future_llm_interpretation",
+      "support_source": "future_llm_interpretation",
+      "required_next_capability": "offline_llm_specialist_read",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": false,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "losses_and_overcorrection",
+      "field_name": "generic_caution_risk",
+      "current_support": "requires_future_llm_interpretation",
+      "support_source": "future_llm_interpretation",
+      "required_next_capability": "offline_llm_specialist_read",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": false,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": false,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "losses_and_overcorrection",
+      "field_name": "momentum_or_ambition_loss",
+      "current_support": "requires_human_review",
+      "support_source": "future_human_review",
+      "required_next_capability": "human_review_protocol",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": true,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "evidence_and_custody",
+      "field_name": "source_refs",
+      "current_support": "supported_from_checked_in_safe_artifacts",
+      "support_source": "decision_work_brief_packet",
+      "required_next_capability": "none",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": false,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "evidence_and_custody",
+      "field_name": "private_context_available",
+      "current_support": "status_only_possible",
+      "support_source": "decision_work_brief_packet",
+      "required_next_capability": "packet_builder_status_ref_patch",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": true,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "evidence_and_custody",
+      "field_name": "redacted_or_not_checked_in",
+      "current_support": "status_only_possible",
+      "support_source": "decision_work_brief_packet",
+      "required_next_capability": "packet_builder_status_ref_patch",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": true,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "handoff_for_brief",
+      "field_name": "what_the_final_answer_does_not_prove",
+      "current_support": "supported_from_checked_in_safe_artifacts",
+      "support_source": "decision_work_brief",
+      "required_next_capability": "none",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": false,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "handoff_for_brief",
+      "field_name": "safe_to_show_user",
+      "current_support": "requires_human_review",
+      "support_source": "future_human_review",
+      "required_next_capability": "human_review_protocol",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": false,
+      "should_remain_private_or_redacted": true,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "handoff_for_agent_inspection",
+      "field_name": "safe_for_agent_inspection_only",
+      "current_support": "requires_human_review",
+      "support_source": "future_human_review",
+      "required_next_capability": "human_review_protocol",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": false,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": true,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "handoff_for_agent_inspection",
+      "field_name": "requires_human_review",
+      "current_support": "status_only_possible",
+      "support_source": "decision_work_brief_packet",
+      "required_next_capability": "packet_builder_status_ref_patch",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": false,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "handoff_for_agent_inspection",
+      "field_name": "requires_llm_interpretation",
+      "current_support": "status_only_possible",
+      "support_source": "decision_work_brief_packet",
+      "required_next_capability": "packet_builder_status_ref_patch",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": false,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "handoff_for_agent_inspection",
+      "field_name": "deterministic_only_metadata",
+      "current_support": "status_only_possible",
+      "support_source": "decision_work_brief_packet",
+      "required_next_capability": "packet_builder_status_ref_patch",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": false,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": false,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    },
+    {
+      "field_group": "handoff_for_agent_inspection",
+      "field_name": "local_private_only",
+      "current_support": "status_only_possible",
+      "support_source": "decision_work_brief_packet",
+      "required_next_capability": "packet_builder_status_ref_patch",
+      "can_current_packet_carry_status_only": true,
+      "can_feed_decision_work_brief": true,
+      "can_feed_agent_inspection": true,
+      "should_remain_private_or_redacted": true,
+      "must_not_be_quality_label": true,
+      "notes": "Current PR115 packets can carry source/status metadata for this field, but PR129 does not fill the interpretation."
+    }
+  ],
+  "per_case_packet_alignment": [
+    {
+      "case_id": "ceo-remove-founding-cofounder",
+      "strongest_supported_fields": [
+        "decision_question",
+        "revised_direction_or_action_consequence",
+        "what_lolla_pressed_on",
+        "what_changed",
+        "source_refs",
+        "redacted_or_not_checked_in"
+      ],
+      "important_partial_fields": [
+        "likely_starting_direction",
+        "abandoned_or_rejected_options",
+        "decision_thresholds",
+        "stop_rules",
+        "stakeholder_obligations"
+      ],
+      "important_missing_fields": [
+        "option_status",
+        "user_changed_mind_during_conversation",
+        "safe_to_show_user",
+        "safe_for_agent_inspection_only"
+      ],
+      "fields_available_only_privately": [
+        "user_provided_context",
+        "relationship_or_political_constraints",
+        "lost_value",
+        "local_private_only"
+      ],
+      "fields_requiring_llm_interpretation": [
+        "likely_starting_direction",
+        "assistant_influence_on_user_framing",
+        "useful_friction",
+        "noisy_friction",
+        "overcorrection_risk"
+      ],
+      "fields_requiring_human_review": [
+        "stakeholder_obligations",
+        "relationship_or_political_constraints",
+        "legal_compliance_or_safety_constraints",
+        "lost_value",
+        "safe_to_show_user"
+      ],
+      "packet_builder_limitations": "Current packets are organized around the eight brief sections, so they can point to sources but cannot yet align each PR128 contract field with field-level availability, privacy, and interpretation status.",
+      "brief_product_impact": "The brief can explain the authority-transfer action consequence, but cannot yet show whether the conversation changed the user, what alternatives were rejected, or what value might be lost."
+    },
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "strongest_supported_fields": [
+        "decision_question",
+        "revised_direction_or_action_consequence",
+        "decision_thresholds",
+        "stop_rules",
+        "evidence_gates",
+        "what_the_final_answer_does_not_prove"
+      ],
+      "important_partial_fields": [
+        "likely_starting_direction",
+        "live_options",
+        "abandoned_or_rejected_options",
+        "timing_or_runway_constraints",
+        "lost_value"
+      ],
+      "important_missing_fields": [
+        "option_status",
+        "user_changed_mind_during_conversation",
+        "safe_to_show_user",
+        "safe_for_agent_inspection_only"
+      ],
+      "fields_available_only_privately": [
+        "user_provided_context",
+        "pasted_documents_or_external_context",
+        "user_values_or_priorities",
+        "stakeholder_obligations",
+        "local_private_only"
+      ],
+      "fields_requiring_llm_interpretation": [
+        "live_options",
+        "abandoned_or_rejected_options",
+        "assistant_influence_on_user_framing",
+        "useful_friction",
+        "false_precision_risk"
+      ],
+      "fields_requiring_human_review": [
+        "stakeholder_obligations",
+        "timing_or_runway_constraints",
+        "real_world_unknowns",
+        "lost_value",
+        "safe_to_show_user"
+      ],
+      "packet_builder_limitations": "Metadata-only packets record that raw/private artifacts exist and are redacted, but they do not create contract-field packets for buyer reality, original/revised overlap, or public-launch lost value.",
+      "brief_product_impact": "The brief can explain the private-pilot action consequence; the missing contract layer is needed to preserve option status and lost public-launch value without overclaiming."
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "strongest_supported_fields": [
+        "decision_question",
+        "revised_direction_or_action_consequence",
+        "decision_thresholds",
+        "stop_rules",
+        "evidence_gates",
+        "operational_capacity_constraints"
+      ],
+      "important_partial_fields": [
+        "likely_starting_direction",
+        "legal_compliance_or_safety_constraints",
+        "real_world_unknowns",
+        "useful_friction",
+        "overcorrection_risk"
+      ],
+      "important_missing_fields": [
+        "option_status",
+        "user_changed_mind_during_conversation",
+        "unknown_unknowns_or_context_not_available_to_model",
+        "safe_for_agent_inspection_only"
+      ],
+      "fields_available_only_privately": [
+        "user_provided_context",
+        "pasted_documents_or_external_context",
+        "operational_capacity_constraints",
+        "legal_compliance_or_safety_constraints",
+        "local_private_only"
+      ],
+      "fields_requiring_llm_interpretation": [
+        "likely_starting_direction",
+        "alternative_frames_considered",
+        "useful_friction",
+        "noisy_friction",
+        "generic_caution_risk",
+        "overcorrection_risk"
+      ],
+      "fields_requiring_human_review": [
+        "operational_capacity_constraints",
+        "legal_compliance_or_safety_constraints",
+        "real_world_unknowns",
+        "unknown_unknowns_or_context_not_available_to_model",
+        "safe_to_show_user"
+      ],
+      "packet_builder_limitations": "Current packets can report availability of run artifacts and private ledgers, but not field-level healthcare operations adequacy or patient-safety interpretation.",
+      "brief_product_impact": "The brief can explain the narrower deployment action; contract-shaped interpretation is needed to avoid hiding compliance, capacity, and overcorrection risk."
+    }
+  ],
+  "implementation_gap_summary": {
+    "already_supported": [
+      "source_refs",
+      "redacted_or_not_checked_in",
+      "what_the_final_answer_does_not_prove",
+      "conversation_turn_depth",
+      "revised_direction_or_action_consequence as provisional brief content"
+    ],
+    "packet_builder_gaps": [
+      "field-level PR128 status refs",
+      "contract group alignment",
+      "per-field privacy handling",
+      "per-field required interpreter or human-review markers"
+    ],
+    "offline_interpretation_gaps": [
+      "likely_starting_direction",
+      "live_options",
+      "abandoned_or_rejected_options",
+      "option_status",
+      "what_lolla_pressed_on",
+      "what_changed"
+    ],
+    "local_private_only_gaps": [
+      "user_provided_context",
+      "pasted_documents_or_external_context",
+      "raw conversation context",
+      "raw revised answer context",
+      "raw memo context",
+      "private ledgers"
+    ],
+    "future_runtime_extraction_candidates": [
+      "conversation_turn_depth as stable metadata",
+      "dropped_threads as stable structured source",
+      "unresolved_threads if already produced safely",
+      "source/ref availability statuses"
+    ],
+    "human_review_only_fields": [
+      "user_values_or_priorities",
+      "stakeholder_obligations",
+      "relationship_or_political_constraints",
+      "legal_compliance_or_safety_constraints",
+      "lost_value",
+      "safe_to_show_user",
+      "safe_for_agent_inspection_only"
+    ],
+    "do_not_export_or_quality_label_fields": [
+      "pasted_documents_or_external_context",
+      "local_private_only",
+      "safe_for_agent_inspection_only",
+      "assistant_sycophancy_or_over-accommodation_risk",
+      "useful_friction",
+      "noisy_friction",
+      "overcorrection_risk"
+    ]
+  },
+  "product_impact_summary": {
+    "what_current_brief_can_already_explain": "Current briefs can explain the decision, a provisional action consequence, what Lolla appeared to press on, what changed, visible uncertainty, non-claims, and evidence/custody refs.",
+    "what_conversation_story_is_still_missing": "The missing story is the full option path: starting direction, live and rejected options, whether the user changed course, private context that shaped the choice, lost value, and useful versus noisy pressure.",
+    "missing_fields_that_matter_most_for_user": [
+      "likely_starting_direction",
+      "live_options",
+      "abandoned_or_rejected_options",
+      "option_status",
+      "lost_value",
+      "overcorrection_risk",
+      "safe_to_show_user"
+    ],
+    "missing_fields_that_matter_most_for_agent_inspection": [
+      "source_refs",
+      "requires_human_review",
+      "requires_llm_interpretation",
+      "deterministic_only_metadata",
+      "safe_for_agent_inspection_only",
+      "local_private_only"
+    ],
+    "fields_creating_biggest_overclaim_risk": [
+      "revised_direction_or_action_consequence",
+      "what_changed",
+      "useful_friction",
+      "lost_value",
+      "safe_to_show_user"
+    ],
+    "gaps_to_solve_before_runtime_attachment": [
+      "contract-shaped offline interpretation packet",
+      "field-level source/ref and privacy status",
+      "human-review protocol for values, safety, and user-facing safety",
+      "local-private adequacy comparison without checked-in private text"
+    ]
+  },
+  "recommended_next_step": {
+    "outcome": "build_offline_interpretation_packet",
+    "allowed_outcomes": [
+      "patch_packet_builder_for_contract_status_refs",
+      "build_offline_interpretation_packet",
+      "build_offline_llm_specialist_read",
+      "run_more_local_private_adequacy_checks",
+      "patch_brief_schema",
+      "plan_future_runtime_extraction_extension",
+      "pause_until_human_review",
+      "stop_and_simplify"
+    ],
+    "rationale": "The current packet builder can carry source availability and redaction status, and current artifacts provide useful bounded inputs. But the PR128 contract needs a field-grouped offline interpretation packet before any LLM/human read or runtime extraction plan.",
+    "runtime_extraction_recommended": false,
+    "runtime_integration_recommended": false
+  },
+  "non_claims": [
+    "review_is_codex_assisted",
+    "not_human_validated",
+    "not_product_proof",
+    "not_answer_quality_score",
+    "not_agent_action_authorization",
+    "not_correctness_proof",
+    "not_runtime_extraction",
+    "not_live_lolla_schema_change",
+    "not_a_contract_implementation",
+    "clean_artifacts_do_not_imply_good_advice",
+    "packet_status_is_not_semantic_evidence",
+    "future_human_review_required",
+    "future_llm_interpretation_required_before_populated_contract_fields"
+  ]
+}
