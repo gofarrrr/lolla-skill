@@ -305,6 +305,11 @@ Statuses should include:
 
 No interpreter, model calls, runtime hook changes, or sidecar updates in PR179.
 
+PR179 is now implemented as the
+[Decision Work Offline Interpretation Queue Contract](decision-work-offline-interpretation-queue-contract-v0.md).
+It defines the queue item/result vocabulary and selects
+`proceed_to_queue_packet_builder` for PR180.
+
 ### PR180 Offline Interpretation Queue Packet Builder v0
 
 Build the deterministic queue packet/preparation layer.

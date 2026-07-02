@@ -567,6 +567,11 @@ That PRD should own the follow-on path from completed archive to offline
 interpretation queue, generated interpretation read, validation, brief
 rendering, triage, resolver-approved refs, and sidecar update.
 
+The first contract slice in that follow-on path is
+[Decision Work Offline Interpretation Queue Contract](decision-work-offline-interpretation-queue-contract-v0.md).
+It defines queue item/result vocabulary only; it does not add runtime
+interpretation or hook behavior.
+
 The runtime hook should remain default-off, post-archive, sidecar-only, and
 fail-closed while that automatic supply path is proven.
 

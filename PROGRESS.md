@@ -84,6 +84,11 @@ validation, brief/enriched brief, triage, resolver-approved refs, and sidecar
 update. It explicitly keeps direct runtime interpretation, default-on behavior,
 model calls from runtime, product proof, scoring, human-validation claims, and
 action authorization out of scope.
+
+The first contract slice after that PRD is
+docs/conversation-understanding/decision-work-offline-interpretation-queue-contract-v0.md.
+It defines offline queue item/result vocabulary only and gates to the next
+deterministic packet-builder slice.
 ```
 
 ```text

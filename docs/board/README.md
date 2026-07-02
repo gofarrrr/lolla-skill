@@ -528,6 +528,13 @@ Follow-up implementation planning:
   Work artifacts through an offline queue, validation, brief rendering, triage,
   and resolver-approved sidecar update.
 
+- [Decision Work Offline Interpretation Queue Contract](../conversation-understanding/decision-work-offline-interpretation-queue-contract-v0.md)
+
+  PR179's first contract slice for that bridge. It defines queue item/result
+  shapes, statuses, privacy modes, custody flags, validation requirements, and
+  non-claims without creating generated reads, queue workers, runtime behavior,
+  model calls, or sidecar updates.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,
