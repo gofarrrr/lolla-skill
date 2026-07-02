@@ -4,6 +4,9 @@ Decision Work Brief turns a completed AI-assisted decision process into a
 compact explanation of what changed, what evidence exists, what remains
 uncertain, and what should not be overtrusted.
 
+In plain terms: it helps a reader see the work behind the answer, not just the
+answer.
+
 ## The Problem
 
 AI can produce polished final answers quickly. That polish is useful, but it
@@ -19,8 +22,8 @@ conversation every time.
 
 ## What Offline v1 Does
 
-Decision Work Brief Offline v1 reads completed Lolla artifacts after the run
-and turns them into a compact evidence surface.
+Decision Work Brief Offline v1 reads the saved record and audit artifacts from
+a completed Lolla run, then turns them into a compact evidence surface.
 
 It can:
 
@@ -29,9 +32,9 @@ It can:
 - show what changed for action;
 - preserve what remains uncertain;
 - add bounded interpretation of what the process appears to have clarified;
-- triage whether the brief looks like a normal caveated summary, a
+- triage whether the brief looks like a routine caveated summary, a
   source-thin case, a high-risk case, an agent-inspection-only case, or a case
-  blocked from runtime or user confidence.
+  not ready for runtime or user-facing confidence.
 
 The final AI answer alone is cheap. The valuable part is the decision work and
 the limits that travel with it.
@@ -60,7 +63,7 @@ scoped private-pilot offer; choose based on proof-producing buyer behavior; and
 do not treat logo size or a public page as proof by itself.
 
 That is the product value in miniature. The brief does not just repeat an
-answer. It makes the decision inspectable:
+answer. It shows a reader five things that are usually hidden:
 
 - the decision was public launch versus constrained private proof;
 - the pressure was on launch optics, buyer proof, support load, audit-log
@@ -69,9 +72,10 @@ answer. It makes the decision inspectable:
   prospects;
 - the uncertainty was that private buyer reality, fundraising value, recruiting
   value, and raw conversation context are still compressed or unavailable;
-- the non-claim was that none of this proves the final advice was correct.
+- what the system refuses to claim: none of this proves the final advice was
+  correct.
 
-## What The Triage Layer Adds
+## What the Triage Layer Adds
 
 Offline v1 also includes provisional automatic triage. Triage is routing, not a
 rating.
@@ -121,9 +125,8 @@ That matters for future agent systems too. If another agent later touches the
 same decision, it should not inherit only a polished final answer. It should
 inherit the evidence trail, the missingness, the caveats, and the routing flags.
 
-This creates a proof-of-work style layer for AI-assisted decisions. Not proof
-that the answer is right, but proof that the decision work is available for
-inspection.
+This creates a receipt for AI-assisted decisions. Not proof that the answer is
+right, but a compact record of the decision work available for inspection.
 
 ## Current Limitations
 
