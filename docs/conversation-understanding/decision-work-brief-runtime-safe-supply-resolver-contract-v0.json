@@ -1,0 +1,598 @@
+{
+  "schema_version": "lolla.decision_work_brief_runtime_safe_supply_resolver_contract.v0",
+  "contract_metadata": {
+    "contract_id": "decision_work_brief_runtime_safe_supply_resolver_contract:v0",
+    "status": "contract_only",
+    "created_at": "2026-07-02T00:00:00Z",
+    "implements_pr": "PR170",
+    "source_plan_ref": "docs/conversation-understanding/decision-work-brief-runtime-safe-brief-supply-plan-v0.md",
+    "runtime_attachment_contract_ref": "docs/conversation-understanding/decision-work-brief-runtime-attachment-contract-v0.json",
+    "sidecar_contract_ref": "docs/conversation-understanding/decision-work-brief-runtime-sidecar-v0.json",
+    "resolver_implemented_here": false,
+    "runtime_behavior_changed": false,
+    "decision_gate": "proceed_to_safe_supply_resolver_implementation"
+  },
+  "purpose": {
+    "summary": "Define how a future deterministic resolver may decide whether safe run-specific Decision Work Brief inputs exist, where they are, whether they can feed the runtime bundle, or why the attachment must defer, block, or queue.",
+    "resolver_is_not": [
+      "conversation_interpreter",
+      "runtime_model_call_layer",
+      "answer_quality_judge",
+      "approval_gate",
+      "action_authorizer",
+      "product_proof"
+    ],
+    "core_rule": "The resolver supplies refs, status, missingness, privacy policy, and feedability. It does not infer messy conversation meaning."
+  },
+  "resolver_receives": [
+    {
+      "input_name": "completed_run_dir_ref",
+      "required": true,
+      "description": "Relative or operator-supplied ref to the completed run directory after archive completion.",
+      "safe_handling": "Use for structured artifact presence, parseability, source refs, and blocker state only."
+    },
+    {
+      "input_name": "runtime_attachment_contract_ref",
+      "required": true,
+      "description": "Contract governing post-archive attachment modes, states, receipts, blockers, custody flags, and non-claims.",
+      "safe_handling": "Reject unsupported schema versions."
+    },
+    {
+      "input_name": "sidecar_contract_ref",
+      "required": true,
+      "description": "Contract governing the decision_work sidecar layout and artifact refs.",
+      "safe_handling": "Reject unsupported schema versions."
+    },
+    {
+      "input_name": "eligibility_blocker_result_ref",
+      "required": false,
+      "description": "Optional deterministic eligibility output for completed-run status, blockers, and explicit triage routes.",
+      "safe_handling": "Use only explicit status fields, not inferred conversation meaning."
+    },
+    {
+      "input_name": "manual_operator_refs",
+      "required": false,
+      "description": "Optional operator-supplied refs to already reviewed safe brief, enriched brief, triage, or source artifacts.",
+      "safe_handling": "Validate path safety, existence, schema, privacy markers, and supported artifact type."
+    },
+    {
+      "input_name": "checked_in_safe_case_registry_refs",
+      "required": false,
+      "description": "Optional registry refs for known checked-in-safe demo or regression cases.",
+      "safe_handling": "Use only for known cases; never imply general runtime readiness."
+    },
+    {
+      "input_name": "offline_interpretation_queue_refs",
+      "required": false,
+      "description": "Optional refs to a future offline queue or attachment-needed packet.",
+      "safe_handling": "Queue status may explain deferral; it must not create interpretation inside runtime."
+    },
+    {
+      "input_name": "local_private_availability_metadata",
+      "required": false,
+      "description": "Optional availability/status metadata for local-private context.",
+      "safe_handling": "Record availability or withholding status only; do not export private contents by default."
+    },
+    {
+      "input_name": "target_mode",
+      "required": true,
+      "description": "Requested resolver mode.",
+      "safe_handling": "Must be one of resolver_modes and must reject direct runtime interpretation."
+    }
+  ],
+  "resolver_modes": [
+    {
+      "mode": "disabled",
+      "allowed": true,
+      "default": true,
+      "description": "No resolver is requested.",
+      "can_feed_runtime_bundle": false
+    },
+    {
+      "mode": "manual_ref_supply_only",
+      "allowed": true,
+      "default": false,
+      "description": "Use only explicit safe refs supplied by an operator.",
+      "can_feed_runtime_bundle": true
+    },
+    {
+      "mode": "checked_in_safe_case_registry",
+      "allowed": true,
+      "default": false,
+      "description": "Use a deterministic registry for known checked-in-safe examples and regression fixtures.",
+      "can_feed_runtime_bundle": true
+    },
+    {
+      "mode": "archive_local_safe_resolver",
+      "allowed": true,
+      "default": false,
+      "description": "Resolve safe structured artifact status and metadata from a completed archive, while deferring missing semantic brief or triage inputs.",
+      "can_feed_runtime_bundle": true
+    },
+    {
+      "mode": "offline_interpretation_queue",
+      "allowed": true,
+      "default": false,
+      "description": "Emit or read queue refs for later offline interpretation, enrichment, or triage work.",
+      "can_feed_runtime_bundle": false
+    },
+    {
+      "mode": "local_private_operator_mode",
+      "allowed": true,
+      "default": false,
+      "description": "Allow a local operator to use private context outside checked-in artifacts while exporting only reviewed safe refs/status.",
+      "can_feed_runtime_bundle": false
+    },
+    {
+      "mode": "future_direct_runtime_interpretation_not_allowed",
+      "allowed": false,
+      "default": false,
+      "blocked_status": "blocked_direct_runtime_interpretation",
+      "description": "Runtime-side provider/model interpretation is explicitly out of scope for this contract.",
+      "can_feed_runtime_bundle": false
+    }
+  ],
+  "resolver_statuses": [
+    {
+      "status": "not_requested",
+      "feeds_runtime_bundle": false
+    },
+    {
+      "status": "no_safe_inputs",
+      "feeds_runtime_bundle": false
+    },
+    {
+      "status": "resolved",
+      "feeds_runtime_bundle": true
+    },
+    {
+      "status": "partially_resolved",
+      "feeds_runtime_bundle": true
+    },
+    {
+      "status": "deferred_missing_brief",
+      "feeds_runtime_bundle": true
+    },
+    {
+      "status": "deferred_missing_enriched_brief",
+      "feeds_runtime_bundle": true
+    },
+    {
+      "status": "deferred_missing_interpretation_read",
+      "feeds_runtime_bundle": true
+    },
+    {
+      "status": "deferred_missing_triage_read",
+      "feeds_runtime_bundle": true
+    },
+    {
+      "status": "blocked_privacy_risk",
+      "feeds_runtime_bundle": false
+    },
+    {
+      "status": "blocked_unsafe_path",
+      "feeds_runtime_bundle": false
+    },
+    {
+      "status": "blocked_untrusted_source",
+      "feeds_runtime_bundle": false
+    },
+    {
+      "status": "blocked_schema_invalid",
+      "feeds_runtime_bundle": false
+    },
+    {
+      "status": "blocked_direct_runtime_interpretation",
+      "feeds_runtime_bundle": false
+    },
+    {
+      "status": "queued_for_offline_interpretation",
+      "feeds_runtime_bundle": false
+    },
+    {
+      "status": "local_private_operator_required",
+      "feeds_runtime_bundle": false
+    }
+  ],
+  "input_types": [
+    {
+      "input_name": "completed_run_dir_ref",
+      "required_for_user_receipt": true,
+      "required_for_full_brief": false,
+      "required_for_agent_handoff": true,
+      "required_for_triage": false,
+      "allowed_source_modes": [
+        "manual_ref_supply_only",
+        "archive_local_safe_resolver",
+        "offline_interpretation_queue"
+      ],
+      "safe_default_policy": "Use for run identity, structured artifact presence, parseability, and blocker state only.",
+      "local_private_policy": "May point to a local run for operator use, but exported refs must remain relative or redacted.",
+      "checked_in_safe_policy": "May be represented by a case id or relative checked-in fixture ref.",
+      "can_be_absent": false,
+      "absence_status": "no_safe_inputs",
+      "privacy_risk": "medium_if_raw_files_are_exported",
+      "requires_llm_interpretation": false,
+      "can_feed_runtime_bundle": true,
+      "notes": "This is necessary for status and blocker checks, not sufficient for a useful brief."
+    },
+    {
+      "input_name": "decision_work_brief_json_ref",
+      "required_for_user_receipt": false,
+      "required_for_full_brief": true,
+      "required_for_agent_handoff": true,
+      "required_for_triage": false,
+      "allowed_source_modes": [
+        "manual_ref_supply_only",
+        "checked_in_safe_case_registry",
+        "local_private_operator_mode"
+      ],
+      "safe_default_policy": "Accept only existing resolver-approved structured brief JSON; do not synthesize from raw conversation in runtime.",
+      "local_private_policy": "Allowed only after operator review and redaction; exported copy must be checked-in-safe or sidecar-safe.",
+      "checked_in_safe_policy": "Allowed for known examples with conservative custody flags.",
+      "can_be_absent": true,
+      "absence_status": "deferred_missing_brief",
+      "privacy_risk": "high_if_generated_from_private_context_without_review",
+      "requires_llm_interpretation": true,
+      "can_feed_runtime_bundle": true,
+      "notes": "Current runtime path does not produce this for arbitrary runs."
+    },
+    {
+      "input_name": "rendered_brief_markdown_ref",
+      "required_for_user_receipt": true,
+      "required_for_full_brief": true,
+      "required_for_agent_handoff": true,
+      "required_for_triage": false,
+      "allowed_source_modes": [
+        "manual_ref_supply_only",
+        "checked_in_safe_case_registry",
+        "local_private_operator_mode"
+      ],
+      "safe_default_policy": "Copy only an explicit resolver-approved safe Markdown ref; otherwise record deferred_missing_brief.",
+      "local_private_policy": "May be produced locally but cannot be exported until reviewed for raw/private leakage.",
+      "checked_in_safe_policy": "Allowed for existing checked-in-safe examples.",
+      "can_be_absent": true,
+      "absence_status": "deferred_missing_brief",
+      "privacy_risk": "medium_if_unreviewed_markdown_is_copied",
+      "requires_llm_interpretation": true,
+      "can_feed_runtime_bundle": true,
+      "notes": "This is the minimum human-readable brief input for an available attachment."
+    },
+    {
+      "input_name": "enriched_brief_markdown_ref",
+      "required_for_user_receipt": false,
+      "required_for_full_brief": false,
+      "required_for_agent_handoff": true,
+      "required_for_triage": false,
+      "allowed_source_modes": [
+        "manual_ref_supply_only",
+        "checked_in_safe_case_registry",
+        "local_private_operator_mode"
+      ],
+      "safe_default_policy": "Copy only when rendered brief and interpretation read refs are also resolver-approved.",
+      "local_private_policy": "Allowed only after private-source review and redaction.",
+      "checked_in_safe_policy": "Allowed for existing builder-enriched checked-in-safe examples.",
+      "can_be_absent": true,
+      "absence_status": "deferred_missing_enriched_brief",
+      "privacy_risk": "medium_if_interpretation_source_is_unclear",
+      "requires_llm_interpretation": true,
+      "can_feed_runtime_bundle": true,
+      "notes": "Absence should not block a basic receipt when a rendered brief exists."
+    },
+    {
+      "input_name": "interpretation_read_json_ref",
+      "required_for_user_receipt": false,
+      "required_for_full_brief": false,
+      "required_for_agent_handoff": true,
+      "required_for_triage": false,
+      "allowed_source_modes": [
+        "manual_ref_supply_only",
+        "checked_in_safe_case_registry",
+        "offline_interpretation_queue",
+        "local_private_operator_mode"
+      ],
+      "safe_default_policy": "Defer when no existing bounded interpretation read exists; do not create one inside runtime.",
+      "local_private_policy": "May be produced outside runtime, but only safe conclusions/refs may feed sidecars.",
+      "checked_in_safe_policy": "Allowed when schema-valid and conservative.",
+      "can_be_absent": true,
+      "absence_status": "deferred_missing_interpretation_read",
+      "privacy_risk": "high_if_created_from_private_context_inside_runtime",
+      "requires_llm_interpretation": true,
+      "can_feed_runtime_bundle": true,
+      "notes": "Needed to justify enrichment, not a deterministic runtime inference target."
+    },
+    {
+      "input_name": "automatic_triage_packet_json_ref",
+      "required_for_user_receipt": false,
+      "required_for_full_brief": false,
+      "required_for_agent_handoff": true,
+      "required_for_triage": true,
+      "allowed_source_modes": [
+        "manual_ref_supply_only",
+        "checked_in_safe_case_registry",
+        "archive_local_safe_resolver",
+        "offline_interpretation_queue"
+      ],
+      "safe_default_policy": "Metadata-only packets may be supplied, but must not be treated as a completed triage read.",
+      "local_private_policy": "May include availability/status only unless explicitly reviewed.",
+      "checked_in_safe_policy": "Allowed for schema-valid checked-in-safe packets.",
+      "can_be_absent": true,
+      "absence_status": "deferred_missing_triage_read",
+      "privacy_risk": "low_in_metadata_only_mode",
+      "requires_llm_interpretation": false,
+      "can_feed_runtime_bundle": true,
+      "notes": "Packet presence can support queueing or handoff but does not establish route decisions."
+    },
+    {
+      "input_name": "automatic_triage_read_json_ref",
+      "required_for_user_receipt": false,
+      "required_for_full_brief": false,
+      "required_for_agent_handoff": true,
+      "required_for_triage": true,
+      "allowed_source_modes": [
+        "manual_ref_supply_only",
+        "checked_in_safe_case_registry",
+        "offline_interpretation_queue",
+        "local_private_operator_mode"
+      ],
+      "safe_default_policy": "Defer user-facing route confidence unless a resolver-approved triage read already exists.",
+      "local_private_policy": "May be produced outside runtime but must export only safe route/status conclusions.",
+      "checked_in_safe_policy": "Allowed when schema-valid and conservative.",
+      "can_be_absent": true,
+      "absence_status": "deferred_missing_triage_read",
+      "privacy_risk": "high_if_created_inside_runtime",
+      "requires_llm_interpretation": true,
+      "can_feed_runtime_bundle": true,
+      "notes": "Triage read routes attention; it is not scoring or approval."
+    },
+    {
+      "input_name": "source_refs",
+      "required_for_user_receipt": true,
+      "required_for_full_brief": true,
+      "required_for_agent_handoff": true,
+      "required_for_triage": true,
+      "allowed_source_modes": [
+        "manual_ref_supply_only",
+        "checked_in_safe_case_registry",
+        "archive_local_safe_resolver",
+        "offline_interpretation_queue",
+        "local_private_operator_mode"
+      ],
+      "safe_default_policy": "Carry relative refs and source status; do not copy source contents by default.",
+      "local_private_policy": "May record private availability or withheld status without exporting content.",
+      "checked_in_safe_policy": "Relative checked-in refs allowed.",
+      "can_be_absent": true,
+      "absence_status": "blocked_untrusted_source",
+      "privacy_risk": "medium_if_absolute_or_private_refs_leak",
+      "requires_llm_interpretation": false,
+      "can_feed_runtime_bundle": true,
+      "notes": "Refs preserve custody but do not prove interpretation quality."
+    },
+    {
+      "input_name": "eligibility_result_ref",
+      "required_for_user_receipt": true,
+      "required_for_full_brief": false,
+      "required_for_agent_handoff": true,
+      "required_for_triage": false,
+      "allowed_source_modes": [
+        "archive_local_safe_resolver",
+        "manual_ref_supply_only"
+      ],
+      "safe_default_policy": "Use deterministic eligibility output from artifact status, path safety, custody flags, and explicit route fields.",
+      "local_private_policy": "Do not inspect private content for semantic meaning.",
+      "checked_in_safe_policy": "Allowed for fixture validation.",
+      "can_be_absent": true,
+      "absence_status": "partially_resolved",
+      "privacy_risk": "low",
+      "requires_llm_interpretation": false,
+      "can_feed_runtime_bundle": true,
+      "notes": "Eligibility may support blocked/deferred receipts even without a full brief."
+    },
+    {
+      "input_name": "attachment_status_ref",
+      "required_for_user_receipt": true,
+      "required_for_full_brief": false,
+      "required_for_agent_handoff": true,
+      "required_for_triage": false,
+      "allowed_source_modes": [
+        "archive_local_safe_resolver",
+        "manual_ref_supply_only"
+      ],
+      "safe_default_policy": "Generate or preserve deterministic attachment status with blockers, deferred reasons, custody flags, and non-claims.",
+      "local_private_policy": "Do not include private content.",
+      "checked_in_safe_policy": "Allowed for fixtures.",
+      "can_be_absent": true,
+      "absence_status": "partially_resolved",
+      "privacy_risk": "low",
+      "requires_llm_interpretation": false,
+      "can_feed_runtime_bundle": true,
+      "notes": "This is a status artifact, not proof of advice quality."
+    },
+    {
+      "input_name": "user_receipt_ref",
+      "required_for_user_receipt": true,
+      "required_for_full_brief": false,
+      "required_for_agent_handoff": false,
+      "required_for_triage": false,
+      "allowed_source_modes": [
+        "archive_local_safe_resolver",
+        "manual_ref_supply_only"
+      ],
+      "safe_default_policy": "Render from attachment status and safe refs only; keep caveat visible.",
+      "local_private_policy": "Never include private content in the receipt.",
+      "checked_in_safe_policy": "Allowed for fixtures.",
+      "can_be_absent": true,
+      "absence_status": "partially_resolved",
+      "privacy_risk": "low",
+      "requires_llm_interpretation": false,
+      "can_feed_runtime_bundle": true,
+      "notes": "Receipt can exist even when the brief is blocked or deferred."
+    },
+    {
+      "input_name": "agent_handoff_ref",
+      "required_for_user_receipt": false,
+      "required_for_full_brief": false,
+      "required_for_agent_handoff": true,
+      "required_for_triage": false,
+      "allowed_source_modes": [
+        "archive_local_safe_resolver",
+        "manual_ref_supply_only",
+        "checked_in_safe_case_registry"
+      ],
+      "safe_default_policy": "Generate from safe refs, missingness, route outputs, blockers, and non-claims; action authorization remains false.",
+      "local_private_policy": "No private content by default.",
+      "checked_in_safe_policy": "Allowed for fixtures.",
+      "can_be_absent": true,
+      "absence_status": "partially_resolved",
+      "privacy_risk": "low_if_refs_are_safe",
+      "requires_llm_interpretation": false,
+      "can_feed_runtime_bundle": true,
+      "notes": "Handoff usefulness depends on resolved brief and triage refs."
+    }
+  ],
+  "output_shape": {
+    "required_fields": [
+      "schema_version",
+      "resolver_metadata",
+      "source_run_ref",
+      "resolver_mode",
+      "resolver_status",
+      "selected_supply_strategy",
+      "resolved_inputs",
+      "deferred_inputs",
+      "blocked_inputs",
+      "unsafe_inputs_excluded",
+      "queue_handoff",
+      "manual_operator_requirements",
+      "privacy_policy",
+      "custody_flags",
+      "non_claims",
+      "feeds_runtime_bundle",
+      "reason_if_not_feedable"
+    ],
+    "feeds_runtime_bundle_true_requires": [
+      "no_blocked_privacy_or_path_status",
+      "unsafe_inputs_excluded_complete",
+      "source_refs_relative_or_redacted",
+      "custody_flags_conservative",
+      "no_runtime_model_generated_interpretation"
+    ],
+    "reason_if_not_feedable_required_when": [
+      "disabled",
+      "no_safe_inputs",
+      "blocked_privacy_risk",
+      "blocked_unsafe_path",
+      "blocked_untrusted_source",
+      "blocked_schema_invalid",
+      "blocked_direct_runtime_interpretation",
+      "queued_for_offline_interpretation",
+      "local_private_operator_required"
+    ]
+  },
+  "privacy_policy": {
+    "default_mode": "safe_refs_status_and_missingness_only",
+    "source_refs_only_by_default": true,
+    "local_absolute_paths_exported": false,
+    "private_contents_exported": false,
+    "provider_text_exported": false,
+    "runtime_model_generated_interpretation_allowed": false,
+    "local_private_mode_can_export_only_after_review": true,
+    "checked_in_safe_registry_must_use_relative_refs": true
+  },
+  "blocked_inputs": [
+    {
+      "input_name": "raw_conversation_text",
+      "must_never_auto_supply": true
+    },
+    {
+      "input_name": "raw_revised_answer_text",
+      "must_never_auto_supply": true
+    },
+    {
+      "input_name": "raw_memo_text",
+      "must_never_auto_supply": true
+    },
+    {
+      "input_name": "provider_text",
+      "must_never_auto_supply": true
+    },
+    {
+      "input_name": "private_ledgers",
+      "must_never_auto_supply": true
+    },
+    {
+      "input_name": "local_absolute_paths",
+      "must_never_auto_supply": true
+    },
+    {
+      "input_name": "secrets",
+      "must_never_auto_supply": true
+    },
+    {
+      "input_name": "hidden_chain_of_thought_style_material",
+      "must_never_auto_supply": true
+    },
+    {
+      "input_name": "runtime_model_generated_interpretation",
+      "must_never_auto_supply": true
+    },
+    {
+      "input_name": "action_authorization",
+      "must_never_auto_supply": true
+    },
+    {
+      "input_name": "score_or_approval_labels",
+      "must_never_auto_supply": true
+    }
+  ],
+  "custody_flags": {
+    "human_validated": false,
+    "human_review_completed": false,
+    "product_proof": false,
+    "model_calls": 0,
+    "runtime_invoked": false,
+    "runtime_behavior_changed": false,
+    "skill_invoked": false,
+    "archive_mutated": false,
+    "prompt_changed": false,
+    "skill_files_changed": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false,
+    "raw_private_content_included": false,
+    "provider_text_included": false,
+    "local_absolute_paths_included": false,
+    "resolver_contract_only": true
+  },
+  "non_claims": [
+    "not_customer_readiness",
+    "not_product_proof",
+    "not_human_validation",
+    "not_advice_correctness",
+    "not_answer_quality_scoring",
+    "not_agent_action_authorization",
+    "not_automatic_action_authorization",
+    "not_lolla_improvement_proof",
+    "not_default_on_runtime_behavior",
+    "not_runtime_behavior_change",
+    "not_direct_runtime_interpretation",
+    "not_raw_private_export",
+    "triage_is_routing_not_scoring",
+    "resolver_feedability_is_not_advice_quality"
+  ],
+  "next_recommended_pr": {
+    "pr": "PR171 Decision Work Brief Runtime Safe Supply Resolver v0",
+    "selected_next_step": "implement_deterministic_safe_supply_resolver",
+    "must_not_recommend_default_on_runtime_behavior": true,
+    "runtime_behavior_change_allowed": false,
+    "implementation_boundary": [
+      "read_safe_refs_and_status",
+      "accept_manual_refs_or_checked_in_safe_registry",
+      "emit_resolver_output",
+      "do_not_call_models",
+      "do_not_interpret_messy_content",
+      "do_not_mutate_archives",
+      "do_not_change_runtime_hook_behavior"
+    ]
+  }
+}

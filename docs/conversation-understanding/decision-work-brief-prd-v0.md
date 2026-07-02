@@ -1,7 +1,7 @@
 # Decision Work Brief PRD v0
 
-Status: product-facing target PRD
-Date: 2026-07-01
+Status: product-facing target PRD, updated through Offline v1 runtime planning
+Date: 2026-07-02
 
 ## Purpose
 
@@ -91,15 +91,79 @@ Already built:
   surfaces, linked reports, missingness, and non-claims.
 - Decision Work Receipt Debug Summary can render the receipt into Markdown for
   maintainers.
+- Decision Work Brief Offline v1 can render plain-language briefs from completed
+  artifacts, create bounded interpretation-enriched examples, preserve source
+  limits and non-claims, prepare automatic-triage packets, and create
+  Codex-assisted provisional triage reads.
+- Decision Work Brief Offline v1 is packaged with explicit limits: it is not
+  runtime integration, customer readiness, human validation, product proof,
+  answer-quality scoring, advice correctness, or agent action authorization.
 
 Not built:
 
-- a user-facing brief that explains the decision consequence;
-- a bounded interpretation pass that fills the brief from real local-private
-  conversation/revised-answer context;
-- a schema for the brief;
-- validation showing the brief is useful rather than impressive-looking;
-- runtime integration.
+- a runtime attachment contract;
+- a production runtime hook;
+- a default user-facing receipt after live Lolla runs;
+- a production agent handoff contract for brief/triage artifacts;
+- completed human calibration;
+- validated automatic triage at product scale;
+- customer readiness.
+
+The current runtime-planning bridge is
+[Decision Work Brief Runtime Attachment PRD](decision-work-brief-runtime-attachment-prd-v0.md).
+It defines when a future brief should run, what the user should see, what
+another agent should see, what blocks generation, and why the first runtime-safe
+slice should be a flagged post-archive attachment path rather than full
+automation.
+
+PR160-PR167 implement that bridge as runtime-attached internal v1:
+
+- [Runtime attachment contract](decision-work-brief-runtime-attachment-contract-v0.md)
+- [Runtime sidecar contract](decision-work-brief-runtime-sidecar-v0.md)
+- [Manual runtime bundle generator](decision-work-brief-runtime-bundle-generator-v0.md)
+- [Runtime eligibility gate](decision-work-brief-runtime-eligibility-gate-v0.md)
+- [Runtime receipt renderer](decision-work-brief-runtime-receipt-v0.md)
+- [Agent handoff packet](decision-work-brief-agent-handoff-v0.md)
+- [Flagged post-archive runtime hook](decision-work-brief-flagged-post-archive-runtime-hook-v0.md)
+- [Runtime attachment review](decision-work-brief-runtime-attachment-review-v0.md)
+- [Runtime-attached internal v1 package gate](decision-work-brief-runtime-attached-v1-package-gate-v0.md)
+- [Runtime-attached internal v1 follow-up plan](decision-work-brief-runtime-attached-v1-followup-plan-v0.md)
+- [Runtime safe brief supply plan](decision-work-brief-runtime-safe-brief-supply-plan-v0.md)
+- [Runtime safe supply resolver contract](decision-work-brief-runtime-safe-supply-resolver-contract-v0.md)
+- [Runtime safe supply resolver](decision-work-brief-runtime-safe-supply-resolver-v0.md)
+- [Runtime bundle resolver integration](decision-work-brief-runtime-bundle-resolver-integration-v0.md)
+- [Runtime hook resolver wiring](decision-work-brief-runtime-hook-resolver-wiring-v0.md)
+- [Runtime hook resolver fixture review](decision-work-brief-runtime-hook-resolver-fixture-review-v0.md)
+- [Runtime checked-in-safe case registry](decision-work-brief-runtime-checked-in-safe-case-registry-v0.md)
+
+The runtime-attached v1 claim remains narrow: a default-off, post-archive,
+sidecar-only internal path with blocked/deferred states, short receipts, and
+agent handoff packets. It is not customer readiness, human validation, product
+proof, answer-quality scoring, advice correctness, proof that Lolla improved
+the decision, or action authorization. PR168 adds the next choice gate: the
+runtime hook is mechanically attached and safe to defer, but the next useful
+slice should plan safe run-specific brief, enriched brief, and triage supply
+before product demos or default-on behavior. PR169 classifies those inputs and
+selects a safe resolver contract for PR170. PR170 defines that contract and
+recommends PR171 as a deterministic resolver implementation that still avoids
+runtime interpretation and hook changes. PR171 implements that resolver. PR172
+wires resolver output into the manual bundle path only, preserving resolver
+state in attachment status, receipt, and handoff. PR173 then wires the
+default-off post-archive hook to build resolver output and pass it into that
+resolver-aware bundle, while preserving the flag, fail-closed behavior, and
+non-claims. PR174 reviews concrete hook sidecar fixture states and selects a
+checked-in-safe case registry because useful generated states still require
+explicit safe refs. PR175 implements that registry for the three known examples
+and lets the resolver consume it in `checked_in_safe_case_registry` mode while
+leaving the runtime hook behavior unchanged. PR176 reviews registry-backed
+hook fixtures for launch-beta, deploy-intake, and cofounder, finds the temp
+sidecars coherent through the resolver-aware hook seam, and selects a
+runtime-attached internal v1 package refresh with the curated-registry and
+arbitrary-run supply limits made explicit. PR177 packages PR160-PR176 for
+maintainer review as an internal, default-off, post-archive sidecar path when
+safe refs exist, while withholding customer readiness, human validation,
+product proof, answer-quality scoring, advice correctness, arbitrary-run
+semantic coverage, and action authorization.
 
 ## Existing Codebase Anchors
 

@@ -475,6 +475,9 @@ def archive_run(
         files_missing=missing,
         manifest=manifest,
     )
+    decision_work_attachment = _maybe_write_decision_work_brief_runtime_attachment(
+        run_dir=run_dir
+    )
 
     return {
         "case_dir": str(case_dir),
@@ -489,8 +492,28 @@ def archive_run(
         "files_missing": missing,
         "files_generated": generated_files,
         "trace_path": str(trace_path),
+        "decision_work_attachment": decision_work_attachment,
         "run_count": manifest["run_count"],
     }
+
+
+def _maybe_write_decision_work_brief_runtime_attachment(*, run_dir: Path) -> dict:
+    """Run the default-off post-archive Decision Work Brief hook if enabled."""
+    _ensure_repo_root_on_path()
+    try:
+        from engine.system_b.decision_work_brief_runtime_attachment import (
+            run_post_archive_decision_work_brief_attachment,
+        )
+
+        return run_post_archive_decision_work_brief_attachment(run_dir=run_dir)
+    except Exception:  # noqa: BLE001 - archive completion must not be blocked.
+        return {
+            "enabled": False,
+            "attachment_state": "failed_closed",
+            "sidecar_written": False,
+            "non_blocking": True,
+            "failed_closed_reason": "runtime_attachment_import_or_hook_failed",
+        }
 
 
 def _write_reasoning_trace_for_archive(

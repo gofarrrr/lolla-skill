@@ -1,0 +1,154 @@
+{
+  "schema_version": "lolla.decision_work_brief_runtime_attachment_review.v0",
+  "review_mode": "codex_assisted_runtime_attachment_package_review",
+  "human_validated": false,
+  "human_review_completed": false,
+  "product_proof": false,
+  "model_calls": 0,
+  "runtime_invoked": false,
+  "skill_invoked": false,
+  "archive_mutated": false,
+  "answer_quality_scored": false,
+  "agent_action_authorized": false,
+  "automatic_action_authorized": false,
+  "runtime_hook_changed": true,
+  "runtime_code_changes": [
+    "scripts/archive_run.py",
+    "engine/system_b/decision_work_brief_runtime_attachment.py"
+  ],
+  "flag": {
+    "name": "LOLLA_DECISION_WORK_BRIEF_AFTER_ARCHIVE",
+    "default_off": true,
+    "enabled_values": [
+      "1",
+      "true",
+      "on",
+      "yes"
+    ],
+    "not_enabled_by_this_pr": true
+  },
+  "reviewed_slices": [
+    {
+      "pr": "PR160",
+      "artifact": "docs/conversation-understanding/decision-work-brief-runtime-attachment-contract-v0.json",
+      "finding": "Coherent contract for modes, states, blockers, receipt shape, handoff refs, privacy, default-off behavior, post-archive-only behavior, and non-claims."
+    },
+    {
+      "pr": "PR161",
+      "artifact": "docs/conversation-understanding/decision-work-brief-runtime-sidecar-v0.json",
+      "finding": "Sidecar plan is explicit: decision_work/ artifacts are separate from core run artifacts and raw/private export is off by default."
+    },
+    {
+      "pr": "PR162",
+      "artifact": "engine/system_b/decision_work_brief_runtime_bundle.py",
+      "finding": "Manual bundle generation can create generated/deferred/blocked sidecars from safe inputs and refuses unsafe output paths by default."
+    },
+    {
+      "pr": "PR163",
+      "artifact": "engine/system_b/decision_work_brief_runtime_eligibility.py",
+      "finding": "Eligibility gate maps explicit artifact and triage status to generated, blocked, deferred, and agent-only states without semantic inference."
+    },
+    {
+      "pr": "PR164",
+      "artifact": "engine/system_b/decision_work_brief_runtime_receipt.py",
+      "finding": "Receipt renderer is compact, caveated, and state-aware; it does not render full briefs by default."
+    },
+    {
+      "pr": "PR165",
+      "artifact": "engine/system_b/decision_work_brief_agent_handoff.py",
+      "finding": "Agent handoff carries refs, missingness, privacy status, route outputs, and non-claims while preserving agent_action_authorized false."
+    },
+    {
+      "pr": "PR166",
+      "artifact": "scripts/archive_run.py",
+      "finding": "Runtime hook is default off, post-archive, non-blocking, fail-closed, sidecar-only, and avoids SKILL.md and scripts/skill/* changes."
+    }
+  ],
+  "case_coverage": {
+    "generated_available_case": {
+      "source": "tests/test_decision_work_brief_runtime_bundle.py",
+      "status": "covered_by_safe_fixture",
+      "finding": "Manual bundle can package safe rendered/enriched brief refs and a triage read into a generated state."
+    },
+    "blocked_hard_failure_case": {
+      "source": "tests/test_decision_work_brief_runtime_attachment.py",
+      "status": "covered_by_safe_fixture",
+      "finding": "Missing required revised-answer artifact produces a blocked sidecar without failing archive completion."
+    },
+    "agent_only_or_caveated_case": {
+      "source": "tests/test_decision_work_brief_runtime_eligibility.py",
+      "status": "covered_by_safe_fixture",
+      "finding": "Explicit cofounder triage categories route a generated attachment to generated_agent_only."
+    },
+    "default_off_case": {
+      "source": "tests/test_decision_work_brief_runtime_attachment.py",
+      "status": "covered_by_safe_fixture",
+      "finding": "With the flag absent, no runtime sidecar is written."
+    }
+  },
+  "user_receipt_read": {
+    "available": "Short receipt points to the full brief and evidence bundle while preserving the audit-summary caveat.",
+    "blocked": "Blocked receipt names the blocked reason and does not claim advice correctness.",
+    "caveated": "Caveated receipt stays compact and does not turn triage into a rating."
+  },
+  "agent_handoff_read": {
+    "status": "usable_for_internal_agent_inspection",
+    "privacy": "Refs, missingness, route outputs, and non-claims are present; raw/private content, provider text, private ledgers, and local absolute paths are excluded.",
+    "authority": "agent_action_authorized and automatic_action_authorized remain false."
+  },
+  "blocker_coverage": {
+    "hard_blockers": [
+      "incomplete_run_artifacts",
+      "archive_not_finalized",
+      "missing_revised_answer",
+      "missing_required_structured_artifacts",
+      "malformed_json",
+      "failed_hygiene",
+      "unsafe_output_path",
+      "source_refs_unresolved",
+      "privacy_marker_or_raw_private_export_risk",
+      "schema_validation_failure",
+      "attempted_model_or_provider_invocation",
+      "attempted_runtime_invocation",
+      "attempted_archive_mutation",
+      "attempted_answer_quality_scoring",
+      "attempted_action_authorization"
+    ],
+    "soft_triage_blockers": [
+      "source_depth_too_thin",
+      "high_overtrust_risk",
+      "private_context_required",
+      "legal_domain_compliance_or_safety_escalation",
+      "relationship_or_political_sensitivity",
+      "unresolved_lost_value_risk",
+      "agent_inspection_only",
+      "runtime_attachment_blocked"
+    ]
+  },
+  "runtime_attached_internal_v1_claim": {
+    "functional_internal_v1": true,
+    "default_on": false,
+    "post_archive_only": true,
+    "non_blocking": true,
+    "fail_closed": true,
+    "sidecar_only": true,
+    "customer_ready": false,
+    "human_calibration_deferred": true
+  },
+  "strongest_useful_signal": "The runtime path now has a default-off post-archive sidecar that can record generated, blocked, deferred, and agent-only Decision Work Brief attachment states without changing live answer generation.",
+  "strongest_unresolved_risk": "Runtime-attached v1 can defer safely, but it still does not automatically create a semantically rich brief from live private context; safe brief supply and user-facing product design remain future work.",
+  "decision_gate": "package_runtime_attached_internal_v1",
+  "recommended_next_pr": "PR168 Decision Work Brief Runtime-Attached Internal v1 Follow-up Planning v0",
+  "non_claims": [
+    "not_customer_readiness",
+    "not_default_on_runtime_behavior",
+    "not_human_validation",
+    "not_product_proof",
+    "not_answer_quality_scoring",
+    "not_advice_correctness",
+    "not_lolla_improvement_proof",
+    "not_agent_action_authorization",
+    "not_automatic_action_authorization",
+    "triage_is_routing_not_scoring"
+  ]
+}

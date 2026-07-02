@@ -1,0 +1,321 @@
+{
+  "schema_version": "lolla.decision_work_brief_runtime_safe_brief_supply_plan.v0",
+  "review_mode": "runtime_safe_brief_supply_planning_gate",
+  "reviewed_stage": "PR160-PR168",
+  "human_validated": false,
+  "human_review_completed": false,
+  "product_proof": false,
+  "model_calls": 0,
+  "runtime_invoked": false,
+  "skill_invoked": false,
+  "archive_mutated": false,
+  "runtime_behavior_changed": false,
+  "prompt_changed": false,
+  "skill_files_changed": false,
+  "answer_quality_scored": false,
+  "agent_action_authorized": false,
+  "automatic_action_authorized": false,
+  "customer_readiness_claimed": false,
+  "default_on_runtime_behavior_claimed": false,
+  "lolla_improvement_proof_claimed": false,
+  "current_input_supply_summary": {
+    "runtime_hook_state": "default_off_post_archive_and_input_supply_limited",
+    "manual_bundle_state": "can_package_explicit_safe_refs",
+    "safe_default_without_supplied_refs": "deferred",
+    "deferred_reasons": [
+      "safe_rendered_brief_not_supplied",
+      "runtime_specific_triage_read_not_supplied"
+    ],
+    "summary": "The current path can produce attachment status, receipt, eligibility state, and agent handoff from completed-run status. It cannot produce a useful run-specific brief, enriched brief, or triage read without safe supplied artifacts or a future resolver."
+  },
+  "required_inputs": [
+    {
+      "input_name": "completed_run_directory",
+      "current_source": "archive_run output directory",
+      "current_status": "available_from_completed_run_artifacts",
+      "can_be_auto_supplied_now": true,
+      "safe_default_policy": "Use only for structured artifact presence, parseability, relative run refs, and blocker state.",
+      "privacy_risk": "medium_if_raw_files_are_read",
+      "source_depth_risk": "structured_status_available_but_semantic_context_thin",
+      "requires_llm_interpretation": false,
+      "requires_local_private_context": false,
+      "can_feed_user_receipt": true,
+      "can_feed_agent_handoff": true,
+      "notes": "The runtime hook already passes the completed run directory to the bundle path."
+    },
+    {
+      "input_name": "attachment_and_sidecar_contracts",
+      "current_source": "repo contract files",
+      "current_status": "available_from_manual_operator_ref",
+      "can_be_auto_supplied_now": true,
+      "safe_default_policy": "Use repo default contract refs and reject unsupported schema versions.",
+      "privacy_risk": "low",
+      "source_depth_risk": "none",
+      "requires_llm_interpretation": false,
+      "requires_local_private_context": false,
+      "can_feed_user_receipt": false,
+      "can_feed_agent_handoff": true,
+      "notes": "These contracts govern the bundle but do not supply semantic brief content."
+    },
+    {
+      "input_name": "decision_work_brief_json",
+      "current_source": "populated brief artifact, if one already exists",
+      "current_status": "not_available_yet",
+      "can_be_auto_supplied_now": false,
+      "safe_default_policy": "Do not synthesize from raw conversation in runtime; defer until a bounded interpreter or resolver-approved artifact exists.",
+      "privacy_risk": "high_if_generated_from_raw_context",
+      "source_depth_risk": "high_without_interpretation",
+      "requires_llm_interpretation": true,
+      "requires_local_private_context": false,
+      "can_feed_user_receipt": false,
+      "can_feed_agent_handoff": true,
+      "notes": "The packet builder can prepare metadata, but it explicitly does not fill the brief."
+    },
+    {
+      "input_name": "rendered_brief_markdown",
+      "current_source": "explicit safe Markdown ref",
+      "current_status": "available_from_existing_checked_in_safe_example_only",
+      "can_be_auto_supplied_now": false,
+      "safe_default_policy": "Copy only resolver-approved safe refs; otherwise record deferred_missing_brief.",
+      "privacy_risk": "medium_if_not_resolver_checked",
+      "source_depth_risk": "high_for_arbitrary_live_runs",
+      "requires_llm_interpretation": true,
+      "requires_local_private_context": false,
+      "can_feed_user_receipt": true,
+      "can_feed_agent_handoff": true,
+      "notes": "Existing checked-in examples are safe for known cases, not a general runtime supply path."
+    },
+    {
+      "input_name": "enriched_brief_markdown",
+      "current_source": "explicit safe enriched Markdown ref",
+      "current_status": "available_from_existing_checked_in_safe_example_only",
+      "can_be_auto_supplied_now": false,
+      "safe_default_policy": "Copy only when rendered brief and interpretation read are resolver-approved; otherwise defer enrichment.",
+      "privacy_risk": "medium_if_interpretation_source_is_unclear",
+      "source_depth_risk": "high_without_interpretation_read",
+      "requires_llm_interpretation": true,
+      "requires_local_private_context": false,
+      "can_feed_user_receipt": true,
+      "can_feed_agent_handoff": true,
+      "notes": "The enrichment builder is deterministic, but it depends on an existing interpretation read."
+    },
+    {
+      "input_name": "interpretation_read_json",
+      "current_source": "existing provisional interpretation read",
+      "current_status": "requires_future_llm_interpretation",
+      "can_be_auto_supplied_now": false,
+      "safe_default_policy": "Keep out of runtime generation; route to offline or calibrated interpretation before enrichment.",
+      "privacy_risk": "high_if_created_from_raw_context_in_runtime",
+      "source_depth_risk": "high_until_source_refs_and_uncertainty_exist",
+      "requires_llm_interpretation": true,
+      "requires_local_private_context": false,
+      "can_feed_user_receipt": false,
+      "can_feed_agent_handoff": true,
+      "notes": "Existing reads support checked-in examples; arbitrary live runs need a future interpretation process."
+    },
+    {
+      "input_name": "automatic_triage_packet_json",
+      "current_source": "offline triage packet builder",
+      "current_status": "available_from_existing_offline_builder",
+      "can_be_auto_supplied_now": false,
+      "safe_default_policy": "Allow metadata-only packet generation in a future resolver, but never treat the packet as a triage read.",
+      "privacy_risk": "low_in_metadata_only_mode",
+      "source_depth_risk": "medium_because_semantic_triage_is_unfilled",
+      "requires_llm_interpretation": false,
+      "requires_local_private_context": false,
+      "can_feed_user_receipt": false,
+      "can_feed_agent_handoff": true,
+      "notes": "The current triage packet builder is focused on the three checked-in-safe examples rather than arbitrary runtime runs."
+    },
+    {
+      "input_name": "automatic_triage_read_json",
+      "current_source": "existing provisional triage read, if available",
+      "current_status": "requires_future_triage_read",
+      "can_be_auto_supplied_now": false,
+      "safe_default_policy": "Defer user-surface routing unless a resolver-approved triage read exists.",
+      "privacy_risk": "high_if_created_inside_runtime",
+      "source_depth_risk": "high_without_calibrated_triage",
+      "requires_llm_interpretation": true,
+      "requires_local_private_context": false,
+      "can_feed_user_receipt": false,
+      "can_feed_agent_handoff": true,
+      "notes": "Triage reads route attention; they must not become scores or approval labels."
+    },
+    {
+      "input_name": "attachment_status",
+      "current_source": "runtime bundle builder",
+      "current_status": "available_from_completed_run_artifacts",
+      "can_be_auto_supplied_now": true,
+      "safe_default_policy": "Generate deterministically from run artifact status, supplied refs, blockers, and deferred reasons.",
+      "privacy_risk": "low",
+      "source_depth_risk": "low_for_status_high_for_semantic_summary",
+      "requires_llm_interpretation": false,
+      "requires_local_private_context": false,
+      "can_feed_user_receipt": true,
+      "can_feed_agent_handoff": true,
+      "notes": "This is the core safe artifact the runtime hook can always try to write when flagged."
+    },
+    {
+      "input_name": "eligibility_blocker_state",
+      "current_source": "runtime eligibility gate",
+      "current_status": "available_from_completed_run_artifacts",
+      "can_be_auto_supplied_now": true,
+      "safe_default_policy": "Compute only from artifact presence, parseability, path safety, custody flags, and explicit triage routes.",
+      "privacy_risk": "low",
+      "source_depth_risk": "medium_when_triage_routes_are_missing",
+      "requires_llm_interpretation": false,
+      "requires_local_private_context": false,
+      "can_feed_user_receipt": true,
+      "can_feed_agent_handoff": true,
+      "notes": "The gate must not infer messy semantic meaning."
+    },
+    {
+      "input_name": "user_receipt",
+      "current_source": "runtime receipt renderer",
+      "current_status": "available_from_existing_offline_builder",
+      "can_be_auto_supplied_now": true,
+      "safe_default_policy": "Render from attachment status and never render the full brief by default.",
+      "privacy_risk": "low_if_refs_are_safe",
+      "source_depth_risk": "medium_when_action_consequence_is_generic",
+      "requires_llm_interpretation": false,
+      "requires_local_private_context": false,
+      "can_feed_user_receipt": true,
+      "can_feed_agent_handoff": false,
+      "notes": "Receipt quality improves only when a safe action-consequence or brief ref exists."
+    },
+    {
+      "input_name": "agent_handoff_packet",
+      "current_source": "agent handoff builder",
+      "current_status": "available_from_existing_offline_builder",
+      "can_be_auto_supplied_now": true,
+      "safe_default_policy": "Generate from status, refs, missingness, and explicit route outputs; keep action authorization false.",
+      "privacy_risk": "low_if_refs_are_safe",
+      "source_depth_risk": "medium_when_brief_and_triage_refs_are_missing",
+      "requires_llm_interpretation": false,
+      "requires_local_private_context": false,
+      "can_feed_user_receipt": false,
+      "can_feed_agent_handoff": true,
+      "notes": "Useful for inspection, but sparse when runtime supply is deferred."
+    },
+    {
+      "input_name": "source_refs",
+      "current_source": "completed run artifacts and supplied safe refs",
+      "current_status": "available_from_completed_run_artifacts",
+      "can_be_auto_supplied_now": true,
+      "safe_default_policy": "Carry relative refs and source status only; do not copy raw/private content.",
+      "privacy_risk": "medium_if_absolute_or_private_refs_leak",
+      "source_depth_risk": "medium_because_refs_do_not_equal_interpretation",
+      "requires_llm_interpretation": false,
+      "requires_local_private_context": false,
+      "can_feed_user_receipt": true,
+      "can_feed_agent_handoff": true,
+      "notes": "Source refs are necessary but not sufficient for a user-useful brief."
+    }
+  ],
+  "input_classification": {
+    "completed_run_directory": "available_from_completed_run_artifacts",
+    "attachment_and_sidecar_contracts": "available_from_manual_operator_ref",
+    "decision_work_brief_json": "not_available_yet",
+    "rendered_brief_markdown": "available_from_existing_checked_in_safe_example_only",
+    "enriched_brief_markdown": "available_from_existing_checked_in_safe_example_only",
+    "interpretation_read_json": "requires_future_llm_interpretation",
+    "automatic_triage_packet_json": "available_from_existing_offline_builder",
+    "automatic_triage_read_json": "requires_future_triage_read",
+    "attachment_status": "available_from_completed_run_artifacts",
+    "eligibility_blocker_state": "available_from_completed_run_artifacts",
+    "user_receipt": "available_from_existing_offline_builder",
+    "agent_handoff_packet": "available_from_existing_offline_builder",
+    "source_refs": "available_from_completed_run_artifacts"
+  },
+  "unsafe_auto_supply_inputs": [
+    {
+      "input_name": "raw_conversation_text",
+      "reason": "Contains private conversation context and must not be default-exported into sidecars, receipts, or agent handoffs."
+    },
+    {
+      "input_name": "raw_revised_answer_text",
+      "reason": "May contain sensitive user-facing answer content; runtime supply should preserve refs/status by default."
+    },
+    {
+      "input_name": "raw_memo_text",
+      "reason": "Memo prose can contain private context and should not become default sidecar material."
+    },
+    {
+      "input_name": "provider_text",
+      "reason": "Provider artifacts are not safe default handoff content."
+    },
+    {
+      "input_name": "private_ledgers",
+      "reason": "Private ledgers can inform local review but must not be copied into runtime sidecars by default."
+    },
+    {
+      "input_name": "local_absolute_paths",
+      "reason": "Agent-facing and checked-in-safe outputs must use relative refs or status, not local machine paths."
+    },
+    {
+      "input_name": "local_private_packet_contents",
+      "reason": "Local-private packet mode can include sensitive text and must remain operator-only unless explicitly reviewed."
+    },
+    {
+      "input_name": "runtime_model_generated_interpretation",
+      "reason": "Creating interpretation inside the runtime attachment path would add model/provider calls and overtrust risk."
+    }
+  ],
+  "options_considered": [
+    {
+      "option": "manual_ref_supply_only",
+      "finding": "Safest current mode and already supported by PR162, but too manual and not generally run-specific.",
+      "selected": false
+    },
+    {
+      "option": "checked_in_safe_case_registry",
+      "finding": "Useful for demos and regression tests, but not enough for arbitrary live runs and easy to overread as product completeness.",
+      "selected": false
+    },
+    {
+      "option": "archive_local_safe_resolver",
+      "finding": "Useful as part of the next contract for run-specific metadata and deferred statuses, but it cannot fill semantic brief fields alone.",
+      "selected": false
+    },
+    {
+      "option": "offline_interpretation_queue",
+      "finding": "Needed for future semantic interpretation, but it should be connected through a supply resolver contract rather than ad hoc runtime behavior.",
+      "selected": false
+    },
+    {
+      "option": "local_private_operator_mode",
+      "finding": "Valuable for internal review but unsafe as the default runtime or agent handoff supply path.",
+      "selected": false
+    },
+    {
+      "option": "direct_runtime_interpretation",
+      "finding": "Rejected for now because it would add provider/model calls and make runtime attachment responsible for messy semantic interpretation.",
+      "selected": false
+    },
+    {
+      "option": "build_safe_brief_supply_resolver_contract",
+      "finding": "Best next step: define supply modes, resolver output statuses, safe refs, deferred reasons, and queue handoff before implementation.",
+      "selected": true
+    }
+  ],
+  "selected_next_step": "build_safe_brief_supply_resolver_contract",
+  "recommended_next_pr": "PR170 Decision Work Brief Runtime Safe Supply Resolver Contract v0",
+  "strongest_useful_signal": "The runtime-attached path already has enough deterministic machinery to preserve status, blockers, receipts, and handoff refs safely; the next work can focus on supplying semantic inputs rather than more hook plumbing.",
+  "strongest_unresolved_risk": "For arbitrary live runs, useful brief/enriched/triage inputs still require bounded interpretation or resolver-approved safe artifacts. Without that, the runtime hook remains correctly deferred.",
+  "overclaim_risk": "A resolver or registry could make curated examples look like general product readiness. PR170 must keep registry, local-private, queue, and runtime paths visibly separate.",
+  "non_claims": [
+    "not_customer_readiness",
+    "not_default_on_runtime_behavior",
+    "not_human_validation",
+    "not_product_proof",
+    "not_answer_quality_scoring",
+    "not_advice_correctness",
+    "not_lolla_improvement_proof",
+    "not_agent_action_authorization",
+    "not_automatic_action_authorization",
+    "not_raw_private_export",
+    "not_runtime_interpretation",
+    "not_prompt_change",
+    "not_skill_invocation"
+  ]
+}

@@ -1,0 +1,251 @@
+{
+  "schema_version": "lolla.decision_work_brief_runtime_attached_internal_v1_package_manifest.v0",
+  "package_metadata": {
+    "status": "PR177 runtime-attached internal v1 package refresh manifest",
+    "date": "2026-07-02",
+    "package_scope": "Decision Work Brief runtime attachment sequence PR160-PR176 plus PR177 package refresh",
+    "included_pr_range": "PR160-PR177",
+    "runtime_attached_internal_v1_functional": true,
+    "internal_only": true,
+    "default_off": true,
+    "flag_name": "LOLLA_DECISION_WORK_BRIEF_AFTER_ARCHIVE",
+    "enabled_values": [
+      "1",
+      "true",
+      "on",
+      "yes"
+    ],
+    "customer_ready": false,
+    "default_on_runtime_behavior": false,
+    "arbitrary_run_semantic_coverage": false,
+    "direct_runtime_interpretation": false,
+    "human_validated": false,
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false,
+    "model_calls": 0,
+    "human_calibration_deferred": true
+  },
+  "package_claim": {
+    "claim": "Decision Work Brief Runtime-Attached Internal v1 is functional as an internal, default-off, post-archive sidecar path for completed runs when safe refs are supplied manually or through checked-in-safe registry fixtures.",
+    "allowed_claims": [
+      "internal_v1_package_coherence",
+      "default_off_post_archive_sidecar_attachment",
+      "resolver_aware_bundle_path",
+      "registry_backed_fixture_repeatability",
+      "available_deferred_blocked_failed_closed_sidecar_states",
+      "short_receipt_generation",
+      "agent_handoff_packet_generation",
+      "custody_status_missingness_and_non_claim_preservation"
+    ],
+    "claim_limits": [
+      "not_customer_readiness",
+      "not_default_on_readiness",
+      "not_arbitrary_run_semantic_coverage",
+      "not_direct_runtime_interpretation",
+      "not_runtime_model_calls",
+      "not_product_proof",
+      "not_human_validation",
+      "not_answer_quality_scoring",
+      "not_advice_correctness",
+      "not_lolla_improvement_proof",
+      "not_agent_action_authorization",
+      "not_automatic_action_authorization"
+    ]
+  },
+  "runtime_behavior_summary": {
+    "when_flag_off": [
+      "no_resolver_call",
+      "no_bundle_call",
+      "no_decision_work_sidecar",
+      "archive_behavior_unchanged"
+    ],
+    "when_flag_on": [
+      "post_archive_only",
+      "builds_safe_supply_resolver_output",
+      "feeds_resolver_aware_runtime_bundle",
+      "writes_decision_work_sidecar_when_possible",
+      "writes_attachment_status",
+      "writes_short_receipt",
+      "preserves_resolver_summary",
+      "copies_only_resolver_approved_safe_refs",
+      "writes_agent_handoff_packet",
+      "fails_closed",
+      "remains_non_blocking"
+    ],
+    "known_sidecar_states": [
+      "not_requested",
+      "deferred",
+      "generated",
+      "generated_agent_only",
+      "blocked",
+      "failed_closed"
+    ],
+    "sidecar_files": [
+      "decision_work/attachment_status.json",
+      "decision_work/safe_supply_resolver.json",
+      "decision_work/decision_work_brief.json",
+      "decision_work/decision_work_brief.md",
+      "decision_work/decision_work_brief_enriched.md",
+      "decision_work/automatic_triage_packet.json",
+      "decision_work/automatic_triage_read.json",
+      "decision_work/agent_handoff_packet.json",
+      "decision_work/user_receipt.md"
+    ]
+  },
+  "supply_status": {
+    "manual_safe_refs_supported": true,
+    "checked_in_safe_registry_supported": true,
+    "registry_cases_reviewed": [
+      "launch-public-enterprise-beta",
+      "deploy-assisted-intake-routing",
+      "ceo-remove-founding-cofounder"
+    ],
+    "production_hook_registry_lookup_added": false,
+    "arbitrary_completed_runs_normally_defer_without_safe_semantic_refs": true,
+    "offline_interpretation_queue_implemented": false,
+    "local_private_operator_flow_implemented": false
+  },
+  "included_files": {
+    "contracts_and_prds": [
+      "docs/conversation-understanding/decision-work-brief-runtime-attachment-prd-v0.md",
+      "docs/conversation-understanding/decision-work-brief-runtime-attachment-contract-v0.md",
+      "docs/conversation-understanding/decision-work-brief-runtime-attachment-contract-v0.json",
+      "docs/conversation-understanding/decision-work-brief-runtime-sidecar-v0.md",
+      "docs/conversation-understanding/decision-work-brief-runtime-sidecar-v0.json",
+      "docs/conversation-understanding/decision-work-brief-runtime-safe-brief-supply-plan-v0.md",
+      "docs/conversation-understanding/decision-work-brief-runtime-safe-supply-resolver-contract-v0.md",
+      "docs/conversation-understanding/decision-work-brief-runtime-safe-supply-resolver-contract-v0.json",
+      "docs/conversation-understanding/decision-work-brief-agent-handoff-v0.json"
+    ],
+    "runtime_docs": [
+      "docs/conversation-understanding/decision-work-brief-runtime-bundle-generator-v0.md",
+      "docs/conversation-understanding/decision-work-brief-runtime-eligibility-gate-v0.md",
+      "docs/conversation-understanding/decision-work-brief-runtime-receipt-v0.md",
+      "docs/conversation-understanding/decision-work-brief-agent-handoff-v0.md",
+      "docs/conversation-understanding/decision-work-brief-flagged-post-archive-runtime-hook-v0.md",
+      "docs/conversation-understanding/decision-work-brief-runtime-bundle-resolver-integration-v0.md",
+      "docs/conversation-understanding/decision-work-brief-runtime-hook-resolver-wiring-v0.md",
+      "docs/conversation-understanding/decision-work-brief-runtime-safe-supply-resolver-v0.md",
+      "docs/conversation-understanding/decision-work-brief-runtime-checked-in-safe-case-registry-v0.md",
+      "docs/conversation-understanding/decision-work-brief-runtime-hook-resolver-fixture-review-v0.md",
+      "docs/conversation-understanding/decision-work-brief-runtime-hook-registry-fixture-review-v0.md",
+      "docs/conversation-understanding/decision-work-brief-runtime-attached-v1-followup-plan-v0.md",
+      "docs/conversation-understanding/decision-work-brief-runtime-attached-v1-package-gate-v0.md"
+    ],
+    "review_artifacts": [
+      "docs/conversation-understanding/decision-work-brief-runtime-attachment-review-v0.md",
+      "reviews/codex-assisted/decision-work-brief-runtime-attachment-review-v0/review.json",
+      "docs/conversation-understanding/decision-work-brief-runtime-attached-v1-package-manifest-v0.json",
+      "reviews/codex-assisted/decision-work-brief-runtime-attached-v1-followup-plan-v0/review.json",
+      "reviews/codex-assisted/decision-work-brief-runtime-safe-brief-supply-plan-v0/review.json",
+      "reviews/codex-assisted/decision-work-brief-runtime-hook-resolver-fixture-review-v0/review.json",
+      "reviews/codex-assisted/decision-work-brief-runtime-hook-registry-fixture-review-v0/review.json"
+    ],
+    "registry_artifacts": [
+      "docs/conversation-understanding/decision-work-brief-runtime-checked-in-safe-case-registry-v0.json",
+      "docs/conversation-understanding/decision-work-brief-runtime-checked-in-safe-case-registry-v0.md"
+    ],
+    "runtime_code_modules": [
+      "scripts/archive_run.py",
+      "engine/system_b/decision_work_brief_runtime_attachment.py",
+      "engine/system_b/decision_work_brief_runtime_bundle.py",
+      "engine/system_b/decision_work_brief_runtime_eligibility.py",
+      "engine/system_b/decision_work_brief_runtime_receipt.py",
+      "engine/system_b/decision_work_brief_agent_handoff.py",
+      "engine/system_b/decision_work_brief_safe_supply_resolver.py",
+      "engine/system_b/decision_work_brief_safe_case_registry.py"
+    ],
+    "cli_scripts": [
+      "scripts/evals/build_decision_work_brief_runtime_bundle.py",
+      "scripts/evals/render_decision_work_brief_runtime_receipt.py",
+      "scripts/evals/build_decision_work_brief_agent_handoff.py",
+      "scripts/evals/resolve_decision_work_brief_safe_supply.py",
+      "scripts/evals/resolve_decision_work_brief_safe_case_registry.py"
+    ],
+    "tests": [
+      "tests/test_decision_work_brief_runtime_attachment_contract.py",
+      "tests/test_decision_work_brief_runtime_sidecar.py",
+      "tests/test_decision_work_brief_runtime_bundle.py",
+      "tests/test_decision_work_brief_runtime_eligibility.py",
+      "tests/test_decision_work_brief_runtime_receipt.py",
+      "tests/test_decision_work_brief_agent_handoff.py",
+      "tests/test_decision_work_brief_runtime_attachment.py",
+      "tests/test_decision_work_brief_runtime_attached_v1_package_gate.py",
+      "tests/test_decision_work_brief_runtime_attached_v1_followup_plan.py",
+      "tests/test_decision_work_brief_runtime_safe_brief_supply_plan.py",
+      "tests/test_decision_work_brief_runtime_safe_supply_resolver_contract.py",
+      "tests/test_decision_work_brief_safe_supply_resolver.py",
+      "tests/test_decision_work_brief_runtime_bundle_resolver_integration.py",
+      "tests/test_decision_work_brief_runtime_hook_resolver_wiring.py",
+      "tests/test_decision_work_brief_runtime_hook_resolver_fixture_review.py",
+      "tests/test_decision_work_brief_safe_case_registry.py",
+      "tests/test_decision_work_brief_runtime_hook_registry_fixture_review.py",
+      "tests/test_decision_work_brief_runtime_attached_internal_v1_package_refresh.py"
+    ],
+    "package_refresh_files": [
+      "docs/conversation-understanding/decision-work-brief-runtime-attached-internal-v1-package-refresh-v0.md",
+      "docs/conversation-understanding/decision-work-brief-runtime-attached-internal-v1-package-manifest-v0.json",
+      "tests/test_decision_work_brief_runtime_attached_internal_v1_package_refresh.py"
+    ],
+    "discoverability_updates": [
+      "PROGRESS.md",
+      "HOW_IT_WORKS.md",
+      "README.md",
+      "docs/board/README.md",
+      "docs/conversation-understanding/decision-work-brief-prd-v0.md",
+      "docs/conversation-understanding/decision-work-brief-runtime-attachment-prd-v0.md",
+      "docs/conversation-understanding/decision-work-brief-runtime-hook-registry-fixture-review-v0.md"
+    ]
+  },
+  "excluded_paths": [
+    "SKILL.md",
+    "scripts/skill/*",
+    "plans/*",
+    "reviews/synthetic/*",
+    "docs/lolla-*",
+    "archive directories",
+    "local run directories",
+    "runtime temp state",
+    "raw private transcripts",
+    "raw memos",
+    "raw revised answers",
+    "provider text",
+    "private ledgers",
+    "local absolute paths",
+    "credential material"
+  ],
+  "validation_summary": {
+    "py_compile": "required over PR177 package test",
+    "pytest": "focused Decision Work Brief runtime package, registry, resolver, bundle, hook, receipt, handoff, and Product Delta boundary tests",
+    "jq": "required over PR177 manifest and PR176 review JSON",
+    "product_delta_boundary_lint": "required over PR177 docs/json plus touched runtime docs",
+    "git_diff_check": "required",
+    "markdown_links": "required over touched Markdown",
+    "trailing_whitespace_scan": "required",
+    "privacy_marker_scan": "required",
+    "skill_boundary_check": "git status --short -- SKILL.md scripts/skill must produce no output"
+  },
+  "strongest_useful_signal": "The runtime-attached path is now an inspectable default-off sidecar system: it can defer safely, generate sidecars from manual safe refs, generate repeatable sidecars from checked-in-safe registry fixtures, preserve resolver status, render a receipt, and produce an agent handoff without changing live answer generation.",
+  "strongest_unresolved_risk": "The path still does not solve arbitrary-run semantic supply; production registry lookup is not first-class, cofounder receipt sensitivity remains generic, and completed runs without safe semantic refs normally defer.",
+  "decision_gate": "runtime_attached_internal_v1_packageable_for_maintainer_review",
+  "recommended_next_step": "Audit/stage/commit the PR160-PR177 runtime-attached internal v1 package using a narrow manifest-derived pathspec.",
+  "non_claims": [
+    "not_customer_readiness",
+    "not_default_on_runtime_behavior",
+    "not_arbitrary_run_semantic_coverage",
+    "not_direct_runtime_interpretation",
+    "not_runtime_model_calls",
+    "not_human_validation",
+    "not_product_proof",
+    "not_answer_quality_scoring",
+    "not_advice_correctness",
+    "not_lolla_improvement_proof",
+    "not_agent_action_authorization",
+    "not_automatic_action_authorization",
+    "not_approval_or_certification",
+    "not_general_arbitrary_run_solution",
+    "triage_is_routing_not_scoring"
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "schema_version": "lolla.decision_work_brief_runtime_attached_v1_followup_plan.v0",
+  "review_mode": "runtime_attached_internal_v1_followup_choice_gate",
+  "reviewed_prs": [
+    "PR160 Runtime Attachment Contract v0",
+    "PR161 Archive Sidecar / Artifact Location Contract v0",
+    "PR162 Manual Post-Archive Bundle Generator v0",
+    "PR163 Eligibility / Blocker Gate v0",
+    "PR164 Short Receipt Renderer v0",
+    "PR165 Agent Handoff Packet v0",
+    "PR166 Flagged Post-Archive Runtime Hook v0",
+    "PR167 Runtime Attachment Review + Package Gate v0"
+  ],
+  "human_validated": false,
+  "human_review_completed": false,
+  "product_proof": false,
+  "model_calls": 0,
+  "runtime_invoked": false,
+  "skill_invoked": false,
+  "archive_mutated": false,
+  "prompt_changed": false,
+  "skill_files_changed": false,
+  "answer_quality_scored": false,
+  "agent_action_authorized": false,
+  "automatic_action_authorized": false,
+  "customer_readiness_claimed": false,
+  "default_on_runtime_behavior_claimed": false,
+  "advice_correctness_claimed": false,
+  "lolla_improvement_proof_claimed": false,
+  "source_depth_risk": {
+    "status": "still_material",
+    "summary": "Runtime attachment can preserve source refs and defer safely, but it does not yet know how to obtain run-specific safe brief, enriched brief, and triage inputs without manual fixture-style paths or future bounded interpretation."
+  },
+  "runtime_attachment_summary": {
+    "contract": "coherent_default_off_post_archive_contract",
+    "sidecar_shape": "coherent_decision_work_sidecar",
+    "manual_bundle_generator": "functional_with_explicit_safe_inputs",
+    "eligibility_gate": "functional_for_generated_blocked_deferred_and_agent_only_states",
+    "short_receipt_renderer": "functional_but_generic_when_no_action_consequence_is_supplied",
+    "agent_handoff_packet": "functional_for_refs_missingness_routes_and_non_claims",
+    "runtime_hook": "mechanically_attached_default_off_and_fail_closed",
+    "package_gate": "runtime_attached_internal_v1_packaged_with_limits"
+  },
+  "user_surface_read": {
+    "state": "usable_as_status_receipt",
+    "strength": "Available, blocked, deferred, failed-closed, and agent-only states are visible with a non-claim line.",
+    "limit": "When safe brief inputs are absent, the receipt is mostly a deferred status rather than a useful decision-work summary. Available receipts can also fall back to generic action-consequence wording."
+  },
+  "agent_handoff_read": {
+    "state": "useful_for_inspection_when_bundle_has_inputs",
+    "strength": "The handoff packet carries attachment status, brief refs, triage refs, source status, missingness, uncertainty placeholders, route outputs, and explicit non-claims.",
+    "limit": "The packet becomes much less useful when the runtime hook only creates a deferred sidecar with no run-specific brief or triage read."
+  },
+  "blocker_gate_read": {
+    "state": "coherent",
+    "strength": "Hard blockers, deferred reasons, and agent-only soft triage blockers are represented as states rather than hidden failures.",
+    "limit": "The gate can only classify status fields and explicit triage artifacts; it cannot determine messy semantic adequacy or advice correctness."
+  },
+  "runtime_hook_read": {
+    "state": "mechanically_attached_but_input_supply_limited",
+    "flag": "LOLLA_DECISION_WORK_BRIEF_AFTER_ARCHIVE",
+    "default_off": true,
+    "post_archive_only": true,
+    "non_blocking": true,
+    "fail_closed": true,
+    "summary": "The hook can write a decision_work sidecar after archive completion, but a clean run without safe prebuilt brief and triage artifacts normally becomes deferred."
+  },
+  "strongest_useful_signal": "PR160-PR167 create a real runtime hinge: archive completion can optionally write a default-off, post-archive Decision Work sidecar with explicit status, receipt, and agent handoff without blocking the revised answer.",
+  "strongest_unresolved_risk": "The runtime hook is still supply-limited: it cannot yet produce a useful run-specific Decision Work Brief, enriched brief, or triage read unless safe artifacts are supplied from outside the hook.",
+  "overclaim_risk": "Because a sidecar now exists in runtime code, readers may overread mechanical attachment as product usefulness. PR168 keeps the distinction explicit: attached does not mean customer-ready, validated, correct, or default-on.",
+  "options_considered": [
+    {
+      "option": "product_surface_simplification",
+      "finding": "Useful later for receipt wording, but it would not solve the current input-supply gap.",
+      "selected": false
+    },
+    {
+      "option": "safe_brief_supply_planning",
+      "finding": "Best next slice because the hook can attach safely but does not yet know how to obtain run-specific safe brief, enriched brief, and triage inputs.",
+      "selected": true
+    },
+    {
+      "option": "small_internal_demo_walkthrough",
+      "finding": "Better after supply planning, otherwise the demo mostly shows deferred plumbing.",
+      "selected": false
+    },
+    {
+      "option": "runtime_fixture_expansion",
+      "finding": "Helpful but not the primary gap; existing tests already cover generated, blocked, deferred, agent-only, and default-off behavior.",
+      "selected": false
+    },
+    {
+      "option": "package_and_pause",
+      "finding": "Not selected because the next safe planning gap is specific enough to define.",
+      "selected": false
+    }
+  ],
+  "selected_next_step": "safe_brief_supply_planning",
+  "recommended_next_pr": "PR169 Decision Work Brief Runtime Safe Brief Supply Plan v0",
+  "non_claims": [
+    "not_customer_readiness",
+    "not_default_on_runtime_behavior",
+    "not_human_validation",
+    "not_product_proof",
+    "not_answer_quality_scoring",
+    "not_advice_correctness",
+    "not_lolla_improvement_proof",
+    "not_agent_action_authorization",
+    "not_automatic_action_authorization",
+    "not_raw_private_export",
+    "not_prompt_change",
+    "not_skill_invocation"
+  ]
+}
