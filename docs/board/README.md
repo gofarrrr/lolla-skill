@@ -672,6 +672,21 @@ Follow-up implementation planning:
   separate from answer-quality scoring, resolver approval, sidecar update,
   runtime wiring, proof claims, and action authorization.
 
+- [Decision Work Generated Read Resolver Supply Plan](../conversation-understanding/decision-work-generated-read-resolver-supply-plan-v0.md)
+
+  PR197's docs/review/tests-only plan for future generated-read resolver
+  supply. It defines resolver-supply candidates and candidate packet statuses
+  while preserving that supply is not approval, runtime sidecar permission,
+  user-surface readiness, product proof, scoring, or action authorization.
+
+- [Decision Work Generated Read Resolver Supply Adapter](../conversation-understanding/decision-work-generated-read-resolver-supply-adapter-v0.md)
+
+  PR198's deterministic adapter and CLI for future generated-read resolver
+  supply candidates. It can prepare launch-beta and deploy-intake candidate
+  packets while keeping deploy-intake runtime/user-surface blocked and while
+  still not approving refs, updating sidecars, wiring runtime, scoring,
+  proving, or authorizing action.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,
