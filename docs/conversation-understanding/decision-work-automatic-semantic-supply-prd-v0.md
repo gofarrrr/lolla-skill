@@ -487,7 +487,10 @@ the checked-in read exists. It must not use raw/private content, create a new
 run, call models, generate triage, mark resolver refs usable, or update runtime
 sidecars.
 
-### PR190 Two-Case Generated Read Brief Pattern Review v0
+### PR190 Decision Work Generated Read Brief Two-Case Pattern Review v0
+
+PR190 is implemented as
+[Decision Work Generated Read Brief Two-Case Pattern Review](decision-work-generated-read-brief-two-case-pattern-review-v0.md).
 
 Review the launch-beta and deploy-intake generated-read-rendered briefs
 together and decide whether the path is stable enough to plan generated-read

@@ -35,7 +35,7 @@ REQUIRED_NEXT_PRS = {
     "PR187 Decision Work Generated Read Brief Rendering Pilot v0",
     "PR188 Decision Work Generated Read Brief vs Existing Brief Review v0",
     "PR189 Decision Work Generated Read Second Brief Rendering Pilot v0",
-    "PR190 Two-Case Generated Read Brief Pattern Review v0",
+    "PR190 Decision Work Generated Read Brief Two-Case Pattern Review v0",
     "PR191 Decision Work Generated Read Triage Supply Plan v0",
 }
 REQUIRED_REUSED_ARTIFACTS = {

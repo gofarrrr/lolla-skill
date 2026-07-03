@@ -672,6 +672,14 @@ compliance/workflow caveats, source refs, uncertainty, privacy limits, custody
 flags, and non-claims visible. It still does not enrich, generate triage, mark
 resolver refs usable, update sidecars, call models, prove correctness, score, or
 authorize action.
+The
+[Decision Work Generated Read Brief Two-Case Pattern Review](docs/conversation-understanding/decision-work-generated-read-brief-two-case-pattern-review-v0.md)
+adds PR190's docs/review/tests-only comparison of the launch-beta and
+deploy-intake generated-read-rendered briefs. It finds the path preserves action
+consequence, source refs, uncertainty, privacy limits, evidence-only exclusions,
+and non-claims across two decision families, while remaining too thin for
+triage generation or sidecar use. It gates to a generated-read triage supply
+plan, not triage implementation.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See

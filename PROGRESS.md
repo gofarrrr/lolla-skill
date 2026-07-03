@@ -170,6 +170,15 @@ refs, uncertainty, privacy limits, custody flags, and non-claims visible while
 still stopping before enrichment, triage, resolver ref use, runtime sidecar
 update, model calls, proof claims, scoring, or action authorization. It selects
 a two-case generated-read brief pattern review next.
+
+The Decision Work Generated Read Brief Two-Case Pattern Review is
+docs/conversation-understanding/decision-work-generated-read-brief-two-case-pattern-review-v0.md.
+It adds PR190's docs/review/tests-only comparison of the launch-beta and
+deploy-intake generated-read-rendered briefs. The review finds the path
+preserves action consequence, source refs, uncertainty, privacy limits,
+evidence-only exclusions, and non-claims across two decision families, while
+remaining too thin for triage generation or runtime sidecar use. It selects a
+generated-read triage supply plan next.
 ```
 
 ```text

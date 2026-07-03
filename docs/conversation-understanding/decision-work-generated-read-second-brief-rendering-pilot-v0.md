@@ -96,3 +96,13 @@ different decision families while preserving uncertainty, source refs, privacy
 limits, domain caveats, and non-claims. The next safe step is a pattern review
 across both generated-read-rendered briefs before any generated-read triage
 supply, resolver ref use, sidecar update, or broader automation.
+
+## Follow-Up Review
+
+PR190 is implemented as
+[Decision Work Generated Read Brief Two-Case Pattern Review](decision-work-generated-read-brief-two-case-pattern-review-v0.md).
+
+That review compares the launch-beta and deploy-intake generated-read-rendered
+briefs together and selects a generated-read triage supply plan next, while
+still stopping before triage generation, resolver ref use, runtime sidecar
+update, model calls, proof claims, scoring, or action authorization.
