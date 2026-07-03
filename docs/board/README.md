@@ -595,6 +595,33 @@ Follow-up implementation planning:
   non-claims. It still does not enrich, generate triage, mark resolver refs
   usable, update sidecars, call models, score, prove, or authorize action.
 
+- [Decision Work Generated Read Brief vs Existing Brief Review](../conversation-understanding/decision-work-generated-read-brief-vs-existing-brief-review-v0.md)
+
+  PR188's docs/review/tests-only comparison between the generated-read
+  launch-beta brief and the existing rendered and enriched launch-beta briefs.
+  It finds the generated-read brief preserves the core decision and action
+  consequence while staying thinner than the enriched brief, and gates to a
+  second generated-read rendering pilot without enrichment, triage, resolver ref
+  use, runtime sidecar update, model calls, proof claims, scoring, or action
+  authorization.
+
+- [Decision Work Generated Read Second Brief Rendering Pilot](../conversation-understanding/decision-work-generated-read-second-brief-rendering-pilot-v0.md)
+
+  PR189's deploy-intake second-case rendering pilot. It validates a
+  checked-in-safe generated read, builds PR186 supply, and renders a second
+  generated-read brief with compliance/workflow caveats, source refs,
+  uncertainty, privacy limits, custody flags, and non-claims intact. It still
+  does not enrich, generate triage, mark resolver refs usable, update sidecars,
+  call models, score, prove, or authorize action.
+
+- [Decision Work Generated Read Brief Two-Case Pattern Review](../conversation-understanding/decision-work-generated-read-brief-two-case-pattern-review-v0.md)
+
+  PR190's docs/review/tests-only comparison of the launch-beta and deploy-intake
+  generated-read-rendered briefs. It finds the path stable enough to plan
+  generated-read triage supply, while keeping triage generation, resolver ref
+  use, runtime sidecar update, model calls, proof claims, scoring, and action
+  authorization out of scope.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

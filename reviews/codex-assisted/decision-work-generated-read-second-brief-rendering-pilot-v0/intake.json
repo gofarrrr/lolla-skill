@@ -1,0 +1,128 @@
+{
+  "accepted_for_downstream": true,
+  "blocker_reasons": [],
+  "custody_validation": {
+    "agent_action_authorized": false,
+    "answer_quality_scored": false,
+    "automatic_action_authorized": false,
+    "blocker_reasons": [],
+    "human_validated": false,
+    "model_calls": 0,
+    "product_proof": false,
+    "semantic_read_is_provisional": true,
+    "status": "passed"
+  },
+  "downstream_allowed": {
+    "can_authorize_agent_action": false,
+    "can_be_used_as_quality_label": false,
+    "can_feed_brief": true,
+    "can_feed_enrichment": true,
+    "can_feed_resolver": true,
+    "can_feed_triage_packet": true,
+    "can_update_sidecar": false
+  },
+  "field_validation_summary": {
+    "feedable_field_count": 4,
+    "feedable_fields": [
+      "decision_question",
+      "revised_direction_or_action_consequence",
+      "evidence_gates",
+      "what_the_final_answer_does_not_prove"
+    ],
+    "field_count": 4,
+    "invalid_status_fields": [],
+    "missing_required_field_names": [],
+    "quality_label_blockers": []
+  },
+  "intake_metadata": {
+    "created_at": "2026-07-03T00:00:00Z",
+    "generated_by": "decision_work_generated_interpretation_read_intake",
+    "mode": "checked_in_safe",
+    "model_calls": 0,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "validator_scope": "structure_source_privacy_custody_non_claims_only"
+  },
+  "intake_status": "accepted",
+  "non_claim_validation": {
+    "authority_claim_hits": [],
+    "blocker_reasons": [],
+    "missing_non_claims": [],
+    "status": "passed"
+  },
+  "non_claims": [
+    "intake_is_structural_validation_only",
+    "intake_does_not_generate_interpretation",
+    "intake_does_not_modify_source_read",
+    "intake_does_not_call_models",
+    "intake_does_not_run_lolla",
+    "intake_does_not_mutate_archives",
+    "intake_does_not_render_briefs",
+    "intake_does_not_generate_triage",
+    "intake_does_not_update_runtime_sidecars",
+    "intake_is_not_product_proof",
+    "intake_is_not_human_validation",
+    "intake_does_not_score_answer_quality",
+    "intake_does_not_validate_advice_correctness",
+    "intake_does_not_prove_lolla_improved_the_decision",
+    "intake_does_not_authorize_agent_action",
+    "intake_does_not_authorize_automatic_action"
+  ],
+  "output_refs": {
+    "brief_generated": false,
+    "enriched_brief_generated": false,
+    "intake_result_ref": null,
+    "resolver_refs_updated": false,
+    "runtime_sidecar_updated": false,
+    "source_read_content_modified": false,
+    "triage_generated": false
+  },
+  "privacy_validation": {
+    "blocker_reasons": [],
+    "invalid_source_limitations": [],
+    "missing_privacy_limit_fields": [],
+    "missing_source_limitations": [],
+    "status": "passed"
+  },
+  "read_schema_detected": "lolla.decision_work_conversation_interpretation_read.v0",
+  "repair_reasons": [],
+  "repair_required": false,
+  "schema_version": "lolla.decision_work_generated_interpretation_read_intake.v0",
+  "semantic_limits": [
+    "intake_validates_structure_not_semantic_truth",
+    "accepted_read_still_requires_later_offline_brief_generation",
+    "accepted_read_cannot_update_runtime_sidecars_in_pr182",
+    "accepted_read_cannot_authorize_agent_action",
+    "accepted_read_cannot_be_used_as_quality_label",
+    "high_risk_case_requires_visible_caveats"
+  ],
+  "source_prompt_packet_ref": {
+    "content_included": false,
+    "expected_schema": "lolla.decision_work_operator_codex_interpretation_prompt_packet.v0",
+    "input_ref": "docs/conversation-understanding/decision-work-operator-codex-interpretation-prompt-packet-v0.json",
+    "schema_version": "lolla.decision_work_operator_codex_interpretation_prompt_packet.v0",
+    "status": "available"
+  },
+  "source_queue_item_ref": {
+    "content_included": false,
+    "expected_schema": "lolla.decision_work_offline_interpretation_queue_item.v0",
+    "input_ref": null,
+    "schema_version": null,
+    "status": "not_supplied"
+  },
+  "source_read_ref": "reviews/codex-assisted/decision-work-generated-read-second-brief-rendering-pilot-v0/read.json",
+  "source_ref_validation": {
+    "blocker_reasons": [],
+    "checked_source_ref_count": 8,
+    "local_absolute_path_fields": [],
+    "malformed_source_ref_fields": [],
+    "missing_source_ref_fields": [],
+    "status": "passed"
+  },
+  "uncertainty_validation": {
+    "blocker_reasons": [],
+    "invalid_uncertainty_fields": [],
+    "missing_uncertainty_fields": [],
+    "status": "passed"
+  }
+}

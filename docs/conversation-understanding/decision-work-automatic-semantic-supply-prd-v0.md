@@ -456,26 +456,54 @@ This should still be offline/internal, should not update runtime sidecars, and
 should preserve the distinction between structural supply readiness and semantic
 truth.
 
-### PR188 First New Completed Run Supply Pilot v0
+### PR188 Decision Work Generated Read Brief vs Existing Brief Review v0
 
-Use one completed run that was not one of the three curated registry cases.
+PR188 is implemented as
+[Decision Work Generated Read Brief vs Existing Brief Review](decision-work-generated-read-brief-vs-existing-brief-review-v0.md).
 
-Goal:
+Compare the launch-beta generated-read-rendered brief against the existing
+rendered and enriched launch-beta brief surfaces before trying a second
+generated-read case.
 
-> Can the system pick up a new completed run and produce safe Decision Work
-> artifacts without hand-building the whole interpretation path?
+The review should answer whether the generated-read brief preserves the same
+core decision/action consequence, uncertainty, source limits, privacy limits,
+and non-claims, and whether fluency creates overtrust risk.
 
-This PR should be allowed to conclude "not yet."
+This PR still must not generate a read, render a second case, enrich, generate
+triage, mark resolver refs usable, update sidecars, call providers, or claim
+semantic correctness.
 
-### PR189 Automatic Semantic Supply Closure Gate v0
+### PR189 Decision Work Generated Read Second Brief Rendering Pilot v0
 
-Review PR178-PR188 and decide the next path:
+PR189 is implemented as
+[Decision Work Generated Read Second Brief Rendering Pilot](decision-work-generated-read-second-brief-rendering-pilot-v0.md).
 
-- continue with more pilots;
-- patch prompt packet / validator;
-- patch high-risk receipt language;
-- add a background queue runner;
-- add first-class production registry lookup;
+Run the generated-read-to-brief path on one second checked-in-safe case:
+`deploy-assisted-intake-routing`. This tests compliance/workflow caveats and a
+different decision family than launch timing.
+
+PR189 should remain offline, Codex/operator-assisted, and deterministic after
+the checked-in read exists. It must not use raw/private content, create a new
+run, call models, generate triage, mark resolver refs usable, or update runtime
+sidecars.
+
+### PR190 Decision Work Generated Read Brief Two-Case Pattern Review v0
+
+PR190 is implemented as
+[Decision Work Generated Read Brief Two-Case Pattern Review](decision-work-generated-read-brief-two-case-pattern-review-v0.md).
+
+Review the launch-beta and deploy-intake generated-read-rendered briefs
+together and decide whether the path is stable enough to plan generated-read
+triage supply, needs a renderer/supply patch, needs a third case, or should
+stop for source-depth or product-surface review.
+
+### PR191 Decision Work Generated Read Triage Supply Plan v0
+
+If PR190 gates cleanly, define the safe plan for turning generated-read brief
+supply and rendered brief findings into future triage supply. This should still
+be a plan before implementation, and should not generate automatic triage,
+approve resolver refs, update runtime sidecars, call models, claim proof, score
+quality, or authorize action.
 - stop and keep the feature internal.
 
 Do not make runtime attachment default-on from this gate.

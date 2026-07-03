@@ -655,6 +655,31 @@ a ready PR186 supply packet and preserves source refs, uncertainty, privacy
 limits, custody flags, and non-claims, while still not enriching, generating
 triage, marking resolver refs usable, updating sidecars, proving correctness,
 scoring, or authorizing action.
+The
+[Decision Work Generated Read Brief vs Existing Brief Review](docs/conversation-understanding/decision-work-generated-read-brief-vs-existing-brief-review-v0.md)
+adds PR188's docs/review/tests-only comparison between the generated-read
+launch-beta brief and the existing rendered and enriched launch-beta briefs. It
+finds the generated-read brief preserves the core decision/action consequence
+and boundaries, but is thinner than the enriched brief; it gates to a second
+generated-read rendering pilot without enrichment, triage, resolver ref use,
+sidecar update, model calls, proof claims, scoring, or action authorization.
+The
+[Decision Work Generated Read Second Brief Rendering Pilot](docs/conversation-understanding/decision-work-generated-read-second-brief-rendering-pilot-v0.md)
+adds PR189's deploy-intake second-case generated-read rendering pilot. It uses a
+checked-in-safe generated read, PR182 intake, PR186 supply, and the existing
+PR187 renderer to produce a second reader-facing Markdown brief while keeping
+compliance/workflow caveats, source refs, uncertainty, privacy limits, custody
+flags, and non-claims visible. It still does not enrich, generate triage, mark
+resolver refs usable, update sidecars, call models, prove correctness, score, or
+authorize action.
+The
+[Decision Work Generated Read Brief Two-Case Pattern Review](docs/conversation-understanding/decision-work-generated-read-brief-two-case-pattern-review-v0.md)
+adds PR190's docs/review/tests-only comparison of the launch-beta and
+deploy-intake generated-read-rendered briefs. It finds the path preserves action
+consequence, source refs, uncertainty, privacy limits, evidence-only exclusions,
+and non-claims across two decision families, while remaining too thin for
+triage generation or sidecar use. It gates to a generated-read triage supply
+plan, not triage implementation.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See

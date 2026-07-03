@@ -1,0 +1,95 @@
+{
+  "schema_version": "lolla.decision_work_generated_read_brief_two_case_pattern_review.v0",
+  "review_metadata": {
+    "review_id": "decision_work_generated_read_brief_two_case_pattern_review:v0",
+    "created_at": "2026-07-03T00:00:00Z",
+    "reviewed_stage": "PR187_PR189_generated_read_brief_rendering_pilots",
+    "mode": "docs_review_tests_only"
+  },
+  "compared_cases": [
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "decision_family": "enterprise_launch_or_gtm",
+      "rendered_brief_ref": "docs/conversation-understanding/decision-work-generated-read-rendered-launch-public-enterprise-beta-v0.md",
+      "source_read_ref": "reviews/codex-assisted/decision-work-operator-codex-generated-read-pilot-v0/read.json",
+      "source_intake_ref": "reviews/codex-assisted/decision-work-operator-codex-generated-read-pilot-v0/intake.json",
+      "rendering_status": "rendered_from_generated_read_supply"
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "decision_family": "healthcare_operations_or_deployment",
+      "rendered_brief_ref": "docs/conversation-understanding/decision-work-generated-read-rendered-deploy-assisted-intake-routing-v0.md",
+      "source_read_ref": "reviews/codex-assisted/decision-work-generated-read-second-brief-rendering-pilot-v0/read.json",
+      "source_intake_ref": "reviews/codex-assisted/decision-work-generated-read-second-brief-rendering-pilot-v0/intake.json",
+      "rendering_status": "rendered_from_generated_read_supply"
+    }
+  ],
+  "stable_useful_signals": [
+    "Both briefs preserve the decision question and action consequence.",
+    "Both briefs preserve source refs, source status, uncertainty, privacy limits, and evidence-only exclusions.",
+    "Both briefs preserve non-claims, including no product proof, no human validation, no answer-quality scoring, no runtime sidecar update, and no action authorization.",
+    "Both briefs remain readable while naming their generated-read supply origin."
+  ],
+  "unstable_or_weak_signals": [
+    "The generated-read briefs are thinner than earlier enriched briefs.",
+    "Fields such as lost_value, noisy_friction, live_options, and assistant_influence_on_user_framing remain evidence-only or excluded.",
+    "A readable generated-read brief can create overtrust risk, especially in domain-sensitive workflow contexts."
+  ],
+  "repeated_source_depth_risks": [
+    "Both briefs depend on checked-in-safe generated-read supply rather than full private conversation context.",
+    "Both briefs require human review before operational use.",
+    "Both briefs cannot prove semantic truth or advice correctness."
+  ],
+  "repeated_overclaim_risks": [
+    "Readable Markdown can make provisional generated-read supply feel more complete than it is.",
+    "Launch-beta can be overread as product evidence.",
+    "Deploy-intake can be overread as operational, legal, compliance, or clinical clearance."
+  ],
+  "readability_pattern": "Readable and inspectable across two decision families, provided the generated-read origin and non-claims remain visible.",
+  "evidence_and_limits_pattern": "The renderer repeatedly keeps source refs, source status, uncertainty, privacy limits, evidence-only exclusions, and non-claims visible.",
+  "downstream_boundary": {
+    "can_plan_generated_read_triage_supply": true,
+    "can_generate_triage": false,
+    "can_enrich_brief": false,
+    "can_mark_resolver_refs_usable": false,
+    "can_update_runtime_sidecar": false,
+    "can_call_models": false,
+    "can_authorize_agent_action": false,
+    "can_authorize_automatic_action": false
+  },
+  "custody_flags": {
+    "model_calls": 0,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "archive_mutated": false,
+    "runtime_behavior_changed": false,
+    "new_read_generated": false,
+    "third_case_rendered": false,
+    "brief_enriched": false,
+    "triage_generated": false,
+    "resolver_refs_marked_usable": false,
+    "runtime_sidecar_updated": false,
+    "product_proof": false,
+    "human_validated": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false
+  },
+  "decision_gate": "proceed_to_generated_read_triage_supply_plan",
+  "recommended_next_pr": "PR191 Decision Work Generated Read Triage Supply Plan v0",
+  "non_claims": [
+    "review_does_not_generate_reads",
+    "review_does_not_render_third_case",
+    "review_does_not_enrich_briefs",
+    "review_does_not_generate_triage",
+    "review_does_not_mark_resolver_refs_usable",
+    "review_does_not_update_runtime_sidecars",
+    "review_does_not_call_models",
+    "review_is_not_product_proof",
+    "review_is_not_human_validation",
+    "review_does_not_score_answer_quality",
+    "review_does_not_validate_advice_correctness",
+    "review_does_not_authorize_agent_action",
+    "review_does_not_authorize_automatic_action"
+  ]
+}
