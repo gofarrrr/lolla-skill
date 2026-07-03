@@ -1,0 +1,177 @@
+{
+  "schema_version": "lolla.decision_work_generated_interpretation_read_intake_review.v0",
+  "reviewed_stage": "PR182 Decision Work Generated Interpretation Read Intake And Validator v0",
+  "review_mode": "review_only_over_existing_reads_and_temp_synthetic_rejections",
+  "human_validated": false,
+  "product_proof": false,
+  "model_calls": 0,
+  "runtime_invoked": false,
+  "skill_invoked": false,
+  "archive_mutated": false,
+  "prompt_changed": false,
+  "skill_files_changed": false,
+  "answer_quality_scored": false,
+  "agent_action_authorized": false,
+  "automatic_action_authorized": false,
+  "generated_reads_created": false,
+  "briefs_rendered": false,
+  "briefs_enriched": false,
+  "triage_generated": false,
+  "resolver_refs_updated": false,
+  "runtime_sidecars_updated": false,
+  "reviewed_reads": [
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "source_read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-tiny-offline-read-v0/read.json",
+      "schema_detected": "lolla.decision_work_conversation_interpretation_tiny_offline_read.v0",
+      "intake_status": "accepted",
+      "accepted_for_later_offline_downstream": true,
+      "can_update_sidecar_in_pr182": false,
+      "can_authorize_agent_action": false,
+      "finding": "The legacy tiny-read wrapper is accepted because it preserves source refs, uncertainty, privacy limits, conservative custody, and non-claims."
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "source_read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-second-tiny-offline-read-v0/read.json",
+      "schema_detected": "lolla.decision_work_conversation_interpretation_second_tiny_offline_read.v0",
+      "intake_status": "accepted",
+      "accepted_for_later_offline_downstream": true,
+      "can_update_sidecar_in_pr182": false,
+      "can_authorize_agent_action": false,
+      "finding": "The second legacy tiny-read wrapper is accepted while preserving healthcare/domain caveats and non-proof boundaries."
+    },
+    {
+      "case_id": "ceo-remove-founding-cofounder",
+      "source_read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-third-tiny-offline-read-v0/read.json",
+      "schema_detected": "lolla.decision_work_conversation_interpretation_read.v0",
+      "intake_status": "accepted",
+      "accepted_for_later_offline_downstream": true,
+      "can_update_sidecar_in_pr182": false,
+      "can_authorize_agent_action": false,
+      "finding": "The formal PR133 read is accepted, but the governance/legal/relationship sensitivity remains a downstream caveat, not an action clearance."
+    }
+  ],
+  "accepted_reads": [
+    "launch-public-enterprise-beta",
+    "deploy-assisted-intake-routing",
+    "ceo-remove-founding-cofounder"
+  ],
+  "rejected_synthetic_cases": [
+    {
+      "fixture_name": "unsupported_schema",
+      "fixture_storage": "temporary_test_fixture_only",
+      "expected_intake_status": "unsupported_schema",
+      "finding": "Unsupported schema names are blocked before downstream use."
+    },
+    {
+      "fixture_name": "missing_source_refs",
+      "fixture_storage": "temporary_test_fixture_only",
+      "expected_intake_status": "rejected_missing_source_refs",
+      "finding": "Interpreted fields without source refs are rejected."
+    },
+    {
+      "fixture_name": "missing_uncertainty",
+      "fixture_storage": "temporary_test_fixture_only",
+      "expected_intake_status": "rejected_missing_uncertainty",
+      "finding": "Interpreted fields without uncertainty are rejected."
+    },
+    {
+      "fixture_name": "product_proof_true",
+      "fixture_storage": "temporary_test_fixture_only",
+      "expected_intake_status": "rejected_product_proof_claim",
+      "finding": "Product-proof claims are rejected."
+    },
+    {
+      "fixture_name": "human_validated_true",
+      "fixture_storage": "temporary_test_fixture_only",
+      "expected_intake_status": "rejected_human_validation_claim",
+      "finding": "Human-validation claims are rejected."
+    },
+    {
+      "fixture_name": "answer_quality_scored_true",
+      "fixture_storage": "temporary_test_fixture_only",
+      "expected_intake_status": "rejected_quality_label",
+      "finding": "Answer-quality scoring claims are rejected."
+    },
+    {
+      "fixture_name": "agent_action_authorized_true",
+      "fixture_storage": "temporary_test_fixture_only",
+      "expected_intake_status": "rejected_action_authorization",
+      "finding": "Agent action authorization is rejected."
+    },
+    {
+      "fixture_name": "automatic_action_authorized_true",
+      "fixture_storage": "temporary_test_fixture_only",
+      "expected_intake_status": "rejected_action_authorization",
+      "finding": "Automatic action authorization is rejected."
+    },
+    {
+      "fixture_name": "quality_label_guard_false",
+      "fixture_storage": "temporary_test_fixture_only",
+      "expected_intake_status": "rejected_quality_label",
+      "finding": "A false quality-label guard is rejected."
+    },
+    {
+      "fixture_name": "local_absolute_path",
+      "fixture_storage": "temporary_test_fixture_only",
+      "expected_intake_status": "rejected_local_absolute_path",
+      "finding": "Local absolute paths are rejected in checked-in-safe mode."
+    },
+    {
+      "fixture_name": "raw_private_marker",
+      "fixture_storage": "temporary_test_fixture_only",
+      "expected_intake_status": "rejected_privacy_risk",
+      "finding": "Raw/private markers are rejected."
+    },
+    {
+      "fixture_name": "missing_required_non_claim",
+      "fixture_storage": "temporary_test_fixture_only",
+      "expected_intake_status": "requires_operator_repair",
+      "finding": "A missing required non-claim requires operator repair rather than silent acceptance."
+    }
+  ],
+  "false_positive_risk": {
+    "risk": "The validator can accept a structurally complete read that is still semantically wrong or misleading.",
+    "mitigation": "PR182 acceptance is limited to structure, custody, privacy, and non-claim eligibility for later offline steps; PR183 recommends a bounded generated-read pilot before any queue-to-brief flow."
+  },
+  "false_negative_risk": {
+    "risk": "Strict source-ref, uncertainty, privacy, and non-claim checks may require repair for reads that are directionally useful but incomplete.",
+    "mitigation": "Repair-required status is preferable to silently laundering an under-specified interpretation into later brief generation."
+  },
+  "downstream_boundary_assessment": {
+    "accepted_reads_can_feed_later_offline_brief_steps": true,
+    "accepted_reads_can_update_runtime_sidecars_in_pr182": false,
+    "accepted_reads_can_authorize_agent_action": false,
+    "accepted_reads_can_be_used_as_quality_labels": false,
+    "finding": "The boundary is coherent: accepted reads can move only to later offline planning or validation steps, not runtime attachment or action."
+  },
+  "source_depth_risk": {
+    "risk": "The three accepted reads are based on checked-in-safe summaries and compressed artifacts; they cannot prove full conversation truth.",
+    "mitigation": "The validator requires uncertainty and privacy limits, and the next pilot should keep source-depth caveats visible."
+  },
+  "privacy_risk": {
+    "risk": "Generated reads could accidentally include raw/private text, provider text, private ledgers, secrets, or local paths.",
+    "mitigation": "PR182 rejects privacy markers and local absolute paths, and PR183 uses temporary synthetic rejection fixtures rather than checked-in unsafe examples."
+  },
+  "overclaim_risk": {
+    "risk": "An accepted intake result could be misread as proof that the interpretation is correct or that Lolla improved the decision.",
+    "mitigation": "The review preserves that acceptance is structural/custody acceptance only, not semantic truth, product proof, human validation, or advice correctness."
+  },
+  "decision_gate": "proceed_to_operator_codex_generated_read_pilot",
+  "recommended_next_pr": "PR184 Operator/Codex Generated Read Pilot v0",
+  "non_claims": [
+    "review_is_codex_assisted",
+    "review_is_not_human_validation",
+    "review_is_not_product_proof",
+    "review_does_not_score_answer_quality",
+    "review_does_not_claim_advice_correctness",
+    "review_does_not_prove_lolla_improved_decisions",
+    "review_does_not_authorize_agent_action",
+    "review_does_not_authorize_automatic_action",
+    "review_does_not_generate_interpretation_reads",
+    "review_does_not_call_models",
+    "review_does_not_render_briefs",
+    "review_does_not_generate_triage",
+    "review_does_not_update_sidecars"
+  ]
+}

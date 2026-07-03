@@ -108,6 +108,21 @@ It does not generate reads, render briefs, enrich briefs, create triage, update
 resolver refs, update sidecars, call models, prove product value, validate
 advice correctness, or authorize action. The next conservative slice is a
 three-case intake review, not a broad regeneration or runtime sidecar update.
+
+The three-case intake review is
+docs/conversation-understanding/decision-work-generated-interpretation-read-intake-review-v0.md.
+It reviews the PR182 validator against the three existing checked-in reads and
+temporary synthetic rejection cases, confirms the no-sidecar/no-action boundary,
+and selects a single bounded operator/Codex generated-read pilot next.
+
+The one-case operator/Codex generated-read pilot is
+docs/conversation-understanding/decision-work-operator-codex-generated-read-pilot-v0.md.
+It creates a checked-in-safe launch-beta generated-read candidate and PR182
+intake result, proves the validator accepts the artifact for later offline
+planning, and still stops before brief rendering, enrichment, triage, resolver
+approval, runtime sidecar update, model calls, proof claims, scoring, or action
+authorization. The next conservative slice is a generated-read-to-brief supply
+plan, not runtime wiring.
 ```
 
 ```text

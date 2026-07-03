@@ -556,6 +556,21 @@ Follow-up implementation planning:
   generate reads, update sidecars, score advice, validate correctness, or
   authorize action.
 
+- [Decision Work Generated Interpretation Read Intake Review](../conversation-understanding/decision-work-generated-interpretation-read-intake-review-v0.md)
+
+  PR183's review-only pass over the validator. It confirms the three existing
+  checked-in reads are accepted, synthetic unsafe cases are rejected or repaired,
+  and intake acceptance still means structural/custody eligibility only, not
+  semantic correctness, product proof, human validation, or action clearance.
+
+- [Decision Work Operator/Codex Generated Read Pilot](../conversation-understanding/decision-work-operator-codex-generated-read-pilot-v0.md)
+
+  PR184's one-case launch-beta generated-read pilot. It checks in a tiny
+  source-refed candidate read and PR182 intake result, accepts it only for later
+  offline planning, and still does not render briefs, generate triage, update
+  resolver refs or sidecars, call models, score advice, prove product value, or
+  authorize action.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,
