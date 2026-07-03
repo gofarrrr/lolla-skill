@@ -282,6 +282,26 @@ rendering, triage, and resolver-boundary safeguards. It still excludes runtime
 attachment, resolver approval, sidecar updates, runtime wiring, default-on
 behavior, arbitrary-run production automation, scoring, proof claims, human
 validation, advice correctness, and action authorization.
+
+The Decision Work Resolver Candidate Sidecar Update Plan is
+docs/conversation-understanding/decision-work-resolver-candidate-sidecar-update-plan-v0.md.
+It adds PR201's docs/review/tests-only plan for a future offline sidecar update
+packet. The plan defines what can move from a resolver-supply candidate into a
+proposed packet, how launch-beta and deploy-intake should behave, and which
+statuses should exist, while still forbidding actual sidecar writes, archive
+mutation, resolver approval, runtime wiring, model calls, scoring, proof
+claims, advice-correctness claims, and action authorization.
+
+The Decision Work Resolver Candidate Sidecar Update Packet Adapter is
+docs/conversation-understanding/decision-work-resolver-candidate-sidecar-update-packet-adapter-v0.md.
+It adds PR202's deterministic adapter and CLI for offline proposed sidecar
+update packets. The adapter emits
+`lolla.decision_work_resolver_candidate_sidecar_update_packet.v0` from PR198
+resolver-supply candidate packets. Launch-beta produces a ready proposed packet
+and deploy-intake preserves runtime/user-surface blocking, while no actual
+sidecar write, archive mutation, resolver approval, runtime wiring, model
+call, quality label, proof claim, advice-correctness claim, or action
+authorization occurs.
 ```
 
 ```text

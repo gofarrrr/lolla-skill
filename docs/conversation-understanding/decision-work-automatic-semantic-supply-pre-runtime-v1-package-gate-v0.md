@@ -198,6 +198,14 @@ PR201 Resolver Candidate To Runtime Sidecar Update Plan v0
 Do not implement PR201 from this package gate. The next phase is the runtime
 boundary, and it needs its own plan before anything can update sidecars.
 
+## Implemented Follow-Up
+
+PR201 implements that plan as
+[Decision Work Resolver Candidate Sidecar Update Plan](decision-work-resolver-candidate-sidecar-update-plan-v0.md).
+It defines a future offline sidecar update packet as a proposed artifact, not
+an actual `decision_work/` write, archive mutation, resolver approval, runtime
+wiring, quality label, proof claim, or action authorization.
+
 ## Explicit Non-Claims
 
 PR200 does not claim:
