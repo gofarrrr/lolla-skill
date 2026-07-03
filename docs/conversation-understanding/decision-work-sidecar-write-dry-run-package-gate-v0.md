@@ -205,6 +205,19 @@ Do not implement sidecar write code from this package gate. The next phase is
 a write contract only, before any explicit operator write adapter or archive
 mutation can be considered.
 
+## Implemented Follow-Up
+
+PR209 is implemented as
+[Decision Work Runtime Sidecar Write Contract](decision-work-runtime-sidecar-write-contract-v0.md)
+with the machine-readable
+[runtime sidecar write contract JSON](decision-work-runtime-sidecar-write-contract-v0.json).
+
+PR209 defines the future write contract only. It records allowed input schemas,
+dry-run preconditions, write modes, statuses, allowed files, forbidden content,
+path safety, audit receipt requirements, custody flags, fail-closed reasons,
+and non-claims while still not writing sidecars, mutating archives, wiring
+runtime, approving resolver refs, scoring, proving, or authorizing action.
+
 ## Explicit Non-Claims
 
 PR208 does not claim:

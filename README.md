@@ -809,6 +809,14 @@ adds PR208's package gate and manifest for PR206-PR207. It packages the
 offline dry-run preview layer while still excluding actual sidecar writes,
 archive mutation, runtime wiring, resolver approval, default-on behavior,
 proof claims, scoring, and action authorization.
+The
+[Decision Work Runtime Sidecar Write Contract](docs/conversation-understanding/decision-work-runtime-sidecar-write-contract-v0.md)
+adds PR209's contract/docs/schema/tests-only gate for a future explicit
+operator sidecar write adapter. It defines eligible input packets, dry-run
+preconditions, write modes, statuses, allowed files, forbidden content, and
+audit receipt requirements while still not writing sidecars, mutating archives,
+wiring runtime, approving resolver refs, scoring, proving, or authorizing
+action.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See

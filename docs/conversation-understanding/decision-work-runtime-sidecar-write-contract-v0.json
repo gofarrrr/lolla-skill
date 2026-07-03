@@ -1,0 +1,279 @@
+{
+  "schema_version": "lolla.decision_work_runtime_sidecar_write_contract.v0",
+  "contract_metadata": {
+    "status": "PR209 runtime sidecar write contract",
+    "date": "2026-07-03",
+    "contract_mode": "docs_schema_tests_only",
+    "source_package_ref": "docs/conversation-understanding/decision-work-sidecar-write-dry-run-package-gate-v0.md",
+    "source_package_manifest_ref": "docs/conversation-understanding/decision-work-sidecar-write-dry-run-package-manifest-v0.json",
+    "sidecar_update_packet_schema_ref": "docs/conversation-understanding/decision-work-resolver-candidate-sidecar-update-packet-adapter-v0.md",
+    "dry_run_schema_ref": "docs/conversation-understanding/decision-work-sidecar-write-dry-run-adapter-v0.md",
+    "runtime_flag": "LOLLA_DECISION_WORK_BRIEF_AFTER_ARCHIVE",
+    "not_implemented_here": [
+      "sidecar_write_adapter",
+      "archive_mutation",
+      "runtime_hook_write",
+      "resolver_ref_approval",
+      "provider_model_calls",
+      "queue_worker",
+      "runtime_wiring",
+      "action_authorization"
+    ],
+    "actual_sidecar_write_performed": false,
+    "archive_mutated": false,
+    "runtime_wiring_changed": false,
+    "resolver_refs_approved": false
+  },
+  "purpose": {
+    "summary": "Define the contract for a future explicit operator sidecar-write adapter without implementing writes.",
+    "contract_does_not_write_sidecars": true,
+    "contract_does_not_mutate_archives": true,
+    "contract_does_not_approve_resolver_refs": true,
+    "contract_does_not_wire_runtime": true,
+    "contract_does_not_call_models": true,
+    "contract_does_not_authorize_action": true
+  },
+  "allowed_input_schemas": [
+    {
+      "schema_version": "lolla.decision_work_resolver_candidate_sidecar_update_packet.v0",
+      "artifact_kind": "sidecar_update_packet",
+      "required": true,
+      "must_be_checked_in_safe_or_operator_supplied_safe_ref": true
+    },
+    {
+      "schema_version": "lolla.decision_work_sidecar_write_dry_run.v0",
+      "artifact_kind": "sidecar_write_dry_run_result",
+      "required": true,
+      "must_match_sidecar_update_packet": true
+    }
+  ],
+  "required_preconditions": [
+    {
+      "name": "dry_run_result_exists",
+      "required": true,
+      "failure_status": "blocked_dry_run_missing"
+    },
+    {
+      "name": "dry_run_source_matches_packet",
+      "required": true,
+      "failure_status": "blocked_packet_not_write_eligible"
+    },
+    {
+      "name": "dry_run_has_no_blockers",
+      "required": true,
+      "failure_status": "blocked_packet_not_write_eligible"
+    },
+    {
+      "name": "archive_path_explicitly_supplied",
+      "required": true,
+      "failure_status": "blocked_archive_path_unsafe"
+    },
+    {
+      "name": "archive_path_passes_allowlist_safety_checks",
+      "required": true,
+      "failure_status": "blocked_archive_path_unsafe"
+    },
+    {
+      "name": "write_mode_explicitly_set",
+      "required": true,
+      "failure_status": "blocked_runtime_mode_not_allowed"
+    },
+    {
+      "name": "runtime_hook_remains_default_off",
+      "required": true,
+      "failure_status": "blocked_runtime_mode_not_allowed"
+    },
+    {
+      "name": "privacy_markers_absent",
+      "required": true,
+      "failure_status": "blocked_privacy_risk"
+    },
+    {
+      "name": "authority_claims_absent",
+      "required": true,
+      "failure_status": "blocked_authority_claim"
+    }
+  ],
+  "write_modes": [
+    {
+      "mode": "disabled",
+      "implemented_here": false,
+      "may_write_archive": false,
+      "may_wire_runtime": false,
+      "purpose": "Do not request a sidecar write."
+    },
+    {
+      "mode": "dry_run_only",
+      "implemented_here": false,
+      "may_write_archive": false,
+      "may_wire_runtime": false,
+      "purpose": "Use PR206 dry-run output only; no archive mutation."
+    },
+    {
+      "mode": "explicit_operator_write",
+      "implemented_here": false,
+      "may_write_archive": "future_pr_only_after_contract",
+      "may_wire_runtime": false,
+      "purpose": "Reserved for PR210 explicit operator write adapter; not implemented in PR209."
+    },
+    {
+      "mode": "future_runtime_hook_write_not_allowed_yet",
+      "implemented_here": false,
+      "may_write_archive": false,
+      "may_wire_runtime": false,
+      "purpose": "Reserved vocabulary only; runtime hook writes remain blocked."
+    }
+  ],
+  "sidecar_write_statuses": [
+    "not_requested",
+    "blocked_dry_run_missing",
+    "blocked_packet_not_write_eligible",
+    "blocked_archive_path_unsafe",
+    "blocked_runtime_mode_not_allowed",
+    "blocked_privacy_risk",
+    "blocked_authority_claim",
+    "write_ready",
+    "write_ready_blocked_state_only",
+    "write_completed",
+    "failed_closed"
+  ],
+  "status_policy": {
+    "write_ready": {
+      "requires_dry_run_status": "dry_run_ready",
+      "actual_write_implemented_here": false,
+      "resolver_refs_approved": false,
+      "runtime_wiring_changed": false
+    },
+    "write_ready_blocked_state_only": {
+      "requires_dry_run_status": "dry_run_packet_with_runtime_block",
+      "normal_available_sidecar_allowed": false,
+      "runtime_use_status": "blocked",
+      "user_surface_status": "blocked",
+      "agent_inspection_status": "inspection_only"
+    },
+    "write_completed": {
+      "defined_for_future_adapter": true,
+      "implemented_here": false,
+      "must_emit_sidecar_write_receipt": true,
+      "must_remain_not_resolver_approval": true
+    }
+  },
+  "allowed_files": [
+    "attachment_status.json",
+    "user_receipt.md",
+    "agent_handoff_packet.json",
+    "safe_supply_summary.json",
+    "sidecar_update_packet.json",
+    "sidecar_write_receipt.json"
+  ],
+  "forbidden_content": [
+    "raw_conversation_text",
+    "raw_revised_answer_text",
+    "raw_memo_text",
+    "provider_text",
+    "private_ledgers",
+    "local_absolute_paths_inside_checked_in_artifacts",
+    "secrets",
+    "credentials",
+    "approval_or_certification_labels",
+    "answer_quality_labels_or_scores",
+    "action_authorization",
+    "unchecked_provider_model_outputs"
+  ],
+  "path_policy": {
+    "archive_path_must_be_explicit": true,
+    "archive_path_must_pass_allowlist": true,
+    "decision_work_directory_may_be_created_only_by_future_adapter": true,
+    "checked_in_artifacts_must_not_include_local_absolute_paths": true,
+    "tmp_preview_outputs_not_valid_archive_targets": true,
+    "runtime_hook_paths_not_writable_by_this_contract": true
+  },
+  "launch_handling": {
+    "case_id": "launch-public-enterprise-beta",
+    "required_dry_run_status": "dry_run_ready",
+    "future_status_if_preconditions_pass": "write_ready",
+    "actual_write_implemented_here": false,
+    "resolver_refs_approved": false,
+    "action_authorized": false
+  },
+  "deploy_handling": {
+    "case_id": "deploy-assisted-intake-routing",
+    "required_dry_run_status": "dry_run_packet_with_runtime_block",
+    "future_status_if_preconditions_pass": "write_ready_blocked_state_only",
+    "normal_available_sidecar_allowed": false,
+    "runtime_use_status": "blocked",
+    "user_surface_status": "blocked",
+    "agent_inspection_status": "inspection_only",
+    "deployment_authorization": false,
+    "legal_compliance_clinical_clearance": false,
+    "resolver_refs_approved": false
+  },
+  "audit_receipt_requirements": {
+    "sidecar_write_receipt_required_for_future_write": true,
+    "required_receipt_fields": [
+      "schema_version",
+      "source_sidecar_update_packet_ref",
+      "source_dry_run_result_ref",
+      "write_mode",
+      "sidecar_write_status",
+      "target_archive_ref",
+      "files_written",
+      "archive_mutated",
+      "runtime_wiring_changed",
+      "resolver_refs_approved",
+      "candidate_refs_remain_candidate",
+      "non_claims"
+    ],
+    "archive_mutated_can_be_true_only_after_future_explicit_write": true,
+    "runtime_wiring_changed_must_remain_false": true,
+    "resolver_refs_approved_must_remain_false": true
+  },
+  "custody_flags": {
+    "model_calls": 0,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "actual_sidecar_write_performed": false,
+    "archive_mutated": false,
+    "runtime_wiring_changed": false,
+    "runtime_attachment_default_on": false,
+    "resolver_refs_approved": false,
+    "resolver_refs_marked_usable": false,
+    "product_proof": false,
+    "human_validated": false,
+    "answer_quality_scored": false,
+    "advice_correctness_claimed": false,
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false
+  },
+  "fail_closed_reasons": [
+    "dry_run_result_missing",
+    "dry_run_source_mismatch",
+    "sidecar_update_packet_not_write_eligible",
+    "target_archive_path_unsafe",
+    "write_mode_disabled_or_not_allowed",
+    "privacy_or_local_path_marker_detected",
+    "provider_text_or_secret_marker_detected",
+    "authority_claim_detected",
+    "runtime_hook_write_requested"
+  ],
+  "non_claims": [
+    "not_actual_sidecar_write",
+    "not_archive_mutation",
+    "not_runtime_wiring",
+    "not_resolver_approval",
+    "not_approved_resolver_refs",
+    "not_resolver_refs_marked_usable",
+    "not_default_on_behavior",
+    "not_model_calls",
+    "not_queue_worker",
+    "not_product_proof",
+    "not_human_validation",
+    "not_answer_quality_scoring",
+    "not_advice_correctness",
+    "not_lolla_improvement_proof",
+    "not_agent_action_authorization",
+    "not_automatic_action_authorization"
+  ],
+  "decision_gate": "proceed_to_explicit_operator_sidecar_write_adapter",
+  "recommended_next_pr": "PR210 Explicit Operator Sidecar Write Adapter v0"
+}

@@ -352,6 +352,16 @@ is narrow: an offline, deterministic preview layer that can show what would be
 written from sidecar update packets while preserving actual-write,
 archive-mutation, resolver-approval, runtime-wiring, proof, scoring, and
 action-authorization prohibitions.
+
+The Decision Work Runtime Sidecar Write Contract is
+docs/conversation-understanding/decision-work-runtime-sidecar-write-contract-v0.md.
+It adds PR209's contract/docs/schema/tests-only gate for a future explicit
+operator sidecar write adapter. The contract defines accepted sidecar update
+packet and dry-run result inputs, required preconditions, disabled/dry-run/
+explicit-operator/future-runtime modes, write statuses, allowed files, path
+safety, receipt requirements, and fail-closed rules while still not writing
+sidecars, mutating archives, wiring runtime, approving resolver refs, proving,
+scoring, or authorizing action.
 ```
 
 ```text
