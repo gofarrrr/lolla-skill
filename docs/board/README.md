@@ -709,6 +709,13 @@ Follow-up implementation planning:
   archive mutation, resolver approval, runtime wiring, quality labels, proof
   claims, and action authorization.
 
+- [Decision Work Resolver Candidate Sidecar Update Packet Adapter](../conversation-understanding/decision-work-resolver-candidate-sidecar-update-packet-adapter-v0.md)
+
+  PR202's deterministic adapter and CLI for offline proposed sidecar update
+  packets. It can prepare launch/deploy packet artifacts while still refusing
+  actual sidecar writes, archive mutation, resolver approval, runtime wiring,
+  quality labels, proof claims, and action authorization.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

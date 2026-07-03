@@ -212,3 +212,14 @@ runtime wiring, proof claims, scoring, and action authorization.
 Do not write sidecars, mutate archives, approve resolver refs, wire runtime,
 call models, score answer quality, claim proof, or authorize action from this
 plan.
+
+## Implemented Follow-Up
+
+PR202 implements this plan as
+[Decision Work Resolver Candidate Sidecar Update Packet Adapter](decision-work-resolver-candidate-sidecar-update-packet-adapter-v0.md).
+The adapter emits
+`lolla.decision_work_resolver_candidate_sidecar_update_packet.v0` from PR198
+resolver-supply candidate packets. It can prepare launch-beta and deploy-intake
+offline packet artifacts while preserving that no actual sidecar write, archive
+mutation, resolver approval, runtime wiring, quality label, proof claim, or
+action authorization occurred.

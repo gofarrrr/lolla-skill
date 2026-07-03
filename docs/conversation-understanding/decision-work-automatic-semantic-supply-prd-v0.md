@@ -625,11 +625,19 @@ authorization.
 
 ### PR202 Resolver Candidate Sidecar Update Packet Adapter v0
 
-If PR201 gates cleanly, implement a deterministic adapter that turns a PR198
-resolver-supply candidate packet into an offline sidecar update packet
-artifact. The adapter must not write sidecars, mutate archives, approve
-resolver refs, wire runtime, call models, score answer quality, claim proof,
-or authorize action.
+Implemented as
+[Decision Work Resolver Candidate Sidecar Update Packet Adapter](decision-work-resolver-candidate-sidecar-update-packet-adapter-v0.md).
+
+Implement a deterministic adapter that turns a PR198 resolver-supply candidate
+packet into an offline sidecar update packet artifact. The adapter does not
+write sidecars, mutate archives, approve resolver refs, wire runtime, call
+models, score answer quality, claim proof, or authorize action.
+
+### PR203 Decision Work Sidecar Update Packet Review v0
+
+If PR202 gates cleanly, review launch/deploy sidecar update packets before any
+actual sidecar write, archive mutation, resolver approval, runtime wiring,
+model calls, scoring, proof claims, or action authorization.
 
 Do not make runtime attachment default-on from this gate.
 

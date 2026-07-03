@@ -764,6 +764,13 @@ packet. The plan defines proposed packet fields and statuses while making clear
 that a sidecar update packet is not a real `decision_work/` sidecar write, not
 archive mutation, not resolver approval, not runtime wiring, not user-surface
 readiness, and not action authorization.
+The
+[Decision Work Resolver Candidate Sidecar Update Packet Adapter](docs/conversation-understanding/decision-work-resolver-candidate-sidecar-update-packet-adapter-v0.md)
+adds PR202's deterministic offline adapter and CLI for proposed sidecar update
+packets. It can turn launch/deploy resolver-supply candidates into packet
+artifacts while still refusing actual `decision_work/` sidecar writes, archive
+mutation, resolver approval, runtime wiring, quality labels, proof claims, and
+action authorization.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See
