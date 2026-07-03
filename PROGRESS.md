@@ -189,6 +189,17 @@ requirements, and forbidden quality/authority route concepts while still
 stopping before triage generation, resolver ref use, runtime sidecar update,
 model calls, proof claims, scoring, or action authorization. It selects a
 deterministic generated-read triage supply adapter next.
+
+The Decision Work Generated Read Triage Supply Adapter is
+docs/conversation-understanding/decision-work-generated-read-triage-supply-adapter-v0.md.
+It adds PR192's deterministic adapter and CLI for preparing
+`lolla.decision_work_generated_read_triage_supply.v0` packets from generated
+read, intake, brief-supply, and rendered-brief refs. Launch-beta and
+deploy-intake artifacts can now produce ready-for-offline-triage-generation
+supply packets, while rejected intake, non-ready supply, missing refs,
+missing uncertainty, privacy risk, authority claims, resolver ref use, runtime
+sidecar update, model calls, proof claims, scoring, and action authorization
+remain blocked. It selects a generated-read triage generation pilot next.
 ```
 
 ```text

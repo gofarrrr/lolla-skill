@@ -180,3 +180,14 @@ safe fields, refs, uncertainty, privacy limits, and non-claims across two
 decision families. The next safe implementation is a deterministic triage-supply
 adapter that prepares a packet for future triage generation without generating
 triage, marking resolver refs usable, updating sidecars, or calling models.
+
+## Implemented Follow-Up
+
+PR192 implements this plan as
+[Decision Work Generated Read Triage Supply Adapter](decision-work-generated-read-triage-supply-adapter-v0.md).
+The adapter emits `lolla.decision_work_generated_read_triage_supply.v0` packets
+from generated-read, intake, brief-supply, and rendered-brief refs. It can mark
+launch-beta and deploy-intake supply ready for future offline triage generation,
+or defer/block missing, unsafe, under-sourced, or authority-claiming inputs,
+without generating triage, marking resolver refs usable, updating sidecars, or
+calling models.

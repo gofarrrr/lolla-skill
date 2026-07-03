@@ -631,6 +631,15 @@ Follow-up implementation planning:
   generation, resolver ref use, runtime sidecar update, model calls, scoring,
   proof claims, or action authorization.
 
+- [Decision Work Generated Read Triage Supply Adapter](../conversation-understanding/decision-work-generated-read-triage-supply-adapter-v0.md)
+
+  PR192's deterministic adapter and CLI for future generated-read triage
+  supply. It emits ready, deferred, or blocked
+  `lolla.decision_work_generated_read_triage_supply.v0` packets from
+  generated-read, intake, brief-supply, and rendered-brief refs while still not
+  generating triage, marking resolver refs usable, updating sidecars, calling
+  models, scoring, proving, or authorizing action.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

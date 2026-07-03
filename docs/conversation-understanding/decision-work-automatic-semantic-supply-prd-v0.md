@@ -509,12 +509,23 @@ sidecars, call models, claim proof, score quality, or authorize action.
 
 ### PR192 Decision Work Generated Read Triage Supply Adapter v0
 
-If PR191 gates cleanly, build the deterministic adapter that prepares a
-triage-supply packet from generated-read artifacts. The adapter may validate,
-normalize, copy allowed routing inputs, preserve evidence-only fields, and
-record blockers. It still must not generate triage, create a triage read, mark
-resolver refs usable, update runtime sidecars, change runtime behavior, call
-models, claim proof, score quality, or authorize action.
+PR192 is implemented as
+[Decision Work Generated Read Triage Supply Adapter](decision-work-generated-read-triage-supply-adapter-v0.md).
+
+It builds the deterministic adapter that prepares a triage-supply packet from
+generated-read artifacts. The adapter validates, normalizes, copies allowed
+routing inputs, preserves evidence-only fields, and records blockers. It still
+does not generate triage, create a triage read, mark resolver refs usable,
+update runtime sidecars, change runtime behavior, call models, claim proof,
+score quality, or authorize action.
+
+### PR193 Decision Work Generated Read Triage Generation Pilot v0
+
+If PR192 gates cleanly, run the first generated-read triage pilot over the
+prepared triage-supply packet. That future slice may create a provisional
+triage read, but it still must not mark resolver refs usable, update sidecars,
+wire runtime behavior, call models/providers from repo code, score answer
+quality, claim proof, or authorize action.
 - stop and keep the feature internal.
 
 Do not make runtime attachment default-on from this gate.
