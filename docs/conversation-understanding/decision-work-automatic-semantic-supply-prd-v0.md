@@ -613,10 +613,23 @@ correctness, scoring, or action authorization.
 
 ### PR201 Resolver Candidate To Runtime Sidecar Update Plan v0
 
-If the PR200 package is reviewed and accepted, plan how a future layer could
-consider resolver-supply candidates for runtime sidecar updates without
-treating candidates as approval. This must be a plan first, not runtime
-wiring.
+Implemented as
+[Decision Work Resolver Candidate Sidecar Update Plan](decision-work-resolver-candidate-sidecar-update-plan-v0.md).
+
+Plan how a future layer could consider resolver-supply candidates for runtime
+sidecar update packets without treating candidates as approval. The plan keeps
+sidecar update packets offline and proposed only: not actual `decision_work/`
+sidecar writes, not archive mutation, not resolver approval, not runtime
+wiring, not user-surface readiness, not quality labels, and not action
+authorization.
+
+### PR202 Resolver Candidate Sidecar Update Packet Adapter v0
+
+If PR201 gates cleanly, implement a deterministic adapter that turns a PR198
+resolver-supply candidate packet into an offline sidecar update packet
+artifact. The adapter must not write sidecars, mutate archives, approve
+resolver refs, wire runtime, call models, score answer quality, claim proof,
+or authorize action.
 
 Do not make runtime attachment default-on from this gate.
 

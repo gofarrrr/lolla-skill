@@ -757,6 +757,13 @@ candidate packets, while explicitly excluding runtime attachment, resolver
 approval, sidecar updates, runtime wiring, default-on behavior, production
 automation, scoring, proof, human validation, advice correctness, and action
 authorization.
+The
+[Decision Work Resolver Candidate Sidecar Update Plan](docs/conversation-understanding/decision-work-resolver-candidate-sidecar-update-plan-v0.md)
+adds PR201's docs/review/tests-only plan for a future offline sidecar update
+packet. The plan defines proposed packet fields and statuses while making clear
+that a sidecar update packet is not a real `decision_work/` sidecar write, not
+archive mutation, not resolver approval, not runtime wiring, not user-surface
+readiness, and not action authorization.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See
