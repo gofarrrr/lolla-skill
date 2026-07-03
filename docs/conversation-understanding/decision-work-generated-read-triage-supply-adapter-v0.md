@@ -167,3 +167,13 @@ The launch-beta and deploy-intake generated-read paths can now produce
 triage-supply packets that preserve refs, uncertainty, privacy limits, custody
 flags, non-claims, and forbidden route concepts. The next risk boundary is the
 first generated triage pilot, not runtime wiring or sidecar update.
+
+## Implemented Follow-Up
+
+PR193 implements the first checked-in-safe generated triage read as
+[Decision Work Generated Read Triage Generation Pilot](decision-work-generated-read-triage-generation-pilot-v0.md).
+It uses the launch-beta triage-supply status produced by this adapter and routes
+attention to caveated offline brief candidacy, source-depth limits,
+private-context need, overtrust risk, and runtime attachment blocking. It still
+does not mark resolver refs usable, update sidecars, call models, grade answer
+quality, prove correctness, or authorize action.

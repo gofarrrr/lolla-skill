@@ -1,0 +1,183 @@
+{
+  "schema_version": "lolla.decision_work_generated_read_triage.v0",
+  "triage_metadata": {
+    "triage_id": "decision_work_generated_read_triage_generation_pilot:launch-public-enterprise-beta:v0",
+    "created_at": "2026-07-03T00:00:00Z",
+    "mode": "codex_assisted_offline_checked_in_safe_pilot",
+    "semantic_triage_scope": "route_attention_only",
+    "model_calls": 0,
+    "provider_api_calls": 0,
+    "runtime_invoked": false,
+    "skill_invoked": false
+  },
+  "source_case": {
+    "case_id": "launch-public-enterprise-beta",
+    "run_ref": "launch-public-enterprise-beta/20260627T104146Z_7bfe79",
+    "decision_family": "enterprise_launch_or_gtm"
+  },
+  "source_triage_supply_ref": "temporary_validation_output:decision_work_generated_read_triage_supply_launch.json",
+  "source_triage_supply_status": "ready_for_offline_triage_generation",
+  "source_generated_read_ref": "reviews/codex-assisted/decision-work-operator-codex-generated-read-pilot-v0/read.json",
+  "source_intake_ref": "reviews/codex-assisted/decision-work-operator-codex-generated-read-pilot-v0/intake.json",
+  "source_brief_supply_ref": "temporary_validation_output:decision_work_generated_read_brief_supply_launch.json",
+  "source_rendered_brief_ref": "docs/conversation-understanding/decision-work-generated-read-rendered-launch-public-enterprise-beta-v0.md",
+  "triage_status": "generated_provisional_checked_in_safe",
+  "route_categories": [
+    "ordinary_caveated_offline_brief_candidate",
+    "source_depth_insufficient",
+    "private_context_required",
+    "high_overtrust_risk",
+    "runtime_attachment_blocked"
+  ],
+  "route_explanations": [
+    {
+      "route_category": "ordinary_caveated_offline_brief_candidate",
+      "finding": "The launch-beta generated-read brief has enough checked-in-safe source refs, uncertainty, privacy limits, and non-claims to remain a caveated offline brief candidate.",
+      "source_refs": [
+        "reviews/codex-assisted/decision-work-operator-codex-generated-read-pilot-v0/read.json",
+        "reviews/codex-assisted/decision-work-operator-codex-generated-read-pilot-v0/intake.json",
+        "docs/conversation-understanding/decision-work-generated-read-rendered-launch-public-enterprise-beta-v0.md"
+      ],
+      "uncertainty": "medium",
+      "source_depth_limit": "The route uses checked-in-safe generated-read and rendered-brief artifacts, not full private conversation context.",
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "route_category": "source_depth_insufficient",
+      "finding": "The available evidence is enough for offline triage shape testing but not enough for stronger claims about the private buyer context, execution reality, or recommendation correctness.",
+      "source_refs": [
+        "reviews/codex-assisted/decision-work-operator-codex-generated-read-pilot-v0/read.json",
+        "docs/conversation-understanding/decision-work-generated-read-triage-supply-adapter-v0.md"
+      ],
+      "uncertainty": "medium",
+      "source_depth_limit": "Source depth remains compressed to checked-in-safe summaries and prior reads.",
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "route_category": "private_context_required",
+      "finding": "Private context would be required before treating the launch motion, buyer evidence, support limits, or tripwires as operationally adequate.",
+      "source_refs": [
+        "docs/conversation-understanding/decision-work-generated-read-rendered-launch-public-enterprise-beta-v0.md",
+        "docs/conversation-understanding/decision-work-generated-read-triage-supply-plan-v0.md"
+      ],
+      "uncertainty": "medium",
+      "source_depth_limit": "No raw conversation, raw revised answer, raw memo, provider text, or private ledger is included.",
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "route_category": "high_overtrust_risk",
+      "finding": "The rendered brief reads cleanly enough that a reader could overtrust it unless the source-depth and non-claim boundaries remain visible.",
+      "source_refs": [
+        "docs/conversation-understanding/decision-work-generated-read-brief-vs-existing-brief-review-v0.md",
+        "docs/conversation-understanding/decision-work-generated-read-brief-two-case-pattern-review-v0.md"
+      ],
+      "uncertainty": "medium",
+      "source_depth_limit": "This is a reader-surface risk, not a claim that the advice is wrong or right.",
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "route_category": "runtime_attachment_blocked",
+      "finding": "The generated-read triage pilot is not allowed to mark resolver refs usable or update a runtime sidecar. Runtime attachment remains blocked until later explicit integration and review work.",
+      "source_refs": [
+        "docs/conversation-understanding/decision-work-generated-read-triage-supply-adapter-v0.md",
+        "docs/conversation-understanding/decision-work-automatic-semantic-supply-prd-v0.md"
+      ],
+      "uncertainty": "low",
+      "source_depth_limit": "The boundary follows checked-in contracts and does not depend on private case content.",
+      "must_not_be_used_as_quality_label": true
+    }
+  ],
+  "blocker_or_defer_reasons": [],
+  "uncertainty": {
+    "overall": "medium",
+    "uncertainty_preserved": true,
+    "route_uncertainty_basis": "Each selected route carries uncertainty and source-depth limits from checked-in-safe generated-read artifacts.",
+    "must_not_be_used_as_confidence_metric": true
+  },
+  "source_depth_limits": [
+    "The pilot uses checked-in-safe generated-read artifacts, not full private conversation context.",
+    "The route categories are attention-routing labels, not evidence that the advice is correct.",
+    "Lost value, noisy friction, useful friction, and private buyer nuance remain evidence-only or unresolved."
+  ],
+  "privacy_limits": [
+    "No raw conversation text is included.",
+    "No raw revised answer text is included.",
+    "No raw memo text is included.",
+    "No provider text is included.",
+    "No private ledger is included.",
+    "No local absolute path is included."
+  ],
+  "overtrust_risk": {
+    "status": "present",
+    "finding": "The triage read exists to route attention and preserve caveats. It should not make the generated-read brief feel more authoritative than the source depth supports.",
+    "mitigation": "Keep source-depth, private-context, runtime, and action boundaries visible in any future triage review."
+  },
+  "domain_or_legal_review_need": {
+    "status": "not_required_for_this_low_risk_pilot",
+    "caveat": "Launch/GTM still needs operator judgment before operational use, but this case does not present the healthcare, legal, or governance sensitivity of later candidate cases."
+  },
+  "private_context_need": {
+    "status": "required_for_stronger_claims",
+    "finding": "Private context is required before stronger claims about buyer evidence, execution readiness, or strategic correctness."
+  },
+  "agent_inspection_boundary": {
+    "can_feed_future_agent_inspection_review": true,
+    "agent_action_authorized": false,
+    "agent_instruction": "Inspect source-depth, overtrust, private-context, and runtime-boundary risks only."
+  },
+  "user_surface_boundary": {
+    "can_feed_future_offline_user_surface_review": true,
+    "ready_for_customer_use": false,
+    "must_preserve_caveats": true
+  },
+  "runtime_attachment_boundary": {
+    "can_update_sidecar": false,
+    "can_mark_resolver_refs_usable": false,
+    "runtime_attachment_status": "blocked_pending_later_review"
+  },
+  "forbidden_route_concepts_absent": true,
+  "route_categories_forbidden": [
+    "good_answer",
+    "bad_answer",
+    "approved",
+    "certified",
+    "safe_to_act",
+    "correct_advice",
+    "lolla_improved_decision",
+    "human_validated",
+    "product_proof",
+    "agent_action_authorized",
+    "automatic_action_authorized"
+  ],
+  "non_claims": [
+    "triage_read_is_provisional",
+    "triage_read_routes_attention_only",
+    "triage_read_is_not_answer_quality_scoring",
+    "triage_read_is_not_advice_correctness",
+    "triage_read_is_not_product_proof",
+    "triage_read_is_not_human_validation",
+    "triage_read_does_not_prove_lolla_improved_decisions",
+    "triage_read_does_not_mark_resolver_refs_usable",
+    "triage_read_does_not_update_runtime_sidecars",
+    "triage_read_does_not_authorize_agent_action",
+    "triage_read_does_not_authorize_automatic_action"
+  ],
+  "custody_flags": {
+    "model_calls": 0,
+    "provider_api_calls": 0,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "archive_mutated": false,
+    "runtime_behavior_changed": false,
+    "resolver_refs_marked_usable": false,
+    "runtime_sidecar_updated": false,
+    "product_proof": false,
+    "human_validated": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false,
+    "raw_private_content_included": false,
+    "provider_text_included": false,
+    "local_absolute_paths_included": false
+  }
+}

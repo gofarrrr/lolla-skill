@@ -521,11 +521,21 @@ score quality, or authorize action.
 
 ### PR193 Decision Work Generated Read Triage Generation Pilot v0
 
-If PR192 gates cleanly, run the first generated-read triage pilot over the
-prepared triage-supply packet. That future slice may create a provisional
-triage read, but it still must not mark resolver refs usable, update sidecars,
-wire runtime behavior, call models/providers from repo code, score answer
-quality, claim proof, or authorize action.
+PR193 is implemented as
+[Decision Work Generated Read Triage Generation Pilot](decision-work-generated-read-triage-generation-pilot-v0.md).
+
+It creates the first generated-read triage pilot over the launch-beta
+triage-supply packet. The provisional triage read routes attention only and
+still does not mark resolver refs usable, update sidecars, wire runtime
+behavior, call models/providers from repo code, score answer quality, claim
+proof, or authorize action.
+
+### PR194 Decision Work Generated Read Triage Pilot Review v0
+
+If PR193 gates cleanly, review whether the first generated triage read is safe
+and useful enough to attempt a second case. The review should stay docs/review/
+tests only and decide whether to proceed to deploy-intake, patch the triage
+schema/wording, or stop for overtrust or privacy review.
 - stop and keep the feature internal.
 
 Do not make runtime attachment default-on from this gate.

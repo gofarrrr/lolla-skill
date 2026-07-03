@@ -200,6 +200,16 @@ supply packets, while rejected intake, non-ready supply, missing refs,
 missing uncertainty, privacy risk, authority claims, resolver ref use, runtime
 sidecar update, model calls, proof claims, scoring, and action authorization
 remain blocked. It selects a generated-read triage generation pilot next.
+
+The Decision Work Generated Read Triage Generation Pilot is
+docs/conversation-understanding/decision-work-generated-read-triage-generation-pilot-v0.md.
+It adds PR193's first checked-in-safe generated triage read for
+`launch-public-enterprise-beta`. The read routes attention to ordinary
+caveated offline brief candidacy, source-depth limits, private-context need,
+overtrust risk, and runtime attachment blocking without grading answer
+quality, claiming correctness or proof, marking resolver refs usable, updating
+sidecars, calling models, or authorizing action. It selects a review-only
+triage pilot review next before any second case.
 ```
 
 ```text
