@@ -542,12 +542,33 @@ no-model-call, no-scoring, no-proof, and no-action boundary.
 
 ### PR195 Second Generated Read Triage Pilot v0
 
-If PR194 gates cleanly, run the generated-read triage pilot on
-`deploy-assisted-intake-routing`. That future slice must preserve healthcare
-operations and compliance caveats, avoid broad clinical/legal advice, and stop
-before resolver approval, runtime sidecar updates, runtime wiring, model calls,
-product proof, human validation, scoring, or action authorization.
-- stop and keep the feature internal.
+PR195 is implemented as
+[Decision Work Generated Read Second Triage Pilot](decision-work-generated-read-second-triage-pilot-v0.md).
+
+It runs the generated-read triage pilot on `deploy-assisted-intake-routing`.
+The second triage read preserves healthcare operations and compliance caveats,
+avoids broad clinical/legal advice, and stops before resolver approval, runtime
+sidecar updates, runtime wiring, model calls, product proof, human validation,
+scoring, or action authorization.
+
+### PR196 Two-Case Generated Read Triage Pattern Review v0
+
+PR196 is implemented as
+[Decision Work Generated Read Triage Two-Case Pattern Review](decision-work-generated-read-triage-two-case-pattern-review-v0.md).
+
+It compares the launch-beta and deploy-intake generated triage reads together.
+The review finds the route vocabulary stable enough to plan generated-read
+resolver supply while preserving that triage routes are attention-routing
+states, not answer-quality scores, ref approval, runtime sidecar permission, or
+action authorization.
+
+### PR197 Decision Work Generated Read Resolver Supply Plan v0
+
+If PR196 gates cleanly, define the safe plan for turning generated-read
+artifacts into resolver-supply candidates. That future plan must separate
+resolver supply from resolver approval and still stop before runtime sidecar
+updates, runtime wiring, model calls, product proof, human validation, scoring,
+or action authorization.
 
 Do not make runtime attachment default-on from this gate.
 

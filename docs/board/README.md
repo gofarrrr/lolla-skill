@@ -655,6 +655,23 @@ Follow-up implementation planning:
   answer grading or action permission, and gates to a deploy-intake second
   triage pilot without creating that second case yet.
 
+- [Decision Work Generated Read Second Triage Pilot](../conversation-understanding/decision-work-generated-read-second-triage-pilot-v0.md)
+
+  PR195's checked-in-safe generated triage read for deploy-intake. It routes
+  the healthcare workflow case to source-depth limits, private-context need,
+  high overtrust risk, domain review, legal/compliance review, agent
+  inspection, user-surface blocking, and runtime attachment blocking without
+  grading advice, clearing deployment, marking resolver refs usable, updating
+  sidecars, calling models, proving, or authorizing action.
+
+- [Decision Work Generated Read Triage Two-Case Pattern Review](../conversation-understanding/decision-work-generated-read-triage-two-case-pattern-review-v0.md)
+
+  PR196's docs/review/tests-only comparison of the launch-beta and
+  deploy-intake generated triage reads. It finds the route vocabulary stable
+  enough to plan generated-read resolver supply while keeping route categories
+  separate from answer-quality scoring, resolver approval, sidecar update,
+  runtime wiring, proof claims, and action authorization.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

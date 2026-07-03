@@ -129,3 +129,10 @@ The review confirms the launch-beta triage read routes attention rather than
 grading advice, preserves uncertainty/source-depth/runtime boundaries, and is
 safe enough to attempt a second generated-read triage pilot on
 `deploy-assisted-intake-routing`.
+
+PR195 implements that second pilot as
+[Decision Work Generated Read Second Triage Pilot](decision-work-generated-read-second-triage-pilot-v0.md).
+It applies the same attention-routing boundary to the higher-risk deploy-intake
+case, preserving domain/compliance caveats and stopping before resolver
+approval, sidecar updates, runtime wiring, scoring, proof claims, or action
+authorization.

@@ -92,3 +92,12 @@ The first triage read stays inside the intended attention-routing boundary.
 The next meaningful test is deploy-intake, because it introduces healthcare
 operations and compliance risk without yet crossing into resolver approval,
 runtime sidecar updates, or broad automation.
+
+## Implemented Follow-Up
+
+PR195 implements that second case as
+[Decision Work Generated Read Second Triage Pilot](decision-work-generated-read-second-triage-pilot-v0.md).
+It creates a checked-in-safe deploy-intake triage read that routes attention to
+source-depth limits, private-context need, high overtrust risk, domain review,
+legal/compliance review, agent inspection, user-surface blocking, and runtime
+attachment blocking.

@@ -1,0 +1,226 @@
+{
+  "schema_version": "lolla.decision_work_generated_read_triage.v0",
+  "triage_metadata": {
+    "triage_id": "decision_work_generated_read_second_triage_pilot:deploy-assisted-intake-routing:v0",
+    "created_at": "2026-07-03T00:00:00Z",
+    "mode": "codex_assisted_offline_checked_in_safe_second_pilot",
+    "semantic_triage_scope": "route_attention_only",
+    "model_calls": 0,
+    "provider_api_calls": 0,
+    "runtime_invoked": false,
+    "skill_invoked": false
+  },
+  "source_case": {
+    "case_id": "deploy-assisted-intake-routing",
+    "run_ref": "deploy-assisted-intake-routing/20260627T130339Z_4cd3cb",
+    "decision_family": "healthcare_operations_or_deployment"
+  },
+  "source_triage_supply_ref": "temporary_validation_output:decision_work_generated_read_triage_supply_deploy.json",
+  "source_triage_supply_status": "ready_for_offline_triage_generation",
+  "source_generated_read_ref": "reviews/codex-assisted/decision-work-generated-read-second-brief-rendering-pilot-v0/read.json",
+  "source_intake_ref": "reviews/codex-assisted/decision-work-generated-read-second-brief-rendering-pilot-v0/intake.json",
+  "source_brief_supply_ref": "temporary_validation_output:decision_work_generated_read_brief_supply_deploy.json",
+  "source_rendered_brief_ref": "docs/conversation-understanding/decision-work-generated-read-rendered-deploy-assisted-intake-routing-v0.md",
+  "triage_status": "generated_provisional_checked_in_safe",
+  "route_categories": [
+    "source_depth_insufficient",
+    "private_context_required",
+    "high_overtrust_risk",
+    "domain_review_recommended",
+    "legal_or_compliance_review_recommended",
+    "not_ready_for_user_surface",
+    "agent_inspection_only",
+    "runtime_attachment_blocked"
+  ],
+  "route_explanations": [
+    {
+      "route_category": "source_depth_insufficient",
+      "finding": "The checked-in-safe deploy-intake artifacts are enough to test triage shape, but not enough to decide whether the clinic workflow, support model, patient-safety boundary, or compliance posture is operationally adequate.",
+      "source_refs": [
+        "reviews/codex-assisted/decision-work-generated-read-second-brief-rendering-pilot-v0/read.json",
+        "docs/conversation-understanding/decision-work-generated-read-rendered-deploy-assisted-intake-routing-v0.md"
+      ],
+      "uncertainty": "medium",
+      "source_depth_limit": "Source depth remains compressed to checked-in-safe summaries and generated-read artifacts, not full private clinic context.",
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "route_category": "private_context_required",
+      "finding": "Private clinic context, staff workflow reality, compliance review, and operational evidence are required before stronger claims about deployment readiness or patient-facing risk.",
+      "source_refs": [
+        "reviews/codex-assisted/decision-work-generated-read-second-brief-rendering-pilot-v0/intake.json",
+        "docs/conversation-understanding/decision-work-generated-read-rendered-deploy-assisted-intake-routing-v0.md"
+      ],
+      "uncertainty": "medium",
+      "source_depth_limit": "No raw conversation, raw revised answer, raw memo, provider text, private ledger, or local path is included.",
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "route_category": "high_overtrust_risk",
+      "finding": "A readable generated-read brief in a healthcare workflow domain can feel like operational guidance unless the source-depth, review, and non-claim boundaries stay visible.",
+      "source_refs": [
+        "docs/conversation-understanding/decision-work-generated-read-second-brief-rendering-pilot-v0.md",
+        "docs/conversation-understanding/decision-work-generated-read-brief-two-case-pattern-review-v0.md"
+      ],
+      "uncertainty": "medium",
+      "source_depth_limit": "This route names reader-surface overtrust risk; it does not decide whether the underlying advice is correct or incorrect.",
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "route_category": "domain_review_recommended",
+      "finding": "The deploy-intake case concerns outpatient-clinic workflow, admin burden, routing controls, and pause triggers, so a domain reviewer should inspect the assumptions before the artifact is used outside offline review.",
+      "source_refs": [
+        "reviews/codex-assisted/decision-work-generated-read-second-brief-rendering-pilot-v0/read.json",
+        "docs/conversation-understanding/decision-work-generated-read-rendered-deploy-assisted-intake-routing-v0.md"
+      ],
+      "uncertainty": "medium",
+      "source_depth_limit": "Domain review is recommended because checked-in-safe summaries cannot establish clinical or operational adequacy.",
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "route_category": "legal_or_compliance_review_recommended",
+      "finding": "The visible brief mentions compliance readiness, narrowed sales language, routing controls, and hard pause triggers; these remain review needs, not evidence of legal or compliance clearance.",
+      "source_refs": [
+        "docs/conversation-understanding/decision-work-generated-read-rendered-deploy-assisted-intake-routing-v0.md",
+        "reviews/codex-assisted/decision-work-generated-read-second-brief-rendering-pilot-v0/read.json"
+      ],
+      "uncertainty": "medium",
+      "source_depth_limit": "The triage read cannot verify legal, compliance, clinical, privacy, or deployment requirements.",
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "route_category": "not_ready_for_user_surface",
+      "finding": "The generated-read brief should not be treated as a user-facing or customer-ready artifact because the case carries healthcare workflow and compliance overtrust risk.",
+      "source_refs": [
+        "docs/conversation-understanding/decision-work-generated-read-triage-supply-adapter-v0.md",
+        "docs/conversation-understanding/decision-work-automatic-semantic-supply-prd-v0.md"
+      ],
+      "uncertainty": "low",
+      "source_depth_limit": "This boundary follows checked-in contracts and does not require private case content.",
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "route_category": "agent_inspection_only",
+      "finding": "Future use should be limited to inspection of source-depth, domain, compliance, overtrust, and runtime-boundary risks; the route is not permission for an agent to act.",
+      "source_refs": [
+        "docs/conversation-understanding/decision-work-generated-read-triage-supply-plan-v0.md",
+        "docs/conversation-understanding/decision-work-generated-read-triage-supply-adapter-v0.md"
+      ],
+      "uncertainty": "low",
+      "source_depth_limit": "The route is an inspection boundary, not an action plan.",
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "route_category": "runtime_attachment_blocked",
+      "finding": "The generated-read triage pilot is not allowed to mark resolver refs usable or update a runtime sidecar. Runtime attachment remains blocked until later explicit resolver-supply and sidecar-review work.",
+      "source_refs": [
+        "docs/conversation-understanding/decision-work-generated-read-triage-supply-adapter-v0.md",
+        "docs/conversation-understanding/decision-work-automatic-semantic-supply-prd-v0.md"
+      ],
+      "uncertainty": "low",
+      "source_depth_limit": "The boundary follows checked-in contracts and does not depend on private case content.",
+      "must_not_be_used_as_quality_label": true
+    }
+  ],
+  "blocker_or_defer_reasons": [],
+  "uncertainty": {
+    "overall": "medium",
+    "uncertainty_preserved": true,
+    "route_uncertainty_basis": "Each selected route carries uncertainty and source-depth limits from checked-in-safe generated-read artifacts.",
+    "must_not_be_used_as_confidence_metric": true
+  },
+  "source_depth_limits": [
+    "The pilot uses checked-in-safe generated-read artifacts, not full private conversation context.",
+    "The route categories are attention-routing labels, not evidence that the advice is correct.",
+    "Clinic workflow, legal/compliance adequacy, patient-safety implications, and deployment readiness remain unresolved without domain and private-context review."
+  ],
+  "privacy_limits": [
+    "No raw conversation text is included.",
+    "No raw revised answer text is included.",
+    "No raw memo text is included.",
+    "No provider text is included.",
+    "No private ledger is included.",
+    "No local absolute path is included."
+  ],
+  "overtrust_risk": {
+    "status": "high_for_domain_sensitive_case",
+    "finding": "The triage read exists to route attention to domain and compliance caveats. It should not make the generated-read brief feel clinically, legally, operationally, or commercially cleared.",
+    "mitigation": "Keep domain-review, compliance-review, user-surface, runtime, and action boundaries visible in any future review."
+  },
+  "domain_or_legal_review_need": {
+    "status": "required_before_operational_use",
+    "caveat": "Deploy-intake touches healthcare operations and compliance-sensitive workflow. The triage read cannot establish clinical, legal, compliance, privacy, or deployment adequacy."
+  },
+  "private_context_need": {
+    "status": "required_for_stronger_claims",
+    "finding": "Private context is required before stronger claims about workflow feasibility, staff burden, pause triggers, compliance readiness, or deployment safety."
+  },
+  "agent_inspection_boundary": {
+    "can_feed_future_agent_inspection_review": true,
+    "agent_action_authorized": false,
+    "agent_instruction": "Inspect source-depth, domain, compliance, overtrust, private-context, and runtime-boundary risks only."
+  },
+  "user_surface_boundary": {
+    "can_feed_future_offline_user_surface_review": false,
+    "ready_for_customer_use": false,
+    "must_preserve_caveats": true,
+    "finding": "The case is not ready for a user/customer-facing surface because domain and compliance review are not present."
+  },
+  "runtime_attachment_boundary": {
+    "can_update_sidecar": false,
+    "can_mark_resolver_refs_usable": false,
+    "runtime_attachment_status": "blocked_pending_later_resolver_supply_review"
+  },
+  "forbidden_route_concepts_absent": true,
+  "route_categories_forbidden": [
+    "good_answer",
+    "bad_answer",
+    "approved",
+    "certified",
+    "safe_to_act",
+    "safe_to_deploy",
+    "clinically_validated",
+    "legally_adequate",
+    "compliance_cleared",
+    "correct_advice",
+    "lolla_improved_decision",
+    "human_validated",
+    "product_proof",
+    "agent_action_authorized",
+    "automatic_action_authorized"
+  ],
+  "non_claims": [
+    "triage_read_is_provisional",
+    "triage_read_routes_attention_only",
+    "triage_read_is_not_answer_quality_scoring",
+    "triage_read_is_not_advice_correctness",
+    "triage_read_is_not_product_proof",
+    "triage_read_is_not_human_validation",
+    "triage_read_does_not_prove_lolla_improved_decisions",
+    "triage_read_is_not_legal_or_clinical_clearance",
+    "triage_read_is_not_compliance_clearance",
+    "triage_read_is_not_deployment_permission",
+    "triage_read_does_not_mark_resolver_refs_usable",
+    "triage_read_does_not_update_runtime_sidecars",
+    "triage_read_does_not_authorize_agent_action",
+    "triage_read_does_not_authorize_automatic_action"
+  ],
+  "custody_flags": {
+    "model_calls": 0,
+    "provider_api_calls": 0,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "archive_mutated": false,
+    "runtime_behavior_changed": false,
+    "resolver_refs_marked_usable": false,
+    "runtime_sidecar_updated": false,
+    "product_proof": false,
+    "human_validated": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false,
+    "raw_private_content_included": false,
+    "provider_text_included": false,
+    "local_absolute_paths_included": false
+  }
+}
