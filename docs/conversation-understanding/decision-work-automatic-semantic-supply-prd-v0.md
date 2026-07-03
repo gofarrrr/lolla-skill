@@ -433,6 +433,9 @@ This should be a plan/gate before a builder consumes the new read.
 
 ### PR186 Decision Work Generated Read Brief Supply Adapter v0
 
+PR186 is implemented as
+[Decision Work Generated Read Brief Supply Adapter](decision-work-generated-read-brief-supply-adapter-v0.md).
+
 Build the deterministic adapter that takes an accepted generated read and PR182
 intake result and emits a safe brief-supply packet for later offline rendering.
 

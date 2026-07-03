@@ -578,6 +578,15 @@ Follow-up implementation planning:
   uncertainty, privacy limits, non-claims, and adapter boundaries before any
   brief rendering or runtime sidecar work.
 
+- [Decision Work Generated Read Brief Supply Adapter](../conversation-understanding/decision-work-generated-read-brief-supply-adapter-v0.md)
+
+  PR186's deterministic adapter and CLI for accepted generated reads. It emits
+  safe brief-supply packets with copied allowed fields, source refs,
+  uncertainty, blocker status, custody flags, and non-claims while still
+  stopping before brief rendering, enrichment, triage, resolver approval,
+  runtime sidecar update, model calls, scoring, proof claims, or action
+  authorization.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

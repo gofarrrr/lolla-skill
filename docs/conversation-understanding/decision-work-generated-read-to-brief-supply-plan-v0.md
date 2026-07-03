@@ -187,6 +187,10 @@ Recommended next PR:
 PR186 Decision Work Generated Read Brief Supply Adapter v0
 ```
 
+PR186 is now implemented as:
+
+- [Decision Work Generated Read Brief Supply Adapter](decision-work-generated-read-brief-supply-adapter-v0.md).
+
 Reason:
 
 The field policy is clear enough for a deterministic adapter. The adapter should
@@ -194,3 +198,9 @@ validate an accepted intake result and source read, emit a supply JSON packet,
 and stop before brief rendering, enrichment, triage, resolver approval, runtime
 sidecar update, queue workers, provider/model calls, product proof, human
 validation, scoring, or action authorization.
+
+The implemented adapter emits ready, deferred, blocked, or repair-required
+supply states. It copies only allowed fields with their source refs,
+source-status, uncertainty, interpretation basis, privacy limits, and non-claim
+flags; evidence-only fields stay out of brief feed; sidecar updates, quality
+labels, proof claims, and action authorization remain unavailable.

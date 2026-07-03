@@ -642,6 +642,12 @@ evidence-only, what source/uncertainty/privacy/non-claim data must travel
 forward, and what must block, while still generating no brief, enrichment,
 triage, resolver approval, sidecar update, proof claim, score, or action
 authorization.
+The
+[Decision Work Generated Read Brief Supply Adapter](docs/conversation-understanding/decision-work-generated-read-brief-supply-adapter-v0.md)
+adds PR186's deterministic packet builder. It accepts a PR182-approved read and
+intake result, copies only allowed fields with refs and uncertainty, emits ready
+or blocked supply status, and keeps sidecar updates, action authorization,
+quality labels, product proof, and human validation closed.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See
