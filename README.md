@@ -784,6 +784,11 @@ adds PR204's package gate and manifest for PR201-PR203. It packages the
 offline proposed sidecar update packet layer while still excluding actual
 sidecar writes, archive mutation, runtime wiring, resolver approval, default-on
 behavior, proof claims, scoring, and action authorization.
+The
+[Decision Work Runtime Sidecar Write Plan](docs/conversation-understanding/decision-work-runtime-sidecar-write-plan-v0.md)
+adds PR205's docs/review/tests-only plan for the first actual sidecar-write
+implementation. It keeps implementation out of scope and selects a future
+default-off dry-run adapter, not a live write.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See

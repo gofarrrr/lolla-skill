@@ -173,6 +173,16 @@ Do not implement sidecar write code from this package gate. The next phase is
 an actual-write plan only, before any dry-run adapter or archive mutation can
 be considered.
 
+## Implemented Follow-Up
+
+PR205 implements that plan as
+[Decision Work Runtime Sidecar Write Plan](decision-work-runtime-sidecar-write-plan-v0.md).
+It defines eligible and blocked packet statuses, deploy-intake blocked
+handling, never-copy rules, resolver-approval prevention, archive mutation
+boundaries, runtime-hook boundaries, and future dry-run test requirements while
+still not implementing sidecar writes, archive mutation, runtime wiring,
+resolver approval, proof claims, scoring, or action authorization.
+
 ## Explicit Non-Claims
 
 PR204 does not claim:

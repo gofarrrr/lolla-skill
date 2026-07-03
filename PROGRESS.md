@@ -318,6 +318,15 @@ narrow: an offline, deterministic, inspectable pre-write packet layer that can
 prepare proposed sidecar update packets from resolver-supply candidates while
 preserving write/archive/runtime/resolver/proof/scoring/action prohibitions. It
 selects a runtime sidecar write plan next, not implementation.
+
+The Decision Work Runtime Sidecar Write Plan is
+docs/conversation-understanding/decision-work-runtime-sidecar-write-plan-v0.md.
+It adds PR205's docs/review/tests-only plan for the first actual sidecar-write
+implementation. The plan defines eligible and blocked packet statuses, deploy-
+intake blocked handling, never-copy rules, resolver-approval prevention, and
+future dry-run test requirements while still not implementing sidecar writes,
+archive mutation, runtime wiring, resolver approval, proof claims, scoring, or
+action authorization.
 ```
 
 ```text

@@ -731,6 +731,12 @@ Follow-up implementation planning:
   writes, archive mutation, runtime wiring, resolver approval, default-on
   behavior, proof claims, scoring, and action authorization.
 
+- [Decision Work Runtime Sidecar Write Plan](../conversation-understanding/decision-work-runtime-sidecar-write-plan-v0.md)
+
+  PR205's docs/review/tests-only plan for the first actual sidecar-write
+  implementation. It keeps implementation out of scope and selects a future
+  default-off dry-run adapter, not a live write.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

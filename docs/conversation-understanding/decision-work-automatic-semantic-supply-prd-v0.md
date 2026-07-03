@@ -655,10 +655,22 @@ default-on behavior, proof claims, scoring, and action authorization.
 
 ### PR205 Runtime Sidecar Write Plan v0
 
-If PR204 gates cleanly, plan the first actual sidecar-write implementation.
-This must remain docs/review/tests only: no sidecar write code, no archive
-mutation, no runtime wiring, no resolver approval, no default-on behavior, no
-model calls, no scoring, no proof claims, and no action authorization.
+Implemented as
+[Decision Work Runtime Sidecar Write Plan](decision-work-runtime-sidecar-write-plan-v0.md).
+
+Plan the first actual sidecar-write implementation. This remains
+docs/review/tests only: no sidecar write code, no archive mutation, no runtime
+wiring, no resolver approval, no default-on behavior, no model calls, no
+scoring, no proof claims, and no action authorization. The plan selects a
+future default-off dry-run adapter next.
+
+### PR206 Default-Off Sidecar Write Dry-Run Adapter v0
+
+If PR205 gates cleanly, implement a dry-run adapter that writes no archive
+files and proves exactly what would be written. It must not perform actual
+sidecar writes, mutate archives, wire runtime, approve resolver refs, make
+runtime default-on, call models, score answer quality, claim proof, or
+authorize action.
 
 Do not make runtime attachment default-on from this gate.
 
