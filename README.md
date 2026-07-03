@@ -749,6 +749,14 @@ supply candidate packets. It confirms candidate packets remain candidate
 summaries, not resolver approval, runtime sidecar permission, user-surface
 readiness, quality labels, proof, or action authorization, and gates to a
 pre-runtime package manifest.
+The
+[Decision Work Automatic Semantic Supply Pre-Runtime v1 Package Gate](docs/conversation-understanding/decision-work-automatic-semantic-supply-pre-runtime-v1-package-gate-v0.md)
+adds PR200's package gate and manifest for PR178-PR199. It packages the offline
+pre-runtime chain from generated interpretation reads to resolver-supply
+candidate packets, while explicitly excluding runtime attachment, resolver
+approval, sidecar updates, runtime wiring, default-on behavior, production
+automation, scoring, proof, human validation, advice correctness, and action
+authorization.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See

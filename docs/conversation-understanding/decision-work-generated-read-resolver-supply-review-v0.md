@@ -106,3 +106,13 @@ surface readiness, scoring, proof claims, and action authorization closed.
 
 Do not implement resolver approval, runtime sidecar updates, runtime wiring,
 model calls, scoring, proof claims, or action authorization from this review.
+
+## Implemented Follow-Up
+
+PR200 implements the package gate as
+[Decision Work Automatic Semantic Supply Pre-Runtime v1 Package Gate](decision-work-automatic-semantic-supply-pre-runtime-v1-package-gate-v0.md).
+The package manifest covers PR178 through PR199 as an offline, checked-in-safe,
+pre-runtime chain ending in resolver-supply candidate packets, while still
+excluding resolver approval, sidecar updates, runtime wiring, default-on
+behavior, production automation, scoring, proof claims, human validation,
+advice-correctness claims, and action authorization.

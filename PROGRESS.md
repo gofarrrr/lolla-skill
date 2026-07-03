@@ -272,6 +272,16 @@ source refs, uncertainty, privacy limits, route-specific blockers, custody
 flags, and non-claims while remaining candidates rather than resolver
 approval, runtime sidecar permission, user-surface readiness, quality labels,
 proof, or action authorization. It selects a pre-runtime v1 package gate next.
+
+The Decision Work Automatic Semantic Supply Pre-Runtime v1 Package Gate is
+docs/conversation-understanding/decision-work-automatic-semantic-supply-pre-runtime-v1-package-gate-v0.md.
+It adds PR200's package gate and manifest for PR178-PR199. The package claim
+is narrow: an offline, checked-in-safe, pre-runtime chain from generated
+interpretation reads to resolver-supply candidate packets, with validation,
+rendering, triage, and resolver-boundary safeguards. It still excludes runtime
+attachment, resolver approval, sidecar updates, runtime wiring, default-on
+behavior, arbitrary-run production automation, scoring, proof claims, human
+validation, advice correctness, and action authorization.
 ```
 
 ```text
