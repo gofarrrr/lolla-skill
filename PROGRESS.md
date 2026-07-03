@@ -210,6 +210,15 @@ overtrust risk, and runtime attachment blocking without grading answer
 quality, claiming correctness or proof, marking resolver refs usable, updating
 sidecars, calling models, or authorizing action. It selects a review-only
 triage pilot review next before any second case.
+
+The Decision Work Generated Read Triage Pilot Review is
+docs/conversation-understanding/decision-work-generated-read-triage-pilot-review-v0.md.
+It adds PR194's docs/review/tests-only review of the first generated triage
+read. The review finds the launch-beta route vocabulary stays in
+attention-routing territory and is safe enough to try deploy-intake next, while
+still not creating a second triage read, marking resolver refs usable, updating
+sidecars, wiring runtime, calling models, scoring, proving, or authorizing
+action.
 ```
 
 ```text

@@ -648,6 +648,13 @@ Follow-up implementation planning:
   still not grading answer quality, marking resolver refs usable, updating
   sidecars, calling models, proving, or authorizing action.
 
+- [Decision Work Generated Read Triage Pilot Review](../conversation-understanding/decision-work-generated-read-triage-pilot-review-v0.md)
+
+  PR194's docs/review/tests-only review of the first generated triage read. It
+  confirms launch-beta route vocabulary stays attention-routing rather than
+  answer grading or action permission, and gates to a deploy-intake second
+  triage pilot without creating that second case yet.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

@@ -532,10 +532,21 @@ proof, or authorize action.
 
 ### PR194 Decision Work Generated Read Triage Pilot Review v0
 
-If PR193 gates cleanly, review whether the first generated triage read is safe
-and useful enough to attempt a second case. The review should stay docs/review/
-tests only and decide whether to proceed to deploy-intake, patch the triage
-schema/wording, or stop for overtrust or privacy review.
+PR194 is implemented as
+[Decision Work Generated Read Triage Pilot Review](decision-work-generated-read-triage-pilot-review-v0.md).
+
+It reviews whether the first generated triage read is safe and useful enough to
+attempt a second case. The review stays docs/review/tests only and selects
+deploy-intake next while preserving the no-resolver, no-sidecar, no-runtime,
+no-model-call, no-scoring, no-proof, and no-action boundary.
+
+### PR195 Second Generated Read Triage Pilot v0
+
+If PR194 gates cleanly, run the generated-read triage pilot on
+`deploy-assisted-intake-routing`. That future slice must preserve healthcare
+operations and compliance caveats, avoid broad clinical/legal advice, and stop
+before resolver approval, runtime sidecar updates, runtime wiring, model calls,
+product proof, human validation, scoring, or action authorization.
 - stop and keep the feature internal.
 
 Do not make runtime attachment default-on from this gate.

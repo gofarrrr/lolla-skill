@@ -120,3 +120,12 @@ uncertainty and source-depth limits, and keep runtime/action boundaries closed.
 Before applying the pattern to deploy-intake, a review-only PR should inspect
 whether the route vocabulary reads as triage rather than answer-quality
 judgment or action permission.
+
+## Implemented Follow-Up
+
+PR194 implements that review as
+[Decision Work Generated Read Triage Pilot Review](decision-work-generated-read-triage-pilot-review-v0.md).
+The review confirms the launch-beta triage read routes attention rather than
+grading advice, preserves uncertainty/source-depth/runtime boundaries, and is
+safe enough to attempt a second generated-read triage pilot on
+`deploy-assisted-intake-routing`.
