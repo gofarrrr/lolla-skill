@@ -82,3 +82,15 @@ The generated-read brief path has now rendered two checked-in-safe cases across
 different decision families while preserving action consequence, uncertainty,
 source limits, privacy limits, and non-claims. The next safe step is a triage
 supply plan, not triage generation or runtime sidecar work.
+
+## Follow-Up Plan
+
+PR191 is implemented as
+[Decision Work Generated Read Triage Supply Plan](decision-work-generated-read-triage-supply-plan-v0.md).
+
+That plan defines the allowed generated-read triage supply inputs, routing
+fields, evidence-only fields, blocked fields, route categories, custody
+requirements, and forbidden quality/authority route concepts. It selects a
+deterministic triage supply adapter next while still stopping before generated
+triage, resolver ref use, runtime sidecar update, model calls, proof claims,
+scoring, or action authorization.

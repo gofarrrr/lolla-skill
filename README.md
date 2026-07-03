@@ -680,6 +680,23 @@ consequence, source refs, uncertainty, privacy limits, evidence-only exclusions,
 and non-claims across two decision families, while remaining too thin for
 triage generation or sidecar use. It gates to a generated-read triage supply
 plan, not triage implementation.
+The
+[Decision Work Generated Read Triage Supply Plan](docs/conversation-understanding/decision-work-generated-read-triage-supply-plan-v0.md)
+adds PR191's docs/review/tests-only plan for turning generated-read artifacts
+into future triage supply. It defines allowed inputs, routing fields,
+evidence-only fields, blocked fields, statuses, route categories, custody
+requirements, and forbidden quality/authority route concepts while still
+generating no triage, marking no resolver refs usable, updating no sidecars,
+calling no models, proving nothing, scoring nothing, and authorizing no action.
+The
+[Decision Work Generated Read Triage Supply Adapter](docs/conversation-understanding/decision-work-generated-read-triage-supply-adapter-v0.md)
+adds PR192's deterministic adapter and CLI. It consumes generated-read, PR182
+intake, PR186 brief-supply, and rendered-brief refs and emits
+`lolla.decision_work_generated_read_triage_supply.v0` packets for future
+offline triage generation only. It supports ready, deferred, and blocked states
+while still generating no triage, creating no triage read, marking no resolver
+refs usable, updating no sidecars, calling no models, proving nothing, scoring
+nothing, and authorizing no action.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See

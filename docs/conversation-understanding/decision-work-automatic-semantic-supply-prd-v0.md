@@ -499,11 +499,33 @@ stop for source-depth or product-surface review.
 
 ### PR191 Decision Work Generated Read Triage Supply Plan v0
 
-If PR190 gates cleanly, define the safe plan for turning generated-read brief
-supply and rendered brief findings into future triage supply. This should still
-be a plan before implementation, and should not generate automatic triage,
-approve resolver refs, update runtime sidecars, call models, claim proof, score
-quality, or authorize action.
+PR191 is implemented as
+[Decision Work Generated Read Triage Supply Plan](decision-work-generated-read-triage-supply-plan-v0.md).
+
+Define the safe plan for turning generated-read brief supply and rendered brief
+findings into future triage supply. This is a plan before implementation, and
+does not generate automatic triage, mark resolver refs usable, update runtime
+sidecars, call models, claim proof, score quality, or authorize action.
+
+### PR192 Decision Work Generated Read Triage Supply Adapter v0
+
+PR192 is implemented as
+[Decision Work Generated Read Triage Supply Adapter](decision-work-generated-read-triage-supply-adapter-v0.md).
+
+It builds the deterministic adapter that prepares a triage-supply packet from
+generated-read artifacts. The adapter validates, normalizes, copies allowed
+routing inputs, preserves evidence-only fields, and records blockers. It still
+does not generate triage, create a triage read, mark resolver refs usable,
+update runtime sidecars, change runtime behavior, call models, claim proof,
+score quality, or authorize action.
+
+### PR193 Decision Work Generated Read Triage Generation Pilot v0
+
+If PR192 gates cleanly, run the first generated-read triage pilot over the
+prepared triage-supply packet. That future slice may create a provisional
+triage read, but it still must not mark resolver refs usable, update sidecars,
+wire runtime behavior, call models/providers from repo code, score answer
+quality, claim proof, or authorize action.
 - stop and keep the feature internal.
 
 Do not make runtime attachment default-on from this gate.
