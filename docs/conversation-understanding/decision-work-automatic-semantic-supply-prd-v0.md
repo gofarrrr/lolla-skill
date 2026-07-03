@@ -712,6 +712,62 @@ PR208 Sidecar Write Dry-Run Package Gate v0
 
 Do not implement PR208 from this review.
 
+### PR208 Sidecar Write Dry-Run Package Gate v0
+
+Implemented as
+[Decision Work Sidecar Write Dry-Run Package Gate](decision-work-sidecar-write-dry-run-package-gate-v0.md).
+
+Package PR206 through PR207 as a narrow dry-run capability. The package claim
+is that Decision Work Sidecar Write Dry-Run v1 is functional as an offline,
+deterministic preview layer that can show what would be written from a sidecar
+update packet while preserving actual-write, archive-mutation,
+resolver-approval, runtime-wiring, proof, scoring, and action-authorization
+prohibitions.
+
+Selected gate:
+
+```text
+sidecar_write_dry_run_v1_packaged
+```
+
+Recommended next PR:
+
+```text
+PR209 Runtime Sidecar Write Contract v0
+```
+
+Do not implement sidecar writes from this package gate.
+
+### PR209 Runtime Sidecar Write Contract v0
+
+Implemented as
+[Decision Work Runtime Sidecar Write Contract](decision-work-runtime-sidecar-write-contract-v0.md).
+
+Define the contract for a future explicit operator sidecar write adapter
+without implementing writes. The contract accepts PR202 sidecar update packets
+and PR206 dry-run results as inputs, requires a matching dry run, explicit
+archive path, explicit mode, path safety checks, privacy checks, authority
+claim checks, and default-off runtime posture, and records write modes,
+statuses, allowed files, forbidden content, audit receipt requirements, and
+fail-closed rules.
+
+Selected gate:
+
+```text
+proceed_to_explicit_operator_sidecar_write_adapter
+```
+
+Recommended next PR:
+
+```text
+PR210 Explicit Operator Sidecar Write Adapter v0
+```
+
+Do not implement PR210 from this contract. PR209 still does not write
+sidecars, write `decision_work/`, mutate archives, wire runtime, approve
+resolver refs, make runtime default-on, call models, score answer quality,
+claim proof, or authorize action.
+
 ## Readiness Gates
 
 Automatic semantic supply is not ready for normal use until:

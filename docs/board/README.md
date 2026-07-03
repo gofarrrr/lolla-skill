@@ -753,6 +753,21 @@ Follow-up implementation planning:
   runtime wiring, quality labels, proof claims, and action authorization remain
   closed.
 
+- [Decision Work Sidecar Write Dry-Run Package Gate](../conversation-understanding/decision-work-sidecar-write-dry-run-package-gate-v0.md)
+
+  PR208's package gate and manifest for PR206-PR207. It packages the offline
+  dry-run preview layer while still excluding actual sidecar writes, archive
+  mutation, runtime wiring, resolver approval, default-on behavior, proof
+  claims, scoring, and action authorization.
+
+- [Decision Work Runtime Sidecar Write Contract](../conversation-understanding/decision-work-runtime-sidecar-write-contract-v0.md)
+
+  PR209's contract/docs/schema/tests-only gate for a future explicit operator
+  sidecar write adapter. It defines input schemas, dry-run preconditions, write
+  modes, statuses, allowed files, forbidden content, path safety, and receipt
+  requirements while still not writing sidecars, mutating archives, wiring
+  runtime, approving resolver refs, scoring, proving, or authorizing action.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

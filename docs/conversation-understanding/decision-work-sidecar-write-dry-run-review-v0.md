@@ -109,3 +109,12 @@ proof claims, and action authorization closed.
 Do not implement actual sidecar writes, archive mutation, resolver approval,
 runtime wiring, model calls, scoring, proof claims, or action authorization
 from this review.
+
+## Implemented Follow-Up
+
+PR208 implements the package gate as
+[Decision Work Sidecar Write Dry-Run Package Gate](decision-work-sidecar-write-dry-run-package-gate-v0.md).
+The package manifest covers PR206 through PR207 as an offline dry-run layer
+for sidecar-write previews, while still excluding actual sidecar writes,
+archive mutation, runtime wiring, resolver approval, default-on behavior,
+proof claims, scoring, and action authorization.
