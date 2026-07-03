@@ -1,0 +1,133 @@
+{
+  "schema_version": "lolla.decision_work_generated_read_triage_two_case_pattern_review.v0",
+  "review_metadata": {
+    "review_id": "decision_work_generated_read_triage_two_case_pattern_review:v0",
+    "created_at": "2026-07-03T00:00:00Z",
+    "reviewed_stage": "PR193_PR195_generated_read_triage_pilots",
+    "mode": "docs_review_tests_only"
+  },
+  "compared_cases": [
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "decision_family": "enterprise_launch_or_gtm",
+      "triage_read_ref": "reviews/codex-assisted/decision-work-generated-read-triage-generation-pilot-v0/triage.json",
+      "triage_status": "generated_provisional_checked_in_safe",
+      "route_categories": [
+        "ordinary_caveated_offline_brief_candidate",
+        "source_depth_insufficient",
+        "private_context_required",
+        "high_overtrust_risk",
+        "runtime_attachment_blocked"
+      ]
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "decision_family": "healthcare_operations_or_deployment",
+      "triage_read_ref": "reviews/codex-assisted/decision-work-generated-read-second-triage-pilot-v0/triage.json",
+      "triage_status": "generated_provisional_checked_in_safe",
+      "route_categories": [
+        "source_depth_insufficient",
+        "private_context_required",
+        "high_overtrust_risk",
+        "domain_review_recommended",
+        "legal_or_compliance_review_recommended",
+        "not_ready_for_user_surface",
+        "agent_inspection_only",
+        "runtime_attachment_blocked"
+      ]
+    }
+  ],
+  "stable_route_categories": [
+    "source_depth_insufficient",
+    "private_context_required",
+    "high_overtrust_risk",
+    "runtime_attachment_blocked"
+  ],
+  "case_specific_route_categories": {
+    "launch-public-enterprise-beta": [
+      "ordinary_caveated_offline_brief_candidate"
+    ],
+    "deploy-assisted-intake-routing": [
+      "domain_review_recommended",
+      "legal_or_compliance_review_recommended",
+      "not_ready_for_user_surface",
+      "agent_inspection_only"
+    ]
+  },
+  "forbidden_categories_absent": true,
+  "source_depth_pattern": {
+    "preserved_across_cases": true,
+    "finding": "Both triage reads treat checked-in-safe generated-read and rendered-brief artifacts as compressed source depth rather than full private conversation context."
+  },
+  "overtrust_pattern": {
+    "preserved_across_cases": true,
+    "finding": "Both cases preserve overtrust risk. Deploy-intake escalates the risk because healthcare workflow prose can sound operationally, legally, or clinically authoritative."
+  },
+  "domain_risk_pattern": {
+    "launch_public_enterprise_beta": "lower_risk_gtm_case_with_caveated_offline_candidate_route",
+    "deploy_assisted_intake_routing": "domain_and_compliance_sensitive_case_with_user_surface_blocked",
+    "finding": "The route vocabulary can carry case-specific risk without turning routes into approval labels."
+  },
+  "runtime_boundary_pattern": {
+    "can_update_sidecar": false,
+    "runtime_wired": false,
+    "finding": "Both triage reads keep runtime attachment blocked pending later explicit resolver-supply and sidecar-review work."
+  },
+  "resolver_boundary_pattern": {
+    "resolver_refs_marked_usable": false,
+    "can_plan_resolver_supply": true,
+    "finding": "The two-case pattern is strong enough to plan resolver supply, not to approve resolver refs."
+  },
+  "action_authorization_boundary": {
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false,
+    "finding": "Both reads route attention only and do not authorize an agent or automatic system to act."
+  },
+  "strongest_useful_signal": "The generated-read triage vocabulary now works across a lower-risk GTM launch case and a higher-risk healthcare workflow case while preserving source-depth limits, overtrust risk, and forbidden-category absence.",
+  "strongest_unresolved_risk": "Resolver-boundary drift is now the main risk: triage routes could be misread as safe refs or approval if the next layer does not explicitly separate resolver supply from resolver approval.",
+  "downstream_boundary": {
+    "can_plan_generated_read_resolver_supply": true,
+    "can_mark_resolver_refs_usable": false,
+    "can_update_runtime_sidecar": false,
+    "can_wire_runtime": false,
+    "can_call_models": false,
+    "can_score_answer_quality": false,
+    "can_claim_product_proof": false,
+    "can_claim_human_validation": false,
+    "can_authorize_agent_action": false,
+    "can_authorize_automatic_action": false
+  },
+  "custody_flags": {
+    "model_calls": 0,
+    "provider_api_calls": 0,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "archive_mutated": false,
+    "runtime_behavior_changed": false,
+    "new_triage_read_generated": false,
+    "third_case_triage_generated": false,
+    "resolver_refs_marked_usable": false,
+    "runtime_sidecar_updated": false,
+    "product_proof": false,
+    "human_validated": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false
+  },
+  "decision_gate": "proceed_to_generated_read_resolver_supply_plan",
+  "recommended_next_pr": "PR197 Decision Work Generated Read Resolver Supply Plan v0",
+  "non_claims": [
+    "review_does_not_generate_new_triage_reads",
+    "review_does_not_patch_triage_reads",
+    "review_does_not_mark_resolver_refs_usable",
+    "review_does_not_update_runtime_sidecars",
+    "review_does_not_wire_runtime",
+    "review_does_not_call_models",
+    "review_does_not_score_answer_quality",
+    "review_does_not_claim_semantic_correctness",
+    "review_is_not_product_proof",
+    "review_is_not_human_validation",
+    "review_does_not_authorize_agent_action",
+    "review_does_not_authorize_automatic_action"
+  ]
+}

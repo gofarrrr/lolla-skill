@@ -125,3 +125,12 @@ agent-inspection-only review rather than treating the generated-read brief as
 safe for user-facing or operational use. The next safe step is to compare the
 launch-beta and deploy-intake triage reads together before any resolver-supply
 plan, runtime sidecar update, or automation.
+
+## Implemented Follow-Up
+
+PR196 implements that review as
+[Decision Work Generated Read Triage Two-Case Pattern Review](decision-work-generated-read-triage-two-case-pattern-review-v0.md).
+It compares the launch-beta and deploy-intake generated triage reads together
+and selects generated-read resolver supply planning next, while still stopping
+before resolver approval, sidecar updates, runtime wiring, scoring, proof
+claims, or action authorization.

@@ -553,11 +553,22 @@ scoring, or action authorization.
 
 ### PR196 Two-Case Generated Read Triage Pattern Review v0
 
-If PR195 gates cleanly, compare the launch-beta and deploy-intake generated
-triage reads together. That future review should decide whether the route
-vocabulary is stable enough to plan resolver supply or whether the system needs
-a third case, schema patch, product-surface review, or privacy/domain risk
-review first.
+PR196 is implemented as
+[Decision Work Generated Read Triage Two-Case Pattern Review](decision-work-generated-read-triage-two-case-pattern-review-v0.md).
+
+It compares the launch-beta and deploy-intake generated triage reads together.
+The review finds the route vocabulary stable enough to plan generated-read
+resolver supply while preserving that triage routes are attention-routing
+states, not answer-quality scores, ref approval, runtime sidecar permission, or
+action authorization.
+
+### PR197 Decision Work Generated Read Resolver Supply Plan v0
+
+If PR196 gates cleanly, define the safe plan for turning generated-read
+artifacts into resolver-supply candidates. That future plan must separate
+resolver supply from resolver approval and still stop before runtime sidecar
+updates, runtime wiring, model calls, product proof, human validation, scoring,
+or action authorization.
 
 Do not make runtime attachment default-on from this gate.
 

@@ -718,6 +718,13 @@ domain review, legal/compliance review, agent inspection only, not-ready-for-
 user-surface, and runtime attachment blocking while still not grading answer
 quality, clearing deployment, marking resolver refs usable, updating sidecars,
 calling models, or authorizing action.
+The
+[Decision Work Generated Read Triage Two-Case Pattern Review](docs/conversation-understanding/decision-work-generated-read-triage-two-case-pattern-review-v0.md)
+adds PR196's two-case triage pattern review. It confirms the route vocabulary
+works across launch-beta and deploy-intake, keeps deploy-intake escalated for
+domain/compliance review, and selects generated-read resolver supply planning
+next without approving resolver refs, updating sidecars, wiring runtime,
+calling models, scoring advice, proving value, or authorizing action.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See

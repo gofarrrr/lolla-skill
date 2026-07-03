@@ -230,6 +230,16 @@ attachment blocking. It does not grade answer quality, claim operational,
 legal, compliance, or clinical clearance, mark resolver refs usable, update
 sidecars, wire runtime, call models, prove value, or authorize action. It
 selects a two-case generated-read triage pattern review next.
+
+The Decision Work Generated Read Triage Two-Case Pattern Review is
+docs/conversation-understanding/decision-work-generated-read-triage-two-case-pattern-review-v0.md.
+It adds PR196's docs/review/tests-only comparison of the launch-beta and
+deploy-intake generated triage reads. The review finds the route vocabulary can
+distinguish lower-risk caveated offline candidacy from higher-risk
+domain/compliance inspection while preserving source-depth, overtrust, runtime,
+resolver, and action boundaries. It selects a generated-read resolver supply
+plan next, not resolver approval, sidecar update, runtime wiring, scoring,
+proof, or action authorization.
 ```
 
 ```text
