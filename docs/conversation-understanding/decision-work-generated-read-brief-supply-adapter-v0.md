@@ -16,7 +16,7 @@ and emits a safe brief-supply packet for later offline brief rendering.
 
 The adapter validates, normalizes, and copies allowed fields. It does not add
 new semantic interpretation, generate a read, render a Decision Work Brief,
-enrich a brief, generate triage, approve resolver refs, update runtime
+enrich a brief, generate triage, mark resolver refs usable, update runtime
 sidecars, change runtime behavior, call providers or model APIs, score answer
 quality, claim product proof, claim human validation, claim advice correctness,
 or authorize action.
@@ -140,7 +140,7 @@ Even when supply is ready, these stay false:
 
 Ready supply means only that later offline brief rendering may consider the
 copied field packet. It is not semantic truth, product proof, human validation,
-runtime approval, or action authorization.
+runtime permission, or action authorization.
 
 ## Decision Gate
 
@@ -161,6 +161,6 @@ Reason:
 The adapter can produce ready, deferred, blocked, and repair-required supply
 states without interpretation. The next safe step is a one-case offline
 rendering pilot that consumes a ready supply packet, while still stopping before
-triage, resolver approval, runtime sidecar updates, queue workers,
+triage, resolver ref use, runtime sidecar updates, queue workers,
 provider/model calls, product proof, human validation, scoring, or action
 authorization.

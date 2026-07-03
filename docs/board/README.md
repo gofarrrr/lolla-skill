@@ -583,9 +583,17 @@ Follow-up implementation planning:
   PR186's deterministic adapter and CLI for accepted generated reads. It emits
   safe brief-supply packets with copied allowed fields, source refs,
   uncertainty, blocker status, custody flags, and non-claims while still
-  stopping before brief rendering, enrichment, triage, resolver approval,
+  stopping before brief rendering, enrichment, triage, resolver ref use,
   runtime sidecar update, model calls, scoring, proof claims, or action
   authorization.
+
+- [Decision Work Generated Read Brief Rendering Pilot](../conversation-understanding/decision-work-generated-read-brief-rendering-pilot-v0.md)
+
+  PR187's one-case launch-beta Markdown rendering pilot. It consumes a ready
+  PR186 supply packet and writes a reader-facing generated-read brief while
+  preserving source refs, uncertainty, privacy limits, custody flags, and
+  non-claims. It still does not enrich, generate triage, mark resolver refs
+  usable, update sidecars, call models, score, prove, or authorize action.
 
 The core board-level message is:
 

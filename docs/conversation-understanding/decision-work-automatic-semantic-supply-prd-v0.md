@@ -416,8 +416,8 @@ operator/Codex generated read candidate
 ```
 
 This slice still does not render a Decision Work Brief, enrich a brief,
-generate triage, approve resolver refs, update runtime sidecars, create a queue
-worker, call providers, or claim semantic correctness. It selects a generated
+generate triage, mark resolver refs usable, update runtime sidecars, create a
+queue worker, call providers, or claim semantic correctness. It selects a generated
 read-to-brief supply plan next.
 
 ### PR185 Generated Read To Brief Supply Plan v0
@@ -441,13 +441,16 @@ intake result and emits a safe brief-supply packet for later offline rendering.
 
 This adapter may validate, normalize, copy allowed fields, preserve source refs,
 preserve uncertainty, and block/defer unsafe supply. It must not add semantic
-interpretation, render a brief, enrich a brief, generate triage, approve
-resolver refs, update runtime sidecars, or call providers.
+interpretation, render a brief, enrich a brief, generate triage, mark resolver
+refs usable, update runtime sidecars, or call providers.
 
 ### PR187 Decision Work Generated Read Brief Rendering Pilot v0
 
-Use the PR186 supply packet to test the existing offline brief/enrichment path
-on exactly one checked-in-safe generated read.
+PR187 is implemented as
+[Decision Work Generated Read Brief Rendering Pilot](decision-work-generated-read-brief-rendering-pilot-v0.md).
+
+Use the PR186 supply packet to render exactly one offline generated-read brief
+for the launch-beta checked-in-safe generated read.
 
 This should still be offline/internal, should not update runtime sidecars, and
 should preserve the distinction between structural supply readiness and semantic

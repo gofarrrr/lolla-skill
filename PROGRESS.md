@@ -129,8 +129,8 @@ docs/conversation-understanding/decision-work-generated-read-to-brief-supply-pla
 It defines which accepted generated-read fields may feed future offline brief
 supply, which fields must remain evidence-only, what source refs, uncertainty,
 privacy limits, and non-claims must travel forward, and what must block. It
-still does not generate a brief, enrich a brief, generate triage, approve
-resolver refs, update sidecars, call models, score advice, claim proof, or
+still does not generate a brief, enrich a brief, generate triage, mark resolver
+refs usable, update sidecars, call models, score advice, claim proof, or
 authorize action. It selects a deterministic brief-supply adapter next.
 
 The Decision Work Generated Read Brief Supply Adapter is
@@ -138,9 +138,18 @@ docs/conversation-understanding/decision-work-generated-read-brief-supply-adapte
 It adds PR186's deterministic adapter and CLI for accepted PR182 generated-read
 intake results. It emits safe brief-supply packets with allowed copied fields,
 source refs, uncertainty, blocker status, custody flags, and non-claims, while
-still stopping before brief rendering, enrichment, triage, resolver approval,
+still stopping before brief rendering, enrichment, triage, resolver ref use,
 runtime sidecar update, model calls, proof claims, scoring, or action
 authorization. It selects a one-case generated-read brief rendering pilot next.
+
+The Decision Work Generated Read Brief Rendering Pilot is
+docs/conversation-understanding/decision-work-generated-read-brief-rendering-pilot-v0.md.
+It adds PR187's one-case launch-beta Markdown render from a ready PR186 supply
+packet. The rendered brief preserves source refs, uncertainty, privacy limits,
+custody flags, and non-claims, while still stopping before enrichment, triage,
+resolver ref use, runtime sidecar update, model calls, proof claims, scoring,
+or action authorization. It selects a generated-read brief versus existing
+brief review next.
 ```
 
 ```text
