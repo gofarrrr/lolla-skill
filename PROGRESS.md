@@ -219,6 +219,17 @@ attention-routing territory and is safe enough to try deploy-intake next, while
 still not creating a second triage read, marking resolver refs usable, updating
 sidecars, wiring runtime, calling models, scoring, proving, or authorizing
 action.
+
+The Decision Work Generated Read Second Triage Pilot is
+docs/conversation-understanding/decision-work-generated-read-second-triage-pilot-v0.md.
+It adds PR195's checked-in-safe generated triage read for
+`deploy-assisted-intake-routing`. The read routes attention to source-depth
+limits, private-context need, high overtrust risk, domain review,
+legal/compliance review, agent inspection, user-surface blocking, and runtime
+attachment blocking. It does not grade answer quality, claim operational,
+legal, compliance, or clinical clearance, mark resolver refs usable, update
+sidecars, wire runtime, call models, prove value, or authorize action. It
+selects a two-case generated-read triage pattern review next.
 ```
 
 ```text

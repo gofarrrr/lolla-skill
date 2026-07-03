@@ -542,12 +542,22 @@ no-model-call, no-scoring, no-proof, and no-action boundary.
 
 ### PR195 Second Generated Read Triage Pilot v0
 
-If PR194 gates cleanly, run the generated-read triage pilot on
-`deploy-assisted-intake-routing`. That future slice must preserve healthcare
-operations and compliance caveats, avoid broad clinical/legal advice, and stop
-before resolver approval, runtime sidecar updates, runtime wiring, model calls,
-product proof, human validation, scoring, or action authorization.
-- stop and keep the feature internal.
+PR195 is implemented as
+[Decision Work Generated Read Second Triage Pilot](decision-work-generated-read-second-triage-pilot-v0.md).
+
+It runs the generated-read triage pilot on `deploy-assisted-intake-routing`.
+The second triage read preserves healthcare operations and compliance caveats,
+avoids broad clinical/legal advice, and stops before resolver approval, runtime
+sidecar updates, runtime wiring, model calls, product proof, human validation,
+scoring, or action authorization.
+
+### PR196 Two-Case Generated Read Triage Pattern Review v0
+
+If PR195 gates cleanly, compare the launch-beta and deploy-intake generated
+triage reads together. That future review should decide whether the route
+vocabulary is stable enough to plan resolver supply or whether the system needs
+a third case, schema patch, product-surface review, or privacy/domain risk
+review first.
 
 Do not make runtime attachment default-on from this gate.
 

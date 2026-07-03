@@ -710,6 +710,14 @@ adds PR194's review-only pass over that first triage read. It confirms the
 route vocabulary remains attention routing rather than grading or action
 permission, and gates to a deploy-intake second triage pilot without creating
 that second case yet.
+The
+[Decision Work Generated Read Second Triage Pilot](docs/conversation-understanding/decision-work-generated-read-second-triage-pilot-v0.md)
+adds PR195's deploy-intake generated triage read. It routes the healthcare
+workflow case to source-depth limits, private-context need, high overtrust risk,
+domain review, legal/compliance review, agent inspection only, not-ready-for-
+user-surface, and runtime attachment blocking while still not grading answer
+quality, clearing deployment, marking resolver refs usable, updating sidecars,
+calling models, or authorizing action.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See
