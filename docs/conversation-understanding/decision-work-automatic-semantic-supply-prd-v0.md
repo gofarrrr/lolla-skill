@@ -686,6 +686,32 @@ proceed_to_sidecar_write_dry_run_review
 
 Do not make runtime attachment default-on from this gate.
 
+### PR207 Sidecar Write Dry-Run Review v0
+
+Implemented as
+[Decision Work Sidecar Write Dry-Run Review](decision-work-sidecar-write-dry-run-review-v0.md).
+
+Review the launch-beta and deploy-intake dry-run outputs before any actual
+sidecar-write implementation. The review confirms launch produces
+`dry_run_ready`, deploy-intake preserves `dry_run_packet_with_runtime_block`,
+preview files stay inside explicit safe output directories, and
+`actual_sidecar_write_performed`, `archive_mutated`, `runtime_wiring_changed`,
+and `resolver_refs_approved` remain false.
+
+Selected gate:
+
+```text
+proceed_to_sidecar_write_dry_run_package_gate
+```
+
+Recommended next PR:
+
+```text
+PR208 Sidecar Write Dry-Run Package Gate v0
+```
+
+Do not implement PR208 from this review.
+
 ## Readiness Gates
 
 Automatic semantic supply is not ready for normal use until:

@@ -155,3 +155,12 @@ label, proof claim, advice-correctness claim, or action authorization occurred.
 Do not implement actual sidecar writes, archive mutation, resolver approval,
 runtime wiring, model calls, scoring, proof claims, or action authorization
 from this adapter.
+
+## Implemented Follow-Up
+
+PR207 implements the review gate as
+[Decision Work Sidecar Write Dry-Run Review](decision-work-sidecar-write-dry-run-review-v0.md).
+The review covers launch-beta and deploy-intake dry-run outputs, confirms
+preview files stay temp/output-only, and keeps actual sidecar writes, archive
+mutation, resolver approval, runtime wiring, proof claims, scoring, and action
+authorization closed before any dry-run package gate.

@@ -745,6 +745,14 @@ Follow-up implementation planning:
   archives, approving resolver refs, wiring runtime, scoring, proving, or
   authorizing action.
 
+- [Decision Work Sidecar Write Dry-Run Review](../conversation-understanding/decision-work-sidecar-write-dry-run-review-v0.md)
+
+  PR207's docs/review/tests-only review of launch/deploy dry-run outputs. It
+  confirms preview files stay temp/output-only, deploy preserves runtime
+  blocking, and actual sidecar writes, archive mutation, resolver approval,
+  runtime wiring, quality labels, proof claims, and action authorization remain
+  closed.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

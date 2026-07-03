@@ -1,0 +1,148 @@
+{
+  "schema_version": "lolla.decision_work_sidecar_write_dry_run_review.v0",
+  "review_metadata": {
+    "review_id": "decision_work_sidecar_write_dry_run_review:v0",
+    "created_at": "2026-07-03T00:00:00Z",
+    "reviewed_stage": "PR206 Default-Off Sidecar Write Dry-Run Adapter v0",
+    "mode": "review_docs_tests_temp_dry_runs_only",
+    "checked_in_dry_run_outputs_created": false,
+    "checked_in_preview_files_created": false,
+    "model_calls": 0,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "archive_mutated": false,
+    "runtime_behavior_changed": false,
+    "resolver_refs_approved": false,
+    "actual_sidecar_write_performed": false,
+    "runtime_wiring_changed": false
+  },
+  "reviewed_cases": [
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "source_sidecar_update_packet_status": "ready_for_sidecar_update_packet",
+      "dry_run_status": "dry_run_ready",
+      "preview_files_expected": [
+        "attachment_status.json",
+        "user_receipt.md",
+        "agent_handoff_packet.json",
+        "safe_supply_summary.json",
+        "sidecar_update_packet.json"
+      ],
+      "temp_outputs_only": true,
+      "actual_sidecar_write_performed": false,
+      "archive_mutated": false,
+      "runtime_wiring_changed": false,
+      "resolver_refs_approved": false,
+      "runtime_use_status": "not_enabled",
+      "user_surface_status": "not_established",
+      "launch_preview_coherent": true,
+      "finding": "Launch-beta can produce a coherent dry-run preview, but no sidecar write, archive mutation, resolver approval, runtime wiring, or user-surface readiness is established."
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "source_sidecar_update_packet_status": "packet_with_runtime_block",
+      "dry_run_status": "dry_run_packet_with_runtime_block",
+      "preview_files_expected": [
+        "attachment_status.json",
+        "user_receipt.md",
+        "agent_handoff_packet.json",
+        "safe_supply_summary.json",
+        "sidecar_update_packet.json"
+      ],
+      "temp_outputs_only": true,
+      "actual_sidecar_write_performed": false,
+      "archive_mutated": false,
+      "runtime_wiring_changed": false,
+      "resolver_refs_approved": false,
+      "runtime_use_status": "blocked",
+      "user_surface_status": "blocked",
+      "deploy_runtime_block_preserved": true,
+      "finding": "Deploy-intake can produce a dry-run preview for inspection while preserving domain/compliance routes, user-surface blocking, runtime blocking, and agent-inspection-only status."
+    }
+  ],
+  "dry_run_packet_refs_or_temp_statuses": {
+    "checked_in_dry_run_outputs_created": false,
+    "checked_in_preview_files_created": false,
+    "launch_public_enterprise_beta": {
+      "temp_result_name": "decision_work_sidecar_write_dry_run_launch.json",
+      "temp_preview_dir_name": "decision_work_sidecar_write_preview_launch",
+      "expected_status": "dry_run_ready"
+    },
+    "deploy_assisted_intake_routing": {
+      "temp_result_name": "decision_work_sidecar_write_dry_run_deploy.json",
+      "temp_preview_dir_name": "decision_work_sidecar_write_preview_deploy",
+      "expected_status": "dry_run_packet_with_runtime_block"
+    }
+  },
+  "launch_dry_run_status": "dry_run_ready",
+  "deploy_dry_run_status": "dry_run_packet_with_runtime_block",
+  "actual_write_forbidden_check": {
+    "actual_sidecar_write_performed": false,
+    "can_write_runtime_sidecar": false,
+    "can_write_decision_work_directory": false,
+    "decision_work_directory_written": false,
+    "preview_files_are_not_sidecar_writes": true
+  },
+  "archive_mutation_forbidden_check": {
+    "archive_mutated": false,
+    "can_mutate_archive": false,
+    "archive_sidecar_written": false,
+    "archive_paths_rejected": true
+  },
+  "runtime_wiring_forbidden_check": {
+    "runtime_wiring_changed": false,
+    "can_wire_runtime": false,
+    "runtime_hook_changed": false,
+    "runtime_attachment_default_on": false
+  },
+  "resolver_approval_forbidden_check": {
+    "resolver_refs_approved": false,
+    "resolver_refs_marked_usable": false,
+    "dry_run_can_approve_refs": false
+  },
+  "preview_dir_safety_check": {
+    "preview_dir_must_be_explicit": true,
+    "preview_dir_must_not_target_decision_work": true,
+    "preview_dir_must_not_target_archive": true,
+    "preview_files_stay_inside_preview_dir": true,
+    "checked_in_preview_files_created": false
+  },
+  "deploy_runtime_block_preserved": true,
+  "launch_preview_coherence": true,
+  "privacy_limits_preserved": true,
+  "non_claims_preserved": [
+    "not_product_proof",
+    "not_human_validation",
+    "not_answer_quality_score",
+    "not_advice_correctness_proof",
+    "not_lolla_improvement_proof",
+    "not_resolver_ref_approval",
+    "not_actual_sidecar_write",
+    "not_archive_mutation",
+    "not_runtime_wiring",
+    "not_user_surface_readiness",
+    "not_agent_action_authorization",
+    "not_automatic_action_authorization"
+  ],
+  "sidecar_boundary_risk": "Dry-run previews could be mistaken for actual sidecar availability unless the package gate keeps preview files separate from archive decision_work writes.",
+  "strongest_useful_signal": "Both launch and deploy dry-runs can show proposed sidecar-shaped files under explicit temp/output directories while preserving the no-write and runtime-block boundaries.",
+  "strongest_unresolved_risk": "The dry-run adapter is coherent but not yet packaged; future actual-write work must still prove archive mutation is explicit, default-off, and not resolver approval.",
+  "decision_gate": "proceed_to_sidecar_write_dry_run_package_gate",
+  "recommended_next_pr": "PR208 Sidecar Write Dry-Run Package Gate v0",
+  "non_claims": [
+    "review_does_not_approve_resolver_refs",
+    "review_does_not_mark_resolver_refs_usable",
+    "review_does_not_write_runtime_sidecars",
+    "review_does_not_write_decision_work_directory",
+    "review_does_not_mutate_archives",
+    "review_does_not_wire_runtime",
+    "review_does_not_call_models",
+    "review_is_not_product_proof",
+    "review_is_not_human_validation",
+    "review_does_not_score_answer_quality",
+    "review_does_not_validate_advice_correctness",
+    "review_does_not_prove_lolla_improved_the_decision",
+    "review_does_not_authorize_agent_action",
+    "review_does_not_authorize_automatic_action"
+  ]
+}

@@ -336,6 +336,14 @@ lolla.decision_work_sidecar_write_dry_run.v0, and can write preview files only
 under an explicit safe output directory while still not writing decision_work/,
 mutating archives, approving resolver refs, wiring runtime, proving, scoring,
 or authorizing action.
+
+The Decision Work Sidecar Write Dry-Run Review is
+docs/conversation-understanding/decision-work-sidecar-write-dry-run-review-v0.md.
+It adds PR207's docs/review/tests-only review of launch/deploy dry-run outputs.
+The review confirms preview files stay temp/output-only, deploy preserves
+runtime blocking, and actual sidecar writes, archive mutation, resolver
+approval, runtime wiring, proof claims, scoring, and action authorization
+remain closed before any dry-run package gate.
 ```
 
 ```text
