@@ -768,6 +768,46 @@ sidecars, write `decision_work/`, mutate archives, wire runtime, approve
 resolver refs, make runtime default-on, call models, score answer quality,
 claim proof, or authorize action.
 
+### PR210 Explicit Operator Sidecar Write Adapter v0
+
+Implemented as
+[Decision Work Explicit Operator Sidecar Write Adapter](decision-work-explicit-operator-sidecar-write-adapter-v0.md).
+
+Build the first write adapter, but constrain it to explicit operator
+fixture/output directories only. The adapter consumes a PR202 sidecar update
+packet and a matching PR206 dry-run result, writes sidecar-shaped files only
+under a safe caller-supplied temp/output `decision_work` directory, and emits
+`lolla.decision_work_explicit_operator_sidecar_write_receipt.v0`.
+
+Launch-beta produces:
+
+```text
+write_completed_fixture_only
+```
+
+Deploy-intake produces:
+
+```text
+write_completed_blocked_state_fixture_only
+```
+
+Selected gate:
+
+```text
+proceed_to_explicit_operator_sidecar_write_review
+```
+
+Recommended next PR:
+
+```text
+PR211 Explicit Operator Sidecar Write Review v0
+```
+
+Do not implement PR211 review findings as runtime behavior. PR210 still does
+not write real archives, mutate historical archive folders, wire runtime,
+update the post-archive hook, approve resolver refs, call models, score answer
+quality, claim proof, or authorize action.
+
 ## Readiness Gates
 
 Automatic semantic supply is not ready for normal use until:

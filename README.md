@@ -817,6 +817,14 @@ preconditions, write modes, statuses, allowed files, forbidden content, and
 audit receipt requirements while still not writing sidecars, mutating archives,
 wiring runtime, approving resolver refs, scoring, proving, or authorizing
 action.
+The
+[Decision Work Explicit Operator Sidecar Write Adapter](docs/conversation-understanding/decision-work-explicit-operator-sidecar-write-adapter-v0.md)
+adds PR210's deterministic fixture-only write adapter and CLI. It can write
+sidecar-shaped files from a PR202 packet and matching PR206 dry-run result into
+an explicit safe temp/output `decision_work` directory, emit
+`lolla.decision_work_explicit_operator_sidecar_write_receipt.v0`, and preserve
+that real archives, runtime wiring, resolver approval, quality labels, proof
+claims, and action authorization remain closed.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See

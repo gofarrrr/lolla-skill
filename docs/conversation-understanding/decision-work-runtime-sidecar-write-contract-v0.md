@@ -181,3 +181,15 @@ separate, default-off, fail-closed, and constrained to controlled fixture or
 operator-supplied paths.
 
 Do not implement PR210 from this contract.
+
+## Implemented Follow-Up
+
+PR210 implements the next adapter as
+[Decision Work Explicit Operator Sidecar Write Adapter](decision-work-explicit-operator-sidecar-write-adapter-v0.md).
+
+PR210 is fixture-only. It writes sidecar-shaped files only into explicit safe
+temp/output `decision_work` directories and emits
+`lolla.decision_work_explicit_operator_sidecar_write_receipt.v0`. It still does
+not write real archives, mutate historical archives, wire runtime, update the
+post-archive hook, approve resolver refs, score answer quality, claim proof, or
+authorize action.
