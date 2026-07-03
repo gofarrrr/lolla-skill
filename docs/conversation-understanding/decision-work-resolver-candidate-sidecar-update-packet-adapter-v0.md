@@ -138,3 +138,12 @@ authorization occurred.
 Do not implement actual sidecar writes, archive mutation, resolver approval,
 runtime wiring, model calls, scoring, proof claims, or action authorization
 from this adapter.
+
+## Implemented Follow-Up
+
+PR203 implements the review gate as
+[Decision Work Sidecar Update Packet Review](decision-work-sidecar-update-packet-review-v0.md).
+The review covers launch-beta and deploy-intake proposed packets, confirms the
+adapter preserves the ready/runtime-block split, and keeps resolver approval,
+actual sidecar writes, archive mutation, runtime wiring, proof claims, scoring,
+and action authorization closed before any pre-write package gate.

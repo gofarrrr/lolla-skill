@@ -635,9 +635,42 @@ models, score answer quality, claim proof, or authorize action.
 
 ### PR203 Decision Work Sidecar Update Packet Review v0
 
-If PR202 gates cleanly, review launch/deploy sidecar update packets before any
-actual sidecar write, archive mutation, resolver approval, runtime wiring,
-model calls, scoring, proof claims, or action authorization.
+Implemented as
+[Decision Work Sidecar Update Packet Review](decision-work-sidecar-update-packet-review-v0.md).
+
+Review launch/deploy sidecar update packets before any actual sidecar write,
+archive mutation, resolver approval, runtime wiring, model calls, scoring,
+proof claims, or action authorization. The review confirms proposed packets
+remain offline artifacts and selects a pre-write package gate next.
+
+### PR204 Decision Work Sidecar Update Packet Pre-Write Package Gate v0
+
+Implemented as
+[Decision Work Sidecar Update Packet Pre-Write Package Gate](decision-work-sidecar-update-packet-prewrite-package-gate-v0.md).
+
+Package PR201 through PR203 as a narrow pre-write capability. The package keeps
+sidecar update packets offline, deterministic, inspectable, and separate from
+actual sidecar writes, archive mutation, resolver approval, runtime wiring,
+default-on behavior, proof claims, scoring, and action authorization.
+
+### PR205 Runtime Sidecar Write Plan v0
+
+Implemented as
+[Decision Work Runtime Sidecar Write Plan](decision-work-runtime-sidecar-write-plan-v0.md).
+
+Plan the first actual sidecar-write implementation. This remains
+docs/review/tests only: no sidecar write code, no archive mutation, no runtime
+wiring, no resolver approval, no default-on behavior, no model calls, no
+scoring, no proof claims, and no action authorization. The plan selects a
+future default-off dry-run adapter next.
+
+### PR206 Default-Off Sidecar Write Dry-Run Adapter v0
+
+If PR205 gates cleanly, implement a dry-run adapter that writes no archive
+files and proves exactly what would be written. It must not perform actual
+sidecar writes, mutate archives, wire runtime, approve resolver refs, make
+runtime default-on, call models, score answer quality, claim proof, or
+authorize action.
 
 Do not make runtime attachment default-on from this gate.
 
