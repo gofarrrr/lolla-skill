@@ -132,9 +132,17 @@ After PR182, the recommended next PR is:
 PR183 Three-Case Generated Interpretation Read Intake Review v0
 ```
 
+PR183 is now implemented as:
+
+- [Decision Work Generated Interpretation Read Intake Review](decision-work-generated-interpretation-read-intake-review-v0.md)
+
 Reason:
 
 The queue item, prompt packet, and intake validator are now defined. The next
 safe slice should inspect accepted and rejected intake behavior across the three
 known cases before any regeneration pilot, brief rendering, enrichment, triage,
 resolver approval, or runtime sidecar update.
+
+PR183 selects `proceed_to_operator_codex_generated_read_pilot`, meaning the next
+safe slice is exactly one bounded generated-read pilot that still enters through
+the PR182 validator and still stops before brief rendering or sidecar update.

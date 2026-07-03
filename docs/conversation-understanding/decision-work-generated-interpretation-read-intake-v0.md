@@ -235,3 +235,11 @@ PR182 now validates existing and synthetic candidate reads, but it does not yet
 review the intake behavior across the three cases as a product surface. PR183
 should inspect accepted and rejected intake results before any regeneration
 pilot, queue-to-brief path, or sidecar update path is attempted.
+
+PR183 is now implemented as:
+
+- [Decision Work Generated Interpretation Read Intake Review](decision-work-generated-interpretation-read-intake-review-v0.md)
+
+It confirms the PR182 validator boundary over the three existing reads and
+temporary synthetic rejection cases, then selects one bounded operator/Codex
+generated-read pilot as the next safe slice.

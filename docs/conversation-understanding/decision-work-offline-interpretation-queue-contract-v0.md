@@ -228,6 +228,11 @@ PR182 adds the first generated-read intake validator after this queue contract:
 It validates externally supplied reads before later offline brief, enrichment,
 triage, resolver, or sidecar steps can consume them.
 
+PR183 reviews that validator in
+[Decision Work Generated Interpretation Read Intake Review](decision-work-generated-interpretation-read-intake-review-v0.md).
+The review confirms accepted and rejected intake behavior before any generated
+read pilot or queue-to-brief path.
+
 ## Custody Flags
 
 The contract keeps conservative defaults:

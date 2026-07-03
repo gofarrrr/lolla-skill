@@ -378,6 +378,9 @@ or authorize action.
 Review the generated-read intake path against the three known checked-in reads
 and synthetic rejected reads:
 
+PR183 is implemented as
+[Decision Work Generated Interpretation Read Intake Review](decision-work-generated-interpretation-read-intake-review-v0.md).
+
 - launch-public-enterprise-beta;
 - deploy-assisted-intake-routing;
 - ceo-remove-founding-cofounder.
