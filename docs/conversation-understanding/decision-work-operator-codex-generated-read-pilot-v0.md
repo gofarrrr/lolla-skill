@@ -148,3 +148,12 @@ The pilot read is checked-in-safe and accepted by intake, but the system has not
 yet defined how accepted generated reads become Decision Work Brief supply. The
 next safe slice should plan that transformation before any builder, triage,
 resolver, or runtime sidecar wiring consumes this new read.
+
+PR185 is now implemented as:
+
+- [Decision Work Generated Read To Brief Supply Plan](decision-work-generated-read-to-brief-supply-plan-v0.md)
+
+It defines the field policy for carrying this accepted read toward future
+offline brief supply. It still does not render a brief, enrich a brief,
+generate triage, approve resolver refs, update runtime sidecars, call models,
+score advice, prove product value, or authorize action.

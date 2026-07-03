@@ -123,6 +123,15 @@ planning, and still stops before brief rendering, enrichment, triage, resolver
 approval, runtime sidecar update, model calls, proof claims, scoring, or action
 authorization. The next conservative slice is a generated-read-to-brief supply
 plan, not runtime wiring.
+
+The generated-read-to-brief supply plan is
+docs/conversation-understanding/decision-work-generated-read-to-brief-supply-plan-v0.md.
+It defines which accepted generated-read fields may feed future offline brief
+supply, which fields must remain evidence-only, what source refs, uncertainty,
+privacy limits, and non-claims must travel forward, and what must block. It
+still does not generate a brief, enrich a brief, generate triage, approve
+resolver refs, update sidecars, call models, score advice, claim proof, or
+authorize action. It selects a deterministic brief-supply adapter next.
 ```
 
 ```text

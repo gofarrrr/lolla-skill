@@ -1,0 +1,287 @@
+{
+  "schema_version": "lolla.decision_work_generated_read_to_brief_supply_plan.v0",
+  "review_metadata": {
+    "review_id": "decision_work_generated_read_to_brief_supply_plan:v0",
+    "reviewed_stage": "PR184 Operator/Codex Generated Read Pilot v0",
+    "created_at": "2026-07-03T00:00:00Z",
+    "mode": "docs_review_tests_only"
+  },
+  "custody_flags": {
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "archive_mutated": false,
+    "model_calls": 0,
+    "generated_read_created": false,
+    "brief_generated": false,
+    "enriched_brief_generated": false,
+    "triage_generated": false,
+    "resolver_refs_approved": false,
+    "runtime_sidecar_updated": false,
+    "human_validated": false,
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false
+  },
+  "source_artifacts_reviewed": [
+    {
+      "artifact_ref": "docs/conversation-understanding/decision-work-operator-codex-generated-read-pilot-v0.md",
+      "role": "PR184 pilot gate"
+    },
+    {
+      "artifact_ref": "reviews/codex-assisted/decision-work-operator-codex-generated-read-pilot-v0/read.json",
+      "role": "accepted generated-read candidate"
+    },
+    {
+      "artifact_ref": "reviews/codex-assisted/decision-work-operator-codex-generated-read-pilot-v0/intake.json",
+      "role": "PR182 intake result"
+    },
+    {
+      "artifact_ref": "docs/conversation-understanding/decision-work-generated-interpretation-read-intake-v0.md",
+      "role": "intake validator boundary"
+    },
+    {
+      "artifact_ref": "docs/conversation-understanding/decision-work-brief-enrichment-rules-contract-v0.json",
+      "role": "allowed user-facing field policy"
+    },
+    {
+      "artifact_ref": "docs/conversation-understanding/decision-work-brief-offline-enriched-builder-v0.md",
+      "role": "existing deterministic enrichment builder boundary"
+    }
+  ],
+  "accepted_intake_requirements": {
+    "required_intake_status": "accepted",
+    "accepted_for_downstream_required": true,
+    "can_feed_brief_required": true,
+    "can_update_sidecar_must_be_false": true,
+    "can_authorize_agent_action_must_be_false": true,
+    "can_be_used_as_quality_label_must_be_false": true,
+    "source_read_ref_must_match_read": true,
+    "intake_output_refs_must_not_show_generated_brief_or_sidecar": true
+  },
+  "allowed_brief_feed_fields": [
+    {
+      "field_name": "decision_question",
+      "may_feed_section": "The decision",
+      "feed_policy": "copy_or_normalize_with_visible_source_limits",
+      "required_for_minimal_supply": true,
+      "requires_source_refs": true,
+      "requires_uncertainty": true,
+      "requires_privacy_limit": true,
+      "requires_human_review_flag": true,
+      "must_not_be_quality_label": true,
+      "caveat_policy": "phrase as provisional decision framing, not full conversation truth"
+    },
+    {
+      "field_name": "likely_starting_direction",
+      "may_feed_section": "What the interpretation adds",
+      "feed_policy": "allowed_only_with_high_visibility_caveat",
+      "required_for_minimal_supply": false,
+      "requires_source_refs": true,
+      "requires_uncertainty": true,
+      "requires_privacy_limit": true,
+      "requires_human_review_flag": true,
+      "must_not_be_quality_label": true,
+      "caveat_policy": "must say checked-in-safe context may not prove what was already present"
+    },
+    {
+      "field_name": "revised_direction_or_action_consequence",
+      "may_feed_section": "What the interpretation adds",
+      "feed_policy": "copy_or_normalize_as_action_consequence_signal",
+      "required_for_minimal_supply": true,
+      "requires_source_refs": true,
+      "requires_uncertainty": true,
+      "requires_privacy_limit": true,
+      "requires_human_review_flag": true,
+      "must_not_be_quality_label": true,
+      "caveat_policy": "must not say Lolla caused everything or proved improvement"
+    },
+    {
+      "field_name": "decision_thresholds",
+      "may_feed_section": "What the interpretation adds",
+      "feed_policy": "optional_if_present_and_supported",
+      "required_for_minimal_supply": false,
+      "requires_source_refs": true,
+      "requires_uncertainty": true,
+      "requires_privacy_limit": true,
+      "requires_human_review_flag": true,
+      "must_not_be_quality_label": true,
+      "caveat_policy": "render as visible thresholds, not complete operating criteria"
+    },
+    {
+      "field_name": "evidence_gates",
+      "may_feed_section": "What the interpretation adds",
+      "feed_policy": "copy_or_normalize_as_evidence_gate_signal",
+      "required_for_minimal_supply": false,
+      "requires_source_refs": true,
+      "requires_uncertainty": true,
+      "requires_privacy_limit": true,
+      "requires_human_review_flag": true,
+      "must_not_be_quality_label": true,
+      "caveat_policy": "render as visible proof points, not validated evidence sufficiency"
+    },
+    {
+      "field_name": "useful_friction",
+      "may_feed_section": "What the interpretation adds",
+      "feed_policy": "optional_descriptive_only",
+      "required_for_minimal_supply": false,
+      "requires_source_refs": true,
+      "requires_uncertainty": true,
+      "requires_privacy_limit": true,
+      "requires_human_review_flag": true,
+      "must_not_be_quality_label": true,
+      "caveat_policy": "may describe apparent sharpening, never score answer quality"
+    },
+    {
+      "field_name": "what_the_final_answer_does_not_prove",
+      "may_feed_section": "What this does not prove",
+      "feed_policy": "copy_or_normalize_as_non_claim_boundary",
+      "required_for_minimal_supply": true,
+      "requires_source_refs": true,
+      "requires_uncertainty": true,
+      "requires_privacy_limit": true,
+      "requires_human_review_flag": true,
+      "must_not_be_quality_label": true,
+      "caveat_policy": "must remain a non-claim and overclaim boundary"
+    }
+  ],
+  "evidence_only_fields": [
+    {
+      "field_name": "live_options",
+      "reason": "checked-in-safe reads cannot prove the complete live option set"
+    },
+    {
+      "field_name": "abandoned_or_rejected_options",
+      "reason": "too easy to convert gated, narrowed, or deferred options into rejected options"
+    },
+    {
+      "field_name": "noisy_friction",
+      "reason": "too likely to read as unsupported criticism in user-facing text"
+    },
+    {
+      "field_name": "lost_value",
+      "reason": "requires richer source depth or human review"
+    },
+    {
+      "field_name": "assistant_influence_on_user_framing",
+      "reason": "requires raw conversation interpretation and must not be inferred deterministically"
+    },
+    {
+      "field_name": "safe_for_agent_inspection_only",
+      "reason": "agent-inspection routing is not user-facing enrichment and must not authorize action"
+    }
+  ],
+  "blocked_fields": [
+    "answer_quality_score",
+    "improvement_score",
+    "approval",
+    "certification",
+    "product_proof",
+    "human_validation",
+    "advice_correctness",
+    "lolla_improved_decision_proof",
+    "agent_action_authorization",
+    "automatic_action_authorization",
+    "runtime_sidecar_update_authorization",
+    "raw_conversation_text",
+    "raw_revised_answer_text",
+    "raw_memo_text",
+    "provider_text",
+    "private_ledgers",
+    "local_absolute_paths",
+    "secrets",
+    "hidden_chain_of_thought_style_material"
+  ],
+  "required_source_refs": {
+    "source_refs_required_for_every_allowed_field": true,
+    "source_ref_artifacts_must_be_relative_repo_refs": true,
+    "source_status_required": true,
+    "locator_required": true,
+    "missing_source_refs_status": "blocked_missing_source_refs"
+  },
+  "required_uncertainty": {
+    "uncertainty_required_for_every_allowed_field": true,
+    "allowed_values": [
+      "low",
+      "medium",
+      "high",
+      "insufficient_context"
+    ],
+    "missing_uncertainty_status": "blocked_missing_uncertainty"
+  },
+  "privacy_requirements": {
+    "raw_conversation_text_allowed": false,
+    "raw_revised_answer_text_allowed": false,
+    "raw_memo_text_allowed": false,
+    "provider_text_allowed": false,
+    "private_ledgers_allowed": false,
+    "local_absolute_paths_allowed": false,
+    "secrets_allowed": false,
+    "hidden_reasoning_allowed": false,
+    "privacy_limit_required_for_every_allowed_field": true,
+    "privacy_block_status": "blocked_privacy_risk"
+  },
+  "non_claim_requirements": [
+    "not_human_validated",
+    "not_product_proof",
+    "not_answer_quality_score",
+    "not_agent_action_authorization",
+    "not_correctness_proof",
+    "must_not_be_used_as_quality_label",
+    "checked_in_safe_context_is_not_full_conversation_context",
+    "future_human_review_required"
+  ],
+  "deterministic_allowances": [
+    "verify intake_status_is_accepted",
+    "verify_source_read_ref_matches_read",
+    "copy_allowed_field_values_without_expanding_meaning",
+    "copy_source_refs_source_status_uncertainty_and_privacy_limits",
+    "normalize_field_order_and_status_names",
+    "emit_missing_required_field_names",
+    "emit_evidence_only_field_names",
+    "emit_blocker_reasons",
+    "emit_non_claims_and_custody_flags"
+  ],
+  "semantic_interpretation_not_allowed": [
+    "fill_missing_fields",
+    "infer_likely_starting_direction_when_unresolved",
+    "judge_whether_advice_was_good",
+    "judge_whether_lolla_improved_the_decision",
+    "judge_whether_friction_was_useful_or_noisy_without_a_supplied_field",
+    "convert_evidence_gates_into_validated_evidence_sufficiency",
+    "convert_action_consequence_into_action_authorization",
+    "write_new_user_facing_brief_prose"
+  ],
+  "downstream_risks": [
+    {
+      "risk": "A ready supply packet could be mistaken for proof that the generated read is semantically true.",
+      "mitigation": "Keep supply status separate from correctness and preserve intake non-claims."
+    },
+    {
+      "risk": "A later adapter could copy evidence-only fields into user-facing sections.",
+      "mitigation": "Require explicit allowed/evidence-only split and block unknown fields by default."
+    },
+    {
+      "risk": "Runtime sidecar update could be implied by offline readiness.",
+      "mitigation": "Keep can_update_sidecar false in PR185 and PR186 supply output."
+    }
+  ],
+  "decision_gate": "proceed_to_generated_read_brief_supply_adapter",
+  "recommended_next_pr": "PR186 Decision Work Generated Read Brief Supply Adapter v0",
+  "non_claims": [
+    "plan_does_not_generate_reads",
+    "plan_does_not_generate_briefs",
+    "plan_does_not_enrich_briefs",
+    "plan_does_not_generate_triage",
+    "plan_does_not_approve_resolver_refs",
+    "plan_does_not_update_sidecars",
+    "plan_does_not_change_runtime_behavior",
+    "plan_does_not_call_models",
+    "plan_is_not_product_proof",
+    "plan_is_not_human_validation",
+    "plan_does_not_score_answer_quality",
+    "plan_does_not_validate_advice_correctness",
+    "plan_does_not_authorize_agent_action",
+    "plan_does_not_authorize_automatic_action"
+  ]
+}

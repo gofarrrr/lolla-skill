@@ -634,6 +634,14 @@ result. The intake is accepted for later offline planning only; it does not
 render a brief, enrich a brief, generate triage, update resolver refs, update
 runtime sidecars, judge semantic truth, score answer quality, or authorize
 action. PR184 selects a generated-read-to-brief supply plan next.
+The
+[generated read to brief supply plan](docs/conversation-understanding/decision-work-generated-read-to-brief-supply-plan-v0.md)
+adds PR185's field policy for the next deterministic adapter. It defines which
+accepted generated-read fields may feed future offline brief supply, which stay
+evidence-only, what source/uncertainty/privacy/non-claim data must travel
+forward, and what must block, while still generating no brief, enrichment,
+triage, resolver approval, sidecar update, proof claim, score, or action
+authorization.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See
