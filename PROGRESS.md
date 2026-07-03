@@ -179,6 +179,16 @@ preserves action consequence, source refs, uncertainty, privacy limits,
 evidence-only exclusions, and non-claims across two decision families, while
 remaining too thin for triage generation or runtime sidecar use. It selects a
 generated-read triage supply plan next.
+
+The Decision Work Generated Read Triage Supply Plan is
+docs/conversation-understanding/decision-work-generated-read-triage-supply-plan-v0.md.
+It adds PR191's docs/review/tests-only plan for turning generated-read artifacts
+into future triage supply. The plan defines allowed inputs, routing fields,
+evidence-only fields, blocked fields, statuses, route categories, custody
+requirements, and forbidden quality/authority route concepts while still
+stopping before triage generation, resolver ref use, runtime sidecar update,
+model calls, proof claims, scoring, or action authorization. It selects a
+deterministic generated-read triage supply adapter next.
 ```
 
 ```text

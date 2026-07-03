@@ -499,11 +499,22 @@ stop for source-depth or product-surface review.
 
 ### PR191 Decision Work Generated Read Triage Supply Plan v0
 
-If PR190 gates cleanly, define the safe plan for turning generated-read brief
-supply and rendered brief findings into future triage supply. This should still
-be a plan before implementation, and should not generate automatic triage,
-approve resolver refs, update runtime sidecars, call models, claim proof, score
-quality, or authorize action.
+PR191 is implemented as
+[Decision Work Generated Read Triage Supply Plan](decision-work-generated-read-triage-supply-plan-v0.md).
+
+Define the safe plan for turning generated-read brief supply and rendered brief
+findings into future triage supply. This is a plan before implementation, and
+does not generate automatic triage, mark resolver refs usable, update runtime
+sidecars, call models, claim proof, score quality, or authorize action.
+
+### PR192 Decision Work Generated Read Triage Supply Adapter v0
+
+If PR191 gates cleanly, build the deterministic adapter that prepares a
+triage-supply packet from generated-read artifacts. The adapter may validate,
+normalize, copy allowed routing inputs, preserve evidence-only fields, and
+record blockers. It still must not generate triage, create a triage read, mark
+resolver refs usable, update runtime sidecars, change runtime behavior, call
+models, claim proof, score quality, or authorize action.
 - stop and keep the feature internal.
 
 Do not make runtime attachment default-on from this gate.

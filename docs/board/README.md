@@ -622,6 +622,15 @@ Follow-up implementation planning:
   use, runtime sidecar update, model calls, proof claims, scoring, and action
   authorization out of scope.
 
+- [Decision Work Generated Read Triage Supply Plan](../conversation-understanding/decision-work-generated-read-triage-supply-plan-v0.md)
+
+  PR191's docs/review/tests-only plan for future generated-read triage supply.
+  It defines allowed inputs, routing fields, evidence-only fields, blocked
+  fields, statuses, route categories, custody requirements, and forbidden
+  quality/authority route concepts while still stopping before triage
+  generation, resolver ref use, runtime sidecar update, model calls, scoring,
+  proof claims, or action authorization.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,
