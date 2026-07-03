@@ -106,24 +106,35 @@ semantic supply, a later intake validator must confirm:
 - action authorization is absent;
 - product-proof and human-validation claims are absent.
 
+## PR182 Follow-Up
+
+PR182 is now implemented as:
+
+- [Decision Work Generated Interpretation Read Intake](decision-work-generated-interpretation-read-intake-v0.md)
+
+It validates externally supplied interpretation reads for schema compatibility,
+source refs, uncertainty, privacy limits, custody flags, and non-claims. It does
+not generate reads, modify reads, render briefs, enrich briefs, create triage,
+update resolver refs, update runtime sidecars, call providers, score advice,
+claim correctness, or authorize action.
+
 ## Decision Gate
 
-Selected next step:
+PR181 selected:
 
 ```text
 proceed_to_generated_read_intake_validator
 ```
 
-Recommended next PR:
+After PR182, the recommended next PR is:
 
 ```text
-PR182 Generated Interpretation Read Intake And Validator v0
+PR183 Three-Case Generated Interpretation Read Intake Review v0
 ```
 
 Reason:
 
-The queue item and prompt packet are now defined. The next safe slice is an
-intake/validator for a separately produced candidate interpretation read. That
-future PR should validate schema, source refs, uncertainty, privacy, and
-non-claims before any brief rendering, enrichment, triage, resolver approval, or
-runtime sidecar update.
+The queue item, prompt packet, and intake validator are now defined. The next
+safe slice should inspect accepted and rejected intake behavior across the three
+known cases before any regeneration pilot, brief rendering, enrichment, triage,
+resolver approval, or runtime sidecar update.

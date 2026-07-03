@@ -115,8 +115,8 @@ Required fields:
 - `non_claims`.
 
 The result may point to produced refs only after a later PR validates an
-externally supplied or bounded generated interpretation read. PR179 produces no
-such read.
+externally supplied or bounded generated interpretation read. PR182 now adds
+that strict intake/validation gate, but PR179 itself produces no such read.
 
 ## Queue Modes
 
@@ -222,6 +222,11 @@ resolver-approved sidecar update, validation must confirm:
 - no action authorization;
 - no answer-quality scoring;
 - no product-proof or human-validation claim.
+
+PR182 adds the first generated-read intake validator after this queue contract:
+[Decision Work Generated Interpretation Read Intake](decision-work-generated-interpretation-read-intake-v0.md).
+It validates externally supplied reads before later offline brief, enrichment,
+triage, resolver, or sidecar steps can consume them.
 
 ## Custody Flags
 

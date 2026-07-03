@@ -354,6 +354,9 @@ The packet should include:
 Accept an externally supplied interpretation read JSON and validate it before
 it can feed the brief.
 
+PR182 is implemented as
+[Decision Work Generated Interpretation Read Intake](decision-work-generated-interpretation-read-intake-v0.md).
+
 It should reject:
 
 - missing source refs;
@@ -366,16 +369,24 @@ It should reject:
 - local absolute paths;
 - unsupported schema versions.
 
-### PR183 Three-Case Regeneration Review v0
+PR182 does not generate reads, modify reads, render briefs, enrich briefs,
+create triage, update resolver refs, update runtime sidecars, call providers,
+or authorize action.
 
-Use the queue/prompt/intake path against the three known cases:
+### PR183 Three-Case Generated Interpretation Read Intake Review v0
+
+Review the generated-read intake path against the three known checked-in reads
+and synthetic rejected reads:
 
 - launch-public-enterprise-beta;
 - deploy-assisted-intake-routing;
 - ceo-remove-founding-cofounder.
 
-Compare regenerated reads against the existing curated reads. Do not require
-identical wording. Require:
+Do not require regeneration in this slice. PR182 validates generated reads but
+does not generate them, so the immediate review should inspect accepted and
+rejected intake behavior before a true regeneration/operator-read pilot.
+
+Require:
 
 - same decision frame or a documented uncertainty;
 - same broad action-consequence direction or a documented disagreement;
