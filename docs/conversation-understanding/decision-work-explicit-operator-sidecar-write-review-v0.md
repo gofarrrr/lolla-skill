@@ -112,3 +112,13 @@ runtime/user-surface blocking where needed, custody flags, and non-claims.
 Do not implement real archive writes, runtime hook integration, resolver
 approval, default-on behavior, model calls, scoring, proof claims, or action
 authorization from this review.
+
+## Implemented Follow-Up
+
+PR212 implements the package gate as
+[Decision Work Explicit Operator Sidecar Write Package Gate](decision-work-explicit-operator-sidecar-write-package-gate-v0.md).
+The package manifest covers PR210 through PR211 as a controlled explicit
+operator sidecar write layer for safe fixture/operator target directories,
+while still excluding real historical archive mutation, runtime wiring,
+resolver approval, default-on behavior, proof claims, scoring, and action
+authorization.

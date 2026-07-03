@@ -783,6 +783,14 @@ Follow-up implementation planning:
   real archive mutation, runtime wiring, resolver approval, scoring, proof
   claims, or action authorization before a package gate.
 
+- [Decision Work Explicit Operator Sidecar Write Package Gate](../conversation-understanding/decision-work-explicit-operator-sidecar-write-package-gate-v0.md)
+
+  PR212's package gate and manifest for PR210-PR211. It packages controlled
+  explicit operator sidecar write v1 for safe fixture/operator target dirs
+  while still excluding real archive mutation as normal behavior, runtime
+  wiring, resolver approval, proof, scoring, certification, and action
+  authorization.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

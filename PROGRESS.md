@@ -380,6 +380,17 @@ runtime/user-surface state, path safety blocks repo/archive/runtime targets, and
 real archive mutation, historical archive mutation, runtime wiring, resolver
 approval, proof, scoring, and action authorization remain closed before the
 explicit operator sidecar write package gate.
+
+The Decision Work Explicit Operator Sidecar Write Package Gate is
+docs/conversation-understanding/decision-work-explicit-operator-sidecar-write-package-gate-v0.md
+with manifest
+docs/conversation-understanding/decision-work-explicit-operator-sidecar-write-package-manifest-v0.json.
+It packages PR210-PR211 as controlled explicit operator sidecar write v1: safe
+fixture/operator target writes from validated sidecar update packets and
+matching dry-run results. It still excludes runtime integration, default-on
+behavior, real historical archive mutation as normal behavior, resolver
+approval, user/customer readiness, proof, scoring, advice correctness,
+certification, and action authorization.
 ```
 
 ```text
