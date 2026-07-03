@@ -344,6 +344,14 @@ The review confirms preview files stay temp/output-only, deploy preserves
 runtime blocking, and actual sidecar writes, archive mutation, resolver
 approval, runtime wiring, proof claims, scoring, and action authorization
 remain closed before any dry-run package gate.
+
+The Decision Work Sidecar Write Dry-Run Package Gate is
+docs/conversation-understanding/decision-work-sidecar-write-dry-run-package-gate-v0.md.
+It adds PR208's package gate and manifest for PR206-PR207. The package claim
+is narrow: an offline, deterministic preview layer that can show what would be
+written from sidecar update packets while preserving actual-write,
+archive-mutation, resolver-approval, runtime-wiring, proof, scoring, and
+action-authorization prohibitions.
 ```
 
 ```text

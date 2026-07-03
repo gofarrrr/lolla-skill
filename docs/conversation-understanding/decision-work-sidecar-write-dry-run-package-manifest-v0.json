@@ -1,0 +1,259 @@
+{
+  "schema_version": "lolla.decision_work_sidecar_write_dry_run_package_manifest.v0",
+  "package_metadata": {
+    "status": "PR208 sidecar write dry-run package manifest",
+    "date": "2026-07-03",
+    "package_scope": "Decision Work sidecar write dry-run sequence PR206-PR207 plus PR208 package gate",
+    "included_pr_range": "PR206-PR208",
+    "dependency_pr_range_by_reference": "PR178-PR205",
+    "dry_run_v1_functional": true,
+    "offline_only": true,
+    "deterministic_only": true,
+    "checked_in_safe_scope": true,
+    "actual_sidecar_writes": false,
+    "archive_mutation": false,
+    "runtime_wiring": false,
+    "resolver_refs_approved": false,
+    "resolver_refs_marked_usable": false,
+    "default_on_runtime_behavior": false,
+    "direct_runtime_interpretation": false,
+    "queue_workers_or_daemons": false,
+    "provider_model_calls": 0,
+    "human_validated": false,
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "advice_correctness_claimed": false,
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false
+  },
+  "package_claim": {
+    "claim": "Decision Work Sidecar Write Dry-Run v1 is functional as an offline, deterministic preview layer that can show what would be written from a sidecar update packet while preserving actual-write, archive-mutation, resolver-approval, runtime-wiring, proof, scoring, and action-authorization prohibitions.",
+    "allowed_claims": [
+      "offline_dry_run_v1_package_coherence",
+      "deterministic_sidecar_write_dry_run_adapter",
+      "launch_dry_run_ready",
+      "deploy_dry_run_packet_with_runtime_block",
+      "explicit_preview_dir_only",
+      "archive_and_decision_work_path_refusal",
+      "source_ref_uncertainty_privacy_custody_and_non_claim_preservation"
+    ],
+    "claim_limits": [
+      "not_actual_sidecar_write",
+      "not_archive_mutation",
+      "not_runtime_wiring",
+      "not_resolver_approval",
+      "not_default_on_behavior",
+      "not_model_calls",
+      "not_product_proof",
+      "not_human_validation",
+      "not_answer_quality_scoring",
+      "not_advice_correctness",
+      "not_lolla_improvement_proof",
+      "not_agent_action_authorization",
+      "not_automatic_action_authorization"
+    ]
+  },
+  "functional_chain": [
+    "generated_read_intake",
+    "brief_supply",
+    "rendered_brief",
+    "triage_supply",
+    "generated_triage_read",
+    "resolver_supply_candidate_packet",
+    "resolver_candidate_sidecar_update_packet_adapter",
+    "sidecar_write_dry_run_adapter",
+    "sidecar_write_dry_run_review"
+  ],
+  "case_coverage": {
+    "sidecar_write_dry_run_cases": [
+      {
+        "case_id": "launch-public-enterprise-beta",
+        "source_sidecar_update_packet_status": "ready_for_sidecar_update_packet",
+        "dry_run_status": "dry_run_ready",
+        "preview_files_expected": 5,
+        "resolver_refs_approved": false,
+        "actual_sidecar_write_performed": false,
+        "archive_mutated": false,
+        "runtime_wiring_changed": false
+      },
+      {
+        "case_id": "deploy-assisted-intake-routing",
+        "source_sidecar_update_packet_status": "packet_with_runtime_block",
+        "dry_run_status": "dry_run_packet_with_runtime_block",
+        "preview_files_expected": 5,
+        "resolver_refs_approved": false,
+        "actual_sidecar_write_performed": false,
+        "archive_mutated": false,
+        "runtime_wiring_changed": false
+      }
+    ]
+  },
+  "dry_run_statuses": [
+    "dry_run_ready",
+    "dry_run_packet_with_runtime_block",
+    "blocked_not_sidecar_update_packet",
+    "blocked_privacy_risk",
+    "blocked_authority_claim",
+    "blocked_actual_write_attempt",
+    "blocked_archive_path",
+    "blocked_missing_required_fields",
+    "requires_operator_repair"
+  ],
+  "preview_files": [
+    "attachment_status.json",
+    "user_receipt.md",
+    "agent_handoff_packet.json",
+    "safe_supply_summary.json",
+    "sidecar_update_packet.json"
+  ],
+  "preview_dir_safety": {
+    "preview_dir_must_be_explicit": true,
+    "preview_dir_must_not_target_decision_work": true,
+    "preview_dir_must_not_target_archive": true,
+    "preview_files_stay_inside_preview_dir": true,
+    "checked_in_preview_files_created": false
+  },
+  "included_files": {
+    "dry_run_adapter": [
+      "docs/conversation-understanding/decision-work-sidecar-write-dry-run-adapter-v0.md",
+      "engine/system_b/decision_work_sidecar_write_dry_run.py",
+      "scripts/evals/dry_run_decision_work_sidecar_write.py",
+      "tests/test_decision_work_sidecar_write_dry_run.py"
+    ],
+    "dry_run_review": [
+      "docs/conversation-understanding/decision-work-sidecar-write-dry-run-review-v0.md",
+      "reviews/codex-assisted/decision-work-sidecar-write-dry-run-review-v0/review.json",
+      "tests/test_decision_work_sidecar_write_dry_run_review.py"
+    ],
+    "prewrite_dependencies_by_reference": [
+      "docs/conversation-understanding/decision-work-resolver-candidate-sidecar-update-packet-adapter-v0.md",
+      "engine/system_b/decision_work_resolver_candidate_sidecar_update_packet.py",
+      "scripts/evals/build_decision_work_resolver_candidate_sidecar_update_packet.py",
+      "tests/test_decision_work_resolver_candidate_sidecar_update_packet.py",
+      "docs/conversation-understanding/decision-work-sidecar-update-packet-prewrite-package-gate-v0.md",
+      "docs/conversation-understanding/decision-work-runtime-sidecar-write-plan-v0.md"
+    ],
+    "pre_runtime_dependencies_by_reference": [
+      "docs/conversation-understanding/decision-work-automatic-semantic-supply-pre-runtime-v1-package-gate-v0.md",
+      "engine/system_b/decision_work_generated_read_brief_supply.py",
+      "scripts/evals/build_decision_work_generated_read_brief_supply.py",
+      "engine/system_b/decision_work_generated_read_triage_supply.py",
+      "scripts/evals/build_decision_work_generated_read_triage_supply.py",
+      "engine/system_b/decision_work_generated_read_resolver_supply.py",
+      "scripts/evals/build_decision_work_generated_read_resolver_supply.py",
+      "reviews/codex-assisted/decision-work-operator-codex-generated-read-pilot-v0/read.json",
+      "reviews/codex-assisted/decision-work-operator-codex-generated-read-pilot-v0/intake.json",
+      "reviews/codex-assisted/decision-work-generated-read-second-brief-rendering-pilot-v0/read.json",
+      "reviews/codex-assisted/decision-work-generated-read-second-brief-rendering-pilot-v0/intake.json",
+      "reviews/codex-assisted/decision-work-generated-read-triage-generation-pilot-v0/triage.json",
+      "reviews/codex-assisted/decision-work-generated-read-second-triage-pilot-v0/triage.json",
+      "docs/conversation-understanding/decision-work-generated-read-rendered-launch-public-enterprise-beta-v0.md",
+      "docs/conversation-understanding/decision-work-generated-read-rendered-deploy-assisted-intake-routing-v0.md"
+    ],
+    "docs": [
+      "docs/conversation-understanding/decision-work-automatic-semantic-supply-prd-v0.md",
+      "docs/conversation-understanding/decision-work-runtime-sidecar-write-plan-v0.md",
+      "docs/conversation-understanding/decision-work-sidecar-write-dry-run-adapter-v0.md",
+      "docs/conversation-understanding/decision-work-sidecar-write-dry-run-review-v0.md"
+    ],
+    "review_artifacts": [
+      "reviews/codex-assisted/decision-work-sidecar-write-dry-run-review-v0/review.json"
+    ],
+    "code_modules": [
+      "engine/system_b/decision_work_sidecar_write_dry_run.py",
+      "engine/system_b/decision_work_resolver_candidate_sidecar_update_packet.py",
+      "engine/system_b/decision_work_generated_read_brief_supply.py",
+      "engine/system_b/decision_work_generated_read_triage_supply.py",
+      "engine/system_b/decision_work_generated_read_resolver_supply.py"
+    ],
+    "cli_scripts": [
+      "scripts/evals/dry_run_decision_work_sidecar_write.py",
+      "scripts/evals/build_decision_work_resolver_candidate_sidecar_update_packet.py",
+      "scripts/evals/build_decision_work_generated_read_brief_supply.py",
+      "scripts/evals/build_decision_work_generated_read_triage_supply.py",
+      "scripts/evals/build_decision_work_generated_read_resolver_supply.py"
+    ],
+    "tests": [
+      "tests/test_decision_work_sidecar_write_dry_run.py",
+      "tests/test_decision_work_sidecar_write_dry_run_review.py",
+      "tests/test_decision_work_sidecar_write_dry_run_package_gate.py",
+      "tests/test_product_delta_boundary_lint.py"
+    ],
+    "package_gate_files": [
+      "docs/conversation-understanding/decision-work-sidecar-write-dry-run-package-gate-v0.md",
+      "docs/conversation-understanding/decision-work-sidecar-write-dry-run-package-manifest-v0.json",
+      "tests/test_decision_work_sidecar_write_dry_run_package_gate.py"
+    ],
+    "discoverability_updates": [
+      "README.md",
+      "HOW_IT_WORKS.md",
+      "PROGRESS.md",
+      "docs/board/README.md",
+      "docs/conversation-understanding/decision-work-automatic-semantic-supply-prd-v0.md",
+      "docs/conversation-understanding/decision-work-sidecar-write-dry-run-review-v0.md"
+    ]
+  },
+  "excluded_paths": [
+    "SKILL.md",
+    "scripts/skill/*",
+    "plans/*",
+    "reviews/synthetic/*",
+    "docs/lolla-*",
+    "docs/semantica-*",
+    "docs/thoughtbox-*",
+    "archive directories",
+    "local run directories",
+    "tmp preview outputs",
+    "tmp state",
+    "raw/private transcripts",
+    "raw memos",
+    "raw revised answers",
+    "provider text",
+    "private ledgers",
+    "local absolute paths",
+    "secrets",
+    "credential material"
+  ],
+  "validation_strategy": [
+    "manifest_schema_check",
+    "manifest_path_existence_check",
+    "manifest_forbidden_path_check",
+    "focused_pytest_pr178_through_pr208",
+    "generated_temp_brief_supply_launch_and_deploy",
+    "generated_temp_triage_supply_launch_and_deploy",
+    "generated_temp_resolver_supply_launch_and_deploy",
+    "generated_temp_sidecar_update_packets_launch_and_deploy",
+    "generated_temp_sidecar_write_dry_runs_launch_and_deploy",
+    "preview_dir_safety_check",
+    "jq_checked_in_json_and_temp_json",
+    "product_delta_boundary_lint",
+    "git_diff_check",
+    "markdown_local_link_check",
+    "trailing_whitespace_scan",
+    "privacy_content_marker_scan",
+    "skill_paths_unchanged_check"
+  ],
+  "strongest_useful_signal": "The dry-run layer can produce launch and deploy sidecar-shaped previews under explicit safe output directories while preserving no-write, no-archive-mutation, no-resolver-approval, and runtime-block boundaries.",
+  "strongest_unresolved_risk": "The next boundary is an actual sidecar-write contract; preview files can be overtrusted if future code treats them as archive mutation permission or resolver approval.",
+  "decision_gate": "sidecar_write_dry_run_v1_packaged",
+  "recommended_next_pr": "PR209 Runtime Sidecar Write Contract v0",
+  "non_claims": [
+    "not_actual_sidecar_write",
+    "not_archive_mutation",
+    "not_runtime_wiring",
+    "not_resolver_approval",
+    "not_approved_resolver_refs",
+    "not_resolver_refs_marked_usable",
+    "not_default_on_behavior",
+    "not_production_sidecar_update_automation",
+    "not_model_calls",
+    "not_queue_worker",
+    "not_product_proof",
+    "not_human_validation",
+    "not_answer_quality_scoring",
+    "not_advice_correctness",
+    "not_lolla_improvement_proof",
+    "not_agent_action_authorization",
+    "not_automatic_action_authorization"
+  ]
+}

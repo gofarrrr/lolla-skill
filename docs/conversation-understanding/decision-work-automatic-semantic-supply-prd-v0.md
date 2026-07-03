@@ -712,6 +712,32 @@ PR208 Sidecar Write Dry-Run Package Gate v0
 
 Do not implement PR208 from this review.
 
+### PR208 Sidecar Write Dry-Run Package Gate v0
+
+Implemented as
+[Decision Work Sidecar Write Dry-Run Package Gate](decision-work-sidecar-write-dry-run-package-gate-v0.md).
+
+Package PR206 through PR207 as a narrow dry-run capability. The package claim
+is that Decision Work Sidecar Write Dry-Run v1 is functional as an offline,
+deterministic preview layer that can show what would be written from a sidecar
+update packet while preserving actual-write, archive-mutation,
+resolver-approval, runtime-wiring, proof, scoring, and action-authorization
+prohibitions.
+
+Selected gate:
+
+```text
+sidecar_write_dry_run_v1_packaged
+```
+
+Recommended next PR:
+
+```text
+PR209 Runtime Sidecar Write Contract v0
+```
+
+Do not implement sidecar writes from this package gate.
+
 ## Readiness Gates
 
 Automatic semantic supply is not ready for normal use until:

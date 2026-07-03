@@ -803,6 +803,12 @@ It confirms preview files remain temp/output-only, deploy preserves runtime
 blocking, and actual sidecar writes, archive mutation, resolver approval,
 runtime wiring, quality labels, proof claims, and action authorization remain
 closed.
+The
+[Decision Work Sidecar Write Dry-Run Package Gate](docs/conversation-understanding/decision-work-sidecar-write-dry-run-package-gate-v0.md)
+adds PR208's package gate and manifest for PR206-PR207. It packages the
+offline dry-run preview layer while still excluding actual sidecar writes,
+archive mutation, runtime wiring, resolver approval, default-on behavior,
+proof claims, scoring, and action authorization.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See
