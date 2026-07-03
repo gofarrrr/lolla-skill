@@ -576,12 +576,21 @@ correctness claims, or action authorization.
 
 ### PR198 Decision Work Generated Read Resolver Supply Adapter v0
 
-If PR197 gates cleanly, implement the deterministic adapter that prepares
-resolver-candidate packets from generated-read artifacts and generated triage
-reads. The adapter must preserve refs, route summaries, runtime/user-surface
-blocking, source status, uncertainty, privacy limits, custody flags, and
-non-claims without approving resolver refs, updating sidecars, wiring runtime,
-calling models, scoring, proving value, or authorizing action.
+Implemented as
+[Decision Work Generated Read Resolver Supply Adapter](decision-work-generated-read-resolver-supply-adapter-v0.md).
+
+Implement the deterministic adapter that prepares resolver-candidate packets
+from generated-read artifacts and generated triage reads. The adapter preserves
+refs, route summaries, runtime/user-surface blocking, source status,
+uncertainty, privacy limits, custody flags, and non-claims without approving
+resolver refs, updating sidecars, wiring runtime, calling models, scoring,
+proving value, validating advice correctness, or authorizing action.
+
+### PR199 Decision Work Generated Read Resolver Supply Review v0
+
+If PR198 gates cleanly, review the launch-beta and deploy-intake resolver-
+supply candidate packets before any resolver approval, runtime sidecar update,
+runtime wiring, model calls, scoring, proof claims, or action authorization.
 
 Do not make runtime attachment default-on from this gate.
 

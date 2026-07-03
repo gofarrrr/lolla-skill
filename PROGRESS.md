@@ -251,6 +251,18 @@ custody requirements, non-claims, and the hard boundary between resolver
 supply and resolver approval. It selects a deterministic resolver-supply
 adapter next while still stopping before resolver approval, sidecar update,
 runtime wiring, model calls, scoring, proof claims, or action authorization.
+
+The Decision Work Generated Read Resolver Supply Adapter is
+docs/conversation-understanding/decision-work-generated-read-resolver-supply-adapter-v0.md.
+It adds PR198's deterministic adapter and CLI for preparing
+`lolla.decision_work_generated_read_resolver_supply.v0` candidate packets from
+generated-read, intake, brief-supply, rendered-brief, triage-supply, and
+generated-triage refs. Launch-beta can produce a resolver-candidate packet;
+deploy-intake produces a candidate packet that preserves runtime/user-surface
+blocking because of domain/compliance and agent-inspection routes. The adapter
+still does not approve refs, mark refs usable, update sidecars, wire runtime,
+call models, score answer quality, prove value, validate advice correctness,
+or authorize action. It selects a generated-read resolver-supply review next.
 ```
 
 ```text

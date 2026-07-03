@@ -733,6 +733,15 @@ resolver supply from resolver approval, allows candidate packets to preserve
 runtime/user-surface blocking, and gates to a deterministic adapter without
 approving refs, updating sidecars, wiring runtime, scoring, proving, or
 authorizing action.
+The
+[Decision Work Generated Read Resolver Supply Adapter](docs/conversation-understanding/decision-work-generated-read-resolver-supply-adapter-v0.md)
+adds PR198's deterministic adapter and CLI. It emits
+`lolla.decision_work_generated_read_resolver_supply.v0` candidate packets from
+generated-read, intake, brief-supply, rendered-brief, triage-supply, and
+generated-triage refs. Launch-beta can produce a candidate packet; deploy-
+intake preserves runtime/user-surface blocking. Neither status approves refs,
+updates sidecars, wires runtime, scores advice, proves value, or authorizes
+action.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See

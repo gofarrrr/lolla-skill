@@ -205,3 +205,15 @@ readiness, scoring, proof claims, and action authorization.
 
 Do not implement resolver approval, runtime sidecar updates, runtime wiring,
 model calls, scoring, proof claims, or action authorization from this plan.
+
+## Implemented Follow-Up
+
+PR198 implements this plan as
+[Decision Work Generated Read Resolver Supply Adapter](decision-work-generated-read-resolver-supply-adapter-v0.md).
+The adapter emits `lolla.decision_work_generated_read_resolver_supply.v0`
+candidate packets from generated-read, intake, brief-supply, rendered-brief,
+triage-supply, and generated-triage refs. It can produce a launch-beta
+candidate packet and a deploy-intake candidate packet that preserves
+runtime/user-surface blocking, without approving resolver refs, marking refs
+usable, updating sidecars, wiring runtime, calling models, scoring, proving, or
+authorizing action.
