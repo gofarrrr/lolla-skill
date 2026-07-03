@@ -521,11 +521,32 @@ score quality, or authorize action.
 
 ### PR193 Decision Work Generated Read Triage Generation Pilot v0
 
-If PR192 gates cleanly, run the first generated-read triage pilot over the
-prepared triage-supply packet. That future slice may create a provisional
-triage read, but it still must not mark resolver refs usable, update sidecars,
-wire runtime behavior, call models/providers from repo code, score answer
-quality, claim proof, or authorize action.
+PR193 is implemented as
+[Decision Work Generated Read Triage Generation Pilot](decision-work-generated-read-triage-generation-pilot-v0.md).
+
+It creates the first generated-read triage pilot over the launch-beta
+triage-supply packet. The provisional triage read routes attention only and
+still does not mark resolver refs usable, update sidecars, wire runtime
+behavior, call models/providers from repo code, score answer quality, claim
+proof, or authorize action.
+
+### PR194 Decision Work Generated Read Triage Pilot Review v0
+
+PR194 is implemented as
+[Decision Work Generated Read Triage Pilot Review](decision-work-generated-read-triage-pilot-review-v0.md).
+
+It reviews whether the first generated triage read is safe and useful enough to
+attempt a second case. The review stays docs/review/tests only and selects
+deploy-intake next while preserving the no-resolver, no-sidecar, no-runtime,
+no-model-call, no-scoring, no-proof, and no-action boundary.
+
+### PR195 Second Generated Read Triage Pilot v0
+
+If PR194 gates cleanly, run the generated-read triage pilot on
+`deploy-assisted-intake-routing`. That future slice must preserve healthcare
+operations and compliance caveats, avoid broad clinical/legal advice, and stop
+before resolver approval, runtime sidecar updates, runtime wiring, model calls,
+product proof, human validation, scoring, or action authorization.
 - stop and keep the feature internal.
 
 Do not make runtime attachment default-on from this gate.

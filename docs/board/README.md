@@ -640,6 +640,21 @@ Follow-up implementation planning:
   generating triage, marking resolver refs usable, updating sidecars, calling
   models, scoring, proving, or authorizing action.
 
+- [Decision Work Generated Read Triage Generation Pilot](../conversation-understanding/decision-work-generated-read-triage-generation-pilot-v0.md)
+
+  PR193's first checked-in-safe generated triage read for launch beta. It
+  routes attention to caveated offline brief candidacy, source-depth limits,
+  private-context need, overtrust risk, and runtime attachment blocking while
+  still not grading answer quality, marking resolver refs usable, updating
+  sidecars, calling models, proving, or authorizing action.
+
+- [Decision Work Generated Read Triage Pilot Review](../conversation-understanding/decision-work-generated-read-triage-pilot-review-v0.md)
+
+  PR194's docs/review/tests-only review of the first generated triage read. It
+  confirms launch-beta route vocabulary stays attention-routing rather than
+  answer grading or action permission, and gates to a deploy-intake second
+  triage pilot without creating that second case yet.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

@@ -697,6 +697,19 @@ offline triage generation only. It supports ready, deferred, and blocked states
 while still generating no triage, creating no triage read, marking no resolver
 refs usable, updating no sidecars, calling no models, proving nothing, scoring
 nothing, and authorizing no action.
+The
+[Decision Work Generated Read Triage Generation Pilot](docs/conversation-understanding/decision-work-generated-read-triage-generation-pilot-v0.md)
+adds PR193's first checked-in-safe generated triage read for launch beta. It
+routes attention to caveated offline brief candidacy, source-depth limits,
+private-context need, overtrust risk, and runtime attachment blocking while
+still not grading answer quality, proving correctness, marking resolver refs
+usable, updating sidecars, calling models, or authorizing action.
+The
+[Decision Work Generated Read Triage Pilot Review](docs/conversation-understanding/decision-work-generated-read-triage-pilot-review-v0.md)
+adds PR194's review-only pass over that first triage read. It confirms the
+route vocabulary remains attention routing rather than grading or action
+permission, and gates to a deploy-intake second triage pilot without creating
+that second case yet.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See
