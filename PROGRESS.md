@@ -371,6 +371,15 @@ directories from a PR202 sidecar update packet and matching PR206 dry-run
 result, emits a fixture-only write receipt, and keeps real archive mutation,
 historical archive mutation, runtime wiring, resolver approval, proof, scoring,
 and action authorization closed.
+
+The Decision Work Explicit Operator Sidecar Write Review is
+docs/conversation-understanding/decision-work-explicit-operator-sidecar-write-review-v0.md.
+It adds PR211's docs/review/tests-only check over launch/deploy fixture writes.
+The review confirms launch writes fixture-only, deploy preserves blocked
+runtime/user-surface state, path safety blocks repo/archive/runtime targets, and
+real archive mutation, historical archive mutation, runtime wiring, resolver
+approval, proof, scoring, and action authorization remain closed before the
+explicit operator sidecar write package gate.
 ```
 
 ```text

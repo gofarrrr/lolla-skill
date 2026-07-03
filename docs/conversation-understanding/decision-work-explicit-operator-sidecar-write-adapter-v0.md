@@ -174,3 +174,12 @@ archives, runtime wiring, resolver approval, or automatic sidecar writes.
 Do not implement real archive writes, runtime hook integration, resolver
 approval, model calls, scoring, proof claims, or action authorization from this
 adapter.
+
+## Implemented Follow-Up
+
+PR211 implements the review gate as
+[Decision Work Explicit Operator Sidecar Write Review](decision-work-explicit-operator-sidecar-write-review-v0.md).
+The review checks launch/deploy fixture-only writes, confirms deploy preserves
+runtime blocking, verifies path-safety and no-real-archive flags, and gates to
+an explicit operator sidecar write package gate without approving refs or
+wiring runtime.

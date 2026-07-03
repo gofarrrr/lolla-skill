@@ -776,6 +776,13 @@ Follow-up implementation planning:
   writing real archives, wiring runtime, approving resolver refs, scoring,
   proving, or authorizing action.
 
+- [Decision Work Explicit Operator Sidecar Write Review](../conversation-understanding/decision-work-explicit-operator-sidecar-write-review-v0.md)
+
+  PR211's docs/review/tests-only review of launch/deploy fixture writes. It
+  confirms fixture-only status, deploy runtime blocking, path safety, and no
+  real archive mutation, runtime wiring, resolver approval, scoring, proof
+  claims, or action authorization before a package gate.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

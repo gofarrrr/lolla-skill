@@ -808,6 +808,36 @@ not write real archives, mutate historical archive folders, wire runtime,
 update the post-archive hook, approve resolver refs, call models, score answer
 quality, claim proof, or authorize action.
 
+### PR211 Explicit Operator Sidecar Write Review v0
+
+Implemented as
+[Decision Work Explicit Operator Sidecar Write Review](decision-work-explicit-operator-sidecar-write-review-v0.md).
+
+Review the launch-beta and deploy-intake fixture-only sidecar writes before
+packaging the explicit operator write layer. The review checks that launch
+produces `write_completed_fixture_only`, deploy produces
+`write_completed_blocked_state_fixture_only`, generated fixture files stay
+inside explicit safe temp/output targets, real/historical archive mutation is
+false, runtime wiring is false, resolver refs remain unapproved, and all proof,
+scoring, validation, and action-authority claims remain closed.
+
+Selected gate:
+
+```text
+proceed_to_explicit_operator_sidecar_write_package_gate
+```
+
+Recommended next PR:
+
+```text
+PR212 Explicit Operator Sidecar Write Package Gate v0
+```
+
+Do not implement PR212 from this review. PR211 still does not write real
+archives, mutate historical archive folders, wire runtime, update the
+post-archive hook, approve resolver refs, call models, score answer quality,
+claim proof, or authorize action.
+
 ## Readiness Gates
 
 Automatic semantic supply is not ready for normal use until:

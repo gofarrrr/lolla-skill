@@ -825,6 +825,13 @@ an explicit safe temp/output `decision_work` directory, emit
 `lolla.decision_work_explicit_operator_sidecar_write_receipt.v0`, and preserve
 that real archives, runtime wiring, resolver approval, quality labels, proof
 claims, and action authorization remain closed.
+The
+[Decision Work Explicit Operator Sidecar Write Review](docs/conversation-understanding/decision-work-explicit-operator-sidecar-write-review-v0.md)
+adds PR211's docs/review/tests-only check over launch/deploy fixture writes. It
+confirms launch writes fixture-only, deploy preserves runtime-blocked fixture
+state, path safety blocks repo/archive/runtime targets, and real archive
+mutation, runtime wiring, resolver approval, proof claims, scoring, and action
+authorization remain closed before any package gate.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See
