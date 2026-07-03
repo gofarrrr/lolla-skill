@@ -964,6 +964,36 @@ PR216 Controlled Archive Sidecar Write Fixture Package Gate v0
 Do not implement real archive writes from this review. PR215 is still a
 docs/review/tests-only gate over synthetic fixture outputs.
 
+### PR216 Controlled Archive Sidecar Write Fixture Package Gate v0
+
+Implemented as
+[Decision Work Controlled Archive Sidecar Write Fixture Package Gate](decision-work-controlled-archive-sidecar-write-fixture-package-gate-v0.md)
+with the machine-readable
+[controlled archive sidecar write fixture package manifest](decision-work-controlled-archive-sidecar-write-fixture-package-manifest-v0.json).
+
+Package PR213 through PR215 as Decision Work Controlled Archive Sidecar Write
+Fixture v1. The narrow claim is that a synthetic archive-shaped fixture write
+layer can write the PR209 allowed file set into controlled temp/operator
+archive-like fixture directories from validated PR202 sidecar update packets
+and matching PR206 dry-run results.
+
+Selected gate:
+
+```text
+controlled_archive_sidecar_write_fixture_v1_packaged
+```
+
+Recommended next PR:
+
+```text
+PR217 Real Archive Sidecar Write Plan v0
+```
+
+Do not implement PR217 from this package. PR216 still does not write real
+archives, mutate historical archive folders as normal behavior, edit the
+archive hook, wire runtime, approve resolver refs, call models, score answer
+quality, claim proof, or authorize action.
+
 ## Readiness Gates
 
 Automatic semantic supply is not ready for normal use until:

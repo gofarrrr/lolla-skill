@@ -117,3 +117,12 @@ privacy limits, deploy blocking, custody flags, and non-claims.
 Do not implement real archive writes, runtime hook integration, resolver
 approval, default-on behavior, model calls, scoring, proof claims, or action
 authorization from this review.
+
+## Implemented Follow-Up
+
+PR216 implements the package gate as
+[Decision Work Controlled Archive Sidecar Write Fixture Package Gate](decision-work-controlled-archive-sidecar-write-fixture-package-gate-v0.md).
+The package manifest covers PR213 through PR215 as a synthetic archive-shaped
+fixture write layer while still excluding real historical archive mutation,
+archive-hook integration, runtime wiring, resolver approval, default-on
+behavior, proof claims, scoring, and action authorization.

@@ -866,6 +866,14 @@ archive-shaped fixture writes. It confirms deploy remains runtime/user-surface
 blocked, unsafe path and source mismatch cases are rejected, and real archive
 mutation, archive-hook edits, runtime wiring, resolver approval, proof claims,
 scoring, and action authorization remain closed before a package gate.
+The
+[Decision Work Controlled Archive Sidecar Write Fixture Package Gate](docs/conversation-understanding/decision-work-controlled-archive-sidecar-write-fixture-package-gate-v0.md)
+packages PR213-PR215 as controlled archive sidecar write fixture v1, with a
+[package manifest](docs/conversation-understanding/decision-work-controlled-archive-sidecar-write-fixture-package-manifest-v0.json).
+It claims only synthetic archive-shaped fixture writes under safe temp/operator
+roots, while still excluding real archive mutation, archive-hook integration,
+runtime wiring, resolver approval, default-on behavior, proof claims, scoring,
+advice correctness, certification, and action authorization.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See

@@ -423,6 +423,17 @@ runtime/user-surface blocking, unsafe path and mismatch rejection, and the
 continued prohibition on real archive mutation, archive-hook edits, runtime
 wiring, resolver approval, proof, scoring, and action authorization. It selects
 proceed_to_controlled_archive_sidecar_write_fixture_package_gate for PR216.
+
+The Decision Work Controlled Archive Sidecar Write Fixture Package Gate is
+docs/conversation-understanding/decision-work-controlled-archive-sidecar-write-fixture-package-gate-v0.md
+with manifest
+docs/conversation-understanding/decision-work-controlled-archive-sidecar-write-fixture-package-manifest-v0.json.
+It packages PR213-PR215 as controlled archive sidecar write fixture v1:
+synthetic archive-shaped fixture writes under safe temp/operator roots from
+validated sidecar update packets and matching dry-run results. It still
+excludes real historical archive mutation, archive-hook integration, runtime
+wiring, resolver approval, user/customer readiness, proof, scoring, advice
+correctness, certification, and action authorization.
 ```
 
 ```text

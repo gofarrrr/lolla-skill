@@ -814,6 +814,13 @@ Follow-up implementation planning:
   runtime wiring, resolver approval, proof, scoring, or action authorization
   before a package gate.
 
+- [Decision Work Controlled Archive Sidecar Write Fixture Package Gate](../conversation-understanding/decision-work-controlled-archive-sidecar-write-fixture-package-gate-v0.md)
+
+  PR216's package gate and manifest for PR213-PR215. It packages synthetic
+  archive-shaped fixture write v1 while still excluding real archive mutation,
+  archive-hook integration, runtime wiring, resolver approval, proof, scoring,
+  certification, and action authorization.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,
