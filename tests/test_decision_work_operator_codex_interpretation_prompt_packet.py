@@ -158,9 +158,9 @@ def test_source_queue_and_target_output_are_bounded() -> None:
         "lolla.decision_work_offline_interpretation_queue_item.v0"
     )
     assert packet["source_queue_item"]["allowed_queue_statuses"] == ["queued"]
-    assert "blocked_privacy_risk" in packet["source_queue_item"][
-        "blocked_statuses_must_not_prompt"
-    ]
+    blocked = set(packet["source_queue_item"]["blocked_statuses_must_not_prompt"])
+    assert {"running", "completed", "blocked_privacy_risk"} <= blocked
+    assert "status_policy_note" in packet["source_queue_item"]
     assert packet["target_output_schema"]["schema_version"] == (
         "lolla.decision_work_conversation_interpretation_read.v0"
     )

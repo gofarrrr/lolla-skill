@@ -113,6 +113,7 @@
   "privacy_modes": [
     {
       "mode": "checked_in_safe",
+      "meaning": "Allowed checked-in artifact mode; the listed content-exclusion flags describe what the artifact may contain.",
       "raw_private_content_included": false,
       "provider_text_included": false,
       "local_absolute_paths_included": false,
@@ -120,6 +121,7 @@
     },
     {
       "mode": "local_private_metadata_only",
+      "meaning": "Local/private work may be required outside checked-in artifacts; checked-in output still records metadata/status only.",
       "raw_private_content_included": false,
       "provider_text_included": false,
       "local_absolute_paths_included": false,
@@ -127,6 +129,8 @@
     },
     {
       "mode": "unsafe_to_export",
+      "meaning": "Blocked status for material that must not be exported; the checked-in queue contract still excludes the unsafe content itself.",
+      "unsafe_content_detected_or_suspected": true,
       "raw_private_content_included": false,
       "provider_text_included": false,
       "local_absolute_paths_included": false,

@@ -223,6 +223,42 @@ def test_local_private_operator_mode_records_operator_requirement(
     assert item["custody_flags"]["checked_in_safe"] is False
 
 
+def test_local_private_operator_mode_without_packet_records_operator_requirement(
+    tmp_path: Path,
+) -> None:
+    item = build_decision_work_offline_interpretation_queue_item(
+        run_dir=_run_dir(tmp_path),
+        contract_path=CONTRACT_PATH,
+        mode="local_private_operator",
+        created_at="2026-07-03T00:00:00Z",
+    )
+
+    _assert_conservative(item)
+    assert item["queue_status"] == "requires_local_private_operator"
+    assert item["source_packet_ref"]["status"] == "missing"
+    assert item["privacy_mode"] == "local_private_metadata_only"
+    assert item["custody_flags"]["checked_in_safe"] is False
+
+
+def test_missing_validation_requirements_fail_with_sanitized_error(
+    tmp_path: Path,
+) -> None:
+    contract = json.loads(CONTRACT_PATH.read_text(encoding="utf-8"))
+    contract.pop("validation_requirements")
+    contract_path = tmp_path / "contract.json"
+    _write_json(contract_path, contract)
+
+    with pytest.raises(
+        DecisionWorkOfflineInterpretationQueueError,
+        match="validation requirements",
+    ):
+        build_decision_work_offline_interpretation_queue_item(
+            run_dir=_run_dir(tmp_path),
+            contract_path=contract_path,
+            created_at="2026-07-03T00:00:00Z",
+        )
+
+
 def test_privacy_marker_source_packet_blocks(tmp_path: Path) -> None:
     packet_path = tmp_path / "source_packet.json"
     packet_path.write_text("contains " + "api" + "_key marker", encoding="utf-8")

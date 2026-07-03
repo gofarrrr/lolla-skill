@@ -23,6 +23,7 @@ def main(argv: list[str] | None = None) -> int:
     _ensure_repo_root_on_path()
     from engine.system_b.decision_work_offline_interpretation_queue import (
         DecisionWorkOfflineInterpretationQueueError,
+        QUEUE_MODES,
         build_decision_work_offline_interpretation_queue_item,
         render_decision_work_offline_interpretation_queue_item_json,
         validate_output_path,
@@ -58,7 +59,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument(
         "--mode",
-        choices=("checked_in_safe_metadata_only", "local_private_operator", "disabled"),
+        choices=QUEUE_MODES,
         default="checked_in_safe_metadata_only",
     )
     parser.add_argument(

@@ -101,6 +101,7 @@ def build_decision_work_offline_interpretation_queue_item(
     )
     requested_fields = _requested_fields(contract)
     checked_in_safe = mode != "local_private_operator"
+    validation_requirements = _validation_requirements(contract)
 
     return {
         "schema_version": QUEUE_ITEM_SCHEMA_VERSION,
@@ -140,7 +141,7 @@ def build_decision_work_offline_interpretation_queue_item(
         "queue_status": queue_status,
         "blocked_or_deferred_reasons": reasons,
         "output_destinations": _output_destinations(output_destination_ref),
-        "validation_requirements": list(contract["validation_requirements"]),
+        "validation_requirements": validation_requirements,
         "downstream_refs": _downstream_refs(),
         "known_limits": _known_limits(queue_status=queue_status, mode=mode),
         "semantic_fields_filled": False,
@@ -204,6 +205,7 @@ def load_queue_contract(path: Path | str) -> dict[str, Any]:
         raise DecisionWorkOfflineInterpretationQueueError(
             "queue contract schema version was unsupported"
         )
+    _validation_requirements(payload)
     return payload
 
 
@@ -369,6 +371,17 @@ def _requested_fields(contract: Mapping[str, Any]) -> list[dict[str, Any]]:
     return fields
 
 
+def _validation_requirements(contract: Mapping[str, Any]) -> list[str]:
+    requirements = contract.get("validation_requirements")
+    if not isinstance(requirements, list) or not all(
+        isinstance(item, str) and item for item in requirements
+    ):
+        raise DecisionWorkOfflineInterpretationQueueError(
+            "queue contract validation requirements were missing or malformed"
+        )
+    return list(requirements)
+
+
 def _output_destinations(output_destination_ref: str | None) -> dict[str, Any]:
     return {
         "interpretation_read_ref": (
@@ -522,6 +535,9 @@ def _text(value: Any, default: str = "") -> str:
 
 
 def _utc_now() -> str:
-    return _dt.datetime.now(tz=_dt.UTC).replace(microsecond=0).isoformat().replace(
-        "+00:00", "Z"
+    return (
+        _dt.datetime.now(tz=_dt.timezone.utc)
+        .replace(microsecond=0)
+        .isoformat()
+        .replace("+00:00", "Z")
     )

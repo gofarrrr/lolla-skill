@@ -538,7 +538,7 @@ Follow-up implementation planning:
 - [Decision Work Offline Interpretation Queue Builder](../conversation-understanding/decision-work-offline-interpretation-queue-builder-v0.md)
 
   PR180's deterministic queue-item preparation layer. It turns completed run
-  refs and optional PR130 packet refs into checked-in-safe queue status without
+  refs and optional PR130 packet refs into checked-in-safe queue items without
   filling interpretation fields, calling models, mutating archives, or updating
   runtime sidecars.
 

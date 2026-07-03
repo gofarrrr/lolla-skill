@@ -34,6 +34,8 @@
     ],
     "blocked_statuses_must_not_prompt": [
       "not_requested",
+      "running",
+      "completed",
       "blocked_missing_packet",
       "blocked_privacy_risk",
       "blocked_schema_invalid",
@@ -41,7 +43,8 @@
       "requires_local_private_operator",
       "unsafe_to_export",
       "cancelled"
-    ]
+    ],
+    "status_policy_note": "Only queued items may produce a prompt packet. running and completed are intentionally blocked here because PR181 does not own queue workers, generated read intake, or completed-result handling."
   },
   "target_output_schema": {
     "schema_version": "lolla.decision_work_conversation_interpretation_read.v0",
