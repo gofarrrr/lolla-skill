@@ -868,6 +868,36 @@ archives, mutate historical archive folders as normal behavior, wire runtime,
 update the post-archive hook, approve resolver refs, call models, score answer
 quality, claim proof, or authorize action.
 
+### PR213 Controlled Archive Sidecar Write Fixture Plan v0
+
+Implemented as
+[Decision Work Controlled Archive Sidecar Write Fixture Plan](decision-work-controlled-archive-sidecar-write-fixture-plan-v0.md).
+
+Plan the next boundary after controlled explicit operator target writes:
+synthetic archive-shaped fixture directories. The planned fixture adapter may
+write the PR209 allowed sidecar file set under a controlled temp/test/operator
+fixture that resembles a completed-run archive, but it must still refuse real
+completed-run archives, existing historical archive paths, repo paths, runtime
+paths, missing or mismatched dry-run inputs, privacy risks, resolver approval,
+proof/scoring claims, and action authorization.
+
+Selected gate:
+
+```text
+proceed_to_controlled_archive_sidecar_write_fixture_adapter
+```
+
+Recommended next PR:
+
+```text
+PR214 Controlled Archive Sidecar Write Fixture Adapter v0
+```
+
+Do not implement real archive writes from this plan. PR213 is still
+docs/review/tests only: no sidecar files are written, no archive hook is
+edited, no runtime is wired, no historical archive is mutated, and no resolver
+refs are approved.
+
 ## Readiness Gates
 
 Automatic semantic supply is not ready for normal use until:

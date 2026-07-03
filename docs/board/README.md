@@ -791,6 +791,13 @@ Follow-up implementation planning:
   wiring, resolver approval, proof, scoring, certification, and action
   authorization.
 
+- [Decision Work Controlled Archive Sidecar Write Fixture Plan](../conversation-understanding/decision-work-controlled-archive-sidecar-write-fixture-plan-v0.md)
+
+  PR213's docs/review/tests-only plan for synthetic archive-shaped fixture
+  writes. It keeps real completed-run archives, historical archive mutation,
+  archive-hook edits, runtime wiring, resolver approval, proof, scoring, and
+  action authorization forbidden while gating to a controlled fixture adapter.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

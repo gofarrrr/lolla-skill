@@ -842,6 +842,14 @@ matching dry-runs, while excluding runtime integration, default-on behavior,
 real historical archive mutation as normal behavior, resolver approval,
 customer readiness, proof, scoring, advice correctness, certification, and
 action authorization.
+The
+[Decision Work Controlled Archive Sidecar Write Fixture Plan](docs/conversation-understanding/decision-work-controlled-archive-sidecar-write-fixture-plan-v0.md)
+adds PR213's docs/review/tests-only plan for the next boundary: writing the
+same allowed sidecar files into synthetic archive-shaped fixture directories.
+Those fixtures may resemble completed-run archives for test/operator review,
+but real archives, existing historical archive paths, runtime wiring, archive
+hook edits, resolver approval, proof claims, scoring, and action authorization
+remain forbidden.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See

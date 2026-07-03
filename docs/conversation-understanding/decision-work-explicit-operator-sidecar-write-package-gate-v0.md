@@ -224,6 +224,15 @@ Do not implement PR213 from this package gate. The next phase must be a
 plan/review gate for controlled archive-like fixture writes before any real
 completed-run archive mutation is considered.
 
+## Implemented Follow-Up
+
+PR213 implements that plan/review gate as
+[Decision Work Controlled Archive Sidecar Write Fixture Plan](decision-work-controlled-archive-sidecar-write-fixture-plan-v0.md).
+It defines synthetic archive-shaped fixture directories as the next boundary
+while preserving that real completed-run archive mutation, runtime wiring,
+archive-hook edits, resolver approval, proof claims, scoring, and action
+authorization remain forbidden.
+
 ## Explicit Non-Claims
 
 PR212 does not claim:
