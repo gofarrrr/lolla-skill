@@ -935,6 +935,35 @@ synthetic fixture outputs under safe temp/operator roots, does not edit the
 archive hook, does not wire runtime, does not mutate historical archives, and
 does not approve resolver refs.
 
+### PR215 Controlled Archive Sidecar Write Fixture Review v0
+
+Implemented as
+[Decision Work Controlled Archive Sidecar Write Fixture Review](decision-work-controlled-archive-sidecar-write-fixture-review-v0.md).
+
+Review the launch-beta and deploy-intake synthetic archive-shaped fixture
+writes before packaging. The review confirms launch writes
+`fixture_write_completed`, deploy writes `fixture_write_completed_blocked_state`,
+deploy preserves runtime and user-surface blocking, unsafe real archive/repo/
+runtime/mismatched/privacy/authority inputs are rejected, and the receipt keeps
+real archive mutation, historical archive mutation, archive-hook changes,
+runtime wiring, resolver approval, proof, scoring, and action authorization
+closed.
+
+Selected gate:
+
+```text
+proceed_to_controlled_archive_sidecar_write_fixture_package_gate
+```
+
+Recommended next PR:
+
+```text
+PR216 Controlled Archive Sidecar Write Fixture Package Gate v0
+```
+
+Do not implement real archive writes from this review. PR215 is still a
+docs/review/tests-only gate over synthetic fixture outputs.
+
 ## Readiness Gates
 
 Automatic semantic supply is not ready for normal use until:

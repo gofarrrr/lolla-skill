@@ -1,0 +1,404 @@
+from __future__ import annotations
+
+import json
+from pathlib import Path
+from typing import Any
+
+from engine.system_b.decision_work_controlled_archive_sidecar_write_fixture import (
+    FIXTURE_WRITE_COMPLETED_BLOCKED_STATUS,
+    FIXTURE_WRITE_COMPLETED_STATUS,
+    build_controlled_archive_sidecar_write_fixture,
+)
+from engine.system_b.decision_work_generated_read_brief_supply import (
+    build_generated_read_brief_supply,
+    render_generated_read_brief_supply_json,
+)
+from engine.system_b.decision_work_generated_read_resolver_supply import (
+    build_generated_read_resolver_supply,
+    render_generated_read_resolver_supply_json,
+)
+from engine.system_b.decision_work_generated_read_triage_supply import (
+    build_generated_read_triage_supply,
+    render_generated_read_triage_supply_json,
+)
+from engine.system_b.decision_work_resolver_candidate_sidecar_update_packet import (
+    build_resolver_candidate_sidecar_update_packet,
+    render_resolver_candidate_sidecar_update_packet_json,
+)
+from engine.system_b.decision_work_sidecar_write_dry_run import (
+    build_sidecar_write_dry_run,
+    render_sidecar_write_dry_run_json,
+)
+from engine.system_b.product_delta_boundary_lint import lint_product_delta_paths
+
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+DOC_PATH = (
+    REPO_ROOT
+    / "docs/conversation-understanding/"
+    "decision-work-controlled-archive-sidecar-write-fixture-review-v0.md"
+)
+REVIEW_PATH = (
+    REPO_ROOT
+    / "reviews/codex-assisted/"
+    "decision-work-controlled-archive-sidecar-write-fixture-review-v0/review.json"
+)
+ADAPTER_DOC = (
+    REPO_ROOT
+    / "docs/conversation-understanding/"
+    "decision-work-controlled-archive-sidecar-write-fixture-adapter-v0.md"
+)
+PRD_PATH = (
+    REPO_ROOT
+    / "docs/conversation-understanding/decision-work-automatic-semantic-supply-prd-v0.md"
+)
+README_PATH = REPO_ROOT / "README.md"
+HOW_IT_WORKS_PATH = REPO_ROOT / "HOW_IT_WORKS.md"
+PROGRESS_PATH = REPO_ROOT / "PROGRESS.md"
+BOARD_README_PATH = REPO_ROOT / "docs/board/README.md"
+LAUNCH_READ = (
+    REPO_ROOT
+    / "reviews/codex-assisted/decision-work-operator-codex-generated-read-pilot-v0/read.json"
+)
+LAUNCH_INTAKE = (
+    REPO_ROOT
+    / "reviews/codex-assisted/decision-work-operator-codex-generated-read-pilot-v0/intake.json"
+)
+LAUNCH_RENDERED = (
+    REPO_ROOT
+    / "docs/conversation-understanding/"
+    "decision-work-generated-read-rendered-launch-public-enterprise-beta-v0.md"
+)
+LAUNCH_TRIAGE = (
+    REPO_ROOT
+    / "reviews/codex-assisted/decision-work-generated-read-triage-generation-pilot-v0/triage.json"
+)
+DEPLOY_READ = (
+    REPO_ROOT
+    / "reviews/codex-assisted/"
+    "decision-work-generated-read-second-brief-rendering-pilot-v0/read.json"
+)
+DEPLOY_INTAKE = (
+    REPO_ROOT
+    / "reviews/codex-assisted/"
+    "decision-work-generated-read-second-brief-rendering-pilot-v0/intake.json"
+)
+DEPLOY_RENDERED = (
+    REPO_ROOT
+    / "docs/conversation-understanding/"
+    "decision-work-generated-read-rendered-deploy-assisted-intake-routing-v0.md"
+)
+DEPLOY_TRIAGE = (
+    REPO_ROOT
+    / "reviews/codex-assisted/decision-work-generated-read-second-triage-pilot-v0/triage.json"
+)
+ALLOWED_FILES = {
+    "attachment_status.json",
+    "user_receipt.md",
+    "agent_handoff_packet.json",
+    "safe_supply_summary.json",
+    "sidecar_update_packet.json",
+    "sidecar_write_receipt.json",
+}
+FORBIDDEN_STRINGS = (
+    "/" + "Users" + "/",
+    "SEC" + "RET",
+    "raw_message" + "_content",
+    "fabricated" + "_passages",
+    "FULL ASSISTANT" + " REASONING",
+    "client" + "_secret",
+    "api" + "_key",
+    "pass" + "word",
+)
+
+
+def _json(path: Path) -> dict[str, Any]:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _packet_and_dry_run(
+    tmp_path: Path,
+    *,
+    name: str,
+    read_path: Path,
+    intake_path: Path,
+    rendered_path: Path,
+    triage_path: Path,
+) -> tuple[Path, Path]:
+    brief_supply = build_generated_read_brief_supply(
+        read_path=read_path,
+        intake_path=intake_path,
+        created_at="2026-07-04T00:00:00Z",
+    )
+    brief_supply_path = tmp_path / f"{name}_brief_supply.json"
+    brief_supply_path.write_text(
+        render_generated_read_brief_supply_json(brief_supply, pretty=True),
+        encoding="utf-8",
+    )
+    triage_supply = build_generated_read_triage_supply(
+        read_path=read_path,
+        intake_path=intake_path,
+        brief_supply_path=brief_supply_path,
+        rendered_brief_path=rendered_path,
+        created_at="2026-07-04T00:00:00Z",
+    )
+    triage_supply_path = tmp_path / f"{name}_triage_supply.json"
+    triage_supply_path.write_text(
+        render_generated_read_triage_supply_json(triage_supply, pretty=True),
+        encoding="utf-8",
+    )
+    resolver_supply = build_generated_read_resolver_supply(
+        read_path=read_path,
+        intake_path=intake_path,
+        brief_supply_path=brief_supply_path,
+        rendered_brief_path=rendered_path,
+        triage_supply_path=triage_supply_path,
+        triage_path=triage_path,
+        created_at="2026-07-04T00:00:00Z",
+    )
+    resolver_supply_path = tmp_path / f"{name}_resolver_supply.json"
+    resolver_supply_path.write_text(
+        render_generated_read_resolver_supply_json(resolver_supply, pretty=True),
+        encoding="utf-8",
+    )
+    sidecar_update_packet = build_resolver_candidate_sidecar_update_packet(
+        resolver_supply_path=resolver_supply_path,
+        source_resolver_supply_ref=f"tmp/{name}_resolver_supply.json",
+        created_at="2026-07-04T00:00:00Z",
+    )
+    packet_path = tmp_path / f"{name}_sidecar_update_packet.json"
+    packet_path.write_text(
+        render_resolver_candidate_sidecar_update_packet_json(
+            sidecar_update_packet,
+            pretty=True,
+        ),
+        encoding="utf-8",
+    )
+    dry_run = build_sidecar_write_dry_run(
+        sidecar_update_packet_path=packet_path,
+        source_sidecar_update_packet_ref=f"tmp/{name}_sidecar_update_packet.json",
+        preview_dir=tmp_path / f"{name}_preview",
+        write_preview=True,
+        created_at="2026-07-04T00:00:00Z",
+    )
+    dry_run_path = tmp_path / f"{name}_dry_run.json"
+    dry_run_path.write_text(
+        render_sidecar_write_dry_run_json(dry_run, pretty=True),
+        encoding="utf-8",
+    )
+    return packet_path, dry_run_path
+
+
+def _fixture_write(
+    tmp_path: Path,
+    *,
+    name: str,
+    read_path: Path,
+    intake_path: Path,
+    rendered_path: Path,
+    triage_path: Path,
+) -> tuple[dict[str, Any], Path]:
+    packet_path, dry_run_path = _packet_and_dry_run(
+        tmp_path,
+        name=name,
+        read_path=read_path,
+        intake_path=intake_path,
+        rendered_path=rendered_path,
+        triage_path=triage_path,
+    )
+    fixture_dir = tmp_path / f"decision_work_archive_fixture_{name}" / "archive" / "cases" / f"{name}-run"
+    receipt = build_controlled_archive_sidecar_write_fixture(
+        sidecar_update_packet_path=packet_path,
+        dry_run_result_path=dry_run_path,
+        fixture_archive_dir=fixture_dir,
+        created_at="2026-07-04T00:00:00Z",
+    )
+    return receipt, fixture_dir
+
+
+def test_review_json_schema_cases_and_gate() -> None:
+    review = _json(REVIEW_PATH)
+
+    assert (
+        review["schema_version"]
+        == "lolla.decision_work_controlled_archive_sidecar_write_fixture_review.v0"
+    )
+    assert {case["case_id"] for case in review["reviewed_cases"]} == {
+        "launch-public-enterprise-beta",
+        "deploy-assisted-intake-routing",
+    }
+    assert review["launch_fixture_write_status"] == FIXTURE_WRITE_COMPLETED_STATUS
+    assert (
+        review["deploy_fixture_write_status"]
+        == FIXTURE_WRITE_COMPLETED_BLOCKED_STATUS
+    )
+    assert (
+        review["decision_gate"]
+        == "proceed_to_controlled_archive_sidecar_write_fixture_package_gate"
+    )
+    assert (
+        review["recommended_next_pr"]
+        == "PR216 Controlled Archive Sidecar Write Fixture Package Gate v0"
+    )
+
+
+def test_temp_fixture_writes_match_reviewed_statuses(tmp_path: Path) -> None:
+    review = _json(REVIEW_PATH)
+    launch, launch_dir = _fixture_write(
+        tmp_path,
+        name="launch",
+        read_path=LAUNCH_READ,
+        intake_path=LAUNCH_INTAKE,
+        rendered_path=LAUNCH_RENDERED,
+        triage_path=LAUNCH_TRIAGE,
+    )
+    deploy, deploy_dir = _fixture_write(
+        tmp_path,
+        name="deploy",
+        read_path=DEPLOY_READ,
+        intake_path=DEPLOY_INTAKE,
+        rendered_path=DEPLOY_RENDERED,
+        triage_path=DEPLOY_TRIAGE,
+    )
+
+    assert launch["fixture_write_status"] == review["launch_fixture_write_status"]
+    assert deploy["fixture_write_status"] == review["deploy_fixture_write_status"]
+    assert set(launch["files_written"]) == ALLOWED_FILES
+    assert set(deploy["files_written"]) == ALLOWED_FILES
+    assert {path.name for path in (launch_dir / "decision_work").iterdir()} == ALLOWED_FILES
+    assert {path.name for path in (deploy_dir / "decision_work").iterdir()} == ALLOWED_FILES
+    for receipt in (launch, deploy):
+        assert receipt["real_archive_mutated"] is False
+        assert receipt["historical_archive_mutated"] is False
+        assert receipt["archive_hook_changed"] is False
+        assert receipt["runtime_wiring_changed"] is False
+        assert receipt["resolver_refs_approved"] is False
+
+
+def test_review_records_unsafe_rejections_and_boundaries() -> None:
+    review = _json(REVIEW_PATH)
+    fixture = review["fixture_only_check"]
+    unsafe = review["unsafe_rejection_checks"]
+    real_archive = review["real_archive_mutation_forbidden_check"]
+    historical = review["historical_archive_mutation_forbidden_check"]
+    hook = review["archive_hook_forbidden_check"]
+    runtime = review["runtime_wiring_forbidden_check"]
+    resolver = review["resolver_approval_forbidden_check"]
+
+    assert fixture["synthetic_archive_fixture_only"] is True
+    assert fixture["checked_in_fixture_sidecar_files_created"] is False
+    assert fixture["repo_targets_blocked"] is True
+    assert fixture["real_archive_targets_blocked"] is True
+    assert fixture["existing_historical_archive_targets_blocked"] is True
+    assert fixture["runtime_targets_blocked"] is True
+    assert fixture["generated_files_stay_inside_fixture_dir"] is True
+    assert unsafe["repo_path_rejected"] is True
+    assert unsafe["real_archive_path_rejected"] is True
+    assert unsafe["existing_historical_archive_path_rejected"] is True
+    assert unsafe["missing_dry_run_rejected"] is True
+    assert unsafe["mismatched_dry_run_packet_rejected"] is True
+    assert unsafe["privacy_marker_rejected"] is True
+    assert unsafe["authority_claim_rejected"] is True
+    assert real_archive["real_archive_mutated"] is False
+    assert real_archive["can_write_real_archive_sidecar"] is False
+    assert historical["historical_archive_mutated"] is False
+    assert historical["can_mutate_historical_archive"] is False
+    assert hook["archive_hook_changed"] is False
+    assert hook["archive_hook_edit_allowed"] is False
+    assert runtime["runtime_wiring_changed"] is False
+    assert runtime["can_wire_runtime"] is False
+    assert resolver["resolver_refs_approved"] is False
+    assert resolver["fixture_adapter_can_approve_refs"] is False
+
+
+def test_review_preserves_deploy_block_and_non_claims(tmp_path: Path) -> None:
+    review = _json(REVIEW_PATH)
+    non_claims = set(review["non_claims_preserved"])
+    deploy, deploy_dir = _fixture_write(
+        tmp_path,
+        name="deploy",
+        read_path=DEPLOY_READ,
+        intake_path=DEPLOY_INTAKE,
+        rendered_path=DEPLOY_RENDERED,
+        triage_path=DEPLOY_TRIAGE,
+    )
+    attachment = _json(deploy_dir / "decision_work" / "attachment_status.json")
+
+    assert review["deploy_runtime_block_preserved"] is True
+    assert review["launch_fixture_coherence"] is True
+    assert review["privacy_limits_preserved"] is True
+    assert deploy["fixture_write_status"] == FIXTURE_WRITE_COMPLETED_BLOCKED_STATUS
+    assert attachment["runtime_use_status"]["status"] == "blocked"
+    assert attachment["user_surface_status"]["status"] == "blocked"
+    assert "not_product_proof" in non_claims
+    assert "not_human_validation" in non_claims
+    assert "not_answer_quality_score" in non_claims
+    assert "not_advice_correctness_proof" in non_claims
+    assert "not_real_archive_write" in non_claims
+    assert "not_historical_archive_mutation" in non_claims
+    assert "not_archive_hook_edit" in non_claims
+    assert "not_runtime_wiring" in non_claims
+    assert "not_agent_action_authorization" in non_claims
+    assert "not_automatic_action_authorization" in non_claims
+
+
+def test_review_doc_records_findings_boundaries_and_next_pr() -> None:
+    text = DOC_PATH.read_text(encoding="utf-8")
+
+    assert "# Decision Work Controlled Archive Sidecar Write Fixture Review v0" in text
+    assert "review-only pass" in text
+    assert FIXTURE_WRITE_COMPLETED_STATUS in text
+    assert FIXTURE_WRITE_COMPLETED_BLOCKED_STATUS in text
+    assert "synthetic archive-shaped fixture" in text
+    assert "does not check in those generated fixture files" in text
+    assert "proceed_to_controlled_archive_sidecar_write_fixture_package_gate" in text
+    assert "PR216 Controlled Archive Sidecar Write Fixture Package Gate v0" in text
+    assert "Do not implement real archive writes" in text
+
+
+def test_discoverability_docs_reference_pr215() -> None:
+    expected = "Decision Work Controlled Archive Sidecar Write Fixture Review"
+    for path in (
+        DOC_PATH,
+        ADAPTER_DOC,
+        PRD_PATH,
+        README_PATH,
+        HOW_IT_WORKS_PATH,
+        PROGRESS_PATH,
+        BOARD_README_PATH,
+    ):
+        assert expected in path.read_text(encoding="utf-8"), str(path)
+
+
+def test_pr215_docs_pass_product_delta_lint() -> None:
+    result = lint_product_delta_paths(
+        [
+            DOC_PATH,
+            REVIEW_PATH,
+            ADAPTER_DOC,
+            PRD_PATH,
+            README_PATH,
+            HOW_IT_WORKS_PATH,
+            PROGRESS_PATH,
+            BOARD_README_PATH,
+        ]
+    )
+
+    assert result["summary"]["blocking_error_count"] == 0
+    assert result["summary"]["warning_count"] == 0
+
+
+def test_pr215_artifacts_contain_no_forbidden_markers() -> None:
+    for path in (
+        DOC_PATH,
+        REVIEW_PATH,
+        ADAPTER_DOC,
+        PRD_PATH,
+        README_PATH,
+        HOW_IT_WORKS_PATH,
+        PROGRESS_PATH,
+        BOARD_README_PATH,
+    ):
+        text = path.read_text(encoding="utf-8")
+        for forbidden in FORBIDDEN_STRINGS:
+            assert forbidden not in text, (path, forbidden)

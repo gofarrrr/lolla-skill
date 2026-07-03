@@ -806,6 +806,14 @@ Follow-up implementation planning:
   existing historical archive paths, repo/runtime paths, resolver approval,
   proof, scoring, and action authorization.
 
+- [Decision Work Controlled Archive Sidecar Write Fixture Review](../conversation-understanding/decision-work-controlled-archive-sidecar-write-fixture-review-v0.md)
+
+  PR215's docs/review/tests-only review of launch/deploy synthetic
+  archive-shaped fixture writes. It confirms deploy blocking, unsafe
+  path/source rejection, and no real archive mutation, archive-hook edit,
+  runtime wiring, resolver approval, proof, scoring, or action authorization
+  before a package gate.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

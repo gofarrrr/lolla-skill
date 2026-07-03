@@ -158,3 +158,12 @@ PR215 Controlled Archive Sidecar Write Fixture Review v0
 
 Do not implement real archive writes from this adapter. PR215 should review the
 synthetic fixture outputs and path-safety behavior before any package gate.
+
+## Implemented Follow-Up
+
+PR215 implements that review as
+[Decision Work Controlled Archive Sidecar Write Fixture Review](decision-work-controlled-archive-sidecar-write-fixture-review-v0.md).
+The review confirms the launch/deploy synthetic archive-shaped fixture outputs,
+the deploy blocked-state boundary, unsafe target rejections, and the
+no-real-archive, no-runtime, no-resolver-approval, no-proof, no-scoring, and
+no-action-authority constraints.

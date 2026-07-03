@@ -413,6 +413,16 @@ fixture_write_completed_blocked_state, and deploy preserves runtime/user-surface
 blocking. Real archives, existing historical archive paths, archive-hook edits,
 runtime wiring, resolver approval, proof, scoring, and action authorization
 remain forbidden.
+
+The Decision Work Controlled Archive Sidecar Write Fixture Review is
+docs/conversation-understanding/decision-work-controlled-archive-sidecar-write-fixture-review-v0.md
+with review artifact
+reviews/codex-assisted/decision-work-controlled-archive-sidecar-write-fixture-review-v0/review.json.
+It confirms launch/deploy synthetic archive-shaped fixture writes, deploy
+runtime/user-surface blocking, unsafe path and mismatch rejection, and the
+continued prohibition on real archive mutation, archive-hook edits, runtime
+wiring, resolver approval, proof, scoring, and action authorization. It selects
+proceed_to_controlled_archive_sidecar_write_fixture_package_gate for PR216.
 ```
 
 ```text

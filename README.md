@@ -859,6 +859,13 @@ explicit safe temp/operator archive-like roots, with launch
 while still refusing real archives, existing historical archive paths, repo
 paths, runtime paths, resolver approval, proof claims, scoring, and action
 authorization.
+The
+[Decision Work Controlled Archive Sidecar Write Fixture Review](docs/conversation-understanding/decision-work-controlled-archive-sidecar-write-fixture-review-v0.md)
+adds PR215's docs/review/tests-only check over those launch/deploy synthetic
+archive-shaped fixture writes. It confirms deploy remains runtime/user-surface
+blocked, unsafe path and source mismatch cases are rejected, and real archive
+mutation, archive-hook edits, runtime wiring, resolver approval, proof claims,
+scoring, and action authorization remain closed before a package gate.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See
