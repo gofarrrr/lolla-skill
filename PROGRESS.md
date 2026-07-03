@@ -310,6 +310,14 @@ sidecar update packets. The review confirms proposed packets remain offline
 artifacts, not actual sidecar writes, archive mutation, resolver approval,
 runtime wiring, user-surface readiness, quality labels, proof claims, or action
 authorization. It selects a pre-write package gate next.
+
+The Decision Work Sidecar Update Packet Pre-Write Package Gate is
+docs/conversation-understanding/decision-work-sidecar-update-packet-prewrite-package-gate-v0.md.
+It adds PR204's package gate and manifest for PR201-PR203. The package claim is
+narrow: an offline, deterministic, inspectable pre-write packet layer that can
+prepare proposed sidecar update packets from resolver-supply candidates while
+preserving write/archive/runtime/resolver/proof/scoring/action prohibitions. It
+selects a runtime sidecar write plan next, not implementation.
 ```
 
 ```text

@@ -778,6 +778,12 @@ packets. It confirms proposed packets remain offline artifacts rather than
 real sidecar writes, archive mutation, resolver approval, runtime wiring,
 user-surface readiness, quality labels, proof claims, or action authorization,
 and gates to a pre-write package.
+The
+[Decision Work Sidecar Update Packet Pre-Write Package Gate](docs/conversation-understanding/decision-work-sidecar-update-packet-prewrite-package-gate-v0.md)
+adds PR204's package gate and manifest for PR201-PR203. It packages the
+offline proposed sidecar update packet layer while still excluding actual
+sidecar writes, archive mutation, runtime wiring, resolver approval, default-on
+behavior, proof claims, scoring, and action authorization.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See

@@ -645,11 +645,20 @@ remain offline artifacts and selects a pre-write package gate next.
 
 ### PR204 Decision Work Sidecar Update Packet Pre-Write Package Gate v0
 
-If PR203 gates cleanly, package PR201 through PR203 as a narrow pre-write
-capability. The package should keep sidecar update packets offline,
-deterministic, inspectable, and separate from actual sidecar writes, archive
-mutation, resolver approval, runtime wiring, default-on behavior, proof claims,
-scoring, and action authorization.
+Implemented as
+[Decision Work Sidecar Update Packet Pre-Write Package Gate](decision-work-sidecar-update-packet-prewrite-package-gate-v0.md).
+
+Package PR201 through PR203 as a narrow pre-write capability. The package keeps
+sidecar update packets offline, deterministic, inspectable, and separate from
+actual sidecar writes, archive mutation, resolver approval, runtime wiring,
+default-on behavior, proof claims, scoring, and action authorization.
+
+### PR205 Runtime Sidecar Write Plan v0
+
+If PR204 gates cleanly, plan the first actual sidecar-write implementation.
+This must remain docs/review/tests only: no sidecar write code, no archive
+mutation, no runtime wiring, no resolver approval, no default-on behavior, no
+model calls, no scoring, no proof claims, and no action authorization.
 
 Do not make runtime attachment default-on from this gate.
 

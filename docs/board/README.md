@@ -724,6 +724,13 @@ Follow-up implementation planning:
   user-surface readiness, quality labels, proof claims, or action
   authorization.
 
+- [Decision Work Sidecar Update Packet Pre-Write Package Gate](../conversation-understanding/decision-work-sidecar-update-packet-prewrite-package-gate-v0.md)
+
+  PR204's package gate and manifest for PR201-PR203. It packages the offline
+  proposed sidecar update packet layer while still excluding actual sidecar
+  writes, archive mutation, runtime wiring, resolver approval, default-on
+  behavior, proof claims, scoring, and action authorization.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

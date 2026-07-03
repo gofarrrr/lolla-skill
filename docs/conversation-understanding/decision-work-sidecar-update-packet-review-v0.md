@@ -109,3 +109,12 @@ action authorization closed.
 Do not implement actual sidecar writes, archive mutation, resolver approval,
 runtime wiring, model calls, scoring, proof claims, or action authorization
 from this review.
+
+## Implemented Follow-Up
+
+PR204 implements the package gate as
+[Decision Work Sidecar Update Packet Pre-Write Package Gate](decision-work-sidecar-update-packet-prewrite-package-gate-v0.md).
+The package manifest covers PR201 through PR203 as an offline pre-write layer
+for proposed sidecar update packets, while still excluding actual sidecar
+writes, archive mutation, runtime wiring, resolver approval, default-on
+behavior, proof claims, scoring, and action authorization.
