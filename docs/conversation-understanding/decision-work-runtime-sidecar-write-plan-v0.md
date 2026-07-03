@@ -151,3 +151,14 @@ resolver approval, runtime wiring, default-on behavior, model calls, scoring,
 proof claims, and action authorization.
 
 Do not implement PR206 from this plan.
+
+## Implemented Follow-Up
+
+PR206 implements that dry-run adapter as
+[Decision Work Sidecar Write Dry-Run Adapter](decision-work-sidecar-write-dry-run-adapter-v0.md).
+It consumes PR202 sidecar update packets and emits
+`lolla.decision_work_sidecar_write_dry_run.v0` results, with optional preview
+files only under an explicit safe output directory. It still does not write
+`decision_work/`, mutate archives, approve resolver refs, wire runtime, score
+answer quality, claim product proof or human validation, validate advice
+correctness, or authorize action.

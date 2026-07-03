@@ -737,6 +737,22 @@ Follow-up implementation planning:
   implementation. It keeps implementation out of scope and selects a future
   default-off dry-run adapter, not a live write.
 
+- [Decision Work Sidecar Write Dry-Run Adapter](../conversation-understanding/decision-work-sidecar-write-dry-run-adapter-v0.md)
+
+  PR206's deterministic dry-run adapter and CLI for sidecar update packets. It
+  can produce dry-run result JSON and optional preview files under an explicit
+  safe output directory while still not writing `decision_work/`, mutating
+  archives, approving resolver refs, wiring runtime, scoring, proving, or
+  authorizing action.
+
+- [Decision Work Sidecar Write Dry-Run Review](../conversation-understanding/decision-work-sidecar-write-dry-run-review-v0.md)
+
+  PR207's docs/review/tests-only review of launch/deploy dry-run outputs. It
+  confirms preview files stay temp/output-only, deploy preserves runtime
+  blocking, and actual sidecar writes, archive mutation, resolver approval,
+  runtime wiring, quality labels, proof claims, and action authorization remain
+  closed.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

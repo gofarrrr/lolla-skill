@@ -789,6 +789,20 @@ The
 adds PR205's docs/review/tests-only plan for the first actual sidecar-write
 implementation. It keeps implementation out of scope and selects a future
 default-off dry-run adapter, not a live write.
+The
+[Decision Work Sidecar Write Dry-Run Adapter](docs/conversation-understanding/decision-work-sidecar-write-dry-run-adapter-v0.md)
+adds PR206's deterministic dry-run adapter and CLI. It consumes PR202 sidecar
+update packets, emits `lolla.decision_work_sidecar_write_dry_run.v0`, and can
+write preview files only under an explicit safe output directory while still
+not writing `decision_work/`, mutating archives, approving resolver refs,
+wiring runtime, scoring, proving, or authorizing action.
+The
+[Decision Work Sidecar Write Dry-Run Review](docs/conversation-understanding/decision-work-sidecar-write-dry-run-review-v0.md)
+adds PR207's docs/review/tests-only review of launch/deploy dry-run outputs.
+It confirms preview files remain temp/output-only, deploy preserves runtime
+blocking, and actual sidecar writes, archive mutation, resolver approval,
+runtime wiring, quality labels, proof claims, and action authorization remain
+closed.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See

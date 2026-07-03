@@ -666,13 +666,51 @@ future default-off dry-run adapter next.
 
 ### PR206 Default-Off Sidecar Write Dry-Run Adapter v0
 
-If PR205 gates cleanly, implement a dry-run adapter that writes no archive
-files and proves exactly what would be written. It must not perform actual
-sidecar writes, mutate archives, wire runtime, approve resolver refs, make
-runtime default-on, call models, score answer quality, claim proof, or
-authorize action.
+Implemented as
+[Decision Work Sidecar Write Dry-Run Adapter](decision-work-sidecar-write-dry-run-adapter-v0.md).
+
+Build a deterministic dry-run adapter that consumes PR202 sidecar update
+packets and emits `lolla.decision_work_sidecar_write_dry_run.v0` results.
+Launch-beta produces `dry_run_ready`; deploy-intake produces
+`dry_run_packet_with_runtime_block`. Optional preview files are written only
+under an explicit safe output directory. The adapter still does not perform
+actual sidecar writes, write `decision_work/`, mutate archives, wire runtime,
+approve resolver refs, make runtime default-on, call models, score answer
+quality, claim proof, or authorize action.
+
+Selected gate:
+
+```text
+proceed_to_sidecar_write_dry_run_review
+```
 
 Do not make runtime attachment default-on from this gate.
+
+### PR207 Sidecar Write Dry-Run Review v0
+
+Implemented as
+[Decision Work Sidecar Write Dry-Run Review](decision-work-sidecar-write-dry-run-review-v0.md).
+
+Review the launch-beta and deploy-intake dry-run outputs before any actual
+sidecar-write implementation. The review confirms launch produces
+`dry_run_ready`, deploy-intake preserves `dry_run_packet_with_runtime_block`,
+preview files stay inside explicit safe output directories, and
+`actual_sidecar_write_performed`, `archive_mutated`, `runtime_wiring_changed`,
+and `resolver_refs_approved` remain false.
+
+Selected gate:
+
+```text
+proceed_to_sidecar_write_dry_run_package_gate
+```
+
+Recommended next PR:
+
+```text
+PR208 Sidecar Write Dry-Run Package Gate v0
+```
+
+Do not implement PR208 from this review.
 
 ## Readiness Gates
 
