@@ -655,6 +655,14 @@ a ready PR186 supply packet and preserves source refs, uncertainty, privacy
 limits, custody flags, and non-claims, while still not enriching, generating
 triage, marking resolver refs usable, updating sidecars, proving correctness,
 scoring, or authorizing action.
+The
+[Decision Work Generated Read Brief vs Existing Brief Review](docs/conversation-understanding/decision-work-generated-read-brief-vs-existing-brief-review-v0.md)
+adds PR188's docs/review/tests-only comparison between the generated-read
+launch-beta brief and the existing rendered and enriched launch-beta briefs. It
+finds the generated-read brief preserves the core decision/action consequence
+and boundaries, but is thinner than the enriched brief; it gates to a second
+generated-read rendering pilot without enrichment, triage, resolver ref use,
+sidecar update, model calls, proof claims, scoring, or action authorization.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See

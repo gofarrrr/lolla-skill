@@ -93,3 +93,15 @@ generated-read supply packet while preserving uncertainty, source refs, privacy
 limits, and non-claims. The next safe step is to compare this generated-read
 brief with the existing checked-in launch-beta Decision Work Brief before any
 enrichment, triage, resolver ref use, sidecar update, or broader automation.
+
+## Follow-Up Review
+
+PR188 is implemented as
+[Decision Work Generated Read Brief vs Existing Brief Review](decision-work-generated-read-brief-vs-existing-brief-review-v0.md).
+
+That review compares the generated-read launch-beta brief against the existing
+rendered and enriched launch-beta brief surfaces. It finds the generated-read
+brief preserves the core decision/action consequence and non-claim boundary, but
+is thinner than the enriched brief. The review gates to a second generated-read
+brief rendering pilot rather than enrichment, triage, resolver ref use, sidecar
+update, model calls, proof claims, scoring, or action authorization.

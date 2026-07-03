@@ -33,8 +33,10 @@ REQUIRED_NEXT_PRS = {
     "PR185 Generated Read To Brief Supply Plan v0",
     "PR186 Decision Work Generated Read Brief Supply Adapter v0",
     "PR187 Decision Work Generated Read Brief Rendering Pilot v0",
-    "PR188 First New Completed Run Supply Pilot v0",
-    "PR189 Automatic Semantic Supply Closure Gate v0",
+    "PR188 Decision Work Generated Read Brief vs Existing Brief Review v0",
+    "PR189 Second Generated Read Brief Rendering Pilot v0",
+    "PR190 Two-Case Generated Read Brief Pattern Review v0",
+    "PR191 Decision Work Generated Read Triage Supply Plan v0",
 }
 REQUIRED_REUSED_ARTIFACTS = {
     "Decision Work Conversation Interpretation Offline Packet",
@@ -107,7 +109,7 @@ def test_prd_contains_ordered_next_pr_sequence() -> None:
     for pr in REQUIRED_NEXT_PRS:
         assert pr in text
     assert text.index("PR178 Decision Work Automatic Semantic Supply PRD v0") < text.index(
-        "PR189 Automatic Semantic Supply Closure Gate v0"
+        "PR191 Decision Work Generated Read Triage Supply Plan v0"
     )
 
 

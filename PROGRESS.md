@@ -150,6 +150,16 @@ custody flags, and non-claims, while still stopping before enrichment, triage,
 resolver ref use, runtime sidecar update, model calls, proof claims, scoring,
 or action authorization. It selects a generated-read brief versus existing
 brief review next.
+
+The Decision Work Generated Read Brief vs Existing Brief Review is
+docs/conversation-understanding/decision-work-generated-read-brief-vs-existing-brief-review-v0.md.
+It adds PR188's docs/review/tests-only comparison between the generated-read
+launch-beta brief and the existing rendered and enriched launch-beta briefs.
+The review finds the generated-read brief preserves the core decision/action
+consequence and boundaries, but is thinner than the enriched brief. It selects a
+second generated-read brief rendering pilot next, while still stopping before
+enrichment, triage, resolver ref use, runtime sidecar update, model calls,
+proof claims, scoring, or action authorization.
 ```
 
 ```text

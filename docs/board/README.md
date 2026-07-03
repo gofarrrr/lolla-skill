@@ -595,6 +595,16 @@ Follow-up implementation planning:
   non-claims. It still does not enrich, generate triage, mark resolver refs
   usable, update sidecars, call models, score, prove, or authorize action.
 
+- [Decision Work Generated Read Brief vs Existing Brief Review](../conversation-understanding/decision-work-generated-read-brief-vs-existing-brief-review-v0.md)
+
+  PR188's docs/review/tests-only comparison between the generated-read
+  launch-beta brief and the existing rendered and enriched launch-beta briefs.
+  It finds the generated-read brief preserves the core decision and action
+  consequence while staying thinner than the enriched brief, and gates to a
+  second generated-read rendering pilot without enrichment, triage, resolver ref
+  use, runtime sidecar update, model calls, proof claims, scoring, or action
+  authorization.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,
