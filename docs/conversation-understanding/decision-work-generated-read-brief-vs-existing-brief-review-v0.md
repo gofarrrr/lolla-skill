@@ -110,3 +110,12 @@ action consequence, keeps uncertainty and non-claims visible, and does not
 claim proof or authority. The next safe test is a second checked-in-safe case in
 a different decision family before any triage supply, resolver use, sidecar
 update, or broad automation.
+
+## Follow-Up Pilot
+
+PR189 is implemented as
+[Decision Work Generated Read Second Brief Rendering Pilot](decision-work-generated-read-second-brief-rendering-pilot-v0.md).
+
+That pilot renders `deploy-assisted-intake-routing` through the same PR182
+intake, PR186 supply, and PR187 renderer path. It keeps compliance/workflow
+caveats visible and selects a two-case generated-read brief pattern review next.

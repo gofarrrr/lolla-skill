@@ -605,6 +605,15 @@ Follow-up implementation planning:
   use, runtime sidecar update, model calls, proof claims, scoring, or action
   authorization.
 
+- [Decision Work Generated Read Second Brief Rendering Pilot](../conversation-understanding/decision-work-generated-read-second-brief-rendering-pilot-v0.md)
+
+  PR189's deploy-intake second-case rendering pilot. It validates a
+  checked-in-safe generated read, builds PR186 supply, and renders a second
+  generated-read brief with compliance/workflow caveats, source refs,
+  uncertainty, privacy limits, custody flags, and non-claims intact. It still
+  does not enrich, generate triage, mark resolver refs usable, update sidecars,
+  call models, score, prove, or authorize action.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

@@ -663,6 +663,15 @@ finds the generated-read brief preserves the core decision/action consequence
 and boundaries, but is thinner than the enriched brief; it gates to a second
 generated-read rendering pilot without enrichment, triage, resolver ref use,
 sidecar update, model calls, proof claims, scoring, or action authorization.
+The
+[Decision Work Generated Read Second Brief Rendering Pilot](docs/conversation-understanding/decision-work-generated-read-second-brief-rendering-pilot-v0.md)
+adds PR189's deploy-intake second-case generated-read rendering pilot. It uses a
+checked-in-safe generated read, PR182 intake, PR186 supply, and the existing
+PR187 renderer to produce a second reader-facing Markdown brief while keeping
+compliance/workflow caveats, source refs, uncertainty, privacy limits, custody
+flags, and non-claims visible. It still does not enrich, generate triage, mark
+resolver refs usable, update sidecars, call models, prove correctness, score, or
+authorize action.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See

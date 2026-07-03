@@ -473,12 +473,14 @@ This PR still must not generate a read, render a second case, enrich, generate
 triage, mark resolver refs usable, update sidecars, call providers, or claim
 semantic correctness.
 
-### PR189 Second Generated Read Brief Rendering Pilot v0
+### PR189 Decision Work Generated Read Second Brief Rendering Pilot v0
 
-If PR188 gates cleanly, run the generated-read-to-brief path on one second
-checked-in-safe case. The preferred case is `deploy-assisted-intake-routing`
-because it tests compliance/workflow caveats and a different decision family
-than launch timing.
+PR189 is implemented as
+[Decision Work Generated Read Second Brief Rendering Pilot](decision-work-generated-read-second-brief-rendering-pilot-v0.md).
+
+Run the generated-read-to-brief path on one second checked-in-safe case:
+`deploy-assisted-intake-routing`. This tests compliance/workflow caveats and a
+different decision family than launch timing.
 
 PR189 should remain offline, Codex/operator-assisted, and deterministic after
 the checked-in read exists. It must not use raw/private content, create a new

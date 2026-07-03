@@ -160,6 +160,16 @@ consequence and boundaries, but is thinner than the enriched brief. It selects a
 second generated-read brief rendering pilot next, while still stopping before
 enrichment, triage, resolver ref use, runtime sidecar update, model calls,
 proof claims, scoring, or action authorization.
+
+The Decision Work Generated Read Second Brief Rendering Pilot is
+docs/conversation-understanding/decision-work-generated-read-second-brief-rendering-pilot-v0.md.
+It adds PR189's deploy-intake second-case generated-read rendering pilot using a
+checked-in-safe generated read, PR182 intake, PR186 supply, and the existing
+PR187 renderer. The rendered brief keeps compliance/workflow caveats, source
+refs, uncertainty, privacy limits, custody flags, and non-claims visible while
+still stopping before enrichment, triage, resolver ref use, runtime sidecar
+update, model calls, proof claims, scoring, or action authorization. It selects
+a two-case generated-read brief pattern review next.
 ```
 
 ```text

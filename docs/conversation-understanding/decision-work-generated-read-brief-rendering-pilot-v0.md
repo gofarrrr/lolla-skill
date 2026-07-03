@@ -105,3 +105,10 @@ brief preserves the core decision/action consequence and non-claim boundary, but
 is thinner than the enriched brief. The review gates to a second generated-read
 brief rendering pilot rather than enrichment, triage, resolver ref use, sidecar
 update, model calls, proof claims, scoring, or action authorization.
+
+PR189 is implemented as
+[Decision Work Generated Read Second Brief Rendering Pilot](decision-work-generated-read-second-brief-rendering-pilot-v0.md).
+It runs the same generated-read-to-brief path on `deploy-assisted-intake-routing`
+and keeps compliance/workflow caveats visible while still stopping before
+enrichment, triage, resolver ref use, sidecar update, model calls, proof claims,
+scoring, or action authorization.

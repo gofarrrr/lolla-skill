@@ -34,7 +34,7 @@ REQUIRED_NEXT_PRS = {
     "PR186 Decision Work Generated Read Brief Supply Adapter v0",
     "PR187 Decision Work Generated Read Brief Rendering Pilot v0",
     "PR188 Decision Work Generated Read Brief vs Existing Brief Review v0",
-    "PR189 Second Generated Read Brief Rendering Pilot v0",
+    "PR189 Decision Work Generated Read Second Brief Rendering Pilot v0",
     "PR190 Two-Case Generated Read Brief Pattern Review v0",
     "PR191 Decision Work Generated Read Triage Supply Plan v0",
 }

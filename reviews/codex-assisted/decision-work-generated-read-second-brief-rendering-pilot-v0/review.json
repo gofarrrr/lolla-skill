@@ -1,0 +1,85 @@
+{
+  "schema_version": "lolla.decision_work_generated_read_second_brief_rendering_pilot.v0",
+  "review_metadata": {
+    "review_id": "decision_work_generated_read_second_brief_rendering_pilot:v0",
+    "created_at": "2026-07-03T00:00:00Z",
+    "reviewed_stage": "PR189 Second Generated Read Brief Rendering Pilot v0",
+    "mode": "deterministic_second_case_rendering_pilot"
+  },
+  "source_case": {
+    "case_id": "deploy-assisted-intake-routing",
+    "decision_family": "healthcare_operations_or_deployment"
+  },
+  "source_read_ref": "reviews/codex-assisted/decision-work-generated-read-second-brief-rendering-pilot-v0/read.json",
+  "source_intake_ref": "reviews/codex-assisted/decision-work-generated-read-second-brief-rendering-pilot-v0/intake.json",
+  "source_supply_status": "ready_for_offline_brief_rendering",
+  "source_supply_ref": "temporary_validation_output:decision_work_generated_read_second_brief_supply.json",
+  "rendered_brief_ref": "docs/conversation-understanding/decision-work-generated-read-rendered-deploy-assisted-intake-routing-v0.md",
+  "rendering_status": "rendered_from_generated_read_supply",
+  "allowed_fields_used": [
+    "decision_question",
+    "revised_direction_or_action_consequence",
+    "evidence_gates",
+    "what_the_final_answer_does_not_prove"
+  ],
+  "evidence_only_fields_excluded": [
+    "abandoned_or_rejected_options",
+    "assistant_influence_on_user_framing",
+    "live_options",
+    "lost_value",
+    "noisy_friction",
+    "safe_for_agent_inspection_only"
+  ],
+  "uncertainty_preserved": true,
+  "privacy_limits_preserved": true,
+  "source_refs_preserved": true,
+  "non_claims_preserved": true,
+  "domain_compliance_caveats_preserved": true,
+  "custody_flags": {
+    "model_calls": 0,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "archive_mutated": false,
+    "runtime_behavior_changed": false,
+    "brief_enriched": false,
+    "triage_generated": false,
+    "resolver_refs_marked_usable": false,
+    "runtime_sidecar_updated": false,
+    "product_proof": false,
+    "human_validated": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false
+  },
+  "readability_finding": "The generated-read-rendered deploy-intake brief is readable and keeps the operating-test boundary visible.",
+  "source_depth_risk": "The brief is still based on checked-in-safe generated-read supply, not full private clinic or conversation context.",
+  "privacy_risk": "Low for checked-in-safe artifacts because the renderer preserves refs and summaries only, but future generated reads must continue to pass PR182 and PR186 validation.",
+  "overclaim_risk": "Moderate. Because the case touches outpatient-clinic workflow, the generated-read brief could be overread as operational, legal, compliance, or clinical clearance unless the caveats stay visible.",
+  "downstream_boundary": {
+    "can_compare_two_case_pattern": true,
+    "can_enrich_brief": false,
+    "can_generate_triage": false,
+    "can_mark_resolver_refs_usable": false,
+    "can_update_runtime_sidecar": false,
+    "can_call_models": false,
+    "can_authorize_agent_action": false,
+    "can_authorize_automatic_action": false
+  },
+  "decision_gate": "proceed_to_two_case_generated_read_brief_pattern_review",
+  "recommended_next_pr": "PR190 Two-Case Generated Read Brief Pattern Review v0",
+  "non_claims": [
+    "review_does_not_generate_runtime_interpretation",
+    "review_does_not_enrich_briefs",
+    "review_does_not_generate_triage",
+    "review_does_not_mark_resolver_refs_usable",
+    "review_does_not_update_runtime_sidecars",
+    "review_does_not_call_models",
+    "review_is_not_product_proof",
+    "review_is_not_human_validation",
+    "review_does_not_score_answer_quality",
+    "review_does_not_validate_advice_correctness",
+    "review_does_not_authorize_agent_action",
+    "review_does_not_authorize_automatic_action",
+    "review_is_not_operational_legal_compliance_or_clinical_clearance"
+  ]
+}

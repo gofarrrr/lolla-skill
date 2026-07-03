@@ -1,0 +1,254 @@
+{
+  "schema_version": "lolla.decision_work_conversation_interpretation_read.v0",
+  "read_metadata": {
+    "read_id": "decision_work_generated_read_second_brief_rendering_pilot:deploy-assisted-intake-routing:20260703",
+    "created_at": "2026-07-03T00:00:00Z",
+    "read_mode": "operator_codex_generated_provisional_checked_in_safe_second_pilot_read",
+    "case_count": 1,
+    "source_packet_fixture_checked_in": false,
+    "notes": [
+      "PR189 creates exactly one operator/Codex-assisted generated-read candidate for the deploy-assisted-intake-routing case.",
+      "The read is intentionally tiny and uses checked-in-safe refs only.",
+      "The read exists to exercise PR182 intake, PR186 supply, and PR187 rendering on a second decision family; it is not semantic truth, product proof, human validation, answer-quality scoring, or action authorization."
+    ]
+  },
+  "custody_flags": {
+    "human_validated": false,
+    "product_proof": false,
+    "model_calls": 0,
+    "archive_mutated": false,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false,
+    "raw_private_content_checked_in": false,
+    "provider_text_checked_in": false,
+    "local_absolute_paths_checked_in": false,
+    "broad_judge_used": false,
+    "automatic_labels_created": false,
+    "runtime_extraction_implemented": false,
+    "semantic_read_is_provisional": true
+  },
+  "source_packet": {
+    "packet_schema_version": "lolla.decision_work_conversation_interpretation_packets.v0",
+    "packet_generated_locally": false,
+    "packet_checked_in": false,
+    "packet_ref": null,
+    "packet_generation_mode": "checked_in_safe",
+    "source_contract_ref": "docs/conversation-understanding/decision-work-conversation-interpretation-contract-v0.json",
+    "source_contract_schema_version": "lolla.decision_work_conversation_interpretation_contract.v0",
+    "packet_content_checked_in": false,
+    "raw_private_content_in_packet": false,
+    "provider_text_in_packet": false
+  },
+  "selected_case": {
+    "case_id": "deploy-assisted-intake-routing",
+    "run_id": "20260627T130339Z_4cd3cb",
+    "run_ref": "deploy-assisted-intake-routing/20260627T130339Z_4cd3cb",
+    "decision_family": "healthcare_operations_or_deployment",
+    "rendered_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md",
+    "prior_review_refs": [
+      "reviews/codex-assisted/decision-work-conversation-interpretation-second-tiny-offline-read-v0/read.json",
+      "docs/conversation-understanding/decision-work-brief-builder-enriched-deploy-assisted-intake-routing-v0.md",
+      "docs/conversation-understanding/decision-work-operator-codex-interpretation-prompt-packet-v0.json"
+    ]
+  },
+  "interpretation_scope": {
+    "scope_policy": "Tiny generated-read pilot over one checked-in-safe deploy-intake case and four PR133 fields.",
+    "fields_selected": [
+      "decision_question",
+      "revised_direction_or_action_consequence",
+      "evidence_gates",
+      "what_the_final_answer_does_not_prove"
+    ],
+    "fields_not_selected_policy": "All other PR133-compatible fields remain unresolved for this second pilot.",
+    "full_contract_interpreted": false,
+    "broad_batch_created": false
+  },
+  "interpreted_fields": [
+    {
+      "field_group": "decision_shape",
+      "field_name": "decision_question",
+      "status": "interpreted_provisional",
+      "value": "The checked-in-safe artifacts frame the decision as whether to deploy an AI-assisted intake routing feature in outpatient clinics next month, and whether deployment should be narrowed to a controlled operating test instead of treated as the backlog solution.",
+      "uncertainty": "medium",
+      "source_refs": [
+        {
+          "ref_id": "rendered_deploy_intake_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md",
+          "locator": "The decision",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "prior_deploy_intake_tiny_read",
+          "artifact": "reviews/codex-assisted/decision-work-conversation-interpretation-second-tiny-offline-read-v0/read.json",
+          "locator": "interpreted_fields[field_name=decision_question]",
+          "source_status": "checked_in_safe_summary_only"
+        }
+      ],
+      "source_status": "checked_in_safe_summary_only",
+      "interpretation_basis": "checked_in_brief_and_reviews",
+      "privacy_limit": "The field uses checked-in-safe summaries only and does not include raw conversation text, raw revised answer text, raw memo text, provider text, private ledgers, or local paths.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "decision_shape",
+      "field_name": "revised_direction_or_action_consequence",
+      "status": "partial_interpretation",
+      "value": "The visible action consequence is a one-clinic, staff-controlled scheduling and billing routing pilot with a 48-hour backlog diagnostic, four must-pass operating gates, hard pause triggers, compliance readiness, and narrowed sales language.",
+      "uncertainty": "medium",
+      "source_refs": [
+        {
+          "ref_id": "rendered_deploy_intake_brief_action",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md",
+          "locator": "What this means for action",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "enriched_deploy_intake_brief",
+          "artifact": "docs/conversation-understanding/decision-work-brief-builder-enriched-deploy-assisted-intake-routing-v0.md",
+          "locator": "What the interpretation adds",
+          "source_status": "checked_in_safe_summary_only"
+        }
+      ],
+      "source_status": "checked_in_safe_summary_only",
+      "interpretation_basis": "checked_in_brief_and_reviews",
+      "privacy_limit": "The field preserves checked-in-safe artifact refs and does not quote raw private material.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "options_and_paths",
+      "field_name": "evidence_gates",
+      "status": "partial_interpretation",
+      "value": "The visible evidence gates are whether routing uncertainty is actually causing the backlog, whether exhausted admins can operate the controls, whether compliance accepts the narrowed pilot, whether misroute triggers are active controls, whether one credible clinician-attention misroute pauses auto-routing, and whether the pilot proves scheduling and billing routing only.",
+      "uncertainty": "medium",
+      "source_refs": [
+        {
+          "ref_id": "rendered_deploy_intake_brief_gates",
+          "artifact": "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md",
+          "locator": "What changed / What this means for action",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "prior_deploy_intake_tiny_read_gates",
+          "artifact": "reviews/codex-assisted/decision-work-conversation-interpretation-second-tiny-offline-read-v0/read.json",
+          "locator": "interpreted_fields[field_name=evidence_gates]",
+          "source_status": "checked_in_safe_summary_only"
+        }
+      ],
+      "source_status": "checked_in_safe_summary_only",
+      "interpretation_basis": "checked_in_brief_and_reviews",
+      "privacy_limit": "The field records visible operating gates and compliance caveats, but does not verify clinic safety, legal compliance, or operational feasibility.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_group": "non_claims_and_boundaries",
+      "field_name": "what_the_final_answer_does_not_prove",
+      "status": "interpreted_provisional",
+      "value": "The safe artifacts do not prove the routing feature should deploy, that the four-gate pilot is better advice, that legal or clinical compliance is satisfied, that Lolla improved the decision, that answer quality was measured, that a human validated the read, or that an agent may act on the brief without separate review.",
+      "uncertainty": "low",
+      "source_refs": [
+        {
+          "ref_id": "generated_read_intake_doc",
+          "artifact": "docs/conversation-understanding/decision-work-generated-interpretation-read-intake-v0.md",
+          "locator": "Boundary / downstream allowed",
+          "source_status": "checked_in_safe_summary_only"
+        },
+        {
+          "ref_id": "operator_codex_prompt_packet",
+          "artifact": "docs/conversation-understanding/decision-work-operator-codex-interpretation-prompt-packet-v0.json",
+          "locator": "forbidden_claims / validation_checklist",
+          "source_status": "checked_in_safe_summary_only"
+        }
+      ],
+      "source_status": "checked_in_safe_summary_only",
+      "interpretation_basis": "checked_in_brief_and_reviews",
+      "privacy_limit": "This boundary field is drawn from checked-in-safe contracts and contains no private case content.",
+      "human_review_required": true,
+      "could_feed_brief": true,
+      "could_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    }
+  ],
+  "unresolved_fields": [
+    {
+      "field_name": "likely_starting_direction",
+      "reason": "The checked-in-safe context cannot prove how much of the single-clinic pilot direction or nine-gate control surface existed before the Lolla run."
+    },
+    {
+      "field_name": "lost_value",
+      "reason": "The pilot does not have enough checked-in-safe context to decide whether useful patient-trust, support, measurement, consent, or auditability controls were lost."
+    },
+    {
+      "field_name": "noisy_friction",
+      "reason": "The pilot does not judge whether compressing nine gates into four was useful friction or noisy simplification without human review or private context."
+    }
+  ],
+  "source_limitations": {
+    "checked_in_safe_context_is_compressed": "The pilot uses rendered and enriched Decision Work artifacts plus the prior deploy-intake tiny read, not full private conversation context.",
+    "raw_conversation_was_not_checked_in": true,
+    "raw_revised_answer_was_not_checked_in": true,
+    "raw_memo_was_not_checked_in": true,
+    "provider_text_was_not_checked_in": true,
+    "private_ledgers_were_not_checked_in": true,
+    "human_validation_is_absent": true,
+    "private_nuance_may_change_the_read": true
+  },
+  "brief_implications": {
+    "would_clarify_current_decision_work_brief": true,
+    "would_require_changing_current_brief_now": false,
+    "would_add_useful_conversation_story_layer": true,
+    "would_introduce_overclaim_risk": true
+  },
+  "overclaim_risk": {
+    "strongest_risk": "Because this case touches outpatient-clinic workflow, a readable generated-read brief could be mistaken for operational, legal, compliance, or clinical clearance. The artifact must keep the pilot narrow and the non-claims explicit.",
+    "runtime_integration_recommended": false,
+    "product_readiness_claimed": false,
+    "answer_quality_claimed": false,
+    "agent_action_authorized": false
+  },
+  "recommended_next_step": {
+    "outcome": "render_second_generated_read_brief",
+    "allowed_outcomes": [
+      "render_second_generated_read_brief",
+      "repair_generated_read_pilot",
+      "stop_for_privacy_boundary_review",
+      "stop_for_domain_risk_review"
+    ],
+    "rationale": "If PR182 accepts this read and PR186 produces ready supply, the next safe check is whether the existing PR187 renderer can produce a second checked-in-safe brief while preserving compliance/workflow caveats and non-claims.",
+    "not_recommended": [
+      "runtime_sidecar_update_from_this_read",
+      "automatic_triage_generation",
+      "agent_action_authorization",
+      "product_readiness_claim"
+    ]
+  },
+  "non_claims": [
+    "read_is_codex_assisted",
+    "read_is_provisional",
+    "not_human_validated",
+    "not_product_proof",
+    "not_answer_quality_score",
+    "not_agent_action_authorization",
+    "not_correctness_proof",
+    "not_runtime_integration",
+    "not_runtime_extraction",
+    "not_lolla_runtime_change",
+    "not_live_lolla_schema_change",
+    "must_not_be_used_as_quality_label",
+    "not_legal_or_clinical_clearance",
+    "checked_in_safe_context_is_not_full_conversation_context",
+    "clean_artifacts_do_not_imply_good_advice",
+    "future_human_review_required"
+  ]
+}
