@@ -798,6 +798,14 @@ Follow-up implementation planning:
   archive-hook edits, runtime wiring, resolver approval, proof, scoring, and
   action authorization forbidden while gating to a controlled fixture adapter.
 
+- [Decision Work Controlled Archive Sidecar Write Fixture Adapter](../conversation-understanding/decision-work-controlled-archive-sidecar-write-fixture-adapter-v0.md)
+
+  PR214's deterministic adapter and CLI for synthetic archive-shaped fixture
+  writes. It writes only under explicit safe temp/operator archive-like roots,
+  preserves deploy blocked state, and still refuses real archive paths,
+  existing historical archive paths, repo/runtime paths, resolver approval,
+  proof, scoring, and action authorization.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

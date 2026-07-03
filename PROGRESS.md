@@ -401,6 +401,18 @@ archive-shaped fixture directories. It selects
 proceed_to_controlled_archive_sidecar_write_fixture_adapter for PR214 while
 still forbidding real completed-run archive mutation, archive-hook edits,
 runtime wiring, resolver approval, proof, scoring, and action authorization.
+
+The Decision Work Controlled Archive Sidecar Write Fixture Adapter is
+docs/conversation-understanding/decision-work-controlled-archive-sidecar-write-fixture-adapter-v0.md
+with CLI
+scripts/evals/write_decision_work_controlled_archive_sidecar_fixture.py.
+It emits lolla.decision_work_controlled_archive_sidecar_write_fixture.v0 and
+writes only synthetic archive-shaped fixture outputs under explicit safe
+temp/operator roots. Launch produces fixture_write_completed, deploy produces
+fixture_write_completed_blocked_state, and deploy preserves runtime/user-surface
+blocking. Real archives, existing historical archive paths, archive-hook edits,
+runtime wiring, resolver approval, proof, scoring, and action authorization
+remain forbidden.
 ```
 
 ```text

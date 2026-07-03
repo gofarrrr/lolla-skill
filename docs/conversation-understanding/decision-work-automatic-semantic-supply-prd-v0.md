@@ -898,6 +898,43 @@ docs/review/tests only: no sidecar files are written, no archive hook is
 edited, no runtime is wired, no historical archive is mutated, and no resolver
 refs are approved.
 
+### PR214 Controlled Archive Sidecar Write Fixture Adapter v0
+
+Implemented as
+[Decision Work Controlled Archive Sidecar Write Fixture Adapter](decision-work-controlled-archive-sidecar-write-fixture-adapter-v0.md).
+
+Build the deterministic synthetic archive-shaped fixture adapter planned by
+PR213. The adapter consumes a PR202 sidecar update packet and matching PR206
+dry-run result, then writes the PR209 allowed file set under an explicit safe
+temp/operator fixture archive directory.
+
+Expected statuses:
+
+- launch-beta: `fixture_write_completed`;
+- deploy-intake: `fixture_write_completed_blocked_state`.
+
+Deploy-intake must preserve runtime and user-surface blocked state. The adapter
+must refuse real completed-run archives, existing historical archive paths,
+repo paths, runtime paths, missing or mismatched dry-run inputs, privacy risks,
+resolver approval, proof/scoring claims, and action authorization.
+
+Selected gate:
+
+```text
+proceed_to_controlled_archive_sidecar_write_fixture_review
+```
+
+Recommended next PR:
+
+```text
+PR215 Controlled Archive Sidecar Write Fixture Review v0
+```
+
+Do not implement real archive writes from this adapter. PR214 still writes only
+synthetic fixture outputs under safe temp/operator roots, does not edit the
+archive hook, does not wire runtime, does not mutate historical archives, and
+does not approve resolver refs.
+
 ## Readiness Gates
 
 Automatic semantic supply is not ready for normal use until:

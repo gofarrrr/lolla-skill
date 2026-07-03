@@ -210,6 +210,16 @@ PR214 Controlled Archive Sidecar Write Fixture Adapter v0
 Do not implement real archive writes from this plan. PR214 should remain a
 synthetic archive-shaped fixture adapter only.
 
+## Implemented Follow-Up
+
+PR214 implements the adapter as
+[Decision Work Controlled Archive Sidecar Write Fixture Adapter](decision-work-controlled-archive-sidecar-write-fixture-adapter-v0.md).
+The adapter writes only synthetic archive-shaped fixture outputs under explicit
+safe temp/operator roots, preserves deploy-intake runtime and user-surface
+blocking, and still refuses real archive paths, existing historical archive
+paths, repo paths, runtime paths, resolver approval, proof claims, scoring, and
+action authorization.
+
 ## Explicit Non-Claims
 
 PR213 does not claim:

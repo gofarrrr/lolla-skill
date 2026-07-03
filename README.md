@@ -850,6 +850,15 @@ Those fixtures may resemble completed-run archives for test/operator review,
 but real archives, existing historical archive paths, runtime wiring, archive
 hook edits, resolver approval, proof claims, scoring, and action authorization
 remain forbidden.
+The
+[Decision Work Controlled Archive Sidecar Write Fixture Adapter](docs/conversation-understanding/decision-work-controlled-archive-sidecar-write-fixture-adapter-v0.md)
+adds PR214's deterministic adapter and CLI for synthetic archive-shaped fixture
+writes. It can write launch/deploy sidecar-shaped fixture directories under
+explicit safe temp/operator archive-like roots, with launch
+`fixture_write_completed` and deploy `fixture_write_completed_blocked_state`,
+while still refusing real archives, existing historical archive paths, repo
+paths, runtime paths, resolver approval, proof claims, scoring, and action
+authorization.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See
