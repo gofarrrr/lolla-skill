@@ -600,6 +600,19 @@ The
 records the next product bridge after PR216 merged runtime-attached internal v1:
 turn the current prepared-case workflow into an offline, bounded, validated
 pipeline that can create safe Decision Work artifacts for new completed runs.
+The
+[offline interpretation queue contract](docs/conversation-understanding/decision-work-offline-interpretation-queue-contract-v0.md)
+defines the first queue item/result schema for that bridge without adding a
+queue runner, model calls, runtime hook changes, generated reads, or sidecar
+updates.
+The
+[offline interpretation queue builder](docs/conversation-understanding/decision-work-offline-interpretation-queue-builder-v0.md)
+adds the deterministic queue-item preparation layer: refs, status, missingness,
+requested fields, validation requirements, custody flags, and non-claims only.
+The
+[operator/Codex interpretation prompt packet](docs/conversation-understanding/decision-work-operator-codex-interpretation-prompt-packet-v0.md)
+defines the next bounded handoff to a future operator or Codex session, while
+stopping before generated-read intake or any repo-side provider call.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See

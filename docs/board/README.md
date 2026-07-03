@@ -528,6 +528,26 @@ Follow-up implementation planning:
   Work artifacts through an offline queue, validation, brief rendering, triage,
   and resolver-approved sidecar update.
 
+- [Decision Work Offline Interpretation Queue Contract](../conversation-understanding/decision-work-offline-interpretation-queue-contract-v0.md)
+
+  PR179's first contract slice for that bridge. It defines queue item/result
+  shapes, statuses, privacy modes, custody flags, validation requirements, and
+  non-claims without creating generated reads, queue workers, runtime behavior,
+  model calls, or sidecar updates.
+
+- [Decision Work Offline Interpretation Queue Builder](../conversation-understanding/decision-work-offline-interpretation-queue-builder-v0.md)
+
+  PR180's deterministic queue-item preparation layer. It turns completed run
+  refs and optional PR130 packet refs into checked-in-safe queue items without
+  filling interpretation fields, calling models, mutating archives, or updating
+  runtime sidecars.
+
+- [Decision Work Operator/Codex Interpretation Prompt Packet](../conversation-understanding/decision-work-operator-codex-interpretation-prompt-packet-v0.md)
+
+  PR181's bounded handoff packet for a future operator or Codex session. It
+  explains what may be filled in a PR133 interpretation read and what must
+  remain forbidden, while stopping before generated-read intake.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

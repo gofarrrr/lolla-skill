@@ -1,0 +1,226 @@
+{
+  "schema_version": "lolla.decision_work_operator_codex_interpretation_prompt_packet.v0",
+  "packet_metadata": {
+    "status": "PR181 operator/Codex interpretation prompt packet contract",
+    "date": "2026-07-03",
+    "packet_mode": "docs_schema_tests_only",
+    "source_prd_ref": "docs/conversation-understanding/decision-work-automatic-semantic-supply-prd-v0.md",
+    "queue_contract_ref": "docs/conversation-understanding/decision-work-offline-interpretation-queue-contract-v0.md",
+    "queue_builder_ref": "docs/conversation-understanding/decision-work-offline-interpretation-queue-builder-v0.md",
+    "target_read_schema_ref": "docs/conversation-understanding/decision-work-conversation-interpretation-read-schema-v0.md",
+    "not_implemented_here": [
+      "provider_call",
+      "model_call_from_repo_code",
+      "generated_interpretation_read",
+      "generated_read_intake",
+      "brief_generation",
+      "triage_generation",
+      "runtime_hook_update",
+      "sidecar_update"
+    ]
+  },
+  "purpose": {
+    "summary": "Define the bounded prompt/input packet that a future operator or Codex session can use to fill a PR133 interpretation read from an offline queue item.",
+    "does_not_interpret": true,
+    "does_not_call_models_from_repo_code": true,
+    "does_not_create_generated_read": true,
+    "does_not_change_runtime": true
+  },
+  "source_queue_item": {
+    "required_schema_version": "lolla.decision_work_offline_interpretation_queue_item.v0",
+    "source_queue_item_ref_required": true,
+    "allowed_queue_statuses": [
+      "queued"
+    ],
+    "blocked_statuses_must_not_prompt": [
+      "not_requested",
+      "running",
+      "completed",
+      "blocked_missing_packet",
+      "blocked_privacy_risk",
+      "blocked_schema_invalid",
+      "failed_validation",
+      "requires_local_private_operator",
+      "unsafe_to_export",
+      "cancelled"
+    ],
+    "status_policy_note": "Only queued items may produce a prompt packet. running and completed are intentionally blocked here because PR181 does not own queue workers, generated read intake, or completed-result handling."
+  },
+  "target_output_schema": {
+    "schema_version": "lolla.decision_work_conversation_interpretation_read.v0",
+    "schema_ref": "docs/conversation-understanding/decision-work-conversation-interpretation-read-schema-v0.md",
+    "required_output_ref_policy": "operator_or_codex_session_must_write_a_separate_candidate_read_for_later_intake",
+    "generated_read_created_by_this_pr": false
+  },
+  "allowed_source_refs_policy": {
+    "allowed_inputs": [
+      "source_queue_item_ref",
+      "allowed_source_refs_from_queue_item",
+      "checked_in_safe_packet_refs",
+      "checked_in_safe_example_refs"
+    ],
+    "must_preserve_source_refs": true,
+    "must_mark_missingness": true,
+    "must_include_uncertainty": true,
+    "must_not_copy_raw_private_content": true,
+    "must_not_use_unlisted_sources": true
+  },
+  "fields_to_fill": [
+    {
+      "field_name": "decision_question",
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "missingness_allowed": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_name": "likely_starting_direction",
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "missingness_allowed": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_name": "revised_direction_or_action_consequence",
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "missingness_allowed": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_name": "decision_thresholds",
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "missingness_allowed": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_name": "evidence_gates",
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "missingness_allowed": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_name": "useful_friction",
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "missingness_allowed": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_name": "what_the_final_answer_does_not_prove",
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "missingness_allowed": true,
+      "must_not_be_used_as_quality_label": true
+    }
+  ],
+  "operator_instructions": [
+    "Use only refs allowed by the source queue item.",
+    "Preserve source refs for every filled field.",
+    "State uncertainty and missingness when context is insufficient.",
+    "Keep high-risk domain, legal, governance, medical, financial, compliance, safety, relationship, and political cases caveated.",
+    "Do not convert triage, queue status, or brief availability into approval.",
+    "Do not infer beyond supplied sources without marking uncertainty."
+  ],
+  "privacy_rules": {
+    "raw_conversation_text_allowed": false,
+    "raw_revised_answer_text_allowed": false,
+    "raw_memo_text_allowed": false,
+    "provider_text_allowed": false,
+    "private_ledgers_allowed": false,
+    "local_absolute_paths_allowed": false,
+    "secrets_allowed": false,
+    "hidden_chain_of_thought_style_material_allowed": false,
+    "checked_in_safe_refs_only_by_default": true
+  },
+  "forbidden_claims": [
+    "product_proof",
+    "human_validation",
+    "answer_quality_score",
+    "advice_correctness",
+    "lolla_improved_decision_proof",
+    "agent_action_authorization",
+    "automatic_action_authorization",
+    "customer_readiness",
+    "default_on_runtime_behavior",
+    "direct_runtime_interpretation"
+  ],
+  "example_refs": [
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "interpretation_read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-tiny-offline-read-v0/read.json",
+      "rendered_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md",
+      "enriched_brief_ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-launch-public-enterprise-beta-v0.md",
+      "example_status": "checked_in_safe_reference_only"
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "interpretation_read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-second-tiny-offline-read-v0/read.json",
+      "rendered_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md",
+      "enriched_brief_ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-deploy-assisted-intake-routing-v0.md",
+      "example_status": "checked_in_safe_reference_only"
+    },
+    {
+      "case_id": "ceo-remove-founding-cofounder",
+      "interpretation_read_ref": "reviews/codex-assisted/decision-work-conversation-interpretation-third-tiny-offline-read-v0/read.json",
+      "rendered_brief_ref": "docs/conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md",
+      "enriched_brief_ref": "docs/conversation-understanding/decision-work-brief-builder-enriched-ceo-remove-founding-cofounder-v0.md",
+      "example_status": "checked_in_safe_reference_only_high_risk_caveats_required"
+    }
+  ],
+  "required_output": {
+    "schema_version": "lolla.decision_work_conversation_interpretation_read.v0",
+    "output_created_by_this_pr": false,
+    "must_be_validated_by_future_intake": true,
+    "must_preserve_source_refs": true,
+    "must_preserve_uncertainty": true,
+    "must_preserve_non_claims": true
+  },
+  "validation_checklist": [
+    "source_queue_item_schema_valid",
+    "source_queue_item_status_queued",
+    "allowed_source_refs_preserved",
+    "requested_fields_present",
+    "uncertainty_present",
+    "missingness_marked",
+    "privacy_rules_preserved",
+    "forbidden_claims_absent",
+    "no_answer_quality_scoring",
+    "no_action_authorization",
+    "no_product_proof_or_human_validation_claim"
+  ],
+  "custody_flags": {
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "archive_mutated": false,
+    "model_calls": 0,
+    "repo_provider_call_code_added": false,
+    "generated_interpretation_read_created": false,
+    "human_validated": false,
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false,
+    "raw_private_content_included": false,
+    "provider_text_included": false,
+    "private_ledgers_included": false,
+    "local_absolute_paths_included": false
+  },
+  "non_claims": [
+    "prompt_packet_is_not_interpretation",
+    "prompt_packet_does_not_call_models_from_repo_code",
+    "prompt_packet_does_not_create_generated_read",
+    "prompt_packet_is_not_product_proof",
+    "prompt_packet_is_not_human_validation",
+    "prompt_packet_does_not_score_answer_quality",
+    "prompt_packet_does_not_validate_advice_correctness",
+    "prompt_packet_does_not_prove_lolla_improved_the_decision",
+    "prompt_packet_does_not_authorize_agent_action",
+    "prompt_packet_does_not_authorize_automatic_action",
+    "future_intake_validation_required"
+  ],
+  "decision_gate": "proceed_to_generated_read_intake_validator",
+  "recommended_next_pr": "PR182 Generated Interpretation Read Intake And Validator v0"
+}

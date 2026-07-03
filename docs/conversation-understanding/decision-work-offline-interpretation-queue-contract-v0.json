@@ -1,0 +1,317 @@
+{
+  "schema_version": "lolla.decision_work_offline_interpretation_queue_contract.v0",
+  "contract_metadata": {
+    "status": "PR179 offline interpretation queue contract",
+    "date": "2026-07-03",
+    "contract_mode": "docs_schema_tests_only",
+    "source_prd_ref": "docs/conversation-understanding/decision-work-automatic-semantic-supply-prd-v0.md",
+    "interpretation_packet_doc_ref": "docs/conversation-understanding/decision-work-conversation-interpretation-offline-packet-v0.md",
+    "interpretation_read_schema_ref": "docs/conversation-understanding/decision-work-conversation-interpretation-read-schema-v0.md",
+    "runtime_safe_supply_resolver_ref": "docs/conversation-understanding/decision-work-brief-runtime-safe-supply-resolver-v0.md",
+    "not_implemented_here": [
+      "queue_runner",
+      "packet_builder",
+      "provider_worker",
+      "model_calls",
+      "generated_interpretation_read",
+      "brief_generation",
+      "triage_read_generation",
+      "runtime_hook_update",
+      "sidecar_update"
+    ]
+  },
+  "purpose": {
+    "summary": "Define the offline queue contract for completed Lolla runs that need safe semantic Decision Work supply after archive completion.",
+    "core_path": [
+      "completed_archive",
+      "deterministic_packet",
+      "offline_interpretation_queue",
+      "bounded_interpretation_read",
+      "deterministic_validation",
+      "brief_render_and_enrichment",
+      "triage_read",
+      "resolver_approved_refs",
+      "sidecar_update_or_deferred_or_blocked_state"
+    ],
+    "contract_does_not_interpret": true,
+    "contract_does_not_call_models": true,
+    "contract_does_not_change_runtime": true
+  },
+  "input_refs": {
+    "automatic_semantic_supply_prd_ref": "docs/conversation-understanding/decision-work-automatic-semantic-supply-prd-v0.md",
+    "source_packet_shape_ref": "docs/conversation-understanding/decision-work-conversation-interpretation-offline-packet-v0.md",
+    "source_packet_schema": "lolla.decision_work_conversation_interpretation_packets.v0",
+    "target_interpretation_read_schema_ref": "docs/conversation-understanding/decision-work-conversation-interpretation-read-schema-v0.md",
+    "target_interpretation_read_schema": "lolla.decision_work_conversation_interpretation_read.v0",
+    "runtime_resolver_contract_ref": "docs/conversation-understanding/decision-work-brief-runtime-safe-supply-resolver-contract-v0.md"
+  },
+  "queue_modes": [
+    {
+      "mode": "disabled",
+      "purpose": "Do not request offline interpretation supply.",
+      "may_call_models": false,
+      "may_mutate_archive": false,
+      "checked_in_safe": true
+    },
+    {
+      "mode": "checked_in_safe_metadata_only",
+      "purpose": "Prepare a checked-in-safe queue item carrying refs, status, requested fields, and non-claims only.",
+      "may_call_models": false,
+      "may_mutate_archive": false,
+      "checked_in_safe": true
+    },
+    {
+      "mode": "local_private_operator",
+      "purpose": "Record that a local operator must use private context outside checked-in artifacts.",
+      "may_call_models": false,
+      "may_mutate_archive": false,
+      "checked_in_safe": false
+    },
+    {
+      "mode": "operator_codex_prompt_packet",
+      "purpose": "Prepare a future bounded prompt/input packet for an operator or Codex session without calling providers from repo code.",
+      "may_call_models": false,
+      "may_mutate_archive": false,
+      "checked_in_safe": true
+    },
+    {
+      "mode": "external_interpretation_read_intake",
+      "purpose": "Accept a separately produced interpretation read for validation in a later PR.",
+      "may_call_models": false,
+      "may_mutate_archive": false,
+      "checked_in_safe": true
+    },
+    {
+      "mode": "future_provider_worker_not_implemented",
+      "purpose": "Reserved vocabulary for a future worker; not enabled by this contract.",
+      "may_call_models": false,
+      "may_mutate_archive": false,
+      "checked_in_safe": false
+    }
+  ],
+  "queue_statuses": [
+    "not_requested",
+    "queued",
+    "running",
+    "completed",
+    "blocked_missing_packet",
+    "blocked_privacy_risk",
+    "blocked_schema_invalid",
+    "failed_validation",
+    "requires_local_private_operator",
+    "unsafe_to_export",
+    "cancelled"
+  ],
+  "allowed_source_modes": [
+    "checked_in_safe_packet_ref",
+    "checked_in_safe_registry_ref",
+    "local_private_metadata_status",
+    "operator_supplied_safe_ref",
+    "generated_later_by_queue_builder",
+    "not_available"
+  ],
+  "privacy_modes": [
+    {
+      "mode": "checked_in_safe",
+      "meaning": "Allowed checked-in artifact mode; the listed content-exclusion flags describe what the artifact may contain.",
+      "raw_private_content_included": false,
+      "provider_text_included": false,
+      "local_absolute_paths_included": false,
+      "default_for_repo_artifacts": true
+    },
+    {
+      "mode": "local_private_metadata_only",
+      "meaning": "Local/private work may be required outside checked-in artifacts; checked-in output still records metadata/status only.",
+      "raw_private_content_included": false,
+      "provider_text_included": false,
+      "local_absolute_paths_included": false,
+      "default_for_repo_artifacts": false
+    },
+    {
+      "mode": "unsafe_to_export",
+      "meaning": "Blocked status for material that must not be exported; the checked-in queue contract still excludes the unsafe content itself.",
+      "unsafe_content_detected_or_suspected": true,
+      "raw_private_content_included": false,
+      "provider_text_included": false,
+      "local_absolute_paths_included": false,
+      "default_for_repo_artifacts": false
+    }
+  ],
+  "requested_interpretation_fields": [
+    {
+      "field_name": "decision_question",
+      "target_schema_ref": "lolla.decision_work_conversation_interpretation_read.v0",
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "can_feed_brief": true,
+      "can_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_name": "likely_starting_direction",
+      "target_schema_ref": "lolla.decision_work_conversation_interpretation_read.v0",
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "can_feed_brief": true,
+      "can_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_name": "revised_direction_or_action_consequence",
+      "target_schema_ref": "lolla.decision_work_conversation_interpretation_read.v0",
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "can_feed_brief": true,
+      "can_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_name": "decision_thresholds",
+      "target_schema_ref": "lolla.decision_work_conversation_interpretation_read.v0",
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "can_feed_brief": true,
+      "can_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_name": "evidence_gates",
+      "target_schema_ref": "lolla.decision_work_conversation_interpretation_read.v0",
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "can_feed_brief": true,
+      "can_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_name": "useful_friction",
+      "target_schema_ref": "lolla.decision_work_conversation_interpretation_read.v0",
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "can_feed_brief": true,
+      "can_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    },
+    {
+      "field_name": "what_the_final_answer_does_not_prove",
+      "target_schema_ref": "lolla.decision_work_conversation_interpretation_read.v0",
+      "source_refs_required": true,
+      "uncertainty_required": true,
+      "can_feed_brief": true,
+      "can_feed_agent_inspection": true,
+      "must_not_be_used_as_quality_label": true
+    }
+  ],
+  "queue_item_shape": {
+    "schema_version": "lolla.decision_work_offline_interpretation_queue_item.v0",
+    "required_fields": [
+      "schema_version",
+      "queue_metadata",
+      "queue_mode",
+      "source_run_ref",
+      "source_packet_ref",
+      "allowed_source_refs",
+      "requested_interpretation_fields",
+      "privacy_mode",
+      "custody_flags",
+      "queue_status",
+      "blocked_or_deferred_reasons",
+      "output_destinations",
+      "validation_requirements",
+      "downstream_refs",
+      "non_claims"
+    ],
+    "field_notes": {
+      "source_run_ref": "A sanitized run identifier or relative safe ref, not a local absolute path.",
+      "source_packet_ref": "A PR130-compatible packet ref or an explicit blocked_missing_packet reason.",
+      "requested_interpretation_fields": "Names the PR133 interpretation-read fields to fill later; PR179 does not fill them.",
+      "output_destinations": "Relative refs or future placeholders for generated reads; no archive mutation.",
+      "downstream_refs": "Expected future brief, enrichment, triage, resolver, and sidecar refs when later PRs implement them."
+    }
+  },
+  "queue_result_shape": {
+    "schema_version": "lolla.decision_work_offline_interpretation_queue_result.v0",
+    "required_fields": [
+      "schema_version",
+      "queue_item_ref",
+      "status",
+      "produced_refs",
+      "validation_summary",
+      "blocked_reasons",
+      "privacy_summary",
+      "custody_flags",
+      "non_claims"
+    ],
+    "field_notes": {
+      "produced_refs": "May point to validated interpretation reads in a later PR; empty for blocked or cancelled items.",
+      "validation_summary": "Must include schema, source refs, uncertainty, privacy, and non-claim validation before downstream use.",
+      "privacy_summary": "Must state whether raw/private content, provider text, private ledgers, secrets, or local paths were excluded."
+    }
+  },
+  "blocked_or_deferred_reasons": [
+    "missing_source_packet",
+    "source_packet_schema_invalid",
+    "privacy_marker_detected",
+    "local_private_context_required",
+    "unsafe_output_destination",
+    "unsupported_queue_mode",
+    "direct_runtime_interpretation_requested",
+    "provider_worker_not_implemented",
+    "validation_failed",
+    "operator_cancelled"
+  ],
+  "validation_requirements": [
+    "source_packet_schema_supported",
+    "source_refs_are_relative_or_sanitized",
+    "requested_fields_are_allowed",
+    "privacy_mode_is_allowed",
+    "raw_private_content_absent",
+    "provider_text_absent",
+    "private_ledgers_absent",
+    "local_absolute_paths_absent",
+    "secrets_absent",
+    "custody_flags_conservative",
+    "non_claims_present",
+    "no_action_authorization",
+    "no_answer_quality_scoring",
+    "no_product_proof_or_human_validation_claim"
+  ],
+  "output_refs": {
+    "future_interpretation_read_schema": "lolla.decision_work_conversation_interpretation_read.v0",
+    "future_queue_item_schema": "lolla.decision_work_offline_interpretation_queue_item.v0",
+    "future_queue_result_schema": "lolla.decision_work_offline_interpretation_queue_result.v0",
+    "future_runtime_resolver_schema": "lolla.decision_work_brief_runtime_safe_supply_resolver.v0"
+  },
+  "custody_flags": {
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "archive_mutated": false,
+    "model_calls": 0,
+    "human_validated": false,
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false,
+    "raw_private_content_included": false,
+    "provider_text_included": false,
+    "private_ledgers_included": false,
+    "local_absolute_paths_included": false,
+    "queue_contract_only": true
+  },
+  "non_claims": [
+    "not_product_proof",
+    "not_human_validation",
+    "not_answer_quality_scoring",
+    "not_advice_correctness",
+    "not_lolla_improvement_proof",
+    "not_action_authorization",
+    "not_automatic_action_authorization",
+    "not_direct_runtime_interpretation",
+    "not_runtime_model_calls",
+    "not_customer_ready_surface",
+    "queue_status_is_not_quality_label",
+    "offline_interpretation_queue_is_not_interpretation"
+  ],
+  "decision_gate": "proceed_to_queue_packet_builder",
+  "recommended_next_pr": "PR180 Offline Interpretation Queue Packet Builder v0"
+}

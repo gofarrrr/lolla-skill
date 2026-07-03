@@ -305,9 +305,17 @@ Statuses should include:
 
 No interpreter, model calls, runtime hook changes, or sidecar updates in PR179.
 
+PR179 is now implemented as the
+[Decision Work Offline Interpretation Queue Contract](decision-work-offline-interpretation-queue-contract-v0.md).
+It defines the queue item/result vocabulary and selects
+`proceed_to_queue_packet_builder` for PR180.
+
 ### PR180 Offline Interpretation Queue Packet Builder v0
 
 Build the deterministic queue packet/preparation layer.
+
+PR180 is implemented as
+[Decision Work Offline Interpretation Queue Builder](decision-work-offline-interpretation-queue-builder-v0.md).
 
 It should:
 
@@ -324,6 +332,9 @@ No model calls yet.
 
 Prepare a bounded prompt/input packet for an operator or Codex session to fill
 the PR133 interpretation read schema.
+
+PR181 is implemented as
+[Decision Work Operator/Codex Interpretation Prompt Packet](decision-work-operator-codex-interpretation-prompt-packet-v0.md).
 
 This is the first bridge from deterministic queue to probabilistic
 interpretation, but it should still not call providers from repo code.

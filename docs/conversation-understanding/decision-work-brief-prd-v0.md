@@ -197,6 +197,11 @@ truth is therefore:
 > semantic supply: creating those refs for new completed runs through an
 > offline, bounded, validated interpretation pipeline.
 
+The first queue contract for that bridge is
+[Decision Work Offline Interpretation Queue Contract](decision-work-offline-interpretation-queue-contract-v0.md).
+It defines the offline queue item/result shapes without implementing a queue
+runner, model call, generated read, runtime hook update, or sidecar update.
+
 ## Existing Codebase Anchors
 
 This work should be nested into the system that already exists.
