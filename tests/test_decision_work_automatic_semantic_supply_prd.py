@@ -29,9 +29,10 @@ REQUIRED_NEXT_PRS = {
     "PR181 Operator/Codex Interpretation Prompt Packet v0",
     "PR182 Generated Interpretation Read Intake And Validator v0",
     "PR183 Three-Case Generated Interpretation Read Intake Review v0",
-    "PR184 Queue-To-Brief-To-Sidecar Pilot v0",
-    "PR185 First New Completed Run Supply Pilot v0",
-    "PR186 Automatic Semantic Supply Closure Gate v0",
+    "PR184 Operator/Codex Generated Read Pilot v0",
+    "PR185 Generated Read To Brief Supply Plan v0",
+    "PR186 First New Completed Run Supply Pilot v0",
+    "PR187 Automatic Semantic Supply Closure Gate v0",
 }
 REQUIRED_REUSED_ARTIFACTS = {
     "Decision Work Conversation Interpretation Offline Packet",
@@ -104,7 +105,7 @@ def test_prd_contains_ordered_next_pr_sequence() -> None:
     for pr in REQUIRED_NEXT_PRS:
         assert pr in text
     assert text.index("PR178 Decision Work Automatic Semantic Supply PRD v0") < text.index(
-        "PR186 Automatic Semantic Supply Closure Gate v0"
+        "PR187 Automatic Semantic Supply Closure Gate v0"
     )
 
 

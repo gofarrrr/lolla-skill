@@ -146,3 +146,14 @@ resolver approval, or runtime sidecar update.
 PR183 selects `proceed_to_operator_codex_generated_read_pilot`, meaning the next
 safe slice is exactly one bounded generated-read pilot that still enters through
 the PR182 validator and still stops before brief rendering or sidecar update.
+
+PR184 is now implemented as:
+
+- [Decision Work Operator/Codex Generated Read Pilot](decision-work-operator-codex-generated-read-pilot-v0.md)
+
+It checks in exactly one launch-beta generated-read candidate and a PR182 intake
+result. The read follows this prompt-packet boundary by preserving source refs,
+uncertainty, privacy limits, conservative custody flags, and non-claims. The
+accepted intake result is not semantic truth, brief generation, resolver
+approval, sidecar update, product proof, human validation, scoring, or action
+authorization.

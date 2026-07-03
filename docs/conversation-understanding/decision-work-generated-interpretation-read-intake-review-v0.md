@@ -158,3 +158,13 @@ operator/Codex-assisted generated-read pilot that enters through PR182 intake.
 PR184 should still stop before brief rendering, enrichment, triage, resolver
 approval, runtime sidecar update, queue workers, provider/model calls, product
 proof, human validation, advice-correctness claims, or action authorization.
+
+PR184 is now implemented as:
+
+- [Decision Work Operator/Codex Generated Read Pilot](decision-work-operator-codex-generated-read-pilot-v0.md)
+
+It uses the launch-public-enterprise-beta case as a tiny checked-in-safe pilot.
+The candidate read is accepted by PR182 intake for later offline planning, but
+the pilot still stops before brief rendering, enrichment, triage, resolver
+approval, runtime sidecar update, product proof, human validation, scoring, or
+action authorization.

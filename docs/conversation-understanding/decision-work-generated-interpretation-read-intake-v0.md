@@ -243,3 +243,12 @@ PR183 is now implemented as:
 It confirms the PR182 validator boundary over the three existing reads and
 temporary synthetic rejection cases, then selects one bounded operator/Codex
 generated-read pilot as the next safe slice.
+
+PR184 is now implemented as:
+
+- [Decision Work Operator/Codex Generated Read Pilot](decision-work-operator-codex-generated-read-pilot-v0.md)
+
+It creates exactly one checked-in-safe launch-beta generated-read candidate and
+validates it through this PR182 intake path. The intake result is accepted for
+later offline planning only: it still cannot update runtime sidecars, authorize
+agent action, or be used as a quality label.

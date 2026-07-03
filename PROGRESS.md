@@ -114,6 +114,15 @@ docs/conversation-understanding/decision-work-generated-interpretation-read-inta
 It reviews the PR182 validator against the three existing checked-in reads and
 temporary synthetic rejection cases, confirms the no-sidecar/no-action boundary,
 and selects a single bounded operator/Codex generated-read pilot next.
+
+The one-case operator/Codex generated-read pilot is
+docs/conversation-understanding/decision-work-operator-codex-generated-read-pilot-v0.md.
+It creates a checked-in-safe launch-beta generated-read candidate and PR182
+intake result, proves the validator accepts the artifact for later offline
+planning, and still stops before brief rendering, enrichment, triage, resolver
+approval, runtime sidecar update, model calls, proof claims, scoring, or action
+authorization. The next conservative slice is a generated-read-to-brief supply
+plan, not runtime wiring.
 ```
 
 ```text

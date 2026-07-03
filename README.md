@@ -627,6 +627,13 @@ synthetic rejection cases. It confirms the PR182 validator boundary and selects
 one bounded operator/Codex generated-read pilot next, still without brief
 rendering, triage, resolver updates, sidecar updates, model calls, proof, or
 action authorization.
+The
+[operator/Codex generated read pilot](docs/conversation-understanding/decision-work-operator-codex-generated-read-pilot-v0.md)
+adds PR184's one-case launch-beta generated-read candidate and checked-in intake
+result. The intake is accepted for later offline planning only; it does not
+render a brief, enrich a brief, generate triage, update resolver refs, update
+runtime sidecars, judge semantic truth, score answer quality, or authorize
+action. PR184 selects a generated-read-to-brief supply plan next.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See

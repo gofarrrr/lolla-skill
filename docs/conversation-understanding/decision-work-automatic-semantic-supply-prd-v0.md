@@ -397,27 +397,38 @@ Require:
 - non-proof boundaries;
 - high-risk routing for cofounder/governance.
 
-This PR decides whether the new supply path is good enough for a one-new-run
-pilot.
+This PR decides whether the new supply path is good enough for a one-case
+operator/Codex generated-read pilot.
 
-### PR184 Queue-To-Brief-To-Sidecar Pilot v0
+### PR184 Operator/Codex Generated Read Pilot v0
 
-Run the full path on exactly one case:
+PR184 is implemented as
+[Decision Work Operator/Codex Generated Read Pilot](decision-work-operator-codex-generated-read-pilot-v0.md).
+
+Run exactly one checked-in-safe generated-read candidate through the PR182
+intake validator:
 
 ```text
-queue item
--> generated interpretation read
--> Decision Work Brief
--> enriched brief
--> triage read
--> resolver-approved refs
--> runtime sidecar bundle
+operator/Codex generated read candidate
+-> generated-read intake validator
+-> accepted / rejected / repair-required intake result
+-> next supply-planning gate
 ```
 
-The output should still be offline/internal. No default-on hook. No customer
-claim.
+This slice still does not render a Decision Work Brief, enrich a brief,
+generate triage, approve resolver refs, update runtime sidecars, create a queue
+worker, call providers, or claim semantic correctness. It selects a generated
+read-to-brief supply plan next.
 
-### PR185 First New Completed Run Supply Pilot v0
+### PR185 Generated Read To Brief Supply Plan v0
+
+Define how an accepted generated read may safely become Decision Work Brief,
+enrichment, triage, resolver, and sidecar supply without bypassing privacy,
+source-depth, and non-claim boundaries.
+
+This should be a plan/gate before a builder consumes the new read.
+
+### PR186 First New Completed Run Supply Pilot v0
 
 Use one completed run that was not one of the three curated registry cases.
 
@@ -428,9 +439,9 @@ Goal:
 
 This PR should be allowed to conclude "not yet."
 
-### PR186 Automatic Semantic Supply Closure Gate v0
+### PR187 Automatic Semantic Supply Closure Gate v0
 
-Review PR178-PR185 and decide the next path:
+Review PR178-PR186 and decide the next path:
 
 - continue with more pilots;
 - patch prompt packet / validator;
