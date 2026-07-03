@@ -548,6 +548,14 @@ Follow-up implementation planning:
   explains what may be filled in a PR133 interpretation read and what must
   remain forbidden, while stopping before generated-read intake.
 
+- [Decision Work Generated Interpretation Read Intake](../conversation-understanding/decision-work-generated-interpretation-read-intake-v0.md)
+
+  PR182's strict intake validator for externally supplied interpretation reads.
+  It accepts only schema-compatible, source-referenced, uncertainty-bearing,
+  privacy-bounded, non-overclaiming reads for later offline use; it does not
+  generate reads, update sidecars, score advice, validate correctness, or
+  authorize action.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

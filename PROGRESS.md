@@ -99,6 +99,15 @@ The bounded operator/Codex handoff packet is
 docs/conversation-understanding/decision-work-operator-codex-interpretation-prompt-packet-v0.md.
 It defines the future prompt/input envelope for filling a PR133 interpretation
 read, then stops before generated-read intake.
+
+The generated interpretation read intake validator is
+docs/conversation-understanding/decision-work-generated-interpretation-read-intake-v0.md.
+It accepts externally supplied Decision Work interpretation reads only after
+strict schema, source-ref, uncertainty, privacy, custody, and non-claim checks.
+It does not generate reads, render briefs, enrich briefs, create triage, update
+resolver refs, update sidecars, call models, prove product value, validate
+advice correctness, or authorize action. The next conservative slice is a
+three-case intake review, not a broad regeneration or runtime sidecar update.
 ```
 
 ```text

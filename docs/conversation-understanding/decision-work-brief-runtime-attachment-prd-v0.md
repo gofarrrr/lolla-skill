@@ -572,6 +572,18 @@ The first contract slice in that follow-on path is
 It defines queue item/result vocabulary only; it does not add runtime
 interpretation or hook behavior.
 
+PR179-PR182 now define the first automatic semantic supply scaffold:
+
+- [Decision Work Offline Interpretation Queue Contract](decision-work-offline-interpretation-queue-contract-v0.md);
+- [Decision Work Offline Interpretation Queue Builder](decision-work-offline-interpretation-queue-builder-v0.md);
+- [Decision Work Operator/Codex Interpretation Prompt Packet](decision-work-operator-codex-interpretation-prompt-packet-v0.md);
+- [Decision Work Generated Interpretation Read Intake](decision-work-generated-interpretation-read-intake-v0.md).
+
+Those slices let completed runs become queueable and let externally supplied
+interpretation reads be validated, but they still do not generate reads, call
+models, render new briefs, create triage, update resolver refs, or update
+runtime sidecars.
+
 The runtime hook should remain default-off, post-archive, sidecar-only, and
 fail-closed while that automatic supply path is proven.
 

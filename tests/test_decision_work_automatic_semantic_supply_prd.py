@@ -28,7 +28,7 @@ REQUIRED_NEXT_PRS = {
     "PR180 Offline Interpretation Queue Packet Builder v0",
     "PR181 Operator/Codex Interpretation Prompt Packet v0",
     "PR182 Generated Interpretation Read Intake And Validator v0",
-    "PR183 Three-Case Regeneration Review v0",
+    "PR183 Three-Case Generated Interpretation Read Intake Review v0",
     "PR184 Queue-To-Brief-To-Sidecar Pilot v0",
     "PR185 First New Completed Run Supply Pilot v0",
     "PR186 Automatic Semantic Supply Closure Gate v0",

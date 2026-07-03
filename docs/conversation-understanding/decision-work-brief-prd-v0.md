@@ -106,8 +106,8 @@ Already built:
 Not built:
 
 - automatic semantic supply for arbitrary new completed runs;
-- a durable offline interpretation queue;
-- a first-class generated interpretation read intake/validator flow;
+- generated interpretation reads for arbitrary new completed runs;
+- generated-read intake review across the three known cases;
 - automatic queue-to-brief-to-triage-to-sidecar supply for non-curated runs;
 - completed human calibration;
 - validated automatic triage at product scale for arbitrary runs;
@@ -201,6 +201,14 @@ The first queue contract for that bridge is
 [Decision Work Offline Interpretation Queue Contract](decision-work-offline-interpretation-queue-contract-v0.md).
 It defines the offline queue item/result shapes without implementing a queue
 runner, model call, generated read, runtime hook update, or sidecar update.
+
+The current automatic semantic supply scaffold also includes the deterministic
+[offline interpretation queue builder](decision-work-offline-interpretation-queue-builder-v0.md),
+the [operator/Codex interpretation prompt packet](decision-work-operator-codex-interpretation-prompt-packet-v0.md),
+and the [generated interpretation read intake validator](decision-work-generated-interpretation-read-intake-v0.md).
+Those slices still stop before generating reads, rendering briefs from new
+reads, creating triage, updating resolver-approved refs, or updating runtime
+sidecars.
 
 ## Existing Codebase Anchors
 

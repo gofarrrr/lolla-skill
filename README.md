@@ -613,6 +613,13 @@ The
 [operator/Codex interpretation prompt packet](docs/conversation-understanding/decision-work-operator-codex-interpretation-prompt-packet-v0.md)
 defines the next bounded handoff to a future operator or Codex session, while
 stopping before generated-read intake or any repo-side provider call.
+The
+[generated interpretation read intake validator](docs/conversation-understanding/decision-work-generated-interpretation-read-intake-v0.md)
+adds PR182's strict validation gate for externally supplied Decision Work
+interpretation reads. It can accept the three existing checked-in reads and
+reject unsafe, under-sourced, overclaiming, or action-authorizing candidates
+before any later brief, enrichment, triage, resolver, or sidecar path consumes
+them.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See
