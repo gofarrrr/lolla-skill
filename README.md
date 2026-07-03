@@ -771,6 +771,13 @@ packets. It can turn launch/deploy resolver-supply candidates into packet
 artifacts while still refusing actual `decision_work/` sidecar writes, archive
 mutation, resolver approval, runtime wiring, quality labels, proof claims, and
 action authorization.
+The
+[Decision Work Sidecar Update Packet Review](docs/conversation-understanding/decision-work-sidecar-update-packet-review-v0.md)
+adds PR203's docs/review/tests-only review of launch/deploy sidecar update
+packets. It confirms proposed packets remain offline artifacts rather than
+real sidecar writes, archive mutation, resolver approval, runtime wiring,
+user-surface readiness, quality labels, proof claims, or action authorization,
+and gates to a pre-write package.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See

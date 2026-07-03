@@ -635,9 +635,21 @@ models, score answer quality, claim proof, or authorize action.
 
 ### PR203 Decision Work Sidecar Update Packet Review v0
 
-If PR202 gates cleanly, review launch/deploy sidecar update packets before any
-actual sidecar write, archive mutation, resolver approval, runtime wiring,
-model calls, scoring, proof claims, or action authorization.
+Implemented as
+[Decision Work Sidecar Update Packet Review](decision-work-sidecar-update-packet-review-v0.md).
+
+Review launch/deploy sidecar update packets before any actual sidecar write,
+archive mutation, resolver approval, runtime wiring, model calls, scoring,
+proof claims, or action authorization. The review confirms proposed packets
+remain offline artifacts and selects a pre-write package gate next.
+
+### PR204 Decision Work Sidecar Update Packet Pre-Write Package Gate v0
+
+If PR203 gates cleanly, package PR201 through PR203 as a narrow pre-write
+capability. The package should keep sidecar update packets offline,
+deterministic, inspectable, and separate from actual sidecar writes, archive
+mutation, resolver approval, runtime wiring, default-on behavior, proof claims,
+scoring, and action authorization.
 
 Do not make runtime attachment default-on from this gate.
 

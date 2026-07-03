@@ -716,6 +716,14 @@ Follow-up implementation planning:
   actual sidecar writes, archive mutation, resolver approval, runtime wiring,
   quality labels, proof claims, and action authorization.
 
+- [Decision Work Sidecar Update Packet Review](../conversation-understanding/decision-work-sidecar-update-packet-review-v0.md)
+
+  PR203's docs/review/tests-only review of launch/deploy proposed sidecar
+  update packets. It confirms packets remain offline artifacts, not real
+  sidecar writes, archive mutation, resolver approval, runtime wiring,
+  user-surface readiness, quality labels, proof claims, or action
+  authorization.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

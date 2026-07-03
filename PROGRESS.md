@@ -302,6 +302,14 @@ and deploy-intake preserves runtime/user-surface blocking, while no actual
 sidecar write, archive mutation, resolver approval, runtime wiring, model
 call, quality label, proof claim, advice-correctness claim, or action
 authorization occurs.
+
+The Decision Work Sidecar Update Packet Review is
+docs/conversation-understanding/decision-work-sidecar-update-packet-review-v0.md.
+It adds PR203's docs/review/tests-only pass over launch-beta and deploy-intake
+sidecar update packets. The review confirms proposed packets remain offline
+artifacts, not actual sidecar writes, archive mutation, resolver approval,
+runtime wiring, user-surface readiness, quality labels, proof claims, or action
+authorization. It selects a pre-write package gate next.
 ```
 
 ```text
