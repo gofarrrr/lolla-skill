@@ -808,6 +808,66 @@ not write real archives, mutate historical archive folders, wire runtime,
 update the post-archive hook, approve resolver refs, call models, score answer
 quality, claim proof, or authorize action.
 
+### PR211 Explicit Operator Sidecar Write Review v0
+
+Implemented as
+[Decision Work Explicit Operator Sidecar Write Review](decision-work-explicit-operator-sidecar-write-review-v0.md).
+
+Review the launch-beta and deploy-intake fixture-only sidecar writes before
+packaging the explicit operator write layer. The review checks that launch
+produces `write_completed_fixture_only`, deploy produces
+`write_completed_blocked_state_fixture_only`, generated fixture files stay
+inside explicit safe temp/output targets, real/historical archive mutation is
+false, runtime wiring is false, resolver refs remain unapproved, and all proof,
+scoring, validation, and action-authority claims remain closed.
+
+Selected gate:
+
+```text
+proceed_to_explicit_operator_sidecar_write_package_gate
+```
+
+Recommended next PR:
+
+```text
+PR212 Explicit Operator Sidecar Write Package Gate v0
+```
+
+Do not implement PR212 from this review. PR211 still does not write real
+archives, mutate historical archive folders, wire runtime, update the
+post-archive hook, approve resolver refs, call models, score answer quality,
+claim proof, or authorize action.
+
+### PR212 Explicit Operator Sidecar Write Package Gate v0
+
+Implemented as
+[Decision Work Explicit Operator Sidecar Write Package Gate](decision-work-explicit-operator-sidecar-write-package-gate-v0.md)
+with the machine-readable
+[explicit operator sidecar write package manifest](decision-work-explicit-operator-sidecar-write-package-manifest-v0.json).
+
+Package PR210 through PR211 as Decision Work Explicit Operator Sidecar Write v1.
+The narrow claim is that a controlled explicit operator write layer can write
+sidecar-shaped files into safe fixture/operator `decision_work` target
+directories from validated PR202 sidecar update packets and matching PR206
+dry-run results.
+
+Selected gate:
+
+```text
+explicit_operator_sidecar_write_v1_packaged
+```
+
+Recommended next PR:
+
+```text
+PR213 Controlled Archive Sidecar Write Fixture Plan v0
+```
+
+Do not implement PR213 from this package. PR212 still does not write real
+archives, mutate historical archive folders as normal behavior, wire runtime,
+update the post-archive hook, approve resolver refs, call models, score answer
+quality, claim proof, or authorize action.
+
 ## Readiness Gates
 
 Automatic semantic supply is not ready for normal use until:

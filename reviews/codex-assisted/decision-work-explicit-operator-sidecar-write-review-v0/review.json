@@ -1,0 +1,142 @@
+{
+  "schema_version": "lolla.decision_work_explicit_operator_sidecar_write_review.v0",
+  "review_metadata": {
+    "review_id": "decision_work_explicit_operator_sidecar_write_review:v0",
+    "created_at": "2026-07-03T00:00:00Z",
+    "reviewed_stage": "PR210 Explicit Operator Sidecar Write Adapter v0",
+    "mode": "review_docs_tests_temp_fixture_writes_only",
+    "checked_in_sidecar_files_created": false,
+    "checked_in_write_receipts_created": false,
+    "model_calls": 0,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "real_archive_mutated": false,
+    "historical_archive_mutated": false,
+    "runtime_behavior_changed": false,
+    "resolver_refs_approved": false,
+    "runtime_wiring_changed": false
+  },
+  "reviewed_cases": [
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "source_sidecar_update_packet_status": "ready_for_sidecar_update_packet",
+      "dry_run_status": "dry_run_ready",
+      "write_status": "write_completed_fixture_only",
+      "fixture_only": true,
+      "expected_files_written": [
+        "attachment_status.json",
+        "user_receipt.md",
+        "agent_handoff_packet.json",
+        "safe_supply_summary.json",
+        "sidecar_update_packet.json",
+        "sidecar_write_receipt.json"
+      ],
+      "actual_sidecar_write_performed_fixture_only": true,
+      "real_archive_mutated": false,
+      "historical_archive_mutated": false,
+      "runtime_wiring_changed": false,
+      "resolver_refs_approved": false,
+      "runtime_use_status": "blocked",
+      "user_surface_status": "not_established",
+      "launch_receipt_coherent": true,
+      "finding": "Launch-beta can write a coherent fixture-only sidecar directory, but no real archive sidecar, runtime wiring, resolver approval, user-surface readiness, proof, scoring, or action authorization is established."
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "source_sidecar_update_packet_status": "packet_with_runtime_block",
+      "dry_run_status": "dry_run_packet_with_runtime_block",
+      "write_status": "write_completed_blocked_state_fixture_only",
+      "fixture_only": true,
+      "expected_files_written": [
+        "attachment_status.json",
+        "user_receipt.md",
+        "agent_handoff_packet.json",
+        "safe_supply_summary.json",
+        "sidecar_update_packet.json",
+        "sidecar_write_receipt.json"
+      ],
+      "actual_sidecar_write_performed_fixture_only": true,
+      "real_archive_mutated": false,
+      "historical_archive_mutated": false,
+      "runtime_wiring_changed": false,
+      "resolver_refs_approved": false,
+      "runtime_use_status": "blocked",
+      "user_surface_status": "blocked",
+      "deploy_runtime_block_preserved": true,
+      "finding": "Deploy-intake can write a blocked-state fixture sidecar for inspection while preserving domain/compliance routes, user-surface blocking, runtime blocking, and agent-inspection-only status."
+    }
+  ],
+  "launch_write_status": "write_completed_fixture_only",
+  "deploy_write_status": "write_completed_blocked_state_fixture_only",
+  "fixture_only_check": {
+    "fixture_only": true,
+    "checked_in_sidecar_files_created": false,
+    "target_sidecar_dir_must_be_explicit": true,
+    "target_sidecar_dir_must_be_named_decision_work": true,
+    "target_sidecar_dir_must_be_temp_or_output_only": true,
+    "writes_inside_repo_blocked": true,
+    "archive_like_targets_blocked": true,
+    "runtime_like_targets_blocked": true,
+    "receipt_outputs_under_decision_work_blocked": true,
+    "generated_files_stay_inside_target_dir": true
+  },
+  "real_archive_mutation_forbidden_check": {
+    "real_archive_mutated": false,
+    "can_write_real_archive_sidecar": false,
+    "real_archive_paths_rejected": true
+  },
+  "historical_archive_mutation_forbidden_check": {
+    "historical_archive_mutated": false,
+    "can_mutate_historical_archive": false,
+    "historical_archive_paths_rejected": true
+  },
+  "runtime_wiring_forbidden_check": {
+    "runtime_wiring_changed": false,
+    "can_wire_runtime": false,
+    "runtime_hook_changed": false,
+    "runtime_attachment_default_on": false
+  },
+  "resolver_approval_forbidden_check": {
+    "resolver_refs_approved": false,
+    "resolver_refs_marked_usable": false,
+    "write_adapter_can_approve_refs": false
+  },
+  "deploy_runtime_block_preserved": true,
+  "launch_receipt_coherence": true,
+  "path_safety_finding": "PR210 allows only explicit temp/output fixture targets named decision_work, blocks repo/archive/runtime-looking targets, and writes generated files only inside the target directory.",
+  "privacy_limits_preserved": true,
+  "non_claims_preserved": [
+    "not_product_proof",
+    "not_human_validation",
+    "not_answer_quality_score",
+    "not_advice_correctness_proof",
+    "not_lolla_improvement_proof",
+    "not_resolver_ref_approval",
+    "not_real_archive_write",
+    "not_historical_archive_mutation",
+    "not_runtime_wiring",
+    "not_user_surface_readiness",
+    "not_agent_action_authorization",
+    "not_automatic_action_authorization"
+  ],
+  "sidecar_write_boundary_risk": "Fixture-only sidecar writes now exist, so future work must keep fixture writes visibly separate from real historical archive writes and runtime sidecar availability.",
+  "strongest_useful_signal": "The adapter can write launch and deploy sidecar-shaped fixture directories from the full generated-read supply chain while preserving explicit no-real-archive, no-runtime, and no-approval flags.",
+  "strongest_unresolved_risk": "The fixture-only write layer is coherent but not yet packaged; future real-archive work must prove archive mutation is explicit, scoped, default-off, and still not resolver approval.",
+  "decision_gate": "proceed_to_explicit_operator_sidecar_write_package_gate",
+  "recommended_next_pr": "PR212 Explicit Operator Sidecar Write Package Gate v0",
+  "non_claims": [
+    "review_does_not_approve_resolver_refs",
+    "review_does_not_mark_resolver_refs_usable",
+    "review_does_not_write_real_archive_sidecars",
+    "review_does_not_mutate_historical_archives",
+    "review_does_not_wire_runtime",
+    "review_does_not_call_models",
+    "review_is_not_product_proof",
+    "review_is_not_human_validation",
+    "review_does_not_score_answer_quality",
+    "review_does_not_validate_advice_correctness",
+    "review_does_not_prove_lolla_improved_the_decision",
+    "review_does_not_authorize_agent_action",
+    "review_does_not_authorize_automatic_action"
+  ]
+}
