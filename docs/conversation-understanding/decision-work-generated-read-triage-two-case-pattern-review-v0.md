@@ -95,3 +95,13 @@ resolver-supply candidates without becoming approval.
 
 Do not implement resolver supply, runtime sidecar updates, runtime wiring,
 model calls, scoring, proof claims, or action authorization from this review.
+
+## Implemented Follow-Up
+
+PR197 implements the selected plan gate as
+[Decision Work Generated Read Resolver Supply Plan](decision-work-generated-read-resolver-supply-plan-v0.md).
+It defines resolver-supply candidates, allowed safe ref candidates,
+evidence-only fields, blocked fields, required source refs, triage-route
+effects, candidate statuses, custody requirements, non-claims, and the hard
+boundary that resolver supply is not resolver approval or runtime sidecar
+permission.

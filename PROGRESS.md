@@ -240,6 +240,17 @@ domain/compliance inspection while preserving source-depth, overtrust, runtime,
 resolver, and action boundaries. It selects a generated-read resolver supply
 plan next, not resolver approval, sidecar update, runtime wiring, scoring,
 proof, or action authorization.
+
+The Decision Work Generated Read Resolver Supply Plan is
+docs/conversation-understanding/decision-work-generated-read-resolver-supply-plan-v0.md.
+It adds PR197's docs/review/tests-only plan for turning generated-read
+artifacts and generated triage reads into future resolver-supply candidates.
+The plan defines allowed inputs, safe ref candidates, evidence-only fields,
+blocked fields, required source refs, route effects, candidate statuses,
+custody requirements, non-claims, and the hard boundary between resolver
+supply and resolver approval. It selects a deterministic resolver-supply
+adapter next while still stopping before resolver approval, sidecar update,
+runtime wiring, model calls, scoring, proof claims, or action authorization.
 ```
 
 ```text

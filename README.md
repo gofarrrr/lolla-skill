@@ -725,6 +725,14 @@ works across launch-beta and deploy-intake, keeps deploy-intake escalated for
 domain/compliance review, and selects generated-read resolver supply planning
 next without approving resolver refs, updating sidecars, wiring runtime,
 calling models, scoring advice, proving value, or authorizing action.
+The
+[Decision Work Generated Read Resolver Supply Plan](docs/conversation-understanding/decision-work-generated-read-resolver-supply-plan-v0.md)
+adds PR197's docs/review/tests-only plan for turning generated-read artifacts
+and generated triage reads into future resolver-supply candidates. It separates
+resolver supply from resolver approval, allows candidate packets to preserve
+runtime/user-surface blocking, and gates to a deterministic adapter without
+approving refs, updating sidecars, wiring runtime, scoring, proving, or
+authorizing action.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See

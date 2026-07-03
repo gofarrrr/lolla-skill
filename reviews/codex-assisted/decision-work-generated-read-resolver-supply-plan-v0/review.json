@@ -1,0 +1,210 @@
+{
+  "schema_version": "lolla.decision_work_generated_read_resolver_supply_plan.v0",
+  "review_metadata": {
+    "review_id": "decision_work_generated_read_resolver_supply_plan:v0",
+    "created_at": "2026-07-03T00:00:00Z",
+    "reviewed_stage": "PR196 Decision Work Generated Read Triage Two-Case Pattern Review v0",
+    "mode": "docs_review_tests_only"
+  },
+  "source_artifacts_reviewed": [
+    "docs/conversation-understanding/decision-work-generated-read-triage-two-case-pattern-review-v0.md",
+    "reviews/codex-assisted/decision-work-generated-read-triage-two-case-pattern-review-v0/review.json",
+    "docs/conversation-understanding/decision-work-generated-read-triage-generation-pilot-v0.md",
+    "reviews/codex-assisted/decision-work-generated-read-triage-generation-pilot-v0/triage.json",
+    "docs/conversation-understanding/decision-work-generated-read-second-triage-pilot-v0.md",
+    "reviews/codex-assisted/decision-work-generated-read-second-triage-pilot-v0/triage.json",
+    "docs/conversation-understanding/decision-work-generated-read-triage-supply-adapter-v0.md",
+    "docs/conversation-understanding/decision-work-generated-read-brief-supply-adapter-v0.md",
+    "docs/conversation-understanding/decision-work-generated-interpretation-read-intake-v0.md"
+  ],
+  "allowed_resolver_supply_inputs": [
+    "generated_interpretation_read_json",
+    "pr182_intake_result_json",
+    "pr186_brief_supply_json",
+    "pr187_rendered_brief_markdown",
+    "pr192_triage_supply_json",
+    "generated_triage_json",
+    "optional_queue_item_ref",
+    "optional_prompt_packet_ref"
+  ],
+  "allowed_safe_ref_candidates": [
+    "source_generated_read_ref",
+    "source_intake_result_ref",
+    "source_intake_status",
+    "source_brief_supply_ref",
+    "source_brief_supply_status",
+    "source_rendered_brief_ref",
+    "source_rendered_brief_status",
+    "source_triage_supply_ref",
+    "source_triage_supply_status",
+    "source_triage_ref",
+    "source_triage_route_categories",
+    "source_ref_summary",
+    "uncertainty_summary",
+    "privacy_summary",
+    "custody_summary",
+    "non_claim_summary",
+    "route_summary"
+  ],
+  "evidence_only_fields": [
+    "decision_question",
+    "revised_direction_or_action_consequence",
+    "evidence_gates",
+    "what_the_final_answer_does_not_prove",
+    "source_depth_limits",
+    "private_context_need",
+    "overtrust_risk",
+    "domain_or_legal_or_compliance_caveats",
+    "governance_or_relationship_caveats",
+    "safety_caveats"
+  ],
+  "blocked_fields": [
+    "answer_quality_judgment",
+    "advice_correctness_judgment",
+    "lolla_improvement_claim",
+    "human_validation_claim",
+    "product_proof_claim",
+    "legal_or_compliance_clearance",
+    "clinical_clearance",
+    "governance_or_relationship_clearance",
+    "safe_to_act_claim",
+    "safe_to_deploy_claim",
+    "resolver_ref_approval",
+    "runtime_sidecar_permission",
+    "agent_action_permission",
+    "automatic_action_permission"
+  ],
+  "required_source_refs": {
+    "generated_read": true,
+    "intake_result": true,
+    "brief_supply": true,
+    "rendered_brief": true,
+    "triage_supply": true,
+    "triage_read": true,
+    "field_source_refs": true,
+    "content_included": false
+  },
+  "required_uncertainty": {
+    "field_uncertainty_required": true,
+    "route_uncertainty_required": true,
+    "missing_uncertainty_blocks": true,
+    "uncertainty_not_used_as_confidence_metric": true
+  },
+  "required_triage_routes": {
+    "ordinary_caveated_offline_brief_candidate": "candidate_packet_possible_with_caveats_only",
+    "agent_inspection_only": "runtime_and_user_surface_blocked",
+    "not_ready_for_user_surface": "user_surface_blocked",
+    "runtime_attachment_blocked": "runtime_use_blocked",
+    "domain_review_recommended": "domain_caveats_required",
+    "legal_or_compliance_review_recommended": "legal_compliance_caveats_required"
+  },
+  "privacy_requirements": {
+    "checked_in_safe_mode_requires_relative_refs": true,
+    "raw_private_content_included": false,
+    "provider_text_included": false,
+    "local_absolute_paths_included": false,
+    "privacy_markers_block": true
+  },
+  "custody_requirements": {
+    "model_calls": 0,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "archive_mutated": false,
+    "runtime_behavior_changed": false,
+    "resolver_supply_code_implemented": false,
+    "resolver_refs_approved": false,
+    "resolver_refs_marked_usable": false,
+    "runtime_sidecar_updated": false,
+    "runtime_wired": false,
+    "product_proof": false,
+    "human_validated": false,
+    "answer_quality_scored": false,
+    "advice_correctness_claimed": false,
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false
+  },
+  "non_claim_requirements": [
+    "not_product_proof",
+    "not_human_validation",
+    "not_answer_quality_score",
+    "not_advice_correctness_proof",
+    "not_lolla_improvement_proof",
+    "not_resolver_ref_approval",
+    "not_runtime_sidecar_update",
+    "not_user_surface_readiness",
+    "not_agent_action_authorization",
+    "not_automatic_action_authorization"
+  ],
+  "deterministic_allowances": [
+    "validate_refs_statuses_and_routes",
+    "copy_safe_refs",
+    "copy_source_statuses",
+    "copy_route_categories",
+    "copy_blocker_reasons",
+    "preserve_evidence_only_fields",
+    "preserve_missingness",
+    "preserve_uncertainty",
+    "preserve_privacy_limits",
+    "preserve_custody_flags",
+    "preserve_non_claims",
+    "derive_candidate_packet_status_from_explicit_statuses_only",
+    "mark_runtime_use_blocked_when_routes_require_it"
+  ],
+  "semantic_interpretation_not_allowed": [
+    "no_resolver_approval",
+    "no_runtime_sidecar_update",
+    "no_runtime_wiring",
+    "no_new_messy_conversation_interpretation",
+    "no_generated_triage",
+    "no_answer_quality_judgment",
+    "no_advice_correctness_judgment",
+    "no_lolla_improvement_claim"
+  ],
+  "resolver_supply_statuses": [
+    "ready_for_resolver_candidate_packet",
+    "candidate_packet_with_runtime_block",
+    "deferred_missing_triage",
+    "deferred_missing_rendered_brief",
+    "deferred_missing_brief_supply",
+    "blocked_intake_not_accepted",
+    "blocked_triage_missing",
+    "blocked_privacy_risk",
+    "blocked_authority_claim",
+    "requires_operator_repair"
+  ],
+  "resolver_approval_forbidden": {
+    "resolver_refs_approved": false,
+    "resolver_refs_marked_usable": false,
+    "candidate_packet_is_approval": false
+  },
+  "runtime_sidecar_update_forbidden": {
+    "can_update_sidecar": false,
+    "can_write_runtime_sidecar": false,
+    "can_wire_runtime": false,
+    "candidate_packet_can_override_runtime_block": false
+  },
+  "downstream_risks": [
+    "Resolver supply candidates can be mistaken for resolver approval.",
+    "Ready candidate packets can be mistaken for runtime sidecar permission.",
+    "Deploy-intake domain/compliance routes can be overread as legal, clinical, compliance, or deployment clearance.",
+    "Route summaries can be mistaken for answer-quality scores unless non-claims travel forward."
+  ],
+  "decision_gate": "proceed_to_generated_read_resolver_supply_adapter",
+  "recommended_next_pr": "PR198 Decision Work Generated Read Resolver Supply Adapter v0",
+  "non_claims": [
+    "plan_does_not_implement_resolver_supply_code",
+    "plan_does_not_approve_resolver_refs",
+    "plan_does_not_mark_resolver_refs_usable",
+    "plan_does_not_update_runtime_sidecars",
+    "plan_does_not_wire_runtime",
+    "plan_does_not_generate_triage",
+    "plan_does_not_call_models",
+    "plan_is_not_product_proof",
+    "plan_is_not_human_validation",
+    "plan_does_not_score_answer_quality",
+    "plan_does_not_validate_advice_correctness",
+    "plan_does_not_prove_lolla_improved_the_decision",
+    "plan_does_not_authorize_agent_action",
+    "plan_does_not_authorize_automatic_action"
+  ]
+}

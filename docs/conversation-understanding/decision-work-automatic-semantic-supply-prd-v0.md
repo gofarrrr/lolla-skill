@@ -564,11 +564,24 @@ action authorization.
 
 ### PR197 Decision Work Generated Read Resolver Supply Plan v0
 
-If PR196 gates cleanly, define the safe plan for turning generated-read
-artifacts into resolver-supply candidates. That future plan must separate
-resolver supply from resolver approval and still stop before runtime sidecar
-updates, runtime wiring, model calls, product proof, human validation, scoring,
-or action authorization.
+Implemented as
+[Decision Work Generated Read Resolver Supply Plan](decision-work-generated-read-resolver-supply-plan-v0.md).
+
+Define the safe plan for turning generated-read artifacts and generated triage
+reads into resolver-supply candidates. The plan separates resolver supply from
+resolver approval, lets candidate packets preserve runtime/user-surface
+blocking, and still stops before resolver approval, runtime sidecar updates,
+runtime wiring, model calls, product proof, human validation, scoring, advice
+correctness claims, or action authorization.
+
+### PR198 Decision Work Generated Read Resolver Supply Adapter v0
+
+If PR197 gates cleanly, implement the deterministic adapter that prepares
+resolver-candidate packets from generated-read artifacts and generated triage
+reads. The adapter must preserve refs, route summaries, runtime/user-surface
+blocking, source status, uncertainty, privacy limits, custody flags, and
+non-claims without approving resolver refs, updating sidecars, wiring runtime,
+calling models, scoring, proving value, or authorizing action.
 
 Do not make runtime attachment default-on from this gate.
 
