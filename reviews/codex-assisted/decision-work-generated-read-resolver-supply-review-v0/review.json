@@ -1,0 +1,140 @@
+{
+  "schema_version": "lolla.decision_work_generated_read_resolver_supply_review.v0",
+  "review_metadata": {
+    "review_id": "decision_work_generated_read_resolver_supply_review:v0",
+    "created_at": "2026-07-03T00:00:00Z",
+    "reviewed_stage": "PR198 Decision Work Generated Read Resolver Supply Adapter v0",
+    "mode": "review_docs_tests_temp_packets_only",
+    "checked_in_resolver_supply_packets_created": false,
+    "model_calls": 0,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "archive_mutated": false,
+    "runtime_behavior_changed": false,
+    "resolver_refs_approved": false,
+    "runtime_sidecar_updated": false,
+    "runtime_wired": false
+  },
+  "reviewed_cases": [
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "resolver_supply_status": "ready_for_resolver_candidate_packet",
+      "source_generated_read_ref": "reviews/codex-assisted/decision-work-operator-codex-generated-read-pilot-v0/read.json",
+      "source_intake_ref": "reviews/codex-assisted/decision-work-operator-codex-generated-read-pilot-v0/intake.json",
+      "source_rendered_brief_ref": "docs/conversation-understanding/decision-work-generated-read-rendered-launch-public-enterprise-beta-v0.md",
+      "source_triage_ref": "reviews/codex-assisted/decision-work-generated-read-triage-generation-pilot-v0/triage.json",
+      "temp_packet_only": true,
+      "candidate_not_approval": true,
+      "resolver_refs_approved": false,
+      "runtime_sidecar_update_allowed": false,
+      "runtime_sidecar_write_allowed": false,
+      "user_surface_status": "not_established",
+      "runtime_use_status": "blocked",
+      "launch_caveats_preserved": true,
+      "finding": "Launch-beta can prepare a resolver-supply candidate packet, but runtime attachment remains blocked and customer readiness is not established."
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "resolver_supply_status": "candidate_packet_with_runtime_block",
+      "source_generated_read_ref": "reviews/codex-assisted/decision-work-generated-read-second-brief-rendering-pilot-v0/read.json",
+      "source_intake_ref": "reviews/codex-assisted/decision-work-generated-read-second-brief-rendering-pilot-v0/intake.json",
+      "source_rendered_brief_ref": "docs/conversation-understanding/decision-work-generated-read-rendered-deploy-assisted-intake-routing-v0.md",
+      "source_triage_ref": "reviews/codex-assisted/decision-work-generated-read-second-triage-pilot-v0/triage.json",
+      "temp_packet_only": true,
+      "candidate_not_approval": true,
+      "resolver_refs_approved": false,
+      "runtime_sidecar_update_allowed": false,
+      "runtime_sidecar_write_allowed": false,
+      "user_surface_status": "blocked",
+      "runtime_use_status": "blocked",
+      "deploy_runtime_block_preserved": true,
+      "finding": "Deploy-intake can prepare a candidate packet for future inspection while preserving domain/compliance routes, user-surface blocking, and runtime attachment blocking."
+    }
+  ],
+  "resolver_supply_packet_refs_or_temp_statuses": {
+    "checked_in_packets_created": false,
+    "launch_public_enterprise_beta": {
+      "temp_artifact_name": "decision_work_generated_read_resolver_supply_launch.json",
+      "packet_ref_checked_in": false,
+      "expected_status": "ready_for_resolver_candidate_packet"
+    },
+    "deploy_assisted_intake_routing": {
+      "temp_artifact_name": "decision_work_generated_read_resolver_supply_deploy.json",
+      "packet_ref_checked_in": false,
+      "expected_status": "candidate_packet_with_runtime_block"
+    }
+  },
+  "launch_status": "ready_for_resolver_candidate_packet",
+  "deploy_status": "candidate_packet_with_runtime_block",
+  "candidate_not_approval_finding": {
+    "candidate_packets_exist": true,
+    "candidate_packet_is_approval": false,
+    "resolver_refs_approved": false,
+    "resolver_refs_marked_usable": false,
+    "finding": "Resolver-supply packets are safe candidate summaries for future inspection; they are not approved refs."
+  },
+  "resolver_approval_forbidden_check": {
+    "resolver_refs_approved": false,
+    "resolver_refs_marked_usable": false,
+    "candidate_packet_can_approve_refs": false,
+    "candidate_packet_can_override_triage_routes": false
+  },
+  "runtime_sidecar_forbidden_check": {
+    "can_update_sidecar": false,
+    "can_write_runtime_sidecar": false,
+    "can_wire_runtime": false,
+    "candidate_packet_can_override_runtime_block": false
+  },
+  "user_surface_boundary_check": {
+    "launch_user_surface_status": "not_established",
+    "deploy_user_surface_status": "blocked",
+    "customer_ready": false,
+    "product_proof": false,
+    "human_validated": false
+  },
+  "deploy_runtime_block_preserved": true,
+  "launch_caveats_preserved": true,
+  "source_refs_preserved": {
+    "generated_read": true,
+    "intake_result": true,
+    "brief_supply": true,
+    "rendered_brief": true,
+    "triage_supply": true,
+    "triage_read": true,
+    "raw_content_included": false
+  },
+  "uncertainty_preserved": true,
+  "privacy_limits_preserved": true,
+  "non_claims_preserved": [
+    "not_product_proof",
+    "not_human_validation",
+    "not_answer_quality_score",
+    "not_advice_correctness_proof",
+    "not_lolla_improvement_proof",
+    "not_resolver_ref_approval",
+    "not_runtime_sidecar_update",
+    "not_user_surface_readiness",
+    "not_agent_action_authorization",
+    "not_automatic_action_authorization"
+  ],
+  "overclaim_risk": "Ready candidate status could be overread as approved refs unless the package gate keeps candidate supply separate from resolver approval and runtime use.",
+  "resolver_boundary_risk": "Future resolver work must decide how to consume candidate packets without turning route summaries into quality labels or runtime sidecar permissions.",
+  "strongest_useful_signal": "Both launch and deploy can produce deterministic resolver-supply candidate packets while preserving different runtime/user-surface boundaries.",
+  "strongest_unresolved_risk": "The PR178-PR199 chain is coherent but not yet packaged; future runtime-sidecar planning still needs a package manifest and explicit boundary review first.",
+  "decision_gate": "proceed_to_automatic_semantic_supply_pre_runtime_v1_package",
+  "recommended_next_pr": "PR200 Decision Work Automatic Semantic Supply Pre-Runtime v1 Package Gate v0",
+  "non_claims": [
+    "review_does_not_approve_resolver_refs",
+    "review_does_not_mark_resolver_refs_usable",
+    "review_does_not_update_runtime_sidecars",
+    "review_does_not_wire_runtime",
+    "review_does_not_call_models",
+    "review_is_not_product_proof",
+    "review_is_not_human_validation",
+    "review_does_not_score_answer_quality",
+    "review_does_not_validate_advice_correctness",
+    "review_does_not_prove_lolla_improved_the_decision",
+    "review_does_not_authorize_agent_action",
+    "review_does_not_authorize_automatic_action"
+  ]
+}

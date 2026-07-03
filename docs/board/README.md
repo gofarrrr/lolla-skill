@@ -687,6 +687,21 @@ Follow-up implementation planning:
   still not approving refs, updating sidecars, wiring runtime, scoring,
   proving, or authorizing action.
 
+- [Decision Work Generated Read Resolver Supply Review](../conversation-understanding/decision-work-generated-read-resolver-supply-review-v0.md)
+
+  PR199's docs/review/tests-only pass over launch-beta and deploy-intake
+  resolver-supply candidate packets. It confirms candidate packets stay
+  separate from resolver approval, runtime sidecar permission, user-surface
+  readiness, quality labels, proof claims, and action authorization.
+
+- [Decision Work Automatic Semantic Supply Pre-Runtime v1 Package Gate](../conversation-understanding/decision-work-automatic-semantic-supply-pre-runtime-v1-package-gate-v0.md)
+
+  PR200's package gate and manifest for PR178-PR199. It packages the offline
+  pre-runtime chain through resolver-supply candidate packets while keeping
+  runtime attachment, resolver approval, sidecar updates, runtime wiring,
+  production automation, proof claims, scoring, and action authorization out
+  of scope.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,
