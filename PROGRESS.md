@@ -263,6 +263,15 @@ blocking because of domain/compliance and agent-inspection routes. The adapter
 still does not approve refs, mark refs usable, update sidecars, wire runtime,
 call models, score answer quality, prove value, validate advice correctness,
 or authorize action. It selects a generated-read resolver-supply review next.
+
+The Decision Work Generated Read Resolver Supply Review is
+docs/conversation-understanding/decision-work-generated-read-resolver-supply-review-v0.md.
+It adds PR199's docs/review/tests-only pass over launch-beta and deploy-intake
+resolver-supply candidate packets. The review confirms the packets preserve
+source refs, uncertainty, privacy limits, route-specific blockers, custody
+flags, and non-claims while remaining candidates rather than resolver
+approval, runtime sidecar permission, user-surface readiness, quality labels,
+proof, or action authorization. It selects a pre-runtime v1 package gate next.
 ```
 
 ```text

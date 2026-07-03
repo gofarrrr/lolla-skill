@@ -588,9 +588,26 @@ proving value, validating advice correctness, or authorizing action.
 
 ### PR199 Decision Work Generated Read Resolver Supply Review v0
 
-If PR198 gates cleanly, review the launch-beta and deploy-intake resolver-
-supply candidate packets before any resolver approval, runtime sidecar update,
-runtime wiring, model calls, scoring, proof claims, or action authorization.
+Implemented as
+[Decision Work Generated Read Resolver Supply Review](decision-work-generated-read-resolver-supply-review-v0.md).
+
+Review the launch-beta and deploy-intake resolver-supply candidate packets
+before any resolver approval, runtime sidecar update, runtime wiring, model
+calls, scoring, proof claims, or action authorization. The review confirms
+candidate packets remain candidate summaries, not approved refs, runtime
+permission, user-surface readiness, quality labels, proof, or action
+authorization.
+
+### PR200 Decision Work Automatic Semantic Supply Pre-Runtime v1 Package Gate v0
+
+If PR199 gates cleanly, package PR178 through PR199 as a pre-runtime v1
+capability. The package should claim only an offline, checked-in-safe,
+pre-runtime chain from generated interpretation reads to resolver-supply
+candidate packets, with validation, rendering, triage, and resolver-boundary
+safeguards. It must not claim runtime attachment, resolver approval, sidecar
+updates, default-on behavior, arbitrary-run production automation, human
+validation, product proof, advice correctness, scoring, or action
+authorization.
 
 Do not make runtime attachment default-on from this gate.
 

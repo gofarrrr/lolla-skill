@@ -687,6 +687,13 @@ Follow-up implementation planning:
   still not approving refs, updating sidecars, wiring runtime, scoring,
   proving, or authorizing action.
 
+- [Decision Work Generated Read Resolver Supply Review](../conversation-understanding/decision-work-generated-read-resolver-supply-review-v0.md)
+
+  PR199's docs/review/tests-only pass over launch-beta and deploy-intake
+  resolver-supply candidate packets. It confirms candidate packets stay
+  separate from resolver approval, runtime sidecar permission, user-surface
+  readiness, quality labels, proof claims, and action authorization.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

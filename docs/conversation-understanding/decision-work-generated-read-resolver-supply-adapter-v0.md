@@ -142,3 +142,13 @@ proof, scoring, advice correctness, or action authorization.
 
 Do not implement resolver approval, runtime sidecar updates, runtime wiring,
 model calls, scoring, proof claims, or action authorization from this adapter.
+
+## Implemented Follow-Up
+
+PR199 implements the review gate as
+[Decision Work Generated Read Resolver Supply Review](decision-work-generated-read-resolver-supply-review-v0.md).
+The review regenerates launch-beta and deploy-intake resolver-supply packets in
+temp validation, confirms launch remains a candidate packet and deploy keeps
+runtime/user-surface blocking, and selects a pre-runtime v1 package gate
+without approving resolver refs, updating sidecars, wiring runtime, scoring,
+proving, or authorizing action.

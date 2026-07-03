@@ -742,6 +742,13 @@ generated-triage refs. Launch-beta can produce a candidate packet; deploy-
 intake preserves runtime/user-surface blocking. Neither status approves refs,
 updates sidecars, wires runtime, scores advice, proves value, or authorizes
 action.
+The
+[Decision Work Generated Read Resolver Supply Review](docs/conversation-understanding/decision-work-generated-read-resolver-supply-review-v0.md)
+adds PR199's review-only pass over the launch-beta and deploy-intake resolver-
+supply candidate packets. It confirms candidate packets remain candidate
+summaries, not resolver approval, runtime sidecar permission, user-surface
+readiness, quality labels, proof, or action authorization, and gates to a
+pre-runtime package manifest.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See
