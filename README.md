@@ -640,14 +640,21 @@ adds PR185's field policy for the next deterministic adapter. It defines which
 accepted generated-read fields may feed future offline brief supply, which stay
 evidence-only, what source/uncertainty/privacy/non-claim data must travel
 forward, and what must block, while still generating no brief, enrichment,
-triage, resolver approval, sidecar update, proof claim, score, or action
+triage, resolver ref use, sidecar update, proof claim, score, or action
 authorization.
 The
 [Decision Work Generated Read Brief Supply Adapter](docs/conversation-understanding/decision-work-generated-read-brief-supply-adapter-v0.md)
-adds PR186's deterministic packet builder. It accepts a PR182-approved read and
+adds PR186's deterministic packet builder. It accepts a PR182-accepted read and
 intake result, copies only allowed fields with refs and uncertainty, emits ready
 or blocked supply status, and keeps sidecar updates, action authorization,
 quality labels, product proof, and human validation closed.
+The
+[Decision Work Generated Read Brief Rendering Pilot](docs/conversation-understanding/decision-work-generated-read-brief-rendering-pilot-v0.md)
+adds PR187's one-case reader-facing Markdown render for launch beta. It consumes
+a ready PR186 supply packet and preserves source refs, uncertainty, privacy
+limits, custody flags, and non-claims, while still not enriching, generating
+triage, marking resolver refs usable, updating sidecars, proving correctness,
+scoring, or authorizing action.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See
