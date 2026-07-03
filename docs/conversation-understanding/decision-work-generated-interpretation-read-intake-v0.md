@@ -252,3 +252,11 @@ It creates exactly one checked-in-safe launch-beta generated-read candidate and
 validates it through this PR182 intake path. The intake result is accepted for
 later offline planning only: it still cannot update runtime sidecars, authorize
 agent action, or be used as a quality label.
+
+PR185 is now implemented as:
+
+- [Decision Work Generated Read To Brief Supply Plan](decision-work-generated-read-to-brief-supply-plan-v0.md)
+
+It defines which accepted generated-read fields may feed future offline brief
+supply, which fields must remain evidence-only, and what must block before a
+deterministic adapter can carry the read forward.

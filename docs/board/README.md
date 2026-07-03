@@ -571,6 +571,22 @@ Follow-up implementation planning:
   resolver refs or sidecars, call models, score advice, prove product value, or
   authorize action.
 
+- [Decision Work Generated Read To Brief Supply Plan](../conversation-understanding/decision-work-generated-read-to-brief-supply-plan-v0.md)
+
+  PR185's plan for the next deterministic adapter. It defines the allowed
+  generated-read fields, evidence-only fields, blockers, required source refs,
+  uncertainty, privacy limits, non-claims, and adapter boundaries before any
+  brief rendering or runtime sidecar work.
+
+- [Decision Work Generated Read Brief Supply Adapter](../conversation-understanding/decision-work-generated-read-brief-supply-adapter-v0.md)
+
+  PR186's deterministic adapter and CLI for accepted generated reads. It emits
+  safe brief-supply packets with copied allowed fields, source refs,
+  uncertainty, blocker status, custody flags, and non-claims while still
+  stopping before brief rendering, enrichment, triage, resolver approval,
+  runtime sidecar update, model calls, scoring, proof claims, or action
+  authorization.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

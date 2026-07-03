@@ -422,13 +422,38 @@ read-to-brief supply plan next.
 
 ### PR185 Generated Read To Brief Supply Plan v0
 
+PR185 is implemented as
+[Decision Work Generated Read To Brief Supply Plan](decision-work-generated-read-to-brief-supply-plan-v0.md).
+
 Define how an accepted generated read may safely become Decision Work Brief,
 enrichment, triage, resolver, and sidecar supply without bypassing privacy,
 source-depth, and non-claim boundaries.
 
 This should be a plan/gate before a builder consumes the new read.
 
-### PR186 First New Completed Run Supply Pilot v0
+### PR186 Decision Work Generated Read Brief Supply Adapter v0
+
+PR186 is implemented as
+[Decision Work Generated Read Brief Supply Adapter](decision-work-generated-read-brief-supply-adapter-v0.md).
+
+Build the deterministic adapter that takes an accepted generated read and PR182
+intake result and emits a safe brief-supply packet for later offline rendering.
+
+This adapter may validate, normalize, copy allowed fields, preserve source refs,
+preserve uncertainty, and block/defer unsafe supply. It must not add semantic
+interpretation, render a brief, enrich a brief, generate triage, approve
+resolver refs, update runtime sidecars, or call providers.
+
+### PR187 Decision Work Generated Read Brief Rendering Pilot v0
+
+Use the PR186 supply packet to test the existing offline brief/enrichment path
+on exactly one checked-in-safe generated read.
+
+This should still be offline/internal, should not update runtime sidecars, and
+should preserve the distinction between structural supply readiness and semantic
+truth.
+
+### PR188 First New Completed Run Supply Pilot v0
 
 Use one completed run that was not one of the three curated registry cases.
 
@@ -439,9 +464,9 @@ Goal:
 
 This PR should be allowed to conclude "not yet."
 
-### PR187 Automatic Semantic Supply Closure Gate v0
+### PR189 Automatic Semantic Supply Closure Gate v0
 
-Review PR178-PR186 and decide the next path:
+Review PR178-PR188 and decide the next path:
 
 - continue with more pilots;
 - patch prompt packet / validator;
