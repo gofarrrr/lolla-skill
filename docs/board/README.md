@@ -768,6 +768,14 @@ Follow-up implementation planning:
   requirements while still not writing sidecars, mutating archives, wiring
   runtime, approving resolver refs, scoring, proving, or authorizing action.
 
+- [Decision Work Explicit Operator Sidecar Write Adapter](../conversation-understanding/decision-work-explicit-operator-sidecar-write-adapter-v0.md)
+
+  PR210's deterministic fixture-only explicit operator write adapter and CLI.
+  It can write sidecar-shaped files only into safe caller-supplied temp/output
+  `decision_work` directories and emits a fixture-only receipt while still not
+  writing real archives, wiring runtime, approving resolver refs, scoring,
+  proving, or authorizing action.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

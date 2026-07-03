@@ -362,6 +362,15 @@ explicit-operator/future-runtime modes, write statuses, allowed files, path
 safety, receipt requirements, and fail-closed rules while still not writing
 sidecars, mutating archives, wiring runtime, approving resolver refs, proving,
 scoring, or authorizing action.
+
+The Decision Work Explicit Operator Sidecar Write Adapter is
+docs/conversation-understanding/decision-work-explicit-operator-sidecar-write-adapter-v0.md.
+It adds PR210's deterministic fixture-only write adapter and CLI. The adapter
+writes sidecar-shaped files only into explicit safe temp/output decision_work
+directories from a PR202 sidecar update packet and matching PR206 dry-run
+result, emits a fixture-only write receipt, and keeps real archive mutation,
+historical archive mutation, runtime wiring, resolver approval, proof, scoring,
+and action authorization closed.
 ```
 
 ```text
