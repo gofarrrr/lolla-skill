@@ -1,0 +1,122 @@
+{
+  "schema_version": "lolla.decision_work_sidecar_automation_readiness_prd_review.v0",
+  "review_metadata": {
+    "review_id": "decision_work_sidecar_automation_readiness_prd:v0",
+    "created_at": "2026-07-04T00:00:00Z",
+    "reviewed_stage": "PR224 Decision Work Sidecar Automation Readiness PRD v0",
+    "mode": "docs_tests_only",
+    "model_calls": 0,
+    "lolla_invoked": false,
+    "new_lolla_runs_created": false,
+    "runtime_wired": false,
+    "archive_hook_changed": false,
+    "queue_worker_added": false,
+    "runner_implemented": false,
+    "resolver_refs_approved": false,
+    "checked_in_sidecar_outputs_created": false,
+    "historical_archive_touched": false
+  },
+  "current_internal_v1_status": {
+    "gate": "decision_work_sidecar_internal_v1_complete",
+    "claim": "command_only_explicit_operator_no_overwrite_sidecar_pipeline",
+    "ends_in_completed_run_archive_sidecar": true,
+    "receipts_and_non_claims_preserved": true,
+    "runtime_integration_present": false,
+    "customer_readiness_claimed": false
+  },
+  "automation_readiness_scope": {
+    "phase_type": "offline_operator_readiness",
+    "not_runtime_automation": true,
+    "newly_completed_runs_enter_operator_flow": true,
+    "hidden_semantic_interpretation_allowed": false,
+    "queue_worker_allowed": false,
+    "default_on_allowed": false
+  },
+  "target_statuses": [
+    "sidecar_ready_for_explicit_write",
+    "sidecar_ready_blocked_state",
+    "deferred_missing_semantic_read",
+    "deferred_missing_triage",
+    "blocked_privacy_risk",
+    "blocked_source_depth_insufficient",
+    "blocked_schema_or_custody_failure",
+    "blocked_runtime_or_user_surface_risk"
+  ],
+  "roadmap": [
+    "PR224 Automation Readiness PRD",
+    "PR225 Offline Operator Runner Plan",
+    "PR226 Offline Operator Runner Adapter",
+    "PR227 Runner Fixture Review",
+    "PR228 Non-Curated Completed-Run Pilot Plan",
+    "PR229 Non-Curated Completed-Run Pilot",
+    "PR230 Non-Curated Pilot Review",
+    "PR231 Automation Readiness Package Gate",
+    "PR232 Receipt / Blocked-State Language Review",
+    "optional PR233 Second Non-Curated Pilot",
+    "optional PR234 Runtime Hook Integration Plan",
+    "optional PR235 Automation Phase Closure / Next Decision Gate"
+  ],
+  "bundles": [
+    {
+      "name": "Bundle A",
+      "prs": [
+        "PR224 Automation Readiness PRD",
+        "PR225 Offline Operator Runner Plan"
+      ]
+    },
+    {
+      "name": "Bundle B",
+      "prs": [
+        "PR226 Offline Operator Runner Adapter",
+        "PR227 Runner Fixture Review"
+      ]
+    },
+    {
+      "name": "Bundle C",
+      "prs": [
+        "PR228 Non-Curated Completed-Run Pilot Plan",
+        "PR229 Non-Curated Completed-Run Pilot",
+        "PR230 Non-Curated Pilot Review"
+      ]
+    },
+    {
+      "name": "Bundle D",
+      "prs": [
+        "PR231 Automation Readiness Package Gate",
+        "PR232 Receipt / Blocked-State Language Review"
+      ]
+    },
+    {
+      "name": "Optional Bundle E",
+      "prs": [
+        "PR233 Second Non-Curated Pilot",
+        "PR234 Runtime Hook Integration Plan",
+        "PR235 Automation Phase Closure / Next Decision Gate"
+      ]
+    }
+  ],
+  "explicit_non_goals": [
+    "customer_readiness",
+    "default_on_runtime_behavior",
+    "direct_runtime_interpretation",
+    "runtime_model_provider_calls",
+    "automatic_arbitrary_run_correctness",
+    "resolver_approval",
+    "answer_quality_scoring",
+    "product_proof",
+    "human_validation",
+    "advice_correctness",
+    "certification",
+    "action_authorization"
+  ],
+  "biggest_risks": [
+    "offline_runner_mistaken_for_runtime_hook",
+    "operator_convenience_hiding_semantic_missingness",
+    "sidecar_ready_status_overread_as_customer_readiness",
+    "blocked_state_sidecar_overread_as_available",
+    "generated_read_fluency_creating_overtrust",
+    "non_curated_runs_exposing_source_depth_gaps"
+  ],
+  "decision_gate": "proceed_to_offline_operator_runner_plan",
+  "recommended_next_pr": "PR225 Offline Operator Runner Plan v0"
+}

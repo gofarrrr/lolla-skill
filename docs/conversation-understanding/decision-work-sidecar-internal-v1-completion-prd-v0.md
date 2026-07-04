@@ -194,6 +194,14 @@ Implemented follow-up:
 refreshes the board/product narrative and selects
 `decision_work_sidecar_internal_v1_complete`.
 
+Post-closeout follow-up:
+[Decision Work Sidecar Automation Readiness PRD](decision-work-sidecar-automation-readiness-prd-v0.md)
+starts the next conservative phase after Internal v1. It defines automation
+readiness as an offline/operator phase for newly completed runs and selects
+`proceed_to_offline_operator_runner_plan` while still excluding runtime
+integration, default-on behavior, queue workers, resolver approval,
+provider/model calls, scoring, proof claims, and action authorization.
+
 Optional later phases after internal v1:
 
 - queue worker;

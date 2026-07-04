@@ -1172,6 +1172,30 @@ Recommended next PR:
 PR223 Current State / Limitations Narrative Refresh v0
 ```
 
+### PR224 Decision Work Sidecar Automation Readiness PRD v0
+
+[Decision Work Sidecar Automation Readiness PRD](decision-work-sidecar-automation-readiness-prd-v0.md)
+starts the next phase after Internal v1. It defines automation readiness as a
+conservative offline/operator lane for newly completed runs, with statuses for
+sidecar-ready, blocked, deferred, and rejected outcomes. It records a 9-12 PR
+roadmap and recommends PR225 Offline Operator Runner Plan v0 while still not
+implementing a runner, queue worker, runtime hook, direct runtime
+interpretation, provider/model call, resolver approval, default-on behavior,
+proof claim, scoring, advice-correctness claim, certification, or action
+authorization.
+
+Selected gate:
+
+```text
+proceed_to_offline_operator_runner_plan
+```
+
+Recommended next PR:
+
+```text
+PR225 Offline Operator Runner Plan v0
+```
+
 ## Readiness Gates
 
 Automatic semantic supply is not ready for normal use until:

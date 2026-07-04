@@ -167,6 +167,13 @@ Future work can consider:
 Those are separate phases. They should not be smuggled into the Internal v1
 closeout.
 
+The follow-on phase anchor is
+[Decision Work Sidecar Automation Readiness PRD](../conversation-understanding/decision-work-sidecar-automation-readiness-prd-v0.md).
+It keeps the next step offline and operator-directed, defines sidecar-ready,
+blocked, deferred, and rejected states for newly completed runs, and recommends
+an offline operator runner plan before any queue worker, runtime hook,
+resolver approval, or default-on behavior.
+
 ## Decision Gate
 
 Selected gate:

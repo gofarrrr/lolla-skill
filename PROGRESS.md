@@ -522,6 +522,18 @@ validated Decision Work artifacts, ending in a completed-run archive sidecar
 with receipts and non-claims preserved. It selects
 decision_work_sidecar_internal_v1_complete and recommends a pause/review
 before any automation phase.
+
+The Decision Work Sidecar Automation Readiness PRD is
+docs/conversation-understanding/decision-work-sidecar-automation-readiness-prd-v0.md
+with review artifact
+reviews/codex-assisted/decision-work-sidecar-automation-readiness-prd-v0/review.json.
+It starts the next conservative phase after Internal v1: an offline/operator
+readiness lane for newly completed runs that can preserve sidecar-ready,
+blocked, deferred, and rejected states. It records a 9-12 PR roadmap and
+selects proceed_to_offline_operator_runner_plan for PR225 while still not
+implementing a runner, queue worker, runtime hook, provider/model call,
+resolver approval, default-on behavior, proof claim, scoring, advice
+correctness, certification, or action authorization.
 ```
 
 ```text
