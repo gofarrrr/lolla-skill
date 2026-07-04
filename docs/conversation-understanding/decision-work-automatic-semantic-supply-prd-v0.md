@@ -1389,6 +1389,29 @@ Recommended next PR:
 PR232 Second Non-Curated Pilot Review v0
 ```
 
+### PR232 Second Non-Curated Pilot Review v0
+
+[Decision Work Second Non-Curated Pilot Review](decision-work-second-non-curated-pilot-review-v0.md)
+reviews PR229 and PR231 together.
+
+The review finds that the offline operator runner can stop honestly when
+semantic input is missing and can also proceed through dry-run readiness when
+existing checked-in-safe semantic inputs are supplied. It explicitly does not
+treat PR231 as evidence that arbitrary non-curated conversations can now be
+semantically understood, because PR231 reused a launch-like semantic input pair.
+
+Selected gate:
+
+```text
+proceed_to_automation_readiness_package_gate
+```
+
+Recommended next PR:
+
+```text
+PR233 Automation Readiness Package Gate v0
+```
+
 ## Readiness Gates
 
 Automatic semantic supply is not ready for normal use until:

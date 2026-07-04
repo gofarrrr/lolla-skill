@@ -174,3 +174,18 @@ The recommended next PR is:
 ```text
 PR232 Second Non-Curated Pilot Review v0
 ```
+
+## Implemented Second-Pilot Review
+
+[Decision Work Second Non-Curated Pilot Review](decision-work-second-non-curated-pilot-review-v0.md)
+compares PR229 and PR231 together. It keeps the limitation explicit that PR231
+reuses launch-like semantic inputs, but finds the runner useful enough for an
+Automation Readiness package gate because it can both defer on missing semantic
+input and proceed through dry-run readiness when existing safe semantic inputs
+are supplied.
+
+Selected gate:
+
+```text
+proceed_to_automation_readiness_package_gate
+```

@@ -628,6 +628,20 @@ checks in no runner summary, dry-run output, sidecar output, preview output, or
 decision_work directory, and still does not generate semantics, run Lolla, call
 models, create queue workers, write sidecars, mutate archives, wire runtime,
 approve resolver refs, score, prove, validate, certify, or authorize action.
+
+The Decision Work Second Non-Curated Pilot Review is
+docs/conversation-understanding/decision-work-second-non-curated-pilot-review-v0.md
+with review artifact
+reviews/codex-assisted/decision-work-second-non-curated-pilot-review-v0/review.json.
+It reviews PR229 and PR231 together: PR229 shows missing semantic input defers
+cleanly, while PR231 shows the same runner can proceed through dry-run
+readiness when existing checked-in-safe semantic inputs are supplied. The
+review keeps the limitation explicit: PR231 reuses launch-like semantic inputs
+and does not show arbitrary non-curated semantic understanding. It selects
+proceed_to_automation_readiness_package_gate for PR233 while still not
+generating semantics, running Lolla, calling models, creating queue workers,
+writing sidecars, mutating archives, wiring runtime, approving resolver refs,
+scoring, proving, validating, certifying, or authorizing action.
 ```
 
 ```text
