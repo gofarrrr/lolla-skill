@@ -131,6 +131,11 @@ authorization.
 Implement the command-only runner. The runner should call existing CLIs and
 produce a summary JSON. It should not add semantic interpretation.
 
+Implemented follow-up:
+[Decision Work Offline Operator Runner Adapter](decision-work-offline-operator-runner-adapter-v0.md)
+implements this no-write runner and selects
+`proceed_to_offline_operator_runner_fixture_review`.
+
 ### PR227 Runner Fixture Review
 
 Review runner fixture outputs for launch-like and blocked/high-risk cases.

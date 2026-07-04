@@ -1221,6 +1221,28 @@ Recommended next PR:
 PR226 Offline Operator Runner Adapter v0
 ```
 
+### PR226 Offline Operator Runner Adapter v0
+
+[Decision Work Offline Operator Runner Adapter](decision-work-offline-operator-runner-adapter-v0.md)
+implements the one-shot command-only runner from PR225. It orchestrates the
+existing deterministic CLIs from generated read intake through sidecar write
+dry-run and emits `lolla.decision_work_offline_operator_runner.v0`. It
+preserves missingness, blockers, deferred reasons, operator attention items,
+and launch/deploy blocked-state differences. PR226 intentionally does not call
+the real archive sidecar write adapter; write flags stop before explicit write.
+
+Selected gate:
+
+```text
+proceed_to_offline_operator_runner_fixture_review
+```
+
+Recommended next PR:
+
+```text
+PR227 Offline Operator Runner Fixture Review v0
+```
+
 ## Readiness Gates
 
 Automatic semantic supply is not ready for normal use until:

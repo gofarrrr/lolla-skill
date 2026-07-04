@@ -547,6 +547,19 @@ proceed_to_offline_operator_runner_adapter for PR226 while still not
 implementing the runner, wiring runtime, calling providers/models, approving
 resolver refs, overwriting sidecars, scoring, proving, certifying, or
 authorizing action.
+
+The Decision Work Offline Operator Runner Adapter is
+docs/conversation-understanding/decision-work-offline-operator-runner-adapter-v0.md
+with module engine/system_b/decision_work_offline_operator_runner.py and CLI
+scripts/evals/run_decision_work_offline_operator.py. It implements the
+one-shot command-only runner through dry-run readiness only. Launch reaches
+sidecar_ready_for_explicit_write; deploy reaches sidecar_ready_blocked_state;
+missing generated read or triage inputs defer; rejected intake and privacy
+markers block. The runner emits runner_summary.json and selects
+proceed_to_offline_operator_runner_fixture_review while still not calling the
+real archive write adapter, writing sidecars, mutating archives, wiring
+runtime, approving resolver refs, scoring, proving, certifying, or authorizing
+action.
 ```
 
 ```text

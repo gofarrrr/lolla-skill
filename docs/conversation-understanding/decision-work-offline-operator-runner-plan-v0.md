@@ -247,3 +247,9 @@ Recommended next PR:
 ```text
 PR226 Offline Operator Runner Adapter v0
 ```
+
+Implemented follow-up:
+[Decision Work Offline Operator Runner Adapter](decision-work-offline-operator-runner-adapter-v0.md)
+implements the one-shot command-only runner and selects
+`proceed_to_offline_operator_runner_fixture_review`. PR226 intentionally stops
+at dry-run readiness and does not call the real archive write adapter.
