@@ -1011,6 +1011,14 @@ command-only operator runner as functional for explicit-path orchestration,
 missing-semantic-input deferral, and dry-run readiness with existing safe
 semantic inputs, while preserving the no-write, no-runtime, no-resolver-
 approval, no-queue-worker, no-scoring, no-proof, and no-action boundaries.
+The
+[Decision Work Receipt / Blocked-State Language Review](docs/conversation-understanding/decision-work-receipt-blocked-state-language-review-v0.md)
+adds PR234's closeout language review for Automation Readiness v1. It keeps
+`sidecar_ready_for_explicit_write`, `sidecar_ready_blocked_state`, dry-run
+readiness, automation readiness, receipts, and runner summaries acceptable only
+with explicit caveats: no runner-side write, no runtime automation, no resolver
+approval, no arbitrary-run semantic proof, no product proof, no scoring, and no
+action authorization.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See

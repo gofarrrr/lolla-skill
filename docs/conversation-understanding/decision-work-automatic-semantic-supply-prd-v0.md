@@ -1440,6 +1440,33 @@ Recommended next PR:
 PR234 Receipt / Blocked-State Language Review v0
 ```
 
+### PR234 Receipt / Blocked-State Language Review v0
+
+[Decision Work Receipt / Blocked-State Language Review](decision-work-receipt-blocked-state-language-review-v0.md)
+reviews Automation Readiness v1 wording before the work moves to a separate
+Product Delta evaluation-readiness phase.
+
+The review finds that `sidecar_ready_for_explicit_write`,
+`sidecar_ready_blocked_state`, dry-run readiness, automation readiness,
+`runner_summary.json`, and `operator_attention_items` are acceptable with
+explicit limitations preserved. The language remains internal/operator-facing:
+the runner does not write sidecars by itself, dry-run readiness is not an
+actual sidecar write, sidecar-ready is not resolver approval, automation
+readiness is not runtime automation, and PR231 does not prove arbitrary
+non-curated semantic understanding.
+
+Selected gate:
+
+```text
+proceed_to_product_delta_evaluation_readiness_prd
+```
+
+Recommended next PR:
+
+```text
+Product Delta Evaluation Readiness PRD v0
+```
+
 ## Readiness Gates
 
 Automatic semantic supply is not ready for normal use until:

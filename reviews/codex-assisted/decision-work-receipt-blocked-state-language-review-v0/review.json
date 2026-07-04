@@ -1,0 +1,173 @@
+{
+  "schema_version": "lolla.decision_work_receipt_blocked_state_language_review.v0",
+  "review_metadata": {
+    "review_id": "decision_work_receipt_blocked_state_language_review:v0",
+    "created_at": "2026-07-04T00:00:00Z",
+    "mode": "docs_review_tests_only",
+    "model_calls": 0,
+    "lolla_invoked": false,
+    "new_lolla_runs_created": false,
+    "prompts_changed": false,
+    "runner_behavior_changed": false,
+    "runtime_behavior_changed": false,
+    "runtime_wired": false,
+    "queue_worker_added": false,
+    "archive_mutated": false,
+    "historical_archive_mutated": false,
+    "checked_in_runner_outputs_created": false,
+    "checked_in_sidecar_outputs_created": false,
+    "resolver_refs_approved": false,
+    "actual_sidecar_write_performed": false,
+    "runtime_wiring_changed": false
+  },
+  "source_artifacts_reviewed": {
+    "automation_readiness_package_gate": "docs/conversation-understanding/decision-work-sidecar-automation-readiness-package-gate-v0.md",
+    "automation_readiness_manifest": "docs/conversation-understanding/decision-work-sidecar-automation-readiness-package-manifest-v0.json",
+    "automation_readiness_prd": "docs/conversation-understanding/decision-work-sidecar-automation-readiness-prd-v0.md",
+    "second_non_curated_pilot_review": "docs/conversation-understanding/decision-work-second-non-curated-pilot-review-v0.md",
+    "offline_runner_adapter": "docs/conversation-understanding/decision-work-offline-operator-runner-adapter-v0.md"
+  },
+  "terms_reviewed": [
+    "sidecar_ready_for_explicit_write",
+    "sidecar_ready_blocked_state",
+    "deferred_missing_semantic_read",
+    "deferred_missing_triage",
+    "blocked_runtime_or_user_surface_risk",
+    "dry-run readiness",
+    "automation readiness",
+    "explicit write",
+    "sidecar-ready",
+    "blocked-state sidecar",
+    "runner_summary.json",
+    "operator_attention_items"
+  ],
+  "term_findings": {
+    "sidecar_ready_for_explicit_write": {
+      "acceptable_with_caveats": true,
+      "could_be_mistaken_for_resolver_approval_if_isolated": true,
+      "could_be_mistaken_for_automatic_write_if_isolated": true,
+      "required_caveats": [
+        "dry_run_readiness_only",
+        "separate_explicit_operator_write_required",
+        "resolver_refs_not_approved",
+        "runner_never_writes_sidecars_by_itself",
+        "not_runtime_or_user_surface_readiness"
+      ]
+    },
+    "sidecar_ready_blocked_state": {
+      "acceptable_with_caveats": true,
+      "could_be_mistaken_for_user_surface_readiness_if_isolated": true,
+      "required_caveats": [
+        "blocked_state_preserved",
+        "runtime_use_blocked",
+        "user_surface_not_available",
+        "not_customer_readiness"
+      ]
+    },
+    "deferred_missing_semantic_read": {
+      "safe_as_is": true,
+      "missingness_visible": true,
+      "semantic_generation_not_implied": true
+    },
+    "deferred_missing_triage": {
+      "safe_as_is": true,
+      "missingness_visible": true,
+      "triage_repair_not_implied": true
+    },
+    "blocked_runtime_or_user_surface_risk": {
+      "safe_as_is": true,
+      "conservative_direction": "fail_closed"
+    },
+    "dry_run_readiness": {
+      "acceptable_with_caveats": true,
+      "actual_write_not_implied_when_qualified": true
+    },
+    "automation_readiness": {
+      "acceptable_with_caveats": true,
+      "runtime_automation_not_implied_when_offline_operator_boundary_present": true
+    },
+    "runner_summary_json": {
+      "safe_as_is": true,
+      "custody_artifact_not_proof_artifact": true
+    },
+    "operator_attention_items": {
+      "safe_as_is": true,
+      "routes_attention_without_authorizing_action": true
+    }
+  },
+  "review_questions": {
+    "sidecar_ready_for_explicit_write_mistakable_for_resolver_approval": "possible_if_isolated_but_acceptable_with_current_caveats",
+    "sidecar_ready_for_explicit_write_mistakable_for_automatic_write": "possible_if_isolated_but_acceptable_with_current_caveats",
+    "sidecar_ready_blocked_state_mistakable_for_user_surface_readiness": "possible_if_ready_is_overread_but_current_blocked_state_language_is_clear",
+    "dry_run_readiness_mistakable_for_actual_write": "possible_if_dry_run_is_omitted_but_current_docs_preserve_the_qualifier",
+    "automation_readiness_mistakable_for_runtime_automation": "possible_if_offline_operator_boundary_is_removed_but_current_docs_define_it_clearly",
+    "runner_never_writes_sidecars_by_itself_clear": true,
+    "semantic_inputs_must_already_exist_clear": true,
+    "not_arbitrary_run_semantic_generation_clear": true,
+    "not_product_proof_human_validation_scoring_advice_correctness_certification_or_action_clear": true,
+    "pr229_and_pr231_limitations_visible_enough": true,
+    "first_30_seconds_non_engineer_readability": "acceptable_for_internal_readers_with_caveats_preserved"
+  },
+  "language_findings": {
+    "current_language_acceptable_with_explicit_limitations_preserved": true,
+    "code_or_constant_change_needed": false,
+    "doc_only_review_sufficient": true,
+    "avoid_shortening_sidecar_ready_to_ready": true,
+    "keep_sidecar_ready_adjacent_to_explicit_operator_write_or_dry_run_readiness": true,
+    "keep_pr229_missingness_and_pr231_reused_semantic_input_limit_visible": true
+  },
+  "missingness_lens": {
+    "missing_required_inputs_preserved": true,
+    "deferred_reasons_preserved": true,
+    "blocker_reasons_preserved": true,
+    "operator_attention_items_preserved": true,
+    "source_depth_limits_preserved": true,
+    "runtime_user_surface_blocked_state_preserved": true,
+    "new_unknowns_schema_created": false,
+    "known_known_known_unknown_taxonomy_created": false,
+    "semantic_conclusions_added": false
+  },
+  "boundary_checks": {
+    "write_attempted": false,
+    "actual_sidecar_write_performed": false,
+    "archive_mutated": false,
+    "historical_archive_mutated": false,
+    "runtime_wiring_changed": false,
+    "runtime_attachment_default_on": false,
+    "resolver_refs_approved": false,
+    "queue_worker_added": false,
+    "product_proof": false,
+    "human_validated": false,
+    "answer_quality_scored": false,
+    "advice_correctness_claimed": false,
+    "approval_or_certification_added": false,
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false
+  },
+  "strongest_useful_signal": "The package language repeatedly separates dry-run/operator readiness from resolver approval, runtime readiness, and actual writes, while preserving PR229 and PR231 limitations.",
+  "strongest_unresolved_risk": "The word ready can still be overread if copied without explicit operator, dry-run, no-write, and no-approval caveats.",
+  "decision_gate": "proceed_to_product_delta_evaluation_readiness_prd",
+  "recommended_next_pr": "Product Delta Evaluation Readiness PRD v0",
+  "non_claims": [
+    "review_does_not_run_lolla",
+    "review_does_not_invoke_lolla_skill",
+    "review_does_not_call_models_or_providers",
+    "review_does_not_create_new_lolla_runs",
+    "review_does_not_change_prompts",
+    "review_does_not_generate_semantic_interpretation",
+    "review_does_not_repair_interpretation_reads",
+    "review_does_not_create_queue_worker",
+    "review_does_not_wire_runtime",
+    "review_does_not_make_runtime_attachment_default_on",
+    "review_does_not_approve_resolver_refs",
+    "review_does_not_write_sidecars",
+    "review_does_not_mutate_archives",
+    "review_is_not_product_proof",
+    "review_is_not_human_validation",
+    "review_does_not_score_answer_quality",
+    "review_does_not_validate_advice_correctness",
+    "review_does_not_certify_or_approve_outputs",
+    "review_does_not_authorize_agent_action",
+    "review_does_not_authorize_automatic_action"
+  ]
+}

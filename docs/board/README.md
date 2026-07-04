@@ -948,6 +948,14 @@ Follow-up implementation planning:
   being runtime wiring, a queue worker, resolver approval, automatic sidecar
   writing, product proof, scoring, or action authorization.
 
+- [Decision Work Receipt / Blocked-State Language Review](../conversation-understanding/decision-work-receipt-blocked-state-language-review-v0.md)
+
+  PR234 reviews whether the Automation Readiness wording can be mistaken for
+  runtime readiness, resolver approval, semantic proof, automatic writing, or
+  customer readiness. It keeps the current terms acceptable only with their
+  caveats and points the next phase to a separate Product Delta Evaluation
+  Readiness PRD.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

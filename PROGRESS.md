@@ -657,6 +657,18 @@ semantics, running Lolla, calling models, creating queue workers, writing
 sidecars from the runner, mutating archives, wiring runtime, approving
 resolver refs, scoring, proving, validating, certifying, or authorizing
 action.
+
+The Decision Work Receipt / Blocked-State Language Review is
+docs/conversation-understanding/decision-work-receipt-blocked-state-language-review-v0.md
+with review artifact
+reviews/codex-assisted/decision-work-receipt-blocked-state-language-review-v0/review.json.
+It reviews Automation Readiness v1 language around sidecar-ready statuses,
+blocked-state sidecars, dry-run readiness, automation readiness,
+runner_summary.json, and operator_attention_items. It keeps current wording
+acceptable only with explicit no-write, no-runtime, no-resolver-approval,
+no-arbitrary-semantic-proof, no-product-proof, no-scoring, and no-action
+caveats preserved. It selects proceed_to_product_delta_evaluation_readiness_prd
+while keeping Product Delta evaluation work out of PR234.
 ```
 
 ```text

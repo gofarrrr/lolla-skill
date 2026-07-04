@@ -244,6 +244,14 @@ It should not implement runtime wiring, queue workers, automatic writes,
 resolver approval, model/provider calls, scoring, proof claims, certification,
 or action authorization.
 
+## Implemented Follow-Up
+
+PR234 implements that review as
+[Decision Work Receipt / Blocked-State Language Review](decision-work-receipt-blocked-state-language-review-v0.md).
+It keeps the Automation Readiness v1 terms acceptable with explicit caveats
+preserved and selects `proceed_to_product_delta_evaluation_readiness_prd` for a
+separate next phase.
+
 ## Explicit Non-Claims
 
 PR233 does not claim:

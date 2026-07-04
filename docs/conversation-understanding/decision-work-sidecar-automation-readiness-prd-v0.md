@@ -223,6 +223,15 @@ writes, proof claims, scoring, or action authorization.
 Review whether receipts and blocked-state language stay legible without
 implying product readiness, advice correctness, approval, or availability.
 
+Implemented follow-up:
+[Decision Work Receipt / Blocked-State Language Review](decision-work-receipt-blocked-state-language-review-v0.md)
+reviews the Automation Readiness v1 status and receipt vocabulary, accepts the
+current wording with explicit caveats preserved, and selects
+`proceed_to_product_delta_evaluation_readiness_prd` as a separate next phase.
+It does not change runner behavior, start eval implementation, add queue
+workers, wire runtime, approve resolver refs, write sidecars, score answers, or
+claim proof.
+
 ### Optional PR235 Runtime Hook Integration Plan
 
 Plan runtime hook integration only after the offline runner and non-curated
