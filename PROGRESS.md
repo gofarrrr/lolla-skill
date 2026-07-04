@@ -600,6 +600,18 @@ proceed_to_non_curated_pilot_review for PR230 while still not generating
 semantics, running Lolla, calling models, creating queue workers, writing
 sidecars, mutating archives, wiring runtime, approving resolver refs, scoring,
 proving, certifying, or authorizing action.
+
+The Decision Work Non-Curated Pilot Review is
+docs/conversation-understanding/decision-work-non-curated-pilot-review-v0.md
+with review artifact
+reviews/codex-assisted/decision-work-non-curated-pilot-review-v0/review.json.
+It accepts PR229's deferred_missing_semantic_read result as a valid first
+non-curated automation-readiness signal because missingness, deferred_reasons,
+stopped_at, skipped steps, and false write/archive/runtime/resolver flags stay
+visible. It also decides that this is not enough for package readiness and
+selects proceed_to_second_non_curated_completed_run_pilot for PR231, where a
+second non-curated fixture should already have checked-in-safe generated read
+and generated triage inputs.
 ```
 
 ```text

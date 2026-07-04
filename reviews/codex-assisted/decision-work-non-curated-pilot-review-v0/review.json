@@ -1,0 +1,123 @@
+{
+  "schema_version": "lolla.decision_work_non_curated_pilot_review.v0",
+  "review_metadata": {
+    "review_id": "decision_work_non_curated_pilot_review:v0",
+    "created_at": "2026-07-04T00:00:00Z",
+    "mode": "docs_review_tests_only",
+    "model_calls": 0,
+    "lolla_invoked": false,
+    "new_lolla_runs_created": false,
+    "runtime_wired": false,
+    "queue_worker_added": false,
+    "archive_mutated": false,
+    "historical_archive_mutated": false,
+    "checked_in_runner_outputs_created": false,
+    "checked_in_sidecar_outputs_created": false,
+    "resolver_refs_approved": false,
+    "actual_sidecar_write_performed": false,
+    "runtime_wiring_changed": false
+  },
+  "source_pilot_ref": "docs/conversation-understanding/decision-work-non-curated-completed-run-pilot-v0.md",
+  "source_pilot_review_ref": "reviews/codex-assisted/decision-work-non-curated-completed-run-pilot-v0/review.json",
+  "reviewed_case": {
+    "case_id": "non-curated-sanitized-missing-read-fixture",
+    "fixture_policy": "synthetic_temp_completed_run_like_fixture",
+    "non_curated": true,
+    "generated_read_present": false,
+    "generated_triage_present": false
+  },
+  "reviewed_runner_outcome": {
+    "final_status": "deferred_missing_semantic_read",
+    "stopped_at": "generated_read",
+    "missing_required_inputs": [
+      "generated_read"
+    ],
+    "deferred_reasons": [
+      "generated_read_missing"
+    ],
+    "blocker_reasons": [],
+    "operator_attention_items": [],
+    "completed_steps": [],
+    "skipped_steps": [
+      "generated_read_intake",
+      "brief_supply",
+      "rendered_brief",
+      "triage_supply",
+      "resolver_supply",
+      "sidecar_update_packet",
+      "sidecar_write_dry_run"
+    ]
+  },
+  "review_answers": {
+    "deferred_result_acceptable_first_signal": true,
+    "missingness_visible_enough": true,
+    "deferred_reasons_clear_enough": true,
+    "stopped_at_clear_enough": true,
+    "skipped_downstream_steps_clear_enough": true,
+    "avoids_product_readiness_implication": true,
+    "source_depth_gap_not_hidden": true,
+    "semantic_input_gap_not_hidden": true,
+    "enough_for_package_readiness": false,
+    "second_non_curated_pilot_needed": true
+  },
+  "fabrication_checks": {
+    "semantic_meaning_inferred": false,
+    "generated_read_created_or_repaired": false,
+    "generated_triage_created_or_repaired": false,
+    "brief_fabricated": false,
+    "triage_supply_fabricated": false,
+    "resolver_candidate_fabricated": false,
+    "sidecar_update_packet_fabricated": false,
+    "dry_run_fabricated": false,
+    "sidecar_write_fabricated": false
+  },
+  "missingness_lens": {
+    "missing_required_inputs_preserved": true,
+    "deferred_reasons_preserved": true,
+    "blocker_reasons_preserved": true,
+    "operator_attention_items_preserved": true,
+    "new_unknowns_schema_created": false,
+    "known_known_known_unknown_taxonomy_created": false,
+    "semantic_conclusions_added": false
+  },
+  "boundary_checks": {
+    "write_attempted": false,
+    "actual_sidecar_write_performed": false,
+    "archive_mutated": false,
+    "historical_archive_mutated": false,
+    "runtime_wiring_changed": false,
+    "resolver_refs_approved": false,
+    "product_proof": false,
+    "human_validated": false,
+    "answer_quality_scored": false,
+    "advice_correctness_claimed": false,
+    "approval_or_certification_added": false,
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false
+  },
+  "strongest_useful_signal": "The first non-curated pilot cleanly preserved missing generated-read state instead of inventing semantics or fabricating downstream artifacts.",
+  "strongest_unresolved_risk": "The pilot did not exercise a non-curated case with existing checked-in-safe generated read and generated triage inputs, so deeper runner behavior outside launch/deploy remains untested.",
+  "decision_gate": "proceed_to_second_non_curated_completed_run_pilot",
+  "recommended_next_pr": "PR231 Second Non-Curated Completed-Run Pilot v0",
+  "non_claims": [
+    "review_does_not_run_lolla",
+    "review_does_not_invoke_lolla_skill",
+    "review_does_not_call_models_or_providers",
+    "review_does_not_create_new_lolla_runs",
+    "review_does_not_generate_semantic_interpretation",
+    "review_does_not_repair_interpretation_reads",
+    "review_does_not_create_queue_worker",
+    "review_does_not_wire_runtime",
+    "review_does_not_make_runtime_attachment_default_on",
+    "review_does_not_approve_resolver_refs",
+    "review_does_not_write_sidecars",
+    "review_does_not_mutate_archives",
+    "review_is_not_product_proof",
+    "review_is_not_human_validation",
+    "review_does_not_score_answer_quality",
+    "review_does_not_validate_advice_correctness",
+    "review_does_not_certify_or_approve_outputs",
+    "review_does_not_authorize_agent_action",
+    "review_does_not_authorize_automatic_action"
+  ]
+}

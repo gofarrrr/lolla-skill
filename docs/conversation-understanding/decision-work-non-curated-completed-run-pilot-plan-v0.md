@@ -355,3 +355,7 @@ temp/operator-local, checks in no sidecar outputs, and selects:
 ```text
 proceed_to_non_curated_pilot_review
 ```
+
+[Decision Work Non-Curated Pilot Review](decision-work-non-curated-pilot-review-v0.md)
+then reviews that deferred pilot and selects a second non-curated completed-run
+pilot with existing checked-in-safe semantic inputs before any package gate.

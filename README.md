@@ -981,6 +981,13 @@ checks in only the review summary, preserves missingness, and still does not
 generate semantics, run Lolla, call models, write sidecars, mutate archives,
 wire runtime, approve resolver refs, score, prove, validate, certify, or
 authorize action.
+The
+[Decision Work Non-Curated Pilot Review](docs/conversation-understanding/decision-work-non-curated-pilot-review-v0.md)
+reviews PR229 and accepts the deferred result as an honest first
+automation-readiness signal, but not enough for package readiness. It selects a
+second non-curated pilot with existing checked-in-safe generated read and
+generated triage inputs, while preserving the no-runtime, no-approval,
+no-scoring, no-proof, and no-action boundaries.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See

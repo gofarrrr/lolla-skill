@@ -173,30 +173,57 @@ and selects `proceed_to_non_curated_pilot_review`.
 Review whether the non-curated pilot preserved missingness, source limits,
 blocked states, and non-claims.
 
-### PR231 Automation Readiness Package Gate
+Implemented follow-up:
+[Decision Work Non-Curated Pilot Review](decision-work-non-curated-pilot-review-v0.md)
+accepts PR229's deferred result as an honest first non-curated signal, decides
+it is not enough for package readiness, and selects
+`proceed_to_second_non_curated_completed_run_pilot`.
 
-Package the readiness layer if PR226 through PR230 are clean. This is still
+### PR231 Second Non-Curated Completed-Run Pilot
+
+Run a second non-curated case with existing checked-in-safe generated read and
+generated triage inputs, so the runner can exercise deeper chain behavior
+without inventing semantics.
+
+### PR232 Second Non-Curated Pilot Review
+
+Review whether the second non-curated pilot preserves missingness, source
+limits, blocked states, and non-claims while traveling deeper than PR229.
+
+### PR233 Automation Readiness Package Gate
+
+Package the readiness layer if PR226 through PR232 are clean. This is still
 not runtime integration.
 
-### PR232 Receipt / Blocked-State Language Review
+### Optional PR234 Receipt / Blocked-State Language Review
 
 Review whether receipts and blocked-state language stay legible without
 implying product readiness, advice correctness, approval, or availability.
 
-### Optional PR233 Second Non-Curated Pilot
-
-Run a second non-curated case if the first pilot exposes case-specific
-uncertainty or if the runner needs broader status coverage.
-
-### Optional PR234 Runtime Hook Integration Plan
+### Optional PR235 Runtime Hook Integration Plan
 
 Plan runtime hook integration only after the offline runner and non-curated
 pilot reviews show stable boundaries. No implementation in this optional plan.
 
-### Optional PR235 Automation Phase Closure / Next Decision Gate
+### Optional PR236 Automation Phase Closure / Next Decision Gate
 
 Decide whether to pause, add another non-curated pilot, plan runtime hook
 integration, or revise the automation-readiness scope.
+
+Historical PR224 roadmap labels retained for traceability:
+
+- PR224 Automation Readiness PRD;
+- PR225 Offline Operator Runner Plan;
+- PR226 Offline Operator Runner Adapter;
+- PR227 Runner Fixture Review;
+- PR228 Non-Curated Completed-Run Pilot Plan;
+- PR229 Non-Curated Completed-Run Pilot;
+- PR230 Non-Curated Pilot Review;
+- PR231 Automation Readiness Package Gate, now deferred by PR230;
+- PR232 Receipt / Blocked-State Language Review, now deferred by PR230;
+- optional PR233 Second Non-Curated Pilot, now promoted by PR230;
+- optional PR234 Runtime Hook Integration Plan;
+- optional PR235 Automation Phase Closure / Next Decision Gate.
 
 ## Bundling Recommendation
 
@@ -208,10 +235,16 @@ Recommended bundles:
   Review.
 - Bundle C: PR228 Non-Curated Completed-Run Pilot Plan, PR229 Non-Curated
   Completed-Run Pilot, and PR230 Non-Curated Pilot Review.
-- Bundle D: PR231 Automation Readiness Package Gate and PR232 Receipt /
-  Blocked-State Language Review.
-- Optional Bundle E: PR233 Second Non-Curated Pilot, PR234 Runtime Hook
-  Integration Plan, and PR235 Automation Phase Closure / Next Decision Gate.
+- Bundle D: PR231 Second Non-Curated Completed-Run Pilot and PR232 Second
+  Non-Curated Pilot Review.
+- Bundle E: PR233 Automation Readiness Package Gate and optional PR234
+  Receipt / Blocked-State Language Review.
+- Optional Bundle F: PR235 Runtime Hook Integration Plan and PR236 Automation
+  Phase Closure / Next Decision Gate.
+
+Original Optional Bundle E is retained as a traceability label for the PR224
+roadmap, but PR230 promotes the second non-curated pilot ahead of package
+readiness.
 
 Do not bundle runtime wiring, default-on behavior, provider/model calls,
 resolver approval, queue workers, or direct runtime interpretation into this
