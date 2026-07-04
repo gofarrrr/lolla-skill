@@ -842,6 +842,38 @@ matching dry-runs, while excluding runtime integration, default-on behavior,
 real historical archive mutation as normal behavior, resolver approval,
 customer readiness, proof, scoring, advice correctness, certification, and
 action authorization.
+The
+[Decision Work Controlled Archive Sidecar Write Fixture Plan](docs/conversation-understanding/decision-work-controlled-archive-sidecar-write-fixture-plan-v0.md)
+adds PR213's docs/review/tests-only plan for the next boundary: writing the
+same allowed sidecar files into synthetic archive-shaped fixture directories.
+Those fixtures may resemble completed-run archives for test/operator review,
+but real archives, existing historical archive paths, runtime wiring, archive
+hook edits, resolver approval, proof claims, scoring, and action authorization
+remain forbidden.
+The
+[Decision Work Controlled Archive Sidecar Write Fixture Adapter](docs/conversation-understanding/decision-work-controlled-archive-sidecar-write-fixture-adapter-v0.md)
+adds PR214's deterministic adapter and CLI for synthetic archive-shaped fixture
+writes. It can write launch/deploy sidecar-shaped fixture directories under
+explicit safe temp/operator archive-like roots, with launch
+`fixture_write_completed` and deploy `fixture_write_completed_blocked_state`,
+while still refusing real archives, existing historical archive paths, repo
+paths, runtime paths, resolver approval, proof claims, scoring, and action
+authorization.
+The
+[Decision Work Controlled Archive Sidecar Write Fixture Review](docs/conversation-understanding/decision-work-controlled-archive-sidecar-write-fixture-review-v0.md)
+adds PR215's docs/review/tests-only check over those launch/deploy synthetic
+archive-shaped fixture writes. It confirms deploy remains runtime/user-surface
+blocked, unsafe path and source mismatch cases are rejected, and real archive
+mutation, archive-hook edits, runtime wiring, resolver approval, proof claims,
+scoring, and action authorization remain closed before a package gate.
+The
+[Decision Work Controlled Archive Sidecar Write Fixture Package Gate](docs/conversation-understanding/decision-work-controlled-archive-sidecar-write-fixture-package-gate-v0.md)
+packages PR213-PR215 as controlled archive sidecar write fixture v1, with a
+[package manifest](docs/conversation-understanding/decision-work-controlled-archive-sidecar-write-fixture-package-manifest-v0.json).
+It claims only synthetic archive-shaped fixture writes under safe temp/operator
+roots, while still excluding real archive mutation, archive-hook integration,
+runtime wiring, resolver approval, default-on behavior, proof claims, scoring,
+advice correctness, certification, and action authorization.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See

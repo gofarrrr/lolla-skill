@@ -1,0 +1,148 @@
+{
+  "schema_version": "lolla.decision_work_controlled_archive_sidecar_write_fixture_plan.v0",
+  "review_metadata": {
+    "review_id": "decision_work_controlled_archive_sidecar_write_fixture_plan:v0",
+    "created_at": "2026-07-04T00:00:00Z",
+    "reviewed_stage": "PR213 Controlled Archive Sidecar Write Fixture Plan v0",
+    "mode": "plan_review_tests_only",
+    "adapter_implemented": false,
+    "fixture_files_written": false,
+    "real_archive_mutated": false,
+    "historical_archive_mutated": false,
+    "runtime_wiring_changed": false,
+    "archive_hook_changed": false,
+    "resolver_refs_approved": false,
+    "model_calls": 0,
+    "skill_invoked": false
+  },
+  "source_artifacts_reviewed": [
+    "docs/conversation-understanding/decision-work-explicit-operator-sidecar-write-package-gate-v0.md",
+    "docs/conversation-understanding/decision-work-explicit-operator-sidecar-write-package-manifest-v0.json",
+    "docs/conversation-understanding/decision-work-explicit-operator-sidecar-write-adapter-v0.md",
+    "reviews/codex-assisted/decision-work-explicit-operator-sidecar-write-review-v0/review.json",
+    "docs/conversation-understanding/decision-work-runtime-sidecar-write-contract-v0.md"
+  ],
+  "boundary_definition": {
+    "from_layer": "safe_fixture_or_operator_decision_work_targets",
+    "to_layer": "synthetic_archive_shaped_fixture_dirs",
+    "real_archive_dirs_remain_forbidden": true,
+    "historical_archive_mutation_forbidden": true,
+    "runtime_wiring_forbidden": true,
+    "archive_hook_edit_forbidden": true,
+    "resolver_approval_forbidden": true
+  },
+  "allowed_fixture_shape": {
+    "may_look_like_completed_run_archive": true,
+    "must_be_synthetic_temp_or_operator_output": true,
+    "must_be_explicitly_supplied": true,
+    "must_write_decision_work_under_fixture_only": true,
+    "generated_fixture_files_checked_in": false
+  },
+  "planned_output_schema": "lolla.decision_work_controlled_archive_sidecar_write_fixture.v0",
+  "planned_statuses": [
+    "fixture_write_completed",
+    "fixture_write_completed_blocked_state",
+    "blocked_real_archive_path",
+    "blocked_repo_path",
+    "blocked_existing_archive_path",
+    "blocked_target_path_unsafe",
+    "blocked_packet_not_write_eligible",
+    "blocked_dry_run_missing",
+    "blocked_dry_run_mismatch",
+    "blocked_privacy_risk",
+    "blocked_authority_claim",
+    "failed_closed"
+  ],
+  "expected_case_behavior": [
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "expected_status": "fixture_write_completed",
+      "runtime_ready_claim_allowed": false,
+      "resolver_refs_approved": false
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "expected_status": "fixture_write_completed_blocked_state",
+      "runtime_block_preserved": true,
+      "user_surface_block_preserved": true,
+      "resolver_refs_approved": false
+    }
+  ],
+  "allowed_sidecar_files": [
+    "attachment_status.json",
+    "user_receipt.md",
+    "agent_handoff_packet.json",
+    "safe_supply_summary.json",
+    "sidecar_update_packet.json",
+    "sidecar_write_receipt.json"
+  ],
+  "path_safety_requirements": {
+    "target_fixture_archive_dir_must_be_absolute": true,
+    "target_fixture_archive_dir_must_be_under_safe_temp_or_operator_output_root": true,
+    "target_fixture_archive_dir_must_not_be_inside_repo": true,
+    "target_fixture_archive_dir_must_not_be_real_archive": true,
+    "target_fixture_archive_dir_must_not_be_existing_historical_archive": true,
+    "target_fixture_archive_dir_must_not_be_runtime_path": true,
+    "target_fixture_archive_dir_must_not_escape_supplied_root": true
+  },
+  "required_receipt_flags": {
+    "real_archive_mutated": false,
+    "historical_archive_mutated": false,
+    "runtime_wiring_changed": false,
+    "archive_hook_changed": false,
+    "resolver_refs_approved": false,
+    "product_proof": false,
+    "human_validated": false,
+    "answer_quality_scored": false,
+    "advice_correctness_claimed": false,
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false
+  },
+  "deterministic_allowances": [
+    "schema_validation",
+    "packet_dry_run_source_match_validation",
+    "fixture_target_path_validation",
+    "allowed_file_copying",
+    "blocked_state_preservation",
+    "fixture_receipt_rendering"
+  ],
+  "semantic_interpretation_not_allowed": true,
+  "blocked_or_forbidden_inputs": [
+    "real_archive_path",
+    "existing_historical_archive_path",
+    "repo_path",
+    "runtime_path",
+    "missing_dry_run",
+    "dry_run_packet_mismatch",
+    "privacy_marker",
+    "local_path_leak",
+    "provider_text_marker",
+    "resolver_approval_claim",
+    "proof_claim",
+    "answer_quality_scoring_claim",
+    "action_authorization_claim"
+  ],
+  "downstream_risks": {
+    "strongest_useful_signal": "The next adapter can prove archive-shaped sidecar layout without touching real completed-run archives.",
+    "strongest_unresolved_risk": "Synthetic archive shape can be overtrusted as permission to mutate real historical archives if future path checks are loose."
+  },
+  "decision_gate": "proceed_to_controlled_archive_sidecar_write_fixture_adapter",
+  "recommended_next_pr": "PR214 Controlled Archive Sidecar Write Fixture Adapter v0",
+  "non_claims": [
+    "plan_does_not_implement_fixture_adapter",
+    "plan_does_not_write_sidecar_files",
+    "plan_does_not_write_real_archive_sidecars",
+    "plan_does_not_mutate_historical_archives",
+    "plan_does_not_wire_runtime",
+    "plan_does_not_edit_archive_hook",
+    "plan_does_not_approve_resolver_refs",
+    "plan_does_not_mark_resolver_refs_usable",
+    "plan_does_not_call_models",
+    "plan_is_not_product_proof",
+    "plan_is_not_human_validation",
+    "plan_does_not_score_answer_quality",
+    "plan_does_not_validate_advice_correctness",
+    "plan_does_not_authorize_agent_action",
+    "plan_does_not_authorize_automatic_action"
+  ]
+}

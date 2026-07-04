@@ -791,6 +791,36 @@ Follow-up implementation planning:
   wiring, resolver approval, proof, scoring, certification, and action
   authorization.
 
+- [Decision Work Controlled Archive Sidecar Write Fixture Plan](../conversation-understanding/decision-work-controlled-archive-sidecar-write-fixture-plan-v0.md)
+
+  PR213's docs/review/tests-only plan for synthetic archive-shaped fixture
+  writes. It keeps real completed-run archives, historical archive mutation,
+  archive-hook edits, runtime wiring, resolver approval, proof, scoring, and
+  action authorization forbidden while gating to a controlled fixture adapter.
+
+- [Decision Work Controlled Archive Sidecar Write Fixture Adapter](../conversation-understanding/decision-work-controlled-archive-sidecar-write-fixture-adapter-v0.md)
+
+  PR214's deterministic adapter and CLI for synthetic archive-shaped fixture
+  writes. It writes only under explicit safe temp/operator archive-like roots,
+  preserves deploy blocked state, and still refuses real archive paths,
+  existing historical archive paths, repo/runtime paths, resolver approval,
+  proof, scoring, and action authorization.
+
+- [Decision Work Controlled Archive Sidecar Write Fixture Review](../conversation-understanding/decision-work-controlled-archive-sidecar-write-fixture-review-v0.md)
+
+  PR215's docs/review/tests-only review of launch/deploy synthetic
+  archive-shaped fixture writes. It confirms deploy blocking, unsafe
+  path/source rejection, and no real archive mutation, archive-hook edit,
+  runtime wiring, resolver approval, proof, scoring, or action authorization
+  before a package gate.
+
+- [Decision Work Controlled Archive Sidecar Write Fixture Package Gate](../conversation-understanding/decision-work-controlled-archive-sidecar-write-fixture-package-gate-v0.md)
+
+  PR216's package gate and manifest for PR213-PR215. It packages synthetic
+  archive-shaped fixture write v1 while still excluding real archive mutation,
+  archive-hook integration, runtime wiring, resolver approval, proof, scoring,
+  certification, and action authorization.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

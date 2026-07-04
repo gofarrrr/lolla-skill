@@ -1,0 +1,150 @@
+{
+  "schema_version": "lolla.decision_work_controlled_archive_sidecar_write_fixture_review.v0",
+  "review_metadata": {
+    "review_id": "decision_work_controlled_archive_sidecar_write_fixture_review:v0",
+    "created_at": "2026-07-04T00:00:00Z",
+    "reviewed_stage": "PR214 Controlled Archive Sidecar Write Fixture Adapter v0",
+    "mode": "review_docs_tests_temp_fixture_writes_only",
+    "checked_in_fixture_sidecar_files_created": false,
+    "checked_in_write_receipts_created": false,
+    "model_calls": 0,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "real_archive_mutated": false,
+    "historical_archive_mutated": false,
+    "archive_hook_changed": false,
+    "runtime_wiring_changed": false,
+    "resolver_refs_approved": false
+  },
+  "reviewed_cases": [
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "source_sidecar_update_packet_status": "ready_for_sidecar_update_packet",
+      "dry_run_status": "dry_run_ready",
+      "fixture_write_status": "fixture_write_completed",
+      "synthetic_archive_fixture_only": true,
+      "expected_files_written": [
+        "attachment_status.json",
+        "user_receipt.md",
+        "agent_handoff_packet.json",
+        "safe_supply_summary.json",
+        "sidecar_update_packet.json",
+        "sidecar_write_receipt.json"
+      ],
+      "real_archive_mutated": false,
+      "historical_archive_mutated": false,
+      "archive_hook_changed": false,
+      "runtime_wiring_changed": false,
+      "resolver_refs_approved": false,
+      "finding": "Launch-beta writes a coherent synthetic archive-shaped fixture directory, but no real archive sidecar, archive hook, runtime wiring, resolver approval, proof, scoring, or action authorization is established."
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "source_sidecar_update_packet_status": "packet_with_runtime_block",
+      "dry_run_status": "dry_run_packet_with_runtime_block",
+      "fixture_write_status": "fixture_write_completed_blocked_state",
+      "synthetic_archive_fixture_only": true,
+      "expected_files_written": [
+        "attachment_status.json",
+        "user_receipt.md",
+        "agent_handoff_packet.json",
+        "safe_supply_summary.json",
+        "sidecar_update_packet.json",
+        "sidecar_write_receipt.json"
+      ],
+      "runtime_block_preserved": true,
+      "user_surface_block_preserved": true,
+      "real_archive_mutated": false,
+      "historical_archive_mutated": false,
+      "archive_hook_changed": false,
+      "runtime_wiring_changed": false,
+      "resolver_refs_approved": false,
+      "finding": "Deploy-intake writes a blocked-state synthetic archive-shaped fixture for inspection while preserving user-surface blocking, runtime blocking, and agent-inspection-only status."
+    }
+  ],
+  "launch_fixture_write_status": "fixture_write_completed",
+  "deploy_fixture_write_status": "fixture_write_completed_blocked_state",
+  "fixture_only_check": {
+    "synthetic_archive_fixture_only": true,
+    "checked_in_fixture_sidecar_files_created": false,
+    "target_fixture_archive_dir_must_be_explicit": true,
+    "target_fixture_archive_dir_must_be_temp_or_operator_output": true,
+    "repo_targets_blocked": true,
+    "real_archive_targets_blocked": true,
+    "existing_historical_archive_targets_blocked": true,
+    "runtime_targets_blocked": true,
+    "generated_files_stay_inside_fixture_dir": true
+  },
+  "unsafe_rejection_checks": {
+    "repo_path_rejected": true,
+    "real_archive_path_rejected": true,
+    "existing_historical_archive_path_rejected": true,
+    "missing_dry_run_rejected": true,
+    "mismatched_dry_run_packet_rejected": true,
+    "privacy_marker_rejected": true,
+    "authority_claim_rejected": true
+  },
+  "real_archive_mutation_forbidden_check": {
+    "real_archive_mutated": false,
+    "can_write_real_archive_sidecar": false,
+    "real_archive_paths_rejected": true
+  },
+  "historical_archive_mutation_forbidden_check": {
+    "historical_archive_mutated": false,
+    "can_mutate_historical_archive": false,
+    "historical_archive_paths_rejected": true
+  },
+  "archive_hook_forbidden_check": {
+    "archive_hook_changed": false,
+    "archive_hook_edit_allowed": false
+  },
+  "runtime_wiring_forbidden_check": {
+    "runtime_wiring_changed": false,
+    "can_wire_runtime": false,
+    "runtime_attachment_default_on": false
+  },
+  "resolver_approval_forbidden_check": {
+    "resolver_refs_approved": false,
+    "resolver_refs_marked_usable": false,
+    "fixture_adapter_can_approve_refs": false
+  },
+  "deploy_runtime_block_preserved": true,
+  "launch_fixture_coherence": true,
+  "path_safety_finding": "PR214 allows only explicit safe temp/operator fixture roots with archive shape and a fixture marker; it blocks repo, runtime, real archive-looking, and existing historical archive paths.",
+  "privacy_limits_preserved": true,
+  "non_claims_preserved": [
+    "not_product_proof",
+    "not_human_validation",
+    "not_answer_quality_score",
+    "not_advice_correctness_proof",
+    "not_lolla_improvement_proof",
+    "not_resolver_ref_approval",
+    "not_real_archive_write",
+    "not_historical_archive_mutation",
+    "not_archive_hook_edit",
+    "not_runtime_wiring",
+    "not_user_surface_readiness",
+    "not_agent_action_authorization",
+    "not_automatic_action_authorization"
+  ],
+  "sidecar_write_boundary_risk": "Synthetic archive-shaped fixture writes now exist, so future work must keep fixture archive shape visibly separate from permission to mutate real completed-run archives.",
+  "strongest_useful_signal": "The adapter can write launch and deploy sidecar-shaped fixture directories with archive layout while preserving explicit no-real-archive, no-runtime, and no-approval flags.",
+  "strongest_unresolved_risk": "The archive-shaped fixture layout is closer to real archive mutation and needs a package gate before any real-archive write plan.",
+  "decision_gate": "proceed_to_controlled_archive_sidecar_write_fixture_package_gate",
+  "recommended_next_pr": "PR216 Controlled Archive Sidecar Write Fixture Package Gate v0",
+  "non_claims": [
+    "review_does_not_approve_resolver_refs",
+    "review_does_not_mark_resolver_refs_usable",
+    "review_does_not_write_real_archive_sidecars",
+    "review_does_not_mutate_historical_archives",
+    "review_does_not_edit_archive_hook",
+    "review_does_not_wire_runtime",
+    "review_does_not_call_models",
+    "review_is_not_product_proof",
+    "review_is_not_human_validation",
+    "review_does_not_score_answer_quality",
+    "review_does_not_validate_advice_correctness",
+    "review_does_not_authorize_agent_action",
+    "review_does_not_authorize_automatic_action"
+  ]
+}

@@ -868,6 +868,132 @@ archives, mutate historical archive folders as normal behavior, wire runtime,
 update the post-archive hook, approve resolver refs, call models, score answer
 quality, claim proof, or authorize action.
 
+### PR213 Controlled Archive Sidecar Write Fixture Plan v0
+
+Implemented as
+[Decision Work Controlled Archive Sidecar Write Fixture Plan](decision-work-controlled-archive-sidecar-write-fixture-plan-v0.md).
+
+Plan the next boundary after controlled explicit operator target writes:
+synthetic archive-shaped fixture directories. The planned fixture adapter may
+write the PR209 allowed sidecar file set under a controlled temp/test/operator
+fixture that resembles a completed-run archive, but it must still refuse real
+completed-run archives, existing historical archive paths, repo paths, runtime
+paths, missing or mismatched dry-run inputs, privacy risks, resolver approval,
+proof/scoring claims, and action authorization.
+
+Selected gate:
+
+```text
+proceed_to_controlled_archive_sidecar_write_fixture_adapter
+```
+
+Recommended next PR:
+
+```text
+PR214 Controlled Archive Sidecar Write Fixture Adapter v0
+```
+
+Do not implement real archive writes from this plan. PR213 is still
+docs/review/tests only: no sidecar files are written, no archive hook is
+edited, no runtime is wired, no historical archive is mutated, and no resolver
+refs are approved.
+
+### PR214 Controlled Archive Sidecar Write Fixture Adapter v0
+
+Implemented as
+[Decision Work Controlled Archive Sidecar Write Fixture Adapter](decision-work-controlled-archive-sidecar-write-fixture-adapter-v0.md).
+
+Build the deterministic synthetic archive-shaped fixture adapter planned by
+PR213. The adapter consumes a PR202 sidecar update packet and matching PR206
+dry-run result, then writes the PR209 allowed file set under an explicit safe
+temp/operator fixture archive directory.
+
+Expected statuses:
+
+- launch-beta: `fixture_write_completed`;
+- deploy-intake: `fixture_write_completed_blocked_state`.
+
+Deploy-intake must preserve runtime and user-surface blocked state. The adapter
+must refuse real completed-run archives, existing historical archive paths,
+repo paths, runtime paths, missing or mismatched dry-run inputs, privacy risks,
+resolver approval, proof/scoring claims, and action authorization.
+
+Selected gate:
+
+```text
+proceed_to_controlled_archive_sidecar_write_fixture_review
+```
+
+Recommended next PR:
+
+```text
+PR215 Controlled Archive Sidecar Write Fixture Review v0
+```
+
+Do not implement real archive writes from this adapter. PR214 still writes only
+synthetic fixture outputs under safe temp/operator roots, does not edit the
+archive hook, does not wire runtime, does not mutate historical archives, and
+does not approve resolver refs.
+
+### PR215 Controlled Archive Sidecar Write Fixture Review v0
+
+Implemented as
+[Decision Work Controlled Archive Sidecar Write Fixture Review](decision-work-controlled-archive-sidecar-write-fixture-review-v0.md).
+
+Review the launch-beta and deploy-intake synthetic archive-shaped fixture
+writes before packaging. The review confirms launch writes
+`fixture_write_completed`, deploy writes `fixture_write_completed_blocked_state`,
+deploy preserves runtime and user-surface blocking, unsafe real archive/repo/
+runtime/mismatched/privacy/authority inputs are rejected, and the receipt keeps
+real archive mutation, historical archive mutation, archive-hook changes,
+runtime wiring, resolver approval, proof, scoring, and action authorization
+closed.
+
+Selected gate:
+
+```text
+proceed_to_controlled_archive_sidecar_write_fixture_package_gate
+```
+
+Recommended next PR:
+
+```text
+PR216 Controlled Archive Sidecar Write Fixture Package Gate v0
+```
+
+Do not implement real archive writes from this review. PR215 is still a
+docs/review/tests-only gate over synthetic fixture outputs.
+
+### PR216 Controlled Archive Sidecar Write Fixture Package Gate v0
+
+Implemented as
+[Decision Work Controlled Archive Sidecar Write Fixture Package Gate](decision-work-controlled-archive-sidecar-write-fixture-package-gate-v0.md)
+with the machine-readable
+[controlled archive sidecar write fixture package manifest](decision-work-controlled-archive-sidecar-write-fixture-package-manifest-v0.json).
+
+Package PR213 through PR215 as Decision Work Controlled Archive Sidecar Write
+Fixture v1. The narrow claim is that a synthetic archive-shaped fixture write
+layer can write the PR209 allowed file set into controlled temp/operator
+archive-like fixture directories from validated PR202 sidecar update packets
+and matching PR206 dry-run results.
+
+Selected gate:
+
+```text
+controlled_archive_sidecar_write_fixture_v1_packaged
+```
+
+Recommended next PR:
+
+```text
+PR217 Real Archive Sidecar Write Plan v0
+```
+
+Do not implement PR217 from this package. PR216 still does not write real
+archives, mutate historical archive folders as normal behavior, edit the
+archive hook, wire runtime, approve resolver refs, call models, score answer
+quality, claim proof, or authorize action.
+
 ## Readiness Gates
 
 Automatic semantic supply is not ready for normal use until:
