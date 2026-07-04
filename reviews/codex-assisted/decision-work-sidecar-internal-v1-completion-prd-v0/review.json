@@ -1,0 +1,155 @@
+{
+  "schema": "lolla.decision_work_sidecar_internal_v1_completion_prd_review.v0",
+  "review_date": "2026-07-04",
+  "source_prd_ref": "docs/conversation-understanding/decision-work-sidecar-internal-v1-completion-prd-v0.md",
+  "current_state_claim": {
+    "functional_chain_reaches": [
+      "generated_read",
+      "intake_validation",
+      "brief_supply",
+      "rendered_decision_work_brief",
+      "triage_supply_packet",
+      "generated_triage_read",
+      "resolver_supply_candidate_packet",
+      "sidecar_update_packet",
+      "dry_run_sidecar_preview",
+      "explicit_operator_sidecar_write",
+      "controlled_archive_shaped_fixture_write"
+    ],
+    "generated_read_supply_scope": "checked_in_safe_operator_codex_assisted_examples_only",
+    "covered_cases": [
+      "launch-public-enterprise-beta",
+      "deploy-assisted-intake-routing"
+    ],
+    "launch_current_status": "can_reach_write_ready_and_fixture_completed_states",
+    "deploy_current_status": "runtime_and_user_surface_block_preserved",
+    "controlled_archive_fixture_write_exists": true,
+    "real_historical_archive_mutation_exists": false
+  },
+  "internal_v1_finish_line": {
+    "claim": "Decision Work Sidecar Internal v1 is complete when an operator can take safe generated Decision Work artifacts from a completed run, validate them, dry-run the sidecar, and explicitly write a decision_work sidecar into a real completed-run archive through a controlled command, with receipts and hard non-claims.",
+    "allowed_files": [
+      "attachment_status.json",
+      "user_receipt.md",
+      "agent_handoff_packet.json",
+      "safe_supply_summary.json",
+      "sidecar_update_packet.json",
+      "sidecar_write_receipt.json"
+    ],
+    "must_preserve_false": {
+      "resolver_refs_approved": false,
+      "product_proof": false,
+      "human_validated": false,
+      "answer_quality_scored": false,
+      "advice_correctness_validated": false,
+      "agent_action_authorized": false,
+      "automatic_action_authorized": false
+    },
+    "internal_operator_capability_only": true,
+    "default_runtime_behavior": false
+  },
+  "remaining_pr_count_ballpark": 6,
+  "recommended_pr_sequence": [
+    {
+      "pr": "PR218",
+      "title": "Real Archive Sidecar Write Plan v0",
+      "scope": "plan_only"
+    },
+    {
+      "pr": "PR219",
+      "title": "Real Archive Sidecar Write Adapter v0",
+      "scope": "controlled_command_only_adapter"
+    },
+    {
+      "pr": "PR220",
+      "title": "Real Archive Sidecar Write Review v0",
+      "scope": "review_only"
+    },
+    {
+      "pr": "PR221",
+      "title": "Real Archive Sidecar Write Package Gate v0",
+      "scope": "package_gate"
+    },
+    {
+      "pr": "PR222",
+      "title": "Internal Demo / Operator Runbook v0",
+      "scope": "runbook_only"
+    },
+    {
+      "pr": "PR223",
+      "title": "Current State / Limitations Narrative Refresh v0",
+      "scope": "narrative_refresh"
+    }
+  ],
+  "recommended_bundles": [
+    {
+      "bundle": "Bundle A",
+      "prs": [
+        "PR218",
+        "PR219"
+      ],
+      "stop_condition": "stop_before_review_if_adapter_has_path_safety_or_archive_mutation_concerns"
+    },
+    {
+      "bundle": "Bundle B",
+      "prs": [
+        "PR220",
+        "PR221"
+      ],
+      "stop_condition": "stop_if_review_finds_boundary_drift"
+    },
+    {
+      "bundle": "Bundle C",
+      "prs": [
+        "PR222",
+        "PR223"
+      ],
+      "stop_condition": "stop_if_runbook_or_narrative_overclaims_internal_v1"
+    }
+  ],
+  "explicit_non_claims": [
+    "not_customer_readiness",
+    "not_default_on_runtime_behavior",
+    "not_automatic_arbitrary_run_semantic_interpretation",
+    "not_direct_runtime_interpretation",
+    "not_runtime_model_or_provider_calls",
+    "not_resolver_approval",
+    "not_product_proof",
+    "not_human_validation",
+    "not_answer_quality_scoring",
+    "not_advice_correctness",
+    "not_approval_or_certification",
+    "not_action_authorization"
+  ],
+  "biggest_risks": [
+    "archive_mutation_risk",
+    "candidate_packets_mistaken_for_approval",
+    "sidecar_shaped_files_mistaken_for_runtime_success",
+    "generated_read_fluency_creating_overtrust",
+    "deploy_healthcare_compliance_case_overread",
+    "local_or_private_context_missingness",
+    "operator_target_path_mistakes"
+  ],
+  "stop_conditions": [
+    "target_archive_path_safety_cannot_be_proven",
+    "dry_run_and_sidecar_update_packet_do_not_match",
+    "runtime_or_user_surface_block_without_blocked_state_write_policy",
+    "privacy_private_or_provider_markers_appear",
+    "local_absolute_paths_would_leak",
+    "resolver_refs_approved_without_later_resolver_approval_pr",
+    "proof_scoring_action_or_human_validation_claim_appears"
+  ],
+  "selected_gate": "proceed_to_real_archive_sidecar_write_plan",
+  "recommended_next_pr": "PR218 Real Archive Sidecar Write Plan v0",
+  "custody_flags": {
+    "model_calls": 0,
+    "lolla_invoked": false,
+    "runtime_wired": false,
+    "archive_mutated": false,
+    "resolver_refs_approved": false,
+    "product_proof": false,
+    "human_validated": false,
+    "answer_quality_scored": false,
+    "action_authorized": false
+  }
+}

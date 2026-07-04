@@ -874,6 +874,15 @@ It claims only synthetic archive-shaped fixture writes under safe temp/operator
 roots, while still excluding real archive mutation, archive-hook integration,
 runtime wiring, resolver approval, default-on behavior, proof claims, scoring,
 advice correctness, certification, and action authorization.
+The
+[Decision Work Sidecar Internal v1 Completion PRD](docs/conversation-understanding/decision-work-sidecar-internal-v1-completion-prd-v0.md)
+adds PR217's current-state and finish-line anchor before real archive writes.
+It defines Internal v1 as complete only when an operator can validate safe
+generated Decision Work artifacts, dry-run the sidecar, and explicitly write a
+`decision_work/` sidecar into a real completed-run archive through a controlled
+command with receipts and hard non-claims. It records a six-PR ballpark path
+from PR218 through PR223 and recommends PR218 Real Archive Sidecar Write Plan
+v0 next, without implementing that plan.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See
