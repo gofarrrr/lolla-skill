@@ -1,0 +1,142 @@
+{
+  "schema_version": "lolla.decision_work_sidecar_internal_v1_operator_runbook_review.v0",
+  "review_metadata": {
+    "review_id": "decision_work_sidecar_internal_v1_operator_runbook:v0",
+    "created_at": "2026-07-04T00:00:00Z",
+    "reviewed_stage": "PR222 Internal Demo / Operator Runbook v0",
+    "mode": "docs_tests_only",
+    "model_calls": 0,
+    "lolla_invoked": false,
+    "new_lolla_runs_created": false,
+    "runtime_wired": false,
+    "archive_hook_changed": false,
+    "real_archive_mutated": false,
+    "historical_archive_mutated": false,
+    "resolver_refs_approved": false,
+    "checked_in_sidecar_outputs_created": false
+  },
+  "runbook_flow_steps": [
+    "start_from_completed_run_archive",
+    "obtain_generated_interpretation_read",
+    "validate_generated_read_through_pr182_intake",
+    "build_brief_supply_through_pr186",
+    "render_brief_through_pr187",
+    "build_triage_supply_through_pr192",
+    "use_generated_triage_read_from_pr193_or_pr195_path",
+    "build_resolver_supply_candidate_through_pr198",
+    "build_sidecar_update_packet_through_pr202",
+    "run_dry_run_preview_through_pr206",
+    "write_archive_sidecar_through_pr219",
+    "inspect_written_decision_work_files_and_receipt"
+  ],
+  "cli_commands_documented": [
+    "scripts/evals/validate_decision_work_generated_interpretation_read.py",
+    "scripts/evals/build_decision_work_generated_read_brief_supply.py",
+    "scripts/evals/render_decision_work_generated_read_brief.py",
+    "scripts/evals/build_decision_work_generated_read_triage_supply.py",
+    "scripts/evals/build_decision_work_generated_read_resolver_supply.py",
+    "scripts/evals/build_decision_work_resolver_candidate_sidecar_update_packet.py",
+    "scripts/evals/dry_run_decision_work_sidecar_write.py",
+    "scripts/evals/write_decision_work_real_archive_sidecar.py"
+  ],
+  "expected_artifacts": [
+    "intake_result_json",
+    "brief_supply_json",
+    "generated_read_brief_markdown",
+    "triage_supply_json",
+    "generated_triage_json",
+    "resolver_supply_json",
+    "sidecar_update_packet_json",
+    "dry_run_result_json",
+    "dry_run_preview_dir",
+    "decision_work_attachment_status_json",
+    "decision_work_user_receipt_markdown",
+    "decision_work_agent_handoff_packet_json",
+    "decision_work_safe_supply_summary_json",
+    "decision_work_sidecar_update_packet_json",
+    "decision_work_sidecar_write_receipt_json"
+  ],
+  "launch_like_path": {
+    "expected_write_status": "real_archive_sidecar_write_completed",
+    "still_not_runtime_ready_by_itself": true,
+    "resolver_refs_approved": false,
+    "product_proof": false,
+    "human_validated": false,
+    "answer_quality_scored": false,
+    "action_authorized": false
+  },
+  "deploy_or_high_risk_path": {
+    "expected_write_status": "real_archive_sidecar_write_completed_blocked_state",
+    "runtime_use_status": "blocked",
+    "user_surface_status": "blocked",
+    "domain_or_compliance_caveats_preserved": true,
+    "not_safe_to_deploy_claim": true,
+    "not_user_surface_ready": true,
+    "action_authorized": false
+  },
+  "inspection_guidance": {
+    "attachment_status_json": [
+      "runtime_use_status.status",
+      "user_surface_status.status",
+      "resolver_refs_approved",
+      "runtime_wiring_changed",
+      "archive_hook_changed",
+      "proof_validation_scoring_and_action_flags"
+    ],
+    "user_receipt_md": [
+      "legible",
+      "caveated",
+      "no_approval_language",
+      "no_certification_language",
+      "no_action_authorization"
+    ],
+    "sidecar_write_receipt_json": [
+      "real_archive_write_status",
+      "files_written",
+      "blocker_reasons",
+      "actual_sidecar_write_performed",
+      "real_archive_mutated",
+      "historical_archive_mutated",
+      "runtime_wiring_changed_false",
+      "archive_hook_changed_false",
+      "resolver_refs_approved_false"
+    ]
+  },
+  "blocked_or_deferred_handling": {
+    "stop_flow": true,
+    "preserve_result_json": true,
+    "do_not_hand_edit_outputs_into_passing_form": true,
+    "do_not_overwrite_existing_decision_work": true,
+    "do_not_treat_blocked_state_as_user_surface_readiness": true,
+    "rerun_from_earliest_affected_step": true
+  },
+  "placeholder_safety": {
+    "uses_placeholder_paths": true,
+    "real_private_paths_included": false,
+    "raw_private_content_included": false,
+    "checked_in_sidecar_outputs_created": false
+  },
+  "non_claims_preserved": [
+    "not_runtime_wiring",
+    "not_archive_hook_integration",
+    "not_default_on_runtime_behavior",
+    "not_automatic_arbitrary_run_semantic_interpretation",
+    "not_direct_runtime_interpretation",
+    "not_queue_worker_behavior",
+    "not_resolver_approval",
+    "not_resolver_refs_marked_usable",
+    "not_customer_readiness",
+    "not_product_proof",
+    "not_human_validation",
+    "not_answer_quality_scoring",
+    "not_advice_correctness",
+    "not_lolla_improvement_proof",
+    "not_approval_or_certification",
+    "not_agent_action_authorization",
+    "not_automatic_action_authorization"
+  ],
+  "strongest_useful_signal": "The runbook ties the full internal v1 command sequence together, including where to stop on blocked/deferred states and how to inspect the written sidecar receipt.",
+  "strongest_unresolved_risk": "Operators can still overread a completed sidecar as runtime readiness unless PR223's narrative and future usage keep the non-claims visible.",
+  "decision_gate": "proceed_to_current_state_limitations_narrative_refresh",
+  "recommended_next_pr": "PR223 Current State / Limitations Narrative Refresh v0"
+}

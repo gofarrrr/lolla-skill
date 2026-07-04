@@ -1152,6 +1152,26 @@ Recommended next PR:
 PR222 Internal Demo / Operator Runbook v0
 ```
 
+### PR222 Internal Demo / Operator Runbook v0
+
+Implemented:
+[Decision Work Sidecar Internal v1 Operator Runbook](decision-work-sidecar-internal-v1-operator-runbook-v0.md).
+
+PR222 documents the internal operator command flow from generated read intake
+through brief supply, rendered brief, triage supply, generated triage,
+resolver-supply candidate, sidecar update packet, dry-run, command-only real
+archive sidecar write, and receipt inspection. It uses placeholder paths and
+selects `proceed_to_current_state_limitations_narrative_refresh` for PR223
+while still not adding behavior, wiring runtime, editing archive hooks,
+approving resolver refs, defaulting anything on, scoring, proving, validating
+advice correctness, certifying, or authorizing action.
+
+Recommended next PR:
+
+```text
+PR223 Current State / Limitations Narrative Refresh v0
+```
+
 ## Readiness Gates
 
 Automatic semantic supply is not ready for normal use until:

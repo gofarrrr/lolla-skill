@@ -228,6 +228,14 @@ PR222 should explain the end-to-end operator flow and expected artifacts. It
 should not wire runtime, edit archive hooks, approve resolver refs, default
 anything on, call models, score, prove, certify, or authorize action.
 
+## Implemented Follow-Up
+
+PR222 implements the runbook as
+[Decision Work Sidecar Internal v1 Operator Runbook](decision-work-sidecar-internal-v1-operator-runbook-v0.md).
+It documents the internal operator command flow from generated read intake
+through sidecar write receipt inspection and selects
+`proceed_to_current_state_limitations_narrative_refresh` for PR223.
+
 ## Explicit Non-Claims
 
 PR221 does not claim:
