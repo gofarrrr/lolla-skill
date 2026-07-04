@@ -938,6 +938,14 @@ sidecar-ready, blocked, deferred, and rejected statuses, and recommends a
 implementing a runner, queue worker, runtime hook, resolver approval,
 provider/model call, default-on behavior, proof claims, scoring, or action
 authorization.
+The
+[Decision Work Offline Operator Runner Plan](docs/conversation-understanding/decision-work-offline-operator-runner-plan-v0.md)
+adds PR225's plan-only first slice for that phase. It chooses a one-shot,
+command-only offline runner that will orchestrate existing deterministic CLIs
+from explicit generated-read, generated-triage, completed-archive, case, and
+safe-output paths, produce `runner_summary.json`, and stop at each boundary
+without adding semantic interpretation, queue workers, runtime wiring,
+resolver approval, overwrites, proof claims, scoring, or action authorization.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See

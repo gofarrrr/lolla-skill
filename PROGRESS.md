@@ -534,6 +534,19 @@ selects proceed_to_offline_operator_runner_plan for PR225 while still not
 implementing a runner, queue worker, runtime hook, provider/model call,
 resolver approval, default-on behavior, proof claim, scoring, advice
 correctness, certification, or action authorization.
+
+The Decision Work Offline Operator Runner Plan is
+docs/conversation-understanding/decision-work-offline-operator-runner-plan-v0.md
+with review artifact
+reviews/codex-assisted/decision-work-offline-operator-runner-plan-v0/review.json.
+It chooses a future one-shot, command-only offline runner before any queue
+worker. The runner should orchestrate existing deterministic CLIs from explicit
+completed-run archive, generated-read, generated-triage, case, and safe-output
+paths, produce runner_summary.json, and stop at each boundary. It selects
+proceed_to_offline_operator_runner_adapter for PR226 while still not
+implementing the runner, wiring runtime, calling providers/models, approving
+resolver refs, overwriting sidecars, scoring, proving, certifying, or
+authorizing action.
 ```
 
 ```text

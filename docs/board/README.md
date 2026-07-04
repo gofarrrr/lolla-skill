@@ -886,6 +886,15 @@ Follow-up implementation planning:
   plan without adding a runner, queue worker, runtime hook, resolver approval,
   proof, scoring, or action authorization.
 
+- [Decision Work Offline Operator Runner Plan](../conversation-understanding/decision-work-offline-operator-runner-plan-v0.md)
+
+  PR225's plan-only first slice for automation readiness. It defines a future
+  one-shot command runner that orchestrates existing CLIs from explicit paths,
+  emits a runner summary, preserves blocked-state outcomes, and keeps write
+  mode optional/default-off without adding a queue worker, runtime hook,
+  semantic interpretation, resolver approval, proof, scoring, or action
+  authorization.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

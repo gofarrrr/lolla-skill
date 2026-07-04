@@ -118,6 +118,14 @@ and gate.
 Plan-only. Define a one-shot offline operator runner that orchestrates existing
 CLIs from explicit inputs and safe output paths. No implementation.
 
+Implemented follow-up:
+[Decision Work Offline Operator Runner Plan](decision-work-offline-operator-runner-plan-v0.md)
+selects `proceed_to_offline_operator_runner_adapter` for PR226. It keeps the
+future runner one-shot, command-only, explicit-input only, and default no-write
+while still excluding queue workers, runtime wiring, semantic interpretation,
+resolver approval, provider/model calls, scoring, proof claims, and action
+authorization.
+
 ### PR226 Offline Operator Runner Adapter
 
 Implement the command-only runner. The runner should call existing CLIs and

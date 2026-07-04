@@ -1,0 +1,109 @@
+{
+  "schema_version": "lolla.decision_work_offline_operator_runner_plan_review.v0",
+  "review_metadata": {
+    "review_id": "decision_work_offline_operator_runner_plan:v0",
+    "created_at": "2026-07-04T00:00:00Z",
+    "reviewed_stage": "PR225 Offline Operator Runner Plan v0",
+    "mode": "docs_tests_only",
+    "model_calls": 0,
+    "lolla_invoked": false,
+    "new_lolla_runs_created": false,
+    "runner_implemented": false,
+    "queue_worker_added": false,
+    "runtime_wired": false,
+    "archive_hook_changed": false,
+    "sidecar_written": false,
+    "resolver_refs_approved": false,
+    "checked_in_sidecar_outputs_created": false,
+    "historical_archive_touched": false
+  },
+  "source_prd": "docs/conversation-understanding/decision-work-sidecar-automation-readiness-prd-v0.md",
+  "source_gate": "proceed_to_offline_operator_runner_plan",
+  "runner_type": "one_shot_offline_operator_runner",
+  "runner_decisions": {
+    "command_only": true,
+    "orchestrates_existing_clis": true,
+    "adds_semantic_interpretation": false,
+    "calls_models_or_providers": false,
+    "wires_runtime": false,
+    "approves_resolver_refs": false,
+    "overwrites_existing_sidecar": false,
+    "write_sidecar_default": false
+  },
+  "expected_future_inputs": [
+    "--completed-run-archive-dir",
+    "--generated-read",
+    "--generated-triage",
+    "--case-id",
+    "--safe-output-dir",
+    "--operator-confirm-real-archive-write",
+    "--write-sidecar",
+    "--stop-before-write"
+  ],
+  "expected_future_outputs": [
+    "runner_summary.json",
+    "intake_result_path",
+    "brief_supply_path",
+    "rendered_brief_path",
+    "triage_supply_path",
+    "resolver_supply_path",
+    "sidecar_update_packet_path",
+    "dry_run_result_path",
+    "optional_write_receipt_path",
+    "final_status",
+    "blocker_reasons",
+    "non_claims"
+  ],
+  "existing_clis_to_orchestrate": [
+    "scripts/evals/validate_decision_work_generated_interpretation_read.py",
+    "scripts/evals/build_decision_work_generated_read_brief_supply.py",
+    "scripts/evals/render_decision_work_generated_read_brief.py",
+    "scripts/evals/build_decision_work_generated_read_triage_supply.py",
+    "scripts/evals/build_decision_work_generated_read_resolver_supply.py",
+    "scripts/evals/build_decision_work_resolver_candidate_sidecar_update_packet.py",
+    "scripts/evals/dry_run_decision_work_sidecar_write.py",
+    "scripts/evals/write_decision_work_real_archive_sidecar.py"
+  ],
+  "runner_statuses": [
+    "sidecar_ready_for_explicit_write",
+    "sidecar_ready_blocked_state",
+    "deferred_missing_semantic_read",
+    "deferred_missing_triage",
+    "blocked_privacy_risk",
+    "blocked_source_depth_insufficient",
+    "blocked_schema_or_custody_failure",
+    "blocked_runtime_or_user_surface_risk"
+  ],
+  "write_gating": {
+    "write_sidecar_default_false": true,
+    "operator_confirmation_required": true,
+    "no_overwrite": true,
+    "matching_packet_and_dry_run_required": true,
+    "uses_pr219_safety_checks": true
+  },
+  "launch_behavior": {
+    "expected_status_without_write": "sidecar_ready_for_explicit_write",
+    "may_write_only_when_explicitly_enabled": true,
+    "product_readiness_claimed": false
+  },
+  "deploy_or_high_risk_behavior": {
+    "expected_status_without_write": "sidecar_ready_blocked_state",
+    "runtime_block_preserved": true,
+    "user_surface_block_preserved": true,
+    "not_user_surface_ready": true
+  },
+  "non_claims": {
+    "runtime_wired": false,
+    "archive_hook_changed": false,
+    "resolver_refs_approved": false,
+    "product_proof": false,
+    "human_validated": false,
+    "answer_quality_scored": false,
+    "advice_correctness_validated": false,
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false
+  },
+  "biggest_risk": "A convenience runner could be overread as runtime automation unless write mode, stop states, and non-claims remain visible.",
+  "decision_gate": "proceed_to_offline_operator_runner_adapter",
+  "recommended_next_pr": "PR226 Offline Operator Runner Adapter v0"
+}

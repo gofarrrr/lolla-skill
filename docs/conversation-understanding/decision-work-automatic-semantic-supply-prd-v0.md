@@ -1196,6 +1196,31 @@ Recommended next PR:
 PR225 Offline Operator Runner Plan v0
 ```
 
+### PR225 Offline Operator Runner Plan v0
+
+[Decision Work Offline Operator Runner Plan](decision-work-offline-operator-runner-plan-v0.md)
+defines the first implementation slice for PR224's automation-readiness phase.
+It chooses a one-shot offline operator runner before any queue worker. The
+future runner should orchestrate existing CLIs from explicit generated-read,
+generated-triage, completed-run archive, case, and safe-output paths, emit
+`runner_summary.json`, and stop at each boundary. It keeps sidecar write mode
+optional and default-off, preserves launch/deploy blocked-state differences,
+and still does not implement a runner, wire runtime, call providers/models,
+approve resolver refs, overwrite sidecars, score, prove, certify, validate
+advice correctness, or authorize action.
+
+Selected gate:
+
+```text
+proceed_to_offline_operator_runner_adapter
+```
+
+Recommended next PR:
+
+```text
+PR226 Offline Operator Runner Adapter v0
+```
+
 ## Readiness Gates
 
 Automatic semantic supply is not ready for normal use until:
