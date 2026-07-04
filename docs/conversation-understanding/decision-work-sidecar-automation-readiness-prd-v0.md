@@ -151,6 +151,12 @@ boundary, and selects `proceed_to_non_curated_completed_run_pilot_plan`.
 Plan a first non-curated completed-run pilot. Define safe inputs, privacy
 limits, expected stop points, and review criteria.
 
+Implemented follow-up:
+[Decision Work Non-Curated Completed-Run Pilot Plan](decision-work-non-curated-completed-run-pilot-plan-v0.md)
+chooses a synthetic or sanitized archive-like fixture by default, preserves
+missingness/blocker/deferred fields, keeps outputs temp/operator-local, and
+selects `proceed_to_non_curated_completed_run_pilot`.
+
 ### PR229 Non-Curated Completed-Run Pilot
 
 Run the offline path on one non-curated completed-run case using safe supplied

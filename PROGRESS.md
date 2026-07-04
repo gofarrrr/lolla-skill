@@ -572,6 +572,20 @@ proceed_to_non_curated_completed_run_pilot_plan for PR228 while confirming
 that the runner still does not write sidecars, mutate archives, wire runtime,
 approve resolver refs, create queue workers, score, prove, certify, or
 authorize action.
+
+The Decision Work Non-Curated Completed-Run Pilot Plan is
+docs/conversation-understanding/decision-work-non-curated-completed-run-pilot-plan-v0.md
+with review artifact
+reviews/codex-assisted/decision-work-non-curated-completed-run-pilot-plan-v0/review.json.
+It plans the first non-curated completed-run pilot without running it. The
+plan uses a synthetic or sanitized archive-like fixture by default, requires
+explicit pre-existing generated-read and generated-triage inputs, keeps runner
+outputs temp/operator-local, preserves missingness, blockers, deferred reasons,
+source-depth limits, and runtime/user-surface blocked states, and selects
+proceed_to_non_curated_completed_run_pilot for PR229 while still not generating
+semantics, running Lolla, calling models, creating queue workers, writing
+sidecars, mutating archives, wiring runtime, approving resolver refs, scoring,
+proving, certifying, or authorizing action.
 ```
 
 ```text

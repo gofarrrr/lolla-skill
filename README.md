@@ -963,6 +963,15 @@ preserves blocked-state readiness, missing inputs defer, unsafe inputs block,
 write requests stop before explicit write, and no checked-in sidecar outputs,
 real archive mutation, runtime wiring, resolver approval, scoring, proof
 claim, or action authorization occur.
+The
+[Decision Work Non-Curated Completed-Run Pilot Plan](docs/conversation-understanding/decision-work-non-curated-completed-run-pilot-plan-v0.md)
+adds PR228's plan for the first non-curated completed-run pilot. It chooses a
+synthetic or sanitized archive-like fixture by default, requires explicit
+generated-read and generated-triage inputs, keeps all runner outputs
+temp/operator-local, preserves missingness/blocker/deferred fields, and still
+does not run the pilot, generate semantics, write sidecars, mutate archives,
+wire runtime, approve resolver refs, score, prove, validate, certify, or
+authorize action.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See
