@@ -222,6 +222,13 @@ judge as the immediate next move, and recommends a balanced offline Product
 Delta evidence batch with no-change, noisy/worse, inconclusive, lost-intent,
 partial, and useful-friction cases before any live evaluator or product-proof
 claim.
+The follow-on
+[Balanced Offline Product Delta Evidence Batch Plan](docs/evals/balanced-offline-product-delta-evidence-batch-plan-v0.md)
+defines that batch shape as a plan-only milestone: include material, partial,
+no-change, noisy/worse, inconclusive, lost-intent, friction-without-leverage,
+already-good-enough vanilla, verification/deferral/boundary, and
+overcorrection/drift buckets before any candidate selector, batch run, live
+judge, or product-proof claim.
 
 The emerging customer-facing product surface is the Decision Trail: the revised
 answer plus a compact process report explaining what conversation produced it,

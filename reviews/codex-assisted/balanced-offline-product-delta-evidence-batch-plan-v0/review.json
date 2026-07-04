@@ -1,0 +1,182 @@
+{
+  "schema_version": "lolla.balanced_offline_product_delta_evidence_batch_plan_review.v0",
+  "review_metadata": {
+    "review_id": "balanced_offline_product_delta_evidence_batch_plan:v0",
+    "created_at": "2026-07-04T00:00:00Z",
+    "mode": "plan_review_only",
+    "model_calls": 0,
+    "lolla_invoked": false,
+    "lolla_skill_invoked": false,
+    "new_lolla_runs_created": false,
+    "live_evaluator_created": false,
+    "llm_as_judge_created": false,
+    "runtime_behavior_changed": false,
+    "archive_mutated": false
+  },
+  "source_artifacts_reviewed": {
+    "protocol_and_reports": [
+      "docs/evals/product-delta-evidence-thesis-v0.md",
+      "docs/evals/vanilla-vs-lolla-provisional-review-protocol-v0.md",
+      "docs/evals/vanilla-vs-lolla-provisional-review-v0.json",
+      "docs/evals/product-delta-eval-readiness-and-provisional-run-v0.md",
+      "docs/evals/codex-assisted-product-delta-batch-v0.md",
+      "docs/evals/product-delta-provisional-report-v0.md",
+      "docs/evals/context-engineered-provisional-review-architecture-v0.md",
+      "docs/evals/product-delta-specialist-review-contracts-v0.md",
+      "docs/evals/codex-assisted-specialist-review-batch-v0.md",
+      "docs/evals/product-delta-fan-in-disagreement-report-v0.md",
+      "docs/evals/product-delta-pr71-pr84-packaging-gate-v0.md"
+    ],
+    "human_review_references": [
+      "docs/evals/human-review-workflow.md",
+      "docs/evals/lolla-failure-taxonomy.md",
+      "docs/evals/lolla-human-review-v0.json",
+      "docs/evals/actionable-delta-rubric-v0.md"
+    ],
+    "implementation_references": [
+      "engine/system_b/product_delta_readiness.py",
+      "scripts/evals/build_product_delta_provisional_review.py",
+      "engine/system_b/product_delta_boundary_lint.py",
+      "scripts/evals/lint_product_delta_evidence.py",
+      "engine/system_b/product_delta_specialist_packets.py",
+      "scripts/evals/build_product_delta_specialist_packets.py",
+      "engine/system_b/human_review.py",
+      "engine/system_b/review_corpus.py",
+      "scripts/export_review_corpus.py"
+    ]
+  },
+  "batch_principle": "The goal is not to prove Lolla is better. The goal is to build an evidence batch where Lolla can be found useful, partial, no-change, noisy, worse, or inconclusive.",
+  "batch_buckets": [
+    {
+      "bucket_id": "likely_material_improvement_candidates",
+      "why_it_matters": "Checks whether strong candidate wins still survive balanced selection and later decomposition."
+    },
+    {
+      "bucket_id": "partial_improvement_candidates",
+      "why_it_matters": "Tests whether the eval can avoid overclaiming material improvement when leverage is partial."
+    },
+    {
+      "bucket_id": "likely_no_change_cases",
+      "why_it_matters": "Tests whether the eval can avoid flattering the product when the revised answer changes little or nothing."
+    },
+    {
+      "bucket_id": "noisy_or_worse_candidates",
+      "why_it_matters": "Tests whether the eval can find harm, weaker advice, or unhelpful burden."
+    },
+    {
+      "bucket_id": "inconclusive_cases",
+      "why_it_matters": "Tests whether the eval can tolerate uncertainty instead of forcing a positive or negative read."
+    },
+    {
+      "bucket_id": "lost_user_intent_candidates",
+      "why_it_matters": "Tests whether Lolla preserves user goals, constraints, and intended action shape."
+    },
+    {
+      "bucket_id": "friction_without_leverage_cases",
+      "why_it_matters": "Tests whether Lolla added caution, structure, or process without changing a useful decision variable."
+    },
+    {
+      "bucket_id": "vanilla_already_good_enough_cases",
+      "why_it_matters": "Tests whether Lolla adds unnecessary friction when the vanilla answer was already good enough for the decision."
+    },
+    {
+      "bucket_id": "verification_deferral_boundary_or_decision_leverage_improvement_cases",
+      "why_it_matters": "Preserves positive targets where Lolla improved verification, deferral, boundaries, or decision leverage without claiming correctness."
+    },
+    {
+      "bucket_id": "overcorrection_or_user_need_drift_cases",
+      "why_it_matters": "Tests whether Lolla made useful advice too timid, generic, or misaligned with the user's actual need."
+    }
+  ],
+  "candidate_source_rules": {
+    "existing_safe_artifacts_only": true,
+    "readiness_metadata_allowed": true,
+    "review_corpus_metadata_allowed": true,
+    "checked_in_eval_artifacts_allowed": true,
+    "raw_conversation_export_for_checked_in_batch_forbidden": true,
+    "actual_batch_cases_chosen_in_this_pr": false,
+    "missing_bucket_allowed_as_finding": true
+  },
+  "privacy_and_custody_rules": {
+    "raw_conversation_text_checked_in": false,
+    "raw_memo_text_checked_in": false,
+    "raw_revised_answer_text_checked_in": false,
+    "provider_model_text_checked_in": false,
+    "private_ledgers_checked_in": false,
+    "local_absolute_private_paths_checked_in": false,
+    "secrets_checked_in": false,
+    "allowed_checked_in_material": [
+      "relative_source_refs",
+      "case_ids_already_safe_in_existing_eval_docs",
+      "readiness_statuses",
+      "bucket_hypotheses",
+      "privacy_custody_summaries",
+      "missingness_summaries",
+      "explicit_non_claims"
+    ]
+  },
+  "anti_overclaim_rules": {
+    "product_proof": false,
+    "answer_quality_scored": false,
+    "automatic_winner_label": false,
+    "approval_or_certification": false,
+    "agent_use_approval": false,
+    "advice_correctness_claimed": false,
+    "reliable_improvement_claim": false,
+    "provisional_labels_as_ground_truth": false,
+    "absence_of_noisy_worse_as_proof": false
+  },
+  "anti_flattery_signal": {
+    "case_id": "accept-operations-role-startup",
+    "from_candidate": "material_improvement_candidate",
+    "to_candidate": "partial_improvement_candidate",
+    "why_it_matters": "A healthy balanced batch should preserve downgrade pressure when specialist decomposition exposes lost value, value-overwrite risk, ambition, or proportionality uncertainty."
+  },
+  "follow_on_prs": [
+    "Balanced Batch Candidate Selector / Readiness Builder Plan v0",
+    "Balanced Batch Candidate Review v0",
+    "Balanced Batch Provisional Review Run v0",
+    "Negative / No-Change Case Review v0",
+    "Specialist Decomposition Expansion Plan v0",
+    "Fan-In / Disagreement Report Refresh v0",
+    "Evaluation Evidence Package Gate v0",
+    "Optional Live Eval Harness Plan v0, plan-only and later"
+  ],
+  "non_goals": [
+    "no_batch_implementation",
+    "no_actual_batch_case_selection",
+    "no_product_delta_review_run",
+    "no_provider_or_model_calls",
+    "no_lolla_skill_invocation",
+    "no_new_lolla_runs",
+    "no_llm_as_judge_system",
+    "no_live_evaluator",
+    "no_answer_quality_scoring",
+    "no_product_proof",
+    "no_human_validation_claim",
+    "no_advice_correctness_claim",
+    "no_agent_use_approval",
+    "no_runtime_behavior_change",
+    "no_skill_md_change",
+    "no_scripts_skill_change",
+    "no_archive_run_change"
+  ],
+  "boundary_checks": {
+    "model_calls": 0,
+    "lolla_invoked": false,
+    "lolla_skill_invoked": false,
+    "new_lolla_runs_created": false,
+    "live_evaluator_created": false,
+    "llm_as_judge_created": false,
+    "answer_quality_scored": false,
+    "product_proof": false,
+    "human_validated": false,
+    "advice_correctness_claimed": false,
+    "runtime_changed": false,
+    "resolver_refs_approved": false,
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false
+  },
+  "decision_gate": "proceed_to_balanced_batch_candidate_selector_plan",
+  "recommended_next_pr": "Balanced Batch Candidate Selector / Readiness Builder Plan v0"
+}

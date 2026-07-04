@@ -965,6 +965,15 @@ Follow-up implementation planning:
   Product Delta batch with no-change, noisy/worse, inconclusive, lost-intent,
   partial, and useful-friction cases.
 
+- [Balanced Offline Product Delta Evidence Batch Plan](../evals/balanced-offline-product-delta-evidence-batch-plan-v0.md)
+
+  PR236 turns that recommendation into a plan-only batch shape. It requires
+  material, partial, no-change, noisy/worse, inconclusive, lost-intent,
+  friction-without-leverage, already-good-enough vanilla, positive-boundary,
+  and overcorrection/drift buckets, then stops before case selection, Product
+  Delta review, live judging, answer scoring, product proof, or runtime
+  changes.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,
