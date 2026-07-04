@@ -141,6 +141,11 @@ implements this no-write runner and selects
 Review runner fixture outputs for launch-like and blocked/high-risk cases.
 Confirm status mapping, stop behavior, and non-claims.
 
+Implemented follow-up:
+[Decision Work Offline Operator Runner Fixture Review](decision-work-offline-operator-runner-fixture-review-v0.md)
+reviews controlled launch/deploy and blocker fixtures, confirms the no-write
+boundary, and selects `proceed_to_non_curated_completed_run_pilot_plan`.
+
 ### PR228 Non-Curated Completed-Run Pilot Plan
 
 Plan a first non-curated completed-run pilot. Define safe inputs, privacy

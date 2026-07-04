@@ -955,6 +955,14 @@ blocked-state differences, and never calls the real archive write adapter.
 Write flags stop before explicit write, so there is still no sidecar write,
 archive mutation, runtime wiring, resolver approval, scoring, proof claim, or
 action authorization.
+The
+[Decision Work Offline Operator Runner Fixture Review](docs/conversation-understanding/decision-work-offline-operator-runner-fixture-review-v0.md)
+adds PR227's review of the runner over controlled launch/deploy fixtures and
+blocker fixtures. It confirms launch reaches dry-run readiness, deploy
+preserves blocked-state readiness, missing inputs defer, unsafe inputs block,
+write requests stop before explicit write, and no checked-in sidecar outputs,
+real archive mutation, runtime wiring, resolver approval, scoring, proof
+claim, or action authorization occur.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See

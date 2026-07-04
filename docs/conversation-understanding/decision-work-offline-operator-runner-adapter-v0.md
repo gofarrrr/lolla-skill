@@ -209,3 +209,11 @@ Recommended next PR:
 ```text
 PR227 Offline Operator Runner Fixture Review v0
 ```
+
+## Implemented Follow-Up
+
+PR227 implements the review as
+[Decision Work Offline Operator Runner Fixture Review](decision-work-offline-operator-runner-fixture-review-v0.md).
+It checks launch/deploy and blocker fixtures, confirms that write requests stop
+before explicit write, and selects
+`proceed_to_non_curated_completed_run_pilot_plan` for PR228.
