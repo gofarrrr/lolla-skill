@@ -972,6 +972,15 @@ temp/operator-local, preserves missingness/blocker/deferred fields, and still
 does not run the pilot, generate semantics, write sidecars, mutate archives,
 wire runtime, approve resolver refs, score, prove, validate, certify, or
 authorize action.
+The
+[Decision Work Non-Curated Completed-Run Pilot](docs/conversation-understanding/decision-work-non-curated-completed-run-pilot-v0.md)
+adds PR229's first non-curated runner pilot. It uses a synthetic completed-run-
+like fixture outside launch/deploy and honestly defers with
+`deferred_missing_semantic_read` because no generated read is available. It
+checks in only the review summary, preserves missingness, and still does not
+generate semantics, run Lolla, call models, write sidecars, mutate archives,
+wire runtime, approve resolver refs, score, prove, validate, certify, or
+authorize action.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See

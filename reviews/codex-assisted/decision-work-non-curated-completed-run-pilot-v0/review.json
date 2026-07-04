@@ -1,0 +1,132 @@
+{
+  "schema_version": "lolla.decision_work_non_curated_completed_run_pilot_review.v0",
+  "review_metadata": {
+    "review_id": "decision_work_non_curated_completed_run_pilot:v0",
+    "created_at": "2026-07-04T00:00:00Z",
+    "mode": "docs_tests_temp_runner_outputs_only",
+    "checked_in_runner_outputs_created": false,
+    "checked_in_sidecar_outputs_created": false,
+    "model_calls": 0,
+    "lolla_invoked": false,
+    "new_lolla_runs_created": false,
+    "runtime_wired": false,
+    "queue_worker_added": false,
+    "archive_mutated": false,
+    "historical_archive_mutated": false,
+    "resolver_refs_approved": false,
+    "actual_sidecar_write_performed": false,
+    "runtime_wiring_changed": false
+  },
+  "pilot_case": {
+    "case_id": "non-curated-sanitized-missing-read-fixture",
+    "non_curated_reason": "Synthetic sanitized completed-run-like fixture outside launch-public-enterprise-beta and deploy-assisted-intake-routing.",
+    "fixture_policy": "synthetic_temp_completed_run_like_fixture",
+    "fixture_checked_in": false,
+    "real_historical_archive_touched": false
+  },
+  "inputs_available": [
+    "synthetic_completed_run_fixture",
+    "case_id",
+    "safe_temp_output_dir",
+    "offline_operator_runner"
+  ],
+  "inputs_missing": [
+    "generated_read_json",
+    "generated_triage_json"
+  ],
+  "runner_outcome": {
+    "final_status": "deferred_missing_semantic_read",
+    "stopped_at": "generated_read",
+    "missing_required_inputs": [
+      "generated_read"
+    ],
+    "deferred_reasons": [
+      "generated_read_missing"
+    ],
+    "blocker_reasons": [],
+    "operator_attention_items": [],
+    "completed_steps": [],
+    "skipped_steps": [
+      "generated_read_intake",
+      "brief_supply",
+      "rendered_brief",
+      "triage_supply",
+      "resolver_supply",
+      "sidecar_update_packet",
+      "sidecar_write_dry_run"
+    ]
+  },
+  "accepted_status_check": {
+    "accepted_status": true,
+    "accepted_statuses": [
+      "sidecar_ready_for_explicit_write",
+      "sidecar_ready_blocked_state",
+      "deferred_missing_semantic_read",
+      "deferred_missing_triage",
+      "blocked_privacy_risk",
+      "blocked_source_depth_insufficient",
+      "blocked_schema_or_custody_failure",
+      "blocked_runtime_or_user_surface_risk",
+      "runner_failed_closed"
+    ]
+  },
+  "missingness_visibility": {
+    "missing_required_inputs_visible": true,
+    "deferred_reasons_visible": true,
+    "stopped_at_visible": true,
+    "skipped_steps_visible": true,
+    "blocker_reasons_visible": true,
+    "operator_attention_items_visible": true,
+    "new_unknowns_schema_created": false,
+    "known_known_known_unknown_taxonomy_created": false,
+    "semantic_meaning_inferred": false
+  },
+  "source_depth_and_runtime_status": {
+    "source_depth_status_available": false,
+    "source_depth_limits_preserved_as_absent": true,
+    "runtime_use_status_available": false,
+    "user_surface_status_available": false,
+    "runtime_or_user_surface_status_inferred": false
+  },
+  "approval_or_readiness_confusion": {
+    "misleading_approval_created": false,
+    "misleading_readiness_created": false,
+    "resolver_refs_approved": false,
+    "sidecar_ready_claimed": false,
+    "runtime_ready_claimed": false,
+    "user_surface_ready_claimed": false
+  },
+  "write_and_archive_boundary": {
+    "write_attempted": false,
+    "actual_sidecar_write_performed": false,
+    "archive_mutated": false,
+    "historical_archive_mutated": false,
+    "checked_in_decision_work_directory_created": false,
+    "real_historical_archive_touched": false
+  },
+  "strongest_useful_signal": "The offline operator runner cleanly defers on a non-curated completed-run-like fixture when the generated semantic read is absent, preserving missingness instead of inventing interpretation.",
+  "strongest_unresolved_risk": "The first non-curated pilot did not exercise a case with existing checked-in-safe generated read and triage artifacts, so PR230 should decide whether to review this deferred signal as sufficient or patch PR229 with another fixture.",
+  "decision_gate": "proceed_to_non_curated_pilot_review",
+  "recommended_next_pr": "PR230 Non-Curated Pilot Review v0",
+  "non_claims": [
+    "pilot_does_not_run_lolla",
+    "pilot_does_not_invoke_lolla_skill",
+    "pilot_does_not_call_models_or_providers",
+    "pilot_does_not_create_new_lolla_runs",
+    "pilot_does_not_generate_semantic_interpretation",
+    "pilot_does_not_repair_interpretation_reads",
+    "pilot_does_not_create_queue_worker",
+    "pilot_does_not_wire_runtime",
+    "pilot_does_not_make_runtime_attachment_default_on",
+    "pilot_does_not_approve_resolver_refs",
+    "pilot_does_not_write_sidecars",
+    "pilot_does_not_mutate_archives",
+    "pilot_is_not_product_proof",
+    "pilot_is_not_human_validation",
+    "pilot_does_not_score_answer_quality",
+    "pilot_does_not_validate_advice_correctness",
+    "pilot_does_not_certify_or_approve_outputs",
+    "pilot_does_not_authorize_agent_action",
+    "pilot_does_not_authorize_automatic_action"
+  ]
+}

@@ -162,6 +162,12 @@ selects `proceed_to_non_curated_completed_run_pilot`.
 Run the offline path on one non-curated completed-run case using safe supplied
 semantic artifacts. No runtime hook and no provider/model call.
 
+Implemented follow-up:
+[Decision Work Non-Curated Completed-Run Pilot](decision-work-non-curated-completed-run-pilot-v0.md)
+runs a synthetic non-curated completed-run-like fixture with no generated read,
+keeps the runner summary temp-only, records `deferred_missing_semantic_read`,
+and selects `proceed_to_non_curated_pilot_review`.
+
 ### PR230 Non-Curated Pilot Review
 
 Review whether the non-curated pilot preserved missingness, source limits,

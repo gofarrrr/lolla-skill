@@ -586,6 +586,20 @@ proceed_to_non_curated_completed_run_pilot for PR229 while still not generating
 semantics, running Lolla, calling models, creating queue workers, writing
 sidecars, mutating archives, wiring runtime, approving resolver refs, scoring,
 proving, certifying, or authorizing action.
+
+The Decision Work Non-Curated Completed-Run Pilot is
+docs/conversation-understanding/decision-work-non-curated-completed-run-pilot-v0.md
+with review artifact
+reviews/codex-assisted/decision-work-non-curated-completed-run-pilot-v0/review.json.
+It runs the offline operator runner against a synthetic completed-run-like temp
+fixture outside launch/deploy and records the honest result:
+deferred_missing_semantic_read. The pilot checks in no runner summary,
+sidecar output, preview output, or decision_work directory; it preserves
+missing_required_inputs and deferred_reasons, and selects
+proceed_to_non_curated_pilot_review for PR230 while still not generating
+semantics, running Lolla, calling models, creating queue workers, writing
+sidecars, mutating archives, wiring runtime, approving resolver refs, scoring,
+proving, certifying, or authorizing action.
 ```
 
 ```text

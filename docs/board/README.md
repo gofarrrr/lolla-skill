@@ -914,6 +914,12 @@ Follow-up implementation planning:
   outside semantic generation, queue workers, runtime wiring, resolver
   approval, sidecar writes, proof, scoring, and action authorization.
 
+- [Decision Work Non-Curated Completed-Run Pilot](../conversation-understanding/decision-work-non-curated-completed-run-pilot-v0.md)
+
+  PR229 runs the first non-curated temp fixture through the offline runner. It
+  defers on missing generated read, which is the intended honesty signal: the
+  runner preserves missingness instead of making meaning.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,
