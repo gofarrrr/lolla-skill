@@ -838,6 +838,14 @@ Follow-up implementation planning:
   receipt semantics, blocked-state deploy handling, and refusal rules before
   PR219 implements a command-only adapter.
 
+- [Decision Work Real Archive Sidecar Write Adapter](../conversation-understanding/decision-work-real-archive-sidecar-write-adapter-v0.md)
+
+  PR219's command-only adapter and CLI for explicit operator-confirmed writes
+  into archive-markered completed-run directories. It writes only the allowed
+  `decision_work/` file set, preserves deploy blocked state, refuses unsafe
+  targets and existing sidecars, and still does not wire runtime, edit archive
+  hooks, approve resolver refs, score, prove, or authorize action.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

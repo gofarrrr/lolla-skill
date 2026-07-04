@@ -460,6 +460,19 @@ proceed_to_real_archive_sidecar_write_adapter for PR219 while still not
 implementing the adapter, wiring runtime, editing the archive hook, approving
 resolver refs, defaulting anything on, or claiming proof, scoring, advice
 correctness, certification, or action authorization.
+
+The Decision Work Real Archive Sidecar Write Adapter is
+docs/conversation-understanding/decision-work-real-archive-sidecar-write-adapter-v0.md.
+It adds engine/system_b/decision_work_real_archive_sidecar_write.py and
+scripts/evals/write_decision_work_real_archive_sidecar.py for explicit
+operator-confirmed writes into archive-markered completed-run directories. It
+writes only the PR209 allowed file set, refuses existing decision_work sidecars,
+preserves deploy's runtime/user-surface block, emits
+lolla.decision_work_real_archive_sidecar_write_receipt.v0, and selects
+proceed_to_real_archive_sidecar_write_review for PR220 while still not wiring
+runtime, editing archive hooks, approving resolver refs, defaulting anything
+on, scoring, proving, validating advice correctness, certifying, or
+authorizing action.
 ```
 
 ```text

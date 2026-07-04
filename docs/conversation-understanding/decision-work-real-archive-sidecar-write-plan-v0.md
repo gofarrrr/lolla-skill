@@ -273,6 +273,14 @@ PR219 Real Archive Sidecar Write Adapter v0
 Do not implement PR220 from this plan. PR220 should review the adapter outputs
 after PR219 exists.
 
+## Implemented Follow-Up
+
+PR219 implements the adapter as
+[Decision Work Real Archive Sidecar Write Adapter](decision-work-real-archive-sidecar-write-adapter-v0.md).
+The adapter requires explicit operator confirmation, validates archive markers,
+refuses existing `decision_work/` sidecars, preserves deploy blocked state, and
+selects `proceed_to_real_archive_sidecar_write_review` for PR220.
+
 ## Explicit Non-Claims
 
 PR218 does not claim:

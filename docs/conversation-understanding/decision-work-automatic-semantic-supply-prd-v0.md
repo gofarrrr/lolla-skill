@@ -1070,6 +1070,48 @@ PR219 Real Archive Sidecar Write Adapter v0
 Do not implement PR220 from this plan. PR220 should review PR219 outputs after
 the adapter exists.
 
+### PR219 Real Archive Sidecar Write Adapter v0
+
+Implemented as
+[Decision Work Real Archive Sidecar Write Adapter](decision-work-real-archive-sidecar-write-adapter-v0.md).
+
+Add the first command-only explicit operator adapter for writing the PR209
+allowed `decision_work/` sidecar file set into an archive-markered completed-run
+directory. The adapter requires a PR202 sidecar update packet, a matching PR206
+dry-run result, an explicit target archive dir, and
+`--operator-confirm-real-archive-write`.
+
+Expected launch-beta status:
+
+```text
+real_archive_sidecar_write_completed
+```
+
+Expected deploy-intake status:
+
+```text
+real_archive_sidecar_write_completed_blocked_state
+```
+
+Deploy-intake preserves runtime and user-surface blocked state. PR219 still
+does not wire runtime, edit `scripts/archive_run.py`, approve resolver refs,
+make attachment default-on, call models, score answer quality, claim proof, or
+authorize action.
+
+Selected gate:
+
+```text
+proceed_to_real_archive_sidecar_write_review
+```
+
+Recommended next PR:
+
+```text
+PR220 Real Archive Sidecar Write Review v0
+```
+
+Do not implement PR220 from this adapter.
+
 ## Readiness Gates
 
 Automatic semantic supply is not ready for normal use until:

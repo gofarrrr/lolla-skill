@@ -133,6 +133,11 @@ explicitly allowed by PR218. Refuses unsafe content, private markers, local
 path leaks, proof/action/scoring claims, and resolver approval. Writes only
 the PR209 allowed file set and emits a write receipt.
 
+Implemented follow-up:
+[Decision Work Real Archive Sidecar Write Adapter](decision-work-real-archive-sidecar-write-adapter-v0.md)
+implements the command-only adapter and selects
+`proceed_to_real_archive_sidecar_write_review` for PR220.
+
 ### PR220 Real Archive Sidecar Write Review v0
 
 Review actual temp/safe archive-write behavior. Inspect written sidecar files
