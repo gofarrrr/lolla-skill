@@ -200,3 +200,14 @@ Recommended next PR:
 ```text
 PR232 Second Non-Curated Pilot Review v0
 ```
+
+## Implemented Review
+
+[Decision Work Second Non-Curated Pilot Review](decision-work-second-non-curated-pilot-review-v0.md)
+reviews this pilot beside PR229. It confirms PR231 is a mechanics proof for the
+offline runner, not semantic proof for arbitrary non-curated conversations, and
+selects:
+
+```text
+proceed_to_automation_readiness_package_gate
+```

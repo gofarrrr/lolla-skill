@@ -933,6 +933,13 @@ Follow-up implementation planning:
   writing sidecars, mutating archives, approving resolver refs, or wiring
   runtime.
 
+- [Decision Work Second Non-Curated Pilot Review](../conversation-understanding/decision-work-second-non-curated-pilot-review-v0.md)
+
+  PR232 reviews the missing-input pilot and the deeper safe-input pilot
+  together. It says the runner is ready for an Automation Readiness package
+  gate, but it also says PR231 does not prove arbitrary non-curated semantic
+  understanding or customer/runtime readiness.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

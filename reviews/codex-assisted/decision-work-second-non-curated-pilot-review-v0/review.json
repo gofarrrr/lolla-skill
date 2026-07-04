@@ -1,0 +1,157 @@
+{
+  "schema_version": "lolla.decision_work_second_non_curated_pilot_review.v0",
+  "review_metadata": {
+    "review_id": "decision_work_second_non_curated_pilot_review:v0",
+    "created_at": "2026-07-04T00:00:00Z",
+    "mode": "docs_review_tests_only",
+    "model_calls": 0,
+    "lolla_invoked": false,
+    "new_lolla_runs_created": false,
+    "semantic_interpretation_generated": false,
+    "semantic_artifacts_repaired": false,
+    "triage_read_generated": false,
+    "runtime_wired": false,
+    "queue_worker_added": false,
+    "archive_mutated": false,
+    "historical_archive_mutated": false,
+    "checked_in_runner_outputs_created": false,
+    "checked_in_sidecar_outputs_created": false,
+    "resolver_refs_approved": false,
+    "actual_sidecar_write_performed": false,
+    "runtime_wiring_changed": false
+  },
+  "source_reviews": {
+    "first_non_curated_pilot_review_ref": "reviews/codex-assisted/decision-work-non-curated-pilot-review-v0/review.json",
+    "second_non_curated_pilot_review_ref": "reviews/codex-assisted/decision-work-second-non-curated-completed-run-pilot-v0/review.json"
+  },
+  "reviewed_pilots": {
+    "pr229": {
+      "case_id": "non-curated-sanitized-missing-read-fixture",
+      "fixture_policy": "synthetic_temp_completed_run_like_fixture",
+      "generated_read_present": false,
+      "generated_triage_present": false,
+      "final_status": "deferred_missing_semantic_read",
+      "stopped_at": "generated_read",
+      "runner_signal": "missing_semantic_input_defers_cleanly"
+    },
+    "pr231": {
+      "case_id": "second-non-curated-existing-semantic-input-fixture",
+      "fixture_policy": "synthetic_temp_completed_run_like_fixture",
+      "generated_read_ref": "reviews/codex-assisted/decision-work-operator-codex-generated-read-pilot-v0/read.json",
+      "generated_triage_ref": "reviews/codex-assisted/decision-work-generated-read-triage-generation-pilot-v0/triage.json",
+      "semantic_inputs_existing_checked_in_safe": true,
+      "semantic_inputs_reused_from_launch_like_pair": true,
+      "new_semantic_material_created": false,
+      "final_status": "sidecar_ready_for_explicit_write",
+      "stopped_at": "dry_run_complete",
+      "completed_steps": [
+        "generated_read_intake",
+        "brief_supply",
+        "rendered_brief",
+        "triage_supply",
+        "resolver_supply",
+        "sidecar_update_packet",
+        "sidecar_write_dry_run"
+      ],
+      "operator_attention_items": [
+        "manual_explicit_write_available_as_next_step"
+      ],
+      "runtime_use_status": {
+        "status": "blocked",
+        "can_update_sidecar": false,
+        "can_write_runtime_sidecar": false
+      },
+      "user_surface_status": {
+        "status": "not_established",
+        "customer_ready": false,
+        "product_proof": false
+      },
+      "runner_signal": "existing_safe_semantic_inputs_reach_dry_run_readiness"
+    }
+  },
+  "comparison_findings": {
+    "runner_can_stop_early": true,
+    "runner_can_go_deep_with_existing_safe_inputs": true,
+    "missingness_and_blockers_visible_enough": true,
+    "summary_statuses_legible_enough": true,
+    "sidecar_ready_for_explicit_write_acceptable_with_caveats": true,
+    "sidecar_ready_for_explicit_write_too_strong_without_caveats": true,
+    "runtime_user_surface_boundaries_preserved": true,
+    "no_arbitrary_run_semantic_automation_proven": true,
+    "no_new_non_curated_semantic_understanding_proven": true,
+    "package_gate_ready": true,
+    "receipt_blocked_state_language_review_needed_before_package": false
+  },
+  "what_pr231_shows": [
+    "offline_operator_runner_can_go_deep_when_safe_semantic_inputs_already_exist",
+    "deterministic_chain_can_complete_from_explicit_paths_through_dry_run_readiness",
+    "runner_can_preserve_no_write_boundary_while_producing_sidecar_ready_status",
+    "write_archive_runtime_resolver_action_proof_validation_and_scoring_flags_remain_closed"
+  ],
+  "what_pr231_does_not_show": [
+    "new_non_curated_conversation_independently_semantically_understood",
+    "arbitrary_run_semantic_generation_works",
+    "resolver_refs_approved",
+    "runtime_integration_ready",
+    "automatic_sidecar_writes_ready",
+    "customer_or_user_surface_ready",
+    "product_proof",
+    "human_validation",
+    "advice_correctness",
+    "answer_quality_scoring",
+    "approval_or_certification",
+    "action_authorization"
+  ],
+  "boundary_checks": {
+    "write_attempted": false,
+    "actual_sidecar_write_performed": false,
+    "archive_mutated": false,
+    "historical_archive_mutated": false,
+    "runtime_wiring_changed": false,
+    "runtime_attachment_default_on": false,
+    "resolver_refs_approved": false,
+    "queue_worker_added": false,
+    "product_proof": false,
+    "human_validated": false,
+    "answer_quality_scored": false,
+    "advice_correctness_claimed": false,
+    "approval_or_certification_added": false,
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false
+  },
+  "missingness_lens": {
+    "missing_required_inputs_preserved": true,
+    "deferred_reasons_preserved": true,
+    "blocker_reasons_preserved": true,
+    "operator_attention_items_preserved": true,
+    "new_unknowns_schema_created": false,
+    "known_known_known_unknown_taxonomy_created": false,
+    "semantic_conclusions_added": false
+  },
+  "strongest_useful_signal": "PR229 and PR231 together show that the offline operator runner can both stop honestly on missing semantic input and proceed through dry-run readiness when existing checked-in-safe semantic inputs are explicitly supplied.",
+  "strongest_unresolved_risk": "PR231 reused a launch-like semantic input pair, so automation-readiness packaging must not claim arbitrary non-curated semantic understanding.",
+  "decision_gate": "proceed_to_automation_readiness_package_gate",
+  "recommended_next_pr": "PR233 Automation Readiness Package Gate v0",
+  "non_claims": [
+    "review_does_not_run_lolla",
+    "review_does_not_invoke_lolla_skill",
+    "review_does_not_call_models_or_providers",
+    "review_does_not_create_new_lolla_runs",
+    "review_does_not_change_prompts",
+    "review_does_not_generate_semantic_interpretation",
+    "review_does_not_repair_interpretation_reads",
+    "review_does_not_create_queue_worker",
+    "review_does_not_wire_runtime",
+    "review_does_not_make_runtime_attachment_default_on",
+    "review_does_not_approve_resolver_refs",
+    "review_does_not_write_sidecars",
+    "review_does_not_mutate_archives",
+    "review_is_not_product_proof",
+    "review_is_not_human_validation",
+    "review_does_not_score_answer_quality",
+    "review_does_not_validate_advice_correctness",
+    "review_does_not_certify_or_approve_outputs",
+    "review_does_not_authorize_agent_action",
+    "review_does_not_authorize_automatic_action"
+  ]
+}

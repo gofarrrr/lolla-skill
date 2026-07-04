@@ -997,6 +997,13 @@ brief supply, rendering, triage supply, resolver supply, sidecar update packet,
 and dry-run without writing sidecars, mutating archives, wiring runtime,
 approving resolver refs, scoring, proving, validating, certifying, or
 authorizing action.
+The
+[Decision Work Second Non-Curated Pilot Review](docs/conversation-understanding/decision-work-second-non-curated-pilot-review-v0.md)
+reviews PR231 beside PR229. It finds the runner can both defer cleanly when
+semantic input is missing and go through dry-run readiness when existing safe
+semantic inputs are supplied, while explicitly not treating that as arbitrary
+non-curated semantic understanding. It selects an Automation Readiness package
+gate next.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See

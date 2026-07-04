@@ -196,6 +196,14 @@ temp-only, and selects `proceed_to_second_non_curated_pilot_review`.
 Review whether the second non-curated pilot preserves missingness, source
 limits, blocked states, and non-claims while traveling deeper than PR229.
 
+Implemented follow-up:
+[Decision Work Second Non-Curated Pilot Review](decision-work-second-non-curated-pilot-review-v0.md)
+reviews PR229 and PR231 together. It finds the runner useful enough for package
+gate because it can both stop honestly at missing semantic input and reach
+dry-run readiness when existing safe semantic inputs are supplied. It keeps the
+PR231 limitation explicit and selects
+`proceed_to_automation_readiness_package_gate`.
+
 ### PR233 Automation Readiness Package Gate
 
 Package the readiness layer if PR226 through PR232 are clean. This is still
