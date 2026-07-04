@@ -194,6 +194,7 @@ Start with these:
 | [Product Delta Fan-In / Disagreement Report](product-delta-fan-in-disagreement-report-v0.md) | PR84's static comparison of broad PR76 reads and specialist PR83 reads. |
 | [Product Delta PR71-PR84 Packaging Gate](product-delta-pr71-pr84-packaging-gate-v0.md) | PR85's package manifest, validation boundary, useful signal, and unresolved risk. |
 | [Product Delta Evaluation Readiness PRD](product-delta-evaluation-readiness-prd-v0.md) | PR235's eval-phase PRD: summarize existing Product Delta, Human Review, and Review Corpus lanes; preserve the downgrade signal; reject live judging as the immediate move; and choose a balanced offline Product Delta evidence batch next. |
+| [Balanced Offline Product Delta Evidence Batch Plan](balanced-offline-product-delta-evidence-batch-plan-v0.md) | PR236's plan-only balanced-batch slice: define buckets, source rules, privacy/custody rules, check-in policy, anti-overclaim rules, and the candidate-selector plan gate without selecting cases or running a batch. |
 
 ## Runtime And Skill Opportunities
 
@@ -223,6 +224,10 @@ human-reviewed enough to claim product proof.
 The new Product Delta Evaluation Readiness PRD keeps that boundary and selects
 a balanced offline evidence batch before any live evaluator. The next PR should
 plan that batch rather than build a live judge.
+
+The Balanced Offline Product Delta Evidence Batch Plan now defines that batch
+shape. The next PR should plan the candidate selector/readiness builder rather
+than run Product Delta review.
 
 Good next moves later include:
 

@@ -283,3 +283,11 @@ Balanced Offline Product Delta Evidence Batch Plan v0
 That next PR should plan the balanced offline batch only. It should not
 implement live judging, model/provider calls, answer-quality scoring, runtime
 changes, new Lolla runs, or product-proof claims.
+
+## Implemented Follow-Up
+
+The follow-up plan now exists as
+[Balanced Offline Product Delta Evidence Batch Plan](balanced-offline-product-delta-evidence-batch-plan-v0.md).
+It defines the balanced batch buckets, source rules, privacy/custody rules,
+check-in policy, anti-overclaim rules, and the next candidate-selector plan
+gate without selecting actual cases or running Product Delta review.

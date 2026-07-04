@@ -682,6 +682,20 @@ balanced offline Product Delta evidence batch. It still does not run Lolla,
 invoke the skill, call models, create new runs, score answers, claim product
 proof, claim human validation, validate advice correctness, approve agent use,
 or change runtime behavior.
+
+The Balanced Offline Product Delta Evidence Batch Plan is
+docs/evals/balanced-offline-product-delta-evidence-batch-plan-v0.md
+with review artifact
+reviews/codex-assisted/balanced-offline-product-delta-evidence-batch-plan-v0/review.json.
+It defines the next eval milestone as a deliberately balanced offline batch
+where Lolla can be found useful, partial, no-change, noisy, worse, or
+inconclusive. It includes material, partial, no-change, noisy/worse,
+inconclusive, lost-intent, friction-without-leverage, already-good-enough
+vanilla, verification/deferral/boundary, and overcorrection/drift buckets. It
+selects proceed_to_balanced_batch_candidate_selector_plan while still not
+selecting actual cases, running Product Delta review, invoking Lolla, calling
+models, building a live judge, scoring answers, proving product value, claiming
+human validation, approving agent use, or changing runtime behavior.
 ```
 
 ```text
