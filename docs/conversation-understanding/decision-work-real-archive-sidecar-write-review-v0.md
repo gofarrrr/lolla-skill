@@ -121,3 +121,13 @@ gate before any operator runbook or broader demo.
 Do not implement runtime hook integration, default-on behavior, resolver
 approval, model calls, scoring, proof claims, user-surface readiness, or action
 authorization from this review.
+
+## Implemented Follow-Up
+
+PR221 implements the package gate as
+[Decision Work Real Archive Sidecar Write Package Gate](decision-work-real-archive-sidecar-write-package-gate-v0.md).
+The package manifest covers PR218 through PR220 as a command-only,
+explicit-operator, no-overwrite real archive sidecar write v1 while still
+excluding runtime wiring, archive-hook integration, resolver approval,
+default-on behavior, proof claims, scoring, advice correctness, certification,
+and action authorization.

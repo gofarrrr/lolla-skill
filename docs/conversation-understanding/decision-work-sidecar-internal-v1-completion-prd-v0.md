@@ -154,6 +154,12 @@ reviews fresh launch/deploy synthetic completed-run archive writes and selects
 Package the controlled real archive write layer. No runtime wiring and no
 default-on behavior.
 
+Implemented follow-up:
+[Decision Work Real Archive Sidecar Write Package Gate](decision-work-real-archive-sidecar-write-package-gate-v0.md)
+packages PR218 through PR220 and selects
+`real_archive_sidecar_write_v1_packaged`, recommending PR222 Internal Demo /
+Operator Runbook v0.
+
 ### PR222 Internal Demo / Operator Runbook v0
 
 Explain the end-to-end operator flow:

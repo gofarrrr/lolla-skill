@@ -486,6 +486,18 @@ proceed_to_real_archive_sidecar_write_package_gate for PR221 while still not
 wiring runtime, editing archive hooks, approving resolver refs, defaulting
 anything on, scoring, proving, validating advice correctness, certifying, or
 authorizing action.
+
+The Decision Work Real Archive Sidecar Write Package Gate is
+docs/conversation-understanding/decision-work-real-archive-sidecar-write-package-gate-v0.md
+with manifest
+docs/conversation-understanding/decision-work-real-archive-sidecar-write-package-manifest-v0.json.
+It packages PR218-PR220 as real archive sidecar write v1: a command-only,
+explicit-operator, no-overwrite sidecar write layer for archive-markered
+completed-run directories, validated against synthetic completed-run archive
+dirs. It selects real_archive_sidecar_write_v1_packaged and recommends PR222
+Internal Demo / Operator Runbook v0 while still excluding runtime wiring,
+archive-hook integration, resolver approval, default-on behavior, scoring,
+proof, advice correctness, certification, and action authorization.
 ```
 
 ```text

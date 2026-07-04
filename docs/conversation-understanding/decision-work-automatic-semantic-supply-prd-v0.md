@@ -1132,6 +1132,26 @@ Recommended next PR:
 PR221 Real Archive Sidecar Write Package Gate v0
 ```
 
+### PR221 Real Archive Sidecar Write Package Gate v0
+
+Implemented:
+[Decision Work Real Archive Sidecar Write Package Gate](decision-work-real-archive-sidecar-write-package-gate-v0.md).
+
+PR221 packages PR218 through PR220 as real archive sidecar write v1: a
+command-only, explicit-operator, no-overwrite sidecar write layer for
+archive-markered completed-run directories, validated against synthetic
+completed-run archive dirs. It selects
+`real_archive_sidecar_write_v1_packaged` while still not wiring runtime,
+editing archive hooks, approving resolver refs, defaulting anything on,
+scoring, proving, validating advice correctness, certifying, or authorizing
+action.
+
+Recommended next PR:
+
+```text
+PR222 Internal Demo / Operator Runbook v0
+```
+
 ## Readiness Gates
 
 Automatic semantic supply is not ready for normal use until:

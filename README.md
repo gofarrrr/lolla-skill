@@ -904,6 +904,15 @@ completed-run archive writes. It confirms the allowed file set, no-overwrite
 and unsafe-input refusals, deploy blocked-state preservation, and no runtime
 wiring, archive-hook edit, resolver approval, default-on behavior, proof
 claims, scoring, or action authorization before a package gate.
+The
+[Decision Work Real Archive Sidecar Write Package Gate](docs/conversation-understanding/decision-work-real-archive-sidecar-write-package-gate-v0.md)
+packages PR218-PR220 as real archive sidecar write v1, with a
+[package manifest](docs/conversation-understanding/decision-work-real-archive-sidecar-write-package-manifest-v0.json).
+It claims only a command-only, explicit-operator, no-overwrite write layer
+validated against synthetic completed-run archive dirs, while still excluding
+runtime wiring, archive-hook integration, default-on behavior, resolver
+approval, proof claims, scoring, advice correctness, certification, and action
+authorization.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See

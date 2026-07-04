@@ -854,6 +854,14 @@ Follow-up implementation planning:
   resolver approval, default-on behavior, scoring, proof, or action
   authorization before a package gate.
 
+- [Decision Work Real Archive Sidecar Write Package Gate](../conversation-understanding/decision-work-real-archive-sidecar-write-package-gate-v0.md)
+
+  PR221's package gate and manifest for PR218-PR220. It packages command-only
+  real archive sidecar write v1 for explicit operator-confirmed, no-overwrite
+  writes validated against synthetic completed-run archive dirs, while still
+  excluding runtime wiring, archive-hook integration, default-on behavior,
+  resolver approval, proof, scoring, certification, and action authorization.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,
