@@ -183,6 +183,14 @@ Recommended next PR:
 PR233 Automation Readiness Package Gate v0
 ```
 
+## Implemented Follow-Up
+
+PR233 implements the package gate as
+[Decision Work Sidecar Automation Readiness Package Gate](decision-work-sidecar-automation-readiness-package-gate-v0.md).
+It packages PR224 through PR232 as Automation Readiness v1, selects
+`automation_readiness_v1_packaged`, and recommends
+`PR234 Receipt / Blocked-State Language Review v0`.
+
 ## Stop Lines For PR233
 
 PR233 should stop if packaging would require:

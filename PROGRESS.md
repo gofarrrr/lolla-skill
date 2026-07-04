@@ -642,6 +642,21 @@ proceed_to_automation_readiness_package_gate for PR233 while still not
 generating semantics, running Lolla, calling models, creating queue workers,
 writing sidecars, mutating archives, wiring runtime, approving resolver refs,
 scoring, proving, validating, certifying, or authorizing action.
+
+The Decision Work Sidecar Automation Readiness Package Gate is
+docs/conversation-understanding/decision-work-sidecar-automation-readiness-package-gate-v0.md
+with package manifest
+docs/conversation-understanding/decision-work-sidecar-automation-readiness-package-manifest-v0.json.
+It packages PR224-PR232 as Automation Readiness v1: an offline,
+command-only operator-runner layer that can orchestrate deterministic Decision
+Work artifacts from explicit paths, stop visibly on missing semantic inputs,
+and reach dry-run readiness when existing checked-in-safe semantic inputs are
+supplied. It selects automation_readiness_v1_packaged and recommends PR234
+Receipt / Blocked-State Language Review v0 while still not generating
+semantics, running Lolla, calling models, creating queue workers, writing
+sidecars from the runner, mutating archives, wiring runtime, approving
+resolver refs, scoring, proving, validating, certifying, or authorizing
+action.
 ```
 
 ```text

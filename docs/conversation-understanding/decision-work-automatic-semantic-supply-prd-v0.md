@@ -1412,6 +1412,34 @@ Recommended next PR:
 PR233 Automation Readiness Package Gate v0
 ```
 
+### PR233 Automation Readiness Package Gate v0
+
+[Decision Work Sidecar Automation Readiness Package Gate](decision-work-sidecar-automation-readiness-package-gate-v0.md)
+packages PR224 through PR232 as Automation Readiness v1.
+
+The package claim is deliberately narrow: Decision Work Sidecar Automation
+Readiness v1 is an offline, command-only operator-runner layer that can
+orchestrate deterministic Decision Work artifacts from explicit paths, stop
+safely on missing semantic inputs, and reach dry-run readiness when safe
+semantic inputs already exist.
+
+The package records that PR229 deferred cleanly on missing semantic input and
+that PR231 reached dry-run readiness with existing checked-in-safe semantic
+inputs. It also records the limitation that PR231 does not prove arbitrary
+non-curated semantic understanding.
+
+Selected gate:
+
+```text
+automation_readiness_v1_packaged
+```
+
+Recommended next PR:
+
+```text
+PR234 Receipt / Blocked-State Language Review v0
+```
+
 ## Readiness Gates
 
 Automatic semantic supply is not ready for normal use until:
