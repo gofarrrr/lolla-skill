@@ -1,0 +1,174 @@
+{
+  "schema_version": "lolla.decision_work_non_curated_completed_run_pilot_plan_review.v0",
+  "review_metadata": {
+    "review_id": "decision_work_non_curated_completed_run_pilot_plan:v0",
+    "created_at": "2026-07-04T00:00:00Z",
+    "mode": "docs_tests_only",
+    "pilot_run_created": false,
+    "checked_in_runner_outputs_created": false,
+    "checked_in_sidecar_outputs_created": false,
+    "model_calls": 0,
+    "lolla_invoked": false,
+    "new_lolla_runs_created": false,
+    "runtime_wired": false,
+    "queue_worker_added": false,
+    "archive_mutated": false,
+    "historical_archive_mutated": false,
+    "resolver_refs_approved": false,
+    "actual_sidecar_write_performed": false,
+    "runtime_wiring_changed": false
+  },
+  "pilot_candidate_policy": {
+    "not_launch_public_enterprise_beta": true,
+    "not_deploy_assisted_intake_routing": true,
+    "operator_selected_explicitly": true,
+    "synthetic_or_sanitized_archive_like_fixture_default": true,
+    "explicit_local_archive_read_only_reference_allowed": true,
+    "auto_discovery_forbidden": true,
+    "broad_directory_scan_forbidden": true,
+    "raw_private_content_forbidden": true
+  },
+  "required_archive_markers": [
+    "fixture_archive_root_directory",
+    "sanitized_case_or_run_metadata",
+    "completed_run_marker",
+    "no_existing_decision_work_directory",
+    "no_raw_private_content_files",
+    "no_provider_output_files",
+    "no_local_absolute_path_references"
+  ],
+  "required_existing_inputs": [
+    "completed_run_archive_dir_or_sanitized_fixture",
+    "generated_read_json",
+    "generated_triage_json",
+    "case_id",
+    "safe_output_dir"
+  ],
+  "expected_pr229_runner_command_args": [
+    "--completed-run-archive-dir",
+    "--generated-read",
+    "--generated-triage",
+    "--case-id",
+    "--safe-output-dir",
+    "--out",
+    "--pretty"
+  ],
+  "expected_statuses": {
+    "success": [
+      "sidecar_ready_for_explicit_write",
+      "sidecar_ready_blocked_state"
+    ],
+    "deferred": [
+      "deferred_missing_semantic_read",
+      "deferred_missing_triage"
+    ],
+    "blocked": [
+      "blocked_privacy_risk",
+      "blocked_source_depth_insufficient",
+      "blocked_schema_or_custody_failure",
+      "blocked_runtime_or_user_surface_risk"
+    ],
+    "failure": [
+      "runner_failed_closed"
+    ]
+  },
+  "missingness_fields_to_preserve": [
+    "missing_required_inputs",
+    "blocker_reasons",
+    "deferred_reasons",
+    "operator_attention_items",
+    "source_depth_status",
+    "runtime_use_status",
+    "user_surface_status"
+  ],
+  "forbidden_new_taxonomies": [
+    "unknowns_register_schema",
+    "known_known_known_unknown_taxonomy"
+  ],
+  "semantic_boundaries": {
+    "infer_new_semantic_meaning": false,
+    "generate_interpretation_read": false,
+    "repair_interpretation_read": false,
+    "call_models_or_providers": false,
+    "run_lolla": false,
+    "invoke_lolla_skill": false
+  },
+  "output_policy": {
+    "runner_summary_temp_only": true,
+    "intermediate_packets_temp_only": true,
+    "dry_run_outputs_temp_only": true,
+    "checked_in_sidecar_outputs_allowed": false,
+    "checked_in_decision_work_directory_allowed": false,
+    "real_archive_write_allowed": false
+  },
+  "runner_summary_must_preserve": [
+    "schema_version",
+    "case_id",
+    "final_status",
+    "completed_steps",
+    "skipped_steps",
+    "stopped_at",
+    "artifact_refs",
+    "missing_required_inputs",
+    "blocker_reasons",
+    "deferred_reasons",
+    "operator_attention_items",
+    "source_depth_status",
+    "runtime_use_status",
+    "user_surface_status",
+    "non_claims",
+    "custody_flags",
+    "write_attempted_false",
+    "actual_sidecar_write_performed_false",
+    "archive_mutated_false",
+    "historical_archive_mutated_false",
+    "resolver_refs_approved_false",
+    "runtime_wiring_changed_false"
+  ],
+  "refusal_rules": [
+    "missing_generated_read",
+    "missing_generated_triage",
+    "source_depth_insufficient",
+    "privacy_or_private_marker",
+    "provider_marker",
+    "local_absolute_path_leak",
+    "schema_or_custody_failure",
+    "unsafe_output_path",
+    "decision_work_sidecar_output_would_be_checked_in",
+    "real_archive_write_attempt",
+    "resolver_refs_approved_true",
+    "product_proof_or_human_validation_or_scoring_or_action_claim",
+    "model_provider_lolla_or_semantic_generation_required"
+  ],
+  "recommended_pr229_shape": {
+    "title": "PR229 Non-Curated Completed-Run Pilot v0",
+    "run_count": 1,
+    "candidate_default": "synthetic_or_sanitized_archive_like_fixture",
+    "outputs": "temp_operator_local_only",
+    "write_sidecar": false,
+    "recommended_gate_if_clean": "proceed_to_non_curated_pilot_review"
+  },
+  "decision_gate": "proceed_to_non_curated_completed_run_pilot",
+  "recommended_next_pr": "PR229 Non-Curated Completed-Run Pilot v0",
+  "non_claims": [
+    "plan_does_not_run_lolla",
+    "plan_does_not_invoke_lolla_skill",
+    "plan_does_not_call_models_or_providers",
+    "plan_does_not_create_new_lolla_runs",
+    "plan_does_not_generate_semantic_interpretation",
+    "plan_does_not_create_runner",
+    "plan_does_not_create_queue_worker",
+    "plan_does_not_wire_runtime",
+    "plan_does_not_make_runtime_attachment_default_on",
+    "plan_does_not_approve_resolver_refs",
+    "plan_does_not_write_sidecars",
+    "plan_does_not_mutate_archives",
+    "plan_is_not_product_proof",
+    "plan_is_not_human_validation",
+    "plan_does_not_score_answer_quality",
+    "plan_does_not_validate_advice_correctness",
+    "plan_does_not_certify_or_approve_outputs",
+    "plan_does_not_authorize_agent_action",
+    "plan_does_not_authorize_automatic_action"
+  ]
+}

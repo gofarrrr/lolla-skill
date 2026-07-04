@@ -1270,6 +1270,36 @@ Recommended next PR:
 PR228 Non-Curated Completed-Run Pilot Plan v0
 ```
 
+### PR228 Non-Curated Completed-Run Pilot Plan v0
+
+[Decision Work Non-Curated Completed-Run Pilot Plan](decision-work-non-curated-completed-run-pilot-plan-v0.md)
+plans the first non-curated completed-run pilot without running it. It chooses
+a synthetic or sanitized archive-like fixture by default, allows explicit local
+completed-run archives only as read-only operator context, requires existing
+generated-read and generated-triage inputs, and keeps all runner outputs
+temp/operator-local.
+
+The plan preserves the practical missingness lens from the runner:
+`missing_required_inputs`, `blocker_reasons`, `deferred_reasons`,
+`operator_attention_items`, `source_depth_status`, `runtime_use_status`, and
+`user_surface_status`. It explicitly does not introduce an Unknowns Register,
+a known-known / known-unknown taxonomy, new semantic conclusions, model calls,
+Lolla invocation, queue workers, runtime wiring, resolver approval, sidecar
+writes, archive mutation, scoring, proof claims, validation claims, or action
+authorization.
+
+Selected gate:
+
+```text
+proceed_to_non_curated_completed_run_pilot
+```
+
+Recommended next PR:
+
+```text
+PR229 Non-Curated Completed-Run Pilot v0
+```
+
 ## Readiness Gates
 
 Automatic semantic supply is not ready for normal use until:

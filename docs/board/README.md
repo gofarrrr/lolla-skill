@@ -907,6 +907,13 @@ Follow-up implementation planning:
   It confirms readiness, blocked-state readiness, defer/block behavior, and the
   no-write/no-runtime/no-approval boundary before any non-curated pilot plan.
 
+- [Decision Work Non-Curated Completed-Run Pilot Plan](../conversation-understanding/decision-work-non-curated-completed-run-pilot-plan-v0.md)
+
+  PR228 plans the first non-curated completed-run pilot. It keeps the next step
+  fixture/sanitized by default, explicit-input-only, temp-output-only, and still
+  outside semantic generation, queue workers, runtime wiring, resolver
+  approval, sidecar writes, proof, scoring, and action authorization.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

@@ -217,3 +217,8 @@ PR227 implements the review as
 It checks launch/deploy and blocker fixtures, confirms that write requests stop
 before explicit write, and selects
 `proceed_to_non_curated_completed_run_pilot_plan` for PR228.
+
+PR228 implements that next plan as
+[Decision Work Non-Curated Completed-Run Pilot Plan](decision-work-non-curated-completed-run-pilot-plan-v0.md).
+It does not run a pilot; it defines the safe fixture/input/output/status
+contract for PR229.

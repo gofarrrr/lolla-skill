@@ -162,3 +162,11 @@ proof claims, and action authorization closed.
 
 Do not implement the non-curated pilot from this review. PR228 should plan that
 next boundary first.
+
+## Implemented Follow-Up
+
+PR228 implements the plan as
+[Decision Work Non-Curated Completed-Run Pilot Plan](decision-work-non-curated-completed-run-pilot-plan-v0.md).
+It chooses a synthetic or sanitized archive-like fixture by default, keeps
+runner outputs temp/operator-local, preserves missingness and blocker fields,
+and selects `proceed_to_non_curated_completed_run_pilot` for PR229.
