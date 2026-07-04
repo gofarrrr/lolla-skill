@@ -215,6 +215,14 @@ evidence scaffolding, not product proof. Its healthiest signal is a downgrade:
 to `partial_improvement_candidate` after specialist review preserved lost
 value and interpretation concerns.
 
+The next eval planning anchor is the
+[Product Delta Evaluation Readiness PRD](docs/evals/product-delta-evaluation-readiness-prd-v0.md).
+It keeps the existing eval lanes conservative, rejects a live conversation
+judge as the immediate next move, and recommends a balanced offline Product
+Delta evidence batch with no-change, noisy/worse, inconclusive, lost-intent,
+partial, and useful-friction cases before any live evaluator or product-proof
+claim.
+
 The emerging customer-facing product surface is the Decision Trail: the revised
 answer plus a compact process report explaining what conversation produced it,
 what changed, what was challenged, what remains missing, and what should not be

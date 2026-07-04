@@ -669,6 +669,19 @@ acceptable only with explicit no-write, no-runtime, no-resolver-approval,
 no-arbitrary-semantic-proof, no-product-proof, no-scoring, and no-action
 caveats preserved. It selects proceed_to_product_delta_evaluation_readiness_prd
 while keeping Product Delta evaluation work out of PR234.
+
+The Product Delta Evaluation Readiness PRD is
+docs/evals/product-delta-evaluation-readiness-prd-v0.md
+with review artifact
+reviews/codex-assisted/product-delta-evaluation-readiness-prd-v0/review.json.
+It starts the next eval phase by summarizing the Product Delta, Human Review,
+and Review Corpus lanes, preserving the specialist-review downgrade as a useful
+anti-flattery signal, rejecting a live conversation judge as the immediate
+move, and selecting proceed_to_balanced_offline_product_delta_batch_plan for a
+balanced offline Product Delta evidence batch. It still does not run Lolla,
+invoke the skill, call models, create new runs, score answers, claim product
+proof, claim human validation, validate advice correctness, approve agent use,
+or change runtime behavior.
 ```
 
 ```text

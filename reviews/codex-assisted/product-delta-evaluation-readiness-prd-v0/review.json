@@ -1,0 +1,157 @@
+{
+  "schema_version": "lolla.product_delta_evaluation_readiness_prd_review.v0",
+  "review_metadata": {
+    "review_id": "product_delta_evaluation_readiness_prd:v0",
+    "created_at": "2026-07-04T00:00:00Z",
+    "mode": "prd_review_only",
+    "model_calls": 0,
+    "lolla_invoked": false,
+    "lolla_skill_invoked": false,
+    "new_lolla_runs_created": false,
+    "prompts_changed": false,
+    "runtime_behavior_changed": false,
+    "runtime_wired": false,
+    "archive_mutated": false
+  },
+  "source_artifacts_reviewed": {
+    "product_delta_evidence_lane": [
+      "docs/evals/product-delta-evidence-thesis-v0.md",
+      "docs/evals/vanilla-vs-lolla-provisional-review-protocol-v0.md",
+      "docs/evals/vanilla-vs-lolla-provisional-review-v0.json",
+      "engine/system_b/product_delta_readiness.py",
+      "scripts/evals/build_product_delta_provisional_review.py",
+      "engine/system_b/product_delta_boundary_lint.py",
+      "scripts/evals/lint_product_delta_evidence.py",
+      "engine/system_b/product_delta_specialist_packets.py",
+      "scripts/evals/build_product_delta_specialist_packets.py"
+    ],
+    "human_review_answer_level_eval_lane": [
+      "docs/evals/human-review-workflow.md",
+      "docs/evals/lolla-failure-taxonomy.md",
+      "docs/evals/lolla-human-review-v0.json",
+      "docs/evals/actionable-delta-rubric-v0.md",
+      "engine/system_b/human_review.py"
+    ],
+    "review_corpus_queue_builder_lane": [
+      "engine/system_b/review_corpus.py",
+      "scripts/export_review_corpus.py"
+    ]
+  },
+  "lane_summary": {
+    "product_delta_evidence_lane": {
+      "purpose": "Compare the likely vanilla answer trajectory against the Lolla revised answer using existing safe artifacts.",
+      "asks_what_changed": true,
+      "asks_whether_change_mattered": true,
+      "tracks_partial_noisy_worse_or_inconclusive_results": true,
+      "answer_quality_scored": false,
+      "product_proof": false
+    },
+    "human_review_answer_level_eval_lane": {
+      "purpose": "Let human reviewers inspect full traces and record answer-level labels under lolla.human_review.v0.",
+      "human_review_evidence": true,
+      "automated_judge": false,
+      "automatic_approval": false,
+      "human_validation_claim": false
+    },
+    "review_corpus_queue_builder_lane": {
+      "purpose": "Prepare local review queues and blank human-review templates from archived run metadata.",
+      "copies_raw_private_content": false,
+      "evaluates_advice_quality": false
+    }
+  },
+  "current_evidence_boundary": {
+    "serious_but_conservative": true,
+    "cautious_evidence_not_product_proof": true,
+    "product_delta_asks_what_changed_and_where_result_is_partial_noisy_or_inconclusive": true,
+    "human_review_can_label_answer_level_improvement_but_remains_human_review_evidence": true,
+    "does_not_justify_reliable_improvement_claim": true,
+    "codex_assisted_reads_are_provisional": true,
+    "ground_truth": false,
+    "judge_calibrated": false,
+    "agent_use_approved_without_human_review": false
+  },
+  "key_downgrade_signal": {
+    "case_id": "accept-operations-role-startup",
+    "from_candidate": "material_improvement_candidate",
+    "to_candidate": "partial_improvement_candidate",
+    "why_it_matters": "Specialist decomposition preserved lost value, value-overwrite risk, ambition, and proportionality uncertainty instead of laundering a broad positive read into a stronger claim.",
+    "treated_as_positive_eval_signal": true
+  },
+  "recommended_next_milestone": {
+    "name": "Balanced Offline Product Delta Evidence Batch v0",
+    "before_live_evaluator": true,
+    "uses_existing_safe_artifacts": true,
+    "goal": "Broaden offline evidence with positive, partial, weak, negative, and ambiguous cases before any live judge-like harness."
+  },
+  "balanced_batch_inclusions": [
+    "likely_no_change_cases",
+    "noisy_or_worse_candidates",
+    "inconclusive_cases",
+    "lost_user_intent_cases",
+    "lolla_added_friction_without_leverage_cases",
+    "vanilla_answer_already_good_enough_cases",
+    "verification_deferral_boundary_improvement_cases",
+    "partial_or_ambiguous_improvement_cases"
+  ],
+  "follow_on_prs": [
+    "Product Delta Evaluation Readiness PRD v0",
+    "Balanced Offline Evidence Batch Plan v0",
+    "Balanced Batch Candidate Selector / Readiness Builder v0",
+    "Balanced Batch Provisional Review Run v0",
+    "Negative / No-Change Case Review v0",
+    "Specialist Decomposition Expansion v0",
+    "Fan-In / Disagreement Report Refresh v0",
+    "Human Review Calibration Plan v0",
+    "Evaluation Evidence Package Gate v0",
+    "Optional Live Eval Harness Plan v0, plan-only"
+  ],
+  "rejected_immediate_moves": {
+    "live_evaluator_that_reads_current_conversation_and_judges_lolla_answer": {
+      "rejected_as_next_move": true,
+      "reasons": [
+        "raw_private_text_handling",
+        "provider_model_calls",
+        "answer_scoring_risk",
+        "live_judge_calibration_risk",
+        "product_proof_creep",
+        "agent_approval_confusion"
+      ]
+    }
+  },
+  "non_goals": [
+    "no_live_evaluator",
+    "no_provider_or_model_calls",
+    "no_lolla_skill_invocation",
+    "no_new_lolla_runs",
+    "no_llm_as_judge_system",
+    "no_answer_quality_scoring",
+    "no_product_proof",
+    "no_human_validation_claim",
+    "no_advice_correctness_claim",
+    "no_agent_use_approval_without_human_review",
+    "no_runtime_behavior_change",
+    "no_skill_md_change",
+    "no_scripts_skill_change",
+    "no_archive_run_change"
+  ],
+  "boundary_checks": {
+    "model_calls": 0,
+    "lolla_invoked": false,
+    "lolla_skill_invoked": false,
+    "new_lolla_runs_created": false,
+    "live_evaluator_created": false,
+    "llm_as_judge_created": false,
+    "answer_quality_scored": false,
+    "product_proof": false,
+    "human_validated": false,
+    "advice_correctness_claimed": false,
+    "runtime_changed": false,
+    "resolver_refs_approved": false,
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false
+  },
+  "strongest_useful_signal": "The existing Product Delta machinery has already downgraded a case after specialist decomposition, which shows the eval path can resist flattering Lolla.",
+  "strongest_unresolved_risk": "Existing positive evidence remains thin and insufficiently balanced across no-change, noisy, worse, inconclusive, and lost-intent examples.",
+  "decision_gate": "proceed_to_balanced_offline_product_delta_batch_plan",
+  "recommended_next_pr": "Balanced Offline Product Delta Evidence Batch Plan v0"
+}
