@@ -193,6 +193,7 @@ Start with these:
 | [Codex-Assisted Specialist Review Batch](codex-assisted-specialist-review-batch-v0.md) | PR83's trap discipline and two-case specialist batch. |
 | [Product Delta Fan-In / Disagreement Report](product-delta-fan-in-disagreement-report-v0.md) | PR84's static comparison of broad PR76 reads and specialist PR83 reads. |
 | [Product Delta PR71-PR84 Packaging Gate](product-delta-pr71-pr84-packaging-gate-v0.md) | PR85's package manifest, validation boundary, useful signal, and unresolved risk. |
+| [Product Delta Evaluation Readiness PRD](product-delta-evaluation-readiness-prd-v0.md) | PR235's eval-phase PRD: summarize existing Product Delta, Human Review, and Review Corpus lanes; preserve the downgrade signal; reject live judging as the immediate move; and choose a balanced offline Product Delta evidence batch next. |
 
 ## Runtime And Skill Opportunities
 
@@ -217,7 +218,11 @@ skill. For now, the split is intentional.
 
 The PR71-PR85 non-human Product Delta phase is packaged. It is coherent enough
 to inspect, lint, and use as internal scaffolding. It is not broad enough or
-human-validated enough to claim product proof.
+human-reviewed enough to claim product proof.
+
+The new Product Delta Evaluation Readiness PRD keeps that boundary and selects
+a balanced offline evidence batch before any live evaluator. The next PR should
+plan that batch rather than build a live judge.
 
 Good next moves later include:
 

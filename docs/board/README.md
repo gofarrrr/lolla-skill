@@ -956,6 +956,15 @@ Follow-up implementation planning:
   caveats and points the next phase to a separate Product Delta Evaluation
   Readiness PRD.
 
+- [Product Delta Evaluation Readiness PRD](../evals/product-delta-evaluation-readiness-prd-v0.md)
+
+  PR235 starts the next evaluation phase without building a live judge. It
+  summarizes the Product Delta, Human Review, and Review Corpus lanes, treats
+  the Product Delta downgrade signal as healthy anti-flattery evidence, rejects
+  a live evaluator as the immediate move, and recommends a balanced offline
+  Product Delta batch with no-change, noisy/worse, inconclusive, lost-intent,
+  partial, and useful-friction cases.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,
