@@ -410,3 +410,14 @@ PR223 implements the narrative refresh as
 It closes the Internal v1 sidecar-write phase with
 `decision_work_sidecar_internal_v1_complete` and recommends a pause/review
 before any automation phase.
+
+The follow-on phase anchor is
+[Decision Work Sidecar Automation Readiness PRD](decision-work-sidecar-automation-readiness-prd-v0.md),
+and its first implementation-slice plan is
+[Decision Work Offline Operator Runner Plan](decision-work-offline-operator-runner-plan-v0.md).
+That future runner is planned as a one-shot offline operator command that
+orchestrates the same CLIs documented here, produces `runner_summary.json`,
+stops at each boundary, preserves launch/deploy blocked-state differences, and
+keeps write mode optional/default-off. It should not become a queue worker,
+runtime hook, semantic interpreter, resolver approval mechanism, scoring
+system, proof surface, or action authorizer.

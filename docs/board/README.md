@@ -878,6 +878,23 @@ Follow-up implementation planning:
   runtime behavior, resolver approval, product proof, scoring, or action
   authorization.
 
+- [Decision Work Sidecar Automation Readiness PRD](../conversation-understanding/decision-work-sidecar-automation-readiness-prd-v0.md)
+
+  PR224's phase anchor after Internal v1. It keeps the next phase offline and
+  operator-directed, defines sidecar-ready, blocked, deferred, and rejected
+  states for newly completed runs, and recommends an offline operator runner
+  plan without adding a runner, queue worker, runtime hook, resolver approval,
+  proof, scoring, or action authorization.
+
+- [Decision Work Offline Operator Runner Plan](../conversation-understanding/decision-work-offline-operator-runner-plan-v0.md)
+
+  PR225's plan-only first slice for automation readiness. It defines a future
+  one-shot command runner that orchestrates existing CLIs from explicit paths,
+  emits a runner summary, preserves blocked-state outcomes, and keeps write
+  mode optional/default-off without adding a queue worker, runtime hook,
+  semantic interpretation, resolver approval, proof, scoring, or action
+  authorization.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,
