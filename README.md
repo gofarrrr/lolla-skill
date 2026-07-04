@@ -988,6 +988,15 @@ automation-readiness signal, but not enough for package readiness. It selects a
 second non-curated pilot with existing checked-in-safe generated read and
 generated triage inputs, while preserving the no-runtime, no-approval,
 no-scoring, no-proof, and no-action boundaries.
+The
+[Decision Work Second Non-Curated Completed-Run Pilot](docs/conversation-understanding/decision-work-second-non-curated-completed-run-pilot-v0.md)
+adds PR231's deeper runner pilot. It uses a synthetic non-curated temp fixture
+plus existing checked-in-safe semantic inputs, reaches
+`sidecar_ready_for_explicit_write`, and confirms the runner can complete intake,
+brief supply, rendering, triage supply, resolver supply, sidecar update packet,
+and dry-run without writing sidecars, mutating archives, wiring runtime,
+approving resolver refs, scoring, proving, validating, certifying, or
+authorizing action.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See

@@ -1,0 +1,135 @@
+{
+  "schema_version": "lolla.decision_work_second_non_curated_completed_run_pilot_review.v0",
+  "review_metadata": {
+    "review_id": "decision_work_second_non_curated_completed_run_pilot:v0",
+    "created_at": "2026-07-04T00:00:00Z",
+    "mode": "docs_tests_temp_runner_outputs_only",
+    "model_calls": 0,
+    "lolla_invoked": false,
+    "new_lolla_runs_created": false,
+    "semantic_interpretation_generated": false,
+    "semantic_artifacts_repaired": false,
+    "triage_read_generated": false,
+    "runtime_wired": false,
+    "queue_worker_added": false,
+    "archive_mutated": false,
+    "historical_archive_mutated": false,
+    "checked_in_runner_outputs_created": false,
+    "checked_in_sidecar_outputs_created": false,
+    "resolver_refs_approved": false,
+    "actual_sidecar_write_performed": false,
+    "runtime_wiring_changed": false
+  },
+  "pilot_case": {
+    "case_id": "second-non-curated-existing-semantic-input-fixture",
+    "fixture_policy": "synthetic_temp_completed_run_like_fixture",
+    "non_curated_fixture": true,
+    "fixture_checked_in": false,
+    "real_historical_archive_touched": false
+  },
+  "semantic_inputs": {
+    "generated_read_ref": "reviews/codex-assisted/decision-work-operator-codex-generated-read-pilot-v0/read.json",
+    "generated_triage_ref": "reviews/codex-assisted/decision-work-generated-read-triage-generation-pilot-v0/triage.json",
+    "inputs_existing_checked_in_safe": true,
+    "inputs_reused_from_existing_launch_like_pair": true,
+    "new_semantic_material_created": false,
+    "limitation": "The completed-run fixture is non-curated, but the semantic inputs are existing checked-in-safe launch-like artifacts. This tests runner depth, not new semantic interpretation coverage."
+  },
+  "runner_outcome": {
+    "final_status": "sidecar_ready_for_explicit_write",
+    "accepted_status": true,
+    "stopped_at": "dry_run_complete",
+    "completed_steps": [
+      "generated_read_intake",
+      "brief_supply",
+      "rendered_brief",
+      "triage_supply",
+      "resolver_supply",
+      "sidecar_update_packet",
+      "sidecar_write_dry_run"
+    ],
+    "skipped_steps": [],
+    "missing_required_inputs": [],
+    "blocker_reasons": [],
+    "deferred_reasons": [],
+    "operator_attention_items": [
+      "manual_explicit_write_available_as_next_step"
+    ]
+  },
+  "downstream_status": {
+    "runtime_use_status_preserved": true,
+    "runtime_use_status": {
+      "status": "blocked",
+      "can_update_sidecar": false,
+      "can_write_runtime_sidecar": false,
+      "candidate_packet_can_override_runtime_block": false
+    },
+    "user_surface_status_preserved": true,
+    "user_surface_status": {
+      "status": "not_established",
+      "customer_ready": false,
+      "product_proof": false
+    }
+  },
+  "write_and_archive_boundary": {
+    "write_attempted": false,
+    "actual_sidecar_write_performed": false,
+    "archive_mutated": false,
+    "historical_archive_mutated": false,
+    "checked_in_runner_summary_created": false,
+    "checked_in_dry_run_output_created": false,
+    "checked_in_sidecar_output_created": false,
+    "checked_in_decision_work_directory_created": false,
+    "real_historical_archive_touched": false
+  },
+  "review_questions": {
+    "why_non_curated": "The completed-run fixture is synthetic, temp-only, not launch/deploy archive fixture output, and not checked in.",
+    "semantic_inputs_existed": true,
+    "generated_read_supplied_safely": true,
+    "generated_triage_supplied_safely": true,
+    "runner_progressed_beyond_generated_read": true,
+    "deterministic_downstream_steps_temp_only": true,
+    "missingness_blockers_deferred_reasons_visible": true,
+    "runtime_user_surface_status_conservative": true,
+    "runner_summary_could_be_mistaken_for_resolver_approval": false,
+    "dry_run_could_be_mistaken_for_actual_write_without_flags": true,
+    "enough_for_package_gate": false,
+    "needs_review_before_package_gate": true
+  },
+  "fabrication_checks": {
+    "semantic_meaning_inferred": false,
+    "generated_read_created_or_repaired": false,
+    "generated_triage_created_or_repaired": false,
+    "brief_generated_as_temp_deterministic_artifact_only": true,
+    "triage_supply_generated_as_temp_deterministic_artifact_only": true,
+    "resolver_candidate_generated_as_temp_deterministic_artifact_only": true,
+    "sidecar_update_packet_generated_as_temp_deterministic_artifact_only": true,
+    "dry_run_generated_as_temp_deterministic_artifact_only": true,
+    "sidecar_write_fabricated": false
+  },
+  "strongest_useful_signal": "The offline operator runner can progress through intake, brief supply, rendering, triage supply, resolver supply, sidecar update packet, and dry-run when existing checked-in-safe semantic inputs are supplied.",
+  "strongest_unresolved_risk": "The pilot reuses an existing launch-like semantic input pair, so it does not yet prove deeper runner behavior for independently generated non-curated semantic reads.",
+  "decision_gate": "proceed_to_second_non_curated_pilot_review",
+  "recommended_next_pr": "PR232 Second Non-Curated Pilot Review v0",
+  "non_claims": [
+    "pilot_does_not_run_lolla",
+    "pilot_does_not_invoke_lolla_skill",
+    "pilot_does_not_call_models_or_providers",
+    "pilot_does_not_create_new_lolla_runs",
+    "pilot_does_not_generate_semantic_interpretation",
+    "pilot_does_not_repair_interpretation_reads",
+    "pilot_does_not_create_queue_worker",
+    "pilot_does_not_wire_runtime",
+    "pilot_does_not_make_runtime_attachment_default_on",
+    "pilot_does_not_approve_resolver_refs",
+    "pilot_does_not_write_sidecars",
+    "pilot_does_not_mutate_archives",
+    "pilot_is_not_product_proof",
+    "pilot_is_not_human_validation",
+    "pilot_does_not_score_answer_quality",
+    "pilot_does_not_validate_advice_correctness",
+    "pilot_does_not_certify_or_approve_outputs",
+    "pilot_does_not_authorize_agent_action",
+    "pilot_does_not_authorize_automatic_action"
+  ]
+}

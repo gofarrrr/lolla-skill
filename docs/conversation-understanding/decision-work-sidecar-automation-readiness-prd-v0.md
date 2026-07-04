@@ -185,6 +185,12 @@ Run a second non-curated case with existing checked-in-safe generated read and
 generated triage inputs, so the runner can exercise deeper chain behavior
 without inventing semantics.
 
+Implemented follow-up:
+[Decision Work Second Non-Curated Completed-Run Pilot](decision-work-second-non-curated-completed-run-pilot-v0.md)
+runs a synthetic non-curated temp fixture with existing checked-in-safe semantic
+inputs, reaches `sidecar_ready_for_explicit_write`, keeps all generated outputs
+temp-only, and selects `proceed_to_second_non_curated_pilot_review`.
+
 ### PR232 Second Non-Curated Pilot Review
 
 Review whether the second non-curated pilot preserves missingness, source

@@ -926,6 +926,13 @@ Follow-up implementation planning:
   second non-curated pilot with existing semantic inputs before any package
   gate or broader automation claim.
 
+- [Decision Work Second Non-Curated Completed-Run Pilot](../conversation-understanding/decision-work-second-non-curated-completed-run-pilot-v0.md)
+
+  PR231 runs that deeper pilot with a synthetic non-curated temp fixture and
+  existing checked-in-safe semantic inputs. It reaches dry-run readiness without
+  writing sidecars, mutating archives, approving resolver refs, or wiring
+  runtime.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,
