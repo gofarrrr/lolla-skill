@@ -402,3 +402,11 @@ PR223 Current State / Limitations Narrative Refresh v0
 
 PR223 should refresh the board/product narrative for what Internal v1 can and
 cannot claim. It should not add behavior or begin a new automation phase.
+
+## Implemented Follow-Up
+
+PR223 implements the narrative refresh as
+[Decision Work Sidecar Internal v1 Current State](../board/decision-work-sidecar-internal-v1-current-state.md).
+It closes the Internal v1 sidecar-write phase with
+`decision_work_sidecar_internal_v1_complete` and recommends a pause/review
+before any automation phase.

@@ -1,0 +1,79 @@
+{
+  "schema_version": "lolla.decision_work_sidecar_internal_v1_current_state_review.v0",
+  "review_metadata": {
+    "review_id": "decision_work_sidecar_internal_v1_current_state:v0",
+    "created_at": "2026-07-04T00:00:00Z",
+    "reviewed_stage": "PR223 Current State / Limitations Narrative Refresh v0",
+    "mode": "docs_tests_only",
+    "model_calls": 0,
+    "lolla_invoked": false,
+    "new_lolla_runs_created": false,
+    "runtime_wired": false,
+    "archive_hook_changed": false,
+    "resolver_refs_approved": false,
+    "checked_in_sidecar_outputs_created": false
+  },
+  "internal_v1_claim": "Decision Work Sidecar Internal v1 is functional as a command-only, explicit-operator, no-overwrite sidecar pipeline for validated Decision Work artifacts, ending in a decision_work sidecar on a completed-run archive, with receipts and non-claims preserved.",
+  "what_is_now_functional": [
+    "generated_read_intake",
+    "brief_supply",
+    "rendered_generated_read_brief",
+    "triage_supply",
+    "generated_triage_read",
+    "resolver_supply_candidate",
+    "sidecar_update_packet",
+    "sidecar_write_dry_run",
+    "command_only_real_archive_sidecar_write",
+    "receipt_and_sidecar_file_inspection"
+  ],
+  "launch_like_status": "real_archive_sidecar_write_completed",
+  "deploy_or_high_risk_status": "real_archive_sidecar_write_completed_blocked_state",
+  "operator_can_now": [
+    "validate_generated_read_artifacts",
+    "build_supply_packets",
+    "render_the_generated_read_brief",
+    "prepare_sidecar_update_packet",
+    "dry_run_sidecar_preview",
+    "explicitly_write_allowed_sidecar_file_set",
+    "inspect_receipts_and_blocked_state"
+  ],
+  "still_manual_or_missing": [
+    "automatic_semantic_generation_for_arbitrary_runs",
+    "queue_worker_or_operator_runner",
+    "resolver_approval_policy",
+    "runtime_hook_integration",
+    "default_off_runtime_attachment_to_real_generated_artifacts",
+    "broader_case_eval_coverage",
+    "user_facing_ui_or_receipt",
+    "human_product_calibration"
+  ],
+  "blocked_or_forbidden": [
+    "runtime_wiring",
+    "archive_hook_integration",
+    "default_on_runtime_behavior",
+    "resolver_refs_approved",
+    "resolver_refs_marked_usable",
+    "product_proof",
+    "human_validation",
+    "answer_quality_scoring",
+    "advice_correctness_claim",
+    "approval_or_certification",
+    "agent_action_authorization",
+    "automatic_action_authorization"
+  ],
+  "narrative_checks": {
+    "board_product_readable": true,
+    "not_implementation_inventory_only": true,
+    "states_why_it_matters": true,
+    "states_not_customer_ready_automation": true,
+    "states_not_default_on_runtime_behavior": true,
+    "states_not_advice_correctness": true,
+    "states_not_lolla_improvement_proof": true,
+    "preserves_blocked_state_value": true,
+    "recommends_pause_before_automation": true
+  },
+  "strongest_useful_signal": "The sidecar path now has a complete internal operator story from validated artifacts to archive sidecar receipt, with launch-like and blocked high-risk outcomes both represented.",
+  "strongest_unresolved_risk": "The next phase could over-automate a workflow that still depends on generated-read quality, operator target selection, and resolver/non-claim boundaries.",
+  "decision_gate": "decision_work_sidecar_internal_v1_complete",
+  "recommended_next_phase": "Decision Work Sidecar Internal v1 pause / review before automation phase"
+}

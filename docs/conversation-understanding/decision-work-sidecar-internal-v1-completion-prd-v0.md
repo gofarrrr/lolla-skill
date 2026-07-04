@@ -189,6 +189,11 @@ documents the internal operator command flow and selects
 Refresh the board/product narrative. Explain what works, what does not, and
 why this is internal v1 rather than product v1.
 
+Implemented follow-up:
+[Decision Work Sidecar Internal v1 Current State](../board/decision-work-sidecar-internal-v1-current-state.md)
+refreshes the board/product narrative and selects
+`decision_work_sidecar_internal_v1_complete`.
+
 Optional later phases after internal v1:
 
 - queue worker;

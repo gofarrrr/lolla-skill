@@ -511,6 +511,17 @@ proceed_to_current_state_limitations_narrative_refresh for PR223 while still
 not adding behavior, wiring runtime, editing archive hooks, approving resolver
 refs, defaulting anything on, scoring, proving, validating advice correctness,
 certifying, or authorizing action.
+
+The Decision Work Sidecar Internal v1 Current State narrative is
+docs/board/decision-work-sidecar-internal-v1-current-state.md
+with review artifact
+reviews/codex-assisted/decision-work-sidecar-internal-v1-current-state-v0/review.json.
+It closes the Internal v1 sidecar-write phase with a board/product-readable
+claim: command-only, explicit-operator, no-overwrite sidecar pipeline for
+validated Decision Work artifacts, ending in a completed-run archive sidecar
+with receipts and non-claims preserved. It selects
+decision_work_sidecar_internal_v1_complete and recommends a pause/review
+before any automation phase.
 ```
 
 ```text

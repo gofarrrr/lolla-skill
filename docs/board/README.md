@@ -870,6 +870,14 @@ Follow-up implementation planning:
   archive-hook integration, resolver approval, proof, scoring, or action
   authorization.
 
+- [Decision Work Sidecar Internal v1 Current State](decision-work-sidecar-internal-v1-current-state.md)
+
+  PR223's closeout narrative for the internal sidecar-write phase. It explains
+  what the command-only sidecar pipeline can now do, why blocked-state sidecars
+  matter, and why Internal v1 is not customer-ready automation, default-on
+  runtime behavior, resolver approval, product proof, scoring, or action
+  authorization.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

@@ -922,6 +922,13 @@ sidecar write, and receipt inspection. It uses placeholder paths only and does
 not add runtime wiring, archive-hook integration, resolver approval, default-on
 behavior, proof claims, scoring, advice correctness, certification, or action
 authorization.
+The
+[Decision Work Sidecar Internal v1 Current State](docs/board/decision-work-sidecar-internal-v1-current-state.md)
+adds PR223's board/product-readable closeout narrative. It states that Sidecar
+Internal v1 is functional as a command-only, explicit-operator, no-overwrite
+sidecar pipeline for validated Decision Work artifacts, while still not being
+customer-ready automation, default-on runtime behavior, product proof, human
+validation, advice correctness, scoring, approval, or action authorization.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See
