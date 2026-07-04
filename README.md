@@ -897,6 +897,13 @@ completed-run directory only with operator confirmation, preserves deploy's
 blocked state, refuses existing sidecars and unsafe inputs, and still does not
 wire runtime, edit archive hooks, approve resolver refs, score, prove, or
 authorize action.
+The
+[Decision Work Real Archive Sidecar Write Review](docs/conversation-understanding/decision-work-real-archive-sidecar-write-review-v0.md)
+adds PR220's docs/review/tests-only check over fresh launch/deploy synthetic
+completed-run archive writes. It confirms the allowed file set, no-overwrite
+and unsafe-input refusals, deploy blocked-state preservation, and no runtime
+wiring, archive-hook edit, resolver approval, default-on behavior, proof
+claims, scoring, or action authorization before a package gate.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See

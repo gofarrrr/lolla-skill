@@ -144,6 +144,11 @@ Review actual temp/safe archive-write behavior. Inspect written sidecar files
 and receipts. Confirm launch/deploy distinctions. Confirm no resolver approval
 or runtime wiring.
 
+Implemented follow-up:
+[Decision Work Real Archive Sidecar Write Review](decision-work-real-archive-sidecar-write-review-v0.md)
+reviews fresh launch/deploy synthetic completed-run archive writes and selects
+`proceed_to_real_archive_sidecar_write_package_gate` for PR221.
+
 ### PR221 Real Archive Sidecar Write Package Gate v0
 
 Package the controlled real archive write layer. No runtime wiring and no

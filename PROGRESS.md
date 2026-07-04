@@ -473,6 +473,19 @@ proceed_to_real_archive_sidecar_write_review for PR220 while still not wiring
 runtime, editing archive hooks, approving resolver refs, defaulting anything
 on, scoring, proving, validating advice correctness, certifying, or
 authorizing action.
+
+The Decision Work Real Archive Sidecar Write Review is
+docs/conversation-understanding/decision-work-real-archive-sidecar-write-review-v0.md
+with review artifact
+reviews/codex-assisted/decision-work-real-archive-sidecar-write-review-v0/review.json.
+It reviews fresh launch/deploy synthetic completed-run archive writes from the
+PR219 command-only adapter. It confirms the allowed file set, no-overwrite
+behavior, missing-confirmation and unsafe-input refusals, deploy runtime and
+user-surface blocking, and receipt semantics. It selects
+proceed_to_real_archive_sidecar_write_package_gate for PR221 while still not
+wiring runtime, editing archive hooks, approving resolver refs, defaulting
+anything on, scoring, proving, validating advice correctness, certifying, or
+authorizing action.
 ```
 
 ```text

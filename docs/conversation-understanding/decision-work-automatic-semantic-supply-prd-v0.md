@@ -1112,6 +1112,26 @@ PR220 Real Archive Sidecar Write Review v0
 
 Do not implement PR220 from this adapter.
 
+### PR220 Real Archive Sidecar Write Review v0
+
+Implemented:
+[Decision Work Real Archive Sidecar Write Review](decision-work-real-archive-sidecar-write-review-v0.md).
+
+PR220 reviews fresh launch/deploy synthetic completed-run archive writes from
+the PR219 command-only adapter. It confirms the allowed `decision_work/` file
+set, no-overwrite and unsafe-input refusals, deploy runtime/user-surface
+blocking, and receipt semantics. It selects
+`proceed_to_real_archive_sidecar_write_package_gate` for PR221 while still not
+wiring runtime, editing archive hooks, approving resolver refs, defaulting
+anything on, scoring, proving, validating advice correctness, certifying, or
+authorizing action.
+
+Recommended next PR:
+
+```text
+PR221 Real Archive Sidecar Write Package Gate v0
+```
+
 ## Readiness Gates
 
 Automatic semantic supply is not ready for normal use until:

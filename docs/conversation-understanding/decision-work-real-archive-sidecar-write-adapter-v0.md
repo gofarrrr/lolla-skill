@@ -175,6 +175,13 @@ PR220 Real Archive Sidecar Write Review v0
 Do not implement PR220 from this adapter. PR220 should review the launch/deploy
 write outputs and receipts before any package gate.
 
+## Implemented Follow-Up
+
+PR220 implements the review as
+[Decision Work Real Archive Sidecar Write Review](decision-work-real-archive-sidecar-write-review-v0.md).
+It reviews fresh launch/deploy synthetic completed-run archive writes and
+selects `proceed_to_real_archive_sidecar_write_package_gate` for PR221.
+
 ## Explicit Non-Claims
 
 PR219 does not claim:
