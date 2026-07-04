@@ -1221,6 +1221,55 @@ Recommended next PR:
 PR226 Offline Operator Runner Adapter v0
 ```
 
+### PR226 Offline Operator Runner Adapter v0
+
+[Decision Work Offline Operator Runner Adapter](decision-work-offline-operator-runner-adapter-v0.md)
+implements the one-shot command-only runner from PR225. It orchestrates the
+existing deterministic CLIs from generated read intake through sidecar write
+dry-run and emits `lolla.decision_work_offline_operator_runner.v0`. It
+preserves missingness, blockers, deferred reasons, operator attention items,
+and launch/deploy blocked-state differences. PR226 intentionally does not call
+the real archive sidecar write adapter; write flags stop before explicit write.
+
+Selected gate:
+
+```text
+proceed_to_offline_operator_runner_fixture_review
+```
+
+Recommended next PR:
+
+```text
+PR227 Offline Operator Runner Fixture Review v0
+```
+
+### PR227 Offline Operator Runner Fixture Review v0
+
+[Decision Work Offline Operator Runner Fixture Review](decision-work-offline-operator-runner-fixture-review-v0.md)
+reviews PR226 over controlled temp fixtures. It confirms launch reaches
+`sidecar_ready_for_explicit_write`, deploy reaches
+`sidecar_ready_blocked_state`, missing generated read and triage inputs defer,
+rejected intake and privacy/local-path markers block, and write attempts stop
+before explicit write.
+
+PR227 checks in no runner outputs, sidecar outputs, dry-run packets, or
+`decision_work/` directories. It still does not call models/providers, create
+new Lolla runs, generate semantic interpretation, wire runtime, approve
+resolver refs, mutate archives, score answer quality, claim proof/validation,
+or authorize action.
+
+Selected gate:
+
+```text
+proceed_to_non_curated_completed_run_pilot_plan
+```
+
+Recommended next PR:
+
+```text
+PR228 Non-Curated Completed-Run Pilot Plan v0
+```
+
 ## Readiness Gates
 
 Automatic semantic supply is not ready for normal use until:

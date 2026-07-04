@@ -895,6 +895,18 @@ Follow-up implementation planning:
   semantic interpretation, resolver approval, proof, scoring, or action
   authorization.
 
+- [Decision Work Offline Operator Runner Adapter](../conversation-understanding/decision-work-offline-operator-runner-adapter-v0.md)
+
+  PR226's runner adapter executes that one-shot command flow through dry-run
+  readiness only. It preserves missingness and blockers in `runner_summary.json`
+  and stops before any real archive write, even when write flags are supplied.
+
+- [Decision Work Offline Operator Runner Fixture Review](../conversation-understanding/decision-work-offline-operator-runner-fixture-review-v0.md)
+
+  PR227 reviews the runner over controlled launch/deploy and blocker fixtures.
+  It confirms readiness, blocked-state readiness, defer/block behavior, and the
+  no-write/no-runtime/no-approval boundary before any non-curated pilot plan.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

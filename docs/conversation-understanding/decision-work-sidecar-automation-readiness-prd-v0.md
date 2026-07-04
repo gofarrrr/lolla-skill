@@ -131,10 +131,20 @@ authorization.
 Implement the command-only runner. The runner should call existing CLIs and
 produce a summary JSON. It should not add semantic interpretation.
 
+Implemented follow-up:
+[Decision Work Offline Operator Runner Adapter](decision-work-offline-operator-runner-adapter-v0.md)
+implements this no-write runner and selects
+`proceed_to_offline_operator_runner_fixture_review`.
+
 ### PR227 Runner Fixture Review
 
 Review runner fixture outputs for launch-like and blocked/high-risk cases.
 Confirm status mapping, stop behavior, and non-claims.
+
+Implemented follow-up:
+[Decision Work Offline Operator Runner Fixture Review](decision-work-offline-operator-runner-fixture-review-v0.md)
+reviews controlled launch/deploy and blocker fixtures, confirms the no-write
+boundary, and selects `proceed_to_non_curated_completed_run_pilot_plan`.
 
 ### PR228 Non-Curated Completed-Run Pilot Plan
 
