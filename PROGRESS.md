@@ -473,6 +473,31 @@ proceed_to_real_archive_sidecar_write_review for PR220 while still not wiring
 runtime, editing archive hooks, approving resolver refs, defaulting anything
 on, scoring, proving, validating advice correctness, certifying, or
 authorizing action.
+
+The Decision Work Real Archive Sidecar Write Review is
+docs/conversation-understanding/decision-work-real-archive-sidecar-write-review-v0.md
+with review artifact
+reviews/codex-assisted/decision-work-real-archive-sidecar-write-review-v0/review.json.
+It reviews fresh launch/deploy synthetic completed-run archive writes from the
+PR219 command-only adapter. It confirms the allowed file set, no-overwrite
+behavior, missing-confirmation and unsafe-input refusals, deploy runtime and
+user-surface blocking, and receipt semantics. It selects
+proceed_to_real_archive_sidecar_write_package_gate for PR221 while still not
+wiring runtime, editing archive hooks, approving resolver refs, defaulting
+anything on, scoring, proving, validating advice correctness, certifying, or
+authorizing action.
+
+The Decision Work Real Archive Sidecar Write Package Gate is
+docs/conversation-understanding/decision-work-real-archive-sidecar-write-package-gate-v0.md
+with manifest
+docs/conversation-understanding/decision-work-real-archive-sidecar-write-package-manifest-v0.json.
+It packages PR218-PR220 as real archive sidecar write v1: a command-only,
+explicit-operator, no-overwrite sidecar write layer for archive-markered
+completed-run directories, validated against synthetic completed-run archive
+dirs. It selects real_archive_sidecar_write_v1_packaged and recommends PR222
+Internal Demo / Operator Runbook v0 while still excluding runtime wiring,
+archive-hook integration, resolver approval, default-on behavior, scoring,
+proof, advice correctness, certification, and action authorization.
 ```
 
 ```text

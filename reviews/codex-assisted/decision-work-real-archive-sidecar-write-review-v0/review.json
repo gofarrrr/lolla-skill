@@ -1,0 +1,163 @@
+{
+  "schema_version": "lolla.decision_work_real_archive_sidecar_write_review.v0",
+  "review_metadata": {
+    "review_id": "decision_work_real_archive_sidecar_write_review:v0",
+    "created_at": "2026-07-04T00:00:00Z",
+    "reviewed_stage": "PR219 Real Archive Sidecar Write Adapter v0",
+    "mode": "review_docs_tests_temp_synthetic_completed_run_writes_only",
+    "checked_in_sidecar_files_created": false,
+    "checked_in_write_receipts_created": false,
+    "model_calls": 0,
+    "runtime_invoked": false,
+    "skill_invoked": false,
+    "real_historical_archive_paths_touched": false,
+    "archive_hook_changed": false,
+    "runtime_wiring_changed": false,
+    "resolver_refs_approved": false
+  },
+  "reviewed_cases": [
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "source_sidecar_update_packet_status": "ready_for_sidecar_update_packet",
+      "dry_run_status": "dry_run_ready",
+      "real_archive_write_status": "real_archive_sidecar_write_completed",
+      "validation_target": "synthetic_completed_run_archive_dir_only",
+      "expected_files_written": [
+        "decision_work/attachment_status.json",
+        "decision_work/user_receipt.md",
+        "decision_work/agent_handoff_packet.json",
+        "decision_work/safe_supply_summary.json",
+        "decision_work/sidecar_update_packet.json",
+        "decision_work/sidecar_write_receipt.json"
+      ],
+      "actual_sidecar_write_performed": true,
+      "real_archive_mutated": true,
+      "historical_archive_mutated": true,
+      "real_historical_archive_paths_touched": false,
+      "archive_hook_changed": false,
+      "runtime_wiring_changed": false,
+      "resolver_refs_approved": false,
+      "finding": "Launch-beta can produce the command-only completed write status in a synthetic completed-run archive directory while preserving no-runtime, no-hook, no-approval, no-proof, no-scoring, and no-action boundaries."
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "source_sidecar_update_packet_status": "packet_with_runtime_block",
+      "dry_run_status": "dry_run_packet_with_runtime_block",
+      "real_archive_write_status": "real_archive_sidecar_write_completed_blocked_state",
+      "validation_target": "synthetic_completed_run_archive_dir_only",
+      "expected_files_written": [
+        "decision_work/attachment_status.json",
+        "decision_work/user_receipt.md",
+        "decision_work/agent_handoff_packet.json",
+        "decision_work/safe_supply_summary.json",
+        "decision_work/sidecar_update_packet.json",
+        "decision_work/sidecar_write_receipt.json"
+      ],
+      "runtime_block_preserved": true,
+      "user_surface_block_preserved": true,
+      "actual_sidecar_write_performed": true,
+      "real_archive_mutated": true,
+      "historical_archive_mutated": true,
+      "real_historical_archive_paths_touched": false,
+      "archive_hook_changed": false,
+      "runtime_wiring_changed": false,
+      "resolver_refs_approved": false,
+      "finding": "Deploy-intake can produce a blocked-state sidecar write for inspection while preserving runtime and user-surface blocking."
+    }
+  ],
+  "launch_write_status": "real_archive_sidecar_write_completed",
+  "deploy_write_status": "real_archive_sidecar_write_completed_blocked_state",
+  "synthetic_validation_check": {
+    "validation_uses_synthetic_completed_run_archive_dirs": true,
+    "real_historical_archive_path_touched": false,
+    "repo_decision_work_sidecar_written": false,
+    "generated_sidecar_files_checked_in": false,
+    "generated_write_receipts_checked_in": false
+  },
+  "written_file_set_check": {
+    "matches_pr209_allowed_file_set": true,
+    "allowed_files": [
+      "decision_work/attachment_status.json",
+      "decision_work/user_receipt.md",
+      "decision_work/agent_handoff_packet.json",
+      "decision_work/safe_supply_summary.json",
+      "decision_work/sidecar_update_packet.json",
+      "decision_work/sidecar_write_receipt.json"
+    ],
+    "additional_files_written": []
+  },
+  "unsafe_rejection_checks": {
+    "missing_operator_confirmation_rejected": true,
+    "missing_archive_markers_rejected": true,
+    "existing_decision_work_sidecar_rejected": true,
+    "repo_path_rejected": true,
+    "mismatched_dry_run_packet_rejected": true,
+    "privacy_marker_rejected": true,
+    "authority_claim_rejected": true
+  },
+  "deploy_runtime_block_preserved": true,
+  "deploy_user_surface_block_preserved": true,
+  "launch_write_coherence": true,
+  "receipt_semantics_check": {
+    "actual_sidecar_write_performed_for_synthetic_validation_writes": true,
+    "real_archive_mutated_for_supplied_archive_dir": true,
+    "historical_archive_mutated_for_supplied_archive_dir": true,
+    "runtime_wiring_changed": false,
+    "archive_hook_changed": false,
+    "resolver_refs_approved": false,
+    "resolver_refs_marked_usable": false,
+    "can_be_used_as_quality_label": false,
+    "product_proof": false,
+    "human_validated": false,
+    "answer_quality_scored": false,
+    "advice_correctness_validated": false,
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false
+  },
+  "command_only_check": {
+    "adapter_cli_exists": true,
+    "runtime_hook_changed": false,
+    "archive_hook_changed": false,
+    "scripts_archive_run_changed": false,
+    "runtime_attachment_default_on": false,
+    "queue_worker_added": false
+  },
+  "privacy_limits_preserved": true,
+  "source_refs_preserved": true,
+  "uncertainty_preserved": true,
+  "non_claims_preserved": [
+    "not_runtime_wiring",
+    "not_archive_hook_integration",
+    "not_default_on_behavior",
+    "not_resolver_ref_approval",
+    "not_resolver_refs_marked_usable",
+    "not_product_proof",
+    "not_human_validation",
+    "not_answer_quality_score",
+    "not_advice_correctness_proof",
+    "not_lolla_improvement_proof",
+    "not_user_surface_readiness",
+    "not_agent_action_authorization",
+    "not_automatic_action_authorization"
+  ],
+  "overclaim_risk": "A successful command-only sidecar write can be mistaken for runtime readiness unless receipts and docs keep resolver approval, runtime wiring, user-surface readiness, proof, scoring, and action authorization false.",
+  "sidecar_boundary_risk": "The adapter now performs explicit archive-dir writes, so future work must preserve operator confirmation, no-overwrite behavior, and path-safety checks before any runbook broadens usage.",
+  "strongest_useful_signal": "Launch and deploy can both write the allowed sidecar file set into synthetic completed-run archive directories while preserving deploy blocked state and hard non-claims.",
+  "strongest_unresolved_risk": "Real operator-selected archive paths remain sensitive; package and runbook work must keep command-only writes separate from runtime hooks and resolver approval.",
+  "decision_gate": "proceed_to_real_archive_sidecar_write_package_gate",
+  "recommended_next_pr": "PR221 Real Archive Sidecar Write Package Gate v0",
+  "non_claims": [
+    "review_does_not_approve_resolver_refs",
+    "review_does_not_mark_resolver_refs_usable",
+    "review_does_not_wire_runtime",
+    "review_does_not_edit_archive_hook",
+    "review_does_not_make_runtime_attachment_default_on",
+    "review_does_not_call_models",
+    "review_is_not_product_proof",
+    "review_is_not_human_validation",
+    "review_does_not_score_answer_quality",
+    "review_does_not_validate_advice_correctness",
+    "review_does_not_authorize_agent_action",
+    "review_does_not_authorize_automatic_action"
+  ]
+}
