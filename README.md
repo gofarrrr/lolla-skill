@@ -883,6 +883,20 @@ generated Decision Work artifacts, dry-run the sidecar, and explicitly write a
 command with receipts and hard non-claims. It records a six-PR ballpark path
 from PR218 through PR223 and recommends PR218 Real Archive Sidecar Write Plan
 v0 next, without implementing that plan.
+The
+[Decision Work Real Archive Sidecar Write Plan](docs/conversation-understanding/decision-work-real-archive-sidecar-write-plan-v0.md)
+adds PR218's docs/review/tests-only plan for the first controlled real archive
+write boundary. It defines explicit operator confirmation, completed-run
+archive markers, no-overwrite policy, receipt semantics, launch/deploy behavior,
+and fail-closed refusal rules before any adapter writes real archive sidecars.
+The
+[Decision Work Real Archive Sidecar Write Adapter](docs/conversation-understanding/decision-work-real-archive-sidecar-write-adapter-v0.md)
+adds PR219's command-only adapter and CLI. It can write the allowed
+`decision_work/` sidecar file set into an explicitly supplied archive-markered
+completed-run directory only with operator confirmation, preserves deploy's
+blocked state, refuses existing sidecars and unsafe inputs, and still does not
+wire runtime, edit archive hooks, approve resolver refs, score, prove, or
+authorize action.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See
