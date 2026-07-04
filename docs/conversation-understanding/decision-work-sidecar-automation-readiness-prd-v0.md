@@ -209,6 +209,15 @@ PR231 limitation explicit and selects
 Package the readiness layer if PR226 through PR232 are clean. This is still
 not runtime integration.
 
+Implemented follow-up:
+[Decision Work Sidecar Automation Readiness Package Gate](decision-work-sidecar-automation-readiness-package-gate-v0.md)
+packages PR224 through PR232 as Automation Readiness v1 and selects
+`automation_readiness_v1_packaged`. It keeps the package narrow: offline,
+command-only, explicit-path runner orchestration that can defer on missing
+semantic input and reach dry-run readiness with existing safe semantic inputs,
+without queue workers, runtime wiring, resolver approval, automatic sidecar
+writes, proof claims, scoring, or action authorization.
+
 ### Optional PR234 Receipt / Blocked-State Language Review
 
 Review whether receipts and blocked-state language stay legible without

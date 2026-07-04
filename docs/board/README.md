@@ -940,6 +940,14 @@ Follow-up implementation planning:
   gate, but it also says PR231 does not prove arbitrary non-curated semantic
   understanding or customer/runtime readiness.
 
+- [Decision Work Sidecar Automation Readiness Package Gate](../conversation-understanding/decision-work-sidecar-automation-readiness-package-gate-v0.md)
+
+  PR233 packages Automation Readiness v1 as an offline, command-only operator
+  runner milestone. It says the runner can stop on missing semantic input and
+  reach dry-run readiness with existing safe semantic inputs, while still not
+  being runtime wiring, a queue worker, resolver approval, automatic sidecar
+  writing, product proof, scoring, or action authorization.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

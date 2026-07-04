@@ -1004,6 +1004,13 @@ semantic input is missing and go through dry-run readiness when existing safe
 semantic inputs are supplied, while explicitly not treating that as arbitrary
 non-curated semantic understanding. It selects an Automation Readiness package
 gate next.
+The
+[Decision Work Sidecar Automation Readiness Package Gate](docs/conversation-understanding/decision-work-sidecar-automation-readiness-package-gate-v0.md)
+packages PR224-PR232 as Automation Readiness v1. It records the offline,
+command-only operator runner as functional for explicit-path orchestration,
+missing-semantic-input deferral, and dry-run readiness with existing safe
+semantic inputs, while preserving the no-write, no-runtime, no-resolver-
+approval, no-queue-worker, no-scoring, no-proof, and no-action boundaries.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See
