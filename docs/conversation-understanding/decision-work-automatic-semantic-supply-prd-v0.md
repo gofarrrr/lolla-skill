@@ -1300,6 +1300,38 @@ Recommended next PR:
 PR229 Non-Curated Completed-Run Pilot v0
 ```
 
+### PR229 Non-Curated Completed-Run Pilot v0
+
+[Decision Work Non-Curated Completed-Run Pilot](decision-work-non-curated-completed-run-pilot-v0.md)
+runs one non-curated synthetic completed-run-like temp fixture through the
+offline operator runner. The fixture is outside launch/deploy and intentionally
+has no generated read available, so the runner returns:
+
+```text
+deferred_missing_semantic_read
+```
+
+This is useful automation-readiness signal because the runner preserves
+`missing_required_inputs`, `deferred_reasons`, skipped steps, and the stopped
+boundary instead of inventing interpretation. PR229 checks in no runner
+summary, sidecar output, dry-run output, preview output, or `decision_work/`
+directory. It still does not run Lolla, invoke the Lolla skill, call
+models/providers, generate semantics, create queue workers, wire runtime,
+approve resolver refs, mutate archives, score, claim proof/validation/
+correctness, certify, or authorize action.
+
+Selected gate:
+
+```text
+proceed_to_non_curated_pilot_review
+```
+
+Recommended next PR:
+
+```text
+PR230 Non-Curated Pilot Review v0
+```
+
 ## Readiness Gates
 
 Automatic semantic supply is not ready for normal use until:

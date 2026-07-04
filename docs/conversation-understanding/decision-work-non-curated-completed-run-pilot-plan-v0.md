@@ -337,3 +337,21 @@ runner using explicit safe paths, temp/operator-local outputs, and no write
 step. It should stop at runner readiness, blocked state, deferred state, or
 fail-closed state, then review whether the runner is ready for broader
 automation-readiness packaging.
+
+## Implemented Follow-Up
+
+[Decision Work Non-Curated Completed-Run Pilot](decision-work-non-curated-completed-run-pilot-v0.md)
+runs a synthetic non-curated completed-run-like fixture with missing generated
+read and missing generated triage inputs. The runner stops at the generated-read
+boundary with:
+
+```text
+deferred_missing_semantic_read
+```
+
+The pilot records the result in review JSON, keeps generated runner summaries
+temp/operator-local, checks in no sidecar outputs, and selects:
+
+```text
+proceed_to_non_curated_pilot_review
+```
