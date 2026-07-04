@@ -118,6 +118,11 @@ Plan-only. Define real archive path recognition, write preconditions,
 backups/restore expectations, refusal rules, receipt rules, and explicit
 operator confirmation. No implementation.
 
+Implemented follow-up:
+[Decision Work Real Archive Sidecar Write Plan](decision-work-real-archive-sidecar-write-plan-v0.md)
+defines that boundary and selects `proceed_to_real_archive_sidecar_write_adapter`
+for PR219 while still not writing real archives from the plan.
+
 ### PR219 Real Archive Sidecar Write Adapter v0
 
 First controlled explicit write into real completed-run archive directories.
@@ -256,6 +261,12 @@ PR218 Real Archive Sidecar Write Plan v0
 ```
 
 Do not implement PR218 from this PRD.
+
+Implemented follow-up:
+PR218 is now represented by
+[Decision Work Real Archive Sidecar Write Plan](decision-work-real-archive-sidecar-write-plan-v0.md).
+It defines the write boundary and recommends PR219, but PR217 itself remains
+only the completion PRD.
 
 ## 10. Review JSON
 

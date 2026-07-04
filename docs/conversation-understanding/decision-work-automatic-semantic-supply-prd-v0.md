@@ -1034,6 +1034,42 @@ not write real archives, mutate completed-run folders, edit the archive hook,
 wire runtime, approve resolver refs, call models, score answer quality, claim
 proof, or authorize action.
 
+### PR218 Real Archive Sidecar Write Plan v0
+
+Implemented as
+[Decision Work Real Archive Sidecar Write Plan](decision-work-real-archive-sidecar-write-plan-v0.md)
+with the machine-readable
+[real archive sidecar write plan review](../../reviews/codex-assisted/decision-work-real-archive-sidecar-write-plan-v0/review.json).
+
+Define the first controlled real archive sidecar write boundary. The plan
+requires an explicit operator-supplied completed-run archive directory, archive
+markers, a matching PR202 sidecar update packet, a matching PR206 dry-run
+result, operator confirmation, no existing `decision_work/` sidecar, and
+fail-closed refusal rules.
+
+PR218 explicitly allows a future PR219 receipt to distinguish an explicit real
+archive sidecar write from runtime wiring: a successful command-only write may
+record `actual_sidecar_write_performed`, `real_archive_mutated`, and
+`historical_archive_mutated` as true for that specific operator action, while
+`runtime_wiring_changed`, `archive_hook_changed`, `resolver_refs_approved`,
+proof, validation, scoring, advice-correctness, and action-authorization flags
+remain false.
+
+Selected gate:
+
+```text
+proceed_to_real_archive_sidecar_write_adapter
+```
+
+Recommended next PR:
+
+```text
+PR219 Real Archive Sidecar Write Adapter v0
+```
+
+Do not implement PR220 from this plan. PR220 should review PR219 outputs after
+the adapter exists.
+
 ## Readiness Gates
 
 Automatic semantic supply is not ready for normal use until:
