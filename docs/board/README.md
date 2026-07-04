@@ -920,6 +920,12 @@ Follow-up implementation planning:
   defers on missing generated read, which is the intended honesty signal: the
   runner preserves missingness instead of making meaning.
 
+- [Decision Work Non-Curated Pilot Review](../conversation-understanding/decision-work-non-curated-pilot-review-v0.md)
+
+  PR230 reviews that deferred result and keeps the next step conservative: a
+  second non-curated pilot with existing semantic inputs before any package
+  gate or broader automation claim.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

@@ -183,3 +183,19 @@ PR230 should review whether this deferred non-curated pilot is useful enough as
 the first real automation-readiness signal, or whether PR229 should be patched
 to add a second non-curated fixture with existing checked-in-safe generated
 semantic artifacts.
+
+## Implemented Follow-Up
+
+[Decision Work Non-Curated Pilot Review](decision-work-non-curated-pilot-review-v0.md)
+accepts this deferred result as an honest first non-curated signal. It does not
+treat the result as enough for package readiness, and it selects:
+
+```text
+proceed_to_second_non_curated_completed_run_pilot
+```
+
+The recommended next PR is:
+
+```text
+PR231 Second Non-Curated Completed-Run Pilot v0
+```

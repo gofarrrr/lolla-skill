@@ -1332,6 +1332,31 @@ Recommended next PR:
 PR230 Non-Curated Pilot Review v0
 ```
 
+### PR230 Non-Curated Pilot Review v0
+
+[Decision Work Non-Curated Pilot Review](decision-work-non-curated-pilot-review-v0.md)
+reviews the PR229 deferred non-curated pilot. It accepts
+`deferred_missing_semantic_read` as an honest first automation-readiness signal
+because the runner preserved missingness, `deferred_reasons`, `stopped_at`, and
+skipped downstream steps without inventing semantic meaning.
+
+It does not treat that deferred result as package readiness. The review selects
+a second non-curated completed-run pilot with existing checked-in-safe generated
+read and generated triage inputs, so the runner can exercise deeper chain
+behavior without creating or repairing semantic artifacts.
+
+Selected gate:
+
+```text
+proceed_to_second_non_curated_completed_run_pilot
+```
+
+Recommended next PR:
+
+```text
+PR231 Second Non-Curated Completed-Run Pilot v0
+```
+
 ## Readiness Gates
 
 Automatic semantic supply is not ready for normal use until:
