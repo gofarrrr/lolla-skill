@@ -696,6 +696,21 @@ selects proceed_to_balanced_batch_candidate_selector_plan while still not
 selecting actual cases, running Product Delta review, invoking Lolla, calling
 models, building a live judge, scoring answers, proving product value, claiming
 human validation, approving agent use, or changing runtime behavior.
+
+The Balanced Batch Candidate Selector / Readiness Builder Plan is
+docs/evals/balanced-batch-candidate-selector-readiness-builder-plan-v0.md
+with review artifact
+reviews/codex-assisted/balanced-batch-candidate-selector-readiness-builder-plan-v0/review.json.
+It defines how a future deterministic selector/readiness builder should use
+explicit safe source scopes, existing Product Delta readiness metadata,
+provisional labels, specialist fan-in, human-review taxonomy signals, run
+health, capture adequacy, and review-corpus readiness metadata to propose
+balanced candidates without reading raw/private text into checked-in batch
+files. It selects proceed_to_balanced_batch_candidate_selector_builder while
+still not implementing a selector, scanning archives broadly, running Product
+Delta review, invoking Lolla, calling models, creating a live judge, scoring
+answers, proving product value, claiming human validation, approving agent use,
+mutating archives, or changing runtime behavior.
 ```
 
 ```text
