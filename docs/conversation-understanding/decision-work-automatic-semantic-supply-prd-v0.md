@@ -1357,6 +1357,38 @@ Recommended next PR:
 PR231 Second Non-Curated Completed-Run Pilot v0
 ```
 
+### PR231 Second Non-Curated Completed-Run Pilot v0
+
+[Decision Work Second Non-Curated Completed-Run Pilot](decision-work-second-non-curated-completed-run-pilot-v0.md)
+runs a synthetic non-curated completed-run-like temp fixture through the offline
+operator runner with existing checked-in-safe generated read and generated
+triage inputs.
+
+The runner reaches:
+
+```text
+sidecar_ready_for_explicit_write
+```
+
+and completes the deterministic chain through generated-read intake, brief
+supply, rendered brief, triage supply, resolver supply, sidecar update packet,
+and dry-run. The result is not a semantic coverage claim: PR231 reuses an
+existing launch-like checked-in-safe semantic input pair to test runner depth.
+It checks in no runner summary, dry-run output, preview output, sidecar output,
+or `decision_work/` directory.
+
+Selected gate:
+
+```text
+proceed_to_second_non_curated_pilot_review
+```
+
+Recommended next PR:
+
+```text
+PR232 Second Non-Curated Pilot Review v0
+```
+
 ## Readiness Gates
 
 Automatic semantic supply is not ready for normal use until:

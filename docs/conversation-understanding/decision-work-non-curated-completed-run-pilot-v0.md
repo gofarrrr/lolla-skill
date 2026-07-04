@@ -199,3 +199,7 @@ The recommended next PR is:
 ```text
 PR231 Second Non-Curated Completed-Run Pilot v0
 ```
+
+[Decision Work Second Non-Curated Completed-Run Pilot](decision-work-second-non-curated-completed-run-pilot-v0.md)
+then runs that deeper temp-fixture pilot with existing checked-in-safe semantic
+inputs and selects `proceed_to_second_non_curated_pilot_review`.

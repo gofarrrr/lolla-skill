@@ -156,3 +156,21 @@ PR231 should stop if it would require:
 - product proof, human validation, advice-correctness claims,
   answer-quality scoring, approval/certification labels, or action
   authorization.
+
+## Implemented Follow-Up
+
+[Decision Work Second Non-Curated Completed-Run Pilot](decision-work-second-non-curated-completed-run-pilot-v0.md)
+runs the requested second pilot. It uses a synthetic non-curated temp fixture
+plus existing checked-in-safe semantic inputs, reaches
+`sidecar_ready_for_explicit_write`, records the limitation that the semantic
+inputs are reused launch-like artifacts, and selects:
+
+```text
+proceed_to_second_non_curated_pilot_review
+```
+
+The recommended next PR is:
+
+```text
+PR232 Second Non-Curated Pilot Review v0
+```

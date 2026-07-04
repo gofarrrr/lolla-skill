@@ -612,6 +612,22 @@ visible. It also decides that this is not enough for package readiness and
 selects proceed_to_second_non_curated_completed_run_pilot for PR231, where a
 second non-curated fixture should already have checked-in-safe generated read
 and generated triage inputs.
+
+The Decision Work Second Non-Curated Completed-Run Pilot is
+docs/conversation-understanding/decision-work-second-non-curated-completed-run-pilot-v0.md
+with review artifact
+reviews/codex-assisted/decision-work-second-non-curated-completed-run-pilot-v0/review.json.
+It runs the offline operator runner against a synthetic non-curated temp fixture
+using existing checked-in-safe semantic inputs, reaches
+sidecar_ready_for_explicit_write, completes generated_read_intake, brief_supply,
+rendered_brief, triage_supply, resolver_supply, sidecar_update_packet, and
+sidecar_write_dry_run, and selects proceed_to_second_non_curated_pilot_review
+for PR232. The pilot records that the semantic inputs are reused launch-like
+artifacts, so this tests runner depth rather than new semantic coverage. It
+checks in no runner summary, dry-run output, sidecar output, preview output, or
+decision_work directory, and still does not generate semantics, run Lolla, call
+models, create queue workers, write sidecars, mutate archives, wire runtime,
+approve resolver refs, score, prove, validate, certify, or authorize action.
 ```
 
 ```text
