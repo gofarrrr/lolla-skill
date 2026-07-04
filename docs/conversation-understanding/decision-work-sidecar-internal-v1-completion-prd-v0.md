@@ -179,6 +179,11 @@ Explain the end-to-end operator flow:
 The runbook should include commands, expected artifacts, blocked/deferred
 handling, and what an operator must not infer from sidecar presence.
 
+Implemented follow-up:
+[Decision Work Sidecar Internal v1 Operator Runbook](decision-work-sidecar-internal-v1-operator-runbook-v0.md)
+documents the internal operator command flow and selects
+`proceed_to_current_state_limitations_narrative_refresh` for PR223.
+
 ### PR223 Current State / Limitations Narrative Refresh v0
 
 Refresh the board/product narrative. Explain what works, what does not, and

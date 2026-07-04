@@ -862,6 +862,14 @@ Follow-up implementation planning:
   excluding runtime wiring, archive-hook integration, default-on behavior,
   resolver approval, proof, scoring, certification, and action authorization.
 
+- [Decision Work Sidecar Internal v1 Operator Runbook](../conversation-understanding/decision-work-sidecar-internal-v1-operator-runbook-v0.md)
+
+  PR222's operator runbook for the Internal v1 command flow from generated read
+  intake through sidecar write receipt inspection. It uses placeholders, keeps
+  blocked/deferred handling explicit, and still does not add runtime wiring,
+  archive-hook integration, resolver approval, proof, scoring, or action
+  authorization.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

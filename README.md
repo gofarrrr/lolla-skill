@@ -913,6 +913,15 @@ validated against synthetic completed-run archive dirs, while still excluding
 runtime wiring, archive-hook integration, default-on behavior, resolver
 approval, proof claims, scoring, advice correctness, certification, and action
 authorization.
+The
+[Decision Work Sidecar Internal v1 Operator Runbook](docs/conversation-understanding/decision-work-sidecar-internal-v1-operator-runbook-v0.md)
+adds PR222's docs/tests-only internal operator flow from generated read intake
+through brief supply, rendered brief, triage supply, generated triage,
+resolver-supply candidate, sidecar update packet, dry-run, command-only archive
+sidecar write, and receipt inspection. It uses placeholder paths only and does
+not add runtime wiring, archive-hook integration, resolver approval, default-on
+behavior, proof claims, scoring, advice correctness, certification, or action
+authorization.
 There is still no default-on runtime integration, model call in repo code,
 historical archive mutation, product proof, human validation, broad batch,
 customer marketing copy, or agent action authorization. See
