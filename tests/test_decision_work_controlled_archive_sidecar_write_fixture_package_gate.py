@@ -274,8 +274,9 @@ def test_package_doc_records_functionality_limits_and_next_step() -> None:
     assert "What Remains Missing" in text
     assert "Fixture Target Safety" in text
     assert "controlled_archive_sidecar_write_fixture_v1_packaged" in text
-    assert "PR217 Real Archive Sidecar Write Plan v0" in text
-    assert "Do not implement PR217" in text
+    assert "PR217 Decision Work Sidecar Internal v1 Completion PRD v0" in text
+    assert "It should not implement real" in text
+    assert "archive writes" in text
     assert "real archive mutation" in text
     assert "archive-hook integration" in text
     assert "resolver approval" in text

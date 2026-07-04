@@ -821,6 +821,15 @@ Follow-up implementation planning:
   archive-hook integration, runtime wiring, resolver approval, proof, scoring,
   certification, and action authorization.
 
+- [Decision Work Sidecar Internal v1 Completion PRD](../conversation-understanding/decision-work-sidecar-internal-v1-completion-prd-v0.md)
+
+  PR217's current-state and finish-line PRD before real archive mutation. It
+  defines Internal v1 as complete only when an operator can validate safe
+  generated Decision Work artifacts, dry-run the sidecar, and explicitly write
+  a `decision_work/` sidecar into a real completed-run archive with receipts
+  and hard non-claims. It records a six-PR ballpark path from PR218 through
+  PR223 and recommends PR218 Real Archive Sidecar Write Plan v0 next.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

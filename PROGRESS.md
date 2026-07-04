@@ -434,6 +434,19 @@ validated sidecar update packets and matching dry-run results. It still
 excludes real historical archive mutation, archive-hook integration, runtime
 wiring, resolver approval, user/customer readiness, proof, scoring, advice
 correctness, certification, and action authorization.
+
+The Decision Work Sidecar Internal v1 Completion PRD is
+docs/conversation-understanding/decision-work-sidecar-internal-v1-completion-prd-v0.md
+with review artifact
+reviews/codex-assisted/decision-work-sidecar-internal-v1-completion-prd-v0/review.json.
+It records the current functional chain through controlled archive-shaped
+fixture writes, defines the Internal v1 finish line as an explicit operator
+real archive sidecar write with receipts and hard non-claims, and records a
+six-PR ballpark path from PR218 through PR223. It selects
+proceed_to_real_archive_sidecar_write_plan for PR218 while still not
+implementing real archive mutation, runtime wiring, resolver approval, default
+runtime behavior, proof, scoring, advice correctness, certification, or action
+authorization.
 ```
 
 ```text

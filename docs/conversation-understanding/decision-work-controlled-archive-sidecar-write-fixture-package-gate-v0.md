@@ -227,10 +227,12 @@ controlled_archive_sidecar_write_fixture_v1_packaged
 Recommended next PR:
 
 ```text
-PR217 Real Archive Sidecar Write Plan v0
+PR217 Decision Work Sidecar Internal v1 Completion PRD v0
 ```
 
-Do not implement PR217 from this package gate. The next phase must be a
+PR217 should define the current-state and finish-line anchor for Sidecar
+Internal v1 before the next implementation phase. It should not implement real
+archive writes. The next implementation boundary after that PRD should be a
 plan/review gate for real archive sidecar writes before any completed-run
 archive mutation is considered.
 

@@ -986,13 +986,53 @@ controlled_archive_sidecar_write_fixture_v1_packaged
 Recommended next PR:
 
 ```text
-PR217 Real Archive Sidecar Write Plan v0
+PR217 Decision Work Sidecar Internal v1 Completion PRD v0
 ```
 
-Do not implement PR217 from this package. PR216 still does not write real
-archives, mutate historical archive folders as normal behavior, edit the
-archive hook, wire runtime, approve resolver refs, call models, score answer
-quality, claim proof, or authorize action.
+Do not implement real archive writes from this package. PR216 still does not
+write real archives, mutate historical archive folders as normal behavior, edit
+the archive hook, wire runtime, approve resolver refs, call models, score
+answer quality, claim proof, or authorize action.
+
+### PR217 Decision Work Sidecar Internal v1 Completion PRD v0
+
+Implemented as
+[Decision Work Sidecar Internal v1 Completion PRD](decision-work-sidecar-internal-v1-completion-prd-v0.md)
+with the machine-readable
+[sidecar internal v1 completion PRD review](../../reviews/codex-assisted/decision-work-sidecar-internal-v1-completion-prd-v0/review.json).
+
+Record the current functional chain through controlled archive-shaped fixture
+writes and define the recommended Sidecar Internal v1 finish line. The finish
+line is explicit: an operator can take safe generated Decision Work artifacts
+from a completed run, validate them, dry-run the sidecar, and explicitly write
+a `decision_work/` sidecar into a real completed-run archive through a
+controlled command with receipts and hard non-claims.
+
+PR217 records a six-PR ballpark path:
+
+- PR218 Real Archive Sidecar Write Plan v0;
+- PR219 Real Archive Sidecar Write Adapter v0;
+- PR220 Real Archive Sidecar Write Review v0;
+- PR221 Real Archive Sidecar Write Package Gate v0;
+- PR222 Internal Demo / Operator Runbook v0;
+- PR223 Current State / Limitations Narrative Refresh v0.
+
+Selected gate:
+
+```text
+proceed_to_real_archive_sidecar_write_plan
+```
+
+Recommended next PR:
+
+```text
+PR218 Real Archive Sidecar Write Plan v0
+```
+
+Do not implement PR218 from this PRD. PR217 is docs/review/tests only and does
+not write real archives, mutate completed-run folders, edit the archive hook,
+wire runtime, approve resolver refs, call models, score answer quality, claim
+proof, or authorize action.
 
 ## Readiness Gates
 
