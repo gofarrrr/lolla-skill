@@ -94,6 +94,8 @@ def test_checked_in_manifest_records_learner_first_rules() -> None:
         "relation_backlinks_present": True,
         "canonical_model_detail_present": True,
         "model_click_opens_product_detail": True,
+        "canonical_model_names_primary": True,
+        "teacher_labels_contextual_only": True,
     }
     assert manifest["non_claims"]["product_proof"] is False
     assert manifest["non_claims"]["human_validated"] is False
@@ -161,6 +163,8 @@ def test_embedded_data_has_typed_objects_search_and_backlinks() -> None:
     for model in data["models"]:
         assert model["appears_in"]
         assert model["href"].endswith(".md")
+        assert model["display_name"]
+        assert model["lesson_labels"]
         assert model["canonical"]["status"] == "available"
         assert model["canonical"]["source_path"].startswith("data/model_sources/")
         assert model["canonical"]["source_href"].endswith(".md")
@@ -175,6 +179,27 @@ def test_embedded_data_has_typed_objects_search_and_backlinks() -> None:
         assert model["canonical"]["intervention"]["premortem_questions"]
         assert model["canonical"]["intervention"]["heuristics"]
         assert model["canonical"]["relation_semantics"]["status"] == "available"
+    model_lookup = {model["model_id"]: model for model in data["models"]}
+    assert model_lookup["authority-bias"]["display_name"] == "Authority Bias"
+    assert model_lookup["authority-bias"]["canonical"]["display_name"] == "Authority Bias"
+    assert model_lookup["authority-bias"]["lesson_labels"] == [
+        {
+            "case_id": "launch-public-enterprise-beta",
+            "label": "Test The Authority, Not The Aura",
+            "role": "primary_teaching_lens",
+        }
+    ]
+    assert model_lookup["authority-bias"]["display_name"] != (
+        model_lookup["authority-bias"]["lesson_labels"][0]["label"]
+    )
+    launch_case = next(
+        case for case in data["cases"] if case["case_id"] == "launch-public-enterprise-beta"
+    )
+    assert launch_case["relation"]["source_model_label"] == "Authority Bias"
+    assert launch_case["graph"]["nodes"][0]["label"] == "Authority Bias"
+    assert launch_case["graph"]["nodes"][0]["lesson_label"] == (
+        "Test The Authority, Not The Aura"
+    )
     for relation in data["relations"]:
         assert relation["used_in"]
         assert relation["href"].endswith(".md")

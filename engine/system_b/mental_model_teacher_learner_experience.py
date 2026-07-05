@@ -163,6 +163,8 @@ def build_learner_experience_prototype(
             "relation_backlinks_present": True,
             "canonical_model_detail_present": True,
             "model_click_opens_product_detail": True,
+            "canonical_model_names_primary": True,
+            "teacher_labels_contextual_only": True,
         },
         "source_packages": [
             "data/model_sources",
@@ -223,8 +225,6 @@ def _case_payload(repo_root: Path, case_id: str, output_dir: Path) -> dict[str, 
     graph = _load_json(repo_root / _repo_rel(graph_path))
     presentation = CASE_PRESENTATION[case_id]
     edge = graph["edges"][0]
-    source_model = _node_by_id(graph, edge["source_node_id"])
-    target_model = _node_by_id(graph, edge["target_node_id"])
     model_links = {item["label"]: item["href"] for item in lesson["model_links"]}
     relation_href = lesson["relation_links"][0]["href"]
 
@@ -244,14 +244,16 @@ def _case_payload(repo_root: Path, case_id: str, output_dir: Path) -> dict[str, 
             "relation_type": edge["relation_type"],
             "confidence": edge.get("confidence", "missing"),
             "source_model_id": edge["source_node_id"],
-            "source_model_label": source_model["label"],
+            "source_model_label": _canonical_model_name(repo_root, edge["source_node_id"]),
             "target_model_id": edge["target_node_id"],
-            "target_model_label": target_model["label"],
+            "target_model_label": _canonical_model_name(repo_root, edge["target_node_id"]),
             "href": _relative_link(output_dir / "index.html", _repo_rel_from_link(relation_href)),
         },
         "model_stack": [
             {
                 **model,
+                "canonical_name": _canonical_model_name(repo_root, model["model_id"]),
+                "lesson_label": model["teaching_name"],
                 "href": _relative_link(
                     output_dir / "index.html",
                     _repo_rel_from_link(model_links.get(model["teaching_name"], "")),
@@ -288,6 +290,8 @@ def _case_payload(repo_root: Path, case_id: str, output_dir: Path) -> dict[str, 
             "nodes": [
                 {
                     **node,
+                    "label": _canonical_model_name(repo_root, node["model_id"]),
+                    "lesson_label": node["label"],
                     "href": _relative_link(
                         output_dir / "index.html",
                         _repo_rel((graph_path.parent / node["href"]).resolve()),
@@ -324,14 +328,22 @@ def _model_catalog(
                 model["model_id"],
                 {
                     "model_id": model["model_id"],
-                    "display_name": model["teaching_name"],
+                    "display_name": model["canonical_name"],
                     "summary": model["teaching_note"],
                     "boundary": model["boundary"],
+                    "lesson_labels": [],
                     "roles": [],
                     "appears_in": [],
                     "href": model["href"],
                 },
             )
+            label_entry = {
+                "case_id": case["case_id"],
+                "label": model["lesson_label"],
+                "role": model["role"],
+            }
+            if label_entry not in entry["lesson_labels"]:
+                entry["lesson_labels"].append(label_entry)
             if model["role"] not in entry["roles"]:
                 entry["roles"].append(model["role"])
             if case["case_id"] not in entry["appears_in"]:
@@ -342,6 +354,8 @@ def _model_catalog(
             output_dir=output_dir,
             model_id=model["model_id"],
         )
+        if model["canonical"]["display_name"]:
+            model["display_name"] = model["canonical"]["display_name"]
         if model["canonical"]["source_href"]:
             model["href"] = model["canonical"]["source_href"]
     return sorted(models.values(), key=lambda item: item["display_name"].lower())
@@ -363,6 +377,7 @@ def _canonical_model_detail(
     if not manifest_entry:
         return {
             "status": "missing_canonical_source",
+            "display_name": _titleize_model_id(model_id),
             "source_path": "",
             "source_href": "",
             "source_hash": "",
@@ -383,6 +398,7 @@ def _canonical_model_detail(
     overview, sections = _canonical_sections(source_text)
     return {
         "status": "available",
+        "display_name": _canonical_display_name(manifest_entry, model_id),
         "source_path": manifest_entry["path"],
         "source_href": _relative_link(output_dir / "index.html", manifest_entry["path"]),
         "source_hash": manifest_entry.get("sha256", ""),
@@ -410,6 +426,26 @@ def _canonical_manifest(repo_root: Path) -> dict[str, dict[str, Any]]:
             item["model_id"]: item for item in payload.get("files", [])
         }
     return _MANIFEST_CACHE[manifest_path]
+
+
+def _canonical_model_name(repo_root: Path, model_id: str) -> str:
+    entry = _canonical_manifest(repo_root).get(model_id)
+    if not entry:
+        return _titleize_model_id(model_id)
+    return _canonical_display_name(entry, model_id)
+
+
+def _canonical_display_name(entry: dict[str, Any], model_id: str) -> str:
+    filename = str(entry.get("filename") or "")
+    stem = filename.rsplit(".", 1)[0]
+    if stem.lower().endswith("_rag"):
+        stem = stem[:-4]
+    stem = stem.replace("_", " ").replace("-", " ").strip()
+    return stem.title() if stem else _titleize_model_id(model_id)
+
+
+def _titleize_model_id(model_id: str) -> str:
+    return model_id.replace("-", " ").replace("_", " ").title()
 
 
 def _canonical_sections(markdown: str) -> tuple[str, list[dict[str, str]]]:
@@ -1605,7 +1641,8 @@ function renderLearnMode(selected) {
             <div class="panel-body model-mini-list">
               ${selected.model_stack.map((model) => `
                 <div class="model-mini">
-                  <h4><button type="button" class="model-link-button" onclick="openModel('${esc(model.model_id)}')">${esc(model.teaching_name)}</button></h4>
+                  <h4><button type="button" class="model-link-button" onclick="openModel('${esc(model.model_id)}')">${esc(model.canonical_name)}</button></h4>
+                  <p class="muted">In this lesson: ${esc(model.lesson_label)}</p>
                   <p>${esc(model.teaching_note)}</p>
                 </div>
               `).join("")}
@@ -1634,6 +1671,7 @@ function renderModelsMode() {
                 <p>${esc(model.summary)}</p>
               </button>
               <div class="card-meta">
+                ${model.lesson_labels.map((item) => `<span class="chip">Lesson label: ${esc(item.label)}</span>`).join("")}
                 ${model.roles.map((role) => `<span class="chip">${esc(role)}</span>`).join("")}
                 ${model.appears_in.map((caseId) => `<button type="button" class="chip" onclick="setCase('${caseId}'); setMode('learn')">Appears in ${esc(caseLabel(caseId))}</button>`).join("")}
               </div>
@@ -1654,6 +1692,7 @@ function renderModelDetail(model) {
         <p class="eyebrow">Mental model</p>
         <h3>${esc(model.display_name)}</h3>
         <p>${esc(model.summary)}</p>
+        <p class="muted">${renderLessonLabels(model)}</p>
         <div class="boundary-callout">${esc(model.boundary)}</div>
         <div class="card-meta">
           ${model.roles.map((role) => `<span class="chip">${esc(role)}</span>`).join("")}
@@ -1738,6 +1777,13 @@ function renderFailureModes(items) {
       `).join("")}
     </ul>
   `;
+}
+
+function renderLessonLabels(model) {
+  if (!model.lesson_labels.length) return "";
+  return model.lesson_labels
+    .map((item) => `In ${esc(caseLabel(item.case_id))}: ${esc(item.label)}`)
+    .join(" | ");
 }
 
 function renderModelRelations(model) {
