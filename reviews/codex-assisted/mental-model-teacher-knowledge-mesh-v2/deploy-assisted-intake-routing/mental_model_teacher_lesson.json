@@ -1,0 +1,134 @@
+{
+  "case_id": "deploy-assisted-intake-routing",
+  "claim_grounding": [
+    {
+      "claim_id": "claim.teacher.case_anchor.0",
+      "claim_type": "case_claim",
+      "grounding_status": "case_source_backed",
+      "source_refs": [
+        "packet:coach_focus"
+      ],
+      "text": "The case anchor comes from the checked-in-safe Coach focus."
+    },
+    {
+      "claim_id": "claim.teacher.doctrine.0",
+      "claim_type": "doctrine_claim",
+      "grounding_status": "doctrine_source_backed",
+      "source_refs": [
+        "doctrine.category-decisions.core_doctrine.0"
+      ],
+      "text": "The primary model teaching comes from canonical doctrine."
+    },
+    {
+      "claim_id": "claim.teacher.relation.0",
+      "claim_type": "relation_claim",
+      "grounding_status": "relation_source_backed",
+      "source_refs": [
+        "relation:cognitive-load-theory__optionality__structured_tension"
+      ],
+      "text": "The relationship story uses reviewed relation evidence."
+    },
+    {
+      "claim_id": "claim.teacher.practice.0",
+      "claim_type": "practice_claim",
+      "grounding_status": "doctrine_source_backed",
+      "source_refs": [
+        "doctrine.category-decisions.practice.0"
+      ],
+      "text": "The practice rep is grounded in the primary model practice material."
+    },
+    {
+      "claim_id": "claim.teacher.boundary.0",
+      "claim_type": "boundary_claim",
+      "grounding_status": "source_backed_synthesis",
+      "source_refs": [
+        "lesson:source_policy"
+      ],
+      "text": "The lesson does not prove decision correctness."
+    }
+  ],
+  "created_at": "2026-07-03T00:00:00+00:00",
+  "lesson": {
+    "case_anchor": "The original answer looked coherent enough to accept. It stopped one big recommendation from flattening different decision types into the same treatment. Separate the reversible experiment from the irreversible commitment. Sort the situation into buckets before deciding what each bucket needs.",
+    "discarded_or_bounded_lenses": [
+      {
+        "boundary": "Do not call this model noise or imply it was adjudicated.",
+        "model_id": "base-rates",
+        "teaching_use": "Preserve this lens as a possible teaching boundary without calling it noise or implying it applied."
+      }
+    ],
+    "do_not_overlearn": "This lesson does not prove the original answer was wrong or the revised answer was right.",
+    "dominant_thinking_move": "Sort the situation into buckets before deciding what each bucket needs.",
+    "model_stack": [
+      {
+        "boundary": "Yesterday's buckets are being preserved after the underlying causal structure has changed.",
+        "model_id": "category-decisions",
+        "role": "primary_teaching_lens",
+        "teaching_name": "Sort The Case Before Judging It",
+        "what_it_adds": "When repeated decisions are vulnerable to inconsistent in-the-moment exceptions, use category decisions to define stable buckets and boundaries before evaluating individual cases, while checking that the category still matches the underlying situation.",
+        "what_it_saw": "The case pressure involved separating rollout categories, admin usability risk, and cheap validation gates before treating deployment as one big decision, so category-decisions had to make the dominant thinking move explicit for a cold reader."
+      },
+      {
+        "boundary": "Simplification would remove the causal structure, nuance, or thresholds needed to make a real decision rather than merely creating a feeling of clarity.",
+        "model_id": "cognitive-load-theory",
+        "role": "primary_teaching_lens",
+        "teaching_name": "Reduce The Thinking Burden",
+        "what_it_adds": "When complexity, stress, or presentation design is overloading working memory, simplify sequence and format so attention goes to the next useful distinction while preserving the causal cues needed for correct action.",
+        "what_it_saw": "A second lens was useful because separating rollout categories, admin usability risk, and cheap validation gates before treating deployment as one big decision could be misread if only the dominant move was used."
+      },
+      {
+        "boundary": "Optionality has become a permanent excuse not to commit even after evidence has clarified which path has the best economics or strategic fit.",
+        "model_id": "optionality",
+        "role": "boundary_lens",
+        "teaching_name": "Preserve A Cheap Test",
+        "what_it_adds": "When an important decision has collapsed into a do-or-do-not frame, separate invention from evaluation: generate at least three viable options, then compare benefits, costs, payoffs, and probabilities before choosing.",
+        "what_it_saw": "The guardrail lens checked where separating rollout categories, admin usability risk, and cheap validation gates before treating deployment as one big decision could overreach or be treated as proof rather than a learning example."
+      }
+    ],
+    "plain_title": "Sort The Case Before Judging It",
+    "practice_reps": [
+      {
+        "steps": [
+          "Name the tempting first read.",
+          "Which category does this part belong to, and does that category need a different rule?",
+          "Name the boundary that would change confidence."
+        ],
+        "title": "Sort The Case Before Judging It"
+      }
+    ],
+    "relationship_story": "Cognitive Load Theory and Optionality form a structured tension pair. Cognitive Load Theory conflicts with Optionality when too many parallel branches exceed practical decision bandwidth. Use the pair as a calibration exercise: do not maximize either lens. Cognitive Load Theory protects against overload, while Optionality protects against premature closure. The lesson is to choose the smallest set of options that still preserves learning.",
+    "where_the_lesson_stops": "It teaches a reasoning move and a model relationship; it does not authorize a decision.",
+    "why_this_move_mattered": "It stopped one big recommendation from flattening different decision types into the same treatment. The boundary lens added: Separate the reversible experiment from the irreversible commitment."
+  },
+  "non_claims": [
+    "This lesson teaches reasoning patterns, not decision correctness.",
+    "This lesson does not authorize action.",
+    "The case is an anchor; the reasoning move is the subject."
+  ],
+  "packet_id": "mental_model_coach:deploy-assisted-intake-routing:20260627T130339Z_4cd3cb",
+  "prompt_version": "lolla.mental_model_teacher_prompt.v0",
+  "run_id": "20260627T130339Z_4cd3cb",
+  "schema_version": "lolla.mental_model_teacher_lesson.v0",
+  "source_policy_acknowledgement": {
+    "teacher_inferences_labeled": true,
+    "used_only_allowed_context": true
+  },
+  "synthesis_metadata": {
+    "deterministic_scaffold": true,
+    "doctrine_pack_schema_version": "lolla.mental_model_teacher_doctrine_pack.v0",
+    "model_calls": 0,
+    "role_map_schema_version": "lolla.mental_model_teacher_role_map.v0",
+    "source": "offline_teacher_pilot_fixture"
+  },
+  "verification": {
+    "allowed_source_ref_count": 55,
+    "claim_count": 5,
+    "error_count": 0,
+    "errors": [],
+    "lesson_schema_version": "lolla.mental_model_teacher_lesson.v0",
+    "schema_version": "lolla.mental_model_teacher_lesson_verification.v0",
+    "status": "passed",
+    "warning_count": 0,
+    "warnings": []
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "budget": {
+    "max_models": 5,
+    "max_prompt_chars": 30000,
+    "max_relations": 8,
+    "post_run_notes_do_not_read_full_corpus": true
+  },
+  "case_anchor_refs": [
+    "packet:coach_focus",
+    "packet:case:ceo-remove-founding-cofounder",
+    "packet:run:20260627T093131Z_59d153"
+  ],
+  "case_id": "ceo-remove-founding-cofounder",
+  "created_at": "2026-07-03T00:00:00+00:00",
+  "forbidden": [
+    "decision correctness claims",
+    "private raw transcript text",
+    "unlabeled general LLM doctrine",
+    "model doctrine invented from model names",
+    "unresolved canonical sources treated as resolved"
+  ],
+  "mode": "post_run_note",
+  "model_reads": [
+    {
+      "answer_use": "visible_effect",
+      "include_sections": [
+        "core_doctrine",
+        "when_to_use",
+        "when_not_to_use",
+        "dangerous_misuse",
+        "practice_drills"
+      ],
+      "model_id": "emotional-intelligence",
+      "must_not_imply": "This role does not prove the decision or revised answer was correct.",
+      "must_teach": "Teach the dominant thinking move: Name the emotion in the room, then separate it from the decision rule.",
+      "read_scope": "excerpted_canonical_sections",
+      "role": "primary_teaching_lens",
+      "run_status": "visible_effect",
+      "source_hash": "cdaaebe042fc65fd6e4195735679b1e1f1b808c7bfdbc64ca4caba10060b6dd5",
+      "source_path": "Emotional_Intelligence_rag.md",
+      "teacher_use": "Teach the dominant thinking move: Name the emotion in the room, then separate it from the decision rule.",
+      "unresolved_reason": ""
+    },
+    {
+      "answer_use": "visible_effect",
+      "include_sections": [
+        "core_doctrine",
+        "when_to_use",
+        "when_not_to_use",
+        "dangerous_misuse",
+        "practice_drills"
+      ],
+      "model_id": "premortem",
+      "must_not_imply": "This role does not prove the decision or revised answer was correct.",
+      "must_teach": "Teach the dominant thinking move: Imagine the plan failed, then name the preventable causes before acting.",
+      "read_scope": "excerpted_canonical_sections",
+      "role": "primary_teaching_lens",
+      "run_status": "visible_effect",
+      "source_hash": "36e9402accc07f08b05b57e4108e8ea4315d5c23b84a747adc526889310f6fea",
+      "source_path": "Premortem_rag.md",
+      "teacher_use": "Teach the dominant thinking move: Imagine the plan failed, then name the preventable causes before acting.",
+      "unresolved_reason": ""
+    },
+    {
+      "answer_use": "private_guardrail",
+      "include_sections": [
+        "core_doctrine",
+        "when_to_use",
+        "when_not_to_use",
+        "dangerous_misuse",
+        "practice_drills"
+      ],
+      "model_id": "inversion",
+      "must_not_imply": "Do not imply the guardrail proves the case fact; teach it as a reasoning boundary.",
+      "must_teach": "Teach the boundary or guardrail this lens added: Ask what would make the plan obviously fail, then look for those conditions now.",
+      "read_scope": "excerpted_canonical_sections",
+      "role": "boundary_lens",
+      "run_status": "private_guardrail",
+      "source_hash": "2ed573e04cd447125cfd549403caecde672a3caca27bac4cf694e68088693f57",
+      "source_path": "Inversion_rag.md",
+      "teacher_use": "Teach the boundary or guardrail this lens added: Ask what would make the plan obviously fail, then look for those conditions now.",
+      "unresolved_reason": ""
+    },
+    {
+      "answer_use": "preserved_but_not_adjudicated",
+      "include_sections": [
+        "core_doctrine",
+        "when_to_use",
+        "when_not_to_use",
+        "dangerous_misuse",
+        "practice_drills"
+      ],
+      "model_id": "base-rates",
+      "must_not_imply": "Do not call this model noise or imply it was adjudicated.",
+      "must_teach": "Preserve this lens as a possible teaching boundary without calling it noise or implying it applied.",
+      "read_scope": "excerpted_canonical_sections",
+      "role": "suppressed_unadjudicated",
+      "run_status": "suppressed",
+      "source_hash": "af72066fe2f291eb0c0970d258601fa21a9957cf251390cf9ca2ac0adfa04310",
+      "source_path": "Base_Rates_rag.md",
+      "teacher_use": "Preserve this lens as a possible teaching boundary without calling it noise or implying it applied.",
+      "unresolved_reason": ""
+    }
+  ],
+  "packet_id": "mental_model_coach:ceo-remove-founding-cofounder:20260627T093131Z_59d153",
+  "relation_reads": [
+    {
+      "relation_id": "inversion__premortem__ally",
+      "relation_type": "ally",
+      "source_model_id": "inversion",
+      "source_status": "structured_artifact",
+      "target_model_id": "premortem",
+      "teaching_job": "Premortem is a direct procedural application of inversion - it operationalizes backward-from-failure reasoning into a repeatable team exercise that overcomes groupthink."
+    }
+  ],
+  "run_id": "20260627T093131Z_59d153",
+  "schema_version": "lolla.mental_model_teacher_read_plan.v0",
+  "source_policy": {
+    "llm_general_knowledge_policy": "allowed_only_when_labeled_as_teacher_inference",
+    "okf_is_derived_view": true,
+    "raw_corpus_is_source_of_truth": true,
+    "unresolved_sources_must_not_use_general_knowledge": true
+  },
+  "verification": {
+    "errors": [],
+    "model_read_count": 4,
+    "read_plan_schema_version": "lolla.mental_model_teacher_read_plan.v0",
+    "relation_read_count": 1,
+    "schema_version": "lolla.mental_model_teacher_read_plan_verification.v0",
+    "status": "passed",
+    "warnings": []
+  },
+  "warnings": []
+}
