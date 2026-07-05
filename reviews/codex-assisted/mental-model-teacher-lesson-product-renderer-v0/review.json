@@ -1,0 +1,57 @@
+{
+  "schema": "lolla.mental_model_teacher.lesson_product_renderer_review.v0",
+  "status": "lesson_product_renderer_ready_for_review",
+  "product_lane": "Mental Model Teacher Product Surface And Visual Library",
+  "decision_gate": "proceed_to_lesson_neighborhood_graph_data_builder",
+  "recommended_next_pr": "Mental Model Teacher Lesson Neighborhood Graph Data Builder v0",
+  "renderer_module": "engine/system_b/mental_model_teacher_lesson_renderer.py",
+  "contract_module": "engine/system_b/mental_model_teacher_product_contracts.py",
+  "renderer_doc": "docs/product/mental-model-teacher-lesson-product-renderer-v0.md",
+  "lesson_render_dir": "docs/product/mental-model-teacher-lesson-render-v0",
+  "lesson_render_manifest": "docs/product/mental-model-teacher-lesson-render-v0/manifest.json",
+  "rendered_pages": {
+    "index_pages": 1,
+    "teacher_lesson_pages": 1
+  },
+  "input_status": {
+    "input_type": "contract_fixture",
+    "real_teacher_case_artifacts_present": false,
+    "teacher_artifacts_used": false,
+    "real_teacher_case_claimed": false
+  },
+  "required_render_properties": [
+    "lesson page shows case anchor",
+    "lesson page shows thinking move",
+    "lesson page shows model stack",
+    "lesson page shows relation story",
+    "lesson page links to model pages",
+    "lesson page links to relation pages",
+    "lesson page shows a worked example",
+    "lesson page shows a practice rep",
+    "lesson page shows do-not-overlearn boundary",
+    "lesson page shows human gate status",
+    "lesson page shows visible non-claims"
+  ],
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "agent_or_automatic_action_authorized": false,
+    "lesson_is_advice": false,
+    "real_teacher_case_artifact_claimed": false
+  },
+  "strongest_signal": "The product lane now has a readable Teacher lesson page shape that links case anchor, reasoning move, model stack, relation story, clickthroughs, practice rep, missingness, and non-claims without runtime or provider dependencies.",
+  "strongest_risk": "The current lesson is a contract fixture rather than a real Teacher case artifact, so PR-P7 can build a graph neighborhood for page mechanics but PR-P9 must still avoid faking the three-case pilot if source artifacts are absent.",
+  "stop_before": [
+    "graph data building",
+    "graph UI",
+    "full-corpus graph work",
+    "runtime integration",
+    "provider or model calls",
+    "product proof claims",
+    "human validation claims",
+    "real three-case Teacher product pilot claims"
+  ]
+}
