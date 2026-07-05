@@ -1,0 +1,36 @@
+{
+  "schema_version": "lolla.mental_model_teacher.visible_review_surface_review.v0",
+  "status": "visible_review_surface_ready_for_human_review",
+  "product_lane": "Mental Model Teacher Product Surface And Visual Library",
+  "decision_gate": "needs_human_review_before_expansion",
+  "entrypoint": "docs/product/mental-model-teacher-visible-review-surface-v0/index.html",
+  "manifest": "docs/product/mental-model-teacher-visible-review-surface-v0/manifest.json",
+  "case_count": 3,
+  "visible_surface": {
+    "browser_visible": true,
+    "static_html": true,
+    "embedded_data": true,
+    "external_network_required": false,
+    "review_controls_blank": true,
+    "graph_neighborhood_visible": true,
+    "raw_teacher_snapshots_visible": true
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "graph_edges_are_proof": false,
+    "agent_or_automatic_action_authorized": false
+  },
+  "strongest_signal": "The pilot can now be inspected as a single visible browser surface instead of a set of Markdown and JSON artifacts.",
+  "strongest_risk": "The visible review controls are local and blank; they make review easier but still do not supply human validation or product proof.",
+  "stop_before": [
+    "human validation claim",
+    "product proof claim",
+    "runtime integration",
+    "provider or model calls",
+    "full corpus graph"
+  ]
+}
