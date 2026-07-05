@@ -1,0 +1,48 @@
+{
+  "schema": "lolla.mental_model_teacher.static_visual_graph_prototype_review.v0",
+  "status": "static_visual_graph_prototype_ready_for_review",
+  "product_lane": "Mental Model Teacher Product Surface And Visual Library",
+  "decision_gate": "proceed_to_three_case_teacher_product_pilot",
+  "recommended_next_pr": "Mental Model Teacher Three-Case Product Pilot v0",
+  "prototype_entrypoint": "docs/product/mental-model-teacher-visual-graph-prototype-v0/index.html",
+  "prototype_manifest": "docs/product/mental-model-teacher-visual-graph-prototype-v0/manifest.json",
+  "source_graph": "docs/product/mental-model-teacher-lesson-graph-v0/contract-fixture-base-rates-system-2.graph.json",
+  "implementation": {
+    "renderer": "dependency_free_svg",
+    "cytoscape_status": "deferred_until_local_frontend_or_vendor_path_exists",
+    "external_network_required": false,
+    "provider_or_model_calls_used": false
+  },
+  "features": {
+    "selected_node_panel": true,
+    "selected_edge_panel": true,
+    "relation_type_filters": true,
+    "search": true,
+    "model_page_links": true,
+    "relation_page_links": true
+  },
+  "graph_counts": {
+    "nodes": 2,
+    "edges": 1
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false,
+    "agent_or_automatic_action_authorized": false
+  },
+  "strongest_signal": "The product lane now has a local visual graph prototype with node and edge inspection, search, relation filtering, and links back to product-safe pages without external scripts or provider calls.",
+  "strongest_risk": "The prototype uses a fixture-sized graph and dependency-free SVG; PR-P9 still depends on real Teacher case artifacts being present, and a larger graph should revisit Cytoscape or another local graph renderer.",
+  "stop_before": [
+    "full-corpus graph work",
+    "runtime integration",
+    "provider or model calls",
+    "product proof claims",
+    "human validation claims",
+    "three-case product pilot claims"
+  ]
+}
