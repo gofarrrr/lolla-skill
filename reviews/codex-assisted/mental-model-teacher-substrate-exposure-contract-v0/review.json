@@ -1,0 +1,82 @@
+{
+  "schema": "lolla.mental_model_teacher.substrate_exposure_contract_review.v0",
+  "status": "exposure_contract_ready_for_review",
+  "product_lane": "Mental Model Teacher Product Surface And Visual Library",
+  "decision_gate": "proceed_to_user_facing_model_relation_contracts",
+  "recommended_next_pr": "Mental Model Teacher User-Facing Model And Relation Contracts v0",
+  "policy_ref": "docs/product/mental-model-teacher-substrate-exposure-contract-v0.json",
+  "report_ref": "docs/product/mental-model-teacher-substrate-exposure-contract-v0.md",
+  "inventory_module": "engine/system_b/mental_model_teacher_substrate_inventory.py",
+  "covered_asset_ids": [
+    "canonical_model_markdown",
+    "model_source_manifest",
+    "model_source_hashes",
+    "activation_curation",
+    "intervention_semantics",
+    "relation_semantics",
+    "relationship_graph",
+    "knowledge_graph",
+    "embeddings_db",
+    "curated_chunks",
+    "family_semantics",
+    "v60_model_affordances",
+    "relation_graph_code",
+    "activation_matcher_code",
+    "graph_survival_eval_artifacts",
+    "model_affordance_validation_code",
+    "teacher_artifacts"
+  ],
+  "classification_summary": {
+    "product-safe": [
+      "model_source_hashes"
+    ],
+    "product-safe-after-translation": [
+      "canonical_model_markdown",
+      "model_source_manifest",
+      "activation_curation",
+      "intervention_semantics",
+      "relation_semantics",
+      "relationship_graph",
+      "curated_chunks",
+      "teacher_artifacts"
+    ],
+    "internal-only": [
+      "embeddings_db",
+      "relation_graph_code",
+      "activation_matcher_code",
+      "graph_survival_eval_artifacts",
+      "model_affordance_validation_code"
+    ],
+    "future/suggestion-only": [
+      "knowledge_graph",
+      "family_semantics",
+      "v60_model_affordances"
+    ]
+  },
+  "known_missingness": {
+    "teacher_artifacts": "No checked-in Teacher artifact directory is present in this worktree; do not fake case lessons or three-case pilot inputs."
+  },
+  "strongest_signal": "The repo already has the main source custody, curation, relation, graph, embeddings, family, V60 affordance, and graph-survival substrate needed to build product-safe pages after contracts are defined.",
+  "strongest_risk": "The raw substrate contains internal routing, ranking, embedding, provenance, and eval signals that could look authoritative if exposed without product translation and visible non-claims.",
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "resolver_approval": false,
+    "action_authorization": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false
+  },
+  "stop_before": [
+    "product page contracts",
+    "data builders",
+    "page rendering",
+    "graph UI",
+    "runtime integration",
+    "provider or model calls",
+    "product proof claims",
+    "human validation claims"
+  ]
+}

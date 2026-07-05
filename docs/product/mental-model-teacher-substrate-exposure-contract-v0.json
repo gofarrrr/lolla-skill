@@ -1,0 +1,317 @@
+{
+  "schema": "lolla.mental_model_teacher.substrate_exposure_policy.v0",
+  "status": "prd_p2_exposure_contract",
+  "product_lane": "Mental Model Teacher Product Surface And Visual Library",
+  "decision_gate": "proceed_to_user_facing_model_relation_contracts",
+  "classification_vocabulary": [
+    "product-safe",
+    "product-safe-after-translation",
+    "internal-only",
+    "future/suggestion-only"
+  ],
+  "classification_definitions": {
+    "product-safe": "A bounded, reviewed field or derived custody fact may appear in the product surface without exposing raw internal mechanics.",
+    "product-safe-after-translation": "The asset may power user-facing pages only through a later product contract, with raw paths, routing metadata, extraction metadata, ranking internals, and unsupported claims removed or reframed.",
+    "internal-only": "The asset may support implementation, validation, custody, or evidence discipline, but must not appear as product copy or visible proof.",
+    "future/suggestion-only": "The asset may inform later navigation, clustering, suggestions, or advanced teaching after a separate review gate; it is not a v0 user-facing source of truth."
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "resolver_approval": false,
+    "action_authorization": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false
+  },
+  "assets": [
+    {
+      "asset_id": "canonical_model_markdown",
+      "display_name": "Canonical model Markdown",
+      "asset_ref": "data/model_sources/*.md",
+      "required": true,
+      "classification": "product-safe-after-translation",
+      "powers_surfaces": [
+        "mental_model_page"
+      ],
+      "product_safe_use": "Canonical doctrine and examples can seed model explanations, common misuse, and source-backed references.",
+      "translation_rule": "Extract bounded product fields and cite source custody; do not render raw Markdown as the page UI.",
+      "do_not_expose": [
+        "raw source dump as product page",
+        "local source provenance paths",
+        "unreviewed claims beyond the source text"
+      ]
+    },
+    {
+      "asset_id": "model_source_manifest",
+      "display_name": "Model source manifest",
+      "asset_ref": "data/model_sources/manifest.json",
+      "required": true,
+      "classification": "product-safe-after-translation",
+      "powers_surfaces": [
+        "source_custody",
+        "mental_model_page"
+      ],
+      "product_safe_use": "The manifest can verify source file identity and source hashes after path redaction.",
+      "translation_rule": "Expose repo-relative source file names and hashes only; never expose copied-from local paths.",
+      "do_not_expose": [
+        "copied_from",
+        "local absolute paths",
+        "operator filesystem layout"
+      ]
+    },
+    {
+      "asset_id": "model_source_hashes",
+      "display_name": "Model source hashes",
+      "asset_ref": "data/model_sources/manifest.json:files[].sha256",
+      "required": true,
+      "classification": "product-safe",
+      "powers_surfaces": [
+        "source_custody"
+      ],
+      "product_safe_use": "Hash values can support user-visible custody receipts when paired with repo-relative source refs.",
+      "translation_rule": "Carry hash algorithm and file hash values without raw local provenance fields.",
+      "do_not_expose": [
+        "raw manifest object",
+        "copied_from"
+      ]
+    },
+    {
+      "asset_id": "activation_curation",
+      "display_name": "Activation curation",
+      "asset_ref": "data/curation/*.json",
+      "required": true,
+      "classification": "product-safe-after-translation",
+      "powers_surfaces": [
+        "mental_model_page"
+      ],
+      "product_safe_use": "Reviewed select_when, avoid_when, input/output type, reasoning type, and provenance fields can power use/avoid sections.",
+      "translation_rule": "Translate routing-normalized fields into plain user-facing use and avoid language with visible missingness.",
+      "do_not_expose": [
+        "routing internals as product copy",
+        "donor draft mechanics",
+        "provenance metadata as primary UI"
+      ]
+    },
+    {
+      "asset_id": "intervention_semantics",
+      "display_name": "Intervention semantics",
+      "asset_ref": "data/curation/intervention_semantics/*.json",
+      "required": true,
+      "classification": "product-safe-after-translation",
+      "powers_surfaces": [
+        "mental_model_page",
+        "teacher_lesson_page"
+      ],
+      "product_safe_use": "Failure modes, premortem questions, heuristics, mitigations, and practice-relevant material can power teaching sections.",
+      "translation_rule": "Preserve source quotes/refs and confidence while presenting concise failure and practice language.",
+      "do_not_expose": [
+        "raw extraction metadata as dominant UI",
+        "unsupported mitigation certainty",
+        "hidden review notes as product proof"
+      ]
+    },
+    {
+      "asset_id": "relation_semantics",
+      "display_name": "Relation semantics",
+      "asset_ref": "data/curation/relation_semantics/*.json",
+      "required": true,
+      "classification": "product-safe-after-translation",
+      "powers_surfaces": [
+        "relation_page",
+        "visual_graph"
+      ],
+      "product_safe_use": "Allies, antagonists, structured tensions, source quotes, confidence, and curation notes can power relation pages and graph edges.",
+      "translation_rule": "Surface only supported relations with plain-language story, confidence, source reference, misread risk, and non-claims.",
+      "do_not_expose": [
+        "unsupported relation speculation",
+        "approximate target-id mapping as certainty",
+        "graph edge as proof"
+      ]
+    },
+    {
+      "asset_id": "relationship_graph",
+      "display_name": "Compiled relationship graph",
+      "asset_ref": "data/relationship_graph.json",
+      "required": true,
+      "classification": "product-safe-after-translation",
+      "powers_surfaces": [
+        "visual_graph",
+        "relation_page"
+      ],
+      "product_safe_use": "Curated edge identity can power small graph neighborhoods and relation-page links.",
+      "translation_rule": "Use graph data as navigational teaching structure; show relation pages before taxonomy/ranking details.",
+      "do_not_expose": [
+        "raw affinity or fan-adjusted rank as truth",
+        "edge existence as proof",
+        "activation_condition as product guarantee"
+      ]
+    },
+    {
+      "asset_id": "knowledge_graph",
+      "display_name": "Compiled knowledge graph",
+      "asset_ref": "data/knowledge_graph.json",
+      "required": true,
+      "classification": "future/suggestion-only",
+      "powers_surfaces": [
+        "future_global_navigation",
+        "future_collections"
+      ],
+      "product_safe_use": "The wider topology can inform later collections and global navigation after focused pages work.",
+      "translation_rule": "Keep full topology out of the first user surface; promote only reviewed, product-contracted slices later.",
+      "do_not_expose": [
+        "full topology as first product screen",
+        "routing topology as truth",
+        "unreviewed inferred edges"
+      ]
+    },
+    {
+      "asset_id": "embeddings_db",
+      "display_name": "Embeddings database",
+      "asset_ref": "data/embeddings.db",
+      "required": true,
+      "classification": "internal-only",
+      "powers_surfaces": [],
+      "product_safe_use": "No v0 user-facing exposure. It may support internal semantic retrieval experiments.",
+      "translation_rule": "Semantic neighbors remain suggestions only until reviewed through relation semantics or another explicit gate.",
+      "do_not_expose": [
+        "embedding rank as proof",
+        "semantic similarity as validated relation semantics",
+        "raw vectors or provider-derived internals"
+      ]
+    },
+    {
+      "asset_id": "curated_chunks",
+      "display_name": "Curated trusted-surface chunks",
+      "asset_ref": "data/curated/*.json",
+      "required": true,
+      "classification": "product-safe-after-translation",
+      "powers_surfaces": [
+        "mental_model_page",
+        "teacher_lesson_page"
+      ],
+      "product_safe_use": "Trusted chunks, subpatterns, structural signals, and reasoning signals can support teaching copy after custody checks.",
+      "translation_rule": "Use only checked-in-safe snippets or paraphrased product fields with source refs and missingness.",
+      "do_not_expose": [
+        "internal chunk ids as primary UI",
+        "guardrail tags as product authority",
+        "private or provider text"
+      ]
+    },
+    {
+      "asset_id": "family_semantics",
+      "display_name": "Family semantics",
+      "asset_ref": "data/family_semantics/*.json",
+      "required": true,
+      "classification": "future/suggestion-only",
+      "powers_surfaces": [
+        "future_collections",
+        "future_graph_clusters"
+      ],
+      "product_safe_use": "Family and cluster semantics can later become library collections or graph filters.",
+      "translation_rule": "Treat as future navigation scaffolding until collection pages have their own review gate.",
+      "do_not_expose": [
+        "cluster density as quality score",
+        "family membership as proof",
+        "unreviewed global library organization"
+      ]
+    },
+    {
+      "asset_id": "v60_model_affordances",
+      "display_name": "V60 model affordances",
+      "asset_ref": "data/compiled/model_affordances/affordances_v60.json",
+      "required": true,
+      "classification": "future/suggestion-only",
+      "powers_surfaces": [
+        "future_advanced_teaching_page"
+      ],
+      "product_safe_use": "Reviewed affordance and absence records can support advanced teaching pages later.",
+      "translation_rule": "Promote only reviewed, rewritten, product-safe affordance statements through a later gate.",
+      "do_not_expose": [
+        "raw transaction JSON",
+        "absence records as user-facing deficit labels",
+        "runtime promotion without rewrite review"
+      ]
+    },
+    {
+      "asset_id": "relation_graph_code",
+      "display_name": "Relation graph code",
+      "asset_ref": "engine/system_b/relation_graph.py",
+      "required": true,
+      "classification": "internal-only",
+      "powers_surfaces": [],
+      "product_safe_use": "Implementation reference for deterministic neighborhood behavior only.",
+      "translation_rule": "Use concepts for builders later; do not expose route traces or ranking machinery as product copy.",
+      "do_not_expose": [
+        "fan-adjusted affinity internals",
+        "candidate rejection traces",
+        "runtime route mechanics"
+      ]
+    },
+    {
+      "asset_id": "activation_matcher_code",
+      "display_name": "Activation matcher code",
+      "asset_ref": "engine/system_b/activation_matcher.py",
+      "required": true,
+      "classification": "internal-only",
+      "powers_surfaces": [],
+      "product_safe_use": "No v0 user-facing exposure; this remains an internal ranking/tiebreaker implementation detail.",
+      "translation_rule": "Do not call providers or expose semantic similarity in the product surface.",
+      "do_not_expose": [
+        "provider calls",
+        "similarity scores",
+        "activation tiebreaker decisions"
+      ]
+    },
+    {
+      "asset_id": "graph_survival_eval_artifacts",
+      "display_name": "Graph survival and eval artifacts",
+      "asset_ref": "engine/system_b/graph_survival_report.py; tests/test_graph_survival_report.py; data/evaluations",
+      "required": true,
+      "classification": "internal-only",
+      "powers_surfaces": [],
+      "product_safe_use": "Internal evidence discipline and noise/helpfulness caution for later builders.",
+      "translation_rule": "Use as internal review input only; never convert eval existence into marketing or product proof.",
+      "do_not_expose": [
+        "evaluation data as product marketing",
+        "graph survival as correctness claim",
+        "synthetic review as human validation"
+      ]
+    },
+    {
+      "asset_id": "model_affordance_validation_code",
+      "display_name": "Model affordance validation code",
+      "asset_ref": "engine/system_b/model_affordance_validation.py",
+      "required": true,
+      "classification": "internal-only",
+      "powers_surfaces": [],
+      "product_safe_use": "Internal validation helper for affordance quality only.",
+      "translation_rule": "Keep validation machinery out of product copy and runtime wiring.",
+      "do_not_expose": [
+        "validation machinery as user-facing authority",
+        "quality gates as product proof",
+        "runtime authorization"
+      ]
+    },
+    {
+      "asset_id": "teacher_artifacts",
+      "display_name": "Teacher artifacts",
+      "asset_ref": "data/teacher; docs/teacher; reviews/teacher; build/teacher",
+      "required": false,
+      "classification": "product-safe-after-translation",
+      "powers_surfaces": [
+        "teacher_lesson_page",
+        "visual_graph"
+      ],
+      "product_safe_use": "If present, checked-in Teacher cards, notes, OKF bundles, relation deep dives, model deep dives, practice labs, grounding audits, and human-gate scaffolding can seed lesson pages.",
+      "translation_rule": "Expose only productized lessons with source refs, missingness, visible human-review status, and non-claims.",
+      "do_not_expose": [
+        "raw Teacher cards as final product",
+        "review packets as UX",
+        "human-gate scaffolding as human validation"
+      ]
+    }
+  ]
+}
