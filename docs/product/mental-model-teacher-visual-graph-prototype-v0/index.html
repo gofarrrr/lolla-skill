@@ -1,0 +1,763 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mental Model Teacher Visual Graph Prototype v0</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f5ef;
+      --panel: #fffdf8;
+      --ink: #182427;
+      --muted: #657176;
+      --line: #d8d2c4;
+      --teal: #20706f;
+      --teal-dark: #164f50;
+      --amber: #b86f1d;
+      --blue: #2e5e92;
+      --soft-blue: #e8f1f8;
+      --soft-amber: #fff1de;
+      --soft-teal: #e5f3f0;
+      --white: #ffffff;
+      --shadow: 0 16px 44px rgba(24, 36, 39, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    a {
+      color: var(--teal-dark);
+      text-decoration: none;
+      font-weight: 650;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 20px;
+      align-items: center;
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--line);
+      background: var(--panel);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 760;
+      letter-spacing: 0;
+    }
+
+    .subhead {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .header-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      font-size: 13px;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, 360px);
+      min-height: 0;
+    }
+
+    .graph-pane {
+      min-width: 0;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      background: var(--panel);
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line);
+      background: var(--white);
+    }
+
+    .search {
+      min-width: 220px;
+      flex: 1 1 260px;
+    }
+
+    input[type="search"] {
+      width: 100%;
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 0 12px;
+      color: var(--ink);
+      background: var(--panel);
+      font: inherit;
+    }
+
+    input[type="search"]:focus,
+    button:focus-visible,
+    .node:focus-visible,
+    .edge-hit:focus-visible {
+      outline: 3px solid rgba(32, 112, 111, 0.22);
+      outline-offset: 2px;
+    }
+
+    .filter-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .filter-pill {
+      display: inline-flex;
+      gap: 7px;
+      align-items: center;
+      min-height: 34px;
+      padding: 0 10px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--panel);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .filter-pill input {
+      accent-color: var(--teal);
+    }
+
+    button {
+      min-height: 36px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 0 12px;
+      background: var(--white);
+      color: var(--ink);
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    button:hover {
+      border-color: var(--teal);
+      color: var(--teal-dark);
+    }
+
+    .stage {
+      position: relative;
+      min-height: 500px;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(24, 36, 39, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(24, 36, 39, 0.045) 1px, transparent 1px),
+        var(--panel);
+      background-size: 36px 36px;
+    }
+
+    svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 500px;
+    }
+
+    .edge-line {
+      stroke: var(--teal);
+      stroke-width: 3.5;
+      stroke-linecap: round;
+    }
+
+    .edge-line.is-muted {
+      opacity: 0.18;
+    }
+
+    .edge-line.is-selected {
+      stroke: var(--amber);
+      stroke-width: 5;
+    }
+
+    .edge-hit {
+      stroke: transparent;
+      stroke-width: 22;
+      cursor: pointer;
+    }
+
+    .edge-label {
+      fill: var(--ink);
+      font-size: 13px;
+      font-weight: 760;
+      paint-order: stroke;
+      stroke: var(--panel);
+      stroke-width: 5px;
+      stroke-linejoin: round;
+    }
+
+    .node {
+      cursor: pointer;
+    }
+
+    .node circle {
+      fill: var(--soft-teal);
+      stroke: var(--teal);
+      stroke-width: 3;
+      filter: drop-shadow(0 10px 18px rgba(24, 36, 39, 0.16));
+    }
+
+    .node.is-selected circle {
+      fill: var(--soft-amber);
+      stroke: var(--amber);
+      stroke-width: 4;
+    }
+
+    .node.is-muted {
+      opacity: 0.28;
+    }
+
+    .node-label {
+      fill: var(--ink);
+      font-size: 16px;
+      font-weight: 800;
+      text-anchor: middle;
+      dominant-baseline: middle;
+      pointer-events: none;
+    }
+
+    .node-meta {
+      fill: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      text-anchor: middle;
+      dominant-baseline: middle;
+      pointer-events: none;
+    }
+
+    aside {
+      min-width: 0;
+      border-left: 1px solid var(--line);
+      background: var(--white);
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+    }
+
+    .detail {
+      padding: 18px;
+      overflow: auto;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .detail:last-child {
+      border-bottom: 0;
+    }
+
+    .eyebrow {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 5px 0 10px;
+      font-size: 18px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    dl {
+      display: grid;
+      grid-template-columns: max-content minmax(0, 1fr);
+      gap: 8px 12px;
+      margin: 12px 0;
+      font-size: 13px;
+    }
+
+    dt {
+      color: var(--muted);
+      font-weight: 760;
+    }
+
+    dd {
+      margin: 0;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 10px 0 14px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 0 8px;
+      border-radius: 6px;
+      background: var(--soft-blue);
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 760;
+    }
+
+    .badge.warn {
+      background: var(--soft-amber);
+      color: var(--amber);
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .actions a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 0 10px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--panel);
+      font-size: 13px;
+    }
+
+    .empty {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 860px) {
+      header,
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+
+      .header-links {
+        justify-content: flex-start;
+      }
+
+      aside {
+        border-left: 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .stage,
+      svg {
+        min-height: 420px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div>
+        <h1>Mental Model Teacher Visual Graph Prototype v0</h1>
+        <div class="subhead">Fixture lesson neighborhood: Base Rates and System 2</div>
+      </div>
+      <nav class="header-links" aria-label="Prototype source links">
+        <a href="../mental-model-teacher-lesson-graph-v0/contract-fixture-base-rates-system-2.graph.json">Graph JSON</a>
+        <a href="../mental-model-teacher-lesson-render-v0/lessons/contract-fixture-base-rates-system-2.md">Lesson page</a>
+        <a href="manifest.json">Manifest</a>
+      </nav>
+    </header>
+
+    <main class="workspace">
+      <section class="graph-pane" aria-label="Mental model graph">
+        <div class="toolbar">
+          <label class="search">
+            <span class="eyebrow">Search</span>
+            <input id="graph-search" type="search" autocomplete="off" placeholder="Model name">
+          </label>
+          <div id="relation-filters" class="filter-row" aria-label="Relation type filters"></div>
+          <button id="reset-view" type="button">Reset</button>
+        </div>
+        <div class="stage">
+          <svg id="graph-canvas" viewBox="0 0 840 520" role="img" aria-labelledby="graph-title graph-desc">
+            <title id="graph-title">Lesson neighborhood graph</title>
+            <desc id="graph-desc">Small graph with mental model nodes and a product-safe relation edge.</desc>
+          </svg>
+        </div>
+      </section>
+
+      <aside aria-label="Selection details">
+        <section id="selected-node-panel" class="detail" aria-live="polite"></section>
+        <section id="selected-edge-panel" class="detail" aria-live="polite"></section>
+      </aside>
+    </main>
+  </div>
+
+  <script id="graph-data" type="application/json">
+{
+  "case_id": "contract-fixture",
+  "default_focus": "base-rates",
+  "edges": [
+    {
+      "confidence": "high",
+      "edge_id": "base-rates__ally__system-2",
+      "href": "../mental-model-teacher-pilot-render-v0/relations/base-rates__ally__system-2.md",
+      "label": "Base Rates and System 2",
+      "missingness_status": "partial",
+      "relation_id": "base-rates__ally__system-2",
+      "relation_type": "ally",
+      "source_node_id": "base-rates",
+      "source_status": "draft",
+      "target_node_id": "system-2"
+    }
+  ],
+  "filters": {
+    "max_nodes": 10,
+    "node_types": [
+      "mental_model"
+    ],
+    "relation_types": [
+      "ally"
+    ]
+  },
+  "graph_id": "lesson-neighborhood-contract-fixture-base-rates-system-2",
+  "graph_scope": "lesson_neighborhood",
+  "layout_hint": "small_neighborhood",
+  "lesson_id": "contract-fixture-base-rates-system-2",
+  "missingness": {
+    "missing_fields": [
+      "real_case_artifact",
+      "browser_graph_ui",
+      "rendered_layout"
+    ],
+    "notes": [
+      "Example fixture only; no Teacher case artifact is claimed.",
+      "Graph data only; PR-P8 is the first browser graph UI slice."
+    ],
+    "status": "partial"
+  },
+  "nodes": [
+    {
+      "href": "../mental-model-teacher-pilot-render-v0/models/base-rates.md",
+      "label": "Base Rates",
+      "missingness_status": "partial",
+      "model_id": "base-rates",
+      "node_id": "base-rates",
+      "node_type": "mental_model",
+      "source_status": "draft"
+    },
+    {
+      "href": "../mental-model-teacher-pilot-render-v0/models/system-2.md",
+      "label": "System 2",
+      "missingness_status": "partial",
+      "model_id": "system-2",
+      "node_id": "system-2",
+      "node_type": "mental_model",
+      "source_status": "draft"
+    }
+  ],
+  "non_claims": [
+    "edge_is_not_proof",
+    "graph_is_navigation_not_proof",
+    "not_action_authorization",
+    "not_advice_correctness",
+    "not_answer_correctness",
+    "not_human_validation",
+    "not_product_proof",
+    "not_runtime_integration"
+  ],
+  "schema_version": "lolla.mental_model_teacher.visual_graph.v0",
+  "source_artifacts": [
+    {
+      "artifact_id": "teacher-lesson-contract-fixture",
+      "path": "docs/product/mental-model-teacher-product-contract-examples-v0.json",
+      "source_type": "teacher_lesson_contract_fixture"
+    },
+    {
+      "artifact_id": "pilot-render-manifest",
+      "path": "docs/product/mental-model-teacher-pilot-render-v0/manifest.json",
+      "source_type": "static_page_render_manifest"
+    },
+    {
+      "artifact_id": "lesson-render-manifest",
+      "path": "docs/product/mental-model-teacher-lesson-render-v0/manifest.json",
+      "source_type": "lesson_render_manifest"
+    }
+  ]
+}
+  </script>
+  <script>
+    const graph = JSON.parse(document.getElementById("graph-data").textContent);
+    const svg = document.getElementById("graph-canvas");
+    const searchInput = document.getElementById("graph-search");
+    const filterWrap = document.getElementById("relation-filters");
+    const resetButton = document.getElementById("reset-view");
+    const nodePanel = document.getElementById("selected-node-panel");
+    const edgePanel = document.getElementById("selected-edge-panel");
+
+    const state = {
+      query: "",
+      relationTypes: new Set(graph.filters.relation_types),
+      selectedNodeId: graph.default_focus,
+      selectedEdgeId: graph.edges[0] ? graph.edges[0].edge_id : ""
+    };
+
+    const positions = layoutNodes(graph.nodes);
+
+    function layoutNodes(nodes) {
+      if (nodes.length === 1) {
+        return { [nodes[0].node_id]: { x: 420, y: 250 } };
+      }
+      if (nodes.length === 2) {
+        return {
+          [nodes[0].node_id]: { x: 230, y: 250 },
+          [nodes[1].node_id]: { x: 610, y: 250 }
+        };
+      }
+      const center = { x: 420, y: 255 };
+      const radius = 180;
+      return Object.fromEntries(nodes.map((node, index) => {
+        const angle = (Math.PI * 2 * index) / nodes.length - Math.PI / 2;
+        return [node.node_id, {
+          x: center.x + Math.cos(angle) * radius,
+          y: center.y + Math.sin(angle) * radius
+        }];
+      }));
+    }
+
+    function buildFilters() {
+      filterWrap.innerHTML = "";
+      graph.filters.relation_types.forEach((type) => {
+        const label = document.createElement("label");
+        label.className = "filter-pill";
+        label.innerHTML = `<input type="checkbox" value="${escapeHtml(type)}" checked> ${escapeHtml(type)}`;
+        label.querySelector("input").addEventListener("change", (event) => {
+          if (event.target.checked) {
+            state.relationTypes.add(type);
+          } else {
+            state.relationTypes.delete(type);
+          }
+          render();
+        });
+        filterWrap.appendChild(label);
+      });
+    }
+
+    function render() {
+      const matchingNodes = new Set(graph.nodes
+        .filter((node) => !state.query || node.label.toLowerCase().includes(state.query))
+        .map((node) => node.node_id));
+      const visibleEdges = graph.edges.filter((edge) => state.relationTypes.has(edge.relation_type));
+
+      svg.innerHTML = `
+        <title id="graph-title">Lesson neighborhood graph</title>
+        <desc id="graph-desc">Small graph with mental model nodes and a product-safe relation edge.</desc>
+      `;
+
+      visibleEdges.forEach((edge) => drawEdge(edge, matchingNodes));
+      graph.nodes.forEach((node) => drawNode(node, matchingNodes));
+      renderPanels();
+    }
+
+    function drawEdge(edge, matchingNodes) {
+      const source = positions[edge.source_node_id];
+      const target = positions[edge.target_node_id];
+      const isSelected = state.selectedEdgeId === edge.edge_id;
+      const isMuted = state.query && (!matchingNodes.has(edge.source_node_id) && !matchingNodes.has(edge.target_node_id));
+      const midX = (source.x + target.x) / 2;
+      const midY = (source.y + target.y) / 2 - 18;
+      const group = createSvg("g", { class: "edge-group" });
+      const lineClass = `edge-line${isSelected ? " is-selected" : ""}${isMuted ? " is-muted" : ""}`;
+      group.appendChild(createSvg("line", {
+        class: lineClass,
+        x1: source.x,
+        y1: source.y,
+        x2: target.x,
+        y2: target.y
+      }));
+      const hit = createSvg("line", {
+        class: "edge-hit",
+        x1: source.x,
+        y1: source.y,
+        x2: target.x,
+        y2: target.y,
+        tabindex: "0",
+        role: "button",
+        "aria-label": `Select relation ${edge.label}`
+      });
+      hit.addEventListener("click", () => selectEdge(edge.edge_id));
+      hit.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          selectEdge(edge.edge_id);
+        }
+      });
+      group.appendChild(hit);
+      const label = createSvg("text", { class: "edge-label", x: midX, y: midY, "text-anchor": "middle" });
+      label.textContent = edge.relation_type;
+      group.appendChild(label);
+      svg.appendChild(group);
+    }
+
+    function drawNode(node, matchingNodes) {
+      const pos = positions[node.node_id];
+      const isSelected = state.selectedNodeId === node.node_id;
+      const isMuted = state.query && !matchingNodes.has(node.node_id);
+      const group = createSvg("g", {
+        class: `node${isSelected ? " is-selected" : ""}${isMuted ? " is-muted" : ""}`,
+        tabindex: "0",
+        role: "button",
+        "aria-label": `Select model ${node.label}`,
+        transform: `translate(${pos.x} ${pos.y})`
+      });
+      group.addEventListener("click", () => selectNode(node.node_id));
+      group.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          selectNode(node.node_id);
+        }
+      });
+      group.appendChild(createSvg("circle", { r: 70 }));
+      const label = createSvg("text", { class: "node-label", y: -6 });
+      label.textContent = node.label;
+      group.appendChild(label);
+      const meta = createSvg("text", { class: "node-meta", y: 22 });
+      meta.textContent = node.node_type.replace("_", " ");
+      group.appendChild(meta);
+      svg.appendChild(group);
+    }
+
+    function selectNode(nodeId) {
+      state.selectedNodeId = nodeId;
+      render();
+    }
+
+    function selectEdge(edgeId) {
+      state.selectedEdgeId = edgeId;
+      render();
+    }
+
+    function renderPanels() {
+      const node = graph.nodes.find((item) => item.node_id === state.selectedNodeId) || graph.nodes[0];
+      const edge = graph.edges.find((item) => item.edge_id === state.selectedEdgeId) || graph.edges[0];
+      nodePanel.innerHTML = node ? nodePanelHtml(node) : emptyPanelHtml("Selected Node");
+      edgePanel.innerHTML = edge ? edgePanelHtml(edge) : emptyPanelHtml("Selected Edge");
+    }
+
+    function nodePanelHtml(node) {
+      return `
+        <div class="eyebrow">Selected Node</div>
+        <h2>${escapeHtml(node.label)}</h2>
+        <div class="badge-row">
+          <span class="badge">${escapeHtml(node.node_type)}</span>
+          <span class="badge warn">missingness: ${escapeHtml(node.missingness_status)}</span>
+        </div>
+        <dl>
+          <dt>Model</dt><dd>${escapeHtml(node.model_id)}</dd>
+          <dt>Source</dt><dd>${escapeHtml(node.source_status)}</dd>
+          <dt>Scope</dt><dd>${escapeHtml(graph.graph_scope)}</dd>
+        </dl>
+        <div class="actions">
+          <a href="${escapeAttribute(node.href)}">Open model page</a>
+        </div>
+      `;
+    }
+
+    function edgePanelHtml(edge) {
+      return `
+        <div class="eyebrow">Selected Edge</div>
+        <h2>${escapeHtml(edge.label)}</h2>
+        <div class="badge-row">
+          <span class="badge">${escapeHtml(edge.relation_type)}</span>
+          <span class="badge warn">confidence: ${escapeHtml(edge.confidence)}</span>
+        </div>
+        <dl>
+          <dt>Relation</dt><dd>${escapeHtml(edge.relation_id)}</dd>
+          <dt>Source</dt><dd>${escapeHtml(edge.source_status)}</dd>
+          <dt>Missingness</dt><dd>${escapeHtml(edge.missingness_status)}</dd>
+        </dl>
+        <div class="actions">
+          <a href="${escapeAttribute(edge.href)}">Open relation page</a>
+        </div>
+      `;
+    }
+
+    function emptyPanelHtml(title) {
+      return `
+        <div class="eyebrow">${escapeHtml(title)}</div>
+        <h2>None</h2>
+        <p class="empty">No item is selected.</p>
+      `;
+    }
+
+    function createSvg(tag, attrs) {
+      const element = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      Object.entries(attrs).forEach(([key, value]) => {
+        element.setAttribute(key, value);
+      });
+      return element;
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function escapeAttribute(value) {
+      return escapeHtml(value).replaceAll("`", "&#096;");
+    }
+
+    searchInput.addEventListener("input", (event) => {
+      state.query = event.target.value.trim().toLowerCase();
+      render();
+    });
+
+    resetButton.addEventListener("click", () => {
+      state.query = "";
+      searchInput.value = "";
+      state.relationTypes = new Set(graph.filters.relation_types);
+      filterWrap.querySelectorAll("input").forEach((input) => {
+        input.checked = true;
+      });
+      state.selectedNodeId = graph.default_focus;
+      state.selectedEdgeId = graph.edges[0] ? graph.edges[0].edge_id : "";
+      render();
+    });
+
+    buildFilters();
+    render();
+  </script>
+</body>
+</html>
