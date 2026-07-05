@@ -1,0 +1,259 @@
+{
+  "schema": "lolla.mental_model_teacher.product_contract_examples.v0",
+  "status": "contract_examples_only",
+  "examples": {
+    "mental_model_page": {
+      "schema_version": "lolla.mental_model_teacher.mental_model_page.v0",
+      "model_id": "base-rates",
+      "slug": "base-rates",
+      "display_name": "Base Rates",
+      "one_sentence_meaning": "Base rates help a user start with the outside-view frequency before the vivid local story takes over.",
+      "helps_notice": [
+        "A forecast depends on whether this case is actually unusual.",
+        "A reference class exists and can discipline the inside-view story."
+      ],
+      "use_when": [
+        "Use this model before a forecast, budget, diagnosis, or bet gets anchored on a vivid narrative."
+      ],
+      "avoid_when": [
+        "Avoid leaning on it when the reference class is structurally mismatched or a real regime shift has broken the old pattern."
+      ],
+      "common_misuse": [
+        "Treating a convenient reference class as rigorous because it produces a number."
+      ],
+      "failure_modes": [
+        "Base-rate neglect lets vivid case details displace the general frequency of the outcome."
+      ],
+      "premortem_questions": [
+        "What is the average success or failure rate for situations like this, regardless of our unique details?"
+      ],
+      "heuristics": [
+        "Anchor to the outside view before arguing from the particulars of the case."
+      ],
+      "practice_prompts": [
+        "Name the closest reference class and write the prior before adding the local story."
+      ],
+      "reasoning_types": [
+        "probabilistic",
+        "analogical"
+      ],
+      "source_refs": [
+        {
+          "source_id": "base-rates-canonical-markdown",
+          "path": "data/model_sources/Base_Rates_rag.md",
+          "source_type": "canonical_markdown"
+        },
+        {
+          "source_id": "base-rates-activation-curation",
+          "path": "data/curation/base-rates.json",
+          "source_type": "activation_curation"
+        },
+        {
+          "source_id": "base-rates-intervention-semantics",
+          "path": "data/curation/intervention_semantics/base-rates.json",
+          "source_type": "intervention_semantics"
+        }
+      ],
+      "source_hashes": {
+        "data/model_sources/Base_Rates_rag.md": "af72066fe2f291eb0c0970d258601fa21a9957cf251390cf9ca2ac0adfa04310"
+      },
+      "curation_status": "contract_fixture",
+      "missingness": {
+        "status": "partial",
+        "missing_fields": [],
+        "notes": [
+          "Example fixture only; PR-P4 will build deterministic pilot data from the substrate."
+        ]
+      },
+      "non_claims": [
+        "not_product_proof",
+        "not_human_validation",
+        "not_answer_correctness",
+        "not_advice_correctness",
+        "not_runtime_integration",
+        "not_action_authorization"
+      ]
+    },
+    "relation_page": {
+      "schema_version": "lolla.mental_model_teacher.relation_page.v0",
+      "relation_id": "base-rates__ally__system-2",
+      "source_model_id": "base-rates",
+      "target_model_id": "system-2",
+      "relation_type": "ally",
+      "plain_language_story": "Base rates often need System 2 because the user has to slow down enough to compare the current case with a reference class.",
+      "why_it_matters": "The relation teaches that outside-view calibration is not only a statistic; it is also a thinking move that resists the easy local story.",
+      "misread_risk": "Do not read this as a claim that slow thinking always chooses the right reference class.",
+      "practice_prompt": "Write the inside-view story in one sentence, then write the outside-view prior beside it before updating.",
+      "source_quote_or_ref": "data/curation/relation_semantics/base-rates.json:allies[0]",
+      "confidence": "high",
+      "curation_status": "contract_fixture",
+      "missingness": {
+        "status": "partial",
+        "missing_fields": [],
+        "notes": [
+          "Example fixture only; PR-P4 will build relation data from reviewed relation semantics."
+        ]
+      },
+      "non_claims": [
+        "not_product_proof",
+        "not_human_validation",
+        "not_answer_correctness",
+        "not_advice_correctness",
+        "not_runtime_integration",
+        "not_action_authorization",
+        "relation_is_not_proof",
+        "confidence_is_not_certification"
+      ]
+    },
+    "teacher_lesson": {
+      "schema_version": "lolla.mental_model_teacher.teacher_lesson.v0",
+      "lesson_id": "contract-fixture-base-rates-system-2",
+      "case_id": "contract-fixture",
+      "case_anchor": "A team is deciding whether its launch case is special enough to ignore the usual failure rate.",
+      "thinking_move": "Separate the vivid inside view from the outside-view prior before updating.",
+      "model_stack": [
+        {
+          "model_id": "base-rates",
+          "role": "anchor",
+          "teaching_note": "Supplies the outside-view prior."
+        },
+        {
+          "model_id": "system-2",
+          "role": "support",
+          "teaching_note": "Supplies the slow checking mode."
+        }
+      ],
+      "relation_story": "The lesson is that base-rate use often depends on System 2 slowing the decision enough to make reference-class comparison possible.",
+      "model_links": [
+        {
+          "label": "Base Rates",
+          "href": "base-rates.md"
+        },
+        {
+          "label": "System 2",
+          "href": "system-2.md"
+        }
+      ],
+      "relation_links": [
+        {
+          "label": "Base Rates and System 2",
+          "href": "base-rates__ally__system-2.md"
+        }
+      ],
+      "practice_rep": {
+        "prompt": "Choose one active decision and write the reference class before listing the details that make it feel special.",
+        "user_action": "Write a prior, then add the local evidence as an update rather than a replacement."
+      },
+      "do_not_overlearn": [
+        "Do not assume the prior settles the decision.",
+        "Do not treat a weak reference class as discipline."
+      ],
+      "source_refs": [
+        {
+          "source_id": "base-rates-model-page-example",
+          "path": "docs/product/mental-model-teacher-product-contract-examples-v0.json",
+          "source_type": "contract_example"
+        },
+        {
+          "source_id": "base-rates-system-2-relation-example",
+          "path": "docs/product/mental-model-teacher-product-contract-examples-v0.json",
+          "source_type": "contract_example"
+        }
+      ],
+      "human_review_status": "not_reviewed",
+      "product_proof": false,
+      "runtime_integration_authorized": false,
+      "missingness": {
+        "status": "partial",
+        "missing_fields": [
+          "real_case_artifact"
+        ],
+        "notes": [
+          "Example fixture only; no Teacher case artifact is claimed."
+        ]
+      },
+      "non_claims": [
+        "not_product_proof",
+        "not_human_validation",
+        "not_answer_correctness",
+        "not_advice_correctness",
+        "not_runtime_integration",
+        "not_action_authorization",
+        "lesson_is_not_advice",
+        "practice_is_not_validation"
+      ]
+    },
+    "visual_graph": {
+      "schema_version": "lolla.mental_model_teacher.visual_graph.v0",
+      "graph_id": "contract-fixture-base-rates-neighborhood",
+      "graph_scope": "lesson_neighborhood",
+      "nodes": [
+        {
+          "node_id": "base-rates",
+          "model_id": "base-rates",
+          "label": "Base Rates",
+          "node_type": "mental_model",
+          "href": "base-rates.md",
+          "source_status": "contract_fixture"
+        },
+        {
+          "node_id": "system-2",
+          "model_id": "system-2",
+          "label": "System 2",
+          "node_type": "mental_model",
+          "href": "system-2.md",
+          "source_status": "contract_fixture"
+        }
+      ],
+      "edges": [
+        {
+          "edge_id": "base-rates__ally__system-2",
+          "source_node_id": "base-rates",
+          "target_node_id": "system-2",
+          "relation_id": "base-rates__ally__system-2",
+          "relation_type": "ally",
+          "label": "supports slower reference-class comparison",
+          "href": "base-rates__ally__system-2.md",
+          "source_status": "contract_fixture",
+          "confidence": "high"
+        }
+      ],
+      "source_artifacts": [
+        {
+          "artifact_id": "relation-example",
+          "path": "docs/product/mental-model-teacher-product-contract-examples-v0.json",
+          "source_type": "contract_example"
+        }
+      ],
+      "layout_hint": "small_neighborhood",
+      "default_focus": "base-rates",
+      "filters": {
+        "relation_types": [
+          "ally",
+          "antagonist",
+          "tension"
+        ],
+        "max_nodes": 10
+      },
+      "missingness": {
+        "status": "partial",
+        "missing_fields": [
+          "rendered_layout"
+        ],
+        "notes": [
+          "Example fixture only; PR-P8 will render a local graph prototype later."
+        ]
+      },
+      "non_claims": [
+        "not_product_proof",
+        "not_human_validation",
+        "not_answer_correctness",
+        "not_advice_correctness",
+        "not_runtime_integration",
+        "not_action_authorization",
+        "graph_is_navigation_not_proof",
+        "edge_is_not_proof"
+      ]
+    }
+  }
+}
