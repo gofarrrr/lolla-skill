@@ -1,0 +1,834 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mental Model Teacher Pilot Review</title>
+  <style>
+
+:root {
+  color-scheme: light;
+  --bg: #f4f6f8;
+  --surface: #ffffff;
+  --surface-alt: #eef3f4;
+  --ink: #172126;
+  --muted: #63717a;
+  --line: #d8e0e3;
+  --teal: #0f766e;
+  --teal-soft: #ddf3ef;
+  --blue: #315a96;
+  --blue-soft: #e3edf9;
+  --amber: #b85c1d;
+  --amber-soft: #fff0df;
+  --rose: #954c65;
+  --rose-soft: #f8e6ed;
+  --green: #477244;
+  --green-soft: #e6f2e4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+a {
+  color: var(--blue);
+  font-weight: 650;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+button:hover,
+button.is-active {
+  border-color: var(--teal);
+  background: var(--teal-soft);
+}
+
+button:focus-visible,
+a:focus-visible,
+textarea:focus-visible,
+input:focus-visible,
+.graph-node:focus-visible,
+.graph-edge-hit:focus-visible {
+  outline: 3px solid rgba(15, 118, 110, 0.22);
+  outline-offset: 2px;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+}
+
+.topbar {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 760;
+  letter-spacing: 0;
+}
+
+.brand p {
+  margin: 3px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.status-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 9px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface-alt);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 720;
+  white-space: nowrap;
+}
+
+.pill.teal {
+  background: var(--teal-soft);
+  border-color: #b5ddd7;
+}
+
+.pill.amber {
+  background: var(--amber-soft);
+  border-color: #efcaab;
+}
+
+.sidebar {
+  border-right: 1px solid var(--line);
+  background: var(--surface);
+  min-height: 0;
+  padding: 14px;
+}
+
+.case-list {
+  display: grid;
+  gap: 9px;
+}
+
+.case-button {
+  width: 100%;
+  min-height: 88px;
+  padding: 11px;
+  text-align: left;
+}
+
+.case-title {
+  display: block;
+  font-weight: 760;
+}
+
+.case-move {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.main {
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+}
+
+.case-header {
+  padding: 18px 22px 14px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.case-header h2 {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: 0;
+}
+
+.case-header p {
+  max-width: 980px;
+  margin: 8px 0 0;
+  color: var(--muted);
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(340px, 0.75fr);
+  gap: 16px;
+  padding: 16px;
+}
+
+.column {
+  display: grid;
+  gap: 16px;
+  align-content: start;
+}
+
+.panel {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  background: #fbfcfd;
+}
+
+.panel-header h3 {
+  margin: 0;
+  font-size: 15px;
+  letter-spacing: 0;
+}
+
+.panel-body {
+  padding: 14px;
+}
+
+.lead {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.35;
+  font-weight: 760;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.model-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.model-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  background: #fbfcfd;
+}
+
+.model-card h4 {
+  margin: 0 0 5px;
+  font-size: 14px;
+}
+
+.model-card p {
+  margin: 7px 0 0;
+}
+
+.boundary {
+  border-left: 3px solid var(--amber);
+  padding-left: 10px;
+  color: #5e4026;
+}
+
+.practice-box {
+  display: grid;
+  gap: 8px;
+  border: 1px solid #c9dfdb;
+  border-radius: 8px;
+  background: var(--teal-soft);
+  padding: 12px;
+}
+
+.practice-box strong {
+  font-size: 15px;
+}
+
+.graph-stage {
+  min-height: 300px;
+  background:
+    linear-gradient(rgba(23, 33, 38, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23, 33, 38, 0.045) 1px, transparent 1px),
+    #fbfcfd;
+  background-size: 32px 32px;
+}
+
+.graph-stage svg {
+  display: block;
+  width: 100%;
+  min-height: 300px;
+}
+
+.graph-edge {
+  stroke: var(--blue);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.graph-edge.is-selected {
+  stroke: var(--amber);
+  stroke-width: 5;
+}
+
+.graph-edge-hit {
+  stroke: transparent;
+  stroke-width: 22;
+  cursor: pointer;
+}
+
+.graph-node circle {
+  fill: var(--surface);
+  stroke: var(--teal);
+  stroke-width: 3;
+}
+
+.graph-node.is-selected circle {
+  fill: var(--teal-soft);
+  stroke: var(--amber);
+  stroke-width: 4;
+}
+
+.graph-node text {
+  fill: var(--ink);
+  font-size: 12px;
+  font-weight: 740;
+  text-anchor: middle;
+}
+
+.detail-list {
+  display: grid;
+  gap: 8px;
+}
+
+.detail-list p {
+  margin: 0;
+}
+
+.link-row {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+}
+
+.link-button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+}
+
+.compare-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.source-box {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  background: #fbfcfd;
+}
+
+.source-box h4 {
+  margin: 0 0 8px;
+  font-size: 14px;
+}
+
+.source-box p,
+.source-box pre {
+  margin: 0;
+}
+
+.source-box pre {
+  white-space: pre-wrap;
+  font-family: inherit;
+  color: var(--muted);
+}
+
+.review-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.criterion {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.criterion legend {
+  padding: 0 4px;
+  font-weight: 740;
+}
+
+.radio-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.radio-row label {
+  display: flex;
+  min-height: 30px;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fbfcfd;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+textarea {
+  width: 100%;
+  min-height: 86px;
+  margin-top: 10px;
+  resize: vertical;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 9px;
+  color: var(--ink);
+  background: #fbfcfd;
+}
+
+.nonclaims {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+
+.nonclaims .pill {
+  background: var(--rose-soft);
+  border-color: #edc5d2;
+}
+
+@media (max-width: 1040px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .case-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .topbar {
+    grid-template-columns: 1fr;
+  }
+
+  .status-row {
+    justify-content: flex-start;
+  }
+
+  .case-list,
+  .compare-grid,
+  .radio-row {
+    grid-template-columns: 1fr;
+  }
+
+  .case-header h2 {
+    font-size: 20px;
+  }
+}
+  </style>
+</head>
+<body>
+  <div id="app" class="app-shell"></div>
+  <script id="surface-data" type="application/json">{"cases": [{"artifact_links": {"decision_work": "../../conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md", "lesson": "../mental-model-teacher-three-case-product-pilot-v0/lessons/launch-public-enterprise-beta.md", "teacher_card": "../../../reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_card.md", "teacher_note": "../../../reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher.md"}, "artifact_refs": {"decision_work_boundary_reference": "docs/conversation-understanding/decision-work-brief-rendered-launch-public-enterprise-beta-v0.md", "graph_object": "docs/product/mental-model-teacher-three-case-product-pilot-v0/graphs/launch-public-enterprise-beta.graph.json", "lesson_object": "docs/product/mental-model-teacher-three-case-product-pilot-v0/objects/launch-public-enterprise-beta.lesson.json", "product_lesson_page": "docs/product/mental-model-teacher-three-case-product-pilot-v0/lessons/launch-public-enterprise-beta.md", "teacher_card": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_card.md", "teacher_note": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher.md"}, "case_anchor": "The original answer looked coherent enough to accept. It made deference visible so the user could separate evidence from confidence, role, or prestige. Break the recommendation down to the facts and constraints that must be true. Ask what evidence remains if the authority signal is removed.", "case_id": "launch-public-enterprise-beta", "case_title": "Launch Public Enterprise Beta", "do_not_overlearn": ["This lesson does not prove the original answer was wrong or the revised answer was right.", "It teaches a reasoning move and a model relationship; it does not authorize a decision.", "This product page is not a Decision Work brief and does not authorize action."], "graph": {"default_focus": "authority-bias", "edges": [{"confidence": "medium", "edge_id": "authority-bias__first-principles-thinking__antagonist", "href": "../../../reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/okf/mental_model_teacher/relations/authority-bias__first-principles-thinking__antagonist.md", "label": "Authority Bias and First Principles Thinking (antagonist)", "missingness_status": "partial", "relation_id": "authority-bias__first-principles-thinking__antagonist", "relation_type": "antagonist", "source_node_id": "authority-bias", "source_status": "reviewed_relation_graph", "target_node_id": "first-principles-thinking"}], "graph_id": "lesson-neighborhood-launch-public-enterprise-beta", "missingness": {"missing_fields": ["browser_graph_ui", "full_model_product_pages", "full_relation_product_pages", "human_review"], "notes": ["Graph data only; no browser graph UI is added in this PR-P9 retry.", "Edges come from imported Teacher relation deep-dive source and are navigation, not proof."], "status": "partial"}, "nodes": [{"href": "../../../reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/okf/mental_model_teacher/models/authority-bias.md", "label": "Test The Authority, Not The Aura", "missingness_status": "partial", "model_id": "authority-bias", "node_id": "authority-bias", "node_type": "mental_model", "role": "primary_teaching_lens", "source_status": "source_artifact"}, {"href": "../../../reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/okf/mental_model_teacher/models/information-asymmetry.md", "label": "Ask Who Knows What", "missingness_status": "partial", "model_id": "information-asymmetry", "node_id": "information-asymmetry", "node_type": "mental_model", "role": "primary_teaching_lens", "source_status": "source_artifact"}, {"href": "../../../reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/okf/mental_model_teacher/models/first-principles-thinking.md", "label": "Strip It Back To First Principles", "missingness_status": "partial", "model_id": "first-principles-thinking", "node_id": "first-principles-thinking", "node_type": "mental_model", "role": "boundary_lens", "source_status": "source_artifact"}], "non_claims": ["edge_is_not_proof", "graph_is_navigation_not_proof", "not_action_authorization", "not_advice_correctness", "not_answer_correctness", "not_human_validation", "not_product_proof", "not_runtime_integration"]}, "human_review_status": "pending", "missingness": {"missing_fields": ["human_review", "full_model_product_pages", "full_relation_product_pages"], "notes": ["Built from imported Teacher source artifacts after PR-P9 source-custody unblocker.", "Model and relation clickthroughs use imported OKF source views in this retry."], "status": "partial"}, "model_stack": [{"boundary": "Credibility is standing in for falsification, evidence testing, or domain-boundary checks.", "model_id": "authority-bias", "role": "primary_teaching_lens", "teaching_name": "Test The Authority, Not The Aura", "teaching_note": "When a recommendation depends on authority, make the deference explicit, verify expertise, trustworthiness, domain fit, and track record, then require the authority's reasoning and override evidence so rank or polish accelerates triage without replacing falsification."}, {"boundary": "The critical evidence is externally audited, directly observable in production, or contractually hard for one side to manipulate.", "model_id": "information-asymmetry", "role": "primary_teaching_lens", "teaching_name": "Ask Who Knows What", "teaching_note": "When the party being evaluated controls dashboards, references, pilots, or reported outcomes, treat the visible evidence as part of the asymmetry: name what the party can choose or game, identify the hidden payoff it may optimize, and require an independent signal or direct observability before commitment."}, {"boundary": "First principles is being used as a status move to ignore practical constraints, accumulated know-how, or real implementation costs.", "model_id": "first-principles-thinking", "role": "boundary_lens", "teaching_name": "Strip It Back To First Principles", "teaching_note": "When inherited categories or conventional rules are distorting the problem, strip the case to facts and desired outcome, identify what would have to be true for a novel path to work, and rebuild toward concrete action without using first-principles language as status theater."}], "non_claims": ["lesson_is_not_advice", "not_action_authorization", "not_advice_correctness", "not_answer_correctness", "not_human_validation", "not_product_proof", "not_runtime_integration", "practice_is_not_validation"], "practice_rep": {"prompt": "Test The Authority, Not The Aura", "user_action": "Name the tempting first read. If the impressive source disappeared, what evidence would still justify this? Name the boundary that would change confidence."}, "product_proof": false, "relation_story": "Authority Bias and First Principles Thinking form an antagonist pair. First principles thinking strips away inherited doctrine and forces a return to core facts when expert prestige is doing too much work. Use the pair as a correction loop: Authority Bias names the pull that can dominate the first interpretation, while First Principles Thinking asks what would remain if that pull stopped counting as proof.", "runtime_integration_authorized": false, "source_snapshots": {"card": {"do_not_overlearn": "This lesson does not prove the original answer was wrong or the revised answer was right.", "models_together": "Plain teaching: one lens names the pull of status, polish, or expert authority; the other lens strips the situation back to facts that would still matter without that authority. Use them as a correction loop before trusting the first confident recommendation. Relationship label: antagonist pair.", "practice": "", "thinking_move": "This teaches the reasoning move behind the case; it is not judging whether the decision was correct.\n\nAsk what evidence remains if the authority signal is removed.", "why_it_mattered": "It made deference visible so the user could separate evidence from confidence, role, or prestige. The boundary lens added: Break the recommendation down to the facts and constraints that must be true."}, "note": {"case_anchor": "The case creates a reasoning pressure: It made deference visible so the user could separate evidence from confidence, role, or prestige. Break the recommendation down to the facts and constraints that must be true. Ask what evidence remains if the authority signal is removed.", "models_together": "Plain teaching: one lens names the pull of status, polish, or expert authority; the other lens strips the situation back to facts that would still matter without that authority. Use them as a correction loop before trusting the first confident recommendation. Relationship label: antagonist pair.\n\nRelationship label: Authority Bias and First Principles Thinking form an antagonist pair. First principles thinking strips away inherited doctrine and forces a return to core facts when expert prestige is doing too much work. Use the pair as a correction loop: Authority Bias names the pull that can dominate the first...", "what_to_learn": "This teaches the reasoning move behind the case; it is not judging whether the decision was correct.", "where_it_stops": "It teaches a reasoning move and a model relationship; it does not authorize a decision."}}, "thinking_move": "Ask what evidence remains if the authority signal is removed."}, {"artifact_links": {"decision_work": "../../conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md", "lesson": "../mental-model-teacher-three-case-product-pilot-v0/lessons/deploy-assisted-intake-routing.md", "teacher_card": "../../../reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/deploy-assisted-intake-routing/mental_model_teacher_card.md", "teacher_note": "../../../reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/deploy-assisted-intake-routing/mental_model_teacher.md"}, "artifact_refs": {"decision_work_boundary_reference": "docs/conversation-understanding/decision-work-brief-rendered-deploy-assisted-intake-routing-v0.md", "graph_object": "docs/product/mental-model-teacher-three-case-product-pilot-v0/graphs/deploy-assisted-intake-routing.graph.json", "lesson_object": "docs/product/mental-model-teacher-three-case-product-pilot-v0/objects/deploy-assisted-intake-routing.lesson.json", "product_lesson_page": "docs/product/mental-model-teacher-three-case-product-pilot-v0/lessons/deploy-assisted-intake-routing.md", "teacher_card": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/deploy-assisted-intake-routing/mental_model_teacher_card.md", "teacher_note": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/deploy-assisted-intake-routing/mental_model_teacher.md"}, "case_anchor": "The original answer looked coherent enough to accept. It stopped one big recommendation from flattening different decision types into the same treatment. Separate the reversible experiment from the irreversible commitment. Sort the situation into buckets before deciding what each bucket needs.", "case_id": "deploy-assisted-intake-routing", "case_title": "Deploy Assisted Intake Routing", "do_not_overlearn": ["This lesson does not prove the original answer was wrong or the revised answer was right.", "It teaches a reasoning move and a model relationship; it does not authorize a decision.", "This product page is not a Decision Work brief and does not authorize action."], "graph": {"default_focus": "category-decisions", "edges": [{"confidence": "medium", "edge_id": "cognitive-load-theory__optionality__structured_tension", "href": "../../../reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/deploy-assisted-intake-routing/okf/mental_model_teacher/relations/cognitive-load-theory__optionality__structured_tension.md", "label": "Cognitive Load Theory and Optionality (tension)", "missingness_status": "partial", "relation_id": "cognitive-load-theory__optionality__structured_tension", "relation_type": "tension", "source_node_id": "cognitive-load-theory", "source_status": "reviewed_relation_graph", "target_node_id": "optionality"}], "graph_id": "lesson-neighborhood-deploy-assisted-intake-routing", "missingness": {"missing_fields": ["browser_graph_ui", "full_model_product_pages", "full_relation_product_pages", "human_review"], "notes": ["Graph data only; no browser graph UI is added in this PR-P9 retry.", "Edges come from imported Teacher relation deep-dive source and are navigation, not proof."], "status": "partial"}, "nodes": [{"href": "../../../reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/deploy-assisted-intake-routing/okf/mental_model_teacher/models/category-decisions.md", "label": "Sort The Case Before Judging It", "missingness_status": "partial", "model_id": "category-decisions", "node_id": "category-decisions", "node_type": "mental_model", "role": "primary_teaching_lens", "source_status": "source_artifact"}, {"href": "../../../reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/deploy-assisted-intake-routing/okf/mental_model_teacher/models/cognitive-load-theory.md", "label": "Reduce The Thinking Burden", "missingness_status": "partial", "model_id": "cognitive-load-theory", "node_id": "cognitive-load-theory", "node_type": "mental_model", "role": "primary_teaching_lens", "source_status": "source_artifact"}, {"href": "../../../reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/deploy-assisted-intake-routing/okf/mental_model_teacher/models/optionality.md", "label": "Preserve A Cheap Test", "missingness_status": "partial", "model_id": "optionality", "node_id": "optionality", "node_type": "mental_model", "role": "boundary_lens", "source_status": "source_artifact"}], "non_claims": ["edge_is_not_proof", "graph_is_navigation_not_proof", "not_action_authorization", "not_advice_correctness", "not_answer_correctness", "not_human_validation", "not_product_proof", "not_runtime_integration"]}, "human_review_status": "pending", "missingness": {"missing_fields": ["human_review", "full_model_product_pages", "full_relation_product_pages"], "notes": ["Built from imported Teacher source artifacts after PR-P9 source-custody unblocker.", "Model and relation clickthroughs use imported OKF source views in this retry."], "status": "partial"}, "model_stack": [{"boundary": "Yesterday's buckets are being preserved after the underlying causal structure has changed.", "model_id": "category-decisions", "role": "primary_teaching_lens", "teaching_name": "Sort The Case Before Judging It", "teaching_note": "When repeated decisions are vulnerable to inconsistent in-the-moment exceptions, use category decisions to define stable buckets and boundaries before evaluating individual cases, while checking that the category still matches the underlying situation."}, {"boundary": "Simplification would remove the causal structure, nuance, or thresholds needed to make a real decision rather than merely creating a feeling of clarity.", "model_id": "cognitive-load-theory", "role": "primary_teaching_lens", "teaching_name": "Reduce The Thinking Burden", "teaching_note": "When complexity, stress, or presentation design is overloading working memory, simplify sequence and format so attention goes to the next useful distinction while preserving the causal cues needed for correct action."}, {"boundary": "Optionality has become a permanent excuse not to commit even after evidence has clarified which path has the best economics or strategic fit.", "model_id": "optionality", "role": "boundary_lens", "teaching_name": "Preserve A Cheap Test", "teaching_note": "When an important decision has collapsed into a do-or-do-not frame, separate invention from evaluation: generate at least three viable options, then compare benefits, costs, payoffs, and probabilities before choosing."}], "non_claims": ["lesson_is_not_advice", "not_action_authorization", "not_advice_correctness", "not_answer_correctness", "not_human_validation", "not_product_proof", "not_runtime_integration", "practice_is_not_validation"], "practice_rep": {"prompt": "Sort The Case Before Judging It", "user_action": "Name the tempting first read. Which category does this part belong to, and does that category need a different rule? Name the boundary that would change confidence."}, "product_proof": false, "relation_story": "Cognitive Load Theory and Optionality form a structured tension pair. Cognitive Load Theory conflicts with Optionality when too many parallel branches exceed practical decision bandwidth. Use the pair as a calibration exercise: do not maximize either lens. Cognitive Load Theory protects against overload, while Optionality protects against premature closure. The lesson is to choose the smallest set of options that still preserves learning.", "runtime_integration_authorized": false, "source_snapshots": {"card": {"do_not_overlearn": "This lesson does not prove the original answer was wrong or the revised answer was right.", "models_together": "Plain teaching: one lens protects the user from overload; the other protects the user from closing options too early. Use them as a calibration exercise: keep the smallest set of options that still buys learning. Relationship label: structured tension pair.", "practice": "", "thinking_move": "This teaches the reasoning move behind the case; it is not judging whether the decision was correct.\n\nSort the situation into buckets before deciding what each bucket needs.", "why_it_mattered": "It stopped one big recommendation from flattening different decision types into the same treatment. The boundary lens added: Separate the reversible experiment from the irreversible commitment."}, "note": {"case_anchor": "The case creates a reasoning pressure: It stopped one big recommendation from flattening different decision types into the same treatment. Separate the reversible experiment from the irreversible commitment. Sort the situation into buckets before deciding what each bucket needs.", "models_together": "Plain teaching: one lens protects the user from overload; the other protects the user from closing options too early. Use them as a calibration exercise: keep the smallest set of options that still buys learning. Relationship label: structured tension pair.\n\nRelationship label: Cognitive Load Theory and Optionality form a structured tension pair. Cognitive Load Theory conflicts with Optionality when too many parallel branches exceed practical decision bandwidth. Use the pair as a calibration exercise: do not maximize either lens. Cognitive Load Theory protects against overload, while Optionality protects again...", "what_to_learn": "This teaches the reasoning move behind the case; it is not judging whether the decision was correct.", "where_it_stops": "It teaches a reasoning move and a model relationship; it does not authorize a decision."}}, "thinking_move": "Sort the situation into buckets before deciding what each bucket needs."}, {"artifact_links": {"decision_work": "../../conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md", "lesson": "../mental-model-teacher-three-case-product-pilot-v0/lessons/ceo-remove-founding-cofounder.md", "teacher_card": "../../../reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/ceo-remove-founding-cofounder/mental_model_teacher_card.md", "teacher_note": "../../../reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/ceo-remove-founding-cofounder/mental_model_teacher.md"}, "artifact_refs": {"decision_work_boundary_reference": "docs/conversation-understanding/decision-work-brief-rendered-ceo-remove-founding-cofounder-v0.md", "graph_object": "docs/product/mental-model-teacher-three-case-product-pilot-v0/graphs/ceo-remove-founding-cofounder.graph.json", "lesson_object": "docs/product/mental-model-teacher-three-case-product-pilot-v0/objects/ceo-remove-founding-cofounder.lesson.json", "product_lesson_page": "docs/product/mental-model-teacher-three-case-product-pilot-v0/lessons/ceo-remove-founding-cofounder.md", "teacher_card": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/ceo-remove-founding-cofounder/mental_model_teacher_card.md", "teacher_note": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/ceo-remove-founding-cofounder/mental_model_teacher.md"}, "case_anchor": "The original answer looked coherent enough to accept. It kept the human pressure visible without pretending the emotion was the whole decision. Ask what would make the plan obviously fail, then look for those conditions now. Name the emotion in the room, then separate it from the decision rule.", "case_id": "ceo-remove-founding-cofounder", "case_title": "CEO Removes Founding Cofounder", "do_not_overlearn": ["This lesson does not prove the original answer was wrong or the revised answer was right.", "It teaches a reasoning move and a model relationship; it does not authorize a decision.", "This product page is not a Decision Work brief and does not authorize action.", "High-risk caveat: do not infer legal, HR, governance, interpersonal, answer, or advice correctness from this lesson."], "graph": {"default_focus": "emotional-intelligence", "edges": [{"confidence": "medium", "edge_id": "inversion__premortem__ally", "href": "../../../reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/ceo-remove-founding-cofounder/okf/mental_model_teacher/relations/inversion__premortem__ally.md", "label": "Inversion and Premortem (ally)", "missingness_status": "partial", "relation_id": "inversion__premortem__ally", "relation_type": "ally", "source_node_id": "inversion", "source_status": "reviewed_relation_graph", "target_node_id": "premortem"}], "graph_id": "lesson-neighborhood-ceo-remove-founding-cofounder", "missingness": {"missing_fields": ["browser_graph_ui", "full_model_product_pages", "full_relation_product_pages", "human_review"], "notes": ["Graph data only; no browser graph UI is added in this PR-P9 retry.", "Edges come from imported Teacher relation deep-dive source and are navigation, not proof."], "status": "partial"}, "nodes": [{"href": "../../../reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/ceo-remove-founding-cofounder/okf/mental_model_teacher/models/emotional-intelligence.md", "label": "Name The Feeling Without Letting It Rule", "missingness_status": "partial", "model_id": "emotional-intelligence", "node_id": "emotional-intelligence", "node_type": "mental_model", "role": "primary_teaching_lens", "source_status": "source_artifact"}, {"href": "../../../reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/ceo-remove-founding-cofounder/okf/mental_model_teacher/models/premortem.md", "label": "Make The Failure Visible First", "missingness_status": "partial", "model_id": "premortem", "node_id": "premortem", "node_type": "mental_model", "role": "primary_teaching_lens", "source_status": "source_artifact"}, {"href": "../../../reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/ceo-remove-founding-cofounder/okf/mental_model_teacher/models/inversion.md", "label": "Turn The Plan Upside Down", "missingness_status": "partial", "model_id": "inversion", "node_id": "inversion", "node_type": "mental_model", "role": "boundary_lens", "source_status": "source_artifact"}], "non_claims": ["edge_is_not_proof", "graph_is_navigation_not_proof", "not_action_authorization", "not_advice_correctness", "not_answer_correctness", "not_human_validation", "not_product_proof", "not_runtime_integration"]}, "human_review_status": "pending", "missingness": {"missing_fields": ["human_review", "full_model_product_pages", "full_relation_product_pages"], "notes": ["Built from imported Teacher source artifacts after PR-P9 source-custody unblocker.", "Model and relation clickthroughs use imported OKF source views in this retry.", "High-risk case: preserve legal, HR, governance, interpersonal, answer, and advice non-claims."], "status": "partial"}, "model_stack": [{"boundary": "Empathy is being treated as a substitute for standards, evidence, or hard conversations.", "model_id": "emotional-intelligence", "role": "primary_teaching_lens", "teaching_name": "Name The Feeling Without Letting It Rule", "teaching_note": "When the technically correct answer may fail because emotions, trust, morale, or perceived fairness shape adoption, require the answer to identify the emotional signal, validate it, and preserve standards, evidence, and accountability."}, {"boundary": "The exercise is producing an obvious list of worries without owners, mitigations, or decision changes tied to what was surfaced.", "model_id": "premortem", "role": "primary_teaching_lens", "teaching_name": "Make The Failure Visible First", "teaching_note": "Before commitment, treat the plan as already failed, work backward through plausible causes and domino effects, then convert controllable failure paths into mitigations, owners, reversal thresholds, or decision changes."}, {"boundary": "Inversion is being used as a substitute for execution - identifying what to avoid without subsequently taking positive action leads to paralysis, not progress.", "model_id": "inversion", "role": "boundary_lens", "teaching_name": "Turn The Plan Upside Down", "teaching_note": "Reverse the desired outcome into a concrete non-goal, identify the actions that would create that failure, and remove or avoid those actions before committing resources."}], "non_claims": ["lesson_is_not_advice", "not_action_authorization", "not_advice_correctness", "not_answer_correctness", "not_human_validation", "not_product_proof", "not_runtime_integration", "practice_is_not_validation"], "practice_rep": {"prompt": "Name The Feeling Without Letting It Rule", "user_action": "Name the tempting first read. What feeling is present here, and what rule would still be fair if that feeling changed? Name the boundary that would change confidence."}, "product_proof": false, "relation_story": "Inversion and Premortem form an ally pair. Premortem is a direct procedural application of Inversion - it operationalizes backward-from-failure reasoning into a repeatable team exercise that overcomes groupthink. Use the pair as a sequence: Inversion supplies the direction of the reasoning move, and Premortem turns that move into a repeatable procedure. The lesson is not to choose between them, but to let one make the other usable.", "runtime_integration_authorized": false, "source_snapshots": {"card": {"do_not_overlearn": "This lesson does not prove the original answer was wrong or the revised answer was right.", "models_together": "Plain teaching: use the lenses as a sequence. First, name the emotional signal. Second, ask what fair rule would still apply if the feeling changed. Third, imagine the transition failed and look for those conditions now. Relationship label: ally pair.", "practice": "", "thinking_move": "This teaches the reasoning move behind the case; it is not judging whether the decision was correct.\n\nName the emotion in the room, then separate it from the decision rule.", "why_it_mattered": "It kept the human pressure visible without pretending the emotion was the whole decision. The boundary lens added: Ask what would make the plan obviously fail, then look for those conditions now."}, "note": {"case_anchor": "The case creates a reasoning pressure: It kept the human pressure visible without pretending the emotion was the whole decision. Ask what would make the plan obviously fail, then look for those conditions now. Name the emotion in the room, then separate it from the decision rule.", "models_together": "Plain teaching: use the lenses as a sequence. First, name the emotional signal. Second, ask what fair rule would still apply if the feeling changed. Third, imagine the transition failed and look for those conditions now. Relationship label: ally pair.\n\nRelationship label: Inversion and Premortem form an ally pair. Premortem is a direct procedural application of Inversion - it operationalizes backward-from-failure reasoning into a repeatable team exercise that overcomes groupthink. Use the pair as a sequence: Inversion supplies the direction of the reasoning move, and Premortem turns that move into a repeatable...", "what_to_learn": "This teaches the reasoning move behind the case; it is not judging whether the decision was correct.", "where_it_stops": "It teaches a reasoning move and a model relationship; it does not authorize a decision."}}, "thinking_move": "Name the emotion in the room, then separate it from the decision rule."}], "decision_gate": "needs_human_review_before_expansion", "non_claims": {"advice_correctness": false, "agent_or_automatic_action_authorized": false, "answer_correctness": false, "graph_edges_are_proof": false, "human_validated": false, "product_proof": false, "runtime_integration_authorized": false}, "product_lane": "Mental Model Teacher Product Surface And Visual Library", "review_criteria": [{"id": "educational_value", "label": "Educational value"}, {"id": "clarity", "label": "Clarity"}, {"id": "relation_understanding", "label": "Relation understanding"}, {"id": "practice_usefulness", "label": "Practice usefulness"}, {"id": "non_overclaiming", "label": "Non-overclaiming"}, {"id": "separation_from_decision_work", "label": "Separation from Decision Work"}], "schema_version": "lolla.mental_model_teacher.visible_review_surface.v0", "status": "visible_review_surface_ready_for_human_review"}</script>
+  <script>
+
+const surface = JSON.parse(document.getElementById("surface-data").textContent);
+let selectedCaseId = surface.cases[0].case_id;
+let selectedGraphItem = { kind: "node", id: surface.cases[0].graph.default_focus };
+
+const app = document.getElementById("app");
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function caseById(caseId) {
+  return surface.cases.find((item) => item.case_id === caseId) || surface.cases[0];
+}
+
+function labelLines(label, maxChars = 18) {
+  const words = String(label).split(/\s+/);
+  const lines = [];
+  let current = "";
+  for (const word of words) {
+    const next = current ? `${current} ${word}` : word;
+    if (next.length > maxChars && current) {
+      lines.push(current);
+      current = word;
+    } else {
+      current = next;
+    }
+  }
+  if (current) lines.push(current);
+  return lines.slice(0, 3);
+}
+
+function render() {
+  const item = caseById(selectedCaseId);
+  app.innerHTML = `
+    <header class="topbar">
+      <div class="brand">
+        <h1>Mental Model Teacher Pilot</h1>
+        <p>Case is the anchor. Reasoning move is the subject. Model relationship is the lesson. Practice rep is the product value.</p>
+      </div>
+      <div class="status-row">
+        <span class="pill teal">${escapeHtml(surface.decision_gate)}</span>
+        <span class="pill amber">human review pending</span>
+        <span class="pill">offline static surface</span>
+      </div>
+    </header>
+    <aside class="sidebar">
+      <div class="case-list">
+        ${surface.cases.map(renderCaseButton).join("")}
+      </div>
+    </aside>
+    <main class="main">
+      ${renderCaseHeader(item)}
+      <div class="workspace">
+        <section class="column">
+          ${renderLessonPanel(item)}
+          ${renderModelStack(item)}
+          ${renderComparison(item)}
+        </section>
+        <section class="column">
+          ${renderGraphPanel(item)}
+          ${renderReviewPanel(item)}
+          ${renderNonClaims(item)}
+        </section>
+      </div>
+    </main>
+  `;
+  wireEvents();
+}
+
+function renderCaseButton(item) {
+  const active = item.case_id === selectedCaseId ? " is-active" : "";
+  return `
+    <button class="case-button${active}" data-case-id="${escapeHtml(item.case_id)}">
+      <span class="case-title">${escapeHtml(item.case_title)}</span>
+      <span class="case-move">${escapeHtml(item.thinking_move)}</span>
+    </button>
+  `;
+}
+
+function renderCaseHeader(item) {
+  return `
+    <section class="case-header">
+      <div class="status-row">
+        <span class="pill teal">review status: ${escapeHtml(item.human_review_status)}</span>
+        <span class="pill">product proof: ${String(item.product_proof)}</span>
+        <span class="pill">runtime authorized: ${String(item.runtime_integration_authorized)}</span>
+      </div>
+      <h2>${escapeHtml(item.case_title)}</h2>
+      <p>${escapeHtml(item.case_anchor)}</p>
+    </section>
+  `;
+}
+
+function renderLessonPanel(item) {
+  return `
+    <article class="panel">
+      <div class="panel-header">
+        <h3>Productized Lesson</h3>
+        <div class="link-row">
+          <a class="link-button" href="${escapeHtml(item.artifact_links.lesson)}">lesson page</a>
+          <a class="link-button" href="${escapeHtml(item.artifact_links.decision_work)}">Decision Work boundary</a>
+        </div>
+      </div>
+      <div class="panel-body">
+        <p class="lead">${escapeHtml(item.thinking_move)}</p>
+        <h4>Relation story</h4>
+        <p>${escapeHtml(item.relation_story)}</p>
+        <h4>Practice rep</h4>
+        <div class="practice-box">
+          <strong>${escapeHtml(item.practice_rep.prompt)}</strong>
+          <span>${escapeHtml(item.practice_rep.user_action)}</span>
+        </div>
+        <h4>Do not overlearn</h4>
+        <ul>
+          ${item.do_not_overlearn.map((line) => `<li>${escapeHtml(line)}</li>`).join("")}
+        </ul>
+      </div>
+    </article>
+  `;
+}
+
+function renderModelStack(item) {
+  return `
+    <article class="panel">
+      <div class="panel-header">
+        <h3>Model Stack</h3>
+        <span class="pill">${item.model_stack.length} models</span>
+      </div>
+      <div class="panel-body model-grid">
+        ${item.model_stack.map((model) => `
+          <div class="model-card">
+            <h4>${escapeHtml(model.teaching_name)}</h4>
+            <span class="pill">${escapeHtml(model.role)}</span>
+            <p>${escapeHtml(model.teaching_note)}</p>
+            <p class="boundary">${escapeHtml(model.boundary)}</p>
+          </div>
+        `).join("")}
+      </div>
+    </article>
+  `;
+}
+
+function renderComparison(item) {
+  const card = item.source_snapshots.card;
+  const note = item.source_snapshots.note;
+  return `
+    <article class="panel">
+      <div class="panel-header">
+        <h3>Raw Teacher Comparison</h3>
+        <div class="link-row">
+          <a class="link-button" href="${escapeHtml(item.artifact_links.teacher_card)}">card</a>
+          <a class="link-button" href="${escapeHtml(item.artifact_links.teacher_note)}">note</a>
+        </div>
+      </div>
+      <div class="panel-body compare-grid">
+        <div class="source-box">
+          <h4>Teacher card snapshot</h4>
+          <pre>${escapeHtml([card.thinking_move, card.why_it_mattered, card.models_together].filter(Boolean).join("\n\n"))}</pre>
+        </div>
+        <div class="source-box">
+          <h4>Teacher note snapshot</h4>
+          <pre>${escapeHtml([note.what_to_learn, note.case_anchor, note.models_together, note.where_it_stops].filter(Boolean).join("\n\n"))}</pre>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+function renderGraphPanel(item) {
+  return `
+    <article class="panel">
+      <div class="panel-header">
+        <h3>Lesson Graph</h3>
+        <span class="pill">${escapeHtml(item.graph.edges[0]?.relation_type || "relation")}</span>
+      </div>
+      <div class="graph-stage">
+        ${renderGraph(item)}
+      </div>
+      <div class="panel-body">
+        ${renderGraphDetails(item)}
+      </div>
+    </article>
+  `;
+}
+
+function renderGraph(item) {
+  const nodes = item.graph.nodes;
+  const positions = nodePositions(nodes.length);
+  const byId = Object.fromEntries(nodes.map((node, index) => [node.node_id, { ...node, ...positions[index] }]));
+  const edges = item.graph.edges.map((edge) => {
+    const source = byId[edge.source_node_id];
+    const target = byId[edge.target_node_id];
+    if (!source || !target) return "";
+    const selected = selectedGraphItem.kind === "edge" && selectedGraphItem.id === edge.edge_id ? " is-selected" : "";
+    return `
+      <g>
+        <line class="graph-edge${selected}" x1="${source.x}" y1="${source.y}" x2="${target.x}" y2="${target.y}"></line>
+        <line class="graph-edge-hit" tabindex="0" data-edge-id="${escapeHtml(edge.edge_id)}" x1="${source.x}" y1="${source.y}" x2="${target.x}" y2="${target.y}"></line>
+        <text x="${(source.x + target.x) / 2}" y="${(source.y + target.y) / 2 - 14}" text-anchor="middle" fill="#315a96" font-size="12" font-weight="740">${escapeHtml(edge.relation_type)}</text>
+      </g>
+    `;
+  }).join("");
+  const nodeMarkup = nodes.map((node, index) => {
+    const position = positions[index];
+    const selected = selectedGraphItem.kind === "node" && selectedGraphItem.id === node.node_id ? " is-selected" : "";
+    const lines = labelLines(node.label);
+    const startY = 124 - ((lines.length - 1) * 8);
+    return `
+      <g class="graph-node${selected}" tabindex="0" data-node-id="${escapeHtml(node.node_id)}" transform="translate(${position.x} ${position.y})">
+        <circle r="58"></circle>
+        ${lines.map((line, lineIndex) => `<text y="${startY + lineIndex * 16 - 100}">${escapeHtml(line)}</text>`).join("")}
+      </g>
+    `;
+  }).join("");
+  return `
+    <svg viewBox="0 0 640 320" role="img" aria-label="Lesson graph neighborhood">
+      ${edges}
+      ${nodeMarkup}
+    </svg>
+  `;
+}
+
+function nodePositions(count) {
+  if (count <= 2) {
+    return [{ x: 190, y: 160 }, { x: 450, y: 160 }];
+  }
+  return [{ x: 150, y: 160 }, { x: 345, y: 88 }, { x: 490, y: 228 }, { x: 345, y: 250 }];
+}
+
+function renderGraphDetails(item) {
+  if (selectedGraphItem.kind === "edge") {
+    const edge = item.graph.edges.find((candidate) => candidate.edge_id === selectedGraphItem.id) || item.graph.edges[0];
+    return `
+      <div class="detail-list">
+        <p><strong>${escapeHtml(edge.label)}</strong></p>
+        <p class="muted">Relation type: ${escapeHtml(edge.relation_type)}. Confidence: ${escapeHtml(edge.confidence)}. Edges are navigation context, not proof.</p>
+        <p><a href="${escapeHtml(edge.href)}">relation source view</a></p>
+      </div>
+    `;
+  }
+  const node = item.graph.nodes.find((candidate) => candidate.node_id === selectedGraphItem.id) || item.graph.nodes[0];
+  return `
+    <div class="detail-list">
+      <p><strong>${escapeHtml(node.label)}</strong></p>
+      <p class="muted">Role: ${escapeHtml(node.role)}. Source: ${escapeHtml(node.source_status)}. Missingness: ${escapeHtml(node.missingness_status)}.</p>
+      <p><a href="${escapeHtml(node.href)}">model source view</a></p>
+    </div>
+  `;
+}
+
+function renderReviewPanel(item) {
+  return `
+    <article class="panel">
+      <div class="panel-header">
+        <h3>Human Review</h3>
+        <span class="pill amber">blank</span>
+      </div>
+      <div class="panel-body review-grid">
+        ${surface.review_criteria.map((criterion) => `
+          <fieldset class="criterion">
+            <legend>${escapeHtml(criterion.label)}</legend>
+            <div class="radio-row">
+              ${["strong", "adequate", "weak", "cannot judge"].map((option) => `
+                <label>
+                  <input type="radio" name="${escapeHtml(item.case_id)}-${escapeHtml(criterion.id)}" value="${escapeHtml(option)}">
+                  ${escapeHtml(option)}
+                </label>
+              `).join("")}
+            </div>
+          </fieldset>
+        `).join("")}
+        <textarea aria-label="Review notes for selected case"></textarea>
+      </div>
+    </article>
+  `;
+}
+
+function renderNonClaims(item) {
+  return `
+    <article class="panel">
+      <div class="panel-header">
+        <h3>Non-Claims</h3>
+      </div>
+      <div class="panel-body nonclaims">
+        ${item.non_claims.map((claim) => `<span class="pill">${escapeHtml(claim)}</span>`).join("")}
+      </div>
+    </article>
+  `;
+}
+
+function wireEvents() {
+  document.querySelectorAll("[data-case-id]").forEach((button) => {
+    button.addEventListener("click", () => {
+      selectedCaseId = button.dataset.caseId;
+      const item = caseById(selectedCaseId);
+      selectedGraphItem = { kind: "node", id: item.graph.default_focus };
+      render();
+    });
+  });
+  document.querySelectorAll("[data-node-id]").forEach((node) => {
+    const activate = () => {
+      selectedGraphItem = { kind: "node", id: node.dataset.nodeId };
+      render();
+    };
+    node.addEventListener("click", activate);
+    node.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        activate();
+      }
+    });
+  });
+  document.querySelectorAll("[data-edge-id]").forEach((edge) => {
+    const activate = () => {
+      selectedGraphItem = { kind: "edge", id: edge.dataset.edgeId };
+      render();
+    };
+    edge.addEventListener("click", activate);
+    edge.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        activate();
+      }
+    });
+  });
+}
+
+render();
+  </script>
+</body>
+</html>
