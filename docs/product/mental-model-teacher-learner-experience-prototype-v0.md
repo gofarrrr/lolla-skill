@@ -35,6 +35,8 @@ case anchor -> reasoning trap -> thinking move -> model relation -> practice rep
 - `Models` mode presents reusable mental-model cards with lesson backlinks.
 - Clicking a model opens a formatted model detail view sourced from canonical
   Markdown, activation curation, intervention semantics, and relation semantics.
+- Canonical model names are primary; Teacher lesson labels appear only as
+  contextual lesson labels.
 - `Relations` mode presents relation cards as first-class teaching objects.
 - `Map` mode presents a focused lesson neighborhood, not a full-corpus graph.
 - `Review` mode is separate from the learner surface.
