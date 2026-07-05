@@ -1,0 +1,62 @@
+{
+  "schema": "lolla.mental_model_teacher.product_contracts_review.v0",
+  "status": "product_contracts_ready_for_review",
+  "product_lane": "Mental Model Teacher Product Surface And Visual Library",
+  "decision_gate": "proceed_to_pilot_model_relation_page_data_builder",
+  "recommended_next_pr": "Mental Model Teacher Pilot Model And Relation Page Data Builder v0",
+  "contract_module": "engine/system_b/mental_model_teacher_product_contracts.py",
+  "contract_doc": "docs/product/mental-model-teacher-product-contracts-v0.md",
+  "example_bundle": "docs/product/mental-model-teacher-product-contract-examples-v0.json",
+  "schemas": [
+    "lolla.mental_model_teacher.mental_model_page.v0",
+    "lolla.mental_model_teacher.relation_page.v0",
+    "lolla.mental_model_teacher.teacher_lesson.v0",
+    "lolla.mental_model_teacher.visual_graph.v0"
+  ],
+  "validated_object_types": [
+    "mental_model_page",
+    "relation_page",
+    "teacher_lesson",
+    "visual_graph"
+  ],
+  "required_contract_layers": [
+    "user_facing_explanation",
+    "source_or_custody_reference",
+    "missingness_or_uncertainty_state",
+    "explicit_non_claims"
+  ],
+  "rejection_coverage": [
+    "raw local paths",
+    "private/provider markers",
+    "missing source refs",
+    "missing missingness",
+    "missing non-claims",
+    "product-proof claims",
+    "runtime authorization claims",
+    "relation proof language",
+    "graph edge proof/ranking fields"
+  ],
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "action_authorization": false,
+    "relation_page_proves_relation": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false
+  },
+  "strongest_signal": "The product lane now has explicit object contracts for model pages, relation pages, Teacher lessons, and visual graphs before any builder or renderer exists.",
+  "strongest_risk": "The next data-builder slice must preserve missingness instead of filling absent product copy with invented teaching language.",
+  "stop_before": [
+    "data builders",
+    "page rendering",
+    "graph data building",
+    "graph UI",
+    "runtime integration",
+    "provider or model calls",
+    "product proof claims",
+    "human validation claims"
+  ]
+}
