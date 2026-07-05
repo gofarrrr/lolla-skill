@@ -25,4 +25,6 @@ Current planning docs:
 - [Mental Model Teacher Three-Case Source Package](mental-model-teacher-three-case-source-package-v0.md)
 - [Mental Model Teacher Three-Case Product Pilot Retry](mental-model-teacher-three-case-product-pilot-retry-v0.md)
 - [Mental Model Teacher Three-Case Product Pilot Render](mental-model-teacher-three-case-product-pilot-v0/index.md)
+- [Mental Model Teacher UX Review Packet](mental-model-teacher-ux-review-packet-v0.md)
+- [Mental Model Teacher UX Review Packet Render](mental-model-teacher-ux-review-packet-v0/index.md)
 - [Mental Model Teacher Product Surface Reference Patterns](mental-model-teacher-product-surface-reference-patterns-v0.md)

@@ -1,0 +1,56 @@
+{
+  "schema": "lolla.mental_model_teacher.ux_review_packet_review.v0",
+  "status": "ux_review_packet_ready_for_human_review",
+  "product_lane": "Mental Model Teacher Product Surface And Visual Library",
+  "decision_gate": "needs_human_review_before_expansion",
+  "recommended_next_pr": "Mental Model Teacher Product Surface Package Gate v0",
+  "review_packet": {
+    "entrypoint": "docs/product/mental-model-teacher-ux-review-packet-v0/index.md",
+    "human_review_form_markdown": "docs/product/mental-model-teacher-ux-review-packet-v0/human-review-form.md",
+    "human_review_form_json": "docs/product/mental-model-teacher-ux-review-packet-v0/human-review-form.json",
+    "manifest": "docs/product/mental-model-teacher-ux-review-packet-v0/manifest.json",
+    "case_count": 3
+  },
+  "criteria": [
+    "educational_value",
+    "clarity",
+    "relation_understanding",
+    "practice_usefulness",
+    "non_overclaiming",
+    "separation_from_decision_work"
+  ],
+  "human_form": {
+    "prefilled_positive": false,
+    "human_review_completed": false,
+    "human_validated": false,
+    "product_proof": false,
+    "synthetic_review_diagnostic_only": true
+  },
+  "comparison_inputs": {
+    "productized_teacher_pages": true,
+    "current_teacher_cards_and_notes": true,
+    "relation_source_views": true,
+    "graph_neighborhood_json": true,
+    "decision_work_boundary_references": true,
+    "decision_work_used_as_teacher_source": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "graph_edges_are_proof": false,
+    "synthetic_review_is_human_validation": false,
+    "agent_or_automatic_action_authorized": false
+  },
+  "strongest_signal": "The product lane now has a reviewable packet that compares productized Teacher pages against raw Teacher artifacts and graph/relation views using explicit UX criteria without pre-filling human judgment.",
+  "strongest_risk": "The packet can organize human review, but it cannot substitute for it; PR-P11 should package the pilot with a needs-human-review-before-expansion gate unless real human review is supplied separately.",
+  "stop_before": [
+    "product readiness claim",
+    "human validation claim",
+    "package gate",
+    "runtime integration",
+    "provider or model calls"
+  ]
+}
