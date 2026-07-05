@@ -1,0 +1,87 @@
+{
+  "schema": "lolla.mental_model_teacher.three_case_product_pilot_review.v0",
+  "status": "deferred_missing_teacher_case_artifacts_on_current_main",
+  "product_lane": "Mental Model Teacher Product Surface And Visual Library",
+  "decision_gate": "deferred_until_teacher_offline_package_merged",
+  "recommended_next_pr": "defer_pr_p10_until_teacher_case_artifacts_are_on_current_main",
+  "current_main_assessment": {
+    "base": "origin/main after PR-P8",
+    "teacher_three_case_source_package_present": false,
+    "decision_work_case_artifacts_present": true,
+    "decision_work_artifacts_used_as_teacher_source": false,
+    "fixture_product_surface_artifacts_present": true
+  },
+  "required_cases": [
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "teacher_artifacts_found_on_current_main": false,
+      "decision_work_artifacts_found_on_current_main": true,
+      "lesson_page_generated": false,
+      "graph_neighborhood_generated": false,
+      "status": "deferred_missing_teacher_source"
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "teacher_artifacts_found_on_current_main": false,
+      "decision_work_artifacts_found_on_current_main": true,
+      "lesson_page_generated": false,
+      "graph_neighborhood_generated": false,
+      "status": "deferred_missing_teacher_source"
+    },
+    {
+      "case_id": "ceo-remove-founding-cofounder",
+      "teacher_artifacts_found_on_current_main": false,
+      "decision_work_artifacts_found_on_current_main": true,
+      "lesson_page_generated": false,
+      "graph_neighborhood_generated": false,
+      "status": "deferred_missing_teacher_source",
+      "high_risk_caveat": "Any future productized lesson must preserve domain caveats, uncertainty, and visible non-claims without implying legal, HR, governance, interpersonal, answer, or advice correctness."
+    }
+  ],
+  "missing_required_artifact_patterns": [
+    "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/<case-id>/mental_model_teacher_lesson.json",
+    "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/<case-id>/mental_model_teacher_card.md",
+    "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/<case-id>/mental_model_teacher.md",
+    "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/<case-id>/mental_model_teacher_model_deep_dive.json",
+    "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/<case-id>/mental_model_teacher_relation_deep_dive.json",
+    "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/<case-id>/mental_model_teacher_practice_lab.json",
+    "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/<case-id>/mental_model_teacher_okf_manifest.json"
+  ],
+  "external_source_candidate": {
+    "observed": true,
+    "worktree": "/private/tmp/lolla-teacher-package-worktree",
+    "branch": "feature/mental-model-teacher-offline-review-package-v2",
+    "commit": "1ebfe24f6ceef8b0481f70f718e3607e31d1e1e8",
+    "package_root": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/",
+    "imported_in_this_pr": false,
+    "merged_in_this_pr": false
+  },
+  "boundary_decision": {
+    "substitute_decision_work_as_teacher_source": false,
+    "generate_from_unmerged_external_package": false,
+    "merge_external_branch_in_this_pr": false,
+    "create_three_case_lesson_pages": false,
+    "create_three_case_graph_neighborhoods": false,
+    "proceed_to_ux_review_packet": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false,
+    "agent_or_automatic_action_authorized": false
+  },
+  "strongest_signal": "PR-P9 now protects product custody by identifying the exact missing Teacher case package instead of manufacturing Teacher pages from Decision Work or evaluation artifacts.",
+  "strongest_risk": "The product pilot cannot advance to a meaningful UX review until the Teacher offline package is intentionally merged or imported into current main.",
+  "stop_before": [
+    "package gate",
+    "UX review packet built from missing productized pages",
+    "runtime integration",
+    "provider or model calls",
+    "product proof claims",
+    "human validation claims"
+  ]
+}
