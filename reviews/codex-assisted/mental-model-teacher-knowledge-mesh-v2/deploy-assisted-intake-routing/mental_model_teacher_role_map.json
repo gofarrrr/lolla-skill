@@ -1,0 +1,162 @@
+{
+  "case_id": "deploy-assisted-intake-routing",
+  "created_at": "2026-07-03T00:00:00+00:00",
+  "packet_id": "mental_model_coach:deploy-assisted-intake-routing:20260627T130339Z_4cd3cb",
+  "roles": [
+    {
+      "answer_use": "visible_effect",
+      "canonical_resolution": {
+        "input_id": "category-decisions",
+        "normalized_id": "category-decisions",
+        "reason": "",
+        "resolution_method": "filename_slug",
+        "schema_version": "lolla.mental_model_canonical_resolution.v0",
+        "source_hash": "fea666cb96cbdc8e612c195cb5b55155c503b3dcbe217a39dd59f515a407d090",
+        "source_path": "Category_Decisions_rag.md",
+        "status": "resolved",
+        "warnings": []
+      },
+      "display_name": "Category Decisions",
+      "model_id": "category-decisions",
+      "must_not_imply": "This role does not prove the decision or revised answer was correct.",
+      "relation_neighbors": [],
+      "role": "primary_teaching_lens",
+      "run_status": "visible_effect",
+      "source_refs": [
+        "packet:selected_models:category-decisions",
+        "fixture_anchor",
+        "v60_selected_card",
+        "v60_used",
+        "survival_state:visible_effect",
+        "graph_survival",
+        "data/model_sources/Category_Decisions_rag.md",
+        "data/curation/category-decisions.json",
+        "data/curation/intervention_semantics/category-decisions.json",
+        "data/curation/relation_semantics/category-decisions.json",
+        "data/compiled/model_affordances/affordances_v60.json"
+      ],
+      "teacher_use": "Teach the dominant thinking move: Sort the situation into buckets before deciding what each bucket needs."
+    },
+    {
+      "answer_use": "visible_effect",
+      "canonical_resolution": {
+        "input_id": "cognitive-load-theory",
+        "normalized_id": "cognitive-load-theory",
+        "reason": "",
+        "resolution_method": "filename_slug",
+        "schema_version": "lolla.mental_model_canonical_resolution.v0",
+        "source_hash": "08878c4c554b79456fca98006655ea913e613ee61b7b6b807e80fd9d959c70eb",
+        "source_path": "Cognitive_Load_Theory_rag.md",
+        "status": "resolved",
+        "warnings": []
+      },
+      "display_name": "Cognitive Load Theory",
+      "model_id": "cognitive-load-theory",
+      "must_not_imply": "This role does not prove the decision or revised answer was correct.",
+      "relation_neighbors": [
+        {
+          "relation_summary": "Cognitive-load-theory conflicts with optionality when too many parallel branches exceed practical decision bandwidth.",
+          "relation_type": "structured_tension",
+          "source_model_id": "cognitive-load-theory",
+          "source_refs": [
+            "data/relationship_graph.json"
+          ],
+          "target_model_id": "optionality"
+        }
+      ],
+      "role": "primary_teaching_lens",
+      "run_status": "visible_effect",
+      "source_refs": [
+        "packet:selected_models:cognitive-load-theory",
+        "fixture_anchor",
+        "v60_selected_card",
+        "v60_used",
+        "survival_state:visible_effect",
+        "graph_survival",
+        "data/model_sources/Cognitive_Load_Theory_rag.md",
+        "data/curation/cognitive-load-theory.json",
+        "data/curation/intervention_semantics/cognitive-load-theory.json",
+        "data/curation/relation_semantics/cognitive-load-theory.json",
+        "data/compiled/model_affordances/affordances_v60.json"
+      ],
+      "teacher_use": "Teach the dominant thinking move: Turn the thinking burden into fewer choices, checklists, or defaults."
+    },
+    {
+      "answer_use": "private_guardrail",
+      "canonical_resolution": {
+        "input_id": "optionality",
+        "normalized_id": "optionality",
+        "reason": "",
+        "resolution_method": "filename_slug",
+        "schema_version": "lolla.mental_model_canonical_resolution.v0",
+        "source_hash": "a0a167d5a1b445c5b1692ef48bd46cbf7351af8416f7cba609a1b3f717c321ef",
+        "source_path": "Optionality_rag.md",
+        "status": "resolved",
+        "warnings": []
+      },
+      "display_name": "Optionality",
+      "model_id": "optionality",
+      "must_not_imply": "Do not imply the guardrail proves the case fact; teach it as a reasoning boundary.",
+      "relation_neighbors": [
+        {
+          "relation_summary": "Cognitive-load-theory conflicts with optionality when too many parallel branches exceed practical decision bandwidth.",
+          "relation_type": "structured_tension",
+          "source_model_id": "cognitive-load-theory",
+          "source_refs": [
+            "data/relationship_graph.json"
+          ],
+          "target_model_id": "optionality"
+        }
+      ],
+      "role": "boundary_lens",
+      "run_status": "private_guardrail",
+      "source_refs": [
+        "packet:selected_models:optionality",
+        "fixture_anchor",
+        "v60_selected_card",
+        "survival_state:private_guardrail",
+        "graph_survival",
+        "data/model_sources/Optionality_rag.md",
+        "data/curation/optionality.json",
+        "data/curation/intervention_semantics/optionality.json",
+        "data/curation/relation_semantics/optionality.json",
+        "data/compiled/model_affordances/affordances_v60.json"
+      ],
+      "teacher_use": "Teach the boundary or guardrail this lens added: Separate the reversible experiment from the irreversible commitment."
+    },
+    {
+      "answer_use": "preserved_but_not_adjudicated",
+      "canonical_resolution": {
+        "input_id": "base-rates",
+        "normalized_id": "base-rates",
+        "reason": "",
+        "resolution_method": "filename_slug",
+        "schema_version": "lolla.mental_model_canonical_resolution.v0",
+        "source_hash": "af72066fe2f291eb0c0970d258601fa21a9957cf251390cf9ca2ac0adfa04310",
+        "source_path": "Base_Rates_rag.md",
+        "status": "resolved",
+        "warnings": []
+      },
+      "display_name": "Base Rates",
+      "model_id": "base-rates",
+      "must_not_imply": "Do not call this model noise or imply it was adjudicated.",
+      "relation_neighbors": [],
+      "role": "suppressed_unadjudicated",
+      "run_status": "suppressed",
+      "source_refs": [
+        "packet:suppressed_or_unadjudicated:base-rates"
+      ],
+      "teacher_use": "Preserve this lens as a possible teaching boundary without calling it noise or implying it applied."
+    }
+  ],
+  "run_id": "20260627T130339Z_4cd3cb",
+  "schema_version": "lolla.mental_model_teacher_role_map.v0",
+  "source_policy": {
+    "built_from_coach_packet": true,
+    "canonical_manifest_used": true,
+    "does_not_promote_decision_correctness": true,
+    "suppressed_models_are_not_noise": true
+  },
+  "unresolved": [],
+  "warnings": []
+}

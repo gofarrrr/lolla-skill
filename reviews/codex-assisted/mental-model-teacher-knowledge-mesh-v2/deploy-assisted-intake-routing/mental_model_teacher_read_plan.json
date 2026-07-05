@@ -1,0 +1,136 @@
+{
+  "budget": {
+    "max_models": 5,
+    "max_prompt_chars": 30000,
+    "max_relations": 8,
+    "post_run_notes_do_not_read_full_corpus": true
+  },
+  "case_anchor_refs": [
+    "packet:coach_focus",
+    "packet:case:deploy-assisted-intake-routing",
+    "packet:run:20260627T130339Z_4cd3cb"
+  ],
+  "case_id": "deploy-assisted-intake-routing",
+  "created_at": "2026-07-03T00:00:00+00:00",
+  "forbidden": [
+    "decision correctness claims",
+    "private raw transcript text",
+    "unlabeled general LLM doctrine",
+    "model doctrine invented from model names",
+    "unresolved canonical sources treated as resolved"
+  ],
+  "mode": "post_run_note",
+  "model_reads": [
+    {
+      "answer_use": "visible_effect",
+      "include_sections": [
+        "core_doctrine",
+        "when_to_use",
+        "when_not_to_use",
+        "dangerous_misuse",
+        "practice_drills"
+      ],
+      "model_id": "category-decisions",
+      "must_not_imply": "This role does not prove the decision or revised answer was correct.",
+      "must_teach": "Teach the dominant thinking move: Sort the situation into buckets before deciding what each bucket needs.",
+      "read_scope": "excerpted_canonical_sections",
+      "role": "primary_teaching_lens",
+      "run_status": "visible_effect",
+      "source_hash": "fea666cb96cbdc8e612c195cb5b55155c503b3dcbe217a39dd59f515a407d090",
+      "source_path": "Category_Decisions_rag.md",
+      "teacher_use": "Teach the dominant thinking move: Sort the situation into buckets before deciding what each bucket needs.",
+      "unresolved_reason": ""
+    },
+    {
+      "answer_use": "visible_effect",
+      "include_sections": [
+        "core_doctrine",
+        "when_to_use",
+        "when_not_to_use",
+        "dangerous_misuse",
+        "antidotes",
+        "practice_drills"
+      ],
+      "model_id": "cognitive-load-theory",
+      "must_not_imply": "This role does not prove the decision or revised answer was correct.",
+      "must_teach": "Teach the dominant thinking move: Turn the thinking burden into fewer choices, checklists, or defaults.",
+      "read_scope": "excerpted_canonical_sections",
+      "role": "primary_teaching_lens",
+      "run_status": "visible_effect",
+      "source_hash": "08878c4c554b79456fca98006655ea913e613ee61b7b6b807e80fd9d959c70eb",
+      "source_path": "Cognitive_Load_Theory_rag.md",
+      "teacher_use": "Teach the dominant thinking move: Turn the thinking burden into fewer choices, checklists, or defaults.",
+      "unresolved_reason": ""
+    },
+    {
+      "answer_use": "private_guardrail",
+      "include_sections": [
+        "core_doctrine",
+        "when_to_use",
+        "when_not_to_use",
+        "dangerous_misuse",
+        "antidotes",
+        "practice_drills"
+      ],
+      "model_id": "optionality",
+      "must_not_imply": "Do not imply the guardrail proves the case fact; teach it as a reasoning boundary.",
+      "must_teach": "Teach the boundary or guardrail this lens added: Separate the reversible experiment from the irreversible commitment.",
+      "read_scope": "excerpted_canonical_sections",
+      "role": "boundary_lens",
+      "run_status": "private_guardrail",
+      "source_hash": "a0a167d5a1b445c5b1692ef48bd46cbf7351af8416f7cba609a1b3f717c321ef",
+      "source_path": "Optionality_rag.md",
+      "teacher_use": "Teach the boundary or guardrail this lens added: Separate the reversible experiment from the irreversible commitment.",
+      "unresolved_reason": ""
+    },
+    {
+      "answer_use": "preserved_but_not_adjudicated",
+      "include_sections": [
+        "core_doctrine",
+        "when_to_use",
+        "when_not_to_use",
+        "dangerous_misuse",
+        "practice_drills"
+      ],
+      "model_id": "base-rates",
+      "must_not_imply": "Do not call this model noise or imply it was adjudicated.",
+      "must_teach": "Preserve this lens as a possible teaching boundary without calling it noise or implying it applied.",
+      "read_scope": "excerpted_canonical_sections",
+      "role": "suppressed_unadjudicated",
+      "run_status": "suppressed",
+      "source_hash": "af72066fe2f291eb0c0970d258601fa21a9957cf251390cf9ca2ac0adfa04310",
+      "source_path": "Base_Rates_rag.md",
+      "teacher_use": "Preserve this lens as a possible teaching boundary without calling it noise or implying it applied.",
+      "unresolved_reason": ""
+    }
+  ],
+  "packet_id": "mental_model_coach:deploy-assisted-intake-routing:20260627T130339Z_4cd3cb",
+  "relation_reads": [
+    {
+      "relation_id": "cognitive-load-theory__optionality__structured_tension",
+      "relation_type": "structured_tension",
+      "source_model_id": "cognitive-load-theory",
+      "source_status": "structured_artifact",
+      "target_model_id": "optionality",
+      "teaching_job": "Cognitive-load-theory conflicts with optionality when too many parallel branches exceed practical decision bandwidth."
+    }
+  ],
+  "run_id": "20260627T130339Z_4cd3cb",
+  "schema_version": "lolla.mental_model_teacher_read_plan.v0",
+  "source_policy": {
+    "llm_general_knowledge_policy": "allowed_only_when_labeled_as_teacher_inference",
+    "okf_is_derived_view": true,
+    "raw_corpus_is_source_of_truth": true,
+    "unresolved_sources_must_not_use_general_knowledge": true
+  },
+  "verification": {
+    "errors": [],
+    "model_read_count": 4,
+    "read_plan_schema_version": "lolla.mental_model_teacher_read_plan.v0",
+    "relation_read_count": 1,
+    "schema_version": "lolla.mental_model_teacher_read_plan_verification.v0",
+    "status": "passed",
+    "warnings": []
+  },
+  "warnings": []
+}

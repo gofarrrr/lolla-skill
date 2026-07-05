@@ -1,0 +1,134 @@
+{
+  "case_id": "launch-public-enterprise-beta",
+  "claim_grounding": [
+    {
+      "claim_id": "claim.teacher.case_anchor.0",
+      "claim_type": "case_claim",
+      "grounding_status": "case_source_backed",
+      "source_refs": [
+        "packet:coach_focus"
+      ],
+      "text": "The case anchor comes from the checked-in-safe Coach focus."
+    },
+    {
+      "claim_id": "claim.teacher.doctrine.0",
+      "claim_type": "doctrine_claim",
+      "grounding_status": "doctrine_source_backed",
+      "source_refs": [
+        "doctrine.authority-bias.core_doctrine.0"
+      ],
+      "text": "The primary model teaching comes from canonical doctrine."
+    },
+    {
+      "claim_id": "claim.teacher.relation.0",
+      "claim_type": "relation_claim",
+      "grounding_status": "relation_source_backed",
+      "source_refs": [
+        "relation:authority-bias__first-principles-thinking__antagonist"
+      ],
+      "text": "The relationship story uses reviewed relation evidence."
+    },
+    {
+      "claim_id": "claim.teacher.practice.0",
+      "claim_type": "practice_claim",
+      "grounding_status": "doctrine_source_backed",
+      "source_refs": [
+        "doctrine.authority-bias.practice.0"
+      ],
+      "text": "The practice rep is grounded in the primary model practice material."
+    },
+    {
+      "claim_id": "claim.teacher.boundary.0",
+      "claim_type": "boundary_claim",
+      "grounding_status": "source_backed_synthesis",
+      "source_refs": [
+        "lesson:source_policy"
+      ],
+      "text": "The lesson does not prove decision correctness."
+    }
+  ],
+  "created_at": "2026-07-03T00:00:00+00:00",
+  "lesson": {
+    "case_anchor": "The original answer looked coherent enough to accept. It made deference visible so the user could separate evidence from confidence, role, or prestige. Break the recommendation down to the facts and constraints that must be true. Ask what evidence remains if the authority signal is removed.",
+    "discarded_or_bounded_lenses": [
+      {
+        "boundary": "Do not call this model noise or imply it was adjudicated.",
+        "model_id": "base-rates",
+        "teaching_use": "Preserve this lens as a possible teaching boundary without calling it noise or implying it applied."
+      }
+    ],
+    "do_not_overlearn": "This lesson does not prove the original answer was wrong or the revised answer was right.",
+    "dominant_thinking_move": "Ask what evidence remains if the authority signal is removed.",
+    "model_stack": [
+      {
+        "boundary": "Credibility is standing in for falsification, evidence testing, or domain-boundary checks.",
+        "model_id": "authority-bias",
+        "role": "primary_teaching_lens",
+        "teaching_name": "Test The Authority, Not The Aura",
+        "what_it_adds": "When a recommendation depends on authority, make the deference explicit, verify expertise, trustworthiness, domain fit, and track record, then require the authority's reasoning and override evidence so rank or polish accelerates triage without replacing falsification.",
+        "what_it_saw": "The case pressure involved evaluating whether enterprise beta interest was evidence of buyer seriousness or only status/aura pressure, so authority-bias had to make the dominant thinking move explicit for a cold reader."
+      },
+      {
+        "boundary": "The critical evidence is externally audited, directly observable in production, or contractually hard for one side to manipulate.",
+        "model_id": "information-asymmetry",
+        "role": "primary_teaching_lens",
+        "teaching_name": "Ask Who Knows What",
+        "what_it_adds": "When the party being evaluated controls dashboards, references, pilots, or reported outcomes, treat the visible evidence as part of the asymmetry: name what the party can choose or game, identify the hidden payoff it may optimize, and require an independent signal or direct observability before commitment.",
+        "what_it_saw": "A second lens was useful because evaluating whether enterprise beta interest was evidence of buyer seriousness or only status/aura pressure could be misread if only the dominant move was used."
+      },
+      {
+        "boundary": "First principles is being used as a status move to ignore practical constraints, accumulated know-how, or real implementation costs.",
+        "model_id": "first-principles-thinking",
+        "role": "boundary_lens",
+        "teaching_name": "Strip It Back To First Principles",
+        "what_it_adds": "When inherited categories or conventional rules are distorting the problem, strip the case to facts and desired outcome, identify what would have to be true for a novel path to work, and rebuild toward concrete action without using first-principles language as status theater.",
+        "what_it_saw": "The guardrail lens checked where evaluating whether enterprise beta interest was evidence of buyer seriousness or only status/aura pressure could overreach or be treated as proof rather than a learning example."
+      }
+    ],
+    "plain_title": "Test The Authority, Not The Aura",
+    "practice_reps": [
+      {
+        "steps": [
+          "Name the tempting first read.",
+          "If the impressive source disappeared, what evidence would still justify this?",
+          "Name the boundary that would change confidence."
+        ],
+        "title": "Test The Authority, Not The Aura"
+      }
+    ],
+    "relationship_story": "Authority Bias and First Principles Thinking form an antagonist pair. First principles thinking strips away inherited doctrine and forces a return to core facts when expert prestige is doing too much work. Use the pair as a correction loop: Authority Bias names the pull that can dominate the first interpretation, while First Principles Thinking asks what would remain if that pull stopped counting as proof.",
+    "where_the_lesson_stops": "It teaches a reasoning move and a model relationship; it does not authorize a decision.",
+    "why_this_move_mattered": "It made deference visible so the user could separate evidence from confidence, role, or prestige. The boundary lens added: Break the recommendation down to the facts and constraints that must be true."
+  },
+  "non_claims": [
+    "This lesson teaches reasoning patterns, not decision correctness.",
+    "This lesson does not authorize action.",
+    "The case is an anchor; the reasoning move is the subject."
+  ],
+  "packet_id": "mental_model_coach:launch-public-enterprise-beta:20260627T104146Z_7bfe79",
+  "prompt_version": "lolla.mental_model_teacher_prompt.v0",
+  "run_id": "20260627T104146Z_7bfe79",
+  "schema_version": "lolla.mental_model_teacher_lesson.v0",
+  "source_policy_acknowledgement": {
+    "teacher_inferences_labeled": true,
+    "used_only_allowed_context": true
+  },
+  "synthesis_metadata": {
+    "deterministic_scaffold": true,
+    "doctrine_pack_schema_version": "lolla.mental_model_teacher_doctrine_pack.v0",
+    "model_calls": 0,
+    "role_map_schema_version": "lolla.mental_model_teacher_role_map.v0",
+    "source": "offline_teacher_pilot_fixture"
+  },
+  "verification": {
+    "allowed_source_ref_count": 59,
+    "claim_count": 5,
+    "error_count": 0,
+    "errors": [],
+    "lesson_schema_version": "lolla.mental_model_teacher_lesson.v0",
+    "schema_version": "lolla.mental_model_teacher_lesson_verification.v0",
+    "status": "passed",
+    "warning_count": 0,
+    "warnings": []
+  }
+}
