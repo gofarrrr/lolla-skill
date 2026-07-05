@@ -9,9 +9,9 @@ or model APIs, create new Lolla runs, wire runtime behavior, or claim proof.
 from __future__ import annotations
 
 import argparse
-import html
 import json
 import os
+import re
 from pathlib import Path
 from typing import Any
 
@@ -31,6 +31,7 @@ CASE_IDS = (
     "ceo-remove-founding-cofounder",
 )
 MODE_IDS = ("learn", "models", "relations", "map", "review")
+CANONICAL_SECTION_MAX_CHARS = 3200
 CASE_PRESENTATION = {
     "launch-public-enterprise-beta": {
         "label": "Launch beta",
@@ -95,7 +96,7 @@ def build_learner_experience_prototype(
     repo_root = Path(root) if root is not None else REPO_ROOT
     target_dir = Path(output_dir)
     cases = [_case_payload(repo_root, case_id, target_dir) for case_id in CASE_IDS]
-    models = _model_catalog(cases)
+    models = _model_catalog(cases, repo_root, target_dir)
     relations = _relation_catalog(cases)
     data = {
         "schema_version": LEARNER_EXPERIENCE_SCHEMA_VERSION,
@@ -146,6 +147,9 @@ def build_learner_experience_prototype(
         "mode_ids": list(MODE_IDS),
         "case_count": len(cases),
         "model_count": len(models),
+        "canonical_model_source_count": sum(
+            1 for model in models if model["canonical"]["status"] == "available"
+        ),
         "relation_count": len(relations),
         "search_result_types": ["lesson", "model", "relation", "practice"],
         "learner_first_rules": {
@@ -157,8 +161,15 @@ def build_learner_experience_prototype(
             "typed_search_present": True,
             "model_backlinks_present": True,
             "relation_backlinks_present": True,
+            "canonical_model_detail_present": True,
+            "model_click_opens_product_detail": True,
         },
         "source_packages": [
+            "data/model_sources",
+            "data/model_sources/manifest.json",
+            "data/curation",
+            "data/curation/intervention_semantics",
+            "data/curation/relation_semantics",
             "docs/product/mental-model-teacher-three-case-product-pilot-v0/objects",
             "docs/product/mental-model-teacher-three-case-product-pilot-v0/graphs",
         ],
@@ -301,7 +312,11 @@ def _case_payload(repo_root: Path, case_id: str, output_dir: Path) -> dict[str, 
     }
 
 
-def _model_catalog(cases: list[dict[str, Any]]) -> list[dict[str, Any]]:
+def _model_catalog(
+    cases: list[dict[str, Any]],
+    repo_root: Path,
+    output_dir: Path,
+) -> list[dict[str, Any]]:
     models: dict[str, dict[str, Any]] = {}
     for case in cases:
         for model in case["model_stack"]:
@@ -321,7 +336,238 @@ def _model_catalog(cases: list[dict[str, Any]]) -> list[dict[str, Any]]:
                 entry["roles"].append(model["role"])
             if case["case_id"] not in entry["appears_in"]:
                 entry["appears_in"].append(case["case_id"])
+    for model in models.values():
+        model["canonical"] = _canonical_model_detail(
+            repo_root=repo_root,
+            output_dir=output_dir,
+            model_id=model["model_id"],
+        )
+        if model["canonical"]["source_href"]:
+            model["href"] = model["canonical"]["source_href"]
     return sorted(models.values(), key=lambda item: item["display_name"].lower())
+
+
+def _canonical_model_detail(
+    repo_root: Path,
+    output_dir: Path,
+    model_id: str,
+) -> dict[str, Any]:
+    manifest_entry = _canonical_manifest(repo_root).get(model_id)
+    curation = _load_json_optional(repo_root / "data/curation" / f"{model_id}.json")
+    intervention = _load_json_optional(
+        repo_root / "data/curation/intervention_semantics" / f"{model_id}.json"
+    )
+    relation_semantics = _load_json_optional(
+        repo_root / "data/curation/relation_semantics" / f"{model_id}.json"
+    )
+    if not manifest_entry:
+        return {
+            "status": "missing_canonical_source",
+            "source_path": "",
+            "source_href": "",
+            "source_hash": "",
+            "source_bytes": 0,
+            "overview": "",
+            "sections": [],
+            "curation": _curation_payload(curation),
+            "intervention": _intervention_payload(intervention),
+            "relation_semantics": _relation_semantics_payload(relation_semantics),
+            "missingness": {
+                "status": "partial",
+                "missing_fields": ["canonical_markdown"],
+            },
+        }
+
+    source_path = repo_root / manifest_entry["path"]
+    source_text = source_path.read_text(encoding="utf-8")
+    overview, sections = _canonical_sections(source_text)
+    return {
+        "status": "available",
+        "source_path": manifest_entry["path"],
+        "source_href": _relative_link(output_dir / "index.html", manifest_entry["path"]),
+        "source_hash": manifest_entry.get("sha256", ""),
+        "source_bytes": manifest_entry.get("bytes", 0),
+        "overview": overview,
+        "sections": sections,
+        "curation": _curation_payload(curation),
+        "intervention": _intervention_payload(intervention),
+        "relation_semantics": _relation_semantics_payload(relation_semantics),
+        "missingness": {
+            "status": "complete_for_prototype",
+            "missing_fields": [],
+        },
+    }
+
+
+_MANIFEST_CACHE: dict[Path, dict[str, dict[str, Any]]] = {}
+
+
+def _canonical_manifest(repo_root: Path) -> dict[str, dict[str, Any]]:
+    manifest_path = repo_root / "data/model_sources/manifest.json"
+    if manifest_path not in _MANIFEST_CACHE:
+        payload = _load_json(manifest_path)
+        _MANIFEST_CACHE[manifest_path] = {
+            item["model_id"]: item for item in payload.get("files", [])
+        }
+    return _MANIFEST_CACHE[manifest_path]
+
+
+def _canonical_sections(markdown: str) -> tuple[str, list[dict[str, str]]]:
+    lines = markdown.splitlines()
+    first_heading_index = len(lines)
+    for index, line in enumerate(lines):
+        if _looks_like_source_heading(line):
+            first_heading_index = index
+            break
+
+    overview = _clean_source_block("\n".join(lines[:first_heading_index]))
+    sections: list[dict[str, str]] = []
+    current_title = ""
+    current_body: list[str] = []
+    for line in lines[first_heading_index:]:
+        if _looks_like_source_heading(line):
+            if current_title and current_body:
+                sections.append(
+                    {
+                        "title": current_title,
+                        "body": _trim_section(_clean_source_block("\n".join(current_body))),
+                    }
+                )
+            current_title = _clean_heading(line)
+            current_body = []
+        else:
+            current_body.append(line)
+    if current_title and current_body:
+        sections.append(
+            {
+                "title": current_title,
+                "body": _trim_section(_clean_source_block("\n".join(current_body))),
+            }
+        )
+    if not overview and sections:
+        overview = sections[0]["body"]
+    return _trim_section(overview, max_chars=1200), sections
+
+
+def _looks_like_source_heading(line: str) -> bool:
+    stripped = line.strip()
+    if not stripped or len(stripped) > 110:
+        return False
+    if stripped.startswith(("•", "-", "|", "◦", ">", "```")):
+        return False
+    if stripped.endswith(":"):
+        return True
+    if stripped.startswith("#"):
+        return True
+    return False
+
+
+def _clean_heading(line: str) -> str:
+    stripped = line.strip().strip("#").strip()
+    return stripped[:-1] if stripped.endswith(":") else stripped
+
+
+def _clean_source_block(text: str) -> str:
+    text = re.sub(r"\n{3,}", "\n\n", text.strip())
+    return text
+
+
+def _trim_section(text: str, *, max_chars: int = CANONICAL_SECTION_MAX_CHARS) -> str:
+    if len(text) <= max_chars:
+        return text
+    return text[: max_chars - 3].rstrip() + "..."
+
+
+def _curation_payload(curation: dict[str, Any] | None) -> dict[str, Any]:
+    if not curation:
+        return {
+            "status": "missing",
+            "select_when": [],
+            "avoid_when": [],
+            "input_type": "",
+            "output_type": "",
+            "reasoning_types": [],
+        }
+    return {
+        "status": "available",
+        "select_when": curation.get("select_when", []),
+        "avoid_when": curation.get("avoid_when", []),
+        "input_type": curation.get("input_type", ""),
+        "output_type": curation.get("output_type", ""),
+        "reasoning_types": curation.get("reasoning_types", []),
+    }
+
+
+def _intervention_payload(intervention: dict[str, Any] | None) -> dict[str, Any]:
+    if not intervention:
+        return {
+            "status": "missing",
+            "failure_modes": [],
+            "premortem_questions": [],
+            "heuristics": [],
+        }
+    return {
+        "status": "available",
+        "failure_modes": [
+            {
+                "text": item.get("text", ""),
+                "mitigation": item.get("mitigation", ""),
+                "confidence": item.get("confidence", ""),
+            }
+            for item in intervention.get("failure_modes", [])
+        ],
+        "premortem_questions": [
+            {
+                "text": item.get("text", ""),
+                "confidence": item.get("confidence", ""),
+            }
+            for item in intervention.get("premortem_questions", [])
+        ],
+        "heuristics": [
+            {
+                "text": item.get("text", ""),
+                "confidence": item.get("confidence", ""),
+            }
+            for item in intervention.get("heuristics", [])
+        ],
+    }
+
+
+def _relation_semantics_payload(
+    relation_semantics: dict[str, Any] | None,
+) -> dict[str, Any]:
+    if not relation_semantics:
+        return {
+            "status": "missing",
+            "allies": [],
+            "antagonists": [],
+            "structured_tensions": [],
+        }
+    return {
+        "status": "available",
+        "allies": _relation_semantic_items(relation_semantics.get("allies", [])),
+        "antagonists": _relation_semantic_items(
+            relation_semantics.get("antagonists", [])
+        ),
+        "structured_tensions": _relation_semantic_items(
+            relation_semantics.get("structured_tensions", [])
+        ),
+    }
+
+
+def _relation_semantic_items(items: list[dict[str, Any]]) -> list[dict[str, str]]:
+    normalized = []
+    for item in items[:5]:
+        normalized.append(
+            {
+                "target_model_id": item.get("target_model_id", ""),
+                "text": item.get("rationale_text")
+                or item.get("tension_text")
+                or item.get("source_quote", ""),
+                "confidence": item.get("confidence", ""),
+            }
+        )
+    return normalized
 
 
 def _relation_catalog(cases: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -427,6 +673,12 @@ def _load_json(path: Path) -> dict[str, Any]:
     if not isinstance(payload, dict):
         raise MentalModelTeacherLearnerExperienceError("JSON root must be an object")
     return payload
+
+
+def _load_json_optional(path: Path) -> dict[str, Any] | None:
+    if not path.exists():
+        return None
+    return _load_json(path)
 
 
 def _repo_rel(path: Path) -> str:
@@ -924,8 +1176,101 @@ textarea:focus-visible,
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
+.model-layout {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.38fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.model-list {
+  display: grid;
+  gap: 10px;
+}
+
 .card {
   padding: 14px;
+}
+
+.card-button,
+.model-link-button {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  text-align: left;
+}
+
+.card-button:hover,
+.model-link-button:hover {
+  background: transparent;
+}
+
+.model-link-button {
+  color: var(--blue);
+  font-weight: 800;
+}
+
+.model-detail {
+  display: grid;
+  gap: 14px;
+}
+
+.model-detail-hero {
+  padding: 18px;
+}
+
+.model-detail-hero h3 {
+  margin: 0 0 8px;
+  font-size: 26px;
+  letter-spacing: 0;
+}
+
+.model-section {
+  padding: 14px;
+}
+
+.model-section h4 {
+  margin: 0 0 10px;
+  font-size: 16px;
+}
+
+.section-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.text-list {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.text-list li + li {
+  margin-top: 7px;
+}
+
+.source-block {
+  display: grid;
+  gap: 8px;
+}
+
+.source-block p {
+  margin: 0;
+}
+
+.source-line {
+  margin: 0 0 8px;
+}
+
+.canonical-sections {
+  display: grid;
+  gap: 10px;
+}
+
+.canonical-text {
+  white-space: pre-wrap;
 }
 
 .card-meta {
@@ -1043,6 +1388,7 @@ summary {
   .topbar,
   .shell-body,
   .learn-grid,
+  .model-layout,
   .map-layout,
   .review-layout {
     grid-template-columns: 1fr;
@@ -1081,6 +1427,7 @@ const state = {
   mode: data.default_mode,
   caseId: data.cases[0].case_id,
   selectedEdgeId: data.cases[0].graph.edges[0].edge_id,
+  selectedModelId: data.models[0].model_id,
   query: "",
 };
 
@@ -1099,6 +1446,10 @@ function currentCase() {
   return data.cases.find((item) => item.case_id === state.caseId) || data.cases[0];
 }
 
+function currentModel() {
+  return data.models.find((item) => item.model_id === state.selectedModelId) || data.models[0];
+}
+
 function setMode(mode) {
   state.mode = mode;
   render();
@@ -1111,11 +1462,20 @@ function setCase(caseId) {
   render();
 }
 
+function openModel(modelId) {
+  state.selectedModelId = modelId;
+  state.mode = "models";
+  render();
+}
+
 function openSearchResult(resultId) {
   const result = data.search_index.find((item) => item.id === resultId);
   if (!result) return;
   state.mode = result.mode;
   state.caseId = result.case_id;
+  if (result.type === "model") {
+    state.selectedModelId = result.id;
+  }
   state.query = "";
   const search = document.getElementById("search");
   if (search) search.value = "";
@@ -1245,7 +1605,7 @@ function renderLearnMode(selected) {
             <div class="panel-body model-mini-list">
               ${selected.model_stack.map((model) => `
                 <div class="model-mini">
-                  <h4><a href="${esc(model.href)}">${esc(model.teaching_name)}</a></h4>
+                  <h4><button type="button" class="model-link-button" onclick="openModel('${esc(model.model_id)}')">${esc(model.teaching_name)}</button></h4>
                   <p>${esc(model.teaching_note)}</p>
                 </div>
               `).join("")}
@@ -1258,27 +1618,171 @@ function renderLearnMode(selected) {
 }
 
 function renderModelsMode() {
+  const selectedModel = currentModel();
   return `
     <section class="mode-page">
       <div class="page-head">
         <h2>Models</h2>
-        <p>Reusable reasoning lenses. These cards answer what the model helps notice, where it appeared, and what boundary keeps it from becoming a slogan.</p>
+        <p>Reusable reasoning lenses. Click a model to open the formatted canonical page, sourced from model Markdown, curation, intervention semantics, and relation semantics.</p>
       </div>
-      <div class="object-grid">
-        ${data.models.map((model) => `
-          <article class="card">
-            <h3><a href="${esc(model.href)}">${esc(model.display_name)}</a></h3>
-            <p>${esc(model.summary)}</p>
-            <div class="boundary-callout">${esc(model.boundary)}</div>
-            <div class="card-meta">
-              ${model.roles.map((role) => `<span class="chip">${esc(role)}</span>`).join("")}
-              ${model.appears_in.map((caseId) => `<button type="button" class="chip" onclick="setCase('${caseId}'); setMode('learn')">Appears in ${esc(caseLabel(caseId))}</button>`).join("")}
-            </div>
-          </article>
-        `).join("")}
+      <div class="model-layout">
+        <div class="model-list">
+          ${data.models.map((model) => `
+            <article class="card ${selectedModel.model_id === model.model_id ? "is-active" : ""}">
+              <button type="button" class="card-button" onclick="openModel('${esc(model.model_id)}')">
+                <h3>${esc(model.display_name)}</h3>
+                <p>${esc(model.summary)}</p>
+              </button>
+              <div class="card-meta">
+                ${model.roles.map((role) => `<span class="chip">${esc(role)}</span>`).join("")}
+                ${model.appears_in.map((caseId) => `<button type="button" class="chip" onclick="setCase('${caseId}'); setMode('learn')">Appears in ${esc(caseLabel(caseId))}</button>`).join("")}
+              </div>
+            </article>
+          `).join("")}
+        </div>
+        ${renderModelDetail(selectedModel)}
       </div>
     </section>
   `;
+}
+
+function renderModelDetail(model) {
+  const canonical = model.canonical;
+  return `
+    <article class="model-detail">
+      <section class="panel model-detail-hero">
+        <p class="eyebrow">Mental model</p>
+        <h3>${esc(model.display_name)}</h3>
+        <p>${esc(model.summary)}</p>
+        <div class="boundary-callout">${esc(model.boundary)}</div>
+        <div class="card-meta">
+          ${model.roles.map((role) => `<span class="chip">${esc(role)}</span>`).join("")}
+          <span class="chip">canonical: ${esc(canonical.status)}</span>
+          ${canonical.curation.reasoning_types.map((item) => `<span class="chip">${esc(item)}</span>`).join("")}
+        </div>
+      </section>
+      <section class="panel model-section">
+        <h4>Canonical overview</h4>
+        <div class="source-block">${renderTextBlock(canonical.overview)}</div>
+      </section>
+      <section class="section-grid">
+        <div class="panel model-section">
+          <h4>Use when</h4>
+          ${renderTextList(canonical.curation.select_when)}
+        </div>
+        <div class="panel model-section">
+          <h4>Be careful when</h4>
+          ${renderTextList(canonical.curation.avoid_when)}
+        </div>
+      </section>
+      <section class="section-grid">
+        <div class="panel model-section">
+          <h4>Failure modes</h4>
+          ${renderFailureModes(canonical.intervention.failure_modes)}
+        </div>
+        <div class="panel model-section">
+          <h4>Premortem questions</h4>
+          ${renderTextList(canonical.intervention.premortem_questions.map((item) => item.text))}
+        </div>
+      </section>
+      <section class="panel model-section">
+        <h4>Heuristics</h4>
+        ${renderTextList(canonical.intervention.heuristics.map((item) => item.text))}
+      </section>
+      <section class="section-grid">
+        <div class="panel model-section">
+          <h4>Appears in lessons</h4>
+          <div class="card-meta">
+            ${model.appears_in.map((caseId) => `<button type="button" class="chip" onclick="setCase('${caseId}'); setMode('learn')">${esc(caseLabel(caseId))}</button>`).join("")}
+          </div>
+        </div>
+        <div class="panel model-section">
+          <h4>Connected relations</h4>
+          ${renderModelRelations(model)}
+        </div>
+      </section>
+      <section class="panel model-section">
+        <h4>Canonical source sections</h4>
+        <div class="canonical-sections">
+          ${canonical.sections.map((section) => `
+            <details>
+              <summary>${esc(section.title)}</summary>
+              <div class="canonical-text">${renderTextBlock(section.body)}</div>
+            </details>
+          `).join("")}
+        </div>
+      </section>
+      <section class="panel model-section">
+        <h4>Receipts</h4>
+        <ul class="receipt-list">
+          <li>Canonical source: <a href="${esc(canonical.source_href)}">${esc(canonical.source_path)}</a></li>
+          <li>Source hash: <code>${esc(canonical.source_hash)}</code></li>
+          <li>Activation curation: ${esc(canonical.curation.status)}</li>
+          <li>Intervention semantics: ${esc(canonical.intervention.status)}</li>
+          <li>Relation semantics: ${esc(canonical.relation_semantics.status)}</li>
+        </ul>
+      </section>
+    </article>
+  `;
+}
+
+function renderFailureModes(items) {
+  if (!items.length) return '<p class="muted">No source-backed failure modes are present.</p>';
+  return `
+    <ul class="text-list">
+      ${items.map((item) => `
+        <li>
+          ${esc(item.text)}
+          ${item.mitigation ? `<br><span class="muted">Mitigation: ${esc(item.mitigation)}</span>` : ""}
+        </li>
+      `).join("")}
+    </ul>
+  `;
+}
+
+function renderModelRelations(model) {
+  const relations = data.relations.filter((relation) =>
+    relation.source_model_id === model.model_id || relation.target_model_id === model.model_id
+  );
+  const semantic = model.canonical.relation_semantics;
+  return `
+    ${relations.length ? relations.map((relation) => `
+      <p class="source-line"><button type="button" class="model-link-button" onclick="setCase('${relation.used_in[0]}'); setMode('relations')">${esc(relation.display_name)}</button></p>
+    `).join("") : '<p class="muted">No pilot relation page uses this model yet.</p>'}
+    <details>
+      <summary>Canonical relation semantics</summary>
+      <h4>Allies</h4>
+      ${renderSemanticList(semantic.allies)}
+      <h4>Antagonists</h4>
+      ${renderSemanticList(semantic.antagonists)}
+      <h4>Structured tensions</h4>
+      ${renderSemanticList(semantic.structured_tensions)}
+    </details>
+  `;
+}
+
+function renderSemanticList(items) {
+  if (!items.length) return '<p class="muted">No source-backed entries in this category.</p>';
+  return `
+    <ul class="text-list">
+      ${items.map((item) => `<li><strong>${esc(item.target_model_id)}</strong>: ${esc(item.text)}</li>`).join("")}
+    </ul>
+  `;
+}
+
+function renderTextList(items) {
+  const cleanItems = items.filter(Boolean);
+  if (!cleanItems.length) return '<p class="muted">No source-backed entries are present.</p>';
+  return `<ul class="text-list">${cleanItems.map((item) => `<li>${esc(item)}</li>`).join("")}</ul>`;
+}
+
+function renderTextBlock(text) {
+  if (!text) return '<p class="muted">No canonical text is present for this section.</p>';
+  const paragraphs = String(text)
+    .split(/\n{2,}/)
+    .map((part) => part.trim())
+    .filter(Boolean);
+  return paragraphs.map((part) => `<p>${esc(part)}</p>`).join("");
 }
 
 function renderRelationsMode() {
@@ -1360,7 +1864,7 @@ function renderGraphSvg(selected) {
       ${nodes.map((node) => {
         const pos = positionById[node.node_id];
         return `
-          <g class="node-button" onclick="setMode('models')">
+          <g class="node-button" onclick="openModel('${esc(node.node_id)}')">
             <circle class="graph-node ${node.node_id === selected.graph.default_focus ? "is-selected" : ""}" cx="${pos.x}" cy="${pos.y}" r="52" />
             <text class="node-label" x="${pos.x - 70}" y="${pos.y + 76}">${esc(node.label)}</text>
           </g>
@@ -1432,6 +1936,7 @@ function caseLabel(caseId) {
 
 window.setMode = setMode;
 window.setCase = setCase;
+window.openModel = openModel;
 window.onSearchInput = onSearchInput;
 window.openSearchResult = openSearchResult;
 

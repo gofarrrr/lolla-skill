@@ -74,6 +74,7 @@ def test_checked_in_manifest_records_learner_first_rules() -> None:
     assert manifest["default_mode"] == "learn"
     assert manifest["case_count"] == 3
     assert manifest["model_count"] == 9
+    assert manifest["canonical_model_source_count"] == 9
     assert manifest["relation_count"] == 3
     assert manifest["mode_ids"] == ["learn", "models", "relations", "map", "review"]
     assert manifest["search_result_types"] == [
@@ -91,6 +92,8 @@ def test_checked_in_manifest_records_learner_first_rules() -> None:
         "typed_search_present": True,
         "model_backlinks_present": True,
         "relation_backlinks_present": True,
+        "canonical_model_detail_present": True,
+        "model_click_opens_product_detail": True,
     }
     assert manifest["non_claims"]["product_proof"] is False
     assert manifest["non_claims"]["human_validated"] is False
@@ -117,6 +120,11 @@ def test_html_defaults_to_learn_mode_and_keeps_review_separate() -> None:
     assert "Learn the move" in text
     assert "The trap" in text
     assert "Practice rep" in text
+    assert "Canonical overview" in text
+    assert "Canonical source sections" in text
+    assert "Use when" in text
+    assert "Failure modes" in text
+    assert "openModel" in text
     assert "Models" in text
     assert "Relations" in text
     assert "Map" in text
@@ -153,6 +161,20 @@ def test_embedded_data_has_typed_objects_search_and_backlinks() -> None:
     for model in data["models"]:
         assert model["appears_in"]
         assert model["href"].endswith(".md")
+        assert model["canonical"]["status"] == "available"
+        assert model["canonical"]["source_path"].startswith("data/model_sources/")
+        assert model["canonical"]["source_href"].endswith(".md")
+        assert model["canonical"]["source_hash"]
+        assert model["canonical"]["overview"]
+        assert model["canonical"]["sections"]
+        assert model["canonical"]["curation"]["status"] == "available"
+        assert model["canonical"]["curation"]["select_when"]
+        assert model["canonical"]["curation"]["avoid_when"]
+        assert model["canonical"]["intervention"]["status"] == "available"
+        assert model["canonical"]["intervention"]["failure_modes"]
+        assert model["canonical"]["intervention"]["premortem_questions"]
+        assert model["canonical"]["intervention"]["heuristics"]
+        assert model["canonical"]["relation_semantics"]["status"] == "available"
     for relation in data["relations"]:
         assert relation["used_in"]
         assert relation["href"].endswith(".md")
@@ -190,6 +212,9 @@ def test_learner_experience_links_resolve() -> None:
     for item in data["models"]:
         if not (HTML.parent / item["href"]).resolve().exists():
             missing.append(item["href"])
+        source_href = item["canonical"]["source_href"]
+        if source_href and not (HTML.parent / source_href).resolve().exists():
+            missing.append(source_href)
     for item in data["relations"]:
         if not (HTML.parent / item["href"]).resolve().exists():
             missing.append(item["href"])

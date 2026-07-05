@@ -33,6 +33,8 @@ case anchor -> reasoning trap -> thinking move -> model relation -> practice rep
 - The user can switch between three Teacher pilot cases.
 - The first screen explains the situation, trap, move, relation, and practice rep.
 - `Models` mode presents reusable mental-model cards with lesson backlinks.
+- Clicking a model opens a formatted model detail view sourced from canonical
+  Markdown, activation curation, intervention semantics, and relation semantics.
 - `Relations` mode presents relation cards as first-class teaching objects.
 - `Map` mode presents a focused lesson neighborhood, not a full-corpus graph.
 - `Review` mode is separate from the learner surface.
@@ -48,7 +50,7 @@ non-claim tags in one view.
 This prototype separates those jobs:
 
 - teaching belongs in `Learn`;
-- reusable concepts belong in `Models`;
+- reusable concepts and canonical model detail belong in `Models`;
 - model-pair explanations belong in `Relations`;
 - spatial exploration belongs in `Map`;
 - source fidelity and missingness belong in `Review` or receipts.
