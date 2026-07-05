@@ -1,0 +1,54 @@
+{
+  "schema": "lolla.mental_model_teacher.pilot_page_data_builder_review.v0",
+  "status": "pilot_page_data_builder_ready_for_review",
+  "product_lane": "Mental Model Teacher Product Surface And Visual Library",
+  "decision_gate": "proceed_to_static_model_relation_page_renderer",
+  "recommended_next_pr": "Mental Model Teacher Static Model And Relation Page Renderer v0",
+  "builder_module": "engine/system_b/mental_model_teacher_pilot_page_builder.py",
+  "contract_module": "engine/system_b/mental_model_teacher_product_contracts.py",
+  "builder_doc": "docs/product/mental-model-teacher-pilot-page-data-builder-v0.md",
+  "default_model_ids": [
+    "base-rates",
+    "system-2",
+    "scientific-method-evidence-testing"
+  ],
+  "default_relation_ids": [
+    "base-rates__ally__scientific-method-evidence-testing",
+    "base-rates__ally__system-2"
+  ],
+  "source_inputs": [
+    "data/model_sources/manifest.json",
+    "data/curation/*.json",
+    "data/curation/intervention_semantics/*.json",
+    "data/curation/relation_semantics/*.json"
+  ],
+  "generated_artifact_policy": "Generated pilot page data is written during validation or by explicit CLI output only; PR-P4 does not check in generated product-page JSON.",
+  "missingness_preserved": [
+    "model.common_misuse",
+    "model.practice_prompts",
+    "relation.source_specific_misread_risk",
+    "relation.source_specific_practice_prompt"
+  ],
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false
+  },
+  "strongest_signal": "The builder can turn existing canonical source, curation, intervention semantics, and relation semantics into PR-P3-valid model and relation page objects without using embeddings, Teacher artifacts, renderers, or runtime hooks.",
+  "strongest_risk": "The first generated pages are readable but sparse where source-specific practice and misuse fields are absent; PR-P5 rendering must make missingness visible rather than smoothing it away.",
+  "stop_before": [
+    "model page rendering",
+    "relation page rendering",
+    "Teacher lesson rendering",
+    "graph data building",
+    "graph UI",
+    "runtime integration",
+    "provider or model calls",
+    "product proof claims",
+    "human validation claims"
+  ]
+}
