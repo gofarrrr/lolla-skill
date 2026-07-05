@@ -1,0 +1,56 @@
+{
+  "model_page_count": 3,
+  "non_claims": {
+    "advice_correctness": false,
+    "answer_correctness": false,
+    "embedding_similarity_is_validated_relation_semantics": false,
+    "graph_edges_are_proof": false,
+    "human_validated": false,
+    "product_proof": false,
+    "runtime_integration_authorized": false
+  },
+  "output_dir": "docs/product/mental-model-teacher-pilot-render-v0",
+  "pages": [
+    {
+      "page_type": "index",
+      "path": "index.md"
+    },
+    {
+      "model_id": "base-rates",
+      "page_type": "model",
+      "path": "models/base-rates.md"
+    },
+    {
+      "model_id": "system-2",
+      "page_type": "model",
+      "path": "models/system-2.md"
+    },
+    {
+      "model_id": "scientific-method-evidence-testing",
+      "page_type": "model",
+      "path": "models/scientific-method-evidence-testing.md"
+    },
+    {
+      "page_type": "relation",
+      "path": "relations/base-rates__ally__scientific-method-evidence-testing.md",
+      "relation_id": "base-rates__ally__scientific-method-evidence-testing"
+    },
+    {
+      "page_type": "relation",
+      "path": "relations/base-rates__ally__system-2.md",
+      "relation_id": "base-rates__ally__system-2"
+    }
+  ],
+  "relation_page_count": 2,
+  "render_status": "pilot_render_ready_for_review",
+  "renderer": "engine.system_b.mental_model_teacher_static_renderer",
+  "schema_version": "lolla.mental_model_teacher.static_page_render_manifest.v0",
+  "source_package_schema": "lolla.mental_model_teacher.pilot_page_data.v0",
+  "stop_before": [
+    "Teacher lesson rendering",
+    "graph data building",
+    "graph UI",
+    "runtime integration",
+    "provider or model calls"
+  ]
+}

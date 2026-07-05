@@ -1,0 +1,46 @@
+{
+  "schema": "lolla.mental_model_teacher.static_page_renderer_review.v0",
+  "status": "static_page_renderer_ready_for_review",
+  "product_lane": "Mental Model Teacher Product Surface And Visual Library",
+  "decision_gate": "proceed_to_teacher_lesson_product_renderer",
+  "recommended_next_pr": "Mental Model Teacher Lesson Product Renderer v0",
+  "renderer_module": "engine/system_b/mental_model_teacher_static_renderer.py",
+  "builder_module": "engine/system_b/mental_model_teacher_pilot_page_builder.py",
+  "contract_module": "engine/system_b/mental_model_teacher_product_contracts.py",
+  "renderer_doc": "docs/product/mental-model-teacher-static-page-renderer-v0.md",
+  "pilot_render_dir": "docs/product/mental-model-teacher-pilot-render-v0",
+  "pilot_render_manifest": "docs/product/mental-model-teacher-pilot-render-v0/manifest.json",
+  "rendered_pages": {
+    "index_pages": 1,
+    "model_pages": 3,
+    "relation_pages": 2
+  },
+  "required_render_properties": [
+    "model pages are readable Markdown rather than raw JSON dumps",
+    "relation pages explain the edge in plain language before taxonomy",
+    "local links resolve inside the checked-in render",
+    "missingness is visible",
+    "source custody is visible",
+    "non-claims are visible"
+  ],
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false
+  },
+  "strongest_signal": "The pilot now has readable local model and relation Markdown pages generated from PR-P4 data and PR-P3 contracts.",
+  "strongest_risk": "The pages are still sparse where source-specific practice and misuse fields are missing; PR-P6 should not hide that absence when composing lessons.",
+  "stop_before": [
+    "Teacher lesson page rendering",
+    "graph data building",
+    "graph UI",
+    "runtime integration",
+    "provider or model calls",
+    "product proof claims",
+    "human validation claims"
+  ]
+}
