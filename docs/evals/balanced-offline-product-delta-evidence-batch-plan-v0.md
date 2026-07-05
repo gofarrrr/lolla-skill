@@ -244,3 +244,14 @@ That next PR should remain a planning slice unless it explicitly gates to a
 deterministic selector implementation. It should not run a batch, create a live
 judge, call models/providers, run Lolla, score answer quality, or claim
 product proof.
+
+## Implemented Follow-Up
+
+The follow-up plan now exists as
+[Balanced Batch Candidate Selector / Readiness Builder Plan](balanced-batch-candidate-selector-readiness-builder-plan-v0.md).
+It defines safe source scopes, allowed selection signals, candidate bucket
+hypotheses, readiness criteria, output shape, refusal/defer statuses, and
+anti-flattery rules for a future deterministic selector/readiness builder
+without implementing the selector, scanning archives broadly, running Product
+Delta review, calling models, creating a live judge, scoring answers, or
+claiming product proof.

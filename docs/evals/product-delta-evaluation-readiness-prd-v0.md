@@ -291,3 +291,11 @@ The follow-up plan now exists as
 It defines the balanced batch buckets, source rules, privacy/custody rules,
 check-in policy, anti-overclaim rules, and the next candidate-selector plan
 gate without selecting actual cases or running Product Delta review.
+
+The next plan-only follow-up now exists as
+[Balanced Batch Candidate Selector / Readiness Builder Plan](balanced-batch-candidate-selector-readiness-builder-plan-v0.md).
+It defines safe source scopes, allowed selection signals, bucket hypotheses,
+readiness criteria, output shape, refusal/defer statuses, and anti-flattery
+rules for a future deterministic builder without implementing that builder,
+scanning archives broadly, running Product Delta review, calling models,
+scoring answers, or claiming product proof.

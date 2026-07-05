@@ -974,6 +974,15 @@ Follow-up implementation planning:
   Delta review, live judging, answer scoring, product proof, or runtime
   changes.
 
+- [Balanced Batch Candidate Selector / Readiness Builder Plan](../evals/balanced-batch-candidate-selector-readiness-builder-plan-v0.md)
+
+  PR237 defines the next plan-only eval slice: how a future selector/readiness
+  builder should use explicit safe source scopes and existing metadata to
+  propose balanced Product Delta candidates. It keeps noisy, worse,
+  no-change, partial, useful, and inconclusive outcomes open while stopping
+  before selector implementation, archive scans, Product Delta review runs,
+  live judging, answer scoring, product proof, or runtime changes.
+
 The core board-level message is:
 
 > Lolla is not only trying to produce a better answer. It is trying to preserve,

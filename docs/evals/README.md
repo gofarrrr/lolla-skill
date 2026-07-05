@@ -195,6 +195,7 @@ Start with these:
 | [Product Delta PR71-PR84 Packaging Gate](product-delta-pr71-pr84-packaging-gate-v0.md) | PR85's package manifest, validation boundary, useful signal, and unresolved risk. |
 | [Product Delta Evaluation Readiness PRD](product-delta-evaluation-readiness-prd-v0.md) | PR235's eval-phase PRD: summarize existing Product Delta, Human Review, and Review Corpus lanes; preserve the downgrade signal; reject live judging as the immediate move; and choose a balanced offline Product Delta evidence batch next. |
 | [Balanced Offline Product Delta Evidence Batch Plan](balanced-offline-product-delta-evidence-batch-plan-v0.md) | PR236's plan-only balanced-batch slice: define buckets, source rules, privacy/custody rules, check-in policy, anti-overclaim rules, and the candidate-selector plan gate without selecting cases or running a batch. |
+| [Balanced Batch Candidate Selector / Readiness Builder Plan](balanced-batch-candidate-selector-readiness-builder-plan-v0.md) | PR237's plan-only selector/readiness-builder slice: define safe source signals, bucket hypotheses, readiness criteria, output shape, refusal/defer statuses, and anti-flattery rules before any selector implementation or Product Delta batch run. |
 
 ## Runtime And Skill Opportunities
 
@@ -228,6 +229,14 @@ plan that batch rather than build a live judge.
 The Balanced Offline Product Delta Evidence Batch Plan now defines that batch
 shape. The next PR should plan the candidate selector/readiness builder rather
 than run Product Delta review.
+
+The Balanced Batch Candidate Selector / Readiness Builder Plan now defines how
+a future deterministic selector should choose candidate cases from explicit
+safe source scopes, existing metadata, provisional labels, specialist fan-in,
+human-review taxonomy hints, run-health/capture metadata, and review-corpus
+readiness metadata. It stops before selector implementation, broad archive
+scans, Product Delta review runs, model/provider calls, live judging, answer
+scoring, or product-proof claims.
 
 Good next moves later include:
 

@@ -229,6 +229,12 @@ no-change, noisy/worse, inconclusive, lost-intent, friction-without-leverage,
 already-good-enough vanilla, verification/deferral/boundary, and
 overcorrection/drift buckets before any candidate selector, batch run, live
 judge, or product-proof claim.
+The next plan-only slice,
+[Balanced Batch Candidate Selector / Readiness Builder Plan](docs/evals/balanced-batch-candidate-selector-readiness-builder-plan-v0.md),
+defines safe source rules, bucket hints, readiness criteria, output shape, and
+refusal/defer statuses for a future selector/readiness builder while still not
+implementing the selector, scanning archives broadly, running Product Delta
+review, calling models, scoring answers, or claiming proof.
 
 The emerging customer-facing product surface is the Decision Trail: the revised
 answer plus a compact process report explaining what conversation produced it,
