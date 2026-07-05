@@ -1,0 +1,58 @@
+{
+  "schema": "lolla.mental_model_teacher.lesson_graph_data_builder_review.v0",
+  "status": "lesson_graph_data_builder_ready_for_review",
+  "product_lane": "Mental Model Teacher Product Surface And Visual Library",
+  "decision_gate": "proceed_to_static_visual_graph_prototype",
+  "recommended_next_pr": "Mental Model Teacher Static Visual Graph Prototype v0",
+  "builder_module": "engine/system_b/mental_model_teacher_lesson_graph_builder.py",
+  "contract_module": "engine/system_b/mental_model_teacher_product_contracts.py",
+  "builder_doc": "docs/product/mental-model-teacher-lesson-graph-data-builder-v0.md",
+  "graph_package_dir": "docs/product/mental-model-teacher-lesson-graph-v0",
+  "graph_manifest": "docs/product/mental-model-teacher-lesson-graph-v0/manifest.json",
+  "graph_file": "docs/product/mental-model-teacher-lesson-graph-v0/contract-fixture-base-rates-system-2.graph.json",
+  "graph_counts": {
+    "graphs": 1,
+    "nodes": 2,
+    "edges": 1
+  },
+  "input_status": {
+    "input_type": "contract_fixture_plus_product_page_layer",
+    "real_teacher_case_artifacts_present": false,
+    "teacher_artifacts_used": false,
+    "real_teacher_case_claimed": false,
+    "embeddings_used": false,
+    "relationship_graph_affinity_used": false
+  },
+  "required_graph_properties": [
+    "graph scope is lesson_neighborhood",
+    "nodes come from selected model pages",
+    "edges come from selected relation pages",
+    "edge href resolves to relation page",
+    "node hrefs resolve to model pages",
+    "source status is visible",
+    "missingness is visible",
+    "non-claims are visible",
+    "no affinity, rank, embedding similarity, or score fields are exposed"
+  ],
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false,
+    "agent_or_automatic_action_authorized": false
+  },
+  "strongest_signal": "The product lane now has deterministic graph data for a lesson neighborhood whose edge resolves to a product-safe relation page instead of raw relationship-graph affinity.",
+  "strongest_risk": "The graph is still a fixture-sized neighborhood and has no browser interaction yet; PR-P8 must prove the UI can render and inspect it without provider calls or proof claims.",
+  "stop_before": [
+    "browser graph UI",
+    "Cytoscape or other graph rendering",
+    "full-corpus graph work",
+    "runtime integration",
+    "provider or model calls",
+    "product proof claims",
+    "human validation claims"
+  ]
+}
