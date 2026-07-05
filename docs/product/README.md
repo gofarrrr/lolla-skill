@@ -35,4 +35,5 @@ Current planning docs:
 - [Mental Model Teacher PKM Reference Synthesis](mental-model-teacher-pkm-reference-synthesis-v0.md)
 - [Mental Model Teacher Learner Experience Prototype](mental-model-teacher-learner-experience-prototype-v0.md)
 - [Mental Model Teacher Learner Experience Prototype App](mental-model-teacher-learner-experience-prototype-v0/index.html)
+- [Mental Model Teacher Observatory Integration Design](mental-model-teacher-observatory-integration-design-v0.md)
 - [Mental Model Teacher Product Surface Reference Patterns](mental-model-teacher-product-surface-reference-patterns-v0.md)
