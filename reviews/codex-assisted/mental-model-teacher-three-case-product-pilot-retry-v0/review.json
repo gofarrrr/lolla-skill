@@ -1,0 +1,74 @@
+{
+  "schema": "lolla.mental_model_teacher.three_case_product_pilot_retry_review.v0",
+  "status": "three_case_teacher_product_pilot_ready_for_review",
+  "product_lane": "Mental Model Teacher Product Surface And Visual Library",
+  "decision_gate": "proceed_to_ux_review_packet",
+  "recommended_next_pr": "Mental Model Teacher UX Review Packet And Human Review Form v0",
+  "product_pilot": {
+    "entrypoint": "docs/product/mental-model-teacher-three-case-product-pilot-v0/index.md",
+    "manifest": "docs/product/mental-model-teacher-three-case-product-pilot-v0/manifest.json",
+    "case_count": 3,
+    "lesson_page_count": 3,
+    "graph_count": 3
+  },
+  "source_package": {
+    "root": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/",
+    "teacher_source_artifacts_used": true,
+    "decision_work_artifacts_used_as_teacher_source": false
+  },
+  "cases": [
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "lesson_page": "docs/product/mental-model-teacher-three-case-product-pilot-v0/lessons/launch-public-enterprise-beta.md",
+      "lesson_object": "docs/product/mental-model-teacher-three-case-product-pilot-v0/objects/launch-public-enterprise-beta.lesson.json",
+      "graph": "docs/product/mental-model-teacher-three-case-product-pilot-v0/graphs/launch-public-enterprise-beta.graph.json",
+      "source_teacher_card": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_card.md",
+      "dominant_move": "Ask what evidence remains if the authority signal is removed.",
+      "graph_nodes": 3,
+      "graph_edges": 1
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "lesson_page": "docs/product/mental-model-teacher-three-case-product-pilot-v0/lessons/deploy-assisted-intake-routing.md",
+      "lesson_object": "docs/product/mental-model-teacher-three-case-product-pilot-v0/objects/deploy-assisted-intake-routing.lesson.json",
+      "graph": "docs/product/mental-model-teacher-three-case-product-pilot-v0/graphs/deploy-assisted-intake-routing.graph.json",
+      "source_teacher_card": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/deploy-assisted-intake-routing/mental_model_teacher_card.md",
+      "dominant_move": "Sort the situation into buckets before deciding what each bucket needs.",
+      "graph_nodes": 3,
+      "graph_edges": 1
+    },
+    {
+      "case_id": "ceo-remove-founding-cofounder",
+      "lesson_page": "docs/product/mental-model-teacher-three-case-product-pilot-v0/lessons/ceo-remove-founding-cofounder.md",
+      "lesson_object": "docs/product/mental-model-teacher-three-case-product-pilot-v0/objects/ceo-remove-founding-cofounder.lesson.json",
+      "graph": "docs/product/mental-model-teacher-three-case-product-pilot-v0/graphs/ceo-remove-founding-cofounder.graph.json",
+      "source_teacher_card": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/ceo-remove-founding-cofounder/mental_model_teacher_card.md",
+      "dominant_move": "Name the emotion in the room, then separate it from the decision rule.",
+      "graph_nodes": 3,
+      "graph_edges": 1,
+      "high_risk_caveat_visible": true
+    }
+  ],
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false,
+    "agent_or_automatic_action_authorized": false
+  },
+  "strongest_signal": "The three imported Teacher cases now have productized lesson pages and small graph-neighborhood JSON that teach reasoning moves without substituting Decision Work artifacts or claiming validation.",
+  "strongest_risk": "Model and relation clickthroughs still point to imported OKF source views, not full product model/relation pages for every case model; PR-P10 should review whether that is good enough for the pilot or needs expanded page rendering.",
+  "stop_before": [
+    "UX review packet",
+    "human validation claim",
+    "product readiness claim",
+    "package gate",
+    "browser graph UI",
+    "full-corpus graph",
+    "runtime integration",
+    "provider or model calls"
+  ]
+}

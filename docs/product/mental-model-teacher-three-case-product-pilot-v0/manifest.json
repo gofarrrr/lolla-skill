@@ -1,0 +1,117 @@
+{
+  "builder": "engine.system_b.mental_model_teacher_three_case_product_pilot",
+  "case_count": 3,
+  "decision_work_artifacts_used_as_teacher_source": false,
+  "graph_count": 3,
+  "graphs": [
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "edge_count": 1,
+      "graph_id": "lesson-neighborhood-launch-public-enterprise-beta",
+      "node_count": 3,
+      "path": "graphs/launch-public-enterprise-beta.graph.json"
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "edge_count": 1,
+      "graph_id": "lesson-neighborhood-deploy-assisted-intake-routing",
+      "node_count": 3,
+      "path": "graphs/deploy-assisted-intake-routing.graph.json"
+    },
+    {
+      "case_id": "ceo-remove-founding-cofounder",
+      "edge_count": 1,
+      "graph_id": "lesson-neighborhood-ceo-remove-founding-cofounder",
+      "node_count": 3,
+      "path": "graphs/ceo-remove-founding-cofounder.graph.json"
+    }
+  ],
+  "high_risk_cases": [
+    "ceo-remove-founding-cofounder"
+  ],
+  "human_validated": false,
+  "lesson_object_count": 3,
+  "lesson_page_count": 3,
+  "missingness": {
+    "missing_fields": [
+      "human_review",
+      "full_model_product_pages",
+      "full_relation_product_pages",
+      "browser_graph_ui_review"
+    ],
+    "notes": [
+      "This retry renders productized lesson pages and graph data, not PR-P10 UX review.",
+      "Model and relation clickthroughs point to imported OKF source views until full product pages are built."
+    ],
+    "status": "partial"
+  },
+  "non_claims": {
+    "advice_correctness": false,
+    "agent_or_automatic_action_authorized": false,
+    "answer_correctness": false,
+    "embedding_similarity_is_validated_relation_semantics": false,
+    "graph_edges_are_proof": false,
+    "human_validated": false,
+    "product_proof": false,
+    "runtime_integration_authorized": false
+  },
+  "objects": [
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "lesson_id": "launch-public-enterprise-beta",
+      "path": "objects/launch-public-enterprise-beta.lesson.json"
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "lesson_id": "deploy-assisted-intake-routing",
+      "path": "objects/deploy-assisted-intake-routing.lesson.json"
+    },
+    {
+      "case_id": "ceo-remove-founding-cofounder",
+      "lesson_id": "ceo-remove-founding-cofounder",
+      "path": "objects/ceo-remove-founding-cofounder.lesson.json"
+    }
+  ],
+  "output_dir": "docs/product/mental-model-teacher-three-case-product-pilot-v0",
+  "pages": [
+    {
+      "page_type": "index",
+      "path": "index.md"
+    },
+    {
+      "case_id": "launch-public-enterprise-beta",
+      "lesson_id": "launch-public-enterprise-beta",
+      "page_type": "teacher_lesson",
+      "path": "lessons/launch-public-enterprise-beta.md"
+    },
+    {
+      "case_id": "deploy-assisted-intake-routing",
+      "lesson_id": "deploy-assisted-intake-routing",
+      "page_type": "teacher_lesson",
+      "path": "lessons/deploy-assisted-intake-routing.md"
+    },
+    {
+      "case_id": "ceo-remove-founding-cofounder",
+      "lesson_id": "ceo-remove-founding-cofounder",
+      "page_type": "teacher_lesson",
+      "path": "lessons/ceo-remove-founding-cofounder.md"
+    }
+  ],
+  "product_proof": false,
+  "provider_or_model_calls_used": false,
+  "runtime_integration_authorized": false,
+  "schema_version": "lolla.mental_model_teacher.three_case_product_pilot_manifest.v0",
+  "source_artifacts_used": true,
+  "source_root": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2",
+  "status": "three_case_teacher_product_pilot_ready_for_review",
+  "stop_before": [
+    "UX review packet",
+    "human validation claim",
+    "product readiness claim",
+    "package gate",
+    "browser graph UI",
+    "full-corpus graph",
+    "runtime integration",
+    "provider or model calls"
+  ]
+}

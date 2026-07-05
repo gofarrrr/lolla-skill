@@ -1,0 +1,99 @@
+{
+  "case_id": "deploy-assisted-intake-routing",
+  "default_focus": "category-decisions",
+  "edges": [
+    {
+      "confidence": "medium",
+      "edge_id": "cognitive-load-theory__optionality__structured_tension",
+      "href": "../../../../reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/deploy-assisted-intake-routing/okf/mental_model_teacher/relations/cognitive-load-theory__optionality__structured_tension.md",
+      "label": "Cognitive Load Theory and Optionality (tension)",
+      "missingness_status": "partial",
+      "relation_id": "cognitive-load-theory__optionality__structured_tension",
+      "relation_type": "tension",
+      "source_node_id": "cognitive-load-theory",
+      "source_status": "reviewed_relation_graph",
+      "target_node_id": "optionality"
+    }
+  ],
+  "filters": {
+    "max_nodes": 10,
+    "node_types": [
+      "mental_model"
+    ],
+    "relation_types": [
+      "tension"
+    ]
+  },
+  "graph_id": "lesson-neighborhood-deploy-assisted-intake-routing",
+  "graph_scope": "lesson_neighborhood",
+  "layout_hint": "small_neighborhood",
+  "lesson_id": "deploy-assisted-intake-routing",
+  "missingness": {
+    "missing_fields": [
+      "browser_graph_ui",
+      "full_model_product_pages",
+      "full_relation_product_pages",
+      "human_review"
+    ],
+    "notes": [
+      "Graph data only; no browser graph UI is added in this PR-P9 retry.",
+      "Edges come from imported Teacher relation deep-dive source and are navigation, not proof."
+    ],
+    "status": "partial"
+  },
+  "nodes": [
+    {
+      "href": "../../../../reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/deploy-assisted-intake-routing/okf/mental_model_teacher/models/category-decisions.md",
+      "label": "Sort The Case Before Judging It",
+      "missingness_status": "partial",
+      "model_id": "category-decisions",
+      "node_id": "category-decisions",
+      "node_type": "mental_model",
+      "role": "primary_teaching_lens",
+      "source_status": "source_artifact"
+    },
+    {
+      "href": "../../../../reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/deploy-assisted-intake-routing/okf/mental_model_teacher/models/cognitive-load-theory.md",
+      "label": "Reduce The Thinking Burden",
+      "missingness_status": "partial",
+      "model_id": "cognitive-load-theory",
+      "node_id": "cognitive-load-theory",
+      "node_type": "mental_model",
+      "role": "primary_teaching_lens",
+      "source_status": "source_artifact"
+    },
+    {
+      "href": "../../../../reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/deploy-assisted-intake-routing/okf/mental_model_teacher/models/optionality.md",
+      "label": "Preserve A Cheap Test",
+      "missingness_status": "partial",
+      "model_id": "optionality",
+      "node_id": "optionality",
+      "node_type": "mental_model",
+      "role": "boundary_lens",
+      "source_status": "source_artifact"
+    }
+  ],
+  "non_claims": [
+    "edge_is_not_proof",
+    "graph_is_navigation_not_proof",
+    "not_action_authorization",
+    "not_advice_correctness",
+    "not_answer_correctness",
+    "not_human_validation",
+    "not_product_proof",
+    "not_runtime_integration"
+  ],
+  "schema_version": "lolla.mental_model_teacher.visual_graph.v0",
+  "source_artifacts": [
+    {
+      "artifact_id": "deploy-assisted-intake-routing-lesson-source",
+      "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/deploy-assisted-intake-routing/mental_model_teacher_lesson.json",
+      "source_type": "teacher_lesson_source"
+    },
+    {
+      "artifact_id": "deploy-assisted-intake-routing-relation-source",
+      "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/deploy-assisted-intake-routing/mental_model_teacher_relation_deep_dive.json",
+      "source_type": "teacher_relation_deep_dive_source"
+    }
+  ]
+}
