@@ -13,4 +13,6 @@ Current planning docs:
 - [Mental Model Teacher Product Contracts](mental-model-teacher-product-contracts-v0.md)
 - [Mental Model Teacher Product Contract Examples JSON](mental-model-teacher-product-contract-examples-v0.json)
 - [Mental Model Teacher Pilot Page Data Builder](mental-model-teacher-pilot-page-data-builder-v0.md)
+- [Mental Model Teacher Static Page Renderer](mental-model-teacher-static-page-renderer-v0.md)
+- [Mental Model Teacher Pilot Render](mental-model-teacher-pilot-render-v0/index.md)
 - [Mental Model Teacher Product Surface Reference Patterns](mental-model-teacher-product-surface-reference-patterns-v0.md)
