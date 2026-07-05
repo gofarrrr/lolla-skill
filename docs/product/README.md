@@ -15,4 +15,6 @@ Current planning docs:
 - [Mental Model Teacher Pilot Page Data Builder](mental-model-teacher-pilot-page-data-builder-v0.md)
 - [Mental Model Teacher Static Page Renderer](mental-model-teacher-static-page-renderer-v0.md)
 - [Mental Model Teacher Pilot Render](mental-model-teacher-pilot-render-v0/index.md)
+- [Mental Model Teacher Lesson Product Renderer](mental-model-teacher-lesson-product-renderer-v0.md)
+- [Mental Model Teacher Lesson Render](mental-model-teacher-lesson-render-v0/index.md)
 - [Mental Model Teacher Product Surface Reference Patterns](mental-model-teacher-product-surface-reference-patterns-v0.md)
