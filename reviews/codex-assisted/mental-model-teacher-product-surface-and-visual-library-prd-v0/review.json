@@ -1,0 +1,82 @@
+{
+  "schema": "lolla.mental_model_teacher_product_surface_visual_library_prd_review.v0",
+  "status": "prd_ready_for_review",
+  "decision_gate": "proceed_to_current_substrate_inventory_exposure_contract",
+  "recommended_next_pr": "Mental Model Teacher Current Substrate Inventory And Exposure Contract v0",
+  "product_lane": {
+    "name": "Mental Model Teacher Product Surface And Visual Library",
+    "separate_from": [
+      "Lolla skill",
+      "Observatory",
+      "Decision Work",
+      "Product Delta"
+    ],
+    "purpose": "Teach transferable reasoning moves by making mental models and their relations browsable, clickable, and practice-oriented."
+  },
+  "source_assets": [
+    "data/model_sources/*.md",
+    "data/model_sources/manifest.json",
+    "data/curation/*.json",
+    "data/curation/intervention_semantics/*.json",
+    "data/curation/relation_semantics/*.json",
+    "data/knowledge_graph.json",
+    "data/relationship_graph.json",
+    "data/embeddings.db",
+    "data/curated/*.json",
+    "data/family_semantics/*.json",
+    "data/compiled/model_affordances/affordances_v60.json",
+    "engine/system_b/relation_graph.py",
+    "engine/system_b/activation_matcher.py",
+    "engine/system_b/graph_survival_report.py",
+    "engine/system_b/model_affordance_validation.py",
+    "Mental Model Teacher offline artifacts"
+  ],
+  "reference_projects_reviewed": [
+    "Logseq",
+    "SiYuan",
+    "Foam",
+    "Reor",
+    "TriliumNext",
+    "Dendron",
+    "AppFlowy",
+    "Anytype",
+    "Notesnook",
+    "Pubsidian",
+    "Flowershow",
+    "Neurite",
+    "knowledge_graph",
+    "Graphify",
+    "Quartz",
+    "Obsidian Digital Garden",
+    "Cytoscape.js",
+    "Sigma.js"
+  ],
+  "planned_prs": [
+    "PR-P1 Product Surface PRD And Reference Audit",
+    "PR-P2 Current Substrate Inventory And Exposure Contract",
+    "PR-P3 User-Facing Model And Relation Contracts",
+    "PR-P4 Pilot Model And Relation Page Data Builder",
+    "PR-P5 Static Model And Relation Page Renderer",
+    "PR-P6 Teacher Lesson Product Renderer",
+    "PR-P7 Lesson Neighborhood Graph Data Builder",
+    "PR-P8 Static Visual Graph Prototype",
+    "PR-P9 Three-Case Teacher Product Pilot",
+    "PR-P10 UX Review Packet And Human Review Form",
+    "PR-P11 Product Surface Package Gate",
+    "Optional PR-P12 Full Corpus Graph Plan",
+    "Optional PR-P13 Full Corpus Library Pilot"
+  ],
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "resolver_approval": false,
+    "action_authorization": false,
+    "automatic_arbitrary_run_semantic_generation": false,
+    "graph_proves_reasoning_move": false
+  },
+  "strongest_signal": "The repo already has canonical model Markdown, activation curation, intervention semantics, relation semantics, compiled relationship graph, wider knowledge graph, embeddings, family semantics, V60 affordances, and graph survival/eval materials, so the product surface can start from reviewed source custody instead of inventing a graph from scratch.",
+  "strongest_risk": "A visual graph can look authoritative even when it is only a navigational teaching aid, so relation pages, source status, and non-claims must stay visible."
+}
