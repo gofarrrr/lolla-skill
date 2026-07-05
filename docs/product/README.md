@@ -31,4 +31,8 @@ Current planning docs:
 - [Mental Model Teacher Product Surface Package Manifest](mental-model-teacher-product-surface-package-manifest-v0.json)
 - [Mental Model Teacher Visible Review Surface](mental-model-teacher-visible-review-surface-v0.md)
 - [Mental Model Teacher Visible Review Surface App](mental-model-teacher-visible-review-surface-v0/index.html)
+- [Mental Model Teacher Learner Experience Design](mental-model-teacher-learner-experience-design-v0.md)
+- [Mental Model Teacher PKM Reference Synthesis](mental-model-teacher-pkm-reference-synthesis-v0.md)
+- [Mental Model Teacher Learner Experience Prototype](mental-model-teacher-learner-experience-prototype-v0.md)
+- [Mental Model Teacher Learner Experience Prototype App](mental-model-teacher-learner-experience-prototype-v0/index.html)
 - [Mental Model Teacher Product Surface Reference Patterns](mental-model-teacher-product-surface-reference-patterns-v0.md)
