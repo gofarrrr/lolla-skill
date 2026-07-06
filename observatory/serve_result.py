@@ -2528,6 +2528,36 @@ def _build_teacher_learning_response(
     return build_teacher_learning_response(case_id, result, result_path)
 
 
+def _build_decision_work_status_response(
+    case_id: str,
+    result: dict,
+    result_path: Path | None,
+    *,
+    is_current: bool,
+) -> dict:
+    """Return read-only Conversation Understanding / Decision Work status."""
+    from system_b.observatory_decision_work_status import (
+        DECISION_WORK_ARTIFACTS,
+        build_observatory_decision_work_status,
+    )
+
+    files = {}
+    for artifact_id, filename, _content_type in DECISION_WORK_ARTIFACTS:
+        path = _case_sidecar_path(
+            result_path,
+            f"decision_work/{filename}",
+            is_current=is_current,
+        )
+        if path is not None:
+            files[artifact_id] = path
+    return build_observatory_decision_work_status(
+        selected_case_id=case_id,
+        result=result,
+        result_path=result_path,
+        decision_work_files=files,
+    )
+
+
 def _render_teacher_learning_html(case_id: str | None = None) -> str:
     """Render the Observatory-native Teacher learning surface."""
     _reload_result_if_changed()
@@ -6041,6 +6071,23 @@ class ResultHandler(SimpleHTTPRequestHandler):
                     self._error_response(
                         500,
                         "Teacher learning adapter failed: " + type(exc).__name__,
+                    )
+                    return
+                self._json_response(payload)
+                return
+            if len(parts) == 5 and parts[4] == "decision-work":
+                try:
+                    payload = _build_decision_work_status_response(
+                        case_id,
+                        result,
+                        result_path,
+                        is_current=is_current,
+                    )
+                except Exception as exc:
+                    self._error_response(
+                        500,
+                        "Decision Work status adapter failed: "
+                        + type(exc).__name__,
                     )
                     return
                 self._json_response(payload)
