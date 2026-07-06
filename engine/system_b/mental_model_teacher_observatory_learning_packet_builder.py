@@ -374,8 +374,6 @@ def _packet_missingness(
     graph: dict[str, Any],
 ) -> dict[str, Any]:
     fields = {
-        "observatory_endpoint",
-        "observatory_ui_mount",
         "selected_run_outcome_binding",
     }
     fields.update(lesson["missingness"].get("missing_fields") or [])
@@ -384,7 +382,7 @@ def _packet_missingness(
         fields.update(page["missingness"].get("missing_fields") or [])
 
     notes = [
-        "Learning packet is ready for an Observatory adapter; it is not mounted in Observatory yet.",
+        "Learning packet powers the Observatory Learn surface when a matching selected run is available; it remains offline review material, not runtime integration.",
         "Model pages are translated product objects, not raw canonical Markdown dumps.",
         "Telemetry and review/audit artifacts are Receipts or Advanced material, not primary learning copy.",
     ]
