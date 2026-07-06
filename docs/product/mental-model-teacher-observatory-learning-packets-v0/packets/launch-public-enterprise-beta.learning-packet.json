@@ -1,0 +1,818 @@
+{
+  "default_tab": "Outcome",
+  "graph": {
+    "case_id": "launch-public-enterprise-beta",
+    "default_focus": "authority-bias",
+    "edges": [
+      {
+        "confidence": "medium",
+        "edge_id": "authority-bias__first-principles-thinking__antagonist",
+        "href": "../../../../reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/okf/mental_model_teacher/relations/authority-bias__first-principles-thinking__antagonist.md",
+        "label": "Authority Bias and First Principles Thinking (antagonist)",
+        "missingness_status": "partial",
+        "relation_id": "authority-bias__first-principles-thinking__antagonist",
+        "relation_type": "antagonist",
+        "source_node_id": "authority-bias",
+        "source_status": "reviewed_relation_graph",
+        "target_node_id": "first-principles-thinking"
+      }
+    ],
+    "filters": {
+      "max_nodes": 10,
+      "node_types": [
+        "mental_model"
+      ],
+      "relation_types": [
+        "antagonist"
+      ]
+    },
+    "graph_id": "lesson-neighborhood-launch-public-enterprise-beta",
+    "graph_scope": "lesson_neighborhood",
+    "layout_hint": "small_neighborhood",
+    "lesson_id": "launch-public-enterprise-beta",
+    "missingness": {
+      "missing_fields": [
+        "browser_graph_ui",
+        "full_model_product_pages",
+        "full_relation_product_pages",
+        "human_review"
+      ],
+      "notes": [
+        "Graph data only; no browser graph UI is added in this PR-P9 retry.",
+        "Edges come from imported Teacher relation deep-dive source and are navigation, not proof."
+      ],
+      "status": "partial"
+    },
+    "nodes": [
+      {
+        "href": "../../../../reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/okf/mental_model_teacher/models/authority-bias.md",
+        "label": "Test The Authority, Not The Aura",
+        "missingness_status": "partial",
+        "model_id": "authority-bias",
+        "node_id": "authority-bias",
+        "node_type": "mental_model",
+        "role": "primary_teaching_lens",
+        "source_status": "source_artifact"
+      },
+      {
+        "href": "../../../../reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/okf/mental_model_teacher/models/information-asymmetry.md",
+        "label": "Ask Who Knows What",
+        "missingness_status": "partial",
+        "model_id": "information-asymmetry",
+        "node_id": "information-asymmetry",
+        "node_type": "mental_model",
+        "role": "primary_teaching_lens",
+        "source_status": "source_artifact"
+      },
+      {
+        "href": "../../../../reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/okf/mental_model_teacher/models/first-principles-thinking.md",
+        "label": "Strip It Back To First Principles",
+        "missingness_status": "partial",
+        "model_id": "first-principles-thinking",
+        "node_id": "first-principles-thinking",
+        "node_type": "mental_model",
+        "role": "boundary_lens",
+        "source_status": "source_artifact"
+      }
+    ],
+    "non_claims": [
+      "edge_is_not_proof",
+      "graph_is_navigation_not_proof",
+      "not_action_authorization",
+      "not_advice_correctness",
+      "not_answer_correctness",
+      "not_human_validation",
+      "not_product_proof",
+      "not_runtime_integration"
+    ],
+    "schema_version": "lolla.mental_model_teacher.visual_graph.v0",
+    "source_artifacts": [
+      {
+        "artifact_id": "launch-public-enterprise-beta-lesson-source",
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_lesson.json",
+        "source_type": "teacher_lesson_source"
+      },
+      {
+        "artifact_id": "launch-public-enterprise-beta-relation-source",
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_relation_deep_dive.json",
+        "source_type": "teacher_relation_deep_dive_source"
+      }
+    ]
+  },
+  "human_validated": false,
+  "lesson": {
+    "case_anchor": "The original answer looked coherent enough to accept. It made deference visible so the user could separate evidence from confidence, role, or prestige. Break the recommendation down to the facts and constraints that must be true. Ask what evidence remains if the authority signal is removed.",
+    "case_id": "launch-public-enterprise-beta",
+    "do_not_overlearn": [
+      "This lesson does not prove the original answer was wrong or the revised answer was right.",
+      "It teaches a reasoning move and a model relationship; it does not authorize a decision.",
+      "This product page is not a Decision Work brief and does not authorize action."
+    ],
+    "human_review_status": "pending",
+    "lesson_id": "launch-public-enterprise-beta",
+    "missingness": {
+      "missing_fields": [
+        "human_review",
+        "full_model_product_pages",
+        "full_relation_product_pages"
+      ],
+      "notes": [
+        "Built from imported Teacher source artifacts after PR-P9 source-custody unblocker.",
+        "Model and relation clickthroughs use imported OKF source views in this retry."
+      ],
+      "status": "partial"
+    },
+    "model_links": [
+      {
+        "href": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/okf/mental_model_teacher/models/authority-bias.md",
+        "label": "Test The Authority, Not The Aura"
+      },
+      {
+        "href": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/okf/mental_model_teacher/models/information-asymmetry.md",
+        "label": "Ask Who Knows What"
+      },
+      {
+        "href": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/okf/mental_model_teacher/models/first-principles-thinking.md",
+        "label": "Strip It Back To First Principles"
+      }
+    ],
+    "model_stack": [
+      {
+        "boundary": "Credibility is standing in for falsification, evidence testing, or domain-boundary checks.",
+        "model_id": "authority-bias",
+        "role": "primary_teaching_lens",
+        "teaching_name": "Test The Authority, Not The Aura",
+        "teaching_note": "When a recommendation depends on authority, make the deference explicit, verify expertise, trustworthiness, domain fit, and track record, then require the authority's reasoning and override evidence so rank or polish accelerates triage without replacing falsification."
+      },
+      {
+        "boundary": "The critical evidence is externally audited, directly observable in production, or contractually hard for one side to manipulate.",
+        "model_id": "information-asymmetry",
+        "role": "primary_teaching_lens",
+        "teaching_name": "Ask Who Knows What",
+        "teaching_note": "When the party being evaluated controls dashboards, references, pilots, or reported outcomes, treat the visible evidence as part of the asymmetry: name what the party can choose or game, identify the hidden payoff it may optimize, and require an independent signal or direct observability before commitment."
+      },
+      {
+        "boundary": "First principles is being used as a status move to ignore practical constraints, accumulated know-how, or real implementation costs.",
+        "model_id": "first-principles-thinking",
+        "role": "boundary_lens",
+        "teaching_name": "Strip It Back To First Principles",
+        "teaching_note": "When inherited categories or conventional rules are distorting the problem, strip the case to facts and desired outcome, identify what would have to be true for a novel path to work, and rebuild toward concrete action without using first-principles language as status theater."
+      }
+    ],
+    "non_claims": [
+      "lesson_is_not_advice",
+      "not_action_authorization",
+      "not_advice_correctness",
+      "not_answer_correctness",
+      "not_human_validation",
+      "not_product_proof",
+      "not_runtime_integration",
+      "practice_is_not_validation"
+    ],
+    "practice_rep": {
+      "prompt": "Test The Authority, Not The Aura",
+      "user_action": "Name the tempting first read. If the impressive source disappeared, what evidence would still justify this? Name the boundary that would change confidence."
+    },
+    "product_proof": false,
+    "relation_links": [
+      {
+        "href": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/okf/mental_model_teacher/relations/authority-bias__first-principles-thinking__antagonist.md",
+        "label": "Authority Bias and First Principles Thinking (antagonist)"
+      }
+    ],
+    "relation_story": "Authority Bias and First Principles Thinking form an antagonist pair. First principles thinking strips away inherited doctrine and forces a return to core facts when expert prestige is doing too much work. Use the pair as a correction loop: Authority Bias names the pull that can dominate the first interpretation, while First Principles Thinking asks what would remain if that pull stopped counting as proof.",
+    "runtime_integration_authorized": false,
+    "schema_version": "lolla.mental_model_teacher.teacher_lesson.v0",
+    "source_refs": [
+      {
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_lesson.json",
+        "source_id": "launch-public-enterprise-beta:teacher_lesson_source",
+        "source_type": "teacher_lesson_source"
+      },
+      {
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_card.md",
+        "source_id": "launch-public-enterprise-beta:teacher_card_source",
+        "source_type": "teacher_card_source"
+      },
+      {
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher.md",
+        "source_id": "launch-public-enterprise-beta:teacher_note_source",
+        "source_type": "teacher_note_source"
+      },
+      {
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_model_deep_dive.json",
+        "source_id": "launch-public-enterprise-beta:teacher_model_deep_dive_source",
+        "source_type": "teacher_model_deep_dive_source"
+      },
+      {
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_relation_deep_dive.json",
+        "source_id": "launch-public-enterprise-beta:teacher_relation_deep_dive_source",
+        "source_type": "teacher_relation_deep_dive_source"
+      },
+      {
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_practice_lab.json",
+        "source_id": "launch-public-enterprise-beta:teacher_practice_lab_source",
+        "source_type": "teacher_practice_lab_source"
+      }
+    ],
+    "thinking_move": "Ask what evidence remains if the authority signal is removed."
+  },
+  "missingness": {
+    "missing_fields": [
+      "browser_graph_ui",
+      "common_misuse",
+      "full_model_product_pages",
+      "full_relation_product_pages",
+      "human_review",
+      "observatory_endpoint",
+      "observatory_ui_mount",
+      "practice_prompts",
+      "selected_run_outcome_binding"
+    ],
+    "notes": [
+      "Learning packet is ready for an Observatory adapter; it is not mounted in Observatory yet.",
+      "Model pages are translated product objects, not raw canonical Markdown dumps.",
+      "Telemetry and review/audit artifacts are Receipts or Advanced material, not primary learning copy."
+    ],
+    "status": "partial"
+  },
+  "models": [
+    {
+      "avoid_when": [
+        "Credibility is standing in for falsification, evidence testing, or domain-boundary checks.",
+        "The problem requires multiple viewpoints, but the group is collapsing too early around one high-status voice.",
+        "The authority cue comes mostly from prestige markers rather than relevant track record in the decision's actual domain."
+      ],
+      "common_misuse": [],
+      "curation_status": "draft",
+      "display_name": "Authority Bias",
+      "failure_modes": [
+        "High-status proposals can become hard to challenge, pulling the team into confirmation bias around the authority's idea.",
+        "Blind spot barriers and motivated reasoning can make smart people better at rationalizing the authority's conclusion.",
+        "Wrong-expert domain dependence lets teams borrow authority from the wrong toolkit."
+      ],
+      "helps_notice": [
+        "The real question is whose judgment deserves initial weight in a specialized or uncertain domain.",
+        "Decision speed matters, but the group still has a mechanism for challenge, audit, or second opinion.",
+        "A recommendation is being accepted largely because of rank, polish, credentials, or institutional prestige."
+      ],
+      "heuristics": [
+        "Decouple status from idea quality by collecting judgments independently before the group discussion starts.",
+        "Challenge the basis of authority instead of accepting prestige markers as proof.",
+        "Insist on the logic and rationale by asking for the thought chain, not just the answer.",
+        "Simulate and test authority views with red-team or separate-judgment methods before deference hardens into consensus."
+      ],
+      "missingness": {
+        "missing_fields": [
+          "common_misuse",
+          "practice_prompts"
+        ],
+        "notes": [
+          "Generated deterministically from existing source, activation curation, and intervention semantics.",
+          "Empty product fields mean no source-backed field exists in PR-P4, not that the concept is absent."
+        ],
+        "status": "partial"
+      },
+      "model_id": "authority-bias",
+      "non_claims": [
+        "not_action_authorization",
+        "not_advice_correctness",
+        "not_answer_correctness",
+        "not_human_validation",
+        "not_product_proof",
+        "not_runtime_integration"
+      ],
+      "one_sentence_meaning": "Authority Bias helps turn authority-backed recommendation into deference audit.",
+      "practice_prompts": [],
+      "premortem_questions": [
+        "Does the person have the credentials to speak with authority? Which credentials?",
+        "What about the person causes you to either trust implicitly or react with initial distrust?",
+        "What are the underlying assumptions embedded in this framework or solution?"
+      ],
+      "reasoning_types": [
+        "diagnostic",
+        "causal"
+      ],
+      "schema_version": "lolla.mental_model_teacher.mental_model_page.v0",
+      "slug": "authority-bias",
+      "source_hashes": {
+        "data/model_sources/Authority_Bias_rag.md": "7a1b49aadac397eadb58ebe9e51679676f00b136396724787e872bcec8239ad6"
+      },
+      "source_refs": [
+        {
+          "path": "data/model_sources/Authority_Bias_rag.md",
+          "source_id": "authority-bias-canonical-markdown",
+          "source_type": "canonical_markdown"
+        },
+        {
+          "path": "data/curation/authority-bias.json",
+          "source_id": "authority-bias-activation-curation",
+          "source_type": "activation_curation"
+        },
+        {
+          "path": "data/curation/intervention_semantics/authority-bias.json",
+          "source_id": "authority-bias-intervention-semantics",
+          "source_type": "intervention_semantics"
+        }
+      ],
+      "use_when": [
+        "The real question is whose judgment deserves initial weight in a specialized or uncertain domain.",
+        "Decision speed matters, but the group still has a mechanism for challenge, audit, or second opinion.",
+        "A recommendation is being accepted largely because of rank, polish, credentials, or institutional prestige.",
+        "The team needs to separate genuine domain authority from authority spillover into adjacent domains."
+      ]
+    },
+    {
+      "avoid_when": [
+        "The critical evidence is externally audited, directly observable in production, or contractually hard for one side to manipulate.",
+        "The real blocker is incentive misalignment, weak governance, or lack of authority to act on known facts rather than a missing-information problem.",
+        "The team is asking for more information without naming what hidden variable would actually change price, trust, sequencing, or go-no-go choice."
+      ],
+      "common_misuse": [],
+      "curation_status": "draft",
+      "display_name": "Information Asymmetry",
+      "failure_modes": [
+        "Partner-controlled demand signals can make manufactured confidence look like real market pull.",
+        "The curse of knowledge lets experts communicate at the wrong level of abstraction for the real audience.",
+        "Overconfidence and blind spots can make the informed party miss unknown unknowns and resist deeper investigation.",
+        "WYSIATI makes available information look sufficient even when the decisive data is missing."
+      ],
+      "helps_notice": [
+        "Pricing, trust, or strategic choice depends on hidden information, concealed incentives, or unshared operating reality.",
+        "A vendor, agent, or delegated operator controls the dashboard, references, or pilot evidence being used as proof.",
+        "The people who know the most, the people who bear the risk, and the people who approve the decision are different actors."
+      ],
+      "heuristics": [
+        "Use social cartography to map who actually holds power, bias, and hidden decision rights.",
+        "Bridge the gap with Socratic inquiry by asking how the expert thinks, not only what they recommend.",
+        "Ask for stories, not advice, so tacit decision steps become inspectable.",
+        "Use the PARI method to surface precursor, action, result, and interpretation inside expert judgment."
+      ],
+      "missingness": {
+        "missing_fields": [
+          "common_misuse",
+          "practice_prompts"
+        ],
+        "notes": [
+          "Generated deterministically from existing source, activation curation, and intervention semantics.",
+          "Empty product fields mean no source-backed field exists in PR-P4, not that the concept is absent."
+        ],
+        "status": "partial"
+      },
+      "model_id": "information-asymmetry",
+      "non_claims": [
+        "not_action_authorization",
+        "not_advice_correctness",
+        "not_answer_correctness",
+        "not_human_validation",
+        "not_product_proof",
+        "not_runtime_integration"
+      ],
+      "one_sentence_meaning": "Information Asymmetry helps turn unequal-observability situation into observability and incentive challenge.",
+      "practice_prompts": [],
+      "premortem_questions": [
+        "What would you have to believe?",
+        "What do you think the other side doesn't get about your perspective?",
+        "What specific metric, reference, or proof in this plan is controlled by the party trying to win the decision?",
+        "If the vendor or agent were optimizing for a different payoff than we assume, where would we see it first?"
+      ],
+      "reasoning_types": [
+        "diagnostic",
+        "causal"
+      ],
+      "schema_version": "lolla.mental_model_teacher.mental_model_page.v0",
+      "slug": "information-asymmetry",
+      "source_hashes": {
+        "data/model_sources/Information_Asymmetry_rag.md": "cbf78295715937d29884ee3783fd371d57825b036d94c8b0955cbbb5a63e5b5c"
+      },
+      "source_refs": [
+        {
+          "path": "data/model_sources/Information_Asymmetry_rag.md",
+          "source_id": "information-asymmetry-canonical-markdown",
+          "source_type": "canonical_markdown"
+        },
+        {
+          "path": "data/curation/information-asymmetry.json",
+          "source_id": "information-asymmetry-activation-curation",
+          "source_type": "activation_curation"
+        },
+        {
+          "path": "data/curation/intervention_semantics/information-asymmetry.json",
+          "source_id": "information-asymmetry-intervention-semantics",
+          "source_type": "intervention_semantics"
+        }
+      ],
+      "use_when": [
+        "Pricing, trust, or strategic choice depends on hidden information, concealed incentives, or unshared operating reality.",
+        "A vendor, agent, or delegated operator controls the dashboard, references, or pilot evidence being used as proof.",
+        "The people who know the most, the people who bear the risk, and the people who approve the decision are different actors.",
+        "The next move should change disclosure, diligence, observability, signaling, or incentive structure before commitment."
+      ]
+    },
+    {
+      "avoid_when": [
+        "First principles is being used as a status move to ignore practical constraints, accumulated know-how, or real implementation costs.",
+        "The analysis is boiling the ocean or stopping at abstraction instead of producing a concrete, actionable recommendation."
+      ],
+      "common_misuse": [],
+      "curation_status": "draft",
+      "display_name": "First Principles Thinking",
+      "failure_modes": [
+        "Anchoring and framing can corrupt first principles work before the reasoning even starts by locking attention onto the wrong premise.",
+        "Confirmation bias and groupthink can make teams defend the first chosen principles instead of testing them against opposing evidence.",
+        "Analysis paralysis can turn first principles into endless premise polishing rather than actionable understanding."
+      ],
+      "helps_notice": [
+        "Existing categories, market assumptions, or inherited rules are distorting the problem rather than clarifying it.",
+        "The team needs to separate facts from conventions before deciding what is actually non-negotiable.",
+        "A novel solution requires rebuilding the argument from elemental truths instead of optimizing a stale template."
+      ],
+      "heuristics": [
+        "Use repeated 'why' questions to strip the problem down to its elemental truths.",
+        "Disaggregate the problem into logical parts and stress-test the first hypothesis instead of reasoning from unexamined wholes.",
+        "Explain the rebuilt logic in plain English to reveal any blind spots that still hide behind abstraction."
+      ],
+      "missingness": {
+        "missing_fields": [
+          "common_misuse",
+          "practice_prompts"
+        ],
+        "notes": [
+          "Generated deterministically from existing source, activation curation, and intervention semantics.",
+          "Empty product fields mean no source-backed field exists in PR-P4, not that the concept is absent."
+        ],
+        "status": "partial"
+      },
+      "model_id": "first-principles-thinking",
+      "non_claims": [
+        "not_action_authorization",
+        "not_advice_correctness",
+        "not_answer_correctness",
+        "not_human_validation",
+        "not_product_proof",
+        "not_runtime_integration"
+      ],
+      "one_sentence_meaning": "First Principles Thinking helps turn assumption-heavy problem into elemental truth reframing.",
+      "practice_prompts": [],
+      "premortem_questions": [
+        "What would we have to believe to accept the opposite thesis?",
+        "What is the single core point we want the audience to remember?",
+        "Are we unknowingly influenced by our perspective and have we actively tried different frames?"
+      ],
+      "reasoning_types": [
+        "deductive",
+        "metacognitive"
+      ],
+      "schema_version": "lolla.mental_model_teacher.mental_model_page.v0",
+      "slug": "first-principles-thinking",
+      "source_hashes": {
+        "data/model_sources/First_Principles_Thinking_rag.md": "af0b070131dea6b40e95fb86029aa0fc25b6fb735912d5435dfcf4a04eff0b56"
+      },
+      "source_refs": [
+        {
+          "path": "data/model_sources/First_Principles_Thinking_rag.md",
+          "source_id": "first-principles-thinking-canonical-markdown",
+          "source_type": "canonical_markdown"
+        },
+        {
+          "path": "data/curation/first-principles-thinking.json",
+          "source_id": "first-principles-thinking-activation-curation",
+          "source_type": "activation_curation"
+        },
+        {
+          "path": "data/curation/intervention_semantics/first-principles-thinking.json",
+          "source_id": "first-principles-thinking-intervention-semantics",
+          "source_type": "intervention_semantics"
+        }
+      ],
+      "use_when": [
+        "Existing categories, market assumptions, or inherited rules are distorting the problem rather than clarifying it.",
+        "The team needs to separate facts from conventions before deciding what is actually non-negotiable.",
+        "A novel solution requires rebuilding the argument from elemental truths instead of optimizing a stale template.",
+        "The current recommendation sounds polished, but no one has exposed the premises that make it true."
+      ]
+    }
+  ],
+  "non_claims": [
+    "graph_is_navigation_not_proof",
+    "learning_packet_is_not_runtime_wiring",
+    "not_action_authorization",
+    "not_advice_correctness",
+    "not_answer_correctness",
+    "not_human_validation",
+    "not_product_proof",
+    "not_runtime_integration",
+    "receipts_are_custody_not_proof",
+    "telemetry_is_advanced_not_primary"
+  ],
+  "observatory_tabs": [
+    "Outcome",
+    "Learn",
+    "Models",
+    "Relations",
+    "Map",
+    "Receipts"
+  ],
+  "packet_id": "launch-public-enterprise-beta-observatory-teacher-learning-packet",
+  "product_proof": false,
+  "provider_or_model_calls_used": false,
+  "receipts": {
+    "artifact_refs": [
+      {
+        "artifact_id": "launch-public-enterprise-beta:mental_model_teacher_lesson",
+        "artifact_type": "teacher_source",
+        "exposure": "receipts",
+        "home_tab": "Receipts",
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_lesson.json"
+      },
+      {
+        "artifact_id": "launch-public-enterprise-beta:mental_model_teacher_card",
+        "artifact_type": "teacher_source",
+        "exposure": "receipts",
+        "home_tab": "Receipts",
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_card.md"
+      },
+      {
+        "artifact_id": "launch-public-enterprise-beta:mental_model_teacher",
+        "artifact_type": "teacher_source",
+        "exposure": "receipts",
+        "home_tab": "Receipts",
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher.md"
+      },
+      {
+        "artifact_id": "launch-public-enterprise-beta:mental_model_teacher_model_deep_dive",
+        "artifact_type": "teacher_source",
+        "exposure": "receipts",
+        "home_tab": "Receipts",
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_model_deep_dive.json"
+      },
+      {
+        "artifact_id": "launch-public-enterprise-beta:mental_model_teacher_relation_deep_dive",
+        "artifact_type": "teacher_source",
+        "exposure": "receipts",
+        "home_tab": "Receipts",
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_relation_deep_dive.json"
+      },
+      {
+        "artifact_id": "launch-public-enterprise-beta:mental_model_teacher_practice_lab",
+        "artifact_type": "teacher_source",
+        "exposure": "receipts",
+        "home_tab": "Receipts",
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_practice_lab.json"
+      },
+      {
+        "artifact_id": "launch-public-enterprise-beta:case_review",
+        "artifact_type": "teacher_audit",
+        "exposure": "advanced_only",
+        "home_tab": "Advanced",
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/case_review.json"
+      },
+      {
+        "artifact_id": "launch-public-enterprise-beta:mental_model_canonical_manifest",
+        "artifact_type": "teacher_audit",
+        "exposure": "advanced_only",
+        "home_tab": "Advanced",
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_canonical_manifest.json"
+      },
+      {
+        "artifact_id": "launch-public-enterprise-beta:mental_model_teacher_anti_duplication",
+        "artifact_type": "teacher_audit",
+        "exposure": "advanced_only",
+        "home_tab": "Advanced",
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_anti_duplication.json"
+      },
+      {
+        "artifact_id": "launch-public-enterprise-beta:mental_model_teacher_claim_grounding",
+        "artifact_type": "teacher_audit",
+        "exposure": "advanced_only",
+        "home_tab": "Advanced",
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_claim_grounding.json"
+      },
+      {
+        "artifact_id": "launch-public-enterprise-beta:mental_model_teacher_context_trace",
+        "artifact_type": "teacher_audit",
+        "exposure": "advanced_only",
+        "home_tab": "Advanced",
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_context_trace.json"
+      },
+      {
+        "artifact_id": "launch-public-enterprise-beta:mental_model_teacher_grounding_audit",
+        "artifact_type": "teacher_audit",
+        "exposure": "advanced_only",
+        "home_tab": "Advanced",
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_grounding_audit.json"
+      },
+      {
+        "artifact_id": "launch-public-enterprise-beta:mental_model_teacher_okf_conformance",
+        "artifact_type": "teacher_audit",
+        "exposure": "advanced_only",
+        "home_tab": "Advanced",
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_okf_conformance.json"
+      },
+      {
+        "artifact_id": "launch-public-enterprise-beta:mental_model_teacher_okf_manifest",
+        "artifact_type": "teacher_audit",
+        "exposure": "advanced_only",
+        "home_tab": "Advanced",
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_okf_manifest.json"
+      },
+      {
+        "artifact_id": "launch-public-enterprise-beta:mental_model_teacher_read_plan",
+        "artifact_type": "teacher_audit",
+        "exposure": "advanced_only",
+        "home_tab": "Advanced",
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_read_plan.json"
+      },
+      {
+        "artifact_id": "launch-public-enterprise-beta:mental_model_teacher_render_lint",
+        "artifact_type": "teacher_audit",
+        "exposure": "advanced_only",
+        "home_tab": "Advanced",
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_render_lint.json"
+      },
+      {
+        "artifact_id": "launch-public-enterprise-beta:mental_model_teacher_role_map",
+        "artifact_type": "teacher_audit",
+        "exposure": "advanced_only",
+        "home_tab": "Advanced",
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_role_map.json"
+      },
+      {
+        "artifact_id": "launch-public-enterprise-beta:mental_model_teacher_sentinel_audit",
+        "artifact_type": "teacher_audit",
+        "exposure": "advanced_only",
+        "home_tab": "Advanced",
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_sentinel_audit.json"
+      }
+    ],
+    "missingness": {
+      "missing_fields": [
+        "live_observatory_run_binding",
+        "human_review",
+        "usage_cost_telemetry_home_is_advanced_only"
+      ],
+      "notes": [
+        "Receipts provide custody and missingness, not proof of answer or advice correctness.",
+        "Advanced audit artifacts are present as advanced-only references."
+      ],
+      "status": "partial"
+    },
+    "non_claims": [
+      "not_product_proof",
+      "not_human_validation",
+      "receipts_are_custody_not_proof"
+    ],
+    "source_refs": [
+      {
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_lesson.json",
+        "source_id": "launch-public-enterprise-beta:teacher_lesson_source",
+        "source_type": "teacher_lesson_source"
+      },
+      {
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_card.md",
+        "source_id": "launch-public-enterprise-beta:teacher_card_source",
+        "source_type": "teacher_card_source"
+      },
+      {
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher.md",
+        "source_id": "launch-public-enterprise-beta:teacher_note_source",
+        "source_type": "teacher_note_source"
+      },
+      {
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_model_deep_dive.json",
+        "source_id": "launch-public-enterprise-beta:teacher_model_deep_dive_source",
+        "source_type": "teacher_model_deep_dive_source"
+      },
+      {
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_relation_deep_dive.json",
+        "source_id": "launch-public-enterprise-beta:teacher_relation_deep_dive_source",
+        "source_type": "teacher_relation_deep_dive_source"
+      },
+      {
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_practice_lab.json",
+        "source_id": "launch-public-enterprise-beta:teacher_practice_lab_source",
+        "source_type": "teacher_practice_lab_source"
+      },
+      {
+        "path": "data/model_sources/Authority_Bias_rag.md",
+        "source_id": "authority-bias-canonical-markdown",
+        "source_type": "canonical_markdown"
+      },
+      {
+        "path": "data/curation/authority-bias.json",
+        "source_id": "authority-bias-activation-curation",
+        "source_type": "activation_curation"
+      },
+      {
+        "path": "data/curation/intervention_semantics/authority-bias.json",
+        "source_id": "authority-bias-intervention-semantics",
+        "source_type": "intervention_semantics"
+      },
+      {
+        "path": "data/model_sources/Information_Asymmetry_rag.md",
+        "source_id": "information-asymmetry-canonical-markdown",
+        "source_type": "canonical_markdown"
+      },
+      {
+        "path": "data/curation/information-asymmetry.json",
+        "source_id": "information-asymmetry-activation-curation",
+        "source_type": "activation_curation"
+      },
+      {
+        "path": "data/curation/intervention_semantics/information-asymmetry.json",
+        "source_id": "information-asymmetry-intervention-semantics",
+        "source_type": "intervention_semantics"
+      },
+      {
+        "path": "data/model_sources/First_Principles_Thinking_rag.md",
+        "source_id": "first-principles-thinking-canonical-markdown",
+        "source_type": "canonical_markdown"
+      },
+      {
+        "path": "data/curation/first-principles-thinking.json",
+        "source_id": "first-principles-thinking-activation-curation",
+        "source_type": "activation_curation"
+      },
+      {
+        "path": "data/curation/intervention_semantics/first-principles-thinking.json",
+        "source_id": "first-principles-thinking-intervention-semantics",
+        "source_type": "intervention_semantics"
+      },
+      {
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_lesson.json",
+        "source_id": "launch-public-enterprise-beta-lesson-source",
+        "source_type": "teacher_lesson_source"
+      },
+      {
+        "path": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_relation_deep_dive.json",
+        "source_id": "launch-public-enterprise-beta-relation-source",
+        "source_type": "teacher_relation_deep_dive_source"
+      }
+    ]
+  },
+  "relations": [
+    {
+      "confidence": "medium",
+      "curation_status": "reviewed",
+      "misread_risk": "This pair misleads when the Teacher turns a useful comparison into certainty about what happened.",
+      "missingness": {
+        "missing_fields": [
+          "human_review",
+          "observatory_relation_page_route"
+        ],
+        "notes": [
+          "Built from Teacher relation deep-dive source and reviewed relation graph provenance when present.",
+          "Confidence is an exposure hint, not proof or certification."
+        ],
+        "status": "partial"
+      },
+      "non_claims": [
+        "confidence_is_not_certification",
+        "not_action_authorization",
+        "not_advice_correctness",
+        "not_answer_correctness",
+        "not_human_validation",
+        "not_product_proof",
+        "not_runtime_integration",
+        "relation_is_not_proof"
+      ],
+      "plain_language_story": "First principles thinking strips away inherited doctrine and forces a return to core facts when expert prestige is doing too much work.",
+      "practice_prompt": "Run a correction-loop rep.\n\n1. Write the pressure that Authority Bias makes visible.\n2. Write the test that First Principles Thinking applies to that pressure.\n3. Write what evidence survives after the pressure is removed.\n4. Write the boundary that would change confidence.",
+      "relation_id": "authority-bias__first-principles-thinking__antagonist",
+      "relation_type": "antagonist",
+      "schema_version": "lolla.mental_model_teacher.relation_page.v0",
+      "source_model_id": "authority-bias",
+      "source_quote_or_ref": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_relation_deep_dive.json:relation",
+      "target_model_id": "first-principles-thinking",
+      "why_it_matters": "Authority Bias and First Principles Thinking are useful because one lens names the pull and the other lens checks what remains when that pull stops counting as proof."
+    }
+  ],
+  "run_ref": {
+    "case_id": "launch-public-enterprise-beta",
+    "result_ref": "reviews/codex-assisted/mental-model-teacher-knowledge-mesh-v2/launch-public-enterprise-beta/mental_model_teacher_lesson.json",
+    "run_id": "20260627T104146Z_7bfe79",
+    "source": "archive"
+  },
+  "runtime_integration_authorized": false,
+  "schema_version": "lolla.observatory_teacher.learning_packet.v0",
+  "single_home_rules": {
+    "canonical_model_explanation": "Models",
+    "graph_neighborhood": "Map",
+    "graph_survival_evals": "Advanced",
+    "model_activation_evidence": "Outcome",
+    "relation_explanation": "Relations",
+    "revised_answer": "Outcome",
+    "source_custody": "Receipts",
+    "structural_pressure_findings": "Outcome",
+    "teacher_reasoning_move": "Learn",
+    "usage_cost_telemetry": "Advanced"
+  },
+  "visibility_policy": {
+    "advanced_telemetry_separate": true,
+    "graph_edges_navigation_not_proof": true,
+    "raw_canonical_markdown_in_primary_tabs": false,
+    "raw_telemetry_in_primary_tabs": false,
+    "receipts_custody_not_proof": true,
+    "review_controls_in_learn_tab": false
+  }
+}
