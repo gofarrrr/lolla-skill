@@ -1,0 +1,110 @@
+{
+  "schema": "lolla.observatory_portable_view_model_adapters_review.v0",
+  "status": "read_only_adapter_layer_ready_for_workspace_rendering",
+  "date": "2026-07-06",
+  "decision_gate": "proceed_to_observatory_server_rendered_root_workspace",
+  "recommended_next_pr": "Observatory Server Rendered Root Workspace v0",
+  "adapter_module": "observatory/product_view_adapters.py",
+  "contract_module": "observatory/product_views.py",
+  "contract_doc": "docs/product/observatory-portable-view-model-adapters-v0.md",
+  "rendering_direction": "portable_python_server_rendered_html",
+  "adapter_schema": "lolla.observatory.product_view_adapter.v0",
+  "workspace_schema": "lolla.observatory.product_workspace.v0",
+  "input_sources": [
+    "selected Observatory case id",
+    "existing result payload",
+    "existing result path for read-only sidecar discovery",
+    "existing Teacher learning packet adapter response",
+    "existing Decision Work status adapter response"
+  ],
+  "adapted_surfaces": {
+    "selected_run_summary": "case id, result metadata, run health",
+    "outcome_summary": "revised answer, delta card, compact model chips",
+    "learning_packet": "Teacher lesson object",
+    "model_pages": "Teacher model product objects",
+    "relation_pages": "Teacher relation product objects",
+    "graph_neighborhood": "Teacher graph object",
+    "receipt_summary": "Teacher receipts plus Decision Work status",
+    "advanced_audit_index": "result artifact presence plus Decision Work artifacts"
+  },
+  "single_home_rules": {
+    "revised_answer": "Outcome",
+    "teacher_reasoning_move": "Learn",
+    "canonical_model_explanation": "Models",
+    "relation_explanation": "Relations",
+    "graph_neighborhood": "Map",
+    "source_custody_and_process_status": "Receipts",
+    "raw_telemetry": "Advanced Audit"
+  },
+  "adapter_guards": {
+    "read_only": true,
+    "provider_or_model_calls": false,
+    "lolla_skill_invoked": false,
+    "new_lolla_run_created": false,
+    "runtime_behavior_changed": false,
+    "archive_mutated": false,
+    "ui_rendering_added": false,
+    "legacy_spa_or_bundle_touched": false
+  },
+  "unavailable_policy": {
+    "missing_teacher_packet_returns_available_false": true,
+    "workspace_faked_when_teacher_packet_missing": false,
+    "missingness_preserved": true
+  },
+  "rejection_coverage": [
+    "invalid composed workspace",
+    "raw local paths",
+    "product proof flags",
+    "human validation flags",
+    "answer or advice correctness flags",
+    "runtime authorization flags",
+    "graph edge affinity or ranking fields",
+    "relation or graph proof language",
+    "non-portable rendering direction"
+  ],
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "provider_or_model_calls": false,
+    "creates_new_lolla_run": false,
+    "runtime_behavior_changed": false,
+    "archives_mutated": false,
+    "sidecars_written": false,
+    "ui_rendering_added": false,
+    "serve_result_routes_changed": false,
+    "compiled_js_or_css_edited": false,
+    "external_repo_modified": false,
+    "bundle_copied": false,
+    "svelte_revival_authorized": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "answer_quality_scoring": false,
+    "approval_or_certification": false,
+    "action_authorized": false,
+    "runtime_integration_authorized": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false
+  },
+  "strongest_signal": "The portable Observatory shell can now request one validated product workspace object from existing local artifacts before any root UI rendering is added.",
+  "strongest_risk": "The next renderer slice must keep raw audit telemetry in Advanced Audit and avoid treating the adapter fixture shape as a customer-ready UI.",
+  "stop_before": [
+    "server route for the workspace response",
+    "root workspace rendering",
+    "model page rendering",
+    "relation page rendering",
+    "graph UI",
+    "archive writes",
+    "runtime integration",
+    "provider or model calls",
+    "Lolla invocation",
+    "new Lolla runs",
+    "legacy Svelte source changes",
+    "compiled bundle edits",
+    "product proof claims",
+    "human validation claims"
+  ]
+}

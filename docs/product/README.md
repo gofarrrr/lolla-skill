@@ -55,4 +55,5 @@ Current planning docs:
 - [Observatory Source Ownership Audit](observatory-source-ownership-audit-v0.md)
 - [Observatory Portable Product View Contracts](observatory-portable-product-view-contracts-v0.md)
 - [Observatory Portable Product View Contract Examples JSON](observatory-portable-product-view-contract-examples-v0.json)
+- [Observatory Portable View Model Adapters](observatory-portable-view-model-adapters-v0.md)
 - [Mental Model Teacher Product Surface Reference Patterns](mental-model-teacher-product-surface-reference-patterns-v0.md)
