@@ -442,35 +442,6 @@ h1 {
   font-size: 12px;
 }
 .run-header strong { color: var(--text-secondary); }
-.teacher-tabbar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  margin: 0 0 32px;
-}
-.tab-btn {
-  min-height: 32px;
-  padding: 6px 16px;
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
-  background: transparent;
-  color: var(--text-dim);
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: .08em;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-.tab-btn:hover {
-  border-color: var(--border-strong);
-  color: var(--text-secondary);
-  text-decoration: none;
-}
-.tab-btn--active {
-  border-color: var(--teal);
-  background: rgba(65, 255, 167, .08);
-  color: var(--teal);
-}
 .teacher-shell {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 320px;
@@ -907,61 +878,6 @@ a.teacher-card:hover {
   margin: 0;
   padding-left: 18px;
 }
-.teacher-detail {
-  display: none;
-}
-.teacher-detail:target {
-  display: block;
-}
-.drawer-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  background: rgba(0, 0, 0, .58);
-}
-.drawer-panel {
-  position: fixed;
-  inset: 0 0 0 auto;
-  z-index: 101;
-  width: min(560px, 92vw);
-  height: 100vh;
-  overflow-y: auto;
-  border-left: 1px solid var(--border-strong);
-  background: var(--bg);
-  box-shadow: -8px 0 32px rgba(0, 0, 0, .4);
-  padding: 32px 28px;
-}
-.drawer-header {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  justify-content: space-between;
-  margin-bottom: 24px;
-}
-.drawer-header h2 {
-  margin: 0;
-  color: var(--text-primary);
-  font-size: 24px;
-  font-weight: 800;
-  letter-spacing: 0;
-  line-height: 1.2;
-}
-.drawer-close {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 32px;
-  min-height: 32px;
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
-  color: var(--text-dim);
-  text-decoration: none;
-}
-.drawer-close:hover {
-  border-color: var(--border-strong);
-  color: var(--text-primary);
-  text-decoration: none;
-}
 .source-list {
   display: grid;
   gap: 6px;
@@ -1031,9 +947,6 @@ pre.practice-text {
   h1 { font-size: 28px; }
   .teacher-hero { padding: 18px; }
   .hero-value { font-size: 16px; }
-  .teacher-tabbar { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 6px; }
-  .tab-btn { white-space: nowrap; }
-  .drawer-panel { width: 100vw; padding: 24px 18px; }
 }
 """
 
@@ -1046,7 +959,6 @@ _WORKSPACE_CSS = """
 }
 .workspace-page .status-bar,
 .workspace-page .teacher-eyebrow,
-.workspace-page .tab-btn,
 .workspace-kicker,
 .workspace-run-source,
 .workspace-meta,
@@ -1558,32 +1470,7 @@ _TEACHER_GRAPH_SCRIPT = """
     }
   };
 
-  const graphRootSelector = "[data-teacher-graph], [data-observatory-graph]";
-
-  const setDrawerReturnForLink = (link) => {
-    const href = link && link.getAttribute("href") || "";
-    if (!href.startsWith("#model-") && !href.startsWith("#relation-")) return;
-    const drawer = document.getElementById(href.slice(1));
-    if (!drawer || !drawer.classList.contains("teacher-detail")) return;
-    const returnHash = link.closest(graphRootSelector)
-      ? "#map"
-      : href.startsWith("#relation-")
-        ? "#relations"
-        : "#models";
-    drawer.dataset.returnHash = returnHash;
-  };
-
-  const closeDrawerToReturnHash = (event) => {
-    const closeLink = event.target && event.target.closest
-      ? event.target.closest(".drawer-backdrop, .drawer-close")
-      : null;
-    if (!closeLink) return;
-    const drawer = closeLink.closest(".teacher-detail");
-    const returnHash = drawer && drawer.dataset.returnHash;
-    if (!returnHash) return;
-    event.preventDefault();
-    window.location.hash = returnHash;
-  };
+  const graphRootSelector = "[data-observatory-graph]";
 
   const initGraph = (root) => {
     const nodes = Array.from(root.querySelectorAll("[data-graph-node]"));
@@ -1711,14 +1598,6 @@ _TEACHER_GRAPH_SCRIPT = """
   for (const root of document.querySelectorAll(graphRootSelector)) {
     initGraph(root);
   }
-
-  document.addEventListener("click", (event) => {
-    const link = event.target && event.target.closest
-      ? event.target.closest('a[href^="#model-"], a[href^="#relation-"]')
-      : null;
-    if (link) setDrawerReturnForLink(link);
-    closeDrawerToReturnHash(event);
-  });
 })();
 </script>
 """
@@ -1819,12 +1698,9 @@ _LEARN_FAB_HTML = (
 _TELEMETRY_FAB_STYLE = """
 <style>
 /* Telemetry FAB lives at bottom-right so it never sits in the lane of
-   the SPA's right-side .sidebar (which fills the top-right vertical band)
-   or its on-demand .drawer-panel close button. z-index 50 keeps it above
-   ordinary page content but below any SPA modal/overlay (which sit at
-   100/101). The original bug shipped at top-right z=9999 — that visually
-   cropped the sidebar's first card and intercepted clicks on the drawer's
-   close X. Bottom-right is empty real estate in the SPA bundle. */
+   the SPA's right-side .sidebar. z-index 50 keeps it above ordinary page
+   content but below any SPA modal/overlay. The original bug shipped at
+   top-right z=9999, which visually cropped the sidebar's first card. */
 /* Match the SPA's design tokens (deep indigo bg, teal accent, mono uppercase
    labels) so the FAB reads as part of the system, not a tacked-on add-on. */
 .telemetry-fab {
@@ -1871,9 +1747,7 @@ _TELEMETRY_FAB_STYLE = """
    entirely so it cannot intercept clicks on the drawer's close button even
    under unusual stacking contexts. */
 body:has(.drawer-overlay) .telemetry-fab,
-body:has(.drawer-panel) .telemetry-fab,
-body:has(.drawer-overlay) .learn-fab,
-body:has(.drawer-panel) .learn-fab {
+body:has(.drawer-overlay) .learn-fab {
   display: none;
 }
 body:has(.lolla-custody-panel) .telemetry-fab,
@@ -3994,289 +3868,6 @@ def _build_process_brief_prepare_response(
     )
 
 
-def _render_teacher_learning_html(case_id: str | None = None) -> str:
-    """Render the Observatory-native Teacher learning surface."""
-    _reload_result_if_changed()
-    selected_case_id = case_id or _CASE_ID
-    result, result_path, _is_current = _load_case_result(selected_case_id)
-    if result is None:
-        body = _render_teacher_empty_page(
-            "Selected case was not found.",
-            f"Selected case <code>{_esc(selected_case_id)}</code> was not found.",
-            selected_case_id=selected_case_id,
-        )
-        return _render_teacher_scaffold(
-            title="Lolla — Learn",
-            body=body,
-        )
-
-    try:
-        payload = _build_teacher_learning_response(
-            selected_case_id,
-            result,
-            result_path,
-        )
-    except Exception as exc:
-        body = _render_teacher_empty_page(
-            "Teacher learning adapter failed.",
-            "Teacher learning adapter failed: "
-            f"<code>{_esc(type(exc).__name__)}</code>.",
-            selected_case_id=selected_case_id,
-        )
-        return _render_teacher_scaffold(
-            title="Lolla — Learn",
-            body=body,
-        )
-
-    if not payload.get("available"):
-        body = _render_teacher_empty_page(
-            "No Teacher learning packet is available.",
-            "No Teacher learning packet is available for this selected case.",
-            selected_case_id=selected_case_id,
-            payload=payload,
-        )
-        return _render_teacher_scaffold(
-            title="Lolla — Learn",
-            body=body,
-        )
-
-    body = _render_teacher_learning_payload(payload)
-    return _render_teacher_scaffold(
-        title="Lolla — Learn",
-        body=body,
-    )
-
-
-def _render_teacher_scaffold(*, title: str, body: str) -> str:
-    return f"""<!doctype html>
-<html lang="en"><head><meta charset="utf-8">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{_esc(title)}</title>
-<style>{_TEACHER_LEARN_CSS}</style></head><body>
-{body}
-{_TEACHER_GRAPH_SCRIPT}
-</body></html>
-"""
-
-
-def _render_teacher_empty_page(
-    heading: str,
-    message: str,
-    *,
-    selected_case_id: str | None = None,
-    payload: dict | None = None,
-) -> str:
-    case_id = _teacher_payload_case_id(payload or {}, fallback=selected_case_id or _CASE_ID)
-    run_header = _render_teacher_learning_run_header(
-        payload or {"requested_case_id": case_id}
-    )
-    non_claims = _render_teacher_non_claims(payload or {}) if payload else ""
-    return "\n".join(
-        [
-            '<div class="teacher-page">',
-            _render_teacher_status_bar(
-                status="unavailable",
-                selected_case_id=case_id,
-            ),
-            "<header class=\"teacher-header\">",
-            '<p class="teacher-eyebrow">Teacher Learn</p>',
-            "<h1>Learn</h1>",
-            run_header,
-            f'<p class="lede"><strong>{_esc(heading)}</strong> '
-            "The Teacher surface stays inside Observatory, but it only renders "
-            "when a product-safe learning packet matches the selected run.</p>",
-            "</header>",
-            _empty_inline(message),
-            non_claims,
-            "</div>",
-        ]
-    )
-
-
-def _render_teacher_learning_payload(payload: dict) -> str:
-    tab_payloads = payload["tab_payloads"]
-    lesson = tab_payloads["Learn"]["lesson"]
-    models = tab_payloads["Models"]["models"]
-    relations = tab_payloads["Relations"]["relations"]
-    graph = tab_payloads["Map"]["graph"]
-    receipts = tab_payloads["Receipts"]["receipts"]
-    model_lookup = {model["model_id"]: model for model in models}
-    primary_relation = relations[0] if relations else {}
-    outcome_note = tab_payloads["Outcome"].get("single_home_note", "")
-    selected_case_id = _teacher_payload_case_id(payload)
-
-    body = [
-        '<div class="teacher-page">',
-        _render_teacher_status_bar(
-            status=payload.get("missingness", {}).get("status"),
-            selected_case_id=selected_case_id,
-        ),
-        '<header class="teacher-header">',
-        '<p class="teacher-eyebrow">Teacher Learn</p>',
-        "<h1>Learn</h1>",
-        _render_teacher_learning_run_header(payload),
-        '<p class="lede"><strong>Case is the anchor.</strong> '
-        "This page teaches the reasoning move worth practicing; it does not "
-        "replace the Outcome tab or certify the answer. "
-        f"{_esc(outcome_note)}</p>",
-        "</header>",
-        _render_teacher_tabs(),
-        '<div class="teacher-shell">',
-        '<main class="teacher-main">',
-        '<section id="lesson" class="teacher-section">',
-        _render_teacher_section_header("The Lesson"),
-        '<article class="teacher-hero">',
-        '<div class="hero-row"><span class="hero-label">Situation</span>',
-        f'<p class="hero-value">{_esc(lesson["case_anchor"])}</p></div>',
-        '<div class="hero-row"><span class="hero-label">Thinking move:</span>',
-        f'<p class="hero-value">{_esc(lesson["thinking_move"])}</p></div>',
-        '<div class="hero-row"><span class="hero-label">Model relationship</span>',
-        f'<p class="hero-copy">{_esc(lesson["relation_story"])}</p></div>',
-        "</article>",
-        "</section>",
-        '<section id="model-stack" class="teacher-section">',
-        _render_teacher_section_header("Model Stack"),
-        '<div class="teacher-grid">',
-    ]
-    for item in lesson["model_stack"]:
-        model = model_lookup.get(item["model_id"], {})
-        display_name = (
-            model.get("display_name") or item.get("teaching_name") or item["model_id"]
-        )
-        body.extend(
-            [
-                f'<a class="teacher-card" href="{_esc(_observatory_model_href(item["model_id"], selected_case_id))}">',
-                f'<span class="card-label">{_esc(item.get("role", "model"))}</span>',
-                f"<h3>{_esc(display_name)}</h3>",
-                '<div class="tagrow">',
-                f'<span class="tag purple">{_esc(item.get("teaching_name", ""))}</span>',
-                "</div>",
-                f"<p>{_esc(item.get('teaching_note', ''))}</p>",
-                f"<p><strong>Boundary:</strong> {_esc(item.get('boundary', ''))}</p>",
-                '<span class="open-hint">Open model detail →</span>',
-                "</a>",
-            ]
-        )
-    body.extend(
-        [
-            "</div>",
-            "</section>",
-            '<section id="practice" class="teacher-section">',
-            _render_teacher_section_header("Practice Rep"),
-            '<div class="practice-box">',
-            f"<p><strong>Prompt:</strong> {_esc(lesson['practice_rep']['prompt'])}</p>",
-            f"<p><strong>User action:</strong> {_esc(lesson['practice_rep']['user_action'])}</p>",
-            "</div>",
-            _render_teacher_section_header("Do Not Overlearn"),
-            '<ul class="quiet-list">',
-            *[f"<li>{_esc(item)}</li>" for item in lesson["do_not_overlearn"]],
-            "</ul>",
-            "</section>",
-            '<section id="models" class="teacher-section">',
-            _render_teacher_section_header("Models"),
-            '<div class="teacher-grid">',
-        ]
-    )
-    for model in models:
-        body.extend(
-            [
-                f'<a class="teacher-card" href="{_esc(_observatory_model_href(model["model_id"], selected_case_id))}">',
-                '<span class="card-label">Canonical mental model</span>',
-                f"<h3>{_esc(model['display_name'])}</h3>",
-                f"<p>{_esc(model['one_sentence_meaning'])}</p>",
-                _render_short_list("Helps notice", model.get("helps_notice") or []),
-                _render_short_list("Use when", model.get("use_when") or [], limit=2),
-                _render_short_list("Avoid when", model.get("avoid_when") or [], limit=2),
-                '<span class="open-hint">Open everything we know →</span>',
-                "</a>",
-            ]
-        )
-    body.extend(
-        [
-            "</div>",
-            "</section>",
-            '<section id="relations" class="teacher-section">',
-            _render_teacher_section_header("Relation"),
-        ]
-    )
-    if primary_relation:
-        body.extend(
-            [
-                f'<a class="teacher-card relation-card" href="{_esc(_observatory_relation_href(primary_relation["relation_id"], selected_case_id))}">',
-                '<span class="card-label">Relation page</span>',
-                f"<h3>{_esc(_relation_title(primary_relation, model_lookup))}</h3>",
-                f"<p>{_esc(primary_relation['plain_language_story'])}</p>",
-                f"<p><strong>Why it matters:</strong> {_esc(primary_relation['why_it_matters'])}</p>",
-                f"<p><strong>Misread risk:</strong> {_esc(primary_relation['misread_risk'])}</p>",
-                '<div class="tagrow">',
-                f'<span class="tag purple">{_esc(primary_relation["relation_type"])}</span>',
-                f'<span class="tag amber">confidence: {_esc(primary_relation["confidence"])}</span>',
-                "</div>",
-                '<span class="open-hint">Open relation detail →</span>',
-                "</a>",
-            ]
-        )
-    else:
-        body.append(_empty_inline("No relation page is available in this packet."))
-    body.extend(
-        [
-            "</section>",
-            '<section id="map" class="teacher-section">',
-            _render_teacher_section_header("Map"),
-            '<p class="lede">Small lesson neighborhood. Edges are navigation, not proof.</p>',
-            _render_teacher_graph(graph, model_lookup, relations),
-            "</section>",
-            '<section id="receipts" class="teacher-section">',
-            _render_teacher_section_header("Receipts"),
-            '<p class="lede">Receipts show custody and missingness. They are not product proof.</p>',
-            f'<p><strong>Source refs:</strong> {_esc(len(receipts["source_refs"]))} · '
-            f'<strong>Artifact refs:</strong> {_esc(len(receipts["artifact_refs"]))}</p>',
-            '<div class="receipt-row">',
-            '<div class="receipt-chip"><strong>'
-            f'{_esc(len(receipts["source_refs"]))}</strong><span>source refs</span></div>',
-            '<div class="receipt-chip"><strong>'
-            f'{_esc(len(receipts["artifact_refs"]))}</strong><span>artifact refs</span></div>',
-            '<div class="receipt-chip"><strong>'
-            f'{_esc(payload["missingness"].get("status", ""))}</strong><span>missingness</span></div>',
-            "</div>",
-            _render_missingness(payload["missingness"]),
-            '<details class="teacher-panel">',
-            "<summary>Source custody</summary>",
-            '<ul class="source-list">',
-            *[
-                f"<li><code>{_esc(ref['source_type'])}</code> — {_esc(ref['path'])}</li>"
-                for ref in receipts["source_refs"][:20]
-            ],
-            "</ul>",
-            "</details>",
-            "</section>",
-            '<section id="nonclaims" class="teacher-section">',
-            _render_teacher_section_header("Non-Claims"),
-            _render_teacher_non_claims(payload),
-            "</section>",
-            "</main>",
-            _render_teacher_sidebar(payload, lesson, models, relations),
-            "</div>",
-            _render_teacher_model_drawers(models),
-            _render_teacher_relation_drawers(relations, model_lookup),
-            "</div>",
-        ]
-    )
-    return "\n".join(body)
-
-
-def _render_teacher_status_bar(*, status: str | None, selected_case_id: str) -> str:
-    return _render_observatory_status_bar(
-        status=status,
-        selected_case_id=selected_case_id,
-        active_surface="learn",
-        aria_label="Observatory surfaces",
-    )
-
-
 def _render_teacher_section_header(title: str) -> str:
     return (
         '<div class="section-header">'
@@ -4284,58 +3875,6 @@ def _render_teacher_section_header(title: str) -> str:
         '<span class="section-line" aria-hidden="true"></span>'
         "</div>"
     )
-
-
-def _render_teacher_learning_run_header(payload: dict) -> str:
-    run_ref = payload.get("run_ref") or {}
-    case_id = _teacher_payload_case_id(payload)
-    run_id = run_ref.get("run_id") or payload.get("selected_run_id", "")
-    bits = [f"<span>Case: <strong>{_esc(case_id or 'unknown')}</strong></span>"]
-    if run_id:
-        bits.append(f"<span>Run: <code>{_esc(str(run_id)[:32])}</code></span>")
-    bits.append(f'<a href="{_esc(_observatory_workspace_href(case_id, "outcome"))}">Outcome</a>')
-    bits.append('<a href="/audit">Telemetry</a>')
-    return f'<div class="run-header">{"".join(bits)}</div>'
-
-
-def _teacher_payload_case_id(payload: dict, *, fallback: str | None = None) -> str:
-    run_ref = payload.get("run_ref") or {}
-    return str(
-        payload.get("requested_case_id")
-        or payload.get("selected_case_id")
-        or run_ref.get("case_id")
-        or fallback
-        or _CASE_ID
-    )
-
-
-def _render_teacher_tabs() -> str:
-    labels = [
-        ("lesson", "Learn"),
-        ("model-stack", "Stack"),
-        ("practice", "Practice"),
-        ("models", "Models"),
-        ("relations", "Relations"),
-        ("map", "Map"),
-        ("receipts", "Receipts"),
-        ("nonclaims", "Non-Claims"),
-    ]
-    return (
-        '<nav class="learn-tabs teacher-tabbar" aria-label="Teacher Learn sections">'
-        + "".join(
-            f'<a class="tab-btn{" tab-btn--active" if anchor == "lesson" else ""}" '
-            f'href="#{anchor}">{label}</a>'
-            for anchor, label in labels
-        )
-        + "</nav>"
-    )
-
-
-def _render_short_list(label: str, values: list[str], *, limit: int = 3) -> str:
-    if not values:
-        return ""
-    items = "".join(f"<li>{_esc(_short(value, 160))}</li>" for value in values[:limit])
-    return f"<p><strong>{_esc(label)}:</strong></p><ul class=\"quiet-list\">{items}</ul>"
 
 
 def _relation_title(relation: dict, model_lookup: dict[str, dict]) -> str:
@@ -4346,182 +3885,6 @@ def _relation_title(relation: dict, model_lookup: dict[str, dict]) -> str:
     source_name = source.get("display_name") or source_id
     target_name = target.get("display_name") or target_id
     return f"{source_name} and {target_name}"
-
-
-def _render_teacher_sidebar(
-    payload: dict,
-    lesson: dict,
-    models: list[dict],
-    relations: list[dict],
-) -> str:
-    missingness = payload.get("missingness") or {}
-    non_claims = payload.get("non_claims") or []
-    return "\n".join(
-        [
-            '<aside class="teacher-sidebar" aria-label="Teacher Learn context">',
-            '<section class="teacher-panel">',
-            "<h3>Run Context</h3>",
-            f'<div class="metric-row"><span>case</span><strong>{_esc(lesson["case_id"])}</strong></div>',
-            f'<div class="metric-row"><span>models</span><strong>{_esc(len(models))}</strong></div>',
-            f'<div class="metric-row"><span>relations</span><strong>{_esc(len(relations))}</strong></div>',
-            f'<div class="metric-row"><span>status</span><strong>{_esc(missingness.get("status", ""))}</strong></div>',
-            "</section>",
-            '<section class="teacher-panel">',
-            "<h3>What Goes Where</h3>",
-            "<ul>",
-            "<li>Outcome keeps the revised answer and structural pressure.</li>",
-            "<li>Learn teaches the reasoning move worth practicing.</li>",
-            "<li>Models explain canonical mental models.</li>",
-            "<li>Relations explain why two models belong together.</li>",
-            "<li>Receipts carry custody and missingness.</li>",
-            "</ul>",
-            "</section>",
-            '<section class="teacher-panel">',
-            "<h3>Missingness</h3>",
-            _render_missingness(missingness),
-            "</section>",
-            '<section class="teacher-panel">',
-            "<h3>Non-Claims</h3>",
-            f"<p>{_esc(len(non_claims))} boundaries are attached to this learning surface.</p>",
-            "</section>",
-            "</aside>",
-        ]
-    )
-
-
-def _render_teacher_graph(
-    graph: dict,
-    model_lookup: dict[str, dict],
-    relations: list[dict],
-) -> str:
-    nodes = graph.get("nodes") or []
-    edges = graph.get("edges") or []
-    relation_lookup = {
-        str(relation.get("relation_id", "")): relation for relation in relations
-    }
-    positions = _teacher_graph_positions(nodes)
-    relation_types = sorted(
-        {
-            str(edge.get("relation_type"))
-            for edge in edges
-            if edge.get("relation_type")
-        }
-    )
-    edge_lines = []
-    for edge in edges:
-        source = positions.get(str(edge.get("source_node_id")))
-        target = positions.get(str(edge.get("target_node_id")))
-        if not source or not target:
-            continue
-        relation_id = str(edge.get("relation_id", ""))
-        relation = relation_lookup.get(relation_id, {})
-        source_id = str(edge.get("source_node_id", ""))
-        target_id = str(edge.get("target_node_id", ""))
-        label = str(edge.get("label") or _relation_title(relation, model_lookup))
-        summary = str(
-            relation.get("plain_language_story")
-            or edge.get("label")
-            or relation_id
-        )
-        mid_x = (source[0] + target[0]) / 2
-        mid_y = (source[1] + target[1]) / 2 - 16
-        edge_lines.append(
-            f'<a class="map-edge-link" href="#{_relation_detail_anchor(relation_id)}" '
-            'data-graph-edge '
-            f'data-relation-id="{_esc(relation_id)}" '
-            f'data-label="{_esc(label)}" '
-            f'data-summary="{_esc(summary)}" '
-            f'data-relation-type="{_esc(edge.get("relation_type", ""))}" '
-            f'data-confidence="{_esc(edge.get("confidence", ""))}" '
-            f'data-status="{_esc(edge.get("missingness_status", ""))}" '
-            f'data-source-id="{_esc(source_id)}" '
-            f'data-target-id="{_esc(target_id)}">'
-            f'<line class="map-edge-hitbox" x1="{source[0]}" y1="{source[1]}" '
-            f'x2="{target[0]}" y2="{target[1]}"></line>'
-            f'<line class="map-edge" x1="{source[0]}" y1="{source[1]}" '
-            f'x2="{target[0]}" y2="{target[1]}"></line>'
-            f'<text class="map-label" x="{mid_x}" y="{mid_y}" text-anchor="middle">'
-            f'{_esc(edge.get("relation_type", ""))}</text></a>'
-        )
-
-    node_items = []
-    for node in nodes:
-        model_id = str(node.get("model_id") or node.get("node_id") or "")
-        x, y = positions.get(model_id, (360, 130))
-        label = _model_display_name(model_id, model_lookup, node.get("label") or model_id)
-        model = model_lookup.get(model_id, {})
-        summary = str(
-            model.get("one_sentence_meaning")
-            or node.get("role")
-            or label
-        )
-        node_items.append(
-            f'<a class="map-node" href="#{_model_detail_anchor(model_id)}" '
-            'data-graph-node '
-            f'data-model-id="{_esc(model_id)}" '
-            f'data-label="{_esc(label)}" '
-            f'data-summary="{_esc(summary)}" '
-            f'data-role="{_esc(node.get("role", ""))}" '
-            f'data-status="{_esc(node.get("missingness_status", ""))}">'
-            f'<circle cx="{x}" cy="{y}" r="42"></circle>'
-            f'<text x="{x}" y="{y + 4}" text-anchor="middle">{_esc(_short(label, 28))}</text>'
-            f'<text class="map-label" x="{x}" y="{y + 62}" text-anchor="middle">'
-            f'{_esc(node.get("role", ""))}</text></a>'
-        )
-
-    filter_buttons = [
-        '<button class="filter-chip filter-chip--active" type="button" '
-        'data-relation-filter="all" aria-pressed="true">All</button>'
-    ]
-    filter_buttons.extend(
-        f'<button class="filter-chip" type="button" data-relation-filter="{_esc(relation_type)}" '
-        f'aria-pressed="false">{_esc(relation_type)}</button>'
-        for relation_type in relation_types
-    )
-    default_focus = str(graph.get("default_focus") or (nodes[0].get("model_id") if nodes else ""))
-    default_model = model_lookup.get(default_focus, {})
-    default_title = default_model.get("display_name") or default_focus or "Select a model"
-    default_summary = default_model.get("one_sentence_meaning") or (
-        "Select a node or edge to inspect the lesson neighborhood."
-    )
-    return (
-        f'<div class="graph-workbench" data-teacher-graph data-default-focus="{_esc(default_focus)}">'
-        '<div class="graph-toolbar">'
-        '<label class="graph-search"><span>Search models</span>'
-        '<input type="search" data-graph-search placeholder="Search model, role, or id" '
-        'autocomplete="off"></label>'
-        '<div class="graph-filter-group" aria-label="Relation type filters">'
-        '<span class="graph-filter-label">Relation</span>'
-        + "".join(filter_buttons)
-        + '<button class="filter-chip graph-filter-reset" type="button" data-graph-reset>Reset</button>'
-        + "</div></div>"
-        '<p class="graph-filter-note" data-graph-filter-note>'
-        "Search and relation filters combine. Use Reset to return to the full lesson map."
-        "</p>"
-        '<div class="graph-content">'
-        '<div class="graph-stage">'
-        '<svg class="lesson-map" viewBox="0 0 720 280" role="img" '
-        'aria-label="Interactive Teacher lesson model neighborhood">'
-        + "".join(edge_lines)
-        + "".join(node_items)
-        + "</svg>"
-        '<div class="graph-results" data-graph-results></div>'
-        '<div class="tagrow">'
-        f'<span class="tag teal">{_esc(graph.get("graph_scope", "lesson_neighborhood"))}</span>'
-        f'<span class="tag purple">{_esc(graph.get("layout_hint", "small_neighborhood"))}</span>'
-        '<span class="tag amber">edges are navigation, not proof</span>'
-        "</div></div>"
-        '<aside class="graph-selection-panel" data-graph-selection aria-live="polite">'
-        '<span class="graph-selection-kicker" data-selection-type>Mental Model</span>'
-        f'<h3 data-selection-title>{_esc(default_title)}</h3>'
-        f'<p data-selection-body>{_esc(default_summary)}</p>'
-        '<p class="card-label" data-selection-meta></p>'
-        f'<a class="graph-selection-link" data-selection-link href="#{_model_detail_anchor(default_focus)}">'
-        "Open model detail</a>"
-        "</aside>"
-        "</div>"
-        "</div>"
-    )
 
 
 def _teacher_graph_positions(nodes: list[dict]) -> dict[str, tuple[int, int]]:
@@ -4546,138 +3909,6 @@ def _teacher_graph_positions(nodes: list[dict]) -> dict[str, tuple[int, int]]:
         model_id = str(node.get("model_id") or node.get("node_id") or "")
         result[model_id] = coords[index % len(coords)]
     return result
-
-
-def _render_teacher_model_drawers(models: list[dict]) -> str:
-    return "\n".join(_render_teacher_model_drawer(model) for model in models)
-
-
-def _render_teacher_model_drawer(model: dict) -> str:
-    model_id = str(model.get("model_id", ""))
-    title = str(model.get("display_name") or model_id)
-    return "\n".join(
-        [
-            f'<section class="teacher-detail" id="{_model_detail_anchor(model_id)}">',
-            '<a class="drawer-backdrop" href="#models" aria-label="Close model detail"></a>',
-            '<aside class="drawer-panel" role="dialog" aria-modal="true">',
-            '<header class="drawer-header">',
-            "<div>",
-            '<p class="teacher-eyebrow">Mental Model</p>',
-            f"<h2>{_esc(title)}</h2>",
-            f'<span class="card-label">{_esc(model_id)}</span>',
-            "</div>",
-            '<a class="drawer-close" href="#models" aria-label="Close">&times;</a>',
-            "</header>",
-            '<section class="detail-section workspace-first-read" data-first-read-card>',
-            "<h3>What This Model Helps You See</h3>",
-            f"<p>{_esc(model.get('one_sentence_meaning', ''))}</p>",
-            "</section>",
-            _render_detail_list("Helps Notice", model.get("helps_notice") or []),
-            _render_detail_list("Use When", model.get("use_when") or []),
-            _render_detail_list("Avoid When", model.get("avoid_when") or []),
-            _render_detail_list("Common Misuse", model.get("common_misuse") or []),
-            _render_detail_list("Failure Modes", model.get("failure_modes") or []),
-            _render_detail_list("Premortem Questions", model.get("premortem_questions") or []),
-            _render_detail_list("Heuristics", model.get("heuristics") or []),
-            _render_detail_list("Reasoning Types", model.get("reasoning_types") or []),
-            '<section class="detail-section">',
-            "<h3>Source Custody</h3>",
-            _render_source_refs(model.get("source_refs") or []),
-            "</section>",
-            '<section class="detail-section">',
-            "<h3>Missingness</h3>",
-            _render_missingness(model.get("missingness") or {}),
-            "</section>",
-            '<section class="detail-section">',
-            "<h3>Non-Claims</h3>",
-            _render_teacher_non_claims(model),
-            "</section>",
-            "</aside>",
-            "</section>",
-        ]
-    )
-
-
-def _render_teacher_relation_drawers(
-    relations: list[dict],
-    model_lookup: dict[str, dict],
-) -> str:
-    return "\n".join(
-        _render_teacher_relation_drawer(relation, model_lookup) for relation in relations
-    )
-
-
-def _render_teacher_relation_drawer(
-    relation: dict,
-    model_lookup: dict[str, dict],
-) -> str:
-    relation_id = str(relation.get("relation_id", ""))
-    return "\n".join(
-        [
-            f'<section class="teacher-detail" id="{_relation_detail_anchor(relation_id)}">',
-            '<a class="drawer-backdrop" href="#relations" aria-label="Close relation detail"></a>',
-            '<aside class="drawer-panel" role="dialog" aria-modal="true">',
-            '<header class="drawer-header">',
-            "<div>",
-            '<p class="teacher-eyebrow">Relation</p>',
-            f"<h2>{_esc(_relation_title(relation, model_lookup))}</h2>",
-            f'<span class="card-label">{_esc(relation_id)}</span>',
-            "</div>",
-            '<a class="drawer-close" href="#relations" aria-label="Close">&times;</a>',
-            "</header>",
-            '<section class="detail-section">',
-            "<h3>Plain Language Story</h3>",
-            f"<p>{_esc(relation.get('plain_language_story', ''))}</p>",
-            "</section>",
-            '<section class="detail-section">',
-            "<h3>Why It Matters</h3>",
-            f"<p>{_esc(relation.get('why_it_matters', ''))}</p>",
-            "</section>",
-            '<section class="detail-section">',
-            "<h3>Misread Risk</h3>",
-            f"<p>{_esc(relation.get('misread_risk', ''))}</p>",
-            "</section>",
-            '<section class="detail-section">',
-            "<h3>Practice Prompt</h3>",
-            f'<pre class="practice-text">{_esc(relation.get("practice_prompt", ""))}</pre>',
-            "</section>",
-            '<section class="detail-section">',
-            "<h3>Taxonomy</h3>",
-            '<div class="tagrow">',
-            f'<span class="tag purple">{_esc(relation.get("relation_type", ""))}</span>',
-            f'<span class="tag amber">confidence: {_esc(relation.get("confidence", ""))}</span>',
-            '<span class="tag">confidence is not certification</span>',
-            "</div>",
-            "</section>",
-            '<section class="detail-section">',
-            "<h3>Source Reference</h3>",
-            f'<ul class="source-list"><li>{_esc(relation.get("source_quote_or_ref", ""))}</li></ul>',
-            "</section>",
-            '<section class="detail-section">',
-            "<h3>Missingness</h3>",
-            _render_missingness(relation.get("missingness") or {}),
-            "</section>",
-            '<section class="detail-section">',
-            "<h3>Non-Claims</h3>",
-            _render_teacher_non_claims(relation),
-            "</section>",
-            "</aside>",
-            "</section>",
-        ]
-    )
-
-
-def _render_detail_list(label: str, values: list[str], *, limit: int | None = None) -> str:
-    if not values:
-        return ""
-    selected = values if limit is None else values[:limit]
-    return (
-        '<section class="detail-section">'
-        f"<h3>{_esc(label)}</h3>"
-        '<ul class="quiet-list">'
-        + "".join(f"<li>{_esc(value)}</li>" for value in selected)
-        + "</ul></section>"
-    )
 
 
 def _render_source_refs(refs: list[dict]) -> str:

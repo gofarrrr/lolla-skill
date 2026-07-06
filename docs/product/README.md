@@ -67,4 +67,5 @@ Current planning docs:
 - [Observatory Model Page Readability And Visible Surface Audit](observatory-model-page-readability-and-visible-surface-audit-v0.md)
 - [Observatory Teacher Route Consolidation](observatory-teacher-route-consolidation-v0.md)
 - [Observatory Workspace Information Hierarchy](observatory-workspace-information-hierarchy-v0.md)
+- [Observatory Legacy Teacher Renderer Cleanup](observatory-legacy-teacher-renderer-cleanup-v0.md)
 - [Mental Model Teacher Product Surface Reference Patterns](mental-model-teacher-product-surface-reference-patterns-v0.md)

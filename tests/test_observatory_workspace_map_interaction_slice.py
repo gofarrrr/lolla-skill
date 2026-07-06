@@ -113,7 +113,7 @@ def test_workspace_map_script_supports_select_before_open_behavior(monkeypatch) 
 
     html = serve_result._render_workspace_html("lolla-audit")
 
-    assert 'graphRootSelector = "[data-teacher-graph], [data-observatory-graph]"' in html
+    assert 'graphRootSelector = "[data-observatory-graph]"' in html
     assert 'root.dataset.graphNavigation === "select"' in html
     assert "if (selectOnly) event.preventDefault();" in html
     assert "No relation is visible with the current search or filter" in html
