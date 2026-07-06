@@ -1,0 +1,81 @@
+{
+  "schema_version": "codex_assisted_review.v0",
+  "review_id": "observatory-workspace-first-read-progression-v0",
+  "status": "complete",
+  "date": "2026-07-06",
+  "decision_gate": "ready_for_human_review_with_clearer_first_read_path",
+  "browser_grounded": true,
+  "browser_scope": {
+    "surfaces_checked": [
+      "Outcome",
+      "Learn",
+      "Models",
+      "Relations",
+      "Map",
+      "Receipts"
+    ],
+    "finding": "The workspace surfaces were individually clearer, but the first screen still did not explain the full reading order or the job of each surface."
+  },
+  "implemented": {
+    "clickable_reading_path_sidebar": true,
+    "six_step_start_panel": true,
+    "reading_path_active_state": true,
+    "relation_and_map_in_first_read_path": true,
+    "runtime_behavior_changed": false,
+    "compiled_spa_bundle_changed": false
+  },
+  "reading_path": [
+    {
+      "surface": "Outcome",
+      "question": "What changed in the run?"
+    },
+    {
+      "surface": "Learn",
+      "question": "What reasoning move can I practice?"
+    },
+    {
+      "surface": "Models",
+      "question": "Which tools explain the move?"
+    },
+    {
+      "surface": "Relations",
+      "question": "How do the models interact?"
+    },
+    {
+      "surface": "Map",
+      "question": "Where can I jump next?"
+    },
+    {
+      "surface": "Receipts",
+      "question": "What is present or not claimed?"
+    }
+  ],
+  "strongest_useful_signal": "The first screen now narrates the Observatory workspace as one product journey instead of six unexplained tabs.",
+  "strongest_unresolved_risk": "The flow still needs real human review to confirm whether the user understands the journey without live explanation from the builder.",
+  "recommended_next_gate": {
+    "gate": "ready_for_human_review_with_clearer_first_read_path",
+    "blocked_until": "real_human_reviewer_fills_observatory_workspace_review_form"
+  },
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_lolla_run": false,
+    "wires_runtime_behavior": false,
+    "mutates_archives": false,
+    "writes_sidecars": false,
+    "compiled_spa_bundle_changed": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "relation_confidence_is_certification": false
+  }
+}
