@@ -1630,10 +1630,15 @@ _WORKSPACE_NAV_SCRIPT = """
     if (!page) return;
     page.classList.add("workspace-focus-mode");
     page.dataset.activeSurface = surface;
-    for (const section of page.querySelectorAll(".workspace-section[id]")) {
+    for (const section of page.querySelectorAll("[data-workspace-section]")) {
       const isActive = section.id === surface;
       section.classList.toggle("workspace-section--active", isActive);
       section.toggleAttribute("hidden", !isActive);
+      if (isActive) {
+        section.removeAttribute("aria-hidden");
+      } else {
+        section.setAttribute("aria-hidden", "true");
+      }
     }
     for (const label of page.querySelectorAll("[data-workspace-active-label]")) {
       label.textContent = surfaceLabels[surface] || "Outcome";
@@ -4351,7 +4356,7 @@ def _render_workspace_payload(payload: dict, selected_case_id: str) -> str:
 
     return "\n".join(
         [
-            '<div class="workspace-page">',
+            '<div class="workspace-page" data-workspace-default-surface="outcome">',
             _render_workspace_status_bar(
                 workspace.get("missingness", {}).get("status"),
                 selected_case_id,
@@ -4517,6 +4522,16 @@ def _workspace_stat(label: str, value: str) -> str:
     )
 
 
+def _workspace_section_open(surface: str, *, default_surface: str = "outcome") -> str:
+    active = surface == default_surface
+    classes = "workspace-section workspace-section--active" if active else "workspace-section"
+    hidden = "" if active else ' hidden aria-hidden="true"'
+    return (
+        f'<section id="{_esc(surface)}" class="{classes}" '
+        f'data-workspace-section="{_esc(surface)}"{hidden}>'
+    )
+
+
 def _workspace_first_read(
     kicker: str,
     title: str,
@@ -4632,7 +4647,7 @@ def _render_workspace_outcome(outcome: dict, selected_case_id: str) -> str:
     )
     return "\n".join(
         [
-            '<section id="outcome" class="workspace-section">',
+            _workspace_section_open("outcome"),
             _render_teacher_section_header("Outcome"),
             _workspace_first_read(
                 "What happened in this run?",
@@ -4665,7 +4680,7 @@ def _render_workspace_learn(lesson: dict, selected_case_id: str) -> str:
     )
     return "\n".join(
         [
-            '<section id="learn" class="workspace-section">',
+            _workspace_section_open("learn"),
             _render_teacher_section_header("Learn"),
             _workspace_first_read(
                 "What reasoning move can I practice?",
@@ -4733,7 +4748,7 @@ def _render_workspace_models(models: list[dict], selected_case_id: str) -> str:
         )
     return "\n".join(
         [
-            '<section id="models" class="workspace-section">',
+            _workspace_section_open("models"),
             _render_teacher_section_header("Models"),
             content,
             "</section>",
@@ -4851,7 +4866,7 @@ def _render_workspace_relations(
         )
     return "\n".join(
         [
-            '<section id="relations" class="workspace-section">',
+            _workspace_section_open("relations"),
             _render_teacher_section_header("Relations"),
             content,
             "</section>",
@@ -5068,7 +5083,7 @@ def _render_workspace_map(
         )
     return "\n".join(
         [
-            '<section id="map" class="workspace-section">',
+            _workspace_section_open("map"),
             _render_teacher_section_header("Map"),
             '<article class="workspace-card">',
             '<p class="workspace-kicker">Selected-run neighborhood</p>',
@@ -5107,7 +5122,7 @@ def _render_workspace_receipts(
     ]
     return "\n".join(
         [
-            '<section id="receipts" class="workspace-section">',
+            _workspace_section_open("receipts"),
             _render_teacher_section_header("Receipts"),
             '<article class="workspace-card workspace-first-read" data-first-read-card>',
             '<p class="workspace-kicker">Trust summary</p>',
