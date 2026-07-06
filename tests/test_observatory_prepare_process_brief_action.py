@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import socket
+import subprocess
 import sys
 import threading
 import urllib.request
@@ -151,6 +152,27 @@ def test_prepare_api_route_smoke(tmp_path: Path) -> None:
     assert payload["links"]["decision_work_api"] == (
         "/api/case/lolla-audit/decision-work"
     )
+
+
+def test_process_brief_adapter_imports_in_observatory_engine_path_mode(
+    tmp_path: Path,
+) -> None:
+    script = (
+        "import sys; "
+        f"sys.path.insert(0, {str(REPO_ROOT / 'engine')!r}); "
+        "import system_b.observatory_process_brief_runner as runner; "
+        "print(runner.OBSERVATORY_PROCESS_BRIEF_RUNNER_SCHEMA_VERSION)"
+    )
+    result = subprocess.run(
+        [sys.executable, "-c", script],
+        cwd=tmp_path,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+
+    assert result.returncode == 0, result.stderr
+    assert "lolla.observatory_process_brief_runner.v0" in result.stdout
 
 
 def test_injected_card_contains_prepare_action_without_compiled_bundle_change() -> None:
