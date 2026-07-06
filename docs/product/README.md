@@ -69,4 +69,5 @@ Current planning docs:
 - [Observatory Workspace Information Hierarchy](observatory-workspace-information-hierarchy-v0.md)
 - [Observatory Legacy Teacher Renderer Cleanup](observatory-legacy-teacher-renderer-cleanup-v0.md)
 - [Observatory Workspace Accessibility Text Noise Cleanup](observatory-workspace-accessibility-text-noise-cleanup-v0.md)
+- [Observatory Workspace Content Audit And Simplification](observatory-workspace-content-audit-and-simplification-v0.md)
 - [Mental Model Teacher Product Surface Reference Patterns](mental-model-teacher-product-surface-reference-patterns-v0.md)
