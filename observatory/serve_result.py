@@ -1286,6 +1286,85 @@ _SELECTED_RUN_CUSTODY_PANEL_STYLE = """
   text-decoration: none;
 }
 .lolla-custody-link:hover { text-decoration: underline; }
+.lolla-conversation-understanding {
+  margin: 0 0 0.85rem;
+  padding: 0 0 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+.lolla-conversation-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.65rem;
+  align-items: center;
+  margin-bottom: 0.45rem;
+}
+.lolla-conversation-title {
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.lolla-conversation-grid {
+  display: grid;
+  gap: 0.35rem;
+}
+.lolla-conversation-row {
+  display: grid;
+  grid-template-columns: 5.8rem minmax(0, 1fr);
+  gap: 0.5rem;
+  align-items: start;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.73rem;
+  line-height: 1.35;
+}
+.lolla-conversation-key {
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.63rem;
+}
+.lolla-conversation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.55rem;
+  font-size: 0.72rem;
+}
+.lolla-conversation-receipt {
+  margin-top: 0.55rem;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 0.72rem;
+}
+.lolla-conversation-receipt summary {
+  cursor: pointer;
+  color: #41FFA7;
+}
+.lolla-conversation-receipt pre {
+  max-height: 11rem;
+  margin: 0.4rem 0 0;
+  padding: 0.55rem;
+  overflow: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.2);
+  color: rgba(255, 255, 255, 0.82);
+  font-family: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+  font-size: 0.68rem;
+  line-height: 1.45;
+}
+.lolla-custody-status.deferred {
+  color: #F8D56B;
+  border-color: rgba(248, 213, 107, 0.48);
+  background: rgba(248, 213, 107, 0.1);
+}
+.lolla-custody-status.blocked {
+  color: #FF8A8A;
+  border-color: rgba(255, 138, 138, 0.46);
+  background: rgba(255, 138, 138, 0.1);
+}
 @media (max-width: 900px) {
   .lolla-custody-panel--floating {
     top: auto;
@@ -1363,6 +1442,15 @@ _SELECTED_RUN_CUSTODY_PANEL_SCRIPT = """
   let selectedCaseId = null;
   let requestToken = 0;
   let states = {};
+  let decisionWorkState = {
+    status: "loading",
+    statusText: "checking",
+    statusClass: "unavailable",
+    extractionText: "checking...",
+    decisionText: "checking...",
+    detail: "",
+    receipt: null,
+  };
 
   const encodeCaseId = (caseId) => encodeURIComponent(caseId);
 
@@ -1382,6 +1470,7 @@ _SELECTED_RUN_CUSTODY_PANEL_SCRIPT = """
   };
 
   const endpointFor = (caseId, key) => `/api/case/${encodeCaseId(caseId)}/${key}`;
+  const decisionWorkEndpointFor = (caseId) => `/api/case/${encodeCaseId(caseId)}/decision-work`;
 
   const escapeHtml = (value) => String(value || "")
     .replace(/&/g, "&amp;")
@@ -1409,6 +1498,125 @@ _SELECTED_RUN_CUSTODY_PANEL_SCRIPT = """
     `;
   };
 
+  const firstReason = (items) => Array.isArray(items) && items.length ? items[0] : "";
+
+  const normalizeDecisionWork = (payload) => {
+    const status = payload && payload.decision_work_status || "decision_work_unknown";
+    const extraction = payload && payload.live_extraction_status || "unknown";
+    const attachment = payload && payload.attachment_state || "";
+    const receipt = payload && payload.receipt && payload.receipt.available
+      ? payload.receipt.markdown
+      : null;
+    const blocker = firstReason(payload && payload.blockers);
+    const deferred = firstReason(payload && payload.deferred_reasons);
+    const missing = firstReason(payload && payload.missingness);
+    const base = {
+      status,
+      extractionText: extraction === "available" ? "available" : "missing",
+      attachment,
+      receipt,
+    };
+    if (status === "decision_work_available") {
+      return {
+        ...base,
+        statusText: "available",
+        statusClass: "available",
+        decisionText: attachment === "generated_agent_only"
+          ? "available for agent inspection"
+          : "receipt attached",
+        detail: "Richer Decision Work material is attached for this run.",
+      };
+    }
+    if (status === "decision_work_deferred") {
+      return {
+        ...base,
+        statusText: "deferred",
+        statusClass: "deferred",
+        decisionText: "deferred",
+        detail: deferred ? `Waiting on ${deferred}.` : "Waiting on safe inputs.",
+      };
+    }
+    if (status === "decision_work_blocked") {
+      return {
+        ...base,
+        statusText: "blocked",
+        statusClass: "blocked",
+        decisionText: "blocked",
+        detail: blocker ? `Blocked by ${blocker}.` : "Blocked for this run.",
+      };
+    }
+    if (status === "decision_work_failed_closed") {
+      return {
+        ...base,
+        statusText: "failed",
+        statusClass: "blocked",
+        decisionText: "failed closed",
+        detail: "The optional attachment failed closed; the run output remains inspectable.",
+      };
+    }
+    if (status === "decision_work_not_requested") {
+      return {
+        ...base,
+        statusText: "not requested",
+        statusClass: "unavailable",
+        decisionText: "not requested",
+        detail: "Decision Work not requested for this run.",
+      };
+    }
+    if (status === "decision_work_not_present") {
+      return {
+        ...base,
+        statusText: "not attached",
+        statusClass: "unavailable",
+        decisionText: "not attached",
+        detail: "No richer Decision Work receipt is attached yet.",
+      };
+    }
+    return {
+      ...base,
+      statusText: "inspect",
+      statusClass: "deferred",
+      decisionText: "needs inspection",
+      detail: missing ? `Missing ${missing}.` : "Decision Work status needs inspection.",
+    };
+  };
+
+  const conversationCardHtml = () => {
+    const state = decisionWorkState;
+    const receipt = state.receipt
+      ? `<details class="lolla-conversation-receipt"><summary>Show receipt</summary><pre>${escapeHtml(state.receipt)}</pre></details>`
+      : "";
+    const statusClass = state.statusClass || "unavailable";
+    const statusText = state.statusText || "checking";
+    return `
+      <section class="lolla-conversation-understanding" aria-label="Conversation Understanding">
+        <div class="lolla-conversation-heading">
+          <span class="lolla-conversation-title">Conversation Understanding</span>
+          <span class="lolla-custody-status ${escapeHtml(statusClass)}">${escapeHtml(statusText)}</span>
+        </div>
+        <div class="lolla-conversation-grid">
+          <div class="lolla-conversation-row">
+            <span class="lolla-conversation-key">Extraction</span>
+            <span>${escapeHtml(state.extractionText || "checking...")}</span>
+          </div>
+          <div class="lolla-conversation-row">
+            <span class="lolla-conversation-key">Decision Work</span>
+            <span>${escapeHtml(state.decisionText || "checking...")}</span>
+          </div>
+          <div class="lolla-conversation-row">
+            <span class="lolla-conversation-key">Meaning</span>
+            <span>${escapeHtml(state.detail || "Checking selected-run status.")}</span>
+          </div>
+        </div>
+        <div class="lolla-conversation-actions">
+          <a class="lolla-custody-link" href="/audit/extraction" target="_blank" rel="noreferrer">Extraction audit</a>
+          ${selectedCaseId ? `<a class="lolla-custody-link" href="${escapeHtml(decisionWorkEndpointFor(selectedCaseId))}" target="_blank" rel="noreferrer">Status JSON</a>` : ""}
+        </div>
+        ${receipt}
+      </section>
+    `;
+  };
+
   const render = () => {
     if (!selectedCaseId) return;
     const sidebar = document.querySelector(".sidebar");
@@ -1425,6 +1633,7 @@ _SELECTED_RUN_CUSTODY_PANEL_SCRIPT = """
     panel.classList.toggle("lolla-custody-panel--floating", !sidebar);
     const html = `
       <h3>Run Custody</h3>
+      ${conversationCardHtml()}
       <ul>${ARTIFACTS.map(rowHtml).join("")}</ul>
     `;
     if (panel.__lollaCustodyHtml !== html) {
@@ -1436,12 +1645,55 @@ _SELECTED_RUN_CUSTODY_PANEL_SCRIPT = """
   const loadArtifacts = async (caseId) => {
     const token = ++requestToken;
     selectedCaseId = caseId;
+    decisionWorkState = {
+      status: "loading",
+      statusText: "checking",
+      statusClass: "unavailable",
+      extractionText: "checking...",
+      decisionText: "checking...",
+      detail: "Checking selected-run status.",
+      receipt: null,
+    };
     states = Object.fromEntries(
       ARTIFACTS.map((artifact) => [artifact.key, { status: "loading", detail: "checking..." }])
     );
     render();
 
-    await Promise.all(ARTIFACTS.map(async (artifact) => {
+    const decisionWorkPromise = (async () => {
+      try {
+        const response = await window.__lollaNativeFetch(decisionWorkEndpointFor(caseId));
+        if (token !== requestToken) return;
+        if (!response.ok) {
+          decisionWorkState = {
+            status: "unavailable",
+            statusText: "unavailable",
+            statusClass: "unavailable",
+            extractionText: "unknown",
+            decisionText: "unavailable",
+            detail: response.status === 404 ? "Selected run was not found." : `HTTP ${response.status}`,
+            receipt: null,
+          };
+          render();
+          return;
+        }
+        decisionWorkState = normalizeDecisionWork(await response.json());
+        render();
+      } catch (_error) {
+        if (token !== requestToken) return;
+        decisionWorkState = {
+          status: "unavailable",
+          statusText: "unavailable",
+          statusClass: "unavailable",
+          extractionText: "unknown",
+          decisionText: "request failed",
+          detail: "Conversation Understanding status request failed.",
+          receipt: null,
+        };
+        render();
+      }
+    })();
+
+    await Promise.all([decisionWorkPromise, ...ARTIFACTS.map(async (artifact) => {
       try {
         const response = await window.__lollaNativeFetch(endpointFor(caseId, artifact.key));
         if (token !== requestToken) return;
@@ -1459,7 +1711,7 @@ _SELECTED_RUN_CUSTODY_PANEL_SCRIPT = """
         states[artifact.key] = { status: "unavailable", detail: "request failed" };
         render();
       }
-    }));
+    })]);
   };
 
   window.__lollaNativeFetch = window.__lollaNativeFetch || window.fetch.bind(window);
