@@ -1,0 +1,62 @@
+{
+  "schema_version": "codex_assisted_review.v0",
+  "review_id": "observatory-workspace-map-label-readability-v0",
+  "status": "complete",
+  "date": "2026-07-06",
+  "decision_gate": "ready_for_human_review_with_cleaner_map_labels",
+  "browser_grounded": true,
+  "browser_scope": {
+    "surfaces_checked": [
+      "Models",
+      "Model page",
+      "Learn",
+      "Relations",
+      "Map",
+      "Receipts"
+    ],
+    "finding": "The visible Map still exposed raw graph contract terms in the learner-facing text flow."
+  },
+  "implemented": {
+    "map_visible_token_translation": true,
+    "selection_panel_display_labels": true,
+    "raw_contract_tokens_preserved_as_data": true,
+    "runtime_behavior_changed": false,
+    "compiled_spa_bundle_changed": false
+  },
+  "visible_label_translations": {
+    "mental_model": "Model",
+    "lesson_neighborhood": "Lesson map",
+    "selected_run_learning_neighborhood": "Selected-run map",
+    "small_neighborhood": "Small map",
+    "partial": "Partial source coverage",
+    "structured_tension": "Structured tension"
+  },
+  "strongest_useful_signal": "The Observatory Map now keeps machine-readable graph state underneath the UI while presenting product-facing labels to the learner.",
+  "strongest_unresolved_risk": "The full workspace still needs real human review against the review packet; this cleanup only removes one browser-observed source of schema noise.",
+  "recommended_next_gate": {
+    "gate": "ready_for_human_review_with_cleaner_map_labels",
+    "blocked_until": "real_human_reviewer_fills_observatory_workspace_review_form"
+  },
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_lolla_run": false,
+    "wires_runtime_behavior": false,
+    "mutates_archives": false,
+    "writes_sidecars": false,
+    "compiled_spa_bundle_changed": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "relation_confidence_is_certification": false
+  }
+}

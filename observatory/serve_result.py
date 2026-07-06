@@ -223,7 +223,10 @@ def _render_observatory_status_bar(
     aria_label: str = "Observatory workspace",
     css_class: str = "",
 ) -> str:
-    status_text = status or "partial"
+    status_text = _observatory_display_label(
+        status or "partial",
+        "Source status unknown",
+    )
     classes = "status-bar"
     if css_class:
         classes += " " + css_class
@@ -1438,10 +1441,10 @@ _TEACHER_GRAPH_SCRIPT = """
     if (body) body.textContent = esc(element.dataset.summary);
     if (meta) {
       const bits = [];
-      if (element.dataset.role) bits.push(element.dataset.role);
-      if (element.dataset.relationType) bits.push(element.dataset.relationType);
+      if (element.dataset.roleDisplay) bits.push(element.dataset.roleDisplay);
+      if (element.dataset.relationTypeDisplay) bits.push(element.dataset.relationTypeDisplay);
       if (element.dataset.confidence) bits.push(`confidence ${element.dataset.confidence}`);
-      if (element.dataset.status) bits.push(element.dataset.status);
+      if (element.dataset.statusDisplay) bits.push(element.dataset.statusDisplay);
       meta.textContent = bits.join(" · ");
     }
     if (link) {
@@ -3951,6 +3954,33 @@ def _model_display_name(
     return str(model.get("display_name") or fallback or model_id)
 
 
+_OBSERVATORY_DISPLAY_LABELS = {
+    "ally": "Ally",
+    "antagonist": "Antagonist",
+    "complete": "Complete",
+    "complete_for_prototype": "Prototype source-backed",
+    "lesson_neighborhood": "Lesson map",
+    "mental_model": "Model",
+    "partial": "Partial source coverage",
+    "reviewed_relation_graph": "Reviewed relation",
+    "selected_run_learning_neighborhood": "Selected-run map",
+    "small_neighborhood": "Small map",
+    "source_artifact": "Source artifact",
+    "structured_tension": "Structured tension",
+    "tension": "Tension",
+}
+
+
+def _observatory_display_label(value: object, fallback: str = "") -> str:
+    text = str(value or "").strip()
+    if not text:
+        return fallback
+    mapped = _OBSERVATORY_DISPLAY_LABELS.get(text.lower())
+    if mapped:
+        return mapped
+    return text.replace("_", " ").replace("-", " ").title()
+
+
 def _model_detail_anchor(model_id: str) -> str:
     return "model-" + _anchor_token(model_id)
 
@@ -3972,8 +4002,12 @@ def _anchor_token(value: str) -> str:
 def _render_missingness(missingness: dict) -> str:
     fields = missingness.get("missing_fields") or []
     notes = missingness.get("notes") or []
+    status = _observatory_display_label(
+        missingness.get("status", ""),
+        "Source status unknown",
+    )
     lines = [
-        f"<p><strong>Missingness:</strong> <code>{_esc(missingness.get('status', ''))}</code></p>"
+        f"<p><strong>Missingness:</strong> <code>{_esc(status)}</code></p>"
     ]
     if fields:
         lines.append('<ul class="quiet-list">')
@@ -5066,8 +5100,10 @@ def _render_workspace_map(
             f'data-label="{_esc(relation_title)}" '
             f'data-summary="{_esc(summary)}" '
             f'data-relation-type="{_esc(edge.get("relation_type", ""))}" '
+            f'data-relation-type-display="{_esc(_observatory_display_label(edge.get("relation_type", ""), "Relation"))}" '
             f'data-confidence="{_esc(relation.get("confidence", ""))}" '
             f'data-status="{_esc((relation.get("missingness") or {}).get("status", ""))}" '
+            f'data-status-display="{_esc(_observatory_display_label((relation.get("missingness") or {}).get("status", ""), "Source status unknown"))}" '
             f'data-source-id="{_esc(source_id)}" '
             f'data-target-id="{_esc(target_id)}">'
             f'<line class="map-edge-hitbox" x1="{source[0]}" y1="{source[1]}" '
@@ -5075,7 +5111,7 @@ def _render_workspace_map(
             f'<line class="map-edge" x1="{source[0]}" y1="{source[1]}" '
             f'x2="{target[0]}" y2="{target[1]}"></line>'
             f'<text class="map-label" x="{mid_x}" y="{mid_y}" text-anchor="middle" aria-hidden="true">'
-            f'{_esc(edge.get("relation_type", ""))}</text></a>'
+            f'{_esc(_observatory_display_label(edge.get("relation_type", ""), "Relation"))}</text></a>'
         )
 
     node_items = []
@@ -5097,11 +5133,13 @@ def _render_workspace_map(
             f'data-label="{_esc(label)}" '
             f'data-summary="{_esc(summary)}" '
             f'data-role="{_esc(node.get("node_type", "model"))}" '
-            f'data-status="{_esc((model.get("missingness") or {}).get("status", ""))}">'
+            f'data-role-display="{_esc(_observatory_display_label(node.get("node_type", "model"), "Model"))}" '
+            f'data-status="{_esc((model.get("missingness") or {}).get("status", ""))}" '
+            f'data-status-display="{_esc(_observatory_display_label((model.get("missingness") or {}).get("status", ""), "Source status unknown"))}">'
             f'<circle cx="{x}" cy="{y}" r="42"></circle>'
             f'<text x="{x}" y="{y + 4}" text-anchor="middle">{_esc(_short(label, 28))}</text>'
             f'<text class="map-label" x="{x}" y="{y + 62}" text-anchor="middle" aria-hidden="true">'
-            f'{_esc(node.get("node_type", "model"))}</text></a>'
+            f'{_esc(_observatory_display_label(node.get("node_type", "model"), "Model"))}</text></a>'
         )
 
     relation_types = sorted(
@@ -5117,7 +5155,7 @@ def _render_workspace_map(
     ]
     filter_buttons.extend(
         f'<button class="filter-chip" type="button" data-relation-filter="{_esc(relation_type)}" '
-        f'aria-pressed="false">{_esc(relation_type)}</button>'
+        f'aria-pressed="false">{_esc(_observatory_display_label(relation_type, "Relation"))}</button>'
         for relation_type in relation_types
     )
     default_focus = str(
@@ -5152,8 +5190,8 @@ def _render_workspace_map(
         + "</svg>"
         '<div class="graph-results" data-graph-results></div>'
         '<div class="tagrow">'
-        f'<span class="tag teal">{_esc(graph.get("graph_scope", "selected_run_learning_neighborhood"))}</span>'
-        f'<span class="tag purple">{_esc(graph.get("layout_hint", "small_neighborhood"))}</span>'
+        f'<span class="tag teal">{_esc(_observatory_display_label(graph.get("graph_scope", "selected_run_learning_neighborhood"), "Selected-run map"))}</span>'
+        f'<span class="tag purple">{_esc(_observatory_display_label(graph.get("layout_hint", "small_neighborhood"), "Small map"))}</span>'
         '<span class="tag amber">edges are navigation, not proof</span>'
         "</div></div>"
         '<aside class="graph-selection-panel" data-graph-selection aria-live="polite">'
@@ -5167,7 +5205,9 @@ def _render_workspace_map(
         "</div>"
         "</div>"
     )
-    relation_types_label = ", ".join(relation_types)
+    relation_type_labels = ", ".join(
+        _observatory_display_label(item) for item in relation_types
+    )
     if not nodes:
         graph_workbench = _empty_inline(
             "No selected-run graph nodes are available for this workspace."
@@ -5183,9 +5223,9 @@ def _render_workspace_map(
             _workspace_disclosure(
                 "Map custody and boundaries",
             '<div class="workspace-chip-row">',
-            f'<span class="workspace-chip workspace-chip--teal">{_esc(graph.get("graph_scope", ""))}</span>',
-            f'<span class="workspace-chip">{_esc(graph.get("layout_hint", ""))}</span>',
-            f'<span class="workspace-chip">{_esc(relation_types_label or "no relation filters")}</span>',
+            f'<span class="workspace-chip workspace-chip--teal">{_esc(_observatory_display_label(graph.get("graph_scope", ""), "Selected-run map"))}</span>',
+            f'<span class="workspace-chip">{_esc(_observatory_display_label(graph.get("layout_hint", ""), "Small map"))}</span>',
+            f'<span class="workspace-chip">{_esc(relation_type_labels or "No relation filters")}</span>',
             "</div>",
             _render_source_refs(graph.get("source_refs") or []),
             _render_missingness(graph.get("missingness") or {}),
