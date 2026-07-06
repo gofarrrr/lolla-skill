@@ -1,0 +1,89 @@
+{
+  "schema": "lolla.observatory_workspace_map_interaction_slice_review.v0",
+  "status": "portable_workspace_map_interaction_ready_for_review",
+  "date": "2026-07-06",
+  "decision_gate": "proceed_to_observatory_workspace_product_flow_review",
+  "recommended_next_pr": "Observatory Workspace Product Flow Review",
+  "implemented": {
+    "interactive_workspace_map": true,
+    "workspace_route": "/workspace?case_id=<id>#map",
+    "model_route": "/models/<id>?case_id=<id>",
+    "relation_route": "/relations/<id>?case_id=<id>",
+    "node_search": true,
+    "relation_type_filters": true,
+    "selected_node_edge_panel": true,
+    "durable_model_relation_links": true,
+    "renderer": "observatory/serve_result.py",
+    "compiled_spa_bundle_changed": false
+  },
+  "rendering_direction": "portable_python_server_rendered_html",
+  "visible_surfaces": [
+    "Outcome",
+    "Learn",
+    "Models",
+    "Relations",
+    "Map",
+    "Receipts",
+    "Advanced Audit"
+  ],
+  "ux_guards": {
+    "node_search": true,
+    "relation_type_filters": true,
+    "selected_node_edge_panel": true,
+    "graph_selection_before_navigation": true,
+    "model_page_links_available": true,
+    "relation_page_links_available": true,
+    "graph_edges_are_navigation_not_proof": true,
+    "raw_telemetry_stays_advanced_audit": true,
+    "selected_run_scope_visible": true
+  },
+  "single_home_rules": {
+    "revised_answer": "Outcome",
+    "teacher_reasoning_move": "Learn",
+    "canonical_model_explanation": "Models",
+    "relation_explanation": "Relations",
+    "graph_neighborhood": "Map",
+    "source_custody_and_process_status": "Receipts",
+    "raw_telemetry": "Advanced Audit"
+  },
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_lolla_run": false,
+    "runtime_behavior_changed": false,
+    "archive_mutated": false,
+    "sidecars_written": false,
+    "compiled_spa_bundle_changed": false,
+    "observatory_build_edited": false,
+    "svelte_source_required": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "answer_quality_scoring": false,
+    "approval_or_certification": false,
+    "action_authorized": false,
+    "runtime_integration_authorized": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false
+  },
+  "strongest_signal": "The Map is now a real selected-run exploration surface with search, filters, selection state, and durable model/relation links instead of a static list summary.",
+  "strongest_risk": "The graph remains selected-run scoped and small; the next product-flow review should decide whether the combined Outcome/Learn/Models/Relations/Map/Receipts order is clear enough before expanding toward a full corpus library.",
+  "stop_before": [
+    "full corpus graph",
+    "full corpus mental model library",
+    "runtime integration",
+    "default-on Conversation Understanding generation",
+    "product readiness claims",
+    "human validation claims",
+    "answer correctness claims",
+    "advice correctness claims",
+    "action authorization"
+  ]
+}
