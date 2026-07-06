@@ -53,4 +53,6 @@ Current planning docs:
 - [Observatory Prepare Process Brief Action](observatory-prepare-process-brief-action-v0.md)
 - [Observatory Global Product Experience And Data Flow](observatory-global-product-experience-and-data-flow-v0.md)
 - [Observatory Source Ownership Audit](observatory-source-ownership-audit-v0.md)
+- [Observatory Portable Product View Contracts](observatory-portable-product-view-contracts-v0.md)
+- [Observatory Portable Product View Contract Examples JSON](observatory-portable-product-view-contract-examples-v0.json)
 - [Mental Model Teacher Product Surface Reference Patterns](mental-model-teacher-product-surface-reference-patterns-v0.md)

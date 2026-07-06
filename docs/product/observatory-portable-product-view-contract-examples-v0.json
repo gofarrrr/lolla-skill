@@ -1,0 +1,903 @@
+{
+  "schema": "lolla.observatory.portable_product_view_contract_examples.v0",
+  "examples": {
+    "selected_run_summary": {
+      "schema_version": "lolla.observatory.selected_run_summary.v0",
+      "run_id": "fixture-run-001",
+      "case_id": "fixture-case-001",
+      "display_title": "Enterprise beta launch review",
+      "run_state": "fixture",
+      "health_label": "partial",
+      "primary_surfaces": [
+        "Outcome",
+        "Learn",
+        "Models",
+        "Relations",
+        "Map",
+        "Receipts"
+      ],
+      "source_refs": [
+        {
+          "source_id": "fixture-run-result",
+          "source_type": "run_artifact",
+          "path": "runs/fixture-run-001/result.json"
+        }
+      ],
+      "missingness": {
+        "status": "partial",
+        "missing_fields": [
+          "human_review"
+        ],
+        "notes": [
+          "Fixture demonstrates the view contract and is not a real run."
+        ]
+      },
+      "non_claims": [
+        "not_product_proof",
+        "not_human_validation",
+        "not_answer_correctness",
+        "not_advice_correctness",
+        "not_runtime_integration",
+        "not_action_authorization"
+      ]
+    },
+    "outcome_summary": {
+      "schema_version": "lolla.observatory.outcome_summary.v0",
+      "run_id": "fixture-run-001",
+      "answer_headline": "The answer changed from launch enthusiasm to staged risk control.",
+      "revised_answer_summary": "The selected run should summarize the practical outcome without turning the full answer into a lesson body.",
+      "strongest_pressure": "The strongest pressure was premature confidence around enterprise readiness.",
+      "model_chips": [
+        {
+          "model_id": "opportunity-cost",
+          "label": "Opportunity Cost",
+          "role": "helps compare the cost of launching now against learning first",
+          "href": "/models/opportunity-cost"
+        }
+      ],
+      "source_refs": [
+        {
+          "source_id": "fixture-run-result",
+          "source_type": "run_artifact",
+          "path": "runs/fixture-run-001/result.json"
+        }
+      ],
+      "missingness": {
+        "status": "partial",
+        "missing_fields": [
+          "full_revised_answer"
+        ],
+        "notes": [
+          "Outcome text is compressed for the product view fixture."
+        ]
+      },
+      "non_claims": [
+        "not_product_proof",
+        "not_human_validation",
+        "not_answer_correctness",
+        "not_advice_correctness",
+        "not_runtime_integration",
+        "not_action_authorization"
+      ]
+    },
+    "learning_packet": {
+      "schema_version": "lolla.observatory.learning_packet.v0",
+      "run_id": "fixture-run-001",
+      "case_anchor": "A team is deciding whether to launch a public enterprise beta.",
+      "reasoning_trap": "Treating momentum as if it removed integration and support risk.",
+      "thinking_move": "Separate the case for learning from the case for scaling.",
+      "relation_story": "Opportunity Cost and Premortem Thinking work together: one asks what a launch displaces, the other asks what can break after the launch begins.",
+      "worked_example": "Instead of asking whether launch is exciting, the lesson asks what the team must learn before the launch cost becomes hard to reverse.",
+      "practice_rep": {
+        "prompt": "Name one launch benefit and one learning checkpoint that would make the launch safer.",
+        "user_action": "Write the benefit and checkpoint as two separate bullets."
+      },
+      "do_not_overlearn": [
+        "This lesson does not say public launches are always bad.",
+        "This lesson does not decide the user's launch plan."
+      ],
+      "model_links": [
+        {
+          "label": "Opportunity Cost",
+          "href": "/models/opportunity-cost"
+        },
+        {
+          "label": "Premortem Thinking",
+          "href": "/models/premortem-thinking"
+        }
+      ],
+      "relation_links": [
+        {
+          "label": "Opportunity Cost plus Premortem Thinking",
+          "href": "/relations/opportunity-cost-premortem-thinking"
+        }
+      ],
+      "source_refs": [
+        {
+          "source_id": "fixture-learning-packet",
+          "source_type": "learning_packet_fixture",
+          "path": "docs/product/observatory-portable-product-view-contract-examples-v0.json"
+        }
+      ],
+      "human_review_status": "not_reviewed",
+      "product_proof": false,
+      "runtime_integration_authorized": false,
+      "missingness": {
+        "status": "partial",
+        "missing_fields": [
+          "real_teacher_artifact"
+        ],
+        "notes": [
+          "The example is a contract fixture, not a generated Teacher result."
+        ]
+      },
+      "non_claims": [
+        "not_product_proof",
+        "not_human_validation",
+        "not_answer_correctness",
+        "not_advice_correctness",
+        "not_runtime_integration",
+        "not_action_authorization",
+        "lesson_is_not_advice",
+        "practice_is_not_validation"
+      ]
+    },
+    "model_page": {
+      "schema_version": "lolla.observatory.model_page.v0",
+      "model_id": "opportunity-cost",
+      "slug": "opportunity-cost",
+      "display_name": "Opportunity Cost",
+      "one_sentence_meaning": "Every choice spends scarce attention, time, capital, or trust that could have been used elsewhere.",
+      "helps_notice": [
+        "What the current plan displaces",
+        "Which option quietly consumes the scarce resource"
+      ],
+      "use_when": [
+        "Several plausible options compete for the same resource",
+        "The visible benefit hides what must be delayed or abandoned"
+      ],
+      "avoid_when": [
+        "The decision is reversible and the learning value dominates the cost"
+      ],
+      "common_misuse": [
+        "Using the model to freeze action by treating every alternative as equally important"
+      ],
+      "failure_modes": [
+        "Ignoring second-order coordination cost",
+        "Counting only money and ignoring attention or trust"
+      ],
+      "practice_prompts": [
+        "What is this choice crowding out?",
+        "What would become possible if we did not spend the resource here?"
+      ],
+      "selected_run_backlinks": [
+        {
+          "label": "Enterprise beta launch review",
+          "href": "/runs/fixture-run-001#learn"
+        }
+      ],
+      "source_refs": [
+        {
+          "source_id": "opportunity-cost-canonical",
+          "source_type": "canonical_model_markdown",
+          "path": "data/model_sources/opportunity-cost.md"
+        }
+      ],
+      "source_hashes": {
+        "data/model_sources/opportunity-cost.md": "0f4b6e0d2c8a7f1b3d5e9a1029384756abcdef0123456789abcdef0123456789"
+      },
+      "curation_status": "contract_fixture",
+      "missingness": {
+        "status": "partial",
+        "missing_fields": [
+          "reviewed_selected_run_activation"
+        ],
+        "notes": [
+          "The fixture shows formatted model-page shape, not raw Markdown."
+        ]
+      },
+      "non_claims": [
+        "not_product_proof",
+        "not_human_validation",
+        "not_answer_correctness",
+        "not_advice_correctness",
+        "not_runtime_integration",
+        "not_action_authorization",
+        "raw_markdown_is_not_product_ui",
+        "activation_is_not_definition"
+      ]
+    },
+    "relation_page": {
+      "schema_version": "lolla.observatory.relation_page.v0",
+      "relation_id": "opportunity-cost-premortem-thinking",
+      "source_model_id": "opportunity-cost",
+      "target_model_id": "premortem-thinking",
+      "relation_type": "ally",
+      "plain_language_story": "Opportunity Cost asks what the team gives up by launching now; Premortem Thinking asks what would make the launch fail after commitment.",
+      "why_it_matters": "Together they turn a launch debate into a learning sequence with a clearer checkpoint.",
+      "misread_risk": "The pair can be misread as a reason to avoid any launch instead of a way to set a sharper launch boundary.",
+      "practice_prompt": "Write one displaced option and one failure scenario, then decide which should be learned before launch.",
+      "model_links": [
+        {
+          "label": "Opportunity Cost",
+          "href": "/models/opportunity-cost"
+        },
+        {
+          "label": "Premortem Thinking",
+          "href": "/models/premortem-thinking"
+        }
+      ],
+      "source_refs": [
+        {
+          "source_id": "fixture-relation-semantics",
+          "source_type": "relation_semantics_fixture",
+          "path": "data/curation/relation_semantics/opportunity-cost-premortem-thinking.json"
+        }
+      ],
+      "confidence": "unknown",
+      "curation_status": "contract_fixture",
+      "missingness": {
+        "status": "partial",
+        "missing_fields": [
+          "reviewed_relation_semantics"
+        ],
+        "notes": [
+          "Relation confidence is not certification."
+        ]
+      },
+      "non_claims": [
+        "not_product_proof",
+        "not_human_validation",
+        "not_answer_correctness",
+        "not_advice_correctness",
+        "not_runtime_integration",
+        "not_action_authorization",
+        "relation_is_not_proof",
+        "confidence_is_not_certification"
+      ]
+    },
+    "graph_neighborhood": {
+      "schema_version": "lolla.observatory.graph_neighborhood.v0",
+      "graph_id": "fixture-run-001-learning-neighborhood",
+      "graph_scope": "selected_run_learning_neighborhood",
+      "nodes": [
+        {
+          "node_id": "opportunity-cost",
+          "label": "Opportunity Cost",
+          "node_type": "model",
+          "href": "/models/opportunity-cost"
+        },
+        {
+          "node_id": "premortem-thinking",
+          "label": "Premortem Thinking",
+          "node_type": "model",
+          "href": "/models/premortem-thinking"
+        }
+      ],
+      "edges": [
+        {
+          "edge_id": "opportunity-cost-premortem-thinking",
+          "source_node_id": "opportunity-cost",
+          "target_node_id": "premortem-thinking",
+          "relation_type": "ally",
+          "navigation_label": "Launch cost plus failure rehearsal",
+          "href": "/relations/opportunity-cost-premortem-thinking"
+        }
+      ],
+      "source_refs": [
+        {
+          "source_id": "fixture-graph-neighborhood",
+          "source_type": "graph_fixture",
+          "path": "docs/product/observatory-portable-product-view-contract-examples-v0.json"
+        }
+      ],
+      "layout_hint": "small_neighborhood",
+      "default_focus": "opportunity-cost",
+      "filters": {
+        "relation_types": [
+          "ally",
+          "tension",
+          "guardrail"
+        ],
+        "default_visible_relation_types": [
+          "ally"
+        ]
+      },
+      "search_enabled": true,
+      "missingness": {
+        "status": "partial",
+        "missing_fields": [
+          "reviewed_full_graph_context"
+        ],
+        "notes": [
+          "The graph is navigation, not relation proof."
+        ]
+      },
+      "non_claims": [
+        "not_product_proof",
+        "not_human_validation",
+        "not_answer_correctness",
+        "not_advice_correctness",
+        "not_runtime_integration",
+        "not_action_authorization",
+        "graph_is_navigation_not_proof",
+        "edge_is_not_proof"
+      ]
+    },
+    "receipt_summary": {
+      "schema_version": "lolla.observatory.receipt_summary.v0",
+      "run_id": "fixture-run-001",
+      "learning_packet_status": "available",
+      "conversation_understanding_status": "not_requested",
+      "process_brief_status": "not_requested",
+      "source_refs": [
+        {
+          "source_id": "fixture-receipts",
+          "source_type": "receipt_fixture",
+          "path": "docs/product/observatory-portable-product-view-contract-examples-v0.json"
+        }
+      ],
+      "missingness": {
+        "status": "partial",
+        "missing_fields": [
+          "real_sidecar_status"
+        ],
+        "notes": [
+          "Receipts state what is present, absent, or deferred."
+        ]
+      },
+      "advanced_links": [
+        {
+          "label": "Extraction audit",
+          "href": "/audit/extraction"
+        },
+        {
+          "label": "Usage",
+          "href": "/usage"
+        }
+      ],
+      "visible_non_claims": [
+        "Not product proof",
+        "Not human validation",
+        "Not answer correctness",
+        "No runtime action authorized"
+      ],
+      "non_claims": [
+        "not_product_proof",
+        "not_human_validation",
+        "not_answer_correctness",
+        "not_advice_correctness",
+        "not_runtime_integration",
+        "not_action_authorization",
+        "receipts_are_custody_not_certification",
+        "status_is_not_product_proof"
+      ]
+    },
+    "advanced_audit_index": {
+      "schema_version": "lolla.observatory.advanced_audit_index.v0",
+      "run_id": "fixture-run-001",
+      "advanced_links": [
+        {
+          "label": "Extraction audit",
+          "href": "/audit/extraction"
+        },
+        {
+          "label": "Usage",
+          "href": "/usage"
+        }
+      ],
+      "artifact_statuses": [
+        {
+          "artifact_id": "result-json",
+          "label": "Result JSON",
+          "status": "available",
+          "home_route": "/audit"
+        },
+        {
+          "artifact_id": "process-brief",
+          "label": "Process brief",
+          "status": "not_requested",
+          "home_route": "/audit/extraction"
+        }
+      ],
+      "source_refs": [
+        {
+          "source_id": "fixture-advanced-index",
+          "source_type": "advanced_index_fixture",
+          "path": "docs/product/observatory-portable-product-view-contract-examples-v0.json"
+        }
+      ],
+      "missingness": {
+        "status": "partial",
+        "missing_fields": [
+          "real_run_artifact_inventory"
+        ],
+        "notes": [
+          "Advanced Audit indexes raw inspection routes without making them primary product copy."
+        ]
+      },
+      "non_claims": [
+        "not_product_proof",
+        "not_human_validation",
+        "not_answer_correctness",
+        "not_advice_correctness",
+        "not_runtime_integration",
+        "not_action_authorization",
+        "advanced_audit_is_internal_inspection",
+        "telemetry_is_not_product_copy"
+      ]
+    },
+    "workspace": {
+      "schema_version": "lolla.observatory.product_workspace.v0",
+      "rendering_direction": "portable_python_server_rendered_html",
+      "primary_surfaces": [
+        "Outcome",
+        "Learn",
+        "Models",
+        "Relations",
+        "Map",
+        "Receipts"
+      ],
+      "advanced_surface": "Advanced Audit",
+      "selected_run_summary": {
+        "schema_version": "lolla.observatory.selected_run_summary.v0",
+        "run_id": "fixture-run-001",
+        "case_id": "fixture-case-001",
+        "display_title": "Enterprise beta launch review",
+        "run_state": "fixture",
+        "health_label": "partial",
+        "primary_surfaces": [
+          "Outcome",
+          "Learn",
+          "Models",
+          "Relations",
+          "Map",
+          "Receipts"
+        ],
+        "source_refs": [
+          {
+            "source_id": "fixture-run-result",
+            "source_type": "run_artifact",
+            "path": "runs/fixture-run-001/result.json"
+          }
+        ],
+        "missingness": {
+          "status": "partial",
+          "missing_fields": [
+            "human_review"
+          ],
+          "notes": [
+            "Fixture demonstrates the view contract and is not a real run."
+          ]
+        },
+        "non_claims": [
+          "not_product_proof",
+          "not_human_validation",
+          "not_answer_correctness",
+          "not_advice_correctness",
+          "not_runtime_integration",
+          "not_action_authorization"
+        ]
+      },
+      "outcome_summary": {
+        "schema_version": "lolla.observatory.outcome_summary.v0",
+        "run_id": "fixture-run-001",
+        "answer_headline": "The answer changed from launch enthusiasm to staged risk control.",
+        "revised_answer_summary": "The selected run should summarize the practical outcome without turning the full answer into a lesson body.",
+        "strongest_pressure": "The strongest pressure was premature confidence around enterprise readiness.",
+        "model_chips": [
+          {
+            "model_id": "opportunity-cost",
+            "label": "Opportunity Cost",
+            "role": "helps compare the cost of launching now against learning first",
+            "href": "/models/opportunity-cost"
+          }
+        ],
+        "source_refs": [
+          {
+            "source_id": "fixture-run-result",
+            "source_type": "run_artifact",
+            "path": "runs/fixture-run-001/result.json"
+          }
+        ],
+        "missingness": {
+          "status": "partial",
+          "missing_fields": [
+            "full_revised_answer"
+          ],
+          "notes": [
+            "Outcome text is compressed for the product view fixture."
+          ]
+        },
+        "non_claims": [
+          "not_product_proof",
+          "not_human_validation",
+          "not_answer_correctness",
+          "not_advice_correctness",
+          "not_runtime_integration",
+          "not_action_authorization"
+        ]
+      },
+      "learning_packet": {
+        "schema_version": "lolla.observatory.learning_packet.v0",
+        "run_id": "fixture-run-001",
+        "case_anchor": "A team is deciding whether to launch a public enterprise beta.",
+        "reasoning_trap": "Treating momentum as if it removed integration and support risk.",
+        "thinking_move": "Separate the case for learning from the case for scaling.",
+        "relation_story": "Opportunity Cost and Premortem Thinking work together: one asks what a launch displaces, the other asks what can break after the launch begins.",
+        "worked_example": "Instead of asking whether launch is exciting, the lesson asks what the team must learn before the launch cost becomes hard to reverse.",
+        "practice_rep": {
+          "prompt": "Name one launch benefit and one learning checkpoint that would make the launch safer.",
+          "user_action": "Write the benefit and checkpoint as two separate bullets."
+        },
+        "do_not_overlearn": [
+          "This lesson does not say public launches are always bad.",
+          "This lesson does not decide the user's launch plan."
+        ],
+        "model_links": [
+          {
+            "label": "Opportunity Cost",
+            "href": "/models/opportunity-cost"
+          },
+          {
+            "label": "Premortem Thinking",
+            "href": "/models/premortem-thinking"
+          }
+        ],
+        "relation_links": [
+          {
+            "label": "Opportunity Cost plus Premortem Thinking",
+            "href": "/relations/opportunity-cost-premortem-thinking"
+          }
+        ],
+        "source_refs": [
+          {
+            "source_id": "fixture-learning-packet",
+            "source_type": "learning_packet_fixture",
+            "path": "docs/product/observatory-portable-product-view-contract-examples-v0.json"
+          }
+        ],
+        "human_review_status": "not_reviewed",
+        "product_proof": false,
+        "runtime_integration_authorized": false,
+        "missingness": {
+          "status": "partial",
+          "missing_fields": [
+            "real_teacher_artifact"
+          ],
+          "notes": [
+            "The example is a contract fixture, not a generated Teacher result."
+          ]
+        },
+        "non_claims": [
+          "not_product_proof",
+          "not_human_validation",
+          "not_answer_correctness",
+          "not_advice_correctness",
+          "not_runtime_integration",
+          "not_action_authorization",
+          "lesson_is_not_advice",
+          "practice_is_not_validation"
+        ]
+      },
+      "model_pages": [
+        {
+          "schema_version": "lolla.observatory.model_page.v0",
+          "model_id": "opportunity-cost",
+          "slug": "opportunity-cost",
+          "display_name": "Opportunity Cost",
+          "one_sentence_meaning": "Every choice spends scarce attention, time, capital, or trust that could have been used elsewhere.",
+          "helps_notice": [
+            "What the current plan displaces",
+            "Which option quietly consumes the scarce resource"
+          ],
+          "use_when": [
+            "Several plausible options compete for the same resource",
+            "The visible benefit hides what must be delayed or abandoned"
+          ],
+          "avoid_when": [
+            "The decision is reversible and the learning value dominates the cost"
+          ],
+          "common_misuse": [
+            "Using the model to freeze action by treating every alternative as equally important"
+          ],
+          "failure_modes": [
+            "Ignoring second-order coordination cost",
+            "Counting only money and ignoring attention or trust"
+          ],
+          "practice_prompts": [
+            "What is this choice crowding out?",
+            "What would become possible if we did not spend the resource here?"
+          ],
+          "selected_run_backlinks": [
+            {
+              "label": "Enterprise beta launch review",
+              "href": "/runs/fixture-run-001#learn"
+            }
+          ],
+          "source_refs": [
+            {
+              "source_id": "opportunity-cost-canonical",
+              "source_type": "canonical_model_markdown",
+              "path": "data/model_sources/opportunity-cost.md"
+            }
+          ],
+          "source_hashes": {
+            "data/model_sources/opportunity-cost.md": "0f4b6e0d2c8a7f1b3d5e9a1029384756abcdef0123456789abcdef0123456789"
+          },
+          "curation_status": "contract_fixture",
+          "missingness": {
+            "status": "partial",
+            "missing_fields": [
+              "reviewed_selected_run_activation"
+            ],
+            "notes": [
+              "The fixture shows formatted model-page shape, not raw Markdown."
+            ]
+          },
+          "non_claims": [
+            "not_product_proof",
+            "not_human_validation",
+            "not_answer_correctness",
+            "not_advice_correctness",
+            "not_runtime_integration",
+            "not_action_authorization",
+            "raw_markdown_is_not_product_ui",
+            "activation_is_not_definition"
+          ]
+        }
+      ],
+      "relation_pages": [
+        {
+          "schema_version": "lolla.observatory.relation_page.v0",
+          "relation_id": "opportunity-cost-premortem-thinking",
+          "source_model_id": "opportunity-cost",
+          "target_model_id": "premortem-thinking",
+          "relation_type": "ally",
+          "plain_language_story": "Opportunity Cost asks what the team gives up by launching now; Premortem Thinking asks what would make the launch fail after commitment.",
+          "why_it_matters": "Together they turn a launch debate into a learning sequence with a clearer checkpoint.",
+          "misread_risk": "The pair can be misread as a reason to avoid any launch instead of a way to set a sharper launch boundary.",
+          "practice_prompt": "Write one displaced option and one failure scenario, then decide which should be learned before launch.",
+          "model_links": [
+            {
+              "label": "Opportunity Cost",
+              "href": "/models/opportunity-cost"
+            },
+            {
+              "label": "Premortem Thinking",
+              "href": "/models/premortem-thinking"
+            }
+          ],
+          "source_refs": [
+            {
+              "source_id": "fixture-relation-semantics",
+              "source_type": "relation_semantics_fixture",
+              "path": "data/curation/relation_semantics/opportunity-cost-premortem-thinking.json"
+            }
+          ],
+          "confidence": "unknown",
+          "curation_status": "contract_fixture",
+          "missingness": {
+            "status": "partial",
+            "missing_fields": [
+              "reviewed_relation_semantics"
+            ],
+            "notes": [
+              "Relation confidence is not certification."
+            ]
+          },
+          "non_claims": [
+            "not_product_proof",
+            "not_human_validation",
+            "not_answer_correctness",
+            "not_advice_correctness",
+            "not_runtime_integration",
+            "not_action_authorization",
+            "relation_is_not_proof",
+            "confidence_is_not_certification"
+          ]
+        }
+      ],
+      "graph_neighborhood": {
+        "schema_version": "lolla.observatory.graph_neighborhood.v0",
+        "graph_id": "fixture-run-001-learning-neighborhood",
+        "graph_scope": "selected_run_learning_neighborhood",
+        "nodes": [
+          {
+            "node_id": "opportunity-cost",
+            "label": "Opportunity Cost",
+            "node_type": "model",
+            "href": "/models/opportunity-cost"
+          },
+          {
+            "node_id": "premortem-thinking",
+            "label": "Premortem Thinking",
+            "node_type": "model",
+            "href": "/models/premortem-thinking"
+          }
+        ],
+        "edges": [
+          {
+            "edge_id": "opportunity-cost-premortem-thinking",
+            "source_node_id": "opportunity-cost",
+            "target_node_id": "premortem-thinking",
+            "relation_type": "ally",
+            "navigation_label": "Launch cost plus failure rehearsal",
+            "href": "/relations/opportunity-cost-premortem-thinking"
+          }
+        ],
+        "source_refs": [
+          {
+            "source_id": "fixture-graph-neighborhood",
+            "source_type": "graph_fixture",
+            "path": "docs/product/observatory-portable-product-view-contract-examples-v0.json"
+          }
+        ],
+        "layout_hint": "small_neighborhood",
+        "default_focus": "opportunity-cost",
+        "filters": {
+          "relation_types": [
+            "ally",
+            "tension",
+            "guardrail"
+          ],
+          "default_visible_relation_types": [
+            "ally"
+          ]
+        },
+        "search_enabled": true,
+        "missingness": {
+          "status": "partial",
+          "missing_fields": [
+            "reviewed_full_graph_context"
+          ],
+          "notes": [
+            "The graph is navigation, not relation proof."
+          ]
+        },
+        "non_claims": [
+          "not_product_proof",
+          "not_human_validation",
+          "not_answer_correctness",
+          "not_advice_correctness",
+          "not_runtime_integration",
+          "not_action_authorization",
+          "graph_is_navigation_not_proof",
+          "edge_is_not_proof"
+        ]
+      },
+      "receipt_summary": {
+        "schema_version": "lolla.observatory.receipt_summary.v0",
+        "run_id": "fixture-run-001",
+        "learning_packet_status": "available",
+        "conversation_understanding_status": "not_requested",
+        "process_brief_status": "not_requested",
+        "source_refs": [
+          {
+            "source_id": "fixture-receipts",
+            "source_type": "receipt_fixture",
+            "path": "docs/product/observatory-portable-product-view-contract-examples-v0.json"
+          }
+        ],
+        "missingness": {
+          "status": "partial",
+          "missing_fields": [
+            "real_sidecar_status"
+          ],
+          "notes": [
+            "Receipts state what is present, absent, or deferred."
+          ]
+        },
+        "advanced_links": [
+          {
+            "label": "Extraction audit",
+            "href": "/audit/extraction"
+          },
+          {
+            "label": "Usage",
+            "href": "/usage"
+          }
+        ],
+        "visible_non_claims": [
+          "Not product proof",
+          "Not human validation",
+          "Not answer correctness",
+          "No runtime action authorized"
+        ],
+        "non_claims": [
+          "not_product_proof",
+          "not_human_validation",
+          "not_answer_correctness",
+          "not_advice_correctness",
+          "not_runtime_integration",
+          "not_action_authorization",
+          "receipts_are_custody_not_certification",
+          "status_is_not_product_proof"
+        ]
+      },
+      "advanced_audit_index": {
+        "schema_version": "lolla.observatory.advanced_audit_index.v0",
+        "run_id": "fixture-run-001",
+        "advanced_links": [
+          {
+            "label": "Extraction audit",
+            "href": "/audit/extraction"
+          },
+          {
+            "label": "Usage",
+            "href": "/usage"
+          }
+        ],
+        "artifact_statuses": [
+          {
+            "artifact_id": "result-json",
+            "label": "Result JSON",
+            "status": "available",
+            "home_route": "/audit"
+          },
+          {
+            "artifact_id": "process-brief",
+            "label": "Process brief",
+            "status": "not_requested",
+            "home_route": "/audit/extraction"
+          }
+        ],
+        "source_refs": [
+          {
+            "source_id": "fixture-advanced-index",
+            "source_type": "advanced_index_fixture",
+            "path": "docs/product/observatory-portable-product-view-contract-examples-v0.json"
+          }
+        ],
+        "missingness": {
+          "status": "partial",
+          "missing_fields": [
+            "real_run_artifact_inventory"
+          ],
+          "notes": [
+            "Advanced Audit indexes raw inspection routes without making them primary product copy."
+          ]
+        },
+        "non_claims": [
+          "not_product_proof",
+          "not_human_validation",
+          "not_answer_correctness",
+          "not_advice_correctness",
+          "not_runtime_integration",
+          "not_action_authorization",
+          "advanced_audit_is_internal_inspection",
+          "telemetry_is_not_product_copy"
+        ]
+      },
+      "source_refs": [
+        {
+          "source_id": "portable-product-view-contract-fixture",
+          "source_type": "contract_example",
+          "path": "docs/product/observatory-portable-product-view-contract-examples-v0.json"
+        }
+      ],
+      "missingness": {
+        "status": "partial",
+        "missing_fields": [
+          "real_selected_run_adapter",
+          "real_model_page_adapter",
+          "real_relation_page_adapter"
+        ],
+        "notes": [
+          "This workspace is a safe contract fixture, not a generated run."
+        ]
+      },
+      "non_claims": [
+        "not_product_proof",
+        "not_human_validation",
+        "not_answer_correctness",
+        "not_advice_correctness",
+        "not_runtime_integration",
+        "not_action_authorization",
+        "observatory_is_not_product_proof",
+        "telemetry_is_advanced_not_primary",
+        "graph_is_navigation_not_proof"
+      ]
+    }
+  }
+}
