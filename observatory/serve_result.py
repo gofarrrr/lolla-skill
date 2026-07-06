@@ -196,6 +196,557 @@ p.lede strong { color: #111; }
 """
 
 
+_TEACHER_LEARN_CSS = """
+:root {
+  --bg: #060761;
+  --teal: #41FFA7;
+  --green: #C4FF4D;
+  --purple: #BA8CFF;
+  --red: #ff5a5a;
+  --amber: #d4a052;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, .85);
+  --text-dim: rgba(255, 255, 255, .68);
+  --surface-1: rgba(255, 255, 255, .06);
+  --surface-2: rgba(255, 255, 255, .1);
+  --surface-hover: rgba(255, 255, 255, .14);
+  --border-subtle: rgba(255, 255, 255, .13);
+  --border-strong: rgba(255, 255, 255, .22);
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+  --radius-sm: 3px;
+  --radius-md: 6px;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { color-scheme: dark; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(65, 255, 167, .04) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 100%, rgba(186, 140, 255, .03) 0%, transparent 50%);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--teal); text-decoration-color: rgba(65, 255, 167, .45); text-underline-offset: 2px; }
+a:hover { text-decoration-color: var(--teal); }
+code, pre { font-family: var(--font-mono); }
+code {
+  background: var(--surface-2);
+  border-radius: 2px;
+  padding: 1px 4px;
+  color: var(--text-secondary);
+}
+.teacher-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 72px 48px 96px;
+}
+.status-bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: -12px 0 14px;
+  padding: 12px 0;
+  background: var(--bg);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.status-bar a { color: var(--text-dim); text-decoration: none; }
+.status-bar a:hover { color: var(--teal); }
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 8px rgba(65, 255, 167, .5);
+}
+.dot-sep { color: var(--border-strong); }
+.status-ok { color: var(--teal); }
+.teacher-header {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.teacher-eyebrow {
+  margin: 0;
+  color: var(--teal);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+h1 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 1.1;
+}
+.lede {
+  max-width: 820px;
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 16px;
+  line-height: 1.7;
+}
+.run-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+.run-header strong { color: var(--text-secondary); }
+.teacher-tabbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 0 0 32px;
+}
+.tab-btn {
+  min-height: 32px;
+  padding: 6px 16px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: .08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.tab-btn:hover {
+  border-color: var(--border-strong);
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+.tab-btn--active {
+  border-color: var(--teal);
+  background: rgba(65, 255, 167, .08);
+  color: var(--teal);
+}
+.teacher-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 24px;
+  align-items: start;
+}
+.teacher-main {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 32px;
+}
+.teacher-sidebar {
+  position: sticky;
+  top: 80px;
+  display: flex;
+  max-height: calc(100vh - 96px);
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-subtle) transparent;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.section-header h2 {
+  margin: 0;
+  color: var(--teal);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.section-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--border-strong), transparent);
+}
+.teacher-section {
+  scroll-margin-top: 84px;
+}
+.teacher-card,
+.teacher-panel,
+.teacher-hero {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--surface-1);
+}
+.teacher-hero {
+  display: grid;
+  gap: 18px;
+  padding: 24px;
+  border-left: 3px solid var(--teal);
+  background: rgba(65, 255, 167, .04);
+}
+.hero-row {
+  display: grid;
+  gap: 4px;
+}
+.hero-label,
+.card-label,
+.meta-label {
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.hero-value {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+.hero-copy {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+.teacher-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+.teacher-card {
+  display: block;
+  min-width: 0;
+  padding: 16px;
+  color: inherit;
+  text-decoration: none;
+}
+a.teacher-card:hover {
+  border-color: var(--border-strong);
+  background: var(--surface-hover);
+  text-decoration: none;
+}
+.teacher-card h3 {
+  margin: 6px 0 8px;
+  color: var(--text-primary);
+  font-size: 18px;
+  line-height: 1.25;
+}
+.teacher-card p {
+  margin: 0 0 10px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.teacher-card p:last-child { margin-bottom: 0; }
+.tagrow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.tag {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .08em;
+  line-height: 1.4;
+  padding: 2px 8px;
+  text-transform: uppercase;
+}
+.tag.teal { border-color: rgba(65, 255, 167, .32); color: var(--teal); }
+.tag.purple { border-color: rgba(186, 140, 255, .32); color: var(--purple); }
+.tag.amber { border-color: rgba(212, 160, 82, .32); color: var(--amber); }
+.open-hint {
+  color: var(--teal);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: .04em;
+}
+.practice-box {
+  border: 1px solid rgba(196, 255, 77, .22);
+  border-left: 3px solid var(--green);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  background: rgba(196, 255, 77, .05);
+  padding: 18px 20px;
+}
+.practice-box p {
+  margin: 0 0 10px;
+  color: var(--text-secondary);
+}
+.practice-box p:last-child { margin-bottom: 0; }
+.quiet-list {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--text-secondary);
+}
+.quiet-list li { margin: 6px 0; }
+.relation-card {
+  border-left: 3px solid var(--purple);
+}
+.map-card {
+  padding: 16px;
+}
+.lesson-map {
+  width: 100%;
+  min-height: 260px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, .03);
+}
+.map-node circle {
+  fill: rgba(65, 255, 167, .16);
+  stroke: var(--teal);
+  stroke-width: 1.5;
+}
+.map-node text {
+  fill: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+.map-edge {
+  stroke: rgba(186, 140, 255, .72);
+  stroke-width: 2;
+}
+.map-label {
+  fill: var(--purple);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.receipt-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.receipt-chip {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--surface-1);
+  padding: 10px 12px;
+}
+.receipt-chip strong {
+  display: block;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 18px;
+}
+.receipt-chip span {
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.teacher-panel {
+  padding: 14px;
+}
+.teacher-panel h3 {
+  margin: 0 0 10px;
+  color: var(--teal);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.teacher-panel p,
+.teacher-panel li {
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.55;
+}
+.teacher-panel p { margin: 0 0 10px; }
+.teacher-panel ul {
+  margin: 0;
+  padding-left: 18px;
+}
+.metric-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  padding: 6px 0;
+  border-top: 1px solid var(--border-subtle);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+.metric-row:first-child { border-top: 0; }
+.metric-row strong { color: var(--text-primary); font-weight: 600; }
+.detail-section {
+  margin: 0 0 22px;
+}
+.detail-section h3 {
+  margin: 0 0 8px;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.detail-section p,
+.detail-section li {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.65;
+}
+.detail-section p { margin: 0 0 8px; }
+.detail-section ul {
+  margin: 0;
+  padding-left: 18px;
+}
+.teacher-detail {
+  display: none;
+}
+.teacher-detail:target {
+  display: block;
+}
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, .58);
+}
+.drawer-panel {
+  position: fixed;
+  inset: 0 0 0 auto;
+  z-index: 101;
+  width: min(560px, 92vw);
+  height: 100vh;
+  overflow-y: auto;
+  border-left: 1px solid var(--border-strong);
+  background: var(--bg);
+  box-shadow: -8px 0 32px rgba(0, 0, 0, .4);
+  padding: 32px 28px;
+}
+.drawer-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.drawer-header h2 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+.drawer-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  min-height: 32px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-dim);
+  text-decoration: none;
+}
+.drawer-close:hover {
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+  text-decoration: none;
+}
+.source-list {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.source-list li {
+  overflow-wrap: anywhere;
+  border-left: 2px solid var(--border-strong);
+  padding: 6px 0 6px 10px;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+.nonclaims {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.nonclaims code {
+  display: inline-block;
+  border: 1px solid var(--border-subtle);
+  background: var(--surface-1);
+  color: var(--text-dim);
+  font-size: 11px;
+}
+.empty {
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--amber);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  background: rgba(212, 160, 82, .06);
+  color: var(--text-secondary);
+  padding: 14px 16px;
+}
+pre.practice-text {
+  white-space: pre-wrap;
+  word-break: break-word;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--surface-1);
+  color: var(--text-secondary);
+  padding: 12px;
+  font-size: 13px;
+  line-height: 1.55;
+}
+@media (max-width: 1023px) {
+  .teacher-shell {
+    display: flex;
+    flex-direction: column;
+  }
+  .teacher-sidebar {
+    position: static;
+    max-height: none;
+    overflow: visible;
+    width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .teacher-page { padding: 24px 16px 48px; }
+  h1 { font-size: 28px; }
+  .teacher-hero { padding: 18px; }
+  .hero-value { font-size: 16px; }
+  .teacher-tabbar { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 6px; }
+  .tab-btn { white-space: nowrap; }
+  .drawer-panel { width: 100vw; padding: 24px 18px; }
+}
+"""
+
+
 # Telemetry FAB — injected into the SPA's index.html on /, the *only* bridge
 # from the case/factual product surface to the system-reasoning surface at
 # /audit. Lives in its own constant (not in _SHARED_PANEL_CSS) because the
@@ -1701,21 +2252,18 @@ def _build_teacher_learning_response(
 
 
 def _render_teacher_learning_html(case_id: str | None = None) -> str:
-    """Render the first visible Teacher learning surface inside Observatory."""
+    """Render the Observatory-native Teacher learning surface."""
     _reload_result_if_changed()
     selected_case_id = case_id or _CASE_ID
     result, result_path, _is_current = _load_case_result(selected_case_id)
     if result is None:
-        body = (
-            "<h1>Learn</h1>"
-            + _empty_inline(
-                f"Selected case <code>{_esc(selected_case_id)}</code> was not found."
-            )
+        body = _render_teacher_empty_page(
+            "Selected case was not found.",
+            f"Selected case <code>{_esc(selected_case_id)}</code> was not found.",
         )
-        return _render_scaffold(
+        return _render_teacher_scaffold(
             title="Lolla — Learn",
             body=body,
-            current_path="/teacher-learning",
         )
 
     try:
@@ -1725,39 +2273,72 @@ def _render_teacher_learning_html(case_id: str | None = None) -> str:
             result_path,
         )
     except Exception as exc:
-        body = (
-            "<h1>Learn</h1>"
-            + _empty_inline(
-                "Teacher learning adapter failed: "
-                f"<code>{_esc(type(exc).__name__)}</code>."
-            )
+        body = _render_teacher_empty_page(
+            "Teacher learning adapter failed.",
+            "Teacher learning adapter failed: "
+            f"<code>{_esc(type(exc).__name__)}</code>.",
         )
-        return _render_scaffold(
+        return _render_teacher_scaffold(
             title="Lolla — Learn",
             body=body,
-            current_path="/teacher-learning",
         )
 
     if not payload.get("available"):
-        body = (
-            "<h1>Learn</h1>"
-            + _render_teacher_learning_run_header(payload)
-            + _empty_inline(
-                "No Teacher learning packet is available for this selected case."
-            )
-            + _render_teacher_non_claims(payload)
+        body = _render_teacher_empty_page(
+            "No Teacher learning packet is available.",
+            "No Teacher learning packet is available for this selected case.",
+            payload=payload,
         )
-        return _render_scaffold(
+        return _render_teacher_scaffold(
             title="Lolla — Learn",
             body=body,
-            current_path="/teacher-learning",
         )
 
     body = _render_teacher_learning_payload(payload)
-    return _render_scaffold(
+    return _render_teacher_scaffold(
         title="Lolla — Learn",
         body=body,
-        current_path="/teacher-learning",
+    )
+
+
+def _render_teacher_scaffold(*, title: str, body: str) -> str:
+    return f"""<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{_esc(title)}</title>
+<style>{_TEACHER_LEARN_CSS}</style></head><body>
+{body}
+</body></html>
+"""
+
+
+def _render_teacher_empty_page(
+    heading: str,
+    message: str,
+    *,
+    payload: dict | None = None,
+) -> str:
+    run_header = _render_teacher_learning_run_header(payload or {})
+    non_claims = _render_teacher_non_claims(payload or {}) if payload else ""
+    return "\n".join(
+        [
+            '<div class="teacher-page">',
+            _render_teacher_status_bar(status="unavailable"),
+            "<header class=\"teacher-header\">",
+            '<p class="teacher-eyebrow">Teacher Learn</p>',
+            "<h1>Learn</h1>",
+            run_header,
+            f'<p class="lede"><strong>{_esc(heading)}</strong> '
+            "The Teacher surface stays inside Observatory, but it only renders "
+            "when a product-safe learning packet matches the selected run.</p>",
+            "</header>",
+            _empty_inline(message),
+            non_claims,
+            "</div>",
+        ]
     )
 
 
@@ -1770,90 +2351,114 @@ def _render_teacher_learning_payload(payload: dict) -> str:
     receipts = tab_payloads["Receipts"]["receipts"]
     model_lookup = {model["model_id"]: model for model in models}
     primary_relation = relations[0] if relations else {}
+    outcome_note = tab_payloads["Outcome"].get("single_home_note", "")
 
     body = [
+        '<div class="teacher-page">',
+        _render_teacher_status_bar(status=payload.get("missingness", {}).get("status")),
+        '<header class="teacher-header">',
+        '<p class="teacher-eyebrow">Teacher Learn</p>',
         "<h1>Learn</h1>",
         _render_teacher_learning_run_header(payload),
-        (
-            '<p class="lede"><strong>Case is the anchor.</strong> '
-            "This page teaches the reasoning move worth practicing; it does "
-            "not replace the Outcome tab or certify the answer.</p>"
-        ),
-        f"<p class=\"hint\">{_esc(tab_payloads['Outcome']['single_home_note'])}</p>",
+        '<p class="lede"><strong>Case is the anchor.</strong> '
+        "This page teaches the reasoning move worth practicing; it does not "
+        "replace the Outcome tab or certify the answer. "
+        f"{_esc(outcome_note)}</p>",
+        "</header>",
         _render_teacher_tabs(),
-        '<section id="learn" class="learn-panel">',
-        "<h2>The Lesson</h2>",
-        '<div class="lesson-hero">',
-        f"<p><strong>Situation:</strong> {_esc(lesson['case_anchor'])}</p>",
-        f"<p><strong>Thinking move:</strong> {_esc(lesson['thinking_move'])}</p>",
-        f"<p><strong>Model relationship:</strong> {_esc(lesson['relation_story'])}</p>",
-        "</div>",
-        "<h2>Model Stack</h2>",
-        '<div class="learning-grid">',
+        '<div class="teacher-shell">',
+        '<main class="teacher-main">',
+        '<section id="lesson" class="teacher-section">',
+        _render_teacher_section_header("The Lesson"),
+        '<article class="teacher-hero">',
+        '<div class="hero-row"><span class="hero-label">Situation</span>',
+        f'<p class="hero-value">{_esc(lesson["case_anchor"])}</p></div>',
+        '<div class="hero-row"><span class="hero-label">Thinking move:</span>',
+        f'<p class="hero-value">{_esc(lesson["thinking_move"])}</p></div>',
+        '<div class="hero-row"><span class="hero-label">Model relationship</span>',
+        f'<p class="hero-copy">{_esc(lesson["relation_story"])}</p></div>',
+        "</article>",
+        "</section>",
+        '<section id="model-stack" class="teacher-section">',
+        _render_teacher_section_header("Model Stack"),
+        '<div class="teacher-grid">',
     ]
     for item in lesson["model_stack"]:
         model = model_lookup.get(item["model_id"], {})
-        display_name = model.get("display_name") or item.get("teaching_name") or item["model_id"]
+        display_name = (
+            model.get("display_name") or item.get("teaching_name") or item["model_id"]
+        )
         body.extend(
             [
-                '<article class="learning-card">',
+                f'<a class="teacher-card" href="#{_model_detail_anchor(item["model_id"])}">',
+                f'<span class="card-label">{_esc(item.get("role", "model"))}</span>',
                 f"<h3>{_esc(display_name)}</h3>",
-                f"<p><span class=\"tag\">{_esc(item.get('role', 'model'))}</span></p>",
+                '<div class="tagrow">',
+                f'<span class="tag purple">{_esc(item.get("teaching_name", ""))}</span>',
+                "</div>",
                 f"<p>{_esc(item.get('teaching_note', ''))}</p>",
                 f"<p><strong>Boundary:</strong> {_esc(item.get('boundary', ''))}</p>",
-                "</article>",
+                '<span class="open-hint">Open model detail →</span>',
+                "</a>",
             ]
         )
     body.extend(
         [
             "</div>",
-            "<h2>Practice Rep</h2>",
+            "</section>",
+            '<section id="practice" class="teacher-section">',
+            _render_teacher_section_header("Practice Rep"),
             '<div class="practice-box">',
             f"<p><strong>Prompt:</strong> {_esc(lesson['practice_rep']['prompt'])}</p>",
             f"<p><strong>User action:</strong> {_esc(lesson['practice_rep']['user_action'])}</p>",
             "</div>",
-            "<h2>Do Not Overlearn</h2>",
-            "<ul>",
+            _render_teacher_section_header("Do Not Overlearn"),
+            '<ul class="quiet-list">',
             *[f"<li>{_esc(item)}</li>" for item in lesson["do_not_overlearn"]],
             "</ul>",
             "</section>",
-            '<section id="models" class="learn-panel">',
-            "<h2>Models</h2>",
-            '<div class="learning-grid">',
+            '<section id="models" class="teacher-section">',
+            _render_teacher_section_header("Models"),
+            '<div class="teacher-grid">',
         ]
     )
     for model in models:
         body.extend(
             [
-                '<article class="learning-card">',
+                f'<a class="teacher-card" href="#{_model_detail_anchor(model["model_id"])}">',
+                '<span class="card-label">Canonical mental model</span>',
                 f"<h3>{_esc(model['display_name'])}</h3>",
                 f"<p>{_esc(model['one_sentence_meaning'])}</p>",
                 _render_short_list("Helps notice", model.get("helps_notice") or []),
                 _render_short_list("Use when", model.get("use_when") or [], limit=2),
                 _render_short_list("Avoid when", model.get("avoid_when") or [], limit=2),
-                "</article>",
+                '<span class="open-hint">Open everything we know →</span>',
+                "</a>",
             ]
         )
     body.extend(
         [
             "</div>",
             "</section>",
-            '<section id="relations" class="learn-panel">',
-            "<h2>Relation</h2>",
+            '<section id="relations" class="teacher-section">',
+            _render_teacher_section_header("Relation"),
         ]
     )
     if primary_relation:
         body.extend(
             [
-                '<article class="learning-card">',
+                f'<a class="teacher-card relation-card" href="#{_relation_detail_anchor(primary_relation["relation_id"])}">',
+                '<span class="card-label">Relation page</span>',
                 f"<h3>{_esc(_relation_title(primary_relation, model_lookup))}</h3>",
                 f"<p>{_esc(primary_relation['plain_language_story'])}</p>",
                 f"<p><strong>Why it matters:</strong> {_esc(primary_relation['why_it_matters'])}</p>",
                 f"<p><strong>Misread risk:</strong> {_esc(primary_relation['misread_risk'])}</p>",
-                f"<p><strong>Practice:</strong> {_esc(primary_relation['practice_prompt'])}</p>",
-                f"<p><span class=\"tag\">{_esc(primary_relation['relation_type'])}</span> "
-                f"<span class=\"tag\">confidence: {_esc(primary_relation['confidence'])}</span></p>",
-                "</article>",
+                '<div class="tagrow">',
+                f'<span class="tag purple">{_esc(primary_relation["relation_type"])}</span>',
+                f'<span class="tag amber">confidence: {_esc(primary_relation["confidence"])}</span>',
+                "</div>",
+                '<span class="open-hint">Open relation detail →</span>',
+                "</a>",
             ]
         )
     else:
@@ -1861,39 +2466,28 @@ def _render_teacher_learning_payload(payload: dict) -> str:
     body.extend(
         [
             "</section>",
-            '<section id="map" class="learn-panel">',
-            "<h2>Map</h2>",
-            "<p class=\"hint\">Small lesson neighborhood. Edges are navigation, not proof.</p>",
-            "<table>",
-            "<tr><th>Node</th><th>Role</th><th>Status</th></tr>",
-        ]
-    )
-    for node in graph["nodes"]:
-        body.append(
-            f"<tr><td>{_esc(node.get('label') or node.get('model_id'))}</td>"
-            f"<td>{_esc(node.get('role') or node.get('node_type', ''))}</td>"
-            f"<td>{_esc(node.get('missingness_status', ''))}</td></tr>"
-        )
-    body.extend(["</table>", "<table>", "<tr><th>Edge</th><th>Type</th><th>Confidence</th></tr>"])
-    for edge in graph["edges"]:
-        body.append(
-            f"<tr><td>{_esc(edge.get('label') or edge.get('relation_id'))}</td>"
-            f"<td>{_esc(edge.get('relation_type', ''))}</td>"
-            f"<td>{_esc(edge.get('confidence', ''))}</td></tr>"
-        )
-    body.extend(
-        [
-            "</table>",
+            '<section id="map" class="teacher-section">',
+            _render_teacher_section_header("Map"),
+            '<p class="lede">Small lesson neighborhood. Edges are navigation, not proof.</p>',
+            _render_teacher_graph(graph, model_lookup),
             "</section>",
-            '<section id="receipts" class="learn-panel">',
-            "<h2>Receipts</h2>",
-            "<p class=\"hint\">Receipts show custody and missingness. They are not product proof.</p>",
-            f"<p><strong>Source refs:</strong> {_esc(len(receipts['source_refs']))} · "
-            f"<strong>Artifact refs:</strong> {_esc(len(receipts['artifact_refs']))}</p>",
+            '<section id="receipts" class="teacher-section">',
+            _render_teacher_section_header("Receipts"),
+            '<p class="lede">Receipts show custody and missingness. They are not product proof.</p>',
+            f'<p><strong>Source refs:</strong> {_esc(len(receipts["source_refs"]))} · '
+            f'<strong>Artifact refs:</strong> {_esc(len(receipts["artifact_refs"]))}</p>',
+            '<div class="receipt-row">',
+            '<div class="receipt-chip"><strong>'
+            f'{_esc(len(receipts["source_refs"]))}</strong><span>source refs</span></div>',
+            '<div class="receipt-chip"><strong>'
+            f'{_esc(len(receipts["artifact_refs"]))}</strong><span>artifact refs</span></div>',
+            '<div class="receipt-chip"><strong>'
+            f'{_esc(payload["missingness"].get("status", ""))}</strong><span>missingness</span></div>',
+            "</div>",
             _render_missingness(payload["missingness"]),
-            "<details>",
-            "<summary>Source refs</summary>",
-            "<ul>",
+            '<details class="teacher-panel">',
+            "<summary>Source custody</summary>",
+            '<ul class="source-list">',
             *[
                 f"<li><code>{_esc(ref['source_type'])}</code> — {_esc(ref['path'])}</li>"
                 for ref in receipts["source_refs"][:20]
@@ -1901,32 +2495,63 @@ def _render_teacher_learning_payload(payload: dict) -> str:
             "</ul>",
             "</details>",
             "</section>",
-            '<section id="nonclaims" class="learn-panel">',
-            "<h2>Non-Claims</h2>",
+            '<section id="nonclaims" class="teacher-section">',
+            _render_teacher_section_header("Non-Claims"),
             _render_teacher_non_claims(payload),
             "</section>",
+            "</main>",
+            _render_teacher_sidebar(payload, lesson, models, relations),
+            "</div>",
+            _render_teacher_model_drawers(models),
+            _render_teacher_relation_drawers(relations, model_lookup),
+            "</div>",
         ]
     )
     return "\n".join(body)
+
+
+def _render_teacher_status_bar(*, status: str | None) -> str:
+    status_text = status or "partial"
+    return (
+        '<nav class="status-bar" aria-label="Observatory surface">'
+        '<span class="status-dot" aria-hidden="true"></span>'
+        '<a href="/">Observatory</a>'
+        '<span class="dot-sep">·</span>'
+        '<span>Teacher Learn</span>'
+        '<span class="dot-sep">·</span>'
+        f'<span class="status-ok">{_esc(status_text)}</span>'
+        '<span class="dot-sep">·</span>'
+        '<a href="/audit">Telemetry</a>'
+        "</nav>"
+    )
+
+
+def _render_teacher_section_header(title: str) -> str:
+    return (
+        '<div class="section-header">'
+        f"<h2>{_esc(title)}</h2>"
+        '<span class="section-line" aria-hidden="true"></span>'
+        "</div>"
+    )
 
 
 def _render_teacher_learning_run_header(payload: dict) -> str:
     run_ref = payload.get("run_ref") or {}
     case_id = run_ref.get("case_id") or payload.get("requested_case_id", "")
     run_id = run_ref.get("run_id") or payload.get("selected_run_id", "")
-    bits = [
-        f"Case: <strong>{_esc(case_id or 'unknown')}</strong>",
-    ]
+    bits = [f"<span>Case: <strong>{_esc(case_id or 'unknown')}</strong></span>"]
     if run_id:
-        bits.append(f"Run: <code>{_esc(str(run_id)[:32])}</code>")
-    bits.append('<a href="/">back to Observatory</a>')
-    bits.append('<a href="/audit">audit panels</a>')
-    return f'<div class="run-header">{" · ".join(bits)}</div>'
+        bits.append(f"<span>Run: <code>{_esc(str(run_id)[:32])}</code></span>")
+    bits.append('<a href="/">Outcome</a>')
+    bits.append('<a href="/audit">Telemetry</a>')
+    return f'<div class="run-header">{"".join(bits)}</div>'
 
 
 def _render_teacher_tabs() -> str:
     labels = [
-        ("learn", "Learn"),
+        ("lesson", "Learn"),
+        ("model-stack", "Stack"),
+        ("practice", "Practice"),
         ("models", "Models"),
         ("relations", "Relations"),
         ("map", "Map"),
@@ -1934,8 +2559,12 @@ def _render_teacher_tabs() -> str:
         ("nonclaims", "Non-Claims"),
     ]
     return (
-        '<nav class="learn-tabs">'
-        + "".join(f'<a href="#{anchor}">{label}</a>' for anchor, label in labels)
+        '<nav class="learn-tabs teacher-tabbar" aria-label="Teacher Learn sections">'
+        + "".join(
+            f'<a class="tab-btn{" tab-btn--active" if anchor == "lesson" else ""}" '
+            f'href="#{anchor}">{label}</a>'
+            for anchor, label in labels
+        )
         + "</nav>"
     )
 
@@ -1944,7 +2573,7 @@ def _render_short_list(label: str, values: list[str], *, limit: int = 3) -> str:
     if not values:
         return ""
     items = "".join(f"<li>{_esc(_short(value, 160))}</li>" for value in values[:limit])
-    return f"<p><strong>{_esc(label)}:</strong></p><ul>{items}</ul>"
+    return f"<p><strong>{_esc(label)}:</strong></p><ul class=\"quiet-list\">{items}</ul>"
 
 
 def _relation_title(relation: dict, model_lookup: dict[str, dict]) -> str:
@@ -1957,6 +2586,293 @@ def _relation_title(relation: dict, model_lookup: dict[str, dict]) -> str:
     return f"{source_name} and {target_name}"
 
 
+def _render_teacher_sidebar(
+    payload: dict,
+    lesson: dict,
+    models: list[dict],
+    relations: list[dict],
+) -> str:
+    missingness = payload.get("missingness") or {}
+    non_claims = payload.get("non_claims") or []
+    return "\n".join(
+        [
+            '<aside class="teacher-sidebar" aria-label="Teacher Learn context">',
+            '<section class="teacher-panel">',
+            "<h3>Run Context</h3>",
+            f'<div class="metric-row"><span>case</span><strong>{_esc(lesson["case_id"])}</strong></div>',
+            f'<div class="metric-row"><span>models</span><strong>{_esc(len(models))}</strong></div>',
+            f'<div class="metric-row"><span>relations</span><strong>{_esc(len(relations))}</strong></div>',
+            f'<div class="metric-row"><span>status</span><strong>{_esc(missingness.get("status", ""))}</strong></div>',
+            "</section>",
+            '<section class="teacher-panel">',
+            "<h3>What Goes Where</h3>",
+            "<ul>",
+            "<li>Outcome keeps the revised answer and structural pressure.</li>",
+            "<li>Learn teaches the reasoning move worth practicing.</li>",
+            "<li>Models explain canonical mental models.</li>",
+            "<li>Relations explain why two models belong together.</li>",
+            "<li>Receipts carry custody and missingness.</li>",
+            "</ul>",
+            "</section>",
+            '<section class="teacher-panel">',
+            "<h3>Missingness</h3>",
+            _render_missingness(missingness),
+            "</section>",
+            '<section class="teacher-panel">',
+            "<h3>Non-Claims</h3>",
+            f"<p>{_esc(len(non_claims))} boundaries are attached to this learning surface.</p>",
+            "</section>",
+            "</aside>",
+        ]
+    )
+
+
+def _render_teacher_graph(graph: dict, model_lookup: dict[str, dict]) -> str:
+    nodes = graph.get("nodes") or []
+    edges = graph.get("edges") or []
+    positions = _teacher_graph_positions(nodes)
+    edge_lines = []
+    for edge in edges:
+        source = positions.get(str(edge.get("source_node_id")))
+        target = positions.get(str(edge.get("target_node_id")))
+        if not source or not target:
+            continue
+        mid_x = (source[0] + target[0]) / 2
+        mid_y = (source[1] + target[1]) / 2 - 16
+        edge_lines.append(
+            f'<a href="#{_relation_detail_anchor(str(edge.get("relation_id", "")))}">'
+            f'<line class="map-edge" x1="{source[0]}" y1="{source[1]}" '
+            f'x2="{target[0]}" y2="{target[1]}"></line>'
+            f'<text class="map-label" x="{mid_x}" y="{mid_y}" text-anchor="middle">'
+            f'{_esc(edge.get("relation_type", ""))}</text></a>'
+        )
+
+    node_items = []
+    for node in nodes:
+        model_id = str(node.get("model_id") or node.get("node_id") or "")
+        x, y = positions.get(model_id, (360, 130))
+        label = _model_display_name(model_id, model_lookup, node.get("label") or model_id)
+        node_items.append(
+            f'<a class="map-node" href="#{_model_detail_anchor(model_id)}">'
+            f'<circle cx="{x}" cy="{y}" r="42"></circle>'
+            f'<text x="{x}" y="{y + 4}" text-anchor="middle">{_esc(_short(label, 28))}</text>'
+            f'<text class="map-label" x="{x}" y="{y + 62}" text-anchor="middle">'
+            f'{_esc(node.get("role", ""))}</text></a>'
+        )
+
+    return (
+        '<div class="map-card teacher-card">'
+        '<svg class="lesson-map" viewBox="0 0 720 260" role="img" '
+        'aria-label="Teacher lesson model neighborhood">'
+        + "".join(edge_lines)
+        + "".join(node_items)
+        + "</svg>"
+        '<div class="tagrow">'
+        f'<span class="tag teal">{_esc(graph.get("graph_scope", "lesson_neighborhood"))}</span>'
+        f'<span class="tag purple">{_esc(graph.get("layout_hint", "small_neighborhood"))}</span>'
+        '<span class="tag amber">edges are navigation, not proof</span>'
+        "</div>"
+        "</div>"
+    )
+
+
+def _teacher_graph_positions(nodes: list[dict]) -> dict[str, tuple[int, int]]:
+    count = max(1, len(nodes))
+    if count == 1:
+        coords = [(360, 130)]
+    elif count == 2:
+        coords = [(230, 130), (490, 130)]
+    elif count == 3:
+        coords = [(150, 130), (360, 130), (570, 130)]
+    else:
+        coords = [
+            (150, 90),
+            (360, 80),
+            (570, 90),
+            (220, 190),
+            (500, 190),
+            (360, 205),
+        ]
+    result: dict[str, tuple[int, int]] = {}
+    for index, node in enumerate(nodes):
+        model_id = str(node.get("model_id") or node.get("node_id") or "")
+        result[model_id] = coords[index % len(coords)]
+    return result
+
+
+def _render_teacher_model_drawers(models: list[dict]) -> str:
+    return "\n".join(_render_teacher_model_drawer(model) for model in models)
+
+
+def _render_teacher_model_drawer(model: dict) -> str:
+    model_id = str(model.get("model_id", ""))
+    title = str(model.get("display_name") or model_id)
+    return "\n".join(
+        [
+            f'<section class="teacher-detail" id="{_model_detail_anchor(model_id)}">',
+            '<a class="drawer-backdrop" href="#models" aria-label="Close model detail"></a>',
+            '<aside class="drawer-panel" role="dialog" aria-modal="true">',
+            '<header class="drawer-header">',
+            "<div>",
+            '<p class="teacher-eyebrow">Mental Model</p>',
+            f"<h2>{_esc(title)}</h2>",
+            f'<span class="card-label">{_esc(model_id)}</span>',
+            "</div>",
+            '<a class="drawer-close" href="#models" aria-label="Close">&times;</a>',
+            "</header>",
+            '<section class="detail-section">',
+            "<h3>Everything We Know</h3>",
+            f"<p>{_esc(model.get('one_sentence_meaning', ''))}</p>",
+            "</section>",
+            _render_detail_list("Helps Notice", model.get("helps_notice") or []),
+            _render_detail_list("Use When", model.get("use_when") or []),
+            _render_detail_list("Avoid When", model.get("avoid_when") or []),
+            _render_detail_list("Common Misuse", model.get("common_misuse") or []),
+            _render_detail_list("Failure Modes", model.get("failure_modes") or []),
+            _render_detail_list("Premortem Questions", model.get("premortem_questions") or []),
+            _render_detail_list("Heuristics", model.get("heuristics") or []),
+            _render_detail_list("Reasoning Types", model.get("reasoning_types") or []),
+            '<section class="detail-section">',
+            "<h3>Source Custody</h3>",
+            _render_source_refs(model.get("source_refs") or []),
+            "</section>",
+            '<section class="detail-section">',
+            "<h3>Missingness</h3>",
+            _render_missingness(model.get("missingness") or {}),
+            "</section>",
+            '<section class="detail-section">',
+            "<h3>Non-Claims</h3>",
+            _render_teacher_non_claims(model),
+            "</section>",
+            "</aside>",
+            "</section>",
+        ]
+    )
+
+
+def _render_teacher_relation_drawers(
+    relations: list[dict],
+    model_lookup: dict[str, dict],
+) -> str:
+    return "\n".join(
+        _render_teacher_relation_drawer(relation, model_lookup) for relation in relations
+    )
+
+
+def _render_teacher_relation_drawer(
+    relation: dict,
+    model_lookup: dict[str, dict],
+) -> str:
+    relation_id = str(relation.get("relation_id", ""))
+    return "\n".join(
+        [
+            f'<section class="teacher-detail" id="{_relation_detail_anchor(relation_id)}">',
+            '<a class="drawer-backdrop" href="#relations" aria-label="Close relation detail"></a>',
+            '<aside class="drawer-panel" role="dialog" aria-modal="true">',
+            '<header class="drawer-header">',
+            "<div>",
+            '<p class="teacher-eyebrow">Relation</p>',
+            f"<h2>{_esc(_relation_title(relation, model_lookup))}</h2>",
+            f'<span class="card-label">{_esc(relation_id)}</span>',
+            "</div>",
+            '<a class="drawer-close" href="#relations" aria-label="Close">&times;</a>',
+            "</header>",
+            '<section class="detail-section">',
+            "<h3>Plain Language Story</h3>",
+            f"<p>{_esc(relation.get('plain_language_story', ''))}</p>",
+            "</section>",
+            '<section class="detail-section">',
+            "<h3>Why It Matters</h3>",
+            f"<p>{_esc(relation.get('why_it_matters', ''))}</p>",
+            "</section>",
+            '<section class="detail-section">',
+            "<h3>Misread Risk</h3>",
+            f"<p>{_esc(relation.get('misread_risk', ''))}</p>",
+            "</section>",
+            '<section class="detail-section">',
+            "<h3>Practice Prompt</h3>",
+            f'<pre class="practice-text">{_esc(relation.get("practice_prompt", ""))}</pre>',
+            "</section>",
+            '<section class="detail-section">',
+            "<h3>Taxonomy</h3>",
+            '<div class="tagrow">',
+            f'<span class="tag purple">{_esc(relation.get("relation_type", ""))}</span>',
+            f'<span class="tag amber">confidence: {_esc(relation.get("confidence", ""))}</span>',
+            '<span class="tag">confidence is not certification</span>',
+            "</div>",
+            "</section>",
+            '<section class="detail-section">',
+            "<h3>Source Reference</h3>",
+            f'<ul class="source-list"><li>{_esc(relation.get("source_quote_or_ref", ""))}</li></ul>',
+            "</section>",
+            '<section class="detail-section">',
+            "<h3>Missingness</h3>",
+            _render_missingness(relation.get("missingness") or {}),
+            "</section>",
+            '<section class="detail-section">',
+            "<h3>Non-Claims</h3>",
+            _render_teacher_non_claims(relation),
+            "</section>",
+            "</aside>",
+            "</section>",
+        ]
+    )
+
+
+def _render_detail_list(label: str, values: list[str], *, limit: int | None = None) -> str:
+    if not values:
+        return ""
+    selected = values if limit is None else values[:limit]
+    return (
+        '<section class="detail-section">'
+        f"<h3>{_esc(label)}</h3>"
+        '<ul class="quiet-list">'
+        + "".join(f"<li>{_esc(value)}</li>" for value in selected)
+        + "</ul></section>"
+    )
+
+
+def _render_source_refs(refs: list[dict]) -> str:
+    if not refs:
+        return '<p class="empty">No source refs are attached to this object.</p>'
+    return (
+        '<ul class="source-list">'
+        + "".join(
+            f"<li><code>{_esc(ref.get('source_type', 'source'))}</code> — "
+            f"{_esc(ref.get('path', ''))}</li>"
+            for ref in refs
+        )
+        + "</ul>"
+    )
+
+
+def _model_display_name(
+    model_id: str,
+    model_lookup: dict[str, dict],
+    fallback: str = "",
+) -> str:
+    model = model_lookup.get(model_id) or {}
+    return str(model.get("display_name") or fallback or model_id)
+
+
+def _model_detail_anchor(model_id: str) -> str:
+    return "model-" + _anchor_token(model_id)
+
+
+def _relation_detail_anchor(relation_id: str) -> str:
+    return "relation-" + _anchor_token(relation_id)
+
+
+def _anchor_token(value: str) -> str:
+    token = []
+    for char in str(value):
+        if char.isalnum() or char in {"-", "_"}:
+            token.append(char)
+        else:
+            token.append("-")
+    return "".join(token).strip("-") or "detail"
+
+
 def _render_missingness(missingness: dict) -> str:
     fields = missingness.get("missing_fields") or []
     notes = missingness.get("notes") or []
@@ -1964,11 +2880,11 @@ def _render_missingness(missingness: dict) -> str:
         f"<p><strong>Missingness:</strong> <code>{_esc(missingness.get('status', ''))}</code></p>"
     ]
     if fields:
-        lines.append("<ul>")
+        lines.append('<ul class="quiet-list">')
         lines.extend(f"<li>{_esc(field)}</li>" for field in fields[:12])
         lines.append("</ul>")
     if notes:
-        lines.append("<p class=\"hint\">" + _esc(" ".join(notes[:2])) + "</p>")
+        lines.append("<p>" + _esc(" ".join(notes[:2])) + "</p>")
     return "\n".join(lines)
 
 
