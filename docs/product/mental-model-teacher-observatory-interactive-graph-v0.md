@@ -4,6 +4,11 @@ Status: offline interactive lesson graph
 Date: 2026-07-06
 Decision gate: `proceed_to_compiled_observatory_learn_source_port`
 
+Current ownership note: this gate is superseded by
+[Mental Model Teacher Observatory Ownership and Portability Boundary](mental-model-teacher-observatory-ownership-portability-boundary-v0.md).
+The compiled source port is now treated as a source-owner verification question,
+not the default next implementation path.
+
 ## Purpose
 
 This slice upgrades the Teacher Learn map from a static lesson-neighborhood
