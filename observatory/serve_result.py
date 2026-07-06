@@ -1389,12 +1389,14 @@ _TEACHER_GRAPH_SCRIPT = """
     }
   };
 
+  const graphRootSelector = "[data-teacher-graph], [data-observatory-graph]";
+
   const setDrawerReturnForLink = (link) => {
     const href = link && link.getAttribute("href") || "";
     if (!href.startsWith("#model-") && !href.startsWith("#relation-")) return;
     const drawer = document.getElementById(href.slice(1));
     if (!drawer || !drawer.classList.contains("teacher-detail")) return;
-    const returnHash = link.closest("[data-teacher-graph]")
+    const returnHash = link.closest(graphRootSelector)
       ? "#map"
       : href.startsWith("#relation-")
         ? "#relations"
@@ -1466,12 +1468,20 @@ _TEACHER_GRAPH_SCRIPT = """
       }
     };
 
+    const selectOnly = root.dataset.graphNavigation === "select";
+
     for (const node of nodes) {
-      node.addEventListener("click", () => updateSelection(root, node, "node"));
+      node.addEventListener("click", (event) => {
+        updateSelection(root, node, "node");
+        if (selectOnly) event.preventDefault();
+      });
       node.addEventListener("focus", () => updateSelection(root, node, "node"));
     }
     for (const edge of edges) {
-      edge.addEventListener("click", () => updateSelection(root, edge, "edge"));
+      edge.addEventListener("click", (event) => {
+        updateSelection(root, edge, "edge");
+        if (selectOnly) event.preventDefault();
+      });
       edge.addEventListener("focus", () => updateSelection(root, edge, "edge"));
     }
     if (search) search.addEventListener("input", applyFilters);
@@ -1490,7 +1500,7 @@ _TEACHER_GRAPH_SCRIPT = """
     applyFilters();
   };
 
-  for (const root of document.querySelectorAll("[data-teacher-graph]")) {
+  for (const root of document.querySelectorAll(graphRootSelector)) {
     initGraph(root);
   }
 
@@ -4739,11 +4749,12 @@ def _render_workspace_scaffold(*, title: str, body: str) -> str:
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{_esc(title)}</title>
-<style>{_TEACHER_LEARN_CSS}
-{_WORKSPACE_CSS}</style></head><body>
-{body}
-</body></html>
-"""
+	<style>{_TEACHER_LEARN_CSS}
+	{_WORKSPACE_CSS}</style></head><body>
+	{body}
+	{_TEACHER_GRAPH_SCRIPT}
+	</body></html>
+	"""
 
 
 def _render_workspace_empty_page(
@@ -4830,7 +4841,7 @@ def _render_workspace_payload(payload: dict, selected_case_id: str) -> str:
             _render_workspace_learn(lesson, selected_case_id),
             _render_workspace_models(models, selected_case_id),
             _render_workspace_relations(relations, model_lookup, selected_case_id),
-            _render_workspace_map(graph, model_lookup, selected_case_id),
+            _render_workspace_map(graph, model_lookup, relations, selected_case_id),
             _render_workspace_receipts(receipts, advanced, workspace, selected_case_id),
             "</main>",
             "</div>",
@@ -5179,51 +5190,155 @@ def _render_workspace_relation_page(
 def _render_workspace_map(
     graph: dict,
     model_lookup: dict[str, dict],
+    relations: list[dict],
     selected_case_id: str,
 ) -> str:
     nodes = graph.get("nodes") or []
     edges = graph.get("edges") or []
+    relation_lookup = {
+        str(relation.get("relation_id", "")): relation
+        for relation in relations
+    }
+    positions = _teacher_graph_positions(nodes)
+
+    edge_lines = []
+    for edge in edges:
+        source_id = str(edge.get("source_node_id") or "")
+        target_id = str(edge.get("target_node_id") or "")
+        source = positions.get(source_id)
+        target = positions.get(target_id)
+        if not source or not target:
+            continue
+        relation_id = str(edge.get("edge_id") or "")
+        relation = relation_lookup.get(relation_id, {})
+        relation_title = str(edge.get("navigation_label") or _relation_title(relation, model_lookup))
+        summary = str(
+            relation.get("plain_language_story")
+            or edge.get("navigation_label")
+            or relation_id
+        )
+        mid_x = (source[0] + target[0]) / 2
+        mid_y = (source[1] + target[1]) / 2 - 16
+        edge_lines.append(
+            f'<a class="map-edge-link" href="{_esc(_observatory_relation_href(relation_id, selected_case_id))}" '
+            'data-graph-edge '
+            f'data-relation-id="{_esc(relation_id)}" '
+            f'data-label="{_esc(relation_title)}" '
+            f'data-summary="{_esc(summary)}" '
+            f'data-relation-type="{_esc(edge.get("relation_type", ""))}" '
+            f'data-confidence="{_esc(relation.get("confidence", ""))}" '
+            f'data-status="{_esc((relation.get("missingness") or {}).get("status", ""))}" '
+            f'data-source-id="{_esc(source_id)}" '
+            f'data-target-id="{_esc(target_id)}">'
+            f'<line class="map-edge-hitbox" x1="{source[0]}" y1="{source[1]}" '
+            f'x2="{target[0]}" y2="{target[1]}"></line>'
+            f'<line class="map-edge" x1="{source[0]}" y1="{source[1]}" '
+            f'x2="{target[0]}" y2="{target[1]}"></line>'
+            f'<text class="map-label" x="{mid_x}" y="{mid_y}" text-anchor="middle">'
+            f'{_esc(edge.get("relation_type", ""))}</text></a>'
+        )
+
     node_items = []
     for node in nodes:
         model_id = str(node.get("node_id") or "")
+        x, y = positions.get(model_id, (360, 130))
         label = node.get("label") or _model_display_name(model_id, model_lookup, model_id)
+        model = model_lookup.get(model_id, {})
+        summary = str(
+            model.get("one_sentence_meaning")
+            or node.get("node_type")
+            or label
+        )
         node_items.append(
-            f'<a class="workspace-node" href="{_esc(_observatory_model_href(model_id, selected_case_id))}">'
-            f'<strong>{_esc(label)}</strong><br>'
-            f'<span class="workspace-meta">{_esc(node.get("node_type", "model"))}</span></a>'
+            f'<a class="map-node" href="{_esc(_observatory_model_href(model_id, selected_case_id))}" '
+            'data-graph-node '
+            f'data-model-id="{_esc(model_id)}" '
+            f'data-label="{_esc(label)}" '
+            f'data-summary="{_esc(summary)}" '
+            f'data-role="{_esc(node.get("node_type", "model"))}" '
+            f'data-status="{_esc((model.get("missingness") or {}).get("status", ""))}">'
+            f'<circle cx="{x}" cy="{y}" r="42"></circle>'
+            f'<text x="{x}" y="{y + 4}" text-anchor="middle">{_esc(_short(label, 28))}</text>'
+            f'<text class="map-label" x="{x}" y="{y + 62}" text-anchor="middle">'
+            f'{_esc(node.get("node_type", "model"))}</text></a>'
         )
-    edge_items = []
-    for edge in edges:
-        relation_id = str(edge.get("edge_id") or "")
-        relation_title = edge.get("navigation_label") or relation_id
-        edge_items.append(
-            '<li><a class="workspace-edge" '
-            f'href="{_esc(_observatory_relation_href(relation_id, selected_case_id))}">'
-            f'<strong>{_esc(relation_title)}</strong><br>'
-            f'<span class="workspace-meta">{_esc(edge.get("source_node_id", ""))} '
-            f'to {_esc(edge.get("target_node_id", ""))} / '
-            f'{_esc(edge.get("relation_type", ""))}</span></a></li>'
+
+    relation_types = sorted(
+        {
+            str(edge.get("relation_type"))
+            for edge in edges
+            if edge.get("relation_type")
+        }
+    )
+    filter_buttons = [
+        '<button class="filter-chip filter-chip--active" type="button" '
+        'data-relation-filter="all" aria-pressed="true">All</button>'
+    ]
+    filter_buttons.extend(
+        f'<button class="filter-chip" type="button" data-relation-filter="{_esc(relation_type)}" '
+        f'aria-pressed="false">{_esc(relation_type)}</button>'
+        for relation_type in relation_types
+    )
+    default_focus = str(
+        graph.get("default_focus") or (nodes[0].get("node_id") if nodes else "")
+    )
+    default_model = model_lookup.get(default_focus, {})
+    default_title = default_model.get("display_name") or default_focus or "Select a model"
+    default_summary = default_model.get("one_sentence_meaning") or (
+        "Select a node or edge to inspect the selected-run map."
+    )
+    graph_workbench = (
+        f'<div class="graph-workbench workspace-graph-workbench" data-observatory-graph '
+        f'data-graph-navigation="select" data-default-focus="{_esc(default_focus)}">'
+        '<div class="graph-toolbar">'
+        '<label class="graph-search"><span>Search models</span>'
+        '<input type="search" data-graph-search placeholder="Search model, role, or id" '
+        'autocomplete="off"></label>'
+        '<div class="graph-filter-group" aria-label="Relation type filters">'
+        '<span class="graph-filter-label">Relation</span>'
+        + "".join(filter_buttons)
+        + "</div></div>"
+        '<div class="graph-content">'
+        '<div class="graph-stage">'
+        '<svg class="lesson-map workspace-graph-map" viewBox="0 0 720 280" role="img" '
+        'aria-label="Interactive Observatory selected-run model map">'
+        + "".join(edge_lines)
+        + "".join(node_items)
+        + "</svg>"
+        '<div class="graph-results" data-graph-results></div>'
+        '<div class="tagrow">'
+        f'<span class="tag teal">{_esc(graph.get("graph_scope", "selected_run_learning_neighborhood"))}</span>'
+        f'<span class="tag purple">{_esc(graph.get("layout_hint", "small_neighborhood"))}</span>'
+        '<span class="tag amber">edges are navigation, not proof</span>'
+        "</div></div>"
+        '<aside class="graph-selection-panel" data-graph-selection aria-live="polite">'
+        '<span class="graph-selection-kicker" data-selection-type>Mental Model</span>'
+        f'<h3 data-selection-title>{_esc(default_title)}</h3>'
+        f'<p data-selection-body>{_esc(default_summary)}</p>'
+        '<p class="card-label" data-selection-meta></p>'
+        f'<a class="graph-selection-link" data-selection-link href="{_esc(_observatory_model_href(default_focus, selected_case_id))}">'
+        "Open model detail</a>"
+        "</aside>"
+        "</div>"
+        "</div>"
+    )
+    relation_types_label = ", ".join(relation_types)
+    if not nodes:
+        graph_workbench = _empty_inline(
+            "No selected-run graph nodes are available for this workspace."
         )
-    relation_types = ", ".join((graph.get("filters") or {}).get("relation_types") or [])
     return "\n".join(
         [
             '<section id="map" class="workspace-section">',
             _render_teacher_section_header("Map"),
             '<article class="workspace-card">',
             '<p class="workspace-kicker">Selected-run neighborhood</p>',
-            '<p>Small graph summary for navigation. Edges are navigation, not proof.</p>',
-            '<div class="workspace-map-grid">',
-            '<div><p class="workspace-kicker">Models</p><div class="workspace-node-grid">',
-            *node_items,
-            "</div></div>",
-            '<div><p class="workspace-kicker">Relations</p><ul class="workspace-edge-list">',
-            *edge_items,
-            "</ul></div>",
-            "</div>",
+            '<p>Search, filter, and select a node or relation edge. Edges are navigation, not proof. The map does not prove that a model or relation is correct.</p>',
+            graph_workbench,
             '<div class="workspace-chip-row">',
             f'<span class="workspace-chip workspace-chip--teal">{_esc(graph.get("graph_scope", ""))}</span>',
             f'<span class="workspace-chip">{_esc(graph.get("layout_hint", ""))}</span>',
-            f'<span class="workspace-chip">{_esc(relation_types or "no relation filters")}</span>',
+            f'<span class="workspace-chip">{_esc(relation_types_label or "no relation filters")}</span>',
             "</div>",
             '<details class="teacher-panel">',
             "<summary>Source custody</summary>",

@@ -58,4 +58,5 @@ Current planning docs:
 - [Observatory Portable View Model Adapters](observatory-portable-view-model-adapters-v0.md)
 - [Observatory Server Rendered Root Workspace](observatory-server-rendered-root-workspace-v0.md)
 - [Observatory Workspace Navigation Source Of Truth](observatory-workspace-navigation-source-of-truth-v0.md)
+- [Observatory Workspace Map Interaction Slice](observatory-workspace-map-interaction-slice-v0.md)
 - [Mental Model Teacher Product Surface Reference Patterns](mental-model-teacher-product-surface-reference-patterns-v0.md)
