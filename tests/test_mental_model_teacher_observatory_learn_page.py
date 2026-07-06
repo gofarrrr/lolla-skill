@@ -167,7 +167,8 @@ def test_learn_status_bar_uses_shared_workspace_navigation(monkeypatch) -> None:
         'data-observatory-surface-link="receipts" '
         'href="/workspace?case_id=lolla-audit#receipts">Receipts</a>'
     ) in html
-    assert 'href="/audit">Advanced Audit</a>' in html
+    status_bar = html.split('data-observatory-status-bar>', 1)[1].split("</nav>", 1)[0]
+    assert "Advanced Audit" not in status_bar
     assert 'href="/models/authority-bias?case_id=lolla-audit"' in html
 
 

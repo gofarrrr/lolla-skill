@@ -205,7 +205,7 @@ def _observatory_nav_links(
     selected_case_id: str,
     active_surface: str,
 ) -> list[tuple[str, str, bool]]:
-    links = [
+    return [
         (
             _observatory_workspace_href(selected_case_id, anchor),
             label,
@@ -213,8 +213,6 @@ def _observatory_nav_links(
         )
         for anchor, label in _OBSERVATORY_WORKSPACE_SURFACES
     ]
-    links.append(("/audit", "Advanced Audit", active_surface == "audit"))
-    return links
 
 
 def _render_observatory_status_bar(
@@ -242,8 +240,6 @@ def _render_observatory_status_bar(
         link_classes = []
         if active:
             link_classes.append("status-link-active")
-        if href == "/audit":
-            link_classes.append("status-link-advanced")
         cls = f' class="{" ".join(link_classes)}"' if link_classes else ""
         current = ' aria-current="page"' if active else ""
         parsed_href = urlparse(href)
@@ -397,10 +393,6 @@ code {
 .status-bar a:hover { color: var(--teal); }
 .status-bar a.status-link-active {
   color: var(--teal);
-}
-.status-bar a.status-link-advanced {
-  color: var(--text-dim);
-  opacity: .72;
 }
 .status-dot {
   width: 6px;
@@ -716,6 +708,16 @@ a.teacher-card:hover {
   border-color: var(--teal);
   background: rgba(65, 255, 167, .08);
   color: var(--teal);
+}
+.graph-filter-reset {
+  border-color: rgba(255, 255, 255, .18);
+  color: var(--text-secondary);
+}
+.graph-filter-note {
+  margin: -2px 0 0;
+  color: var(--text-dim);
+  font-size: 12px;
+  line-height: 1.45;
 }
 .graph-content {
   display: grid;
@@ -1588,7 +1590,9 @@ _TEACHER_GRAPH_SCRIPT = """
     const edges = Array.from(root.querySelectorAll("[data-graph-edge]"));
     const search = root.querySelector("[data-graph-search]");
     const buttons = Array.from(root.querySelectorAll("[data-relation-filter]"));
+    const reset = root.querySelector("[data-graph-reset]");
     const results = root.querySelector("[data-graph-results]");
+    const filterNote = root.querySelector("[data-graph-filter-note]");
     let activeFilter = "all";
 
     const visibleNodeIds = () => new Set(
@@ -1634,6 +1638,17 @@ _TEACHER_GRAPH_SCRIPT = """
         results.textContent = `${visibleNodes} model${visibleNodes === 1 ? "" : "s"} · ${visibleEdges} relation${visibleEdges === 1 ? "" : "s"}`;
       }
 
+      if (filterNote) {
+        const filtered = Boolean(query) || activeFilter !== "all";
+        if (filtered && visibleEdges === 0 && edges.length > 0) {
+          filterNote.textContent = "No relation is visible with the current search or filter. Clear search or choose All.";
+        } else if (filtered) {
+          filterNote.textContent = "Showing a filtered neighborhood. Reset filters to return to the full lesson map.";
+        } else {
+          filterNote.textContent = "Search and relation filters combine. Use Reset to return to the full lesson map.";
+        }
+      }
+
       const selected = root.querySelector(".is-selected");
       const visibleNodes = nodes.filter((node) => !node.classList.contains("is-filtered"));
       const visibleRelationEdges = edges.filter((edge) => !edge.classList.contains("is-filtered"));
@@ -1674,6 +1689,15 @@ _TEACHER_GRAPH_SCRIPT = """
         activeFilter = button.dataset.relationFilter || "all";
         setActiveFilter(buttons, activeFilter);
         applyFilters();
+      });
+    }
+    if (reset) {
+      reset.addEventListener("click", () => {
+        if (search) search.value = "";
+        activeFilter = "all";
+        setActiveFilter(buttons, activeFilter);
+        applyFilters();
+        if (search) search.focus();
       });
     }
 
@@ -4469,7 +4493,11 @@ def _render_teacher_graph(
         '<div class="graph-filter-group" aria-label="Relation type filters">'
         '<span class="graph-filter-label">Relation</span>'
         + "".join(filter_buttons)
+        + '<button class="filter-chip graph-filter-reset" type="button" data-graph-reset>Reset</button>'
         + "</div></div>"
+        '<p class="graph-filter-note" data-graph-filter-note>'
+        "Search and relation filters combine. Use Reset to return to the full lesson map."
+        "</p>"
         '<div class="graph-content">'
         '<div class="graph-stage">'
         '<svg class="lesson-map" viewBox="0 0 720 280" role="img" '
@@ -5773,7 +5801,11 @@ def _render_workspace_map(
         '<div class="graph-filter-group" aria-label="Relation type filters">'
         '<span class="graph-filter-label">Relation</span>'
         + "".join(filter_buttons)
+        + '<button class="filter-chip graph-filter-reset" type="button" data-graph-reset>Reset</button>'
         + "</div></div>"
+        '<p class="graph-filter-note" data-graph-filter-note>'
+        "Search and relation filters combine. Use Reset to return to the full lesson map."
+        "</p>"
         '<div class="graph-content">'
         '<div class="graph-stage">'
         '<svg class="lesson-map workspace-graph-map" viewBox="0 0 720 280" role="img" '
@@ -5849,6 +5881,11 @@ def _render_workspace_receipts(
             '<article class="workspace-card workspace-first-read" data-first-read-card>',
             '<p class="workspace-kicker">Trust summary</p>',
             "<h3>What can I trust or inspect?</h3>",
+            (
+                "<p>Use Receipts to understand what exists for this run before "
+                "opening technical evidence. The status chips are the normal first "
+                "read; the audit links are for deeper inspection.</p>"
+            ),
             '<div class="workspace-status-grid">',
             _workspace_status_pill("Teacher packet", receipts.get("learning_packet_status", "")),
             _workspace_status_pill("Conversation Understanding", receipts.get("conversation_understanding_status", "")),
@@ -5856,17 +5893,22 @@ def _render_workspace_receipts(
             "</div>",
             '<p class="workspace-kicker">Visible non-claims</p>',
             _render_workspace_list("", receipts.get("visible_non_claims") or []),
-            '<p class="workspace-kicker">Inspect further</p>',
-            _render_workspace_chips(advanced_links, selected_case_id=selected_case_id),
+            '<p class="workspace-kicker">Technical inspection</p>',
+            "<p>Open these only when you need evidence, extraction detail, or usage telemetry.</p>",
+            _render_workspace_chips(
+                advanced_links,
+                selected_case_id=selected_case_id,
+                kind="support",
+            ),
             "</article>",
             _workspace_disclosure(
-                "Source refs and missing fields",
+                "Source and missingness details",
                 _render_source_refs(receipts.get("source_refs") or []),
                 _render_missingness(receipts.get("missingness") or {}),
                 _render_teacher_non_claims(receipts),
             ),
             _workspace_disclosure(
-                "Advanced inspection index",
+                "Technical audit index",
             '<ul class="workspace-advanced-list">',
             *artifact_rows,
             "</ul>",
@@ -5874,7 +5916,7 @@ def _render_workspace_receipts(
             _render_teacher_non_claims(advanced),
             ),
             _workspace_disclosure(
-                "Workspace boundary",
+                "Workspace boundary notes",
             _render_missingness(workspace.get("missingness") or {}),
             _render_teacher_non_claims(workspace),
             ),
