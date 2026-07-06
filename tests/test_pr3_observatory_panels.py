@@ -2220,10 +2220,9 @@ def test_telemetry_fab_injection_appends_when_no_body_close():
     assert "telemetry-fab" in out
 
 
-def test_root_serves_spa_with_fab_injected(tmp_path, monkeypatch):
-    """End-to-end: GET / returns the SPA index.html with the Telemetry FAB
-    injected. Confirms the do_GET wiring intercepts / before the static-file
-    fallback, and that the injection runs on a fresh request."""
+def test_root_serves_workspace_and_index_keeps_legacy_spa(tmp_path, monkeypatch):
+    """End-to-end: GET / returns portable workspace HTML, while /index.html
+    keeps the legacy SPA bundle available with Observatory overlays injected."""
     # Stand up a synthetic SPA bundle with a placeholder index.html
     fake_static = tmp_path / "build"
     fake_static.mkdir()
@@ -2246,6 +2245,13 @@ def test_root_serves_spa_with_fab_injected(tmp_path, monkeypatch):
     time.sleep(0.05)
     try:
         status, body = _http_get(f"http://{serve_result._OBSERVATORY_HOST}:{port}/")
+        assert status == 200
+        assert "Selected Run Workspace" in body
+        assert "SPA app mount" not in body
+
+        status, body = _http_get(
+            f"http://{serve_result._OBSERVATORY_HOST}:{port}/index.html"
+        )
         assert status == 200
         assert "SPA app mount" in body  # original bundle still there
         assert "telemetry-fab" in body  # FAB injected
