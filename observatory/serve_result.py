@@ -1197,6 +1197,30 @@ _WORKSPACE_CSS = """
 .workspace-first-read .lede {
   max-width: 920px;
 }
+.workspace-model-learn-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.workspace-model-learn-item {
+  border: 1px solid rgba(255, 255, 255, .09);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, .04);
+  padding: 12px;
+}
+.workspace-model-learn-item strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--teal);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+.workspace-model-learn-item p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.55;
+}
 .workspace-start-panel {
   display: grid;
   gap: 12px;
@@ -1444,6 +1468,7 @@ _WORKSPACE_CSS = """
   .workspace-columns,
   .workspace-map-grid,
   .workspace-hero-grid,
+  .workspace-model-learn-grid,
   .workspace-step-grid,
   .workspace-status-grid {
     grid-template-columns: 1fr;
@@ -4783,9 +4808,8 @@ def _render_workspace_model_detail_html(
         eyebrow="Mental Model",
         title=display_name,
         lede=(
-            "A selected-run mental model page. It formats the product-safe "
-            "model object for reading; raw canonical Markdown and curation "
-            "internals stay behind the custody layer."
+            "Learn what this model helps you notice, when to use it, "
+            "where it can mislead, and one practice rep for this selected run."
         ),
         back_href=_observatory_workspace_href(selected_case_id, "models"),
         back_label="All models in this run",
@@ -4846,8 +4870,8 @@ def _render_workspace_relation_detail_html(
         eyebrow="Relation",
         title=relation_title,
         lede=(
-            "A selected-run relation page. The story comes first; taxonomy, "
-            "confidence, custody, missingness, and non-claims follow it."
+            "Read the model relationship as a lesson: the story, why it "
+            "matters, where it can be misread, and one practice rep."
         ),
         back_href=_observatory_workspace_href(selected_case_id, "relations"),
         back_label="All relations in this run",
@@ -5123,14 +5147,14 @@ def _render_workspace_run_picker(selected_case_id: str) -> str:
         [
             '<aside class="workspace-sidebar" aria-label="Workspace context">',
             '<section class="workspace-panel">',
-            "<h3>Selected Run</h3>",
+            "<h3>Run Context</h3>",
             f'<p><code>{_esc(selected_case_id)}</code></p>',
-            "</section>",
-            '<section class="workspace-panel">',
-            "<h3>Recent Runs</h3>",
-            '<div class="workspace-run-list">',
-            *rows,
-            "</div>",
+            _workspace_disclosure(
+                "Switch run",
+                '<div class="workspace-run-list">',
+                *rows,
+                "</div>",
+            ),
             "</section>",
             '<section class="workspace-panel">',
             "<h3>Surface Homes</h3>",
@@ -5267,6 +5291,62 @@ def _workspace_has_content(value: object) -> bool:
         return False
     text = str(value).strip()
     return bool(text) and not text.lower().startswith("not supplied")
+
+
+def _workspace_first_text(values: object, fallback: str) -> str:
+    if isinstance(values, list):
+        for value in values:
+            if _workspace_has_content(value):
+                return str(value).strip()
+    elif _workspace_has_content(values):
+        return str(values).strip()
+    return fallback
+
+
+def _render_workspace_model_first_read(model: dict) -> str:
+    meaning = _workspace_first_text(
+        model.get("one_sentence_meaning"),
+        "No source-backed one-sentence meaning is available yet.",
+    )
+    use_when = _workspace_first_text(
+        model.get("use_when") or model.get("helps_notice"),
+        "No source-backed use-when cue is available yet.",
+    )
+    mislead_values = list(model.get("avoid_when") or []) + list(
+        model.get("common_misuse") or []
+    )
+    misleads = _workspace_first_text(
+        mislead_values,
+        "No source-backed mislead cue is available yet.",
+    )
+    practice = _workspace_first_text(
+        model.get("practice_prompts"),
+        "Use the Learn practice rep for this run; no source-backed "
+        "model-specific prompt is attached yet.",
+    )
+    return "\n".join(
+        [
+            '<section class="detail-section workspace-first-read" data-first-read-card>',
+            '<p class="workspace-kicker">First read</p>',
+            "<h3>What This Model Helps You See</h3>",
+            f'<p class="lede">{_esc(meaning)}</p>',
+            '<div class="workspace-model-learn-grid">',
+            _workspace_model_learn_item("Use when", use_when),
+            _workspace_model_learn_item("When it misleads", misleads),
+            _workspace_model_learn_item("Practice this", practice),
+            "</div>",
+            "</section>",
+        ]
+    )
+
+
+def _workspace_model_learn_item(label: str, body: str) -> str:
+    return (
+        '<div class="workspace-model-learn-item">'
+        f"<strong>{_esc(label)}</strong>"
+        f"<p>{_esc(body)}</p>"
+        "</div>"
+    )
 
 
 def _workspace_lesson_intro(lesson: dict) -> str:
@@ -5414,29 +5494,45 @@ def _render_workspace_model_page(
             f'<a class="workspace-chip" href="{_esc(_observatory_model_href(model_id, selected_case_id))}">'
             "Open model page</a>"
         )
+    model_detail_lists = [
+        _render_workspace_list(
+            "Helps notice",
+            model.get("helps_notice")
+            or ["No source-backed helps-notice bullets are available."],
+        ),
+        _render_workspace_list(
+            "Use when",
+            model.get("use_when")
+            or ["No source-backed use-when bullets are available."],
+        ),
+        _render_workspace_list(
+            "Avoid when",
+            model.get("avoid_when")
+            or ["No source-backed avoid-when bullets are available."],
+        ),
+    ]
+    if link_to_self:
+        model_detail_section = _workspace_disclosure(
+            "Use, avoid, and source-backed details",
+            '<div class="workspace-columns">',
+            *model_detail_lists,
+            "</div>",
+        )
+    else:
+        model_detail_section = "\n".join(
+            [
+                '<div class="workspace-columns">',
+                *model_detail_lists,
+                "</div>",
+            ]
+        )
     return "\n".join(
         [
             f'<article id="{_model_detail_anchor(model_id)}" class="workspace-card workspace-model-page">',
             '<p class="teacher-eyebrow">Mental Model</p>',
             f'<h3>{_esc(model.get("display_name") or model_id)}</h3>',
-            '<section class="detail-section workspace-first-read" data-first-read-card>',
-            "<h3>What This Model Helps You See</h3>",
-            f'<p>{_esc(model.get("one_sentence_meaning", ""))}</p>',
-            "</section>",
-            '<div class="workspace-columns">',
-            _render_workspace_list(
-                "Helps notice",
-                model.get("helps_notice") or ["No source-backed helps-notice bullets are available."],
-            ),
-            _render_workspace_list(
-                "Use when",
-                model.get("use_when") or ["No source-backed use-when bullets are available."],
-            ),
-            _render_workspace_list(
-                "Avoid when",
-                model.get("avoid_when") or ["No source-backed avoid-when bullets are available."],
-            ),
-            "</div>",
+            _render_workspace_model_first_read(model),
+            model_detail_section,
             '<div class="workspace-next-actions">',
             *action_chips,
             "</div>",
@@ -5452,7 +5548,11 @@ def _render_workspace_model_page(
             ),
             _render_workspace_list(
                 "Practice prompts",
-                model.get("practice_prompts") or ["No source-backed practice prompts are available."],
+                model.get("practice_prompts")
+                or [
+                    "Use the Learn practice rep for this run; no source-backed "
+                    "model-specific prompts are attached yet."
+                ],
             ),
             ),
             _workspace_disclosure(
