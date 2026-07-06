@@ -1,0 +1,63 @@
+{
+  "schema": "lolla.mental_model_teacher_observatory_learn_page_review.v0",
+  "status": "server_rendered_observatory_learn_page_ready_for_review",
+  "date": "2026-07-06",
+  "decision_gate": "proceed_to_compiled_observatory_learn_tab_integration",
+  "route": "/teacher-learning",
+  "adapter_route": "/api/case/<id>/teacher-learning",
+  "product_decision": {
+    "one_shell": "Observatory",
+    "teacher_surface": "server-rendered Learn route inside Observatory",
+    "standalone_teacher_app": false,
+    "compiled_spa_changed": false
+  },
+  "ux_guards": {
+    "lesson_narrative_first": true,
+    "models_after_lesson": true,
+    "relation_story_before_taxonomy": true,
+    "receipts_after_learning_sections": true,
+    "non_claims_visible": true,
+    "raw_telemetry_primary_surface": false,
+    "advanced_artifacts_primary_surface": false
+  },
+  "what_is_now_functional": [
+    "Observatory has a visible /teacher-learning page",
+    "the page renders the selected run's Teacher lesson when a packet matches",
+    "the page shows model, relation, map, receipts, missingness, and non-claims in a readable sequence",
+    "the root Observatory page exposes a LEARN affordance without modifying the bundle on disk"
+  ],
+  "what_remains_missing": [
+    "compiled SPA Learn tab",
+    "client-side selected archive case switching for the Learn page",
+    "interactive browser graph",
+    "human review",
+    "final visual design pass"
+  ],
+  "strongest_useful_signal": "There is now a visible learner-first page inside Observatory that avoids dumping Teacher artifacts, telemetry, and receipts into one surface.",
+  "strongest_unresolved_risk": "The server-rendered page proves information order, but the compiled SPA integration still needs design work so selected archived cases and tabs feel native.",
+  "non_claims": {
+    "lolla_skill_invoked": false,
+    "provider_or_model_calls_used": false,
+    "new_lolla_runs_created": false,
+    "runtime_behavior_changed": false,
+    "compiled_spa_changed": false,
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false
+  },
+  "stop_before": [
+    "compiled SPA changes",
+    "client-side tab switching",
+    "browser graph interaction",
+    "runtime integration",
+    "provider or model calls",
+    "live Lolla runs",
+    "answer or advice correctness scoring",
+    "product proof claims",
+    "human validation claims",
+    "action authorization"
+  ]
+}
