@@ -109,12 +109,13 @@ def test_server_routes_show_portable_runtime_owns_new_product_surfaces() -> None
     serve_result = _read(SERVE_RESULT)
 
     for phrase in [
-        '("/teacher-learning", "Learn")',
+        '("/workspace#learn", "Learn")',
         "/api/cases",
         'parts[4] == "teacher-learning"',
         'parts[4] == "decision-work"',
         'parts[5] == "prepare"',
         'path == "/teacher-learning"',
+        "_redirect_response",
         'path.startswith("/api/model/")',
         'path == "/api/families"',
         "_inject_telemetry_fab",

@@ -65,4 +65,5 @@ Current planning docs:
 - [Observatory Focused Workspace Narration](observatory-focused-workspace-narration-v0.md)
 - [Observatory Focused Workspace Browser Review](observatory-focused-workspace-browser-review-v0.md)
 - [Observatory Model Page Readability And Visible Surface Audit](observatory-model-page-readability-and-visible-surface-audit-v0.md)
+- [Observatory Teacher Route Consolidation](observatory-teacher-route-consolidation-v0.md)
 - [Mental Model Teacher Product Surface Reference Patterns](mental-model-teacher-product-surface-reference-patterns-v0.md)

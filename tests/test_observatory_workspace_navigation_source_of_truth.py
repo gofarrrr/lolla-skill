@@ -64,6 +64,12 @@ def test_route_helpers_keep_one_observatory_navigation_source() -> None:
     assert serve_result._observatory_workspace_href("case with space", "learn") == (
         "/workspace?case_id=case%20with%20space#learn"
     )
+    assert serve_result._observatory_teacher_href("lolla-audit") == (
+        "/workspace?case_id=lolla-audit#learn"
+    )
+    assert serve_result._observatory_teacher_href("lolla-audit", "models") == (
+        "/workspace?case_id=lolla-audit#models"
+    )
     assert serve_result._observatory_model_href("authority-bias", "lolla-audit") == (
         "/models/authority-bias?case_id=lolla-audit"
     )

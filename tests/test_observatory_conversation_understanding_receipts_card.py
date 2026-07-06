@@ -46,9 +46,10 @@ def test_injected_html_contains_conversation_understanding_card() -> None:
     assert "Case Surfaces" in html
     assert "safe interpretation read" in html
     assert "triage read" in html
-    assert 'href="/teacher-learning#models"' in html
-    assert 'href="/teacher-learning#relations"' in html
-    assert 'href="/teacher-learning#map"' in html
+    assert 'href="/workspace#models"' in html
+    assert 'href="/workspace#relations"' in html
+    assert 'href="/workspace#map"' in html
+    assert 'href="/teacher-learning' not in html
 
 
 def test_card_copy_supports_required_statuses_without_generation_action() -> None:
