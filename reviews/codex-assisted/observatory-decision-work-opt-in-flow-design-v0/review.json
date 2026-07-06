@@ -1,0 +1,73 @@
+{
+  "schema": "lolla.observatory_decision_work_opt_in_flow_design_review.v0",
+  "artifact": "docs/product/observatory-decision-work-opt-in-flow-design-v0.md",
+  "status": "design_contract",
+  "date": "2026-07-06",
+  "decision_gate": "proceed_to_observatory_offline_process_brief_runner",
+  "design_decisions": {
+    "user_action_name": "Prepare process brief",
+    "home_surface": "Observatory Receipts / Conversation Understanding card",
+    "first_implementation_mode": "cli_first",
+    "observatory_browser_action_now": false,
+    "status_api_source": "/api/case/<id>/decision-work",
+    "extraction_audit_link": "/audit/extraction",
+    "offline_runner_cli": "scripts/evals/run_decision_work_offline_operator.py",
+    "requires_explicit_generated_read": true,
+    "requires_explicit_generated_triage": true,
+    "sidecar_attachment_is_separate_gate": true
+  },
+  "state_model": [
+    "decision_work_not_present",
+    "process_brief_not_requested",
+    "needs_safe_inputs",
+    "offline_command_available",
+    "offline_runner_ready_for_review",
+    "explicit_attach_required",
+    "decision_work_available",
+    "deferred_missing_semantic_read",
+    "deferred_missing_triage",
+    "sidecar_ready_for_explicit_write",
+    "sidecar_ready_blocked_state",
+    "blocked_privacy_risk",
+    "blocked_source_depth_insufficient",
+    "blocked_schema_or_custody_failure",
+    "blocked_runtime_or_user_surface_risk"
+  ],
+  "boundary": {
+    "design_only": true,
+    "browser_button_added": false,
+    "new_server_route_added": false,
+    "runs_offline_operator": false,
+    "creates_interpretation_read": false,
+    "calls_provider_or_model": false,
+    "runs_lolla": false,
+    "invokes_skill": false,
+    "creates_new_lolla_run": false,
+    "writes_sidecar": false,
+    "mutates_archive": false,
+    "changes_runtime_behavior": false,
+    "makes_default_on": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "copy_requirements": {
+    "privacy_copy_required_before_action": true,
+    "cost_copy_required_before_action": true,
+    "latency_copy_required_before_action": true,
+    "must_explain_missing_generated_read": true,
+    "must_explain_missing_generated_triage": true,
+    "must_preserve_blocked_states": true
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "approval_or_certification": false,
+    "answer_quality_scoring": false,
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false
+  },
+  "recommended_next_gate": "proceed_to_observatory_offline_process_brief_runner"
+}
