@@ -1,0 +1,70 @@
+{
+  "schema": "lolla.mental_model_teacher_observatory_native_learn_review.v0",
+  "status": "observatory_native_teacher_learn_ready_for_review",
+  "date": "2026-07-06",
+  "decision_gate": "proceed_to_interactive_observatory_teacher_graph",
+  "route": "/teacher-learning",
+  "adapter_route": "/api/case/<id>/teacher-learning",
+  "product_decision": {
+    "one_shell": "Observatory",
+    "teacher_surface": "Observatory-native server-rendered Learn route",
+    "standalone_teacher_app": false,
+    "compiled_spa_changed": false,
+    "runtime_wiring_allowed": false
+  },
+  "ux_guards": {
+    "observatory_aesthetics_reused": true,
+    "lesson_narrative_first": true,
+    "right_side_context_rail": true,
+    "clickable_model_detail_drawers": true,
+    "clickable_relation_detail_drawers": true,
+    "canonical_model_identity_preserved": true,
+    "lesson_slogans_not_used_as_model_names": true,
+    "relation_story_before_taxonomy": true,
+    "receipts_secondary": true,
+    "raw_telemetry_primary_surface": false,
+    "advanced_artifacts_primary_surface": false
+  },
+  "what_is_now_functional": [
+    "the Learn page uses Observatory visual tokens and layout patterns",
+    "the primary reading path starts with the Teacher lesson rather than receipts",
+    "mental model cards open product-safe model detail drawers",
+    "relation cards and graph edges open product-safe relation detail drawers",
+    "receipts, missingness, source custody, and non-claims remain visible but secondary"
+  ],
+  "what_remains_missing": [
+    "interactive browser graph UI",
+    "compiled SPA source rebuild",
+    "client-side archive case picker integration for Learn",
+    "human review",
+    "full visual polish pass"
+  ],
+  "strongest_useful_signal": "The Teacher surface now behaves like an Observatory product view: a case-anchored learning path with model and relation clickthroughs, not a document dump.",
+  "strongest_unresolved_risk": "The server-rendered page now matches Observatory aesthetics, but the compiled SPA still owns the main app runtime and could diverge unless a later slice ports the pattern into the source bundle.",
+  "non_claims": {
+    "lolla_skill_invoked": false,
+    "provider_or_model_calls_used": false,
+    "new_lolla_runs_created": false,
+    "runtime_behavior_changed": false,
+    "compiled_spa_changed": false,
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false
+  },
+  "stop_before": [
+    "interactive browser graph UI",
+    "full corpus graph",
+    "compiled SPA source rebuild",
+    "runtime integration",
+    "provider or model calls",
+    "live Lolla runs",
+    "answer or advice correctness scoring",
+    "product proof claims",
+    "human validation claims",
+    "action authorization"
+  ]
+}
