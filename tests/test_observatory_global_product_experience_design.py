@@ -147,9 +147,12 @@ def test_global_design_defines_source_ownership_decision() -> None:
     for phrase in [
         "The current repository has a portable Python Observatory server and a compiled frontend bundle.",
         "The source of the compiled bundle is not present in this repo.",
-        "Before another major UI pass, verify the Observatory source owner.",
-        "do not manually edit compiled bundle assets as the main product strategy",
-        "proceed_to_observatory_source_ownership_audit",
+        "Source Ownership Decision Resolved",
+        "`observatory/serve_result.py` owns the active portable skill-presentation surface",
+        "`Lolla-system-b/observatory/svelte-app` is verified as historical legacy source",
+        "the current product direction is portable Python/server-rendered Observatory",
+        "not port the global shell to Svelte",
+        "proceed_to_observatory_portable_server_view_model_contracts",
     ]:
         assert phrase in text
 
@@ -171,9 +174,9 @@ def test_global_design_has_incremental_sequence_and_stop_conditions() -> None:
 
     for phrase in [
         "Stop before UI changes.",
-        "Stop before source port or UI rebuild.",
+        "Stop before UI rebuild.",
         "Stop before rendering.",
-        "Stop before bundle edits.",
+        "Stop before legacy bundle edits.",
         "Stop before full corpus graph.",
         "running Lolla",
         "invoking the Lolla skill",
@@ -197,10 +200,21 @@ def test_review_json_records_gate_surfaces_data_flow_and_non_claims() -> None:
     assert data["artifact"] == (
         "docs/product/observatory-global-product-experience-and-data-flow-v0.md"
     )
-    assert data["decision_gate"] == "proceed_to_observatory_source_ownership_audit"
+    assert (
+        data["decision_gate"]
+        == "proceed_to_observatory_portable_server_view_model_contracts"
+    )
     assert data["product_decision"]["one_shell"] == "Observatory"
     assert data["product_decision"]["primary_workspace"] == "selected_run"
     assert data["product_decision"]["teacher_position"] == "Learn"
+    assert (
+        data["product_decision"]["current_rendering_direction"]
+        == "portable_python_server_rendered_html"
+    )
+    assert (
+        data["product_decision"]["legacy_svelte_source_is_future_owner_by_default"]
+        is False
+    )
     assert data["product_decision"]["standalone_teacher_app"] is False
     assert (
         data["product_decision"]["compiled_bundle_manual_editing_as_strategy"]

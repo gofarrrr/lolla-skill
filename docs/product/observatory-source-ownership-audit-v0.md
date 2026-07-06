@@ -2,16 +2,14 @@
 
 Status: source ownership decision contract
 Date: 2026-07-06
-Decision gate: `proceed_to_observatory_product_view_model_contracts`
+Decision gate: `proceed_to_observatory_portable_server_view_model_contracts`
 
 ## One Sentence
 
-Observatory is one product shell with hybrid source ownership: the portable
-runtime server in this repo owns local serving, read-only APIs, audit panels,
-and current Learn/Receipts additions, while the historical root SPA source lives
-in the separate `Lolla-system-b/observatory/svelte-app` Svelte repo and should
-only receive the global shell after product-safe view models and a controlled
-source-port package exist.
+Observatory is one portable skill-presentation product shell: the Python server
+in this repo owns the active product direction for now, while
+`Lolla-system-b/observatory/svelte-app` is verified as the historical legacy
+source for the old root SPA, not the future product source by default.
 
 ## Why This Exists
 
@@ -28,11 +26,12 @@ Before building that globally, we had to answer a source question:
 Where does the Observatory UI actually belong?
 ```
 
-If we keep adding product UI only through the portable server and serve-time
-injection, the UI will stay fragmented. If we jump directly into the compiled
-bundle, we risk editing the wrong artifact. If we port Teacher/Receipts into the
-external Svelte app before view models are stable, we duplicate product logic
-and recreate the same information-flow confusion in a different stack.
+If we keep adding product UI through ad hoc serve-time injection, the UI will
+stay fragmented. If we jump back into the legacy Svelte app, we revive the old
+app-like direction instead of designing Observatory as the portable presentation
+surface for the skill. The safe path is to make the Python/server-rendered
+Observatory coherent first, using product-safe view models instead of raw
+telemetry or scattered panels.
 
 This audit verifies the current ownership shape and chooses the next safe
 implementation sequence.
@@ -46,19 +45,21 @@ Related design trail:
 
 ## Short Verdict
 
-The source owner is split by responsibility:
+The source owner is split by role, but the current product direction is not
+split:
 
 | Responsibility | Owner today | Decision |
 | --- | --- | --- |
 | Local serving, routing, archive/run loading, read-only APIs | `observatory/serve_result.py` in this repo | Keep here. This is the portable runtime boundary. |
-| Server-rendered audit, usage, Learn, Receipts, and process-brief status | `observatory/serve_result.py` in this repo | Keep here until product-safe view models exist. |
-| Historical root SPA source for `/` | `Lolla-system-b/observatory/svelte-app` | Treat as the native SPA source owner, but do not port yet. |
+| Server-rendered audit, usage, Learn, Receipts, and process-brief status | `observatory/serve_result.py` in this repo | Keep here as the active product surface direction. |
+| Historical root SPA source for `/` | `Lolla-system-b/observatory/svelte-app` | Treat as legacy source evidence for the old app-era shell, not as the default future owner. |
 | Checked-in runtime bundle | `observatory/build/*` in this repo | Treat as copied compiled output, not source. Do not hand-edit. |
 | Product IA and contracts | `docs/product/*`, future view-model modules in this repo | Keep here because the portable runtime must own product-safe translation. |
-| Future global selected-run shell | External Svelte source consuming product-safe APIs | Port after contracts and sync path are explicit. |
+| Future global selected-run shell | Portable Python/server-rendered Observatory first | Build here unless a later explicit frontend decision says otherwise. |
 
-The next PR should not be another UI patch. It should define the product view
-model contracts that both the portable server and future Svelte shell can share.
+The next PR should not be another UI patch and should not be a Svelte revival.
+It should define the product view model contracts that let the portable server
+render Observatory as one coherent product surface.
 
 ## Evidence From This Repo
 
@@ -102,7 +103,9 @@ This repo still does not contain a local frontend source app:
 - no local `svelte.config.*`;
 - no local `tsconfig.json` for an Observatory app.
 
-That means this repo cannot be treated as the native Svelte source tree.
+That means this repo cannot be treated as a native Svelte source tree. That is
+acceptable for the current direction: Observatory should remain portable and
+server-rendered while the skill presentation surface is still being shaped.
 
 ### Source Note In Server
 
@@ -154,8 +157,10 @@ Observed facts:
   Conversation Understanding, process brief, Models/Relations/Map/Receipts
   product shell work.
 
-This verifies that the historical root SPA source exists and is real, but it is
-not current with the latest product-surface additions in this runtime repo.
+This verifies that the historical root SPA source exists and is real. It also
+verifies the user's concern: the Svelte source is app-era legacy for the current
+product direction. It is not current with the latest product-surface additions
+in this runtime repo and should not be treated as the default future UI owner.
 
 ## Bundle Provenance Finding
 
@@ -173,7 +178,8 @@ same filename differed between the runtime repo and the external local build.
 
 This does not prove manual editing. It does prove that the current local
 external build snapshot and the checked-in runtime bundle are not fully
-byte-identical. Therefore, a future source port needs a controlled sync path:
+byte-identical. Therefore, if we ever intentionally maintain or replace the
+legacy root bundle, it needs a controlled sync path:
 
 ```text
 external Svelte source
@@ -188,7 +194,7 @@ external checkout is already a clean rebuild of the runtime bundle.
 
 ## Product Ownership Decision
 
-### Portable Runtime Repo Owns Product-Safe Translation
+### Portable Runtime Repo Owns Product-Safe Translation And Rendering
 
 This repo should own:
 
@@ -198,23 +204,22 @@ This repo should own:
 - product-safe model/relation/learning/receipt view models;
 - API endpoints consumed by any UI;
 - server-rendered fallback pages for audit, usage, Learn, and Receipts;
+- the near-term global Observatory shell;
 - runtime-safe non-claims.
 
 Reason: this repo ships with the skill runtime. It must remain useful without a
 frontend toolchain, and it is closest to the archive artifacts and product
 boundaries.
 
-### External Svelte Source Owns The Native Root Shell
+### External Svelte Source Is Legacy Evidence, Not Current Direction
 
-The external Svelte app should own the eventual native selected-run workspace:
+The external Svelte app proves where the old compiled root SPA came from. It
+should not own the next Observatory product surface by default.
 
-```text
-Outcome | Learn | Models | Relations | Map | Receipts
-```
-
-Reason: the current `/` shell, case picker, model drawer, family browser, and
-reasoning graph are already Svelte concepts. A polished root UX should be built
-in source, not by continuing to inject more controls into compiled HTML.
+Reason: the current product goal is not to return to the old app project. The
+goal is to make Observatory the portable presentation layer for the skill. The
+old Svelte source can remain useful as visual/reference evidence, but a future
+Svelte revival would require a separate explicit decision.
 
 ### The Compiled Bundle Is A Distribution Artifact
 
@@ -248,37 +253,39 @@ Outcome | Learn | Models | Relations | Map | Receipts
 ```
 
 The newer Learn/Receipts/Decision Work additions exist in the portable server
-and injection layer. They are reviewable and useful, but they are not the final
-native root UX.
+and injection layer. They are reviewable and useful, but the next product step
+is not to port them to Svelte. The next product step is to replace scattered
+injection with a coherent server-rendered workspace backed by stable view
+models.
 
 ## What Not To Present Twice
 
 This source audit does not change the global information architecture. It
 reinforces it.
 
-| Information | Source owner | Native shell owner after port | Boundary |
+| Information | Source owner | Portable product home | Boundary |
 | --- | --- | --- | --- |
-| Revised answer and main run outcome | Runtime view model | Svelte Outcome tab | Do not copy into Learn as lesson body. |
-| Teacher reasoning move | Runtime learning packet | Svelte Learn tab | Do not rename telemetry as teaching. |
-| Mental model pages | Runtime product-safe model objects | Svelte Models surface | Do not expose raw Markdown as UI. |
-| Relation pages | Runtime product-safe relation objects | Svelte Relations surface | Do not surface unsupported relation speculation. |
-| Graph neighborhood | Runtime graph view model | Svelte Map surface | Graph edges are navigation, not proof. |
-| Conversation Understanding status | Runtime receipt summary | Svelte Receipts surface | Do not put process brief inside Teacher lesson copy. |
+| Revised answer and main run outcome | Runtime view model | Server-rendered Outcome | Do not copy into Learn as lesson body. |
+| Teacher reasoning move | Runtime learning packet | Server-rendered Learn | Do not rename telemetry as teaching. |
+| Mental model pages | Runtime product-safe model objects | Server-rendered Models | Do not expose raw Markdown as UI. |
+| Relation pages | Runtime product-safe relation objects | Server-rendered Relations | Do not surface unsupported relation speculation. |
+| Graph neighborhood | Runtime graph view model | Server-rendered Map | Graph edges are navigation, not proof. |
+| Conversation Understanding status | Runtime receipt summary | Server-rendered Receipts | Do not put process brief inside Teacher lesson copy. |
 | Raw audit telemetry | Runtime advanced routes | Advanced Audit links | Do not make telemetry the normal user landing page. |
 
-## Source-Port Readiness Requirements
+## Portable Server Direction Requirements
 
-Do not port the global shell until these exist:
+Do not build more visible product panels until these exist:
 
 1. product view model contracts for selected run summary, outcome summary,
    learning packet, model page, relation page, graph neighborhood, receipt
    summary, and advanced audit index;
-2. one fixture or checked safe run payload for native shell development;
-3. a source-port package that records the external source repo, branch, commit,
-   build command, expected output files, and copied asset hashes;
-4. smoke tests against `observatory/serve_result.py` after copied build assets
-   land;
-5. a fallback policy that says what still works when `observatory/build/` is
+2. one fixture or checked safe run payload for server-rendered shell
+   development;
+3. stable portable server adapters that produce those view models without
+   provider calls or runtime mutation;
+4. smoke tests against `observatory/serve_result.py`;
+5. a fallback policy that says what works when the legacy `observatory/build/` is
    absent.
 
 ## Recommended Next Sequence
@@ -289,7 +296,7 @@ This document, review JSON, and tests.
 
 Stop before code or UI changes.
 
-### PR-SO2 Product View Model Contracts
+### PR-SO2 Portable Product View Model Contracts
 
 Define shared product-safe view models:
 
@@ -302,42 +309,37 @@ Define shared product-safe view models:
 - `receipt_summary`;
 - `advanced_audit_index`.
 
-Stop before Svelte source work.
+Stop before additional UI rendering.
 
 ### PR-SO3 Portable View Model Adapters
 
 Make the Python server expose the view models through stable APIs.
 
-Stop before root SPA redesign.
+Stop before root workspace redesign.
 
-### PR-SO4 Source-Port Package
+### PR-SO4 Server-Rendered Global Workspace
 
-Create a source-port packet for `Lolla-system-b/observatory/svelte-app`:
-
-- source repo and commit;
-- branch;
-- local build command;
-- build artifact manifest;
-- runtime-copy checklist;
-- smoke-test list.
-
-Stop before copying a new bundle.
-
-### PR-SO5 Native Global Shell In External Svelte Source
-
-Build the selected-run workspace in Svelte source:
+Use the view models to render the selected-run workspace in the portable server:
 
 ```text
 Outcome | Learn | Models | Relations | Map | Receipts
 ```
 
-Stop before copying built assets into the runtime repo.
+Stop before touching legacy bundle assets.
 
-### PR-SO6 Runtime Bundle Sync
+### PR-SO5 Legacy Root Bundle Bypass Or Retirement Plan
 
-Copy a clean Svelte build into this repo with recorded hashes and smoke tests.
+Decide whether `/` should route to the server-rendered workspace while the old
+compiled SPA remains available as legacy/advanced navigation.
 
-Stop before changing runtime launch behavior.
+Stop before deleting or replacing the checked-in bundle.
+
+### PR-SO6 Optional Legacy Bundle Sync Decision
+
+Only if there is a strong reason to keep the old Svelte root shell, create a
+separate decision and sync package for the legacy bundle.
+
+Stop before Svelte source changes or bundle copies.
 
 ## Stop Conditions
 
@@ -350,7 +352,9 @@ Stop if implementation would require:
 - wiring or changing runtime behavior;
 - mutating archives by default;
 - hand-editing compiled JS/CSS;
-- treating the external source as clean without a source-port manifest;
+- treating the external Svelte source as the future product owner without a new
+  explicit decision;
+- porting the global shell to the legacy app by default;
 - claiming product proof;
 - claiming human validation;
 - claiming answer or advice correctness;
@@ -365,10 +369,9 @@ Stop if implementation would require:
 Recommended next gate:
 
 ```text
-proceed_to_observatory_product_view_model_contracts
+proceed_to_observatory_portable_server_view_model_contracts
 ```
 
-The reason is simple: before we move UI into the external Svelte source, both
-the portable server and the future native shell need the same product-safe data
-objects. Otherwise we will merely move the current fragmentation into a nicer
-frontend.
+The reason is simple: before we add more server-rendered UI, the portable
+Observatory needs product-safe data objects. Otherwise we will keep stacking
+panels instead of designing one coherent skill presentation surface.

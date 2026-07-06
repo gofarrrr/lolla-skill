@@ -31,12 +31,12 @@ def test_source_ownership_doc_declares_hybrid_owner_decision() -> None:
     text = " ".join(_read(DOC).split())
 
     for phrase in [
-        "Observatory is one product shell with hybrid source ownership",
-        "portable runtime server in this repo owns local serving",
-        "historical root SPA source lives in the separate `Lolla-system-b/observatory/svelte-app`",
-        "the native SPA source owner, but do not port yet",
-        "The next PR should not be another UI patch.",
-        "proceed_to_observatory_product_view_model_contracts",
+        "Observatory is one portable skill-presentation product shell",
+        "the Python server in this repo owns the active product direction for now",
+        "`Lolla-system-b/observatory/svelte-app` is verified as the historical legacy source",
+        "not the future product source by default",
+        "The next PR should not be another UI patch and should not be a Svelte revival.",
+        "proceed_to_observatory_portable_server_view_model_contracts",
     ]:
         assert phrase in text
 
@@ -124,7 +124,7 @@ def test_server_routes_show_portable_runtime_owns_new_product_surfaces() -> None
 
 
 def test_source_ownership_doc_records_external_source_and_bundle_drift_evidence() -> None:
-    text = _read(DOC)
+    text = " ".join(_read(DOC).split())
 
     for phrase in [
         "Git remote: `gofarrrr/lolla-system-b`",
@@ -132,6 +132,8 @@ def test_source_ownership_doc_records_external_source_and_bundle_drift_evidence(
         "head inspected: `85dc10b`",
         "Svelte 5, Vite 6, TypeScript, Vitest",
         "the source does not contain the newer Teacher Learn, Decision Work",
+        "Svelte source is app-era legacy for the current product direction",
+        "should not be treated as the default future UI owner",
         "Two checked asset hashes matched during inspection; one main JS asset",
         "manual editing",
         "controlled sync path",
@@ -145,11 +147,13 @@ def test_source_ownership_doc_defines_port_readiness_and_sequence() -> None:
     for phrase in [
         "product view model contracts",
         "one fixture or checked safe run payload",
-        "source-port package",
-        "build command",
-        "copied asset hashes",
+        "server-rendered shell",
+        "stable portable server adapters",
         "smoke tests against `observatory/serve_result.py`",
         "fallback policy",
+        "Server-Rendered Global Workspace",
+        "Legacy Root Bundle Bypass Or Retirement Plan",
+        "Optional Legacy Bundle Sync Decision",
     ]:
         assert phrase in text
 
@@ -169,13 +173,23 @@ def test_review_json_records_decision_gate_evidence_and_non_claims() -> None:
 
     assert data["schema"] == "lolla.observatory_source_ownership_audit_review.v0"
     assert data["artifact"] == "docs/product/observatory-source-ownership-audit-v0.md"
-    assert data["decision_gate"] == "proceed_to_observatory_product_view_model_contracts"
+    assert (
+        data["decision_gate"]
+        == "proceed_to_observatory_portable_server_view_model_contracts"
+    )
 
     decision = data["source_ownership_decision"]
     assert decision["one_product_shell"] == "Observatory"
     assert decision["portable_runtime_owner"] == "observatory/serve_result.py"
-    assert decision["native_spa_source_owner"] == "Lolla-system-b/observatory/svelte-app"
+    assert decision["active_product_surface_owner"] == "observatory/serve_result.py"
+    assert (
+        decision["current_rendering_direction"]
+        == "portable_python_server_rendered_html"
+    )
+    assert decision["legacy_spa_source"] == "Lolla-system-b/observatory/svelte-app"
+    assert decision["legacy_spa_is_future_product_owner_by_default"] is False
     assert decision["compiled_bundle_role"] == "distribution_artifact"
+    assert decision["svelte_revival_authorized_now"] is False
     assert decision["global_shell_port_authorized_now"] is False
     assert decision["compiled_bundle_manual_editing_allowed"] is False
 
@@ -189,6 +203,7 @@ def test_review_json_records_decision_gate_evidence_and_non_claims() -> None:
     external = data["external_source_evidence"]
     assert external["observed_read_only"] is True
     assert external["repo"] == "gofarrrr/lolla-system-b"
+    assert external["source_role"] == "historical_legacy_root_spa_source"
     assert external["root_spa_source_exists"] is True
     assert external["contains_new_teacher_learn_shell"] is False
     assert external["contains_decision_work_receipts_flow"] is False
@@ -202,6 +217,12 @@ def test_review_json_records_decision_gate_evidence_and_non_claims() -> None:
     assert bundle["manual_editing_proven"] is False
     assert bundle["controlled_sync_required_before_bundle_copy"] is True
 
+    requirements = data["portable_server_direction_requirements"]
+    assert requirements["product_view_model_contracts"] is True
+    assert requirements["portable_server_adapters"] is True
+    assert requirements["serve_result_smoke_tests"] is True
+    assert requirements["fallback_policy_when_bundle_absent"] is True
+
     boundary = data["boundary"]
     assert boundary["runs_lolla"] is False
     assert boundary["invokes_lolla_skill"] is False
@@ -210,6 +231,7 @@ def test_review_json_records_decision_gate_evidence_and_non_claims() -> None:
     assert boundary["compiled_js_or_css_edited"] is False
     assert boundary["external_repo_modified"] is False
     assert boundary["bundle_copied"] is False
+    assert boundary["svelte_revival_authorized"] is False
 
     non_claims = data["non_claims"]
     assert non_claims["product_proof"] is False
@@ -243,5 +265,6 @@ def test_source_ownership_artifacts_have_no_absolute_paths_or_authority_claims()
         "compiled_js_or_css_edited\": true",
         "external_repo_modified\": true",
         "bundle_copied\": true",
+        "svelte_revival_authorized\": true",
     ]:
         assert forbidden not in text
