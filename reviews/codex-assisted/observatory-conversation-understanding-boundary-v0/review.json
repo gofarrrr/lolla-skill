@@ -1,0 +1,81 @@
+{
+  "schema": "lolla.observatory_conversation_understanding_boundary_review.v0",
+  "artifact": "docs/product/observatory-conversation-understanding-boundary-v0.md",
+  "status": "design_contract",
+  "date": "2026-07-06",
+  "decision_gate": "proceed_to_observatory_decision_work_sidecar_status_adapter",
+  "validated_current_state": {
+    "live_extraction_is_runtime_path": true,
+    "observatory_extraction_route_present": true,
+    "observatory_decision_work_endpoint_present_now": false,
+    "decision_trail_report_is_read_only_offline_exporter": true,
+    "decision_work_sidecar_internal_v1_is_command_only": true,
+    "post_archive_decision_work_attachment_hook_exists": true,
+    "post_archive_decision_work_attachment_default_off": true,
+    "default_off_env_flag": "LOLLA_DECISION_WORK_BRIEF_AFTER_ARCHIVE"
+  },
+  "product_decision": {
+    "one_shell": "Observatory",
+    "initial_home": "Receipts / Conversation Understanding",
+    "advanced_extraction_home": "/audit/extraction",
+    "teacher_learn_home": "Learn",
+    "decision_work_should_not_duplicate_teacher": true,
+    "decision_work_should_not_duplicate_raw_telemetry": true,
+    "first_code_slice": "read_only_sidecar_status_adapter"
+  },
+  "recommended_endpoint": {
+    "path": "/api/case/<id>/decision-work",
+    "mode": "read_only",
+    "writes_sidecar": false,
+    "runs_offline_operator": false,
+    "calls_provider_or_model": false,
+    "invokes_lolla": false
+  },
+  "recommended_states": [
+    "live_extraction_available",
+    "decision_work_not_present",
+    "decision_work_not_requested",
+    "decision_work_deferred",
+    "decision_work_blocked",
+    "decision_work_available",
+    "decision_work_failed_closed"
+  ],
+  "first_class_fields": [
+    "availability_state",
+    "source_artifact_status",
+    "attachment_state",
+    "user_receipt",
+    "blockers",
+    "missingness",
+    "non_claims",
+    "links"
+  ],
+  "internal_only_fields": [
+    "raw_conversation_text",
+    "local_absolute_archive_paths",
+    "operator_logs",
+    "private_generated_reads",
+    "raw_product_delta_eval_internals",
+    "raw_provider_text",
+    "raw_routing_internals",
+    "resolver_approval_claims",
+    "agent_action_authorization"
+  ],
+  "non_claims": {
+    "lolla_skill_invoked": false,
+    "provider_or_model_calls_used": false,
+    "new_lolla_run_created": false,
+    "runtime_behavior_changed": false,
+    "archive_mutated": false,
+    "sidecar_written": false,
+    "automatic_semantic_interpretation_enabled": false,
+    "queue_worker_enabled": false,
+    "resolver_approved": false,
+    "human_validated": false,
+    "product_proof": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "action_authorized": false
+  },
+  "recommended_next_gate": "proceed_to_observatory_decision_work_sidecar_status_adapter"
+}
