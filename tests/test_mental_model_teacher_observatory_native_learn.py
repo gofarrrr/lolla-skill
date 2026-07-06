@@ -38,16 +38,16 @@ def test_native_learn_page_borrows_observatory_visual_system() -> None:
     assert 'class="teacher-shell"' in html
     assert 'class="teacher-sidebar"' in html
     assert 'class="tab-btn tab-btn--active"' in html
-    assert ">Observatory</a>" in html
+    assert ">Outcome</a>" in html
     assert ">Telemetry</a>" in html
 
 
-def test_native_learn_page_clicks_models_into_product_safe_detail_drawers() -> None:
+def test_native_learn_page_links_models_to_workspace_pages_and_keeps_drawers() -> None:
     _install_launch_case()
 
     html = serve_result._render_teacher_learning_html("lolla-audit")
 
-    assert 'href="#model-authority-bias"' in html
+    assert 'href="/models/authority-bias?case_id=lolla-audit"' in html
     assert 'id="model-authority-bias"' in html
     assert "Everything We Know" in html
     assert "Helps Notice" in html
@@ -62,7 +62,7 @@ def test_native_learn_page_clicks_models_into_product_safe_detail_drawers() -> N
     assert "<h3>Test The Authority, Not The Aura</h3>" not in html
 
 
-def test_native_learn_page_clicks_relations_after_plain_story() -> None:
+def test_native_learn_page_links_relations_after_plain_story() -> None:
     _install_launch_case()
 
     html = serve_result._render_teacher_learning_html("lolla-audit")
@@ -70,7 +70,10 @@ def test_native_learn_page_clicks_relations_after_plain_story() -> None:
     relation_anchor = (
         "relation-authority-bias__first-principles-thinking__antagonist"
     )
-    assert f'href="#{relation_anchor}"' in html
+    assert (
+        f'href="/relations/{relation_anchor.removeprefix("relation-")}?case_id=lolla-audit"'
+        in html
+    )
     assert f'id="{relation_anchor}"' in html
     assert "Plain Language Story" in html
     assert "Why It Matters" in html

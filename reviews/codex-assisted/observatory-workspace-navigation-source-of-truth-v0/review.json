@@ -1,0 +1,87 @@
+{
+  "schema": "lolla.observatory_workspace_navigation_source_of_truth_review.v0",
+  "status": "portable_navigation_source_ready_for_review",
+  "date": "2026-07-06",
+  "decision_gate": "proceed_to_observatory_workspace_map_interaction_slice",
+  "recommended_next_pr": "Observatory Workspace Map Interaction Slice",
+  "implemented": {
+    "shared_route_helpers": true,
+    "workspace_route_family": "/workspace?case_id=<id>#<surface>",
+    "model_route": "/models/<id>?case_id=<id>",
+    "relation_route": "/relations/<id>?case_id=<id>",
+    "teacher_top_navigation_uses_workspace_routes": true,
+    "workspace_model_links_are_durable": true,
+    "workspace_relation_links_are_durable": true,
+    "legacy_spa_route": "/index.html",
+    "renderer": "observatory/serve_result.py",
+    "compiled_spa_bundle_changed": false
+  },
+  "rendering_direction": "portable_python_server_rendered_html",
+  "visible_surfaces": [
+    "Outcome",
+    "Learn",
+    "Models",
+    "Relations",
+    "Map",
+    "Receipts",
+    "Advanced Audit"
+  ],
+  "ux_guards": {
+    "single_workspace_nav_source": true,
+    "model_clickthrough_is_durable_url": true,
+    "relation_clickthrough_is_durable_url": true,
+    "model_page_formats_product_object": true,
+    "relation_story_before_taxonomy": true,
+    "graph_is_navigation_summary_not_proof": true,
+    "raw_telemetry_stays_advanced_audit": true,
+    "selected_run_scope_visible": true
+  },
+  "single_home_rules": {
+    "revised_answer": "Outcome",
+    "teacher_reasoning_move": "Learn",
+    "canonical_model_explanation": "Models",
+    "relation_explanation": "Relations",
+    "graph_neighborhood": "Map",
+    "source_custody_and_process_status": "Receipts",
+    "raw_telemetry": "Advanced Audit"
+  },
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_lolla_run": false,
+    "runtime_behavior_changed": false,
+    "archive_mutated": false,
+    "sidecars_written": false,
+    "compiled_spa_bundle_changed": false,
+    "observatory_build_edited": false,
+    "svelte_source_required": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "answer_quality_scoring": false,
+    "approval_or_certification": false,
+    "action_authorized": false,
+    "runtime_integration_authorized": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false
+  },
+  "strongest_signal": "The selected-run workspace now has durable model and relation URLs, so clicking a mental model or relation opens a readable product page rather than a local anchor jump.",
+  "strongest_risk": "The Map surface is still a server-rendered navigation summary, not the final interactive graph experience, so the next UX slice should make map selection and filtering feel intentional without turning edges into proof.",
+  "stop_before": [
+    "browser graph UI interaction",
+    "full corpus graph",
+    "full corpus mental model library",
+    "runtime integration",
+    "default-on Conversation Understanding generation",
+    "source-port work into the old Svelte app",
+    "product readiness claims",
+    "human validation claims"
+  ]
+}

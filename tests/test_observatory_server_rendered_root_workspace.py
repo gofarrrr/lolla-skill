@@ -83,7 +83,11 @@ def test_workspace_model_chips_resolve_to_formatted_model_pages(monkeypatch) -> 
 
     html = serve_result._render_workspace_html("lolla-audit")
 
-    assert 'href="#model-authority-bias"' in html
+    assert 'href="/models/authority-bias?case_id=lolla-audit"' in html
+    assert (
+        'href="/relations/authority-bias__first-principles-thinking__antagonist?case_id=lolla-audit"'
+        in html
+    )
     assert 'id="model-authority-bias"' in html
     assert "Authority Bias" in html
     assert "Information Asymmetry" in html
@@ -94,7 +98,7 @@ def test_workspace_model_chips_resolve_to_formatted_model_pages(monkeypatch) -> 
     assert "Avoid when" in html
     assert "Practice prompts" in html
     assert "canonical_model_markdown" in html
-    assert "/models/authority-bias" not in html
+    assert 'href="#model-authority-bias"' not in html
 
 
 def test_workspace_relation_story_comes_before_taxonomy_and_confidence(monkeypatch) -> None:

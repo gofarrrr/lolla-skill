@@ -134,6 +134,112 @@ _AUDIT_NAV = (
 )
 
 
+_OBSERVATORY_WORKSPACE_SURFACES = (
+    ("outcome", "Outcome"),
+    ("learn", "Learn"),
+    ("models", "Models"),
+    ("relations", "Relations"),
+    ("map", "Map"),
+    ("receipts", "Receipts"),
+)
+
+
+def _observatory_workspace_href(selected_case_id: str, anchor: str | None = None) -> str:
+    href = "/workspace"
+    if selected_case_id:
+        href += "?case_id=" + quote(str(selected_case_id), safe="")
+    if anchor:
+        href += "#" + str(anchor)
+    return href
+
+
+def _observatory_teacher_href(selected_case_id: str, anchor: str | None = None) -> str:
+    href = "/teacher-learning"
+    if selected_case_id:
+        href += "?case_id=" + quote(str(selected_case_id), safe="")
+    if anchor:
+        href += "#" + str(anchor)
+    return href
+
+
+def _observatory_model_href(
+    model_id: str,
+    selected_case_id: str | None = None,
+) -> str:
+    href = "/models/" + quote(str(model_id), safe="")
+    if selected_case_id:
+        href += "?case_id=" + quote(str(selected_case_id), safe="")
+    return href
+
+
+def _observatory_relation_href(
+    relation_id: str,
+    selected_case_id: str | None = None,
+) -> str:
+    href = "/relations/" + quote(str(relation_id), safe="")
+    if selected_case_id:
+        href += "?case_id=" + quote(str(selected_case_id), safe="")
+    return href
+
+
+def _observatory_product_link_href(href: str, selected_case_id: str) -> str:
+    parsed = urlparse(str(href or ""))
+    path = parsed.path
+    if path.startswith("/models/"):
+        model_id = unquote(path.removeprefix("/models/").strip("/"))
+        if model_id:
+            return _observatory_model_href(model_id, selected_case_id)
+    if path.startswith("/relations/"):
+        relation_id = unquote(path.removeprefix("/relations/").strip("/"))
+        if relation_id:
+            return _observatory_relation_href(relation_id, selected_case_id)
+    return str(href or "")
+
+
+def _observatory_nav_links(
+    selected_case_id: str,
+    active_surface: str,
+) -> list[tuple[str, str, bool]]:
+    links = [
+        (
+            _observatory_workspace_href(selected_case_id, anchor),
+            label,
+            anchor == active_surface,
+        )
+        for anchor, label in _OBSERVATORY_WORKSPACE_SURFACES
+    ]
+    links.append(("/audit", "Advanced Audit", active_surface == "audit"))
+    return links
+
+
+def _render_observatory_status_bar(
+    *,
+    status: str | None,
+    selected_case_id: str,
+    active_surface: str,
+    aria_label: str = "Observatory workspace",
+    css_class: str = "",
+) -> str:
+    status_text = status or "partial"
+    classes = "status-bar"
+    if css_class:
+        classes += " " + css_class
+    pieces = [f'<nav class="{classes}" aria-label="{_esc(aria_label)}">']
+    pieces.append('<span class="status-dot" aria-hidden="true"></span>')
+    for index, (href, label, active) in enumerate(
+        _observatory_nav_links(selected_case_id, active_surface)
+    ):
+        if index:
+            pieces.append('<span class="dot-sep">.</span>')
+        cls = ' class="status-link-active"' if active else ""
+        current = ' aria-current="page"' if active else ""
+        pieces.append(f'<a{cls}{current} href="{_esc(href)}">{_esc(label)}</a>')
+    pieces.append('<span class="dot-sep">.</span>')
+    pieces.append(f'<span class="status-ok">{_esc(status_text)}</span>')
+    pieces.append("</nav>")
+    return "".join(pieces)
+
+
 _SHARED_PANEL_CSS = """
 body { font-family: system-ui, sans-serif; max-width: 1100px; margin: 2rem auto; padding: 0 1rem; color: #222; }
 h1 { margin: 0 0 0.5rem; }
@@ -3599,6 +3705,7 @@ def _render_teacher_learning_html(case_id: str | None = None) -> str:
         body = _render_teacher_empty_page(
             "Selected case was not found.",
             f"Selected case <code>{_esc(selected_case_id)}</code> was not found.",
+            selected_case_id=selected_case_id,
         )
         return _render_teacher_scaffold(
             title="Lolla — Learn",
@@ -3616,6 +3723,7 @@ def _render_teacher_learning_html(case_id: str | None = None) -> str:
             "Teacher learning adapter failed.",
             "Teacher learning adapter failed: "
             f"<code>{_esc(type(exc).__name__)}</code>.",
+            selected_case_id=selected_case_id,
         )
         return _render_teacher_scaffold(
             title="Lolla — Learn",
@@ -3626,6 +3734,7 @@ def _render_teacher_learning_html(case_id: str | None = None) -> str:
         body = _render_teacher_empty_page(
             "No Teacher learning packet is available.",
             "No Teacher learning packet is available for this selected case.",
+            selected_case_id=selected_case_id,
             payload=payload,
         )
         return _render_teacher_scaffold(
@@ -3659,14 +3768,21 @@ def _render_teacher_empty_page(
     heading: str,
     message: str,
     *,
+    selected_case_id: str | None = None,
     payload: dict | None = None,
 ) -> str:
-    run_header = _render_teacher_learning_run_header(payload or {})
+    case_id = _teacher_payload_case_id(payload or {}, fallback=selected_case_id or _CASE_ID)
+    run_header = _render_teacher_learning_run_header(
+        payload or {"requested_case_id": case_id}
+    )
     non_claims = _render_teacher_non_claims(payload or {}) if payload else ""
     return "\n".join(
         [
             '<div class="teacher-page">',
-            _render_teacher_status_bar(status="unavailable"),
+            _render_teacher_status_bar(
+                status="unavailable",
+                selected_case_id=case_id,
+            ),
             "<header class=\"teacher-header\">",
             '<p class="teacher-eyebrow">Teacher Learn</p>',
             "<h1>Learn</h1>",
@@ -3692,10 +3808,14 @@ def _render_teacher_learning_payload(payload: dict) -> str:
     model_lookup = {model["model_id"]: model for model in models}
     primary_relation = relations[0] if relations else {}
     outcome_note = tab_payloads["Outcome"].get("single_home_note", "")
+    selected_case_id = _teacher_payload_case_id(payload)
 
     body = [
         '<div class="teacher-page">',
-        _render_teacher_status_bar(status=payload.get("missingness", {}).get("status")),
+        _render_teacher_status_bar(
+            status=payload.get("missingness", {}).get("status"),
+            selected_case_id=selected_case_id,
+        ),
         '<header class="teacher-header">',
         '<p class="teacher-eyebrow">Teacher Learn</p>',
         "<h1>Learn</h1>",
@@ -3730,7 +3850,7 @@ def _render_teacher_learning_payload(payload: dict) -> str:
         )
         body.extend(
             [
-                f'<a class="teacher-card" href="#{_model_detail_anchor(item["model_id"])}">',
+                f'<a class="teacher-card" href="{_esc(_observatory_model_href(item["model_id"], selected_case_id))}">',
                 f'<span class="card-label">{_esc(item.get("role", "model"))}</span>',
                 f"<h3>{_esc(display_name)}</h3>",
                 '<div class="tagrow">',
@@ -3765,7 +3885,7 @@ def _render_teacher_learning_payload(payload: dict) -> str:
     for model in models:
         body.extend(
             [
-                f'<a class="teacher-card" href="#{_model_detail_anchor(model["model_id"])}">',
+                f'<a class="teacher-card" href="{_esc(_observatory_model_href(model["model_id"], selected_case_id))}">',
                 '<span class="card-label">Canonical mental model</span>',
                 f"<h3>{_esc(model['display_name'])}</h3>",
                 f"<p>{_esc(model['one_sentence_meaning'])}</p>",
@@ -3787,7 +3907,7 @@ def _render_teacher_learning_payload(payload: dict) -> str:
     if primary_relation:
         body.extend(
             [
-                f'<a class="teacher-card relation-card" href="#{_relation_detail_anchor(primary_relation["relation_id"])}">',
+                f'<a class="teacher-card relation-card" href="{_esc(_observatory_relation_href(primary_relation["relation_id"], selected_case_id))}">',
                 '<span class="card-label">Relation page</span>',
                 f"<h3>{_esc(_relation_title(primary_relation, model_lookup))}</h3>",
                 f"<p>{_esc(primary_relation['plain_language_story'])}</p>",
@@ -3850,27 +3970,12 @@ def _render_teacher_learning_payload(payload: dict) -> str:
     return "\n".join(body)
 
 
-def _render_teacher_status_bar(*, status: str | None) -> str:
-    status_text = status or "partial"
-    return (
-        '<nav class="status-bar" aria-label="Observatory surfaces">'
-        '<span class="status-dot" aria-hidden="true"></span>'
-        '<a href="/">Outcome</a>'
-        '<span class="dot-sep">·</span>'
-        '<a class="status-link-active" href="/teacher-learning" aria-current="page">Learn</a>'
-        '<span class="dot-sep">·</span>'
-        '<a href="/teacher-learning#models">Models</a>'
-        '<span class="dot-sep">·</span>'
-        '<a href="/teacher-learning#relations">Relations</a>'
-        '<span class="dot-sep">·</span>'
-        '<a href="/teacher-learning#map">Map</a>'
-        '<span class="dot-sep">·</span>'
-        '<a href="/teacher-learning#receipts">Receipts</a>'
-        '<span class="dot-sep">·</span>'
-        '<a href="/audit">Audit</a>'
-        '<span class="dot-sep">·</span>'
-        f'<span class="status-ok">{_esc(status_text)}</span>'
-        "</nav>"
+def _render_teacher_status_bar(*, status: str | None, selected_case_id: str) -> str:
+    return _render_observatory_status_bar(
+        status=status,
+        selected_case_id=selected_case_id,
+        active_surface="learn",
+        aria_label="Observatory surfaces",
     )
 
 
@@ -3885,14 +3990,25 @@ def _render_teacher_section_header(title: str) -> str:
 
 def _render_teacher_learning_run_header(payload: dict) -> str:
     run_ref = payload.get("run_ref") or {}
-    case_id = run_ref.get("case_id") or payload.get("requested_case_id", "")
+    case_id = _teacher_payload_case_id(payload)
     run_id = run_ref.get("run_id") or payload.get("selected_run_id", "")
     bits = [f"<span>Case: <strong>{_esc(case_id or 'unknown')}</strong></span>"]
     if run_id:
         bits.append(f"<span>Run: <code>{_esc(str(run_id)[:32])}</code></span>")
-    bits.append('<a href="/">Outcome</a>')
+    bits.append(f'<a href="{_esc(_observatory_workspace_href(case_id, "outcome"))}">Outcome</a>')
     bits.append('<a href="/audit">Telemetry</a>')
     return f'<div class="run-header">{"".join(bits)}</div>'
+
+
+def _teacher_payload_case_id(payload: dict, *, fallback: str | None = None) -> str:
+    run_ref = payload.get("run_ref") or {}
+    return str(
+        payload.get("requested_case_id")
+        or payload.get("selected_case_id")
+        or run_ref.get("case_id")
+        or fallback
+        or _CASE_ID
+    )
 
 
 def _render_teacher_tabs() -> str:
@@ -4380,6 +4496,241 @@ def _render_workspace_html(case_id: str | None = None) -> str:
     )
 
 
+def _render_workspace_model_detail_html(
+    model_id: str,
+    case_id: str | None = None,
+) -> str:
+    """Render one selected-run mental model page as a durable Observatory route."""
+    selected_case_id = case_id or _CASE_ID
+    payload, fallback_body = _workspace_payload_or_fallback(selected_case_id)
+    if fallback_body is not None:
+        return _render_workspace_scaffold(
+            title="Lolla - Mental Model",
+            body=fallback_body,
+        )
+
+    workspace = payload["workspace"]
+    models = workspace["model_pages"]
+    model = next(
+        (item for item in models if str(item.get("model_id", "")) == model_id),
+        None,
+    )
+    if model is None:
+        body = _render_workspace_detail_missing_page(
+            selected_case_id,
+            active_surface="models",
+            heading="Mental model page not found.",
+            message=(
+                f"No selected-run product page is available for "
+                f"<code>{_esc(model_id)}</code>."
+            ),
+            back_anchor="models",
+        )
+        return _render_workspace_scaffold(
+            title="Lolla - Mental Model Not Found",
+            body=body,
+        )
+
+    display_name = str(model.get("display_name") or model_id)
+    body = _render_workspace_detail_shell(
+        selected_case_id,
+        active_surface="models",
+        status=workspace.get("missingness", {}).get("status"),
+        eyebrow="Mental Model",
+        title=display_name,
+        lede=(
+            "A selected-run mental model page. It formats the product-safe "
+            "model object for reading; raw canonical Markdown and curation "
+            "internals stay behind the custody layer."
+        ),
+        back_href=_observatory_workspace_href(selected_case_id, "models"),
+        back_label="All models in this run",
+        content=_render_workspace_model_page(
+            model,
+            selected_case_id=selected_case_id,
+            link_to_self=False,
+        ),
+    )
+    return _render_workspace_scaffold(
+        title=f"Lolla - {display_name}",
+        body=body,
+    )
+
+
+def _render_workspace_relation_detail_html(
+    relation_id: str,
+    case_id: str | None = None,
+) -> str:
+    """Render one selected-run relation page as a durable Observatory route."""
+    selected_case_id = case_id or _CASE_ID
+    payload, fallback_body = _workspace_payload_or_fallback(selected_case_id)
+    if fallback_body is not None:
+        return _render_workspace_scaffold(
+            title="Lolla - Relation",
+            body=fallback_body,
+        )
+
+    workspace = payload["workspace"]
+    models = workspace["model_pages"]
+    relations = workspace["relation_pages"]
+    model_lookup = {model["model_id"]: model for model in models}
+    relation = next(
+        (item for item in relations if str(item.get("relation_id", "")) == relation_id),
+        None,
+    )
+    if relation is None:
+        body = _render_workspace_detail_missing_page(
+            selected_case_id,
+            active_surface="relations",
+            heading="Relation page not found.",
+            message=(
+                f"No selected-run product relation is available for "
+                f"<code>{_esc(relation_id)}</code>."
+            ),
+            back_anchor="relations",
+        )
+        return _render_workspace_scaffold(
+            title="Lolla - Relation Not Found",
+            body=body,
+        )
+
+    relation_title = _relation_title(relation, model_lookup)
+    body = _render_workspace_detail_shell(
+        selected_case_id,
+        active_surface="relations",
+        status=workspace.get("missingness", {}).get("status"),
+        eyebrow="Relation",
+        title=relation_title,
+        lede=(
+            "A selected-run relation page. The story comes first; taxonomy, "
+            "confidence, custody, missingness, and non-claims follow it."
+        ),
+        back_href=_observatory_workspace_href(selected_case_id, "relations"),
+        back_label="All relations in this run",
+        content=_render_workspace_relation_page(
+            relation,
+            model_lookup,
+            selected_case_id=selected_case_id,
+            link_to_self=False,
+        ),
+    )
+    return _render_workspace_scaffold(
+        title=f"Lolla - {relation_title}",
+        body=body,
+    )
+
+
+def _workspace_payload_or_fallback(
+    selected_case_id: str,
+) -> tuple[dict | None, str | None]:
+    _reload_result_if_changed()
+    result, result_path, is_current = _load_case_result(selected_case_id)
+    if result is None:
+        return None, _render_workspace_empty_page(
+            selected_case_id,
+            heading="Selected run was not found.",
+            message=(
+                f"Selected case <code>{_esc(selected_case_id)}</code> was not found."
+            ),
+        )
+    try:
+        payload = _build_product_workspace_response(
+            selected_case_id,
+            result,
+            result_path,
+            is_current=is_current,
+        )
+    except Exception as exc:
+        return None, _render_workspace_empty_page(
+            selected_case_id,
+            heading="Workspace adapter failed.",
+            message=(
+                "Workspace adapter failed: "
+                f"<code>{_esc(type(exc).__name__)}</code>."
+            ),
+        )
+    if not payload.get("available"):
+        return None, _render_workspace_unavailable_page(payload, selected_case_id)
+    return payload, None
+
+
+def _render_workspace_detail_shell(
+    selected_case_id: str,
+    *,
+    active_surface: str,
+    status: str | None,
+    eyebrow: str,
+    title: str,
+    lede: str,
+    back_href: str,
+    back_label: str,
+    content: str,
+) -> str:
+    return "\n".join(
+        [
+            '<div class="workspace-page">',
+            _render_observatory_status_bar(
+                status=status,
+                selected_case_id=selected_case_id,
+                active_surface=active_surface,
+                css_class="workspace-statusbar",
+            ),
+            '<div class="workspace-layout">',
+            _render_workspace_run_picker(selected_case_id),
+            '<main class="workspace-main">',
+            '<header class="workspace-hero">',
+            f'<p class="teacher-eyebrow">{_esc(eyebrow)}</p>',
+            f"<h1>{_esc(title)}</h1>",
+            f'<p class="lede">{_esc(lede)}</p>',
+            '<div class="workspace-chip-row">',
+            f'<a class="workspace-chip workspace-chip--teal" href="{_esc(back_href)}">{_esc(back_label)}</a>',
+            f'<a class="workspace-chip" href="{_esc(_observatory_workspace_href(selected_case_id, "outcome"))}">Selected run workspace</a>',
+            "</div>",
+            "</header>",
+            content,
+            "</main>",
+            "</div>",
+            "</div>",
+        ]
+    )
+
+
+def _render_workspace_detail_missing_page(
+    selected_case_id: str,
+    *,
+    active_surface: str,
+    heading: str,
+    message: str,
+    back_anchor: str,
+) -> str:
+    back_label = back_anchor.replace("-", " ").title()
+    return "\n".join(
+        [
+            '<div class="workspace-page">',
+            _render_observatory_status_bar(
+                status="missing",
+                selected_case_id=selected_case_id,
+                active_surface=active_surface,
+                css_class="workspace-statusbar",
+            ),
+            '<div class="workspace-layout">',
+            _render_workspace_run_picker(selected_case_id),
+            '<main class="workspace-main">',
+            '<header class="workspace-hero workspace-fallback">',
+            '<p class="teacher-eyebrow">Observatory</p>',
+            f"<h1>{_esc(heading)}</h1>",
+            f'<p class="lede">{message}</p>',
+            '<div class="workspace-chip-row">',
+            f'<a class="workspace-chip workspace-chip--teal" href="{_esc(_observatory_workspace_href(selected_case_id, back_anchor))}">Back to {_esc(back_label)}</a>',
+            "</div>",
+            "</header>",
+            "</main>",
+            "</div>",
+            "</div>",
+        ]
+    )
+
+
 def _render_workspace_scaffold(*, title: str, body: str) -> str:
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
@@ -4475,12 +4826,12 @@ def _render_workspace_payload(payload: dict, selected_case_id: str) -> str:
             _render_workspace_run_picker(selected_case_id),
             '<main class="workspace-main">',
             _render_workspace_hero(selected_run, workspace),
-            _render_workspace_outcome(outcome),
-            _render_workspace_learn(lesson),
-            _render_workspace_models(models),
-            _render_workspace_relations(relations, model_lookup),
-            _render_workspace_map(graph, model_lookup),
-            _render_workspace_receipts(receipts, advanced, workspace),
+            _render_workspace_outcome(outcome, selected_case_id),
+            _render_workspace_learn(lesson, selected_case_id),
+            _render_workspace_models(models, selected_case_id),
+            _render_workspace_relations(relations, model_lookup, selected_case_id),
+            _render_workspace_map(graph, model_lookup, selected_case_id),
+            _render_workspace_receipts(receipts, advanced, workspace, selected_case_id),
             "</main>",
             "</div>",
             "</div>",
@@ -4489,45 +4840,16 @@ def _render_workspace_payload(payload: dict, selected_case_id: str) -> str:
 
 
 def _render_workspace_status_bar(status: str | None, selected_case_id: str) -> str:
-    status_text = status or "partial"
-    links = [
-        (_workspace_href(selected_case_id, "outcome"), "Outcome", True),
-        (_workspace_href(selected_case_id, "learn"), "Learn", False),
-        (_workspace_href(selected_case_id, "models"), "Models", False),
-        (_workspace_href(selected_case_id, "relations"), "Relations", False),
-        (_workspace_href(selected_case_id, "map"), "Map", False),
-        (_workspace_href(selected_case_id, "receipts"), "Receipts", False),
-        ("/audit", "Advanced Audit", False),
-    ]
-    pieces = ['<nav class="status-bar workspace-statusbar" aria-label="Observatory workspace">']
-    pieces.append('<span class="status-dot" aria-hidden="true"></span>')
-    for index, (href, label, active) in enumerate(links):
-        if index:
-            pieces.append('<span class="dot-sep">.</span>')
-        cls = ' class="status-link-active"' if active else ""
-        current = ' aria-current="page"' if active else ""
-        pieces.append(f'<a{cls}{current} href="{_esc(href)}">{_esc(label)}</a>')
-    pieces.append('<span class="dot-sep">.</span>')
-    pieces.append(f'<span class="status-ok">{_esc(status_text)}</span>')
-    pieces.append("</nav>")
-    return "".join(pieces)
+    return _render_observatory_status_bar(
+        status=status,
+        selected_case_id=selected_case_id,
+        active_surface="outcome",
+        css_class="workspace-statusbar",
+    )
 
 
 def _workspace_href(selected_case_id: str, anchor: str | None = None) -> str:
-    href = "/workspace"
-    if selected_case_id:
-        href += "?case_id=" + quote(selected_case_id, safe="")
-    if anchor:
-        href += "#" + anchor
-    return href
-
-
-def _workspace_local_href(href: str) -> str:
-    if href.startswith("/models/"):
-        return "#" + _model_detail_anchor(href.rstrip("/").rsplit("/", 1)[-1])
-    if href.startswith("/relations/"):
-        return "#" + _relation_detail_anchor(href.rstrip("/").rsplit("/", 1)[-1])
-    return href
+    return _observatory_workspace_href(selected_case_id, anchor)
 
 
 def _render_workspace_run_picker(selected_case_id: str) -> str:
@@ -4613,7 +4935,7 @@ def _workspace_stat(label: str, value: str) -> str:
     )
 
 
-def _render_workspace_outcome(outcome: dict) -> str:
+def _render_workspace_outcome(outcome: dict, selected_case_id: str) -> str:
     model_chips = outcome.get("model_chips") or []
     return "\n".join(
         [
@@ -4624,7 +4946,7 @@ def _render_workspace_outcome(outcome: dict) -> str:
             f'<h3>{_esc(outcome.get("answer_headline", ""))}</h3>',
             f'<p>{_esc(outcome.get("revised_answer_summary", ""))}</p>',
             f'<p><strong>Strongest pressure:</strong> {_esc(outcome.get("strongest_pressure", ""))}</p>',
-            _render_workspace_chips(model_chips),
+            _render_workspace_chips(model_chips, selected_case_id=selected_case_id),
             _render_missingness(outcome.get("missingness") or {}),
             "</article>",
             "</section>",
@@ -4632,7 +4954,7 @@ def _render_workspace_outcome(outcome: dict) -> str:
     )
 
 
-def _render_workspace_learn(lesson: dict) -> str:
+def _render_workspace_learn(lesson: dict, selected_case_id: str) -> str:
     practice = lesson.get("practice_rep") or {}
     return "\n".join(
         [
@@ -4654,9 +4976,16 @@ def _render_workspace_learn(lesson: dict) -> str:
             "</div>",
             _render_workspace_list("Do not overlearn", lesson.get("do_not_overlearn") or []),
             '<p class="workspace-kicker">Model links</p>',
-            _render_workspace_chips(lesson.get("model_links") or []),
+            _render_workspace_chips(
+                lesson.get("model_links") or [],
+                selected_case_id=selected_case_id,
+            ),
             '<p class="workspace-kicker">Relation links</p>',
-            _render_workspace_chips(lesson.get("relation_links") or [], kind="relation"),
+            _render_workspace_chips(
+                lesson.get("relation_links") or [],
+                selected_case_id=selected_case_id,
+                kind="relation",
+            ),
             _render_missingness(lesson.get("missingness") or {}),
             _render_teacher_non_claims(lesson),
             "</article>",
@@ -4674,11 +5003,17 @@ def _workspace_flow_step(label: str, value: str) -> str:
     )
 
 
-def _render_workspace_models(models: list[dict]) -> str:
+def _render_workspace_models(models: list[dict], selected_case_id: str) -> str:
     if not models:
         content = _empty_inline("No product-safe mental model pages are available.")
     else:
-        content = "\n".join(_render_workspace_model_page(model) for model in models)
+        content = "\n".join(
+            _render_workspace_model_page(
+                model,
+                selected_case_id=selected_case_id,
+            )
+            for model in models
+        )
     return "\n".join(
         [
             '<section id="models" class="workspace-section">',
@@ -4689,8 +5024,22 @@ def _render_workspace_models(models: list[dict]) -> str:
     )
 
 
-def _render_workspace_model_page(model: dict) -> str:
+def _render_workspace_model_page(
+    model: dict,
+    *,
+    selected_case_id: str | None = None,
+    link_to_self: bool = True,
+) -> str:
     model_id = str(model.get("model_id", ""))
+    action_chips = [
+        f'<span class="workspace-chip workspace-chip--teal">{_esc(model.get("curation_status", ""))}</span>',
+        f'<span class="workspace-chip">{_esc(model_id)}</span>',
+    ]
+    if selected_case_id and link_to_self:
+        action_chips.append(
+            f'<a class="workspace-chip" href="{_esc(_observatory_model_href(model_id, selected_case_id))}">'
+            "Open standalone page</a>"
+        )
     return "\n".join(
         [
             f'<article id="{_model_detail_anchor(model_id)}" class="workspace-card workspace-model-page">',
@@ -4727,8 +5076,7 @@ def _render_workspace_model_page(model: dict) -> str:
             ),
             "</div>",
             '<div class="workspace-chip-row">',
-            f'<span class="workspace-chip workspace-chip--teal">{_esc(model.get("curation_status", ""))}</span>',
-            f'<span class="workspace-chip">{_esc(model_id)}</span>',
+            *action_chips,
             "</div>",
             '<details class="teacher-panel">',
             "<summary>Source custody</summary>",
@@ -4744,12 +5092,17 @@ def _render_workspace_model_page(model: dict) -> str:
 def _render_workspace_relations(
     relations: list[dict],
     model_lookup: dict[str, dict],
+    selected_case_id: str,
 ) -> str:
     if not relations:
         content = _empty_inline("No product-safe relation pages are available.")
     else:
         content = "\n".join(
-            _render_workspace_relation_page(relation, model_lookup)
+            _render_workspace_relation_page(
+                relation,
+                model_lookup,
+                selected_case_id=selected_case_id,
+            )
             for relation in relations
         )
     return "\n".join(
@@ -4765,8 +5118,22 @@ def _render_workspace_relations(
 def _render_workspace_relation_page(
     relation: dict,
     model_lookup: dict[str, dict],
+    *,
+    selected_case_id: str | None = None,
+    link_to_self: bool = True,
 ) -> str:
     relation_id = str(relation.get("relation_id", ""))
+    taxonomy_chips = [
+        f'<span class="workspace-chip workspace-chip--teal">{_esc(relation.get("relation_type", ""))}</span>',
+        f'<span class="workspace-chip workspace-chip--amber">confidence: {_esc(relation.get("confidence", ""))}</span>',
+        f'<span class="workspace-chip">{_esc(relation.get("curation_status", ""))}</span>',
+        '<span class="workspace-chip">confidence is not certification</span>',
+    ]
+    if selected_case_id and link_to_self:
+        taxonomy_chips.append(
+            f'<a class="workspace-chip" href="{_esc(_observatory_relation_href(relation_id, selected_case_id))}">'
+            "Open standalone page</a>"
+        )
     return "\n".join(
         [
             f'<article id="{_relation_detail_anchor(relation_id)}" class="workspace-card workspace-relation-page">',
@@ -4788,14 +5155,14 @@ def _render_workspace_relation_page(
             f'<p><strong>Practice prompt:</strong> {_esc(relation.get("practice_prompt", ""))}</p>',
             "</div>",
             '<p class="workspace-kicker">Model links</p>',
-            _render_workspace_chips(relation.get("model_links") or []),
+            _render_workspace_chips(
+                relation.get("model_links") or [],
+                selected_case_id=selected_case_id or "",
+            ),
             '<section class="detail-section">',
             "<h3>Taxonomy</h3>",
             '<div class="workspace-chip-row">',
-            f'<span class="workspace-chip workspace-chip--teal">{_esc(relation.get("relation_type", ""))}</span>',
-            f'<span class="workspace-chip workspace-chip--amber">confidence: {_esc(relation.get("confidence", ""))}</span>',
-            f'<span class="workspace-chip">{_esc(relation.get("curation_status", ""))}</span>',
-            '<span class="workspace-chip">confidence is not certification</span>',
+            *taxonomy_chips,
             "</div>",
             "</section>",
             '<details class="teacher-panel">',
@@ -4809,7 +5176,11 @@ def _render_workspace_relation_page(
     )
 
 
-def _render_workspace_map(graph: dict, model_lookup: dict[str, dict]) -> str:
+def _render_workspace_map(
+    graph: dict,
+    model_lookup: dict[str, dict],
+    selected_case_id: str,
+) -> str:
     nodes = graph.get("nodes") or []
     edges = graph.get("edges") or []
     node_items = []
@@ -4817,7 +5188,7 @@ def _render_workspace_map(graph: dict, model_lookup: dict[str, dict]) -> str:
         model_id = str(node.get("node_id") or "")
         label = node.get("label") or _model_display_name(model_id, model_lookup, model_id)
         node_items.append(
-            f'<a class="workspace-node" href="#{_model_detail_anchor(model_id)}">'
+            f'<a class="workspace-node" href="{_esc(_observatory_model_href(model_id, selected_case_id))}">'
             f'<strong>{_esc(label)}</strong><br>'
             f'<span class="workspace-meta">{_esc(node.get("node_type", "model"))}</span></a>'
         )
@@ -4827,7 +5198,7 @@ def _render_workspace_map(graph: dict, model_lookup: dict[str, dict]) -> str:
         relation_title = edge.get("navigation_label") or relation_id
         edge_items.append(
             '<li><a class="workspace-edge" '
-            f'href="#{_relation_detail_anchor(relation_id)}">'
+            f'href="{_esc(_observatory_relation_href(relation_id, selected_case_id))}">'
             f'<strong>{_esc(relation_title)}</strong><br>'
             f'<span class="workspace-meta">{_esc(edge.get("source_node_id", ""))} '
             f'to {_esc(edge.get("target_node_id", ""))} / '
@@ -4870,6 +5241,7 @@ def _render_workspace_receipts(
     receipts: dict,
     advanced: dict,
     workspace: dict,
+    selected_case_id: str,
 ) -> str:
     advanced_links = receipts.get("advanced_links") or advanced.get("advanced_links") or []
     artifact_statuses = advanced.get("artifact_statuses") or []
@@ -4893,7 +5265,7 @@ def _render_workspace_receipts(
             '<p class="workspace-kicker">Visible non-claims</p>',
             _render_workspace_list("", receipts.get("visible_non_claims") or []),
             '<p class="workspace-kicker">Advanced links</p>',
-            _render_workspace_chips(advanced_links),
+            _render_workspace_chips(advanced_links, selected_case_id=selected_case_id),
             '<details class="teacher-panel" open>',
             "<summary>Source custody</summary>",
             _render_source_refs(receipts.get("source_refs") or []),
@@ -4928,13 +5300,21 @@ def _workspace_status_pill(label: str, value: str) -> str:
     )
 
 
-def _render_workspace_chips(links: list[dict], *, kind: str = "model") -> str:
+def _render_workspace_chips(
+    links: list[dict],
+    *,
+    selected_case_id: str,
+    kind: str = "model",
+) -> str:
     if not links:
         return ""
     css = "workspace-chip workspace-chip--teal" if kind == "model" else "workspace-chip"
     chips = []
     for link in links:
-        href = _workspace_local_href(str(link.get("href") or ""))
+        href = _observatory_product_link_href(
+            str(link.get("href") or ""),
+            selected_case_id,
+        )
         chips.append(
             f'<a class="{css}" href="{_esc(href)}">{_esc(link.get("label") or href)}</a>'
         )
@@ -7843,6 +8223,30 @@ class ResultHandler(SimpleHTTPRequestHandler):
             query = parse_qs(parsed.query)
             selected_case_id = (query.get("case_id") or [""])[0] or _CASE_ID
             self._html_response(_render_teacher_learning_html(selected_case_id))
+            return
+
+        if path.startswith("/models/"):
+            query = parse_qs(parsed.query)
+            selected_case_id = (query.get("case_id") or [""])[0] or _CASE_ID
+            model_id = unquote(path.removeprefix("/models/").strip("/"))
+            if not model_id:
+                self._error_response(404, "Model id is required")
+                return
+            self._html_response(
+                _render_workspace_model_detail_html(model_id, selected_case_id)
+            )
+            return
+
+        if path.startswith("/relations/"):
+            query = parse_qs(parsed.query)
+            selected_case_id = (query.get("case_id") or [""])[0] or _CASE_ID
+            relation_id = unquote(path.removeprefix("/relations/").strip("/"))
+            if not relation_id:
+                self._error_response(404, "Relation id is required")
+                return
+            self._html_response(
+                _render_workspace_relation_detail_html(relation_id, selected_case_id)
+            )
             return
 
         if path in ("/", "/workspace"):
