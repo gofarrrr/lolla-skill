@@ -37,6 +37,7 @@ def test_interactive_graph_renders_observatory_native_workbench() -> None:
     assert "Search model, role, or id" in html
     assert "data-graph-results" in html
     assert "data-graph-selection" in html
+    assert "map-edge-hitbox" in html
     assert "lolla-teacher-graph-interaction" in html
 
 
@@ -69,6 +70,8 @@ def test_interactive_graph_click_targets_resolve_to_existing_drawers() -> None:
     assert f'id="{relation_anchor}"' in html
     assert "Open model detail" in html
     assert "Open relation detail" in html
+    assert "#map" in html
+    assert "dataset.returnHash" in html
 
 
 def test_interactive_graph_keeps_graph_as_navigation_not_proof() -> None:

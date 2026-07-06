@@ -629,6 +629,11 @@ a.teacher-card:hover {
   stroke: rgba(186, 140, 255, .72);
   stroke-width: 2;
 }
+.map-edge-hitbox {
+  stroke: transparent;
+  stroke-width: 22;
+  pointer-events: stroke;
+}
 .map-label {
   fill: var(--purple);
   font-family: var(--font-mono);
@@ -940,6 +945,31 @@ _TEACHER_GRAPH_SCRIPT = """
     }
   };
 
+  const setDrawerReturnForLink = (link) => {
+    const href = link && link.getAttribute("href") || "";
+    if (!href.startsWith("#model-") && !href.startsWith("#relation-")) return;
+    const drawer = document.getElementById(href.slice(1));
+    if (!drawer || !drawer.classList.contains("teacher-detail")) return;
+    const returnHash = link.closest("[data-teacher-graph]")
+      ? "#map"
+      : href.startsWith("#relation-")
+        ? "#relations"
+        : "#models";
+    drawer.dataset.returnHash = returnHash;
+  };
+
+  const closeDrawerToReturnHash = (event) => {
+    const closeLink = event.target && event.target.closest
+      ? event.target.closest(".drawer-backdrop, .drawer-close")
+      : null;
+    if (!closeLink) return;
+    const drawer = closeLink.closest(".teacher-detail");
+    const returnHash = drawer && drawer.dataset.returnHash;
+    if (!returnHash) return;
+    event.preventDefault();
+    window.location.hash = returnHash;
+  };
+
   const initGraph = (root) => {
     const nodes = Array.from(root.querySelectorAll("[data-graph-node]"));
     const edges = Array.from(root.querySelectorAll("[data-graph-edge]"));
@@ -1019,6 +1049,14 @@ _TEACHER_GRAPH_SCRIPT = """
   for (const root of document.querySelectorAll("[data-teacher-graph]")) {
     initGraph(root);
   }
+
+  document.addEventListener("click", (event) => {
+    const link = event.target && event.target.closest
+      ? event.target.closest('a[href^="#model-"], a[href^="#relation-"]')
+      : null;
+    if (link) setDrawerReturnForLink(link);
+    closeDrawerToReturnHash(event);
+  });
 })();
 </script>
 """
@@ -3506,6 +3544,8 @@ def _render_teacher_graph(
             f'data-status="{_esc(edge.get("missingness_status", ""))}" '
             f'data-source-id="{_esc(source_id)}" '
             f'data-target-id="{_esc(target_id)}">'
+            f'<line class="map-edge-hitbox" x1="{source[0]}" y1="{source[1]}" '
+            f'x2="{target[0]}" y2="{target[1]}"></line>'
             f'<line class="map-edge" x1="{source[0]}" y1="{source[1]}" '
             f'x2="{target[0]}" y2="{target[1]}"></line>'
             f'<text class="map-label" x="{mid_x}" y="{mid_y}" text-anchor="middle">'
