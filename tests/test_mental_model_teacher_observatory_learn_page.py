@@ -108,10 +108,11 @@ def test_teacher_learning_route_returns_html(monkeypatch) -> None:
             html = response.read().decode("utf-8")
 
     assert response.status == 200
-    assert "<title>Lolla — Learn</title>" in html
-    assert "<h1>Learn</h1>" in html
+    assert response.geturl().endswith("/workspace?case_id=lolla-audit#learn")
+    assert "<title>Lolla - Observatory Workspace</title>" in html
+    assert "<h1>Selected Run Workspace</h1>" in html
     assert "Authority Bias" in html
-    assert "Teacher reasoning move lives in Learn" in html
+    assert "What reasoning move can I practice?" in html
 
 
 def test_root_injection_adds_learn_and_telemetry_affordances() -> None:
@@ -122,14 +123,15 @@ def test_root_injection_adds_learn_and_telemetry_affordances() -> None:
         "utf-8"
     )
 
-    assert 'href="/teacher-learning"' in rendered
+    assert 'href="/workspace#learn"' in rendered
     assert 'class="learn-fab"' in rendered
     assert 'class="telemetry-fab"' in rendered
     assert "Case Surfaces" in rendered
-    assert 'href="/teacher-learning#models"' in rendered
-    assert 'href="/teacher-learning#relations"' in rendered
-    assert 'href="/teacher-learning#map"' in rendered
-    assert 'href="/teacher-learning#receipts"' in rendered
+    assert 'href="/workspace#models"' in rendered
+    assert 'href="/workspace#relations"' in rendered
+    assert 'href="/workspace#map"' in rendered
+    assert 'href="/workspace#receipts"' in rendered
+    assert 'href="/teacher-learning' not in rendered
     assert rendered_again.count('class="learn-fab"') == 1
     assert rendered_again.count('class="telemetry-fab"') == 1
 

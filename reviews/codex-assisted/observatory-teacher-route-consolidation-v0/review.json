@@ -1,0 +1,69 @@
+{
+  "schema_version": "codex_assisted_review.v0",
+  "review_id": "observatory-teacher-route-consolidation-v0",
+  "status": "complete",
+  "date": "2026-07-06",
+  "decision_gate": "proceed_to_observatory_workspace_information_hierarchy_review",
+  "browser_grounded": true,
+  "implemented": {
+    "teacher_learning_route_redirects_to_workspace_learn": true,
+    "audit_nav_uses_workspace_learn": true,
+    "injected_learn_fab_uses_workspace_learn": true,
+    "injected_case_surface_links_use_workspace_anchors": true,
+    "teacher_learning_packet_api_preserved": true,
+    "compiled_spa_bundle_changed": false
+  },
+  "route_contract": {
+    "primary_visible_learn_route": "/workspace?case_id=<id>#learn",
+    "legacy_compatibility_route": "/teacher-learning",
+    "legacy_route_behavior": "redirect",
+    "packet_api_route": "/api/case/<id>/teacher-learning",
+    "single_visible_teacher_product_path": true
+  },
+  "strongest_useful_signal": "Observatory no longer emits /teacher-learning links for the primary Learn, Models, Relations, Map, or Receipts surfaces, so users are directed through one selected-run workspace flow.",
+  "strongest_unresolved_risk": "The legacy Teacher renderer still exists as a code-level fixture even though the HTTP route no longer exposes it as a product surface.",
+  "recommended_next_pr": {
+    "title": "Review Observatory workspace information hierarchy",
+    "gate": "proceed_to_observatory_workspace_information_hierarchy_review",
+    "scope": [
+      "audit remaining workspace overload",
+      "keep receipts and advanced telemetry secondary",
+      "clarify map empty states when filters intersect",
+      "consider migrating legacy Teacher renderer tests",
+      "preserve selected-run workspace as the single visible product path"
+    ],
+    "stop_before": [
+      "full_corpus_library",
+      "full_corpus_graph",
+      "runtime_integration",
+      "default_on_generation",
+      "provider_or_model_api_calls",
+      "product_readiness_claim",
+      "human_validation_claim",
+      "answer_or_advice_correctness_claim",
+      "action_authorization"
+    ]
+  },
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_lolla_run": false,
+    "wires_runtime_behavior": false,
+    "mutates_archives": false,
+    "writes_sidecars": false,
+    "compiled_spa_bundle_changed": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "relation_confidence_is_certification": false
+  }
+}

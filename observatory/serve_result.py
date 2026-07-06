@@ -11,10 +11,11 @@ SPA source: the bundle in ``observatory/build/`` is compiled output from
 ``Lolla-system-b/observatory/svelte-app`` (separate repo). To change SPA
 behaviour, edit the Svelte source there, run ``npm run build``, and copy
 ``build/`` over the skill's ``observatory/build/``. The root workspace,
-``/teacher-learning``, ``/audit/*``, and ``/usage`` panels rendered from this
-Python file are independent of the SPA bundle and stay portable when
-``observatory/build/`` is empty. The legacy compiled app remains available at
-``/index.html`` when the bundle is present.
+``/workspace``, ``/audit/*``, and ``/usage`` panels rendered from this Python
+file are independent of the SPA bundle and stay portable when
+``observatory/build/`` is empty. ``/teacher-learning`` is a compatibility
+redirect into the workspace Learn surface. The legacy compiled app remains
+available at ``/index.html`` when the bundle is present.
 """
 from __future__ import annotations
 
@@ -113,7 +114,7 @@ def _fmt_score(value) -> str:
 # is the URL fragment (used in href + active-state matching); the second is the
 # label the operator sees.
 _AUDIT_NAV = (
-    ("/teacher-learning", "Learn"),
+    ("/workspace#learn", "Learn"),
     ("/audit", "Audit Index"),
     ("/audit/extraction", "Extraction"),
     ("/audit/memo", "Memo"),
@@ -154,12 +155,16 @@ def _observatory_workspace_href(selected_case_id: str, anchor: str | None = None
 
 
 def _observatory_teacher_href(selected_case_id: str, anchor: str | None = None) -> str:
-    href = "/teacher-learning"
-    if selected_case_id:
-        href += "?case_id=" + quote(str(selected_case_id), safe="")
-    if anchor:
-        href += "#" + str(anchor)
-    return href
+    anchor_map = {
+        None: "learn",
+        "": "learn",
+        "lesson": "learn",
+        "model-stack": "learn",
+        "practice": "learn",
+        "nonclaims": "receipts",
+    }
+    workspace_anchor = anchor_map.get(anchor, str(anchor))
+    return _observatory_workspace_href(selected_case_id, workspace_anchor)
 
 
 def _observatory_model_href(
@@ -1783,8 +1788,8 @@ _TELEMETRY_FAB_HTML = (
     'aria-label="View run telemetry">TELEMETRY <span aria-hidden="true">&rarr;</span></a>'
 )
 _LEARN_FAB_HTML = (
-    '<a href="/teacher-learning" class="learn-fab" '
-    'aria-label="View Teacher learning page">LEARN <span aria-hidden="true">&rarr;</span></a>'
+    '<a href="/workspace#learn" class="learn-fab" '
+    'aria-label="View selected-run Learn surface">LEARN <span aria-hidden="true">&rarr;</span></a>'
 )
 
 _TELEMETRY_FAB_STYLE = """
@@ -2545,19 +2550,19 @@ _SELECTED_RUN_CUSTODY_PANEL_SCRIPT = """
         <a class="lolla-surface-link active" href="/" aria-current="page">
           <span>Outcome</span><small>answer</small>
         </a>
-        <a class="lolla-surface-link" href="/teacher-learning#lesson">
+        <a class="lolla-surface-link" href="/workspace#learn">
           <span>Learn</span><small>reasoning move</small>
         </a>
-        <a class="lolla-surface-link" href="/teacher-learning#models">
+        <a class="lolla-surface-link" href="/workspace#models">
           <span>Models</span><small>mental models</small>
         </a>
-        <a class="lolla-surface-link" href="/teacher-learning#relations">
+        <a class="lolla-surface-link" href="/workspace#relations">
           <span>Relations</span><small>model pair</small>
         </a>
-        <a class="lolla-surface-link" href="/teacher-learning#map">
+        <a class="lolla-surface-link" href="/workspace#map">
           <span>Map</span><small>small graph</small>
         </a>
-        <a class="lolla-surface-link" href="/teacher-learning#receipts">
+        <a class="lolla-surface-link" href="/workspace#receipts">
           <span>Receipts</span><small>custody</small>
         </a>
         <a class="lolla-surface-link audit" href="/audit">
@@ -8809,7 +8814,9 @@ class ResultHandler(SimpleHTTPRequestHandler):
         if path == "/teacher-learning":
             query = parse_qs(parsed.query)
             selected_case_id = (query.get("case_id") or [""])[0] or _CASE_ID
-            self._html_response(_render_teacher_learning_html(selected_case_id))
+            self._redirect_response(
+                _observatory_workspace_href(selected_case_id, "learn")
+            )
             return
 
         if path.startswith("/models/"):
@@ -8932,6 +8939,20 @@ class ResultHandler(SimpleHTTPRequestHandler):
     def _html_response(self, body_str: str, status: int = 200):
         body = body_str.encode("utf-8")
         self.send_response(status)
+        self.send_header("Content-Type", "text/html; charset=utf-8")
+        self.send_header("Content-Length", str(len(body)))
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.end_headers()
+        self.wfile.write(body)
+
+    def _redirect_response(self, location: str, status: int = 302):
+        body = (
+            "<!doctype html><html><body>"
+            f'<a href="{_esc(location)}">Continue to Observatory workspace</a>'
+            "</body></html>"
+        ).encode("utf-8")
+        self.send_response(status)
+        self.send_header("Location", location)
         self.send_header("Content-Type", "text/html; charset=utf-8")
         self.send_header("Content-Length", str(len(body)))
         self.send_header("Access-Control-Allow-Origin", "*")
@@ -9064,10 +9085,10 @@ def main():
 
     _CASE_NAME = args.name if args.name else _derive_case_name(_RESULT)
 
-    # SPA bundle is optional (skill portability): /, /teacher-learning,
-    # /audit/*, and /usage are server-rendered HTML and work without it. Only
-    # warn when the bundle is absent so the operator knows the legacy compiled
-    # app at /index.html will not render.
+    # SPA bundle is optional (skill portability): /, /workspace, /audit/*,
+    # and /usage are server-rendered HTML and work without it. /teacher-learning
+    # redirects into the workspace. Only warn when the bundle is absent so the
+    # operator knows the legacy compiled app at /index.html will not render.
     if not STATIC_DIR.is_dir():
         print(
             f"Note: Observatory SPA bundle not found at {STATIC_DIR} — "
