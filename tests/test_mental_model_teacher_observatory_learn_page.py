@@ -125,8 +125,28 @@ def test_root_injection_adds_learn_and_telemetry_affordances() -> None:
     assert 'href="/teacher-learning"' in rendered
     assert 'class="learn-fab"' in rendered
     assert 'class="telemetry-fab"' in rendered
+    assert "Case Surfaces" in rendered
+    assert 'href="/teacher-learning#models"' in rendered
+    assert 'href="/teacher-learning#relations"' in rendered
+    assert 'href="/teacher-learning#map"' in rendered
+    assert 'href="/teacher-learning#receipts"' in rendered
     assert rendered_again.count('class="learn-fab"') == 1
     assert rendered_again.count('class="telemetry-fab"') == 1
+
+
+def test_learn_status_bar_uses_shared_workspace_navigation(monkeypatch) -> None:
+    _install_launch_case(monkeypatch)
+
+    html = serve_result._render_teacher_learning_html("lolla-audit")
+
+    assert 'aria-label="Observatory surfaces"' in html
+    assert 'href="/">Outcome</a>' in html
+    assert 'aria-current="page">Learn</a>' in html
+    assert 'href="/teacher-learning#models">Models</a>' in html
+    assert 'href="/teacher-learning#relations">Relations</a>' in html
+    assert 'href="/teacher-learning#map">Map</a>' in html
+    assert 'href="/teacher-learning#receipts">Receipts</a>' in html
+    assert 'href="/audit">Audit</a>' in html
 
 
 def test_learn_page_docs_review_and_readme_preserve_boundaries() -> None:

@@ -250,6 +250,7 @@ code {
   top: 0;
   z-index: 20;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 8px;
   margin: -12px 0 14px;
@@ -263,6 +264,9 @@ code {
 }
 .status-bar a { color: var(--text-dim); text-decoration: none; }
 .status-bar a:hover { color: var(--teal); }
+.status-bar a.status-link-active {
+  color: var(--teal);
+}
 .status-dot {
   width: 6px;
   height: 6px;
@@ -1062,10 +1066,9 @@ _TEACHER_GRAPH_SCRIPT = """
 """
 
 
-# Telemetry FAB — injected into the SPA's index.html on /, the *only* bridge
-# from the case/factual product surface to the system-reasoning surface at
-# /audit. Lives in its own constant (not in _SHARED_PANEL_CSS) because the
-# FAB only renders on /; the audit panels and /usage never carry it.
+# Legacy shortcuts injected into the SPA's index.html on /. The selected-run
+# panel now owns the primary workspace switcher; these remain as fallback links
+# while the SPA is still loading or when no selected-run panel is available.
 _TELEMETRY_FAB_HTML = (
     '<a href="/audit" class="telemetry-fab" '
     'aria-label="View run telemetry">TELEMETRY <span aria-hidden="true">&rarr;</span></a>'
@@ -1133,6 +1136,10 @@ body:has(.drawer-overlay) .telemetry-fab,
 body:has(.drawer-panel) .telemetry-fab,
 body:has(.drawer-overlay) .learn-fab,
 body:has(.drawer-panel) .learn-fab {
+  display: none;
+}
+body:has(.lolla-custody-panel) .telemetry-fab,
+body:has(.lolla-custody-panel) .learn-fab {
   display: none;
 }
 </style>
@@ -1324,6 +1331,67 @@ _SELECTED_RUN_CUSTODY_PANEL_STYLE = """
   text-decoration: none;
 }
 .lolla-custody-link:hover { text-decoration: underline; }
+.lolla-surface-switcher {
+  margin: 0 0 0.85rem;
+  padding: 0 0 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+.lolla-surface-title {
+  display: block;
+  margin: 0 0 0.45rem;
+  color: rgba(255, 255, 255, 0.52);
+  font-family: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+  font-size: 0.63rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.lolla-surface-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.35rem;
+}
+.lolla-surface-link {
+  min-width: 0;
+  padding: 0.42rem 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.035);
+  color: rgba(255, 255, 255, 0.82);
+  text-decoration: none;
+}
+.lolla-surface-link:hover {
+  border-color: rgba(65, 255, 167, 0.42);
+  background: rgba(65, 255, 167, 0.06);
+  color: #41FFA7;
+  text-decoration: none;
+}
+.lolla-surface-link.active {
+  border-color: rgba(65, 255, 167, 0.5);
+  background: rgba(65, 255, 167, 0.1);
+  color: #41FFA7;
+}
+.lolla-surface-link.audit {
+  border-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.62);
+}
+.lolla-surface-link span,
+.lolla-surface-link small {
+  display: block;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.lolla-surface-link span {
+  font-family: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.lolla-surface-link small {
+  margin-top: 0.08rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.66rem;
+  line-height: 1.25;
+}
 .lolla-conversation-understanding {
   margin: 0 0 0.85rem;
   padding: 0 0 0.75rem;
@@ -1537,6 +1605,11 @@ _SELECTED_RUN_CUSTODY_PANEL_SCRIPT = """
     },
   ];
 
+  const PROCESS_BRIEF_INPUT_LABELS = {
+    generated_read: "safe interpretation read",
+    generated_triage: "triage read",
+  };
+
   let selectedCaseId = null;
   let requestToken = 0;
   let states = {};
@@ -1600,6 +1673,11 @@ _SELECTED_RUN_CUSTODY_PANEL_SCRIPT = """
   };
 
   const firstReason = (items) => Array.isArray(items) && items.length ? items[0] : "";
+
+  const labelProcessBriefInputs = (items) => items
+    .map((item) => PROCESS_BRIEF_INPUT_LABELS[item] || String(item || "").replace(/_/g, " "))
+    .filter(Boolean)
+    .join(", ");
 
   const normalizeDecisionWork = (payload) => {
     const status = payload && payload.decision_work_status || "decision_work_unknown";
@@ -1708,7 +1786,7 @@ _SELECTED_RUN_CUSTODY_PANEL_SCRIPT = """
         statusText: "needs inputs",
         statusClass: "deferred",
         detail: missing.length
-          ? `Needs ${missing.join(", ")} before an offline brief can be prepared.`
+          ? `Needs ${labelProcessBriefInputs(missing)} before an offline brief can be prepared.`
           : "Needs safe Decision Work inputs before an offline brief can be prepared.",
         command,
       };
@@ -1750,6 +1828,35 @@ _SELECTED_RUN_CUSTODY_PANEL_SCRIPT = """
       command,
     };
   };
+
+  const surfaceSwitcherHtml = () => `
+    <nav class="lolla-surface-switcher" aria-label="Case surfaces">
+      <span class="lolla-surface-title">Case Surfaces</span>
+      <div class="lolla-surface-links">
+        <a class="lolla-surface-link active" href="/" aria-current="page">
+          <span>Outcome</span><small>answer</small>
+        </a>
+        <a class="lolla-surface-link" href="/teacher-learning#lesson">
+          <span>Learn</span><small>reasoning move</small>
+        </a>
+        <a class="lolla-surface-link" href="/teacher-learning#models">
+          <span>Models</span><small>mental models</small>
+        </a>
+        <a class="lolla-surface-link" href="/teacher-learning#relations">
+          <span>Relations</span><small>model pair</small>
+        </a>
+        <a class="lolla-surface-link" href="/teacher-learning#map">
+          <span>Map</span><small>small graph</small>
+        </a>
+        <a class="lolla-surface-link" href="/teacher-learning#receipts">
+          <span>Receipts</span><small>custody</small>
+        </a>
+        <a class="lolla-surface-link audit" href="/audit">
+          <span>Audit</span><small>telemetry</small>
+        </a>
+      </div>
+    </nav>
+  `;
 
   const processBriefHtml = () => {
     const state = processBriefState;
@@ -1840,6 +1947,7 @@ _SELECTED_RUN_CUSTODY_PANEL_SCRIPT = """
     panel.classList.toggle("lolla-custody-panel--floating", !sidebar);
     const html = `
       <h3>Run Custody</h3>
+      ${surfaceSwitcherHtml()}
       ${conversationCardHtml()}
       <ul>${ARTIFACTS.map(rowHtml).join("")}</ul>
     `;
@@ -3383,15 +3491,23 @@ def _render_teacher_learning_payload(payload: dict) -> str:
 def _render_teacher_status_bar(*, status: str | None) -> str:
     status_text = status or "partial"
     return (
-        '<nav class="status-bar" aria-label="Observatory surface">'
+        '<nav class="status-bar" aria-label="Observatory surfaces">'
         '<span class="status-dot" aria-hidden="true"></span>'
-        '<a href="/">Observatory</a>'
+        '<a href="/">Outcome</a>'
         '<span class="dot-sep">·</span>'
-        '<span>Teacher Learn</span>'
+        '<a class="status-link-active" href="/teacher-learning" aria-current="page">Learn</a>'
+        '<span class="dot-sep">·</span>'
+        '<a href="/teacher-learning#models">Models</a>'
+        '<span class="dot-sep">·</span>'
+        '<a href="/teacher-learning#relations">Relations</a>'
+        '<span class="dot-sep">·</span>'
+        '<a href="/teacher-learning#map">Map</a>'
+        '<span class="dot-sep">·</span>'
+        '<a href="/teacher-learning#receipts">Receipts</a>'
+        '<span class="dot-sep">·</span>'
+        '<a href="/audit">Audit</a>'
         '<span class="dot-sep">·</span>'
         f'<span class="status-ok">{_esc(status_text)}</span>'
-        '<span class="dot-sep">·</span>'
-        '<a href="/audit">Telemetry</a>'
         "</nav>"
     )
 
