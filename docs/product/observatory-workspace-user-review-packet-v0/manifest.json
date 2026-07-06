@@ -1,0 +1,43 @@
+{
+  "schema_version": "lolla.observatory_workspace_user_review_packet_manifest.v0",
+  "status": "observatory_workspace_user_review_packet_ready_for_human_review",
+  "date": "2026-07-06",
+  "source_design_slices": [
+    "docs/product/observatory-workspace-content-audit-and-simplification-v0.md",
+    "docs/product/observatory-model-relation-content-simplification-v0.md",
+    "docs/product/observatory-workspace-visual-polish-review-v0.md"
+  ],
+  "packet": "index.md",
+  "human_review_form_markdown": "human-review-form.md",
+  "human_review_form_json": "human-review-form.json",
+  "review_surfaces": [
+    "Outcome",
+    "Learn",
+    "Models",
+    "Relations",
+    "Map",
+    "Receipts"
+  ],
+  "information_ladder": [
+    "first_read",
+    "optional_support",
+    "drill_down_page",
+    "receipts_or_audit"
+  ],
+  "human_review_prefilled": false,
+  "human_review_completed": false,
+  "human_validated": false,
+  "product_proof": false,
+  "synthetic_review_diagnostic_only": true,
+  "decision_gate": "needs_human_review_before_observatory_expansion",
+  "stop_before": [
+    "runtime_integration",
+    "provider_or_model_api_calls",
+    "new_lolla_runs",
+    "full_corpus_graph",
+    "product_readiness_claim",
+    "human_validation_claim",
+    "answer_or_advice_correctness_claim",
+    "action_authorization"
+  ]
+}
