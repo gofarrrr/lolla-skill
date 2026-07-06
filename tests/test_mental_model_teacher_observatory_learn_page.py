@@ -114,7 +114,7 @@ def test_teacher_learning_route_returns_html(monkeypatch) -> None:
     assert response.status == 200
     assert response.geturl().endswith("/workspace?case_id=lolla-audit#learn")
     assert "<title>Lolla - Observatory Workspace</title>" in html
-    assert "<h1>Selected Run Workspace</h1>" in html
+    assert "<h1>Run Learning Workspace</h1>" in html
     assert "Authority Bias" in html
     assert "What reasoning move can I practice?" in html
 

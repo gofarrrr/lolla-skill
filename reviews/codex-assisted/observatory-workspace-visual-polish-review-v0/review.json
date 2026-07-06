@@ -1,0 +1,107 @@
+{
+  "schema_version": "codex_assisted_review.v0",
+  "review_id": "observatory-workspace-visual-polish-review-v0",
+  "status": "complete",
+  "date": "2026-07-06",
+  "decision_gate": "proceed_to_observatory_workspace_user_review_packet",
+  "implemented": {
+    "workspace_title_reframed": true,
+    "workspace_lede_shortened": true,
+    "start_panel_outcome_only": true,
+    "focused_surfaces_hide_start_panel": true,
+    "surface_homes_sidebar_compacted": true,
+    "route_contract_changed": false,
+    "compiled_spa_bundle_changed": false
+  },
+  "browser_check": {
+    "performed": true,
+    "fixture": "in_memory_lolla_audit_observatory_fixture",
+    "routes_checked": [
+      "/workspace?case_id=lolla-audit",
+      "/workspace?case_id=lolla-audit#outcome",
+      "/workspace?case_id=lolla-audit#learn",
+      "/workspace?case_id=lolla-audit#models",
+      "/workspace?case_id=lolla-audit#relations",
+      "/workspace?case_id=lolla-audit#map",
+      "/workspace?case_id=lolla-audit#receipts"
+    ],
+    "clicked_surface_progression": [
+      "Outcome",
+      "Learn",
+      "Models",
+      "Relations",
+      "Map",
+      "Receipts"
+    ],
+    "desktop_default_title": "Run Learning Workspace",
+    "desktop_default_surface": "Outcome",
+    "desktop_start_panel_visible_on_outcome": true,
+    "desktop_start_panel_hidden_on_focused_surfaces": true,
+    "desktop_surface_homes_compact": true,
+    "mobile_learn_surface_focused": true,
+    "mobile_start_panel_hidden_on_learn": true,
+    "mobile_horizontal_overflow": false,
+    "receipts_and_advanced_audit_preserved": true
+  },
+  "information_progression": [
+    "Outcome",
+    "Learn",
+    "Models",
+    "Relations",
+    "Map",
+    "Receipts"
+  ],
+  "surface_roles": {
+    "Outcome": "what_changed_or_survived",
+    "Learn": "case_anchored_reasoning_move",
+    "Models": "reusable_mental_model_picker",
+    "Relations": "model_pair_lesson_picker",
+    "Map": "small_neighborhood_wayfinding",
+    "Receipts": "custody_missingness_and_non_claims"
+  },
+  "strongest_useful_signal": "The selected-run workspace now gives orientation on Outcome, then lets Learn, Models, Relations, Map, and Receipts lead with their own content after the user switches surfaces.",
+  "strongest_unresolved_risk": "The current check is fixture-backed browser review, not human validation. The next slice should put the full flow into a user-review packet and ask what is understandable, technical, or missing.",
+  "recommended_next_pr": {
+    "title": "Add Observatory workspace user review packet",
+    "gate": "proceed_to_observatory_workspace_user_review_packet",
+    "scope": [
+      "create reviewer instructions for the selected-run workspace",
+      "compare Outcome, Learn, Models, Relations, Map, and Receipts as one flow",
+      "separate user-facing clarity feedback from technical audit feedback",
+      "avoid pre-filling positive human review",
+      "preserve runtime and provider boundaries"
+    ],
+    "stop_before": [
+      "runtime_integration",
+      "provider_or_model_api_calls",
+      "new_lolla_runs",
+      "full_corpus_graph",
+      "product_readiness_claim",
+      "human_validation_claim",
+      "answer_or_advice_correctness_claim",
+      "action_authorization"
+    ]
+  },
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_lolla_run": false,
+    "wires_runtime_behavior": false,
+    "mutates_archives": false,
+    "writes_sidecars": false,
+    "compiled_spa_bundle_changed": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "relation_confidence_is_certification": false
+  }
+}

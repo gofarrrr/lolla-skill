@@ -2246,7 +2246,7 @@ def test_root_serves_workspace_and_index_keeps_legacy_spa(tmp_path, monkeypatch)
     try:
         status, body = _http_get(f"http://{serve_result._OBSERVATORY_HOST}:{port}/")
         assert status == 200
-        assert "Selected Run Workspace" in body
+        assert "Run Learning Workspace" in body
         assert "SPA app mount" not in body
 
         status, body = _http_get(

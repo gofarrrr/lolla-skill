@@ -78,7 +78,7 @@ def test_first_read_progression_stays_visible_without_showing_all_detail(monkeyp
 
     html = serve_result._render_workspace_html("lolla-audit")
 
-    start_index = html.index("Use this run as a short lesson.")
+    start_index = html.index("Start with Outcome.")
     outcome_index = html.index("<h2>Outcome</h2>")
     learn_hidden_index = html.index('id="learn"')
     receipts_hidden_index = html.index('id="receipts"')

@@ -64,8 +64,10 @@ def test_workspace_adds_start_here_path_and_browser_focus_mode(monkeypatch) -> N
     html = serve_result._render_workspace_html("lolla-audit")
 
     assert "Start here" in html
-    assert "Use this run as a short lesson." in html
-    assert "Read the answer change first." in html
+    assert "Start with Outcome." in html
+    assert "Read what changed first." in html
+    assert "data-workspace-start-panel" in html
+    assert 'panel.toggleAttribute("hidden", !showStartPanel)' in html
     assert "workspace-step-card" in html
     assert "What changed or survived?" in html
     assert "data-workspace-active-label" in html
