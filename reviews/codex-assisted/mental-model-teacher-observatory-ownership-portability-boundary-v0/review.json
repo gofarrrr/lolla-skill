@@ -1,0 +1,74 @@
+{
+  "schema": "lolla.mental_model_teacher_observatory_ownership_portability_boundary_review.v0",
+  "status": "observatory_teacher_source_owner_boundary_recorded",
+  "date": "2026-07-06",
+  "decision_gate": "keep_teacher_learn_server_rendered_until_source_owner_verified",
+  "recommended_next_gate": "proceed_to_teacher_learn_information_architecture_revision",
+  "route": "/teacher-learning",
+  "adapter_route": "/api/case/<id>/teacher-learning",
+  "ownership_decision": {
+    "one_shell": "Observatory",
+    "current_owner": "observatory/serve_result.py",
+    "teacher_learn_current_path": "server-rendered portable Observatory route",
+    "compiled_bundle_is_source_of_truth": false,
+    "compiled_bundle_changed": false,
+    "external_svelte_source_verified": false,
+    "source_port_authorized_by_this_slice": false,
+    "runtime_wiring_allowed": false
+  },
+  "evidence": {
+    "observatory_python_server_present": true,
+    "compiled_bundle_present": true,
+    "local_frontend_source_tree_present": false,
+    "portable_server_rendered_panels_documented": true,
+    "skill_launch_path_documented": true
+  },
+  "information_flow_decision": {
+    "teacher_learn_is_product_learning_mode": true,
+    "telemetry_is_separate_explanation_mode": true,
+    "duplicate_teacher_app_allowed": false,
+    "raw_telemetry_as_primary_teacher_surface": false,
+    "raw_canonical_markdown_as_primary_ui": false
+  },
+  "what_is_now_functional": [
+    "the source-owner ambiguity is recorded before more Teacher UX work",
+    "the compiled Observatory source-port gate is reclassified as a verification question",
+    "Teacher Learn remains in the portable Observatory path until a source app owner is verified"
+  ],
+  "what_remains_missing": [
+    "inspection of the external Svelte source path",
+    "decision on whether the compiled app or portable server owns long-term Observatory UI",
+    "information architecture revision of the Teacher Learn page",
+    "human UX review"
+  ],
+  "strongest_useful_signal": "The repo already has a portable Observatory owner for server-rendered product and audit surfaces, so Teacher Learn can be improved without depending on a missing local frontend source tree.",
+  "strongest_unresolved_risk": "If the external Svelte app is still the intended long-term Observatory owner, the Python-rendered Learn route could diverge unless a later source-owner PR verifies and reconciles that path.",
+  "non_claims": {
+    "lolla_skill_invoked": false,
+    "provider_or_model_calls_used": false,
+    "new_lolla_runs_created": false,
+    "runtime_behavior_changed": false,
+    "launcher_changed": false,
+    "compiled_spa_changed": false,
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false
+  },
+  "stop_before": [
+    "compiled SPA source work",
+    "bundle rebuilds",
+    "runtime integration",
+    "launcher changes",
+    "provider or model calls",
+    "live Lolla runs",
+    "archive mutation",
+    "answer or advice correctness scoring",
+    "product proof claims",
+    "human validation claims",
+    "action authorization"
+  ]
+}
