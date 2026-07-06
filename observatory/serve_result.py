@@ -1355,6 +1355,66 @@ _SELECTED_RUN_CUSTODY_PANEL_STYLE = """
   font-size: 0.68rem;
   line-height: 1.45;
 }
+.lolla-process-brief {
+  margin-top: 0.65rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.lolla-process-brief-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+  justify-content: space-between;
+}
+.lolla-process-brief-button {
+  appearance: none;
+  border: 1px solid rgba(65, 255, 167, 0.5);
+  border-radius: 4px;
+  padding: 0.34rem 0.55rem;
+  background: rgba(65, 255, 167, 0.1);
+  color: #41FFA7;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.72rem;
+}
+.lolla-process-brief-button:disabled {
+  opacity: 0.52;
+  cursor: wait;
+}
+.lolla-process-brief-detail {
+  margin-top: 0.45rem;
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+.lolla-process-brief-detail code {
+  color: rgba(255, 255, 255, 0.82);
+}
+.lolla-process-brief-command {
+  margin-top: 0.45rem;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 0.72rem;
+}
+.lolla-process-brief-command summary {
+  cursor: pointer;
+  color: #41FFA7;
+}
+.lolla-process-brief-command pre {
+  max-height: 8rem;
+  margin: 0.4rem 0 0;
+  padding: 0.55rem;
+  overflow: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.2);
+  color: rgba(255, 255, 255, 0.82);
+  font-family: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+  font-size: 0.66rem;
+  line-height: 1.45;
+}
 .lolla-custody-status.deferred {
   color: #F8D56B;
   border-color: rgba(248, 213, 107, 0.48);
@@ -1451,6 +1511,8 @@ _SELECTED_RUN_CUSTODY_PANEL_SCRIPT = """
     detail: "",
     receipt: null,
   };
+  let processBriefState = null;
+  let processBriefLoading = false;
 
   const encodeCaseId = (caseId) => encodeURIComponent(caseId);
 
@@ -1471,6 +1533,7 @@ _SELECTED_RUN_CUSTODY_PANEL_SCRIPT = """
 
   const endpointFor = (caseId, key) => `/api/case/${encodeCaseId(caseId)}/${key}`;
   const decisionWorkEndpointFor = (caseId) => `/api/case/${encodeCaseId(caseId)}/decision-work`;
+  const processBriefEndpointFor = (caseId) => `/api/case/${encodeCaseId(caseId)}/decision-work/prepare`;
 
   const escapeHtml = (value) => String(value || "")
     .replace(/&/g, "&amp;")
@@ -1581,6 +1644,111 @@ _SELECTED_RUN_CUSTODY_PANEL_SCRIPT = """
     };
   };
 
+  const normalizeProcessBrief = (payload) => {
+    const status = payload && payload.prepare_process_brief_status || "unknown";
+    const missing = Array.isArray(payload && payload.missing_required_inputs)
+      ? payload.missing_required_inputs
+      : [];
+    const blockers = Array.isArray(payload && payload.blocker_reasons)
+      ? payload.blocker_reasons
+      : [];
+    const command = payload && payload.operator_command && payload.operator_command.display
+      ? payload.operator_command.display
+      : "";
+    if (status === "process_brief_already_attached") {
+      return {
+        status,
+        statusText: "attached",
+        statusClass: "available",
+        detail: "A process brief receipt is already attached to this run.",
+        command,
+      };
+    }
+    if (status === "needs_safe_inputs") {
+      return {
+        status,
+        statusText: "needs inputs",
+        statusClass: "deferred",
+        detail: missing.length
+          ? `Needs ${missing.join(", ")} before an offline brief can be prepared.`
+          : "Needs safe Decision Work inputs before an offline brief can be prepared.",
+        command,
+      };
+    }
+    if (status === "offline_command_available") {
+      return {
+        status,
+        statusText: "command ready",
+        statusClass: "available",
+        detail: "A local offline command is available for an explicit operator run.",
+        command,
+      };
+    }
+    if (status === "offline_runner_summary_ready") {
+      return {
+        status,
+        statusText: "summary ready",
+        statusClass: "available",
+        detail: "A local runner summary is ready for review.",
+        command,
+      };
+    }
+    if (status === "blocked_completed_run_unavailable") {
+      return {
+        status,
+        statusText: "blocked",
+        statusClass: "blocked",
+        detail: blockers.length
+          ? `Cannot prepare this run: ${blockers[0]}.`
+          : "Cannot prepare this selected run yet.",
+        command,
+      };
+    }
+    return {
+      status,
+      statusText: "inspect",
+      statusClass: "deferred",
+      detail: blockers.length ? `Inspect blocker: ${blockers[0]}.` : "Inspect process brief state.",
+      command,
+    };
+  };
+
+  const processBriefHtml = () => {
+    const state = processBriefState;
+    const statusText = processBriefLoading
+      ? "checking"
+      : state && state.statusText
+        ? state.statusText
+        : "not checked";
+    const statusClass = processBriefLoading
+      ? "unavailable"
+      : state && state.statusClass
+        ? state.statusClass
+        : "unavailable";
+    const detail = processBriefLoading
+      ? "Checking whether a process brief can be prepared for this completed run."
+      : state && state.detail
+        ? state.detail
+        : "Click to see the next safe step. This checks state only.";
+    const command = state && state.command
+      ? `<details class="lolla-process-brief-command"><summary>Show command</summary><pre>${escapeHtml(state.command)}</pre></details>`
+      : "";
+    const prepareLink = selectedCaseId
+      ? `<a class="lolla-custody-link" href="${escapeHtml(processBriefEndpointFor(selectedCaseId))}" target="_blank" rel="noreferrer">Prepare JSON</a>`
+      : "";
+    return `
+      <div class="lolla-process-brief">
+        <div class="lolla-process-brief-head">
+          <button class="lolla-process-brief-button" type="button" data-lolla-prepare-process-brief ${processBriefLoading ? "disabled" : ""}>Prepare process brief</button>
+          <span class="lolla-custody-status ${escapeHtml(statusClass)}">${escapeHtml(statusText)}</span>
+        </div>
+        <div class="lolla-process-brief-detail">${escapeHtml(detail)}</div>
+        <div class="lolla-conversation-actions">${prepareLink}</div>
+        ${command}
+      </div>
+    `;
+  };
+
   const conversationCardHtml = () => {
     const state = decisionWorkState;
     const receipt = state.receipt
@@ -1612,6 +1780,7 @@ _SELECTED_RUN_CUSTODY_PANEL_SCRIPT = """
           <a class="lolla-custody-link" href="/audit/extraction" target="_blank" rel="noreferrer">Extraction audit</a>
           ${selectedCaseId ? `<a class="lolla-custody-link" href="${escapeHtml(decisionWorkEndpointFor(selectedCaseId))}" target="_blank" rel="noreferrer">Status JSON</a>` : ""}
         </div>
+        ${processBriefHtml()}
         ${receipt}
       </section>
     `;
@@ -1654,6 +1823,8 @@ _SELECTED_RUN_CUSTODY_PANEL_SCRIPT = """
       detail: "Checking selected-run status.",
       receipt: null,
     };
+    processBriefState = null;
+    processBriefLoading = false;
     states = Object.fromEntries(
       ARTIFACTS.map((artifact) => [artifact.key, { status: "loading", detail: "checking..." }])
     );
@@ -1713,6 +1884,45 @@ _SELECTED_RUN_CUSTODY_PANEL_SCRIPT = """
       }
     })]);
   };
+
+  const loadProcessBriefState = async () => {
+    if (!selectedCaseId || processBriefLoading) return;
+    processBriefLoading = true;
+    processBriefState = null;
+    render();
+    try {
+      const response = await window.__lollaNativeFetch(processBriefEndpointFor(selectedCaseId));
+      if (!response.ok) {
+        processBriefState = {
+          statusText: "unavailable",
+          statusClass: "blocked",
+          detail: response.status === 404 ? "Selected run was not found." : `HTTP ${response.status}`,
+          command: "",
+        };
+      } else {
+        processBriefState = normalizeProcessBrief(await response.json());
+      }
+    } catch (_error) {
+      processBriefState = {
+        statusText: "failed",
+        statusClass: "blocked",
+        detail: "Process brief state request failed.",
+        command: "",
+      };
+    } finally {
+      processBriefLoading = false;
+      render();
+    }
+  };
+
+  document.addEventListener("click", (event) => {
+    const target = event.target && event.target.closest
+      ? event.target.closest("[data-lolla-prepare-process-brief]")
+      : null;
+    if (!target) return;
+    event.preventDefault();
+    loadProcessBriefState();
+  });
 
   window.__lollaNativeFetch = window.__lollaNativeFetch || window.fetch.bind(window);
   const nativeFetch = window.__lollaNativeFetch;
@@ -2807,6 +3017,68 @@ def _build_decision_work_status_response(
         result=result,
         result_path=result_path,
         decision_work_files=files,
+    )
+
+
+def _safe_process_brief_case_fragment(case_id: str) -> str:
+    fragment = "".join(
+        char if char.isalnum() or char in {"-", "_"} else "-"
+        for char in case_id
+    ).strip("-")
+    return fragment[:120] or "selected-run"
+
+
+def _process_brief_safe_output_dir(case_id: str) -> Path:
+    tmp_root = Path(os.environ.get("TMPDIR") or "/tmp").expanduser()
+    return tmp_root / "lolla_observatory_process_brief" / (
+        _safe_process_brief_case_fragment(case_id)
+    )
+
+
+def _completed_run_dir_for_process_brief(
+    result_path: Path | None,
+    *,
+    is_current: bool,
+) -> Path | None:
+    if result_path is None:
+        return None
+    if not is_current or result_path.name == "result.json":
+        return result_path.parent
+    for events_path in _active_run_event_paths(result_path):
+        payload = _load_json_safe(events_path)
+        for event in _events_from_run_events_payload(payload):
+            details = event.get("details") or {}
+            if not isinstance(details, dict):
+                continue
+            archive_path = details.get("archive_path")
+            if not archive_path:
+                continue
+            run_dir = _sidecar_path_inside_archive(Path(archive_path))
+            if run_dir is not None and (run_dir / "result.json").is_file():
+                return run_dir
+    return result_path.parent
+
+
+def _build_process_brief_prepare_response(
+    case_id: str,
+    result_path: Path | None,
+    *,
+    is_current: bool,
+) -> dict:
+    """Return a no-provider prepare-state payload for the selected run."""
+    from system_b.observatory_process_brief_runner import (
+        prepare_observatory_process_brief,
+    )
+
+    completed_run_dir = _completed_run_dir_for_process_brief(
+        result_path,
+        is_current=is_current,
+    )
+    return prepare_observatory_process_brief(
+        selected_case_id=case_id,
+        completed_run_archive_dir=completed_run_dir or Path("__missing_run__"),
+        safe_output_dir=_process_brief_safe_output_dir(case_id),
+        run_offline_operator=False,
     )
 
 
@@ -6323,6 +6595,26 @@ class ResultHandler(SimpleHTTPRequestHandler):
                     self._error_response(
                         500,
                         "Teacher learning adapter failed: " + type(exc).__name__,
+                    )
+                    return
+                self._json_response(payload)
+                return
+            if (
+                len(parts) == 6
+                and parts[4] == "decision-work"
+                and parts[5] == "prepare"
+            ):
+                try:
+                    payload = _build_process_brief_prepare_response(
+                        case_id,
+                        result_path,
+                        is_current=is_current,
+                    )
+                except Exception as exc:
+                    self._error_response(
+                        500,
+                        "Process brief prepare adapter failed: "
+                        + type(exc).__name__,
                     )
                     return
                 self._json_response(payload)
