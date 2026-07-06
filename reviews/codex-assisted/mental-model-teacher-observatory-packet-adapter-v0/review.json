@@ -1,0 +1,64 @@
+{
+  "schema": "lolla.mental_model_teacher_observatory_packet_adapter_review.v0",
+  "status": "read_only_observatory_teacher_packet_adapter_ready_for_ui",
+  "date": "2026-07-06",
+  "decision_gate": "proceed_to_observatory_teacher_learn_tab_ui",
+  "adapter": "engine.system_b.mental_model_teacher_observatory_packet_adapter",
+  "observatory_route": "/api/case/<id>/teacher-learning",
+  "product_decision": {
+    "one_shell": "Observatory",
+    "teacher_surface": "selected-run Learn mode",
+    "standalone_teacher_app": false,
+    "advanced_material_primary_surface": false
+  },
+  "adapter_guards": {
+    "read_only_observatory_api": true,
+    "case_response_summary_additive": true,
+    "full_payload_on_dedicated_route": true,
+    "primary_tabs_own_no_receipt_artifacts": true,
+    "raw_telemetry_kept_out_of_primary_tabs": true,
+    "advanced_artifacts_separate": true,
+    "unavailable_state_supported": true,
+    "runtime_wiring_allowed": false,
+    "provider_or_model_calls_allowed": false
+  },
+  "what_is_now_functional": [
+    "Observatory can report whether Teacher learning is available for a selected case",
+    "Observatory can serve a full tab-ready Teacher learning payload for a matching selected run",
+    "cases without packets receive a stable unavailable payload instead of invented Teacher content"
+  ],
+  "what_remains_missing": [
+    "visible Learn tab UI",
+    "compiled Observatory SPA integration",
+    "visual model/relation clickthrough panels inside the shell",
+    "browser graph UI inside the shell",
+    "human review"
+  ],
+  "strongest_useful_signal": "Teacher is now reachable through the selected-case Observatory API shape without creating a second application shell.",
+  "strongest_unresolved_risk": "The next UI slice can still become noisy if it shows advanced artifacts and learning narration at the same level.",
+  "non_claims": {
+    "lolla_skill_invoked": false,
+    "provider_or_model_calls_used": false,
+    "new_lolla_runs_created": false,
+    "runtime_behavior_changed": false,
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_used_as_validated_relation_semantics": false
+  },
+  "stop_before": [
+    "Learn tab UI",
+    "compiled Observatory SPA changes",
+    "browser graph UI",
+    "runtime integration",
+    "provider or model calls",
+    "live Lolla runs",
+    "answer or advice correctness scoring",
+    "product proof claims",
+    "human validation claims",
+    "action authorization"
+  ]
+}
