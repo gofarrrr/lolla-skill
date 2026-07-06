@@ -2,7 +2,7 @@
 
 Status: global product and information-architecture design contract
 Date: 2026-07-06
-Decision gate: `proceed_to_observatory_source_ownership_audit`
+Decision gate: `proceed_to_observatory_portable_server_view_model_contracts`
 
 ## One Sentence
 
@@ -465,28 +465,28 @@ The current repository has a portable Python Observatory server and a compiled
 frontend bundle. The source of the compiled bundle is not present in this repo.
 
 Recent work has therefore improved the portable server-rendered and injected
-surfaces first. That is useful, but it is not the final global UX architecture.
+surfaces first. That is useful, but ad hoc injection is not the final global UX
+architecture.
 
 The current root experience can still feel like an old case list followed by
 new surfaces. The product direction should be one coherent selected-run
-workspace, not a stack of independently added pages.
+workspace rendered by the portable Observatory server, not a stack of
+independently added pages and not a return to the old app-era source by default.
 
-## Source Ownership Decision Needed
+## Source Ownership Decision Resolved
 
-Before another major UI pass, verify the Observatory source owner.
+The source audit resolved the near-term direction:
 
-The next PR should answer:
+- `observatory/serve_result.py` owns the active portable skill-presentation
+  surface;
+- `Lolla-system-b/observatory/svelte-app` is verified as historical legacy
+  source for the old root SPA;
+- `observatory/build/*` is a distribution artifact, not source;
+- the current product direction is portable Python/server-rendered Observatory;
+- a Svelte revival or bundle sync would require a separate explicit decision.
 
-1. Is the current long-term Observatory UI source in this repository?
-2. If not, where is it and is it still authoritative?
-3. Should portable server-rendered surfaces remain the primary implementation
-   path for the skill runtime?
-4. If a separate frontend source exists, how do changes flow into
-   `observatory/build/` without hand-editing compiled assets?
-5. Which product view models must exist before a source port?
-
-Until that answer is clear, do not manually edit compiled bundle assets as the
-main product strategy.
+Therefore, the next PR should define product-safe view models for the portable
+server-rendered shell, not port the global shell to Svelte.
 
 ## Implementation Sequence
 
@@ -498,12 +498,13 @@ Stop before UI changes.
 
 ### PR-G2 Observatory Source Ownership Audit
 
-Verify whether the long-term Observatory shell source is local, external,
-legacy, or portable-server-owned.
+Resolved the near-term source question: portable server rendering is the
+current product direction; the Svelte app is historical legacy source, not the
+default future UI owner.
 
-Stop before source port or UI rebuild.
+Stop before UI rebuild.
 
-### PR-G3 Product View Model Contracts
+### PR-G3 Portable Product View Model Contracts
 
 Define typed view models for selected run summary, outcome summary, learning
 packet, model page, relation page, graph neighborhood, receipt summary, and
@@ -511,13 +512,15 @@ advanced audit index.
 
 Stop before rendering.
 
-### PR-G4 Root Workspace IA Plan Or Source-Port Package
+### PR-G4 Server-Rendered Root Workspace IA
 
-If source is local, plan the native selected-run workspace. If source is
-external, create a source-port package and keep portable server surfaces
-coherent while the source owner is resolved.
+Plan the portable selected-run workspace in the Python server:
 
-Stop before bundle edits.
+```text
+Outcome | Learn | Models | Relations | Map | Receipts
+```
+
+Stop before legacy bundle edits.
 
 ### PR-G5 Model And Relation Page Consolidation
 
@@ -587,8 +590,8 @@ Stop if implementation would require:
 Recommended next gate:
 
 ```text
-proceed_to_observatory_source_ownership_audit
+proceed_to_observatory_portable_server_view_model_contracts
 ```
 
 The decision is global: stop expanding Observatory through isolated product
-patches until the source owner and product view-model layer are clear.
+patches until the portable product view-model layer is clear.

@@ -3,7 +3,7 @@
   "artifact": "docs/product/observatory-global-product-experience-and-data-flow-v0.md",
   "status": "global_design_contract",
   "date": "2026-07-06",
-  "decision_gate": "proceed_to_observatory_source_ownership_audit",
+  "decision_gate": "proceed_to_observatory_portable_server_view_model_contracts",
   "product_decision": {
     "one_shell": "Observatory",
     "primary_workspace": "selected_run",
@@ -14,6 +14,8 @@
     "graph_position": "Map",
     "custody_position": "Receipts",
     "advanced_telemetry_position": "Advanced Audit",
+    "current_rendering_direction": "portable_python_server_rendered_html",
+    "legacy_svelte_source_is_future_owner_by_default": false,
     "standalone_teacher_app": false,
     "compiled_bundle_manual_editing_as_strategy": false
   },
@@ -88,9 +90,9 @@
     "receipts_bridge_product_and_audit": true
   },
   "recommended_next_pr": {
-    "id": "PR-G2",
-    "name": "Observatory Source Ownership Audit",
-    "purpose": "Verify whether the long-term Observatory shell source is local, external, legacy, or portable-server-owned before another major UI pass."
+    "id": "PR-G3",
+    "name": "Portable Product View Model Contracts",
+    "purpose": "Define product-safe view models for the portable server-rendered Observatory shell before another UI pass."
   },
   "boundary": {
     "runs_lolla": false,
@@ -113,5 +115,5 @@
     "graph_edges_are_proof": false,
     "embedding_similarity_is_validated_relation_semantics": false
   },
-  "recommended_gate": "proceed_to_observatory_source_ownership_audit"
+  "recommended_gate": "proceed_to_observatory_portable_server_view_model_contracts"
 }
