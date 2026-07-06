@@ -120,7 +120,9 @@ def test_map_has_human_labels_and_relation_filter_prefers_edge(monkeypatch) -> N
         'aria-label="Open relation: Authority Bias and First Principles Thinking '
         '(antagonist)"' in html
     )
-    assert 'aria-hidden="true">mental_model</text>' in html
+    assert 'data-role="mental_model"' in html
+    assert 'data-role-display="Model"' in html
+    assert 'aria-hidden="true">Model</text>' in html
     assert "This map is a small wayfinding view for the current lesson." in html
     assert "relationFilterPrefersEdge" in html
     assert "visibleRelationEdges[0]" in html
