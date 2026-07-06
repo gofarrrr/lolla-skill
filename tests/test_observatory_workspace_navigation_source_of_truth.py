@@ -134,7 +134,14 @@ def test_model_detail_route_returns_formatted_selected_run_page(monkeypatch) -> 
     assert "Source, status, and boundaries" in html
     assert "All models in this run" in html
     assert 'href="/workspace?case_id=lolla-audit#models"' in html
-    assert "raw canonical Markdown and curation internals stay behind" in html
+    assert (
+        "Learn what this model helps you notice, when to use it, "
+        "where it can mislead, and one practice rep for this selected run."
+    ) in html
+    assert "A selected-run mental model page" not in html
+    assert html.index("What This Model Helps You See") < html.index(
+        "Source, status, and boundaries"
+    )
 
 
 def test_relation_detail_route_keeps_story_before_taxonomy(monkeypatch) -> None:
