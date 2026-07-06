@@ -1,0 +1,85 @@
+{
+  "schema_version": "codex_assisted_review.v0",
+  "review_id": "observatory-workspace-accessibility-text-noise-cleanup-v0",
+  "status": "complete",
+  "date": "2026-07-06",
+  "decision_gate": "proceed_to_observatory_workspace_content_audit_and_simplification",
+  "implemented": {
+    "server_default_outcome_only": true,
+    "non_active_workspace_sections_hidden": true,
+    "workspace_sections_have_stable_data_attributes": true,
+    "aria_hidden_tracks_workspace_surface": true,
+    "route_contract_changed": false,
+    "compiled_spa_bundle_changed": false
+  },
+  "route_contract": {
+    "workspace_home": "/workspace?case_id=<id>#outcome",
+    "learn_surface": "/workspace?case_id=<id>#learn",
+    "models_surface": "/workspace?case_id=<id>#models",
+    "relations_surface": "/workspace?case_id=<id>#relations",
+    "map_surface": "/workspace?case_id=<id>#map",
+    "receipts_surface": "/workspace?case_id=<id>#receipts",
+    "model_page": "/models/<model-id>?case_id=<id>",
+    "relation_page": "/relations/<relation-id>?case_id=<id>",
+    "teacher_packet_api": "/api/case/<id>/teacher-learning"
+  },
+  "browser_check": {
+    "performed": true,
+    "fixture": "in_memory_lolla_audit_observatory_fixture",
+    "routes_checked": [
+      "/workspace?case_id=lolla-audit",
+      "/workspace?case_id=lolla-audit#learn",
+      "/workspace?case_id=lolla-audit#map",
+      "/workspace?case_id=lolla-audit#receipts"
+    ],
+    "default_snapshot_keeps_inactive_surfaces_out": true,
+    "learn_snapshot_exposes_learning_surface": true,
+    "map_snapshot_exposes_graph_controls": true,
+    "receipts_snapshot_exposes_trust_summary": true,
+    "legacy_teacher_dom_absent": true
+  },
+  "strongest_useful_signal": "The server-rendered workspace now starts as a general first-read product surface instead of exposing every workspace section at once.",
+  "strongest_unresolved_risk": "The next slice should audit and simplify the actual content in each workspace surface: what to show first, what to put behind expansion, and what belongs only in Receipts.",
+  "recommended_next_pr": {
+    "title": "Audit and simplify Observatory workspace content",
+    "gate": "proceed_to_observatory_workspace_content_audit_and_simplification",
+    "scope": [
+      "record what each surface currently presents",
+      "classify first-read, expandable, and receipts-only information",
+      "rename confusing section labels",
+      "remove duplicated model/relation copy from the general path",
+      "preserve drill-down pages and receipts"
+    ],
+    "stop_before": [
+      "runtime_integration",
+      "default_on_generation",
+      "provider_or_model_api_calls",
+      "product_readiness_claim",
+      "human_validation_claim",
+      "answer_or_advice_correctness_claim",
+      "action_authorization"
+    ]
+  },
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_lolla_run": false,
+    "wires_runtime_behavior": false,
+    "mutates_archives": false,
+    "writes_sidecars": false,
+    "compiled_spa_bundle_changed": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "relation_confidence_is_certification": false
+  }
+}
