@@ -1,0 +1,117 @@
+{
+  "schema": "lolla.observatory_global_product_experience_and_data_flow_review.v0",
+  "artifact": "docs/product/observatory-global-product-experience-and-data-flow-v0.md",
+  "status": "global_design_contract",
+  "date": "2026-07-06",
+  "decision_gate": "proceed_to_observatory_source_ownership_audit",
+  "product_decision": {
+    "one_shell": "Observatory",
+    "primary_workspace": "selected_run",
+    "normal_user_default_candidate": "Outcome",
+    "teacher_position": "Learn",
+    "model_library_position": "Models",
+    "relation_library_position": "Relations",
+    "graph_position": "Map",
+    "custody_position": "Receipts",
+    "advanced_telemetry_position": "Advanced Audit",
+    "standalone_teacher_app": false,
+    "compiled_bundle_manual_editing_as_strategy": false
+  },
+  "primary_surfaces": [
+    "Outcome",
+    "Learn",
+    "Models",
+    "Relations",
+    "Map",
+    "Receipts"
+  ],
+  "advanced_surfaces": [
+    "Advanced Audit",
+    "Extraction audit",
+    "Usage",
+    "Raw sidecar inspection"
+  ],
+  "single_home_rules": {
+    "revised_answer": "Outcome",
+    "teacher_reasoning_move": "Learn",
+    "canonical_model_explanation": "Models",
+    "relation_explanation": "Relations",
+    "graph_neighborhood": "Map",
+    "conversation_understanding_status": "Receipts",
+    "source_custody": "Receipts",
+    "raw_telemetry": "Advanced Audit"
+  },
+  "visibility_tiers": {
+    "first_class_product_data": [
+      "revised answer",
+      "thinking move",
+      "mental model page",
+      "relation page",
+      "graph neighborhood",
+      "practice rep"
+    ],
+    "second_class_support_data": [
+      "model activation evidence",
+      "source refs",
+      "missingness",
+      "sidecar availability",
+      "run health",
+      "backlinks"
+    ],
+    "receipts_and_review_data": [
+      "curation status",
+      "source hashes",
+      "user receipt",
+      "attachment status",
+      "review gates"
+    ],
+    "internal_only_data": [
+      "raw conversation",
+      "local absolute paths",
+      "provider text",
+      "raw routing internals",
+      "raw embeddings",
+      "Product Delta internals"
+    ],
+    "future_or_suggestion_only_data": [
+      "semantic neighbors",
+      "full corpus graph",
+      "AI-discovered relations",
+      "embedding similarity clusters"
+    ]
+  },
+  "data_flow": {
+    "raw_run_artifacts_to_read_only_adapters": true,
+    "product_safe_view_models_required": true,
+    "primary_ui_consumes_product_view_models": true,
+    "advanced_audit_may_consume_raw_telemetry": true,
+    "receipts_bridge_product_and_audit": true
+  },
+  "recommended_next_pr": {
+    "id": "PR-G2",
+    "name": "Observatory Source Ownership Audit",
+    "purpose": "Verify whether the long-term Observatory shell source is local, external, legacy, or portable-server-owned before another major UI pass."
+  },
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "provider_or_model_calls": false,
+    "creates_new_lolla_run": false,
+    "runtime_behavior_changed": false,
+    "archives_mutated": false,
+    "compiled_bundle_manually_edited": false,
+    "raw_private_conversation_exposed_as_product_copy": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "answer_quality_scoring": false,
+    "approval_or_certification": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false
+  },
+  "recommended_gate": "proceed_to_observatory_source_ownership_audit"
+}
