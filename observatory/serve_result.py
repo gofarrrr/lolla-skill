@@ -4740,7 +4740,7 @@ def _render_workspace_models(models: list[dict], selected_case_id: str) -> str:
         content = _empty_inline("No product-safe mental model pages are available.")
     else:
         content = "\n".join(
-            _render_workspace_model_page(
+            _render_workspace_model_index_card(
                 model,
                 selected_case_id=selected_case_id,
             )
@@ -4752,6 +4752,44 @@ def _render_workspace_models(models: list[dict], selected_case_id: str) -> str:
             _render_teacher_section_header("Models"),
             content,
             "</section>",
+        ]
+    )
+
+
+def _render_workspace_model_index_card(
+    model: dict,
+    *,
+    selected_case_id: str,
+) -> str:
+    model_id = str(model.get("model_id", ""))
+    meaning = _workspace_first_text(
+        model.get("one_sentence_meaning"),
+        "No source-backed one-sentence meaning is available yet.",
+    )
+    use_when = _workspace_first_text(
+        model.get("use_when") or model.get("helps_notice"),
+        "No source-backed use-when cue is available yet.",
+    )
+    misleads = _workspace_first_text(
+        list(model.get("avoid_when") or []) + list(model.get("common_misuse") or []),
+        "No source-backed mislead cue is available yet.",
+    )
+    return "\n".join(
+        [
+            f'<article id="{_model_detail_anchor(model_id)}" class="workspace-card workspace-model-index-card" data-first-read-card>',
+            '<p class="teacher-eyebrow">Mental Model</p>',
+            f'<h3>{_esc(model.get("display_name") or model_id)}</h3>',
+            '<p class="workspace-kicker">Model index</p>',
+            f'<p class="lede">{_esc(meaning)}</p>',
+            '<div class="workspace-model-learn-grid">',
+            _workspace_model_learn_item("Use when", use_when),
+            _workspace_model_learn_item("When it misleads", misleads),
+            "</div>",
+            '<div class="workspace-next-actions">',
+            f'<a class="workspace-chip" href="{_esc(_observatory_model_href(model_id, selected_case_id))}">'
+            "Open model page</a>",
+            "</div>",
+            "</article>",
         ]
     )
 
@@ -4857,7 +4895,7 @@ def _render_workspace_relations(
         content = _empty_inline("No product-safe relation pages are available.")
     else:
         content = "\n".join(
-            _render_workspace_relation_page(
+            _render_workspace_relation_index_card(
                 relation,
                 model_lookup,
                 selected_case_id=selected_case_id,
@@ -4870,6 +4908,47 @@ def _render_workspace_relations(
             _render_teacher_section_header("Relations"),
             content,
             "</section>",
+        ]
+    )
+
+
+def _render_workspace_relation_index_card(
+    relation: dict,
+    model_lookup: dict[str, dict],
+    *,
+    selected_case_id: str,
+) -> str:
+    relation_id = str(relation.get("relation_id", ""))
+    return "\n".join(
+        [
+            f'<article id="{_relation_detail_anchor(relation_id)}" class="workspace-card workspace-relation-index-card" data-first-read-card>',
+            '<p class="teacher-eyebrow">Relation</p>',
+            f'<h3>{_esc(_relation_title(relation, model_lookup))}</h3>',
+            '<p class="workspace-kicker">Relation story</p>',
+            f'<p class="lede">{_esc(relation.get("plain_language_story", ""))}</p>',
+            '<div class="workspace-model-learn-grid">',
+            _workspace_model_learn_item(
+                "Why it matters",
+                str(relation.get("why_it_matters") or "No source-backed why-it-matters text is available yet."),
+            ),
+            _workspace_model_learn_item(
+                "Misread risk",
+                str(relation.get("misread_risk") or "No source-backed misread-risk text is available yet."),
+            ),
+            "</div>",
+            '<div class="workspace-practice">',
+            f'<p><strong>Practice prompt:</strong> {_esc(relation.get("practice_prompt", ""))}</p>',
+            "</div>",
+            '<p class="workspace-kicker">Model links</p>',
+            _render_workspace_chips(
+                relation.get("model_links") or [],
+                selected_case_id=selected_case_id,
+            ),
+            '<div class="workspace-next-actions">',
+            f'<a class="workspace-chip" href="{_esc(_observatory_relation_href(relation_id, selected_case_id))}">'
+            "Open relation page</a>",
+            "</div>",
+            "</article>",
         ]
     )
 

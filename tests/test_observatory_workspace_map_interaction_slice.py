@@ -124,9 +124,13 @@ def test_workspace_map_keeps_graph_as_navigation_not_proof(monkeypatch) -> None:
     _install_launch_case(monkeypatch)
 
     html = serve_result._render_workspace_html("lolla-audit")
+    detail = serve_result._render_workspace_relation_detail_html(
+        "authority-bias__first-principles-thinking__antagonist",
+        "lolla-audit",
+    )
 
     assert "Edges are navigation, not proof" in html
-    assert "confidence is not certification" in html
+    assert "confidence is not certification" in detail
     assert "not_product_proof" in html
     assert "not_answer_correctness" in html
     assert "not_advice_correctness" in html

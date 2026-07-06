@@ -86,6 +86,10 @@ def test_workspace_model_chips_resolve_to_formatted_model_pages(monkeypatch) -> 
     _install_launch_case(monkeypatch)
 
     html = serve_result._render_workspace_html("lolla-audit")
+    detail = serve_result._render_workspace_model_detail_html(
+        "authority-bias",
+        "lolla-audit",
+    )
 
     assert 'href="/models/authority-bias?case_id=lolla-audit"' in html
     assert (
@@ -96,12 +100,13 @@ def test_workspace_model_chips_resolve_to_formatted_model_pages(monkeypatch) -> 
     assert "Authority Bias" in html
     assert "Information Asymmetry" in html
     assert "First Principles Thinking" in html
-    assert "What This Model Helps You See" in html
-    assert "Helps notice" in html
-    assert "Use when" in html
-    assert "Avoid when" in html
-    assert "Practice prompts" in html
-    assert "canonical_model_markdown" in html
+    assert "Model index" in html
+    assert "What This Model Helps You See" in detail
+    assert "Helps notice" in detail
+    assert "Use when" in detail
+    assert "Avoid when" in detail
+    assert "Practice prompts" in detail
+    assert "canonical_model_markdown" in detail
     assert 'href="#model-authority-bias"' not in html
 
 
@@ -109,20 +114,25 @@ def test_workspace_relation_story_comes_before_taxonomy_and_confidence(monkeypat
     _install_launch_case(monkeypatch)
 
     html = serve_result._render_workspace_html("lolla-audit")
+    detail = serve_result._render_workspace_relation_detail_html(
+        "authority-bias__first-principles-thinking__antagonist",
+        "lolla-audit",
+    )
 
     assert (
         'id="relation-authority-bias__first-principles-thinking__antagonist"'
         in html
     )
-    story_index = html.index(
+    assert "Relation story" in html
+    story_index = detail.index(
         "First principles thinking strips away inherited doctrine"
     )
-    taxonomy_index = html.index("<h3>Taxonomy</h3>")
-    confidence_index = html.index("confidence: medium")
+    taxonomy_index = detail.index("<h3>Taxonomy</h3>")
+    confidence_index = detail.index("confidence: medium")
 
     assert story_index < taxonomy_index < confidence_index
     assert "Edges are navigation, not proof" in html
-    assert "confidence is not certification" in html
+    assert "confidence is not certification" in detail
 
 
 def test_product_workspace_api_route_returns_valid_adapter_payload(monkeypatch) -> None:

@@ -77,21 +77,31 @@ def test_model_detail_page_starts_with_learning_value(monkeypatch) -> None:
     )
 
 
-def test_workspace_model_cards_are_progressive_but_still_complete(monkeypatch) -> None:
+def test_workspace_model_cards_are_light_index_with_detail_drilldown(monkeypatch) -> None:
     _install_launch_case(monkeypatch)
 
     html = serve_result._render_workspace_html("lolla-audit")
+    models_section = html.split('<section id="models"', 1)[1].split(
+        '<section id="relations"',
+        1,
+    )[0]
+    detail = serve_result._render_workspace_model_detail_html(
+        "authority-bias",
+        "lolla-audit",
+    )
 
-    assert "What This Model Helps You See" in html
-    assert "Use when" in html
-    assert "When it misleads" in html
-    assert "Practice this" in html
-    assert "Use, avoid, and source-backed details" in html
-    assert "Helps notice" in html
-    assert "Avoid when" in html
-    assert "Practice and failure detail" in html
-    assert "Open model page" in html
-    assert "canonical_model_markdown" in html
+    assert "Model index" in models_section
+    assert "Use when" in models_section
+    assert "When it misleads" in models_section
+    assert "Open model page" in models_section
+    assert "Use, avoid, and source-backed details" not in models_section
+    assert "Practice and failure detail" not in models_section
+    assert "canonical_model_markdown" not in models_section
+    assert "What This Model Helps You See" in detail
+    assert "Helps notice" in detail
+    assert "Avoid when" in detail
+    assert "Practice and failure detail" in detail
+    assert "canonical_model_markdown" in detail
 
 
 def test_workspace_sidebar_collapses_run_switching(monkeypatch) -> None:
