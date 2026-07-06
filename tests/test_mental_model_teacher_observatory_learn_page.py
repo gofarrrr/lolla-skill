@@ -75,11 +75,15 @@ def test_learn_page_shows_relation_story_before_relation_taxonomy(monkeypatch) -
     _install_launch_case(monkeypatch)
 
     html = serve_result._render_workspace_html("lolla-audit")
+    detail = serve_result._render_workspace_relation_detail_html(
+        "authority-bias__first-principles-thinking__antagonist",
+        "lolla-audit",
+    )
 
-    story_index = html.index(
+    story_index = detail.index(
         "First principles thinking strips away inherited doctrine"
     )
-    taxonomy_index = html.index("confidence: medium")
+    taxonomy_index = detail.index("confidence: medium")
     assert story_index < taxonomy_index
     assert "Edges are navigation, not proof" in html
     assert "Graph is navigation" not in html

@@ -83,9 +83,13 @@ def test_interactive_graph_keeps_graph_as_navigation_not_proof() -> None:
     _install_launch_case()
 
     html = serve_result._render_workspace_html("lolla-audit")
+    detail = serve_result._render_workspace_relation_detail_html(
+        "authority-bias__first-principles-thinking__antagonist",
+        "lolla-audit",
+    )
 
     assert "edges are navigation, not proof" in html
-    assert "confidence is not certification" in html
+    assert "confidence is not certification" in detail
     assert "artifact_refs" not in html
     assert "usage_summary" not in html
     assert "audit_summary" not in html

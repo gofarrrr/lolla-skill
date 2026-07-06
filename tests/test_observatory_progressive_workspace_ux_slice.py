@@ -74,16 +74,29 @@ def test_model_and_relation_pages_defer_support_metadata(monkeypatch) -> None:
     _install_launch_case(monkeypatch)
 
     html = serve_result._render_workspace_html("lolla-audit")
+    model_detail = serve_result._render_workspace_model_detail_html(
+        "authority-bias",
+        "lolla-audit",
+    )
+    relation_detail = serve_result._render_workspace_relation_detail_html(
+        "authority-bias__first-principles-thinking__antagonist",
+        "lolla-audit",
+    )
 
-    assert "What This Model Helps You See" in html
+    assert "Model index" in html
+    assert "Relation story" in html
     assert "Everything We Know" not in html
-    assert "Practice and failure detail" in html
-    assert "Source, status, and boundaries" in html
-    assert "Taxonomy, confidence, and custody" in html
+    assert "Practice and failure detail" not in html
+    assert "Source, status, and boundaries" not in html
+    assert "Taxonomy, confidence, and custody" not in html
+    assert "What This Model Helps You See" in model_detail
+    assert "Practice and failure detail" in model_detail
+    assert "Source, status, and boundaries" in model_detail
+    assert "Taxonomy, confidence, and custody" in relation_detail
 
-    story_index = html.index("Plain Language Story")
-    taxonomy_disclosure_index = html.index("Taxonomy, confidence, and custody")
-    confidence_index = html.index("confidence: medium")
+    story_index = relation_detail.index("Plain Language Story")
+    taxonomy_disclosure_index = relation_detail.index("Taxonomy, confidence, and custody")
+    confidence_index = relation_detail.index("confidence: medium")
 
     assert story_index < taxonomy_disclosure_index < confidence_index
 

@@ -49,16 +49,22 @@ def test_workspace_learn_links_models_to_product_pages_without_drawers() -> None
     _install_launch_case()
 
     html = serve_result._render_workspace_html("lolla-audit")
+    detail = serve_result._render_workspace_model_detail_html(
+        "authority-bias",
+        "lolla-audit",
+    )
 
     assert 'href="/models/authority-bias?case_id=lolla-audit"' in html
     assert 'id="model-authority-bias"' in html
-    assert "What This Model Helps You See" in html
-    assert "Helps notice" in html
+    assert "Model index" in html
     assert "Use when" in html
-    assert "Avoid when" in html
-    assert "Failure modes" in html
-    assert "Source, status, and boundaries" in html
-    assert "data/model_sources/Authority_Bias_rag.md" in html
+    assert "When it misleads" in html
+    assert "What This Model Helps You See" in detail
+    assert "Helps notice" in detail
+    assert "Avoid when" in detail
+    assert "Failure modes" in detail
+    assert "Source, status, and boundaries" in detail
+    assert "data/model_sources/Authority_Bias_rag.md" in detail
     assert "teacher-detail" not in html
     assert "drawer-panel" not in html
     assert html.index("Test The Authority, Not The Aura") < html.index("<h2>Models</h2>")
@@ -69,6 +75,10 @@ def test_workspace_learn_links_relations_after_plain_story() -> None:
     _install_launch_case()
 
     html = serve_result._render_workspace_html("lolla-audit")
+    detail = serve_result._render_workspace_relation_detail_html(
+        "authority-bias__first-principles-thinking__antagonist",
+        "lolla-audit",
+    )
 
     relation_anchor = (
         "relation-authority-bias__first-principles-thinking__antagonist"
@@ -78,13 +88,16 @@ def test_workspace_learn_links_relations_after_plain_story() -> None:
         in html
     )
     assert f'id="{relation_anchor}"' in html
-    assert "Plain Language Story" in html
-    assert "Why It Matters" in html
-    assert "Misread Risk" in html
+    assert "Relation story" in html
+    assert "Why it matters" in html
+    assert "Misread risk" in html
     assert "Practice prompt:" in html
-    assert "confidence is not certification" in html
-    assert html.index("First principles thinking strips away inherited doctrine") < (
-        html.index("confidence: medium")
+    assert "Plain Language Story" in detail
+    assert "Why It Matters" in detail
+    assert "Misread Risk" in detail
+    assert "confidence is not certification" in detail
+    assert detail.index("First principles thinking strips away inherited doctrine") < (
+        detail.index("confidence: medium")
     )
 
 
