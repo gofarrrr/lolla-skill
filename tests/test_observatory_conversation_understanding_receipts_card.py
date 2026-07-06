@@ -43,6 +43,12 @@ def test_injected_html_contains_conversation_understanding_card() -> None:
     assert "/audit/extraction" in html
     assert "Show receipt" in html
     assert "Status JSON" in html
+    assert "Case Surfaces" in html
+    assert "safe interpretation read" in html
+    assert "triage read" in html
+    assert 'href="/teacher-learning#models"' in html
+    assert 'href="/teacher-learning#relations"' in html
+    assert 'href="/teacher-learning#map"' in html
 
 
 def test_card_copy_supports_required_statuses_without_generation_action() -> None:
@@ -76,6 +82,8 @@ def test_card_uses_observatory_custody_aesthetics() -> None:
 
     for fragment in [
         ".lolla-conversation-understanding",
+        ".lolla-surface-switcher",
+        ".lolla-surface-link.active",
         ".lolla-conversation-heading",
         ".lolla-conversation-row",
         ".lolla-custody-status.deferred",
