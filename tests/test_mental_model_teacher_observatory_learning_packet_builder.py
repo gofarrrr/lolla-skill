@@ -57,6 +57,10 @@ def test_builder_emits_valid_selected_run_learning_packet() -> None:
     assert validated["human_validated"] is False
     assert validated["runtime_integration_authorized"] is False
     assert validated["provider_or_model_calls_used"] is False
+    assert "observatory_endpoint" not in validated["missingness"]["missing_fields"]
+    assert "observatory_ui_mount" not in validated["missingness"]["missing_fields"]
+    assert any("Observatory Learn surface" in note for note in validated["missingness"]["notes"])
+    assert all("not mounted in Observatory yet" not in note for note in validated["missingness"]["notes"])
 
 
 def test_builder_preserves_canonical_model_identity_separate_from_lesson_label() -> None:
