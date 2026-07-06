@@ -1,0 +1,138 @@
+{
+  "schema_version": "codex_assisted_review.v0",
+  "review_id": "observatory-progressive-workspace-browser-review-v0",
+  "status": "complete",
+  "date": "2026-07-06",
+  "decision_gate": "proceed_to_observatory_focused_workspace_narration_slice",
+  "browser_grounded": true,
+  "browser_scope": {
+    "server": "portable_observatory_server",
+    "result_source": "existing_demo_result_artifact",
+    "routes_opened": [
+      "/",
+      "/workspace?case_id=lolla-audit#learn",
+      "/workspace?case_id=lolla-audit#models",
+      "/models/authority-bias?case_id=lolla-audit",
+      "/workspace?case_id=lolla-audit#relations",
+      "/relations/authority-bias__first-principles-thinking__antagonist?case_id=lolla-audit",
+      "/workspace?case_id=lolla-audit#map",
+      "/workspace?case_id=lolla-audit#receipts",
+      "/audit",
+      "/audit/extraction",
+      "/usage",
+      "/workspace?case_id=archive%3Adeploy-assisted-intake-routing%3A20260627T130339Z_4cd3cb"
+    ],
+    "controls_exercised": [
+      "workspace_top_navigation",
+      "selected_run_sidebar",
+      "model_detail_link",
+      "relation_detail_link",
+      "map_search_first",
+      "map_relation_filter_antagonist",
+      "map_search_no_results",
+      "receipts_advanced_links",
+      "archive_run_picker_sample"
+    ]
+  },
+  "current_visible_layers": {
+    "first_class": [
+      "selected_run_context",
+      "revised_answer_summary",
+      "reasoning_move",
+      "practice_rep",
+      "model_meaning",
+      "relation_plain_language_story",
+      "small_graph_neighborhood",
+      "trust_summary",
+      "explicit_non_claims"
+    ],
+    "expandable": [
+      "outcome_support_details",
+      "lesson_steps_and_boundaries",
+      "model_practice_and_failure_detail",
+      "model_source_status_and_boundaries",
+      "relation_taxonomy_confidence_and_custody",
+      "map_custody_and_boundaries",
+      "source_refs_and_missing_fields",
+      "workspace_boundary"
+    ],
+    "advanced_only": [
+      "audit_index",
+      "extraction_telemetry",
+      "usage_vendor_model_prompt_cost_tables",
+      "lane_routing_panels",
+      "graph_survival",
+      "reasoning_trace",
+      "run_events"
+    ]
+  },
+  "confirmed_working": {
+    "one_route_family": true,
+    "first_read_cards_visible": true,
+    "model_pages_clickable": true,
+    "relation_pages_story_first": true,
+    "map_search_selects_visible_model": true,
+    "map_no_results_state_is_clear": true,
+    "receipts_start_with_trust_summary": true,
+    "advanced_audit_remains_available": true
+  },
+  "remaining_ux_risks": {
+    "root_page_still_exposes_full_stack": true,
+    "advanced_audit_still_in_top_nav": true,
+    "archive_outcome_markdown_heading_leaks": true,
+    "map_svg_labels_concatenate_model_type": true,
+    "relation_filter_does_not_focus_edge": true,
+    "standalone_page_action_copy_is_vague": true,
+    "standalone_model_page_leads_with_page_boundary": true,
+    "receipts_source_refs_are_artifact_wall_when_expanded": true
+  },
+  "strongest_useful_signal": "The relation page pattern is clearest: plain-language story, why it matters, misread risk, practice prompt, model links, then taxonomy and custody.",
+  "strongest_unresolved_risk": "The workspace still behaves like a full artifact browser with product cards layered on top instead of a focused guided path through the selected run.",
+  "recommended_next_pr": {
+    "title": "Add Observatory focused workspace narration",
+    "gate": "proceed_to_observatory_focused_workspace_narration_slice",
+    "scope": [
+      "focused_start_here_mode",
+      "surface_switching_feel",
+      "clearer_model_and_relation_page_actions",
+      "markdown_heading_cleanup_for_first_read_outcomes",
+      "map_label_accessibility_cleanup",
+      "relation_filter_prefers_edge_focus",
+      "map_why_this_matters_line",
+      "stronger_separation_between_receipts_and_advanced_audit"
+    ],
+    "stop_before": [
+      "full_corpus_library",
+      "full_corpus_graph",
+      "runtime_integration",
+      "default_on_generation",
+      "provider_or_model_api_calls",
+      "product_readiness_claim",
+      "human_validation_claim",
+      "answer_or_advice_correctness_claim",
+      "action_authorization"
+    ]
+  },
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_lolla_run": false,
+    "wires_runtime_behavior": false,
+    "mutates_archives": false,
+    "writes_sidecars": false,
+    "compiled_spa_bundle_changed": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "relation_confidence_is_certification": false
+  }
+}
