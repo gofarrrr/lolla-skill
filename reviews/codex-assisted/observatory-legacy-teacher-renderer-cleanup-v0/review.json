@@ -1,0 +1,93 @@
+{
+  "schema_version": "codex_assisted_review.v0",
+  "review_id": "observatory-legacy-teacher-renderer-cleanup-v0",
+  "status": "complete",
+  "date": "2026-07-06",
+  "decision_gate": "proceed_to_observatory_workspace_accessibility_text_noise_cleanup",
+  "implemented": {
+    "legacy_direct_teacher_renderer_removed": true,
+    "teacher_learning_route_redirect_preserved": true,
+    "teacher_learning_packet_api_preserved": true,
+    "old_hash_drawer_graph_contract_removed": true,
+    "workspace_product_page_graph_links_preserved": true,
+    "compiled_spa_bundle_changed": false
+  },
+  "route_contract": {
+    "single_visible_teacher_product_path": "/workspace?case_id=<id>#learn",
+    "compatibility_route": "/teacher-learning",
+    "compatibility_route_behavior": "redirect",
+    "packet_api_route": "/api/case/<id>/teacher-learning",
+    "legacy_direct_renderer": "removed"
+  },
+  "browser_check": {
+    "performed": true,
+    "fixture": "in_memory_lolla_audit_observatory_fixture",
+    "routes_checked": [
+      "/teacher-learning",
+      "/workspace?case_id=lolla-audit#learn",
+      "/workspace?case_id=lolla-audit#models",
+      "/models/authority-bias?case_id=lolla-audit",
+      "/workspace?case_id=lolla-audit#relations",
+      "/relations/authority-bias__first-principles-thinking__antagonist?case_id=lolla-audit",
+      "/workspace?case_id=lolla-audit#map",
+      "/workspace?case_id=lolla-audit#receipts",
+      "/api/case/lolla-audit/teacher-learning"
+    ],
+    "visible_progression": [
+      "Outcome",
+      "Learn",
+      "Models",
+      "Relations",
+      "Map",
+      "Receipts"
+    ],
+    "legacy_teacher_dom_absent": true,
+    "observatory_graph_present": true,
+    "product_page_links_present": true,
+    "receipts_keep_technical_detail_secondary": true
+  },
+  "strongest_useful_signal": "The repo no longer maintains a direct all-in-one Teacher HTML renderer, so the selected-run workspace is the only visible Teacher product path.",
+  "strongest_unresolved_risk": "Raw text extraction can still see hidden workspace sections and embedded scripts, so the next UX cleanup should reduce non-visible technical noise while preserving the visible workspace.",
+  "recommended_next_pr": {
+    "title": "Reduce Observatory workspace accessibility and text-extraction noise",
+    "gate": "proceed_to_observatory_workspace_accessibility_text_noise_cleanup",
+    "scope": [
+      "inspect browser accessibility tree and raw text extraction",
+      "hide non-active workspace sections from text exposure more cleanly",
+      "avoid exposing embedded scripts as product text",
+      "preserve visible Outcome/Learn/Models/Relations/Map/Receipts flow",
+      "preserve Receipts and Advanced Audit as inspection paths"
+    ],
+    "stop_before": [
+      "runtime_integration",
+      "default_on_generation",
+      "provider_or_model_api_calls",
+      "product_readiness_claim",
+      "human_validation_claim",
+      "answer_or_advice_correctness_claim",
+      "action_authorization"
+    ]
+  },
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_lolla_run": false,
+    "wires_runtime_behavior": false,
+    "mutates_archives": false,
+    "writes_sidecars": false,
+    "compiled_spa_bundle_changed": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "relation_confidence_is_certification": false
+  }
+}

@@ -28,44 +28,47 @@ def _install_launch_case() -> None:
 def test_native_learn_page_borrows_observatory_visual_system() -> None:
     _install_launch_case()
 
-    html = serve_result._render_teacher_learning_html("lolla-audit")
+    html = serve_result._render_workspace_html("lolla-audit")
 
     assert "--bg: #060761" in html
     assert "--teal: #41FFA7" in html
     assert "JetBrains Mono" in html
-    assert 'class="teacher-page"' in html
-    assert 'class="status-bar"' in html
-    assert 'class="teacher-shell"' in html
-    assert 'class="teacher-sidebar"' in html
-    assert 'class="tab-btn tab-btn--active"' in html
+    assert 'class="workspace-page"' in html
+    assert 'class="status-bar workspace-statusbar"' in html
+    assert 'class="workspace-layout"' in html
+    assert 'class="workspace-sidebar"' in html
+    assert 'class="teacher-shell"' not in html
+    assert 'class="teacher-sidebar"' not in html
+    assert 'class="tab-btn tab-btn--active"' not in html
     assert ">Outcome</a>" in html
-    assert ">Telemetry</a>" in html
+    status_bar = html.split('data-observatory-status-bar>', 1)[1].split("</nav>", 1)[0]
+    assert "Advanced Audit" not in status_bar
 
 
-def test_native_learn_page_links_models_to_workspace_pages_and_keeps_drawers() -> None:
+def test_workspace_learn_links_models_to_product_pages_without_drawers() -> None:
     _install_launch_case()
 
-    html = serve_result._render_teacher_learning_html("lolla-audit")
+    html = serve_result._render_workspace_html("lolla-audit")
 
     assert 'href="/models/authority-bias?case_id=lolla-audit"' in html
     assert 'id="model-authority-bias"' in html
     assert "What This Model Helps You See" in html
-    assert "Helps Notice" in html
-    assert "Use When" in html
-    assert "Avoid When" in html
-    assert "Failure Modes" in html
-    assert "Premortem Questions" in html
-    assert "Heuristics" in html
-    assert "Reasoning Types" in html
-    assert "Source Custody" in html
+    assert "Helps notice" in html
+    assert "Use when" in html
+    assert "Avoid when" in html
+    assert "Failure modes" in html
+    assert "Source, status, and boundaries" in html
     assert "data/model_sources/Authority_Bias_rag.md" in html
-    assert "<h3>Test The Authority, Not The Aura</h3>" not in html
+    assert "teacher-detail" not in html
+    assert "drawer-panel" not in html
+    assert html.index("Test The Authority, Not The Aura") < html.index("<h2>Models</h2>")
+    assert 'id="model-test-the-authority-not-the-aura"' not in html
 
 
-def test_native_learn_page_links_relations_after_plain_story() -> None:
+def test_workspace_learn_links_relations_after_plain_story() -> None:
     _install_launch_case()
 
-    html = serve_result._render_teacher_learning_html("lolla-audit")
+    html = serve_result._render_workspace_html("lolla-audit")
 
     relation_anchor = (
         "relation-authority-bias__first-principles-thinking__antagonist"
@@ -78,7 +81,7 @@ def test_native_learn_page_links_relations_after_plain_story() -> None:
     assert "Plain Language Story" in html
     assert "Why It Matters" in html
     assert "Misread Risk" in html
-    assert "Practice Prompt" in html
+    assert "Practice prompt:" in html
     assert "confidence is not certification" in html
     assert html.index("First principles thinking strips away inherited doctrine") < (
         html.index("confidence: medium")
@@ -88,12 +91,12 @@ def test_native_learn_page_links_relations_after_plain_story() -> None:
 def test_native_learn_page_keeps_telemetry_and_receipts_secondary() -> None:
     _install_launch_case()
 
-    html = serve_result._render_teacher_learning_html("lolla-audit")
+    html = serve_result._render_workspace_html("lolla-audit")
 
-    assert "What Goes Where" in html
-    assert "Receipts carry custody and missingness" in html
-    assert "Source refs:" in html
-    assert "Artifact refs:" in html
+    assert "What can I trust or inspect?" in html
+    assert "Use Receipts to understand what exists for this run" in html
+    assert "Technical inspection" in html
+    assert "Source and missingness details" in html
     assert "artifact_refs" not in html
     assert "usage_summary" not in html
     assert "audit_summary" not in html

@@ -28,13 +28,15 @@ def _install_launch_case() -> None:
 def test_interactive_graph_renders_observatory_native_workbench() -> None:
     _install_launch_case()
 
-    html = serve_result._render_teacher_learning_html("lolla-audit")
+    html = serve_result._render_workspace_html("lolla-audit")
 
-    assert 'class="graph-workbench"' in html
-    assert "data-teacher-graph" in html
+    assert 'class="graph-workbench workspace-graph-workbench"' in html
+    assert "data-observatory-graph" in html
+    assert "data-teacher-graph" not in html
     assert 'data-default-focus="authority-bias"' in html
     assert "data-graph-search" in html
     assert "Search model, role, or id" in html
+    assert "data-graph-reset" in html
     assert "data-graph-results" in html
     assert "data-graph-selection" in html
     assert "map-edge-hitbox" in html
@@ -44,7 +46,7 @@ def test_interactive_graph_renders_observatory_native_workbench() -> None:
 def test_interactive_graph_exposes_filterable_nodes_and_edges() -> None:
     _install_launch_case()
 
-    html = serve_result._render_teacher_learning_html("lolla-audit")
+    html = serve_result._render_workspace_html("lolla-audit")
 
     assert html.count("data-graph-node ") == 3
     assert html.count("data-graph-edge ") == 1
@@ -56,28 +58,31 @@ def test_interactive_graph_exposes_filterable_nodes_and_edges() -> None:
     assert 'data-target-id="first-principles-thinking"' in html
 
 
-def test_interactive_graph_click_targets_resolve_to_existing_drawers() -> None:
+def test_interactive_graph_click_targets_resolve_to_product_pages() -> None:
     _install_launch_case()
 
-    html = serve_result._render_teacher_learning_html("lolla-audit")
+    html = serve_result._render_workspace_html("lolla-audit")
 
     relation_anchor = (
         "relation-authority-bias__first-principles-thinking__antagonist"
     )
-    assert 'href="#model-authority-bias"' in html
+    assert 'href="/models/authority-bias?case_id=lolla-audit"' in html
     assert 'id="model-authority-bias"' in html
-    assert f'href="#{relation_anchor}"' in html
+    assert (
+        f'href="/relations/{relation_anchor.removeprefix("relation-")}?case_id=lolla-audit"'
+        in html
+    )
     assert f'id="{relation_anchor}"' in html
     assert "Open model detail" in html
     assert "Open relation detail" in html
-    assert "#map" in html
-    assert "dataset.returnHash" in html
+    assert "dataset.returnHash" not in html
+    assert "drawer-panel" not in html
 
 
 def test_interactive_graph_keeps_graph_as_navigation_not_proof() -> None:
     _install_launch_case()
 
-    html = serve_result._render_teacher_learning_html("lolla-audit")
+    html = serve_result._render_workspace_html("lolla-audit")
 
     assert "edges are navigation, not proof" in html
     assert "confidence is not certification" in html
@@ -86,6 +91,7 @@ def test_interactive_graph_keeps_graph_as_navigation_not_proof() -> None:
     assert "audit_summary" not in html
     assert "not_answer_correctness" in html
     assert "not_advice_correctness" in html
+    assert 'graphRootSelector = "[data-observatory-graph]"' in html
 
 
 def test_interactive_graph_docs_review_and_readme_capture_gate_and_boundaries() -> None:

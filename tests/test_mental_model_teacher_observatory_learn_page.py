@@ -34,26 +34,25 @@ def _install_launch_case(monkeypatch) -> None:
     monkeypatch.setattr(serve_result, "_CASE_NAME", "Lolla Audit")
 
 
-def test_server_rendered_learn_page_has_clear_narrative_order(monkeypatch) -> None:
+def test_workspace_learn_surface_has_clear_narrative_order(monkeypatch) -> None:
     _install_launch_case(monkeypatch)
 
-    html = serve_result._render_teacher_learning_html("lolla-audit")
+    html = serve_result._render_workspace_html("lolla-audit")
 
-    assert "<h1>Learn</h1>" in html
-    assert "Case is the anchor" in html
-    assert "The Lesson" in html
-    assert "Thinking move:" in html
-    assert "Model Stack" in html
-    assert "Practice Rep" in html
-    assert "Do Not Overlearn" in html
+    assert "<h2>Learn</h2>" in html
+    assert "What reasoning move can I practice?" in html
+    assert "Thinking move" in html
+    assert "Lesson steps and boundaries" in html
+    assert "Model links" in html
+    assert "Relation links" in html
+    assert "Do not overlearn" in html
     assert "Models" in html
-    assert "Relation" in html
+    assert "Relations" in html
     assert "Map" in html
     assert "Receipts" in html
-    assert "Non-Claims" in html
-    assert html.index("<h2>The Lesson</h2>") < html.index("<h2>Models</h2>")
-    assert html.index("<h2>Models</h2>") < html.index("<h2>Relation</h2>")
-    assert html.index("<h2>Relation</h2>") < html.index("<h2>Map</h2>")
+    assert html.index("<h2>Learn</h2>") < html.index("<h2>Models</h2>")
+    assert html.index("<h2>Models</h2>") < html.index("<h2>Relations</h2>")
+    assert html.index("<h2>Relations</h2>") < html.index("<h2>Map</h2>")
     assert html.index("<h2>Map</h2>") < html.index("<h2>Receipts</h2>")
 
 
@@ -62,19 +61,20 @@ def test_learn_page_uses_canonical_model_names_and_lesson_practice_label(
 ) -> None:
     _install_launch_case(monkeypatch)
 
-    html = serve_result._render_teacher_learning_html("lolla-audit")
+    html = serve_result._render_workspace_html("lolla-audit")
 
     assert "Authority Bias" in html
     assert "Information Asymmetry" in html
     assert "First Principles Thinking" in html
     assert "Test The Authority, Not The Aura" in html
-    assert "<h3>Test The Authority, Not The Aura</h3>" not in html
+    assert html.index("Test The Authority, Not The Aura") < html.index("<h2>Models</h2>")
+    assert 'id="model-test-the-authority-not-the-aura"' not in html
 
 
 def test_learn_page_shows_relation_story_before_relation_taxonomy(monkeypatch) -> None:
     _install_launch_case(monkeypatch)
 
-    html = serve_result._render_teacher_learning_html("lolla-audit")
+    html = serve_result._render_workspace_html("lolla-audit")
 
     story_index = html.index(
         "First principles thinking strips away inherited doctrine"
@@ -88,10 +88,10 @@ def test_learn_page_shows_relation_story_before_relation_taxonomy(monkeypatch) -
 def test_learn_page_keeps_receipts_and_nonclaims_visible_but_late(monkeypatch) -> None:
     _install_launch_case(monkeypatch)
 
-    html = serve_result._render_teacher_learning_html("lolla-audit")
+    html = serve_result._render_workspace_html("lolla-audit")
 
-    assert "Source refs:" in html
-    assert "Artifact refs:" in html
+    assert "Source and missingness details" in html
+    assert "Technical inspection" in html
     assert "not_answer_correctness" in html
     assert "not_advice_correctness" in html
     assert "not_runtime_integration" in html
@@ -136,18 +136,17 @@ def test_root_injection_adds_learn_and_telemetry_affordances() -> None:
     assert rendered_again.count('class="telemetry-fab"') == 1
 
 
-def test_learn_status_bar_uses_shared_workspace_navigation(monkeypatch) -> None:
+def test_workspace_learn_status_bar_uses_shared_workspace_navigation(monkeypatch) -> None:
     _install_launch_case(monkeypatch)
 
-    html = serve_result._render_teacher_learning_html("lolla-audit")
+    html = serve_result._render_workspace_html("lolla-audit")
 
-    assert 'aria-label="Observatory surfaces"' in html
+    assert 'aria-label="Observatory workspace"' in html
     assert (
         'data-observatory-surface-link="outcome" '
         'href="/workspace?case_id=lolla-audit#outcome">Outcome</a>'
     ) in html
     assert (
-        '<a class="status-link-active" aria-current="page" '
         'data-observatory-surface-link="learn" '
         'href="/workspace?case_id=lolla-audit#learn">Learn</a>'
     ) in html
@@ -170,6 +169,10 @@ def test_learn_status_bar_uses_shared_workspace_navigation(monkeypatch) -> None:
     status_bar = html.split('data-observatory-status-bar>', 1)[1].split("</nav>", 1)[0]
     assert "Advanced Audit" not in status_bar
     assert 'href="/models/authority-bias?case_id=lolla-audit"' in html
+
+
+def test_legacy_teacher_learning_direct_renderer_is_removed() -> None:
+    assert not hasattr(serve_result, "_render_teacher_learning_html")
 
 
 def test_learn_page_docs_review_and_readme_preserve_boundaries() -> None:
