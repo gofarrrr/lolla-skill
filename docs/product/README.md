@@ -74,4 +74,5 @@ Current planning docs:
 - [Observatory Workspace Visual Polish Review](observatory-workspace-visual-polish-review-v0.md)
 - [Observatory Workspace User Review Packet](observatory-workspace-user-review-packet-v0.md)
 - [Observatory Workspace User Review Packet Render](observatory-workspace-user-review-packet-v0/index.md)
+- [Observatory Workspace Human Review Intake](observatory-workspace-human-review-intake-v0.md)
 - [Mental Model Teacher Product Surface Reference Patterns](mental-model-teacher-product-surface-reference-patterns-v0.md)
