@@ -1,0 +1,85 @@
+{
+  "schema": "lolla.observatory_server_rendered_root_workspace_review.v0",
+  "status": "portable_workspace_renderer_ready_for_review",
+  "date": "2026-07-06",
+  "decision_gate": "proceed_to_observatory_workspace_navigation_source_of_truth",
+  "recommended_next_pr": "Observatory Workspace Navigation Source Of Truth",
+  "implemented": {
+    "root_workspace_route": "/",
+    "workspace_route": "/workspace",
+    "product_workspace_api": "/api/case/<id>/product-workspace",
+    "legacy_spa_route": "/index.html",
+    "renderer": "observatory/serve_result.py",
+    "adapter": "observatory/product_view_adapters.py",
+    "compiled_spa_bundle_changed": false
+  },
+  "rendering_direction": "portable_python_server_rendered_html",
+  "visible_surfaces": [
+    "Outcome",
+    "Learn",
+    "Models",
+    "Relations",
+    "Map",
+    "Receipts",
+    "Advanced Audit"
+  ],
+  "ux_guards": {
+    "outcome_first": true,
+    "learn_keeps_reasoning_move": true,
+    "model_cards_are_formatted_pages": true,
+    "model_chips_resolve_to_model_anchors": true,
+    "relation_story_before_taxonomy": true,
+    "graph_is_navigation_summary_not_proof": true,
+    "receipts_keep_custody_and_missingness": true,
+    "raw_telemetry_stays_advanced_audit": true
+  },
+  "single_home_rules": {
+    "revised_answer": "Outcome",
+    "teacher_reasoning_move": "Learn",
+    "canonical_model_explanation": "Models",
+    "relation_explanation": "Relations",
+    "graph_neighborhood": "Map",
+    "source_custody_and_process_status": "Receipts",
+    "raw_telemetry": "Advanced Audit"
+  },
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_lolla_run": false,
+    "runtime_behavior_changed": false,
+    "archive_mutated": false,
+    "sidecars_written": false,
+    "compiled_spa_bundle_changed": false,
+    "observatory_build_edited": false,
+    "svelte_source_required": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "answer_quality_scoring": false,
+    "approval_or_certification": false,
+    "action_authorized": false,
+    "runtime_integration_authorized": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false
+  },
+  "strongest_signal": "The selected run now has one portable Observatory home that presents Outcome, Learn, Models, Relations, Map, Receipts, and Advanced Audit in one readable order without consuming raw telemetry as product copy.",
+  "strongest_risk": "The workspace still uses in-page anchors rather than standalone model and relation routes, so navigation source-of-truth and URL durability need the next slice before the product surface feels fully settled.",
+  "stop_before": [
+    "standalone model routes",
+    "standalone relation routes",
+    "browser graph UI",
+    "full corpus graph",
+    "runtime integration",
+    "default-on Conversation Understanding generation",
+    "source-port work into the old Svelte app",
+    "product readiness claims",
+    "human validation claims"
+  ]
+}
