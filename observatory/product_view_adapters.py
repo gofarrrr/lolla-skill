@@ -9,6 +9,7 @@ touch the legacy SPA bundle.
 from __future__ import annotations
 
 import json
+import re
 from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
@@ -770,7 +771,15 @@ def _health_label(result: Mapping[str, Any]) -> str:
 def _answer_headline(revised_answer: str) -> str:
     if not revised_answer:
         return "No revised answer artifact is available."
-    return _compact_text(revised_answer.splitlines()[0], limit=120)
+    for line in revised_answer.splitlines():
+        candidate = _compact_text(line, limit=120)
+        if candidate and candidate.lower() not in {
+            "updated position",
+            "what survived",
+            "what changed",
+        }:
+            return candidate
+    return _compact_text(revised_answer, limit=120)
 
 
 def _strongest_pressure(result: Mapping[str, Any]) -> str:
@@ -791,12 +800,36 @@ def _strongest_pressure(result: Mapping[str, Any]) -> str:
 
 
 def _compact_text(value: str, *, fallback: str = "", limit: int = 240) -> str:
-    text = " ".join(_text(value, fallback).split())
+    text = " ".join(_plain_product_text(_text(value, fallback)).split())
     if not text:
         return fallback
     if len(text) <= limit:
         return text
     return text[:limit].rsplit(" ", 1)[0] + "..."
+
+
+def _plain_product_text(value: str) -> str:
+    """Remove Markdown scaffolding before text enters product-view summaries."""
+
+    if not value:
+        return ""
+    kept_lines: list[str] = []
+    heading_fallback: list[str] = []
+    for line in value.splitlines():
+        stripped = line.strip()
+        if re.match(r"#{1,6}\s+", stripped):
+            heading = re.sub(r"^#{1,6}\s+", "", stripped).strip()
+            if heading:
+                heading_fallback.append(heading)
+            continue
+        kept_lines.append(stripped)
+    text = "\n".join(line for line in kept_lines if line).strip()
+    if not text:
+        text = " ".join(heading_fallback)
+    text = re.sub(r"(?m)^\s*[-*+]\s+", "", text)
+    text = re.sub(r"\*\*([^*]+)\*\*", r"\1", text)
+    text = re.sub(r"`([^`]+)`", r"\1", text)
+    return text.strip()
 
 
 def _practice_rep(lesson: Mapping[str, Any]) -> dict[str, str]:

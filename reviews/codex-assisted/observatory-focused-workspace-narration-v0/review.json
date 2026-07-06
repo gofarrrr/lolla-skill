@@ -1,0 +1,54 @@
+{
+  "schema_version": "codex_assisted_review.v0",
+  "review_id": "observatory-focused-workspace-narration-v0",
+  "status": "complete",
+  "date": "2026-07-06",
+  "decision_gate": "proceed_to_observatory_focused_workspace_browser_review",
+  "implemented": {
+    "focused_workspace_mode": true,
+    "start_here_narration": true,
+    "markdown_heading_cleanup_for_outcome_first_read": true,
+    "clear_model_relation_page_action_copy": true,
+    "map_wayfinding_sentence": true,
+    "map_svg_human_aria_labels": true,
+    "relation_filter_prefers_edge_focus": true,
+    "route_family_preserved": true,
+    "python_server_renderer_owner_preserved": true
+  },
+  "addressed_browser_review_risks": {
+    "root_page_still_exposes_full_stack": "browser focus mode hides inactive sections while preserving server fallback",
+    "archive_outcome_markdown_heading_leaks": "product-view adapter strips Markdown headings before compact outcome summaries",
+    "map_svg_labels_concatenate_model_type": "map links now expose human aria-label values and hide technical type text",
+    "relation_filter_does_not_focus_edge": "relation-type filters prefer the first visible edge in the selected panel",
+    "standalone_page_action_copy_is_vague": "actions now say Open model page or Open relation page"
+  },
+  "remaining_ux_risks": {
+    "recent_runs_compete_with_first_task": true,
+    "advanced_audit_still_visible_in_top_nav": true,
+    "standalone_model_page_leads_with_boundary_copy": true,
+    "receipts_source_refs_dense_when_expanded": true,
+    "browser_review_required_before_more_data": true
+  },
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_lolla_run": false,
+    "wires_runtime_behavior": false,
+    "mutates_archives": false,
+    "writes_sidecars": false,
+    "compiled_spa_bundle_changed": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "relation_confidence_is_certification": false
+  }
+}

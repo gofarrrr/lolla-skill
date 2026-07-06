@@ -1158,6 +1158,12 @@ _WORKSPACE_CSS = """
   border-top: 1px solid var(--border-subtle);
   padding-top: 26px;
 }
+.workspace-focus-mode .workspace-section[hidden] {
+  display: none;
+}
+.workspace-focus-mode .workspace-section.workspace-section--active {
+  display: grid;
+}
 .workspace-card-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1190,6 +1196,52 @@ _WORKSPACE_CSS = """
 }
 .workspace-first-read .lede {
   max-width: 920px;
+}
+.workspace-start-panel {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+.workspace-step-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+.workspace-step-card {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, .04);
+  padding: 12px;
+}
+.workspace-step-card span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid rgba(65, 255, 167, .45);
+  border-radius: 999px;
+  color: var(--teal);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+.workspace-step-card strong {
+  display: block;
+  margin-top: 8px;
+  color: var(--text-primary);
+}
+.workspace-step-card p {
+  margin: 6px 0 0;
+  color: var(--text-secondary);
+}
+.workspace-focus-label {
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  margin: 8px 0 0;
+}
+.workspace-focus-label strong {
+  color: var(--teal);
 }
 .workspace-next-actions {
   display: flex;
@@ -1392,6 +1444,7 @@ _WORKSPACE_CSS = """
   .workspace-columns,
   .workspace-map-grid,
   .workspace-hero-grid,
+  .workspace-step-grid,
   .workspace-status-grid {
     grid-template-columns: 1fr;
   }
@@ -1552,10 +1605,16 @@ _TEACHER_GRAPH_SCRIPT = """
       }
 
       const selected = root.querySelector(".is-selected");
-      const visibleItems = [...nodes, ...edges].filter((item) => !item.classList.contains("is-filtered"));
-      if (!selected || selected.classList.contains("is-filtered")) {
+      const visibleNodes = nodes.filter((node) => !node.classList.contains("is-filtered"));
+      const visibleRelationEdges = edges.filter((edge) => !edge.classList.contains("is-filtered"));
+      const visibleItems = [...visibleNodes, ...visibleRelationEdges];
+      const relationFilterPrefersEdge =
+        activeFilter !== "all" &&
+        visibleRelationEdges.length > 0 &&
+        (!selected || !selected.matches("[data-graph-edge]"));
+      if (!selected || selected.classList.contains("is-filtered") || relationFilterPrefersEdge) {
         if (visibleItems.length) {
-          const next = visibleItems[0];
+          const next = relationFilterPrefersEdge ? visibleRelationEdges[0] : visibleItems[0];
           updateSelection(root, next, next.matches("[data-graph-edge]") ? "edge" : "node");
         } else {
           clearSelection(root);
@@ -1618,11 +1677,34 @@ _WORKSPACE_NAV_SCRIPT = """
   window.__lollaObservatoryWorkspaceNavigation = true;
 
   const surfaces = new Set(["outcome", "learn", "models", "relations", "map", "receipts"]);
+  const surfaceLabels = {
+    outcome: "Outcome",
+    learn: "Learn",
+    models: "Models",
+    relations: "Relations",
+    map: "Map",
+    receipts: "Receipts"
+  };
 
   const activeSurface = () => {
     if (window.location.pathname !== "/workspace" && window.location.pathname !== "/") return "";
     const hash = window.location.hash.slice(1) || "outcome";
     return surfaces.has(hash) ? hash : "outcome";
+  };
+
+  const updateSections = (surface) => {
+    const page = document.querySelector(".workspace-page");
+    if (!page) return;
+    page.classList.add("workspace-focus-mode");
+    page.dataset.activeSurface = surface;
+    for (const section of page.querySelectorAll(".workspace-section[id]")) {
+      const isActive = section.id === surface;
+      section.classList.toggle("workspace-section--active", isActive);
+      section.toggleAttribute("hidden", !isActive);
+    }
+    for (const label of page.querySelectorAll("[data-workspace-active-label]")) {
+      label.textContent = surfaceLabels[surface] || "Outcome";
+    }
   };
 
   const scrollToSurface = (surface) => {
@@ -1634,6 +1716,7 @@ _WORKSPACE_NAV_SCRIPT = """
   const updateNav = ({ scroll = false } = {}) => {
     const surface = activeSurface();
     if (!surface) return;
+    updateSections(surface);
     for (const nav of document.querySelectorAll("[data-observatory-status-bar]")) {
       for (const link of nav.querySelectorAll("[data-observatory-surface-link]")) {
         const isActive = link.dataset.observatorySurfaceLink === surface;
@@ -5088,7 +5171,9 @@ def _render_workspace_hero(selected_run: dict, workspace: dict) -> str:
             f'<span>Run: <code>{_esc(_short(selected_run.get("run_id", ""), 34))}</code></span>',
             f'<span>Health: <strong>{_esc(selected_run.get("health_label", ""))}</strong></span>',
             "</div>",
-            quick_actions,
+            _render_workspace_start_panel(quick_actions),
+            '<p class="workspace-focus-label">Showing: '
+            '<strong data-workspace-active-label>Outcome</strong></p>',
             _workspace_disclosure(
                 "Workspace status",
                 '<div class="workspace-hero-grid">',
@@ -5099,6 +5184,39 @@ def _render_workspace_hero(selected_run: dict, workspace: dict) -> str:
             ),
             "</header>",
         ]
+    )
+
+
+def _render_workspace_start_panel(quick_actions: str) -> str:
+    return "\n".join(
+        [
+            '<section class="workspace-start-panel" aria-label="Workspace path">',
+            '<article class="workspace-card workspace-first-read" data-first-read-card>',
+            '<p class="workspace-kicker">Start here</p>',
+            "<h3>Use this run as a short lesson.</h3>",
+            '<p class="lede">Read the answer change first. Then practice one '
+            "reasoning move. Open model, relation, map, and receipt details "
+            "only when they help you inspect the thinking behind the lesson.</p>",
+            quick_actions,
+            "</article>",
+            '<div class="workspace-step-grid" aria-label="Recommended path">',
+            _workspace_step_card("1", "Read outcome", "What changed or survived?"),
+            _workspace_step_card("2", "Practice lesson", "What move can I repeat?"),
+            _workspace_step_card("3", "Inspect models", "Which tools explain it?"),
+            _workspace_step_card("4", "Check receipts", "What is present or not claimed?"),
+            "</div>",
+            "</section>",
+        ]
+    )
+
+
+def _workspace_step_card(number: str, title: str, body: str) -> str:
+    return (
+        '<article class="workspace-step-card">'
+        f"<span>{_esc(number)}</span>"
+        f"<strong>{_esc(title)}</strong>"
+        f"<p>{_esc(body)}</p>"
+        "</article>"
     )
 
 
@@ -5294,7 +5412,7 @@ def _render_workspace_model_page(
     if selected_case_id and link_to_self:
         action_chips.append(
             f'<a class="workspace-chip" href="{_esc(_observatory_model_href(model_id, selected_case_id))}">'
-            "Open standalone page</a>"
+            "Open model page</a>"
         )
     return "\n".join(
         [
@@ -5394,7 +5512,7 @@ def _render_workspace_relation_page(
     if selected_case_id and link_to_self:
         taxonomy_chips.append(
             f'<a class="workspace-chip" href="{_esc(_observatory_relation_href(relation_id, selected_case_id))}">'
-            "Open standalone page</a>"
+            "Open relation page</a>"
         )
     return "\n".join(
         [
@@ -5472,6 +5590,7 @@ def _render_workspace_map(
         mid_y = (source[1] + target[1]) / 2 - 16
         edge_lines.append(
             f'<a class="map-edge-link" href="{_esc(_observatory_relation_href(relation_id, selected_case_id))}" '
+            f'aria-label="Open relation: {_esc(relation_title)}" '
             'data-graph-edge '
             f'data-relation-id="{_esc(relation_id)}" '
             f'data-label="{_esc(relation_title)}" '
@@ -5485,7 +5604,7 @@ def _render_workspace_map(
             f'x2="{target[0]}" y2="{target[1]}"></line>'
             f'<line class="map-edge" x1="{source[0]}" y1="{source[1]}" '
             f'x2="{target[0]}" y2="{target[1]}"></line>'
-            f'<text class="map-label" x="{mid_x}" y="{mid_y}" text-anchor="middle">'
+            f'<text class="map-label" x="{mid_x}" y="{mid_y}" text-anchor="middle" aria-hidden="true">'
             f'{_esc(edge.get("relation_type", ""))}</text></a>'
         )
 
@@ -5502,6 +5621,7 @@ def _render_workspace_map(
         )
         node_items.append(
             f'<a class="map-node" href="{_esc(_observatory_model_href(model_id, selected_case_id))}" '
+            f'aria-label="Open model: {_esc(label)}" '
             'data-graph-node '
             f'data-model-id="{_esc(model_id)}" '
             f'data-label="{_esc(label)}" '
@@ -5510,7 +5630,7 @@ def _render_workspace_map(
             f'data-status="{_esc((model.get("missingness") or {}).get("status", ""))}">'
             f'<circle cx="{x}" cy="{y}" r="42"></circle>'
             f'<text x="{x}" y="{y + 4}" text-anchor="middle">{_esc(_short(label, 28))}</text>'
-            f'<text class="map-label" x="{x}" y="{y + 62}" text-anchor="middle">'
+            f'<text class="map-label" x="{x}" y="{y + 62}" text-anchor="middle" aria-hidden="true">'
             f'{_esc(node.get("node_type", "model"))}</text></a>'
         )
 
@@ -5584,7 +5704,7 @@ def _render_workspace_map(
             _render_teacher_section_header("Map"),
             '<article class="workspace-card">',
             '<p class="workspace-kicker">Selected-run neighborhood</p>',
-            '<p>Search, filter, and select a node or relation edge. Edges are navigation, not proof. The map does not prove that a model or relation is correct.</p>',
+            '<p>This map is a small wayfinding view for the current lesson. Use it to jump between models and the relation story. Edges are navigation, not proof.</p>',
             graph_workbench,
             _workspace_disclosure(
                 "Map custody and boundaries",
