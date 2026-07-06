@@ -145,6 +145,46 @@ _OBSERVATORY_WORKSPACE_SURFACES = (
 )
 
 
+_WORKSPACE_READING_PATH = (
+    (
+        "outcome",
+        "Outcome",
+        "What changed in the run?",
+        "Start with the selected run before opening the teaching layer.",
+    ),
+    (
+        "learn",
+        "Learn",
+        "What reasoning move can I practice?",
+        "Turn the run into one repeatable thinking move.",
+    ),
+    (
+        "models",
+        "Models",
+        "Which tools explain the move?",
+        "Open the mental models behind the lesson.",
+    ),
+    (
+        "relations",
+        "Relations",
+        "How do the models interact?",
+        "Read the model-pair story before treating the edge as a graph object.",
+    ),
+    (
+        "map",
+        "Map",
+        "Where can I jump next?",
+        "Use the small neighborhood for navigation, not proof.",
+    ),
+    (
+        "receipts",
+        "Receipts",
+        "What is present or not claimed?",
+        "Inspect custody, missingness, and non-claims only when needed.",
+    ),
+)
+
+
 def _observatory_workspace_href(selected_case_id: str, anchor: str | None = None) -> str:
     href = "/workspace"
     if selected_case_id:
@@ -1025,6 +1065,55 @@ _WORKSPACE_CSS = """
   color: var(--text-primary);
   text-decoration: none;
 }
+.workspace-surface-guide {
+  display: grid;
+  gap: 8px;
+}
+.workspace-surface-guide p {
+  margin-bottom: 2px;
+  line-height: 1.45;
+}
+.workspace-surface-link {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr);
+  gap: 2px 10px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, .03);
+  padding: 10px;
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+.workspace-surface-link span {
+  grid-row: 1 / span 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid rgba(65, 255, 167, .38);
+  border-radius: 999px;
+  color: var(--teal);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+.workspace-surface-link strong {
+  color: var(--text-primary);
+  font-size: 13px;
+  line-height: 1.2;
+}
+.workspace-surface-link small {
+  color: var(--text-dim);
+  font-size: 12px;
+  line-height: 1.35;
+}
+.workspace-surface-link:hover,
+.workspace-surface-link--active {
+  border-color: rgba(65, 255, 167, .58);
+  background: rgba(65, 255, 167, .06);
+  color: var(--text-primary);
+  text-decoration: none;
+}
 .workspace-run-source,
 .workspace-meta,
 .workspace-kicker {
@@ -1153,14 +1242,17 @@ _WORKSPACE_CSS = """
 }
 .workspace-step-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
 }
 .workspace-step-card {
+  display: block;
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
   background: rgba(255, 255, 255, .04);
+  color: inherit;
   padding: 12px;
+  text-decoration: none;
 }
 .workspace-step-card span {
   display: inline-flex;
@@ -1182,6 +1274,12 @@ _WORKSPACE_CSS = """
 .workspace-step-card p {
   margin: 6px 0 0;
   color: var(--text-secondary);
+}
+.workspace-step-card:hover,
+.workspace-step-card--active {
+  border-color: rgba(65, 255, 167, .58);
+  background: rgba(65, 255, 167, .055);
+  text-decoration: none;
 }
 .workspace-focus-label {
   color: var(--text-secondary);
@@ -1670,10 +1768,29 @@ _WORKSPACE_NAV_SCRIPT = """
     const surface = activeSurface();
     if (!surface) return;
     updateSections(surface);
+    const page = document.querySelector(".workspace-page");
     for (const nav of document.querySelectorAll("[data-observatory-status-bar]")) {
       for (const link of nav.querySelectorAll("[data-observatory-surface-link]")) {
         const isActive = link.dataset.observatorySurfaceLink === surface;
         link.classList.toggle("status-link-active", isActive);
+        if (isActive) {
+          link.setAttribute("aria-current", "page");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      }
+    }
+    if (page) {
+      for (const link of page.querySelectorAll("[data-workspace-surface-link]")) {
+        const isActive = link.dataset.workspaceSurfaceLink === surface;
+        link.classList.toggle(
+          "workspace-surface-link--active",
+          isActive && link.classList.contains("workspace-surface-link")
+        );
+        link.classList.toggle(
+          "workspace-step-card--active",
+          isActive && link.classList.contains("workspace-step-card")
+        );
         if (isActive) {
           link.setAttribute("aria-current", "page");
         } else {
@@ -4437,6 +4554,33 @@ def _workspace_href(selected_case_id: str, anchor: str | None = None) -> str:
     return _observatory_workspace_href(selected_case_id, anchor)
 
 
+def _render_workspace_surface_guide(selected_case_id: str) -> str:
+    links = []
+    for index, (anchor, label, question, purpose) in enumerate(
+        _WORKSPACE_READING_PATH,
+        start=1,
+    ):
+        active = " workspace-surface-link--active" if anchor == "outcome" else ""
+        current = ' aria-current="page"' if anchor == "outcome" else ""
+        links.append(
+            f'<a class="workspace-surface-link{active}" '
+            f'data-workspace-surface-link="{_esc(anchor)}"{current} '
+            f'href="{_esc(_workspace_href(selected_case_id, anchor))}">'
+            f"<span>{index}</span>"
+            f"<strong>{_esc(label)}</strong>"
+            f"<small>{_esc(question)} {_esc(purpose)}</small>"
+            "</a>"
+        )
+    return "\n".join(
+        [
+            '<nav class="workspace-surface-guide" aria-label="Workspace reading path">',
+            '<p>Use this path to move from the run result to the lesson, then to evidence and limits.</p>',
+            *links,
+            "</nav>",
+        ]
+    )
+
+
 def _render_workspace_run_picker(selected_case_id: str) -> str:
     try:
         cases = _build_cases_index()[:8]
@@ -4472,15 +4616,8 @@ def _render_workspace_run_picker(selected_case_id: str) -> str:
             ),
             "</section>",
             '<section class="workspace-panel">',
-            "<h3>Surface Homes</h3>",
-            '<ul class="workspace-link-list">',
-            "<li>Outcome</li>",
-            "<li>Learn</li>",
-            "<li>Models</li>",
-            "<li>Relations</li>",
-            "<li>Map</li>",
-            "<li>Receipts</li>",
-            "</ul>",
+            "<h3>Reading Path</h3>",
+            _render_workspace_surface_guide(selected_case_id),
             "</section>",
             "</aside>",
         ]
@@ -4494,6 +4631,8 @@ def _render_workspace_hero(selected_run: dict, workspace: dict) -> str:
             {"label": "Read outcome", "href": _observatory_workspace_href(case_id, "outcome")},
             {"label": "Practice lesson", "href": _observatory_workspace_href(case_id, "learn")},
             {"label": "Open model cards", "href": _observatory_workspace_href(case_id, "models")},
+            {"label": "Read relation", "href": _observatory_workspace_href(case_id, "relations")},
+            {"label": "Use map", "href": _observatory_workspace_href(case_id, "map")},
             {"label": "Check receipts", "href": _observatory_workspace_href(case_id, "receipts")},
         ],
         selected_case_id=case_id,
@@ -4503,14 +4642,15 @@ def _render_workspace_hero(selected_run: dict, workspace: dict) -> str:
             '<header class="workspace-hero" id="top">',
             '<p class="teacher-eyebrow">Observatory</p>',
             "<h1>Run Learning Workspace</h1>",
-            '<p class="lede">Read the outcome, practice one reasoning move, '
-            "then inspect the models, relations, map, and receipts behind it.</p>",
+            '<p class="lede">Start from the selected run. Move through the outcome, '
+            "one practice lesson, the mental models, their relationship, the small map, "
+            "and finally the receipts.</p>",
             '<div class="run-header">',
             f'<span>Case: <strong>{_esc(selected_run.get("case_id", ""))}</strong></span>',
             f'<span>Run: <code>{_esc(_short(selected_run.get("run_id", ""), 34))}</code></span>',
             f'<span>Health: <strong>{_esc(selected_run.get("health_label", ""))}</strong></span>',
             "</div>",
-            _render_workspace_start_panel(quick_actions),
+            _render_workspace_start_panel(quick_actions, case_id),
             '<p class="workspace-focus-label">Showing: '
             '<strong data-workspace-active-label>Outcome</strong></p>',
             _workspace_disclosure(
@@ -4526,30 +4666,70 @@ def _render_workspace_hero(selected_run: dict, workspace: dict) -> str:
     )
 
 
-def _render_workspace_start_panel(quick_actions: str) -> str:
+def _render_workspace_start_panel(quick_actions: str, selected_case_id: str) -> str:
     return "\n".join(
         [
             '<section class="workspace-start-panel" data-workspace-start-panel aria-label="Workspace path">',
             '<article class="workspace-card workspace-first-read" data-first-read-card>',
             '<p class="workspace-kicker">Start here</p>',
             "<h3>Start with Outcome.</h3>",
-            '<p class="lede">Read what changed first. Then use Learn, Models, '
-            "Relations, Map, and Receipts when you want the reasoning tools "
-            "behind the run.</p>",
+            '<p class="lede">Read what changed first. Then follow the path to learn '
+            "the reasoning move, inspect the models, understand the relation, use "
+            "the map for navigation, and check receipts only when you need custody "
+            "or limits.</p>",
             quick_actions,
             "</article>",
             '<div class="workspace-step-grid" aria-label="Recommended path">',
-            _workspace_step_card("1", "Read outcome", "What changed or survived?"),
-            _workspace_step_card("2", "Practice lesson", "What move can I repeat?"),
-            _workspace_step_card("3", "Inspect models", "Which tools explain it?"),
-            _workspace_step_card("4", "Check receipts", "What is present or not claimed?"),
+            *[
+                _workspace_step_card(
+                    str(index),
+                    _workspace_step_title(anchor, label),
+                    question,
+                    href=_workspace_href(selected_case_id, anchor),
+                    surface=anchor,
+                )
+                for index, (anchor, label, question, _purpose) in enumerate(
+                    _WORKSPACE_READING_PATH,
+                    start=1,
+                )
+            ],
             "</div>",
             "</section>",
         ]
     )
 
 
-def _workspace_step_card(number: str, title: str, body: str) -> str:
+def _workspace_step_title(anchor: str, label: str) -> str:
+    titles = {
+        "outcome": "Read outcome",
+        "learn": "Practice lesson",
+        "models": "Inspect models",
+        "relations": "Read relation",
+        "map": "Use map",
+        "receipts": "Check receipts",
+    }
+    return titles.get(anchor, label)
+
+
+def _workspace_step_card(
+    number: str,
+    title: str,
+    body: str,
+    *,
+    href: str = "",
+    surface: str = "",
+) -> str:
+    surface_attr = (
+        f' data-workspace-surface-link="{_esc(surface)}"' if surface else ""
+    )
+    if href:
+        return (
+            f'<a class="workspace-step-card" href="{_esc(href)}"{surface_attr}>'
+            f"<span>{_esc(number)}</span>"
+            f"<strong>{_esc(title)}</strong>"
+            f"<p>{_esc(body)}</p>"
+            "</a>"
+        )
     return (
         '<article class="workspace-step-card">'
         f"<span>{_esc(number)}</span>"

@@ -112,8 +112,8 @@ def test_workspace_sidebar_collapses_run_switching(monkeypatch) -> None:
     assert "<h3>Run Context</h3>" in html
     assert "<summary>Switch run</summary>" in html
     assert "<h3>Recent Runs</h3>" not in html
-    assert "Surface Homes" in html
-    assert "<li>Map</li>" in html
+    assert "Reading Path" in html
+    assert "Where can I jump next?" in html
     assert "Models: mental model knowledge" not in html
 
 

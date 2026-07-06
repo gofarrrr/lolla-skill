@@ -69,7 +69,7 @@ def test_workspace_adds_start_here_path_and_browser_focus_mode(monkeypatch) -> N
     assert "data-workspace-start-panel" in html
     assert 'panel.toggleAttribute("hidden", !showStartPanel)' in html
     assert "workspace-step-card" in html
-    assert "What changed or survived?" in html
+    assert "What changed in the run?" in html
     assert "data-workspace-active-label" in html
     assert "workspace-focus-mode" in html
     assert "updateSections(surface)" in html

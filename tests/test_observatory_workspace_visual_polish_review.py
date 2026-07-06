@@ -49,7 +49,8 @@ def test_workspace_first_view_uses_product_facing_learning_frame(monkeypatch) ->
     html = serve_result._render_workspace_html("lolla-audit")
 
     assert "<h1>Run Learning Workspace</h1>" in html
-    assert "Read the outcome, practice one reasoning move" in html
+    assert "Start from the selected run." in html
+    assert "Move through the outcome, one practice lesson" in html
     assert "Start with Outcome." in html
     assert "Read what changed first." in html
     assert "Selected Run Workspace" not in html
@@ -77,9 +78,10 @@ def test_workspace_sidebar_surface_homes_are_wayfinding_not_explanation(
 
     html = serve_result._render_workspace_html("lolla-audit")
 
-    assert "Surface Homes" in html
-    for surface in ["Outcome", "Learn", "Models", "Relations", "Map", "Receipts"]:
-        assert f"<li>{surface}</li>" in html
+    assert "Reading Path" in html
+    assert 'aria-label="Workspace reading path"' in html
+    for surface in ["outcome", "learn", "models", "relations", "map", "receipts"]:
+        assert f'data-workspace-surface-link="{surface}"' in html
     for old_label in [
         "Outcome: run result",
         "Learn: reasoning move",
