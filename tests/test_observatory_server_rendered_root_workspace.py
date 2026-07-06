@@ -66,8 +66,8 @@ def test_workspace_uses_observatory_visual_system_and_surface_order(monkeypatch)
     assert "--bg: #060761" in html
     assert "--teal: #41FFA7" in html
     assert "JetBrains Mono" in html
-    assert "Selected Run Workspace" in html
-    assert "Start with what changed, then practice the reasoning" in html
+    assert "Run Learning Workspace" in html
+    assert "Read the outcome, practice one reasoning move" in html
     assert "Read outcome" in html
     assert "Practice lesson" in html
     assert 'href="/workspace?case_id=lolla-audit#learn"' in html
@@ -174,7 +174,7 @@ def test_root_route_renders_workspace_and_legacy_spa_route_remains(monkeypatch) 
         with urllib.request.urlopen(f"{base_url}/index.html", timeout=3) as response:
             index_html = response.read().decode("utf-8")
 
-    assert "Selected Run Workspace" in root_html
+    assert "Run Learning Workspace" in root_html
     assert "Authority Bias" in root_html
     assert "telemetry-fab" not in root_html
     assert "telemetry-fab" in index_html

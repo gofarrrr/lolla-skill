@@ -1145,6 +1145,9 @@ _WORKSPACE_CSS = """
   gap: 12px;
   margin-top: 18px;
 }
+.workspace-start-panel[hidden] {
+  display: none;
+}
 .workspace-step-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1642,6 +1645,15 @@ _WORKSPACE_NAV_SCRIPT = """
     }
     for (const label of page.querySelectorAll("[data-workspace-active-label]")) {
       label.textContent = surfaceLabels[surface] || "Outcome";
+    }
+    for (const panel of page.querySelectorAll("[data-workspace-start-panel]")) {
+      const showStartPanel = surface === "outcome";
+      panel.toggleAttribute("hidden", !showStartPanel);
+      if (showStartPanel) {
+        panel.removeAttribute("aria-hidden");
+      } else {
+        panel.setAttribute("aria-hidden", "true");
+      }
     }
   };
 
@@ -4300,7 +4312,7 @@ def _render_workspace_empty_page(
             '<main class="workspace-main">',
             '<header class="workspace-hero workspace-fallback">',
             '<p class="teacher-eyebrow">Observatory</p>',
-            "<h1>Selected Run Workspace</h1>",
+            "<h1>Run Learning Workspace</h1>",
             f'<p class="lede"><strong>{_esc(heading)}</strong></p>',
             "</header>",
             _empty_inline(message),
@@ -4322,7 +4334,7 @@ def _render_workspace_unavailable_page(payload: dict, selected_case_id: str) -> 
             '<main class="workspace-main">',
             '<header class="workspace-hero workspace-fallback">',
             '<p class="teacher-eyebrow">Observatory</p>',
-            "<h1>Selected Run Workspace</h1>",
+            "<h1>Run Learning Workspace</h1>",
             '<p class="lede"><strong>No product workspace is available for this run.</strong> '
             "The server did not fake Learn, Models, Relations, or Map content "
             "because no matching Teacher learning packet was available.</p>",
@@ -4428,11 +4440,12 @@ def _render_workspace_run_picker(selected_case_id: str) -> str:
             '<section class="workspace-panel">',
             "<h3>Surface Homes</h3>",
             '<ul class="workspace-link-list">',
-            "<li>Outcome: run result</li>",
-            "<li>Learn: reasoning move</li>",
-            "<li>Models: mental model knowledge</li>",
-            "<li>Relations: model-pair lesson</li>",
-            "<li>Receipts: custody and missingness</li>",
+            "<li>Outcome</li>",
+            "<li>Learn</li>",
+            "<li>Models</li>",
+            "<li>Relations</li>",
+            "<li>Map</li>",
+            "<li>Receipts</li>",
             "</ul>",
             "</section>",
             "</aside>",
@@ -4455,10 +4468,9 @@ def _render_workspace_hero(selected_run: dict, workspace: dict) -> str:
         [
             '<header class="workspace-hero" id="top">',
             '<p class="teacher-eyebrow">Observatory</p>',
-            "<h1>Selected Run Workspace</h1>",
-            '<p class="lede">Start with what changed, then practice the reasoning '
-            "move. Models, relations, and the map are there when you want to "
-            "inspect the thinking tools behind the lesson.</p>",
+            "<h1>Run Learning Workspace</h1>",
+            '<p class="lede">Read the outcome, practice one reasoning move, '
+            "then inspect the models, relations, map, and receipts behind it.</p>",
             '<div class="run-header">',
             f'<span>Case: <strong>{_esc(selected_run.get("case_id", ""))}</strong></span>',
             f'<span>Run: <code>{_esc(_short(selected_run.get("run_id", ""), 34))}</code></span>',
@@ -4483,13 +4495,13 @@ def _render_workspace_hero(selected_run: dict, workspace: dict) -> str:
 def _render_workspace_start_panel(quick_actions: str) -> str:
     return "\n".join(
         [
-            '<section class="workspace-start-panel" aria-label="Workspace path">',
+            '<section class="workspace-start-panel" data-workspace-start-panel aria-label="Workspace path">',
             '<article class="workspace-card workspace-first-read" data-first-read-card>',
             '<p class="workspace-kicker">Start here</p>',
-            "<h3>Use this run as a short lesson.</h3>",
-            '<p class="lede">Read the answer change first. Then practice one '
-            "reasoning move. Open model, relation, map, and receipt details "
-            "only when they help you inspect the thinking behind the lesson.</p>",
+            "<h3>Start with Outcome.</h3>",
+            '<p class="lede">Read what changed first. Then use Learn, Models, '
+            "Relations, Map, and Receipts when you want the reasoning tools "
+            "behind the run.</p>",
             quick_actions,
             "</article>",
             '<div class="workspace-step-grid" aria-label="Recommended path">',
