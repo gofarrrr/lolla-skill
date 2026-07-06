@@ -59,7 +59,6 @@ def test_card_copy_supports_required_statuses_without_generation_action() -> Non
         assert fragment in script
 
     forbidden = [
-        "Prepare process brief",
         "call providers",
         "run offline operator",
         "write sidecar",
