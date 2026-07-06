@@ -38,4 +38,6 @@ Current planning docs:
 - [Mental Model Teacher Observatory Integration Design](mental-model-teacher-observatory-integration-design-v0.md)
 - [Mental Model Teacher Observatory Learning Packet Contract](mental-model-teacher-observatory-learning-packet-contract-v0.md)
 - [Mental Model Teacher Observatory Learning Packet Example JSON](mental-model-teacher-observatory-learning-packet-example-v0.json)
+- [Mental Model Teacher Observatory Learning Packet Builder](mental-model-teacher-observatory-learning-packet-builder-v0.md)
+- [Mental Model Teacher Observatory Learning Packets](mental-model-teacher-observatory-learning-packets-v0/manifest.json)
 - [Mental Model Teacher Product Surface Reference Patterns](mental-model-teacher-product-surface-reference-patterns-v0.md)
