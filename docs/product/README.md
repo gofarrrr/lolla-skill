@@ -72,4 +72,6 @@ Current planning docs:
 - [Observatory Workspace Content Audit And Simplification](observatory-workspace-content-audit-and-simplification-v0.md)
 - [Observatory Model Relation Content Simplification](observatory-model-relation-content-simplification-v0.md)
 - [Observatory Workspace Visual Polish Review](observatory-workspace-visual-polish-review-v0.md)
+- [Observatory Workspace User Review Packet](observatory-workspace-user-review-packet-v0.md)
+- [Observatory Workspace User Review Packet Render](observatory-workspace-user-review-packet-v0/index.md)
 - [Mental Model Teacher Product Surface Reference Patterns](mental-model-teacher-product-surface-reference-patterns-v0.md)
