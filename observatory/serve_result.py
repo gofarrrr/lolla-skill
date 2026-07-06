@@ -23,7 +23,7 @@ import os
 import sys
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path
-from urllib.parse import unquote, urlparse
+from urllib.parse import parse_qs, unquote, urlparse
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 STATIC_DIR = SCRIPT_DIR / "build"
@@ -104,11 +104,11 @@ def _fmt_score(value) -> str:
         return "—"
 
 
-# Audit panel routes, ordered for the top nav. The first column is the URL
-# fragment (used in href + active-state matching); the second is the label
-# the operator sees. Keep the index page (/audit) first so the nav reads
-# left-to-right from "everything" to specific panels.
+# Server-rendered Observatory routes, ordered for the top nav. The first column
+# is the URL fragment (used in href + active-state matching); the second is the
+# label the operator sees.
 _AUDIT_NAV = (
+    ("/teacher-learning", "Learn"),
     ("/audit", "Audit Index"),
     ("/audit/extraction", "Extraction"),
     ("/audit/memo", "Memo"),
@@ -177,6 +177,21 @@ p.lede strong { color: #111; }
 /* Run-vitals strip on /audit index — at-a-glance pulse of this run */
 .vitals { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.75rem 0 1.5rem; }
 .vitals .tag { background: #f6f6f6; color: #222; border-color: #ddd; font-size: 0.9rem; padding: 0.2rem 0.6rem; }
+.learn-tabs { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 1rem 0 1.5rem; }
+.learn-tabs a { color: #336; text-decoration: none; padding: 0.3rem 0.65rem; border: 1px solid #ccd; border-radius: 4px; background: #f7f8ff; font-size: 0.9rem; }
+.learn-tabs a:hover { background: #eef; }
+.learn-panel { border-top: 1px solid #eee; padding-top: 1rem; margin-top: 1.25rem; }
+.lesson-hero { border-left: 4px solid #41a36f; background: #f7fbf8; padding: 1rem; margin: 1rem 0 1.25rem; }
+.lesson-hero p { margin: 0.35rem 0; }
+.learning-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.8rem; margin: 0.75rem 0 1.25rem; }
+.learning-card { border: 1px solid #e5e5e5; border-radius: 6px; padding: 0.9rem; background: #fff; }
+.learning-card h3 { margin: 0 0 0.4rem; }
+.learning-card p { margin: 0.35rem 0; line-height: 1.45; }
+.learning-card ul { margin: 0.5rem 0 0 1.1rem; padding: 0; }
+.learning-card li { margin: 0.2rem 0; }
+.practice-box { border: 1px solid #ddd; border-radius: 6px; padding: 0.9rem; background: #fafafa; margin: 0.75rem 0 1.25rem; }
+.nonclaims { margin: 0.75rem 0 1.25rem 1.1rem; padding: 0; color: #555; }
+.nonclaims li { margin: 0.2rem 0; }
 
 """
 
@@ -188,6 +203,10 @@ p.lede strong { color: #111; }
 _TELEMETRY_FAB_HTML = (
     '<a href="/audit" class="telemetry-fab" '
     'aria-label="View run telemetry">TELEMETRY <span aria-hidden="true">&rarr;</span></a>'
+)
+_LEARN_FAB_HTML = (
+    '<a href="/teacher-learning" class="learn-fab" '
+    'aria-label="View Teacher learning page">LEARN <span aria-hidden="true">&rarr;</span></a>'
 )
 
 _TELEMETRY_FAB_STYLE = """
@@ -213,6 +232,24 @@ _TELEMETRY_FAB_STYLE = """
   backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
   transition: background 120ms ease, border-color 120ms ease;
 }
+.learn-fab {
+  position: fixed; bottom: 72px; right: 20px; z-index: 50;
+  padding: 0.55rem 1.1rem; border-radius: 6px;
+  background: rgba(65, 255, 167, 0.12);
+  color: #41FFA7;
+  border: 1px solid rgba(65, 255, 167, 0.45);
+  font-family: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+  font-size: 12px; font-weight: 500; letter-spacing: 0.1em;
+  text-transform: uppercase; text-decoration: none;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  transition: background 120ms ease, border-color 120ms ease;
+}
+.learn-fab:hover {
+  background: rgba(65, 255, 167, 0.2);
+  border-color: rgba(65, 255, 167, 0.65);
+  color: #41FFA7; text-decoration: none;
+}
+.learn-fab:focus-visible { outline: 2px solid #41FFA7; outline-offset: 2px; }
 .telemetry-fab:hover {
   background: rgba(255, 255, 255, 0.14);
   border-color: rgba(255, 255, 255, 0.4);
@@ -221,12 +258,15 @@ _TELEMETRY_FAB_STYLE = """
 .telemetry-fab:focus-visible { outline: 2px solid #41FFA7; outline-offset: 2px; }
 @media (max-width: 600px) {
   .telemetry-fab { bottom: 14px; right: 14px; padding: 0.45rem 0.85rem; font-size: 11px; }
+  .learn-fab { bottom: 58px; right: 14px; padding: 0.45rem 0.85rem; font-size: 11px; }
 }
 /* Belt-and-suspenders: when the SPA opens its modal drawer, hide the FAB
    entirely so it cannot intercept clicks on the drawer's close button even
    under unusual stacking contexts. */
 body:has(.drawer-overlay) .telemetry-fab,
-body:has(.drawer-panel) .telemetry-fab {
+body:has(.drawer-panel) .telemetry-fab,
+body:has(.drawer-overlay) .learn-fab,
+body:has(.drawer-panel) .learn-fab {
   display: none;
 }
 </style>
@@ -632,12 +672,13 @@ def _inject_telemetry_fab(html_bytes: bytes) -> bytes:
         text = html_bytes.decode("utf-8")
     except UnicodeDecodeError:
         return html_bytes
-    if "telemetry-fab" in text:
+    if "telemetry-fab" in text and "learn-fab" in text:
         return html_bytes
     inject = (
         _TELEMETRY_FAB_STYLE
         + _SELECTED_RUN_CUSTODY_PANEL_STYLE
         + _TELEMETRY_FAB_HTML
+        + _LEARN_FAB_HTML
         + _MAIN_SURFACE_COPY_PATCH_SCRIPT
         + _SELECTED_RUN_CUSTODY_PANEL_SCRIPT
     )
@@ -1657,6 +1698,287 @@ def _build_teacher_learning_response(
     )
 
     return build_teacher_learning_response(case_id, result, result_path)
+
+
+def _render_teacher_learning_html(case_id: str | None = None) -> str:
+    """Render the first visible Teacher learning surface inside Observatory."""
+    _reload_result_if_changed()
+    selected_case_id = case_id or _CASE_ID
+    result, result_path, _is_current = _load_case_result(selected_case_id)
+    if result is None:
+        body = (
+            "<h1>Learn</h1>"
+            + _empty_inline(
+                f"Selected case <code>{_esc(selected_case_id)}</code> was not found."
+            )
+        )
+        return _render_scaffold(
+            title="Lolla — Learn",
+            body=body,
+            current_path="/teacher-learning",
+        )
+
+    try:
+        payload = _build_teacher_learning_response(
+            selected_case_id,
+            result,
+            result_path,
+        )
+    except Exception as exc:
+        body = (
+            "<h1>Learn</h1>"
+            + _empty_inline(
+                "Teacher learning adapter failed: "
+                f"<code>{_esc(type(exc).__name__)}</code>."
+            )
+        )
+        return _render_scaffold(
+            title="Lolla — Learn",
+            body=body,
+            current_path="/teacher-learning",
+        )
+
+    if not payload.get("available"):
+        body = (
+            "<h1>Learn</h1>"
+            + _render_teacher_learning_run_header(payload)
+            + _empty_inline(
+                "No Teacher learning packet is available for this selected case."
+            )
+            + _render_teacher_non_claims(payload)
+        )
+        return _render_scaffold(
+            title="Lolla — Learn",
+            body=body,
+            current_path="/teacher-learning",
+        )
+
+    body = _render_teacher_learning_payload(payload)
+    return _render_scaffold(
+        title="Lolla — Learn",
+        body=body,
+        current_path="/teacher-learning",
+    )
+
+
+def _render_teacher_learning_payload(payload: dict) -> str:
+    tab_payloads = payload["tab_payloads"]
+    lesson = tab_payloads["Learn"]["lesson"]
+    models = tab_payloads["Models"]["models"]
+    relations = tab_payloads["Relations"]["relations"]
+    graph = tab_payloads["Map"]["graph"]
+    receipts = tab_payloads["Receipts"]["receipts"]
+    model_lookup = {model["model_id"]: model for model in models}
+    primary_relation = relations[0] if relations else {}
+
+    body = [
+        "<h1>Learn</h1>",
+        _render_teacher_learning_run_header(payload),
+        (
+            '<p class="lede"><strong>Case is the anchor.</strong> '
+            "This page teaches the reasoning move worth practicing; it does "
+            "not replace the Outcome tab or certify the answer.</p>"
+        ),
+        f"<p class=\"hint\">{_esc(tab_payloads['Outcome']['single_home_note'])}</p>",
+        _render_teacher_tabs(),
+        '<section id="learn" class="learn-panel">',
+        "<h2>The Lesson</h2>",
+        '<div class="lesson-hero">',
+        f"<p><strong>Situation:</strong> {_esc(lesson['case_anchor'])}</p>",
+        f"<p><strong>Thinking move:</strong> {_esc(lesson['thinking_move'])}</p>",
+        f"<p><strong>Model relationship:</strong> {_esc(lesson['relation_story'])}</p>",
+        "</div>",
+        "<h2>Model Stack</h2>",
+        '<div class="learning-grid">',
+    ]
+    for item in lesson["model_stack"]:
+        model = model_lookup.get(item["model_id"], {})
+        display_name = model.get("display_name") or item.get("teaching_name") or item["model_id"]
+        body.extend(
+            [
+                '<article class="learning-card">',
+                f"<h3>{_esc(display_name)}</h3>",
+                f"<p><span class=\"tag\">{_esc(item.get('role', 'model'))}</span></p>",
+                f"<p>{_esc(item.get('teaching_note', ''))}</p>",
+                f"<p><strong>Boundary:</strong> {_esc(item.get('boundary', ''))}</p>",
+                "</article>",
+            ]
+        )
+    body.extend(
+        [
+            "</div>",
+            "<h2>Practice Rep</h2>",
+            '<div class="practice-box">',
+            f"<p><strong>Prompt:</strong> {_esc(lesson['practice_rep']['prompt'])}</p>",
+            f"<p><strong>User action:</strong> {_esc(lesson['practice_rep']['user_action'])}</p>",
+            "</div>",
+            "<h2>Do Not Overlearn</h2>",
+            "<ul>",
+            *[f"<li>{_esc(item)}</li>" for item in lesson["do_not_overlearn"]],
+            "</ul>",
+            "</section>",
+            '<section id="models" class="learn-panel">',
+            "<h2>Models</h2>",
+            '<div class="learning-grid">',
+        ]
+    )
+    for model in models:
+        body.extend(
+            [
+                '<article class="learning-card">',
+                f"<h3>{_esc(model['display_name'])}</h3>",
+                f"<p>{_esc(model['one_sentence_meaning'])}</p>",
+                _render_short_list("Helps notice", model.get("helps_notice") or []),
+                _render_short_list("Use when", model.get("use_when") or [], limit=2),
+                _render_short_list("Avoid when", model.get("avoid_when") or [], limit=2),
+                "</article>",
+            ]
+        )
+    body.extend(
+        [
+            "</div>",
+            "</section>",
+            '<section id="relations" class="learn-panel">',
+            "<h2>Relation</h2>",
+        ]
+    )
+    if primary_relation:
+        body.extend(
+            [
+                '<article class="learning-card">',
+                f"<h3>{_esc(_relation_title(primary_relation, model_lookup))}</h3>",
+                f"<p>{_esc(primary_relation['plain_language_story'])}</p>",
+                f"<p><strong>Why it matters:</strong> {_esc(primary_relation['why_it_matters'])}</p>",
+                f"<p><strong>Misread risk:</strong> {_esc(primary_relation['misread_risk'])}</p>",
+                f"<p><strong>Practice:</strong> {_esc(primary_relation['practice_prompt'])}</p>",
+                f"<p><span class=\"tag\">{_esc(primary_relation['relation_type'])}</span> "
+                f"<span class=\"tag\">confidence: {_esc(primary_relation['confidence'])}</span></p>",
+                "</article>",
+            ]
+        )
+    else:
+        body.append(_empty_inline("No relation page is available in this packet."))
+    body.extend(
+        [
+            "</section>",
+            '<section id="map" class="learn-panel">',
+            "<h2>Map</h2>",
+            "<p class=\"hint\">Small lesson neighborhood. Edges are navigation, not proof.</p>",
+            "<table>",
+            "<tr><th>Node</th><th>Role</th><th>Status</th></tr>",
+        ]
+    )
+    for node in graph["nodes"]:
+        body.append(
+            f"<tr><td>{_esc(node.get('label') or node.get('model_id'))}</td>"
+            f"<td>{_esc(node.get('role') or node.get('node_type', ''))}</td>"
+            f"<td>{_esc(node.get('missingness_status', ''))}</td></tr>"
+        )
+    body.extend(["</table>", "<table>", "<tr><th>Edge</th><th>Type</th><th>Confidence</th></tr>"])
+    for edge in graph["edges"]:
+        body.append(
+            f"<tr><td>{_esc(edge.get('label') or edge.get('relation_id'))}</td>"
+            f"<td>{_esc(edge.get('relation_type', ''))}</td>"
+            f"<td>{_esc(edge.get('confidence', ''))}</td></tr>"
+        )
+    body.extend(
+        [
+            "</table>",
+            "</section>",
+            '<section id="receipts" class="learn-panel">',
+            "<h2>Receipts</h2>",
+            "<p class=\"hint\">Receipts show custody and missingness. They are not product proof.</p>",
+            f"<p><strong>Source refs:</strong> {_esc(len(receipts['source_refs']))} · "
+            f"<strong>Artifact refs:</strong> {_esc(len(receipts['artifact_refs']))}</p>",
+            _render_missingness(payload["missingness"]),
+            "<details>",
+            "<summary>Source refs</summary>",
+            "<ul>",
+            *[
+                f"<li><code>{_esc(ref['source_type'])}</code> — {_esc(ref['path'])}</li>"
+                for ref in receipts["source_refs"][:20]
+            ],
+            "</ul>",
+            "</details>",
+            "</section>",
+            '<section id="nonclaims" class="learn-panel">',
+            "<h2>Non-Claims</h2>",
+            _render_teacher_non_claims(payload),
+            "</section>",
+        ]
+    )
+    return "\n".join(body)
+
+
+def _render_teacher_learning_run_header(payload: dict) -> str:
+    run_ref = payload.get("run_ref") or {}
+    case_id = run_ref.get("case_id") or payload.get("requested_case_id", "")
+    run_id = run_ref.get("run_id") or payload.get("selected_run_id", "")
+    bits = [
+        f"Case: <strong>{_esc(case_id or 'unknown')}</strong>",
+    ]
+    if run_id:
+        bits.append(f"Run: <code>{_esc(str(run_id)[:32])}</code>")
+    bits.append('<a href="/">back to Observatory</a>')
+    bits.append('<a href="/audit">audit panels</a>')
+    return f'<div class="run-header">{" · ".join(bits)}</div>'
+
+
+def _render_teacher_tabs() -> str:
+    labels = [
+        ("learn", "Learn"),
+        ("models", "Models"),
+        ("relations", "Relations"),
+        ("map", "Map"),
+        ("receipts", "Receipts"),
+        ("nonclaims", "Non-Claims"),
+    ]
+    return (
+        '<nav class="learn-tabs">'
+        + "".join(f'<a href="#{anchor}">{label}</a>' for anchor, label in labels)
+        + "</nav>"
+    )
+
+
+def _render_short_list(label: str, values: list[str], *, limit: int = 3) -> str:
+    if not values:
+        return ""
+    items = "".join(f"<li>{_esc(_short(value, 160))}</li>" for value in values[:limit])
+    return f"<p><strong>{_esc(label)}:</strong></p><ul>{items}</ul>"
+
+
+def _relation_title(relation: dict, model_lookup: dict[str, dict]) -> str:
+    source_id = str(relation.get("source_model_id", ""))
+    target_id = str(relation.get("target_model_id", ""))
+    source = model_lookup.get(source_id, {})
+    target = model_lookup.get(target_id, {})
+    source_name = source.get("display_name") or source_id
+    target_name = target.get("display_name") or target_id
+    return f"{source_name} and {target_name}"
+
+
+def _render_missingness(missingness: dict) -> str:
+    fields = missingness.get("missing_fields") or []
+    notes = missingness.get("notes") or []
+    lines = [
+        f"<p><strong>Missingness:</strong> <code>{_esc(missingness.get('status', ''))}</code></p>"
+    ]
+    if fields:
+        lines.append("<ul>")
+        lines.extend(f"<li>{_esc(field)}</li>" for field in fields[:12])
+        lines.append("</ul>")
+    if notes:
+        lines.append("<p class=\"hint\">" + _esc(" ".join(notes[:2])) + "</p>")
+    return "\n".join(lines)
+
+
+def _render_teacher_non_claims(payload: dict) -> str:
+    non_claims = payload.get("non_claims") or []
+    return (
+        '<ul class="nonclaims">'
+        + "".join(f"<li><code>{_esc(item)}</code></li>" for item in non_claims)
+        + "</ul>"
+    )
 
 
 def _render_usage_html() -> str:
@@ -4489,6 +4811,12 @@ class ResultHandler(SimpleHTTPRequestHandler):
 
         if path == "/usage":
             self._html_response(_render_usage_html())
+            return
+
+        if path == "/teacher-learning":
+            query = parse_qs(parsed.query)
+            selected_case_id = (query.get("case_id") or [""])[0] or _CASE_ID
+            self._html_response(_render_teacher_learning_html(selected_case_id))
             return
 
         # Audit panels — server-rendered HTML, no SPA dependency.
