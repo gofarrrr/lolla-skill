@@ -1597,6 +1597,11 @@ def _build_case_response(
         "pre_step6_private_table": r.get("pre_step6_private_table"),
         "pre_step6_private_table_ledger": r.get("pre_step6_private_table_ledger"),
         "pre_step6_shadow_portfolio": r.get("pre_step6_shadow_portfolio"),
+        "teacher_learning": _build_teacher_learning_case_summary(
+            response_case_id,
+            r,
+            response_result_path,
+        ),
     }
 
     # Run health — surfaces capture, substrate, embeddings, fingerprint status
@@ -1619,6 +1624,39 @@ def _build_case_response(
         response["prompt_versions"] = r.get("prompt_versions") or {}
 
     return response
+
+
+def _build_teacher_learning_case_summary(
+    case_id: str,
+    result: dict,
+    result_path: Path | None,
+) -> dict:
+    """Return compact Teacher-learning availability without breaking /api/case."""
+    try:
+        from system_b.mental_model_teacher_observatory_packet_adapter import (
+            build_teacher_learning_case_summary,
+        )
+
+        return build_teacher_learning_case_summary(case_id, result, result_path)
+    except Exception as exc:  # pragma: no cover - defensive API stability guard
+        return {
+            "available": False,
+            "unavailable_reason": "teacher_learning_adapter_error",
+            "error_type": type(exc).__name__,
+        }
+
+
+def _build_teacher_learning_response(
+    case_id: str,
+    result: dict,
+    result_path: Path | None,
+) -> dict:
+    """Return the full tab-ready Teacher-learning payload for one case."""
+    from system_b.mental_model_teacher_observatory_packet_adapter import (
+        build_teacher_learning_response,
+    )
+
+    return build_teacher_learning_response(case_id, result, result_path)
 
 
 def _render_usage_html() -> str:
@@ -4395,6 +4433,21 @@ class ResultHandler(SimpleHTTPRequestHandler):
                 return
             if len(parts) == 5 and parts[4] == "usage":
                 self._json_response(result.get("usage_summary") or {})
+                return
+            if len(parts) == 5 and parts[4] == "teacher-learning":
+                try:
+                    payload = _build_teacher_learning_response(
+                        case_id,
+                        result,
+                        result_path,
+                    )
+                except Exception as exc:
+                    self._error_response(
+                        500,
+                        "Teacher learning adapter failed: " + type(exc).__name__,
+                    )
+                    return
+                self._json_response(payload)
                 return
             if len(parts) == 5 and parts[4] == "agent-result":
                 self._json_sidecar_response(
