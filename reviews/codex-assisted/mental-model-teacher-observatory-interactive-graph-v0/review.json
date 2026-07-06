@@ -1,0 +1,69 @@
+{
+  "schema": "lolla.mental_model_teacher_observatory_interactive_graph_review.v0",
+  "status": "offline_interactive_teacher_graph_ready_for_review",
+  "date": "2026-07-06",
+  "decision_gate": "proceed_to_compiled_observatory_learn_source_port",
+  "route": "/teacher-learning",
+  "adapter_route": "/api/case/<id>/teacher-learning",
+  "product_decision": {
+    "one_shell": "Observatory",
+    "graph_surface": "offline Teacher lesson neighborhood inside Learn",
+    "global_graph": false,
+    "compiled_spa_changed": false,
+    "runtime_wiring_allowed": false
+  },
+  "ux_guards": {
+    "offline_graph_interaction": true,
+    "node_search": true,
+    "relation_type_filters": true,
+    "selected_node_edge_panel": true,
+    "node_clicks_resolve_to_model_detail": true,
+    "edge_clicks_resolve_to_relation_detail": true,
+    "default_focus_preserved": true,
+    "graph_non_claims_visible": true,
+    "raw_telemetry_primary_surface": false,
+    "advanced_artifacts_primary_surface": false
+  },
+  "what_is_now_functional": [
+    "the Teacher Learn map supports local node search",
+    "the Teacher Learn map supports relation-type filtering",
+    "clicking a node updates a selected model panel and links to the model drawer",
+    "clicking an edge updates a selected relation panel and links to the relation drawer",
+    "graph controls render without provider calls, embeddings, runtime hooks, or external libraries"
+  ],
+  "what_remains_missing": [
+    "compiled SPA source port",
+    "archive case picker integration for Learn",
+    "larger graph layout strategy",
+    "human UX review",
+    "full corpus graph plan"
+  ],
+  "strongest_useful_signal": "The graph now supports exploration of the lesson neighborhood while keeping the learning path and model/relation drawers as the source of user-facing meaning.",
+  "strongest_unresolved_risk": "This remains a server-rendered graph workbench. The same interaction model needs to be ported to the compiled Observatory source before it becomes the single long-term UI path.",
+  "non_claims": {
+    "lolla_skill_invoked": false,
+    "provider_or_model_calls_used": false,
+    "new_lolla_runs_created": false,
+    "runtime_behavior_changed": false,
+    "compiled_spa_changed": false,
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false
+  },
+  "stop_before": [
+    "full corpus graph",
+    "compiled SPA source rebuild",
+    "runtime integration",
+    "provider or model calls",
+    "live Lolla runs",
+    "embedding-similarity relation claims",
+    "answer or advice correctness scoring",
+    "product proof claims",
+    "human validation claims",
+    "action authorization"
+  ]
+}

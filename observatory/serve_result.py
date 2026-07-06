@@ -505,15 +505,115 @@ a.teacher-card:hover {
 .relation-card {
   border-left: 3px solid var(--purple);
 }
-.map-card {
-  padding: 16px;
+.graph-workbench {
+  display: grid;
+  gap: 12px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--surface-1);
+  padding: 14px;
+}
+.graph-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 10px;
+}
+.graph-search {
+  display: grid;
+  gap: 4px;
+  min-width: min(260px, 100%);
+  flex: 1;
+}
+.graph-search span,
+.graph-filter-label,
+.graph-selection-kicker {
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.graph-search input {
+  min-height: 36px;
+  width: 100%;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, .04);
+  color: var(--text-primary);
+  font: inherit;
+  padding: 6px 10px;
+}
+.graph-search input::placeholder { color: var(--text-dim); }
+.graph-search input:focus-visible {
+  border-color: var(--teal);
+  outline: 2px solid var(--teal);
+  outline-offset: 1px;
+}
+.graph-filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.filter-chip {
+  min-height: 32px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .08em;
+  padding: 4px 10px;
+  text-transform: uppercase;
+}
+.filter-chip:hover {
+  border-color: var(--border-strong);
+  color: var(--text-secondary);
+}
+.filter-chip--active {
+  border-color: var(--teal);
+  background: rgba(65, 255, 167, .08);
+  color: var(--teal);
+}
+.graph-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 280px);
+  gap: 12px;
+  align-items: stretch;
+}
+.graph-stage {
+  min-width: 0;
 }
 .lesson-map {
   width: 100%;
-  min-height: 260px;
+  min-height: 280px;
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   background: rgba(255, 255, 255, .03);
+}
+.map-node,
+.map-edge-link {
+  cursor: pointer;
+  transition: opacity 120ms ease, filter 120ms ease;
+}
+.map-node.is-selected circle {
+  stroke-width: 3;
+  filter: drop-shadow(0 0 8px rgba(65, 255, 167, .55));
+}
+.map-edge-link.is-selected .map-edge {
+  stroke-width: 4;
+  filter: drop-shadow(0 0 8px rgba(186, 140, 255, .45));
+}
+.map-node.is-filtered,
+.map-edge-link.is-filtered {
+  display: none;
+}
+.map-node.is-muted,
+.map-edge-link.is-muted {
+  opacity: .28;
 }
 .map-node circle {
   fill: rgba(65, 255, 167, .16);
@@ -535,6 +635,48 @@ a.teacher-card:hover {
   font-size: 10px;
   letter-spacing: .06em;
   text-transform: uppercase;
+}
+.graph-results {
+  margin-top: 8px;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+.graph-selection-panel {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, .04);
+  padding: 14px;
+}
+.graph-selection-panel h3 {
+  margin: 4px 0 8px;
+  color: var(--text-primary);
+  font-size: 16px;
+  line-height: 1.3;
+}
+.graph-selection-panel p {
+  margin: 0 0 10px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.55;
+}
+.graph-selection-link {
+  display: inline-flex;
+  min-height: 32px;
+  align-items: center;
+  border: 1px solid rgba(65, 255, 167, .35);
+  border-radius: var(--radius-sm);
+  color: var(--teal);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .08em;
+  padding: 4px 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.graph-selection-link:hover {
+  background: rgba(65, 255, 167, .08);
+  text-decoration: none;
 }
 .receipt-row {
   display: grid;
@@ -728,6 +870,9 @@ pre.practice-text {
     display: flex;
     flex-direction: column;
   }
+  .graph-content {
+    grid-template-columns: 1fr;
+  }
   .teacher-sidebar {
     position: static;
     max-height: none;
@@ -744,6 +889,138 @@ pre.practice-text {
   .tab-btn { white-space: nowrap; }
   .drawer-panel { width: 100vw; padding: 24px 18px; }
 }
+"""
+
+
+_TEACHER_GRAPH_SCRIPT = """
+<script id="lolla-teacher-graph-interaction">
+(() => {
+  if (window.__lollaTeacherGraphInteraction) return;
+  window.__lollaTeacherGraphInteraction = true;
+
+  const esc = (value) => String(value || "");
+
+  const setActiveFilter = (buttons, active) => {
+    for (const button of buttons) {
+      const isActive = button.dataset.relationFilter === active;
+      button.classList.toggle("filter-chip--active", isActive);
+      button.setAttribute("aria-pressed", isActive ? "true" : "false");
+    }
+  };
+
+  const updateSelection = (root, element, kind) => {
+    for (const item of root.querySelectorAll(".is-selected")) {
+      item.classList.remove("is-selected");
+    }
+    element.classList.add("is-selected");
+
+    const panel = root.querySelector("[data-graph-selection]");
+    if (!panel) return;
+
+    const title = panel.querySelector("[data-selection-title]");
+    const type = panel.querySelector("[data-selection-type]");
+    const body = panel.querySelector("[data-selection-body]");
+    const meta = panel.querySelector("[data-selection-meta]");
+    const link = panel.querySelector("[data-selection-link]");
+
+    if (title) title.textContent = esc(element.dataset.label);
+    if (type) type.textContent = kind === "edge" ? "Relation" : "Mental Model";
+    if (body) body.textContent = esc(element.dataset.summary);
+    if (meta) {
+      const bits = [];
+      if (element.dataset.role) bits.push(element.dataset.role);
+      if (element.dataset.relationType) bits.push(element.dataset.relationType);
+      if (element.dataset.confidence) bits.push(`confidence ${element.dataset.confidence}`);
+      if (element.dataset.status) bits.push(element.dataset.status);
+      meta.textContent = bits.join(" · ");
+    }
+    if (link) {
+      link.href = element.getAttribute("href") || "#";
+      link.textContent = kind === "edge" ? "Open relation detail" : "Open model detail";
+    }
+  };
+
+  const initGraph = (root) => {
+    const nodes = Array.from(root.querySelectorAll("[data-graph-node]"));
+    const edges = Array.from(root.querySelectorAll("[data-graph-edge]"));
+    const search = root.querySelector("[data-graph-search]");
+    const buttons = Array.from(root.querySelectorAll("[data-relation-filter]"));
+    const results = root.querySelector("[data-graph-results]");
+    let activeFilter = "all";
+
+    const visibleNodeIds = () => new Set(
+      nodes
+        .filter((node) => !node.classList.contains("is-filtered"))
+        .map((node) => node.dataset.modelId)
+    );
+
+    const applyFilters = () => {
+      const query = (search && search.value ? search.value : "").trim().toLowerCase();
+
+      for (const node of nodes) {
+        const haystack = `${node.dataset.label || ""} ${node.dataset.modelId || ""} ${node.dataset.role || ""}`.toLowerCase();
+        const matches = !query || haystack.includes(query);
+        node.classList.toggle("is-filtered", !matches);
+        node.setAttribute("aria-hidden", matches ? "false" : "true");
+      }
+
+      const nodeIds = visibleNodeIds();
+      let visibleEdges = 0;
+      for (const edge of edges) {
+        const relationMatches = activeFilter === "all" || edge.dataset.relationType === activeFilter;
+        const endpointMatches = nodeIds.has(edge.dataset.sourceId) && nodeIds.has(edge.dataset.targetId);
+        const visible = relationMatches && endpointMatches;
+        edge.classList.toggle("is-filtered", !visible);
+        edge.setAttribute("aria-hidden", visible ? "false" : "true");
+        if (visible) visibleEdges += 1;
+      }
+
+      const connected = new Set();
+      for (const edge of edges) {
+        if (edge.classList.contains("is-filtered")) continue;
+        connected.add(edge.dataset.sourceId);
+        connected.add(edge.dataset.targetId);
+      }
+      for (const node of nodes) {
+        const visible = !node.classList.contains("is-filtered");
+        node.classList.toggle("is-muted", visible && connected.size > 0 && !connected.has(node.dataset.modelId));
+      }
+
+      if (results) {
+        const visibleNodes = nodes.filter((node) => !node.classList.contains("is-filtered")).length;
+        results.textContent = `${visibleNodes} model${visibleNodes === 1 ? "" : "s"} · ${visibleEdges} relation${visibleEdges === 1 ? "" : "s"}`;
+      }
+    };
+
+    for (const node of nodes) {
+      node.addEventListener("click", () => updateSelection(root, node, "node"));
+      node.addEventListener("focus", () => updateSelection(root, node, "node"));
+    }
+    for (const edge of edges) {
+      edge.addEventListener("click", () => updateSelection(root, edge, "edge"));
+      edge.addEventListener("focus", () => updateSelection(root, edge, "edge"));
+    }
+    if (search) search.addEventListener("input", applyFilters);
+    for (const button of buttons) {
+      button.addEventListener("click", () => {
+        activeFilter = button.dataset.relationFilter || "all";
+        setActiveFilter(buttons, activeFilter);
+        applyFilters();
+      });
+    }
+
+    const defaultFocus = root.dataset.defaultFocus || "";
+    const defaultNode = nodes.find((node) => node.dataset.modelId === defaultFocus) || nodes[0];
+    if (defaultNode) updateSelection(root, defaultNode, "node");
+    setActiveFilter(buttons, activeFilter);
+    applyFilters();
+  };
+
+  for (const root of document.querySelectorAll("[data-teacher-graph]")) {
+    initGraph(root);
+  }
+})();
+</script>
 """
 
 
@@ -2311,6 +2588,7 @@ def _render_teacher_scaffold(*, title: str, body: str) -> str:
 <title>{_esc(title)}</title>
 <style>{_TEACHER_LEARN_CSS}</style></head><body>
 {body}
+{_TEACHER_GRAPH_SCRIPT}
 </body></html>
 """
 
@@ -2469,7 +2747,7 @@ def _render_teacher_learning_payload(payload: dict) -> str:
             '<section id="map" class="teacher-section">',
             _render_teacher_section_header("Map"),
             '<p class="lede">Small lesson neighborhood. Edges are navigation, not proof.</p>',
-            _render_teacher_graph(graph, model_lookup),
+            _render_teacher_graph(graph, model_lookup, relations),
             "</section>",
             '<section id="receipts" class="teacher-section">',
             _render_teacher_section_header("Receipts"),
@@ -2627,20 +2905,53 @@ def _render_teacher_sidebar(
     )
 
 
-def _render_teacher_graph(graph: dict, model_lookup: dict[str, dict]) -> str:
+def _render_teacher_graph(
+    graph: dict,
+    model_lookup: dict[str, dict],
+    relations: list[dict],
+) -> str:
     nodes = graph.get("nodes") or []
     edges = graph.get("edges") or []
+    relation_lookup = {
+        str(relation.get("relation_id", "")): relation for relation in relations
+    }
     positions = _teacher_graph_positions(nodes)
+    relation_types = sorted(
+        {
+            str(edge.get("relation_type"))
+            for edge in edges
+            if edge.get("relation_type")
+        }
+    )
     edge_lines = []
     for edge in edges:
         source = positions.get(str(edge.get("source_node_id")))
         target = positions.get(str(edge.get("target_node_id")))
         if not source or not target:
             continue
+        relation_id = str(edge.get("relation_id", ""))
+        relation = relation_lookup.get(relation_id, {})
+        source_id = str(edge.get("source_node_id", ""))
+        target_id = str(edge.get("target_node_id", ""))
+        label = str(edge.get("label") or _relation_title(relation, model_lookup))
+        summary = str(
+            relation.get("plain_language_story")
+            or edge.get("label")
+            or relation_id
+        )
         mid_x = (source[0] + target[0]) / 2
         mid_y = (source[1] + target[1]) / 2 - 16
         edge_lines.append(
-            f'<a href="#{_relation_detail_anchor(str(edge.get("relation_id", "")))}">'
+            f'<a class="map-edge-link" href="#{_relation_detail_anchor(relation_id)}" '
+            'data-graph-edge '
+            f'data-relation-id="{_esc(relation_id)}" '
+            f'data-label="{_esc(label)}" '
+            f'data-summary="{_esc(summary)}" '
+            f'data-relation-type="{_esc(edge.get("relation_type", ""))}" '
+            f'data-confidence="{_esc(edge.get("confidence", ""))}" '
+            f'data-status="{_esc(edge.get("missingness_status", ""))}" '
+            f'data-source-id="{_esc(source_id)}" '
+            f'data-target-id="{_esc(target_id)}">'
             f'<line class="map-edge" x1="{source[0]}" y1="{source[1]}" '
             f'x2="{target[0]}" y2="{target[1]}"></line>'
             f'<text class="map-label" x="{mid_x}" y="{mid_y}" text-anchor="middle">'
@@ -2652,25 +2963,72 @@ def _render_teacher_graph(graph: dict, model_lookup: dict[str, dict]) -> str:
         model_id = str(node.get("model_id") or node.get("node_id") or "")
         x, y = positions.get(model_id, (360, 130))
         label = _model_display_name(model_id, model_lookup, node.get("label") or model_id)
+        model = model_lookup.get(model_id, {})
+        summary = str(
+            model.get("one_sentence_meaning")
+            or node.get("role")
+            or label
+        )
         node_items.append(
-            f'<a class="map-node" href="#{_model_detail_anchor(model_id)}">'
+            f'<a class="map-node" href="#{_model_detail_anchor(model_id)}" '
+            'data-graph-node '
+            f'data-model-id="{_esc(model_id)}" '
+            f'data-label="{_esc(label)}" '
+            f'data-summary="{_esc(summary)}" '
+            f'data-role="{_esc(node.get("role", ""))}" '
+            f'data-status="{_esc(node.get("missingness_status", ""))}">'
             f'<circle cx="{x}" cy="{y}" r="42"></circle>'
             f'<text x="{x}" y="{y + 4}" text-anchor="middle">{_esc(_short(label, 28))}</text>'
             f'<text class="map-label" x="{x}" y="{y + 62}" text-anchor="middle">'
             f'{_esc(node.get("role", ""))}</text></a>'
         )
 
+    filter_buttons = [
+        '<button class="filter-chip filter-chip--active" type="button" '
+        'data-relation-filter="all" aria-pressed="true">All</button>'
+    ]
+    filter_buttons.extend(
+        f'<button class="filter-chip" type="button" data-relation-filter="{_esc(relation_type)}" '
+        f'aria-pressed="false">{_esc(relation_type)}</button>'
+        for relation_type in relation_types
+    )
+    default_focus = str(graph.get("default_focus") or (nodes[0].get("model_id") if nodes else ""))
+    default_model = model_lookup.get(default_focus, {})
+    default_title = default_model.get("display_name") or default_focus or "Select a model"
+    default_summary = default_model.get("one_sentence_meaning") or (
+        "Select a node or edge to inspect the lesson neighborhood."
+    )
     return (
-        '<div class="map-card teacher-card">'
-        '<svg class="lesson-map" viewBox="0 0 720 260" role="img" '
-        'aria-label="Teacher lesson model neighborhood">'
+        f'<div class="graph-workbench" data-teacher-graph data-default-focus="{_esc(default_focus)}">'
+        '<div class="graph-toolbar">'
+        '<label class="graph-search"><span>Search models</span>'
+        '<input type="search" data-graph-search placeholder="Search model, role, or id" '
+        'autocomplete="off"></label>'
+        '<div class="graph-filter-group" aria-label="Relation type filters">'
+        '<span class="graph-filter-label">Relation</span>'
+        + "".join(filter_buttons)
+        + "</div></div>"
+        '<div class="graph-content">'
+        '<div class="graph-stage">'
+        '<svg class="lesson-map" viewBox="0 0 720 280" role="img" '
+        'aria-label="Interactive Teacher lesson model neighborhood">'
         + "".join(edge_lines)
         + "".join(node_items)
         + "</svg>"
+        '<div class="graph-results" data-graph-results></div>'
         '<div class="tagrow">'
         f'<span class="tag teal">{_esc(graph.get("graph_scope", "lesson_neighborhood"))}</span>'
         f'<span class="tag purple">{_esc(graph.get("layout_hint", "small_neighborhood"))}</span>'
         '<span class="tag amber">edges are navigation, not proof</span>'
+        "</div></div>"
+        '<aside class="graph-selection-panel" data-graph-selection aria-live="polite">'
+        '<span class="graph-selection-kicker" data-selection-type>Mental Model</span>'
+        f'<h3 data-selection-title>{_esc(default_title)}</h3>'
+        f'<p data-selection-body>{_esc(default_summary)}</p>'
+        '<p class="card-label" data-selection-meta></p>'
+        f'<a class="graph-selection-link" data-selection-link href="#{_model_detail_anchor(default_focus)}">'
+        "Open model detail</a>"
+        "</aside>"
         "</div>"
         "</div>"
     )

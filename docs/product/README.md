@@ -43,4 +43,5 @@ Current planning docs:
 - [Mental Model Teacher Observatory Packet Adapter](mental-model-teacher-observatory-packet-adapter-v0.md)
 - [Mental Model Teacher Observatory Learn Page](mental-model-teacher-observatory-learn-page-v0.md)
 - [Mental Model Teacher Observatory Native Learn Tab](mental-model-teacher-observatory-native-learn-tab-v0.md)
+- [Mental Model Teacher Observatory Interactive Graph](mental-model-teacher-observatory-interactive-graph-v0.md)
 - [Mental Model Teacher Product Surface Reference Patterns](mental-model-teacher-product-surface-reference-patterns-v0.md)
