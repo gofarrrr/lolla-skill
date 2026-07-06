@@ -234,7 +234,12 @@ def _render_observatory_status_bar(
     ):
         if index:
             pieces.append('<span class="dot-sep">.</span>')
-        cls = ' class="status-link-active"' if active else ""
+        link_classes = []
+        if active:
+            link_classes.append("status-link-active")
+        if href == "/audit":
+            link_classes.append("status-link-advanced")
+        cls = f' class="{" ".join(link_classes)}"' if link_classes else ""
         current = ' aria-current="page"' if active else ""
         parsed_href = urlparse(href)
         surface = parsed_href.fragment if parsed_href.path == "/workspace" else ""
@@ -387,6 +392,10 @@ code {
 .status-bar a:hover { color: var(--teal); }
 .status-bar a.status-link-active {
   color: var(--teal);
+}
+.status-bar a.status-link-advanced {
+  color: var(--text-dim);
+  opacity: .72;
 }
 .status-dot {
   width: 6px;
@@ -1169,6 +1178,45 @@ _WORKSPACE_CSS = """
 .workspace-card p {
   color: var(--text-secondary);
 }
+.workspace-first-read {
+  display: grid;
+  gap: 12px;
+  border-color: rgba(65, 255, 167, .26);
+  background: rgba(65, 255, 167, .045);
+}
+.workspace-first-read h3 {
+  max-width: 860px;
+  font-size: 22px;
+}
+.workspace-first-read .lede {
+  max-width: 920px;
+}
+.workspace-next-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 2px;
+}
+.workspace-disclosure {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, .035);
+  padding: 0;
+}
+.workspace-disclosure > summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+.workspace-disclosure-body {
+  display: grid;
+  gap: 14px;
+  border-top: 1px solid var(--border-subtle);
+  padding: 14px;
+}
 .workspace-learn-flow {
   display: grid;
   gap: 10px;
@@ -1302,6 +1350,9 @@ _WORKSPACE_CSS = """
   font-family: var(--font-body);
   font-size: 15px;
 }
+.workspace-status-pill--quiet {
+  background: rgba(255, 255, 255, .035);
+}
 .workspace-advanced-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -1395,7 +1446,30 @@ _TEACHER_GRAPH_SCRIPT = """
     }
     if (link) {
       link.href = element.getAttribute("href") || "#";
+      link.removeAttribute("aria-disabled");
       link.textContent = kind === "edge" ? "Open relation detail" : "Open model detail";
+    }
+  };
+
+  const clearSelection = (root) => {
+    for (const item of root.querySelectorAll(".is-selected")) {
+      item.classList.remove("is-selected");
+    }
+    const panel = root.querySelector("[data-graph-selection]");
+    if (!panel) return;
+    const title = panel.querySelector("[data-selection-title]");
+    const type = panel.querySelector("[data-selection-type]");
+    const body = panel.querySelector("[data-selection-body]");
+    const meta = panel.querySelector("[data-selection-meta]");
+    const link = panel.querySelector("[data-selection-link]");
+    if (title) title.textContent = "No visible map item";
+    if (type) type.textContent = "No result";
+    if (body) body.textContent = "No model or relation matches the current search and filters.";
+    if (meta) meta.textContent = "";
+    if (link) {
+      link.href = "#";
+      link.setAttribute("aria-disabled", "true");
+      link.textContent = "No detail available";
     }
   };
 
@@ -1475,6 +1549,17 @@ _TEACHER_GRAPH_SCRIPT = """
       if (results) {
         const visibleNodes = nodes.filter((node) => !node.classList.contains("is-filtered")).length;
         results.textContent = `${visibleNodes} model${visibleNodes === 1 ? "" : "s"} · ${visibleEdges} relation${visibleEdges === 1 ? "" : "s"}`;
+      }
+
+      const selected = root.querySelector(".is-selected");
+      const visibleItems = [...nodes, ...edges].filter((item) => !item.classList.contains("is-filtered"));
+      if (!selected || selected.classList.contains("is-filtered")) {
+        if (visibleItems.length) {
+          const next = visibleItems[0];
+          updateSelection(root, next, next.matches("[data-graph-edge]") ? "edge" : "node");
+        } else {
+          clearSelection(root);
+        }
       }
     };
 
@@ -4342,8 +4427,8 @@ def _render_teacher_model_drawer(model: dict) -> str:
             "</div>",
             '<a class="drawer-close" href="#models" aria-label="Close">&times;</a>',
             "</header>",
-            '<section class="detail-section">',
-            "<h3>Everything We Know</h3>",
+            '<section class="detail-section workspace-first-read" data-first-read-card>',
+            "<h3>What This Model Helps You See</h3>",
             f"<p>{_esc(model.get('one_sentence_meaning', ''))}</p>",
             "</section>",
             _render_detail_list("Helps Notice", model.get("helps_notice") or []),
@@ -4980,25 +5065,38 @@ def _render_workspace_run_picker(selected_case_id: str) -> str:
 
 
 def _render_workspace_hero(selected_run: dict, workspace: dict) -> str:
+    case_id = str(selected_run.get("case_id") or "")
+    quick_actions = _render_workspace_chips(
+        [
+            {"label": "Read outcome", "href": _observatory_workspace_href(case_id, "outcome")},
+            {"label": "Practice lesson", "href": _observatory_workspace_href(case_id, "learn")},
+            {"label": "Open model cards", "href": _observatory_workspace_href(case_id, "models")},
+            {"label": "Check receipts", "href": _observatory_workspace_href(case_id, "receipts")},
+        ],
+        selected_case_id=case_id,
+    )
     return "\n".join(
         [
             '<header class="workspace-hero" id="top">',
             '<p class="teacher-eyebrow">Observatory</p>',
             "<h1>Selected Run Workspace</h1>",
-            '<p class="lede">One selected run, organized as product surfaces: '
-            "Outcome for what changed, Learn for the reasoning move, Models for "
-            "durable mental model knowledge, Relations for the model-pair lesson, "
-            "Map for navigation, and Receipts for custody.</p>",
+            '<p class="lede">Start with what changed, then practice the reasoning '
+            "move. Models, relations, and the map are there when you want to "
+            "inspect the thinking tools behind the lesson.</p>",
             '<div class="run-header">',
             f'<span>Case: <strong>{_esc(selected_run.get("case_id", ""))}</strong></span>',
             f'<span>Run: <code>{_esc(_short(selected_run.get("run_id", ""), 34))}</code></span>',
             f'<span>Health: <strong>{_esc(selected_run.get("health_label", ""))}</strong></span>',
             "</div>",
-            '<div class="workspace-hero-grid">',
-            _workspace_stat("Rendering", workspace.get("rendering_direction", "")),
-            _workspace_stat("Primary surfaces", ", ".join(workspace.get("primary_surfaces") or [])),
-            _workspace_stat("Advanced surface", workspace.get("advanced_surface", "")),
-            "</div>",
+            quick_actions,
+            _workspace_disclosure(
+                "Workspace status",
+                '<div class="workspace-hero-grid">',
+                _workspace_stat("Rendering", workspace.get("rendering_direction", "")),
+                _workspace_stat("Primary surfaces", ", ".join(workspace.get("primary_surfaces") or [])),
+                _workspace_stat("Advanced surface", workspace.get("advanced_surface", "")),
+                "</div>",
+            ),
             "</header>",
         ]
     )
@@ -5013,20 +5111,79 @@ def _workspace_stat(label: str, value: str) -> str:
     )
 
 
+def _workspace_first_read(
+    kicker: str,
+    title: str,
+    body: str,
+    *,
+    actions: str = "",
+) -> str:
+    return "\n".join(
+        [
+            '<article class="workspace-card workspace-first-read" data-first-read-card>',
+            f'<p class="workspace-kicker">{_esc(kicker)}</p>',
+            f"<h3>{_esc(title)}</h3>",
+            f'<p class="lede">{_esc(body)}</p>',
+            actions,
+            "</article>",
+        ]
+    )
+
+
+def _workspace_disclosure(summary: str, *content: str, open_by_default: bool = False) -> str:
+    open_attr = " open" if open_by_default else ""
+    return "\n".join(
+        [
+            f'<details class="workspace-disclosure"{open_attr}>',
+            f"<summary>{_esc(summary)}</summary>",
+            '<div class="workspace-disclosure-body">',
+            *[item for item in content if item],
+            "</div>",
+            "</details>",
+        ]
+    )
+
+
+def _workspace_has_content(value: object) -> bool:
+    if value is None:
+        return False
+    text = str(value).strip()
+    return bool(text) and not text.lower().startswith("not supplied")
+
+
+def _workspace_lesson_intro(lesson: dict) -> str:
+    move = str(lesson.get("thinking_move") or "").strip()
+    relation = str(lesson.get("relation_story") or "").strip()
+    if move and relation:
+        return move + " " + relation
+    return move or relation or "This run has a learning packet, but the main reasoning move is incomplete."
+
+
 def _render_workspace_outcome(outcome: dict, selected_case_id: str) -> str:
     model_chips = outcome.get("model_chips") or []
+    actions = _render_workspace_chips(
+        [
+            {"label": "Practice the lesson", "href": _observatory_workspace_href(selected_case_id, "learn")},
+            {"label": "Open model cards", "href": _observatory_workspace_href(selected_case_id, "models")},
+        ],
+        selected_case_id=selected_case_id,
+    )
     return "\n".join(
         [
             '<section id="outcome" class="workspace-section">',
             _render_teacher_section_header("Outcome"),
-            '<article class="workspace-card">',
-            '<p class="workspace-kicker">What happened in this run?</p>',
-            f'<h3>{_esc(outcome.get("answer_headline", ""))}</h3>',
-            f'<p>{_esc(outcome.get("revised_answer_summary", ""))}</p>',
-            f'<p><strong>Strongest pressure:</strong> {_esc(outcome.get("strongest_pressure", ""))}</p>',
-            _render_workspace_chips(model_chips, selected_case_id=selected_case_id),
-            _render_missingness(outcome.get("missingness") or {}),
-            "</article>",
+            _workspace_first_read(
+                "What happened in this run?",
+                outcome.get("answer_headline", ""),
+                outcome.get("revised_answer_summary", ""),
+                actions=actions,
+            ),
+            _workspace_disclosure(
+                "Outcome support details",
+                f'<p><strong>Strongest pressure:</strong> {_esc(outcome.get("strongest_pressure", ""))}</p>',
+                _render_workspace_chips(model_chips, selected_case_id=selected_case_id),
+                _render_missingness(outcome.get("missingness") or {}),
+            ),
             "</section>",
         ]
     )
@@ -5034,23 +5191,38 @@ def _render_workspace_outcome(outcome: dict, selected_case_id: str) -> str:
 
 def _render_workspace_learn(lesson: dict, selected_case_id: str) -> str:
     practice = lesson.get("practice_rep") or {}
+    practice_prompt = str(practice.get("prompt") or "Practice this move").strip()
+    user_action = str(practice.get("user_action") or "").strip()
+    actions = _render_workspace_chips(
+        [
+            {"label": "Open relation lesson", "href": _observatory_workspace_href(selected_case_id, "relations")},
+            {"label": "Explore map", "href": _observatory_workspace_href(selected_case_id, "map")},
+        ],
+        selected_case_id=selected_case_id,
+        kind="relation",
+    )
     return "\n".join(
         [
             '<section id="learn" class="workspace-section">',
             _render_teacher_section_header("Learn"),
-            '<article class="workspace-card">',
-            '<p class="workspace-kicker">What reasoning move can I learn?</p>',
+            _workspace_first_read(
+                "What reasoning move can I practice?",
+                practice_prompt,
+                _workspace_lesson_intro(lesson),
+                actions=actions,
+            ),
+            '<article class="workspace-card workspace-practice">',
+            "<p><strong>User action:</strong> "
+            f'{_esc(user_action or "No source-backed practice action is available yet.")}</p>',
+            "</article>",
+            _workspace_disclosure(
+                "Lesson steps and boundaries",
             '<div class="workspace-learn-flow">',
             _workspace_flow_step("Case anchor", lesson.get("case_anchor", "")),
             _workspace_flow_step("Reasoning trap", lesson.get("reasoning_trap", "")),
             _workspace_flow_step("Thinking move", lesson.get("thinking_move", "")),
             _workspace_flow_step("Model relationship", lesson.get("relation_story", "")),
             _workspace_flow_step("Worked example", lesson.get("worked_example", "")),
-            "</div>",
-            '<div class="workspace-practice">',
-            "<p><strong>Practice rep:</strong> "
-            f'{_esc(practice.get("prompt", ""))}</p>',
-            f'<p><strong>User action:</strong> {_esc(practice.get("user_action", ""))}</p>',
             "</div>",
             _render_workspace_list("Do not overlearn", lesson.get("do_not_overlearn") or []),
             '<p class="workspace-kicker">Model links</p>',
@@ -5066,17 +5238,22 @@ def _render_workspace_learn(lesson: dict, selected_case_id: str) -> str:
             ),
             _render_missingness(lesson.get("missingness") or {}),
             _render_teacher_non_claims(lesson),
-            "</article>",
+            ),
             "</section>",
         ]
     )
 
 
 def _workspace_flow_step(label: str, value: str) -> str:
+    display_value = (
+        str(value)
+        if _workspace_has_content(value)
+        else "Not available in this learning packet."
+    )
     return (
         '<div class="workspace-flow-step">'
         f"<strong>{_esc(label)}</strong>"
-        f"<span>{_esc(value)}</span>"
+        f"<span>{_esc(display_value)}</span>"
         "</div>"
     )
 
@@ -5109,10 +5286,11 @@ def _render_workspace_model_page(
     link_to_self: bool = True,
 ) -> str:
     model_id = str(model.get("model_id", ""))
-    action_chips = [
+    support_chips = [
         f'<span class="workspace-chip workspace-chip--teal">{_esc(model.get("curation_status", ""))}</span>',
         f'<span class="workspace-chip">{_esc(model_id)}</span>',
     ]
+    action_chips = []
     if selected_case_id and link_to_self:
         action_chips.append(
             f'<a class="workspace-chip" href="{_esc(_observatory_model_href(model_id, selected_case_id))}">'
@@ -5123,8 +5301,8 @@ def _render_workspace_model_page(
             f'<article id="{_model_detail_anchor(model_id)}" class="workspace-card workspace-model-page">',
             '<p class="teacher-eyebrow">Mental Model</p>',
             f'<h3>{_esc(model.get("display_name") or model_id)}</h3>',
-            '<section class="detail-section">',
-            "<h3>Everything We Know</h3>",
+            '<section class="detail-section workspace-first-read" data-first-read-card>',
+            "<h3>What This Model Helps You See</h3>",
             f'<p>{_esc(model.get("one_sentence_meaning", ""))}</p>',
             "</section>",
             '<div class="workspace-columns">',
@@ -5140,6 +5318,12 @@ def _render_workspace_model_page(
                 "Avoid when",
                 model.get("avoid_when") or ["No source-backed avoid-when bullets are available."],
             ),
+            "</div>",
+            '<div class="workspace-next-actions">',
+            *action_chips,
+            "</div>",
+            _workspace_disclosure(
+                "Practice and failure detail",
             _render_workspace_list(
                 "Common misuse",
                 model.get("common_misuse") or ["No source-backed common-misuse bullets are available."],
@@ -5152,16 +5336,16 @@ def _render_workspace_model_page(
                 "Practice prompts",
                 model.get("practice_prompts") or ["No source-backed practice prompts are available."],
             ),
-            "</div>",
+            ),
+            _workspace_disclosure(
+                "Source, status, and boundaries",
             '<div class="workspace-chip-row">',
-            *action_chips,
+            *support_chips,
             "</div>",
-            '<details class="teacher-panel">',
-            "<summary>Source custody</summary>",
             _render_source_refs(model.get("source_refs") or []),
-            "</details>",
             _render_missingness(model.get("missingness") or {}),
             _render_teacher_non_claims(model),
+            ),
             "</article>",
         ]
     )
@@ -5217,7 +5401,7 @@ def _render_workspace_relation_page(
             f'<article id="{_relation_detail_anchor(relation_id)}" class="workspace-card workspace-relation-page">',
             '<p class="teacher-eyebrow">Relation</p>',
             f'<h3>{_esc(_relation_title(relation, model_lookup))}</h3>',
-            '<section class="detail-section">',
+            '<section class="detail-section workspace-first-read" data-first-read-card>',
             "<h3>Plain Language Story</h3>",
             f'<p>{_esc(relation.get("plain_language_story", ""))}</p>',
             "</section>",
@@ -5237,18 +5421,18 @@ def _render_workspace_relation_page(
                 relation.get("model_links") or [],
                 selected_case_id=selected_case_id or "",
             ),
+            _workspace_disclosure(
+                "Taxonomy, confidence, and custody",
             '<section class="detail-section">',
             "<h3>Taxonomy</h3>",
             '<div class="workspace-chip-row">',
             *taxonomy_chips,
             "</div>",
             "</section>",
-            '<details class="teacher-panel">',
-            "<summary>Source custody</summary>",
             _render_source_refs(relation.get("source_refs") or []),
-            "</details>",
             _render_missingness(relation.get("missingness") or {}),
             _render_teacher_non_claims(relation),
+            ),
             "</article>",
         ]
     )
@@ -5402,17 +5586,17 @@ def _render_workspace_map(
             '<p class="workspace-kicker">Selected-run neighborhood</p>',
             '<p>Search, filter, and select a node or relation edge. Edges are navigation, not proof. The map does not prove that a model or relation is correct.</p>',
             graph_workbench,
+            _workspace_disclosure(
+                "Map custody and boundaries",
             '<div class="workspace-chip-row">',
             f'<span class="workspace-chip workspace-chip--teal">{_esc(graph.get("graph_scope", ""))}</span>',
             f'<span class="workspace-chip">{_esc(graph.get("layout_hint", ""))}</span>',
             f'<span class="workspace-chip">{_esc(relation_types_label or "no relation filters")}</span>',
             "</div>",
-            '<details class="teacher-panel">',
-            "<summary>Source custody</summary>",
             _render_source_refs(graph.get("source_refs") or []),
-            "</details>",
             _render_missingness(graph.get("missingness") or {}),
             _render_teacher_non_claims(graph),
+            ),
             "</article>",
             "</section>",
         ]
@@ -5437,8 +5621,9 @@ def _render_workspace_receipts(
         [
             '<section id="receipts" class="workspace-section">',
             _render_teacher_section_header("Receipts"),
-            '<article class="workspace-card">',
-            '<p class="workspace-kicker">Custody and missingness</p>',
+            '<article class="workspace-card workspace-first-read" data-first-read-card>',
+            '<p class="workspace-kicker">Trust summary</p>',
+            "<h3>What can I trust or inspect?</h3>",
             '<div class="workspace-status-grid">',
             _workspace_status_pill("Teacher packet", receipts.get("learning_packet_status", "")),
             _workspace_status_pill("Conversation Understanding", receipts.get("conversation_understanding_status", "")),
@@ -5446,28 +5631,28 @@ def _render_workspace_receipts(
             "</div>",
             '<p class="workspace-kicker">Visible non-claims</p>',
             _render_workspace_list("", receipts.get("visible_non_claims") or []),
-            '<p class="workspace-kicker">Advanced links</p>',
+            '<p class="workspace-kicker">Inspect further</p>',
             _render_workspace_chips(advanced_links, selected_case_id=selected_case_id),
-            '<details class="teacher-panel" open>',
-            "<summary>Source custody</summary>",
-            _render_source_refs(receipts.get("source_refs") or []),
-            "</details>",
-            _render_missingness(receipts.get("missingness") or {}),
-            _render_teacher_non_claims(receipts),
             "</article>",
-            '<article class="workspace-card">',
-            '<p class="workspace-kicker">Advanced Audit Index</p>',
+            _workspace_disclosure(
+                "Source refs and missing fields",
+                _render_source_refs(receipts.get("source_refs") or []),
+                _render_missingness(receipts.get("missingness") or {}),
+                _render_teacher_non_claims(receipts),
+            ),
+            _workspace_disclosure(
+                "Advanced inspection index",
             '<ul class="workspace-advanced-list">',
             *artifact_rows,
             "</ul>",
             _render_missingness(advanced.get("missingness") or {}),
             _render_teacher_non_claims(advanced),
-            "</article>",
-            '<article class="workspace-card">',
-            '<p class="workspace-kicker">Workspace Boundary</p>',
+            ),
+            _workspace_disclosure(
+                "Workspace boundary",
             _render_missingness(workspace.get("missingness") or {}),
             _render_teacher_non_claims(workspace),
-            "</article>",
+            ),
             "</section>",
         ]
     )

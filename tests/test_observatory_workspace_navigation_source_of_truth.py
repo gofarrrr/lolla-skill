@@ -128,10 +128,10 @@ def test_model_detail_route_returns_formatted_selected_run_page(monkeypatch) -> 
     assert response.status == 200
     assert "<title>Lolla - Authority Bias</title>" in html
     assert "<h1>Authority Bias</h1>" in html
-    assert "Everything We Know" in html
+    assert "What This Model Helps You See" in html
     assert "Helps notice" in html
     assert "Use when" in html
-    assert "Source custody" in html
+    assert "Source, status, and boundaries" in html
     assert "All models in this run" in html
     assert 'href="/workspace?case_id=lolla-audit#models"' in html
     assert "raw canonical Markdown and curation internals stay behind" in html
