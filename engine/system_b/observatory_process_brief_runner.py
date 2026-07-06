@@ -13,12 +13,12 @@ from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
 
-from engine.system_b.decision_work_offline_operator_runner import (
+from .decision_work_offline_operator_runner import (
     render_offline_operator_runner_summary_json,
     run_decision_work_offline_operator,
     write_offline_operator_runner_summary,
 )
-from engine.system_b.observatory_decision_work_status import (
+from .observatory_decision_work_status import (
     build_observatory_decision_work_status,
 )
 
