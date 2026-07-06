@@ -1,0 +1,108 @@
+{
+  "schema_version": "codex_assisted_review.v0",
+  "review_id": "observatory-workspace-information-hierarchy-v0",
+  "status": "complete",
+  "date": "2026-07-06",
+  "decision_gate": "proceed_to_observatory_legacy_teacher_renderer_cleanup",
+  "browser_grounded": true,
+  "implemented": {
+    "primary_workspace_nav_excludes_advanced_audit": true,
+    "advanced_audit_still_available_from_receipts": true,
+    "receipts_plain_language_hierarchy": true,
+    "receipts_support_disclosures_renamed": true,
+    "map_filter_reset_control": true,
+    "map_filter_state_note": true,
+    "compiled_spa_bundle_changed": false
+  },
+  "information_tiers": {
+    "first_class_product_data": [
+      "outcome_summary",
+      "thinking_move",
+      "model_meaning",
+      "relation_story",
+      "practice_rep",
+      "map_selection"
+    ],
+    "second_class_support_data": [
+      "source_refs",
+      "missingness",
+      "curation_status",
+      "non_claims"
+    ],
+    "technical_inspection_data": [
+      "extraction_audit",
+      "usage",
+      "artifact_statuses",
+      "advanced_audit_index"
+    ],
+    "internal_only_data": [
+      "raw_provider_mechanics",
+      "raw_telemetry_internals",
+      "embedding_similarity",
+      "evaluation_machinery"
+    ]
+  },
+  "strongest_useful_signal": "The workspace now separates product navigation from technical inspection, so Outcome, Learn, Models, Relations, Map, and Receipts form the primary user path while Advanced Audit remains available through Receipts.",
+  "strongest_unresolved_risk": "The legacy Teacher renderer still exists as a code-level fixture and raw text extraction can still see hidden workspace sections and embedded scripts, so a future cleanup should reduce non-visible technical noise while preserving the visible product path.",
+  "browser_check": {
+    "fixture_case_id": "launch-public-enterprise-beta",
+    "primary_nav": [
+      "Outcome",
+      "Learn",
+      "Models",
+      "Relations",
+      "Map",
+      "Receipts"
+    ],
+    "advanced_audit_in_primary_nav": false,
+    "receipts_links": [
+      "Extraction audit",
+      "Usage",
+      "Advanced audit"
+    ],
+    "map_reset_restores_full_neighborhood": true,
+    "map_filtered_empty_relation_note_visible": true,
+    "remaining_accessibility_text_noise": true
+  },
+  "recommended_next_pr": {
+    "title": "Clean up Observatory legacy Teacher renderer fixture",
+    "gate": "proceed_to_observatory_legacy_teacher_renderer_cleanup",
+    "scope": [
+      "verify every visible Teacher route lands in the workspace",
+      "migrate remaining legacy renderer assertions to workspace assertions where possible",
+      "document whether the legacy renderer is retained only as a fixture",
+      "preserve /api/case/<id>/teacher-learning as a packet API"
+    ],
+    "stop_before": [
+      "runtime_integration",
+      "default_on_generation",
+      "provider_or_model_api_calls",
+      "product_readiness_claim",
+      "human_validation_claim",
+      "answer_or_advice_correctness_claim",
+      "action_authorization"
+    ]
+  },
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_lolla_run": false,
+    "wires_runtime_behavior": false,
+    "mutates_archives": false,
+    "writes_sidecars": false,
+    "compiled_spa_bundle_changed": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "relation_confidence_is_certification": false
+  }
+}

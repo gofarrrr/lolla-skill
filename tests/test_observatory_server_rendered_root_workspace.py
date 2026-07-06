@@ -71,7 +71,9 @@ def test_workspace_uses_observatory_visual_system_and_surface_order(monkeypatch)
     assert "Read outcome" in html
     assert "Practice lesson" in html
     assert 'href="/workspace?case_id=lolla-audit#learn"' in html
-    assert 'href="/audit">Advanced Audit</a>' in html
+    status_bar = html.split('data-observatory-status-bar>', 1)[1].split("</nav>", 1)[0]
+    assert "Advanced Audit" not in status_bar
+    assert 'href="/audit">Advanced audit</a>' in html
 
     assert html.index("<h2>Outcome</h2>") < html.index("<h2>Learn</h2>")
     assert html.index("<h2>Learn</h2>") < html.index("<h2>Models</h2>")

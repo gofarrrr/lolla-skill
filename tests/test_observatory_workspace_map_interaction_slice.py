@@ -68,6 +68,10 @@ def test_workspace_map_renders_interactive_observatory_workbench(monkeypatch) ->
     assert 'data-default-focus="authority-bias"' in html
     assert "data-graph-search" in html
     assert "Search model, role, or id" in html
+    assert "data-graph-reset" in html
+    assert "Reset" in html
+    assert "data-graph-filter-note" in html
+    assert "Search and relation filters combine" in html
     assert "data-graph-results" in html
     assert "data-graph-selection" in html
     assert "lolla-teacher-graph-interaction" in html
@@ -112,6 +116,8 @@ def test_workspace_map_script_supports_select_before_open_behavior(monkeypatch) 
     assert 'graphRootSelector = "[data-teacher-graph], [data-observatory-graph]"' in html
     assert 'root.dataset.graphNavigation === "select"' in html
     assert "if (selectOnly) event.preventDefault();" in html
+    assert "No relation is visible with the current search or filter" in html
+    assert "Reset filters to return to the full lesson map" in html
 
 
 def test_workspace_map_keeps_graph_as_navigation_not_proof(monkeypatch) -> None:

@@ -12,11 +12,11 @@ sys.path.insert(0, str(REPO_ROOT / "observatory"))
 import serve_result  # noqa: E402
 
 
-DOC = REPO_ROOT / "docs/product/observatory-progressive-workspace-ux-slice-v0.md"
+DOC = REPO_ROOT / "docs/product/observatory-workspace-information-hierarchy-v0.md"
 README = REPO_ROOT / "docs/product/README.md"
 REVIEW = (
     REPO_ROOT
-    / "reviews/codex-assisted/observatory-progressive-workspace-ux-slice-v0/review.json"
+    / "reviews/codex-assisted/observatory-workspace-information-hierarchy-v0/review.json"
 )
 
 
@@ -52,105 +52,91 @@ def _install_launch_case(monkeypatch) -> None:
     monkeypatch.setattr(serve_result, "_CASE_NAME", "Lolla Audit")
 
 
-def test_workspace_uses_first_read_cards_before_support_details(monkeypatch) -> None:
+def _workspace_status_bar(html: str) -> str:
+    return html.split('data-observatory-status-bar>', 1)[1].split("</nav>", 1)[0]
+
+
+def test_primary_workspace_navigation_excludes_advanced_audit(monkeypatch) -> None:
     _install_launch_case(monkeypatch)
 
     html = serve_result._render_workspace_html("lolla-audit")
+    status_bar = _workspace_status_bar(html)
 
-    assert html.count("data-first-read-card") >= 6
-    assert "Read outcome" in html
-    assert "Practice lesson" in html
-    assert "Outcome support details" in html
-    assert "Lesson steps and boundaries" in html
-    assert html.index("What happened in this run?") < html.index(
-        "Outcome support details"
-    )
-    assert html.index("What reasoning move can I practice?") < html.index(
-        "Lesson steps and boundaries"
-    )
+    for label in ["Outcome", "Learn", "Models", "Relations", "Map", "Receipts"]:
+        assert f">{label}</a>" in status_bar
 
-
-def test_model_and_relation_pages_defer_support_metadata(monkeypatch) -> None:
-    _install_launch_case(monkeypatch)
-
-    html = serve_result._render_workspace_html("lolla-audit")
-
-    assert "What This Model Helps You See" in html
-    assert "Everything We Know" not in html
-    assert "Practice and failure detail" in html
-    assert "Source, status, and boundaries" in html
-    assert "Taxonomy, confidence, and custody" in html
-
-    story_index = html.index("Plain Language Story")
-    taxonomy_disclosure_index = html.index("Taxonomy, confidence, and custody")
-    confidence_index = html.index("confidence: medium")
-
-    assert story_index < taxonomy_disclosure_index < confidence_index
-
-
-def test_receipts_and_advanced_audit_are_demoted(monkeypatch) -> None:
-    _install_launch_case(monkeypatch)
-
-    html = serve_result._render_workspace_html("lolla-audit")
-    status_bar = html.split('data-observatory-status-bar>', 1)[1].split("</nav>", 1)[0]
-
-    assert "Trust summary" in html
-    assert "What can I trust or inspect?" in html
-    assert "Use Receipts to understand what exists for this run" in html
-    assert "Technical inspection" in html
-    assert "Source and missingness details" in html
-    assert "Technical audit index" in html
-    assert "Workspace boundary notes" in html
     assert "Advanced Audit" not in status_bar
-    assert 'href="/audit">Advanced audit</a>' in html
-    assert "Advanced Audit Index" not in html
+    assert "status-link-advanced" not in html
 
 
-def test_map_selection_reconciles_after_filtering(monkeypatch) -> None:
+def test_receipts_own_technical_inspection_without_leading_with_it(monkeypatch) -> None:
     _install_launch_case(monkeypatch)
 
     html = serve_result._render_workspace_html("lolla-audit")
 
-    assert "No visible map item" in html
-    assert "No model or relation matches the current search and filters." in html
-    assert "visibleItems.length" in html
-    assert "selected.classList.contains(\"is-filtered\")" in html
-    assert "clearSelection(root)" in html
-    assert "aria-disabled" in html
-    assert "data-graph-reset" in html
+    trust_index = html.index("What can I trust or inspect?")
+    technical_index = html.index("Technical inspection")
+    source_index = html.index("Source and missingness details")
+    audit_index = html.index("Technical audit index")
+    boundary_index = html.index("Workspace boundary notes")
+
+    assert trust_index < technical_index < source_index < audit_index < boundary_index
+    assert "Use Receipts to understand what exists for this run" in html
+    assert 'href="/audit/extraction">Extraction audit</a>' in html
+    assert 'href="/usage">Usage</a>' in html
+    assert 'href="/audit">Advanced audit</a>' in html
+    assert "Source refs and missing fields" not in html
+    assert "Advanced inspection index" not in html
+
+
+def test_map_explains_filter_intersection_and_reset(monkeypatch) -> None:
+    _install_launch_case(monkeypatch)
+
+    html = serve_result._render_workspace_html("lolla-audit")
+
+    assert '<button class="filter-chip graph-filter-reset" type="button" data-graph-reset>Reset</button>' in html
     assert "data-graph-filter-note" in html
+    assert "Search and relation filters combine. Use Reset to return to the full lesson map." in html
     assert "No relation is visible with the current search or filter" in html
+    assert 'search.value = ""' in html
+    assert 'activeFilter = "all"' in html
 
 
-def test_progressive_workspace_slice_docs_review_and_readme_record_boundaries() -> None:
+def test_information_hierarchy_docs_review_and_readme_capture_gate() -> None:
     doc = DOC.read_text(encoding="utf-8")
-    readme = README.read_text(encoding="utf-8")
     review = json.loads(REVIEW.read_text(encoding="utf-8"))
+    readme = README.read_text(encoding="utf-8")
 
-    assert "Observatory Progressive Workspace UX Slice" in readme
-    assert "observatory-progressive-workspace-ux-slice-v0.md" in readme
+    assert "Observatory Workspace Information Hierarchy" in readme
+    assert "observatory-workspace-information-hierarchy-v0.md" in readme
+    assert review["decision_gate"] == (
+        "proceed_to_observatory_legacy_teacher_renderer_cleanup"
+    )
 
     for phrase in [
-        "First-Read Cards",
-        "Disclosure Blocks",
-        "Model Page Language",
-        "Advanced Audit Demotion",
-        "Map Selection Fix",
+        "Outcome -> Learn -> Models -> Relations -> Map -> Receipts",
+        "First-class product data",
+        "Second-class support data",
+        "Technical inspection data",
+        "Advanced Audit is still reachable from Receipts",
+        "Browser Check",
+        "map reset = returns to 3 models, 1 relation",
+        "hidden workspace sections and embedded scripts",
         "does not run Lolla",
         "does not invoke the Lolla skill",
         "does not call providers or model APIs",
         "does not edit `observatory/build`",
-        "proceed_to_observatory_progressive_workspace_browser_review",
+        "proceed_to_observatory_legacy_teacher_renderer_cleanup",
     ]:
         assert phrase in doc
 
-    assert review["decision_gate"] == (
-        "proceed_to_observatory_progressive_workspace_browser_review"
-    )
-    assert review["implemented"]["first_read_cards"] is True
-    assert review["implemented"]["workspace_disclosure_blocks"] is True
-    assert review["implemented"]["advanced_audit_demoted"] is True
-    assert review["implemented"]["map_selection_reconciles_after_filter"] is True
+    assert review["implemented"]["primary_workspace_nav_excludes_advanced_audit"] is True
+    assert review["implemented"]["advanced_audit_still_available_from_receipts"] is True
+    assert review["implemented"]["map_filter_reset_control"] is True
+    assert review["browser_grounded"] is True
+    assert review["browser_check"]["advanced_audit_in_primary_nav"] is False
+    assert review["browser_check"]["map_reset_restores_full_neighborhood"] is True
+    assert review["browser_check"]["remaining_accessibility_text_noise"] is True
     assert review["boundary"]["runs_lolla"] is False
     assert review["boundary"]["invokes_lolla_skill"] is False
     assert review["boundary"]["calls_provider_or_model"] is False
@@ -162,7 +148,7 @@ def test_progressive_workspace_slice_docs_review_and_readme_record_boundaries() 
     assert review["non_claims"]["action_authorized"] is False
 
 
-def test_progressive_workspace_slice_docs_and_review_are_clean() -> None:
+def test_information_hierarchy_docs_are_clean_of_local_paths_and_positive_claims() -> None:
     text = DOC.read_text(encoding="utf-8") + REVIEW.read_text(encoding="utf-8")
 
     assert "/" + "Users/" not in text
