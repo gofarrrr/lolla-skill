@@ -224,7 +224,10 @@ def _render_observatory_status_bar(
     classes = "status-bar"
     if css_class:
         classes += " " + css_class
-    pieces = [f'<nav class="{classes}" aria-label="{_esc(aria_label)}">']
+    pieces = [
+        f'<nav class="{classes}" aria-label="{_esc(aria_label)}" '
+        'data-observatory-status-bar>'
+    ]
     pieces.append('<span class="status-dot" aria-hidden="true"></span>')
     for index, (href, label, active) in enumerate(
         _observatory_nav_links(selected_case_id, active_surface)
@@ -233,7 +236,14 @@ def _render_observatory_status_bar(
             pieces.append('<span class="dot-sep">.</span>')
         cls = ' class="status-link-active"' if active else ""
         current = ' aria-current="page"' if active else ""
-        pieces.append(f'<a{cls}{current} href="{_esc(href)}">{_esc(label)}</a>')
+        parsed_href = urlparse(href)
+        surface = parsed_href.fragment if parsed_href.path == "/workspace" else ""
+        surface_attr = (
+            f' data-observatory-surface-link="{_esc(surface)}"' if surface else ""
+        )
+        pieces.append(
+            f'<a{cls}{current}{surface_attr} href="{_esc(href)}">{_esc(label)}</a>'
+        )
     pieces.append('<span class="dot-sep">.</span>')
     pieces.append(f'<span class="status-ok">{_esc(status_text)}</span>')
     pieces.append("</nav>")
@@ -1511,6 +1521,62 @@ _TEACHER_GRAPH_SCRIPT = """
     if (link) setDrawerReturnForLink(link);
     closeDrawerToReturnHash(event);
   });
+})();
+</script>
+"""
+
+
+_WORKSPACE_NAV_SCRIPT = """
+<script id="lolla-observatory-workspace-navigation">
+(() => {
+  if (window.__lollaObservatoryWorkspaceNavigation) return;
+  window.__lollaObservatoryWorkspaceNavigation = true;
+
+  const surfaces = new Set(["outcome", "learn", "models", "relations", "map", "receipts"]);
+
+  const activeSurface = () => {
+    if (window.location.pathname !== "/workspace" && window.location.pathname !== "/") return "";
+    const hash = window.location.hash.slice(1) || "outcome";
+    return surfaces.has(hash) ? hash : "outcome";
+  };
+
+  const scrollToSurface = (surface) => {
+    if (!window.location.hash) return;
+    const target = document.getElementById(surface);
+    if (target) target.scrollIntoView({ block: "start", inline: "nearest" });
+  };
+
+  const updateNav = ({ scroll = false } = {}) => {
+    const surface = activeSurface();
+    if (!surface) return;
+    for (const nav of document.querySelectorAll("[data-observatory-status-bar]")) {
+      for (const link of nav.querySelectorAll("[data-observatory-surface-link]")) {
+        const isActive = link.dataset.observatorySurfaceLink === surface;
+        link.classList.toggle("status-link-active", isActive);
+        if (isActive) {
+          link.setAttribute("aria-current", "page");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      }
+    }
+    if (scroll) scrollToSurface(surface);
+  };
+
+  if (
+    window.location.pathname === "/workspace" &&
+    "scrollRestoration" in window.history
+  ) {
+    window.history.scrollRestoration = "manual";
+  }
+
+  window.addEventListener("hashchange", () => updateNav({ scroll: true }));
+  updateNav();
+  if (window.location.hash) {
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => updateNav({ scroll: true }));
+    });
+  }
 })();
 </script>
 """
@@ -4753,6 +4819,7 @@ def _render_workspace_scaffold(*, title: str, body: str) -> str:
 	{_WORKSPACE_CSS}</style></head><body>
 	{body}
 	{_TEACHER_GRAPH_SCRIPT}
+	{_WORKSPACE_NAV_SCRIPT}
 	</body></html>
 	"""
 

@@ -95,6 +95,26 @@ def test_workspace_links_use_durable_model_and_relation_routes(monkeypatch) -> N
     assert 'id="relation-authority-bias__first-principles-thinking__antagonist"' in html
 
 
+def test_workspace_nav_active_state_can_follow_hash_in_browser(monkeypatch) -> None:
+    _install_launch_case(monkeypatch)
+
+    html = serve_result._render_workspace_html("lolla-audit")
+
+    assert "data-observatory-status-bar" in html
+    assert (
+        '<a class="status-link-active" aria-current="page" '
+        'data-observatory-surface-link="outcome" '
+        'href="/workspace?case_id=lolla-audit#outcome">Outcome</a>'
+    ) in html
+    assert 'data-observatory-surface-link="map"' in html
+    assert 'id="lolla-observatory-workspace-navigation"' in html
+    assert "scrollToSurface(surface);" in html
+    assert 'window.history.scrollRestoration = "manual";' in html
+    assert 'window.addEventListener("hashchange", () => updateNav({ scroll: true }));' in html
+    assert 'const hash = window.location.hash.slice(1) || "outcome";' in html
+    assert 'link.classList.toggle("status-link-active", isActive);' in html
+
+
 def test_model_detail_route_returns_formatted_selected_run_page(monkeypatch) -> None:
     _install_launch_case(monkeypatch)
 
