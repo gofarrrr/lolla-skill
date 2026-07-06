@@ -105,8 +105,8 @@ def test_repo_state_matches_boundary_claims() -> None:
     sidecar_state = " ".join(_read(SIDECAR_STATE).split())
 
     assert '("/audit/extraction", "Extraction")' in serve_result
-    assert 'parts[4] == "decision-work"' not in serve_result
-    assert "/api/case/<id>/decision-work" not in serve_result
+    assert 'parts[4] == "decision-work"' in serve_result
+    assert "_build_decision_work_status_response" in serve_result
     assert "Read-only Decision Trail report exporter" in trail_report
     assert "does not run Lolla" in trail_report
     assert "does not call models" in trail_report

@@ -46,4 +46,5 @@ Current planning docs:
 - [Mental Model Teacher Observatory Interactive Graph](mental-model-teacher-observatory-interactive-graph-v0.md)
 - [Mental Model Teacher Observatory Ownership and Portability Boundary](mental-model-teacher-observatory-ownership-portability-boundary-v0.md)
 - [Observatory Conversation Understanding Boundary](observatory-conversation-understanding-boundary-v0.md)
+- [Observatory Decision Work Status Adapter](observatory-decision-work-status-adapter-v0.md)
 - [Mental Model Teacher Product Surface Reference Patterns](mental-model-teacher-product-surface-reference-patterns-v0.md)

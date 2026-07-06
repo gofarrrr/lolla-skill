@@ -1,0 +1,47 @@
+{
+  "schema": "lolla.observatory_decision_work_status_adapter_review.v0",
+  "artifact": "docs/product/observatory-decision-work-status-adapter-v0.md",
+  "status": "implementation_slice",
+  "date": "2026-07-06",
+  "decision_gate": "proceed_to_observatory_conversation_understanding_receipts_card",
+  "implemented": {
+    "endpoint": "/api/case/<id>/decision-work",
+    "adapter_module": "engine/system_b/observatory_decision_work_status.py",
+    "observatory_route": "observatory/serve_result.py",
+    "tests": "tests/test_observatory_decision_work_status_adapter.py"
+  },
+  "state_coverage": [
+    "decision_work_not_present",
+    "decision_work_not_requested",
+    "decision_work_deferred",
+    "decision_work_blocked",
+    "decision_work_available",
+    "decision_work_failed_closed",
+    "decision_work_malformed"
+  ],
+  "boundary": {
+    "read_only": true,
+    "runs_lolla": false,
+    "invokes_skill": false,
+    "calls_provider_or_model": false,
+    "creates_interpretation_read": false,
+    "runs_offline_operator": false,
+    "writes_sidecar": false,
+    "mutates_archive": false,
+    "changes_runtime_behavior": false,
+    "changes_live_answer_generation": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "approval_or_certification": false,
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false
+  },
+  "recommended_next_gate": "proceed_to_observatory_conversation_understanding_receipts_card"
+}
