@@ -63,4 +63,5 @@ Current planning docs:
 - [Observatory Progressive Workspace UX Slice](observatory-progressive-workspace-ux-slice-v0.md)
 - [Observatory Progressive Workspace Browser Review](observatory-progressive-workspace-browser-review-v0.md)
 - [Observatory Focused Workspace Narration](observatory-focused-workspace-narration-v0.md)
+- [Observatory Focused Workspace Browser Review](observatory-focused-workspace-browser-review-v0.md)
 - [Mental Model Teacher Product Surface Reference Patterns](mental-model-teacher-product-surface-reference-patterns-v0.md)
