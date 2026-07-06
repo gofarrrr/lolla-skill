@@ -52,4 +52,5 @@ Current planning docs:
 - [Observatory Offline Process Brief Runner](observatory-offline-process-brief-runner-v0.md)
 - [Observatory Prepare Process Brief Action](observatory-prepare-process-brief-action-v0.md)
 - [Observatory Global Product Experience And Data Flow](observatory-global-product-experience-and-data-flow-v0.md)
+- [Observatory Source Ownership Audit](observatory-source-ownership-audit-v0.md)
 - [Mental Model Teacher Product Surface Reference Patterns](mental-model-teacher-product-surface-reference-patterns-v0.md)
