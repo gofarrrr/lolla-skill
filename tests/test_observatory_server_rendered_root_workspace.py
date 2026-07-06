@@ -67,7 +67,9 @@ def test_workspace_uses_observatory_visual_system_and_surface_order(monkeypatch)
     assert "--teal: #41FFA7" in html
     assert "JetBrains Mono" in html
     assert "Selected Run Workspace" in html
-    assert "One selected run, organized as product surfaces" in html
+    assert "Start with what changed, then practice the reasoning" in html
+    assert "Read outcome" in html
+    assert "Practice lesson" in html
     assert 'href="/workspace?case_id=lolla-audit#learn"' in html
     assert 'href="/audit">Advanced Audit</a>' in html
 
@@ -92,7 +94,7 @@ def test_workspace_model_chips_resolve_to_formatted_model_pages(monkeypatch) -> 
     assert "Authority Bias" in html
     assert "Information Asymmetry" in html
     assert "First Principles Thinking" in html
-    assert "Everything We Know" in html
+    assert "What This Model Helps You See" in html
     assert "Helps notice" in html
     assert "Use when" in html
     assert "Avoid when" in html

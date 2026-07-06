@@ -49,7 +49,7 @@ def test_native_learn_page_links_models_to_workspace_pages_and_keeps_drawers() -
 
     assert 'href="/models/authority-bias?case_id=lolla-audit"' in html
     assert 'id="model-authority-bias"' in html
-    assert "Everything We Know" in html
+    assert "What This Model Helps You See" in html
     assert "Helps Notice" in html
     assert "Use When" in html
     assert "Avoid When" in html
