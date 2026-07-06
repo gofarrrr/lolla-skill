@@ -61,4 +61,5 @@ Current planning docs:
 - [Observatory Workspace Map Interaction Slice](observatory-workspace-map-interaction-slice-v0.md)
 - [Observatory Workspace Product Flow Audit](observatory-workspace-product-flow-audit-v0.md)
 - [Observatory Progressive Workspace UX Slice](observatory-progressive-workspace-ux-slice-v0.md)
+- [Observatory Progressive Workspace Browser Review](observatory-progressive-workspace-browser-review-v0.md)
 - [Mental Model Teacher Product Surface Reference Patterns](mental-model-teacher-product-surface-reference-patterns-v0.md)
