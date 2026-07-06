@@ -49,4 +49,5 @@ Current planning docs:
 - [Observatory Decision Work Status Adapter](observatory-decision-work-status-adapter-v0.md)
 - [Observatory Conversation Understanding Receipts Card](observatory-conversation-understanding-receipts-card-v0.md)
 - [Observatory Decision Work Opt-In Flow Design](observatory-decision-work-opt-in-flow-design-v0.md)
+- [Observatory Offline Process Brief Runner](observatory-offline-process-brief-runner-v0.md)
 - [Mental Model Teacher Product Surface Reference Patterns](mental-model-teacher-product-surface-reference-patterns-v0.md)

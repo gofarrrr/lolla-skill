@@ -1,0 +1,50 @@
+{
+  "schema": "lolla.observatory_offline_process_brief_runner_review.v0",
+  "artifact": "docs/product/observatory-offline-process-brief-runner-v0.md",
+  "status": "implementation_slice",
+  "date": "2026-07-06",
+  "decision_gate": "proceed_to_observatory_prepare_process_brief_action",
+  "implemented": {
+    "adapter_module": "engine/system_b/observatory_process_brief_runner.py",
+    "cli": "scripts/evals/prepare_observatory_process_brief.py",
+    "schema_version": "lolla.observatory_process_brief_runner.v0",
+    "uses_existing_status_adapter": true,
+    "uses_existing_offline_operator_runner": true,
+    "observatory_browser_action_added": false,
+    "new_observatory_api_route_added": false
+  },
+  "states": [
+    "process_brief_already_attached",
+    "needs_safe_inputs",
+    "offline_command_available",
+    "offline_runner_summary_ready",
+    "blocked_completed_run_unavailable",
+    "runner_failed_closed"
+  ],
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_skill": false,
+    "creates_new_lolla_run": false,
+    "creates_interpretation_read": false,
+    "calls_provider_or_model": false,
+    "writes_sidecar": false,
+    "mutates_archive": false,
+    "changes_runtime_behavior": false,
+    "makes_default_on": false,
+    "approves_resolver_refs": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "approval_or_certification": false,
+    "answer_quality_scoring": false,
+    "agent_action_authorized": false,
+    "automatic_action_authorized": false
+  },
+  "recommended_next_gate": "proceed_to_observatory_prepare_process_brief_action"
+}
