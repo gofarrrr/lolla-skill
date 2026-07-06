@@ -140,15 +140,31 @@ def test_learn_status_bar_uses_shared_workspace_navigation(monkeypatch) -> None:
     html = serve_result._render_teacher_learning_html("lolla-audit")
 
     assert 'aria-label="Observatory surfaces"' in html
-    assert 'href="/workspace?case_id=lolla-audit#outcome">Outcome</a>' in html
+    assert (
+        'data-observatory-surface-link="outcome" '
+        'href="/workspace?case_id=lolla-audit#outcome">Outcome</a>'
+    ) in html
     assert (
         '<a class="status-link-active" aria-current="page" '
+        'data-observatory-surface-link="learn" '
         'href="/workspace?case_id=lolla-audit#learn">Learn</a>'
     ) in html
-    assert 'href="/workspace?case_id=lolla-audit#models">Models</a>' in html
-    assert 'href="/workspace?case_id=lolla-audit#relations">Relations</a>' in html
-    assert 'href="/workspace?case_id=lolla-audit#map">Map</a>' in html
-    assert 'href="/workspace?case_id=lolla-audit#receipts">Receipts</a>' in html
+    assert (
+        'data-observatory-surface-link="models" '
+        'href="/workspace?case_id=lolla-audit#models">Models</a>'
+    ) in html
+    assert (
+        'data-observatory-surface-link="relations" '
+        'href="/workspace?case_id=lolla-audit#relations">Relations</a>'
+    ) in html
+    assert (
+        'data-observatory-surface-link="map" '
+        'href="/workspace?case_id=lolla-audit#map">Map</a>'
+    ) in html
+    assert (
+        'data-observatory-surface-link="receipts" '
+        'href="/workspace?case_id=lolla-audit#receipts">Receipts</a>'
+    ) in html
     assert 'href="/audit">Advanced Audit</a>' in html
     assert 'href="/models/authority-bias?case_id=lolla-audit"' in html
 

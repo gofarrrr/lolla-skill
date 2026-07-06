@@ -1,0 +1,82 @@
+{
+  "schema_version": "codex_assisted_review.v0",
+  "review_id": "observatory-workspace-product-flow-audit-v0",
+  "status": "complete",
+  "date": "2026-07-06",
+  "decision_gate": "proceed_to_observatory_progressive_workspace_ux_slice",
+  "scope": {
+    "type": "browser_grounded_product_flow_audit",
+    "route_family": [
+      "/",
+      "/workspace?case_id=<id>#outcome",
+      "/workspace?case_id=<id>#learn",
+      "/workspace?case_id=<id>#models",
+      "/workspace?case_id=<id>#relations",
+      "/workspace?case_id=<id>#map",
+      "/workspace?case_id=<id>#receipts",
+      "/models/<id>?case_id=<id>",
+      "/relations/<id>?case_id=<id>",
+      "/audit",
+      "/audit/extraction",
+      "/usage"
+    ],
+    "archive_sample_checked": true
+  },
+  "recorded_surfaces": {
+    "workspace_shell": true,
+    "outcome": true,
+    "learn": true,
+    "models": true,
+    "relations": true,
+    "map": true,
+    "receipts": true,
+    "model_detail_pages": true,
+    "relation_detail_page": true,
+    "advanced_audit": true,
+    "extraction_audit": true,
+    "usage_summary": true
+  },
+  "findings": {
+    "route_family_is_right": true,
+    "page_is_too_dense_for_normal_user": true,
+    "teacher_needs_guided_first_read": true,
+    "model_pages_need_library_card_shape": true,
+    "relation_pages_are_strongest_current_signal": true,
+    "receipts_are_correct_but_too_loud": true,
+    "advanced_audit_should_be_visually_demoted": true,
+    "map_selection_can_stay_stale_after_filter": true
+  },
+  "recommended_next_slice": {
+    "title": "Add Observatory progressive workspace UX hierarchy",
+    "gate": "proceed_to_observatory_progressive_workspace_ux_slice",
+    "keep_route_family": true,
+    "keep_python_server_rendered_owner": true,
+    "add_first_read_cards": true,
+    "move_support_data_behind_disclosure": true,
+    "demote_advanced_audit": true,
+    "fix_map_selection_after_filter": true,
+    "preserve_relation_story_first_pattern": true
+  },
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_lolla_run": false,
+    "wires_runtime_behavior": false,
+    "mutates_archives": false,
+    "writes_sidecars": false,
+    "compiled_spa_bundle_changed": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "relation_confidence_is_certification": false
+  }
+}
