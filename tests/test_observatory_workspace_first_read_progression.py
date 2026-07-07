@@ -70,7 +70,9 @@ def test_workspace_center_starts_with_outcome_not_six_step_panel(monkeypatch) ->
     assert "Launch in stages after the support risk is made explicit." in html
     assert "Why this changed" in html
     assert "What would change confidence" in html
-    assert "Next useful moves" in html
+    assert 'aria-label="Recommended continuation"' in html
+    assert 'aria-label="Other outcome actions"' in html
+    assert "Next useful moves" not in html
     assert "Start with Outcome." not in html
     assert "Read outcome" not in html
     assert "Practice lesson" not in html

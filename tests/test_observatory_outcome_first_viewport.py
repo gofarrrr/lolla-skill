@@ -76,7 +76,9 @@ def test_outcome_first_viewport_renders_result_before_inventory(monkeypatch) -> 
     assert "data-workspace-start-panel" not in html
     assert "Read outcome" not in html
     assert "Practice lesson" not in html
-    assert 'aria-label="Next useful moves"' in html
+    assert 'aria-label="Recommended continuation"' in html
+    assert 'aria-label="Other outcome actions"' in html
+    assert 'aria-label="Next useful moves"' not in html
     assert ">Download MD</a>" in html
 
 

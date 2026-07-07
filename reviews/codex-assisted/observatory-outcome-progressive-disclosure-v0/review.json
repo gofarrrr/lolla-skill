@@ -1,0 +1,48 @@
+{
+  "review_id": "observatory-outcome-progressive-disclosure-v0",
+  "status": "ready_for_browser_review",
+  "decision_gate": "proceed_to_browser_review_outcome_flow",
+  "implemented": {
+    "single_primary_outcome_continuation": true,
+    "secondary_actions_are_disclosed": true,
+    "first_read_keeps_full_answer": true,
+    "first_read_limits_reason_groups": true,
+    "run_only_fallback_uses_receipts_continuation": true,
+    "download_md_header_affordance_preserved": true,
+    "standalone_current_result_md_export_fallback": true,
+    "runtime_behavior_changed": false,
+    "compiled_spa_bundle_changed": false
+  },
+  "product_intent": {
+    "outcome_is_answer_first": true,
+    "first_read_is_not_a_table": true,
+    "first_read_is_not_review_packet": true,
+    "progression_is_staged": true,
+    "secondary_detail_is_expandable": true,
+    "missing_teacher_packet_is_named_not_faked": true
+  },
+  "strongest_useful_signal": "The Outcome first-read card now asks the user to understand the result before choosing between Learn, Receipts, export, or deeper support details.",
+  "strongest_unresolved_risk": "The real browser flow still needs review on archive-backed cases with full Teacher packets to confirm that the single continuation feels obvious and that secondary actions are discoverable enough.",
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_run": false,
+    "generates_sidecars": false,
+    "wires_skill_runtime_behavior": false,
+    "mutates_archives": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false,
+    "touches_compiled_spa_bundle": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "action_authorized": false
+  },
+  "recommended_next_pr": "Browser-review the Outcome flow and then decide whether to reduce duplicate Download MD affordances outside the header."
+}

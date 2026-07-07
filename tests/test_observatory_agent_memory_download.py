@@ -329,6 +329,56 @@ def test_agent_memory_download_helper_writes_outside_archive(tmp_path: Path) -> 
     assert not (result_path.parent / "conversation_memory_packet.json").exists()
 
 
+def test_agent_memory_download_route_supports_standalone_current_result(
+    tmp_path: Path,
+) -> None:
+    result_path = tmp_path / "result.json"
+    result = {
+        "usage_summary": {"run_id": "standalone-run-1"},
+        "extraction": {
+            "decision_situation": "Whether to launch from a standalone result.",
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "Should we launch from this standalone current result?",
+                },
+                {
+                    "role": "assistant",
+                    "content": "Only if the current result can be inspected later.",
+                },
+            ],
+        },
+        "revised_answer": "Launch only if the inspection packet is available.",
+        "memo_what_changed": "The answer became conditional on export availability.",
+    }
+    _write_json(result_path, result)
+
+    def _fetch(port: int) -> tuple[dict, str]:
+        request = urllib.request.Request(
+            f"http://127.0.0.1:{port}/api/case/lolla-audit/"
+            "conversation-memory.md?include_raw_conversation=1"
+        )
+        with urllib.request.urlopen(request, timeout=3) as response:
+            headers = dict(response.headers.items())
+            body = response.read().decode("utf-8")
+        return headers, body
+
+    headers, markdown = _with_server(result_path, _fetch)
+
+    assert headers["Content-Type"] == "text/markdown; charset=utf-8"
+    assert "lolla-audit-standalone-run-1-conversation-memory.md" in headers[
+        "Content-Disposition"
+    ]
+    assert "# Conversation Memory" in markdown
+    assert "## Cold Reader Orientation" in markdown
+    assert "### Full 1:1 Conversation Transcript" in markdown
+    assert "Should we launch from this standalone current result?" in markdown
+    assert "Only if the current result can be inspected later." in markdown
+    assert "Raw conversation included: `true`" in markdown
+    assert "reasoning_trace.json" in markdown
+    assert "not_answer_correctness" in markdown
+
+
 def test_agent_memory_doc_review_and_readme_are_clean() -> None:
     assert DOC.exists()
     assert REVIEW.exists()
