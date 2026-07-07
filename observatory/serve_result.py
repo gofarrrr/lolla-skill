@@ -24,6 +24,7 @@ import html
 import json
 import os
 import sys
+import tempfile
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path
 from urllib.parse import parse_qs, quote, unquote, urlparse
@@ -1279,6 +1280,32 @@ _WORKSPACE_CSS = """
 .workspace-outcome-points .workspace-list {
   margin: 0;
 }
+.workspace-outcome-primary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.workspace-outcome-continuation {
+  display: block;
+  border: 1px solid rgba(65, 255, 167, .35);
+  border-radius: var(--radius-sm);
+  background: rgba(65, 255, 167, .075);
+  color: inherit;
+  padding: 13px 14px;
+  text-decoration: none;
+}
+.workspace-outcome-continuation strong {
+  color: var(--text-primary);
+}
+.workspace-outcome-continuation p {
+  margin: 5px 0 0;
+  color: var(--text-secondary);
+}
+.workspace-outcome-continuation:hover {
+  border-color: rgba(65, 255, 167, .65);
+  background: rgba(65, 255, 167, .1);
+  text-decoration: none;
+}
 .workspace-next-moves {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1847,6 +1874,7 @@ _WORKSPACE_CSS = """
   .workspace-map-grid,
   .workspace-hero-grid,
   .workspace-model-learn-grid,
+  .workspace-outcome-primary,
   .workspace-next-moves,
   .workspace-neighborhood-list,
   .workspace-step-grid,
@@ -4666,6 +4694,10 @@ def _build_agent_memory_markdown_download(
         CONVERSATION_MEMORY_MARKDOWN_FILENAME,
         ConversationMemoryInputError,
         build_conversation_memory_bundle,
+        build_conversation_memory_packet,
+    )
+    from system_b.conversation_memory_renderer import (
+        render_conversation_memory_markdown,
     )
 
     completed_run_dir = _completed_run_dir_for_process_brief(
@@ -4676,20 +4708,138 @@ def _build_agent_memory_markdown_download(
         raise ConversationMemoryInputError("completed run archive was not found")
 
     output_dir = _agent_memory_safe_output_dir(case_id, completed_run_dir.name)
-    build_conversation_memory_bundle(
-        run_dir=completed_run_dir,
-        output_dir=output_dir,
-        privacy_mode="user_private",
-        include_raw_conversation=include_raw_conversation,
-    )
-    markdown_path = output_dir / CONVERSATION_MEMORY_MARKDOWN_FILENAME
-    markdown = markdown_path.read_text(encoding="utf-8")
+    filename_run_id = completed_run_dir.name
+    try:
+        build_conversation_memory_bundle(
+            run_dir=completed_run_dir,
+            output_dir=output_dir,
+            privacy_mode="user_private",
+            include_raw_conversation=include_raw_conversation,
+        )
+        markdown_path = output_dir / CONVERSATION_MEMORY_MARKDOWN_FILENAME
+        markdown = markdown_path.read_text(encoding="utf-8")
+    except ConversationMemoryInputError:
+        if result_path is None or not result_path.is_file():
+            raise
+        result = _load_json_safe(result_path) or {}
+        run_id = _run_id_for_result(result, result_path) or completed_run_dir.name
+        filename_run_id = run_id
+        with tempfile.TemporaryDirectory(
+            prefix="lolla_observatory_agent_memory_current_"
+        ) as tmp:
+            temp_run_dir = Path(tmp) / _safe_process_brief_case_fragment(case_id) / (
+                _safe_process_brief_case_fragment(run_id)
+            )
+            temp_run_dir.mkdir(parents=True, exist_ok=True)
+            _write_current_agent_memory_inputs(
+                temp_run_dir,
+                result=result,
+                result_path=result_path,
+                is_current=is_current,
+            )
+            packet = build_conversation_memory_packet(
+                run_dir=temp_run_dir,
+                privacy_mode="user_private",
+                include_raw_conversation=include_raw_conversation,
+                strict=False,
+            )
+            markdown = render_conversation_memory_markdown(packet)
     filename = (
         f"{_safe_process_brief_case_fragment(case_id)}-"
-        f"{_safe_process_brief_case_fragment(completed_run_dir.name)}-"
+        f"{_safe_process_brief_case_fragment(filename_run_id)}-"
         "conversation-memory.md"
     )
     return markdown, filename
+
+
+def _write_current_agent_memory_inputs(
+    run_dir: Path,
+    *,
+    result: dict,
+    result_path: Path,
+    is_current: bool,
+) -> None:
+    """Write a temporary read-only input bundle for standalone current results."""
+    from system_b.conversation_memory_packet import ARTIFACT_INVENTORY
+
+    (run_dir / "result.json").write_text(
+        json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    revised_answer = str(result.get("revised_answer") or "").strip()
+    if revised_answer:
+        (run_dir / "revised.txt").write_text(revised_answer + "\n", encoding="utf-8")
+    extraction = result.get("extraction")
+    if isinstance(extraction, dict):
+        (run_dir / "extraction.json").write_text(
+            json.dumps({"extraction": extraction}, ensure_ascii=False, indent=2)
+            + "\n",
+            encoding="utf-8",
+        )
+    memo_fields = {
+        key: result.get(key)
+        for key in (
+            "memo_what_changed",
+            "memo_what_still_holds",
+            "memo_take_back_or_set_aside",
+            "memo_orientation_note",
+            "memo_substantive_title",
+        )
+        if result.get(key)
+    }
+    if memo_fields:
+        (run_dir / "memo_note.json").write_text(
+            json.dumps(memo_fields, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        memo_lines = ["# Run Memo", ""]
+        for key, value in memo_fields.items():
+            memo_lines.extend([f"## {_observatory_display_label(key)}", str(value), ""])
+        (run_dir / "memo.md").write_text("\n".join(memo_lines), encoding="utf-8")
+    conversation = _conversation_transcript_from_result(result)
+    if conversation:
+        (run_dir / "conversation.txt").write_text(conversation, encoding="utf-8")
+
+    for artifact_name in ARTIFACT_INVENTORY:
+        if artifact_name in {
+            "conversation.txt",
+            "extraction.json",
+            "result.json",
+            "revised.txt",
+            "memo.md",
+            "memo_note.json",
+        }:
+            continue
+        source = _case_sidecar_path(
+            result_path,
+            artifact_name,
+            is_current=is_current,
+        )
+        if source is None or not source.is_file():
+            continue
+        try:
+            (run_dir / artifact_name).write_bytes(source.read_bytes())
+        except OSError:
+            continue
+
+
+def _conversation_transcript_from_result(result: dict) -> str:
+    extraction = result.get("extraction")
+    if not isinstance(extraction, dict):
+        return ""
+    turns = extraction.get("turns") or extraction.get("conversation_turns") or []
+    if not isinstance(turns, list):
+        return ""
+    lines = []
+    for turn in turns:
+        if not isinstance(turn, dict):
+            continue
+        role = str(turn.get("role") or turn.get("speaker") or "turn").strip()
+        content = str(turn.get("content") or turn.get("text") or "").strip()
+        if not content:
+            continue
+        lines.append(f"{role}: {content}")
+    return "\n\n".join(lines).strip() + ("\n" if lines else "")
 
 
 def _render_teacher_section_header(title: str) -> str:
@@ -6331,9 +6481,10 @@ def _render_workspace_outcome(
     confidence_boundary = _workspace_string_points(
         outcome_value.get("confidence_boundary")
     )
-    next_moves = _render_workspace_next_moves(
+    primary_action, secondary_actions = _render_workspace_outcome_actions(
         outcome_value.get("recommended_next_moves") or [],
         selected_case_id,
+        workspace=workspace,
     )
     return "\n".join(
         [
@@ -6351,7 +6502,8 @@ def _render_workspace_outcome(
                 what_changed=what_changed,
                 primary_reasons=primary_reasons,
                 confidence_boundary=confidence_boundary,
-                next_moves=next_moves,
+                primary_action=primary_action,
+                secondary_actions=secondary_actions,
             ),
             _workspace_disclosure(
                 "Outcome support details",
@@ -6374,7 +6526,8 @@ def _render_workspace_outcome_value_card(
     what_changed: list[str],
     primary_reasons: list[str],
     confidence_boundary: list[str],
-    next_moves: str,
+    primary_action: str,
+    secondary_actions: str,
 ) -> str:
     return "\n".join(
         [
@@ -6382,15 +6535,29 @@ def _render_workspace_outcome_value_card(
             f'<p class="workspace-kicker">{_esc(kicker)}</p>',
             f"<h3>{_esc(title)}</h3>",
             f'<p class="lede">{_esc(answer)}</p>',
-            '<div class="workspace-model-learn-grid workspace-outcome-grid">',
-            _workspace_outcome_point_group("Why this changed", what_changed),
-            _workspace_outcome_point_group("Main reasons", primary_reasons),
+            '<div class="workspace-outcome-primary">',
+            _workspace_outcome_point_group("Why this changed", what_changed[:1]),
             _workspace_outcome_point_group(
-                "What would change confidence",
-                confidence_boundary,
+                "Main reason to keep in mind",
+                primary_reasons[:1],
             ),
             "</div>",
-            next_moves,
+            primary_action,
+            _workspace_disclosure(
+                "More outcome detail",
+                (
+                    '<div class="workspace-model-learn-grid '
+                    'workspace-outcome-grid">'
+                ),
+                _workspace_outcome_point_group("Why this changed", what_changed),
+                _workspace_outcome_point_group("Main reasons", primary_reasons),
+                _workspace_outcome_point_group(
+                    "What would change confidence",
+                    confidence_boundary,
+                ),
+                "</div>",
+                secondary_actions,
+            ),
             "</article>",
         ]
     )
@@ -6411,10 +6578,13 @@ def _workspace_outcome_point_group(label: str, values: list[str]) -> str:
     )
 
 
-def _render_workspace_next_moves(
+def _render_workspace_outcome_actions(
     moves: list[dict],
     selected_case_id: str,
-) -> str:
+    *,
+    workspace: dict,
+) -> tuple[str, str]:
+    teacher_available = _workspace_teacher_surfaces_available(workspace)
     if not moves:
         moves = [
             {
@@ -6428,27 +6598,111 @@ def _render_workspace_next_moves(
                 "reason": "Check source custody, missingness, and non-claims.",
             },
         ]
-    cards = []
-    for move in moves[:3]:
+    normalized = []
+    seen: set[tuple[str, str]] = set()
+    for move in moves:
         href = _observatory_product_link_href(
             str(move.get("href") or ""),
             selected_case_id,
         )
         if not href:
             continue
+        label = str(move.get("label") or "Next move")
+        key = (label, href)
+        if key in seen:
+            continue
+        seen.add(key)
+        normalized.append(
+            {
+                "label": label,
+                "href": href,
+                "reason": str(move.get("reason") or ""),
+            }
+        )
+    if teacher_available:
+        primary = next(
+            (
+                move
+                for move in normalized
+                if move["href"].endswith("#learn")
+                or move["href"].endswith("%23learn")
+            ),
+            normalized[0]
+            if normalized
+            else {
+                "label": "Continue to Learn",
+                "href": _observatory_workspace_href(selected_case_id, "learn"),
+                "reason": "Use Learn to see the reasoning move behind this outcome.",
+            },
+        )
+    else:
+        primary = {
+            "label": "Check what is available",
+            "href": _observatory_workspace_href(selected_case_id, "receipts"),
+            "reason": (
+                "No Teacher lesson is attached to this run, so Receipts explains "
+                "what exists, what is missing, and what is not claimed."
+            ),
+        }
+
+    secondary = [
+        move
+        for move in normalized
+        if not (
+            move["label"] == primary["label"]
+            and move["href"] == primary["href"]
+        )
+    ][:2]
+    return (
+        _render_workspace_primary_outcome_action(primary),
+        _render_workspace_secondary_outcome_actions(secondary),
+    )
+
+
+def _workspace_teacher_surfaces_available(workspace: dict) -> bool:
+    missing_fields = set((workspace.get("missingness") or {}).get("missing_fields") or [])
+    if "teacher_learning_packet" in missing_fields:
+        return False
+    graph = workspace.get("graph_neighborhood") or {}
+    return bool(
+        workspace.get("model_pages")
+        or workspace.get("relation_pages")
+        or (graph.get("nodes") or [])
+    )
+
+
+def _render_workspace_primary_outcome_action(move: dict[str, str]) -> str:
+    href = move["href"]
+    download_attr = " download" if "conversation-memory.md" in href else ""
+    return "\n".join(
+        [
+            '<a class="workspace-outcome-continuation" '
+            f'aria-label="Recommended continuation" '
+            f'href="{_esc(href)}"{download_attr}>',
+            f'<strong>{_esc(move["label"])}</strong>',
+            f'<p>{_esc(move.get("reason") or "")}</p>',
+            "</a>",
+        ]
+    )
+
+
+def _render_workspace_secondary_outcome_actions(moves: list[dict[str, str]]) -> str:
+    cards = []
+    for move in moves:
+        href = move["href"]
         download_attr = " download" if "conversation-memory.md" in href else ""
         cards.append(
             '<a class="workspace-step-card workspace-next-move" '
             f'href="{_esc(href)}"{download_attr}>'
-            f'<strong>{_esc(str(move.get("label") or "Next move"))}</strong>'
-            f'<p>{_esc(str(move.get("reason") or ""))}</p>'
+            f'<strong>{_esc(move["label"])}</strong>'
+            f'<p>{_esc(move.get("reason") or "")}</p>'
             "</a>"
         )
     if not cards:
         return ""
     return "\n".join(
         [
-            '<div class="workspace-next-moves" aria-label="Next useful moves">',
+            '<div class="workspace-next-moves" aria-label="Other outcome actions">',
             *cards,
             "</div>",
         ]
