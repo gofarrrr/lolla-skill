@@ -1346,6 +1346,34 @@ _WORKSPACE_CSS = """
   max-width: 880px;
   color: var(--text-secondary);
 }
+.workspace-neighborhood-guide {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.workspace-neighborhood-guide-card {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, .035);
+  padding: 11px 12px;
+}
+.workspace-neighborhood-guide-card strong {
+  display: block;
+  color: var(--text-primary);
+  font-size: 13px;
+}
+.workspace-neighborhood-guide-card p {
+  margin: 5px 0 0;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.45;
+}
+.workspace-neighborhood-jumps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
 .workspace-neighborhood-groups {
   display: grid;
   gap: 12px;
@@ -1890,6 +1918,7 @@ _WORKSPACE_CSS = """
   .workspace-model-learn-grid,
   .workspace-outcome-primary,
   .workspace-next-moves,
+  .workspace-neighborhood-guide,
   .workspace-neighborhood-list,
   .workspace-step-grid,
   .workspace-inventory-metrics,
@@ -7087,6 +7116,7 @@ def _render_workspace_model_local_neighborhood(
 ) -> str:
     neighborhood = _model_local_neighborhood(model_id)
     items = list(neighborhood.get("items") or [])
+    display_name = _library_model_display_name(model_id)
     chips = [
         f'<span class="workspace-chip workspace-chip--teal">shown {int(neighborhood.get("shown_count") or 0)}</span>',
         f'<span class="workspace-chip">relation semantics {int(neighborhood.get("semantic_count") or 0)}</span>',
@@ -7114,11 +7144,12 @@ def _render_workspace_model_local_neighborhood(
             ]
             if not group_items:
                 continue
+            group_anchor = _workspace_neighborhood_group_anchor(model_id, edge_type)
             rendered_groups.append(
                 "\n".join(
                     [
-                        '<section class="workspace-neighborhood-group">',
-                        f"<h4>{_esc(label)}</h4>",
+                        f'<section id="{_esc(group_anchor)}" class="workspace-neighborhood-group" data-neighborhood-relation-group>',
+                        f"<h4>{_esc(label)} <span class=\"workspace-muted\">({len(group_items)})</span></h4>",
                         '<div class="workspace-neighborhood-list">',
                         *[
                             _render_workspace_model_neighbor_card(
@@ -7147,6 +7178,11 @@ def _render_workspace_model_local_neighborhood(
                 "are reviewed local relation semantics and accounted graph "
                 "edges; they are navigation context, not proof.</p>"
             ),
+            _render_workspace_model_neighborhood_guide(
+                display_name,
+                model_id,
+                items,
+            ),
             '<div class="workspace-chip-row">',
             *chips,
             "</div>",
@@ -7167,6 +7203,82 @@ def _render_workspace_model_local_neighborhood(
                 ),
             ),
             "</section>",
+        ]
+    )
+
+
+def _workspace_neighborhood_group_anchor(model_id: str, edge_type: str) -> str:
+    safe_model_id = _safe_model_data_id(model_id) or "model"
+    safe_edge_type = _safe_model_data_id(edge_type) or "related"
+    return f"neighborhood-{safe_model_id}-{safe_edge_type}"
+
+
+def _render_workspace_model_neighborhood_guide(
+    display_name: str,
+    model_id: str,
+    items: list[dict],
+) -> str:
+    if not items:
+        return ""
+    counts: dict[str, int] = {}
+    labels: dict[str, str] = {}
+    for item in items:
+        edge_type = str(item.get("edge_type") or "related")
+        counts[edge_type] = counts.get(edge_type, 0) + 1
+        labels[edge_type] = _observatory_display_label(edge_type, "Related")
+
+    ordered_types = [
+        edge_type
+        for edge_type in [
+            "ally",
+            "antagonist",
+            "structured_tension",
+            "tension",
+            "related",
+        ]
+        if edge_type in counts
+    ]
+    for edge_type in counts:
+        if edge_type not in ordered_types:
+            ordered_types.append(edge_type)
+
+    jumps = [
+        (
+            f'<a class="workspace-chip" '
+            f'href="#{_esc(_workspace_neighborhood_group_anchor(model_id, edge_type))}">'
+            f'{_esc(labels[edge_type])} {counts[edge_type]}</a>'
+        )
+        for edge_type in ordered_types
+    ]
+    return "\n".join(
+        [
+            '<section class="workspace-neighborhood-guide" aria-label="How to use this library neighborhood">',
+            '<div class="workspace-neighborhood-guide-card">',
+            "<strong>What this is</strong>",
+            (
+                f"<p>A local reviewed neighborhood for {_esc(display_name)}, "
+                "not the selected-run Map and not the full corpus graph.</p>"
+            ),
+            "</div>",
+            '<div class="workspace-neighborhood-guide-card">',
+            "<strong>How to scan</strong>",
+            (
+                "<p>Pick a relation type, then open the relation page when you "
+                "want the lesson in the connection.</p>"
+            ),
+            "</div>",
+            '<div class="workspace-neighborhood-guide-card">',
+            "<strong>How to trust it</strong>",
+            (
+                "<p>Read these as reviewed navigation paths. Edges and "
+                "confidence are not proof, certification, or answer quality.</p>"
+            ),
+            "</div>",
+            "</section>",
+            '<nav class="workspace-neighborhood-jumps" aria-label="Relation types in this local neighborhood">',
+            '<span class="workspace-muted">Jump to:</span>',
+            *jumps,
+            "</nav>",
         ]
     )
 

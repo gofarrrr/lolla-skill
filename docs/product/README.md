@@ -87,6 +87,7 @@ Current planning docs:
 - [Observatory Model Local Neighborhoods](observatory-model-local-neighborhoods-v0.md)
 - [Observatory Relation Page Library Fallback](observatory-relation-page-library-fallback-v0.md)
 - [Observatory Model Relation Navigation Browser Review](observatory-model-relation-navigation-browser-review-v0.md)
+- [Observatory Model Detail Library Navigation Polish](observatory-model-detail-library-navigation-polish-v0.md)
 - [Observatory Outcome User Value PRD](observatory-outcome-user-value-prd-v0.md)
 - [Observatory Outcome Object Contract](observatory-outcome-object-contract-v0.md)
 - [Observatory Outcome First Viewport](observatory-outcome-first-viewport-v0.md)
