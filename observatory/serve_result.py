@@ -194,13 +194,6 @@ def _observatory_workspace_href(selected_case_id: str, anchor: str | None = None
     return href
 
 
-def _observatory_workspace_review_href(selected_case_id: str) -> str:
-    href = "/review/observatory-workspace"
-    if selected_case_id:
-        href += "?case_id=" + quote(str(selected_case_id), safe="")
-    return href
-
-
 def _observatory_teacher_href(selected_case_id: str, anchor: str | None = None) -> str:
     anchor_map = {
         None: "learn",
@@ -4737,23 +4730,6 @@ def _render_workspace_surface_guide(selected_case_id: str) -> str:
     )
 
 
-def _render_workspace_review_guide_panel(selected_case_id: str) -> str:
-    return "\n".join(
-        [
-            '<section class="workspace-panel">',
-            "<h3>Review Guide</h3>",
-            "<p>For human review: judge whether this reads as one product journey, "
-            "not a pile of artifacts.</p>",
-            '<div class="workspace-next-actions">',
-            f'<a class="workspace-chip workspace-chip--teal" '
-            f'href="{_esc(_observatory_workspace_review_href(selected_case_id))}">'
-            "Open review guide</a>",
-            "</div>",
-            "</section>",
-        ]
-    )
-
-
 def _render_workspace_run_picker(selected_case_id: str) -> str:
     try:
         cases = _build_cases_index()[:8]
@@ -4792,7 +4768,6 @@ def _render_workspace_run_picker(selected_case_id: str) -> str:
             "<h3>Reading Path</h3>",
             _render_workspace_surface_guide(selected_case_id),
             "</section>",
-            _render_workspace_review_guide_panel(selected_case_id),
             "</aside>",
         ]
     )
@@ -5775,20 +5750,6 @@ def _render_workspace_receipts(
             "</div>",
             '<p class="workspace-kicker">Visible non-claims</p>',
             _render_workspace_list("", receipts.get("visible_non_claims") or []),
-            '<p class="workspace-kicker">Human review</p>',
-            "<p>Use the review guide only after clicking through the workspace. "
-            "It asks what confused you, what you expected to click, and whether "
-            "the six surfaces read as one Observatory product.</p>",
-            _render_workspace_chips(
-                [
-                    {
-                        "label": "Open review guide",
-                        "href": _observatory_workspace_review_href(selected_case_id),
-                    }
-                ],
-                selected_case_id=selected_case_id,
-                kind="support",
-            ),
             _workspace_disclosure(
                 "Technical inspection (optional)",
                 (

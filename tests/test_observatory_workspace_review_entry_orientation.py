@@ -13,11 +13,11 @@ sys.path.insert(0, str(REPO_ROOT / "observatory"))
 import serve_result  # noqa: E402
 
 
-DOC = REPO_ROOT / "docs/product/observatory-workspace-review-entry-orientation-v0.md"
+DOC = REPO_ROOT / "docs/product/observatory-workspace-user-surface-review-removal-v0.md"
 README = REPO_ROOT / "docs/product/README.md"
 REVIEW = (
     REPO_ROOT
-    / "reviews/codex-assisted/observatory-workspace-review-entry-orientation-v0/review.json"
+    / "reviews/codex-assisted/observatory-workspace-user-surface-review-removal-v0/review.json"
 )
 
 
@@ -48,7 +48,7 @@ def _load_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def test_workspace_exposes_review_guide_without_hiding_reading_path(
+def test_workspace_keeps_reading_path_without_review_guide_entry(
     monkeypatch,
 ) -> None:
     _install_launch_case(monkeypatch)
@@ -56,9 +56,10 @@ def test_workspace_exposes_review_guide_without_hiding_reading_path(
     html = serve_result._render_workspace_html("lolla-audit")
 
     assert "<h3>Reading Path</h3>" in html
-    assert "<h3>Review Guide</h3>" in html
-    assert "judge whether this reads as one product journey" in html
-    assert 'href="/review/observatory-workspace?case_id=lolla-audit"' in html
+    assert "<h3>Review Guide</h3>" not in html
+    assert "Open review guide" not in html
+    assert "judge whether this reads as one product journey" not in html
+    assert 'href="/review/observatory-workspace?case_id=lolla-audit"' not in html
 
     for anchor, label, question, purpose in serve_result._WORKSPACE_READING_PATH:
         assert f'data-workspace-surface-link="{anchor}"' in html
@@ -68,18 +69,19 @@ def test_workspace_exposes_review_guide_without_hiding_reading_path(
         assert purpose in html
 
 
-def test_receipts_places_human_review_before_technical_inspection(
+def test_receipts_places_optional_technical_inspection_after_non_claims(
     monkeypatch,
 ) -> None:
     _install_launch_case(monkeypatch)
 
     html = serve_result._render_workspace_html("lolla-audit")
 
-    assert html.index("What can I trust or inspect?") < html.index("Human review")
-    assert html.index("Human review") < html.index("Technical inspection")
-    assert "what confused you" in html
-    assert "the six surfaces read as one Observatory product" in html
-    assert 'href="/review/observatory-workspace?case_id=lolla-audit"' in html
+    assert html.index("What can I trust or inspect?") < html.index("Visible non-claims")
+    assert html.index("Visible non-claims") < html.index("Technical inspection")
+    assert "Human review" not in html
+    assert "what confused you" not in html
+    assert "the six surfaces read as one Observatory product" not in html
+    assert 'href="/review/observatory-workspace?case_id=lolla-audit"' not in html
 
 
 def test_review_guide_explains_task_progression_output_and_boundaries(
@@ -117,21 +119,22 @@ def test_http_handler_declares_review_guide_route() -> None:
     assert "_render_workspace_review_guide_html(selected_case_id)" in source
 
 
-def test_review_entry_docs_review_and_readme_capture_gate() -> None:
+def test_review_removal_docs_review_and_readme_capture_gate() -> None:
     doc = DOC.read_text(encoding="utf-8")
     readme = README.read_text(encoding="utf-8")
     review = _load_json(REVIEW)
 
-    assert "Observatory Workspace Review Entry Orientation" in readme
-    assert "observatory-workspace-review-entry-orientation-v0.md" in readme
-    assert review["decision_gate"] == "ready_for_human_review_with_visible_review_guide"
+    assert "Observatory Workspace User Surface Review Removal" in readme
+    assert "observatory-workspace-user-surface-review-removal-v0.md" in readme
+    assert review["decision_gate"] == "proceed_to_observatory_data_exposure_audit"
 
     for phrase in [
-        "Browser finding",
-        "Review Guide",
-        "/review/observatory-workspace",
-        "what am I supposed to evaluate",
+        "Product Correction",
+        "Review mechanics are internal process",
+        "does not link to `/review/observatory-workspace`",
+        "Receipts no longer asks the user to review the product",
         "Outcome -> Learn -> Models -> Relations -> Map -> Receipts",
+        "Technical inspection remains optional",
         "does not run Lolla",
         "does not invoke the Lolla skill",
         "does not call providers or model APIs",
@@ -142,16 +145,12 @@ def test_review_entry_docs_review_and_readme_capture_gate() -> None:
     ]:
         assert phrase in doc
 
-    assert review["browser_grounded"] is True
-    assert review["implemented"]["sidebar_review_guide_entry"] is True
-    assert review["implemented"]["receipts_human_review_entry"] is True
-    assert review["implemented"]["server_rendered_review_guide_route"] is True
+    assert review["implemented"]["sidebar_review_guide_entry_visible"] is False
+    assert review["implemented"]["receipts_human_review_entry_visible"] is False
+    assert review["implemented"]["workspace_links_review_route"] is False
+    assert review["implemented"]["server_rendered_review_guide_route_internal_only"] is True
     assert review["implemented"]["runtime_behavior_changed"] is False
     assert review["implemented"]["compiled_spa_bundle_changed"] is False
-    assert review["human_form"]["prefilled_positive"] is False
-    assert review["human_form"]["human_review_completed"] is False
-    assert review["human_form"]["human_validated"] is False
-    assert review["human_form"]["product_proof"] is False
     assert review["boundary"]["runs_lolla"] is False
     assert review["boundary"]["invokes_lolla_skill"] is False
     assert review["boundary"]["calls_provider_or_model"] is False

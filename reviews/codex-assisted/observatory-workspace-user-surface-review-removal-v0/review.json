@@ -1,0 +1,54 @@
+{
+  "schema_version": "codex_assisted_review.v0",
+  "review_id": "observatory-workspace-user-surface-review-removal-v0",
+  "status": "complete",
+  "date": "2026-07-07",
+  "decision_gate": "proceed_to_observatory_data_exposure_audit",
+  "implemented": {
+    "sidebar_review_guide_entry_visible": false,
+    "receipts_human_review_entry_visible": false,
+    "workspace_links_review_route": false,
+    "server_rendered_review_guide_route_internal_only": true,
+    "reading_path_remains_visible": true,
+    "run_switcher_remains_visible": true,
+    "technical_inspection_remains_optional": true,
+    "runtime_behavior_changed": false,
+    "compiled_spa_bundle_changed": false
+  },
+  "surface_changed": "workspace_sidebar_and_receipts",
+  "product_correction": "Internal review mechanics no longer appear as user-facing Observatory product actions.",
+  "default_user_path": [
+    "Outcome",
+    "Learn",
+    "Models",
+    "Relations",
+    "Map",
+    "Receipts"
+  ],
+  "strongest_useful_signal": "The Observatory workspace now keeps the product path visible without asking the viewer to judge the product itself.",
+  "strongest_unresolved_risk": "The product still needs a data exposure audit that categorizes gathered run, Teacher, model, relation, graph, telemetry, and memory data into default, expandable, inspection, hidden, and agent-only layers.",
+  "recommended_next_pr": "Add the Observatory data exposure audit and graph-substrate gap analysis.",
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_run": false,
+    "generates_sidecars": false,
+    "wires_skill_runtime_behavior": false,
+    "mutates_archives": false,
+    "compiled_spa_bundle_changed": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "relation_confidence_is_certification": false
+  }
+}

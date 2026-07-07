@@ -55,7 +55,7 @@ def _receipts_section(html: str) -> str:
     return html.split('<section id="receipts"', 1)[1].split("</section>", 1)[0]
 
 
-def test_receipts_collapses_technical_links_after_human_review(monkeypatch) -> None:
+def test_receipts_collapses_technical_links_after_non_claims(monkeypatch) -> None:
     _install_launch_case(monkeypatch)
 
     html = serve_result._render_workspace_html("lolla-audit")
@@ -66,16 +66,16 @@ def test_receipts_collapses_technical_links_after_human_review(monkeypatch) -> N
     assert "Conversation Understanding" in receipts
     assert "Process brief" in receipts
     assert "Visible non-claims" in receipts
-    assert "Human review" in receipts
-    assert "Open review guide" in receipts
+    assert "Human review" not in receipts
+    assert "Open review guide" not in receipts
+    assert "/review/observatory-workspace" not in receipts
     assert "Technical inspection (optional)" in receipts
     assert "This is inspection, not the learning path." in receipts
 
     assert receipts.index("What can I trust or inspect?") < receipts.index(
         "Visible non-claims"
     )
-    assert receipts.index("Visible non-claims") < receipts.index("Human review")
-    assert receipts.index("Human review") < receipts.index(
+    assert receipts.index("Visible non-claims") < receipts.index(
         "Technical inspection (optional)"
     )
 
@@ -122,9 +122,7 @@ def test_receipts_technical_disclosure_docs_review_and_readme() -> None:
 
     assert "Observatory Receipts Technical Inspection Disclosure" in readme
     assert "observatory-receipts-technical-inspection-disclosure-v0.md" in readme
-    assert review["decision_gate"] == (
-        "ready_for_human_hierarchy_review_after_receipts_reduction"
-    )
+    assert review["decision_gate"] == "proceed_to_observatory_data_exposure_audit"
 
     for phrase in [
         "technical audit links can still look like a normal next product step",
@@ -145,7 +143,7 @@ def test_receipts_technical_disclosure_docs_review_and_readme() -> None:
 
     assert review["implemented"]["receipts_trust_summary_remains_visible"] is True
     assert review["implemented"]["receipts_non_claims_remain_visible"] is True
-    assert review["implemented"]["receipts_human_review_entry_remains_visible"] is True
+    assert review["implemented"]["receipts_human_review_entry_visible"] is False
     assert review["implemented"]["technical_inspection_links_collapsed"] is True
     assert review["implemented"]["technical_inspection_optional_copy"] is True
     assert review["implemented"]["runtime_behavior_changed"] is False
