@@ -1,0 +1,49 @@
+{
+  "schema_version": "codex_assisted_review.v0",
+  "review_id": "observatory-review-guide-hierarchy-prompts-v0",
+  "status": "complete",
+  "date": "2026-07-07",
+  "decision_gate": "ready_for_human_review_with_hierarchy_prompts",
+  "implemented": {
+    "cold_user_hierarchy_check": true,
+    "primary_supporting_inspection_ladder": true,
+    "library_run_context_prompt": true,
+    "model_role_prompt": true,
+    "technical_audit_optional_prompt": true,
+    "human_form_prefilled": false,
+    "runtime_behavior_changed": false,
+    "compiled_spa_bundle_changed": false
+  },
+  "review_prompts_cover": [
+    "first-screen purpose",
+    "first next click",
+    "Outcome versus Learn",
+    "Library view versus Run context",
+    "model role labels as navigation cues rather than proof",
+    "Map as navigation rather than proof",
+    "Receipts as custody and missingness rather than the main product",
+    "technical audit pages as optional inspection"
+  ],
+  "strongest_useful_signal": "The Review Guide now asks a cold human reviewer to evaluate the actual information hierarchy: primary product content, supporting learning material, and optional inspection.",
+  "strongest_unresolved_risk": "The prompts still need a real human reviewer. Synthetic or automated review is diagnostic only and is not human validation.",
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_run": false,
+    "wires_skill_runtime_behavior": false,
+    "compiled_spa_bundle_changed": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "relation_certification": false,
+    "runtime_integration_authorized": false,
+    "action_authorized": false
+  }
+}
