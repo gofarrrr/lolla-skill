@@ -118,6 +118,21 @@ def test_adapter_builds_valid_workspace_from_existing_teacher_packet() -> None:
     assert workspace["outcome_summary"]["strongest_pressure"] == (
         "Authority pressure was doing too much work in the launch plan."
     )
+    assert workspace["outcome_value"]["plain_language_answer"] == (
+        "Launch in stages after the support risk is made explicit. "
+        "Keep the first cohort narrow and treat the beta as a learning gate."
+    )
+    assert workspace["outcome_value"]["stance"] == "stage_or_gate"
+    assert workspace["outcome_value"]["what_changed"] == [
+        "The run made this pressure explicit: Authority pressure was doing too much work in the launch plan."
+    ]
+    assert workspace["outcome_value"]["recommended_next_moves"][2]["label"] == (
+        "Download MD"
+    )
+    assert (
+        workspace["outcome_value"]["recommended_next_moves"][2]["href"]
+        == "/api/case/archive%3Alaunch-public-enterprise-beta%3A20260627T104146Z_7bfe79/conversation-memory.md?include_raw_conversation=1"
+    )
     assert workspace["learning_packet"]["thinking_move"] == (
         "Ask what evidence remains if the authority signal is removed."
     )
@@ -229,6 +244,13 @@ def test_adapter_preserves_missingness_when_revised_answer_is_absent() -> None:
     ]
     assert "revised_answer" in workspace["missingness"]["missing_fields"]
     assert workspace["outcome_summary"]["revised_answer_summary"] == (
+        "No revised answer artifact is available for this selected run."
+    )
+    assert "revised_answer" in workspace["outcome_value"]["missingness"][
+        "missing_fields"
+    ]
+    assert workspace["outcome_value"]["stance"] == "missing_revised_answer"
+    assert workspace["outcome_value"]["plain_language_answer"] == (
         "No revised answer artifact is available for this selected run."
     )
 

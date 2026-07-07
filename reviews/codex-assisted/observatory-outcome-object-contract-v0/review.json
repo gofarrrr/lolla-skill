@@ -1,0 +1,67 @@
+{
+  "review_id": "observatory-outcome-object-contract-v0",
+  "status": "ready_for_user_review",
+  "decision_gate": "proceed_to_outcome_first_viewport_redesign",
+  "implemented": {
+    "outcome_value_schema_constant": true,
+    "outcome_value_validator": true,
+    "workspace_requires_outcome_value": true,
+    "adapter_builds_outcome_value": true,
+    "contract_examples_updated": true,
+    "renderer_changed": false
+  },
+  "product_intent": {
+    "outcome_owns_actual_run_answer": true,
+    "outcome_not_orientation_page": true,
+    "outcome_summary_kept_as_compatibility_object": true,
+    "next_ui_should_render_outcome_value": true
+  },
+  "outcome_value_fields": [
+    "run_id",
+    "case_id",
+    "outcome_headline",
+    "stance",
+    "plain_language_answer",
+    "what_changed",
+    "primary_reasons",
+    "confidence_boundary",
+    "recommended_next_moves",
+    "source_refs",
+    "missingness",
+    "non_claims"
+  ],
+  "data_mapping": {
+    "plain_language_answer": "result.revised_answer",
+    "what_changed": "memo_what_changed or equivalent change fields, then strongest pressure fallback",
+    "primary_reasons": "full revised answer sentences, then strongest pressure fallback",
+    "confidence_boundary": "answer sentences with evidence/risk/gate/readiness/support/diligence/confidence cues, then explicit missingness",
+    "recommended_next_moves": "Learn, Receipts, Download MD"
+  },
+  "strongest_useful_signal": "The adapter can now produce a full outcome object with unclipped answer text and explicit reason/confidence/missingness sections, so the next UI PR has a real product object to render.",
+  "strongest_unresolved_risk": "The live Outcome page still renders the old layout until PR-O2 uses outcome_value in the center surface.",
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_run": false,
+    "generates_sidecars": false,
+    "wires_skill_runtime_behavior": false,
+    "mutates_archives": false,
+    "renders_html": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false,
+    "touches_compiled_spa_bundle": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false
+  },
+  "recommended_next_pr": "PR-O2 Outcome First Viewport Redesign"
+}

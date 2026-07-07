@@ -13,6 +13,7 @@ import re
 from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
+from urllib.parse import quote
 
 from engine.system_b.mental_model_teacher_observatory_packet_adapter import (
     build_teacher_learning_response,
@@ -32,6 +33,7 @@ from observatory.product_views import (
     MODEL_NON_CLAIMS,
     MODEL_PAGE_SCHEMA_VERSION,
     OUTCOME_SUMMARY_SCHEMA_VERSION,
+    OUTCOME_VALUE_SCHEMA_VERSION,
     PORTABLE_RENDERING_DIRECTION,
     PRIMARY_SURFACES,
     RECEIPT_NON_CLAIMS,
@@ -200,6 +202,11 @@ def _workspace(
             result=result,
             teacher_models=teacher_models,
         ),
+        "outcome_value": _outcome_value(
+            selected_case_id=selected_case_id,
+            selected_run_id=selected_run_id,
+            result=result,
+        ),
         "learning_packet": _learning_packet(
             selected_run_id=selected_run_id,
             lesson=lesson,
@@ -298,6 +305,72 @@ def _outcome_summary(
             "missing_fields": missing_fields,
             "notes": [
                 "Outcome owns run result summary; Learn owns the reasoning lesson."
+            ],
+        },
+        "non_claims": sorted(COMMON_NON_CLAIMS),
+    }
+
+
+def _outcome_value(
+    *,
+    selected_case_id: str,
+    selected_run_id: str,
+    result: Mapping[str, Any],
+) -> dict[str, Any]:
+    revised_answer = _full_plain_text(_text(result.get("revised_answer")))
+    strongest_pressure = _strongest_pressure(result)
+    missing_fields = []
+    if not revised_answer:
+        missing_fields.append("revised_answer")
+    if not _text(result.get("memo_what_changed")):
+        missing_fields.append("memo_what_changed")
+    if not strongest_pressure:
+        missing_fields.append("strongest_pressure")
+
+    plain_language_answer = revised_answer or (
+        "No revised answer artifact is available for this selected run."
+    )
+    what_changed = _what_changed_points(result, strongest_pressure)
+    primary_reasons = _primary_reason_points(revised_answer, strongest_pressure)
+    confidence_boundary = _confidence_boundary_points(
+        revised_answer,
+        strongest_pressure,
+    )
+
+    return {
+        "schema_version": OUTCOME_VALUE_SCHEMA_VERSION,
+        "run_id": selected_run_id,
+        "case_id": selected_case_id,
+        "outcome_headline": _outcome_headline(revised_answer),
+        "stance": _outcome_stance(revised_answer),
+        "plain_language_answer": plain_language_answer,
+        "what_changed": what_changed,
+        "primary_reasons": primary_reasons,
+        "confidence_boundary": confidence_boundary,
+        "recommended_next_moves": [
+            {
+                "label": "Practice the reasoning move",
+                "href": "#learn",
+                "reason": "Use Learn to see the thinking move behind this outcome.",
+            },
+            {
+                "label": "Inspect receipts",
+                "href": "#receipts",
+                "reason": "Check source custody, missingness, and non-claims before relying on the run.",
+            },
+            {
+                "label": "Download MD",
+                "href": _agent_memory_download_href(selected_case_id),
+                "reason": "Create a private Markdown memory for deeper agent review without rerunning Lolla.",
+            },
+        ],
+        "source_refs": [_result_source_ref(None)],
+        "missingness": {
+            "status": "partial" if missing_fields else "complete",
+            "missing_fields": _dedupe(missing_fields),
+            "notes": [
+                "Outcome value is adapted from existing run artifacts only.",
+                "Missing fields are named instead of filled with generated copy.",
             ],
         },
         "non_claims": sorted(COMMON_NON_CLAIMS),
@@ -782,6 +855,116 @@ def _answer_headline(revised_answer: str) -> str:
     return _compact_text(revised_answer, limit=120)
 
 
+def _outcome_headline(revised_answer: str) -> str:
+    if not revised_answer:
+        return "No revised answer artifact is available."
+    sentences = _sentence_points(revised_answer, limit=1)
+    if sentences:
+        return sentences[0]
+    return _full_plain_text(revised_answer)
+
+
+def _outcome_stance(revised_answer: str) -> str:
+    text = revised_answer.lower()
+    if not text:
+        return "missing_revised_answer"
+    if any(phrase in text for phrase in ("do not launch", "don't launch", "not launch")):
+        return "hold_or_do_not_launch"
+    if any(word in text for word in ("stage", "staged", "phased", "gate", "narrow")):
+        return "stage_or_gate"
+    if "launch" in text:
+        return "launch_with_conditions"
+    if any(word in text for word in ("pause", "hold", "wait")):
+        return "hold_or_pause"
+    return "answer_available"
+
+
+def _what_changed_points(
+    result: Mapping[str, Any],
+    strongest_pressure: str,
+) -> list[str]:
+    for key in (
+        "memo_what_changed",
+        "revised_answer_change_reason",
+        "memo_take_back_or_set_aside",
+        "memo_orientation_note",
+    ):
+        points = _sentence_points(_text(result.get(key)), limit=4)
+        if points:
+            return points
+    if strongest_pressure:
+        return [f"The run made this pressure explicit: {strongest_pressure}"]
+    return [
+        "No separate what-changed artifact is available for this selected run."
+    ]
+
+
+def _primary_reason_points(revised_answer: str, strongest_pressure: str) -> list[str]:
+    sentences = _sentence_points(revised_answer, limit=5)
+    if len(sentences) > 1:
+        return sentences[1:4]
+    if sentences:
+        return sentences[:1]
+    if strongest_pressure:
+        return [strongest_pressure]
+    return [
+        "No source-backed primary reason artifact is available for this selected run."
+    ]
+
+
+def _confidence_boundary_points(
+    revised_answer: str,
+    strongest_pressure: str,
+) -> list[str]:
+    keywords = (
+        "if",
+        "until",
+        "unless",
+        "evidence",
+        "risk",
+        "gate",
+        "ready",
+        "readiness",
+        "support",
+        "diligence",
+        "depends",
+        "confidence",
+    )
+    boundaries = [
+        sentence
+        for sentence in _sentence_points(revised_answer, limit=8)
+        if any(keyword in sentence.lower() for keyword in keywords)
+    ][:3]
+    if boundaries:
+        return boundaries
+    if strongest_pressure:
+        return [
+            f"Confidence should stay bounded by this pressure: {strongest_pressure}"
+        ]
+    return [
+        "No separate confidence-boundary artifact is available for this selected run."
+    ]
+
+
+def _sentence_points(value: str, *, limit: int) -> list[str]:
+    text = _full_plain_text(value)
+    if not text:
+        return []
+    chunks = re.split(r"(?<=[.!?])\s+", text)
+    points = []
+    for chunk in chunks:
+        cleaned = chunk.strip(" -\n\t")
+        if cleaned:
+            points.append(cleaned)
+        if len(points) >= limit:
+            break
+    return points
+
+
+def _full_plain_text(value: str) -> str:
+    return " ".join(_plain_product_text(_text(value)).split())
+
+
 def _strongest_pressure(result: Mapping[str, Any]) -> str:
     delta = _mapping(result.get("delta_card"))
     for key in ("top_findings", "findings", "secondary_findings"):
@@ -896,6 +1079,7 @@ def _source_refs_from_workspace(workspace: Mapping[str, Any]) -> list[dict[str, 
     for key in (
         "selected_run_summary",
         "outcome_summary",
+        "outcome_value",
         "learning_packet",
         "graph_neighborhood",
         "receipt_summary",
@@ -1027,6 +1211,14 @@ def _process_brief_status(decision_work_status: str) -> str:
     if decision_work_status in {"decision_work_blocked", "decision_work_malformed"}:
         return "blocked"
     return "not_requested"
+
+
+def _agent_memory_download_href(selected_case_id: str) -> str:
+    return (
+        "/api/case/"
+        + quote(str(selected_case_id), safe="")
+        + "/conversation-memory.md?include_raw_conversation=1"
+    )
 
 
 def _adapter_guards() -> dict[str, Any]:
