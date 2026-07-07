@@ -1,0 +1,421 @@
+{
+  "schema": "lolla.observatory_data_exposure_audit.v0",
+  "status": "complete",
+  "date": "2026-07-07",
+  "decision_gate": "proceed_to_graph_substrate_and_memory_export_design",
+  "product_thesis": "Start from one selected run, teach one reasoning move, let the user open models, relations, map, and receipts without exposing raw telemetry as product copy.",
+  "layer_vocabulary": {
+    "default_workspace_summary": "Visible immediately or in the first read of the selected-run workspace.",
+    "primary_product_surface": "A named product surface the user intentionally opens: Learn, Models, Relations, Map, or Receipts.",
+    "expandable_product_detail": "Useful product information that should appear after a click, selection, disclosure, or detail page.",
+    "optional_technical_inspection": "Custody, telemetry, and audit data available for maintainers or careful users, not the learning path.",
+    "agent_memory_export": "A compiled memory artifact meant for future agents or advanced local use, generated explicitly.",
+    "future_or_suggestion_only": "Potential product material that needs another review/design gate before default exposure.",
+    "internal_only": "Implementation, ranking, embedding, provider, local path, or eval material that must not become product copy.",
+    "private_hidden": "Private or sensitive raw material that must stay hidden unless the user explicitly chooses a private local export."
+  },
+  "summary_counts": {
+    "default_workspace_summary": 3,
+    "primary_product_surface": 5,
+    "expandable_product_detail": 8,
+    "optional_technical_inspection": 5,
+    "agent_memory_export": 1,
+    "future_or_suggestion_only": 6,
+    "internal_only": 6,
+    "private_hidden": 2,
+    "total_items": 36
+  },
+  "current_visible_share": {
+    "shown_or_partly_shown_items": 17,
+    "not_shown_or_future_items": 19,
+    "note": "The current workspace shows a useful selected-run product path, but it does not yet expose the full canonical model library or full reviewed relation graph."
+  },
+  "source_assets": [
+    "run_archive/result.json",
+    "run_archive/extraction.json",
+    "run_archive/reasoning_trace.json",
+    "run_archive/evaluation.json",
+    "run_archive/usage_or_run_events",
+    "teacher_learning_packet",
+    "decision_work_sidecars",
+    "data/model_sources/*.md",
+    "data/model_sources/manifest.json",
+    "data/curation/*.json",
+    "data/curation/intervention_semantics/*.json",
+    "data/curation/relation_semantics/*.json",
+    "data/relationship_graph.json",
+    "data/knowledge_graph.json",
+    "data/embeddings.db",
+    "data/curated/*.json",
+    "data/family_semantics/*.json",
+    "data/compiled/model_affordances/affordances_v60.json",
+    "graph_survival_and_eval_artifacts",
+    "conversation_memory_bundle_worktree"
+  ],
+  "data_inventory": [
+    {
+      "id": "selected_run_context",
+      "source": "run_archive/result.json",
+      "current_visibility": "shown",
+      "desired_layer": "default_workspace_summary",
+      "user_reason": "The user must know which run or case they are reading before any lesson or graph makes sense.",
+      "presentation_rule": "Show title, run/archive status, health, and a compact selected-run identity.",
+      "do_not_show": "Do not show raw archive paths or raw result JSON as the first read."
+    },
+    {
+      "id": "outcome_summary",
+      "source": "run_archive/result.json",
+      "current_visibility": "shown",
+      "desired_layer": "default_workspace_summary",
+      "user_reason": "The first screen should answer what changed in this run.",
+      "presentation_rule": "Show revised answer summary, strongest pressure, and compact model chips.",
+      "do_not_show": "Do not turn the outcome into a full technical audit."
+    },
+    {
+      "id": "available_statuses",
+      "source": "teacher_learning_packet + decision_work_sidecars",
+      "current_visibility": "shown",
+      "desired_layer": "default_workspace_summary",
+      "user_reason": "The user needs early missingness: lesson available, process brief absent, conversation understanding absent or available.",
+      "presentation_rule": "Show status chips with plain labels.",
+      "do_not_show": "Do not expose sidecar schema details in the header."
+    },
+    {
+      "id": "teacher_lesson",
+      "source": "teacher_learning_packet",
+      "current_visibility": "shown",
+      "desired_layer": "primary_product_surface",
+      "user_reason": "This is the teaching product: case anchor, thinking move, worked example, practice rep, and boundary.",
+      "presentation_rule": "Make Learn the home for the reasoning move.",
+      "do_not_show": "Do not duplicate the revised answer or raw telemetry as lesson body."
+    },
+    {
+      "id": "model_pages_selected_run",
+      "source": "teacher_learning_packet.model_pages",
+      "current_visibility": "shown_partially",
+      "desired_layer": "primary_product_surface",
+      "user_reason": "The user needs clickable mental models connected to the run.",
+      "presentation_rule": "Show selected-run model cards and detail pages with readable sections.",
+      "do_not_show": "Do not imply the selected-run subset is the whole canonical library."
+    },
+    {
+      "id": "relation_pages_selected_run",
+      "source": "teacher_learning_packet.relation_pages",
+      "current_visibility": "shown_partially",
+      "desired_layer": "primary_product_surface",
+      "user_reason": "Relations explain why two models together teach the move.",
+      "presentation_rule": "Show plain-language relation story before taxonomy.",
+      "do_not_show": "Do not present relation confidence as proof."
+    },
+    {
+      "id": "selected_run_graph_neighborhood",
+      "source": "teacher_learning_packet.graph",
+      "current_visibility": "shown",
+      "desired_layer": "primary_product_surface",
+      "user_reason": "A small map helps the user navigate model and relation pages for this run.",
+      "presentation_rule": "Keep graph small, clickable, filtered, and explicitly not proof.",
+      "do_not_show": "Do not pretend this is the full canonical model graph."
+    },
+    {
+      "id": "receipt_summary",
+      "source": "teacher_learning_packet.receipts + decision_work_sidecars",
+      "current_visibility": "shown",
+      "desired_layer": "primary_product_surface",
+      "user_reason": "The user needs custody, missingness, and non-claims without reading raw telemetry.",
+      "presentation_rule": "Show trust summary, status chips, visible non-claims, and optional inspection.",
+      "do_not_show": "Do not ask the user to review the product from inside the product."
+    },
+    {
+      "id": "canonical_model_markdown",
+      "source": "data/model_sources/*.md",
+      "current_visibility": "shown_partially",
+      "desired_layer": "expandable_product_detail",
+      "user_reason": "A mental model page should eventually show everything useful from the canonical model source in product language.",
+      "presentation_rule": "Translate canonical Markdown into clean sections, source refs, examples, use/avoid, misuse, and practice prompts.",
+      "do_not_show": "Do not dump raw Markdown or local provenance as the UI."
+    },
+    {
+      "id": "model_source_manifest",
+      "source": "data/model_sources/manifest.json",
+      "current_visibility": "not_shown",
+      "desired_layer": "expandable_product_detail",
+      "user_reason": "Source custody helps a user trust where a model page came from.",
+      "presentation_rule": "Show repo-relative source refs and hash presence only when the user opens source detail.",
+      "do_not_show": "Do not show local absolute paths from the manifest."
+    },
+    {
+      "id": "source_hashes",
+      "source": "data/model_sources/manifest.json:files[].sha256",
+      "current_visibility": "not_shown",
+      "desired_layer": "expandable_product_detail",
+      "user_reason": "Hashes are useful custody receipts for model source stability.",
+      "presentation_rule": "Show hash algorithm/value in source details if needed.",
+      "do_not_show": "Do not make hashes feel like quality proof."
+    },
+    {
+      "id": "activation_curation",
+      "source": "data/curation/*.json",
+      "current_visibility": "shown_partially",
+      "desired_layer": "expandable_product_detail",
+      "user_reason": "Activation curation can explain use/avoid conditions and why a model appeared.",
+      "presentation_rule": "Translate into use/avoid, reasoning types, and run-specific activation context.",
+      "do_not_show": "Do not show routing internals as model definition."
+    },
+    {
+      "id": "intervention_semantics",
+      "source": "data/curation/intervention_semantics/*.json",
+      "current_visibility": "shown_partially",
+      "desired_layer": "expandable_product_detail",
+      "user_reason": "These fields can become failure modes, premortems, heuristics, and practice prompts.",
+      "presentation_rule": "Show as teaching affordances on model pages or lessons.",
+      "do_not_show": "Do not let extraction metadata dominate the page."
+    },
+    {
+      "id": "relation_semantics",
+      "source": "data/curation/relation_semantics/*.json",
+      "current_visibility": "shown_partially",
+      "desired_layer": "expandable_product_detail",
+      "user_reason": "Relation semantics can power relation pages and model-pair teaching.",
+      "presentation_rule": "Show supported relation story, why it matters, misread risk, and practice prompt.",
+      "do_not_show": "Do not surface unsupported relation speculation."
+    },
+    {
+      "id": "curated_chunks",
+      "source": "data/curated/*.json",
+      "current_visibility": "not_shown",
+      "desired_layer": "expandable_product_detail",
+      "user_reason": "Curated chunks may support future page sections when source and privacy checks pass.",
+      "presentation_rule": "Use only translated, source-safe snippets in page details.",
+      "do_not_show": "Do not expose internal chunk ids as the primary product."
+    },
+    {
+      "id": "model_detail_local_neighborhood",
+      "source": "data/relationship_graph.json + relation_semantics",
+      "current_visibility": "missing",
+      "desired_layer": "expandable_product_detail",
+      "user_reason": "When a user clicks one mental model, they should see its reviewed direct neighbors and why each relation exists.",
+      "presentation_rule": "Show a local graph/table on the model page with links to relation pages.",
+      "do_not_show": "Do not expose raw affinity, rank, or embedding similarity."
+    },
+    {
+      "id": "advanced_audit_index",
+      "source": "observatory product view adapter",
+      "current_visibility": "shown_as_optional",
+      "desired_layer": "optional_technical_inspection",
+      "user_reason": "Maintainers need a path to inspect evidence without polluting the product path.",
+      "presentation_rule": "Keep behind Receipts or Advanced Audit.",
+      "do_not_show": "Do not make it the first surface."
+    },
+    {
+      "id": "extraction_audit",
+      "source": "run_archive/extraction.json",
+      "current_visibility": "linked_optional",
+      "desired_layer": "optional_technical_inspection",
+      "user_reason": "Useful for checking what the system thought the conversation meant.",
+      "presentation_rule": "Show only if user chooses technical inspection or process brief.",
+      "do_not_show": "Do not put extraction schema on the lesson page."
+    },
+    {
+      "id": "usage_telemetry",
+      "source": "usage_or_run_events",
+      "current_visibility": "linked_optional",
+      "desired_layer": "optional_technical_inspection",
+      "user_reason": "Cost and call breakdowns are operational facts.",
+      "presentation_rule": "Keep in Usage or Advanced Audit.",
+      "do_not_show": "Do not use telemetry as product quality proof."
+    },
+    {
+      "id": "graph_survival_eval_artifacts",
+      "source": "graph_survival_and_eval_artifacts",
+      "current_visibility": "not_shown",
+      "desired_layer": "optional_technical_inspection",
+      "user_reason": "These artifacts help maintain evidence discipline around graph quality.",
+      "presentation_rule": "Expose only as technical inspection or maintainer diagnostics.",
+      "do_not_show": "Do not market graph survival as human validation."
+    },
+    {
+      "id": "process_brief",
+      "source": "decision_work_sidecars",
+      "current_visibility": "status_only",
+      "desired_layer": "optional_technical_inspection",
+      "user_reason": "A process brief may help understand how the system interpreted the run.",
+      "presentation_rule": "Keep explicit opt-in, with status visible in Receipts.",
+      "do_not_show": "Do not auto-generate or treat as advice correctness."
+    },
+    {
+      "id": "conversation_memory_bundle",
+      "source": "conversation_memory_bundle_worktree",
+      "current_visibility": "separate_worktree_unmerged",
+      "desired_layer": "agent_memory_export",
+      "user_reason": "A future agent can use a self-explaining memory file to understand a completed run without reopening every artifact.",
+      "presentation_rule": "Merge first as offline export; later expose explicit generate/download/read action.",
+      "do_not_show": "Do not make this default-on or public-safe with raw conversation."
+    },
+    {
+      "id": "relationship_graph",
+      "source": "data/relationship_graph.json",
+      "current_visibility": "underused",
+      "desired_layer": "future_or_suggestion_only",
+      "user_reason": "The graph substrate is much richer than the current selected-run map and can power local neighborhoods.",
+      "presentation_rule": "Use only reviewed/productized edges through relation pages and graph filters.",
+      "do_not_show": "Do not expose raw ranking, affinity, or edge existence as truth."
+    },
+    {
+      "id": "knowledge_graph",
+      "source": "data/knowledge_graph.json",
+      "current_visibility": "not_shown_as_global_graph",
+      "desired_layer": "future_or_suggestion_only",
+      "user_reason": "It can support global navigation later, but it is too broad for the first surface.",
+      "presentation_rule": "Use after a full-corpus graph plan and filtering rules.",
+      "do_not_show": "Do not show full topology as the default map."
+    },
+    {
+      "id": "family_semantics",
+      "source": "data/family_semantics/*.json",
+      "current_visibility": "not_shown",
+      "desired_layer": "future_or_suggestion_only",
+      "user_reason": "Families can become filters or collections for browsing.",
+      "presentation_rule": "Use as future library navigation after design review.",
+      "do_not_show": "Do not present family membership as quality label."
+    },
+    {
+      "id": "v60_model_affordances",
+      "source": "data/compiled/model_affordances/affordances_v60.json",
+      "current_visibility": "not_shown",
+      "desired_layer": "future_or_suggestion_only",
+      "user_reason": "V60 affordances may power advanced teaching pages later.",
+      "presentation_rule": "Translate only after a separate teaching-affordance gate.",
+      "do_not_show": "Do not show raw transaction JSON or absence records."
+    },
+    {
+      "id": "semantic_neighbors",
+      "source": "data/embeddings.db",
+      "current_visibility": "not_shown",
+      "desired_layer": "future_or_suggestion_only",
+      "user_reason": "Semantic neighbors may help discovery but need review before they can become relation suggestions.",
+      "presentation_rule": "Keep as suggestions only until reviewed.",
+      "do_not_show": "Do not treat embedding similarity as validated relation semantics."
+    },
+    {
+      "id": "full_corpus_graph",
+      "source": "data/knowledge_graph.json + data/relationship_graph.json",
+      "current_visibility": "missing",
+      "desired_layer": "future_or_suggestion_only",
+      "user_reason": "A global graph can be valuable once local neighborhoods and filters work.",
+      "presentation_rule": "Plan after model pages, relation pages, local neighborhoods, and performance rules exist.",
+      "do_not_show": "Do not use the full corpus graph as the first user surface."
+    },
+    {
+      "id": "raw_routing_and_rankings",
+      "source": "companion routing, activation matcher, relationship graph ranking fields",
+      "current_visibility": "not_shown",
+      "desired_layer": "internal_only",
+      "user_reason": "Routing internals are implementation machinery.",
+      "presentation_rule": "Use only to build safe product objects and audit panels.",
+      "do_not_show": "Do not make ranking internals product copy."
+    },
+    {
+      "id": "raw_embeddings",
+      "source": "data/embeddings.db",
+      "current_visibility": "not_shown",
+      "desired_layer": "internal_only",
+      "user_reason": "Vectors are implementation data.",
+      "presentation_rule": "Use internally for retrieval or suggestions.",
+      "do_not_show": "Do not expose vectors or distance scores."
+    },
+    {
+      "id": "provider_text_and_reasoning",
+      "source": "provider/model outputs when present in archives",
+      "current_visibility": "not_shown",
+      "desired_layer": "internal_only",
+      "user_reason": "Provider traces are not user product copy.",
+      "presentation_rule": "Keep in technical custody only if retained.",
+      "do_not_show": "Do not expose provider raw text in primary UI."
+    },
+    {
+      "id": "product_delta_and_eval_internals",
+      "source": "eval artifacts and Product Delta internals",
+      "current_visibility": "not_shown",
+      "desired_layer": "internal_only",
+      "user_reason": "Eval internals support builders, not learners.",
+      "presentation_rule": "Keep as maintainer diagnostics.",
+      "do_not_show": "Do not turn eval internals into product proof."
+    },
+    {
+      "id": "internal_source_code",
+      "source": "engine/system_b/relation_graph.py + activation_matcher.py + validation code",
+      "current_visibility": "not_shown",
+      "desired_layer": "internal_only",
+      "user_reason": "Source code explains behavior to builders, not end users.",
+      "presentation_rule": "Keep code internal and tests focused on product contracts.",
+      "do_not_show": "Do not render implementation code as product help text."
+    },
+    {
+      "id": "local_absolute_paths",
+      "source": "manifest or local archive metadata",
+      "current_visibility": "not_shown",
+      "desired_layer": "internal_only",
+      "user_reason": "Local paths are private implementation details.",
+      "presentation_rule": "Strip or translate to repo-relative source refs.",
+      "do_not_show": "Do not expose user machine paths."
+    },
+    {
+      "id": "raw_conversation",
+      "source": "conversation.txt or captured transcript",
+      "current_visibility": "not_shown",
+      "desired_layer": "private_hidden",
+      "user_reason": "The raw conversation may be private and too large for the product surface.",
+      "presentation_rule": "Only include through explicit private local export.",
+      "do_not_show": "Do not show by default or include in public-safe memory."
+    },
+    {
+      "id": "private_operator_artifacts",
+      "source": "private tables, ledgers, operator logs",
+      "current_visibility": "not_shown",
+      "desired_layer": "private_hidden",
+      "user_reason": "Private/operator material may be useful for debugging but not for product.",
+      "presentation_rule": "Inventory without copying bodies unless a private local mode explicitly permits it.",
+      "do_not_show": "Do not render private ledgers in the user workspace."
+    }
+  ],
+  "graph_substrate": {
+    "current_visible_graph": {
+      "scope": "selected_run_learning_neighborhood",
+      "full_corpus_graph": false,
+      "model_detail_local_neighborhood": false,
+      "note": "The current Map is a small selected-run graph. It is not evidence that a model has only one relation."
+    },
+    "substrate_counts": {
+      "canonical_model_markdown_files": 222,
+      "relationship_edges": 1358,
+      "knowledge_graph_models": 222,
+      "knowledge_graph_edges": 1742,
+      "relation_semantics_files": 225
+    },
+    "required_graph_modes": [
+      "selected_run_learning_neighborhood",
+      "model_detail_local_neighborhood",
+      "filtered_library_graph",
+      "future_full_corpus_graph"
+    ],
+    "gap": "The current visible Map under-represents the known relation substrate. The next graph slice should add model-detail local neighborhoods before attempting a global full-corpus graph."
+  },
+  "conversation_memory_bundle": {
+    "status": "separate_worktree_unmerged",
+    "desired_layer": "agent_memory_export",
+    "runtime_default": false,
+    "provider_or_model_calls": false,
+    "archive_mutation": false,
+    "merge_recommendation": "Review and merge as offline export capability only before any Observatory UI integration."
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "action_authorized": false,
+    "runtime_integration_authorized": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false
+  }
+}
