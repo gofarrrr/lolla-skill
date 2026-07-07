@@ -1,0 +1,58 @@
+{
+  "review_id": "observatory-outcome-first-viewport-v0",
+  "status": "ready_for_browser_review",
+  "decision_gate": "proceed_to_outcome_browser_review",
+  "implemented": {
+    "workspace_passes_outcome_value_to_renderer": true,
+    "hero_is_compact": true,
+    "center_start_panel_removed": true,
+    "outcome_renders_full_plain_language_answer": true,
+    "outcome_renders_what_changed": true,
+    "outcome_renders_primary_reasons": true,
+    "outcome_renders_confidence_boundary": true,
+    "outcome_renders_next_moves": true,
+    "run_contents_moved_after_outcome": true,
+    "download_md_remains_visible": true,
+    "run_only_fallback_renders_outcome": true,
+    "missing_teacher_surfaces_rendered_explicitly": true
+  },
+  "product_intent": {
+    "outcome_is_result_first": true,
+    "reading_path_remains_sidebar_wayfinding": true,
+    "run_inventory_is_detail_not_first_view": true,
+    "outcome_summary_is_support_detail": true,
+    "outcome_value_is_first_read_source": true,
+    "teacher_packet_absence_does_not_hide_outcome": true
+  },
+  "strongest_useful_signal": "The workspace default now renders the actual outcome headline, full answer, change reasons, confidence boundary, and next moves before run contents; real runs without Teacher packets still show Outcome and Receipts instead of a missingness-only screen.",
+  "strongest_unresolved_risk": "The page needs browser review to confirm whether the new Outcome reason groups and run-only missing Teacher surface copy are clear enough, and whether run contents still belongs inside Outcome.",
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_run": false,
+    "generates_sidecars": false,
+    "wires_skill_runtime_behavior": false,
+    "mutates_archives": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false,
+    "touches_compiled_spa_bundle": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false
+  },
+  "recommended_next_pr": "Outcome browser review and remaining first-read polish",
+  "browser_review": {
+    "historical_result_without_teacher_packet_checked": true,
+    "previous_failure": "root rendered only no-product-workspace missingness",
+    "fixed_behavior": "root renders Outcome first, then explicit missing Learn/Models/Relations/Map sections and Receipts"
+  }
+}

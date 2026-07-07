@@ -58,17 +58,18 @@ def _launch_result(*, revised_answer: str | None = None) -> dict:
     }
 
 
-def test_workspace_adds_start_here_path_and_browser_focus_mode(monkeypatch) -> None:
+def test_workspace_focus_mode_keeps_center_on_outcome_value(monkeypatch) -> None:
     _install_launch_case(monkeypatch)
 
     html = serve_result._render_workspace_html("lolla-audit")
 
-    assert "Start here" in html
-    assert "Start with Outcome." in html
-    assert "Read what changed first." in html
-    assert "data-workspace-start-panel" in html
-    assert 'panel.toggleAttribute("hidden", !showStartPanel)' in html
-    assert "workspace-step-card" in html
+    assert "Start with the run result." in html
+    assert "Launch in stages after the support risk is made explicit." in html
+    assert "Why this changed" in html
+    assert "Main reasons" in html
+    assert "What would change confidence" in html
+    assert "data-workspace-start-panel" not in html
+    assert "workspace-next-move" in html
     assert "What changed in the run?" in html
     assert "data-workspace-active-label" in html
     assert "workspace-focus-mode" in html

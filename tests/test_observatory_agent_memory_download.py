@@ -205,11 +205,7 @@ def test_main_workspace_contains_agent_memory_download_action() -> None:
         },
     )
 
-    assert "Start here" in html
-    assert "data-agent-memory-export-card" in html
-    assert "What This Run Contains" in html
-    assert "preserve the run for later agent review" in html
-    assert "Full transcript" in html
+    assert "Start with the run result." in html
     assert ">Download MD</a>" in html
     assert "data-agent-memory-download-action" in html
     assert "data-agent-memory-download-toast" in html
@@ -220,8 +216,6 @@ def test_main_workspace_contains_agent_memory_download_action() -> None:
         'download href="/api/case/lolla-audit/conversation-memory.md?include_raw_conversation=1"'
         in html
     )
-    assert html.index("Use map") < html.index("Download MD")
-    assert html.index("Download MD") < html.index("Check receipts")
     assert (
         ".workspace-chip-with-toast:hover .workspace-chip-toast"
         in serve_result._WORKSPACE_CSS

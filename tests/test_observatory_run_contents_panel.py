@@ -61,16 +61,18 @@ def _json(path: Path) -> dict:
     return json.loads(_read(path))
 
 
-def test_workspace_main_page_shows_run_contents_before_outcome(monkeypatch) -> None:
+def test_workspace_main_page_shows_run_contents_after_outcome(monkeypatch) -> None:
     _install_launch_case(monkeypatch)
 
     html = serve_result._render_workspace_html("lolla-audit")
 
     assert 'data-run-contents-panel' in html
     assert "What This Run Contains" in html
-    assert "We captured enough to explain the result" in html
-    assert "preserve the run for later agent review" in html
-    assert html.index("What This Run Contains") < html.index('<section id="outcome"')
+    assert "This separates what is available now" in html
+    assert "private export, or inspection-only" in html
+    assert html.index("Launch in stages after the support risk") < html.index(
+        "What This Run Contains"
+    )
 
     for label in [
         "Conversation",
@@ -112,7 +114,7 @@ def test_run_contents_details_group_user_actions_without_raw_json(
         "One reasoning rep drawn from the selected run",
         "Not shown as first-read UI.",
         "A private self-explaining run memory",
-        "Technical inspection for extraction, usage, events, traces, and internal checks.",
+        "Advanced audit route for extraction, usage, events, traces, and internal checks.",
     ]:
         assert phrase in panel
 
