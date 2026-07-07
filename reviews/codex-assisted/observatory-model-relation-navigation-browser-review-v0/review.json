@@ -1,0 +1,83 @@
+{
+  "schema_version": "codex_assisted_review.v0",
+  "review_id": "observatory-model-relation-navigation-browser-review-v0",
+  "status": "implemented",
+  "date": "2026-07-07",
+  "decision_gate": "proceed_to_model_detail_library_navigation_polish",
+  "browser_review": {
+    "workspace_models_opened": true,
+    "model_detail_opened": true,
+    "model_detail_reviewed_neighbors_checked": true,
+    "neighbor_relation_link_clicked": true,
+    "relation_semantics_fallback_checked": true,
+    "relationship_graph_fallback_checked": true,
+    "selected_run_relation_precedence_checked": true,
+    "selected_run_map_boundary_checked": true,
+    "map_filter_empty_state_checked": true
+  },
+  "product_decisions": {
+    "workspace_models_remain_selected_run_first": true,
+    "model_detail_is_bridge_to_library_neighborhood": true,
+    "library_relation_pages_are_not_selected_run_evidence": true,
+    "selected_run_relation_pages_still_win": true,
+    "map_remains_selected_run_wayfinding": true,
+    "global_graph_deferred": true
+  },
+  "visibility": {
+    "shown_by_default": [
+      "selected-run model cards",
+      "selected-run relation story",
+      "selected-run map"
+    ],
+    "shown_after_model_click": [
+      "reusable model first read",
+      "run role",
+      "local reviewed library neighborhood",
+      "neighbor model links",
+      "neighbor relation links"
+    ],
+    "shown_after_relation_click": [
+      "plain-language relation story",
+      "why it matters",
+      "misread risk",
+      "practice prompt",
+      "source quote or reference",
+      "non-claims"
+    ],
+    "not_shown_as_product_ui": [
+      "raw canonical Markdown",
+      "raw JSON",
+      "relationship graph affinity",
+      "embedding similarity",
+      "full corpus graph",
+      "graph survival internals",
+      "Product Delta internals"
+    ]
+  },
+  "strongest_useful_signal": "A user can move from a selected-run model page into a reviewed library relation page while selected-run relation pages remain distinct.",
+  "strongest_unresolved_risk": "The selected-run Map and model-detail library neighborhoods still need clearer separation so users do not expect the Map to contain the full mental-model graph.",
+  "recommended_next_pr": "Polish model-detail library neighborhood navigation",
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_run": false,
+    "generates_sidecars": false,
+    "wires_skill_runtime_behavior": false,
+    "mutates_archives": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false,
+    "touches_compiled_spa_bundle": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false
+  }
+}
