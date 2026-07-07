@@ -1,0 +1,57 @@
+{
+  "schema_version": "codex_assisted_review.v0",
+  "review_id": "observatory-workspace-human-review-launch-checklist-v0",
+  "status": "complete",
+  "date": "2026-07-07",
+  "decision_gate": "ready_to_launch_real_human_hierarchy_review",
+  "next_gate": "awaiting_real_human_hierarchy_review_response",
+  "implemented": {
+    "review_launch_checklist_documented": true,
+    "machine_readable_launch_manifest": true,
+    "review_folder_readme_points_to_checklist": true,
+    "completed_review_present_in_this_slice": false,
+    "intake_present_in_this_slice": false,
+    "runtime_behavior_changed": false,
+    "compiled_spa_bundle_changed": false
+  },
+  "launch_path": {
+    "server": "observatory/serve_result.py",
+    "requires_existing_result_json": true,
+    "start_route_template": "http://localhost:8080/review/observatory-workspace?case_id=<case-id>",
+    "normal_product_journey": [
+      "Outcome",
+      "Learn",
+      "Models",
+      "Relations",
+      "Map",
+      "Receipts"
+    ]
+  },
+  "strongest_useful_signal": "The human reviewer now has an exact local launch checklist and route order for evaluating the existing Observatory workspace without creating a new run or expanding the UX.",
+  "strongest_unresolved_risk": "The real human hierarchy review response still has not been collected, so the current Observatory workspace remains unvalidated.",
+  "recommended_next_pr": "Collect the real Observatory workspace human hierarchy review response and capture the intake, or fix only a blocker discovered while attempting that review.",
+  "boundary": {
+    "adds_completed_review_or_intake": false,
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_run": false,
+    "generates_sidecars": false,
+    "wires_skill_runtime_behavior": false,
+    "mutates_archives": false,
+    "compiled_spa_bundle_changed": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "relation_confidence_is_certification": false
+  }
+}
