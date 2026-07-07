@@ -84,4 +84,5 @@ Current planning docs:
 - [Observatory Review Guide Hierarchy Prompts](observatory-review-guide-hierarchy-prompts-v0.md)
 - [Observatory Review Guide Browser Audit](observatory-review-guide-browser-audit-v0.md)
 - [Observatory Review Guide Browser Audit JSON](observatory-review-guide-browser-audit-v0.json)
+- [Observatory Model Detail Overload Reduction](observatory-model-detail-overload-reduction-v0.md)
 - [Mental Model Teacher Product Surface Reference Patterns](mental-model-teacher-product-surface-reference-patterns-v0.md)

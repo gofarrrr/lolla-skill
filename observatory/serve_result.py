@@ -1305,6 +1305,12 @@ _WORKSPACE_CSS = """
 .workspace-focus-label strong {
   color: var(--teal);
 }
+.workspace-support-note {
+  margin: 10px 0 0;
+  color: var(--text-dim);
+  font-size: 13px;
+  line-height: 1.5;
+}
 .workspace-next-actions {
   display: flex;
   flex-wrap: wrap;
@@ -4992,6 +4998,11 @@ def _render_workspace_model_first_read(model: dict) -> str:
             _workspace_model_learn_item("When it misleads", misleads),
             _workspace_model_learn_item("Practice this", practice),
             "</div>",
+            (
+                '<p class="workspace-support-note">'
+                "Detailed bullets are supporting material, not the main lesson."
+                "</p>"
+            ),
             "</section>",
         ]
     )
@@ -5355,21 +5366,17 @@ def _render_workspace_model_page(
             or ["No source-backed avoid-when bullets are available."],
         ),
     ]
-    if link_to_self:
-        model_detail_section = _workspace_disclosure(
-            "Use, avoid, and source-backed details",
-            '<div class="workspace-columns">',
-            *model_detail_lists,
-            "</div>",
-        )
-    else:
-        model_detail_section = "\n".join(
-            [
-                '<div class="workspace-columns">',
-                *model_detail_lists,
-                "</div>",
-            ]
-        )
+    model_detail_section = _workspace_disclosure(
+        "Use, avoid, and source-backed details",
+        (
+            "<p>Use these bullets when you need more examples or source-backed "
+            "detail. They support the first read; they are not the main lesson."
+            "</p>"
+        ),
+        '<div class="workspace-columns">',
+        *model_detail_lists,
+        "</div>",
+    )
     return "\n".join(
         [
             f'<article id="{_model_detail_anchor(model_id)}" class="workspace-card workspace-model-page">',
