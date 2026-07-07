@@ -82,4 +82,6 @@ Current planning docs:
 - [Observatory Workspace Diagnostic Audit JSON](observatory-workspace-diagnostic-audit-v0.json)
 - [Observatory Workspace Hierarchy Cues](observatory-workspace-hierarchy-cues-v0.md)
 - [Observatory Review Guide Hierarchy Prompts](observatory-review-guide-hierarchy-prompts-v0.md)
+- [Observatory Review Guide Browser Audit](observatory-review-guide-browser-audit-v0.md)
+- [Observatory Review Guide Browser Audit JSON](observatory-review-guide-browser-audit-v0.json)
 - [Mental Model Teacher Product Surface Reference Patterns](mental-model-teacher-product-surface-reference-patterns-v0.md)
