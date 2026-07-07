@@ -1,0 +1,95 @@
+{
+  "schema_version": "codex_assisted_review.v0",
+  "review_id": "observatory-run-data-visibility-matrix-v0",
+  "status": "ready_for_user_review",
+  "date": "2026-07-07",
+  "decision_gate": "await_user_review_of_run_data_visibility_matrix",
+  "implemented": {
+    "reviewable_visibility_matrix_doc": true,
+    "user_value_columns_added": true,
+    "data_flow_columns_added": true,
+    "user_action_columns_added": true,
+    "progressive_disclosure_principle_added": true,
+    "disclosure_guardrails_added": true,
+    "red_team_review_incorporated": true,
+    "discovery_map_added": true,
+    "missing_artifact_families_added": true,
+    "dual_canonical_layers_removed": true,
+    "run_inventory_receipt_next_slice_identified": true,
+    "runtime_behavior_changed": false,
+    "compiled_spa_bundle_changed": false
+  },
+  "matrix_columns": [
+    "Data we gather",
+    "How it comes in",
+    "What it helps us see",
+    "User value",
+    "How it should go out",
+    "What the user can do",
+    "Disclosure guardrail"
+  ],
+  "supporting_sections": [
+    "Show Everything, But In Layers",
+    "Review Vocabulary",
+    "Red-Team Decisions",
+    "What The User Should Understand First",
+    "Discovery Map",
+    "Run Data Visibility Matrix",
+    "What This Means For Observatory",
+    "Open Review Questions",
+    "Boundary",
+    "Recommended Next Gate"
+  ],
+  "visibility_layers": [
+    "show_by_default",
+    "primary_surface",
+    "expandable_detail",
+    "technical_inspection",
+    "agent_export",
+    "future_design",
+    "operator_inspection",
+    "explicit_private_export"
+  ],
+  "red_team_decisions": {
+    "accepted": [
+      "Every gathered artifact family needs a discoverable place, even when the body stays out of first-read UI.",
+      "The next UI slice should be a run inventory receipt rather than a bigger graph.",
+      "Conversation extraction needs a visible interpretation-status route from Outcome or Receipts.",
+      "Model pages should lead with readable meaning and expandable sections, not raw canonical Markdown dumps.",
+      "Local model neighborhoods should precede a full corpus graph.",
+      "Treatment audits, Gate 4 probes, schemas, non-V60 affordances, result/memo artifacts, run events, and graph survival artifacts must be accounted for."
+    ],
+    "deferred_or_rejected": [
+      "Do not collapse show_by_default into primary_surface yet; first-glance copy and main-tab copy have different product jobs.",
+      "Do not collapse operator_inspection into technical_inspection yet; user-reachable audit details and maintainer-only raw machinery need different gates.",
+      "Do not rename Download MD in this slice; the short label should be explained with hover/help text.",
+      "Do not render raw embeddings, private ledgers, or provider-private bodies just because they exist; expose status/counts/receipts and safe routes instead."
+    ]
+  },
+  "strongest_useful_signal": "The table reframes gathered run data as progressively inspectable: every gathered artifact should have a summary, expansion, technical route, explicit export, or redacted receipt, and the added Discovery Map says where the user finds each family.",
+  "strongest_unresolved_risk": "The matrix is still a design decision artifact. It now strongly recommends a run inventory receipt panel, but the UI has not yet implemented the receipt, the clean model-page expansion, or the local model-neighborhood treatment.",
+  "recommended_next_pr": "Add Observatory run inventory receipt panel",
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_run": false,
+    "generates_sidecars": false,
+    "wires_skill_runtime_behavior": false,
+    "mutates_archives": false,
+    "compiled_spa_bundle_changed": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false
+  }
+}
