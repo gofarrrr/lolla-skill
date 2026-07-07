@@ -1,0 +1,60 @@
+{
+  "schema_version": "codex_assisted_review.v0",
+  "review_id": "observatory-agent-memory-cold-reader-layer-design-v0",
+  "status": "complete",
+  "date": "2026-07-07",
+  "decision_gate": "proceed_to_agent_memory_orientation_renderer_spike",
+  "implemented": {
+    "design_only": true,
+    "cold_reader_layer_defined": true,
+    "summary_anchoring_risk_named": true,
+    "orientation_not_conclusion_rule": true,
+    "allowed_layer_behaviors_listed": true,
+    "prohibited_layer_behaviors_listed": true,
+    "anti_laziness_mechanisms_listed": true,
+    "future_renderer_behavior_changed": false,
+    "runtime_behavior_changed": false,
+    "compiled_spa_bundle_changed": false
+  },
+  "cold_read_experiment": {
+    "subagents_used": 3,
+    "context_free_read": true,
+    "artifact_understood_as_memory_export": true,
+    "main_decision_recovered": true,
+    "reasoning_shift_recovered": true,
+    "summary_anchoring_risk_identified": true
+  },
+  "design_constraints": {
+    "orientation_must_be_hypothesis_to_verify": true,
+    "transcript_remains_primary_source": true,
+    "raw_material_must_not_be_replaced": true,
+    "inferred_questions_must_be_labeled": true,
+    "selected_lenses_are_not_proof": true,
+    "suppressed_lenses_are_not_noise": true
+  },
+  "strongest_useful_signal": "Fresh agents can understand the exported Markdown without prior project context and recover the run's decision structure, source/custody posture, and non-claims.",
+  "strongest_unresolved_risk": "A polished top summary could anchor future agents and turn the export from run memory into a generated interpretation that is too easy to accept.",
+  "recommended_next_pr": "Add a tested anti-anchoring orientation layer to the conversation-memory Markdown renderer.",
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_run": false,
+    "wires_skill_runtime_behavior": false,
+    "mutates_archives": false,
+    "compiled_spa_bundle_changed": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false
+  }
+}
