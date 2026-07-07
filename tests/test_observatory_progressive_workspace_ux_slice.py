@@ -58,11 +58,12 @@ def test_workspace_uses_first_read_cards_before_support_details(monkeypatch) -> 
     html = serve_result._render_workspace_html("lolla-audit")
 
     assert html.count("data-first-read-card") >= 6
-    assert "Read outcome" in html
-    assert "Practice lesson" in html
+    assert "Launch in stages after the support risk is made explicit." in html
+    assert "Why this changed" in html
+    assert "What would change confidence" in html
     assert "Outcome support details" in html
     assert "Lesson steps and boundaries" in html
-    assert html.index("What happened in this run?") < html.index(
+    assert html.index("Launch in stages after the support risk") < html.index(
         "Outcome support details"
     )
     assert html.index("What reasoning move can I practice?") < html.index(

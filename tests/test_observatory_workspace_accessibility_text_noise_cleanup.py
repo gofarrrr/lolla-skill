@@ -78,12 +78,14 @@ def test_first_read_progression_stays_visible_without_showing_all_detail(monkeyp
 
     html = serve_result._render_workspace_html("lolla-audit")
 
-    start_index = html.index("Start with Outcome.")
+    start_index = html.index("Start with the run result.")
     outcome_index = html.index("<h2>Outcome</h2>")
+    contents_index = html.index("What This Run Contains")
     learn_hidden_index = html.index('id="learn"')
     receipts_hidden_index = html.index('id="receipts"')
 
-    assert start_index < outcome_index < learn_hidden_index < receipts_hidden_index
+    assert start_index < outcome_index < contents_index < learn_hidden_index
+    assert learn_hidden_index < receipts_hidden_index
     assert "What reasoning move can I practice?" in html
     assert 'id="learn" class="workspace-section" data-workspace-section="learn" hidden' in html
     assert "Technical audit index" in html

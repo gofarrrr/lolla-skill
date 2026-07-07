@@ -131,6 +131,96 @@ def build_observatory_product_view_response(
     return response
 
 
+def build_observatory_run_only_workspace_preview(
+    *,
+    selected_case_id: str,
+    result: Mapping[str, Any] | None = None,
+    result_path: Path | str | None = None,
+    teacher_learning_response: Mapping[str, Any] | None = None,
+    decision_work_status: Mapping[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Return the run-readable part of the workspace without faking Teacher data.
+
+    This object is intentionally not the full product workspace contract. It is
+    used by the portable server when the selected run has an Outcome/Receipts
+    surface but no matching Teacher learning packet for Learn, Models,
+    Relations, or Map.
+    """
+
+    selected_result = dict(result or {})
+    selected_path = Path(result_path) if result_path is not None else None
+    teacher_response = _teacher_response(
+        selected_case_id=selected_case_id,
+        result=selected_result,
+        result_path=selected_path,
+        supplied=teacher_learning_response,
+    )
+    decision_status = _decision_work_status(
+        selected_case_id=selected_case_id,
+        result=selected_result,
+        result_path=selected_path,
+        supplied=decision_work_status,
+    )
+    selected_run_id = _selected_run_id(selected_result, selected_path, teacher_response)
+    missing_fields = _dedupe(
+        [
+            "teacher_learning_packet",
+            "learn_surface",
+            "model_pages",
+            "relation_pages",
+            "graph_neighborhood",
+        ]
+    )
+    preview = {
+        "schema_version": WORKSPACE_SCHEMA_VERSION,
+        "rendering_direction": PORTABLE_RENDERING_DIRECTION,
+        "primary_surfaces": list(PRIMARY_SURFACES),
+        "advanced_surface": ADVANCED_SURFACE,
+        "selected_run_summary": _selected_run_summary(
+            selected_case_id=selected_case_id,
+            selected_run_id=selected_run_id,
+            result=selected_result,
+            result_path=selected_path,
+        ),
+        "outcome_summary": _outcome_summary(
+            selected_run_id=selected_run_id,
+            result=selected_result,
+            teacher_models=[],
+        ),
+        "outcome_value": _outcome_value(
+            selected_case_id=selected_case_id,
+            selected_run_id=selected_run_id,
+            result=selected_result,
+        ),
+        "learning_packet": _missing_learning_packet(selected_run_id),
+        "model_pages": [],
+        "relation_pages": [],
+        "graph_neighborhood": _missing_graph_neighborhood(selected_run_id),
+        "receipt_summary": _receipt_summary(
+            selected_run_id=selected_run_id,
+            teacher_response=teacher_response,
+            decision_work_status=decision_status,
+        ),
+        "advanced_audit_index": _advanced_audit_index(
+            selected_run_id=selected_run_id,
+            result=selected_result,
+            decision_work_status=decision_status,
+        ),
+        "source_refs": _dedupe_source_refs([_result_source_ref(selected_path)]),
+        "missingness": {
+            "status": "partial",
+            "missing_fields": missing_fields,
+            "notes": [
+                "Outcome and Receipts were adapted from the selected run.",
+                "Teacher lesson, model pages, relation pages, and graph were not faked because no matching Teacher packet was available.",
+            ],
+        },
+        "non_claims": sorted(WORKSPACE_NON_CLAIMS),
+    }
+    _assert_no_local_paths(preview)
+    return preview
+
+
 def _workspace(
     *,
     selected_case_id: str,
@@ -237,6 +327,77 @@ def _workspace(
         "non_claims": sorted(WORKSPACE_NON_CLAIMS),
     }
     return workspace
+
+
+def _missing_learning_packet(selected_run_id: str) -> dict[str, Any]:
+    return {
+        "schema_version": LEARNING_PACKET_SCHEMA_VERSION,
+        "run_id": selected_run_id,
+        "case_anchor": "Teacher lesson is unavailable for this selected run.",
+        "reasoning_trap": "No Teacher packet is attached to this selected run.",
+        "thinking_move": "No source-backed thinking move is available.",
+        "relation_story": "No source-backed relation story is available.",
+        "worked_example": "No source-backed worked example is available.",
+        "practice_rep": {
+            "prompt": "No practice prompt is available for this selected run.",
+            "user_action": "No practice action is available for this selected run.",
+        },
+        "do_not_overlearn": ["Do not infer a Teacher lesson from a missing packet."],
+        "model_links": [
+            {
+                "label": "No Teacher model links available",
+                "href": "#models",
+            }
+        ],
+        "relation_links": [],
+        "source_refs": [
+            _portable_source_ref(
+                "teacher-learning-packet",
+                "missing_source",
+                "selected_run/teacher-learning-packet.json",
+            )
+        ],
+        "human_review_status": "blocked_missing_inputs",
+        "product_proof": False,
+        "runtime_integration_authorized": False,
+        "missingness": {
+            "status": "missing",
+            "missing_fields": ["teacher_learning_packet"],
+            "notes": [
+                "No matching Teacher learning packet was available for this selected run."
+            ],
+        },
+        "non_claims": sorted(LEARNING_NON_CLAIMS),
+    }
+
+
+def _missing_graph_neighborhood(selected_run_id: str) -> dict[str, Any]:
+    return {
+        "schema_version": GRAPH_NEIGHBORHOOD_SCHEMA_VERSION,
+        "graph_id": f"{selected_run_id}-missing-graph",
+        "graph_scope": "selected_run_learning_neighborhood",
+        "nodes": [],
+        "edges": [],
+        "source_refs": [
+            _portable_source_ref(
+                "graph-neighborhood",
+                "missing_source",
+                "selected_run/teacher-learning-packet.json",
+            )
+        ],
+        "layout_hint": "missing",
+        "default_focus": "missing-focus",
+        "filters": {"relation_types": []},
+        "search_enabled": False,
+        "missingness": {
+            "status": "missing",
+            "missing_fields": ["graph_neighborhood", "teacher_learning_packet"],
+            "notes": [
+                "No selected-run graph is available without a matching Teacher packet."
+            ],
+        },
+        "non_claims": sorted(GRAPH_NON_CLAIMS),
+    }
 
 
 def _selected_run_summary(

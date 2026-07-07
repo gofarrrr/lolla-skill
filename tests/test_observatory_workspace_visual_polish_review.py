@@ -49,25 +49,23 @@ def test_workspace_first_view_uses_product_facing_learning_frame(monkeypatch) ->
     html = serve_result._render_workspace_html("lolla-audit")
 
     assert "<h1>Run Learning Workspace</h1>" in html
-    assert "Start from the selected run." in html
-    assert "Move through the outcome, one practice lesson" in html
-    assert "Start with Outcome." in html
-    assert "Read what changed first." in html
+    assert "Start with the run result." in html
+    assert "Launch in stages after the support risk is made explicit." in html
+    assert "Why this changed" in html
+    assert "What would change confidence" in html
     assert "Selected Run Workspace" not in html
     assert "Use this run as a short lesson." not in html
 
 
-def test_workspace_start_panel_hides_after_surface_switch(monkeypatch) -> None:
+def test_workspace_no_longer_uses_center_start_panel(monkeypatch) -> None:
     _install_launch_case(monkeypatch)
 
     html = serve_result._render_workspace_html("lolla-audit")
 
-    assert "data-workspace-start-panel" in html
+    assert "data-workspace-start-panel" not in html
     assert ".workspace-start-panel[hidden]" in html
-    assert 'const showStartPanel = surface === "outcome";' in html
-    assert 'panel.toggleAttribute("hidden", !showStartPanel)' in html
-    assert 'panel.removeAttribute("aria-hidden")' in html
-    assert 'panel.setAttribute("aria-hidden", "true")' in html
+    assert 'const showStartPanel = surface === "outcome";' not in html
+    assert 'panel.toggleAttribute("hidden", !showStartPanel)' not in html
     assert 'data-workspace-default-surface="outcome"' in html
 
 

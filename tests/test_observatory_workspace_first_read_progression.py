@@ -61,28 +61,24 @@ def test_workspace_sidebar_is_clickable_reading_path(monkeypatch) -> None:
         assert purpose in html
 
 
-def test_workspace_start_panel_carries_full_six_step_progression(monkeypatch) -> None:
+def test_workspace_center_starts_with_outcome_not_six_step_panel(monkeypatch) -> None:
     _install_launch_case(monkeypatch)
 
     html = serve_result._render_workspace_html("lolla-audit")
 
-    assert "Start from the selected run." in html
-    assert "Move through the outcome, one practice lesson" in html
-    assert "understand the relation, use the map for navigation" in html
-
-    for label in [
-        "Read outcome",
-        "Practice lesson",
-        "Inspect models",
-        "Read relation",
-        "Use map",
-        "Check receipts",
-    ]:
-        assert f"<strong>{label}</strong>" in html
-
-    assert html.count('class="workspace-step-card"') == 6
-    assert 'href="/workspace?case_id=lolla-audit#relations"' in html
-    assert 'href="/workspace?case_id=lolla-audit#map"' in html
+    assert "Start with the run result." in html
+    assert "Launch in stages after the support risk is made explicit." in html
+    assert "Why this changed" in html
+    assert "What would change confidence" in html
+    assert "Next useful moves" in html
+    assert "Start with Outcome." not in html
+    assert "Read outcome" not in html
+    assert "Practice lesson" not in html
+    assert html.index("Launch in stages after the support risk") < html.index(
+        "What This Run Contains"
+    )
+    assert 'href="/workspace?case_id=lolla-audit#learn"' in html
+    assert 'href="/workspace?case_id=lolla-audit#receipts"' in html
 
 
 def test_workspace_navigation_updates_reading_path_active_state(monkeypatch) -> None:

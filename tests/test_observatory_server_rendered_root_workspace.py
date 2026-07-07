@@ -67,10 +67,11 @@ def test_workspace_uses_observatory_visual_system_and_surface_order(monkeypatch)
     assert "--teal: #41FFA7" in html
     assert "JetBrains Mono" in html
     assert "Run Learning Workspace" in html
-    assert "Start from the selected run." in html
-    assert "Move through the outcome, one practice lesson" in html
-    assert "Read outcome" in html
-    assert "Practice lesson" in html
+    assert "Start with the run result." in html
+    assert "Why this changed" in html
+    assert "What would change confidence" in html
+    assert "Read outcome" not in html
+    assert "Practice lesson" not in html
     assert 'href="/workspace?case_id=lolla-audit#learn"' in html
     status_bar = html.split('data-observatory-status-bar>', 1)[1].split("</nav>", 1)[0]
     assert "Advanced Audit" not in status_bar

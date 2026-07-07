@@ -1276,6 +1276,17 @@ _WORKSPACE_CSS = """
   font-size: 14px;
   line-height: 1.55;
 }
+.workspace-outcome-points .workspace-list {
+  margin: 0;
+}
+.workspace-next-moves {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.workspace-next-move strong {
+  margin-top: 0;
+}
 .workspace-model-neighborhood {
   display: grid;
   gap: 12px;
@@ -1836,6 +1847,7 @@ _WORKSPACE_CSS = """
   .workspace-map-grid,
   .workspace-hero-grid,
   .workspace-model-learn-grid,
+  .workspace-next-moves,
   .workspace-neighborhood-list,
   .workspace-step-grid,
   .workspace-inventory-metrics,
@@ -2099,15 +2111,6 @@ _WORKSPACE_NAV_SCRIPT = """
     }
     for (const label of page.querySelectorAll("[data-workspace-active-label]")) {
       label.textContent = surfaceLabels[surface] || "Outcome";
-    }
-    for (const panel of page.querySelectorAll("[data-workspace-start-panel]")) {
-      const showStartPanel = surface === "outcome";
-      panel.toggleAttribute("hidden", !showStartPanel);
-      if (showStartPanel) {
-        panel.removeAttribute("aria-hidden");
-      } else {
-        panel.setAttribute("aria-hidden", "true");
-      }
     }
   };
 
@@ -4868,7 +4871,13 @@ def _render_workspace_html(case_id: str | None = None) -> str:
         )
 
     if not payload.get("available"):
-        body = _render_workspace_unavailable_page(payload, selected_case_id)
+        body = _render_workspace_unavailable_page(
+            payload,
+            selected_case_id,
+            result=result,
+            result_path=result_path,
+            is_current=is_current,
+        )
         return _render_workspace_scaffold(
             title="Lolla - Observatory Workspace",
             body=body,
@@ -5060,7 +5069,13 @@ def _workspace_payload_or_fallback(
             ),
         )
     if not payload.get("available"):
-        return None, _render_workspace_unavailable_page(payload, selected_case_id)
+        return None, _render_workspace_unavailable_page(
+            payload,
+            selected_case_id,
+            result=result,
+            result_path=result_path,
+            is_current=is_current,
+        )
     return payload, None
 
 
@@ -5184,8 +5199,39 @@ def _render_workspace_empty_page(
     )
 
 
-def _render_workspace_unavailable_page(payload: dict, selected_case_id: str) -> str:
+def _render_workspace_unavailable_page(
+    payload: dict,
+    selected_case_id: str,
+    *,
+    result: dict | None = None,
+    result_path: Path | None = None,
+    is_current: bool = True,
+) -> str:
     missingness = payload.get("missingness") or {}
+    if result is not None:
+        try:
+            from observatory.product_view_adapters import (
+                build_observatory_run_only_workspace_preview,
+            )
+
+            workspace = build_observatory_run_only_workspace_preview(
+                selected_case_id=selected_case_id,
+                result=result,
+                result_path=result_path,
+                decision_work_status=_build_decision_work_status_response(
+                    selected_case_id,
+                    result,
+                    result_path,
+                    is_current=is_current,
+                ),
+            )
+            return _render_workspace_run_only_payload(
+                workspace,
+                selected_case_id,
+                missingness,
+            )
+        except Exception:
+            pass
     return "\n".join(
         [
             '<div class="workspace-page">',
@@ -5211,6 +5257,113 @@ def _render_workspace_unavailable_page(payload: dict, selected_case_id: str) -> 
             "</main>",
             "</div>",
             "</div>",
+        ]
+    )
+
+
+def _render_workspace_run_only_payload(
+    workspace: dict,
+    selected_case_id: str,
+    adapter_missingness: dict,
+) -> str:
+    selected_run = workspace["selected_run_summary"]
+    outcome = workspace["outcome_summary"]
+    outcome_value = workspace.get("outcome_value") or {}
+    receipts = workspace["receipt_summary"]
+    advanced = workspace["advanced_audit_index"]
+
+    return "\n".join(
+        [
+            '<div class="workspace-page" data-workspace-default-surface="outcome">',
+            _render_workspace_status_bar(
+                workspace.get("missingness", {}).get("status"),
+                selected_case_id,
+            ),
+            '<div class="workspace-layout">',
+            _render_workspace_run_picker(selected_case_id),
+            '<main class="workspace-main">',
+            _render_workspace_hero(selected_run, workspace),
+            _render_workspace_outcome(
+                outcome,
+                outcome_value,
+                selected_case_id,
+                workspace,
+            ),
+            _render_workspace_missing_teacher_surfaces(
+                workspace,
+                adapter_missingness,
+            ),
+            _render_workspace_receipts(receipts, advanced, workspace, selected_case_id),
+            "</main>",
+            "</div>",
+            "</div>",
+        ]
+    )
+
+
+def _render_workspace_missing_teacher_surfaces(
+    workspace: dict,
+    adapter_missingness: dict,
+) -> str:
+    missingness = workspace.get("missingness") or adapter_missingness or {}
+    missing_note = (
+        "This run has a readable Outcome and Receipts, but no matching Teacher "
+        "learning packet. Observatory does not invent Learn, Models, Relations, "
+        "or Map content when the source artifact is absent."
+    )
+    surfaces = [
+        (
+            "learn",
+            "Learn",
+            "No Teacher lesson is attached.",
+            "A practice move needs a source-backed Teacher packet for this selected run.",
+        ),
+        (
+            "models",
+            "Models",
+            "No run-specific model pages are attached.",
+            "Model pages are shown only when the selected run has product-safe model objects.",
+        ),
+        (
+            "relations",
+            "Relations",
+            "No run-specific relation pages are attached.",
+            "Relation stories are shown only when relation objects exist; confidence is never proof.",
+        ),
+        (
+            "map",
+            "Map",
+            "No selected-run graph is attached.",
+            "The graph is navigation over reviewed objects, not a fallback generated from missing data.",
+        ),
+    ]
+    cards = []
+    for anchor, title, headline, body in surfaces:
+        cards.append(
+            "\n".join(
+                [
+                    _workspace_section_open(anchor),
+                    _render_teacher_section_header(title),
+                    '<article class="workspace-card workspace-first-read" data-first-read-card>',
+                    '<p class="workspace-kicker">Missing source artifact</p>',
+                    f"<h3>{_esc(headline)}</h3>",
+                    f"<p>{_esc(body)}</p>",
+                    "</article>",
+                    "</section>",
+                ]
+            )
+        )
+    return "\n".join(
+        [
+            '<section class="workspace-section" aria-label="Missing Teacher surfaces">',
+            _render_teacher_section_header("Unavailable Teaching Surfaces"),
+            '<article class="workspace-card">',
+            '<p class="workspace-kicker">What is not being shown</p>',
+            f"<p>{_esc(missing_note)}</p>",
+            _render_missingness(missingness),
+            "</article>",
+            "</section>",
+            *cards,
         ]
     )
 
@@ -5351,6 +5504,7 @@ def _render_workspace_payload(payload: dict, selected_case_id: str) -> str:
     workspace = payload["workspace"]
     selected_run = workspace["selected_run_summary"]
     outcome = workspace["outcome_summary"]
+    outcome_value = workspace.get("outcome_value") or {}
     lesson = workspace["learning_packet"]
     models = workspace["model_pages"]
     relations = workspace["relation_pages"]
@@ -5371,7 +5525,12 @@ def _render_workspace_payload(payload: dict, selected_case_id: str) -> str:
             _render_workspace_run_picker(selected_case_id),
             '<main class="workspace-main">',
             _render_workspace_hero(selected_run, workspace),
-            _render_workspace_outcome(outcome, selected_case_id),
+            _render_workspace_outcome(
+                outcome,
+                outcome_value,
+                selected_case_id,
+                workspace,
+            ),
             _render_workspace_learn(lesson, selected_case_id),
             _render_workspace_models(models, selected_case_id, model_role_context),
             _render_workspace_relations(relations, model_lookup, selected_case_id),
@@ -5469,19 +5628,13 @@ def _render_workspace_run_picker(selected_case_id: str) -> str:
 
 def _render_workspace_hero(selected_run: dict, workspace: dict) -> str:
     case_id = str(selected_run.get("case_id") or "")
-    quick_actions = _render_workspace_chips(
+    export_action = _render_workspace_chips(
         [
-            {"label": "Read outcome", "href": _observatory_workspace_href(case_id, "outcome")},
-            {"label": "Practice lesson", "href": _observatory_workspace_href(case_id, "learn")},
-            {"label": "Open model cards", "href": _observatory_workspace_href(case_id, "models")},
-            {"label": "Read relation", "href": _observatory_workspace_href(case_id, "relations")},
-            {"label": "Use map", "href": _observatory_workspace_href(case_id, "map")},
             _agent_memory_download_link(
                 case_id,
                 "agent-memory-download-hint-main",
                 toast_align="right",
-            ),
-            {"label": "Check receipts", "href": _observatory_workspace_href(case_id, "receipts")},
+            )
         ],
         selected_case_id=case_id,
     )
@@ -5490,25 +5643,17 @@ def _render_workspace_hero(selected_run: dict, workspace: dict) -> str:
             '<header class="workspace-hero" id="top">',
             '<p class="teacher-eyebrow">Observatory</p>',
             "<h1>Run Learning Workspace</h1>",
-            '<p class="lede">Start from the selected run. Move through the outcome, '
-            "one practice lesson, the mental models, their relationship, the small map, "
-            "and finally the receipts.</p>",
+            '<p class="lede">Start with the run result. Use Learn, Models, '
+            "Relations, Map, and Receipts only when they help explain or inspect "
+            "that result.</p>",
             '<div class="run-header">',
             f'<span>Case: <strong>{_esc(selected_run.get("case_id", ""))}</strong></span>',
             f'<span>Run: <code>{_esc(_short(selected_run.get("run_id", ""), 34))}</code></span>',
             f'<span>Health: <strong>{_esc(selected_run.get("health_label", ""))}</strong></span>',
             "</div>",
-            _render_workspace_start_panel(quick_actions, case_id, workspace),
+            export_action,
             '<p class="workspace-focus-label">Showing: '
             '<strong data-workspace-active-label>Outcome</strong></p>',
-            _workspace_disclosure(
-                "Workspace status",
-                '<div class="workspace-hero-grid">',
-                _workspace_stat("Rendering", workspace.get("rendering_direction", "")),
-                _workspace_stat("Primary surfaces", ", ".join(workspace.get("primary_surfaces") or [])),
-                _workspace_stat("Advanced surface", workspace.get("advanced_surface", "")),
-                "</div>",
-            ),
             "</header>",
         ]
     )
@@ -5705,7 +5850,7 @@ def _render_workspace_run_contents_card(workspace: dict, selected_case_id: str) 
                 _workspace_content_item(
                     "Advanced audit",
                     advanced_status,
-                    "Technical inspection for extraction, usage, events, traces, and internal checks.",
+                    "Advanced audit route for extraction, usage, events, traces, and internal checks.",
                     href="/audit",
                     action="Open Advanced Audit",
                     variant="inspection",
@@ -5724,9 +5869,10 @@ def _render_workspace_run_contents_card(workspace: dict, selected_case_id: str) 
             '<p class="workspace-kicker">Run contents</p>',
             "<h3>What This Run Contains</h3>",
             (
-                '<p class="lede">We captured enough to explain the result, teach '
-                "the reasoning move, show the mental models and relations, and "
-                "preserve the run for later agent review.</p>"
+                '<p class="lede">This separates what is available now from what '
+                "is missing, private export, or inspection-only. Outcome and "
+                "Receipts can come directly from the run; Learn, Models, "
+                "Relations, and Map appear only when source artifacts exist.</p>"
             ),
             '<div class="workspace-content-summary" aria-label="Run content summary">',
             *[
@@ -6151,12 +6297,27 @@ def _workspace_lesson_intro(lesson: dict) -> str:
     return move or relation or "This run has a learning packet, but the main reasoning move is incomplete."
 
 
-def _render_workspace_outcome(outcome: dict, selected_case_id: str) -> str:
+def _render_workspace_outcome(
+    outcome: dict,
+    outcome_value: dict,
+    selected_case_id: str,
+    workspace: dict,
+) -> str:
     model_chips = outcome.get("model_chips") or []
+    value_missingness = outcome_value.get("missingness") or {}
     missing_fields = set((outcome.get("missingness") or {}).get("missing_fields") or [])
+    missing_fields.update(value_missingness.get("missing_fields") or [])
     revised_answer_missing = "revised_answer" in missing_fields
-    headline = str(outcome.get("answer_headline") or "")
-    summary = str(outcome.get("revised_answer_summary") or "")
+    headline = str(
+        outcome_value.get("outcome_headline")
+        or outcome.get("answer_headline")
+        or ""
+    )
+    summary = str(
+        outcome_value.get("plain_language_answer")
+        or outcome.get("revised_answer_summary")
+        or ""
+    )
     if revised_answer_missing:
         headline = "Outcome artifact is unavailable for this run."
         summary = (
@@ -6165,32 +6326,139 @@ def _render_workspace_outcome(outcome: dict, selected_case_id: str) -> str:
             "Continue to Learn to review the teaching surface; Receipts shows "
             "what is present, missing, and not claimed."
         )
-    actions = _render_workspace_chips(
-        [
-            {"label": "Practice the lesson", "href": _observatory_workspace_href(selected_case_id, "learn")},
-            {"label": "Open model cards", "href": _observatory_workspace_href(selected_case_id, "models")},
-        ],
-        selected_case_id=selected_case_id,
+    what_changed = _workspace_string_points(outcome_value.get("what_changed"))
+    primary_reasons = _workspace_string_points(outcome_value.get("primary_reasons"))
+    confidence_boundary = _workspace_string_points(
+        outcome_value.get("confidence_boundary")
+    )
+    next_moves = _render_workspace_next_moves(
+        outcome_value.get("recommended_next_moves") or [],
+        selected_case_id,
     )
     return "\n".join(
         [
             _workspace_section_open("outcome"),
             _render_teacher_section_header("Outcome"),
-            _workspace_first_read(
-                "Outcome missing" if revised_answer_missing else "What happened in this run?",
+            _render_workspace_outcome_value_card(
+                "Outcome missing"
+                if revised_answer_missing
+                else _observatory_display_label(
+                    outcome_value.get("stance") or "run result",
+                    "Run result",
+                ),
                 headline,
                 summary,
-                actions=actions,
+                what_changed=what_changed,
+                primary_reasons=primary_reasons,
+                confidence_boundary=confidence_boundary,
+                next_moves=next_moves,
             ),
             _workspace_disclosure(
                 "Outcome support details",
                 f'<p><strong>Strongest pressure:</strong> {_esc(outcome.get("strongest_pressure", ""))}</p>',
                 _render_workspace_chips(model_chips, selected_case_id=selected_case_id),
                 _render_missingness(outcome.get("missingness") or {}),
+                _render_missingness(value_missingness),
             ),
+            _render_workspace_run_contents_card(workspace, selected_case_id),
             "</section>",
         ]
     )
+
+
+def _render_workspace_outcome_value_card(
+    kicker: str,
+    title: str,
+    answer: str,
+    *,
+    what_changed: list[str],
+    primary_reasons: list[str],
+    confidence_boundary: list[str],
+    next_moves: str,
+) -> str:
+    return "\n".join(
+        [
+            '<article class="workspace-card workspace-first-read workspace-outcome-value" data-first-read-card>',
+            f'<p class="workspace-kicker">{_esc(kicker)}</p>',
+            f"<h3>{_esc(title)}</h3>",
+            f'<p class="lede">{_esc(answer)}</p>',
+            '<div class="workspace-model-learn-grid workspace-outcome-grid">',
+            _workspace_outcome_point_group("Why this changed", what_changed),
+            _workspace_outcome_point_group("Main reasons", primary_reasons),
+            _workspace_outcome_point_group(
+                "What would change confidence",
+                confidence_boundary,
+            ),
+            "</div>",
+            next_moves,
+            "</article>",
+        ]
+    )
+
+
+def _workspace_outcome_point_group(label: str, values: list[str]) -> str:
+    if not values:
+        values = ["Not available in the current outcome artifact."]
+    return "\n".join(
+        [
+            '<div class="workspace-model-learn-item workspace-outcome-points">',
+            f"<strong>{_esc(label)}</strong>",
+            '<ul class="workspace-list">',
+            *[f"<li>{_esc(value)}</li>" for value in values],
+            "</ul>",
+            "</div>",
+        ]
+    )
+
+
+def _render_workspace_next_moves(
+    moves: list[dict],
+    selected_case_id: str,
+) -> str:
+    if not moves:
+        moves = [
+            {
+                "label": "Practice the reasoning move",
+                "href": "#learn",
+                "reason": "Use Learn to see the thinking move behind this outcome.",
+            },
+            {
+                "label": "Inspect receipts",
+                "href": "#receipts",
+                "reason": "Check source custody, missingness, and non-claims.",
+            },
+        ]
+    cards = []
+    for move in moves[:3]:
+        href = _observatory_product_link_href(
+            str(move.get("href") or ""),
+            selected_case_id,
+        )
+        if not href:
+            continue
+        download_attr = " download" if "conversation-memory.md" in href else ""
+        cards.append(
+            '<a class="workspace-step-card workspace-next-move" '
+            f'href="{_esc(href)}"{download_attr}>'
+            f'<strong>{_esc(str(move.get("label") or "Next move"))}</strong>'
+            f'<p>{_esc(str(move.get("reason") or ""))}</p>'
+            "</a>"
+        )
+    if not cards:
+        return ""
+    return "\n".join(
+        [
+            '<div class="workspace-next-moves" aria-label="Next useful moves">',
+            *cards,
+            "</div>",
+        ]
+    )
+
+
+def _workspace_string_points(value: object) -> list[str]:
+    if not isinstance(value, list):
+        return []
+    return [str(item).strip() for item in value if str(item).strip()]
 
 
 def _render_workspace_learn(lesson: dict, selected_case_id: str) -> str:
