@@ -248,6 +248,14 @@ def _observatory_product_link_href(href: str, selected_case_id: str) -> str:
     return str(href or "")
 
 
+def _observatory_model_id_from_href(href: object) -> str:
+    parsed = urlparse(str(href or ""))
+    path = parsed.path
+    if path.startswith("/models/"):
+        return unquote(path.removeprefix("/models/").strip("/"))
+    return ""
+
+
 def _observatory_nav_links(
     selected_case_id: str,
     active_surface: str,
@@ -4240,6 +4248,7 @@ def _render_workspace_model_detail_html(
         )
 
     display_name = str(model.get("display_name") or model_id)
+    role_context = _workspace_model_role_context(workspace).get(model_id, {})
     body = _render_workspace_detail_shell(
         selected_case_id,
         active_surface="models",
@@ -4256,6 +4265,7 @@ def _render_workspace_model_detail_html(
             model,
             selected_case_id=selected_case_id,
             link_to_self=False,
+            role_context=role_context,
         ),
     )
     return _render_workspace_scaffold(
@@ -4612,6 +4622,7 @@ def _render_workspace_payload(payload: dict, selected_case_id: str) -> str:
     receipts = workspace["receipt_summary"]
     advanced = workspace["advanced_audit_index"]
     model_lookup = {model["model_id"]: model for model in models}
+    model_role_context = _workspace_model_role_context(workspace)
 
     return "\n".join(
         [
@@ -4626,7 +4637,7 @@ def _render_workspace_payload(payload: dict, selected_case_id: str) -> str:
             _render_workspace_hero(selected_run, workspace),
             _render_workspace_outcome(outcome, selected_case_id),
             _render_workspace_learn(lesson, selected_case_id),
-            _render_workspace_models(models, selected_case_id),
+            _render_workspace_models(models, selected_case_id, model_role_context),
             _render_workspace_relations(relations, model_lookup, selected_case_id),
             _render_workspace_map(graph, model_lookup, relations, selected_case_id),
             _render_workspace_receipts(receipts, advanced, workspace, selected_case_id),
@@ -4959,6 +4970,134 @@ def _render_workspace_model_first_read(model: dict) -> str:
     )
 
 
+def _workspace_model_role_context(workspace: dict) -> dict[str, dict[str, str]]:
+    lesson = workspace.get("learning_packet") or {}
+    relations = list(workspace.get("relation_pages") or [])
+    ordered_model_ids: list[str] = []
+    for link in lesson.get("model_links") or []:
+        model_id = _observatory_model_id_from_href(link.get("href"))
+        if model_id and model_id not in ordered_model_ids:
+            ordered_model_ids.append(model_id)
+
+    roles: dict[str, dict[str, str]] = {}
+    for index, model_id in enumerate(ordered_model_ids):
+        if index == 0:
+            label = "Primary model"
+            body = (
+                "First model named by the selected-run lesson; use it as the "
+                "starting lens, not as proof."
+            )
+        else:
+            label = "Supporting model"
+            body = (
+                "Appears in the selected-run lesson as supporting knowledge; "
+                "open it when you need more context."
+            )
+        roles[model_id] = {
+            "label": label,
+            "body": body,
+            "source": (
+                "Role is inferred from the selected-run lesson order and "
+                "relation endpoints."
+            ),
+        }
+
+    if relations:
+        relation = relations[0]
+        relation_type = str(relation.get("relation_type") or "").strip().lower()
+        source_id = str(relation.get("source_model_id") or "").strip()
+        target_id = str(relation.get("target_model_id") or "").strip()
+        if source_id:
+            roles[source_id] = {
+                "label": "Primary model",
+                "body": (
+                    "Source side of the relation story; it names the pressure "
+                    "or starting lens in this lesson."
+                ),
+                "source": (
+                    "Role is inferred from the selected-run lesson order and "
+                    "relation endpoints."
+                ),
+            }
+        if target_id:
+            if relation_type == "antagonist":
+                label = "Contrast model"
+                body = (
+                    "Checks the primary model by asking what remains when that "
+                    "pressure stops counting as proof."
+                )
+            elif relation_type == "ally":
+                label = "Partner model"
+                body = (
+                    "Complements the primary model in the relation story; read "
+                    "the pair as a sequence or reinforcement."
+                )
+            elif relation_type in {"tension", "structured_tension"}:
+                label = "Tension model"
+                body = (
+                    "Pulls against the primary model so the lesson can calibrate "
+                    "between competing pressures."
+                )
+            else:
+                label = "Related model"
+                body = "Second model in the selected-run relation story."
+            roles[target_id] = {
+                "label": label,
+                "body": body,
+                "source": (
+                    "Role is inferred from the selected-run lesson order and "
+                    "relation endpoints."
+                ),
+            }
+    return roles
+
+
+def _render_workspace_model_role_cue(role_context: dict[str, str]) -> str:
+    if not role_context:
+        role_context = {
+            "label": "Model in this run",
+            "body": (
+                "Included in the selected-run learning packet; no more specific "
+                "role is available yet."
+            ),
+            "source": "Role is a navigation cue, not a proof or score.",
+        }
+    return "\n".join(
+        [
+            '<p class="workspace-kicker">Run role</p>',
+            '<div class="workspace-chip-row">',
+            f'<span class="workspace-chip workspace-chip--amber">{_esc(role_context.get("label", ""))}</span>',
+            '<span class="workspace-chip">navigation cue, not proof</span>',
+            '<span class="workspace-chip">inferred role cue</span>',
+            "</div>",
+            f'<p>{_esc(role_context.get("body", ""))}</p>',
+        ]
+    )
+
+
+def _render_workspace_model_mode_cue(role_context: dict[str, str]) -> str:
+    role = role_context or {
+        "label": "Model in this run",
+        "body": "No more specific selected-run role is available yet.",
+    }
+    return "\n".join(
+        [
+            '<section class="detail-section workspace-first-read" data-first-read-card>',
+            '<p class="workspace-kicker">How to read this page</p>',
+            "<h3>Library view first, run context second.</h3>",
+            "<p>Library view explains the model as reusable knowledge. "
+            f'Run context: {_esc(role.get("label", "Model in this run"))}. '
+            "That role helps you navigate this selected lesson; it is not a proof or score.</p>",
+            '<div class="workspace-chip-row">',
+            '<span class="workspace-chip workspace-chip--teal">Library view</span>',
+            f'<span class="workspace-chip workspace-chip--amber">Run context: {_esc(role.get("label", "Model in this run"))}</span>',
+            '<span class="workspace-chip">not proof</span>',
+            "</div>",
+            "</section>",
+        ]
+    )
+
+
 def _workspace_model_learn_item(label: str, body: str) -> str:
     return (
         '<div class="workspace-model-learn-item">'
@@ -4978,6 +5117,18 @@ def _workspace_lesson_intro(lesson: dict) -> str:
 
 def _render_workspace_outcome(outcome: dict, selected_case_id: str) -> str:
     model_chips = outcome.get("model_chips") or []
+    missing_fields = set((outcome.get("missingness") or {}).get("missing_fields") or [])
+    revised_answer_missing = "revised_answer" in missing_fields
+    headline = str(outcome.get("answer_headline") or "")
+    summary = str(outcome.get("revised_answer_summary") or "")
+    if revised_answer_missing:
+        headline = "Outcome artifact is unavailable for this run."
+        summary = (
+            "No revised answer artifact is available for this selected run, so "
+            "Outcome is a missingness state rather than a product judgment. "
+            "Continue to Learn to review the teaching surface; Receipts shows "
+            "what is present, missing, and not claimed."
+        )
     actions = _render_workspace_chips(
         [
             {"label": "Practice the lesson", "href": _observatory_workspace_href(selected_case_id, "learn")},
@@ -4990,9 +5141,9 @@ def _render_workspace_outcome(outcome: dict, selected_case_id: str) -> str:
             _workspace_section_open("outcome"),
             _render_teacher_section_header("Outcome"),
             _workspace_first_read(
-                "What happened in this run?",
-                outcome.get("answer_headline", ""),
-                outcome.get("revised_answer_summary", ""),
+                "Outcome missing" if revised_answer_missing else "What happened in this run?",
+                headline,
+                summary,
                 actions=actions,
             ),
             _workspace_disclosure(
@@ -5075,7 +5226,12 @@ def _workspace_flow_step(label: str, value: str) -> str:
     )
 
 
-def _render_workspace_models(models: list[dict], selected_case_id: str) -> str:
+def _render_workspace_models(
+    models: list[dict],
+    selected_case_id: str,
+    model_role_context: dict[str, dict[str, str]] | None = None,
+) -> str:
+    model_role_context = model_role_context or {}
     if not models:
         content = _empty_inline("No product-safe mental model pages are available.")
     else:
@@ -5083,6 +5239,7 @@ def _render_workspace_models(models: list[dict], selected_case_id: str) -> str:
             _render_workspace_model_index_card(
                 model,
                 selected_case_id=selected_case_id,
+                role_context=model_role_context.get(str(model.get("model_id", "")), {}),
             )
             for model in models
         )
@@ -5100,6 +5257,7 @@ def _render_workspace_model_index_card(
     model: dict,
     *,
     selected_case_id: str,
+    role_context: dict[str, str] | None = None,
 ) -> str:
     model_id = str(model.get("model_id", ""))
     meaning = _workspace_first_text(
@@ -5121,6 +5279,7 @@ def _render_workspace_model_index_card(
             f'<h3>{_esc(model.get("display_name") or model_id)}</h3>',
             '<p class="workspace-kicker">Model index</p>',
             f'<p class="lede">{_esc(meaning)}</p>',
+            _render_workspace_model_role_cue(role_context or {}),
             '<div class="workspace-model-learn-grid">',
             _workspace_model_learn_item("Use when", use_when),
             _workspace_model_learn_item("When it misleads", misleads),
@@ -5139,6 +5298,7 @@ def _render_workspace_model_page(
     *,
     selected_case_id: str | None = None,
     link_to_self: bool = True,
+    role_context: dict[str, str] | None = None,
 ) -> str:
     model_id = str(model.get("model_id", ""))
     support_chips = [
@@ -5188,6 +5348,7 @@ def _render_workspace_model_page(
             f'<article id="{_model_detail_anchor(model_id)}" class="workspace-card workspace-model-page">',
             '<p class="teacher-eyebrow">Mental Model</p>',
             f'<h3>{_esc(model.get("display_name") or model_id)}</h3>',
+            _render_workspace_model_mode_cue(role_context or {}),
             _render_workspace_model_first_read(model),
             model_detail_section,
             '<div class="workspace-next-actions">',
