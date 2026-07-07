@@ -262,6 +262,7 @@ def test_agent_memory_download_route_returns_self_explaining_markdown(
 
     for heading in [
         "# Conversation Memory",
+        "## Cold Reader Orientation",
         "## What This File Is",
         "## What This File Is Not",
         "## How This File Was Produced",
@@ -278,6 +279,9 @@ def test_agent_memory_download_route_returns_self_explaining_markdown(
         assert heading in markdown
 
     assert RAW_MARKER in markdown
+    assert "hypotheses to verify, not ground truth" in markdown
+    assert "Do not treat this orientation as the answer." in markdown
+    assert "- Generated synthesis:" not in markdown
     assert "full archived `conversation.txt` transcript" in markdown
     assert PRIVATE_MARKER not in markdown
     assert "not_advice_correctness" in markdown

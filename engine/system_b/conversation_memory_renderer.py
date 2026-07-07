@@ -16,6 +16,7 @@ def render_conversation_memory_markdown(packet: Mapping[str, Any]) -> str:
     sections = [
         _frontmatter(packet),
         "# Conversation Memory",
+        _cold_reader_orientation(packet),
         _what_this_file_is(packet),
         _what_this_file_is_not(packet),
         _how_to_use(packet),
@@ -84,6 +85,91 @@ def _frontmatter(packet: Mapping[str, Any]) -> str:
         ]
     )
     return "\n".join(lines)
+
+
+def _cold_reader_orientation(packet: Mapping[str, Any]) -> str:
+    case = _mapping(packet.get("case"))
+    interp = _mapping(packet.get("conversation_interpretation"))
+    health = _mapping(packet.get("run_health"))
+    artifacts = _mapping(packet.get("artifact_status"))
+    privacy = _mapping(packet.get("privacy"))
+
+    decision = (
+        _text(case.get("decision_situation"))
+        or _text(interp.get("decision_situation"))
+        or "No decision situation was supplied."
+    )
+
+    missing_count = _text(artifacts.get("missing_count")) or "0"
+    raw_included = str(bool(privacy.get("raw_conversation_included"))).lower()
+    future_ready = str(bool(health.get("future_review_ready"))).lower()
+
+    body = "\n".join(
+        [
+            "**Orientation, not conclusion.**",
+            "",
+            (
+                "This is a generated memory view over one completed reasoning-audit "
+                "run. It contains source material, generated run outputs, telemetry, "
+                "custody, missingness, and non-claims."
+            ),
+            "",
+            "**System Synthesis To Verify**",
+            "",
+            f"- Decision situation: {decision}",
+            (
+                "- Generated synthesis appears later in `Conversation Interpretation`, "
+                "`What Changed`, `Memo`, and `Revised Answer`."
+            ),
+            "",
+            (
+                "Treat those synthesis sections as hypotheses to verify, not ground "
+                "truth. Do not treat this orientation as the answer."
+            ),
+            "",
+            "**Read Before Relying**",
+            "",
+            "1. Inspect the full transcript when it is included.",
+            "2. Compare the memo and revised answer against the transcript.",
+            "3. Use artifact custody and source refs to check where claims came from.",
+            "4. Read selected and suppressed lenses as system behavior, not proof.",
+            "5. Check run readiness and missing artifacts before relying on the file.",
+            "",
+            "**Reliance Warnings**",
+            "",
+            f"- Raw conversation included: `{raw_included}`",
+            f"- Missing artifacts: `{missing_count}`",
+            f"- Evaluation overall: `{_text(health.get('evaluation_overall')) or 'unknown'}`",
+            f"- Caller readiness: `{_text(health.get('caller_readiness')) or 'unknown'}`",
+            f"- Trace adequacy: `{_text(health.get('trace_adequacy_status')) or 'unknown'}`",
+            f"- Future review ready: `{future_ready}`",
+            "",
+            (
+                "If structured open questions are empty, still inspect the transcript "
+                "for practical unresolved questions. Empty structured rows do not mean "
+                "the decision has no remaining uncertainty."
+            ),
+            "",
+            "**Key Checks Before Trusting Any Interpretation**",
+            "",
+            "- Does the transcript support the generated synthesis?",
+            "- Does the memo or revised answer sharpen, change, or overstate the transcript?",
+            "- Do readiness warnings or missing artifacts limit reliance?",
+            "- Are practical open questions still visible even without structured rows?",
+            "- Could current business facts have changed since the run?",
+        ]
+    )
+    return _section(
+        "Cold Reader Orientation",
+        evidence_label="synthesis_to_verify",
+        source_refs=[
+            "conversation_memory_packet.json",
+            "extraction.json",
+            "agent_result.json",
+            "evaluation.json",
+        ],
+        body=body,
+    )
 
 
 def _what_this_file_is(packet: Mapping[str, Any]) -> str:

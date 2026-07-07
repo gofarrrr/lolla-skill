@@ -1,0 +1,74 @@
+{
+  "schema_version": "codex_assisted_review.v0",
+  "review_id": "observatory-agent-memory-orientation-renderer-spike-v0",
+  "status": "complete",
+  "date": "2026-07-07",
+  "decision_gate": "proceed_to_agent_memory_verification_checklist_spike",
+  "implemented": {
+    "cold_reader_orientation_rendered": true,
+    "orientation_placed_before_what_this_file_is": true,
+    "top_generated_answer_bullet_removed": true,
+    "anti_anchoring_wording_tested": true,
+    "download_route_inherits_orientation": true,
+    "full_transcript_preserved": true,
+    "a_b_cold_read_experiment_run": true,
+    "future_renderer_behavior_changed": true,
+    "runtime_behavior_changed": false,
+    "compiled_spa_bundle_changed": false
+  },
+  "artifact_comparison": {
+    "baseline_lines": 698,
+    "baseline_bytes": 50957,
+    "oriented_v1_lines": 732,
+    "oriented_v1_bytes": 52854,
+    "oriented_v2_lines": 740,
+    "oriented_v2_bytes": 52914,
+    "top_generated_synthesis_bullet_present_in_v2": false,
+    "full_transcript_present_in_v2": true
+  },
+  "cold_read_experiment": {
+    "baseline_agents": 2,
+    "oriented_v1_agents": 2,
+    "oriented_v2_agents": 2,
+    "baseline_readers_used_transcript": true,
+    "oriented_v1_readers_flagged_top_synthesis_anchoring": true,
+    "oriented_v2_readers_checked_source_material": true,
+    "oriented_v2_readers_reported_source_inspection_push": true,
+    "oriented_v2_residual_confidence_halo_risk": true,
+    "v2_considered_better_than_v1": true,
+    "diagnostic_only_not_human_validation": true
+  },
+  "design_constraints": {
+    "orientation_not_conclusion": true,
+    "synthesis_is_hypothesis_to_verify": true,
+    "transcript_remains_primary_source": true,
+    "raw_material_not_replaced": true,
+    "selected_lenses_are_not_proof": true,
+    "suppressed_lenses_are_not_noise": true
+  },
+  "strongest_useful_signal": "Cold readers asked for verification scaffolding; the first orientation attempt revealed that a polished top synthesis was still too anchor-shaped; the revised v2 orientation pushed readers back toward source inspection.",
+  "strongest_unresolved_risk": "The export still needs claim-level source pointers or a verification checklist because the formal structure can create a residual confidence halo even when the top answer bullet is removed.",
+  "recommended_next_pr": "Add a compact claim-verification checklist to the conversation-memory Markdown export.",
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_run": false,
+    "wires_skill_runtime_behavior": false,
+    "mutates_archives": false,
+    "compiled_spa_bundle_changed": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false
+  }
+}

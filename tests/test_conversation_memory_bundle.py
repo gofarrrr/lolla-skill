@@ -313,6 +313,7 @@ def test_markdown_renderer_includes_required_context_blocks(tmp_path: Path) -> N
     markdown = render_conversation_memory_markdown(packet)
 
     for heading in (
+        "## Cold Reader Orientation",
         "## What This File Is",
         "## What This File Is Not",
         "## How This File Was Produced",
@@ -327,6 +328,31 @@ def test_markdown_renderer_includes_required_context_blocks(tmp_path: Path) -> N
     assert "runtime_source_of_truth: false" in markdown
     assert "selected_lenses_are_not_proof" in markdown
     assert "suppressed_lenses_are_not_noise" in markdown
+
+
+def test_cold_reader_orientation_is_anti_anchoring(tmp_path: Path) -> None:
+    packet = build_conversation_memory_packet(run_dir=_fixture_run_dir(tmp_path))
+    markdown = render_conversation_memory_markdown(packet)
+
+    assert markdown.index("## Cold Reader Orientation") < markdown.index(
+        "## What This File Is"
+    )
+    assert "Evidence label: `synthesis_to_verify`" in markdown
+    assert "Orientation, not conclusion." in markdown
+    assert "System Synthesis To Verify" in markdown
+    assert "Generated synthesis appears later" in markdown
+    assert "hypotheses to verify, not ground truth" in markdown
+    assert "Do not treat this orientation as the answer." in markdown
+    assert "Inspect the full transcript when it is included." in markdown
+    assert "memo and revised answer against the transcript" in markdown
+    assert "selected and suppressed lenses as system behavior, not proof" in markdown
+    assert "Empty structured rows do not mean the decision has no remaining uncertainty." in markdown
+    assert "Key Checks Before Trusting Any Interpretation" in markdown
+    assert "Does the transcript support the generated synthesis?" in markdown
+    assert "Could current business facts have changed since the run?" in markdown
+    assert "- Generated synthesis:" not in markdown
+    assert "The correct interpretation is" not in markdown
+    assert "The proven recommendation is" not in markdown
 
 
 def test_bundle_writes_outputs_outside_archive(tmp_path: Path) -> None:
