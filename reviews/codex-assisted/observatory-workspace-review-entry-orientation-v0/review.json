@@ -1,0 +1,61 @@
+{
+  "schema_version": "codex_assisted_review.v0",
+  "review_id": "observatory-workspace-review-entry-orientation-v0",
+  "status": "complete",
+  "date": "2026-07-07",
+  "decision_gate": "ready_for_human_review_with_visible_review_guide",
+  "browser_grounded": true,
+  "browser_scope": {
+    "surfaces_checked": [
+      "Workspace first screen",
+      "Receipts",
+      "Static review packet"
+    ],
+    "finding": "The review packet existed, but live Observatory did not visibly tell a human reviewer what to evaluate."
+  },
+  "implemented": {
+    "sidebar_review_guide_entry": true,
+    "receipts_human_review_entry": true,
+    "server_rendered_review_guide_route": true,
+    "human_form_prefilled": false,
+    "runtime_behavior_changed": false,
+    "compiled_spa_bundle_changed": false
+  },
+  "review_guide_route": "/review/observatory-workspace",
+  "human_form": {
+    "source": "docs/product/observatory-workspace-user-review-packet-v0/human-review-form.md",
+    "prefilled_positive": false,
+    "human_review_completed": false,
+    "human_validated": false,
+    "product_proof": false
+  },
+  "strongest_useful_signal": "The live Observatory workspace now gives a reviewer one visible question and a six-surface click path before asking for technical inspection.",
+  "strongest_unresolved_risk": "A real human still has not completed the review form, so this remains ready for review rather than validated.",
+  "recommended_next_gate": {
+    "gate": "ready_for_human_review_with_visible_review_guide",
+    "blocked_until": "real_human_reviewer_fills_observatory_workspace_review_form"
+  },
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_run": false,
+    "generates_sidecars": false,
+    "wires_skill_runtime_behavior": false,
+    "mutates_archives": false,
+    "compiled_spa_bundle_changed": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "relation_confidence_is_certification": false
+  }
+}
