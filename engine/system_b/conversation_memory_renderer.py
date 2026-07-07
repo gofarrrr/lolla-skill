@@ -180,6 +180,7 @@ def _claim_verification_checklist(packet: Mapping[str, Any]) -> str:
     summary = _mapping(packet.get("decision_summary"))
     questions = _mapping(packet.get("open_questions"))
     health = _mapping(packet.get("run_health"))
+    available_anchors = _available_locator_anchors(packet)
 
     rows: list[list[str]] = []
 
@@ -191,6 +192,12 @@ def _claim_verification_checklist(packet: Mapping[str, Any]) -> str:
             [
                 f"Decision situation: {decision}",
                 "conversation.txt, extraction.json, reasoning_trace.json",
+                _source_locator(
+                    available_anchors,
+                    ("Transcript", "cm-source-full-transcript"),
+                    ("Conversation Interpretation", "cm-section-conversation-interpretation"),
+                    ("Decision Situation", "cm-section-decision-situation"),
+                ),
                 "Confirm the transcript supports this framing and that current facts have not changed.",
             ]
         )
@@ -201,6 +208,13 @@ def _claim_verification_checklist(packet: Mapping[str, Any]) -> str:
             [
                 f"Generated synthesized position: {synthesized}",
                 "extraction.json, result.json, Conversation Interpretation",
+                _source_locator(
+                    available_anchors,
+                    ("Conversation Interpretation", "cm-section-conversation-interpretation"),
+                    ("Transcript", "cm-source-full-transcript"),
+                    ("Memo", "cm-source-memo"),
+                    ("Revised Answer", "cm-source-revised-answer"),
+                ),
                 "Compare against the full transcript, memo, and revised answer before relying.",
             ]
         )
@@ -211,6 +225,12 @@ def _claim_verification_checklist(packet: Mapping[str, Any]) -> str:
             [
                 f"Changed advice summary: {changed[0]}",
                 "agent_result.json, result.json, What Changed",
+                _source_locator(
+                    available_anchors,
+                    ("What Changed", "cm-section-what-changed"),
+                    ("Transcript", "cm-source-full-transcript"),
+                    ("Revised Answer", "cm-source-revised-answer"),
+                ),
                 "Check whether this is a generated revision, not user acceptance or proof.",
             ]
         )
@@ -221,6 +241,11 @@ def _claim_verification_checklist(packet: Mapping[str, Any]) -> str:
             [
                 f"Main counter-pressure: {counter}",
                 "agent_result.json, What Changed",
+                _source_locator(
+                    available_anchors,
+                    ("What Changed", "cm-section-what-changed"),
+                    ("Transcript", "cm-source-full-transcript"),
+                ),
                 "Inspect the transcript for the pressure source and any omitted counter-pressure.",
             ]
         )
@@ -231,6 +256,12 @@ def _claim_verification_checklist(packet: Mapping[str, Any]) -> str:
             [
                 f"Revised answer exists: {_short(revised, 140)}",
                 "revised.txt, result.json, Appendix: Revised Answer",
+                _source_locator(
+                    available_anchors,
+                    ("Revised Answer", "cm-source-revised-answer"),
+                    ("Memo", "cm-source-memo"),
+                    ("Transcript", "cm-source-full-transcript"),
+                ),
                 "Treat as generated synthesis; verify against source conversation and current context.",
             ]
         )
@@ -241,6 +272,12 @@ def _claim_verification_checklist(packet: Mapping[str, Any]) -> str:
             [
                 f"Open question: {_text(open_items[0].get('question'))}",
                 "agent_result.json, result.json, Open Questions",
+                _source_locator(
+                    available_anchors,
+                    ("Open Questions", "cm-section-open-questions"),
+                    ("What To Revisit", "cm-section-what-to-revisit"),
+                    ("Transcript", "cm-source-full-transcript"),
+                ),
                 "Resolve before action; do not treat the exported answer as complete.",
             ]
         )
@@ -249,6 +286,12 @@ def _claim_verification_checklist(packet: Mapping[str, Any]) -> str:
             [
                 "No structured open-question rows were supplied.",
                 "agent_result.json, result.json, Open Questions",
+                _source_locator(
+                    available_anchors,
+                    ("Open Questions", "cm-section-open-questions"),
+                    ("What To Revisit", "cm-section-what-to-revisit"),
+                    ("Transcript", "cm-source-full-transcript"),
+                ),
                 "Still inspect the transcript for practical uncertainty; empty rows are not closure.",
             ]
         )
@@ -262,6 +305,11 @@ def _claim_verification_checklist(packet: Mapping[str, Any]) -> str:
                 f"future_review_ready={str(bool(health.get('future_review_ready'))).lower()}"
             ),
             "evaluation.json, reasoning_trace.json, Run Health And Readiness",
+            _source_locator(
+                available_anchors,
+                ("Run Health And Readiness", "cm-section-run-health-and-readiness"),
+                ("Artifact Custody", "cm-section-artifact-custody"),
+            ),
             "Use warnings and missing artifacts to limit reliance; do not infer advice correctness.",
         ]
     )
@@ -277,6 +325,7 @@ def _claim_verification_checklist(packet: Mapping[str, Any]) -> str:
                 [
                     "Claim / item to verify",
                     "Best evidence in this file",
+                    "Source locator",
                     "Still verify before relying",
                 ],
                 rows[:8],
@@ -726,6 +775,8 @@ def _appendix_source_excerpts(packet: Mapping[str, Any]) -> str:
     if conversation_text:
         parts.extend(
             [
+                '<a id="cm-source-full-transcript"></a>',
+                "",
                 "### Full 1:1 Conversation Transcript",
                 "_Evidence label: private. Source refs: conversation.txt._",
                 "",
@@ -740,6 +791,8 @@ def _appendix_source_excerpts(packet: Mapping[str, Any]) -> str:
     if memo:
         parts.extend(
             [
+                '<a id="cm-source-memo"></a>',
+                "",
                 "### Memo",
                 "_Evidence label: source. Source refs: memo.md._",
                 "",
@@ -750,6 +803,8 @@ def _appendix_source_excerpts(packet: Mapping[str, Any]) -> str:
     if revised:
         parts.extend(
             [
+                '<a id="cm-source-revised-answer"></a>',
+                "",
                 "### Revised Answer",
                 "_Evidence label: source. Source refs: revised.txt or result.json._",
                 "",
@@ -770,7 +825,8 @@ def _section(
 ) -> str:
     source = ", ".join(f"`{item}`" for item in source_refs if item) or "none supplied"
     header = f"## {title}\n\n_Evidence label: `{evidence_label}`. Source refs: {source}._"
-    return f"{header}\n\n{body.strip() if body.strip() else 'No data supplied.'}"
+    anchor = f'<a id="{_section_anchor(title)}"></a>'
+    return f"{anchor}\n\n{header}\n\n{body.strip() if body.strip() else 'No data supplied.'}"
 
 
 def _lens_table(items: Sequence[Mapping[str, Any]]) -> str:
@@ -825,6 +881,63 @@ def _md_cell(value: Any) -> str:
     text = text.replace("|", "\\|")
     text = re.sub(r"\s+", " ", text).strip()
     return text
+
+
+def _source_locator(available_anchors: set[str], *items: tuple[str, str]) -> str:
+    links = []
+    for label, anchor in items:
+        if label and anchor and anchor in available_anchors:
+            links.append(f"[{label}](#{anchor})")
+        elif label:
+            links.append(f"{label} (artifact not embedded)")
+    return "; ".join(links) or "No locator supplied."
+
+
+def _available_locator_anchors(packet: Mapping[str, Any]) -> set[str]:
+    anchors = {
+        _section_anchor(title)
+        for title in (
+            "Cold Reader Orientation",
+            "Claim Verification Checklist",
+            "What This File Is",
+            "What This File Is Not",
+            "How To Use This File",
+            "How This File Was Produced",
+            "Source Artifact Map",
+            "Interpretation Legend",
+            "Run Summary",
+            "Privacy And Non-Claims",
+            "Conversation Interpretation",
+            "Decision Situation",
+            "What Changed",
+            "What Still Holds",
+            "What To Revisit",
+            "Lenses Applied",
+            "Deterministic Selection Trace",
+            "Selected Models",
+            "Suppressed Or Unadjudicated Signals",
+            "Future Useful Lenses",
+            "Open Questions",
+            "Artifact Custody",
+            "Run Health And Readiness",
+            "Agent Instructions For Future Use",
+            "Update Rules",
+        )
+    }
+    source = _mapping(packet.get("source_conversation"))
+    summary = _mapping(packet.get("decision_summary"))
+    if _text(source.get("text")):
+        anchors.add("cm-source-full-transcript")
+    if _text(summary.get("memo_markdown")):
+        anchors.add("cm-source-memo")
+    if _text(summary.get("revised_answer")):
+        anchors.add("cm-source-revised-answer")
+    return anchors
+
+
+def _section_anchor(title: str) -> str:
+    slug = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")
+    return f"cm-section-{slug or 'section'}"
 
 
 def _yaml_string(value: Any) -> str:

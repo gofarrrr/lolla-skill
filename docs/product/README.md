@@ -85,6 +85,7 @@ Current planning docs:
 - [Observatory Agent Memory Cold Reader Layer Design](observatory-agent-memory-cold-reader-layer-design-v0.md)
 - [Observatory Agent Memory Orientation Renderer Spike](observatory-agent-memory-orientation-renderer-spike-v0.md)
 - [Observatory Agent Memory Verification Checklist](observatory-agent-memory-verification-checklist-v0.md)
+- [Observatory Agent Memory Source Locator](observatory-agent-memory-source-locator-v0.md)
 - [Observatory Workspace Diagnostic Audit](observatory-workspace-diagnostic-audit-v0.md)
 - [Observatory Workspace Diagnostic Audit JSON](observatory-workspace-diagnostic-audit-v0.json)
 - [Observatory Workspace Hierarchy Cues](observatory-workspace-hierarchy-cues-v0.md)
