@@ -1,0 +1,64 @@
+{
+  "review_id": "observatory-model-local-neighborhoods-v0",
+  "status": "ready_for_user_review",
+  "decision_gate": "proceed_to_relation_page_library_fallback_or_graph_neighborhood_refinement",
+  "implemented": {
+    "reviewed_neighbors_section": true,
+    "relation_semantics_primary_source": true,
+    "relationship_graph_accounting_count": true,
+    "relationship_graph_affinity_hidden": true,
+    "library_fallback_model_page": true,
+    "model_index_overloaded": false,
+    "raw_json_rendered": false,
+    "local_filesystem_paths_rendered": false,
+    "runtime_behavior_changed": false,
+    "compiled_spa_bundle_changed": false
+  },
+  "shown_data": [
+    "neighbor model display name",
+    "relation type label",
+    "plain-language relation rationale",
+    "confidence as curation status",
+    "extraction type as source context",
+    "optional source quote behind disclosure",
+    "neighbor model page link",
+    "local source artifact names",
+    "local non-claims"
+  ],
+  "withheld_or_deferred_data": [
+    "raw relationship graph affinity",
+    "raw relationship graph ranking",
+    "embedding neighbors",
+    "full corpus graph",
+    "unsupported relation speculation",
+    "raw canonical Markdown as UI",
+    "raw JSON blobs",
+    "graph survival or evaluation internals"
+  ],
+  "strongest_useful_signal": "A user can now open a mental model and see a reviewed local library neighborhood instead of an artificially thin selected-run-only model world.",
+  "strongest_unresolved_risk": "The broader relation library is still readable navigation, not the final graph. Relation detail pages do not yet have a library fallback for relations outside the selected run.",
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_run": false,
+    "generates_sidecars": false,
+    "wires_skill_runtime_behavior": false,
+    "mutates_archives": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false,
+    "touches_compiled_spa_bundle": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false
+  },
+  "recommended_next_pr": "Add relation-page library fallback or refine local model neighborhoods into a graph-ready data/view layer"
+}
