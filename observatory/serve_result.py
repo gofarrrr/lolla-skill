@@ -5773,12 +5773,18 @@ def _render_workspace_receipts(
                 selected_case_id=selected_case_id,
                 kind="support",
             ),
-            '<p class="workspace-kicker">Technical inspection</p>',
-            "<p>Open these only when you need evidence, extraction detail, or usage telemetry.</p>",
-            _render_workspace_chips(
-                advanced_links,
-                selected_case_id=selected_case_id,
-                kind="support",
+            _workspace_disclosure(
+                "Technical inspection (optional)",
+                (
+                    "<p>Open these only when you are auditing evidence, "
+                    "extraction detail, or usage telemetry. This is inspection, "
+                    "not the learning path.</p>"
+                ),
+                _render_workspace_chips(
+                    advanced_links,
+                    selected_case_id=selected_case_id,
+                    kind="support",
+                ),
             ),
             "</article>",
             _workspace_disclosure(
