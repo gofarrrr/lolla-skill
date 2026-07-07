@@ -3,11 +3,11 @@
   "review_id": "observatory-receipts-technical-inspection-disclosure-v0",
   "status": "complete",
   "date": "2026-07-07",
-  "decision_gate": "ready_for_human_hierarchy_review_after_receipts_reduction",
+  "decision_gate": "proceed_to_observatory_data_exposure_audit",
   "implemented": {
     "receipts_trust_summary_remains_visible": true,
     "receipts_non_claims_remain_visible": true,
-    "receipts_human_review_entry_remains_visible": true,
+    "receipts_human_review_entry_visible": false,
     "technical_inspection_links_collapsed": true,
     "technical_inspection_optional_copy": true,
     "runtime_behavior_changed": false,
@@ -20,9 +20,9 @@
     "Usage",
     "Advanced audit"
   ],
-  "strongest_useful_signal": "Receipts now keeps custody, missingness, non-claims, and human review visible while making technical audit links an explicit optional disclosure.",
-  "strongest_unresolved_risk": "Human review is still needed to confirm whether a cold learner experiences Receipts as custody and optional inspection rather than a competing product surface.",
-  "recommended_next_pr": "Collect the first human hierarchy review with specific Receipts and model-detail questions.",
+  "strongest_useful_signal": "Receipts now keeps custody, missingness, and non-claims visible while making technical audit links an explicit optional disclosure.",
+  "strongest_unresolved_risk": "The next audit still needs to decide which gathered Observatory and Teacher data belongs in the default user path, expandable detail, technical inspection, or agent-only memory.",
+  "recommended_next_pr": "Audit gathered Observatory and Teacher data against the intended user information hierarchy.",
   "boundary": {
     "runs_lolla": false,
     "invokes_lolla_skill": false,

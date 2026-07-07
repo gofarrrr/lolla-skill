@@ -78,6 +78,7 @@ Current planning docs:
 - [Observatory Workspace Map Label Readability](observatory-workspace-map-label-readability-v0.md)
 - [Observatory Workspace First-Read Progression](observatory-workspace-first-read-progression-v0.md)
 - [Observatory Workspace Review Entry Orientation](observatory-workspace-review-entry-orientation-v0.md)
+- [Observatory Workspace User Surface Review Removal](observatory-workspace-user-surface-review-removal-v0.md)
 - [Observatory Workspace Diagnostic Audit](observatory-workspace-diagnostic-audit-v0.md)
 - [Observatory Workspace Diagnostic Audit JSON](observatory-workspace-diagnostic-audit-v0.json)
 - [Observatory Workspace Hierarchy Cues](observatory-workspace-hierarchy-cues-v0.md)

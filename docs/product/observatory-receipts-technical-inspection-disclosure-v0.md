@@ -4,7 +4,7 @@ Status: implemented UX reduction slice.
 
 Date: 2026-07-07
 
-Decision gate: `ready_for_human_hierarchy_review_after_receipts_reduction`
+Decision gate: `proceed_to_observatory_data_exposure_audit`
 
 ## Purpose
 
@@ -17,12 +17,15 @@ remain present, but they now sit behind a closed optional disclosure.
 
 ## UX Change
 
-Receipts still starts with:
+Receipts now starts with:
 
 - trust summary;
 - status chips;
-- visible non-claims;
-- human review entry.
+- visible non-claims.
+
+The user-facing Receipts surface does not ask the user to review the product
+or open a Review Guide. That review process is internal process machinery, not
+part of the product journey.
 
 The technical links are now inside:
 
@@ -44,10 +47,9 @@ The disclosure keeps these links available:
 
 ## What This Improves
 
-The first read of Receipts now emphasizes what exists, what is missing, what is
-not claimed, and where to review the product journey. A user can still inspect
-technical evidence, but they have to make an explicit choice to open the
-optional technical section.
+The first read of Receipts now emphasizes what exists, what is missing, and
+what is not claimed. A user can still inspect technical evidence, but they have
+to make an explicit choice to open the optional technical section.
 
 ## What It Does Not Solve
 
@@ -55,13 +57,15 @@ This does not remove the technical audit routes. Those routes remain useful for
 builders and reviewers.
 
 This also does not prove that a human learner understands the hierarchy. It only
-makes the hierarchy easier to evaluate in the next human review.
+keeps Receipts from mixing product trust information with internal review
+process.
 
 Remaining risks:
 
 - a user can still enter audit routes directly;
 - advanced audit pages are still dense once opened;
-- human hierarchy review is still pending.
+- the data exposure audit still needs to decide what gathered data should be
+  shown, summarized, expanded, hidden, or kept agent-only.
 
 ## Boundary
 
@@ -88,9 +92,9 @@ This slice:
 
 ## Validation Target
 
-The next human hierarchy review should specifically check whether Receipts now
-read as custody and optional inspection rather than a competing product surface.
+The next audit should categorize the gathered Observatory and Teacher data by
+user value, default visibility, expansion state, and internal-only custody.
 
 Recommended next gate:
 
-`ready_for_human_hierarchy_review_after_receipts_reduction`
+`proceed_to_observatory_data_exposure_audit`
