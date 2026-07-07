@@ -19,6 +19,14 @@ REVIEW = (
 README = REPO_ROOT / "docs/product/README.md"
 
 SURFACES = ["Outcome", "Learn", "Models", "Relations", "Map", "Receipts"]
+FOCUSED_CHECKS = [
+    "first_screen_orientation",
+    "learn_reasoning_move_not_answer_correctness",
+    "model_detail_progressive_disclosure",
+    "relation_story_before_taxonomy",
+    "map_navigation_not_proof",
+    "receipts_optional_inspection",
+]
 
 
 def _load_json(path: Path) -> dict:
@@ -54,6 +62,7 @@ def test_manifest_records_surfaces_ladder_and_closed_boundaries() -> None:
         "drill_down_page",
         "receipts_or_audit",
     ]
+    assert manifest["focused_hierarchy_checks"] == FOCUSED_CHECKS
     assert manifest["human_review_prefilled"] is False
     assert manifest["human_review_completed"] is False
     assert manifest["human_validated"] is False
@@ -77,6 +86,13 @@ def test_packet_asks_reviewers_to_judge_one_observatory_flow() -> None:
     assert "one product or several artifacts pasted together" in normalized
     assert "feel like a duplicate Teacher product outside Observatory" in index
     assert "A useful negative or partial review is a successful review outcome" in normalized
+    assert "Focused Hierarchy Scorecard" in index
+    assert "First screen: can you say what Observatory is asking you to do?" in index
+    assert "Learn: can you tell the reasoning move from answer correctness?" in index
+    assert "Model detail: does the first read stay readable before source-derived detail?" in index
+    assert "Relation detail: does the plain-language story come before labels and confidence?" in index
+    assert "Map: does navigation stay separate from graph-edge proof?" in index
+    assert "Receipts: do custody and non-claims lead, with technical inspection optional?" in index
 
     for surface in SURFACES:
         assert f"### {surface}" in index
@@ -113,10 +129,17 @@ def test_human_review_markdown_form_is_blank_with_no_checked_defaults() -> None:
 
     for surface in SURFACES:
         assert f"### {surface}" in form
-    assert form.count("- [ ] strong") == 8
-    assert form.count("- [ ] adequate") == 8
-    assert form.count("- [ ] weak") == 8
-    assert form.count("- [ ] cannot judge") >= 9
+    assert "## Focused Hierarchy Scorecard" in form
+    assert "### First Screen Orientation" in form
+    assert "### Learn Reasoning Move" in form
+    assert "### Model Detail Progressive Disclosure" in form
+    assert "### Relation Story Before Taxonomy" in form
+    assert "### Map Navigation Not Proof" in form
+    assert "### Receipts Optional Inspection" in form
+    assert form.count("- [ ] strong") == 14
+    assert form.count("- [ ] adequate") == 14
+    assert form.count("- [ ] weak") == 14
+    assert form.count("- [ ] cannot judge") >= 15
 
 
 def test_human_review_json_form_preserves_blank_human_state() -> None:
@@ -134,11 +157,15 @@ def test_human_review_json_form_preserves_blank_human_state() -> None:
     assert form["progression_review"]["selected"] is None
     assert form["progression_review"]["progression"] == SURFACES
     assert set(form["surface_reviews"].keys()) == set(SURFACES)
+    assert list(form["focused_hierarchy_checks"].keys()) == FOCUSED_CHECKS
 
     for review in form["surface_reviews"].values():
         assert review["selected"] is None
         assert review["what_worked"] == ""
         assert review["what_should_change"] == ""
+    for review in form["focused_hierarchy_checks"].values():
+        assert review["selected"] is None
+        assert review["evidence"] == ""
 
     assert form["information_hierarchy"]["selected"] is None
     assert form["non_claims_review"]["selected"] is None

@@ -192,6 +192,105 @@ What should change?
 
 ```
 
+## Focused Hierarchy Scorecard
+
+Use this after clicking through the workspace once. The goal is to check whether
+the product starts from general meaning and lets details expand only when useful.
+
+### First Screen Orientation
+
+Can you say what Observatory is asking you to do before opening technical
+details?
+
+- [ ] strong
+- [ ] adequate
+- [ ] weak
+- [ ] cannot judge
+
+Evidence:
+
+```text
+
+```
+
+### Learn Reasoning Move
+
+Can you tell the reasoning move apart from answer correctness or advice
+correctness?
+
+- [ ] strong
+- [ ] adequate
+- [ ] weak
+- [ ] cannot judge
+
+Evidence:
+
+```text
+
+```
+
+### Model Detail Progressive Disclosure
+
+Does the model page stay readable before source-derived detail is expanded?
+
+- [ ] strong
+- [ ] adequate
+- [ ] weak
+- [ ] cannot judge
+
+Evidence:
+
+```text
+
+```
+
+### Relation Story Before Taxonomy
+
+Does the relation page explain the model-pair story before labels, confidence,
+or technical taxonomy?
+
+- [ ] strong
+- [ ] adequate
+- [ ] weak
+- [ ] cannot judge
+
+Evidence:
+
+```text
+
+```
+
+### Map Navigation Not Proof
+
+Does the map feel like navigation rather than evidence that the relation is
+proved?
+
+- [ ] strong
+- [ ] adequate
+- [ ] weak
+- [ ] cannot judge
+
+Evidence:
+
+```text
+
+```
+
+### Receipts Optional Inspection
+
+Do custody and non-claims lead, with technical inspection clearly optional?
+
+- [ ] strong
+- [ ] adequate
+- [ ] weak
+- [ ] cannot judge
+
+Evidence:
+
+```text
+
+```
+
 ## Information Hierarchy
 
 Did the workspace keep this ladder clear?

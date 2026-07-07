@@ -4598,6 +4598,22 @@ def _render_workspace_review_guide_html(selected_case_id: str | None = None) -> 
             ),
             "</article>",
             '<article class="workspace-card">',
+            '<p class="workspace-kicker">Focused hierarchy scorecard</p>',
+            "<h3>Check the six places where the product can collapse into artifacts.</h3>",
+            "<p>Use this only after you have clicked through once. Each check asks whether the page keeps general meaning first and technical detail second.</p>",
+            _render_workspace_list(
+                "",
+                [
+                    "First screen: can you say what Observatory is asking you to do?",
+                    "Learn: can you tell the reasoning move from answer correctness?",
+                    "Model detail: does the first read stay readable before source-derived detail?",
+                    "Relation detail: does the plain-language story come before labels and confidence?",
+                    "Map: does navigation stay separate from graph-edge proof?",
+                    "Receipts: do custody and non-claims lead, with technical inspection optional?",
+                ],
+            ),
+            "</article>",
+            '<article class="workspace-card">',
             '<p class="workspace-kicker">What to record</p>',
             _render_workspace_list(
                 "",

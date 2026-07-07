@@ -19,6 +19,14 @@ FORM_SCHEMA_VERSION = "lolla.observatory_workspace_human_review_form.v0"
 INTAKE_SCHEMA_VERSION = "lolla.observatory_workspace_human_review_intake.v0"
 
 SURFACES = ("Outcome", "Learn", "Models", "Relations", "Map", "Receipts")
+FOCUSED_HIERARCHY_CHECKS = (
+    "first_screen_orientation",
+    "learn_reasoning_move_not_answer_correctness",
+    "model_detail_progressive_disclosure",
+    "relation_story_before_taxonomy",
+    "map_navigation_not_proof",
+    "receipts_optional_inspection",
+)
 ALLOWED_RATINGS = {"strong", "adequate", "weak", "cannot_judge"}
 COMPLETED_STATUSES = {"completed_human_review", "human_review_completed"}
 ALLOWED_OVERALL_DECISIONS = {
@@ -292,6 +300,7 @@ def _validate_completed_form(
         blockers,
         require_evidence=True,
     )
+    _validate_focused_hierarchy_checks(form, blockers, warnings)
     non_claims = _mapping(form.get("non_claims_review"))
     selected = _selected(non_claims)
     if selected not in {"yes", "no", "cannot_judge"}:
@@ -313,6 +322,32 @@ def _validate_rating(
         blockers.append(f"{label}.evidence_missing")
 
 
+def _validate_focused_hierarchy_checks(
+    form: Mapping[str, Any],
+    blockers: list[str],
+    warnings: list[str],
+) -> None:
+    focused = _mapping(form.get("focused_hierarchy_checks"))
+    if not focused:
+        warnings.append("focused_hierarchy_checks_missing")
+        return
+
+    for check in FOCUSED_HIERARCHY_CHECKS:
+        review = _mapping(focused.get(check))
+        if not review:
+            blockers.append(f"focused_hierarchy_checks.{check}_missing")
+            continue
+        _validate_rating(
+            review,
+            f"focused_hierarchy_checks.{check}",
+            blockers,
+            require_evidence=True,
+        )
+    for extra in focused:
+        if extra not in FOCUSED_HIERARCHY_CHECKS:
+            warnings.append(f"focused_hierarchy_checks.{extra}_ignored")
+
+
 def _validate_false_flags(
     value: Mapping[str, Any],
     *,
@@ -331,15 +366,25 @@ def _validate_false_flags(
 
 def _review_coverage(form: Mapping[str, Any]) -> dict[str, Any]:
     surface_reviews = _mapping(form.get("surface_reviews"))
+    focused_checks = _mapping(form.get("focused_hierarchy_checks"))
     reviewed_surfaces = [
         surface
         for surface in SURFACES
         if _selected(_mapping(surface_reviews.get(surface))) in ALLOWED_RATINGS
     ]
+    reviewed_focused_checks = [
+        check
+        for check in FOCUSED_HIERARCHY_CHECKS
+        if _selected(_mapping(focused_checks.get(check))) in ALLOWED_RATINGS
+    ]
     return {
         "expected_surfaces": list(SURFACES),
         "reviewed_surfaces": reviewed_surfaces,
         "all_surfaces_reviewed": len(reviewed_surfaces) == len(SURFACES),
+        "expected_focused_hierarchy_checks": list(FOCUSED_HIERARCHY_CHECKS),
+        "reviewed_focused_hierarchy_checks": reviewed_focused_checks,
+        "all_focused_hierarchy_checks_reviewed": len(reviewed_focused_checks)
+        == len(FOCUSED_HIERARCHY_CHECKS),
         "progression_reviewed": _selected(
             _mapping(form.get("progression_review"))
         )

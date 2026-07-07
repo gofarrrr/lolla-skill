@@ -145,6 +145,19 @@ Review prompts:
 - Are technical links useful without leading the product?
 - Does Receipts keep Decision Work and technical audit separate from Learn?
 
+## Focused Hierarchy Scorecard
+
+After the first full clickthrough, answer these six checks before filling the
+overall decision. They target the overload risks that would make Observatory
+feel like artifacts instead of one product flow.
+
+- First screen: can you say what Observatory is asking you to do?
+- Learn: can you tell the reasoning move from answer correctness?
+- Model detail: does the first read stay readable before source-derived detail?
+- Relation detail: does the plain-language story come before labels and confidence?
+- Map: does navigation stay separate from graph-edge proof?
+- Receipts: do custody and non-claims lead, with technical inspection optional?
+
 ## What Should Not Happen
 
 The workspace should not:
