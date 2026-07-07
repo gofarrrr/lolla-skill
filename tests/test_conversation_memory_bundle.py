@@ -314,6 +314,7 @@ def test_markdown_renderer_includes_required_context_blocks(tmp_path: Path) -> N
 
     for heading in (
         "## Cold Reader Orientation",
+        "## Claim Verification Checklist",
         "## What This File Is",
         "## What This File Is Not",
         "## How This File Was Produced",
@@ -351,6 +352,35 @@ def test_cold_reader_orientation_is_anti_anchoring(tmp_path: Path) -> None:
     assert "Does the transcript support the generated synthesis?" in markdown
     assert "Could current business facts have changed since the run?" in markdown
     assert "- Generated synthesis:" not in markdown
+    assert "The correct interpretation is" not in markdown
+    assert "The proven recommendation is" not in markdown
+
+
+def test_claim_verification_checklist_points_to_sources_without_proof_claims(
+    tmp_path: Path,
+) -> None:
+    packet = build_conversation_memory_packet(run_dir=_fixture_run_dir(tmp_path))
+    markdown = render_conversation_memory_markdown(packet)
+
+    assert markdown.index("## Cold Reader Orientation") < markdown.index(
+        "## Claim Verification Checklist"
+    )
+    assert markdown.index("## Claim Verification Checklist") < markdown.index(
+        "## What This File Is"
+    )
+    assert "Evidence label: `synthesis_to_verify`" in markdown
+    assert "Use this as a checking index, not as a conclusion." in markdown
+    assert "It does not prove any claim, certify advice, or replace source inspection." in markdown
+    assert "| Claim / item to verify | Best evidence in this file | Still verify before relying |" in markdown
+    assert "Decision situation: Whether to launch the beta after a mixed review." in markdown
+    assert "Generated synthesized position: Launch only if a narrow gate passes." in markdown
+    assert "Changed advice summary: Add a launch gate before relying on the enterprise signal." in markdown
+    assert "Main counter-pressure: The launch gate was under-specified." in markdown
+    assert "Open question: Who owns the launch gate?" in markdown
+    assert "Run readiness: evaluation=pass, trace=adequate, future_review_ready=true" in markdown
+    assert "conversation.txt, extraction.json, reasoning_trace.json" in markdown
+    assert "Treat as generated synthesis; verify against source conversation and current context." in markdown
+    assert "do not infer advice correctness" in markdown
     assert "The correct interpretation is" not in markdown
     assert "The proven recommendation is" not in markdown
 

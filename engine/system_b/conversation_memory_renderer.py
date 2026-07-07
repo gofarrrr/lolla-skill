@@ -17,6 +17,7 @@ def render_conversation_memory_markdown(packet: Mapping[str, Any]) -> str:
         _frontmatter(packet),
         "# Conversation Memory",
         _cold_reader_orientation(packet),
+        _claim_verification_checklist(packet),
         _what_this_file_is(packet),
         _what_this_file_is_not(packet),
         _how_to_use(packet),
@@ -167,6 +168,133 @@ def _cold_reader_orientation(packet: Mapping[str, Any]) -> str:
             "extraction.json",
             "agent_result.json",
             "evaluation.json",
+        ],
+        body=body,
+    )
+
+
+def _claim_verification_checklist(packet: Mapping[str, Any]) -> str:
+    case = _mapping(packet.get("case"))
+    interp = _mapping(packet.get("conversation_interpretation"))
+    delta = _mapping(packet.get("advice_delta"))
+    summary = _mapping(packet.get("decision_summary"))
+    questions = _mapping(packet.get("open_questions"))
+    health = _mapping(packet.get("run_health"))
+
+    rows: list[list[str]] = []
+
+    decision = _text(case.get("decision_situation")) or _text(
+        interp.get("decision_situation")
+    )
+    if decision:
+        rows.append(
+            [
+                f"Decision situation: {decision}",
+                "conversation.txt, extraction.json, reasoning_trace.json",
+                "Confirm the transcript supports this framing and that current facts have not changed.",
+            ]
+        )
+
+    synthesized = _text(interp.get("synthesized_position"))
+    if synthesized:
+        rows.append(
+            [
+                f"Generated synthesized position: {synthesized}",
+                "extraction.json, result.json, Conversation Interpretation",
+                "Compare against the full transcript, memo, and revised answer before relying.",
+            ]
+        )
+
+    changed = _strings(delta.get("changed_advice_summary"))
+    if changed:
+        rows.append(
+            [
+                f"Changed advice summary: {changed[0]}",
+                "agent_result.json, result.json, What Changed",
+                "Check whether this is a generated revision, not user acceptance or proof.",
+            ]
+        )
+
+    counter = _text(delta.get("main_counter_pressure"))
+    if counter:
+        rows.append(
+            [
+                f"Main counter-pressure: {counter}",
+                "agent_result.json, What Changed",
+                "Inspect the transcript for the pressure source and any omitted counter-pressure.",
+            ]
+        )
+
+    revised = _text(summary.get("revised_answer"))
+    if revised:
+        rows.append(
+            [
+                f"Revised answer exists: {_short(revised, 140)}",
+                "revised.txt, result.json, Appendix: Revised Answer",
+                "Treat as generated synthesis; verify against source conversation and current context.",
+            ]
+        )
+
+    open_items = _mappings(questions.get("items"))
+    if open_items:
+        rows.append(
+            [
+                f"Open question: {_text(open_items[0].get('question'))}",
+                "agent_result.json, result.json, Open Questions",
+                "Resolve before action; do not treat the exported answer as complete.",
+            ]
+        )
+    else:
+        rows.append(
+            [
+                "No structured open-question rows were supplied.",
+                "agent_result.json, result.json, Open Questions",
+                "Still inspect the transcript for practical uncertainty; empty rows are not closure.",
+            ]
+        )
+
+    rows.append(
+        [
+            (
+                "Run readiness: "
+                f"evaluation={_text(health.get('evaluation_overall')) or 'unknown'}, "
+                f"trace={_text(health.get('trace_adequacy_status')) or 'unknown'}, "
+                f"future_review_ready={str(bool(health.get('future_review_ready'))).lower()}"
+            ),
+            "evaluation.json, reasoning_trace.json, Run Health And Readiness",
+            "Use warnings and missing artifacts to limit reliance; do not infer advice correctness.",
+        ]
+    )
+
+    body = "\n".join(
+        [
+            (
+                "Use this as a checking index, not as a conclusion. It does not "
+                "prove any claim, certify advice, or replace source inspection."
+            ),
+            "",
+            _table(
+                [
+                    "Claim / item to verify",
+                    "Best evidence in this file",
+                    "Still verify before relying",
+                ],
+                rows[:8],
+            ),
+        ]
+    )
+    return _section(
+        "Claim Verification Checklist",
+        evidence_label="synthesis_to_verify",
+        source_refs=[
+            "conversation_memory_packet.json",
+            "conversation.txt",
+            "extraction.json",
+            "agent_result.json",
+            "evaluation.json",
+            "reasoning_trace.json",
+            "memo.md",
+            "revised.txt",
         ],
         body=body,
     )
