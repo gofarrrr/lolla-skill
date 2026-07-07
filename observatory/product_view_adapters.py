@@ -786,7 +786,13 @@ def _strongest_pressure(result: Mapping[str, Any]) -> str:
     delta = _mapping(result.get("delta_card"))
     for key in ("top_findings", "findings", "secondary_findings"):
         for item in _object_list(delta.get(key)):
-            for field in ("description", "summary", "finding", "title"):
+            for field in (
+                "description",
+                "challenge_statement",
+                "summary",
+                "finding",
+                "title",
+            ):
                 value = _text(item.get(field))
                 if value:
                     return _compact_text(value)

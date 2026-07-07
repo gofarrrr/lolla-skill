@@ -1400,6 +1400,83 @@ _WORKSPACE_CSS = """
 .workspace-content-action:hover {
   text-decoration: underline;
 }
+.workspace-inventory-receipt {
+  display: grid;
+  gap: 12px;
+  margin: 18px 0;
+}
+.workspace-inventory-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+.workspace-inventory-metric {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, .04);
+  padding: 10px 12px;
+}
+.workspace-inventory-metric span {
+  display: block;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+.workspace-inventory-metric strong {
+  display: block;
+  margin-top: 4px;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 20px;
+}
+.workspace-inventory-groups {
+  display: grid;
+  gap: 12px;
+}
+.workspace-inventory-group {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, .035);
+  padding: 14px;
+}
+.workspace-inventory-group h4 {
+  margin: 0 0 10px;
+  color: var(--text-primary);
+  font-size: 14px;
+}
+.workspace-inventory-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.workspace-inventory-item {
+  display: grid;
+  gap: 7px;
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: var(--radius-sm);
+  background: rgba(0, 0, 0, .08);
+  padding: 12px;
+}
+.workspace-inventory-item-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: start;
+}
+.workspace-inventory-item strong {
+  color: var(--text-primary);
+}
+.workspace-inventory-item p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.workspace-inventory-source {
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
 .workspace-step-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1699,6 +1776,8 @@ _WORKSPACE_CSS = """
   .workspace-hero-grid,
   .workspace-model-learn-grid,
   .workspace-step-grid,
+  .workspace-inventory-metrics,
+  .workspace-inventory-list,
   .workspace-status-grid {
     grid-template-columns: 1fr;
   }
@@ -6324,6 +6403,11 @@ def _render_workspace_receipts(
                 ],
                 selected_case_id=selected_case_id,
             ),
+            _render_workspace_run_inventory_receipt(
+                workspace,
+                advanced,
+                selected_case_id,
+            ),
             '<p class="workspace-kicker">Visible non-claims</p>',
             _render_workspace_list("", receipts.get("visible_non_claims") or []),
             _workspace_disclosure(
@@ -6364,11 +6448,559 @@ def _render_workspace_receipts(
     )
 
 
+def _render_workspace_run_inventory_receipt(
+    workspace: dict,
+    advanced: dict,
+    selected_case_id: str,
+) -> str:
+    items = _workspace_run_inventory_items(workspace, advanced, selected_case_id)
+    total_count = len(items)
+    product_count = sum(
+        1
+        for item in items
+        if item["layer"]
+        in {
+            "First read",
+            "Primary surface",
+            "Expandable detail",
+        }
+    )
+    inspection_count = sum(
+        1
+        for item in items
+        if item["layer"]
+        in {
+            "Technical inspection",
+            "Operator inspection",
+            "Private export",
+            "Agent export",
+        }
+    )
+    deferred_count = sum(
+        1
+        for item in items
+        if item["status"]
+        in {
+            "missing",
+            "not_requested",
+            "future_design",
+        }
+    )
+    groups: list[tuple[str, list[dict]]] = []
+    for item in items:
+        if not groups or groups[-1][0] != item["group"]:
+            groups.append((item["group"], []))
+        groups[-1][1].append(item)
+
+    return "\n".join(
+        [
+            '<div class="workspace-inventory-receipt" data-run-inventory-receipt>',
+            '<p class="workspace-kicker">Run inventory receipt</p>',
+            (
+                "<p>These are the data families this selected run can account "
+                "for. The first numbers say how much is visible as product, how "
+                "much stays in export or inspection, and what is absent, not "
+                "requested, or still future design.</p>"
+            ),
+            '<div class="workspace-inventory-metrics" aria-label="Run inventory counts">',
+            _workspace_inventory_metric("Accounted for", str(total_count)),
+            _workspace_inventory_metric("Product path", str(product_count)),
+            _workspace_inventory_metric("Export or inspection", str(inspection_count)),
+            _workspace_inventory_metric("Missing or future", str(deferred_count)),
+            "</div>",
+            _workspace_disclosure(
+                "Show grouped inventory",
+                '<div class="workspace-inventory-groups">',
+                *[
+                    _workspace_inventory_group(title, group_items)
+                    for title, group_items in groups
+                ],
+                "</div>",
+            ),
+            "</div>",
+        ]
+    )
+
+
+def _workspace_run_inventory_items(
+    workspace: dict,
+    advanced: dict,
+    selected_case_id: str,
+) -> list[dict[str, str]]:
+    result, result_path, is_current = _load_case_result(selected_case_id)
+    result = result or {}
+    selected_run = workspace.get("selected_run_summary") or {}
+    outcome = workspace.get("outcome_summary") or {}
+    lesson = workspace.get("learning_packet") or {}
+    models = list(workspace.get("model_pages") or [])
+    relations = list(workspace.get("relation_pages") or [])
+    graph = workspace.get("graph_neighborhood") or {}
+    receipts = workspace.get("receipt_summary") or {}
+
+    def sidecar_status(*filenames: str, has_content: bool = False) -> str:
+        for filename in filenames:
+            if _case_sidecar_path(result_path, filename, is_current=is_current):
+                return "available"
+        return "available" if has_content else "missing"
+
+    def sidecar_any(*filenames: str) -> bool:
+        return any(
+            _case_sidecar_path(result_path, filename, is_current=is_current)
+            for filename in filenames
+        )
+
+    outcome_missing = set(
+        (outcome.get("missingness") or {}).get("missing_fields") or []
+    )
+    lesson_missing = set(
+        (lesson.get("missingness") or {}).get("missing_fields") or []
+    )
+    graph_nodes = list(graph.get("nodes") or [])
+    graph_edges = list(graph.get("edges") or [])
+    edge_label = "edge" if len(graph_edges) == 1 else "edges"
+    advanced_statuses = list(advanced.get("artifact_statuses") or [])
+
+    model_sources_dir = SKILL_DATA_DIR / "model_sources"
+    relation_semantics_dir = SKILL_DATA_DIR / "curation" / "relation_semantics"
+    curation_dir = SKILL_DATA_DIR / "curation"
+    intervention_dir = curation_dir / "intervention_semantics"
+
+    return [
+        _inventory_item(
+            "Selected run context",
+            "available" if selected_run.get("run_id") else "partial",
+            "First read",
+            "Result metadata",
+            "Tells the user which run, case, and health state they are looking at.",
+            "Read the header or switch runs.",
+            "First-read product path",
+        ),
+        _inventory_item(
+            "Outcome summary",
+            _workspace_artifact_status(
+                outcome,
+                missing_field="revised_answer",
+                has_content=bool(outcome.get("answer_headline")),
+            ),
+            "Primary surface",
+            "result.json",
+            "Shows what changed before the user studies models or telemetry.",
+            "Open Outcome.",
+            "First-read product path",
+            href=_observatory_workspace_href(selected_case_id, "outcome"),
+        ),
+        _inventory_item(
+            "Strongest pressure",
+            "missing" if "strongest_pressure" in outcome_missing else "available",
+            "Primary surface",
+            "delta card or audit summary",
+            "Explains why the result was challenged and why the lesson may matter.",
+            "Read Outcome before opening Learn.",
+            "First-read product path",
+            href=_observatory_workspace_href(selected_case_id, "outcome"),
+        ),
+        _inventory_item(
+            "Teacher lesson",
+            _workspace_artifact_status(
+                lesson,
+                has_content=bool(lesson.get("thinking_move")),
+            ),
+            "Primary surface",
+            "Teacher learning packet",
+            "Turns the run into one reusable reasoning move instead of more telemetry.",
+            "Open Learn and try the practice rep.",
+            "First-read product path",
+            href=_observatory_workspace_href(selected_case_id, "learn"),
+        ),
+        _inventory_item(
+            "Practice rep",
+            "partial" if "worked_example" in lesson_missing else "available",
+            "Primary surface",
+            "Teacher learning packet",
+            "Gives the user something to do with the lesson.",
+            "Use the prompt in Learn.",
+            "First-read product path",
+            href=_observatory_workspace_href(selected_case_id, "learn"),
+        ),
+        _inventory_item(
+            "Mental model pages",
+            _count_status("available", len(models)) if models else "missing",
+            "Primary surface",
+            "Teacher packet plus model translation",
+            "Shows the selected models as clean learning pages, not raw source files.",
+            "Open Models or a model detail page.",
+            "First-read product path",
+            href=_observatory_workspace_href(selected_case_id, "models"),
+        ),
+        _inventory_item(
+            "Relation pages",
+            _count_status("available", len(relations)) if relations else "missing",
+            "Primary surface",
+            "Teacher packet plus relation semantics",
+            "Explains the model pair before taxonomy, confidence, or graph language.",
+            "Open Relations or a relation detail page.",
+            "First-read product path",
+            href=_observatory_workspace_href(selected_case_id, "relations"),
+        ),
+        _inventory_item(
+            "Selected-run map",
+            (
+                f"available ({len(graph_nodes)} nodes, {len(graph_edges)} {edge_label})"
+                if graph_nodes
+                else "missing"
+            ),
+            "Primary surface",
+            "Teacher graph neighborhood",
+            "Provides wayfinding between the lesson, models, and relation pages.",
+            "Open Map; treat edges as navigation, not proof.",
+            "First-read product path",
+            href=_observatory_workspace_href(selected_case_id, "map"),
+        ),
+        _inventory_item(
+            "Conversation transcript",
+            sidecar_status(
+                "conversation.txt",
+                "live_transcript.txt",
+                has_content=bool((result.get("extraction") or {}).get("turns")),
+            ),
+            "Private export",
+            "conversation.txt or captured turns",
+            "Preserves the exact source conversation for future sessions.",
+            "Use Download MD when a future agent needs full context.",
+            "Conversation and interpretation",
+            href=_observatory_agent_memory_download_href(selected_case_id),
+        ),
+        _inventory_item(
+            "Conversation Understanding",
+            receipts.get("conversation_understanding_status") or "unknown",
+            "Expandable detail",
+            "extraction.json",
+            "Shows how the system interpreted the question, constraints, and frame.",
+            "Inspect only if the result feels misframed.",
+            "Conversation and interpretation",
+            href="/audit/extraction",
+        ),
+        _inventory_item(
+            "Reasoning trace",
+            sidecar_status("reasoning_trace.json"),
+            "Technical inspection",
+            "reasoning_trace.json",
+            "Accounts for lenses, custody, missing context, and trace adequacy.",
+            "Open Advanced Audit when debugging the run.",
+            "Conversation and interpretation",
+            href="/audit/reasoning-trace",
+        ),
+        _inventory_item(
+            "Suppressed or unadjudicated signals",
+            "available" if sidecar_any("reasoning_trace.json") else "missing",
+            "Technical inspection",
+            "reasoning trace and graph survival reports",
+            "Records what the system noticed but did not resolve or surface.",
+            "Inspect before over-trusting a narrow visible lesson.",
+            "Conversation and interpretation",
+            href="/audit/reasoning-trace",
+        ),
+        _inventory_item(
+            "Agent memory Markdown",
+            "downloadable",
+            "Agent export",
+            "conversation memory bundle",
+            "Creates a self-explaining run memory for another agent.",
+            "Click Download MD.",
+            "Memory, receipts, and sidecars",
+            href=_observatory_agent_memory_download_href(selected_case_id),
+        ),
+        _inventory_item(
+            "Memo artifact",
+            sidecar_status(
+                "memo.md",
+                has_content=bool(
+                    result.get("memo_what_changed")
+                    or result.get("memo_what_still_holds")
+                ),
+            ),
+            "Expandable detail",
+            "memo.md or memo fields",
+            "Provides a cleaner human note when it exists.",
+            "Open Memo from Advanced Audit if needed.",
+            "Memory, receipts, and sidecars",
+            href="/audit/memo",
+        ),
+        _inventory_item(
+            "Process brief sidecar",
+            receipts.get("process_brief_status") or "not_requested",
+            "Technical inspection",
+            "Decision Work sidecars",
+            "Separates process/accountability work from Teacher learning.",
+            "Only use it if Decision Work was requested for this run.",
+            "Memory, receipts, and sidecars",
+            href=_observatory_workspace_href(selected_case_id, "receipts"),
+        ),
+        _inventory_item(
+            "Source custody and non-claims",
+            "available",
+            "Expandable detail",
+            "source refs, missingness, non-claims",
+            "Explains what the UI is allowed to claim and what is missing.",
+            "Read Receipts before relying on deeper detail.",
+            "Memory, receipts, and sidecars",
+        ),
+        _inventory_item(
+            "Result object",
+            "available" if result else "missing",
+            "Technical inspection",
+            "result.json",
+            "Stores the run output that product surfaces summarize.",
+            "Use Advanced Audit only when the summary feels incomplete.",
+            "Technical and operator inspection",
+            href="/audit",
+        ),
+        _inventory_item(
+            "Agent result object",
+            sidecar_status("agent_result.json"),
+            "Technical inspection",
+            "agent_result.json",
+            "Lets operators compare the visible outcome to the stored run result.",
+            "Inspect when reconciling older archive shapes.",
+            "Technical and operator inspection",
+            href="/audit",
+        ),
+        _inventory_item(
+            "Evaluation artifact",
+            sidecar_status("evaluation.json"),
+            "Technical inspection",
+            "evaluation.json",
+            "Records internal discipline without becoming a product-proof claim.",
+            "Inspect as technical evidence, not validation.",
+            "Technical and operator inspection",
+        ),
+        _inventory_item(
+            "Run events",
+            sidecar_status("run_events.json"),
+            "Technical inspection",
+            "run_events.json",
+            "Reconstructs lifecycle order when debugging a completed run.",
+            "Open Events from Advanced Audit.",
+            "Technical and operator inspection",
+            href="/audit/events",
+        ),
+        _inventory_item(
+            "Usage telemetry",
+            "available"
+            if result.get("usage_summary")
+            or any(item.get("artifact_id") == "usage" for item in advanced_statuses)
+            else "missing",
+            "Technical inspection",
+            "usage summary",
+            "Explains operational facts such as usage and call accounting.",
+            "Open Usage when cost or operations matter.",
+            "Technical and operator inspection",
+            href="/usage",
+        ),
+        _inventory_item(
+            "Graph survival",
+            sidecar_status("graph_survival_report.json", "graph_survival_report.md"),
+            "Technical inspection",
+            "graph survival reports",
+            "Accounts for selected, suppressed, and unadjudicated graph signals.",
+            "Inspect as evidence discipline, not graph truth.",
+            "Technical and operator inspection",
+            href="/audit/graph-survival",
+        ),
+        _inventory_item(
+            "Private tables and ledgers",
+            "available"
+            if sidecar_any(
+                "pre_step6_private_table.json",
+                "pre_step6_private_table.md",
+                "pre_step6_private_table_ledger.json",
+                "v60_ledger.json",
+            )
+            else "missing",
+            "Operator inspection",
+            "private tables, V60 ledgers",
+            "Preserves private guardrails and uptake records without making them product copy.",
+            "Inspect locally only when authorized.",
+            "Technical and operator inspection",
+            href="/audit/pre-step6",
+        ),
+        _inventory_item(
+            "Operator log",
+            "available" if sidecar_any("operator.log") else "missing",
+            "Operator inspection",
+            "operator.log",
+            "Helps maintainers debug the run without exposing log bodies to users.",
+            "Keep out of normal product reading.",
+            "Technical and operator inspection",
+        ),
+        _inventory_item(
+            "Canonical model Markdown",
+            "available" if model_sources_dir.is_dir() else "missing",
+            "Expandable detail",
+            "data/model_sources",
+            "Powers durable model meaning beyond the selected run.",
+            "Use translated model pages; do not dump raw Markdown.",
+            "Library substrate accounted for",
+            href=_observatory_workspace_href(selected_case_id, "models"),
+        ),
+        _inventory_item(
+            "Activation and intervention curation",
+            "available" if curation_dir.is_dir() and intervention_dir.is_dir() else "missing",
+            "Expandable detail",
+            "data/curation",
+            "Feeds use, avoid, failure, premortem, and practice sections.",
+            "Surface translated guidance on model pages.",
+            "Library substrate accounted for",
+        ),
+        _inventory_item(
+            "Relation semantics",
+            "available" if relation_semantics_dir.is_dir() else "missing",
+            "Primary surface",
+            "data/curation/relation_semantics",
+            "Feeds relation pages and graph edges only when supported.",
+            "Read relation stories before treating edges as meaningful.",
+            "Library substrate accounted for",
+            href=_observatory_workspace_href(selected_case_id, "relations"),
+        ),
+        _inventory_item(
+            "Relationship graph substrate",
+            "available" if (SKILL_DATA_DIR / "relationship_graph.json").is_file() else "missing",
+            "Expandable detail",
+            "data/relationship_graph.json",
+            "Can fix the thin one-edge feeling with reviewed local neighborhoods.",
+            "Use later model-detail neighborhoods before a full graph.",
+            "Library substrate accounted for",
+        ),
+        _inventory_item(
+            "Knowledge graph and embeddings",
+            "future_design"
+            if (SKILL_DATA_DIR / "knowledge_graph.json").is_file()
+            or (SKILL_DATA_DIR / "embeddings.db").is_file()
+            else "missing",
+            "Future design",
+            "knowledge graph and embeddings",
+            "Can support broader library search later, but should not imply validated relations.",
+            "Keep as future search/navigation substrate until reviewed.",
+            "Library substrate accounted for",
+        ),
+    ]
+
+
+def _inventory_item(
+    label: str,
+    status: str,
+    layer: str,
+    source: str,
+    helps: str,
+    user_action: str,
+    group: str,
+    *,
+    href: str = "",
+) -> dict[str, str]:
+    return {
+        "label": label,
+        "status": status,
+        "layer": layer,
+        "source": source,
+        "helps": helps,
+        "user_action": user_action,
+        "group": group,
+        "href": href,
+    }
+
+
+def _workspace_inventory_metric(label: str, value: str) -> str:
+    return (
+        '<div class="workspace-inventory-metric">'
+        f"<span>{_esc(label)}</span>"
+        f"<strong>{_esc(value)}</strong>"
+        "</div>"
+    )
+
+
+def _workspace_inventory_group(title: str, items: list[dict]) -> str:
+    return "\n".join(
+        [
+            '<div class="workspace-inventory-group">',
+            f"<h4>{_esc(title)}</h4>",
+            '<div class="workspace-inventory-list">',
+            *[_workspace_inventory_item_card(item) for item in items],
+            "</div>",
+            "</div>",
+        ]
+    )
+
+
+def _workspace_inventory_item_card(item: dict) -> str:
+    status = str(item.get("status") or "unknown")
+    layer = str(item.get("layer") or "")
+    variant = _workspace_inventory_variant(status, layer)
+    href = str(item.get("href") or "")
+    action = ""
+    if href:
+        action = (
+            f'<a class="workspace-content-action" href="{_esc(href)}">'
+            "Open relevant surface</a>"
+        )
+    return "\n".join(
+        [
+            '<article class="workspace-inventory-item">',
+            '<div class="workspace-inventory-item-head">',
+            f"<strong>{_esc(item.get('label', ''))}</strong>",
+            (
+                '<span class="workspace-content-status '
+                f'workspace-content-status--{_esc(variant)}">'
+                f"{_esc(_workspace_inventory_status_label(status))}</span>"
+            ),
+            "</div>",
+            (
+                '<p><span class="workspace-inventory-source">From: '
+                f"{_esc(item.get('source', ''))}</span></p>"
+            ),
+            f"<p>{_esc(item.get('helps', ''))}</p>",
+            f"<p><strong>Use:</strong> {_esc(item.get('user_action', ''))}</p>",
+            (
+                '<p class="workspace-meta">Layer: '
+                f"{_esc(_observatory_display_label(item.get('layer', '')))}</p>"
+            ),
+            action,
+            "</article>",
+        ]
+    )
+
+
+def _workspace_inventory_variant(status: str, layer: str) -> str:
+    normalized = status.strip().lower().replace("_", "-").replace(" ", "-")
+    layer_key = layer.strip().lower().replace(" ", "-")
+    if normalized in {"missing", "absent", "blocked"}:
+        return "missing"
+    if normalized in {"not-requested", "future-design", "deferred"}:
+        return "inspection"
+    if normalized in {"private-export", "downloadable"} or layer_key in {
+        "private-export",
+        "agent-export",
+    }:
+        return "private"
+    if layer_key in {"technical-inspection", "operator-inspection", "future-design"}:
+        return "inspection"
+    return "available"
+
+
+def _workspace_inventory_status_label(status: str) -> str:
+    text = str(status or "").strip()
+    if not text:
+        return "Unknown"
+    if "(" in text:
+        head, rest = text.split("(", 1)
+        return f"{_observatory_display_label(head.strip())} ({rest}"
+    return _observatory_display_label(text, "Unknown")
+
+
 def _workspace_status_pill(label: str, value: str) -> str:
     return (
         '<div class="workspace-status-pill">'
         f"<span>{_esc(label)}</span>"
-        f"<strong>{_esc(value)}</strong>"
+        f"<strong>{_esc(_observatory_display_label(value, 'Unknown'))}</strong>"
         "</div>"
     )
 

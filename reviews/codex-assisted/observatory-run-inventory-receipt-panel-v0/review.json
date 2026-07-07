@@ -1,0 +1,52 @@
+{
+  "review_id": "observatory-run-inventory-receipt-panel-v0",
+  "status": "ready_for_user_review",
+  "decision_gate": "proceed_to_model_detail_local_neighborhoods_or_inventory_refinement",
+  "implemented": {
+    "run_inventory_receipt_panel": true,
+    "inventory_summary_counts": true,
+    "grouped_inventory_cards": true,
+    "inventory_rendered_as_table": false,
+    "conversation_transcript_accounted_for": true,
+    "conversation_understanding_accounted_for": true,
+    "process_brief_not_requested_state_accounted_for": true,
+    "technical_operator_inspection_accounted_for": true,
+    "library_substrate_accounted_for": true,
+    "challenge_statement_pressure_fallback": true,
+    "runtime_behavior_changed": false,
+    "compiled_spa_bundle_changed": false
+  },
+  "inventory_groups": [
+    "First-read product path",
+    "Conversation and interpretation",
+    "Memory, receipts, and sidecars",
+    "Technical and operator inspection",
+    "Library substrate accounted for"
+  ],
+  "strongest_useful_signal": "The UI now distinguishes available product surfaces, private/export layers, technical inspection, not-requested sidecars, and future design in one expandable receipt instead of mixing all data into the first screen.",
+  "strongest_unresolved_risk": "The relationship graph and canonical model library are accounted for, but model detail pages still need reviewed local neighborhoods so the user does not see an artificially thin one-edge model world.",
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_run": false,
+    "generates_sidecars": false,
+    "wires_skill_runtime_behavior": false,
+    "mutates_archives": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false,
+    "touches_compiled_spa_bundle": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false
+  },
+  "recommended_next_pr": "Add reviewed model-detail local neighborhoods or refine inventory receipt after user review"
+}

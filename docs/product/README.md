@@ -83,6 +83,7 @@ Current planning docs:
 - [Observatory Data Exposure Audit JSON](observatory-data-exposure-audit-v0.json)
 - [Observatory Run Data Visibility Matrix](observatory-run-data-visibility-matrix-v0.md)
 - [Observatory Run Contents Panel](observatory-run-contents-panel-v0.md)
+- [Observatory Run Inventory Receipt Panel](observatory-run-inventory-receipt-panel-v0.md)
 - [Observatory Agent Memory Markdown Download](observatory-agent-memory-markdown-download-v0.md)
 - [Observatory Agent Memory Cold Reader Layer Design](observatory-agent-memory-cold-reader-layer-design-v0.md)
 - [Observatory Agent Memory Orientation Renderer Spike](observatory-agent-memory-orientation-renderer-spike-v0.md)
