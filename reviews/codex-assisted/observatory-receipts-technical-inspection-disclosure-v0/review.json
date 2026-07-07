@@ -1,0 +1,49 @@
+{
+  "schema_version": "codex_assisted_review.v0",
+  "review_id": "observatory-receipts-technical-inspection-disclosure-v0",
+  "status": "complete",
+  "date": "2026-07-07",
+  "decision_gate": "ready_for_human_hierarchy_review_after_receipts_reduction",
+  "implemented": {
+    "receipts_trust_summary_remains_visible": true,
+    "receipts_non_claims_remain_visible": true,
+    "receipts_human_review_entry_remains_visible": true,
+    "technical_inspection_links_collapsed": true,
+    "technical_inspection_optional_copy": true,
+    "runtime_behavior_changed": false,
+    "compiled_spa_bundle_changed": false
+  },
+  "surface_changed": "receipts",
+  "overload_risk_addressed": "technical audit links could look like a normal next product step",
+  "technical_links_preserved": [
+    "Extraction audit",
+    "Usage",
+    "Advanced audit"
+  ],
+  "strongest_useful_signal": "Receipts now keeps custody, missingness, non-claims, and human review visible while making technical audit links an explicit optional disclosure.",
+  "strongest_unresolved_risk": "Human review is still needed to confirm whether a cold learner experiences Receipts as custody and optional inspection rather than a competing product surface.",
+  "recommended_next_pr": "Collect the first human hierarchy review with specific Receipts and model-detail questions.",
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_run": false,
+    "generates_sidecars": false,
+    "wires_skill_runtime_behavior": false,
+    "mutates_archives": false,
+    "compiled_spa_bundle_changed": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "relation_confidence_is_certification": false
+  }
+}
