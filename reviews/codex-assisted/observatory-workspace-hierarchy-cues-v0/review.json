@@ -1,0 +1,52 @@
+{
+  "schema_version": "codex_assisted_review.v0",
+  "review_id": "observatory-workspace-hierarchy-cues-v0",
+  "status": "complete",
+  "date": "2026-07-07",
+  "decision_gate": "ready_for_human_review_with_hierarchy_cues",
+  "implemented": {
+    "outcome_missingness_cue": true,
+    "model_role_cues": true,
+    "model_library_run_context_cue": true,
+    "runtime_behavior_changed": false,
+    "compiled_spa_bundle_changed": false,
+    "contract_schema_changed": false
+  },
+  "role_policy": {
+    "role_labels_are_inferred": true,
+    "role_source": "selected-run lesson order and relation endpoints",
+    "role_labels_are_navigation_cues": true,
+    "role_labels_are_proof": false,
+    "role_labels_are_scores": false,
+    "role_labels_are_certification": false
+  },
+  "strongest_useful_signal": "Outcome missingness, model roles, and model detail mode now tell the user which information layer they are reading.",
+  "strongest_unresolved_risk": "The role labels are still inferred display cues rather than explicit reviewed product-contract fields.",
+  "recommended_next_gate": {
+    "gate": "ready_for_human_review_with_hierarchy_cues",
+    "recommended_review_question": "Can a cold user explain the difference between run outcome, lesson, reusable model knowledge, selected-run role, map navigation, receipts, and technical audit?"
+  },
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_run": false,
+    "generates_sidecars": false,
+    "wires_skill_runtime_behavior": false,
+    "mutates_archives": false,
+    "compiled_spa_bundle_changed": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "relation_confidence_is_certification": false
+  }
+}
