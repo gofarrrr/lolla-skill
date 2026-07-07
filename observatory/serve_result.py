@@ -46,6 +46,8 @@ _RESULT_MTIME: float = 0.0
 _CASE_ID: str = "lolla-audit"
 _CASE_NAME: str = "Lolla Audit"
 _KG_CACHE: dict | None = None
+_RELATION_GRAPH_CACHE: list[dict] | None = None
+_RELATION_SEMANTICS_CACHE: dict[str, dict] = {}
 _FAMILY_CACHE: list[dict] | None = None
 _DEFAULT_ARCHIVE_ROOT = Path.home() / ".local" / "share" / "lolla" / "runs"
 _OBSERVATORY_HOST = "127.0.0.1"
@@ -1274,6 +1276,65 @@ _WORKSPACE_CSS = """
   font-size: 14px;
   line-height: 1.55;
 }
+.workspace-model-neighborhood {
+  display: grid;
+  gap: 12px;
+  border: 1px solid rgba(65, 255, 167, .2);
+  border-radius: var(--radius-md);
+  background: rgba(65, 255, 167, .035);
+  padding: 16px;
+}
+.workspace-model-neighborhood h3 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 20px;
+}
+.workspace-model-neighborhood > p {
+  margin: 0;
+  max-width: 880px;
+  color: var(--text-secondary);
+}
+.workspace-neighborhood-groups {
+  display: grid;
+  gap: 12px;
+}
+.workspace-neighborhood-group {
+  display: grid;
+  gap: 10px;
+}
+.workspace-neighborhood-group h4 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 14px;
+}
+.workspace-neighborhood-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.workspace-neighborhood-card {
+  display: grid;
+  gap: 10px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: rgba(0, 0, 0, .08);
+  padding: 12px;
+}
+.workspace-neighborhood-card-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: start;
+}
+.workspace-neighborhood-card strong {
+  color: var(--text-primary);
+}
+.workspace-neighborhood-card p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.5;
+}
 .workspace-start-panel {
   display: grid;
   gap: 12px;
@@ -1775,6 +1836,7 @@ _WORKSPACE_CSS = """
   .workspace-map-grid,
   .workspace-hero-grid,
   .workspace-model-learn-grid,
+  .workspace-neighborhood-list,
   .workspace-step-grid,
   .workspace-inventory-metrics,
   .workspace-inventory-list,
@@ -3541,6 +3603,289 @@ def _get_model_detail(model_id: str) -> dict | None:
     }
 
 
+def _load_relationship_graph_edges() -> list[dict]:
+    global _RELATION_GRAPH_CACHE
+    if _RELATION_GRAPH_CACHE is None:
+        graph_path = SKILL_DATA_DIR / "relationship_graph.json"
+        if graph_path.exists():
+            try:
+                loaded = json.loads(graph_path.read_text(encoding="utf-8"))
+            except (json.JSONDecodeError, OSError):
+                loaded = []
+            _RELATION_GRAPH_CACHE = loaded if isinstance(loaded, list) else []
+        else:
+            _RELATION_GRAPH_CACHE = []
+    return _RELATION_GRAPH_CACHE
+
+
+def _safe_model_data_id(model_id: str) -> str:
+    token = []
+    for char in str(model_id):
+        if char.isalnum() or char in {"-", "_"}:
+            token.append(char)
+    return "".join(token).strip("-_")
+
+
+def _load_relation_semantics_payload(model_id: str) -> dict:
+    safe_model_id = _safe_model_data_id(model_id)
+    if not safe_model_id:
+        return {}
+    cached = _RELATION_SEMANTICS_CACHE.get(safe_model_id)
+    if cached is not None:
+        return cached
+    semantics_path = (
+        SKILL_DATA_DIR
+        / "curation"
+        / "relation_semantics"
+        / f"{safe_model_id}.json"
+    )
+    if semantics_path.exists():
+        try:
+            loaded = json.loads(semantics_path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            loaded = {}
+        payload = loaded if isinstance(loaded, dict) else {}
+    else:
+        payload = {}
+    _RELATION_SEMANTICS_CACHE[safe_model_id] = payload
+    return payload
+
+
+def _library_model_display_name(model_id: str, fallback: str = "") -> str:
+    models = _load_kg().get("models", {})
+    model = models.get(model_id) or {}
+    return str(model.get("display_name") or fallback or model_id)
+
+
+def _kg_item_text(item: object) -> str:
+    if isinstance(item, str):
+        return item
+    if isinstance(item, dict):
+        mode = str(item.get("mode") or "").strip()
+        description = str(
+            item.get("description")
+            or item.get("question")
+            or item.get("text")
+            or item.get("mitigation")
+            or ""
+        ).strip()
+        if mode and description:
+            return f"{mode}: {description}"
+        return mode or description
+    return str(item or "").strip()
+
+
+def _kg_text_list(items: object, *, limit: int = 5) -> list[str]:
+    if not isinstance(items, list):
+        return []
+    values = [_kg_item_text(item) for item in items]
+    return [value for value in values if value][:limit]
+
+
+def _library_model_page_from_kg(model_id: str) -> dict | None:
+    model = (_load_kg().get("models") or {}).get(model_id)
+    if not isinstance(model, dict):
+        return None
+    display_name = str(model.get("display_name") or model_id)
+    select_when = _kg_text_list(model.get("select_when"), limit=6)
+    danger_when = _kg_text_list(model.get("danger_when"), limit=4)
+    failure_modes = _kg_text_list(model.get("failure_modes"), limit=5)
+    premortem_questions = _kg_text_list(model.get("premortem_questions"), limit=5)
+    heuristics = _kg_text_list(model.get("heuristics"), limit=5)
+    source_file = str(model.get("source_file") or "").strip()
+    source_refs = [{"source_type": "knowledge_graph", "path": "data/knowledge_graph.json"}]
+    if source_file:
+        source_refs.insert(
+            0,
+            {
+                "source_type": "canonical_model_markdown",
+                "path": f"data/model_sources/{source_file}",
+            },
+        )
+    meaning = str(model.get("input_type") or "").strip()
+    output_type = str(model.get("output_type") or "").strip()
+    if meaning and output_type:
+        meaning = f"Use {display_name} to turn {meaning} into {output_type}."
+    elif select_when:
+        meaning = select_when[0]
+    else:
+        meaning = (
+            "This library model exists in the canonical substrate, but no "
+            "source-backed one-sentence meaning is available yet."
+        )
+    missing_fields = []
+    for field_name, value in [
+        ("select_when", select_when),
+        ("danger_when", danger_when),
+        ("failure_modes", failure_modes),
+        ("premortem_questions", premortem_questions),
+        ("heuristics", heuristics),
+    ]:
+        if not value:
+            missing_fields.append(field_name)
+    return {
+        "model_id": model_id,
+        "slug": model.get("slug") or model_id,
+        "display_name": display_name,
+        "one_sentence_meaning": meaning,
+        "helps_notice": select_when[:3],
+        "use_when": select_when,
+        "avoid_when": danger_when,
+        "common_misuse": danger_when[:2],
+        "failure_modes": failure_modes,
+        "premortem_questions": premortem_questions,
+        "heuristics": heuristics,
+        "practice_prompts": premortem_questions[:3],
+        "reasoning_types": model.get("reasoning_types") or [],
+        "source_refs": source_refs,
+        "source_hashes": [],
+        "curation_status": "library_substrate",
+        "missingness": {
+            "status": "partial" if missing_fields else "complete_for_prototype",
+            "missing_fields": missing_fields,
+            "notes": [
+                "Rendered from canonical library substrate because this model "
+                "was opened from the reviewed neighborhood rather than the "
+                "selected-run Teacher packet."
+            ],
+        },
+        "non_claims": [
+            "library_model_view_not_selected_run_proof",
+            "canonical_markdown_is_source_not_raw_ui",
+            "relation_edges_are_navigation_not_proof",
+            "not_product_proof",
+            "not_human_validation",
+            "not_answer_correctness",
+            "not_advice_correctness",
+        ],
+    }
+
+
+def _relationship_graph_counts_for_model(model_id: str) -> dict[str, int]:
+    source_count = 0
+    target_count = 0
+    for edge in _load_relationship_graph_edges():
+        if edge.get("curated") is False:
+            continue
+        if edge.get("source_model_id") == model_id:
+            source_count += 1
+        if edge.get("target_model_id") == model_id:
+            target_count += 1
+    return {
+        "source_count": source_count,
+        "target_count": target_count,
+        "direct_count": source_count + target_count,
+    }
+
+
+def _relation_semantics_items_for_model(model_id: str) -> list[dict]:
+    payload = _load_relation_semantics_payload(model_id)
+    groups = [
+        ("allies", "ally", "rationale_text"),
+        ("antagonists", "antagonist", "rationale_text"),
+        ("structured_tensions", "structured_tension", "tension_text"),
+    ]
+    items: list[dict] = []
+    seen: set[tuple[str, str, str]] = set()
+    for payload_key, edge_type, body_key in groups:
+        for relation in payload.get(payload_key) or []:
+            if not isinstance(relation, dict):
+                continue
+            target_model_id = str(relation.get("target_model_id") or "").strip()
+            body = str(relation.get(body_key) or relation.get("rationale_text") or "").strip()
+            if not target_model_id:
+                continue
+            dedup_key = (edge_type, target_model_id, body)
+            if dedup_key in seen:
+                continue
+            seen.add(dedup_key)
+            items.append(
+                {
+                    "edge_type": edge_type,
+                    "target_model_id": target_model_id,
+                    "target_display_name": _library_model_display_name(target_model_id),
+                    "body": body
+                    or "Reviewed relation semantics exists, but the plain-language rationale is missing.",
+                    "source_quote": str(relation.get("source_quote") or "").strip(),
+                    "confidence": str(relation.get("confidence") or "unknown").strip(),
+                    "extraction_type": str(relation.get("extraction_type") or "reviewed").strip(),
+                    "source": "relation_semantics",
+                }
+            )
+    return items
+
+
+def _relationship_graph_fallback_items_for_model(model_id: str, *, limit: int = 9) -> list[dict]:
+    items: list[dict] = []
+    seen: set[tuple[str, str]] = set()
+    for edge in _load_relationship_graph_edges():
+        if edge.get("curated") is False:
+            continue
+        source_id = str(edge.get("source_model_id") or "").strip()
+        target_id = str(edge.get("target_model_id") or "").strip()
+        if source_id == model_id:
+            neighbor_id = target_id
+        elif target_id == model_id:
+            neighbor_id = source_id
+        else:
+            continue
+        edge_type = str(edge.get("edge_type") or "related").strip()
+        if edge_type == "tension":
+            edge_type = "structured_tension"
+        if not neighbor_id:
+            continue
+        dedup_key = (edge_type, neighbor_id)
+        if dedup_key in seen:
+            continue
+        seen.add(dedup_key)
+        body = str(
+            edge.get("source_description")
+            or edge.get("target_description")
+            or edge.get("activation_condition")
+            or ""
+        ).strip()
+        items.append(
+            {
+                "edge_type": edge_type,
+                "target_model_id": neighbor_id,
+                "target_display_name": _library_model_display_name(neighbor_id),
+                "body": body
+                or "Reviewed relationship graph edge exists, but the plain-language rationale is missing.",
+                "source_quote": str(edge.get("source_quote") or "").strip(),
+                "confidence": str(edge.get("confidence") or "unknown").strip(),
+                "extraction_type": str(edge.get("extraction_type") or "reviewed").strip(),
+                "source": "relationship_graph",
+            }
+        )
+        if len(items) >= limit:
+            break
+    return items
+
+
+def _model_local_neighborhood(model_id: str) -> dict:
+    semantic_items = _relation_semantics_items_for_model(model_id)
+    graph_counts = _relationship_graph_counts_for_model(model_id)
+    items = semantic_items or _relationship_graph_fallback_items_for_model(model_id)
+    return {
+        "model_id": model_id,
+        "items": items,
+        "shown_count": len(items),
+        "semantic_count": len(semantic_items),
+        "relationship_graph_direct_count": graph_counts["direct_count"],
+        "relationship_graph_source_count": graph_counts["source_count"],
+        "relationship_graph_target_count": graph_counts["target_count"],
+        "source_artifacts": [
+            f"data/curation/relation_semantics/{_safe_model_data_id(model_id)}.json",
+            "data/relationship_graph.json",
+        ],
+        "non_claims": [
+            "local_library_neighborhood_not_full_graph",
+            "relation_edges_are_navigation_not_proof",
+            "confidence_is_curation_status_not_truth",
+        ],
+    }
+
+
 def _load_json_safe(path: Path) -> dict | None:
     if not path.exists():
         return None
@@ -4555,34 +4900,58 @@ def _render_workspace_model_detail_html(
         (item for item in models if str(item.get("model_id", "")) == model_id),
         None,
     )
+    opened_from_library_neighborhood = False
     if model is None:
-        body = _render_workspace_detail_missing_page(
-            selected_case_id,
-            active_surface="models",
-            heading="Mental model page not found.",
-            message=(
-                f"No selected-run product page is available for "
-                f"<code>{_esc(model_id)}</code>."
-            ),
-            back_anchor="models",
-        )
-        return _render_workspace_scaffold(
-            title="Lolla - Mental Model Not Found",
-            body=body,
-        )
+        model = _library_model_page_from_kg(model_id)
+        if model is None:
+            body = _render_workspace_detail_missing_page(
+                selected_case_id,
+                active_surface="models",
+                heading="Mental model page not found.",
+                message=(
+                    f"No selected-run or library model page is available for "
+                    f"<code>{_esc(model_id)}</code>."
+                ),
+                back_anchor="models",
+            )
+            return _render_workspace_scaffold(
+                title="Lolla - Mental Model Not Found",
+                body=body,
+            )
+        opened_from_library_neighborhood = True
 
     display_name = str(model.get("display_name") or model_id)
-    role_context = _workspace_model_role_context(workspace).get(model_id, {})
+    if opened_from_library_neighborhood:
+        role_context = {
+            "label": "Library neighbor",
+            "body": (
+                "Opened from the reviewed model neighborhood. It is reusable "
+                "library knowledge, not a claim that this model drove the "
+                "selected run."
+            ),
+            "source": (
+                "Role is inferred from library navigation, not from the "
+                "selected-run Teacher packet."
+            ),
+        }
+        lede = (
+            "Read this as reusable library knowledge translated from the "
+            "canonical substrate. Selected-run context is secondary here."
+        )
+    else:
+        role_context = _workspace_model_role_context(workspace).get(model_id, {})
+        lede = (
+            "Learn what this model helps you notice, when to use it, "
+            "where it can mislead, and one practice rep for this selected run."
+        )
+
     body = _render_workspace_detail_shell(
         selected_case_id,
         active_surface="models",
         status=workspace.get("missingness", {}).get("status"),
         eyebrow="Mental Model",
         title=display_name,
-        lede=(
-            "Learn what this model helps you notice, when to use it, "
-            "where it can mislead, and one practice rep for this selected run."
-        ),
+        lede=lede,
         back_href=_observatory_workspace_href(selected_case_id, "models"),
         back_label="All models in this run",
         content=_render_workspace_model_page(
@@ -5960,6 +6329,138 @@ def _render_workspace_model_index_card(
     )
 
 
+def _render_workspace_model_local_neighborhood(
+    model_id: str,
+    *,
+    selected_case_id: str | None,
+) -> str:
+    neighborhood = _model_local_neighborhood(model_id)
+    items = list(neighborhood.get("items") or [])
+    chips = [
+        f'<span class="workspace-chip workspace-chip--teal">shown {int(neighborhood.get("shown_count") or 0)}</span>',
+        f'<span class="workspace-chip">relation semantics {int(neighborhood.get("semantic_count") or 0)}</span>',
+        f'<span class="workspace-chip">graph edges accounted {int(neighborhood.get("relationship_graph_direct_count") or 0)}</span>',
+        '<span class="workspace-chip">navigation, not proof</span>',
+    ]
+    if not items:
+        body = _empty_inline(
+            "No reviewed local neighborhood is available for this model yet."
+        )
+    else:
+        groups = [
+            ("ally", "Allies"),
+            ("antagonist", "Antagonists"),
+            ("structured_tension", "Structured tensions"),
+            ("tension", "Tensions"),
+            ("related", "Related"),
+        ]
+        rendered_groups = []
+        for edge_type, label in groups:
+            group_items = [
+                item
+                for item in items
+                if str(item.get("edge_type") or "") == edge_type
+            ]
+            if not group_items:
+                continue
+            rendered_groups.append(
+                "\n".join(
+                    [
+                        '<section class="workspace-neighborhood-group">',
+                        f"<h4>{_esc(label)}</h4>",
+                        '<div class="workspace-neighborhood-list">',
+                        *[
+                            _render_workspace_model_neighbor_card(
+                                item,
+                                selected_case_id=selected_case_id,
+                            )
+                            for item in group_items
+                        ],
+                        "</div>",
+                        "</section>",
+                    ]
+                )
+            )
+        body = (
+            '<div class="workspace-neighborhood-groups">'
+            + "\n".join(rendered_groups)
+            + "</div>"
+        )
+    return "\n".join(
+        [
+            '<section class="detail-section workspace-model-neighborhood" data-model-local-neighborhood>',
+            '<p class="workspace-kicker">Library neighborhood</p>',
+            "<h3>Reviewed Neighbors</h3>",
+            (
+                "<p>Use this to move through the mental model library. These "
+                "are reviewed local relation semantics and accounted graph "
+                "edges; they are navigation context, not proof.</p>"
+            ),
+            '<div class="workspace-chip-row">',
+            *chips,
+            "</div>",
+            body,
+            _workspace_disclosure(
+                "Neighborhood source and boundaries",
+                "<p>This is the local library neighborhood for the model, not "
+                "the full corpus graph and not the selected-run map. It uses "
+                "reviewed relation semantics when available, with the "
+                "relationship graph only as accounting or fallback context.</p>",
+                _render_workspace_list(
+                    "Source artifacts",
+                    list(neighborhood.get("source_artifacts") or []),
+                ),
+                _render_workspace_list(
+                    "Non-claims",
+                    list(neighborhood.get("non_claims") or []),
+                ),
+            ),
+            "</section>",
+        ]
+    )
+
+
+def _render_workspace_model_neighbor_card(
+    item: dict,
+    *,
+    selected_case_id: str | None,
+) -> str:
+    target_model_id = str(item.get("target_model_id") or "")
+    target_name = str(item.get("target_display_name") or target_model_id)
+    edge_label = _observatory_display_label(item.get("edge_type"), "Related")
+    confidence = str(item.get("confidence") or "unknown")
+    extraction_type = str(item.get("extraction_type") or "reviewed")
+    source = str(item.get("source") or "reviewed")
+    quote_text = str(item.get("source_quote") or "").strip()
+    href = _observatory_model_href(target_model_id, selected_case_id)
+    quote_block = ""
+    if quote_text:
+        quote_block = _workspace_disclosure(
+            "Source quote",
+            f"<p>{_esc(quote_text)}</p>",
+        )
+    return "\n".join(
+        [
+            '<article class="workspace-neighborhood-card">',
+            '<div class="workspace-neighborhood-card-head">',
+            f"<strong>{_esc(target_name)}</strong>",
+            f'<span class="workspace-chip">{_esc(edge_label)}</span>',
+            "</div>",
+            f'<p>{_esc(item.get("body") or "")}</p>',
+            '<div class="workspace-chip-row">',
+            f'<span class="workspace-chip">confidence: {_esc(confidence)}</span>',
+            f'<span class="workspace-chip">{_esc(extraction_type)}</span>',
+            f'<span class="workspace-chip">{_esc(source)}</span>',
+            "</div>",
+            quote_block,
+            '<div class="workspace-next-actions">',
+            f'<a class="workspace-chip workspace-chip--teal" href="{_esc(href)}">Open model page</a>',
+            "</div>",
+            "</article>",
+        ]
+    )
+
+
 def _render_workspace_model_page(
     model: dict,
     *,
@@ -6013,6 +6514,10 @@ def _render_workspace_model_page(
             f'<h3>{_esc(model.get("display_name") or model_id)}</h3>',
             _render_workspace_model_mode_cue(role_context or {}),
             _render_workspace_model_first_read(model),
+            _render_workspace_model_local_neighborhood(
+                model_id,
+                selected_case_id=selected_case_id,
+            ),
             model_detail_section,
             '<div class="workspace-next-actions">',
             *action_chips,
