@@ -64,6 +64,18 @@ python3 observatory/serve_result.py \
 If port `8080` is already in use, the server will try the next ports and print
 the chosen local URL.
 
+Optional read-only preflight before launch:
+
+```bash
+python3 scripts/evals/preflight_observatory_workspace_human_review.py \
+  --result "$LOLLA_OBSERVATORY_REVIEW_RESULT" \
+  --case-id "$LOLLA_OBSERVATORY_REVIEW_CASE_ID" \
+  --pretty
+```
+
+The preflight checks the result JSON and current review/intake artifact state.
+It does not launch Observatory or write review answers.
+
 ## Start Route
 
 Open the Review Guide first:

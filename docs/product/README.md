@@ -92,4 +92,5 @@ Current planning docs:
 - [Observatory Workspace Human Review Awaiting Response Gate](observatory-workspace-human-review-awaiting-response-gate-v0.md)
 - [Observatory Workspace Human Review Launch Checklist](observatory-workspace-human-review-launch-checklist-v0.md)
 - [Observatory Workspace Human Review Launch Checklist JSON](observatory-workspace-human-review-launch-checklist-v0.json)
+- [Observatory Workspace Human Review Preflight](observatory-workspace-human-review-preflight-v0.md)
 - [Mental Model Teacher Product Surface Reference Patterns](mental-model-teacher-product-surface-reference-patterns-v0.md)

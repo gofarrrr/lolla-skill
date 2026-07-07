@@ -41,6 +41,15 @@ Launch checklist:
 
 [Observatory workspace human review launch checklist](../../../docs/product/observatory-workspace-human-review-launch-checklist-v0.md)
 
+Optional read-only preflight before opening Observatory:
+
+```bash
+python3 scripts/evals/preflight_observatory_workspace_human_review.py \
+  --result "$LOLLA_OBSERVATORY_REVIEW_RESULT" \
+  --case-id "$LOLLA_OBSERVATORY_REVIEW_CASE_ID" \
+  --pretty
+```
+
 Do not pre-fill a positive result. Negative, partial, and `cannot_judge` reviews
 are useful.
 
