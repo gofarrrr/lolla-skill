@@ -512,8 +512,12 @@ def _appendix_source_excerpts(packet: Mapping[str, Any]) -> str:
     if conversation_text:
         parts.extend(
             [
-                "### Raw Conversation",
+                "### Full 1:1 Conversation Transcript",
                 "_Evidence label: private. Source refs: conversation.txt._",
+                "",
+                "This is the full archived `conversation.txt` transcript included by "
+                "explicit private export request. Preserve it as the primary source "
+                "for future-session context.",
                 "",
                 _fenced(conversation_text),
             ]

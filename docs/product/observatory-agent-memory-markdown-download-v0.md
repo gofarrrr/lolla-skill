@@ -17,15 +17,16 @@ The UX is intentionally small:
 Download MD for your agent
 ```
 
-The button lives in Receipts because this is a custody/export action. It is not
-part of the teaching copy, not a graph feature, and not an internal review
-control.
+The button is visible in the main workspace action row because this is a core
+user action, not something hidden behind technical receipts. Receipts repeats
+the action with custody context so the user can understand what the export
+contains and what it does not claim.
 
 ## User Flow
 
 1. Open a selected run in Observatory.
-2. Open Receipts.
-3. Click `Download MD for your agent`.
+2. Click `Download MD for your agent` from the main workspace.
+3. Optionally open Receipts to inspect custody, missingness, and non-claims.
 4. Observatory builds a private Markdown export from the completed run archive.
 5. The browser downloads the generated `.md` file.
 
@@ -72,8 +73,10 @@ The generated Markdown is self-explaining. It includes:
 - update rules;
 - source excerpts.
 
-When the private export button is used, raw conversation is included if the
-archive contains it. Private/operator artifacts are inventoried but their
+When the private export button is used, the Markdown includes a clearly named
+`Full 1:1 Conversation Transcript` section if the archive contains
+`conversation.txt`. That transcript is the primary source object a future agent
+needs in a new session. Private/operator artifacts are inventoried but their
 bodies are not copied into the Markdown.
 
 ## What This Is Not
@@ -101,6 +104,7 @@ repo:
 
 Observatory adds:
 
+- a main workspace download button;
 - a Receipts button;
 - a Markdown download route;
 - safe temp output under the OS temp directory;
