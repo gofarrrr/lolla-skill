@@ -207,8 +207,9 @@ def test_main_workspace_contains_agent_memory_download_action() -> None:
 
     assert "Start here" in html
     assert "data-agent-memory-export-card" in html
-    assert "Download a complete run memory for your agent" in html
-    assert "full 1:1 conversation transcript" in html
+    assert "What This Run Contains" in html
+    assert "preserve the run for later agent review" in html
+    assert "Full transcript" in html
     assert ">Download MD</a>" in html
     assert "data-agent-memory-download-action" in html
     assert "data-agent-memory-download-toast" in html

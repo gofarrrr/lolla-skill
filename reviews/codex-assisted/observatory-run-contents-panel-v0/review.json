@@ -1,0 +1,60 @@
+{
+  "schema_version": "codex_assisted_review.v0",
+  "review_id": "observatory-run-contents-panel-v0",
+  "status": "implemented",
+  "date": "2026-07-07",
+  "decision_gate": "proceed_to_observatory_run_inventory_receipt_panel",
+  "implemented": {
+    "main_page_run_contents_panel": true,
+    "first_read_card": true,
+    "grouped_detail_disclosure": true,
+    "status_chips": true,
+    "download_md_visible_on_main_page": true,
+    "download_md_hover_help": true,
+    "giant_table_rendered_to_user": false,
+    "raw_json_rendered_to_user": false,
+    "runtime_behavior_changed": false,
+    "compiled_spa_bundle_changed": false
+  },
+  "visible_groups": [
+    "Understanding",
+    "Teaching and navigation",
+    "Memory, receipts, and inspection"
+  ],
+  "visible_summary_items": [
+    "Conversation",
+    "Interpretation",
+    "Outcome",
+    "Models",
+    "Relations",
+    "Practice",
+    "Receipts",
+    "MD export"
+  ],
+  "strongest_useful_signal": "The main Observatory workspace now tells the user what the selected run contains before asking them to navigate Outcome, Learn, Models, Relations, Map, Receipts, or Advanced Audit.",
+  "strongest_unresolved_risk": "The card summarizes from the existing workspace payload. A deeper run inventory receipt still needs to account for every gathered artifact family from the visibility matrix without rendering a giant table.",
+  "recommended_next_pr": "Add Observatory run inventory receipt panel",
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_run": false,
+    "generates_sidecars": false,
+    "wires_skill_runtime_behavior": false,
+    "mutates_archives": false,
+    "compiled_spa_bundle_changed": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false
+  }
+}
