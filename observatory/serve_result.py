@@ -194,6 +194,14 @@ def _observatory_workspace_href(selected_case_id: str, anchor: str | None = None
     return href
 
 
+def _observatory_agent_memory_download_href(selected_case_id: str) -> str:
+    return (
+        "/api/case/"
+        + quote(str(selected_case_id), safe="")
+        + "/conversation-memory.md?include_raw_conversation=1"
+    )
+
+
 def _observatory_teacher_href(selected_case_id: str, anchor: str | None = None) -> str:
     anchor_map = {
         None: "learn",
@@ -3972,6 +3980,16 @@ def _process_brief_safe_output_dir(case_id: str) -> Path:
     )
 
 
+def _agent_memory_safe_output_dir(case_id: str, run_id: str) -> Path:
+    tmp_root = Path(os.environ.get("TMPDIR") or "/tmp").expanduser()
+    return (
+        tmp_root
+        / "lolla_observatory_agent_memory"
+        / _safe_process_brief_case_fragment(case_id)
+        / _safe_process_brief_case_fragment(run_id)
+    )
+
+
 def _completed_run_dir_for_process_brief(
     result_path: Path | None,
     *,
@@ -4017,6 +4035,44 @@ def _build_process_brief_prepare_response(
         safe_output_dir=_process_brief_safe_output_dir(case_id),
         run_offline_operator=False,
     )
+
+
+def _build_agent_memory_markdown_download(
+    case_id: str,
+    result_path: Path | None,
+    *,
+    is_current: bool,
+    include_raw_conversation: bool,
+) -> tuple[str, str]:
+    """Build and return a private Markdown memory export for one completed run."""
+    from system_b.conversation_memory_packet import (
+        CONVERSATION_MEMORY_MARKDOWN_FILENAME,
+        ConversationMemoryInputError,
+        build_conversation_memory_bundle,
+    )
+
+    completed_run_dir = _completed_run_dir_for_process_brief(
+        result_path,
+        is_current=is_current,
+    )
+    if completed_run_dir is None:
+        raise ConversationMemoryInputError("completed run archive was not found")
+
+    output_dir = _agent_memory_safe_output_dir(case_id, completed_run_dir.name)
+    build_conversation_memory_bundle(
+        run_dir=completed_run_dir,
+        output_dir=output_dir,
+        privacy_mode="user_private",
+        include_raw_conversation=include_raw_conversation,
+    )
+    markdown_path = output_dir / CONVERSATION_MEMORY_MARKDOWN_FILENAME
+    markdown = markdown_path.read_text(encoding="utf-8")
+    filename = (
+        f"{_safe_process_brief_case_fragment(case_id)}-"
+        f"{_safe_process_brief_case_fragment(completed_run_dir.name)}-"
+        "conversation-memory.md"
+    )
+    return markdown, filename
 
 
 def _render_teacher_section_header(title: str) -> str:
@@ -5747,6 +5803,18 @@ def _render_workspace_receipts(
             _workspace_status_pill("Teacher packet", receipts.get("learning_packet_status", "")),
             _workspace_status_pill("Conversation Understanding", receipts.get("conversation_understanding_status", "")),
             _workspace_status_pill("Process brief", receipts.get("process_brief_status", "")),
+            "</div>",
+            '<p class="workspace-kicker">Agent memory export</p>',
+            (
+                "<p>Create a private Markdown file for your agent. It compiles "
+                "the completed run, source artifact map, interpretation legend, "
+                "selected lenses, suppressed signals, open questions, custody, "
+                "and non-claims.</p>"
+            ),
+            '<div class="workspace-chip-row">',
+            f'<a class="workspace-chip workspace-chip--teal" download '
+            f'href="{_esc(_observatory_agent_memory_download_href(selected_case_id))}">'
+            "Download MD for your agent</a>",
             "</div>",
             '<p class="workspace-kicker">Visible non-claims</p>',
             _render_workspace_list("", receipts.get("visible_non_claims") or []),
@@ -8637,6 +8705,28 @@ class ResultHandler(SimpleHTTPRequestHandler):
                     return
                 self._json_response(payload)
                 return
+            if len(parts) == 5 and parts[4] == "conversation-memory.md":
+                query = parse_qs(parsed.query)
+                include_raw_conversation = (
+                    (query.get("include_raw_conversation") or ["0"])[0].lower()
+                    in {"1", "true", "yes"}
+                )
+                try:
+                    markdown, filename = _build_agent_memory_markdown_download(
+                        case_id,
+                        result_path,
+                        is_current=is_current,
+                        include_raw_conversation=include_raw_conversation,
+                    )
+                except Exception as exc:
+                    self._error_response(
+                        500,
+                        "Agent memory Markdown export failed: "
+                        + type(exc).__name__,
+                    )
+                    return
+                self._markdown_download_response(markdown, filename)
+                return
             if (
                 len(parts) == 6
                 and parts[4] == "decision-work"
@@ -8875,6 +8965,25 @@ class ResultHandler(SimpleHTTPRequestHandler):
         self.send_response(status)
         self.send_header("Content-Type", "application/json")
         self.send_header("Content-Length", str(len(body)))
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.end_headers()
+        self.wfile.write(body)
+
+    def _markdown_download_response(
+        self,
+        markdown: str,
+        filename: str,
+        status: int = 200,
+    ):
+        body = markdown.encode("utf-8")
+        safe_filename = filename.replace('"', "").replace("\\", "-")
+        self.send_response(status)
+        self.send_header("Content-Type", "text/markdown; charset=utf-8")
+        self.send_header("Content-Length", str(len(body)))
+        self.send_header(
+            "Content-Disposition",
+            f'attachment; filename="{safe_filename}"',
+        )
         self.send_header("Access-Control-Allow-Origin", "*")
         self.end_headers()
         self.wfile.write(body)
