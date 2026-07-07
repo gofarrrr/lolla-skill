@@ -202,6 +202,32 @@ def _observatory_agent_memory_download_href(selected_case_id: str) -> str:
     )
 
 
+_AGENT_MEMORY_DOWNLOAD_LABEL = "Download MD"
+_AGENT_MEMORY_DOWNLOAD_HINT = (
+    "Downloads a private Markdown memory for this run: full transcript when "
+    "present, generated synthesis to verify, source locators, missingness, and "
+    "non-claims. Give it to a future agent so it can understand the run without "
+    "rerunning Lolla."
+)
+
+
+def _agent_memory_download_link(
+    selected_case_id: str,
+    tooltip_id: str,
+    *,
+    toast_align: str = "left",
+) -> dict:
+    return {
+        "label": _AGENT_MEMORY_DOWNLOAD_LABEL,
+        "href": _observatory_agent_memory_download_href(selected_case_id),
+        "download": True,
+        "hint": _AGENT_MEMORY_DOWNLOAD_HINT,
+        "tooltip_id": tooltip_id,
+        "toast_align": toast_align,
+        "agent_memory_download": True,
+    }
+
+
 def _observatory_teacher_href(selected_case_id: str, anchor: str | None = None) -> str:
     anchor_map = {
         None: "learn",
@@ -1384,6 +1410,46 @@ _WORKSPACE_CSS = """
 .workspace-chip--amber {
   border-color: rgba(212, 160, 82, .55);
   color: #f4c170;
+}
+.workspace-chip-with-toast {
+  position: relative;
+  display: inline-flex;
+  max-width: 100%;
+}
+.workspace-chip-with-toast .workspace-chip {
+  position: relative;
+  z-index: 1;
+}
+.workspace-chip-toast {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  z-index: 40;
+  width: min(380px, calc(100vw - 48px));
+  border: 1px solid rgba(65, 255, 167, .3);
+  border-radius: var(--radius-sm);
+  background: rgba(11, 16, 22, .98);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, .34);
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.45;
+  padding: 10px 12px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity .14s ease, transform .14s ease, visibility .14s ease;
+  visibility: hidden;
+}
+.workspace-chip-with-toast--right .workspace-chip-toast {
+  right: 0;
+  left: auto;
+}
+.workspace-chip-with-toast:hover .workspace-chip-toast,
+.workspace-chip-with-toast:focus-within .workspace-chip-toast {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
 }
 .workspace-model-page,
 .workspace-relation-page {
@@ -4838,11 +4904,11 @@ def _render_workspace_hero(selected_run: dict, workspace: dict) -> str:
             {"label": "Open model cards", "href": _observatory_workspace_href(case_id, "models")},
             {"label": "Read relation", "href": _observatory_workspace_href(case_id, "relations")},
             {"label": "Use map", "href": _observatory_workspace_href(case_id, "map")},
-            {
-                "label": "Download MD for your agent",
-                "href": _observatory_agent_memory_download_href(case_id),
-                "download": True,
-            },
+            _agent_memory_download_link(
+                case_id,
+                "agent-memory-download-hint-main",
+                toast_align="right",
+            ),
             {"label": "Check receipts", "href": _observatory_workspace_href(case_id, "receipts")},
         ],
         selected_case_id=case_id,
@@ -4911,7 +4977,6 @@ def _render_workspace_start_panel(quick_actions: str, selected_case_id: str) -> 
 
 
 def _render_workspace_agent_memory_card(selected_case_id: str) -> str:
-    href = _observatory_agent_memory_download_href(selected_case_id)
     return "\n".join(
         [
             '<article class="workspace-card workspace-first-read" data-agent-memory-export-card>',
@@ -4923,10 +4988,15 @@ def _render_workspace_agent_memory_card(selected_case_id: str) -> str:
                 "selected or left unresolved, and includes the full 1:1 "
                 "conversation transcript when the archive contains it.</p>"
             ),
-            '<div class="workspace-chip-row">',
-            f'<a class="workspace-chip workspace-chip--teal" download href="{_esc(href)}">'
-            "Download MD for your agent</a>",
-            "</div>",
+            _render_workspace_chips(
+                [
+                    _agent_memory_download_link(
+                        selected_case_id,
+                        "agent-memory-download-hint-card",
+                    )
+                ],
+                selected_case_id=selected_case_id,
+            ),
             "</article>",
         ]
     )
@@ -5840,11 +5910,15 @@ def _render_workspace_receipts(
                 "non-claims, and the full 1:1 conversation transcript when "
                 "available.</p>"
             ),
-            '<div class="workspace-chip-row">',
-            f'<a class="workspace-chip workspace-chip--teal" download '
-            f'href="{_esc(_observatory_agent_memory_download_href(selected_case_id))}">'
-            "Download MD for your agent</a>",
-            "</div>",
+            _render_workspace_chips(
+                [
+                    _agent_memory_download_link(
+                        selected_case_id,
+                        "agent-memory-download-hint-receipts",
+                    )
+                ],
+                selected_case_id=selected_case_id,
+            ),
             '<p class="workspace-kicker">Visible non-claims</p>',
             _render_workspace_list("", receipts.get("visible_non_claims") or []),
             _workspace_disclosure(
@@ -5910,9 +5984,45 @@ def _render_workspace_chips(
             selected_case_id,
         )
         download_attr = " download" if link.get("download") else ""
+        label = str(link.get("label") or href)
+        hint = str(link.get("hint") or "")
+        if hint:
+            tooltip_id = str(
+                link.get("tooltip_id") or f"workspace-chip-toast-{len(chips)}"
+            )
+            action_attr = (
+                " data-agent-memory-download-action"
+                if link.get("agent_memory_download")
+                else ""
+            )
+            link_attr = (
+                " data-agent-memory-download-link"
+                if link.get("agent_memory_download")
+                else ""
+            )
+            toast_attr = (
+                " data-agent-memory-download-toast"
+                if link.get("agent_memory_download")
+                else ""
+            )
+            align_class = (
+                " workspace-chip-with-toast--right"
+                if str(link.get("toast_align") or "") == "right"
+                else ""
+            )
+            chips.append(
+                f'<span class="workspace-chip-with-toast{align_class}"{action_attr}>'
+                f'<a class="{css}"{download_attr} href="{_esc(href)}"'
+                f' aria-describedby="{_esc(tooltip_id)}" title="{_esc(hint)}"{link_attr}>'
+                f"{_esc(label)}</a>"
+                f'<span class="workspace-chip-toast" id="{_esc(tooltip_id)}"'
+                f' role="tooltip"{toast_attr}>{_esc(hint)}</span>'
+                "</span>"
+            )
+            continue
         chips.append(
             f'<a class="{css}"{download_attr} href="{_esc(href)}">'
-            f'{_esc(link.get("label") or href)}</a>'
+            f"{_esc(label)}</a>"
         )
     return '<div class="workspace-chip-row">' + "".join(chips) + "</div>"
 

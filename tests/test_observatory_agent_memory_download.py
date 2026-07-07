@@ -209,13 +209,30 @@ def test_main_workspace_contains_agent_memory_download_action() -> None:
     assert "data-agent-memory-export-card" in html
     assert "Download a complete run memory for your agent" in html
     assert "full 1:1 conversation transcript" in html
-    assert "Download MD for your agent" in html
+    assert ">Download MD</a>" in html
+    assert "data-agent-memory-download-action" in html
+    assert "data-agent-memory-download-toast" in html
+    assert "workspace-chip-with-toast--right" in html
+    assert "generated synthesis to verify" in html
+    assert "Give it to a future agent" in html
     assert (
         'download href="/api/case/lolla-audit/conversation-memory.md?include_raw_conversation=1"'
         in html
     )
-    assert html.index("Use map") < html.index("Download MD for your agent")
-    assert html.index("Download MD for your agent") < html.index("Check receipts")
+    assert html.index("Use map") < html.index("Download MD")
+    assert html.index("Download MD") < html.index("Check receipts")
+    assert (
+        ".workspace-chip-with-toast:hover .workspace-chip-toast"
+        in serve_result._WORKSPACE_CSS
+    )
+    assert (
+        ".workspace-chip-with-toast:focus-within .workspace-chip-toast"
+        in serve_result._WORKSPACE_CSS
+    )
+    assert (
+        ".workspace-chip-with-toast--right .workspace-chip-toast"
+        in serve_result._WORKSPACE_CSS
+    )
 
 
 def test_receipts_repeats_agent_memory_download_with_custody_context() -> None:
@@ -232,9 +249,11 @@ def test_receipts_repeats_agent_memory_download_with_custody_context() -> None:
     )
 
     assert "Agent memory export" in html
-    assert "Download MD for your agent" in html
+    assert ">Download MD</a>" in html
+    assert "data-agent-memory-download-toast" in html
     assert 'download href="/api/case/lolla-audit/conversation-memory.md?include_raw_conversation=1"' in html
     assert "private Markdown file for your agent" in html
+    assert "future agent" in html
 
 
 def test_agent_memory_download_route_returns_self_explaining_markdown(
@@ -326,7 +345,8 @@ def test_agent_memory_doc_review_and_readme_are_clean() -> None:
     assert "observatory-agent-memory-markdown-download-v0.md" in readme
 
     for phrase in [
-        "Download MD for your agent",
+        "Download MD",
+        "hover or keyboard focus",
         "main workspace",
         "/api/case/<id>/conversation-memory.md",
         "explicit private local export",
