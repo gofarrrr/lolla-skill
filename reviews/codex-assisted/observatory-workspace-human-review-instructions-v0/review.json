@@ -1,0 +1,51 @@
+{
+  "schema_version": "codex_assisted_review.v0",
+  "review_id": "observatory-workspace-human-review-instructions-v0",
+  "status": "complete",
+  "date": "2026-07-07",
+  "decision_gate": "ready_for_real_human_hierarchy_review_response",
+  "implemented": {
+    "human_review_folder_readme": true,
+    "reviewer_workflow_documented": true,
+    "completed_review_path_documented": true,
+    "intake_capture_command_documented": true,
+    "review_json_created": false,
+    "intake_json_created": false,
+    "runtime_behavior_changed": false,
+    "compiled_spa_bundle_changed": false
+  },
+  "expected_future_files": [
+    "reviews/human/observatory-workspace/review.json",
+    "reviews/human/observatory-workspace/intake.json"
+  ],
+  "capture_command": "python3 scripts/evals/capture_observatory_workspace_human_review.py --review reviews/human/observatory-workspace/review.json --out reviews/human/observatory-workspace/intake.json --source-ref reviews/human/observatory-workspace/review.json",
+  "strongest_useful_signal": "The human hierarchy review now has a concrete reviewer folder, source form, output path, and capture command without adding a fake completed review.",
+  "strongest_unresolved_risk": "A real human still has to complete the scorecard and produce review.json before intake can drive the next product revision gate.",
+  "recommended_next_pr": "Use the instructions with a real human reviewer, then capture and inspect the resulting intake artifact.",
+  "boundary": {
+    "completes_human_review": false,
+    "adds_completed_review_json": false,
+    "adds_intake_json": false,
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_run": false,
+    "generates_sidecars": false,
+    "wires_skill_runtime_behavior": false,
+    "mutates_archives": false,
+    "compiled_spa_bundle_changed": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "relation_confidence_is_certification": false
+  }
+}
