@@ -1,0 +1,45 @@
+{
+  "schema_version": "codex_assisted_review.v0",
+  "review_id": "observatory-workspace-human-review-capture-path-v0",
+  "status": "complete",
+  "date": "2026-07-07",
+  "decision_gate": "ready_to_capture_completed_human_hierarchy_review_intake",
+  "implemented": {
+    "offline_operator_capture_cli": true,
+    "reads_completed_human_review_json": true,
+    "writes_sanitized_intake_json": true,
+    "blocks_blank_forms": true,
+    "blocks_privacy_risk_forms": true,
+    "redacts_unsafe_source_refs": true,
+    "runtime_behavior_changed": false,
+    "compiled_spa_bundle_changed": false
+  },
+  "command": "python3 scripts/evals/capture_observatory_workspace_human_review.py --review reviews/human/observatory-workspace/review.json --out reviews/human/observatory-workspace/intake.json",
+  "strongest_useful_signal": "A filled human hierarchy scorecard now has a deterministic offline capture path that produces a sanitized intake artifact without wiring runtime or making validation claims.",
+  "strongest_unresolved_risk": "A real human still has to complete the focused scorecard; this slice only captures and validates a completed form.",
+  "recommended_next_pr": "Use the capture path with a real completed human hierarchy review or add reviewer-facing instructions for where the completed JSON should live.",
+  "boundary": {
+    "completes_human_review": false,
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_run": false,
+    "generates_sidecars": false,
+    "wires_skill_runtime_behavior": false,
+    "mutates_archives": false,
+    "compiled_spa_bundle_changed": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "relation_confidence_is_certification": false
+  }
+}
