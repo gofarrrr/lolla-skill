@@ -1282,6 +1282,124 @@ _WORKSPACE_CSS = """
 .workspace-start-panel[hidden] {
   display: none;
 }
+.workspace-run-contents {
+  display: grid;
+  gap: 14px;
+}
+.workspace-run-contents h3 {
+  margin-bottom: 4px;
+}
+.workspace-run-contents .lede {
+  max-width: 880px;
+}
+.workspace-content-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.workspace-content-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 30px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, .04);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 5px 9px;
+}
+.workspace-content-chip::before,
+.workspace-content-status::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--text-dim);
+}
+.workspace-content-chip--available::before,
+.workspace-content-status--available::before {
+  background: var(--teal);
+}
+.workspace-content-chip--private::before,
+.workspace-content-status--private::before {
+  background: #f4c170;
+}
+.workspace-content-chip--inspection::before,
+.workspace-content-status--inspection::before {
+  background: #ba8cff;
+}
+.workspace-content-chip--missing::before,
+.workspace-content-status--missing::before {
+  background: #ff7d7d;
+}
+.workspace-run-contents-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.workspace-content-groups {
+  display: grid;
+  gap: 12px;
+}
+.workspace-content-group {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, .035);
+  padding: 14px;
+}
+.workspace-content-group h4 {
+  margin: 0 0 10px;
+  color: var(--text-primary);
+  font-size: 14px;
+}
+.workspace-content-list {
+  display: grid;
+  gap: 10px;
+}
+.workspace-content-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px 12px;
+  border-top: 1px solid rgba(255, 255, 255, .08);
+  padding-top: 10px;
+}
+.workspace-content-item:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+.workspace-content-item strong {
+  color: var(--text-primary);
+}
+.workspace-content-item p {
+  margin: 4px 0 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.workspace-content-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  justify-self: end;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  white-space: nowrap;
+}
+.workspace-content-action {
+  grid-column: 1 / -1;
+  justify-self: start;
+  color: var(--teal);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-decoration: none;
+}
+.workspace-content-action:hover {
+  text-decoration: underline;
+}
 .workspace-step-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1586,6 +1704,12 @@ _WORKSPACE_CSS = """
   }
   .workspace-statusbar {
     position: static;
+  }
+  .workspace-content-item {
+    grid-template-columns: 1fr;
+  }
+  .workspace-content-status {
+    justify-self: start;
   }
 }
 """
@@ -4926,7 +5050,7 @@ def _render_workspace_hero(selected_run: dict, workspace: dict) -> str:
             f'<span>Run: <code>{_esc(_short(selected_run.get("run_id", ""), 34))}</code></span>',
             f'<span>Health: <strong>{_esc(selected_run.get("health_label", ""))}</strong></span>',
             "</div>",
-            _render_workspace_start_panel(quick_actions, case_id),
+            _render_workspace_start_panel(quick_actions, case_id, workspace),
             '<p class="workspace-focus-label">Showing: '
             '<strong data-workspace-active-label>Outcome</strong></p>',
             _workspace_disclosure(
@@ -4942,7 +5066,11 @@ def _render_workspace_hero(selected_run: dict, workspace: dict) -> str:
     )
 
 
-def _render_workspace_start_panel(quick_actions: str, selected_case_id: str) -> str:
+def _render_workspace_start_panel(
+    quick_actions: str,
+    selected_case_id: str,
+    workspace: dict,
+) -> str:
     return "\n".join(
         [
             '<section class="workspace-start-panel" data-workspace-start-panel aria-label="Workspace path">',
@@ -4955,7 +5083,7 @@ def _render_workspace_start_panel(quick_actions: str, selected_case_id: str) -> 
             "or limits.</p>",
             quick_actions,
             "</article>",
-            _render_workspace_agent_memory_card(selected_case_id),
+            _render_workspace_run_contents_card(workspace, selected_case_id),
             '<div class="workspace-step-grid" aria-label="Recommended path">',
             *[
                 _workspace_step_card(
@@ -4976,28 +5104,305 @@ def _render_workspace_start_panel(quick_actions: str, selected_case_id: str) -> 
     )
 
 
-def _render_workspace_agent_memory_card(selected_case_id: str) -> str:
+def _render_workspace_run_contents_card(workspace: dict, selected_case_id: str) -> str:
+    receipts = workspace.get("receipt_summary") or {}
+    outcome = workspace.get("outcome_summary") or {}
+    lesson = workspace.get("learning_packet") or {}
+    models = list(workspace.get("model_pages") or [])
+    relations = list(workspace.get("relation_pages") or [])
+    graph = workspace.get("graph_neighborhood") or {}
+    advanced = workspace.get("advanced_audit_index") or {}
+
+    conversation_status = str(
+        receipts.get("conversation_understanding_status") or "unknown"
+    )
+    process_brief_status = str(receipts.get("process_brief_status") or "unknown")
+    outcome_status = _workspace_artifact_status(
+        outcome,
+        missing_field="revised_answer",
+        has_content=bool(
+            str(
+                outcome.get("revised_answer_summary")
+                or outcome.get("answer_headline")
+                or ""
+            ).strip()
+        ),
+    )
+    practice_status = _workspace_artifact_status(
+        lesson,
+        has_content=bool(
+            str(
+                ((lesson.get("practice_rep") or {}).get("prompt"))
+                or lesson.get("thinking_move")
+                or ""
+            ).strip()
+        ),
+    )
+    model_status = "available" if models else "missing"
+    relation_status = "available" if relations else "missing"
+    graph_status = "available" if graph.get("nodes") else "missing"
+    advanced_status = (
+        "available"
+        if (advanced.get("advanced_links") or advanced.get("artifact_statuses"))
+        else "missing"
+    )
+
+    summary_items = [
+        ("Conversation", conversation_status, ""),
+        ("Interpretation", conversation_status, ""),
+        ("Outcome", outcome_status, ""),
+        ("Models", _count_status(model_status, len(models)), ""),
+        ("Relations", _count_status(relation_status, len(relations)), ""),
+        ("Practice", practice_status, ""),
+        ("Receipts", "available", "available"),
+        ("MD export", "private", "private"),
+    ]
+    groups = [
+        (
+            "Understanding",
+            [
+                _workspace_content_item(
+                    "Conversation",
+                    conversation_status,
+                    "Source context for the selected run. Use it to verify what the system had to understand.",
+                    href=_observatory_workspace_href(selected_case_id, "receipts"),
+                    action="Check receipt",
+                ),
+                _workspace_content_item(
+                    "Interpretation",
+                    conversation_status,
+                    "The interpretation read of the case. Use it when the outcome feels misframed.",
+                    href="/audit/extraction",
+                    action="Inspect interpretation",
+                    variant="inspection",
+                ),
+                _workspace_content_item(
+                    "Outcome",
+                    outcome_status,
+                    "The run result and the main change the user should read first.",
+                    href=_observatory_workspace_href(selected_case_id, "outcome"),
+                    action="Open Outcome",
+                ),
+            ],
+        ),
+        (
+            "Teaching and navigation",
+            [
+                _workspace_content_item(
+                    "Mental models",
+                    _count_status(model_status, len(models)),
+                    "Clean model cards and drill-down pages for the models used by this run.",
+                    href=_observatory_workspace_href(selected_case_id, "models"),
+                    action="Open Models",
+                    variant="available" if models else "missing",
+                ),
+                _workspace_content_item(
+                    "Relations",
+                    _count_status(relation_status, len(relations)),
+                    "Plain-language model-pair stories before taxonomy or confidence.",
+                    href=_observatory_workspace_href(selected_case_id, "relations"),
+                    action="Open Relations",
+                    variant="available" if relations else "missing",
+                ),
+                _workspace_content_item(
+                    "Practice",
+                    practice_status,
+                    "One reasoning rep drawn from the selected run, not a claim that the advice is correct.",
+                    href=_observatory_workspace_href(selected_case_id, "learn"),
+                    action="Open Learn",
+                ),
+                _workspace_content_item(
+                    "Map",
+                    _count_status(graph_status, len(graph.get("nodes") or [])),
+                    "Small selected-run graph for wayfinding between models and relation pages.",
+                    href=_observatory_workspace_href(selected_case_id, "map"),
+                    action="Open Map",
+                    variant="available" if graph.get("nodes") else "missing",
+                ),
+            ],
+        ),
+        (
+            "Memory, receipts, and inspection",
+            [
+                _workspace_content_item(
+                    "Receipts",
+                    "available",
+                    "Custody, missingness, and non-claims for this run.",
+                    href=_observatory_workspace_href(selected_case_id, "receipts"),
+                    action="Open Receipts",
+                ),
+                _workspace_content_item(
+                    "Full transcript",
+                    "private export",
+                    "Not shown as first-read UI. Included in the private Markdown export when the archive contains it.",
+                    variant="private",
+                ),
+                _workspace_content_item(
+                    "Agent memory Markdown",
+                    "downloadable",
+                    "A private self-explaining run memory for another agent.",
+                    href=_observatory_agent_memory_download_href(selected_case_id),
+                    action="Download MD",
+                    variant="private",
+                    download=True,
+                ),
+                _workspace_content_item(
+                    "Process brief",
+                    process_brief_status,
+                    "Separate Decision Work material when it was requested for the run.",
+                    href=_observatory_workspace_href(selected_case_id, "receipts"),
+                    action="Check status",
+                    variant=_workspace_status_variant(process_brief_status),
+                ),
+                _workspace_content_item(
+                    "Advanced audit",
+                    advanced_status,
+                    "Technical inspection for extraction, usage, events, traces, and internal checks.",
+                    href="/audit",
+                    action="Open Advanced Audit",
+                    variant="inspection",
+                ),
+            ],
+        ),
+    ]
+
     return "\n".join(
         [
-            '<article class="workspace-card workspace-first-read" data-agent-memory-export-card>',
-            '<p class="workspace-kicker">Agent memory</p>',
-            "<h3>Download a complete run memory for your agent.</h3>",
             (
-                '<p class="lede">Create a private Markdown file that explains '
-                "what happened in this run, what artifacts it used, what it "
-                "selected or left unresolved, and includes the full 1:1 "
-                "conversation transcript when the archive contains it.</p>"
+                '<article class="workspace-card workspace-first-read '
+                'workspace-run-contents" data-run-contents-panel '
+                'data-agent-memory-export-card>'
             ),
+            '<p class="workspace-kicker">Run contents</p>',
+            "<h3>What This Run Contains</h3>",
+            (
+                '<p class="lede">We captured enough to explain the result, teach '
+                "the reasoning move, show the mental models and relations, and "
+                "preserve the run for later agent review.</p>"
+            ),
+            '<div class="workspace-content-summary" aria-label="Run content summary">',
+            *[
+                _workspace_content_chip(label, status, variant)
+                for label, status, variant in summary_items
+            ],
+            "</div>",
+            '<div class="workspace-run-contents-actions">',
             _render_workspace_chips(
                 [
                     _agent_memory_download_link(
                         selected_case_id,
-                        "agent-memory-download-hint-card",
+                        "agent-memory-download-hint-run-contents",
                     )
                 ],
                 selected_case_id=selected_case_id,
             ),
+            "</div>",
+            _workspace_disclosure(
+                "View details",
+                '<div class="workspace-content-groups">',
+                *[
+                    _workspace_content_group(title, items)
+                    for title, items in groups
+                ],
+                "</div>",
+            ),
             "</article>",
+        ]
+    )
+
+
+def _workspace_artifact_status(
+    payload: dict,
+    *,
+    missing_field: str | None = None,
+    has_content: bool = True,
+) -> str:
+    missingness = payload.get("missingness") or {}
+    status = str(missingness.get("status") or "").strip()
+    missing_fields = set(missingness.get("missing_fields") or [])
+    if missing_field and missing_field in missing_fields:
+        return "missing"
+    if status in {"missing", "blocked", "deferred", "not_requested"}:
+        return status
+    if status == "partial":
+        return "partial"
+    return "available" if has_content else "missing"
+
+
+def _count_status(status: str, count: int) -> str:
+    if status == "available":
+        return f"available ({count})"
+    return status
+
+
+def _workspace_status_variant(status: str) -> str:
+    normalized = str(status or "").strip().lower().replace("_", "-")
+    if normalized in {"missing", "absent", "blocked"}:
+        return "missing"
+    if normalized in {"not-requested", "deferred", "internal-only"}:
+        return "inspection"
+    if normalized in {"private", "private-export", "downloadable"}:
+        return "private"
+    return "available"
+
+
+def _workspace_content_chip(label: str, status: str, variant: str) -> str:
+    css_variant = _workspace_status_variant(status)
+    if variant:
+        css_variant = variant
+    return (
+        f'<span class="workspace-content-chip workspace-content-chip--{_esc(css_variant)}">'
+        f"{_esc(label)}"
+        f'<span class="workspace-meta">{_esc(_observatory_display_label(status, "Unknown"))}</span>'
+        "</span>"
+    )
+
+
+def _workspace_content_group(title: str, items: list[str]) -> str:
+    return "\n".join(
+        [
+            '<section class="workspace-content-group">',
+            f"<h4>{_esc(title)}</h4>",
+            '<div class="workspace-content-list">',
+            *items,
+            "</div>",
+            "</section>",
+        ]
+    )
+
+
+def _workspace_content_item(
+    label: str,
+    status: str,
+    body: str,
+    *,
+    href: str = "",
+    action: str = "",
+    variant: str = "",
+    download: bool = False,
+) -> str:
+    css_variant = variant or _workspace_status_variant(status)
+    download_attr = " download" if download else ""
+    action_html = ""
+    if href and action:
+        action_html = (
+            f'<a class="workspace-content-action"{download_attr} '
+            f'href="{_esc(href)}">{_esc(action)}</a>'
+        )
+    return "\n".join(
+        [
+            '<div class="workspace-content-item">',
+            "<div>",
+            f"<strong>{_esc(label)}</strong>",
+            f"<p>{_esc(body)}</p>",
+            "</div>",
+            (
+                '<span class="workspace-content-status '
+                f'workspace-content-status--{_esc(css_variant)}">'
+                f'{_esc(_observatory_display_label(status, "Unknown"))}</span>'
+            ),
+            action_html,
+            "</div>",
         ]
     )
 
