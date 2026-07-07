@@ -191,7 +191,34 @@ def _with_server(result_path: Path, callback):
         serve_result._RESULT_MTIME = old_mtime
 
 
-def test_receipts_contains_agent_memory_download_action() -> None:
+def test_main_workspace_contains_agent_memory_download_action() -> None:
+    html = serve_result._render_workspace_hero(
+        {
+            "case_id": "lolla-audit",
+            "run_id": "run-1",
+            "health_label": "ok",
+        },
+        {
+            "rendering_direction": "portable_python_server_rendered_html",
+            "primary_surfaces": ["Outcome", "Learn", "Models", "Relations", "Map", "Receipts"],
+            "advanced_surface": "Advanced Audit",
+        },
+    )
+
+    assert "Start here" in html
+    assert "data-agent-memory-export-card" in html
+    assert "Download a complete run memory for your agent" in html
+    assert "full 1:1 conversation transcript" in html
+    assert "Download MD for your agent" in html
+    assert (
+        'download href="/api/case/lolla-audit/conversation-memory.md?include_raw_conversation=1"'
+        in html
+    )
+    assert html.index("Use map") < html.index("Download MD for your agent")
+    assert html.index("Download MD for your agent") < html.index("Check receipts")
+
+
+def test_receipts_repeats_agent_memory_download_with_custody_context() -> None:
     html = serve_result._render_workspace_receipts(
         {
             "learning_packet_status": "available",
@@ -246,10 +273,12 @@ def test_agent_memory_download_route_returns_self_explaining_markdown(
         "## Open Questions",
         "## Agent Instructions For Future Use",
         "## Appendix: Source Excerpts",
+        "### Full 1:1 Conversation Transcript",
     ]:
         assert heading in markdown
 
     assert RAW_MARKER in markdown
+    assert "full archived `conversation.txt` transcript" in markdown
     assert PRIVATE_MARKER not in markdown
     assert "not_advice_correctness" in markdown
     assert "not_answer_correctness" in markdown
@@ -286,6 +315,7 @@ def test_agent_memory_doc_review_and_readme_are_clean() -> None:
 
     for phrase in [
         "Download MD for your agent",
+        "main workspace",
         "/api/case/<id>/conversation-memory.md",
         "explicit private local export",
         "not the default product UI",
@@ -301,6 +331,7 @@ def test_agent_memory_doc_review_and_readme_are_clean() -> None:
         assert phrase in doc
 
     assert review["decision_gate"] == "proceed_to_presentation_visibility_revision"
+    assert review["implemented"]["main_workspace_download_button"] is True
     assert review["implemented"]["receipts_download_button"] is True
     assert review["implemented"]["markdown_download_route"] is True
     assert review["implemented"]["offline_bundle_builder"] is True

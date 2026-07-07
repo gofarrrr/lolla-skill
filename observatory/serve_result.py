@@ -4838,6 +4838,11 @@ def _render_workspace_hero(selected_run: dict, workspace: dict) -> str:
             {"label": "Open model cards", "href": _observatory_workspace_href(case_id, "models")},
             {"label": "Read relation", "href": _observatory_workspace_href(case_id, "relations")},
             {"label": "Use map", "href": _observatory_workspace_href(case_id, "map")},
+            {
+                "label": "Download MD for your agent",
+                "href": _observatory_agent_memory_download_href(case_id),
+                "download": True,
+            },
             {"label": "Check receipts", "href": _observatory_workspace_href(case_id, "receipts")},
         ],
         selected_case_id=case_id,
@@ -4884,6 +4889,7 @@ def _render_workspace_start_panel(quick_actions: str, selected_case_id: str) -> 
             "or limits.</p>",
             quick_actions,
             "</article>",
+            _render_workspace_agent_memory_card(selected_case_id),
             '<div class="workspace-step-grid" aria-label="Recommended path">',
             *[
                 _workspace_step_card(
@@ -4900,6 +4906,28 @@ def _render_workspace_start_panel(quick_actions: str, selected_case_id: str) -> 
             ],
             "</div>",
             "</section>",
+        ]
+    )
+
+
+def _render_workspace_agent_memory_card(selected_case_id: str) -> str:
+    href = _observatory_agent_memory_download_href(selected_case_id)
+    return "\n".join(
+        [
+            '<article class="workspace-card workspace-first-read" data-agent-memory-export-card>',
+            '<p class="workspace-kicker">Agent memory</p>',
+            "<h3>Download a complete run memory for your agent.</h3>",
+            (
+                '<p class="lede">Create a private Markdown file that explains '
+                "what happened in this run, what artifacts it used, what it "
+                "selected or left unresolved, and includes the full 1:1 "
+                "conversation transcript when the archive contains it.</p>"
+            ),
+            '<div class="workspace-chip-row">',
+            f'<a class="workspace-chip workspace-chip--teal" download href="{_esc(href)}">'
+            "Download MD for your agent</a>",
+            "</div>",
+            "</article>",
         ]
     )
 
@@ -5809,7 +5837,8 @@ def _render_workspace_receipts(
                 "<p>Create a private Markdown file for your agent. It compiles "
                 "the completed run, source artifact map, interpretation legend, "
                 "selected lenses, suppressed signals, open questions, custody, "
-                "and non-claims.</p>"
+                "non-claims, and the full 1:1 conversation transcript when "
+                "available.</p>"
             ),
             '<div class="workspace-chip-row">',
             f'<a class="workspace-chip workspace-chip--teal" download '
@@ -5880,8 +5909,10 @@ def _render_workspace_chips(
             str(link.get("href") or ""),
             selected_case_id,
         )
+        download_attr = " download" if link.get("download") else ""
         chips.append(
-            f'<a class="{css}" href="{_esc(href)}">{_esc(link.get("label") or href)}</a>'
+            f'<a class="{css}"{download_attr} href="{_esc(href)}">'
+            f'{_esc(link.get("label") or href)}</a>'
         )
     return '<div class="workspace-chip-row">' + "".join(chips) + "</div>"
 

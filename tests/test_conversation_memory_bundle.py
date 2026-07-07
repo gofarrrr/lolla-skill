@@ -302,6 +302,8 @@ def test_user_private_can_include_raw_conversation_explicitly(tmp_path: Path) ->
 
     assert packet["privacy"]["raw_conversation_included"] is True
     assert packet["source_conversation"]["included"] is True
+    assert "### Full 1:1 Conversation Transcript" in markdown
+    assert "full archived `conversation.txt` transcript" in markdown
     assert RAW_MARKER in markdown
     assert "Evidence label: private" in markdown
 
