@@ -85,6 +85,7 @@ Current planning docs:
 - [Observatory Run Contents Panel](observatory-run-contents-panel-v0.md)
 - [Observatory Run Inventory Receipt Panel](observatory-run-inventory-receipt-panel-v0.md)
 - [Observatory Model Local Neighborhoods](observatory-model-local-neighborhoods-v0.md)
+- [Observatory Outcome User Value PRD](observatory-outcome-user-value-prd-v0.md)
 - [Observatory Agent Memory Markdown Download](observatory-agent-memory-markdown-download-v0.md)
 - [Observatory Agent Memory Cold Reader Layer Design](observatory-agent-memory-cold-reader-layer-design-v0.md)
 - [Observatory Agent Memory Orientation Renderer Spike](observatory-agent-memory-orientation-renderer-spike-v0.md)

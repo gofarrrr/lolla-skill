@@ -1,0 +1,57 @@
+{
+  "review_id": "observatory-outcome-user-value-prd-v0",
+  "status": "ready_for_user_review",
+  "decision_gate": "proceed_to_outcome_user_value_redesign",
+  "browser_grounded": true,
+  "audited_route": "/workspace?case_id=archive:launch-public-enterprise-beta:20260627T104146Z_7bfe79#outcome",
+  "observed_problem": {
+    "outcome_first_viewport_overloaded_with_navigation": true,
+    "center_navigation_duplicates_sidebar": true,
+    "status_and_inventory_precede_result_value": true,
+    "primary_outcome_text_truncated": true,
+    "strongest_pressure_hidden_in_disclosure": true,
+    "duplicate_visible_action_labels_found": true
+  },
+  "useful_existing_surfaces": {
+    "learn_has_teaching_move": true,
+    "models_have_user_facing_cues": true,
+    "relations_have_plain_language_story": true,
+    "map_has_selected_run_wayfinding": true,
+    "receipts_have_inventory_and_export": true
+  },
+  "prd_requires": {
+    "full_outcome_answer_without_ellipsis": true,
+    "why_this_changed_bullets": true,
+    "confidence_boundary": true,
+    "next_useful_moves": true,
+    "no_center_six_card_reading_path_on_outcome": true,
+    "no_duplicate_visible_action_labels": true,
+    "details_below_user_value": true
+  },
+  "strongest_useful_signal": "The browser audit showed that Learn, Models, Relations, Map, and Receipts contain real product value, while Outcome is still dominated by navigation and explanatory ceremony.",
+  "strongest_unresolved_risk": "If the next implementation only rearranges navigation, Outcome will still fail. It needs a stronger product-facing outcome object, not just visual cleanup.",
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_run": false,
+    "generates_sidecars": false,
+    "wires_skill_runtime_behavior": false,
+    "mutates_archives": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false,
+    "touches_compiled_spa_bundle": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false
+  },
+  "recommended_next_pr": "Outcome object audit and contract, followed by Outcome first viewport redesign"
+}
