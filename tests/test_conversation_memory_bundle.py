@@ -371,7 +371,7 @@ def test_claim_verification_checklist_points_to_sources_without_proof_claims(
     assert "Evidence label: `synthesis_to_verify`" in markdown
     assert "Use this as a checking index, not as a conclusion." in markdown
     assert "It does not prove any claim, certify advice, or replace source inspection." in markdown
-    assert "| Claim / item to verify | Best evidence in this file | Still verify before relying |" in markdown
+    assert "| Claim / item to verify | Best evidence in this file | Source locator | Still verify before relying |" in markdown
     assert "Decision situation: Whether to launch the beta after a mixed review." in markdown
     assert "Generated synthesized position: Launch only if a narrow gate passes." in markdown
     assert "Changed advice summary: Add a launch gate before relying on the enterprise signal." in markdown
@@ -379,10 +379,38 @@ def test_claim_verification_checklist_points_to_sources_without_proof_claims(
     assert "Open question: Who owns the launch gate?" in markdown
     assert "Run readiness: evaluation=pass, trace=adequate, future_review_ready=true" in markdown
     assert "conversation.txt, extraction.json, reasoning_trace.json" in markdown
+    assert '<a id="cm-section-claim-verification-checklist"></a>' in markdown
+    assert '<a id="cm-section-conversation-interpretation"></a>' in markdown
+    assert '<a id="cm-section-run-health-and-readiness"></a>' in markdown
+    assert "Transcript (artifact not embedded)" in markdown
+    assert "[Transcript](#cm-source-full-transcript)" not in markdown
+    assert "[Conversation Interpretation](#cm-section-conversation-interpretation)" in markdown
+    assert "[Run Health And Readiness](#cm-section-run-health-and-readiness)" in markdown
     assert "Treat as generated synthesis; verify against source conversation and current context." in markdown
     assert "do not infer advice correctness" in markdown
     assert "The correct interpretation is" not in markdown
     assert "The proven recommendation is" not in markdown
+
+
+def test_source_excerpt_anchors_are_rendered_when_sources_are_included(
+    tmp_path: Path,
+) -> None:
+    packet = build_conversation_memory_packet(
+        run_dir=_fixture_run_dir(tmp_path),
+        include_raw_conversation=True,
+    )
+    markdown = render_conversation_memory_markdown(packet)
+
+    assert '<a id="cm-source-full-transcript"></a>' in markdown
+    assert '<a id="cm-source-memo"></a>' in markdown
+    assert '<a id="cm-source-revised-answer"></a>' in markdown
+    assert markdown.index('<a id="cm-source-full-transcript"></a>') < markdown.index(
+        "### Full 1:1 Conversation Transcript"
+    )
+    assert markdown.index('<a id="cm-source-memo"></a>') < markdown.index("### Memo")
+    assert markdown.index('<a id="cm-source-revised-answer"></a>') < markdown.index(
+        "### Revised Answer"
+    )
 
 
 def test_bundle_writes_outputs_outside_archive(tmp_path: Path) -> None:

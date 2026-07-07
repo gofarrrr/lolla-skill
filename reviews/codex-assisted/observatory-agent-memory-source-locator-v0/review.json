@@ -1,0 +1,61 @@
+{
+  "schema_version": "codex_assisted_review.v0",
+  "review_id": "observatory-agent-memory-source-locator-v0",
+  "status": "complete",
+  "date": "2026-07-07",
+  "decision_gate": "proceed_to_agent_memory_download_ux_review",
+  "implemented": {
+    "stable_section_anchors_rendered": true,
+    "stable_source_excerpt_anchors_rendered_when_sources_exist": true,
+    "checklist_source_locator_column_added": true,
+    "non_embedded_source_locators_degrade_to_plain_text": true,
+    "download_route_inherits_source_locators": true,
+    "deterministic_renderer_only": true,
+    "packet_schema_changed": false,
+    "runtime_behavior_changed": false,
+    "compiled_spa_bundle_changed": false
+  },
+  "locator_targets": {
+    "claim_verification_checklist": "cm-section-claim-verification-checklist",
+    "conversation_interpretation": "cm-section-conversation-interpretation",
+    "what_changed": "cm-section-what-changed",
+    "open_questions": "cm-section-open-questions",
+    "run_health_and_readiness": "cm-section-run-health-and-readiness",
+    "artifact_custody": "cm-section-artifact-custody",
+    "full_transcript": "cm-source-full-transcript",
+    "memo": "cm-source-memo",
+    "revised_answer": "cm-source-revised-answer"
+  },
+  "design_constraints": {
+    "markdown_remains_portable": true,
+    "source_inspection_before_reliance": true,
+    "synthesis_is_not_source_of_truth": true,
+    "no_line_level_evidence_claim": true,
+    "no_interactive_dashboard_claim": true
+  },
+  "strongest_useful_signal": "The verification checklist now routes future readers directly to local source sections and excerpts without adding a stronger answer summary.",
+  "strongest_unresolved_risk": "The locators are section-level, not exact line-level transcript evidence, so a future reader still has to inspect the cited section.",
+  "recommended_next_pr": "Review the user-facing Observatory download UX now that the Markdown artifact has orientation, verification, and source locator layers.",
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_run": false,
+    "wires_skill_runtime_behavior": false,
+    "mutates_archives": false,
+    "compiled_spa_bundle_changed": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false
+  }
+}

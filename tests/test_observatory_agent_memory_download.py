@@ -284,7 +284,11 @@ def test_agent_memory_download_route_returns_self_explaining_markdown(
     assert "Do not treat this orientation as the answer." in markdown
     assert "Use this as a checking index, not as a conclusion." in markdown
     assert "Claim / item to verify" in markdown
+    assert "Source locator" in markdown
     assert "Still verify before relying" in markdown
+    assert "[Transcript](#cm-source-full-transcript)" in markdown
+    assert "[Run Health And Readiness](#cm-section-run-health-and-readiness)" in markdown
+    assert '<a id="cm-source-full-transcript"></a>' in markdown
     assert "- Generated synthesis:" not in markdown
     assert "full archived `conversation.txt` transcript" in markdown
     assert PRIVATE_MARKER not in markdown

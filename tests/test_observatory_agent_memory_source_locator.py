@@ -9,11 +9,11 @@ from engine.system_b.conversation_memory_renderer import (
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-DOC = REPO_ROOT / "docs/product/observatory-agent-memory-verification-checklist-v0.md"
+DOC = REPO_ROOT / "docs/product/observatory-agent-memory-source-locator-v0.md"
 README = REPO_ROOT / "docs/product/README.md"
 REVIEW = (
     REPO_ROOT
-    / "reviews/codex-assisted/observatory-agent-memory-verification-checklist-v0/"
+    / "reviews/codex-assisted/observatory-agent-memory-source-locator-v0/"
     "review.json"
 )
 
@@ -22,21 +22,22 @@ def _read(path: Path) -> str:
     return path.read_text(encoding="utf-8")
 
 
-def test_verification_checklist_slice_is_registered_and_gated() -> None:
+def test_source_locator_slice_is_registered_and_gated() -> None:
     doc = _read(DOC)
     readme = _read(README)
     review = json.loads(_read(REVIEW))
 
-    assert "Observatory Agent Memory Verification Checklist" in readme
-    assert "observatory-agent-memory-verification-checklist-v0.md" in readme
-    assert "Decision gate: `proceed_to_agent_memory_source_locator_spike`" in doc
-    assert review["decision_gate"] == "proceed_to_agent_memory_source_locator_spike"
-    assert review["implemented"]["claim_verification_checklist_rendered"] is True
+    assert "Observatory Agent Memory Source Locator" in readme
+    assert "observatory-agent-memory-source-locator-v0.md" in readme
+    assert "Decision gate: `proceed_to_agent_memory_download_ux_review`" in doc
+    assert review["decision_gate"] == "proceed_to_agent_memory_download_ux_review"
+    assert review["implemented"]["stable_section_anchors_rendered"] is True
+    assert review["implemented"]["packet_schema_changed"] is False
     assert review["implemented"]["runtime_behavior_changed"] is False
     assert review["implemented"]["compiled_spa_bundle_changed"] is False
 
 
-def test_renderer_checklist_is_a_source_inspection_index() -> None:
+def test_renderer_adds_stable_section_and_source_locators() -> None:
     markdown = render_conversation_memory_markdown(
         {
             "case": {
@@ -44,6 +45,8 @@ def test_renderer_checklist_is_a_source_inspection_index() -> None:
                 "run_id": "20260707T000000Z_test",
                 "decision_situation": "Whether to launch the beta after a mixed review.",
             },
+            "privacy": {"raw_conversation_included": True},
+            "source_conversation": {"text": "User: Should we launch?\nAssistant: Check gates."},
             "conversation_interpretation": {
                 "synthesized_position": "Launch only if a narrow gate passes.",
             },
@@ -54,17 +57,10 @@ def test_renderer_checklist_is_a_source_inspection_index() -> None:
                 "main_counter_pressure": "The launch gate was under-specified.",
             },
             "decision_summary": {
+                "memo_markdown": "Memo body.",
                 "revised_answer": "Launch only if the gate passes.",
             },
-            "open_questions": {
-                "items": [
-                    {
-                        "question": "Who owns the launch gate?",
-                        "source_refs": ["agent_result.json"],
-                        "evidence_label": "source",
-                    }
-                ],
-            },
+            "open_questions": {"items": []},
             "run_health": {
                 "evaluation_overall": "warn",
                 "trace_adequacy_status": "thin",
@@ -73,37 +69,25 @@ def test_renderer_checklist_is_a_source_inspection_index() -> None:
         }
     )
 
-    assert markdown.index("## Cold Reader Orientation") < markdown.index(
-        "## Claim Verification Checklist"
-    )
-    assert markdown.index("## Claim Verification Checklist") < markdown.index(
-        "## What This File Is"
-    )
-    assert "Evidence label: `synthesis_to_verify`" in markdown
-    assert "Use this as a checking index, not as a conclusion." in markdown
-    assert "does not prove any claim, certify advice, or replace source inspection" in markdown
-    assert "| Claim / item to verify | Best evidence in this file | Source locator | Still verify before relying |" in markdown
-    assert "Decision situation: Whether to launch the beta after a mixed review." in markdown
-    assert "Generated synthesized position: Launch only if a narrow gate passes." in markdown
-    assert "Changed advice summary: Add a launch gate before relying on the enterprise signal." in markdown
-    assert "Main counter-pressure: The launch gate was under-specified." in markdown
-    assert "Revised answer exists: Launch only if the gate passes." in markdown
-    assert "Open question: Who owns the launch gate?" in markdown
-    assert "Run readiness: evaluation=warn, trace=thin, future_review_ready=false" in markdown
     assert '<a id="cm-section-claim-verification-checklist"></a>' in markdown
     assert '<a id="cm-section-conversation-interpretation"></a>' in markdown
-    assert "[Conversation Interpretation](#cm-section-conversation-interpretation)" in markdown
-    assert "[What Changed](#cm-section-what-changed)" in markdown
+    assert '<a id="cm-section-what-changed"></a>' in markdown
+    assert '<a id="cm-section-open-questions"></a>' in markdown
+    assert '<a id="cm-section-run-health-and-readiness"></a>' in markdown
+    assert '<a id="cm-section-artifact-custody"></a>' in markdown
+    assert '<a id="cm-source-full-transcript"></a>' in markdown
+    assert '<a id="cm-source-memo"></a>' in markdown
+    assert '<a id="cm-source-revised-answer"></a>' in markdown
+    assert "Source locator" in markdown
+    assert "[Transcript](#cm-source-full-transcript)" in markdown
+    assert "[Memo](#cm-source-memo)" in markdown
     assert "[Revised Answer](#cm-source-revised-answer)" in markdown
-    assert "[Open Questions](#cm-section-open-questions)" in markdown
-    assert "[Run Health And Readiness](#cm-section-run-health-and-readiness)" in markdown
-    assert "Treat as generated synthesis; verify against source conversation and current context." in markdown
-    assert "do not infer advice correctness" in markdown
-    assert "The correct interpretation is" not in markdown
-    assert "The proven recommendation is" not in markdown
+    assert "[Artifact Custody](#cm-section-artifact-custody)" in markdown
+    assert "No structured open-question rows were supplied." in markdown
+    assert "no line-level" not in markdown.lower()
 
 
-def test_verification_checklist_boundary_and_non_claims() -> None:
+def test_source_locator_boundary_and_non_claims() -> None:
     doc = _read(DOC)
     review_text = _read(REVIEW)
     review = json.loads(review_text)
