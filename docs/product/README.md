@@ -85,6 +85,7 @@ Current planning docs:
 - [Observatory Run Contents Panel](observatory-run-contents-panel-v0.md)
 - [Observatory Run Inventory Receipt Panel](observatory-run-inventory-receipt-panel-v0.md)
 - [Observatory Model Local Neighborhoods](observatory-model-local-neighborhoods-v0.md)
+- [Observatory Relation Page Library Fallback](observatory-relation-page-library-fallback-v0.md)
 - [Observatory Outcome User Value PRD](observatory-outcome-user-value-prd-v0.md)
 - [Observatory Outcome Object Contract](observatory-outcome-object-contract-v0.md)
 - [Observatory Outcome First Viewport](observatory-outcome-first-viewport-v0.md)

@@ -264,6 +264,20 @@ def _observatory_relation_href(
     return href
 
 
+def _library_relation_id(
+    source_model_id: str,
+    target_model_id: str,
+    relation_type: str,
+) -> str:
+    return "__".join(
+        [
+            str(source_model_id or "").strip(),
+            str(target_model_id or "").strip(),
+            str(relation_type or "related").strip(),
+        ]
+    )
+
+
 def _observatory_product_link_href(href: str, selected_case_id: str) -> str:
     parsed = urlparse(str(href or ""))
     path = parsed.path
@@ -3832,6 +3846,12 @@ def _relation_semantics_items_for_model(model_id: str) -> list[dict]:
             seen.add(dedup_key)
             items.append(
                 {
+                    "source_model_id": model_id,
+                    "relation_id": _library_relation_id(
+                        model_id,
+                        target_model_id,
+                        edge_type,
+                    ),
                     "edge_type": edge_type,
                     "target_model_id": target_model_id,
                     "target_display_name": _library_model_display_name(target_model_id),
@@ -3869,6 +3889,7 @@ def _relationship_graph_fallback_items_for_model(model_id: str, *, limit: int = 
         if dedup_key in seen:
             continue
         seen.add(dedup_key)
+        relation_id = _library_relation_id(source_id, target_id, edge_type)
         body = str(
             edge.get("source_description")
             or edge.get("target_description")
@@ -3877,8 +3898,11 @@ def _relationship_graph_fallback_items_for_model(model_id: str, *, limit: int = 
         ).strip()
         items.append(
             {
+                "source_model_id": source_id,
+                "relation_id": relation_id,
                 "edge_type": edge_type,
                 "target_model_id": neighbor_id,
+                "relation_target_model_id": target_id,
                 "target_display_name": _library_model_display_name(neighbor_id),
                 "body": body
                 or "Reviewed relationship graph edge exists, but the plain-language rationale is missing.",
@@ -3891,6 +3915,196 @@ def _relationship_graph_fallback_items_for_model(model_id: str, *, limit: int = 
         if len(items) >= limit:
             break
     return items
+
+
+def _parse_library_relation_id(relation_id: str) -> tuple[str, str, str] | None:
+    parts = str(relation_id or "").split("__")
+    if len(parts) != 3:
+        return None
+    source_model_id, target_model_id, relation_type = [part.strip() for part in parts]
+    if not source_model_id or not target_model_id or not relation_type:
+        return None
+    return source_model_id, target_model_id, relation_type
+
+
+def _relation_semantics_item_for_relation(
+    source_model_id: str,
+    target_model_id: str,
+    relation_type: str,
+) -> dict | None:
+    for item in _relation_semantics_items_for_model(source_model_id):
+        if (
+            item.get("target_model_id") == target_model_id
+            and item.get("edge_type") == relation_type
+        ):
+            return item
+    return None
+
+
+def _relationship_graph_item_for_relation(
+    source_model_id: str,
+    target_model_id: str,
+    relation_type: str,
+) -> dict | None:
+    normalized_type = "tension" if relation_type == "structured_tension" else relation_type
+    for edge in _load_relationship_graph_edges():
+        if edge.get("curated") is False:
+            continue
+        source_id = str(edge.get("source_model_id") or "").strip()
+        target_id = str(edge.get("target_model_id") or "").strip()
+        edge_type = str(edge.get("edge_type") or "related").strip()
+        if edge_type == "tension":
+            edge_type = "structured_tension"
+        graph_type = "tension" if edge_type == "structured_tension" else edge_type
+        if (
+            source_id == source_model_id
+            and target_id == target_model_id
+            and graph_type == normalized_type
+        ):
+            body = str(
+                edge.get("source_description")
+                or edge.get("target_description")
+                or edge.get("activation_condition")
+                or ""
+            ).strip()
+            return {
+                "source_model_id": source_id,
+                "relation_id": _library_relation_id(source_id, target_id, edge_type),
+                "edge_type": edge_type,
+                "target_model_id": target_id,
+                "target_display_name": _library_model_display_name(target_id),
+                "body": body
+                or "Reviewed relationship graph edge exists, but the plain-language rationale is missing.",
+                "source_quote": str(edge.get("source_quote") or "").strip(),
+                "confidence": str(edge.get("confidence") or "unknown").strip(),
+                "extraction_type": str(edge.get("extraction_type") or "reviewed").strip(),
+                "source": "relationship_graph",
+            }
+    return None
+
+
+def _library_relation_page_from_id(relation_id: str) -> dict | None:
+    parsed = _parse_library_relation_id(relation_id)
+    if parsed is None:
+        return None
+    source_model_id, target_model_id, relation_type = parsed
+    item = _relation_semantics_item_for_relation(
+        source_model_id,
+        target_model_id,
+        relation_type,
+    )
+    source_kind = "relation_semantics"
+    if item is None:
+        item = _relationship_graph_item_for_relation(
+            source_model_id,
+            target_model_id,
+            relation_type,
+        )
+        source_kind = "relationship_graph"
+    if item is None:
+        return None
+
+    source_name = _library_model_display_name(source_model_id)
+    target_name = _library_model_display_name(target_model_id)
+    edge_type = str(item.get("edge_type") or relation_type or "related")
+    body = str(item.get("body") or "").strip()
+    source_refs = []
+    if source_kind == "relation_semantics":
+        source_refs.append(
+            {
+                "source_type": "relation_semantics",
+                "path": f"data/curation/relation_semantics/{_safe_model_data_id(source_model_id)}.json",
+            }
+        )
+    else:
+        source_refs.append(
+            {
+                "source_type": "relationship_graph",
+                "path": "data/relationship_graph.json",
+            }
+        )
+    source_refs.append(
+        {
+            "source_type": "knowledge_graph",
+            "path": "data/knowledge_graph.json",
+        }
+    )
+    if source_kind == "relation_semantics":
+        source_refs.append(
+            {
+                "source_type": "relationship_graph_accounting",
+                "path": "data/relationship_graph.json",
+            }
+        )
+
+    relation_label = _observatory_display_label(edge_type, "Relation")
+    missing_fields = []
+    if not body:
+        missing_fields.append("plain_language_story")
+    if not item.get("source_quote"):
+        missing_fields.append("source_quote")
+
+    return {
+        "schema_version": "lolla.observatory.relation_page.v0",
+        "relation_id": _library_relation_id(source_model_id, target_model_id, edge_type),
+        "source_model_id": source_model_id,
+        "target_model_id": target_model_id,
+        "relation_type": edge_type,
+        "plain_language_story": body
+        or "No source-backed plain-language relation story is available.",
+        "why_it_matters": (
+            f"Use this {relation_label.lower()} relation to compare "
+            f"{source_name} with {target_name} before treating either model "
+            "as a standalone answer."
+        ),
+        "misread_risk": (
+            "The main risk is treating this library relation as proof that "
+            "either model was selected by the current run, or as proof that "
+            "the advice is correct."
+        ),
+        "practice_prompt": (
+            f"Name a case where {source_name} is active. Then ask what "
+            f"{target_name} changes, challenges, or protects against. Write "
+            "one boundary that would stop the relation from applying."
+        ),
+        "model_links": [
+            {
+                "label": source_name,
+                "href": _observatory_model_href(source_model_id),
+            },
+            {
+                "label": target_name,
+                "href": _observatory_model_href(target_model_id),
+            },
+        ],
+        "source_refs": source_refs,
+        "source_quote_or_ref": str(item.get("source_quote") or "").strip(),
+        "confidence": str(item.get("confidence") or "unknown").strip(),
+        "curation_status": "reviewed",
+        "relation_scope": "library_fallback",
+        "relation_source_artifact": source_kind,
+        "extraction_type": str(item.get("extraction_type") or "reviewed").strip(),
+        "missingness": {
+            "status": "partial" if missing_fields else "complete_for_prototype",
+            "missing_fields": missing_fields,
+            "notes": [
+                "Rendered from reviewed library relation substrate because this relation was not attached to the selected-run Teacher packet.",
+                "Read as reusable model-library navigation, not selected-run evidence.",
+            ],
+        },
+        "non_claims": [
+            "library_relation_view_not_selected_run_proof",
+            "relation_is_not_proof",
+            "confidence_is_not_certification",
+            "graph_edges_are_navigation_not_proof",
+            "not_product_proof",
+            "not_human_validation",
+            "not_answer_correctness",
+            "not_advice_correctness",
+            "not_runtime_integration",
+            "not_action_authorization",
+        ],
+    }
 
 
 def _model_local_neighborhood(model_id: str) -> dict:
@@ -5147,35 +5361,65 @@ def _render_workspace_relation_detail_html(
         (item for item in relations if str(item.get("relation_id", "")) == relation_id),
         None,
     )
+    opened_from_library_relation = False
     if relation is None:
-        body = _render_workspace_detail_missing_page(
-            selected_case_id,
-            active_surface="relations",
-            heading="Relation page not found.",
-            message=(
-                f"No selected-run product relation is available for "
-                f"<code>{_esc(relation_id)}</code>."
+        relation = _library_relation_page_from_id(relation_id)
+        if relation is None:
+            body = _render_workspace_detail_missing_page(
+                selected_case_id,
+                active_surface="relations",
+                heading="Relation page not found.",
+                message=(
+                    f"No selected-run or reviewed library relation is available for "
+                    f"<code>{_esc(relation_id)}</code>."
+                ),
+                back_anchor="relations",
+            )
+            return _render_workspace_scaffold(
+                title="Lolla - Relation Not Found",
+                body=body,
+            )
+        opened_from_library_relation = True
+
+    model_lookup = {
+        **model_lookup,
+        str(relation.get("source_model_id") or ""): {
+            "model_id": relation.get("source_model_id"),
+            "display_name": _library_model_display_name(
+                str(relation.get("source_model_id") or "")
             ),
-            back_anchor="relations",
-        )
-        return _render_workspace_scaffold(
-            title="Lolla - Relation Not Found",
-            body=body,
-        )
+        },
+        str(relation.get("target_model_id") or ""): {
+            "model_id": relation.get("target_model_id"),
+            "display_name": _library_model_display_name(
+                str(relation.get("target_model_id") or "")
+            ),
+        },
+    }
 
     relation_title = _relation_title(relation, model_lookup)
+    if opened_from_library_relation:
+        lede = (
+            "Read this as reusable library relation knowledge translated from "
+            "reviewed substrate. It is not a claim that the relation drove the "
+            "selected run."
+        )
+        back_label = "Selected-run relations"
+    else:
+        lede = (
+            "Read the model relationship as a lesson: the story, why it "
+            "matters, where it can be misread, and one practice rep."
+        )
+        back_label = "All relations in this run"
     body = _render_workspace_detail_shell(
         selected_case_id,
         active_surface="relations",
         status=workspace.get("missingness", {}).get("status"),
         eyebrow="Relation",
         title=relation_title,
-        lede=(
-            "Read the model relationship as a lesson: the story, why it "
-            "matters, where it can be misread, and one practice rep."
-        ),
+        lede=lede,
         back_href=_observatory_workspace_href(selected_case_id, "relations"),
-        back_label="All relations in this run",
+        back_label=back_label,
         content=_render_workspace_relation_page(
             relation,
             model_lookup,
@@ -6940,6 +7184,15 @@ def _render_workspace_model_neighbor_card(
     source = str(item.get("source") or "reviewed")
     quote_text = str(item.get("source_quote") or "").strip()
     href = _observatory_model_href(target_model_id, selected_case_id)
+    relation_id = str(
+        item.get("relation_id")
+        or _library_relation_id(
+            str(item.get("source_model_id") or ""),
+            str(item.get("relation_target_model_id") or target_model_id),
+            str(item.get("edge_type") or "related"),
+        )
+    )
+    relation_href = _observatory_relation_href(relation_id, selected_case_id)
     quote_block = ""
     if quote_text:
         quote_block = _workspace_disclosure(
@@ -6962,6 +7215,7 @@ def _render_workspace_model_neighbor_card(
             quote_block,
             '<div class="workspace-next-actions">',
             f'<a class="workspace-chip workspace-chip--teal" href="{_esc(href)}">Open model page</a>',
+            f'<a class="workspace-chip" href="{_esc(relation_href)}">Open relation page</a>',
             "</div>",
             "</article>",
         ]
@@ -7148,11 +7402,19 @@ def _render_workspace_relation_page(
             f'<a class="workspace-chip" href="{_esc(_observatory_relation_href(relation_id, selected_case_id))}">'
             "Open relation page</a>"
         )
+    source_quote = str(relation.get("source_quote_or_ref") or "").strip()
+    source_quote_section = ""
+    if source_quote:
+        source_quote_section = _workspace_disclosure(
+            "Source quote or reference",
+            f"<p>{_esc(source_quote)}</p>",
+        )
     return "\n".join(
         [
             f'<article id="{_relation_detail_anchor(relation_id)}" class="workspace-card workspace-relation-page">',
             '<p class="teacher-eyebrow">Relation</p>',
             f'<h3>{_esc(_relation_title(relation, model_lookup))}</h3>',
+            _render_workspace_relation_scope_cue(relation),
             '<section class="detail-section workspace-first-read" data-first-read-card>',
             "<h3>Plain Language Story</h3>",
             f'<p>{_esc(relation.get("plain_language_story", ""))}</p>',
@@ -7173,6 +7435,7 @@ def _render_workspace_relation_page(
                 relation.get("model_links") or [],
                 selected_case_id=selected_case_id or "",
             ),
+            source_quote_section,
             _workspace_disclosure(
                 "Taxonomy, confidence, and custody",
             '<section class="detail-section">',
@@ -7186,6 +7449,38 @@ def _render_workspace_relation_page(
             _render_teacher_non_claims(relation),
             ),
             "</article>",
+        ]
+    )
+
+
+def _render_workspace_relation_scope_cue(relation: dict) -> str:
+    if relation.get("relation_scope") != "library_fallback":
+        return ""
+    source_artifact = _observatory_display_label(
+        relation.get("relation_source_artifact"),
+        "Reviewed library substrate",
+    )
+    extraction_type = _observatory_display_label(
+        relation.get("extraction_type"),
+        "Reviewed",
+    )
+    return "\n".join(
+        [
+            '<section class="detail-section workspace-first-read">',
+            "<h3>Library Relation Context</h3>",
+            (
+                "<p>This relation is opened from the reviewed mental-model "
+                "library, not from the selected-run Teacher packet. Use it to "
+                "understand the model pair; do not treat it as proof that the "
+                "current run used this relation.</p>"
+            ),
+            '<div class="workspace-chip-row">',
+            '<span class="workspace-chip workspace-chip--teal">library fallback</span>',
+            f'<span class="workspace-chip">{_esc(source_artifact)}</span>',
+            f'<span class="workspace-chip">{_esc(extraction_type)}</span>',
+            '<span class="workspace-chip">not selected-run proof</span>',
+            "</div>",
+            "</section>",
         ]
     )
 
