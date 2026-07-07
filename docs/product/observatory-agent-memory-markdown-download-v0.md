@@ -14,7 +14,7 @@ memory for a future agent.
 The UX is intentionally small:
 
 ```text
-Download MD for your agent
+Download MD
 ```
 
 The button is visible in the main workspace action row because this is a core
@@ -22,13 +22,21 @@ user action, not something hidden behind technical receipts. Receipts repeats
 the action with custody context so the user can understand what the export
 contains and what it does not claim.
 
+The button uses hover or keyboard focus to open a compact explanation toast. It
+tells the user to expect a private Markdown memory for the selected run,
+including the full transcript when present, generated synthesis to verify,
+source locators, missingness, and non-claims. The toast also explains the main
+use: give the file to a future agent so it can understand the run without
+rerunning Lolla.
+
 ## User Flow
 
 1. Open a selected run in Observatory.
-2. Click `Download MD for your agent` from the main workspace.
-3. Optionally open Receipts to inspect custody, missingness, and non-claims.
-4. Observatory builds a private Markdown export from the completed run archive.
-5. The browser downloads the generated `.md` file.
+2. Hover or focus `Download MD` if the user wants to preview what the export is.
+3. Click `Download MD` from the main workspace.
+4. Optionally open Receipts to inspect custody, missingness, and non-claims.
+5. Observatory builds a private Markdown export from the completed run archive.
+6. The browser downloads the generated `.md` file.
 
 The route is:
 
@@ -105,6 +113,7 @@ repo:
 Observatory adds:
 
 - a main workspace download button;
+- a short `Download MD` label with hover and keyboard-focus explanation;
 - a Receipts button;
 - a Markdown download route;
 - safe temp output under the OS temp directory;
