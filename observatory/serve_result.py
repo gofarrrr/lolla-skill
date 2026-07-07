@@ -194,6 +194,13 @@ def _observatory_workspace_href(selected_case_id: str, anchor: str | None = None
     return href
 
 
+def _observatory_workspace_review_href(selected_case_id: str) -> str:
+    href = "/review/observatory-workspace"
+    if selected_case_id:
+        href += "?case_id=" + quote(str(selected_case_id), safe="")
+    return href
+
+
 def _observatory_teacher_href(selected_case_id: str, anchor: str | None = None) -> str:
     anchor_map = {
         None: "learn",
@@ -4505,6 +4512,95 @@ def _render_workspace_unavailable_page(payload: dict, selected_case_id: str) -> 
     )
 
 
+def _render_workspace_review_guide_html(selected_case_id: str | None = None) -> str:
+    selected_case_id = selected_case_id or _CASE_ID
+    surface_links = _render_workspace_chips(
+        [
+            {
+                "label": label,
+                "href": _observatory_workspace_href(selected_case_id, anchor),
+            }
+            for anchor, label, _question, _purpose in _WORKSPACE_READING_PATH
+        ],
+        selected_case_id=selected_case_id,
+        kind="support",
+    )
+    body = "\n".join(
+        [
+            '<div class="workspace-page">',
+            _render_observatory_status_bar(
+                status="review_guide",
+                selected_case_id=selected_case_id,
+                active_surface="receipts",
+                css_class="workspace-statusbar",
+            ),
+            '<div class="workspace-layout">',
+            _render_workspace_run_picker(selected_case_id),
+            '<main class="workspace-main">',
+            '<header class="workspace-hero">',
+            '<p class="teacher-eyebrow">Human review guide</p>',
+            "<h1>Review the Observatory Workspace</h1>",
+            '<p class="lede">Use this guide after opening the workspace. The task is to judge whether the run outcome, lesson, models, relation, map, and receipts read as one product journey.</p>',
+            '<div class="workspace-next-actions">',
+            f'<a class="workspace-chip workspace-chip--teal" href="{_esc(_observatory_workspace_href(selected_case_id, "outcome"))}">Open workspace at Outcome</a>',
+            f'<a class="workspace-chip" href="{_esc(_observatory_workspace_href(selected_case_id, "receipts"))}">Back to Receipts</a>',
+            "</div>",
+            "</header>",
+            '<section class="workspace-section">',
+            _render_teacher_section_header("What To Evaluate"),
+            '<article class="workspace-card workspace-first-read" data-first-read-card>',
+            '<p class="workspace-kicker">Main question</p>',
+            "<h3>Does this feel like one Observatory product surface?</h3>",
+            "<p>Start cold. Spend about ten seconds on the first screen, then click through the six surfaces. Write down what you thought the page was for, what you wanted to click next, and where the flow became confusing.</p>",
+            surface_links,
+            "</article>",
+            '<article class="workspace-card">',
+            '<p class="workspace-kicker">Review prompts</p>',
+            _render_workspace_list(
+                "",
+                [
+                    "Can you explain the page purpose after the first screen?",
+                    "Can you move from Outcome to Learn without needing telemetry?",
+                    "Do Models and Relations explain reusable mental-model knowledge?",
+                    "Does Map feel like navigation rather than proof?",
+                    "Do Receipts show custody, missingness, and non-claims without becoming the main product?",
+                ],
+            ),
+            "</article>",
+            '<article class="workspace-card">',
+            '<p class="workspace-kicker">Review output</p>',
+            "<p>Complete the blank human review form only after clicking through the workspace. A negative or partial review is useful; do not pre-fill a positive result.</p>",
+            '<div class="workspace-chip-row">',
+            '<span class="workspace-chip workspace-chip--amber">human review not completed</span>',
+            '<span class="workspace-chip">blank form: docs/product/observatory-workspace-user-review-packet-v0/human-review-form.md</span>',
+            "</div>",
+            "</article>",
+            _workspace_disclosure(
+                "Review boundaries",
+                _render_workspace_list(
+                    "",
+                    [
+                        "Do not run Lolla for this review.",
+                        "Do not create a new run.",
+                        "Do not treat this as product proof or human validation.",
+                        "Do not claim answer correctness or advice correctness.",
+                        "Do not treat graph edges as proof or relation confidence as certification.",
+                        "Do not authorize automatic action.",
+                    ],
+                ),
+            ),
+            "</section>",
+            "</main>",
+            "</div>",
+            "</div>",
+        ]
+    )
+    return _render_workspace_scaffold(
+        title="Lolla - Observatory Review Guide",
+        body=body,
+    )
+
+
 def _render_workspace_payload(payload: dict, selected_case_id: str) -> str:
     workspace = payload["workspace"]
     selected_run = workspace["selected_run_summary"]
@@ -4581,6 +4677,23 @@ def _render_workspace_surface_guide(selected_case_id: str) -> str:
     )
 
 
+def _render_workspace_review_guide_panel(selected_case_id: str) -> str:
+    return "\n".join(
+        [
+            '<section class="workspace-panel">',
+            "<h3>Review Guide</h3>",
+            "<p>For human review: judge whether this reads as one product journey, "
+            "not a pile of artifacts.</p>",
+            '<div class="workspace-next-actions">',
+            f'<a class="workspace-chip workspace-chip--teal" '
+            f'href="{_esc(_observatory_workspace_review_href(selected_case_id))}">'
+            "Open review guide</a>",
+            "</div>",
+            "</section>",
+        ]
+    )
+
+
 def _render_workspace_run_picker(selected_case_id: str) -> str:
     try:
         cases = _build_cases_index()[:8]
@@ -4619,6 +4732,7 @@ def _render_workspace_run_picker(selected_case_id: str) -> str:
             "<h3>Reading Path</h3>",
             _render_workspace_surface_guide(selected_case_id),
             "</section>",
+            _render_workspace_review_guide_panel(selected_case_id),
             "</aside>",
         ]
     )
@@ -5450,6 +5564,20 @@ def _render_workspace_receipts(
             "</div>",
             '<p class="workspace-kicker">Visible non-claims</p>',
             _render_workspace_list("", receipts.get("visible_non_claims") or []),
+            '<p class="workspace-kicker">Human review</p>',
+            "<p>Use the review guide only after clicking through the workspace. "
+            "It asks what confused you, what you expected to click, and whether "
+            "the six surfaces read as one Observatory product.</p>",
+            _render_workspace_chips(
+                [
+                    {
+                        "label": "Open review guide",
+                        "href": _observatory_workspace_review_href(selected_case_id),
+                    }
+                ],
+                selected_case_id=selected_case_id,
+                kind="support",
+            ),
             '<p class="workspace-kicker">Technical inspection</p>',
             "<p>Open these only when you need evidence, extraction detail, or usage telemetry.</p>",
             _render_workspace_chips(
@@ -8408,6 +8536,12 @@ class ResultHandler(SimpleHTTPRequestHandler):
 
         if path == "/usage":
             self._html_response(_render_usage_html())
+            return
+
+        if path == "/review/observatory-workspace":
+            query = parse_qs(parsed.query)
+            selected_case_id = (query.get("case_id") or [""])[0] or _CASE_ID
+            self._html_response(_render_workspace_review_guide_html(selected_case_id))
             return
 
         if path == "/teacher-learning":

@@ -77,4 +77,5 @@ Current planning docs:
 - [Observatory Workspace Human Review Intake](observatory-workspace-human-review-intake-v0.md)
 - [Observatory Workspace Map Label Readability](observatory-workspace-map-label-readability-v0.md)
 - [Observatory Workspace First-Read Progression](observatory-workspace-first-read-progression-v0.md)
+- [Observatory Workspace Review Entry Orientation](observatory-workspace-review-entry-orientation-v0.md)
 - [Mental Model Teacher Product Surface Reference Patterns](mental-model-teacher-product-surface-reference-patterns-v0.md)
