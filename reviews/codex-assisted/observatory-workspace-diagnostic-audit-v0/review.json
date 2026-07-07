@@ -1,0 +1,61 @@
+{
+  "schema_version": "codex_assisted_review.v0",
+  "review_id": "observatory-workspace-diagnostic-audit-v0",
+  "status": "complete",
+  "date": "2026-07-07",
+  "decision_gate": "needs_information_hierarchy_revision_before_expansion",
+  "browser_grounded": true,
+  "implemented": {
+    "diagnostic_audit_doc": true,
+    "machine_readable_audit_summary": true,
+    "runtime_behavior_changed": false,
+    "compiled_spa_bundle_changed": false,
+    "human_form_prefilled": false
+  },
+  "surfaces_audited": [
+    "Root / Outcome",
+    "Learn",
+    "Models",
+    "Relations",
+    "Map",
+    "Receipts",
+    "Review Guide",
+    "Model Page",
+    "Relation Page",
+    "Technical Audit Routes"
+  ],
+  "information_layers": [
+    "first_class_product_information",
+    "supporting_knowledge_information",
+    "inspection_information"
+  ],
+  "strongest_useful_signal": "The current workspace has a coherent selected-run to learning to model/relation/map/receipts progression.",
+  "strongest_unresolved_risk": "The UI still needs clearer hierarchy between primary product information, supporting exploration, and inspection-only telemetry.",
+  "recommended_next_gate": {
+    "gate": "needs_information_hierarchy_revision_before_expansion",
+    "recommended_first_slice": "Outcome missingness plus model role labels"
+  },
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_run": false,
+    "generates_sidecars": false,
+    "wires_skill_runtime_behavior": false,
+    "mutates_archives": false,
+    "compiled_spa_bundle_changed": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "relation_confidence_is_certification": false
+  }
+}
