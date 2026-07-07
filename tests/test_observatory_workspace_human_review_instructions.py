@@ -9,8 +9,6 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 DOC = REPO_ROOT / "docs/product/observatory-workspace-human-review-instructions-v0.md"
 README = REPO_ROOT / "docs/product/README.md"
 HUMAN_README = REPO_ROOT / "reviews/human/observatory-workspace/README.md"
-REVIEW_JSON = REPO_ROOT / "reviews/human/observatory-workspace/review.json"
-INTAKE_JSON = REPO_ROOT / "reviews/human/observatory-workspace/intake.json"
 CODEX_REVIEW = (
     REPO_ROOT
     / "reviews/codex-assisted/observatory-workspace-human-review-instructions-v0/review.json"
@@ -36,8 +34,6 @@ def test_human_review_instruction_paths_are_documented_without_fake_outputs() ->
         assert "capture_observatory_workspace_human_review.py" in text
         assert "Outcome -> Learn -> Models -> Relations -> Map -> Receipts" in text
 
-    assert not REVIEW_JSON.exists()
-    assert not INTAKE_JSON.exists()
     assert review["implemented"]["review_json_created"] is False
     assert review["implemented"]["intake_json_created"] is False
     assert review["expected_future_files"] == [

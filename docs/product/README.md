@@ -89,4 +89,5 @@ Current planning docs:
 - [Observatory Workspace Human Hierarchy Scorecard](observatory-workspace-human-hierarchy-scorecard-v0.md)
 - [Observatory Workspace Human Review Capture Path](observatory-workspace-human-review-capture-path-v0.md)
 - [Observatory Workspace Human Review Instructions](observatory-workspace-human-review-instructions-v0.md)
+- [Observatory Workspace Human Review Awaiting Response Gate](observatory-workspace-human-review-awaiting-response-gate-v0.md)
 - [Mental Model Teacher Product Surface Reference Patterns](mental-model-teacher-product-surface-reference-patterns-v0.md)
