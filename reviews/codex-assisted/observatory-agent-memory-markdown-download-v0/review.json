@@ -1,0 +1,51 @@
+{
+  "schema_version": "codex_assisted_review.v0",
+  "review_id": "observatory-agent-memory-markdown-download-v0",
+  "status": "complete",
+  "date": "2026-07-07",
+  "decision_gate": "proceed_to_presentation_visibility_revision",
+  "implemented": {
+    "offline_bundle_builder": true,
+    "markdown_renderer": true,
+    "offline_cli": true,
+    "receipts_download_button": true,
+    "markdown_download_route": true,
+    "content_disposition_attachment": true,
+    "runtime_behavior_changed": false,
+    "compiled_spa_bundle_changed": false
+  },
+  "route": "/api/case/<id>/conversation-memory.md",
+  "button_label": "Download MD for your agent",
+  "privacy": {
+    "route_privacy_mode": "user_private",
+    "button_requests_raw_conversation": true,
+    "raw_conversation_default_public_safe": false,
+    "private_operator_bodies_copied": false,
+    "archive_mutated": false
+  },
+  "strongest_useful_signal": "The user can now create a self-explaining Markdown memory file for a selected completed run directly from Receipts.",
+  "strongest_unresolved_risk": "The generated Markdown is broad and agent-readable, but the next product slice still needs to refine which Observatory data is shown by default versus summarized, expanded, or hidden.",
+  "recommended_next_pr": "Revise Observatory presentation visibility using the data exposure audit categories.",
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_run": false,
+    "wires_skill_runtime_behavior": false,
+    "mutates_archives": false,
+    "compiled_spa_bundle_changed": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false
+  }
+}

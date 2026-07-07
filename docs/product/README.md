@@ -81,6 +81,7 @@ Current planning docs:
 - [Observatory Workspace User Surface Review Removal](observatory-workspace-user-surface-review-removal-v0.md)
 - [Observatory Data Exposure Audit](observatory-data-exposure-audit-v0.md)
 - [Observatory Data Exposure Audit JSON](observatory-data-exposure-audit-v0.json)
+- [Observatory Agent Memory Markdown Download](observatory-agent-memory-markdown-download-v0.md)
 - [Observatory Workspace Diagnostic Audit](observatory-workspace-diagnostic-audit-v0.md)
 - [Observatory Workspace Diagnostic Audit JSON](observatory-workspace-diagnostic-audit-v0.json)
 - [Observatory Workspace Hierarchy Cues](observatory-workspace-hierarchy-cues-v0.md)
