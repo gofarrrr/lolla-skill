@@ -1,0 +1,54 @@
+{
+  "schema_version": "codex_assisted_review.v0",
+  "review_id": "observatory-model-detail-library-navigation-polish-v0",
+  "status": "implemented",
+  "date": "2026-07-07",
+  "decision_gate": "proceed_to_library_graph_scope_decision",
+  "implemented": {
+    "model_neighborhood_scan_layer": true,
+    "what_this_is_card": true,
+    "how_to_scan_card": true,
+    "how_to_trust_it_card": true,
+    "relation_type_jump_chips": true,
+    "group_headings_show_counts": true,
+    "neighbor_relation_links_preserved": true,
+    "workspace_models_remain_light": true,
+    "selected_run_map_scope_unchanged": true,
+    "runtime_behavior_changed": false,
+    "compiled_spa_bundle_changed": false
+  },
+  "product_decisions": {
+    "model_detail_is_library_bridge": true,
+    "local_neighborhood_is_not_selected_run_map": true,
+    "local_neighborhood_is_not_full_corpus_graph": true,
+    "relation_edges_are_navigation_not_proof": true,
+    "confidence_is_not_official_quality_label": true,
+    "global_graph_deferred": true
+  },
+  "strongest_useful_signal": "The model detail page now explains how to scan the local reviewed library neighborhood before showing relation cards.",
+  "strongest_unresolved_risk": "A graph scope decision is still needed before building any broader library graph, so the selected-run Map and full corpus graph do not collapse into one confusing surface.",
+  "recommended_next_pr": "Decide and document the next graph scope before adding more graph UI",
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_run": false,
+    "generates_sidecars": false,
+    "wires_skill_runtime_behavior": false,
+    "mutates_archives": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false,
+    "touches_compiled_spa_bundle": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false
+  }
+}
