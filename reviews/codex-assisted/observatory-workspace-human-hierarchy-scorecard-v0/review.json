@@ -1,0 +1,53 @@
+{
+  "schema_version": "codex_assisted_review.v0",
+  "review_id": "observatory-workspace-human-hierarchy-scorecard-v0",
+  "status": "complete",
+  "date": "2026-07-07",
+  "decision_gate": "ready_for_human_hierarchy_review_with_focused_scorecard",
+  "implemented": {
+    "review_guide_scorecard": true,
+    "human_form_markdown_scorecard": true,
+    "human_form_json_scorecard": true,
+    "intake_focused_check_coverage": true,
+    "review_packet_manifest_updated": true,
+    "human_form_prefilled": false,
+    "human_review_completed": false,
+    "runtime_behavior_changed": false,
+    "compiled_spa_bundle_changed": false
+  },
+  "focused_hierarchy_checks": [
+    "first_screen_orientation",
+    "learn_reasoning_move_not_answer_correctness",
+    "model_detail_progressive_disclosure",
+    "relation_story_before_taxonomy",
+    "map_navigation_not_proof",
+    "receipts_optional_inspection"
+  ],
+  "strongest_useful_signal": "The human review workflow now asks directly whether Observatory keeps general product meaning ahead of source-derived detail, graph evidence, receipts, and audit inspection.",
+  "strongest_unresolved_risk": "A human still has to complete the scorecard before the next product revision gate can be chosen from real review evidence.",
+  "recommended_next_pr": "Use the focused scorecard for a real human hierarchy review or add a small operator-facing capture path for a completed review JSON.",
+  "boundary": {
+    "completes_human_review": false,
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_run": false,
+    "generates_sidecars": false,
+    "wires_skill_runtime_behavior": false,
+    "mutates_archives": false,
+    "compiled_spa_bundle_changed": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "relation_confidence_is_certification": false
+  }
+}

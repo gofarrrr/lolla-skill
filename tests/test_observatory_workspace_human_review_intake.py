@@ -11,6 +11,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 
 from engine.system_b.observatory_workspace_human_review_intake import (  # noqa: E402
+    FOCUSED_HIERARCHY_CHECKS,
     FORM_SCHEMA_VERSION,
     INTAKE_SCHEMA_VERSION,
     SURFACES,
@@ -72,6 +73,11 @@ def _completed_form(*, overall: str = "needs_first_screen_revision") -> dict:
     form["information_hierarchy"]["evidence"] = (
         "First read and drilldowns are separated."
     )
+    for check in FOCUSED_HIERARCHY_CHECKS:
+        form["focused_hierarchy_checks"][check]["selected"] = "adequate"
+        form["focused_hierarchy_checks"][check]["evidence"] = (
+            f"{check} keeps general meaning before technical detail."
+        )
     form["non_claims_review"]["selected"] = "yes"
     form["non_claims_review"]["evidence"] = (
         "Receipts and copy avoid product-proof and action claims."
@@ -114,6 +120,10 @@ def test_completed_review_form_maps_to_revision_gate_without_product_claims() ->
     assert intake["next_gate"] == "needs_first_screen_revision"
     assert intake["review_coverage"]["all_surfaces_reviewed"] is True
     assert intake["review_coverage"]["reviewed_surfaces"] == list(SURFACES)
+    assert intake["review_coverage"]["all_focused_hierarchy_checks_reviewed"] is True
+    assert intake["review_coverage"]["reviewed_focused_hierarchy_checks"] == list(
+        FOCUSED_HIERARCHY_CHECKS
+    )
     assert intake["downstream_allowed"]["can_plan_revision"] is True
     assert intake["downstream_allowed"]["can_expand_product"] is False
     assert intake["downstream_allowed"]["can_claim_human_validation"] is False
@@ -183,6 +193,28 @@ def test_missing_surface_review_rejects_completed_form() -> None:
     assert intake["intake_status"] == "rejected_invalid_review_form"
     assert "surface_reviews.Map_missing" in intake["blocker_reasons"]
     assert intake["review_coverage"]["all_surfaces_reviewed"] is False
+
+
+def test_blank_focused_hierarchy_scorecard_rejects_completed_form() -> None:
+    form = _completed_form()
+    form["focused_hierarchy_checks"]["receipts_optional_inspection"]["selected"] = None
+    form["focused_hierarchy_checks"]["receipts_optional_inspection"]["evidence"] = ""
+
+    intake = validate_observatory_workspace_human_review_form(
+        form,
+        created_at="2026-07-06T00:00:00+00:00",
+    )
+
+    assert intake["intake_status"] == "rejected_invalid_review_form"
+    assert (
+        "focused_hierarchy_checks.receipts_optional_inspection."
+        "selected_missing_or_invalid"
+    ) in intake["blocker_reasons"]
+    assert (
+        "focused_hierarchy_checks.receipts_optional_inspection.evidence_missing"
+        in intake["blocker_reasons"]
+    )
+    assert intake["review_coverage"]["all_focused_hierarchy_checks_reviewed"] is False
 
 
 def test_privacy_markers_block_form_without_leaking_source_ref() -> None:
