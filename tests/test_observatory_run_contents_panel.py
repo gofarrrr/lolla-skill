@@ -125,7 +125,6 @@ def test_run_contents_details_group_user_actions_without_raw_json(
         "Open Relations",
         "Open Map",
         "Open Receipts",
-        "Download MD",
         "Open Advanced Audit",
     ]:
         assert action in panel
@@ -135,21 +134,26 @@ def test_run_contents_details_group_user_actions_without_raw_json(
     assert "/review/observatory-workspace" not in panel
 
 
-def test_run_contents_panel_keeps_download_md_visible_with_hover_help(
+def test_run_contents_panel_defers_download_md_to_header_and_receipts(
     monkeypatch,
 ) -> None:
     _install_launch_case(monkeypatch)
 
     html = serve_result._render_workspace_html("lolla-audit")
+    panel = html.split('data-run-contents-panel', 1)[1].split("</article>", 1)[0]
 
     assert ">Download MD</a>" in html
     assert "data-agent-memory-download-toast" in html
-    assert "agent-memory-download-hint-run-contents" in html
+    assert "agent-memory-download-hint-main" in html
+    assert "agent-memory-download-hint-run-contents" not in html
     assert "Give it to a future agent" in html
     assert (
         'download href="/api/case/lolla-audit/conversation-memory.md?include_raw_conversation=1"'
         in html
     )
+    assert ">Download MD</a>" not in panel
+    assert "Agent memory Markdown" in panel
+    assert "A private self-explaining run memory" in panel
     assert ".workspace-run-contents" in serve_result._WORKSPACE_CSS
     assert ".workspace-content-summary" in serve_result._WORKSPACE_CSS
     assert ".workspace-content-groups" in serve_result._WORKSPACE_CSS
