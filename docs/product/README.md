@@ -78,4 +78,6 @@ Current planning docs:
 - [Observatory Workspace Map Label Readability](observatory-workspace-map-label-readability-v0.md)
 - [Observatory Workspace First-Read Progression](observatory-workspace-first-read-progression-v0.md)
 - [Observatory Workspace Review Entry Orientation](observatory-workspace-review-entry-orientation-v0.md)
+- [Observatory Workspace Diagnostic Audit](observatory-workspace-diagnostic-audit-v0.md)
+- [Observatory Workspace Diagnostic Audit JSON](observatory-workspace-diagnostic-audit-v0.json)
 - [Mental Model Teacher Product Surface Reference Patterns](mental-model-teacher-product-surface-reference-patterns-v0.md)
