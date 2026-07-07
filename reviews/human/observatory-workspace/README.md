@@ -37,6 +37,10 @@ The Markdown companion is:
 docs/product/observatory-workspace-user-review-packet-v0/human-review-form.md
 ```
 
+Launch checklist:
+
+[Observatory workspace human review launch checklist](../../../docs/product/observatory-workspace-human-review-launch-checklist-v0.md)
+
 Do not pre-fill a positive result. Negative, partial, and `cannot_judge` reviews
 are useful.
 
