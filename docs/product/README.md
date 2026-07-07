@@ -88,6 +88,7 @@ Current planning docs:
 - [Observatory Outcome User Value PRD](observatory-outcome-user-value-prd-v0.md)
 - [Observatory Outcome Object Contract](observatory-outcome-object-contract-v0.md)
 - [Observatory Outcome First Viewport](observatory-outcome-first-viewport-v0.md)
+- [Observatory Content Progression PRD](observatory-content-progression-prd-v0.md)
 - [Observatory Agent Memory Markdown Download](observatory-agent-memory-markdown-download-v0.md)
 - [Observatory Agent Memory Cold Reader Layer Design](observatory-agent-memory-cold-reader-layer-design-v0.md)
 - [Observatory Agent Memory Orientation Renderer Spike](observatory-agent-memory-orientation-renderer-spike-v0.md)
