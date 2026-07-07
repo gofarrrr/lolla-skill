@@ -1,0 +1,265 @@
+{
+  "schema_version": "lolla.observatory_review_guide_browser_audit.v0",
+  "status": "diagnostic_codex_assisted_not_human_validation",
+  "date": "2026-07-07",
+  "decision_gate": "ready_for_human_hierarchy_review",
+  "browser_grounded": true,
+  "fixture_case_id": "launch-public-enterprise-beta",
+  "start_route": "/review/observatory-workspace?case_id=launch-public-enterprise-beta",
+  "normal_progression": [
+    "Outcome",
+    "Learn",
+    "Models",
+    "Relations",
+    "Map",
+    "Receipts"
+  ],
+  "review_progression": [
+    "Review Guide",
+    "Outcome",
+    "Learn",
+    "Models",
+    "Model detail",
+    "Relations",
+    "Relation detail",
+    "Map",
+    "Receipts",
+    "Audit only if needed"
+  ],
+  "routes_checked": [
+    "/review/observatory-workspace?case_id=launch-public-enterprise-beta",
+    "/workspace?case_id=launch-public-enterprise-beta#outcome",
+    "/workspace?case_id=launch-public-enterprise-beta#learn",
+    "/workspace?case_id=launch-public-enterprise-beta#models",
+    "/models/authority-bias?case_id=launch-public-enterprise-beta",
+    "/workspace?case_id=launch-public-enterprise-beta#relations",
+    "/relations/authority-bias__first-principles-thinking__antagonist?case_id=launch-public-enterprise-beta",
+    "/workspace?case_id=launch-public-enterprise-beta#map",
+    "/workspace?case_id=launch-public-enterprise-beta#receipts",
+    "/audit/extraction",
+    "/usage",
+    "/audit"
+  ],
+  "interactions_checked": [
+    "review_guide_open_workspace_at_outcome",
+    "outcome_practice_lesson_link",
+    "workspace_top_nav_links",
+    "model_detail_link",
+    "relation_detail_link",
+    "map_search_models",
+    "map_relation_filter",
+    "map_reset",
+    "receipts_review_guide_link",
+    "receipts_technical_inspection_links"
+  ],
+  "hierarchy": {
+    "primary": [
+      "Outcome",
+      "Learn"
+    ],
+    "supporting": [
+      "Models",
+      "Relations",
+      "Map"
+    ],
+    "inspection": [
+      "Receipts",
+      "Audit"
+    ]
+  },
+  "surface_audit": [
+    {
+      "surface": "Review Guide",
+      "layer": "supporting_review",
+      "visible_data": [
+        "main_review_question",
+        "cold_user_hierarchy_check",
+        "primary_supporting_inspection_chips",
+        "what_to_record_prompts",
+        "blank_human_form_pointer"
+      ],
+      "user_should_understand": "what to evaluate before judging the workspace",
+      "progression_role": "review_entry",
+      "overload_risk": "review_framing_can_help_a_reviewer_but_does_not_prove_cold_learner_clarity"
+    },
+    {
+      "surface": "Outcome",
+      "layer": "primary",
+      "visible_data": [
+        "selected_case",
+        "run_id",
+        "run_health",
+        "workspace_path",
+        "missing_outcome_state",
+        "links_to_learn_and_models"
+      ],
+      "user_should_understand": "start from the selected run and treat missing outcome as a state",
+      "progression_role": "selected_run_anchor",
+      "overload_risk": "missingness_can_still_feel_like_absence"
+    },
+    {
+      "surface": "Learn",
+      "layer": "primary",
+      "visible_data": [
+        "thinking_move",
+        "model_pair",
+        "relation_story",
+        "practice_action"
+      ],
+      "user_should_understand": "the transferable reasoning move from the run",
+      "progression_role": "primary_teaching_value",
+      "overload_risk": "selection_reason_is_still_mostly_implicit"
+    },
+    {
+      "surface": "Models",
+      "layer": "supporting",
+      "visible_data": [
+        "model_cards",
+        "role_cues",
+        "use_when",
+        "mislead_risk",
+        "model_detail_links"
+      ],
+      "user_should_understand": "models are reusable tools behind the lesson",
+      "progression_role": "supporting_knowledge",
+      "overload_risk": "many_text_blocks_can_make_supporting_knowledge_feel_primary"
+    },
+    {
+      "surface": "Model detail",
+      "layer": "supporting_drilldown",
+      "visible_data": [
+        "library_view",
+        "run_context",
+        "not_proof_cue",
+        "helps_notice",
+        "use_when",
+        "avoid_when",
+        "practice_placeholder"
+      ],
+      "user_should_understand": "library knowledge comes first and selected-run role is context",
+      "progression_role": "model_drilldown",
+      "overload_risk": "detail_page_is_long_enough_that_stop_point_may_be_unclear"
+    },
+    {
+      "surface": "Relations",
+      "layer": "supporting",
+      "visible_data": [
+        "relation_story",
+        "why_it_matters",
+        "misread_risk",
+        "practice_prompt",
+        "model_links"
+      ],
+      "user_should_understand": "the model relationship is the lesson between models",
+      "progression_role": "supporting_relation_story",
+      "overload_risk": "relation_type_is_quiet_by_design_and_still_needs_human_readability_review"
+    },
+    {
+      "surface": "Relation detail",
+      "layer": "supporting_drilldown",
+      "visible_data": [
+        "plain_language_story",
+        "why_it_matters",
+        "misread_risk",
+        "practice_prompt",
+        "model_links"
+      ],
+      "user_should_understand": "a relation page teaches the edge before taxonomy",
+      "progression_role": "relation_drilldown",
+      "overload_risk": "low_current_risk_because_page_is_focused_and_story_first"
+    },
+    {
+      "surface": "Map",
+      "layer": "supporting_navigation",
+      "visible_data": [
+        "small_neighborhood",
+        "search",
+        "relation_filter",
+        "reset",
+        "selected_detail_panel",
+        "non_proof_copy"
+      ],
+      "user_should_understand": "the map is for wayfinding and choosing data",
+      "progression_role": "graph_navigation",
+      "overload_risk": "graph_visuals_can_invite_proof_reading"
+    },
+    {
+      "surface": "Receipts",
+      "layer": "inspection",
+      "visible_data": [
+        "teacher_packet_status",
+        "conversation_understanding_status",
+        "process_brief_status",
+        "visible_non_claims",
+        "human_review_link",
+        "technical_inspection_links"
+      ],
+      "user_should_understand": "receipts answer what exists, what is missing, and what is not claimed",
+      "progression_role": "custody_and_missingness",
+      "overload_risk": "receipts_can_look_like_product_if_entered_first"
+    },
+    {
+      "surface": "Extraction audit",
+      "layer": "advanced_inspection",
+      "visible_data": [
+        "audit_navigation",
+        "extraction_missingness",
+        "sidecar_status"
+      ],
+      "user_should_understand": "this is builder inspection, not learner narration",
+      "progression_role": "technical_inspection",
+      "overload_risk": "dense_telemetry_nav_can_overwhelm_a_learner"
+    },
+    {
+      "surface": "Usage",
+      "layer": "advanced_inspection",
+      "visible_data": [
+        "usage_missingness"
+      ],
+      "user_should_understand": "usage is run telemetry, not product value",
+      "progression_role": "technical_inspection",
+      "overload_risk": "low_if_only_reachable_from_inspection"
+    },
+    {
+      "surface": "Advanced audit",
+      "layer": "advanced_inspection",
+      "visible_data": [
+        "telemetry_index",
+        "lane_links",
+        "routing",
+        "treatment_audit",
+        "graph_survival",
+        "run_events"
+      ],
+      "user_should_understand": "this is the system trace behind the run",
+      "progression_role": "technical_inspection",
+      "overload_risk": "highest_overload_risk_and_should_remain_behind_receipts_or_explicit_audit_entry"
+    }
+  ],
+  "strongest_useful_signal": "The current Observatory surface now has a testable hierarchy from Review Guide to Outcome, Learn, Models, Relations, Map, Receipts, and Audit only when needed.",
+  "strongest_unresolved_risk": "Cognitive overload remains the primary risk because supporting model detail, receipts, and audit routes can still feel equal to the core teaching journey for a cold user.",
+  "recommended_next_pr": "Collect the first human hierarchy review using the blank form or make one small UI change if the human reviewer cannot understand the first-read hierarchy.",
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_run": false,
+    "generates_sidecars": false,
+    "wires_skill_runtime_behavior": false,
+    "mutates_archives": false,
+    "compiled_spa_bundle_changed": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "relation_confidence_is_certification": false
+  }
+}
