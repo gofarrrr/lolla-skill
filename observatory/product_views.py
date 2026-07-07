@@ -16,6 +16,7 @@ from typing import Any
 WORKSPACE_SCHEMA_VERSION = "lolla.observatory.product_workspace.v0"
 SELECTED_RUN_SUMMARY_SCHEMA_VERSION = "lolla.observatory.selected_run_summary.v0"
 OUTCOME_SUMMARY_SCHEMA_VERSION = "lolla.observatory.outcome_summary.v0"
+OUTCOME_VALUE_SCHEMA_VERSION = "lolla.observatory.outcome_value.v0"
 LEARNING_PACKET_SCHEMA_VERSION = "lolla.observatory.learning_packet.v0"
 MODEL_PAGE_SCHEMA_VERSION = "lolla.observatory.model_page.v0"
 RELATION_PAGE_SCHEMA_VERSION = "lolla.observatory.relation_page.v0"
@@ -252,6 +253,47 @@ def validate_outcome_summary(payload: Mapping[str, Any]) -> dict[str, Any]:
     ):
         _require_string(data, key)
     _require_model_chips(data, "model_chips", allow_empty=True)
+    _require_source_refs(data)
+    _require_missingness(data)
+    _require_non_claims(data, COMMON_NON_CLAIMS)
+    _assert_no_forbidden_true_claims(data)
+    _assert_payload_safe(data)
+    return data
+
+
+def validate_outcome_value(payload: Mapping[str, Any]) -> dict[str, Any]:
+    data = _copy_mapping(payload)
+    _require_schema(data, OUTCOME_VALUE_SCHEMA_VERSION)
+    _require_fields(
+        data,
+        {
+            "schema_version",
+            "run_id",
+            "case_id",
+            "outcome_headline",
+            "stance",
+            "plain_language_answer",
+            "what_changed",
+            "primary_reasons",
+            "confidence_boundary",
+            "recommended_next_moves",
+            "source_refs",
+            "missingness",
+            "non_claims",
+        },
+    )
+    for key in (
+        "run_id",
+        "case_id",
+        "outcome_headline",
+        "stance",
+        "plain_language_answer",
+    ):
+        _require_string(data, key)
+    _require_string_list(data, "what_changed", allow_empty=False)
+    _require_string_list(data, "primary_reasons", allow_empty=False)
+    _require_string_list(data, "confidence_boundary", allow_empty=False)
+    _require_recommended_next_moves(data)
     _require_source_refs(data)
     _require_missingness(data)
     _require_non_claims(data, COMMON_NON_CLAIMS)
@@ -509,6 +551,7 @@ def validate_workspace(payload: Mapping[str, Any]) -> dict[str, Any]:
             "advanced_surface",
             "selected_run_summary",
             "outcome_summary",
+            "outcome_value",
             "learning_packet",
             "model_pages",
             "relation_pages",
@@ -530,6 +573,7 @@ def validate_workspace(payload: Mapping[str, Any]) -> dict[str, Any]:
 
     validate_selected_run_summary(_require_mapping(data, "selected_run_summary"))
     validate_outcome_summary(_require_mapping(data, "outcome_summary"))
+    validate_outcome_value(_require_mapping(data, "outcome_value"))
     validate_learning_packet(_require_mapping(data, "learning_packet"))
     for index, model_page in enumerate(
         _require_object_list(data, "model_pages", allow_empty=True)
@@ -567,6 +611,8 @@ def validate_product_view(payload: Mapping[str, Any]) -> dict[str, Any]:
         return validate_selected_run_summary(payload)
     if schema == OUTCOME_SUMMARY_SCHEMA_VERSION:
         return validate_outcome_summary(payload)
+    if schema == OUTCOME_VALUE_SCHEMA_VERSION:
+        return validate_outcome_value(payload)
     if schema == LEARNING_PACKET_SCHEMA_VERSION:
         return validate_learning_packet(payload)
     if schema == MODEL_PAGE_SCHEMA_VERSION:
@@ -778,6 +824,13 @@ def _require_link_list(
         _require_string(link, "label", parent=f"{key}[{index}]")
         _require_string(link, "href", parent=f"{key}[{index}]")
         _assert_safe_href(link["href"], f"{key}[{index}].href")
+    return links
+
+
+def _require_recommended_next_moves(data: Mapping[str, Any]) -> list[dict[str, Any]]:
+    links = _require_link_list(data, "recommended_next_moves", allow_empty=False)
+    for index, link in enumerate(links):
+        _require_string(link, "reason", parent=f"recommended_next_moves[{index}]")
     return links
 
 

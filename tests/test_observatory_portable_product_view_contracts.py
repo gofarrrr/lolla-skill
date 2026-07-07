@@ -10,6 +10,7 @@ from observatory.product_views import (
     LEARNING_PACKET_SCHEMA_VERSION,
     MODEL_PAGE_SCHEMA_VERSION,
     OUTCOME_SUMMARY_SCHEMA_VERSION,
+    OUTCOME_VALUE_SCHEMA_VERSION,
     PORTABLE_RENDERING_DIRECTION,
     PRIMARY_SURFACES,
     RECEIPT_SUMMARY_SCHEMA_VERSION,
@@ -24,6 +25,7 @@ from observatory.product_views import (
     validate_learning_packet,
     validate_model_page,
     validate_outcome_summary,
+    validate_outcome_value,
     validate_product_view,
     validate_receipt_summary,
     validate_relation_page,
@@ -60,6 +62,7 @@ def test_examples_file_contains_all_product_view_contracts() -> None:
         == SELECTED_RUN_SUMMARY_SCHEMA_VERSION
     )
     assert examples["outcome_summary"]["schema_version"] == OUTCOME_SUMMARY_SCHEMA_VERSION
+    assert examples["outcome_value"]["schema_version"] == OUTCOME_VALUE_SCHEMA_VERSION
     assert examples["learning_packet"]["schema_version"] == LEARNING_PACKET_SCHEMA_VERSION
     assert examples["model_page"]["schema_version"] == MODEL_PAGE_SCHEMA_VERSION
     assert examples["relation_page"]["schema_version"] == RELATION_PAGE_SCHEMA_VERSION
@@ -83,6 +86,9 @@ def test_valid_examples_pass_specific_validators() -> None:
     assert validate_outcome_summary(examples["outcome_summary"])["model_chips"][0][
         "model_id"
     ] == "opportunity-cost"
+    assert validate_outcome_value(examples["outcome_value"])["stance"] == (
+        "stage_or_gate"
+    )
     assert validate_learning_packet(examples["learning_packet"])[
         "product_proof"
     ] is False
@@ -106,6 +112,7 @@ def test_valid_examples_pass_dispatch_validator() -> None:
         "workspace",
         "selected_run_summary",
         "outcome_summary",
+        "outcome_value",
         "learning_packet",
         "model_page",
         "relation_page",
@@ -123,6 +130,9 @@ def test_workspace_contract_composes_portable_surfaces() -> None:
     assert workspace["rendering_direction"] == PORTABLE_RENDERING_DIRECTION
     assert workspace["primary_surfaces"] == list(PRIMARY_SURFACES)
     assert workspace["advanced_surface"] == "Advanced Audit"
+    assert workspace["outcome_value"]["plain_language_answer"].startswith(
+        "The selected run should preserve the full practical answer"
+    )
     assert workspace["learning_packet"]["thinking_move"] == (
         "Separate the case for learning from the case for scaling."
     )
@@ -138,6 +148,16 @@ def test_contracts_require_source_refs_missingness_and_non_claims() -> None:
     page.pop("source_refs")
     with pytest.raises(ObservatoryProductViewError, match="source_refs"):
         validate_model_page(page)
+
+    outcome = copy.deepcopy(_examples()["outcome_value"])
+    outcome.pop("recommended_next_moves")
+    with pytest.raises(ObservatoryProductViewError, match="recommended_next_moves"):
+        validate_outcome_value(outcome)
+
+    outcome = copy.deepcopy(_examples()["outcome_value"])
+    outcome["recommended_next_moves"][0].pop("reason")
+    with pytest.raises(ObservatoryProductViewError, match="reason"):
+        validate_outcome_value(outcome)
 
     page = copy.deepcopy(_examples()["model_page"])
     page.pop("missingness")

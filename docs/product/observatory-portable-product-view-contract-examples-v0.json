@@ -874,6 +874,11 @@
           "source_id": "portable-product-view-contract-fixture",
           "source_type": "contract_example",
           "path": "docs/product/observatory-portable-product-view-contract-examples-v0.json"
+        },
+        {
+          "source_id": "fixture-outcome-value",
+          "source_type": "contract_example",
+          "path": "docs/product/observatory-portable-product-view-contract-examples-v0.json"
         }
       ],
       "missingness": {
@@ -897,6 +902,134 @@
         "observatory_is_not_product_proof",
         "telemetry_is_advanced_not_primary",
         "graph_is_navigation_not_proof"
+      ],
+      "outcome_value": {
+        "schema_version": "lolla.observatory.outcome_value.v0",
+        "run_id": "fixture-run-001",
+        "case_id": "fixture-case-001",
+        "outcome_headline": "The answer changed from launch enthusiasm to staged risk control.",
+        "stance": "stage_or_gate",
+        "plain_language_answer": "The selected run should preserve the full practical answer for the user, not a clipped card summary. The fixture says to treat launch as a staged learning gate until enterprise readiness evidence is stronger.",
+        "what_changed": [
+          "The run challenged whether momentum and enterprise posture were standing in for proof.",
+          "The answer moved from broad launch enthusiasm toward a narrower learning gate."
+        ],
+        "primary_reasons": [
+          "Enterprise proof must survive diligence, not just sound credible.",
+          "The launch decision needs evidence that remains persuasive after authority cues are removed.",
+          "A staged beta keeps learning possible while limiting irreversible support and trust costs."
+        ],
+        "confidence_boundary": [
+          "Confidence would change if there is concrete enterprise diligence evidence, support readiness, and a bounded beta scope.",
+          "Confidence should stay bounded by the missing full run artifacts in this fixture."
+        ],
+        "recommended_next_moves": [
+          {
+            "label": "Practice the reasoning move",
+            "href": "#learn",
+            "reason": "Use Learn to see the thinking move behind this outcome."
+          },
+          {
+            "label": "Inspect receipts",
+            "href": "#receipts",
+            "reason": "Check source custody, missingness, and non-claims before relying on the run."
+          },
+          {
+            "label": "Download MD",
+            "href": "/api/case/fixture-case-001/conversation-memory.md?include_raw_conversation=1",
+            "reason": "Create a private Markdown memory for deeper agent review without rerunning Lolla."
+          }
+        ],
+        "source_refs": [
+          {
+            "source_id": "fixture-run-result",
+            "source_type": "run_artifact",
+            "path": "runs/fixture-run-001/result.json"
+          }
+        ],
+        "missingness": {
+          "status": "partial",
+          "missing_fields": [
+            "real_revised_answer",
+            "real_memo_what_changed"
+          ],
+          "notes": [
+            "Fixture demonstrates the outcome value shape and is not a real run.",
+            "Outcome value should keep missing source fields explicit instead of filling them with ceremony."
+          ]
+        },
+        "non_claims": [
+          "not_product_proof",
+          "not_human_validation",
+          "not_answer_correctness",
+          "not_advice_correctness",
+          "not_runtime_integration",
+          "not_action_authorization"
+        ]
+      }
+    },
+    "outcome_value": {
+      "schema_version": "lolla.observatory.outcome_value.v0",
+      "run_id": "fixture-run-001",
+      "case_id": "fixture-case-001",
+      "outcome_headline": "The answer changed from launch enthusiasm to staged risk control.",
+      "stance": "stage_or_gate",
+      "plain_language_answer": "The selected run should preserve the full practical answer for the user, not a clipped card summary. The fixture says to treat launch as a staged learning gate until enterprise readiness evidence is stronger.",
+      "what_changed": [
+        "The run challenged whether momentum and enterprise posture were standing in for proof.",
+        "The answer moved from broad launch enthusiasm toward a narrower learning gate."
+      ],
+      "primary_reasons": [
+        "Enterprise proof must survive diligence, not just sound credible.",
+        "The launch decision needs evidence that remains persuasive after authority cues are removed.",
+        "A staged beta keeps learning possible while limiting irreversible support and trust costs."
+      ],
+      "confidence_boundary": [
+        "Confidence would change if there is concrete enterprise diligence evidence, support readiness, and a bounded beta scope.",
+        "Confidence should stay bounded by the missing full run artifacts in this fixture."
+      ],
+      "recommended_next_moves": [
+        {
+          "label": "Practice the reasoning move",
+          "href": "#learn",
+          "reason": "Use Learn to see the thinking move behind this outcome."
+        },
+        {
+          "label": "Inspect receipts",
+          "href": "#receipts",
+          "reason": "Check source custody, missingness, and non-claims before relying on the run."
+        },
+        {
+          "label": "Download MD",
+          "href": "/api/case/fixture-case-001/conversation-memory.md?include_raw_conversation=1",
+          "reason": "Create a private Markdown memory for deeper agent review without rerunning Lolla."
+        }
+      ],
+      "source_refs": [
+        {
+          "source_id": "fixture-run-result",
+          "source_type": "run_artifact",
+          "path": "runs/fixture-run-001/result.json"
+        }
+      ],
+      "missingness": {
+        "status": "partial",
+        "missing_fields": [
+          "real_revised_answer",
+          "real_memo_what_changed"
+        ],
+        "notes": [
+          "Fixture demonstrates the outcome value shape and is not a real run.",
+          "Outcome value should keep missing source fields explicit instead of filling them with ceremony."
+        ]
+      },
+      "non_claims": [
+        "not_product_proof",
+        "not_human_validation",
+        "not_answer_correctness",
+        "not_advice_correctness",
+        "not_runtime_integration",
+        "not_action_authorization"
       ]
     }
   }

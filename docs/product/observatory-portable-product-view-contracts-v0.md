@@ -72,7 +72,8 @@ or graph/relation proof language.
 | View model | Feeds | Job |
 | --- | --- | --- |
 | `selected_run_summary` | Header, Outcome | Identify the selected run, state, health, and available surfaces. |
-| `outcome_summary` | Outcome | Present the practical run outcome and compact model chips. |
+| `outcome_summary` | Outcome compatibility | Preserve the older compact headline, clipped summary, strongest pressure, and model chips. |
+| `outcome_value` | Outcome | Present the full practical run answer, what changed, primary reasons, confidence boundary, next moves, source refs, missingness, and non-claims. |
 | `learning_packet` | Learn | Teach one reasoning move from the selected run. |
 | `model_page` | Models | Present formatted durable mental model knowledge from canonical source and curation. |
 | `relation_page` | Relations | Explain a model pair in plain language before taxonomy or confidence. |
@@ -91,6 +92,7 @@ Required fields:
 - `advanced_surface`;
 - `selected_run_summary`;
 - `outcome_summary`;
+- `outcome_value`;
 - `learning_packet`;
 - `model_pages`;
 - `relation_pages`;
@@ -123,9 +125,27 @@ Outcome answers:
 What happened in this run?
 ```
 
-It may show the answer headline, revised-answer summary, strongest pressure,
-and compact model chips. It should not duplicate the Teacher lesson body,
-canonical model pages, relation taxonomy wall, or raw audit telemetry.
+The compact `outcome_summary` remains available for compatibility, but the
+product-facing Outcome source is now `outcome_value`.
+
+`outcome_value` carries:
+
+- `outcome_headline`;
+- `stance`;
+- `plain_language_answer`;
+- `what_changed`;
+- `primary_reasons`;
+- `confidence_boundary`;
+- `recommended_next_moves`;
+- `source_refs`;
+- `missingness`;
+- `non_claims`.
+
+Outcome should not duplicate the Teacher lesson body, canonical model pages,
+relation taxonomy wall, receipts inventory, graph surface, or raw audit
+telemetry. The first viewport should render the full answer and explanation
+from `outcome_value`, not a clipped paragraph surrounded by navigation
+ceremony.
 
 ### Learn
 
