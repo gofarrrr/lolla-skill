@@ -1,0 +1,73 @@
+{
+  "schema_version": "codex_assisted_review.v0",
+  "review_id": "observatory-relation-page-library-fallback-v0",
+  "status": "implemented",
+  "date": "2026-07-07",
+  "decision_gate": "proceed_to_model_relation_navigation_browser_review",
+  "implemented": {
+    "library_relation_detail_route": true,
+    "neighbor_cards_link_to_relation_pages": true,
+    "relation_semantics_primary_source": true,
+    "relationship_graph_fallback": true,
+    "selected_run_relation_pages_still_win": true,
+    "library_relation_context_visible": true,
+    "raw_graph_affinity_hidden": true,
+    "raw_json_rendered": false,
+    "runtime_behavior_changed": false,
+    "compiled_spa_bundle_changed": false
+  },
+  "shown_data": [
+    "source and target model names",
+    "relation type",
+    "plain-language relation rationale",
+    "confidence as curation status",
+    "extraction type as source context",
+    "source artifact refs",
+    "optional source quote or reference",
+    "model page links",
+    "non-claims"
+  ],
+  "withheld_or_deferred_data": [
+    "raw relationship graph affinity",
+    "raw relationship graph ranking",
+    "embedding neighbors",
+    "full corpus graph",
+    "raw JSON blobs",
+    "local filesystem paths",
+    "graph survival internals",
+    "evaluation internals"
+  ],
+  "product_intent": {
+    "model_to_relation_navigation_supported": true,
+    "library_relations_fill_selected_run_gaps": true,
+    "selected_run_evidence_and_library_navigation_are_separated": true,
+    "confidence_is_not_truth": true,
+    "graph_edges_are_navigation": true
+  },
+  "strongest_useful_signal": "A user can now click from a mental model's reviewed neighbors into a readable relation page even when that relation was not selected by the current run.",
+  "strongest_unresolved_risk": "The path needs a browser review before adding more graph UI, because discoverability may still depend on opening model detail first.",
+  "recommended_next_pr": "Browser-review model-to-relation navigation",
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_run": false,
+    "generates_sidecars": false,
+    "wires_skill_runtime_behavior": false,
+    "mutates_archives": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false,
+    "touches_compiled_spa_bundle": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false
+  }
+}
