@@ -5983,11 +5983,8 @@ def _render_workspace_run_contents_card(workspace: dict, selected_case_id: str) 
                 _workspace_content_item(
                     "Agent memory Markdown",
                     "downloadable",
-                    "A private self-explaining run memory for another agent.",
-                    href=_observatory_agent_memory_download_href(selected_case_id),
-                    action="Download MD",
+                    "A private self-explaining run memory for another agent. Use the header Download MD action or Receipts when you need the export.",
                     variant="private",
-                    download=True,
                 ),
                 _workspace_content_item(
                     "Process brief",
@@ -6013,8 +6010,7 @@ def _render_workspace_run_contents_card(workspace: dict, selected_case_id: str) 
         [
             (
                 '<article class="workspace-card workspace-first-read '
-                'workspace-run-contents" data-run-contents-panel '
-                'data-agent-memory-export-card>'
+                'workspace-run-contents" data-run-contents-panel>'
             ),
             '<p class="workspace-kicker">Run contents</p>',
             "<h3>What This Run Contains</h3>",
@@ -6029,17 +6025,6 @@ def _render_workspace_run_contents_card(workspace: dict, selected_case_id: str) 
                 _workspace_content_chip(label, status, variant)
                 for label, status, variant in summary_items
             ],
-            "</div>",
-            '<div class="workspace-run-contents-actions">',
-            _render_workspace_chips(
-                [
-                    _agent_memory_download_link(
-                        selected_case_id,
-                        "agent-memory-download-hint-run-contents",
-                    )
-                ],
-                selected_case_id=selected_case_id,
-            ),
             "</div>",
             _workspace_disclosure(
                 "View details",

@@ -70,9 +70,11 @@ Outcome now shows:
 - `outcome_value.confidence_boundary`;
 - up to three `outcome_value.recommended_next_moves`.
 
-The `Download MD` action remains visible in the hero and in run contents. The
-button keeps hover/focus help explaining that the export is a private Markdown
-memory for a future agent.
+The `Download MD` action remains visible in the workspace header. A later
+browser-review slice removed the duplicate Run Contents button and kept the
+Receipts repeat, where custody context makes the export easier to understand.
+The button keeps hover/focus help explaining that the export is a private
+Markdown memory for a future agent.
 
 When Teacher packet surfaces are missing, the page shows:
 
@@ -110,6 +112,8 @@ The next check should be browser review of:
 - whether the first viewport now makes sense without explanation;
 - whether the Outcome reason groups are too dense;
 - whether `Download MD` is visible enough without competing with the answer;
+- whether the header-plus-Receipts placement is enough for the private export
+  without repeating it in Run Contents;
 - whether run contents should remain inside Outcome or move fully into
   Receipts later.
 - whether run-only fallback copy is sufficiently helpful for cases without

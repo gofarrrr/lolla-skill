@@ -39,15 +39,17 @@ The card includes:
 - a short explanation of what the run contains;
 - compact status chips for Conversation, Interpretation, Outcome, Models,
   Relations, Practice, Receipts, and MD export;
-- a visible `Download MD` button;
-- hover/help text explaining that `Download MD` creates a private Markdown
-  memory file for another agent;
+- a plain-language MD export row that points users to the persistent workspace
+  header action or to Receipts;
 - expandable grouped detail sections.
 
 The detail sections are grouped by user job:
 
-The `Download MD` action creates a private Markdown memory file for another
-agent when the selected run can be exported.
+Follow-up browser review removed the duplicate `Download MD` button from this
+card. The private Markdown memory file remains available from the visible
+workspace header, with hover/help text, and from Receipts where custody and
+export context are explained. Run Contents names the export but does not make
+the user choose the same action twice in the Outcome flow.
 
 | Group | User-facing purpose |
 | --- | --- |
