@@ -1,0 +1,261 @@
+{
+  "schema_version": "lolla.observatory_library_graph_scope_decision.v0",
+  "status": "decision_recorded",
+  "date": "2026-07-08",
+  "decision_gate": "proceed_to_observatory_model_detail_visual_neighborhood_v0",
+  "source_documents": [
+    "docs/product/mental-model-teacher-product-surface-and-visual-library-prd-v0.md",
+    "docs/product/mental-model-teacher-product-surface-package-gate-v0.md",
+    "docs/product/mental-model-teacher-product-surface-package-manifest-v0.json",
+    "docs/product/observatory-global-product-experience-and-data-flow-v0.md",
+    "docs/product/observatory-data-exposure-audit-v0.md",
+    "docs/product/observatory-data-exposure-audit-v0.json",
+    "docs/product/observatory-run-data-visibility-matrix-v0.md",
+    "docs/product/observatory-content-progression-prd-v0.md",
+    "docs/product/observatory-model-local-neighborhoods-v0.md",
+    "docs/product/observatory-relation-page-library-fallback-v0.md",
+    "docs/product/observatory-model-relation-navigation-browser-review-v0.md",
+    "docs/product/observatory-model-detail-library-navigation-polish-v0.md",
+    "docs/product/observatory-agent-memory-markdown-download-v0.md",
+    "docs/product/observatory-run-inventory-receipt-panel-v0.md"
+  ],
+  "product_thesis": [
+    "selected run is the anchor",
+    "outcome is the first read",
+    "Teacher is the practice layer",
+    "models are reusable concepts",
+    "relations are model-pair lessons",
+    "map is navigation",
+    "receipts are accountability",
+    "Download MD is private agent memory",
+    "Advanced Audit is technical inspection"
+  ],
+  "teacher_surface_decision": {
+    "observatory_is_portable_presentation_surface": true,
+    "standalone_teacher_main_path_for_current_phase": false,
+    "teacher_lives_inside_observatory": true,
+    "teacher_surface_parts": [
+      "Learn",
+      "Models",
+      "Relations",
+      "Map",
+      "Receipts"
+    ]
+  },
+  "teacher_prd_package_state": {
+    "done_through_pr_p11": true,
+    "pr_p1_through_pr_p10": "published",
+    "pr_p11": "package_gate_exists",
+    "pr_p12": {
+      "status": "deferred",
+      "scope": "full-corpus graph planning"
+    },
+    "pr_p13": {
+      "status": "deferred",
+      "scope": "full-corpus graph pilot"
+    },
+    "package_is_reviewable": true,
+    "product_proof_claimed": false,
+    "human_validation_claimed": false,
+    "runtime_integration_authorized": false
+  },
+  "coverage_counts": {
+    "broad_visibility_matrix_families": 48,
+    "data_exposure_audit_items": 36,
+    "current_run_inventory_ui_families": 29,
+    "first_read_product_path_families": 8,
+    "relationship": "48 is the accountability universe; 36 is the exposure-audit rollup; 29 is the current Receipts/UI inventory; 8 is the first-read product path.",
+    "flatten_into_one_screen": false
+  },
+  "graph_modes": [
+    {
+      "id": "selected_run_learning_map",
+      "status": "present",
+      "visual": true,
+      "surface": "Map",
+      "scope": "selected-run Teacher learning packet",
+      "user_question": "What did this run use, and where can I navigate inside this lesson?",
+      "product_rule": "Keep small and selected-run scoped; edges are navigation, not proof."
+    },
+    {
+      "id": "model_detail_reviewed_local_neighborhood",
+      "status": "present_as_cards_not_visual_graph",
+      "visual": false,
+      "surface": "Model detail",
+      "scope": "direct reviewed neighbors for one model",
+      "user_question": "I clicked one model. What reviewed neighbors are directly connected to it, and why?",
+      "product_rule": "Show reviewed relation cards and relation links without implying selected-run proof."
+    },
+    {
+      "id": "model_detail_visual_neighborhood",
+      "status": "recommended_next_ui_build",
+      "visual": true,
+      "surface": "Model detail",
+      "scope": "direct reviewed neighbors for one model",
+      "user_question": "Can I see this one model's direct reviewed neighborhood as a small map?",
+      "product_rule": "Visualize the already-reviewed local neighborhood only; do not build the full corpus graph."
+    },
+    {
+      "id": "filtered_library_graph",
+      "status": "future",
+      "visual": true,
+      "surface": "Future library surface inside Observatory",
+      "scope": "reviewed library relations after search/filter design",
+      "user_question": "Can I browse reviewed library relations by search, family, model, or relation type?",
+      "product_rule": "Requires separate filtering, density, and missingness design before implementation."
+    },
+    {
+      "id": "full_corpus_graph",
+      "status": "future_not_first_surface",
+      "visual": true,
+      "surface": "Future advanced or library exploration",
+      "scope": "whole corpus topology",
+      "user_question": "Can I inspect the entire topology?",
+      "product_rule": "Not the first user surface and not proof of relation truth."
+    }
+  ],
+  "data_exposure_policy": [
+    {
+      "layer": "default_first_read",
+      "shown": [
+        "selected run context",
+        "Outcome",
+        "strongest pressure or compact challenge",
+        "availability status",
+        "visible Download MD action"
+      ],
+      "not_shown": [
+        "graph substrate",
+        "raw transcript bodies",
+        "raw telemetry"
+      ]
+    },
+    {
+      "layer": "primary_product_surfaces",
+      "shown": [
+        "Learn",
+        "Models",
+        "Relations",
+        "Map",
+        "Receipts"
+      ],
+      "not_shown": [
+        "operator machinery",
+        "full corpus topology as first read"
+      ]
+    },
+    {
+      "layer": "expandable_product_detail",
+      "shown": [
+        "model detail pages",
+        "relation detail pages",
+        "source and custody disclosures",
+        "reviewed model-neighborhood cards"
+      ],
+      "not_shown": [
+        "raw canonical Markdown dumps",
+        "raw JSON blobs",
+        "local absolute paths"
+      ]
+    },
+    {
+      "layer": "explicit_export",
+      "shown": [
+        "conversation memory Markdown through Download MD"
+      ],
+      "not_shown": [
+        "automatic export",
+        "public-safe raw transcript"
+      ]
+    },
+    {
+      "layer": "optional_technical_inspection",
+      "shown": [
+        "Advanced Audit",
+        "extraction detail",
+        "usage",
+        "run events",
+        "graph survival",
+        "evaluation artifacts"
+      ],
+      "not_shown": [
+        "technical telemetry as learning path"
+      ]
+    },
+    {
+      "layer": "operator_only_inspection",
+      "shown": [
+        "safe existence or count receipts"
+      ],
+      "not_shown": [
+        "private ledgers",
+        "operator logs",
+        "provider-private bodies",
+        "raw rankings",
+        "raw vectors",
+        "local paths"
+      ]
+    },
+    {
+      "layer": "future_design",
+      "shown": [
+        "filtered library graph",
+        "full corpus graph",
+        "semantic-neighbor browsing",
+        "V60 affordance pages"
+      ],
+      "not_shown": [
+        "future concepts as current UI"
+      ]
+    },
+    {
+      "layer": "private_hidden",
+      "shown": [
+        "receipt or explicit private export status"
+      ],
+      "not_shown": [
+        "raw 1:1 transcript in normal UI",
+        "private/operator bodies"
+      ]
+    }
+  ],
+  "agent_memory": {
+    "download_md_is_current_agent_memory_path": true,
+    "raw_transcript_default_ui": false,
+    "raw_transcript_explicit_private_markdown_export": true,
+    "archive_mutation_required": false,
+    "provider_or_model_calls_required": false
+  },
+  "recommended_next_pr": {
+    "title": "Observatory Model Detail Visual Neighborhood v0",
+    "question": "I clicked Authority Bias. What else is directly connected to it, and why?",
+    "must_use_existing_reviewed_neighborhood": true,
+    "must_remain_model_detail_local": true,
+    "full_corpus_graph_allowed": false,
+    "raw_affinity_allowed": false,
+    "embedding_similarity_as_relation_semantics_allowed": false
+  },
+  "boundary": {
+    "runs_lolla": false,
+    "invokes_lolla_skill": false,
+    "calls_provider_or_model": false,
+    "creates_new_run": false,
+    "generates_sidecars": false,
+    "wires_runtime_or_default_skill_behavior": false,
+    "mutates_archives": false,
+    "touches_skill_md": false,
+    "touches_scripts_skill": false,
+    "touches_archive_run": false,
+    "touches_compiled_observatory_build": false
+  },
+  "non_claims": {
+    "product_proof": false,
+    "human_validated": false,
+    "answer_correctness": false,
+    "advice_correctness": false,
+    "runtime_integration_authorized": false,
+    "action_authorized": false,
+    "graph_edges_are_proof": false,
+    "embedding_similarity_is_validated_relation_semantics": false
+  }
+}
