@@ -1,0 +1,162 @@
+{
+  "generated_at": "2026-07-09",
+  "context": {
+    "branch": "feature/observatory-library-graph-scope-decision-v0",
+    "decision": "understand_anything_not_available_in_env",
+    "why": [
+      "CLI binary not installed (both understand-anything and understand_anything).",
+      "Attempted clone from github.com failed in environment with DNS/host resolution error, so tool setup could not complete."
+    ]
+  },
+  "scan_basis": {
+    "python_file_count": 806,
+    "top_level_file_counts": {
+      "engine": 178,
+      "observatory": 3,
+      "research": 1,
+      "scripts": 158,
+      "tests": 466
+    },
+    "target_modules": {
+      "engine.system_b.pipeline": [
+        "engine.system_b.activation_matcher",
+        "engine.system_b.audit_assembly",
+        "engine.system_b.boundary_tracing",
+        "engine.system_b.companion_selection",
+        "engine.system_b.novelty_scorer",
+        "engine.system_b.pass1_runner",
+        "engine.system_b.pass2_runner",
+        "engine.system_b.telemetry",
+        "engine.system_b.testing_harness",
+        "scripts.research.lane1_model_diagnostic",
+        "scripts.run_pipeline",
+        "tests.test_activation_matcher",
+        "tests.test_lane2_attribution",
+        "tests.test_pipeline_activation_tiebreaker_optin",
+        "tests.test_pipeline_context_runtime",
+        "tests.test_pr2_embedding_ranks",
+        "tests.test_trigger_source"
+      ],
+      "observatory.serve_result": [
+        "tests.test_mental_model_teacher_observatory_interactive_graph",
+        "tests.test_mental_model_teacher_observatory_learn_page",
+        "tests.test_mental_model_teacher_observatory_native_learn",
+        "tests.test_mental_model_teacher_observatory_packet_adapter",
+        "tests.test_model_treatment_audit",
+        "tests.test_observatory_agent_memory_download",
+        "tests.test_observatory_conversation_understanding_receipts_card",
+        "tests.test_observatory_decision_work_status_adapter",
+        "tests.test_observatory_focused_workspace_narration",
+        "tests.test_observatory_legacy_teacher_renderer_cleanup",
+        "tests.test_observatory_model_detail_library_navigation_polish",
+        "tests.test_observatory_model_detail_overload_reduction",
+        "tests.test_observatory_model_local_neighborhoods",
+        "tests.test_observatory_model_page_readability",
+        "tests.test_observatory_model_relation_content_simplification",
+        "tests.test_observatory_model_relation_navigation_browser_review",
+        "tests.test_observatory_outcome_browser_review",
+        "tests.test_observatory_outcome_first_viewport",
+        "tests.test_observatory_outcome_progressive_disclosure",
+        "tests.test_observatory_prepare_process_brief_action",
+        "tests.test_observatory_progressive_workspace_ux_slice",
+        "tests.test_observatory_receipts_technical_inspection_disclosure",
+        "tests.test_observatory_relation_page_library_fallback",
+        "tests.test_observatory_review_guide_hierarchy_prompts",
+        "tests.test_observatory_run_contents_panel",
+        "tests.test_observatory_run_inventory_receipt_panel",
+        "tests.test_observatory_server_rendered_root_workspace",
+        "tests.test_observatory_teacher_route_consolidation",
+        "tests.test_observatory_workspace_accessibility_text_noise_cleanup",
+        "tests.test_observatory_workspace_first_read_progression",
+        "tests.test_observatory_workspace_hierarchy_cues",
+        "tests.test_observatory_workspace_human_hierarchy_scorecard",
+        "tests.test_observatory_workspace_information_hierarchy",
+        "tests.test_observatory_workspace_map_interaction_slice",
+        "tests.test_observatory_workspace_map_label_readability",
+        "tests.test_observatory_workspace_navigation_source_of_truth",
+        "tests.test_observatory_workspace_review_entry_orientation",
+        "tests.test_observatory_workspace_visual_polish_review",
+        "tests.test_pr3_observatory_panels"
+      ],
+      "scripts.archive_run": [],
+      "scripts.run_pipeline": [
+        "tests.test_bi_context",
+        "tests.test_run_pipeline_contract_default"
+      ]
+    }
+  },
+  "discrepancy_review": {
+    "status_assertions_supported": [
+      "pipeline as active runtime/core orchestrator",
+      "serve_result as review/presentation projection",
+      "archive_run as archive-mutating runtime step"
+    ],
+    "observations": [
+      {
+        "item": "pipeline coupling",
+        "evidence": {
+          "reverse_importers": 17,
+          "examples": [
+            "engine.system_b.activation_matcher",
+            "engine.system_b.audit_assembly",
+            "engine.system_b.boundary_tracing",
+            "engine.system_b.companion_selection",
+            "engine.system_b.novelty_scorer",
+            "engine.system_b.pass1_runner",
+            "engine.system_b.pass2_runner",
+            "engine.system_b.telemetry",
+            "engine.system_b.testing_harness",
+            "scripts.research.lane1_model_diagnostic"
+          ]
+        },
+        "assessment": "strong coupling; prioritize stable interfaces and targeted tests."
+      },
+      {
+        "item": "serving layer coupling",
+        "evidence": {
+          "reverse_importers": 39,
+          "examples": [
+            "tests.test_mental_model_teacher_observatory_interactive_graph",
+            "tests.test_mental_model_teacher_observatory_learn_page",
+            "tests.test_mental_model_teacher_observatory_native_learn",
+            "tests.test_mental_model_teacher_observatory_packet_adapter",
+            "tests.test_model_treatment_audit",
+            "tests.test_observatory_agent_memory_download",
+            "tests.test_observatory_conversation_understanding_receipts_card",
+            "tests.test_observatory_decision_work_status_adapter",
+            "tests.test_observatory_focused_workspace_narration",
+            "tests.test_observatory_legacy_teacher_renderer_cleanup"
+          ]
+        },
+        "assessment": "most references are tests/adjacent observatory surfaces, confirming review-surface role."
+      },
+      {
+        "item": "archive_run coupling",
+        "evidence": {
+          "reverse_importers": 0,
+          "examples": []
+        },
+        "assessment": "entrypoint style (low static import footprint) does not imply low runtime risk."
+      },
+      {
+        "item": "md export symbol visibility",
+        "evidence": {
+          "download_md_symbol_hits": 0,
+          "run_health_symbol_hits": 87,
+          "conversation_memory_hits": 3
+        },
+        "assessment": "agent-memory export mechanics remain mostly in observatory routes and engine artifact builders, not a simple keyword in one module."
+      }
+    ]
+  },
+  "recommendation": {
+    "mode": "keep_local_audit_as_truth",
+    "secondary_tool": "understand-anything_when_network_available",
+    "next_steps": [
+      "continue updating docs/audits and connectedness-map as canonical boundary statements;",
+      "run scoped local AST/symbol scans before/after each Observatory surface PR;",
+      "in a networked environment, install Understand-Anything and run scoped /understand on engine+observatory+scrips",
+      "diff resulting knowledge-graph artifacts against connectedness expectations to spot non-obvious coupling."
+    ]
+  }
+}
