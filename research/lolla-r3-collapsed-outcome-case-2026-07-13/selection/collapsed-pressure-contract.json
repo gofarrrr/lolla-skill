@@ -1,0 +1,115 @@
+{
+  "bundle_sha256": "94e4a6ef798371fa5282a4346346d770f1b04eb77ea90e39b02209a0224929e6",
+  "case_id": "v2-case01-anchor-contract",
+  "hashes": {
+    "constitutional_graph_portfolio_sha256": "sha256:5fa382a417a69d02a4071616882b6fad4dc34570dbc59e2e54d8c0525be0989f",
+    "request_body_sha256": "080d33f41ceef7c9a87fd5ecea274495396e3a785916dc126bc5fd86cba97e0f",
+    "response_schema_sha256": "d500f17f270ea293d8d730c2d811953e26167e842f82e289eb2112f42d7374fc",
+    "system_prompt_sha256": "3a324d175cab8f3cb1f773df357ee924162599909a37ccc8278d6e3cbf443412",
+    "user_prompt_sha256": "e44cbe7998404695f30c0f6ca3923b147f6522d2914cbbb0b4fd52cf187832c8"
+  },
+  "next_call_authorized": false,
+  "packet_sha256": "879f0ec17a4ef4434e959d41b2935e364104d63eb091f4805a58b4d1ef55e281",
+  "packet_source_refs": [
+    {
+      "path": "research/lolla-r3-collapsed-outcome-case-2026-07-13/source/v2-case01-anchor-contract.txt",
+      "role": "authoritative_conversation",
+      "sha256": "b8a0c83cd36e44c74849ad0f75c3ce05931b2414c8ac939ee17d355bf9a61683"
+    },
+    {
+      "path": "research/lolla-r3-collapsed-outcome-case-2026-07-13/source/source-freeze.json",
+      "role": "prospective_source_freeze",
+      "sha256": "fef194018de42de9f1d1944a903228f26b72ae13b7d28c11223ce6487a640818"
+    },
+    {
+      "path": "research/lolla-r3-collapsed-outcome-case-2026-07-13/selection/direct-pattern-selection.json",
+      "role": "fact_stripped_direct_selection",
+      "sha256": "6b912e55faa069a750a2a2490d6a75dab00613d3c88fe6a195e57c7ee16e389f"
+    },
+    {
+      "path": "research/lolla-r3-collapsed-outcome-case-2026-07-13/selection/result.json",
+      "role": "direct_and_graph_portfolio",
+      "sha256": "2945016c8fed6702e244decd9253f7edfa01a3ffe47411f42644336865df7b4c"
+    },
+    {
+      "path": "data/knowledge_graph.json",
+      "role": "canonical_mental_model_registry",
+      "sha256": "5689b79868339ce9221b799eac88870a6053b69a67ba3aaef3f2ba5cd62efdae"
+    },
+    {
+      "path": "data/relationship_graph.json",
+      "role": "deterministic_relationship_graph",
+      "sha256": "89808c4585498f3880b4d7fa0110d64cd46f7acff312c0870fc6cb9a97e752cf"
+    }
+  ],
+  "provider_calls_made": 0,
+  "reconstruction": {
+    "packet_function": "engine.system_b.r3_fresh_consumer.build_pressure_packet",
+    "provider_material_function": "construct(include_runtime=True)",
+    "request_function": "engine.system_b.r3_task_shape_counterfactual.collapsed_one_pass_request_body",
+    "selection_builder": "scripts/evals/build_r3_collapsed_outcome_case_selection.py"
+  },
+  "request_contract": {
+    "allow_fallbacks": false,
+    "automatic_retries": 0,
+    "current_provider_calls_authorized": 0,
+    "data_collection": "deny",
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "fallback_models": 0,
+    "maximum_estimated_call_cost_usd": 0.00836875,
+    "maximum_output_tokens": 4000,
+    "maximum_provider_calls": 1,
+    "maximum_provider_reported_cost_usd": 0.01,
+    "parallel_calls": false,
+    "provider": "openrouter",
+    "provider_only": [
+      "google-vertex"
+    ],
+    "provider_order": [
+      "google-vertex/global"
+    ],
+    "reasoning_content_excluded": true,
+    "reasoning_effort": "low",
+    "requested_model": "google/gemini-3.1-flash-lite",
+    "require_parameters": true,
+    "response_healing": false,
+    "seed": 3101,
+    "wire_contract": "collapsed_outcome_one_pass",
+    "wire_mode": "strict_json_schema",
+    "zdr_claimed": false
+  },
+  "request_metrics": {
+    "estimated_prompt_tokens": 9475,
+    "maximum_estimated_cost_usd": 0.00836875,
+    "maximum_output_tokens": 4000,
+    "request_body_sha256": "080d33f41ceef7c9a87fd5ecea274495396e3a785916dc126bc5fd86cba97e0f",
+    "response_schema_metrics": {
+      "canonical_bytes": 2231,
+      "keyword_counts": {
+        "additionalProperties": 2,
+        "description": 13,
+        "enum": 2,
+        "items": 2,
+        "maxItems": 2,
+        "maximum": 1,
+        "minItems": 2,
+        "minimum": 1,
+        "properties": 2,
+        "required": 2,
+        "type": 16
+      },
+      "pattern_constraint_count": 0,
+      "schema_structural_depth": 4,
+      "string_length_constraint_count": 0,
+      "total_object_properties": 13,
+      "unique_items_constraint_count": 0
+    },
+    "response_schema_sha256": "d500f17f270ea293d8d730c2d811953e26167e842f82e289eb2112f42d7374fc",
+    "system_prompt_sha256": "3a324d175cab8f3cb1f773df357ee924162599909a37ccc8278d6e3cbf443412",
+    "user_prompt_sha256": "e44cbe7998404695f30c0f6ca3923b147f6522d2914cbbb0b4fd52cf187832c8",
+    "user_prompt_utf8_bytes": 33830
+  },
+  "runtime_effect": "none",
+  "schema_version": "lolla.r3_collapsed_outcome_pressure_contract.v1",
+  "status": "provider_free_selection_frozen_target_review_not_authored"
+}

@@ -1,0 +1,185 @@
+{
+  "schema_version": "lolla.r3_collapsed_outcome_direct_pattern_selection.v1",
+  "status": "direct_patterns_frozen_before_expected_dispositions",
+  "date": "2026-07-13",
+  "case_id": "v2-case01-anchor-contract",
+  "source_freeze_path": "research/lolla-r3-collapsed-outcome-case-2026-07-13/source/source-freeze.json",
+  "source_sha256": "b8a0c83cd36e44c74849ad0f75c3ce05931b2414c8ac939ee17d355bf9a61683",
+  "canonical_registry": {
+    "path": "data/knowledge_graph.json",
+    "selection_operation": "choose_only_exact_existing_model_ids_from_the_complete_registry"
+  },
+  "semantic_owner": {
+    "kind": "same_project_codex_provider_free_interpretation",
+    "independent": false,
+    "provider_call": false,
+    "deterministic_code_inferred_meaning": false
+  },
+  "ordering_rule": "ascending earliest evidence turn, then pattern_id",
+  "patterns": [
+    {
+      "pattern_id": "p01",
+      "fact_stripped_pattern": "An early commitment can change later evidence and future options, making the chosen path appear increasingly necessary.",
+      "canonical_model_id": "path-dependence",
+      "source_evidence": [
+        {
+          "turn_number": 1,
+          "speaker": "user",
+          "quote": "It could also turn us into one customer's factory."
+        },
+        {
+          "turn_number": 10,
+          "speaker": "user",
+          "quote": "I had almost forgotten that quote was coming because everyone is focused on the appliance deal."
+        },
+        {
+          "turn_number": 14,
+          "speaker": "assistant",
+          "quote": "serving the anchor customer changes what existing customers experience before you notice it in the numbers."
+        }
+      ],
+      "selection_claim": "canonical pressure hypothesis, not applicability proof"
+    },
+    {
+      "pattern_id": "p02",
+      "fact_stripped_pattern": "A highly visible growth opportunity can redirect attention and internal status toward one path before its less visible costs mature.",
+      "canonical_model_id": "incentives",
+      "source_evidence": [
+        {
+          "turn_number": 1,
+          "speaker": "user",
+          "quote": "A national appliance maker has offered us a three-year contract that could almost double our revenue."
+        },
+        {
+          "turn_number": 8,
+          "speaker": "user",
+          "quote": "One thinks the appliance work will always win arguments because everyone will know its revenue number."
+        },
+        {
+          "turn_number": 9,
+          "speaker": "user",
+          "quote": "I am still tempted; momentum might get us through setup."
+        }
+      ],
+      "selection_claim": "canonical pressure hypothesis, not applicability proof"
+    },
+    {
+      "pattern_id": "p03",
+      "fact_stripped_pattern": "A choice under uncertain demand combines reversible staging moves with capital, staffing, and relationship commitments that are harder to unwind.",
+      "canonical_model_id": "optionality",
+      "source_evidence": [
+        {
+          "turn_number": 2,
+          "speaker": "user",
+          "quote": "Only the first six months would be binding. We would buy a laser cell and add a second shift."
+        },
+        {
+          "turn_number": 7,
+          "speaker": "user",
+          "quote": "Dana proposed installing the line in modules and using overtime for the first four months before hiring the full shift."
+        },
+        {
+          "turn_number": 12,
+          "speaker": "user",
+          "quote": "They will guarantee the minimum for eighteen months"
+        }
+      ],
+      "selection_claim": "canonical pressure hypothesis, not applicability proof"
+    },
+    {
+      "pattern_id": "p04",
+      "fact_stripped_pattern": "One party can retain flexibility over forecasts, priority, and evaluation while another party commits resources and absorbs operational variance.",
+      "canonical_model_id": "principal-agent-problem",
+      "source_evidence": [
+        {
+          "turn_number": 2,
+          "speaker": "user",
+          "quote": "We can decline a forecast increase, technically, but then they can resource the part elsewhere."
+        },
+        {
+          "turn_number": 6,
+          "speaker": "user",
+          "quote": "We would pay for material about forty-five days before they pay us."
+        },
+        {
+          "turn_number": 12,
+          "speaker": "user",
+          "quote": "They will not cap chargebacks for missed delivery or defects, and year two still depends on forecasts."
+        }
+      ],
+      "selection_claim": "canonical pressure hypothesis, not applicability proof"
+    },
+    {
+      "pattern_id": "p05",
+      "fact_stripped_pattern": "Priority and service choices can change customer and capacity behavior, which then feeds back into the apparent attractiveness of the dominant path.",
+      "canonical_model_id": "feedback-loops",
+      "source_evidence": [
+        {
+          "turn_number": 4,
+          "speaker": "user",
+          "quote": "that responsiveness is why they stay. The appliance maker wants protected production windows."
+        },
+        {
+          "turn_number": 8,
+          "speaker": "user",
+          "quote": "the appliance work will always win arguments because everyone will know its revenue number."
+        },
+        {
+          "turn_number": 10,
+          "speaker": "user",
+          "quote": "one of our best existing customers just asked whether we can reserve capacity for a two-year series of small, complicated runs."
+        }
+      ],
+      "selection_claim": "canonical pressure hypothesis, not applicability proof"
+    },
+    {
+      "pattern_id": "p06",
+      "fact_stripped_pattern": "Narrative, internal signaling, and public signaling can raise the psychological and organizational cost of reversing before underlying terms are closed.",
+      "canonical_model_id": "commitment-bias",
+      "source_evidence": [
+        {
+          "turn_number": 8,
+          "speaker": "user",
+          "quote": "You have already started calling it our next chapter, so I assume the decision is made."
+        },
+        {
+          "turn_number": 9,
+          "speaker": "user",
+          "quote": "I know public commitment is the point."
+        },
+        {
+          "turn_number": 10,
+          "speaker": "user",
+          "quote": "The shop has heard enough that rumors are moving, and the buyer has another supplier doing samples."
+        }
+      ],
+      "selection_claim": "canonical pressure hypothesis, not applicability proof"
+    }
+  ],
+  "graph_contract": {
+    "operation": "deterministic_one_hop_relationship_expansion",
+    "direct_active_cap": 6,
+    "relation_slots": [
+      "antagonist",
+      "tension",
+      "ally"
+    ],
+    "semantic_applicability_filter": false,
+    "candidate_deletion": false
+  },
+  "freeze_boundary": {
+    "provider_calls": 0,
+    "expected_candidate_dispositions_authored": false,
+    "expected_public_answer_delta_authored": false,
+    "source_review_target_authored": false,
+    "selection_may_change_after_target_review": false,
+    "graph_expansion_may_change_after_target_review": false
+  },
+  "non_claims": [
+    "direct_pattern_selection_is_not_independent",
+    "canonical_identity_is_not_relevance_proof",
+    "graph_relationship_is_not_case_evidence",
+    "same_project_interpretation_is_not_extraction_reliability",
+    "no_candidate_is_required_to_change_the_public_answer"
+  ]
+}
