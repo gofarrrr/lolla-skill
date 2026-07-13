@@ -1,10 +1,11 @@
 # Lolla R3 provider-schema repair result
 
-Status: provider-free repair complete; no call authorized
+Status: provider-free repair complete; subsequently executed once under a
+separate frozen authorization
 
 Date: 2026-07-13
 
-Provider calls: zero
+Provider calls in this repair phase: zero
 
 ## Plain-language outcome
 
@@ -20,8 +21,11 @@ of apply/reject/park fields—are enforced by deterministic code after the model
 responds. That code validates explicit labels and custody; it does not decide
 whether a mental model is relevant.
 
-The repair is ready for a future one-call attempt, but it is not authorized to
-make that call. Local compatibility is not provider acceptance proof.
+This document records the provider-free repair boundary. A later, separately
+frozen contract authorized exactly one call. Google accepted the repaired
+schema and returned strict JSON, proving transport compatibility for that one
+request. The response then failed a local cross-field rule without retry or
+healing. See `lolla-r3-repaired-pressure-result-2026-07-13.md`.
 
 ## What changed
 
@@ -106,7 +110,7 @@ reduces provider-schema complexity; it is not a cost-optimization claim.
 These remain provider and semantic evidence questions. Local code must not
 pretend to answer them.
 
-## Decision boundary
+## Original decision boundary
 
 The provider-free repair is complete. The next action is founder-owned:
 authorize or decline one new Gemini 3.1 Flash-Lite pressure attempt bound to the
@@ -122,6 +126,19 @@ If authorized, the next execution must retain:
 - source-first vector review only after a mechanically valid response;
 - no quiet control unless every pressure gate passes and its separate cap is
   frozen.
+
+## Subsequent execution
+
+The founder later authorized the exact repaired attempt. It made one Gemini
+3.1 Flash-Lite call through the pinned Google route for an exact provider-
+reported cost of `$0.0062705`. The request reached inference and returned
+strict JSON. The canonical compiler rejected one contradictory row: it used
+`park` while claiming the material effect `uncertainty_change`.
+
+The response was preserved unchanged. No retry, fallback, healing, premium
+model, semantic review, or quiet control followed. This confirms the schema
+repair while leaving R3's semantic exit condition unmet. The current boundary
+is provider-free task-shape reassessment, not another call.
 
 ## Evidence
 

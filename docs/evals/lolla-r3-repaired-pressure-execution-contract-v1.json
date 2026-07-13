@@ -1,0 +1,92 @@
+{
+  "budget": {
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "maximum_estimated_call_cost_usd": 0.0081855,
+    "maximum_provider_calls": 1,
+    "maximum_provider_reported_cost_usd": 0.01,
+    "response_healing": false
+  },
+  "bundle": {
+    "bundle_sha256": "14fde06974c4129d3c6bcdc30335754b20935666aaac8987954b5ae2706ccd0f",
+    "file_sha256": "e618348816791cdcbc6c08c8f3f30a6d01ba9ccc2c021d3ac0b7e5b19fd71b7c",
+    "path": "research/lolla-r3-fresh-consumer-2026-07-13/provider-free-repair-v1/prospective-pressure-bundle.json"
+  },
+  "case_id": "v1-case01-flood-infrastructure",
+  "execution_policy": {
+    "canonical_projection_compiler_required": true,
+    "durable_budget_reservation_before_transport": true,
+    "exact_json_only": true,
+    "private_provider_identifiers_excluded_from_git": true,
+    "quiet_control_authorized_now": false,
+    "quiet_control_condition": "all_pressure_axes_pass_and_separate_contract_frozen",
+    "raw_payload_or_failure_preserved": true,
+    "source_review_only_after_mechanical_pass": true,
+    "started_record_before_transport": true
+  },
+  "frozen_inputs": [
+    {
+      "path": "docs/evals/lolla-r3-google-schema-repair-contract-v1.json",
+      "sha256": "57a44bd48e7363911d355d9713b3106f199aced71ed460a04b284a850069bc31"
+    },
+    {
+      "path": "research/lolla-r3-fresh-consumer-2026-07-13/provider-free-repair-v1/prospective-pressure-bundle.json",
+      "sha256": "e618348816791cdcbc6c08c8f3f30a6d01ba9ccc2c021d3ac0b7e5b19fd71b7c"
+    },
+    {
+      "path": "engine/system_b/r3_google_schema_projection.py",
+      "sha256": "29defb28b58e7f56bca623d3e1436151c67c740dc7f2a84e51f3824c9ab853f0"
+    },
+    {
+      "path": "engine/system_b/provider_budget.py",
+      "sha256": "c5ee5067b447cf28bcac317c06e3114928f578d3836f24325cc30ccf005c5997"
+    },
+    {
+      "path": "scripts/evals/run_r3_repaired_pressure.py",
+      "sha256": "81439654499dd0633ad2995fd21d56f870b3df487c286853afb29cfa0a586d0d"
+    },
+    {
+      "path": "scripts/evals/build_r3_repaired_pressure_execution.py",
+      "sha256": "334627b65a0086af1c15ae68b8ba473fd881d2820b968b48a6cfef3d67f4e4cb"
+    }
+  ],
+  "non_claims": [
+    "provider_acceptance_is_not_known_before_execution",
+    "mechanical_validity_is_not_semantic_quality",
+    "one_semantic_pass_would_not_prove_product_reliability",
+    "available_account_balance_does_not_expand_this_budget"
+  ],
+  "operator": {
+    "allow_fallbacks": false,
+    "data_collection": "deny",
+    "maximum_output_tokens": 4000,
+    "model": "google/gemini-3.1-flash-lite",
+    "provider_only": [
+      "google-vertex"
+    ],
+    "provider_order": [
+      "google-vertex/global"
+    ],
+    "reasoning_content_excluded": true,
+    "reasoning_effort": "low",
+    "require_parameters": true,
+    "seed": 3101,
+    "wire_mode": "strict_json_schema",
+    "zdr_claimed": false
+  },
+  "repair_contract": {
+    "file_sha256": "57a44bd48e7363911d355d9713b3106f199aced71ed460a04b284a850069bc31",
+    "path": "docs/evals/lolla-r3-google-schema-repair-contract-v1.json"
+  },
+  "request_attestation": {
+    "packet_sha256": "a5475a81242650fe62d08d01e76c4e39394c5b24aa3d04a3fdb4c0982ea3a6a7",
+    "request_body_sha256": "a33950f451f8c6a20e50d09e0c1e3eeb9eb8af26a0394c5b21fdbdc6e2c182ad",
+    "response_schema_sha256": "232d00a88aebf1b59aba799d13de36552a7c86a8a2a4bf3cf017b9b0f272d6b1",
+    "system_prompt_sha256": "3a324d175cab8f3cb1f773df357ee924162599909a37ccc8278d6e3cbf443412",
+    "user_prompt_sha256": "abd307301cadf94fa931bf94ff13de57850e8c28d745355d9d9a15c96f2b3ad6",
+    "wire_projection": "lolla.r3_google_schema_projection.v1"
+  },
+  "run_id": "lolla-r3-fresh-consumer-case01-pressure-r2-repaired",
+  "schema_version": "lolla.r3_repaired_pressure_execution_contract.v1",
+  "status": "frozen_before_one_repaired_pressure_call"
+}

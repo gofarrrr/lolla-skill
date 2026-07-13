@@ -188,9 +188,9 @@ pruning” means bounded inspectable possibility, not context dumping.
 
 ## R3 — One fresh-consumer proof, then a quiet control
 
-Status: negative operational attempt closed; provider-free interoperability
-repair complete (2026-07-13); semantic exit condition not met; reattempt not
-authorized
+Status: repaired operational attempt closed (2026-07-13); transport repair
+confirmed; semantic exit condition not met; quiet control and further calls
+not authorized
 
 Purpose: test the corrected pressure interface without the original reasoner's
 same-context trajectory.
@@ -270,6 +270,25 @@ Provider-free repair result:
 The provider-free repair boundary is met. See
 `docs/conversation-understanding/lolla-r3-provider-schema-repair-result-2026-07-13.md`.
 
+Repaired execution result:
+
+- a separate exact authorization permitted one repaired Gemini 3.1 Flash-Lite
+  pressure attempt and no quiet control, retry, fallback, healing, or premium
+  model;
+- Google accepted the projected schema and returned strict JSON, so the earlier
+  provider-schema transport gap is closed for this request;
+- the call cost exactly `$0.0062705`, within the one-cent pressure ceiling;
+- the response failed one deterministic cross-field rule: a `park` disposition
+  claimed the material effect `uncertainty_change`;
+- the exact candidate was not changed or rescued, and the canonical compiler
+  failure reproduced during closeout;
+- source-first semantic review was prohibited, seven semantic axes remain not
+  evaluable, and exact cost/failure custody passed;
+- no quiet control or further provider call ran.
+
+R3 is semantically closed without meeting its exit condition. See
+`docs/conversation-understanding/lolla-r3-repaired-pressure-result-2026-07-13.md`.
+
 ## R4 — Multi-thread conversation state and reasoning abstraction
 
 Purpose: improve what the pressure system understands without turning Python
@@ -343,12 +362,18 @@ receipt that a fresh reader can reconstruct.
 
 ## Immediate next goal
 
-Founder decision: authorize or decline one repaired R3 pressure attempt. The
-provider-free interoperability repair now passes, but it deliberately
-authorizes zero calls and does not establish provider acceptance or semantic
-quality. If authorized, freeze a new authorization against the exact repaired
-contract and run at most one Gemini 3.1 Flash-Lite call under the existing
-`$0.01`, no-retry, no-fallback, no-healing, and no-premium boundary. Preserve a
-second failure and stop; run a separately capped quiet control only if the
-pressure output is mechanically valid and passes every source-first vector
-gate. Do not begin R4 while this R3 semantic gap is hidden or ambiguous.
+Provider-free R3 task-shape reassessment. The repaired call proved transport
+compatibility but failed the explicit response contract, so another paid call
+would be an ungrounded retry. Use the preserved candidate and local fixtures to
+identify whether disposition, cross-field consistency, answer drafting, or
+their one-pass combination is the smallest falsifiable defect. Compare only
+constitutionally honest alternatives, including keeping one pass, separating
+disposition from synthesis, or reserving a stronger final operator. Preserve
+LLM ownership of semantic applicability and deterministic ownership of
+identity, custody, vocabulary, bounds, budgets, and explicit consistency.
+
+Do not begin provider-backed R4 work, shop models, or authorize a quiet control
+until this reassessment produces a frozen hypothesis, local acceptance
+contract, cost consequence, and stop rule. R4 remains the next major roadmap
+stage; this closeout prevents its design from inheriting an unexplained R3
+failure.

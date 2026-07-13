@@ -61,6 +61,7 @@ from the historical Product Delta lane above:
 27. [R1/R2 constitutional hardening result](../conversation-understanding/lolla-r1-r2-constitutional-hardening-result-2026-07-13.md)
 28. [R3 fresh-consumer result](../conversation-understanding/lolla-r3-fresh-consumer-result-2026-07-13.md)
 29. [R3 provider-schema repair result](../conversation-understanding/lolla-r3-provider-schema-repair-result-2026-07-13.md)
+30. [R3 repaired pressure result](../conversation-understanding/lolla-r3-repaired-pressure-result-2026-07-13.md)
 
 Affordable-operator checkpoint, 2026-07-13: Gemini 3.1 Flash Lite on the pinned
 Google Vertex OpenRouter endpoint is the current testing candidate for small,
@@ -79,16 +80,20 @@ stopped. Coverage is now receipt metadata rather than a graph-admission gate,
 and a provider-free deterministic correction preserves every valid seed for
 direct and graph recall. This is not production selection. Gemini 3.5 artifacts
 remain premium comparison evidence; no routine development call should use
-Gemini 3.5. No further provider call is authorized until the corrected fresh-
-consumer handoff passes locally.
+Gemini 3.5.
 
 That provider-free handoff now passes: the full conversation, three residual
 seed questions, six direct candidates, three graph candidates, and an
 inspectable 26-candidate reserve are preserved under exact custody. The active
 consumer must apply, reject, or park all nine candidates; coverage metadata has
-no suppression authority. No call was made. A future validation is limited to
-one Gemini 3.1 Flash Lite call and `$0.01`; Gemini 3.5 remains a preserved
-premium benchmark, not a routine testing model.
+no suppression authority. The first pressure request was rejected before
+inference. A provider-free schema projection then passed locally, and one
+separately authorized repaired Gemini 3.1 Flash Lite request reached inference
+for `$0.0062705`. Its strict JSON contradicted its own `park` disposition by
+claiming a material effect, so deterministic validation stopped the workflow.
+No retry, healing, fallback, premium model, semantic review, or quiet control
+followed. R3 is closed without meeting its semantic exit condition; the next
+boundary is provider-free task-shape reassessment.
 
 Newest checkpoint: the first provider-free decomposition passed locally but
 failed its reserved agency-acquisition probe after one call. The role-trajectory
