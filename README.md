@@ -40,7 +40,8 @@ telemetry and cannot delete this portfolio.
 > [R3 repaired pressure result](docs/conversation-understanding/lolla-r3-repaired-pressure-result-2026-07-13.md),
 > [R3 task-shape reassessment](docs/conversation-understanding/lolla-r3-task-shape-reassessment-result-2026-07-13.md),
 > [R3 collapsed-outcome case preparation](docs/conversation-understanding/lolla-r3-collapsed-outcome-case-preparation-result-2026-07-13.md),
-> and [R3 collapsed-outcome execution result](docs/conversation-understanding/lolla-r3-collapsed-outcome-execution-result-2026-07-13.md).
+> [R3 collapsed-outcome execution result](docs/conversation-understanding/lolla-r3-collapsed-outcome-execution-result-2026-07-13.md),
+> and [R3 reasoning-exclusion correction result](docs/conversation-understanding/lolla-r3-reasoning-exclusion-correction-result-2026-07-13.md).
 
 ## Why This Exists
 
@@ -1237,6 +1238,13 @@ reasoning metadata as returned reasoning content, so the full mechanical gate
 failed and semantic review remained closed. No retry or further call is
 authorized; the next boundary is a provider-free prospective validator
 correction.
+That **[provider-free correction](docs/conversation-understanding/lolla-r3-reasoning-exclusion-correction-result-2026-07-13.md)**
+is now complete. It handles absent, empty, content-bearing, signature-only,
+mixed, malformed, and unknown reasoning-detail shapes without exposing provider
+values. It does not reclassify the historical call or open semantic review.
+Paid R3 work is deferred, and the
+**[R4 provider-free corpus/replay plan](plans/lolla-r4-provider-free-corpus-replay-plan-2026-07-13.md)**
+is the next major development stage.
 
 For the offline Product Delta evidence lane, including what to run, what to
 inspect, and what not to infer, see **[Product Delta / Eval Docs Index](docs/evals/README.md)**.

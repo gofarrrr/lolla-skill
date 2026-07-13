@@ -67,6 +67,8 @@ from the historical Product Delta lane above:
 33. [R3 collapsed-outcome current-practice check](../conversation-understanding/lolla-r3-collapsed-outcome-current-practice-2026-07-13.md)
 34. [R3 collapsed-outcome case preparation](../conversation-understanding/lolla-r3-collapsed-outcome-case-preparation-result-2026-07-13.md)
 35. [R3 collapsed-outcome execution result](../conversation-understanding/lolla-r3-collapsed-outcome-execution-result-2026-07-13.md)
+36. [R3 reasoning-exclusion correction result](../conversation-understanding/lolla-r3-reasoning-exclusion-correction-result-2026-07-13.md)
+37. [R4 provider-free corpus/replay plan](../../plans/lolla-r4-provider-free-corpus-replay-plan-2026-07-13.md)
 
 Affordable-operator checkpoint, 2026-07-13: Gemini 3.1 Flash Lite on the pinned
 Google Vertex OpenRouter endpoint is the current testing candidate for small,
@@ -116,6 +118,16 @@ frozen result remains failed, semantic review remains unopened, and no retry or
 additional call is authorized. The next boundary is a provider-free
 prospective validator correction, followed by an explicit R3 deferral or a
 genuinely new prospective case.
+
+That prospective correction is now complete with zero provider calls. It
+distinguishes returned content from absent, empty, and signature-only metadata;
+flags plaintext, summaries, encrypted data, and compatible content aliases;
+and fails closed on unknown or malformed detail shapes. Seven historical files
+remain pinned under exact hashes, the frozen result is not reclassified, and
+semantic review remains closed. Paid R3 work is explicitly deferred. The next
+major goal is an inventory and measurement-contract replay over the twelve
+existing naturalized conversations before any R4 prompt, schema, architecture,
+or provider work.
 
 Newest checkpoint: the first provider-free decomposition passed locally but
 failed its reserved agency-acquisition probe after one call. The role-trajectory

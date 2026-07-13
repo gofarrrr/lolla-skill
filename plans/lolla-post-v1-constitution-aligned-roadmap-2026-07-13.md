@@ -188,9 +188,9 @@ pruning” means bounded inspectable possibility, not context dumping.
 
 ## R3 — One fresh-consumer proof, then a quiet control
 
-Status: collapsed-outcome operational attempt closed (2026-07-13); candidate
-compiler accepted; frozen reasoning-exclusion gate failed; semantic exit
-condition not met; quiet control and further calls not authorized
+Status: collapsed-outcome operational attempt closed and prospective validator
+corrected provider-free (2026-07-13); semantic exit condition not met; paid R3,
+quiet control, and further calls deferred
 
 Purpose: test the corrected pressure interface without the original reasoner's
 same-context trajectory.
@@ -357,7 +357,29 @@ further paid R3 work or prepare a genuinely new prospective case before any
 new call. See
 `docs/conversation-understanding/lolla-r3-collapsed-outcome-execution-result-2026-07-13.md`.
 
+Prospective reasoning-exclusion correction result:
+
+- current OpenRouter reasoning-detail fields and aliases were checked again;
+- a new prospective R3 validator distinguishes actual returned content from
+  absent, empty, and signature-only metadata without reading provider values;
+- plaintext, summaries, encrypted data, compatible content aliases, mixed
+  records, and malformed/unknown shapes fail closed;
+- 35 focused fixtures cover the contract, while the broader relevant slice
+  passes 72 tests provider-free;
+- seven historical execution files remain pinned under exact hashes;
+- the frozen runner classification and mechanical failure remain unchanged,
+  and semantic review remains closed;
+- the correction made zero provider calls and authorizes zero further calls,
+  retries, judges, premium models, or runtime integration;
+- paid R3 is explicitly deferred unless a new falsifiable question survives
+  provider-free review and receives separate founder authorization.
+
+See
+`docs/conversation-understanding/lolla-r3-reasoning-exclusion-correction-result-2026-07-13.md`.
+
 ## R4 — Multi-thread conversation state and reasoning abstraction
+
+Status: next major stage; first provider-free inventory/replay goal planned
 
 Purpose: improve what the pressure system understands without turning Python
 into a semantic state machine.
@@ -430,15 +452,16 @@ receipt that a fresh reader can reconstruct.
 
 ## Immediate next goal
 
-Correct the reasoning-exclusion validator provider-free for prospective work.
-It must distinguish actual returned reasoning content—non-empty plaintext,
-summary, or encrypted data—from a signature-only preservation envelope. Cover
-absent, empty, plaintext, summary, encrypted, signature-only, and mixed
-fixtures; preserve conservative failure for actual content; and leave the
-frozen call record and closed semantic review unchanged.
+Freeze the R4 provider-free corpus/replay manifest, measurement vector, and gap
+matrix over the twelve existing naturalized 24-message conversations. Inventory
+every available sealed semantic, pressure, failure, and receipt artifact before
+changing extraction. Distinguish missing, failed, partial, exposed,
+review-only, and replayable states. Measure system-level coverage, semantic
+role placement, temporal and speaker fidelity, cross-thread integrity, source
+precision, fan-in load, false stand-down, over-fragmentation, and custody as a
+vector rather than a score.
 
-Then record an explicit R3 deferral or freeze a genuinely new prospective case.
-The recommended decision is to defer more paid R3 calls and start R4's existing
-corpus/replay work provider-free. A new call should require a new falsifiable
-question that local artifacts cannot answer. No provider-backed R4 work or
-runtime integration is authorized.
+Do not tune prompts, add deterministic semantic rules, shop models, call a
+provider, reopen R3, or integrate runtime changes. Select at most one causal R4
+repair only after the frozen gap matrix shows that it is earned. See
+`plans/lolla-r4-provider-free-corpus-replay-plan-2026-07-13.md`.

@@ -11,6 +11,11 @@ Exact provider-reported cost: `$0.005517`
 
 Additional calls authorized: zero
 
+> Subsequent status: the provider-free prospective validator correction is
+> complete, paid R3 is deferred, and the historical result below remains
+> unchanged. See
+> [R3 reasoning-exclusion correction result](lolla-r3-reasoning-exclusion-correction-result-2026-07-13.md).
+
 ## Plain-language result
 
 The new collapsed-outcome interface reached the model and did the part that the
