@@ -1,0 +1,148 @@
+{
+  "schema_version": "lolla.r4_conversation_state_fan_in_contract.v1",
+  "status": "frozen_provider_free_contract",
+  "date": "2026-07-13",
+  "purpose": "Preserve complementary provider-authored conversation-state records and operational absence states in one bounded, inspectable handoff without deterministic semantic inference.",
+  "budget": {
+    "provider_calls_authorized": 0,
+    "provider_cost_authorized_usd": 0.0,
+    "prompt_or_model_changes_authorized": 0,
+    "runtime_or_graph_changes_authorized": 0
+  },
+  "surfaces": [
+    "starting_position",
+    "current_position",
+    "qualification",
+    "unresolved_matter",
+    "reopen_condition",
+    "cross_thread_relationship"
+  ],
+  "reader_result_contract": {
+    "schema_function": "engine.system_b.conversation_state_fan_in.reader_result_json_schema_v1",
+    "json_schema_dialect": "https://json-schema.org/draft/2020-12/schema",
+    "json_schema_sha256": "5bf06cfe96cc3fdd7f584aa9bc1c4bea87804978a6d6a4c4d507ff9f615d99ec",
+    "union_kind": "explicit_state_tagged_oneOf",
+    "unknown_state_policy": "fail_closed",
+    "one_result_required_per_planned_reader": true,
+    "every_surface_requires_at_least_one_planned_reader": true,
+    "array_order_has_semantic_meaning": false
+  },
+  "state_vocabulary": {
+    "complete": {
+      "artifact_required": true,
+      "minimum_admitted_records": 1,
+      "issue_required": false,
+      "meaning": "The declared reader surface completed and has at least one admitted explicit record."
+    },
+    "completed_zero": {
+      "artifact_required": true,
+      "exact_admitted_records": 0,
+      "issue_required": false,
+      "meaning": "The declared reader completed and returned zero admitted records; this does not assert that the underlying semantic matter is absent."
+    },
+    "partial": {
+      "artifact_required": true,
+      "minimum_admitted_records": 1,
+      "issue_required": true,
+      "meaning": "At least one explicit record is available, but the declared reader or source-run boundary did not complete."
+    },
+    "failed": {
+      "artifact_required": true,
+      "exact_admitted_records": 0,
+      "issue_required": true,
+      "meaning": "A preserved operational, schema, custody, dependency, or budget failure stopped the declared reader boundary."
+    },
+    "missing": {
+      "artifact_required": false,
+      "exact_admitted_records": 0,
+      "issue_required": true,
+      "meaning": "The planned reader result is unavailable or the reader contract does not exist; this never means a semantic zero."
+    }
+  },
+  "machine_issue_codes": {
+    "partial": [
+      "some_records_quarantined",
+      "source_run_incomplete",
+      "dependency_failed"
+    ],
+    "failed": [
+      "transport_failed",
+      "schema_or_custody_failed",
+      "dependency_failed",
+      "budget_preflight_failed"
+    ],
+    "missing": [
+      "reader_not_implemented",
+      "upstream_dependency_unavailable",
+      "reader_not_run",
+      "artifact_unavailable"
+    ],
+    "human_detail_policy": "safe_detail is explanatory text only. Deterministic behavior must use the explicit state and controlled machine code and must never parse safe_detail. Raw provider errors and private identifiers are excluded."
+  },
+  "semantic_record_contract": {
+    "provider_authored_payload_preserved_opaquely": true,
+    "canonical_payload_sha256_required": true,
+    "exact_source_locators_required": true,
+    "relationship_endpoints_use_exact_admitted_record_ids": true,
+    "relationship_endpoint_minimum": 2,
+    "lexical_or_embedding_deduplication": false,
+    "overlapping_readers_allowed": true,
+    "semantic_correctness_inferred_by_code": false
+  },
+  "bounds": {
+    "maximum_readers": 12,
+    "maximum_records_per_reader": 8,
+    "maximum_total_records": 48,
+    "maximum_source_aliases": 512,
+    "maximum_source_locators_per_record": 24,
+    "maximum_related_record_ids": 16,
+    "maximum_semantic_payload_utf8_bytes_per_record": 32768,
+    "maximum_total_semantic_payload_utf8_bytes": 262144,
+    "maximum_handoff_payload_utf8_bytes": 1000000,
+    "bound_rationale": "This v1 contract permits up to two complementary readers per required surface and leaves material headroom above the measured V1 role-record and source-locator loads. Larger designs require a new measured contract rather than silent expansion."
+  },
+  "mechanical_outputs": [
+    "reader state counts",
+    "record counts by explicit surface",
+    "exact record and relationship identities",
+    "source locator and artifact custody",
+    "semantic payload byte counts",
+    "unique artifact byte counts",
+    "exact payload and source-alias overlap pair counts",
+    "bounded handoff byte count"
+  ],
+  "forbidden_deterministic_actions": [
+    "infer a semantic role from prose, keywords, chronology, turn count, or array order",
+    "fill a failed or missing reader with a guessed semantic record",
+    "treat completed_zero as proof that the underlying matter is absent",
+    "merge or delete records because their prose or source aliases overlap",
+    "decide whether a relationship is meaningful merely because exact endpoint IDs resolve",
+    "decide graph relevance, pressure activation, advice quality, or trust",
+    "turn fan-in counts or coverage into a scalar score or quality badge"
+  ],
+  "provider_free_fixture_contract": {
+    "required_positive_paths": [
+      "all six surfaces complete with explicit relationship endpoints",
+      "completed-zero remains distinct from missing",
+      "partial records remain visible beside a mechanical issue",
+      "failed and missing readers remain separately inspectable",
+      "two complementary readers may cite the same source alias without deletion"
+    ],
+    "required_adversarial_paths": [
+      "unknown state or issue code fails",
+      "payload, source, artifact, or self-hash drift fails",
+      "record surface differing from planned reader fails",
+      "relationship endpoint not present in admitted records fails",
+      "duplicate reader or record identity fails",
+      "record or byte bound overflow fails"
+    ]
+  },
+  "expected_changed_measurement": "A downstream consumer can inspect each planned reader's explicit records and operational state, and a missing reader can no longer masquerade as a completed semantic zero or deterministic stand-down evidence.",
+  "non_claims": [
+    "not proof that any semantic payload is correct or sufficiently grounded",
+    "not proof that system-level conversation coverage is complete",
+    "not graph-value, pressure-value, answer-quality, decision-quality, or trust evidence",
+    "not runtime integration",
+    "not authorization for a provider call"
+  ]
+}

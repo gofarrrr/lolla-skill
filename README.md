@@ -1254,6 +1254,15 @@ whose material pressure disappeared before deterministic recall. The next
 provider-free task is a missingness-aware system-level conversation-state
 fan-in contract; no runtime change or provider call is authorized by the
 replay.
+That **[R4 fan-in result](docs/conversation-understanding/lolla-r4-conversation-state-fan-in-result-2026-07-13.md)**
+is now complete provider-free. It freezes five explicit reader states, six
+conversation-state surfaces, exact source/artifact custody, disagreement-
+preserving overlap, and measured bounds. Four representative V1 paths preserve
+24 reader results, seven semantic records, and 21 exact locators while keeping
+completed-zero, partial, failed, and missing outcomes distinct. This repairs
+the assembly boundary but does not claim better semantic coverage. The next
+goal is provider-free preparation of one bounded unresolved/reopen plus exact-
+ID relationship experiment; no call or runtime integration is authorized.
 
 For the offline Product Delta evidence lane, including what to run, what to
 inspect, and what not to infer, see **[Product Delta / Eval Docs Index](docs/evals/README.md)**.

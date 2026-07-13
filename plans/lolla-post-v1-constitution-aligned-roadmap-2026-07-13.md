@@ -379,7 +379,8 @@ See
 
 ## R4 — Multi-thread conversation state and reasoning abstraction
 
-Status: first provider-free inventory/replay complete; fan-in contract design next
+Status: provider-free inventory/replay and missingness-aware fan-in complete;
+bounded complementary-reader experiment preparation next
 
 Purpose: improve what the pressure system understands without turning Python
 into a semantic state machine.
@@ -431,6 +432,33 @@ First replay result:
 See
 `docs/conversation-understanding/lolla-r4-provider-free-corpus-replay-result-2026-07-13.md`.
 
+Missingness-aware fan-in result:
+
+- a strict explicit tagged union now separates `complete`, `completed_zero`,
+  `partial`, `failed`, and `missing` reader results;
+- six required surfaces remain visible: starting, current, qualification,
+  unresolved matter, reopen condition, and cross-thread relationship;
+- complete provider-authored payloads, exact source locators, speakers, turns,
+  artifact hashes, and exact relationship endpoints survive;
+- complementary overlapping records are counted but never merged, ranked, or
+  voted away;
+- fan-in is frozen at twelve readers, 48 records, 256 KiB of semantic payload,
+  and a 1 MB handoff;
+- four representative V1 replays preserve 24 explicit reader results: five
+  complete, one completed-zero, two partial, two failed, and fourteen missing;
+- seven admitted semantic records and 21 exact source locators reproduce with
+  all handoffs inside bounds and no provider call;
+- Case 02 now exposes a completed-zero qualification separately from missing
+  unresolved, reopen, and relationship readers;
+- no prompt, model, runtime, graph, semantic merge, quality score, or semantic
+  absence inference was added.
+
+The assembly defect is repaired provider-free. The semantic defect remains:
+primary V1 produced no distinct records for the three missing surfaces. A
+bounded complementary-reader experiment is therefore worth preparing, but
+this result authorizes neither a provider call nor runtime integration. See
+`docs/conversation-understanding/lolla-r4-conversation-state-fan-in-result-2026-07-13.md`.
+
 ## R5 — Product evidence and receipt reconstruction
 
 Purpose: determine whether the product is actually useful and whether its
@@ -476,15 +504,14 @@ receipt that a fresh reader can reconstruct.
 
 ## Immediate next goal
 
-Design and validate the provider-free R4 missingness-aware system-level
-conversation-state fan-in contract selected by the completed corpus replay.
-The contract should preserve complementary provider-authored starting,
-current, qualification, unresolved-matter, reopen-condition, and explicit
-relationship records with exact source locators. Missing, completed-zero,
-partial, and failed states must remain distinct.
+Prepare the first bounded R4 complementary-reader semantic experiment without
+making a provider call. Freeze one small paired unresolved-matter/reopen-
+condition reader and one subsequent exact-ID relationship reader. Use one
+already exposed false-stand-down case and one restraint control. Freeze source-
+first targets, strict schemas, prompts, source custody, model/provider policy,
+no-retry cost ceiling, and fan-in acceptance gates before requesting any call.
 
-Start with interfaces, adversarial fixtures, fan-in measurement, and replay.
-Do not tune prompts, infer semantic roles in Python, merge records by lexical
-similarity, shop models, call a provider, reopen R3, or integrate the runtime.
-Only after the provider-free contract passes should a new falsifiable semantic
-experiment be proposed.
+Do not integrate the runtime, reopen R3, change the graph, infer semantic roles
+in Python, merge overlapping records, optimize a composite score, or claim
+that the prepared readers are useful. A later call must be a separately
+authorized causal diagnostic whose result may be negative.

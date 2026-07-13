@@ -251,6 +251,23 @@ def test_builder_imports_no_network_or_provider_sdk() -> None:
     assert "os.environ" not in Path(builder.__file__).read_text(encoding="utf-8")
 
 
+def test_frozen_inventory_excludes_explicit_downstream_r4_outputs() -> None:
+    inventory, _gaps, _result = builder.validate()
+    recorded = {
+        artifact["path"]
+        for case in inventory["cases"]
+        for artifact in case["relevant_artifacts"]
+    }
+
+    assert builder.DOWNSTREAM_OUTPUT_ROOTS == (
+        ROOT / "research/lolla-r4-conversation-state-fan-in-2026-07-13",
+    )
+    assert not any(
+        path.startswith("research/lolla-r4-conversation-state-fan-in-2026-07-13/")
+        for path in recorded
+    )
+
+
 def test_self_hashes_and_cross_hashes_are_exact() -> None:
     inventory, gaps, result = builder.validate()
 

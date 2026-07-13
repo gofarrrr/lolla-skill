@@ -43,6 +43,9 @@ OUTPUT_ROOT = ROOT / "research/lolla-r4-corpus-replay-2026-07-13"
 INVENTORY_PATH = OUTPUT_ROOT / "r4-corpus-replay-manifest.json"
 GAP_MATRIX_PATH = OUTPUT_ROOT / "r4-replay-gap-matrix.json"
 RESULT_PATH = OUTPUT_ROOT / "r4-replay-result.json"
+DOWNSTREAM_OUTPUT_ROOTS = (
+    ROOT / "research/lolla-r4-conversation-state-fan-in-2026-07-13",
+)
 
 EXPECTED_INPUT_HASHES = {
     "research/simulated-reliability-corpus-v1-2026-07-12/manifest.json": (
@@ -264,7 +267,9 @@ def _discover_case_paths(case_ids: Sequence[str]) -> dict[str, set[Path]]:
     paths: dict[str, set[Path]] = {case_id: set() for case_id in case_ids}
     for base in (ROOT / "research", ROOT / "docs/evals"):
         for path in base.rglob("*.json"):
-            if OUTPUT_ROOT in path.parents:
+            if OUTPUT_ROOT in path.parents or any(
+                downstream in path.parents for downstream in DOWNSTREAM_OUTPUT_ROOTS
+            ):
                 continue
             try:
                 content = path.read_bytes()
