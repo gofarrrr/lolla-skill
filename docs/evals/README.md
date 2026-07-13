@@ -69,6 +69,8 @@ from the historical Product Delta lane above:
 35. [R3 collapsed-outcome execution result](../conversation-understanding/lolla-r3-collapsed-outcome-execution-result-2026-07-13.md)
 36. [R3 reasoning-exclusion correction result](../conversation-understanding/lolla-r3-reasoning-exclusion-correction-result-2026-07-13.md)
 37. [R4 provider-free corpus/replay plan](../../plans/lolla-r4-provider-free-corpus-replay-plan-2026-07-13.md)
+38. [R4 provider-free corpus/replay result](../conversation-understanding/lolla-r4-provider-free-corpus-replay-result-2026-07-13.md)
+39. [R4 non-scalar measurement contract](lolla-r4-measurement-contract-v1.json)
 
 Affordable-operator checkpoint, 2026-07-13: Gemini 3.1 Flash Lite on the pinned
 Google Vertex OpenRouter endpoint is the current testing candidate for small,
@@ -124,10 +126,20 @@ distinguishes returned content from absent, empty, and signature-only metadata;
 flags plaintext, summaries, encrypted data, and compatible content aliases;
 and fails closed on unknown or malformed detail shapes. Seven historical files
 remain pinned under exact hashes, the frozen result is not reclassified, and
-semantic review remains closed. Paid R3 work is explicitly deferred. The next
-major goal is an inventory and measurement-contract replay over the twelve
-existing naturalized conversations before any R4 prompt, schema, architecture,
-or provider work.
+semantic review remains closed. Paid R3 work is explicitly deferred.
+
+The first R4 replay is now complete with zero provider calls. It inventories
+543 case/artifact links covering 400 unique case-linked JSON artifacts, keeps
+missing, completed-zero, partial, failed, exposed, transfer, and review-only
+states distinct, and freezes ten measurement dimensions without a quality
+score. Seven transfer paths completed, one failed at role custody, and four
+failed before inference. Frozen diagnostic review identifies five correct
+stand-downs and two false stand-downs among the seven completed cases. The
+repeated gap is upstream representation: material pressure can disappear
+before controlled mechanisms and deterministic recall. The next provider-free
+task is a missingness-aware system-level conversation-state fan-in contract;
+no prompt tuning, model call, runtime integration, or graph change is
+authorized by the replay.
 
 Newest checkpoint: the first provider-free decomposition passed locally but
 failed its reserved agency-acquisition probe after one call. The role-trajectory

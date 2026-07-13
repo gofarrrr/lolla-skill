@@ -1244,7 +1244,16 @@ mixed, malformed, and unknown reasoning-detail shapes without exposing provider
 values. It does not reclassify the historical call or open semantic review.
 Paid R3 work is deferred, and the
 **[R4 provider-free corpus/replay plan](plans/lolla-r4-provider-free-corpus-replay-plan-2026-07-13.md)**
-is the next major development stage.
+is now complete. The
+**[R4 replay result](docs/conversation-understanding/lolla-r4-provider-free-corpus-replay-result-2026-07-13.md)**
+hash-locks twelve naturalized conversations and 400 unique case-linked JSON
+artifacts, separates seven completed paths from one custody failure and four
+pre-inference transport failures, and freezes a ten-dimension non-scalar
+measurement contract. It finds two diagnostically reviewed false stand-downs
+whose material pressure disappeared before deterministic recall. The next
+provider-free task is a missingness-aware system-level conversation-state
+fan-in contract; no runtime change or provider call is authorized by the
+replay.
 
 For the offline Product Delta evidence lane, including what to run, what to
 inspect, and what not to infer, see **[Product Delta / Eval Docs Index](docs/evals/README.md)**.

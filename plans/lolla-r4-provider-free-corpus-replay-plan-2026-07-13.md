@@ -1,6 +1,6 @@
 # Lolla R4 provider-free corpus and replay plan
 
-Status: next major stage prepared; execution not started
+Status: complete (2026-07-13; provider calls: zero)
 
 Date: 2026-07-13
 
@@ -181,3 +181,33 @@ falsifiable proposal after provider-free evidence is exhausted.
 R4's first provider-free replay will not prove product usefulness, model
 reliability, graph value, real-user transfer, decision quality, or production
 readiness. It will make the next development choice evidence-based and cheap.
+
+## Completion result
+
+The goal completed without prompt, schema, model, runtime, graph, or provider
+changes.
+
+- all twelve 24-message source hashes reproduced across the source manifest,
+  naturalized review, and provider-free preflight;
+- 543 case/artifact links covering 400 unique case-linked JSON artifacts were
+  inventoried with exact paths, hashes, byte counts, partitions, and states;
+- all source and receipt formats have explicit custody, while raw payload
+  content and private provider values are not copied;
+- seven sealed transfer cases completed, one failed at role custody, and four
+  failed at starting transport before inference;
+- the measurement contract freezes ten separate non-scalar dimensions;
+- 65 admitted role references resolve to exact alias text hashes, speakers,
+  and turn locators with zero orphan or hash-mismatch findings;
+- seven completed cases have diagnostic semantic review: five correct
+  stand-downs and two false stand-downs;
+- no distinct unresolved-matter, reopen-condition, or cross-thread
+  relationship surface exists in the primary contract;
+- no primary graph candidate activated, so graph value remains untested;
+- one next repair is earned: a missingness-aware system-level
+  conversation-state fan-in contract.
+
+See
+`docs/conversation-understanding/lolla-r4-provider-free-corpus-replay-result-2026-07-13.md`.
+
+The selected repair is a provider-free contract-design task. This result does
+not authorize runtime integration or a provider call.

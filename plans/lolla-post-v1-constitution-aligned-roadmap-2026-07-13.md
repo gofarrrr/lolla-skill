@@ -379,7 +379,7 @@ See
 
 ## R4 — Multi-thread conversation state and reasoning abstraction
 
-Status: next major stage; first provider-free inventory/replay goal planned
+Status: first provider-free inventory/replay complete; fan-in contract design next
 
 Purpose: improve what the pressure system understands without turning Python
 into a semantic state machine.
@@ -406,6 +406,30 @@ one falsifiable gap that cannot be answered from existing artifacts.
 Exit condition: system-level coverage, role placement, temporal fidelity,
 source precision, fan-in load, and false-stand-down behavior improve separately
 without weakening graph survival or custody.
+
+First replay result:
+
+- all twelve 24-message source hashes reproduce;
+- 400 unique case-linked JSON artifacts and 543 case/artifact links now have a
+  metadata-only, hash-locked inventory;
+- seven transfer paths completed, one failed at role custody, and four failed
+  before inference;
+- exact mechanical role/source/fan-in/custody facts are now separated from
+  semantic judgments that still require probabilistic or human review;
+- five reviewed completed cases stood down correctly and two stood down
+  falsely because material pressure was absent upstream of deterministic
+  recall;
+- unresolved matter, reopen condition, and cross-thread relationship lack
+  distinct primary contract surfaces;
+- primary graph value remains unmeasured because zero graph candidates became
+  active in transfer;
+- one next task is earned: design a missingness-aware system-level
+  conversation-state fan-in contract. It must preserve explicit reader output,
+  overlap, source locators, and missing/empty/partial/failed states without
+  deterministic semantic inference.
+
+See
+`docs/conversation-understanding/lolla-r4-provider-free-corpus-replay-result-2026-07-13.md`.
 
 ## R5 — Product evidence and receipt reconstruction
 
@@ -452,16 +476,15 @@ receipt that a fresh reader can reconstruct.
 
 ## Immediate next goal
 
-Freeze the R4 provider-free corpus/replay manifest, measurement vector, and gap
-matrix over the twelve existing naturalized 24-message conversations. Inventory
-every available sealed semantic, pressure, failure, and receipt artifact before
-changing extraction. Distinguish missing, failed, partial, exposed,
-review-only, and replayable states. Measure system-level coverage, semantic
-role placement, temporal and speaker fidelity, cross-thread integrity, source
-precision, fan-in load, false stand-down, over-fragmentation, and custody as a
-vector rather than a score.
+Design and validate the provider-free R4 missingness-aware system-level
+conversation-state fan-in contract selected by the completed corpus replay.
+The contract should preserve complementary provider-authored starting,
+current, qualification, unresolved-matter, reopen-condition, and explicit
+relationship records with exact source locators. Missing, completed-zero,
+partial, and failed states must remain distinct.
 
-Do not tune prompts, add deterministic semantic rules, shop models, call a
-provider, reopen R3, or integrate runtime changes. Select at most one causal R4
-repair only after the frozen gap matrix shows that it is earned. See
-`plans/lolla-r4-provider-free-corpus-replay-plan-2026-07-13.md`.
+Start with interfaces, adversarial fixtures, fan-in measurement, and replay.
+Do not tune prompts, infer semantic roles in Python, merge records by lexical
+similarity, shop models, call a provider, reopen R3, or integrate the runtime.
+Only after the provider-free contract passes should a new falsifiable semantic
+experiment be proposed.

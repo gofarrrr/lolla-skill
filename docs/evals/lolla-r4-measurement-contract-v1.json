@@ -1,0 +1,203 @@
+{
+  "schema_version": "lolla.r4_measurement_contract.v1",
+  "status": "frozen_provider_free_non_scalar_contract",
+  "date": "2026-07-13",
+  "purpose": "Describe what the sealed V1 corpus replay can measure without turning deterministic assembly into a semantic judge.",
+  "budget": {
+    "provider_calls_authorized": 0,
+    "provider_cost_authorized_usd": 0.0,
+    "prompt_changes_authorized": 0,
+    "schema_changes_authorized": 0,
+    "runtime_or_graph_changes_authorized": 0
+  },
+  "constitutional_boundary": {
+    "probabilistic_responsibility": "Interpret messy conversation meaning and produce explicit semantic records.",
+    "deterministic_responsibility": "Preserve source identity, hashes, explicit labels, missingness, failure state, locators, joins, counts, and replay.",
+    "forbidden_deterministic_inference": [
+      "infer a semantic role from keywords",
+      "infer a semantic role from chronology or array order",
+      "infer speaker endorsement from prose",
+      "treat a missing or failed semantic read as an empty semantic result",
+      "merge overlapping records because their prose looks similar",
+      "turn coverage or activity counts into a quality score"
+    ]
+  },
+  "state_vocabulary": {
+    "complete": "The required artifact exists and its frozen producer reached its declared successful boundary.",
+    "partial": "Some explicit output exists, but the required join or downstream boundary did not complete.",
+    "failed": "A preserved failure stopped the required producer boundary.",
+    "missing": "No distinct artifact or contract surface exists; this never means the semantic answer is empty.",
+    "empty": "A completed producer explicitly returned zero records or candidates; this is inspectable separately from missingness.",
+    "not_applicable": "The surface was not expected for this completed path, such as a failure artifact for a successful run."
+  },
+  "dimensions": [
+    {
+      "id": "system_level_coverage",
+      "question": "Which source-reviewed material threads appear anywhere across the complementary readers?",
+      "mechanically_measurable": [
+        "artifact and reader availability",
+        "explicit record counts by reader and role",
+        "source-reference resolution",
+        "missing, empty, partial, and failed states"
+      ],
+      "requires_probabilistic_or_human_review": [
+        "whether a source thread is material",
+        "whether differently worded records cover the same thread",
+        "whether the system omitted an important thread"
+      ],
+      "prohibited_claim": "Record count is not semantic coverage and coverage is not answer quality."
+    },
+    {
+      "id": "role_placement",
+      "question": "Are starting position, current position, qualification, unresolved matter, and reopen condition separately inspectable when supported?",
+      "mechanically_measurable": [
+        "presence of a distinct contracted surface",
+        "provider-authored role labels",
+        "record counts per explicit role",
+        "missingness and failure state per role"
+      ],
+      "requires_probabilistic_or_human_review": [
+        "whether the role label is semantically correct",
+        "whether a qualification is actually an unresolved matter",
+        "whether a condition should reopen a decision"
+      ],
+      "prohibited_claim": "Chronology, array position, or vocabulary may not assign a role."
+    },
+    {
+      "id": "temporal_fidelity",
+      "question": "Does the representation preserve changed positions without presenting an earlier concern as current or erasing it?",
+      "mechanically_measurable": [
+        "turn indices on exact source aliases",
+        "presence of separate provider-authored role records",
+        "locator range and source-hash validity"
+      ],
+      "requires_probabilistic_or_human_review": [
+        "whether the represented trajectory matches the conversation",
+        "whether a later repair genuinely supersedes or only qualifies an earlier position"
+      ],
+      "prohibited_claim": "Earlier means starting and later means current."
+    },
+    {
+      "id": "speaker_ownership",
+      "question": "Are user beliefs, assistant proposals, and joint decisions kept attributable?",
+      "mechanically_measurable": [
+        "speaker field on each resolved source alias",
+        "speaker counts and locator integrity",
+        "whether referenced aliases exist"
+      ],
+      "requires_probabilistic_or_human_review": [
+        "whether an assistant suggestion became the user's view",
+        "whether a statement is endorsement, report, uncertainty, or exploration"
+      ],
+      "prohibited_claim": "Mention by a speaker equals endorsement by that speaker or the other participant."
+    },
+    {
+      "id": "cross_thread_integrity",
+      "question": "Do distinct strategic threads remain distinct while explicit relationships can be retained?",
+      "mechanically_measurable": [
+        "presence of explicit thread or relationship identifiers",
+        "source locators per explicit thread record",
+        "missing relationship surface"
+      ],
+      "requires_probabilistic_or_human_review": [
+        "where one thread ends and another begins",
+        "whether two threads are causally or strategically related"
+      ],
+      "prohibited_claim": "Lexical overlap or turn adjacency establishes a relationship."
+    },
+    {
+      "id": "source_precision",
+      "question": "Does every admitted semantic record resolve to exact source evidence?",
+      "mechanically_measurable": [
+        "alias existence",
+        "alias text hash",
+        "turn index",
+        "speaker",
+        "source file hash",
+        "orphan and duplicate reference counts"
+      ],
+      "requires_probabilistic_or_human_review": [
+        "whether the cited span supports the interpretation",
+        "whether the selected span is sufficiently complete"
+      ],
+      "prohibited_claim": "A valid locator proves semantic grounding."
+    },
+    {
+      "id": "fan_in_load",
+      "question": "How much explicit material reaches each reader-to-synthesis boundary?",
+      "mechanically_measurable": [
+        "UTF-8 bytes",
+        "source words and messages",
+        "alias count",
+        "role record count",
+        "source-reference count",
+        "candidate and edge counts"
+      ],
+      "requires_probabilistic_or_human_review": [
+        "whether the load is cognitively useful",
+        "whether compression removes material nuance"
+      ],
+      "prohibited_claim": "More or fewer bytes, records, or candidates is inherently better."
+    },
+    {
+      "id": "false_stand_down",
+      "question": "Did material unresolved pressure disappear before routing and cause an unjustified stand-down?",
+      "mechanically_measurable": [
+        "declared routing behavior",
+        "explicit unresolved mechanism count",
+        "active and reserve candidate counts",
+        "availability of a frozen source-review assessment"
+      ],
+      "requires_probabilistic_or_human_review": [
+        "whether remaining pressure is material",
+        "whether stand-down is correct",
+        "the first semantic omission in the causal chain"
+      ],
+      "prohibited_claim": "A pressure-expected source label automatically proves false stand-down."
+    },
+    {
+      "id": "over_fragmentation",
+      "question": "Was one coherent trajectory split into artificial records?",
+      "mechanically_measurable": [
+        "records per role",
+        "source aliases per record",
+        "overlap in explicit source alias sets"
+      ],
+      "requires_probabilistic_or_human_review": [
+        "whether records are semantically redundant",
+        "whether multiple records are a useful preservation of ambiguity"
+      ],
+      "prohibited_claim": "Record count or shared evidence alone proves fragmentation."
+    },
+    {
+      "id": "custody_and_replay",
+      "question": "Can the exact corpus, artifacts, failures, and joins be reproduced without a provider?",
+      "mechanically_measurable": [
+        "file path and SHA-256",
+        "self-hash",
+        "source hash agreement across manifests",
+        "declared completion state",
+        "provider-call count for this replay"
+      ],
+      "requires_probabilistic_or_human_review": [
+        "whether the preserved evidence is sufficient for a future decision",
+        "whether an omitted private payload would change semantic review"
+      ],
+      "prohibited_claim": "Replay integrity proves usefulness, correctness, or trustworthiness."
+    }
+  ],
+  "aggregation": {
+    "composite_score": null,
+    "quality_badge": null,
+    "automatic_release_gate": null,
+    "allowed": "Report a vector of exact mechanical observations beside explicitly labeled human or probabilistic judgments."
+  },
+  "non_claims": [
+    "not real-user usefulness evidence",
+    "not decision correctness proof",
+    "not model reliability proof",
+    "not graph value proof",
+    "not production readiness",
+    "not authority to make a provider call"
+  ]
+}
