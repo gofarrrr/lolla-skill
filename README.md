@@ -35,7 +35,8 @@ telemetry and cannot delete this portfolio.
 > answer is better or safe to act on. See the
 > [current constitutional audit](docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md),
 > [R1/R2 hardening result](docs/conversation-understanding/lolla-r1-r2-constitutional-hardening-result-2026-07-13.md),
-> and [R3 fresh-consumer result](docs/conversation-understanding/lolla-r3-fresh-consumer-result-2026-07-13.md).
+> [R3 fresh-consumer result](docs/conversation-understanding/lolla-r3-fresh-consumer-result-2026-07-13.md),
+> and [R3 provider-schema repair](docs/conversation-understanding/lolla-r3-provider-schema-repair-result-2026-07-13.md).
 
 ## Why This Exists
 
@@ -1206,7 +1207,10 @@ The **[R1/R2 constitutional hardening result](docs/conversation-understanding/lo
 records the implemented provider-free boundary and the exact R3 handoff. The
 **[R3 fresh-consumer result](docs/conversation-understanding/lolla-r3-fresh-consumer-result-2026-07-13.md)**
 records the single preserved pre-inference provider rejection, what it does and
-does not establish, and the next provider-free repair boundary.
+does not establish, and the next provider-free repair boundary. The
+**[R3 provider-schema repair](docs/conversation-understanding/lolla-r3-provider-schema-repair-result-2026-07-13.md)**
+records that completed zero-call repair and the explicit authorization boundary
+before any reattempt.
 
 For the offline Product Delta evidence lane, including what to run, what to
 inspect, and what not to infer, see **[Product Delta / Eval Docs Index](docs/evals/README.md)**.

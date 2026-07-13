@@ -188,8 +188,9 @@ pruning” means bounded inspectable possibility, not context dumping.
 
 ## R3 — One fresh-consumer proof, then a quiet control
 
-Status: complete negative operational result (2026-07-13; one attempt, zero
-generations, zero quiet-control calls); semantic exit condition not met
+Status: negative operational attempt closed; provider-free interoperability
+repair complete (2026-07-13); semantic exit condition not met; reattempt not
+authorized
 
 Purpose: test the corrected pressure interface without the original reasoner's
 same-context trajectory.
@@ -249,6 +250,25 @@ schema onto Google's documented subset, keep business-rule validation local,
 and freeze a smaller compatibility-tested request. Any further call requires a
 new explicit authorization. See
 `docs/conversation-understanding/lolla-r3-fresh-consumer-result-2026-07-13.md`.
+
+Provider-free repair result:
+
+- the failed R3 request remains unchanged and reproducible;
+- a separate prospective projection reduces provider-visible properties from
+  18 to 14 and removes all 22 string-length constraints from the wire;
+- the projection passes a local lint limited to Google's documented schema
+  subset and does not exceed the 14-property count of a smaller historical
+  Gemini 3.1 Flash-Lite success;
+- deterministic compilation restores redundant model/risk custody, maps the
+  explicit disposition boundary, enforces the original text and cross-field
+  rules, and performs no semantic applicability judgment;
+- the complete source, original answer, nine active pressures, reserve,
+  provider policy, and review vector remain unchanged;
+- the prospective maximum estimate is `$0.0081855`, provider calls remain
+  zero, and the frozen repair contract authorizes zero future calls.
+
+The provider-free repair boundary is met. See
+`docs/conversation-understanding/lolla-r3-provider-schema-repair-result-2026-07-13.md`.
 
 ## R4 — Multi-thread conversation state and reasoning abstraction
 
@@ -323,12 +343,12 @@ receipt that a fresh reader can reconstruct.
 
 ## Immediate next goal
 
-Repair R3's provider interoperability provider-free. The first frozen pressure
-attempt was rejected before inference, so the semantic product question remains
-unanswered and R4 must not hide that gap. The smallest next goal is to project
-the strict response schema onto Google's documented subset, move text-length
-and cross-field business rules into the existing deterministic compiler, and
-prove locally that this preserves all nine apply/reject/park identities,
-original-answer custody, and the vector review contract. No provider call is
-authorized. A new one-cent attempt can be proposed only after that frozen local
-contract passes and requires new explicit founder authorization.
+Founder decision: authorize or decline one repaired R3 pressure attempt. The
+provider-free interoperability repair now passes, but it deliberately
+authorizes zero calls and does not establish provider acceptance or semantic
+quality. If authorized, freeze a new authorization against the exact repaired
+contract and run at most one Gemini 3.1 Flash-Lite call under the existing
+`$0.01`, no-retry, no-fallback, no-healing, and no-premium boundary. Preserve a
+second failure and stop; run a separately capped quiet control only if the
+pressure output is mechanically valid and passes every source-first vector
+gate. Do not begin R4 while this R3 semantic gap is hidden or ambiguous.

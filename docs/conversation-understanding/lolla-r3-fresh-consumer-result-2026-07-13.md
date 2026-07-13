@@ -1,6 +1,7 @@
 # Lolla R3 fresh-consumer result
 
-Status: complete negative operational result; semantic proof not reached
+Status: complete negative operational result; semantic proof not reached;
+provider-free schema repair subsequently completed
 
 Date: 2026-07-13
 
@@ -133,7 +134,7 @@ Still unknown:
 
 ## Next boundary
 
-Return provider-free before R4 or another R3 attempt:
+The required provider-free work was subsequently completed:
 
 1. Project the response contract onto Google's currently documented JSON
    Schema subset and move text-length enforcement into deterministic local
@@ -149,6 +150,11 @@ Return provider-free before R4 or another R3 attempt:
 
 This is a transport repair, not permission to redesign the architecture or add
 deterministic semantic gates.
+
+The result is recorded in
+`lolla-r3-provider-schema-repair-result-2026-07-13.md`. The repaired prospective
+bundle passes locally and authorizes zero calls. The remaining action is an
+explicit founder decision about one new frozen pressure attempt.
 
 ## Evidence
 
