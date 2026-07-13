@@ -991,3 +991,25 @@ Continuation entrypoints:
 
 - `docs/conversation-understanding/reasoning-process-graph-impact-shadow-result-2026-07-12.md`;
 - `research/reasoning-process-graph-impact-shadow-2026-07-12/impact-review.json`.
+
+## V1 closure and current constitutional handoff — 2026-07-13
+
+The V1 simulated-reliability program is closed as an evidence program; product
+reliability is not established. The final reassessment preserves seven
+separate evaluation dimensions, closes premium testing, and requires a live
+constitutional audit before integrating research corrections.
+
+That audit is now complete. It found strong custody and failure honesty, but
+also a direct Constitution-v5 violation in the live Model Companion path: a
+probabilistic verifier removes most deterministic recalled candidates before
+graph expansion and reconsideration. It also found silent manual
+long-conversation pre-truncation risk, clean-run reliance inflation, and
+missing hard cost/privacy controls. No provider calls were made.
+
+Continuation entrypoints:
+
+- `docs/evals/simulated-reliability-v1-final-constitutional-reassessment-2026-07-13.md`;
+- `docs/evals/simulated-reliability-v1-final-completion-matrix-v1.json`;
+- `docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md`;
+- `docs/evals/lolla-current-state-constitutional-drift-register-v1.json`;
+- `plans/lolla-post-v1-constitution-aligned-roadmap-2026-07-13.md`.

@@ -2,11 +2,11 @@
 
 *Named after the Lollapalooza effect — Charlie Munger's term for what happens when multiple cognitive tendencies compound together to produce extreme misjudgment. That compounding is what makes reasoning failures dangerous, and what makes them detectable.*
 
-**A reasoning audit for AI conversations.**
+**An experimental reasoning-pressure and audit system for AI conversations.**
 
-Lolla detects structural weaknesses in LLM-generated strategic advice — not by generating opinions, but by routing through a curated substrate of 222 mental models, 25 cognitive tendencies, and 1,358 relationship edges compiled from primary sources.
+Lolla surfaces candidate structural weaknesses in LLM-generated strategic advice by routing through a curated substrate of 222 mental models, 25 cognitive tendencies, and 1,358 relationship edges compiled from primary sources.
 
-When you ask an LLM whether to hire a VP of Sales, sign a vendor contract, or restructure your engineering org, the answer sounds confident. Lolla tells you *where that confidence is structurally fragile* — and what specific mental models challenge it.
+When you ask an LLM whether to hire a VP of Sales, sign a vendor contract, or restructure your engineering org, the answer can sound more settled than its assumptions warrant. Lolla introduces specific structural pressure and asks the reasoner to apply, reject, or preserve it for later inspection.
 
 Lolla is not in the business of finding better answers. It is in the business of **being less wrong** — reintroducing the friction that LLM fluency removes, so that inconvenient tensions, missing reversal conditions, and embedded assumptions don't get smoothed out of the narrative.
 
@@ -19,7 +19,13 @@ Four independent audit lanes:
 | **Frame Pressure** | What assumptions are embedded in the question itself? | FramePressureCard — suppressed counterfactuals, mutable constraints, reframed alternative questions |
 | **Structural Coverage** | What structural territory did the answer never enter? | CoverageCard — gap dimensions with discovery questions only the decision-maker can answer |
 
-Each lane produces independent, traceable findings grounded in curated knowledge — not LLM-generated commentary.
+Each lane produces traceable candidate findings tied to curated knowledge. Their applicability and usefulness remain judgments for the reconsidering reasoner and, ultimately, the human.
+
+> **Development status (2026-07-13):** The end-to-end skill and custody harness
+> work, but V1 did not establish product reliability, real-user usefulness,
+> stability, or receipt reconstruction. Lolla does not certify that a revised
+> answer is better or safe to act on. See the
+> [current constitutional audit](docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md).
 
 ## Why This Exists
 
@@ -29,7 +35,7 @@ Because fluency and correctness are different problems. An LLM can produce a per
 
 This is not a temporary gap waiting for the next model release to close. It's architectural:
 
-- **Probabilistic systems cannot self-verify.** An LLM auditing its own reasoning is sampling from the same distribution that produced the flaw. Anthropic's sycophancy research, Princeton's user studies (N=557), and MIT's Bayesian modeling all converge on the same finding: LLMs systematically agree with users and defend their own outputs, even when wrong. A different model helps — but it shares training biases. A deterministic substrate with curated failure modes doesn't share anything.
+- **Probabilistic systems have self-audit blind spots.** An LLM auditing its own reasoning remains exposed to the trajectory and framing that produced the first answer. Sycophancy and explanation-faithfulness research make the same-context model a weak sole verifier. A fresh model helps, but it can share training and framing biases; curated external pressure creates a different failure surface without claiming infallibility.
 
 - **Structure beats context.** Giving a model all the right facts produces 30% accuracy on reasoning tasks. Giving it a structured reasoning framework produces 85% (Car Wash Study, 120 trials, p=0.001). CMU's research shows surface cues dominate implicit constraints by 8-38x across 14 frontier models. The knowledge exists inside the model — it doesn't activate without structural intervention.
 
@@ -37,7 +43,7 @@ This is not a temporary gap waiting for the next model release to close. It's ar
 
 The broader landscape is converging on the same insight. Microsoft's GraphRAG, Stanford's DSPy, NVIDIA's NeMo Guardrails, Karpathy's knowledge compilation architecture — all are building hybrid systems where LLMs handle the probabilistic edges and deterministic structures handle the reliable middle. Neurosymbolic AI saw 236 publications in 2023 alone. The question is no longer *whether* to combine LLMs with structured knowledge, but *how* — and for *which problems*.
 
-Most of these systems target factual grounding (is the output true?) or compliance (is the output safe?). Lolla targets a different problem: **is the reasoning structurally sound?** Not "did the LLM hallucinate a fact" but "did the LLM close on a recommendation without testing the frame, dismiss a risk without evidence, or let one scenario do all the argumentative work?"
+Most of these systems target factual grounding (is the output true?) or compliance (is the output safe?). Lolla targets a different question: **which structural pressures did the reasoning fail to inspect?** Not "did the LLM hallucinate a fact" but "did the LLM close on a recommendation without testing the frame, dismiss a risk without evidence, or let one scenario do all the argumentative work?"
 
 That problem doesn't go away as models improve. It gets harder to see.
 
@@ -112,7 +118,7 @@ The skill captures the conversation, extracts the decision structure, and runs t
 
 At completion, each run is archived locally under `~/.local/share/lolla/runs/`.
 The archive includes `agent_result.json`: a compact `lolla_agent_result.v1`
-handoff for agents that says whether the run is fit for automatic use, what
+handoff for agents that reports whether required run artifacts are available, what
 changed when that is visible from product artifacts, which human questions
 remain, and where to inspect the archive. It also includes `evaluation.json`: a
 deterministic run-readiness receipt for artifact/schema/custody/health
@@ -1139,7 +1145,7 @@ Start here: **[Product Delta / Eval Docs Index](docs/evals/README.md)**.
 - **Python 3.10+** (uses stdlib only, no pip dependencies)
 - **OpenRouter API key** (for LLM inference via calibrated prompts)
 - **Optional:** OpenAI API key (enables semantic embedding search for richer companion matching)
-- **Orchestrator model:** Claude Opus 4.7 recommended. Sonnet 4.6 is acceptable with mild phrasing regressions. Haiku is below the floor — it has been observed to skip critical artifact-persistence steps while generating plausible-looking output for the steps that did not run. The preamble asks the orchestrator to self-identify and refuse if it is Haiku; see [Architecture and Evolution §Model Requirements](docs/how-it-works/architecture-and-evolution.md#model-requirements) for details.
+- **Orchestrator model:** Claude Opus 4.7 is the currently documented recommendation; Sonnet 4.6 showed mild phrasing regressions and Haiku fell below the observed artifact-persistence floor. Codex is supported as a skill surface, but an equivalent Codex orchestrator-floor validation has not yet been completed. See [Architecture and Evolution §Model Requirements](docs/how-it-works/architecture-and-evolution.md#model-requirements) for details.
 
 ## What's Inside
 
@@ -1181,6 +1187,10 @@ For how Lolla can fit beside CrabTrap-style proxies, guardrails, approval system
 
 For the eval doctrine behind that roadmap, see **[Lolla Evaluation Methodology](docs/lolla-evaluation-methodology.md)**.
 
+For the current constitution-based state assessment and ordered post-V1 work,
+see the **[July 2026 constitutional audit](docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md)**
+and **[constitution-aligned roadmap](plans/lolla-post-v1-constitution-aligned-roadmap-2026-07-13.md)**.
+
 For the offline Product Delta evidence lane, including what to run, what to
 inspect, and what not to infer, see **[Product Delta / Eval Docs Index](docs/evals/README.md)**.
 
@@ -1192,7 +1202,7 @@ A typical default audit makes ~50-85 OpenRouter calls, with optional OpenAI embe
 - **OpenAI:** optional embeddings + query expansion through the model retrieval layer; usually well under $0.01.
 - **Anthropic:** no calls in the default flow. Step-7 pressure-check sub-agents are rested by default and only add Anthropic usage when the user/operator explicitly enables deeper-review mode.
 
-Default-run cost is typically dominated by OpenRouter and is printed in the final receipt. Optional deeper-review mode can add a larger Anthropic line depending on which Claude model the orchestrator runs.
+Default-run cost is typically dominated by OpenRouter and is estimated in the final receipt from the versioned local price table. The current runtime does not yet preserve OpenRouter's exact charged cost, so use the provider dashboard for billing truth. Optional deeper-review mode can add a larger Anthropic line depending on which Claude model the orchestrator runs.
 
 Every run produces a self-describing `usage_summary` block in the result JSON with per-vendor cost, per-stage call counts, prompt-cache hit rate, and the version date of the price table. Three places to read it:
 - Visual: `http://localhost:8080/usage` (when the Observatory is running)

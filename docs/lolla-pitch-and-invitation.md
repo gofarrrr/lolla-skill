@@ -1,10 +1,10 @@
 # Lolla: A Reasoning Audit Layer for AI Agents
 
-Last updated: 2026-06-26
+Last updated: 2026-07-13
 
 ## The Short Version
 
-Lolla is a reasoning audit layer for AI agents and serious AI conversations.
+Lolla is an experimental reasoning-pressure and audit layer for AI agents and serious AI conversations.
 
 It takes a multi-turn advisory exchange, tests the answer against structured mental-model pressure and traceable evidence, then returns a revised position, a clean memo, a machine-readable run result, and an inspectable local audit trail.
 
@@ -36,7 +36,7 @@ Lolla asks: before this answer becomes advice, what should push back on it?
 
 Lolla runs after an AI conversation has already produced advice, a strategy, a recommendation, or a plan.
 
-It captures the conversation, extracts the decision structure, runs a four-lane reasoning audit, forces the agent to reconsider the original answer, then saves the result as a memo and local audit record.
+It captures the conversation, extracts the decision structure, runs a four-lane reasoning audit, asks the agent to reconsider the original answer, then saves the result as a memo and local audit record.
 
 The output is not a second generic opinion. It is a structured reconsideration:
 
@@ -46,7 +46,7 @@ The output is not a second generic opinion. It is a structured reconsideration:
 - What questions still require human judgment.
 - What artifacts prove the run was complete, partial, degraded, or incomplete.
 
-The core product is the improved reasoning. The machinery exists so that improvement is not just vibes.
+The core product hypothesis is accountable reconsideration. Whether a run improves reasoning is an evaluation question; the machinery exists to make that question inspectable rather than a matter of vibes.
 
 The current product loop is deliberately concrete:
 
@@ -220,7 +220,7 @@ Lolla sits in a narrower slot:
 
 It is not a full safety system. It is not a cybersecurity control. It is not a legal, medical, or financial expert.
 
-It is a reasoning-quality gate.
+It is not a reasoning-quality certification gate. It is an experimental reasoning-pressure and audit harness.
 
 More precisely, Lolla is a reasoning-audit harness:
 
@@ -283,7 +283,7 @@ Output:
 - memo,
 - local trace and artifact pointers.
 
-The agent does not have to expose all machinery to the user. The user should see the improved advice. The developer or operator should be able to inspect the machinery when something feels off.
+The agent does not have to expose all machinery to the user. The user should see the disciplined reconsideration. The developer or operator should be able to inspect the machinery when something feels off.
 
 That split is important.
 
@@ -304,7 +304,7 @@ That contract now exists as an archive artifact. A completed modern run has a co
 - artifact paths,
 - cost and usage summary.
 
-The current `caller_action` is intentionally conservative. If a run is partial, degraded, incomplete, capture-critical, or product-output unsafe, the machine-readable result should not invite an agent to use it automatically.
+The current `caller_action` blocks partial, degraded, incomplete, capture-critical, and product-output-unsafe runs. A July 2026 constitutional audit found that its clean-run `use_revised_answer` value still overstates what artifact completeness proves; neutral reliance language is the next runtime correction.
 
 For external systems, Lolla can now preserve optional control-plane context through local sidecars. A caller may provide `control_input.json` with trace, action, approval, policy, sandbox, or credential references. Lolla then archives that input, adds compact references to the agent result and reasoning trace, and can generate `control_result.json` as a wrapper around `caller_action`. This is not an approval decision. It is a reasoning-audit handoff that another policy, approval, sandbox, identity, or trace system can consume.
 
@@ -409,7 +409,7 @@ The current live flow:
 16. Generates `evaluation.json`.
 17. Lets the Observatory expose selected-run custody artifacts from local history.
 
-It is already usable. It is also still early.
+It runs end to end and can be inspected locally. Product reliability, real-user usefulness, stability, and receipt reconstruction are not yet established.
 
 The major recent shift is that Lolla is no longer only a manual skill that produces a memo. It is a local reasoning-audit harness: a run produces product output, custody artifacts, deterministic readiness checks, machine-readable handoffs, optional control-plane context, and a local review-corpus path.
 
