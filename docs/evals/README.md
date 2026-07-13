@@ -1067,3 +1067,40 @@ Continuation entrypoints:
 - `docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md`;
 - `docs/evals/lolla-current-state-constitutional-drift-register-v1.json`;
 - `plans/lolla-post-v1-constitution-aligned-roadmap-2026-07-13.md`.
+
+## R4 complementary-reader experiment preparation — 2026-07-13
+
+The first bounded R4 semantic diagnostic is fully prepared provider-free. Case
+02 discharge transport is the already exposed false-stand-down target; Case 03
+executive hire is a matched restraint control. Their source-first targets were
+frozen before the execution contract and never enter model requests.
+
+One Gemini 3.1 Flash Lite reader will separately report unresolved matter and
+reopen condition with explicit present, quiet, and ambiguous behavior. A
+subsequent reader will receive unchanged admitted semantic records and exact
+record IDs, and may complete with zero. Deterministic code checks shape,
+aliases, IDs, hashes, artifact custody, outcome consistency, bounds, cost, and
+fan-in only; it does not infer semantic role, relationship meaning, relevance,
+pressure, or quality.
+
+The Google-subset schemas are 1,653 and 1,442 canonical bytes. The OpenRouter
+route is pinned to Google Vertex with ZDR, data-collection denial, required
+parameters, no fallback, no healing, and no retry. Four calls are the maximum,
+with `$0.015` per case and `$0.03` total. The conservative local estimate is
+`$0.0160615`.
+
+Eighteen focused tests cover positive, quiet, ambiguous, missing, failed,
+schema, source, endpoint, artifact, dynamic relationship, fan-in, cost, and
+authorization behavior. The preflight rebuilds byte-for-byte and the gated
+runner dry-runs without authorization or network access. Structural fixtures
+are not provider output or semantic evidence.
+
+No call is authorized by the preparation. The sole next decision is explicit
+founder authorization for the exact four-call maximum diagnostic.
+
+Continuation entrypoints:
+
+- `docs/conversation-understanding/lolla-r4-complementary-reader-preparation-result-2026-07-13.md`;
+- `docs/evals/lolla-r4-complementary-reader-source-first-target-v1.json`;
+- `docs/evals/lolla-r4-complementary-reader-experiment-contract-v1.json`;
+- `research/lolla-r4-complementary-reader-preflight-2026-07-13/preflight-result.json`.

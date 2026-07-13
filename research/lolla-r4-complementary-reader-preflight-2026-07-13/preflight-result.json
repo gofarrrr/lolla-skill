@@ -1,0 +1,138 @@
+{
+  "budget": {
+    "automatic_retries": 0,
+    "conservative_estimated_total_cost_usd": 0.0160615,
+    "embedding_calls": 0,
+    "evaluator_calls": 0,
+    "fallback_models": 0,
+    "graph_calls": 0,
+    "maximum_calls_per_case": 2,
+    "maximum_provider_calls": 4,
+    "maximum_provider_reported_cost_per_case_usd": 0.015,
+    "maximum_provider_reported_cost_total_usd": 0.03,
+    "pipeline_calls": 0,
+    "response_healing": false,
+    "runtime_calls": 0,
+    "semantic_retries": 0,
+    "total_cost_preflight_pass": true
+  },
+  "cases": [
+    {
+      "case_id": "v1-case02-discharge-transport",
+      "conservative_estimated_case_cost_usd": 0.00804475,
+      "per_case_cost_ceiling_usd": 0.015,
+      "per_case_cost_preflight_pass": true,
+      "relationship_packet_utf8_bytes": 11810,
+      "relationship_record_catalog_count": 4,
+      "relationship_request": {
+        "conservative_estimated_cost_usd": 0.00283975,
+        "conservative_estimated_input_tokens": 7159,
+        "maximum_output_tokens": 700,
+        "prompt_utf8_bytes": 12876,
+        "schema_utf8_bytes": 1442
+      },
+      "selection_role": "exposed_false_stand_down_target",
+      "source_alias_count": 102,
+      "structural_final_record_count": 5,
+      "structural_final_state_counts": {
+        "complete": 5,
+        "completed_zero": 1,
+        "failed": 0,
+        "missing": 0,
+        "partial": 0
+      },
+      "structural_fixture_is_provider_output": false,
+      "structural_fixture_is_semantic_evidence": false,
+      "uncertainty_packet_utf8_bytes": 28624,
+      "uncertainty_request": {
+        "conservative_estimated_cost_usd": 0.005205,
+        "conservative_estimated_input_tokens": 15420,
+        "maximum_output_tokens": 900,
+        "prompt_utf8_bytes": 29186,
+        "schema_utf8_bytes": 1653
+      }
+    },
+    {
+      "case_id": "v1-case03-executive-hire",
+      "conservative_estimated_case_cost_usd": 0.00801675,
+      "per_case_cost_ceiling_usd": 0.015,
+      "per_case_cost_preflight_pass": true,
+      "relationship_packet_utf8_bytes": 9367,
+      "relationship_record_catalog_count": 2,
+      "relationship_request": {
+        "conservative_estimated_cost_usd": 0.0025345,
+        "conservative_estimated_input_tokens": 5938,
+        "maximum_output_tokens": 700,
+        "prompt_utf8_bytes": 10433,
+        "schema_utf8_bytes": 1442
+      },
+      "selection_role": "matched_restraint_control",
+      "source_alias_count": 113,
+      "structural_final_record_count": 2,
+      "structural_final_state_counts": {
+        "complete": 2,
+        "completed_zero": 4,
+        "failed": 0,
+        "missing": 0,
+        "partial": 0
+      },
+      "structural_fixture_is_provider_output": false,
+      "structural_fixture_is_semantic_evidence": false,
+      "uncertainty_packet_utf8_bytes": 30837,
+      "uncertainty_request": {
+        "conservative_estimated_cost_usd": 0.00548225,
+        "conservative_estimated_input_tokens": 16529,
+        "maximum_output_tokens": 900,
+        "prompt_utf8_bytes": 31404,
+        "schema_utf8_bytes": 1653
+      }
+    }
+  ],
+  "date": "2026-07-13",
+  "decision": {
+    "production_model_selection_authorized": false,
+    "provider_calls_authorized": false,
+    "provider_free_package_ready": true,
+    "runtime_or_graph_integration_authorized": false,
+    "sole_remaining_action": "explicitly authorize the frozen four-call maximum experiment"
+  },
+  "local_gates": {
+    "cost_and_call_bounds": "pass",
+    "exact_id_relationship_handoff": "pass",
+    "explicit_zero_and_ambiguity": "pass",
+    "full_source_and_prior_record_custody": "pass",
+    "missingness_aware_fan_in": "pass",
+    "positive_and_restraint_structural_paths": "pass",
+    "provider_calls": 0,
+    "small_google_subset_schemas": "pass",
+    "source_first_targets_excluded_from_requests": "pass"
+  },
+  "model_snapshot": {
+    "model": "google/gemini-3.1-flash-lite",
+    "path": "docs/evals/lolla-r4-complementary-reader-model-snapshot-2026-07-13.json",
+    "provider": "google-vertex",
+    "sha256": "b103238538cebce1bd76be416a99d2d04a87dccb71e653e686c733976019069d"
+  },
+  "non_claims": [
+    "Structural fixtures are not provider output or semantic evidence.",
+    "Cost estimates are conservative planning values; provider-reported cost remains authoritative.",
+    "This package does not prove semantic recovery, restraint, reliability, usefulness, graph value, or answer improvement."
+  ],
+  "schema_version": "lolla.r4_complementary_reader_preflight_result.v1",
+  "schemas": {
+    "relationship": {
+      "canonical_utf8_bytes": 1442,
+      "sha256": "6e23a52fe2693e2b3864ae29a433d6334df2ef7f1f617821fd7cdaa1bcb9e690"
+    },
+    "uncertainty": {
+      "canonical_utf8_bytes": 1653,
+      "sha256": "12327510a78c24bcc1b89e874112517288e1a2054159def729da094de1404a65"
+    }
+  },
+  "source_first_target": {
+    "path": "docs/evals/lolla-r4-complementary-reader-source-first-target-v1.json",
+    "sha256": "978e2d724939ff74873c7c89c0f4c8eb65a91310c90bbb5c42d531fcc453451d",
+    "visible_to_provider": false
+  },
+  "status": "provider_free_preflight_pass_call_authorization_required"
+}

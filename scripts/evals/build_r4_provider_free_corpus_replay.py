@@ -45,6 +45,11 @@ GAP_MATRIX_PATH = OUTPUT_ROOT / "r4-replay-gap-matrix.json"
 RESULT_PATH = OUTPUT_ROOT / "r4-replay-result.json"
 DOWNSTREAM_OUTPUT_ROOTS = (
     ROOT / "research/lolla-r4-conversation-state-fan-in-2026-07-13",
+    ROOT / "research/lolla-r4-complementary-reader-preflight-2026-07-13",
+)
+DOWNSTREAM_INPUT_PATHS = (
+    ROOT / "docs/evals/lolla-r4-complementary-reader-experiment-contract-v1.json",
+    ROOT / "docs/evals/lolla-r4-complementary-reader-source-first-target-v1.json",
 )
 
 EXPECTED_INPUT_HASHES = {
@@ -267,7 +272,7 @@ def _discover_case_paths(case_ids: Sequence[str]) -> dict[str, set[Path]]:
     paths: dict[str, set[Path]] = {case_id: set() for case_id in case_ids}
     for base in (ROOT / "research", ROOT / "docs/evals"):
         for path in base.rglob("*.json"):
-            if OUTPUT_ROOT in path.parents or any(
+            if path in DOWNSTREAM_INPUT_PATHS or OUTPUT_ROOT in path.parents or any(
                 downstream in path.parents for downstream in DOWNSTREAM_OUTPUT_ROOTS
             ):
                 continue

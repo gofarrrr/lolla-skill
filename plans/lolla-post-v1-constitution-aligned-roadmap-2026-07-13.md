@@ -379,8 +379,9 @@ See
 
 ## R4 — Multi-thread conversation state and reasoning abstraction
 
-Status: provider-free inventory/replay and missingness-aware fan-in complete;
-bounded complementary-reader experiment preparation next
+Status: provider-free inventory/replay, missingness-aware fan-in, and bounded
+complementary-reader experiment preparation complete; explicit call
+authorization is the next decision
 
 Purpose: improve what the pressure system understands without turning Python
 into a semantic state machine.
@@ -459,6 +460,32 @@ bounded complementary-reader experiment is therefore worth preparing, but
 this result authorizes neither a provider call nor runtime integration. See
 `docs/conversation-understanding/lolla-r4-conversation-state-fan-in-result-2026-07-13.md`.
 
+Complementary-reader preparation result:
+
+- one exposed false-stand-down target and one matched restraint control were
+  frozen source-first before the execution contract;
+- the first reader separately returns unresolved-matter and reopen-condition
+  reviews, each with explicit present, quiet, and ambiguous behavior;
+- the second reader sees unchanged admitted semantic payloads and exact record
+  IDs, and may complete with zero rather than manufacture a relationship;
+- the provider-visible schemas use only Google's documented structured-output
+  subset and are 1,653 and 1,442 canonical bytes;
+- the fixed route is Gemini 3.1 Flash Lite through pinned OpenRouter Google
+  Vertex with ZDR, data-collection denial, no fallbacks, no healing, and exact
+  provider attribution;
+- the four-call maximum has a `$0.015` per-case and `$0.03` total ceiling; the
+  conservative provider-free estimate is `$0.0160615` total;
+- positive, quiet, ambiguous, missing, failed, bad-alias, bad-endpoint,
+  artifact-drift, dynamic relationship, fan-in, and cost paths pass locally;
+- structural fixtures are explicitly not provider output or semantic evidence;
+- no provider call, runtime change, graph change, model comparison, semantic
+  gate, or quality score was added.
+
+Every provider-free gate now passes. The preparation does not authorize a
+call. The next founder-owned decision is whether to authorize this exact
+four-call maximum causal diagnostic. See
+`docs/conversation-understanding/lolla-r4-complementary-reader-preparation-result-2026-07-13.md`.
+
 ## R5 — Product evidence and receipt reconstruction
 
 Purpose: determine whether the product is actually useful and whether its
@@ -504,14 +531,16 @@ receipt that a fresh reader can reconstruct.
 
 ## Immediate next goal
 
-Prepare the first bounded R4 complementary-reader semantic experiment without
-making a provider call. Freeze one small paired unresolved-matter/reopen-
-condition reader and one subsequent exact-ID relationship reader. Use one
-already exposed false-stand-down case and one restraint control. Freeze source-
-first targets, strict schemas, prompts, source custody, model/provider policy,
-no-retry cost ceiling, and fan-in acceptance gates before requesting any call.
+If the founder authorizes the frozen R4 complementary-reader diagnostic, create
+the exact hash-locked authorization and run no more than four Gemini 3.1 Flash-
+Lite calls under the `$0.03` total ceiling. Preserve first failures, exact cost,
+provider attribution, candidates, local admission, fan-in states, and dynamic
+relationship packets. Then perform the already frozen source-first vector
+review of recovery, restraint, evidence precision, role placement,
+relationship fidelity, and load.
 
-Do not integrate the runtime, reopen R3, change the graph, infer semantic roles
-in Python, merge overlapping records, optimize a composite score, or claim
-that the prepared readers are useful. A later call must be a separately
-authorized causal diagnostic whose result may be negative.
+If authorization is deferred, make no further R4 semantic or provider change.
+Do not integrate the runtime, reopen R3, change the graph, compare models,
+infer semantic roles in Python, merge overlapping records, optimize a composite
+score, or claim that the prepared readers are useful. The diagnostic may be
+negative; only its source-reviewed evidence can select the next R4 action.

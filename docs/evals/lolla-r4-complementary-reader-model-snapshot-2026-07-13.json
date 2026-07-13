@@ -1,0 +1,73 @@
+{
+  "schema_version": "lolla.r4_complementary_reader_model_snapshot.v1",
+  "status": "point_in_time_operator_evidence_not_production_selection",
+  "retrieved_at_utc": "2026-07-13T21:48:38Z",
+  "model": {
+    "requested_id": "google/gemini-3.1-flash-lite",
+    "canonical_slug": "google/gemini-3.1-flash-lite-20260507",
+    "description": "Google's GA high-efficiency model for low-latency, high-volume and simple extraction workloads.",
+    "context_length": 1048576,
+    "maximum_completion_tokens": 65536
+  },
+  "selected_endpoint": {
+    "provider_name": "Google",
+    "provider_slug": "google-vertex",
+    "endpoint_tag": "google-vertex/global",
+    "zdr_inventory_present": true,
+    "status": 0,
+    "maximum_price_usd_per_million_tokens": {
+      "prompt": 0.25,
+      "completion": 1.5,
+      "internal_reasoning": 1.5
+    },
+    "supported_parameters": [
+      "reasoning",
+      "include_reasoning",
+      "max_tokens",
+      "temperature",
+      "top_p",
+      "seed",
+      "response_format",
+      "stop",
+      "structured_outputs",
+      "tools",
+      "tool_choice",
+      "reasoning_effort"
+    ]
+  },
+  "route_policy": {
+    "openrouter_endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "provider_order": [
+      "google-vertex"
+    ],
+    "provider_only": [
+      "google-vertex"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true,
+    "data_collection": "deny",
+    "zdr": true,
+    "response_healing": false,
+    "automatic_retries": 0
+  },
+  "selection_evidence": {
+    "local_positive": "Gemini 3.1 Flash Lite completed 50 small decomposed Lolla calls, including preserved failures, for $0.076058862 in the closed V1 affordable investigation.",
+    "local_caveat": "The model is not a production default and has not been tested on this exact unresolved/reopen plus exact-ID relationship contract.",
+    "why_not_gemini_3_5": "The premium V1 campaign cost $3.1495905, still produced false stand-downs, and is retained only as benchmark evidence.",
+    "why_not_deepseek_v4_flash_now": "DeepSeek is cheaper and remains a later comparison candidate, but the current experiment tests a new semantic decomposition; changing both decomposition and model family would make the first causal diagnostic less interpretable.",
+    "why_not_openai": "The founder selected Gemini through OpenRouter for this research path; this snapshot does not route semantic calls through OpenAI."
+  },
+  "official_sources": [
+    "https://openrouter.ai/api/v1/models/google/gemini-3.1-flash-lite/endpoints",
+    "https://openrouter.ai/api/v1/endpoints/zdr",
+    "https://openrouter.ai/docs/guides/features/structured-outputs",
+    "https://openrouter.ai/docs/guides/routing/provider-selection",
+    "https://openrouter.ai/google/gemini-3.1-flash-lite/pricing",
+    "https://ai.google.dev/gemini-api/docs/structured-output"
+  ],
+  "non_claims": [
+    "Advertised capability does not prove schema acceptance or source fidelity.",
+    "Prior small-task success does not establish this task, production reliability, or comparative usefulness.",
+    "Endpoint pricing and availability are point-in-time facts that must be refreshed before a later experiment."
+  ]
+}
