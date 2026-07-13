@@ -188,9 +188,9 @@ pruning” means bounded inspectable possibility, not context dumping.
 
 ## R3 — One fresh-consumer proof, then a quiet control
 
-Status: repaired operational attempt closed (2026-07-13); transport repair
-confirmed; semantic exit condition not met; quiet control and further calls
-not authorized
+Status: collapsed-outcome operational attempt closed (2026-07-13); candidate
+compiler accepted; frozen reasoning-exclusion gate failed; semantic exit
+condition not met; quiet control and further calls not authorized
 
 Purpose: test the corrected pressure interface without the original reasoner's
 same-context trajectory.
@@ -332,6 +332,31 @@ founder-owned: authorize or defer one exact Gemini 3.1 Flash-Lite attempt with a
 hard `$0.01` ceiling. See
 `docs/conversation-understanding/lolla-r3-collapsed-outcome-case-preparation-result-2026-07-13.md`.
 
+Collapsed-outcome execution result:
+
+- the founder authorized exactly one attempt with a hard `$0.01` ceiling;
+- Gemini 3.1 Flash-Lite returned strict JSON through the pinned Google route at
+  an exact provider-reported cost of `$0.005517`;
+- all nine controlled outcomes compiled without retry, fallback, healing, or
+  candidate modification;
+- the frozen runner nevertheless failed its complete mechanical gate because
+  it treated any `reasoning_details` record as returned reasoning content;
+- the actual payload had no `message.reasoning`, reasoning text, summary, or
+  encrypted data, only signature and format metadata;
+- the frozen result remains failed and is not reclassified; source-first
+  semantic review was not opened, so the R3 semantic hypothesis remains
+  unresolved;
+- exact cost, generation identity, raw-payload hashes, redaction, compiler
+  output, and one-call custody are preserved; no additional call or quiet
+  control is authorized.
+
+The next boundary is a narrow provider-free prospective correction of the
+reasoning-content validator. The frozen result must remain unchanged and must
+not be reopened for semantic review. After that correction, explicitly defer
+further paid R3 work or prepare a genuinely new prospective case before any
+new call. See
+`docs/conversation-understanding/lolla-r3-collapsed-outcome-execution-result-2026-07-13.md`.
+
 ## R4 — Multi-thread conversation state and reasoning abstraction
 
 Purpose: improve what the pressure system understands without turning Python
@@ -405,15 +430,15 @@ receipt that a fresh reader can reconstruct.
 
 ## Immediate next goal
 
-Obtain the founder's binary decision on the sealed R3 experiment.
+Correct the reasoning-exclusion validator provider-free for prospective work.
+It must distinguish actual returned reasoning content—non-empty plaintext,
+summary, or encrypted data—from a signature-only preservation envelope. Cover
+absent, empty, plaintext, summary, encrypted, signature-only, and mixed
+fixtures; preserve conservative failure for actual content; and leave the
+frozen call record and closed semantic review unchanged.
 
-If authorized, record one exact authorization artifact and execute the frozen
-Gemini 3.1 Flash-Lite request. Preserve the first result, stop on any transport,
-mechanical, cost, or semantic failure, and perform the protected source-first
-review only after a mechanical pass. Do not retry, heal, switch models or
-providers, run a judge, or run a quiet control.
-
-If declined or deferred, record that decision and leave R3 empirically
-unresolved without spending. R4 remains the next major roadmap stage only after
-R3 is empirically resolved or explicitly deferred; the case preparation itself
-does not authorize R4 provider work or runtime integration.
+Then record an explicit R3 deferral or freeze a genuinely new prospective case.
+The recommended decision is to defer more paid R3 calls and start R4's existing
+corpus/replay work provider-free. A new call should require a new falsifiable
+question that local artifacts cannot answer. No provider-backed R4 work or
+runtime integration is authorized.

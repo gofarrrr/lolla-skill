@@ -8,6 +8,10 @@ Provider calls made: zero
 
 Provider calls currently authorized: zero
 
+> Historical preparation record: this file describes the state before the
+> founder decision. The subsequently authorized one-call result is recorded in
+> [R3 collapsed-outcome execution result](lolla-r3-collapsed-outcome-execution-result-2026-07-13.md).
+
 ## Plain-language outcome
 
 The next R3 experiment is ready, but it has not run and cannot run from the

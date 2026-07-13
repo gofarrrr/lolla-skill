@@ -66,6 +66,7 @@ from the historical Product Delta lane above:
 32. [R3 task-shape reassessment result](../conversation-understanding/lolla-r3-task-shape-reassessment-result-2026-07-13.md)
 33. [R3 collapsed-outcome current-practice check](../conversation-understanding/lolla-r3-collapsed-outcome-current-practice-2026-07-13.md)
 34. [R3 collapsed-outcome case preparation](../conversation-understanding/lolla-r3-collapsed-outcome-case-preparation-result-2026-07-13.md)
+35. [R3 collapsed-outcome execution result](../conversation-understanding/lolla-r3-collapsed-outcome-execution-result-2026-07-13.md)
 
 Affordable-operator checkpoint, 2026-07-13: Gemini 3.1 Flash Lite on the pinned
 Google Vertex OpenRouter endpoint is the current testing candidate for small,
@@ -105,10 +106,16 @@ disposition/synthesis split is not earned. No call or runtime integration is
 authorized. A new prospective 28-message synthetic case, nine-pressure
 portfolio, hidden source-first review, exact collapsed request, one-cent
 envelope, and no-retry runner are now frozen in separate chronological commits.
-All provider-free and adversarial gates pass. The checked-in authorization is
-only a non-authorizing template, so provider calls made and authorized remain
-zero. The next action is the founder's binary authorize-or-defer decision for
-one exact Gemini 3.1 Flash Lite attempt.
+All provider-free and adversarial gates passed. The founder then authorized one
+exact attempt. Gemini 3.1 Flash Lite returned strict JSON for `$0.005517`, and
+all nine collapsed outcomes compiled without healing. The frozen full
+mechanical gate still failed because its reasoning-exclusion check treated an
+opaque signature-only `reasoning_details` envelope as returned reasoning
+content. The payload had no reasoning text, summary, or encrypted data. The
+frozen result remains failed, semantic review remains unopened, and no retry or
+additional call is authorized. The next boundary is a provider-free
+prospective validator correction, followed by an explicit R3 deferral or a
+genuinely new prospective case.
 
 Newest checkpoint: the first provider-free decomposition passed locally but
 failed its reserved agency-acquisition probe after one call. The role-trajectory

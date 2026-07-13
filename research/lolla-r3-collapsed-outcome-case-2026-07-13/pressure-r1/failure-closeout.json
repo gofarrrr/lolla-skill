@@ -1,0 +1,127 @@
+{
+  "authorization_sha256": "46c5d2a0908d653a3679a5ad98b1b242b1cea9e4ffe82c294f8a63c5f408a25c",
+  "call_result_sha256": "cb2e3c1a1b893ae486c1973a7bfe395056859de8a25318445f165f009ba6e754",
+  "case_id": "v2-case01-anchor-contract",
+  "claims_not_made": [
+    "the_frozen_call_passed_its_mechanical_contract",
+    "the_candidate_was_semantically_useful_or_correct",
+    "the_collapsed_outcome_hypothesis_was_validated",
+    "the_deterministic_graph_contributed_value",
+    "the_model_is_reliable_for_this_task",
+    "the_product_is_reliable_or_ready_for_integration"
+  ],
+  "closeout_sha256": "e8f28e2857a79eb36510a01d311da07721e6774cfe70aba25f01a372045cdf59",
+  "contract_sha256": "c10cab3a88bf44ee001e43dfd685c0fd4808f3b51197ee529a7e39b222aa20e8",
+  "current_practice": {
+    "checked_on": "2026-07-13",
+    "source": "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens"
+  },
+  "decision": {
+    "additional_provider_call_authorized": false,
+    "experiment_closed": true,
+    "next_boundary": "Correct reasoning-exclusion validation provider-free so only actual returned reasoning content fails. Do not retry this case. Then decide whether to defer R3 or freeze a different prospective case before any further empirical call.",
+    "quiet_control_authorized": false,
+    "r3_semantic_exit_condition_met": false,
+    "r3_semantic_hypothesis_status": "unresolved",
+    "r4_recommendation": "Do not begin provider-backed R4 work. A narrow provider-free validator correction may proceed before R4 corpus work; R3 remains semantically unresolved unless explicitly deferred."
+  },
+  "execution_result": {
+    "automatic_retries": 0,
+    "exact_cost_usd": 0.005517,
+    "fallback_models": 0,
+    "generation_id": "gen-1783972786-KKI5E5UhGFf8PpRuqxBu",
+    "provider_calls_attempted": 1,
+    "provider_calls_succeeded": 1,
+    "response_healing": false,
+    "served_model": "google/gemini-3.1-flash-lite",
+    "served_provider": "Google",
+    "within_one_cent": true
+  },
+  "reasoning_exclusion_result": {
+    "causal_classification": "frozen_validator_conflated_signature_only_metadata_with_returned_reasoning_content",
+    "current_practice_interpretation": "OpenRouter documents excluded reasoning tokens in the message reasoning field and separately documents reasoning_details as a structured preservation surface. The observed response has no reasoning text, summary, or encrypted data, only a signature.",
+    "frozen_result_reclassified_as_pass": false,
+    "frozen_runner_classification": "reasoning_content_returned",
+    "frozen_runner_mechanical_contract_valid": false,
+    "frozen_runner_tested_any_reasoning_details_as_content": true,
+    "provider_observation": {
+      "detail_data_field_present": false,
+      "detail_format": "google-gemini-v1",
+      "detail_keys": [
+        "format",
+        "index",
+        "signature",
+        "type"
+      ],
+      "detail_signature_present": true,
+      "detail_summary_field_present": false,
+      "detail_text_field_present": false,
+      "detail_type": "reasoning.text",
+      "message_reasoning_field_present": false,
+      "message_reasoning_text_nonempty": false,
+      "reasoning_details_count": 1,
+      "returned_plaintext_or_summary_reasoning": false,
+      "returned_signature_only_metadata": true
+    },
+    "request_exclude_true": true,
+    "response_repaired": false
+  },
+  "run_id": "lolla-r3-collapsed-outcome-v2-case01-pressure-r1",
+  "schema_version": "lolla.r3_collapsed_outcome_failure_closeout.v1",
+  "source_review": {
+    "dimensions": [
+      {
+        "dimension": "source_grounding",
+        "verdict": "not_evaluable_frozen_mechanical_gate_failed",
+        "why": "The frozen runner prohibited source-first review after its reasoning-exclusion gate returned false."
+      },
+      {
+        "dimension": "disposition_quality",
+        "verdict": "not_evaluable_frozen_mechanical_gate_failed",
+        "why": "The frozen runner prohibited source-first review after its reasoning-exclusion gate returned false."
+      },
+      {
+        "dimension": "non_forced_graph_contribution",
+        "verdict": "not_evaluable_frozen_mechanical_gate_failed",
+        "why": "The frozen runner prohibited source-first review after its reasoning-exclusion gate returned false."
+      },
+      {
+        "dimension": "original_advice_preservation",
+        "verdict": "not_evaluable_frozen_mechanical_gate_failed",
+        "why": "The frozen runner prohibited source-first review after its reasoning-exclusion gate returned false."
+      },
+      {
+        "dimension": "unsupported_claim_leakage",
+        "verdict": "not_evaluable_frozen_mechanical_gate_failed",
+        "why": "The frozen runner prohibited source-first review after its reasoning-exclusion gate returned false."
+      },
+      {
+        "dimension": "private_over_absorption",
+        "verdict": "not_evaluable_frozen_mechanical_gate_failed",
+        "why": "The frozen runner prohibited source-first review after its reasoning-exclusion gate returned false."
+      },
+      {
+        "dimension": "public_bloat_and_hedging",
+        "verdict": "not_evaluable_frozen_mechanical_gate_failed",
+        "why": "The frozen runner prohibited source-first review after its reasoning-exclusion gate returned false."
+      },
+      {
+        "dimension": "exact_cost_and_failure_custody",
+        "verdict": "pass",
+        "why": "The exact provider cost, generation identity, raw payload hash, compiled candidate, and one-call budget are preserved."
+      }
+    ],
+    "scalar_quality_score": null,
+    "status": "not_run_frozen_mechanical_gate_failed",
+    "value_signal": "not_evaluable"
+  },
+  "status": "collapsed_response_compiled_frozen_reasoning_gate_failed",
+  "wire_and_compiler_result": {
+    "all_nine_pressures_accounted_for": true,
+    "candidate_modified_or_healed": false,
+    "collapsed_compiler_accepted": true,
+    "exact_json_object_returned": true,
+    "provider_accepted_strict_schema": true,
+    "semantic_review_performed": false
+  }
+}

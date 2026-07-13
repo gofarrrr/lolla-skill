@@ -39,7 +39,8 @@ telemetry and cannot delete this portfolio.
 > [R3 provider-schema repair](docs/conversation-understanding/lolla-r3-provider-schema-repair-result-2026-07-13.md),
 > [R3 repaired pressure result](docs/conversation-understanding/lolla-r3-repaired-pressure-result-2026-07-13.md),
 > [R3 task-shape reassessment](docs/conversation-understanding/lolla-r3-task-shape-reassessment-result-2026-07-13.md),
-> and [R3 collapsed-outcome case preparation](docs/conversation-understanding/lolla-r3-collapsed-outcome-case-preparation-result-2026-07-13.md).
+> [R3 collapsed-outcome case preparation](docs/conversation-understanding/lolla-r3-collapsed-outcome-case-preparation-result-2026-07-13.md),
+> and [R3 collapsed-outcome execution result](docs/conversation-understanding/lolla-r3-collapsed-outcome-execution-result-2026-07-13.md).
 
 ## Why This Exists
 
@@ -1228,6 +1229,14 @@ The **[R3 collapsed-outcome case preparation result](docs/conversation-understan
 freezes one new prospective 28-message reliability case, its hidden source-first
 review, exact cheap one-call contract, no-retry runner, and pending founder
 decision without making or authorizing a provider call.
+The subsequent
+**[R3 collapsed-outcome execution result](docs/conversation-understanding/lolla-r3-collapsed-outcome-execution-result-2026-07-13.md)**
+records the one authorized `$0.005517` attempt. Its strict nine-row response
+compiled without healing, but the frozen runner counted signature-only
+reasoning metadata as returned reasoning content, so the full mechanical gate
+failed and semantic review remained closed. No retry or further call is
+authorized; the next boundary is a provider-free prospective validator
+correction.
 
 For the offline Product Delta evidence lane, including what to run, what to
 inspect, and what not to infer, see **[Product Delta / Eval Docs Index](docs/evals/README.md)**.
