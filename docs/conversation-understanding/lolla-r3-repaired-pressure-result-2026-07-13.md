@@ -108,15 +108,12 @@ idea and must not turn into brittle deterministic semantic gating.
 R3's semantic exit condition was not met. The quiet control is blocked. No
 additional provider call is authorized.
 
-The next goal is provider-free: audit whether the final-consumer contract
-combines too many responsibilities, and compare the smallest constitutionally
-honest alternatives using the preserved response and local fixtures. Candidate
-changes may separate disposition from answer drafting or reserve a stronger
-operator for final synthesis, but neither is adopted merely because it sounds
-plausible. The work must first show which responsibility caused the failure,
-what custody must remain exact, what cost would change, and how a future test
-could falsify the proposed repair. Model shopping and ad-hoc retries remain
-stopped.
+That provider-free reassessment is now complete. It found direct evidence of
+redundant disposition/effect encoding but no evidence that answer drafting or
+overall task load caused the failure. The selected prospective redesign keeps
+one call and replaces the two independent labels with one controlled outcome.
+A two-call disposition/synthesis split is not earned. No new call is
+authorized. See `lolla-r3-task-shape-reassessment-result-2026-07-13.md`.
 
 ## Evidence
 

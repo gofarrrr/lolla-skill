@@ -37,7 +37,8 @@ telemetry and cannot delete this portfolio.
 > [R1/R2 hardening result](docs/conversation-understanding/lolla-r1-r2-constitutional-hardening-result-2026-07-13.md),
 > [R3 fresh-consumer result](docs/conversation-understanding/lolla-r3-fresh-consumer-result-2026-07-13.md),
 > [R3 provider-schema repair](docs/conversation-understanding/lolla-r3-provider-schema-repair-result-2026-07-13.md),
-> and [R3 repaired pressure result](docs/conversation-understanding/lolla-r3-repaired-pressure-result-2026-07-13.md).
+> [R3 repaired pressure result](docs/conversation-understanding/lolla-r3-repaired-pressure-result-2026-07-13.md),
+> and [R3 task-shape reassessment](docs/conversation-understanding/lolla-r3-task-shape-reassessment-result-2026-07-13.md).
 
 ## Why This Exists
 
@@ -1216,6 +1217,12 @@ before any reattempt. The subsequent
 records the single `$0.0062705` repaired attempt: transport succeeded, one
 cross-field response contract failed, no response was healed or retried, and
 the quiet control remains blocked.
+The subsequent
+**[R3 task-shape reassessment](docs/conversation-understanding/lolla-r3-task-shape-reassessment-result-2026-07-13.md)**
+finds no evidence yet for a multi-call redesign. It selects a prospective
+one-pass controlled outcome that removes redundant disposition/effect encoding
+while leaving semantic applicability with the LLM. No provider call or runtime
+integration is authorized.
 
 For the offline Product Delta evidence lane, including what to run, what to
 inspect, and what not to infer, see **[Product Delta / Eval Docs Index](docs/evals/README.md)**.

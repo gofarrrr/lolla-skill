@@ -62,6 +62,8 @@ from the historical Product Delta lane above:
 28. [R3 fresh-consumer result](../conversation-understanding/lolla-r3-fresh-consumer-result-2026-07-13.md)
 29. [R3 provider-schema repair result](../conversation-understanding/lolla-r3-provider-schema-repair-result-2026-07-13.md)
 30. [R3 repaired pressure result](../conversation-understanding/lolla-r3-repaired-pressure-result-2026-07-13.md)
+31. [R3 task-shape current-practice check](../conversation-understanding/lolla-r3-task-shape-current-practice-2026-07-13.md)
+32. [R3 task-shape reassessment result](../conversation-understanding/lolla-r3-task-shape-reassessment-result-2026-07-13.md)
 
 Affordable-operator checkpoint, 2026-07-13: Gemini 3.1 Flash Lite on the pinned
 Google Vertex OpenRouter endpoint is the current testing candidate for small,
@@ -92,8 +94,13 @@ separately authorized repaired Gemini 3.1 Flash Lite request reached inference
 for `$0.0062705`. Its strict JSON contradicted its own `park` disposition by
 claiming a material effect, so deterministic validation stopped the workflow.
 No retry, healing, fallback, premium model, semantic review, or quiet control
-followed. R3 is closed without meeting its semantic exit condition; the next
-boundary is provider-free task-shape reassessment.
+followed. R3 is closed without meeting its semantic exit condition. The
+provider-free task-shape reassessment is now also complete: the single failure
+is direct evidence of redundant disposition/effect encoding, not proof of
+general overload. A one-pass controlled outcome replaces the two independent
+labels prospectively. It keeps all nine pressures and one call; the two-call
+disposition/synthesis split is not earned. No call or runtime integration is
+authorized.
 
 Newest checkpoint: the first provider-free decomposition passed locally but
 failed its reserved agency-acquisition probe after one call. The role-trajectory

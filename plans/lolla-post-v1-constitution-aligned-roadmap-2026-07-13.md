@@ -289,6 +289,29 @@ Repaired execution result:
 R3 is semantically closed without meeting its exit condition. See
 `docs/conversation-understanding/lolla-r3-repaired-pressure-result-2026-07-13.md`.
 
+Provider-free task-shape reassessment result:
+
+- the exact response returned all nine rows and had one mechanical finding;
+- the finding is a direct contradiction between independent `park` and
+  `uncertainty_change` labels, not evidence that the complete task overloaded
+  the model;
+- a controlled outcome vocabulary maps one explicit LLM judgment to the
+  canonical disposition/effect pair without deterministic relevance inference;
+- the selected one-pass design keeps all nine pressures, one call, zero
+  transfer boundaries, 13 schema properties, and a `$0.00816725` maximum
+  estimate;
+- a separated disposition/synthesis design would require two serial calls, a
+  disposition-ledger transfer, and a `$0.01180325` maximum stress estimate;
+- current evidence does not implicate answer drafting, so the split is not
+  earned;
+- local apply/reject/park, identity, custody, adversarial, fan-in, cost, and
+  no-semantic-repair gates pass with zero provider calls;
+- the redesign is prospective and not model-validated; no runtime integration
+  or further call is authorized.
+
+See
+`docs/conversation-understanding/lolla-r3-task-shape-reassessment-result-2026-07-13.md`.
+
 ## R4 — Multi-thread conversation state and reasoning abstraction
 
 Purpose: improve what the pressure system understands without turning Python
@@ -362,18 +385,17 @@ receipt that a fresh reader can reconstruct.
 
 ## Immediate next goal
 
-Provider-free R3 task-shape reassessment. The repaired call proved transport
-compatibility but failed the explicit response contract, so another paid call
-would be an ungrounded retry. Use the preserved candidate and local fixtures to
-identify whether disposition, cross-field consistency, answer drafting, or
-their one-pass combination is the smallest falsifiable defect. Compare only
-constitutionally honest alternatives, including keeping one pass, separating
-disposition from synthesis, or reserving a stronger final operator. Preserve
-LLM ownership of semantic applicability and deterministic ownership of
-identity, custody, vocabulary, bounds, budgets, and explicit consistency.
+Prepare one new safe, high-fidelity ambiguous multi-turn reliability case for
+the selected collapsed-outcome R3 contract, provider-free. Freeze the source,
+protected reasoning targets, source-first review vector, selection rule,
+contract hashes, maximum one-call/one-cent envelope, and first-failure stop
+rule before requesting execution authorization. The case may be simulated for
+system reliability but must be labeled as such and must not be used to alter
+the already selected contract after its expected targets are visible.
 
-Do not begin provider-backed R4 work, shop models, or authorize a quiet control
-until this reassessment produces a frozen hypothesis, local acceptance
-contract, cost consequence, and stop rule. R4 remains the next major roadmap
-stage; this closeout prevents its design from inheriting an unexplained R3
-failure.
+Do not make the call, integrate the redesign, begin provider-backed R4 work,
+shop models, or authorize a quiet control during preparation. After the
+provider-free case and contract pass, the remaining decision is founder-owned:
+authorize or decline one cheap collapsed-outcome empirical attempt. R4 remains
+the next major roadmap stage after R3 is empirically resolved or explicitly
+deferred.
