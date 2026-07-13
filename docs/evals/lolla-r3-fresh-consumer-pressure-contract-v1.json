@@ -1,0 +1,152 @@
+{
+  "schema_version": "lolla.r3_fresh_consumer_pressure_contract.v1",
+  "status": "frozen_before_one_pressure_call",
+  "date": "2026-07-13",
+  "run_id": "lolla-r3-fresh-consumer-case01-pressure-r1",
+  "case_id": "v1-case01-flood-infrastructure",
+  "purpose": "Test whether one fresh affordable consumer can apply, reject, or park the current bounded constitutional graph pressure without forcing noise, losing useful original advice, inventing support, or bloating the public answer.",
+  "bundle": {
+    "path": "research/lolla-r3-fresh-consumer-2026-07-13/preflight/pressure-bundle.json",
+    "file_sha256": "42141e84821e193f1ebd7d9ac3d8f3b8d071ff7fd11c5b14e1aa3dfdad739966",
+    "bundle_sha256": "9d9b9439627756bf702c2e0e3cce00988fd40e923b0befa3a26709bdf533bc95"
+  },
+  "operator": {
+    "provider": "openrouter",
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "model": "google/gemini-3.1-flash-lite",
+    "provider_order": ["google-vertex/global"],
+    "provider_only": ["google-vertex"],
+    "allow_fallbacks": false,
+    "require_parameters": true,
+    "data_collection": "deny",
+    "zdr_claimed": false,
+    "maximum_price_usd_per_million_tokens": {
+      "prompt": 0.25,
+      "completion": 1.5
+    },
+    "wire_mode": "strict_json_schema",
+    "reasoning_effort": "low",
+    "reasoning_content_excluded": true,
+    "seed": 3101,
+    "maximum_output_tokens": 4000,
+    "temperature_supplied": false,
+    "parallel_calls": false
+  },
+  "request_attestation": {
+    "authoritative_conversation_sha256": "04e787853c65c43dbca1c0d974a902fbb2bf70fabc90c533fd3e676ed910fecf",
+    "constitutional_graph_portfolio_sha256": "sha256:3d2d0ffea90e765a9216307db0e59eb1572d79128bfec7cb71c4d63db5ea2bc7",
+    "packet_sha256": "a5475a81242650fe62d08d01e76c4e39394c5b24aa3d04a3fdb4c0982ea3a6a7",
+    "system_prompt_sha256": "3a324d175cab8f3cb1f773df357ee924162599909a37ccc8278d6e3cbf443412",
+    "user_prompt_sha256": "541971eee8cfd15be0e99b9521031329d4155f210ec5b69247df1e821e3f9f1d",
+    "response_schema_sha256": "62c47df945b8434a8775880c223d65ae6fcc4e834900ab6d423bccee0099769d",
+    "request_body_sha256": "edf53770f7a67359eda6898b2e37d6f229f2b69b9286d9c40a7d8316ad7b23ec"
+  },
+  "budget": {
+    "maximum_provider_calls": 1,
+    "maximum_provider_reported_cost_usd": 0.01,
+    "maximum_estimated_call_cost_usd": 0.00816425,
+    "automatic_retries": 0,
+    "fallback_models": 0,
+    "response_healing": false
+  },
+  "failure_policy": {
+    "automatic_retry": false,
+    "substitute_model": false,
+    "raise_output_ceiling": false,
+    "relax_schema": false,
+    "repair_or_extract_partial_json": false,
+    "preserve_started_record_before_transport": true,
+    "preserve_raw_provider_payload": true,
+    "return_provider_free_after_failure": true
+  },
+  "source_review_contract": {
+    "provider_calls": 0,
+    "review_axes": [
+      "source_grounding",
+      "disposition_quality",
+      "non_forced_graph_contribution",
+      "original_advice_preservation",
+      "unsupported_claim_leakage",
+      "private_over_absorption",
+      "public_bloat_and_hedging",
+      "exact_cost_and_failure_custody"
+    ],
+    "all_axes_must_pass": true,
+    "minimum_value_signal": "one source-grounded applied contribution or valuable grounded rejection",
+    "scalar_quality_score": null,
+    "quiet_control_requires_explicit_validated_authorization": true
+  },
+  "decision_boundary": {
+    "runtime_effect": "none",
+    "production_integration_authorized": false,
+    "premium_model_authorized": false,
+    "quiet_control_authorized_before_pressure_review": false,
+    "product_reliability_claim_authorized": false
+  },
+  "frozen_inputs": [
+    {
+      "path": "research/simulated-reliability-corpus-v1-2026-07-12/naturalized-transfer-sources/v1-case01-flood-infrastructure.txt",
+      "sha256": "04e787853c65c43dbca1c0d974a902fbb2bf70fabc90c533fd3e676ed910fecf"
+    },
+    {
+      "path": "research/residual-challenge-seed-case01-probe-2026-07-13/t1/result.json",
+      "sha256": "07f14feb0257c48bcd8bbac196521d5140fe4f6ef6b8652e9e55afe79f876822"
+    },
+    {
+      "path": "docs/conversation-understanding/residual-challenge-seed-graph-routing-v1.json",
+      "sha256": "3501432cf5cb53a4aa60b886c6abc1ad2626787dc463b1096f07b5393fa11819"
+    },
+    {
+      "path": "data/knowledge_graph.json",
+      "sha256": "5689b79868339ce9221b799eac88870a6053b69a67ba3aaef3f2ba5cd62efdae"
+    },
+    {
+      "path": "data/relationship_graph.json",
+      "sha256": "89808c4585498f3880b4d7fa0110d64cd46f7acff312c0870fc6cb9a97e752cf"
+    },
+    {
+      "path": "engine/system_b/residual_seed_graph_recall_v1.py",
+      "sha256": "e026dec4242de4179150b4603fdac08eed9c69e668fb5850de7c60692cf045f0"
+    },
+    {
+      "path": "engine/system_b/constitutional_graph_survival.py",
+      "sha256": "832008dd1bbf079b1e407a916e02832133675e8d9fe30e6ab54cb6942a2f8de7"
+    },
+    {
+      "path": "engine/system_b/provider_budget.py",
+      "sha256": "c5ee5067b447cf28bcac317c06e3114928f578d3836f24325cc30ccf005c5997"
+    },
+    {
+      "path": "engine/system_b/r3_fresh_consumer.py",
+      "sha256": "f79a59d8c8785bb288646da49ea093f5e246fd933612c41c153875da0951d185"
+    },
+    {
+      "path": "scripts/evals/build_r3_fresh_consumer_pressure.py",
+      "sha256": "08413e3341bc1891c406eaa765d194ea6f2cd328966a3d993c94140dfd4c7e8b"
+    },
+    {
+      "path": "scripts/evals/run_r3_fresh_consumer_pressure.py",
+      "sha256": "e9203ce00ba313ef725817970355241e4423bc55a4594350f502e859203ee27d"
+    },
+    {
+      "path": "scripts/evals/finalize_r3_fresh_consumer_pressure_review.py",
+      "sha256": "d5b5c37497f9634f5ec5ccea5ae30ffd18e628954f51636df406960c54b55d40"
+    },
+    {
+      "path": "research/lolla-r3-fresh-consumer-2026-07-13/preflight/constitutional-graph-portfolio.json",
+      "sha256": "47788abfd523d265cfeea04ff4393d0efb818002cda7c7da7233777783a0b837"
+    },
+    {
+      "path": "research/lolla-r3-fresh-consumer-2026-07-13/preflight/preflight-summary.json",
+      "sha256": "17799269c18bb8b5995d6e334f4bcc52766d40dd77dcf7d993249e7fb5343545"
+    },
+    {
+      "path": "research/lolla-r3-fresh-consumer-2026-07-13/preflight/pressure-bundle.json",
+      "sha256": "42141e84821e193f1ebd7d9ac3d8f3b8d071ff7fd11c5b14e1aa3dfdad739966"
+    },
+    {
+      "path": "research/lolla-r3-fresh-consumer-2026-07-13/preflight/provider-endpoint-verification.json",
+      "sha256": "975bf36cf9d9707719117c56167ebc1e5a403258fc64d718c805cc8099dfe1aa"
+    }
+  ]
+}

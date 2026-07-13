@@ -126,10 +126,10 @@ R1/R2 do not answer the semantic product questions:
 These unknowns must remain evaluation targets. They must not be replaced with
 deterministic semantic gates or marketing claims.
 
-## Next boundary: R3
+## R3 handoff and outcome
 
-R3 may now prepare one fresh-consumer proof. Before any paid request, it must
-freeze locally:
+R3 then prepared one fresh-consumer proof. Before its paid request, it froze
+locally:
 
 - Case 01 source and preservation packet;
 - the exact active pressure portfolio and hash;
@@ -137,9 +137,13 @@ freeze locally:
 - no-retry, no-fallback, no-healing behavior;
 - stage output ceiling and a total $0.01 budget.
 
-Only then may one Gemini 3.1 Flash-Lite pressure attempt run. Its evaluation
-must separate grounding, disposition quality, non-forced contribution,
-preservation, unsupported claims, private over-absorption, public bloat, cost,
-and failure custody. If it fails, preserve the failure and return to
-provider-free diagnosis. If it passes every gate, the roadmap permits one
-separately capped quiet control. Neither outcome proves reliability.
+The one Gemini 3.1 Flash-Lite pressure attempt reached Google through the
+pinned OpenRouter route but was rejected as `INVALID_ARGUMENT` before
+inference. The failure was preserved with no retry, fallback, healing, premium
+model, or quiet control. No semantic dimension could be evaluated. Exact cost
+was not returned, so the budget ledger conservatively accounts the complete
+`$0.00816425` reservation rather than claiming a charge.
+
+R3 is closed as a negative operational result. Its next boundary is
+provider-free schema interoperability repair, not R4 and not another call.
+See `lolla-r3-fresh-consumer-result-2026-07-13.md`.

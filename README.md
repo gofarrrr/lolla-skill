@@ -33,8 +33,9 @@ telemetry and cannot delete this portfolio.
 > work, but V1 did not establish product reliability, real-user usefulness,
 > stability, or receipt reconstruction. Lolla does not certify that a revised
 > answer is better or safe to act on. See the
-> [current constitutional audit](docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md)
-> and [R1/R2 hardening result](docs/conversation-understanding/lolla-r1-r2-constitutional-hardening-result-2026-07-13.md).
+> [current constitutional audit](docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md),
+> [R1/R2 hardening result](docs/conversation-understanding/lolla-r1-r2-constitutional-hardening-result-2026-07-13.md),
+> and [R3 fresh-consumer result](docs/conversation-understanding/lolla-r3-fresh-consumer-result-2026-07-13.md).
 
 ## Why This Exists
 
@@ -1202,7 +1203,10 @@ For the current constitution-based state assessment and ordered post-V1 work,
 see the **[July 2026 constitutional audit](docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md)**
 and **[constitution-aligned roadmap](plans/lolla-post-v1-constitution-aligned-roadmap-2026-07-13.md)**.
 The **[R1/R2 constitutional hardening result](docs/conversation-understanding/lolla-r1-r2-constitutional-hardening-result-2026-07-13.md)**
-records the implemented provider-free boundary and the exact R3 handoff.
+records the implemented provider-free boundary and the exact R3 handoff. The
+**[R3 fresh-consumer result](docs/conversation-understanding/lolla-r3-fresh-consumer-result-2026-07-13.md)**
+records the single preserved pre-inference provider rejection, what it does and
+does not establish, and the next provider-free repair boundary.
 
 For the offline Product Delta evidence lane, including what to run, what to
 inspect, and what not to infer, see **[Product Delta / Eval Docs Index](docs/evals/README.md)**.

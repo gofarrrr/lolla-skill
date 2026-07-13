@@ -58,6 +58,8 @@ from the historical Product Delta lane above:
 24. [Affordable full-nine and residual-challenge result](affordable-full-nine-and-residual-result-2026-07-13.md)
 25. [Corrected residual-seed fresh-consumer handoff](residual-seed-fresh-consumer-case01-result-2026-07-13.md)
 26. [V1 final constitutional reassessment](simulated-reliability-v1-final-constitutional-reassessment-2026-07-13.md)
+27. [R1/R2 constitutional hardening result](../conversation-understanding/lolla-r1-r2-constitutional-hardening-result-2026-07-13.md)
+28. [R3 fresh-consumer result](../conversation-understanding/lolla-r3-fresh-consumer-result-2026-07-13.md)
 
 Affordable-operator checkpoint, 2026-07-13: Gemini 3.1 Flash Lite on the pinned
 Google Vertex OpenRouter endpoint is the current testing candidate for small,

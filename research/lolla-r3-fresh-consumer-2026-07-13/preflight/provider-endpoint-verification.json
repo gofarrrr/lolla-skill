@@ -1,0 +1,55 @@
+{
+  "schema_version": "lolla.r3_provider_endpoint_verification.v1",
+  "status": "verified_before_pressure_call",
+  "verified_at_date": "2026-07-13",
+  "provider_calls": 0,
+  "source": {
+    "endpoint_metadata_url": "https://openrouter.ai/api/v1/models/google/gemini-3.1-flash-lite/endpoints",
+    "provider_routing_documentation": "https://openrouter.ai/docs/guides/routing/provider-selection",
+    "model_pricing_page": "https://openrouter.ai/google/gemini-3.1-flash-lite/pricing"
+  },
+  "model": "google/gemini-3.1-flash-lite",
+  "selected_endpoint": {
+    "provider_name": "Google",
+    "tag": "google-vertex/global",
+    "status": 0,
+    "prompt_usd_per_token": "0.00000025",
+    "completion_usd_per_token": "0.0000015",
+    "cached_input_usd_per_token": "0.000000025",
+    "prompt_usd_per_million_tokens": 0.25,
+    "completion_usd_per_million_tokens": 1.5,
+    "supported_parameters": [
+      "reasoning",
+      "include_reasoning",
+      "max_tokens",
+      "temperature",
+      "top_p",
+      "seed",
+      "response_format",
+      "stop",
+      "structured_outputs",
+      "tools",
+      "tool_choice",
+      "reasoning_effort"
+    ]
+  },
+  "request_contract_check": {
+    "exact_model_available": true,
+    "exact_endpoint_available": true,
+    "strict_structured_outputs_supported": true,
+    "seed_supported": true,
+    "reasoning_effort_supported": true,
+    "max_output_tokens_supported": true,
+    "price_within_frozen_max_price": true,
+    "fallback_can_be_disabled": true,
+    "parameter_support_can_be_required": true,
+    "data_collection_can_be_denied": true,
+    "zdr_requested": false,
+    "zdr_availability_claimed": false
+  },
+  "non_claims": [
+    "endpoint_availability_does_not_guarantee_call_success",
+    "structured_output_support_does_not_guarantee_semantic_quality",
+    "data_collection_deny_is_an_openrouter_routing_policy_not_a_new_third_party_privacy_audit"
+  ]
+}

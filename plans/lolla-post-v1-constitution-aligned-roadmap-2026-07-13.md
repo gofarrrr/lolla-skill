@@ -188,6 +188,9 @@ pruning” means bounded inspectable possibility, not context dumping.
 
 ## R3 — One fresh-consumer proof, then a quiet control
 
+Status: complete negative operational result (2026-07-13; one attempt, zero
+generations, zero quiet-control calls); semantic exit condition not met
+
 Purpose: test the corrected pressure interface without the original reasoner's
 same-context trajectory.
 
@@ -219,6 +222,33 @@ required. Gemini 3.5 is not authorized.
 Exit condition: at least one source-grounded non-forced contribution or
 valuable grounded rejection, with no custody failure and no public friction
 theater. One success is diagnostic evidence, not product reliability.
+
+Result:
+
+- every provider-free gate passed and the Case 01 source, original answer,
+  nine-item constitutional portfolio, reserve, prompt, schema, request, model,
+  endpoint, and budget were frozen under exact hashes;
+- the one authorized Gemini 3.1 Flash-Lite request reached Google through the
+  pinned OpenRouter route but returned HTTP 400 `INVALID_ARGUMENT` before
+  inference;
+- no candidate, usage record, generation identity, or exact cost was returned;
+  the budget ledger conservatively accounts the full `$0.00816425` reservation
+  without claiming that amount was charged;
+- the raw failure remains privately preserved and a hash-linked redaction is
+  checked in; no retry, fallback, response healing, premium model, or quiet
+  control ran;
+- semantic review dimensions are explicitly not evaluable; failure custody is
+  a partial pass because exact cost was unavailable;
+- current Google documentation and repository history narrow the likely issue
+  to structured-schema subset or complexity interoperability, but the generic
+  provider error does not prove one offending field.
+
+R3 is closed as an honest negative experiment, not as product or semantic
+failure. Before R4, the next provider-free boundary is to project the response
+schema onto Google's documented subset, keep business-rule validation local,
+and freeze a smaller compatibility-tested request. Any further call requires a
+new explicit authorization. See
+`docs/conversation-understanding/lolla-r3-fresh-consumer-result-2026-07-13.md`.
 
 ## R4 — Multi-thread conversation state and reasoning abstraction
 
@@ -293,10 +323,12 @@ receipt that a fresh reader can reconstruct.
 
 ## Immediate next goal
 
-Prepare and execute R3 under its frozen one-attempt boundary. R1 and R2 now pass
-provider-free, so the next unanswered question is semantic rather than
-mechanical: can a fresh cheap consumer use or reject the bounded pressure
-honestly without absorbing noise, bloating the public answer, or losing useful
-original advice? R3 may authorize one Gemini 3.1 Flash-Lite pressure attempt
-through OpenRouter only after its source, prompt, schema, hashes, policy,
-no-retry behavior, and $0.01 budget are frozen locally.
+Repair R3's provider interoperability provider-free. The first frozen pressure
+attempt was rejected before inference, so the semantic product question remains
+unanswered and R4 must not hide that gap. The smallest next goal is to project
+the strict response schema onto Google's documented subset, move text-length
+and cross-field business rules into the existing deterministic compiler, and
+prove locally that this preserves all nine apply/reject/park identities,
+original-answer custody, and the vector review contract. No provider call is
+authorized. A new one-cent attempt can be proposed only after that frozen local
+contract passes and requires new explicit founder authorization.
