@@ -38,7 +38,8 @@ telemetry and cannot delete this portfolio.
 > [R3 fresh-consumer result](docs/conversation-understanding/lolla-r3-fresh-consumer-result-2026-07-13.md),
 > [R3 provider-schema repair](docs/conversation-understanding/lolla-r3-provider-schema-repair-result-2026-07-13.md),
 > [R3 repaired pressure result](docs/conversation-understanding/lolla-r3-repaired-pressure-result-2026-07-13.md),
-> and [R3 task-shape reassessment](docs/conversation-understanding/lolla-r3-task-shape-reassessment-result-2026-07-13.md).
+> [R3 task-shape reassessment](docs/conversation-understanding/lolla-r3-task-shape-reassessment-result-2026-07-13.md),
+> and [R3 collapsed-outcome case preparation](docs/conversation-understanding/lolla-r3-collapsed-outcome-case-preparation-result-2026-07-13.md).
 
 ## Why This Exists
 
@@ -1223,6 +1224,10 @@ finds no evidence yet for a multi-call redesign. It selects a prospective
 one-pass controlled outcome that removes redundant disposition/effect encoding
 while leaving semantic applicability with the LLM. No provider call or runtime
 integration is authorized.
+The **[R3 collapsed-outcome case preparation result](docs/conversation-understanding/lolla-r3-collapsed-outcome-case-preparation-result-2026-07-13.md)**
+freezes one new prospective 28-message reliability case, its hidden source-first
+review, exact cheap one-call contract, no-retry runner, and pending founder
+decision without making or authorizing a provider call.
 
 For the offline Product Delta evidence lane, including what to run, what to
 inspect, and what not to infer, see **[Product Delta / Eval Docs Index](docs/evals/README.md)**.

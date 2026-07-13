@@ -312,6 +312,26 @@ Provider-free task-shape reassessment result:
 See
 `docs/conversation-understanding/lolla-r3-task-shape-reassessment-result-2026-07-13.md`.
 
+Prospective collapsed-outcome case preparation result:
+
+- a new 28-message synthetic reliability case was frozen before pressure
+  selection or expected outcomes;
+- six source-grounded patterns were mapped only to existing canonical IDs and
+  the deterministic graph added three inspectable pressures without deletion;
+- the protected source-first review was authored and committed only after the
+  source and pressure portfolio were frozen;
+- the exact one-pass request, cheap operator, one-cent envelope, first-failure
+  stop rule, no-retry runner, and non-authorizing founder decision template are
+  sealed under hashes;
+- mocked success, provider failure, malformed JSON, authorization, hidden
+  review, budget, identity, and tamper paths pass locally;
+- provider calls made and currently authorized remain zero.
+
+The provider-free R3 preparation boundary is met. The remaining R3 decision is
+founder-owned: authorize or defer one exact Gemini 3.1 Flash-Lite attempt with a
+hard `$0.01` ceiling. See
+`docs/conversation-understanding/lolla-r3-collapsed-outcome-case-preparation-result-2026-07-13.md`.
+
 ## R4 — Multi-thread conversation state and reasoning abstraction
 
 Purpose: improve what the pressure system understands without turning Python
@@ -385,17 +405,15 @@ receipt that a fresh reader can reconstruct.
 
 ## Immediate next goal
 
-Prepare one new safe, high-fidelity ambiguous multi-turn reliability case for
-the selected collapsed-outcome R3 contract, provider-free. Freeze the source,
-protected reasoning targets, source-first review vector, selection rule,
-contract hashes, maximum one-call/one-cent envelope, and first-failure stop
-rule before requesting execution authorization. The case may be simulated for
-system reliability but must be labeled as such and must not be used to alter
-the already selected contract after its expected targets are visible.
+Obtain the founder's binary decision on the sealed R3 experiment.
 
-Do not make the call, integrate the redesign, begin provider-backed R4 work,
-shop models, or authorize a quiet control during preparation. After the
-provider-free case and contract pass, the remaining decision is founder-owned:
-authorize or decline one cheap collapsed-outcome empirical attempt. R4 remains
-the next major roadmap stage after R3 is empirically resolved or explicitly
-deferred.
+If authorized, record one exact authorization artifact and execute the frozen
+Gemini 3.1 Flash-Lite request. Preserve the first result, stop on any transport,
+mechanical, cost, or semantic failure, and perform the protected source-first
+review only after a mechanical pass. Do not retry, heal, switch models or
+providers, run a judge, or run a quiet control.
+
+If declined or deferred, record that decision and leave R3 empirically
+unresolved without spending. R4 remains the next major roadmap stage only after
+R3 is empirically resolved or explicitly deferred; the case preparation itself
+does not authorize R4 provider work or runtime integration.

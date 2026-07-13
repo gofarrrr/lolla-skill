@@ -64,6 +64,8 @@ from the historical Product Delta lane above:
 30. [R3 repaired pressure result](../conversation-understanding/lolla-r3-repaired-pressure-result-2026-07-13.md)
 31. [R3 task-shape current-practice check](../conversation-understanding/lolla-r3-task-shape-current-practice-2026-07-13.md)
 32. [R3 task-shape reassessment result](../conversation-understanding/lolla-r3-task-shape-reassessment-result-2026-07-13.md)
+33. [R3 collapsed-outcome current-practice check](../conversation-understanding/lolla-r3-collapsed-outcome-current-practice-2026-07-13.md)
+34. [R3 collapsed-outcome case preparation](../conversation-understanding/lolla-r3-collapsed-outcome-case-preparation-result-2026-07-13.md)
 
 Affordable-operator checkpoint, 2026-07-13: Gemini 3.1 Flash Lite on the pinned
 Google Vertex OpenRouter endpoint is the current testing candidate for small,
@@ -100,7 +102,13 @@ is direct evidence of redundant disposition/effect encoding, not proof of
 general overload. A one-pass controlled outcome replaces the two independent
 labels prospectively. It keeps all nine pressures and one call; the two-call
 disposition/synthesis split is not earned. No call or runtime integration is
-authorized.
+authorized. A new prospective 28-message synthetic case, nine-pressure
+portfolio, hidden source-first review, exact collapsed request, one-cent
+envelope, and no-retry runner are now frozen in separate chronological commits.
+All provider-free and adversarial gates pass. The checked-in authorization is
+only a non-authorizing template, so provider calls made and authorized remain
+zero. The next action is the founder's binary authorize-or-defer decision for
+one exact Gemini 3.1 Flash Lite attempt.
 
 Newest checkpoint: the first provider-free decomposition passed locally but
 failed its reserved agency-acquisition probe after one call. The role-trajectory
