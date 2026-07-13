@@ -47,6 +47,14 @@ Lolla does not rely on one giant "be more critical" prompt. It splits the audit 
 
 After those four lanes, Lolla can also attach private source-backed material from the V60 affordance/absence layer. That material is not public prose. It is private pressure Claude must consider, reject, defer, or keep as a guardrail before writing the updated position.
 
+Lane 2 now has an additional constitutional custody path. Immediately after
+canonical recall—and before the probabilistic verifier—the runtime freezes a
+bounded active graph portfolio plus compact reserve. The active items contain
+complete pressure and exact provenance; Step 6 must apply, reject, or park each
+one in a private hash-locked ledger. The verifier can still help interpret the
+case, but it has no authority to delete this portfolio. Rejection and parking
+are valid outcomes and do not require public answer bloat.
+
 ## What You Get Back
 
 A normal run produces:
@@ -106,10 +114,10 @@ This is the live `/lolla` flow in one page:
 4. Show a short readback and audit promise.
 5. Invoke the Step 3 helper, which calls `scripts/run_pipeline.py --skip-revision` with the extraction and conversation files.
 6. Build `ConversationContext`, construct `ConversationIR`, and run the four audit lanes.
-7. Attach the Bullshit Index (capped at 12 evaluations by adjacent-passage merging), usage summary, run health, and default-on V60 private enrichment.
+7. Freeze the pre-verifier constitutional graph-survival portfolio, then attach the Bullshit Index (capped at 12 evaluations by adjacent-passage merging), usage summary, run health, and default-on V60 private enrichment.
 8. Render the strongest counterargument in chat.
 9. Write the updated position.
-10. Persist `revised_answer` and validate the pre-Step-6 private-table and V60 consideration ledgers.
+10. Persist `revised_answer` and validate the constitutional graph-survival, pre-Step-6 private-table, and V60 consideration ledgers.
 11. Persist the default-off pressure-check state after Step 10 succeeds.
 12. If the user/operator explicitly requested deeper review, run optional pressure-check agents after Step 10 and persist their comparison plus auxiliary token usage.
 13. Persist memo-note fields and render the deterministic memo.
@@ -124,6 +132,7 @@ The detailed docs are split so agents and humans do not have to load one giant f
 | File | Read it for |
 |---|---|
 | [Lolla Product Constitution](docs/conversation-understanding/lolla-product-constitution-v3.md) | Binding v3 amendment incorporating immutable earlier rules plus dated current-practice checks, context-visible semantic responsibility, bounded fan-in, and mandatory problem-class research when failures persist or become contradictory. |
+| [R1/R2 Constitutional Hardening Result](docs/conversation-understanding/lolla-r1-r2-constitutional-hardening-result-2026-07-13.md) | Current provider-free implementation result: full-source custody, neutral reliance, provider budgets/privacy/cost identity, bounded pre-verifier graph survival, apply/reject/park custody, measured fan-in, nonclaims, and the exact R3 boundary. |
 | [Hybrid Reasoning Boundary](docs/conversation-understanding/hybrid-reasoning-boundary-v0.md) | The binding split: LLMs and humans interpret messy meaning; deterministic code validates evidence, schemas, hashes, caps, graph replay, and custody without semantic keyword gates. |
 | [Lolla Evaluation Doctrine](docs/conversation-understanding/lolla-evaluation-doctrine-v0.md) | The current capability ladder, strong-control evaluation contract, anti-Goodhart rules, evidence, and integration stop conditions. |
 | [Reasoning Pattern Packet](docs/conversation-understanding/reasoning-pattern-packet-v0.md) | The fact-free shadow graph-input contract that separates semantic interpretation from deterministic recall. |
@@ -144,7 +153,7 @@ The detailed docs are split so agents and humans do not have to load one giant f
 | [Role-First Model-Control Result](docs/conversation-understanding/reasoning-process-role-first-model-control-result-2026-07-12.md) | The DeepSeek and GLM comparison on one unchanged new case: wire reliability improved, but both routes failed coherent record identity and protected qualification recall, making contract ambiguity the leading cause. |
 | [Position Role-First v2.1 Result](docs/conversation-understanding/reasoning-process-position-role-first-v21-result-2026-07-12.md) | The provider-free prompt/packet amendment defining visible endpoints, coherent records versus components, full-alias review, and assistant-pressure ownership without changing schemas, validators, or call ceilings. |
 | [Pitch and Invitation](docs/lolla-pitch-and-invitation.md) | A plain-language shareable explanation of what Lolla is, why it matters for agents, who it is for, and what kind of feedback we want. |
-| [Agent Result Contract](docs/lolla-agent-result-contract.md) | The shipped `lolla_agent_result.v1` archive artifact: status, `caller_action`, product summaries, artifact pointers, and current limitations. |
+| [Agent Result Contract](docs/lolla-agent-result-contract.md) | The shipped `lolla_agent_result.v2` archive artifact: neutral reliance status, `caller_action`, product summaries, artifact pointers, and current limitations. |
 | [Reasoning-Audit Harness PRD](docs/lolla-reasoning-audit-harness-prd.md) | The actionable roadmap for turning Lolla into an agent-callable reasoning-audit harness with risk modes, an agent result contract, evaluation artifacts, and archive-corpus workflows. |
 | [Agent Control Layers And Lolla Integration](docs/agent-control-layers-and-lolla-integration.md) | How Lolla can fit beside CrabTrap-style proxies, guardrails, approvals, sandboxes, identity scopes, and observability/eval systems without pretending to replace them. |
 | [Evaluation Methodology](docs/lolla-evaluation-methodology.md) | Lolla-specific eval doctrine: error analysis first, deterministic gates before judges, calibrated binary judges, and how to avoid rewarding smoothness over useful friction. |

@@ -21,12 +21,14 @@ from .control_plane import control_input_summary
 from .provider_boundary_health import build_provider_boundary_health
 
 
-AGENT_RESULT_SCHEMA_VERSION = "lolla_agent_result.v1"
+AGENT_RESULT_SCHEMA_VERSION = "lolla_agent_result.v2"
 AGENT_RESULT_FILENAME = "agent_result.json"
 
 CALLER_ACTIONS = frozenset(
     {
+        # Historical v1 value retained so archived receipts remain evaluable.
         "use_revised_answer",
+        "review_revised_answer",
         "ask_user_first",
         "rerun_deeper",
         "do_not_use_run_degraded",
@@ -224,7 +226,7 @@ def _caller_action(
         return "do_not_use_run_degraded"
     if artifact_status.get("revised_answer") != "present" or artifact_status.get("memo") != "present":
         return "do_not_use_run_degraded"
-    return "use_revised_answer"
+    return "review_revised_answer"
 
 
 def _risk_mode(result: Mapping[str, Any]) -> str:
@@ -361,8 +363,15 @@ def _artifact_status(*, run_dir: Path, result: Mapping[str, Any]) -> dict[str, s
     revised_present = (run_dir / "revised.txt").is_file() or bool(_text(result.get("revised_answer")))
     return {
         "conversation": _present(run_dir / "conversation.txt"),
+        "conversation_processing_view": _present(
+            run_dir / "conversation_processing_view.json"
+        ),
         "extraction": _present(run_dir / "extraction.json"),
+        "provider_budget": _present(run_dir / "provider_budget.json"),
         "result": _present(run_dir / "result.json"),
+        "constitutional_graph_survival_ledger": _present(
+            run_dir / "constitutional_graph_survival_ledger.json"
+        ),
         "revised_answer": "present" if revised_present else "missing",
         "memo": _present(run_dir / "memo.md"),
         "reasoning_trace": _present(run_dir / "reasoning_trace.json"),
@@ -381,8 +390,11 @@ def _artifact_paths(
     }
     for key, filename in (
         ("conversation", "conversation.txt"),
+        ("conversation_processing_view", "conversation_processing_view.json"),
         ("extraction", "extraction.json"),
+        ("provider_budget", "provider_budget.json"),
         ("result", "result.json"),
+        ("constitutional_graph_survival_ledger", "constitutional_graph_survival_ledger.json"),
         ("revised_answer", "revised.txt"),
         ("memo", "memo.md"),
         ("reasoning_trace", "reasoning_trace.json"),
@@ -399,6 +411,9 @@ def _usage(result: Mapping[str, Any]) -> dict[str, Any]:
     usage = _mapping(result.get("usage_summary"))
     return {
         "estimated_total_cost_usd": usage.get("estimated_total_cost_usd"),
+        "provider_reported_total_cost_usd": usage.get(
+            "provider_reported_total_cost_usd"
+        ),
         "cost_estimate_state": _text(usage.get("cost_estimate_state")) or "unknown",
         "pricing_table_version": _text(usage.get("pricing_table_version")),
     }
@@ -465,9 +480,9 @@ def _notes(
         return [
             f"Capture adequacy is warning-level; {omitted} middle turns may be omitted, so inspect capture metadata before relying on this audit."
         ]
-    if caller_action == "use_revised_answer":
+    if caller_action == "review_revised_answer":
         return [
-            "Use the revised answer, memo, and artifact pointers together; this contract is not a safety or fact-checking guarantee."
+            "Review the revised answer together with the memo and artifact pointers; complete custody is not approval, a safety guarantee, or proof of reasoning quality."
         ]
     if (
         caller_action == "do_not_use_run_degraded"

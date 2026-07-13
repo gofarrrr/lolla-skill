@@ -448,7 +448,14 @@ def run_frame_extraction_from_packet(
 ) -> FramePressureCard:
     """Packet-driven Lane 3 entry point."""
     user_prompt = _format_frame_extraction_from_packet_user_prompt(packet)
-    raw = boundary.run_json(_FRAME_EXTRACTION_SYSTEM_FROM_CONTEXT, user_prompt)
+    try:
+        raw = boundary.run_json(
+            _FRAME_EXTRACTION_SYSTEM_FROM_CONTEXT,
+            user_prompt,
+            stage="frame_extraction",
+        )
+    except TypeError:
+        raw = boundary.run_json(_FRAME_EXTRACTION_SYSTEM_FROM_CONTEXT, user_prompt)
     elements, dropped = _parse_frame_extraction_from_packet(raw, packet)
     return FramePressureCard(frame_elements=elements, dropped_frame_elements=tuple(dropped))
 
@@ -655,7 +662,14 @@ def generate_reframings_from_context(
 ) -> tuple[Reframing, ...]:
     """Conversation-first reframe generator — Phase 2a."""
     user_prompt = _format_reframe_generation_from_context_prompt(context, elements, routes)
-    raw = boundary.run_json(_REFRAME_GENERATION_SYSTEM, user_prompt)
+    try:
+        raw = boundary.run_json(
+            _REFRAME_GENERATION_SYSTEM,
+            user_prompt,
+            stage="frame_reframing",
+        )
+    except TypeError:
+        raw = boundary.run_json(_REFRAME_GENERATION_SYSTEM, user_prompt)
     return _parse_reframings(raw)
 
 

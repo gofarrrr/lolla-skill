@@ -46,6 +46,23 @@ class BoundaryCallTrace:
     reasoning_tokens: int = 0
     reasoning_disabled: bool = False
     reasoning_details_present: bool = False
+    provider_attempted: bool = False
+    response_id: str = ""
+    exact_cost_usd: float | None = None
+    request_max_output_tokens: int = 0
+    request_max_price_prompt: float = 0.0
+    request_max_price_completion: float = 0.0
+    request_provider_order: tuple[str, ...] = ()
+    request_allow_fallbacks: bool = False
+    request_require_parameters: bool = False
+    request_data_collection: str = ""
+    request_zdr: bool = False
+    run_max_provider_calls: int = 0
+    run_max_cost_usd: float = 0.0
+    maximum_call_cost_usd: float = 0.0
+    budget_reservation_id: str = ""
+    pricing_table_version: str = ""
+    pricing_table_stale: bool = False
 
 
 def _capture_boundary_call(
@@ -75,6 +92,23 @@ def _capture_boundary_call(
         reasoning_tokens=metadata.reasoning_tokens,
         reasoning_disabled=metadata.reasoning_disabled,
         reasoning_details_present=metadata.reasoning_details_present,
+        provider_attempted=metadata.provider_attempted,
+        response_id=metadata.response_id,
+        exact_cost_usd=metadata.exact_cost_usd,
+        request_max_output_tokens=metadata.request_max_output_tokens,
+        request_max_price_prompt=metadata.request_max_price_prompt,
+        request_max_price_completion=metadata.request_max_price_completion,
+        request_provider_order=metadata.request_provider_order,
+        request_allow_fallbacks=metadata.request_allow_fallbacks,
+        request_require_parameters=metadata.request_require_parameters,
+        request_data_collection=metadata.request_data_collection,
+        request_zdr=metadata.request_zdr,
+        run_max_provider_calls=metadata.run_max_provider_calls,
+        run_max_cost_usd=metadata.run_max_cost_usd,
+        maximum_call_cost_usd=metadata.maximum_call_cost_usd,
+        budget_reservation_id=metadata.budget_reservation_id,
+        pricing_table_version=metadata.pricing_table_version,
+        pricing_table_stale=metadata.pricing_table_stale,
     )
 
 
@@ -104,4 +138,21 @@ def _metadata_to_boundary_call_trace(
         reasoning_tokens=metadata.reasoning_tokens,
         reasoning_disabled=metadata.reasoning_disabled,
         reasoning_details_present=metadata.reasoning_details_present,
+        provider_attempted=metadata.provider_attempted,
+        response_id=metadata.response_id,
+        exact_cost_usd=metadata.exact_cost_usd,
+        request_max_output_tokens=metadata.request_max_output_tokens,
+        request_max_price_prompt=metadata.request_max_price_prompt,
+        request_max_price_completion=metadata.request_max_price_completion,
+        request_provider_order=metadata.request_provider_order,
+        request_allow_fallbacks=metadata.request_allow_fallbacks,
+        request_require_parameters=metadata.request_require_parameters,
+        request_data_collection=metadata.request_data_collection,
+        request_zdr=metadata.request_zdr,
+        run_max_provider_calls=metadata.run_max_provider_calls,
+        run_max_cost_usd=metadata.run_max_cost_usd,
+        maximum_call_cost_usd=metadata.maximum_call_cost_usd,
+        budget_reservation_id=metadata.budget_reservation_id,
+        pricing_table_version=metadata.pricing_table_version,
+        pricing_table_stale=metadata.pricing_table_stale,
     )

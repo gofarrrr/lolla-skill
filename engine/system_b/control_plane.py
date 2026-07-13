@@ -30,6 +30,7 @@ CONTROL_MODES = frozenset(
 
 APPROVAL_OUTCOME_BY_CALLER_ACTION = {
     "use_revised_answer": "proceed_with_external_policy",
+    "review_revised_answer": "require_external_review",
     "ask_user_first": "require_human_approval",
     "rerun_deeper": "rerun_deeper",
     "do_not_use_run_degraded": "block_reasoning_incomplete",
@@ -212,7 +213,13 @@ def _human_approval_context(
 ) -> dict[str, Any]:
     action = _mapping(control_input.get("proposed_action"))
     action_name = _text(action.get("tool_name")) or _text(action.get("action_type")) or "the proposed action"
-    if caller_action == "use_revised_answer":
+    if caller_action == "review_revised_answer":
+        summary = (
+            "Review the revised answer and process receipt before any external "
+            "action; Lolla established artifact custody, not answer approval."
+        )
+        rejection = "Do not proceed automatically; obtain an external review first."
+    elif caller_action == "use_revised_answer":
         summary = (
             "Lolla did not identify a run-health reason to block use; external "
             "policy, approval, sandbox, and credential checks still apply."

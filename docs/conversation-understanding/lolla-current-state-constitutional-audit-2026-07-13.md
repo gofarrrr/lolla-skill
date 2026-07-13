@@ -1,12 +1,25 @@
 # Lolla current-state constitutional audit
 
-Status: audit complete; repairs not yet integrated
+Status: audit complete; R1 and R2 repairs integrated provider-free
 
 Date: 2026-07-13
 
 Baseline: `173e2fb` on `codex/reasoning-audit-v1-handoff`
 
 Provider calls made: none
+
+## Post-audit implementation note
+
+R1 and R2 are now complete provider-free. The live runtime preserves the full available
+conversation separately from any bounded extraction view, emits neutral
+`review_revised_answer` custody, freezes provider output/price/call/privacy
+contracts before the network, preserves exact provider response and charged
+cost identity, and guarantees every private-table ledger atom is visible or
+exactly resolvable. It now also constructs a bounded constitutional graph
+portfolio before probabilistic verification, preserves overflow and malformed
+paths separately, and requires apply/reject/park custody over every active
+pressure item. The defect documented below is the historical finding that R2
+repairs; it remains useful as the causal explanation for the change.
 
 ## Bottom line
 
@@ -15,11 +28,13 @@ curated substrate, four pressure lanes, deterministic validation, strong local
 artifact custody, run-health reporting, ledgers, a memo, an Observatory, and a
 reproducible V1 evaluation program.
 
-But the live product is not yet constitutionally coherent enough for another
-paid reliability campaign or a claim that clean runs are fit for automatic
-reliance.
+At the audited baseline, the live product was not constitutionally coherent
+enough for another paid reliability campaign or a claim that clean runs were
+fit for automatic reliance. R1 and R2 have now repaired those mechanical
+blockers without changing the evidence boundary: automatic reliance remains
+unproven.
 
-The most important defect is architectural: the live Model Companion path
+The most important baseline defect was architectural: the live Model Companion path
 recalls up to 60 candidates, asks an LLM verifier which are present, and only
 expands the 2–4 accepted candidates through the graph. In four recent local
 runs, 53–57 candidates per run were silently omitted before Step 6. The audit
@@ -27,7 +42,7 @@ trail remembers their disappearance, but the reconsidering reasoner never sees
 them. This is the exact “probabilistic re-domestication of deterministic
 pressure” prohibited by Constitution v5.
 
-The other critical defects are more tractable:
+The other baseline defects were more tractable:
 
 - a skill-level long-conversation instruction can silently pre-truncate the
   authoritative transcript;
@@ -37,8 +52,8 @@ The other critical defects are more tractable:
   cumulative run budget, exact charged-cost custody, or explicit data-retention
   posture.
 
-The correct next move is a small, staged repair—not a rewrite and not another
-model comparison.
+The completed R1/R2 response was a small staged repair, not a rewrite or model
+comparison. The next move is the separately frozen R3 fresh-consumer proof.
 
 ## What we now understand from the ground up
 
@@ -55,7 +70,7 @@ authoritative conversation
   -> human decision authority
 ```
 
-The live loop is currently closer to:
+At the audit baseline, the live loop was closer to:
 
 ```text
 captured prose conversation
@@ -128,9 +143,9 @@ This means we are smarter about the system even though we are not yet able to
 claim it works reliably. We know which foundations are strong and which part of
 the causal chain has not earned promotion.
 
-## Blocking drift
+## Blocking drift found at baseline (repaired by R1/R2)
 
-### 1. Graph pressure is filtered before reconsideration
+### 1. Graph pressure was filtered before reconsideration (R2 repaired)
 
 `Pipeline._run_companion()` passes recalled candidates to
 `run_verification_call_with_diagnostics()`, then calls
@@ -152,7 +167,7 @@ This table does not claim that all 60 candidates were useful. Most probably
 were not. It proves the narrower constitutional failure: the final reasoner was
 not allowed to inspect and disposition the bounded deterministic pressure.
 
-### 2. Full-conversation custody can fail before the machinery sees it
+### 2. Full-conversation custody could fail before the machinery saw it (R1 repaired)
 
 `docs/skill/STEPS.md` tells the orchestrator to include only the first three and
 last fifteen turns when a conversation exceeds 100 turns. If the orchestrator
@@ -166,7 +181,7 @@ artifact. The repair is therefore not “never compact.” It is to keep the ful
 available prose transcript authoritative and make every processing view a
 separate, declared derivative.
 
-### 3. The machine-facing receipt inflates reliance
+### 3. The machine-facing receipt inflated reliance (R1 repaired)
 
 `agent_result.py` correctly distinguishes healthy, partial, degraded, and
 incomplete run envelopes. But for an ordinary healthy run it returns
@@ -184,7 +199,7 @@ revised answer exists != advice is ready for autonomous use
 The label should become neutral until blinded usefulness and fresh-reader
 reconstruction are demonstrated.
 
-### 4. Paid-call and privacy controls are below the current bar
+### 4. Paid-call and privacy controls were below the current bar (R1 repaired)
 
 The live OpenRouter request uses `response_format: {"type": "json_object"}`
 and a temperature, but no stage-specific output cap, `provider.max_price`,
@@ -312,16 +327,20 @@ Therefore:
 These are future experiments. None should be converted into a deterministic
 meaning rule or a marketing claim.
 
-## Decision
+## Decision and current handoff
 
-The system has a strong enough custody foundation to continue. It does not have
-a strong enough live pressure path to continue ad hoc paid testing.
+The system has a strong enough custody foundation and graph-survival path to
+continue to one tightly frozen fresh-consumer proof. This does not establish
+that the pressure is useful, that the selected active set is semantically
+optimal, or that a revised answer is better.
 
 Follow
-`plans/lolla-post-v1-constitution-aligned-roadmap-2026-07-13.md` in order. The
-first implementation goal is provider-free trust, capture, cost, privacy, and
-ledger hardening. The second is the smallest graph-survival correction. Only
-then is one cheap fresh-consumer call allowed.
+`plans/lolla-post-v1-constitution-aligned-roadmap-2026-07-13.md` in order. R1
+completed provider-free trust, capture, cost, privacy, and ledger hardening. R2
+completed the smallest graph-survival correction. R3 is now the boundary: one
+fresh Gemini 3.1 Flash-Lite pressure attempt may be authorized only after its
+entire contract passes locally, with a $0.01 cap, no retry, no fallback, and no
+healing. See the R1/R2 result note for the exact implementation and evidence.
 
 The machine-readable finding register is
 `docs/evals/lolla-current-state-constitutional-drift-register-v1.json`.

@@ -47,6 +47,8 @@ Exit condition: met.
 
 ## R1 — Provider-free trust, capture, cost, privacy, and custody hardening
 
+Status: complete (2026-07-13; provider calls: zero)
+
 Purpose: make a run honest about what it captured, what it spent, what the
 provider could do with the data, and what its receipt actually proves.
 
@@ -88,11 +90,37 @@ Acceptance contract:
   healing;
 - all affected tests pass provider-free.
 
+Implementation result:
+
+- `conversation.txt` remains the complete authoritative prose artifact; a
+  bounded `conversation_processing_view.{txt,json}` now carries separate
+  partial-view hashes, lengths, and omission metadata;
+- `lolla_agent_result.v2` returns `review_revised_answer` for a clean standard
+  run and maps it to `require_external_review`;
+- every OpenAI-compatible boundary request now has a stage output ceiling,
+  price envelope, cumulative call/USD reservation, explicit fallback/data
+  policy, and visible price-table freshness;
+- the default Gemini Lite OpenRouter route is pinned to
+  `google-vertex/global`, fallbacks are off, parameter support is required,
+  and data collection defaults to `deny`; ZDR remains opt-in and is never
+  claimed without the request flag;
+- response IDs and provider-reported `usage.cost` survive into call records,
+  usage summaries, the budget ledger, and compact receipts alongside local
+  estimates;
+- preflight blocks and missing keys are recorded as non-attempts rather than
+  provider work;
+- private-table source atoms now remain fully inline or resolve to the exact
+  complete JSON material required by their ledger;
+- the 140-turn, request-construction, exact-cost, call-ceiling, USD-ceiling,
+  neutral-reliance, and ledger-custody fixtures pass locally.
+
 Stop rule: if a proposed repair requires deterministic semantic inference,
 split the goal and redesign the interface. Do not add a keyword or chronology
 gate.
 
 ## R2 — Constitutional graph-survival path
+
+Status: complete (2026-07-13; provider calls: zero)
 
 Purpose: stop deleting independent deterministic pressure while keeping the
 consumer context bounded.
@@ -128,6 +156,32 @@ Acceptance contract:
 - a forced-use fixture proves that rejection is allowed and public bloat is not
   required;
 - every ledger disposition resolves to material the consumer actually saw.
+
+Implementation result:
+
+- the live pipeline now creates `constitutional_graph_survival` immediately
+  after deterministic/embedding recall and before the probabilistic verifier;
+- the existing verifier and companion card remain available as interpretation
+  telemetry, but none of their applicability fields control survival in the
+  constitutional portfolio;
+- up to six direct recalled canonical IDs enter the detailed active set, with
+  one exact antagonist, tension, and ally slot added where the relationship
+  graph supplies them; direct overflow, graph overflow, duplicate inputs, and
+  malformed inputs remain distinguishable in compact reserve custody;
+- every active item carries its strongest plausible application, a concrete
+  test, force and ignore boundaries, graph/source provenance, a stable pressure
+  ID, and an exact consumer locator;
+- Step 6 receives the complete active material and must disposition every item
+  as `apply`, `reject`, or `park`; rejection records the failed condition,
+  parking records the reopen condition, and neither requires public prose;
+- the disposition ledger is hash-locked to the portfolio, finalized before
+  archive, and surfaced in run health and graph-survival reporting;
+- exhaustive provider-free measurement over all 163 possible 60-ID windows in
+  the 222-model registry observed a maximum of 4,690 estimated active tokens
+  and 9,510 estimated reserve tokens; frozen runtime ceilings are 6,000 and
+  12,000 respectively;
+- protected-strange-candidate, forced rejection, parking, exact visibility,
+  tamper, malformed, duplicate, and bounded-fan-in fixtures pass locally.
 
 Stop rule: do not route all 60 current candidates into Step 6. “No premature
 pruning” means bounded inspectable possibility, not context dumping.
@@ -239,8 +293,10 @@ receipt that a fresh reader can reconstruct.
 
 ## Immediate next goal
 
-Start R1. It requires no founder decision and no provider spend. Return for
-judgment only if the privacy default creates a material availability/cost
-tradeoff, if a neutral caller-action migration would break an external consumer
-we cannot discover locally, or if a repair would require expanding the product
-scope beyond prose-conversation reasoning custody.
+Prepare and execute R3 under its frozen one-attempt boundary. R1 and R2 now pass
+provider-free, so the next unanswered question is semantic rather than
+mechanical: can a fresh cheap consumer use or reject the bounded pressure
+honestly without absorbing noise, bloating the public answer, or losing useful
+original advice? R3 may authorize one Gemini 3.1 Flash-Lite pressure attempt
+through OpenRouter only after its source, prompt, schema, hashes, policy,
+no-retry behavior, and $0.01 budget are frozen locally.

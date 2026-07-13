@@ -601,10 +601,17 @@ def run_fingerprint_call_from_packet(
 ) -> FingerprintPayload:
     """Packet-driven Lane 2 fingerprint call."""
     assistant_text = _joined_assistant_turns_from_packet(packet)
-    raw_payload = client.run_json(
-        _build_fingerprint_system_prompt_from_context(),
-        _build_fingerprint_user_prompt_from_packet(packet),
-    )
+    try:
+        raw_payload = client.run_json(
+            _build_fingerprint_system_prompt_from_context(),
+            _build_fingerprint_user_prompt_from_packet(packet),
+            stage="companion_fingerprint",
+        )
+    except TypeError:
+        raw_payload = client.run_json(
+            _build_fingerprint_system_prompt_from_context(),
+            _build_fingerprint_user_prompt_from_packet(packet),
+        )
     fingerprint = parse_fingerprint_response(raw_payload, assistant_text)
     validated = sorted(
         fingerprint.validated,
@@ -777,10 +784,17 @@ def run_verification_call_with_diagnostics(
         return VerificationCallResult([], [], [], [], [], [], [], verification_status="not_run")
 
     assistant_text = _joined_assistant_turns_from_packet(packet)
-    raw_payload = client.run_json(
-        _build_verification_system_prompt(),
-        _build_verification_user_prompt_from_packet(packet, fingerprint_payload, candidates),
-    )
+    try:
+        raw_payload = client.run_json(
+            _build_verification_system_prompt(),
+            _build_verification_user_prompt_from_packet(packet, fingerprint_payload, candidates),
+            stage="companion_verification",
+        )
+    except TypeError:
+        raw_payload = client.run_json(
+            _build_verification_system_prompt(),
+            _build_verification_user_prompt_from_packet(packet, fingerprint_payload, candidates),
+        )
     call_metadata = getattr(client, "last_call_metadata", None)
     raw_message_content = coerce_str(
         getattr(call_metadata, "raw_message_content", "")
@@ -1459,7 +1473,14 @@ def run_companion_detection(
 
     system_prompt = _build_detection_system_prompt()
     user_prompt = _build_detection_user_prompt(vanilla_answer, candidates)
-    raw_payload = client.run_json(system_prompt, user_prompt)
+    try:
+        raw_payload = client.run_json(
+            system_prompt,
+            user_prompt,
+            stage="companion_verification",
+        )
+    except TypeError:
+        raw_payload = client.run_json(system_prompt, user_prompt)
     detections = parse_detection_response(raw_payload, candidates)
 
     def sort_key(item: DetectedModel) -> tuple[int, str]:

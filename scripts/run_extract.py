@@ -16,6 +16,7 @@ critique_request compatibility fields.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import re
@@ -222,6 +223,45 @@ def _truncate_conversation(text: str) -> tuple[str, dict]:
         "keep_last_turns": KEEP_LAST_TURNS,
         "omitted_turns": omitted,
     }
+
+
+def _write_conversation_processing_view(
+    *,
+    conversation_path: Path,
+    authoritative_text: str,
+    processing_text: str,
+    truncation_info: dict,
+) -> dict:
+    """Persist the bounded extraction view without replacing source custody."""
+
+    stem = conversation_path.stem
+    base = stem[: -len("_conversation")] if stem.endswith("_conversation") else stem
+    view_path = conversation_path.with_name(f"{base}_conversation_processing_view.txt")
+    metadata_path = conversation_path.with_name(f"{base}_conversation_processing_view.json")
+    partial = bool(truncation_info.get("truncation_applied"))
+    metadata = {
+        "schema_version": "lolla.conversation_processing_view.v1",
+        "status": "partial" if partial else "full",
+        "authoritative_artifact": "conversation.txt",
+        "processing_artifact": "conversation_processing_view.txt",
+        "authoritative_conversation_preserved": True,
+        "processing_view_is_authoritative": False,
+        "processing_strategy": "first_n_plus_last_n" if partial else "full",
+        "authoritative_sha256": hashlib.sha256(
+            authoritative_text.encode("utf-8")
+        ).hexdigest(),
+        "processing_sha256": hashlib.sha256(processing_text.encode("utf-8")).hexdigest(),
+        "authoritative_char_length": len(authoritative_text),
+        "processing_char_length": len(processing_text),
+        "omitted_turn_count": int(truncation_info.get("omitted_turns", 0) or 0),
+        "omission_metadata": dict(truncation_info) if partial else {"truncation_applied": False},
+    }
+    view_path.write_text(processing_text, encoding="utf-8")
+    metadata_path.write_text(
+        json.dumps(metadata, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+    return metadata
 
 
 # ---------------------------------------------------------------------------
@@ -649,17 +689,27 @@ def _persist_extraction_call_sidecar(
 
     active_run_id = run_id or infer_run_id_from_lolla_path(output_file)
     records = _call_record_payloads(client)
+    non_attempt_statuses = {"not_called", "missing_api_key", "budget_blocked_preflight"}
+    provider_attempted = any(
+        record.get("provider_attempted") is True
+        or str(record.get("status") or "") not in non_attempt_statuses
+        for record in records
+    )
     custody = {
         "schema_version": EXTRACTION_CALL_CUSTODY_SCHEMA_VERSION,
         "run_id": active_run_id,
-        "call_attempted": True,
+        "call_attempted": provider_attempted,
         "sidecar_persisted": False,
         "call_record_persisted": False,
         "recorded_call_count": len(records),
         "admissible_extraction": bool(admissible_extraction),
         "terminal_status": terminal_status,
         "usage_evidence_state": (
-            "recorded" if records else "missing_after_attempt"
+            "recorded"
+            if provider_attempted and records
+            else "preflight_non_attempt_recorded"
+            if records
+            else "missing_after_attempt"
         ),
         "sidecar_path": "",
         "failure_reason": "",
@@ -787,7 +837,8 @@ def main() -> int:
         )
         return 1
 
-    conversation_text = conv_path.read_text(encoding="utf-8")
+    authoritative_conversation_text = conv_path.read_text(encoding="utf-8")
+    conversation_text = authoritative_conversation_text
     if not conversation_text.strip():
         _emit_result(
             {"status": "error", "error": "Empty conversation file"},
@@ -837,20 +888,27 @@ def main() -> int:
         )
         return 0
 
-    # Truncate if needed. If truncation fires, merge diagnostic info into
-    # capture_manifest so run_pipeline.py / run_health / Step 4 chat can
-    # surface that context was dropped.
+    # Build a bounded extraction view when needed. The source transcript stays
+    # untouched and authoritative; processing omissions are recorded on the
+    # separate derivative rather than being mislabeled as capture loss.
     conversation_text, truncation_info = _truncate_conversation(conversation_text)
+    processing_view = _write_conversation_processing_view(
+        conversation_path=conv_path,
+        authoritative_text=authoritative_conversation_text,
+        processing_text=conversation_text,
+        truncation_info=truncation_info,
+    )
+    capture_result["conversation_processing_view"] = processing_view
     if truncation_info.get("truncation_applied"):
-        capture_result["capture_manifest"].update(truncation_info)
         capture_result["capture_warnings"].append(
-            f"Conversation truncated: {truncation_info['omitted_turns']} middle "
-            f"turns omitted ({truncation_info['original_char_length']} → "
-            f"{truncation_info['truncated_char_length']} chars). Audit will run "
-            f"on first {KEEP_FIRST_TURNS} + last {KEEP_LAST_TURNS} turns only."
+            f"Extraction processing view is partial: {truncation_info['omitted_turns']} middle "
+            f"turns omitted from the bounded extraction call "
+            f"({truncation_info['original_char_length']} → "
+            f"{truncation_info['truncated_char_length']} chars). The complete "
+            "authoritative conversation remains preserved separately."
         )
         capture_result["capture_adequacy"] = build_capture_adequacy(
-            conversation_text=conversation_text,
+            conversation_text=authoritative_conversation_text,
             run_id=run_id_for_guard,
             capture_manifest=capture_result["capture_manifest"],
             capture_health=capture_result["capture_health"],

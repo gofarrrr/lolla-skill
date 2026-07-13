@@ -47,7 +47,15 @@ def _run_pass2_single(
         tendency_key=tendency_id,
         catalog=catalog,
     )
-    payload, metadata = boundary.run_json_with_metadata(pass2_system, pass2_user)
+    try:
+        payload, metadata = boundary.run_json_with_metadata(
+            pass2_system,
+            pass2_user,
+            stage="pass2",
+            tendency_id=tendency_id,
+        )
+    except TypeError:
+        payload, metadata = boundary.run_json_with_metadata(pass2_system, pass2_user)
     trace = _metadata_to_boundary_call_trace(metadata, stage="pass2", tendency_id=tendency_id)
     result = parse_pass2_result(
         payload,
@@ -90,7 +98,15 @@ def _run_pass2_parallel(
         traces: list[BoundaryCallTrace] = []
         for tt in triggered_tendencies:
             pass2_system, pass2_user = _format_prompt_for(tt.tendency_id)
-            payload = boundary.run_json(pass2_system, pass2_user)
+            try:
+                payload = boundary.run_json(
+                    pass2_system,
+                    pass2_user,
+                    stage="pass2",
+                    tendency_id=tt.tendency_id,
+                )
+            except TypeError:
+                payload = boundary.run_json(pass2_system, pass2_user)
             traces.append(_capture_boundary_call(boundary, stage="pass2", tendency_id=tt.tendency_id))
             results.append(parse_pass2_result(payload, requested_tendency_key=tt.tendency_id, catalog=catalog))
         return results, traces

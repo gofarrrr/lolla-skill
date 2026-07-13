@@ -710,7 +710,14 @@ def run_question_classification_from_packet(
 ) -> str:
     """Packet-driven question classification."""
     user_prompt = _format_classification_from_packet_user_prompt(packet)
-    raw = boundary.run_json(_QUESTION_CLASSIFICATION_SYSTEM_FROM_CONTEXT, user_prompt)
+    try:
+        raw = boundary.run_json(
+            _QUESTION_CLASSIFICATION_SYSTEM_FROM_CONTEXT,
+            user_prompt,
+            stage="structural_coverage_classification",
+        )
+    except TypeError:
+        raw = boundary.run_json(_QUESTION_CLASSIFICATION_SYSTEM_FROM_CONTEXT, user_prompt)
     qtype = coerce_str(raw.get("question_type", ""))
     if qtype not in _VALID_QUESTION_TYPES:
         _LOGGER.warning("Invalid question_type %r, defaulting to decision-evaluation", qtype)
@@ -779,7 +786,14 @@ def run_dimension_detection_from_packet(
     user_prompt = _format_dimension_detection_from_packet_user_prompt(
         packet, question_type, catalog_text,
     )
-    raw = boundary.run_json(_DIMENSION_DETECTION_SYSTEM_FROM_CONTEXT, user_prompt)
+    try:
+        raw = boundary.run_json(
+            _DIMENSION_DETECTION_SYSTEM_FROM_CONTEXT,
+            user_prompt,
+            stage="structural_coverage_detection",
+        )
+    except TypeError:
+        raw = boundary.run_json(_DIMENSION_DETECTION_SYSTEM_FROM_CONTEXT, user_prompt)
     return _parse_dimension_detection(raw)
 
 
@@ -852,7 +866,14 @@ def generate_gap_questions_from_packet(
     user_prompt = _format_gap_question_from_packet_user_prompt(
         packet, question_type, gap_routes, structural_coverage_routing,
     )
-    raw = boundary.run_json(_GAP_QUESTION_GENERATION_SYSTEM, user_prompt)
+    try:
+        raw = boundary.run_json(
+            _GAP_QUESTION_GENERATION_SYSTEM,
+            user_prompt,
+            stage="structural_coverage_gap_questions",
+        )
+    except TypeError:
+        raw = boundary.run_json(_GAP_QUESTION_GENERATION_SYSTEM, user_prompt)
     parsed = _parse_gap_questions(raw)
 
     results: list[GapQuestion] = []

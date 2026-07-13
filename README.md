@@ -21,11 +21,20 @@ Four independent audit lanes:
 
 Each lane produces traceable candidate findings tied to curated knowledge. Their applicability and usefulness remain judgments for the reconsidering reasoner and, ultimately, the human.
 
+The live Lane 2 path also preserves a separate bounded
+`constitutional_graph_survival` portfolio before probabilistic verification.
+Up to six direct canonical recalls plus exact antagonist, tension, and ally
+slots receive full pressure material; overflow remains in compact reserve. The
+final reasoner must apply, reject, or park every active item, but never has to
+force it into the public answer. The existing verifier remains interpretation
+telemetry and cannot delete this portfolio.
+
 > **Development status (2026-07-13):** The end-to-end skill and custody harness
 > work, but V1 did not establish product reliability, real-user usefulness,
 > stability, or receipt reconstruction. Lolla does not certify that a revised
 > answer is better or safe to act on. See the
-> [current constitutional audit](docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md).
+> [current constitutional audit](docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md)
+> and [R1/R2 hardening result](docs/conversation-understanding/lolla-r1-r2-constitutional-hardening-result-2026-07-13.md).
 
 ## Why This Exists
 
@@ -117,12 +126,14 @@ $lolla
 The skill captures the conversation, extracts the decision structure, and runs the full audit pipeline. It works best on conversations where you're making a recommendation, weighing tradeoffs, or giving strategic advice.
 
 At completion, each run is archived locally under `~/.local/share/lolla/runs/`.
-The archive includes `agent_result.json`: a compact `lolla_agent_result.v1`
+The archive includes `agent_result.json`: a compact `lolla_agent_result.v2`
 handoff for agents that reports whether required run artifacts are available, what
 changed when that is visible from product artifacts, which human questions
 remain, and where to inspect the archive. It also includes `evaluation.json`: a
 deterministic run-readiness receipt for artifact/schema/custody/health
-consistency, including capture adequacy, not advice-quality scoring. Finally,
+consistency, including capture adequacy, not advice-quality scoring. A clean
+standard run returns the neutral `review_revised_answer`; this is not approval
+of the recommendation or permission to act. Finally,
 `reasoning_trace.json` is a local-only custody manifest that indexes the
 captured conversation, result, memo, health, usage, ledger artifacts,
 reasoning-lens IDs, model-call telemetry, capture adequacy, and trace-adequacy
@@ -1190,6 +1201,8 @@ For the eval doctrine behind that roadmap, see **[Lolla Evaluation Methodology](
 For the current constitution-based state assessment and ordered post-V1 work,
 see the **[July 2026 constitutional audit](docs/conversation-understanding/lolla-current-state-constitutional-audit-2026-07-13.md)**
 and **[constitution-aligned roadmap](plans/lolla-post-v1-constitution-aligned-roadmap-2026-07-13.md)**.
+The **[R1/R2 constitutional hardening result](docs/conversation-understanding/lolla-r1-r2-constitutional-hardening-result-2026-07-13.md)**
+records the implemented provider-free boundary and the exact R3 handoff.
 
 For the offline Product Delta evidence lane, including what to run, what to
 inspect, and what not to infer, see **[Product Delta / Eval Docs Index](docs/evals/README.md)**.
@@ -1202,7 +1215,12 @@ A typical default audit makes ~50-85 OpenRouter calls, with optional OpenAI embe
 - **OpenAI:** optional embeddings + query expansion through the model retrieval layer; usually well under $0.01.
 - **Anthropic:** no calls in the default flow. Step-7 pressure-check sub-agents are rested by default and only add Anthropic usage when the user/operator explicitly enables deeper-review mode.
 
-Default-run cost is typically dominated by OpenRouter and is estimated in the final receipt from the versioned local price table. The current runtime does not yet preserve OpenRouter's exact charged cost, so use the provider dashboard for billing truth. Optional deeper-review mode can add a larger Anthropic line depending on which Claude model the orchestrator runs.
+Default-run cost is typically dominated by OpenRouter. The final receipt now
+preserves the provider response ID and exact OpenRouter `usage.cost` when the
+provider returns them, alongside the versioned local estimate and durable
+run-budget ledger. The provider dashboard remains the account-level billing
+source of truth. Optional deeper-review mode can add a larger Anthropic line
+depending on which Claude model the orchestrator runs.
 
 Every run produces a self-describing `usage_summary` block in the result JSON with per-vendor cost, per-stage call counts, prompt-cache hit rate, and the version date of the price table. Three places to read it:
 - Visual: `http://localhost:8080/usage` (when the Observatory is running)

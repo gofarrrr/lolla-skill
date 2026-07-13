@@ -289,7 +289,7 @@ That split is important.
 
 Humans need a clear answer. Builders need traces. Lolla tries to serve both without dumping the instrument panel into the chat.
 
-That contract now exists as an archive artifact. A completed modern run has a compact `lolla_agent_result.v1` result with fields like:
+That contract now exists as an archive artifact. A completed modern run has a compact `lolla_agent_result.v2` result with fields like:
 
 - run status,
 - run-health summary,
@@ -304,7 +304,7 @@ That contract now exists as an archive artifact. A completed modern run has a co
 - artifact paths,
 - cost and usage summary.
 
-The current `caller_action` blocks partial, degraded, incomplete, capture-critical, and product-output-unsafe runs. A July 2026 constitutional audit found that its clean-run `use_revised_answer` value still overstates what artifact completeness proves; neutral reliance language is the next runtime correction.
+The current `caller_action` blocks partial, degraded, incomplete, capture-critical, and product-output-unsafe runs. After the July 2026 constitutional audit, clean standard runs now return `review_revised_answer`: a neutral instruction to inspect the artifact, not a quality claim or permission to act.
 
 For external systems, Lolla can now preserve optional control-plane context through local sidecars. A caller may provide `control_input.json` with trace, action, approval, policy, sandbox, or credential references. Lolla then archives that input, adds compact references to the agent result and reasoning trace, and can generate `control_result.json` as a wrapper around `caller_action`. This is not an approval decision. It is a reasoning-audit handoff that another policy, approval, sandbox, identity, or trace system can consume.
 
